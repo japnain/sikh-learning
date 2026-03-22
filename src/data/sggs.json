@@ -1,0 +1,162 @@
+[
+  {
+    "id": "sggs-001",
+    "scripture": "SGGS",
+    "ang": 1,
+    "gurmukhi": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ",
+    "transliteration": "Ik Oankaar Sat Naam Kartaa Purakh Nirbhau Nirvair Akaal Moorat Ajoonee Saibhan Gur Prasaad",
+    "translation_en": "One Universal Creator God. The Name Is Truth. Creative Being Personified. No Fear. No Hatred. Image Of The Undying. Beyond Birth. Self-Existent. By Guru's Grace.",
+    "translation_pa": "ਇੱਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚਾ ਨਾਮ। ਕਰਤਾ ਪੁਰਖ। ਨਿਡਰ। ਵੈਰ ਰਹਿਤ। ਅਕਾਲ ਦੀ ਮੂਰਤ। ਅਜੂਨੀ। ਸਵੈ-ਪ੍ਰਕਾਸ਼ਿਤ। ਗੁਰੂ ਦੀ ਕਿਰਪਾ ਨਾਲ।",
+    "words": [
+      { "gurmukhi": "ੴ", "transliteration": "Ik Oankaar", "meaning_en": "One Universal Creator", "meaning_pa": "ਇੱਕ ਅਕਾਲ ਪੁਰਖ" },
+      { "gurmukhi": "ਸਤਿ", "transliteration": "Sat", "meaning_en": "Truth", "meaning_pa": "ਸੱਚ" },
+      { "gurmukhi": "ਨਾਮੁ", "transliteration": "Naam", "meaning_en": "Name", "meaning_pa": "ਨਾਮ" },
+      { "gurmukhi": "ਕਰਤਾ", "transliteration": "Kartaa", "meaning_en": "Creator", "meaning_pa": "ਸਿਰਜਣਹਾਰ" },
+      { "gurmukhi": "ਪੁਰਖੁ", "transliteration": "Purakh", "meaning_en": "Being", "meaning_pa": "ਸੱਤਾ" },
+      { "gurmukhi": "ਨਿਰਭਉ", "transliteration": "Nirbhau", "meaning_en": "Without Fear", "meaning_pa": "ਨਿਡਰ" },
+      { "gurmukhi": "ਨਿਰਵੈਰੁ", "transliteration": "Nirvair", "meaning_en": "Without Hatred", "meaning_pa": "ਵੈਰ ਰਹਿਤ" },
+      { "gurmukhi": "ਅਕਾਲ", "transliteration": "Akaal", "meaning_en": "Undying / Timeless", "meaning_pa": "ਅਮਰ" },
+      { "gurmukhi": "ਮੂਰਤਿ", "transliteration": "Moorat", "meaning_en": "Image / Form", "meaning_pa": "ਰੂਪ" },
+      { "gurmukhi": "ਅਜੂਨੀ", "transliteration": "Ajoonee", "meaning_en": "Beyond Birth", "meaning_pa": "ਜਨਮ ਤੋਂ ਪਰੇ" },
+      { "gurmukhi": "ਸੈਭੰ", "transliteration": "Saibhan", "meaning_en": "Self-Existent", "meaning_pa": "ਸਵੈ-ਪ੍ਰਕਾਸ਼ਿਤ" },
+      { "gurmukhi": "ਗੁਰ", "transliteration": "Gur", "meaning_en": "Guru", "meaning_pa": "ਗੁਰੂ" },
+      { "gurmukhi": "ਪ੍ਰਸਾਦਿ", "transliteration": "Prasaad", "meaning_en": "Grace", "meaning_pa": "ਕਿਰਪਾ" }
+    ]
+  },
+  {
+    "id": "sggs-002",
+    "scripture": "SGGS",
+    "ang": 1,
+    "gurmukhi": "ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ",
+    "transliteration": "Sochai Soch Na Hova-ee Jay Sochee Lakh Vaar",
+    "translation_en": "By thinking, He cannot be reduced to thought, even by thinking hundreds of thousands of times.",
+    "translation_pa": "ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ, ਭਾਵੇਂ ਲੱਖਾਂ ਵਾਰ ਸੋਚੀਏ।",
+    "words": [
+      { "gurmukhi": "ਸੋਚੈ", "transliteration": "Sochai", "meaning_en": "By thinking", "meaning_pa": "ਸੋਚਣ ਨਾਲ" },
+      { "gurmukhi": "ਸੋਚਿ", "transliteration": "Soch", "meaning_en": "Thought", "meaning_pa": "ਸੋਚ" },
+      { "gurmukhi": "ਨ ਹੋਵਈ", "transliteration": "Na Hova-ee", "meaning_en": "Cannot be", "meaning_pa": "ਨਹੀਂ ਹੁੰਦਾ" },
+      { "gurmukhi": "ਜੇ", "transliteration": "Jay", "meaning_en": "Even if", "meaning_pa": "ਭਾਵੇਂ" },
+      { "gurmukhi": "ਲਖ", "transliteration": "Lakh", "meaning_en": "Hundred thousand", "meaning_pa": "ਲੱਖ" },
+      { "gurmukhi": "ਵਾਰ", "transliteration": "Vaar", "meaning_en": "Times", "meaning_pa": "ਵਾਰ" }
+    ]
+  },
+  {
+    "id": "sggs-003",
+    "scripture": "SGGS",
+    "ang": 1,
+    "gurmukhi": "ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ",
+    "transliteration": "Chupai Chup Na Hova-ee Jay Laa-ay Rahaa Liv Taar",
+    "translation_en": "By remaining silent, inner silence is not obtained, even by remaining lovingly absorbed deep within.",
+    "translation_pa": "ਚੁੱਪ ਰਹਿਣ ਨਾਲ ਮਨ ਦੀ ਚੁੱਪ ਨਹੀਂ ਆਉਂਦੀ, ਭਾਵੇਂ ਪ੍ਰੇਮ ਨਾਲ ਲੀਨ ਰਹੀਏ।",
+    "words": [
+      { "gurmukhi": "ਚੁਪੈ", "transliteration": "Chupai", "meaning_en": "By silence", "meaning_pa": "ਚੁੱਪ ਰਹਿਣ ਨਾਲ" },
+      { "gurmukhi": "ਚੁਪ", "transliteration": "Chup", "meaning_en": "Silence", "meaning_pa": "ਚੁੱਪ" },
+      { "gurmukhi": "ਲਿਵ", "transliteration": "Liv", "meaning_en": "Lovingly absorbed", "meaning_pa": "ਪ੍ਰੇਮ ਨਾਲ ਲੀਨ" },
+      { "gurmukhi": "ਤਾਰ", "transliteration": "Taar", "meaning_en": "Deep within", "meaning_pa": "ਅੰਦਰੋਂ" }
+    ]
+  },
+  {
+    "id": "sggs-004",
+    "scripture": "SGGS",
+    "ang": 2,
+    "gurmukhi": "ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ ਹੁਕਮੁ ਨ ਕਹਿਆ ਜਾਈ",
+    "transliteration": "Hukmee Hovan Aakaar Hukam Na Kehiaa Jaa-ee",
+    "translation_en": "By His Command, bodies are created; His Command cannot be described.",
+    "translation_pa": "ਉਸਦੇ ਹੁਕਮ ਨਾਲ ਸਰੀਰ ਬਣਦੇ ਹਨ; ਉਸਦਾ ਹੁਕਮ ਦੱਸਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।",
+    "words": [
+      { "gurmukhi": "ਹੁਕਮੀ", "transliteration": "Hukmee", "meaning_en": "By His Command", "meaning_pa": "ਉਸਦੇ ਹੁਕਮ ਨਾਲ" },
+      { "gurmukhi": "ਹੋਵਨਿ", "transliteration": "Hovan", "meaning_en": "Are created", "meaning_pa": "ਬਣਦੇ ਹਨ" },
+      { "gurmukhi": "ਆਕਾਰ", "transliteration": "Aakaar", "meaning_en": "Bodies / Forms", "meaning_pa": "ਸਰੀਰ / ਰੂਪ" },
+      { "gurmukhi": "ਹੁਕਮੁ", "transliteration": "Hukam", "meaning_en": "Command / Order", "meaning_pa": "ਹੁਕਮ" }
+    ]
+  },
+  {
+    "id": "sggs-005",
+    "scripture": "SGGS",
+    "ang": 2,
+    "gurmukhi": "ਨਾਨਕ ਕਹੈ ਵਿਚਾਰੁ ਕਵਣੁ ਸੁ ਵੇਲਾ ਵਖਤੁ ਕਵਣੁ",
+    "transliteration": "Nanak Kahai Vichaar Kavan Su Velaa Vakhat Kavan",
+    "translation_en": "Says Nanak, reflect upon this — what was that time, what was that moment?",
+    "translation_pa": "ਨਾਨਕ ਕਹਿੰਦੇ ਹਨ, ਵਿਚਾਰ ਕਰੋ — ਉਹ ਵੇਲਾ ਕਿਹੜਾ ਸੀ, ਉਹ ਮੌਕਾ ਕਿਹੜਾ ਸੀ?",
+    "words": [
+      { "gurmukhi": "ਨਾਨਕ", "transliteration": "Nanak", "meaning_en": "Nanak (the Guru)", "meaning_pa": "ਨਾਨਕ (ਗੁਰੂ)" },
+      { "gurmukhi": "ਕਹੈ", "transliteration": "Kahai", "meaning_en": "Says", "meaning_pa": "ਕਹਿੰਦੇ ਹਨ" },
+      { "gurmukhi": "ਵਿਚਾਰੁ", "transliteration": "Vichaar", "meaning_en": "Reflect / Contemplate", "meaning_pa": "ਵਿਚਾਰ" },
+      { "gurmukhi": "ਵੇਲਾ", "transliteration": "Velaa", "meaning_en": "Time / Moment", "meaning_pa": "ਵੇਲਾ" }
+    ]
+  },
+  {
+    "id": "sggs-006",
+    "scripture": "SGGS",
+    "ang": 3,
+    "gurmukhi": "ਆਪੇ ਜਾਣੈ ਆਪੇ ਦੇਇ ਆਖਹਿ ਸਿ ਭੀ ਕੇਇ",
+    "transliteration": "Aapay Jaanai Aapay Day-ay Aakhahi Se Bhee Kay-ay",
+    "translation_en": "He Himself knows, He Himself gives; how rare are those who come to speak of this.",
+    "translation_pa": "ਉਹ ਆਪ ਜਾਣਦਾ ਹੈ, ਆਪ ਦਿੰਦਾ ਹੈ; ਕੁਝ ਕੁ ਹੀ ਇਸ ਬਾਰੇ ਬੋਲਦੇ ਹਨ।",
+    "words": [
+      { "gurmukhi": "ਆਪੇ", "transliteration": "Aapay", "meaning_en": "He Himself", "meaning_pa": "ਆਪ" },
+      { "gurmukhi": "ਜਾਣੈ", "transliteration": "Jaanai", "meaning_en": "Knows", "meaning_pa": "ਜਾਣਦਾ ਹੈ" },
+      { "gurmukhi": "ਦੇਇ", "transliteration": "Day-ay", "meaning_en": "Gives", "meaning_pa": "ਦਿੰਦਾ ਹੈ" }
+    ]
+  },
+  {
+    "id": "sggs-007",
+    "scripture": "SGGS",
+    "ang": 4,
+    "gurmukhi": "ਤੀਰਥਿ ਨਾਵਾ ਜੇ ਤਿਸੁ ਭਾਵਾ ਵਿਣੁ ਭਾਣੇ ਕਿ ਨਾਇ ਕਰੀ",
+    "transliteration": "Teerath Naavaa Jay Tis Bhaavaa Vin Bhaanay Ke Naa-ay Karee",
+    "translation_en": "I may bathe at holy shrines of pilgrimage, if that pleases His Will. Without His Pleasure, what use is bathing?",
+    "translation_pa": "ਮੈਂ ਤੀਰਥਾਂ ਤੇ ਨਹਾਵਾਂ ਜੇ ਉਸਨੂੰ ਚੰਗਾ ਲੱਗੇ; ਉਸਦੀ ਰਜ਼ਾ ਤੋਂ ਬਿਨਾਂ ਨਹਾਉਣ ਦਾ ਕੀ ਫਾਇਦਾ?",
+    "words": [
+      { "gurmukhi": "ਤੀਰਥਿ", "transliteration": "Teerath", "meaning_en": "Holy shrine / Pilgrimage", "meaning_pa": "ਤੀਰਥ" },
+      { "gurmukhi": "ਨਾਵਾ", "transliteration": "Naavaa", "meaning_en": "Bathe", "meaning_pa": "ਨਹਾਉਣਾ" },
+      { "gurmukhi": "ਭਾਵਾ", "transliteration": "Bhaavaa", "meaning_en": "Pleases", "meaning_pa": "ਚੰਗਾ ਲੱਗੇ" },
+      { "gurmukhi": "ਭਾਣੇ", "transliteration": "Bhaanay", "meaning_en": "His Will / Pleasure", "meaning_pa": "ਰਜ਼ਾ" }
+    ]
+  },
+  {
+    "id": "sggs-008",
+    "scripture": "SGGS",
+    "ang": 4,
+    "gurmukhi": "ਜੇਤੀ ਸਿਰਠਿ ਉਪਾਈ ਵੇਖਾ ਵਿਣੁ ਕਰਮਾ ਕਿ ਮਿਲੈ ਲਈ",
+    "transliteration": "Jaytee Sirath Upaa-ee Vaykhaa Vin Karmaa Ke Milai La-ee",
+    "translation_en": "I behold all the creation You have made; without good karma, what can anyone receive?",
+    "translation_pa": "ਮੈਂ ਤੇਰੀ ਸਾਰੀ ਸ੍ਰਿਸ਼ਟੀ ਦੇਖਦਾ ਹਾਂ; ਚੰਗੇ ਕਰਮਾਂ ਤੋਂ ਬਿਨਾਂ ਕੀ ਮਿਲ ਸਕਦਾ ਹੈ?",
+    "words": [
+      { "gurmukhi": "ਸਿਰਠਿ", "transliteration": "Sirath", "meaning_en": "Creation", "meaning_pa": "ਸ੍ਰਿਸ਼ਟੀ" },
+      { "gurmukhi": "ਉਪਾਈ", "transliteration": "Upaa-ee", "meaning_en": "Created / Made", "meaning_pa": "ਬਣਾਈ" },
+      { "gurmukhi": "ਕਰਮਾ", "transliteration": "Karmaa", "meaning_en": "Karma / Actions", "meaning_pa": "ਕਰਮ" }
+    ]
+  },
+  {
+    "id": "sggs-009",
+    "scripture": "SGGS",
+    "ang": 5,
+    "gurmukhi": "ਮਨ ਰੇ ਗੁਰਮੁਖਿ ਬੂਝੁ ਬੀਚਾਰੁ",
+    "transliteration": "Man Ray Gurmukh Boojh Beechaar",
+    "translation_en": "O mind, become Gurmukh — understand and contemplate.",
+    "translation_pa": "ਹੇ ਮਨ, ਗੁਰਮੁਖ ਬਣ — ਸਮਝ ਅਤੇ ਵਿਚਾਰ ਕਰ।",
+    "words": [
+      { "gurmukhi": "ਮਨ", "transliteration": "Man", "meaning_en": "Mind", "meaning_pa": "ਮਨ" },
+      { "gurmukhi": "ਰੇ", "transliteration": "Ray", "meaning_en": "O (address)", "meaning_pa": "ਹੇ" },
+      { "gurmukhi": "ਗੁਰਮੁਖਿ", "transliteration": "Gurmukh", "meaning_en": "One who follows the Guru", "meaning_pa": "ਗੁਰੂ ਵੱਲ ਮੂੰਹ ਕਰਨ ਵਾਲਾ" },
+      { "gurmukhi": "ਬੂਝੁ", "transliteration": "Boojh", "meaning_en": "Understand", "meaning_pa": "ਸਮਝ" },
+      { "gurmukhi": "ਬੀਚਾਰੁ", "transliteration": "Beechaar", "meaning_en": "Contemplate", "meaning_pa": "ਵਿਚਾਰ" }
+    ]
+  },
+  {
+    "id": "sggs-010",
+    "scripture": "SGGS",
+    "ang": 6,
+    "gurmukhi": "ਭੈ ਵਿਚਿ ਪਵਣੁ ਵਹੈ ਸਦਵਾਉ",
+    "transliteration": "Bhai Vich Pavan Vahai Sad Vaa-o",
+    "translation_en": "In the Fear of God, the wind and breezes ever blow.",
+    "translation_pa": "ਰੱਬ ਦੇ ਡਰ ਵਿੱਚ ਹਵਾ ਅਤੇ ਬਾਤਾਸ ਚੱਲਦੀ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਭੈ", "transliteration": "Bhai", "meaning_en": "Fear / Awe of God", "meaning_pa": "ਡਰ / ਸ਼ਰਧਾ" },
+      { "gurmukhi": "ਵਿਚਿ", "transliteration": "Vich", "meaning_en": "Within / In", "meaning_pa": "ਵਿੱਚ" },
+      { "gurmukhi": "ਪਵਣੁ", "transliteration": "Pavan", "meaning_en": "Wind / Air", "meaning_pa": "ਹਵਾ" },
+      { "gurmukhi": "ਵਹੈ", "transliteration": "Vahai", "meaning_en": "Flows / Blows", "meaning_pa": "ਚੱਲਦੀ ਹੈ" }
+    ]
+  }
+]
