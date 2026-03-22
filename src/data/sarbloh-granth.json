@@ -1,0 +1,145 @@
+[
+  {
+    "id": "sg-001",
+    "scripture": "SG",
+    "ang": 1,
+    "gurmukhi": "ਅਥ ਸ੍ਰੀ ਸਰਬਲੋਹ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ",
+    "transliteration": "Ath Sri Sarbloh Granth Sahib Jee",
+    "translation_en": "Now begins the Blessed Sri Sarbloh Granth Sahib.",
+    "translation_pa": "ਹੁਣ ਸ੍ਰੀ ਸਰਬਲੋਹ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ ਸ਼ੁਰੂ ਹੁੰਦੇ ਹਨ।",
+    "words": [
+      { "gurmukhi": "ਸਰਬਲੋਹ", "transliteration": "Sarbloh", "meaning_en": "All-Steel / Pure Iron", "meaning_pa": "ਸਾਰਾ ਲੋਹਾ" },
+      { "gurmukhi": "ਗ੍ਰੰਥ", "transliteration": "Granth", "meaning_en": "Scripture / Book", "meaning_pa": "ਗ੍ਰੰਥ" },
+      { "gurmukhi": "ਸਾਹਿਬ", "transliteration": "Sahib", "meaning_en": "Lord / Master", "meaning_pa": "ਸਾਹਿਬ" }
+    ]
+  },
+  {
+    "id": "sg-002",
+    "scripture": "SG",
+    "ang": 1,
+    "gurmukhi": "ਸਰਬ ਕਾਲ ਹੈ ਪਿਤਾ ਅਪਾਰਾ",
+    "transliteration": "Sarab Kaal Hai Pitaa Apaaraa",
+    "translation_en": "The All-Steel (Eternal) is the Infinite Father.",
+    "translation_pa": "ਸਰਬ ਕਾਲ ਅਨੰਤ ਪਿਤਾ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਸਰਬ", "transliteration": "Sarab", "meaning_en": "All / Entire", "meaning_pa": "ਸਭ" },
+      { "gurmukhi": "ਕਾਲ", "transliteration": "Kaal", "meaning_en": "Time / Death / Eternal", "meaning_pa": "ਕਾਲ / ਅਨੰਤ" },
+      { "gurmukhi": "ਪਿਤਾ", "transliteration": "Pitaa", "meaning_en": "Father", "meaning_pa": "ਪਿਤਾ" },
+      { "gurmukhi": "ਅਪਾਰਾ", "transliteration": "Apaaraa", "meaning_en": "Infinite / Limitless", "meaning_pa": "ਅਨੰਤ" }
+    ]
+  },
+  {
+    "id": "sg-003",
+    "scripture": "SG",
+    "ang": 1,
+    "gurmukhi": "ਦੁਰਗਾ ਪਾਠ ਬਣਾਇਆ ਸਭੇ ਪਉੜੀਆ",
+    "transliteration": "Durgaa Paath Banaa-iaa Sabhay Pa-orheeaa",
+    "translation_en": "He created the path of Durga and all its steps.",
+    "translation_pa": "ਉਸਨੇ ਦੁਰਗਾ ਦਾ ਪਾਠ ਅਤੇ ਸਭ ਪਉੜੀਆਂ ਬਣਾਈਆਂ।",
+    "words": [
+      { "gurmukhi": "ਪਾਠ", "transliteration": "Paath", "meaning_en": "Path / Reading", "meaning_pa": "ਪਾਠ" },
+      { "gurmukhi": "ਬਣਾਇਆ", "transliteration": "Banaa-iaa", "meaning_en": "Created / Made", "meaning_pa": "ਬਣਾਇਆ" },
+      { "gurmukhi": "ਪਉੜੀਆ", "transliteration": "Pa-orheeaa", "meaning_en": "Steps / Stanzas", "meaning_pa": "ਪਉੜੀਆਂ" }
+    ]
+  },
+  {
+    "id": "sg-004",
+    "scripture": "SG",
+    "ang": 2,
+    "gurmukhi": "ਸਭ ਤੇ ਵੱਡਾ ਸਤਿਗੁਰੁ ਨਾਨਕ",
+    "transliteration": "Sabh Tay Vadaa Satgur Nanak",
+    "translation_en": "Greater than all is the True Guru Nanak.",
+    "translation_pa": "ਸਭ ਤੋਂ ਵੱਡੇ ਹਨ ਸਤਿਗੁਰੂ ਨਾਨਕ।",
+    "words": [
+      { "gurmukhi": "ਸਭ", "transliteration": "Sabh", "meaning_en": "All", "meaning_pa": "ਸਭ" },
+      { "gurmukhi": "ਵੱਡਾ", "transliteration": "Vadaa", "meaning_en": "Great / Greater", "meaning_pa": "ਵੱਡੇ" },
+      { "gurmukhi": "ਸਤਿਗੁਰੁ", "transliteration": "Satgur", "meaning_en": "True Guru", "meaning_pa": "ਸੱਚੇ ਗੁਰੂ" }
+    ]
+  },
+  {
+    "id": "sg-005",
+    "scripture": "SG",
+    "ang": 2,
+    "gurmukhi": "ਅਕਾਲ ਪੁਰਖ ਕੀ ਰਛਾ ਹਮਨੈ",
+    "transliteration": "Akaal Purakh Kee Rachhaa Hamnai",
+    "translation_en": "The Eternal Being protects us.",
+    "translation_pa": "ਅਕਾਲ ਪੁਰਖ ਸਾਡੀ ਰੱਖਿਆ ਕਰਦਾ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਅਕਾਲ", "transliteration": "Akaal", "meaning_en": "Eternal / Undying", "meaning_pa": "ਅਮਰ" },
+      { "gurmukhi": "ਪੁਰਖ", "transliteration": "Purakh", "meaning_en": "Being / Primal Being", "meaning_pa": "ਪੁਰਖ" },
+      { "gurmukhi": "ਰਛਾ", "transliteration": "Rachhaa", "meaning_en": "Protection", "meaning_pa": "ਰੱਖਿਆ" },
+      { "gurmukhi": "ਹਮਨੈ", "transliteration": "Hamnai", "meaning_en": "Us / Our", "meaning_pa": "ਸਾਡੀ" }
+    ]
+  },
+  {
+    "id": "sg-006",
+    "scripture": "SG",
+    "ang": 3,
+    "gurmukhi": "ਜੋ ਸਰਣਿ ਆਵੈ ਤਿਸ ਕੰਠਿ ਲਾਵੈ",
+    "transliteration": "Jo Saran Aavai Tis Kanth Laavai",
+    "translation_en": "Whoever comes to His sanctuary, He embraces them.",
+    "translation_pa": "ਜੋ ਉਸਦੀ ਸ਼ਰਣ ਵਿੱਚ ਆਉਂਦਾ ਹੈ, ਉਸਨੂੰ ਉਹ ਗਲੇ ਲਗਾਉਂਦਾ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਸਰਣਿ", "transliteration": "Saran", "meaning_en": "Sanctuary / Refuge", "meaning_pa": "ਸ਼ਰਣ" },
+      { "gurmukhi": "ਆਵੈ", "transliteration": "Aavai", "meaning_en": "Comes", "meaning_pa": "ਆਉਂਦਾ ਹੈ" },
+      { "gurmukhi": "ਕੰਠਿ", "transliteration": "Kanth", "meaning_en": "Embrace / Neck", "meaning_pa": "ਗਲੇ" },
+      { "gurmukhi": "ਲਾਵੈ", "transliteration": "Laavai", "meaning_en": "Embraces / Joins", "meaning_pa": "ਲਗਾਉਂਦਾ" }
+    ]
+  },
+  {
+    "id": "sg-007",
+    "scripture": "SG",
+    "ang": 3,
+    "gurmukhi": "ਸ੍ਰੀ ਅਕਾਲ ਜੀ ਸਹਾਇ",
+    "transliteration": "Sri Akaal Jee Sahaa-ay",
+    "translation_en": "May the Eternal God be your helper.",
+    "translation_pa": "ਸ੍ਰੀ ਅਕਾਲ ਜੀ ਸਹਾਇਤਾ ਕਰਨ।",
+    "words": [
+      { "gurmukhi": "ਸ੍ਰੀ", "transliteration": "Sri", "meaning_en": "Blessed / Revered", "meaning_pa": "ਸ੍ਰੀ" },
+      { "gurmukhi": "ਅਕਾਲ", "transliteration": "Akaal", "meaning_en": "Eternal / Undying", "meaning_pa": "ਅਮਰ" },
+      { "gurmukhi": "ਸਹਾਇ", "transliteration": "Sahaa-ay", "meaning_en": "Helper / Support", "meaning_pa": "ਸਹਾਇਕ" }
+    ]
+  },
+  {
+    "id": "sg-008",
+    "scripture": "SG",
+    "ang": 4,
+    "gurmukhi": "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹਿ",
+    "transliteration": "Waheguru Jee Kaa Khalsaa Waheguru Jee Kee Fateh",
+    "translation_en": "The Khalsa belongs to the Wondrous Lord; Victory belongs to the Wondrous Lord.",
+    "translation_pa": "ਖਾਲਸਾ ਵਾਹਿਗੁਰੂ ਦਾ ਹੈ; ਜਿੱਤ ਵਾਹਿਗੁਰੂ ਦੀ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਵਾਹਿਗੁਰੂ", "transliteration": "Waheguru", "meaning_en": "Wondrous Lord (God)", "meaning_pa": "ਵਾਹਿਗੁਰੂ" },
+      { "gurmukhi": "ਖਾਲਸਾ", "transliteration": "Khalsaa", "meaning_en": "The Pure / Khalsa", "meaning_pa": "ਖਾਲਸਾ" },
+      { "gurmukhi": "ਫਤਹਿ", "transliteration": "Fateh", "meaning_en": "Victory", "meaning_pa": "ਜਿੱਤ" }
+    ]
+  },
+  {
+    "id": "sg-009",
+    "scripture": "SG",
+    "ang": 4,
+    "gurmukhi": "ਧੰਨ ਧੰਨ ਰਾਮਦਾਸ ਗੁਰੁ ਜਿਨਿ ਸਿਰਿਆ ਤਿਨੈ ਸਵਾਰਿਆ",
+    "transliteration": "Dhan Dhan Raamdaas Gur Jin Siriaa Tinai Savaaariaa",
+    "translation_en": "Blessed, blessed is Guru Ram Das; He who created him also embellished him.",
+    "translation_pa": "ਧੰਨ ਧੰਨ ਗੁਰੂ ਰਾਮਦਾਸ; ਜਿਸਨੇ ਬਣਾਇਆ ਉਸਨੇ ਹੀ ਸਵਾਰਿਆ।",
+    "words": [
+      { "gurmukhi": "ਧੰਨ", "transliteration": "Dhan", "meaning_en": "Blessed / Fortunate", "meaning_pa": "ਧੰਨ" },
+      { "gurmukhi": "ਸਿਰਿਆ", "transliteration": "Siriaa", "meaning_en": "Created", "meaning_pa": "ਬਣਾਇਆ" },
+      { "gurmukhi": "ਸਵਾਰਿਆ", "transliteration": "Savaaariaa", "meaning_en": "Embellished / Adorned", "meaning_pa": "ਸਵਾਰਿਆ" }
+    ]
+  },
+  {
+    "id": "sg-010",
+    "scripture": "SG",
+    "ang": 5,
+    "gurmukhi": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ",
+    "transliteration": "Sat Sri Akaal",
+    "translation_en": "Truth is the Timeless Lord.",
+    "translation_pa": "ਸੱਚ ਅਕਾਲ ਪੁਰਖ ਹੈ।",
+    "words": [
+      { "gurmukhi": "ਸਤਿ", "transliteration": "Sat", "meaning_en": "Truth", "meaning_pa": "ਸੱਚ" },
+      { "gurmukhi": "ਸ੍ਰੀ", "transliteration": "Sri", "meaning_en": "Revered / Blessed", "meaning_pa": "ਸ੍ਰੀ" },
+      { "gurmukhi": "ਅਕਾਲ", "transliteration": "Akaal", "meaning_en": "Timeless / Eternal", "meaning_pa": "ਅਕਾਲ" }
+    ]
+  }
+]

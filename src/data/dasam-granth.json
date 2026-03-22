@@ -1,0 +1,153 @@
+[
+  {
+    "id": "dg-001",
+    "scripture": "DG",
+    "ang": 1,
+    "gurmukhi": "ਸ੍ਰੀ ਮੁਖਵਾਕ ਪਾਤਸਾਹੀ ੧੦ ਜਾਪੁ",
+    "transliteration": "Sri Mukhvaak Paatsaahee 10 Jaap",
+    "translation_en": "The Word from the Mouth of the Tenth King — Jaap Sahib.",
+    "translation_pa": "ਦਸਵੇਂ ਪਾਤਿਸ਼ਾਹ ਦੇ ਮੁਖ ਤੋਂ ਵਾਕ — ਜਾਪੁ ਸਾਹਿਬ।",
+    "words": [
+      { "gurmukhi": "ਮੁਖਵਾਕ", "transliteration": "Mukhvaak", "meaning_en": "Word from the mouth", "meaning_pa": "ਮੁੱਖ ਤੋਂ ਵਾਕ" },
+      { "gurmukhi": "ਪਾਤਸਾਹੀ", "transliteration": "Paatsaahee", "meaning_en": "King / Patshah", "meaning_pa": "ਪਾਤਿਸ਼ਾਹ" },
+      { "gurmukhi": "ਜਾਪੁ", "transliteration": "Jaap", "meaning_en": "Recitation / Meditation", "meaning_pa": "ਜਾਪ" }
+    ]
+  },
+  {
+    "id": "dg-002",
+    "scripture": "DG",
+    "ang": 1,
+    "gurmukhi": "ਚੱਕ੍ਰ ਚਿਹਨ ਅਰੁ ਬਰਨ ਜਾਤਿ ਅਰੁ ਪਾਤਿ ਨਹਿਨ ਜਿਹ",
+    "transliteration": "Chakr Chihan Ar Baran Jaat Ar Paat Nahin Jih",
+    "translation_en": "He has no mark or sign, no color, no caste, and no lineage.",
+    "translation_pa": "ਉਸਦਾ ਕੋਈ ਚਿੰਨ੍ਹ, ਰੰਗ, ਜਾਤ ਜਾਂ ਕੁਲ ਨਹੀਂ।",
+    "words": [
+      { "gurmukhi": "ਚੱਕ੍ਰ", "transliteration": "Chakr", "meaning_en": "Mark / Symbol", "meaning_pa": "ਨਿਸ਼ਾਨ" },
+      { "gurmukhi": "ਚਿਹਨ", "transliteration": "Chihan", "meaning_en": "Sign", "meaning_pa": "ਚਿੰਨ੍ਹ" },
+      { "gurmukhi": "ਬਰਨ", "transliteration": "Baran", "meaning_en": "Color / Caste", "meaning_pa": "ਰੰਗ / ਜਾਤ" },
+      { "gurmukhi": "ਜਾਤਿ", "transliteration": "Jaat", "meaning_en": "Caste", "meaning_pa": "ਜਾਤ" },
+      { "gurmukhi": "ਪਾਤਿ", "transliteration": "Paat", "meaning_en": "Lineage", "meaning_pa": "ਕੁਲ" },
+      { "gurmukhi": "ਨਹਿਨ", "transliteration": "Nahin", "meaning_en": "Has not / None", "meaning_pa": "ਨਹੀਂ" }
+    ]
+  },
+  {
+    "id": "dg-003",
+    "scripture": "DG",
+    "ang": 1,
+    "gurmukhi": "ਰੂਪ ਰੰਗ ਅਰੁ ਰੇਖ ਭੇਖ ਕੋਊ ਕਹਿ ਨ ਸਕਤ ਕਿਹ",
+    "transliteration": "Roop Rang Ar Rekh Bhaykh Ko-oo Kahi Na Sakat Kih",
+    "translation_en": "None can describe His Form, Color, Mark, or Garb.",
+    "translation_pa": "ਕੋਈ ਉਸਦਾ ਰੂਪ, ਰੰਗ, ਰੇਖਾ ਜਾਂ ਭੇਖ ਨਹੀਂ ਦੱਸ ਸਕਦਾ।",
+    "words": [
+      { "gurmukhi": "ਰੂਪ", "transliteration": "Roop", "meaning_en": "Form", "meaning_pa": "ਰੂਪ" },
+      { "gurmukhi": "ਰੰਗ", "transliteration": "Rang", "meaning_en": "Color", "meaning_pa": "ਰੰਗ" },
+      { "gurmukhi": "ਰੇਖ", "transliteration": "Rekh", "meaning_en": "Mark / Line", "meaning_pa": "ਰੇਖਾ" },
+      { "gurmukhi": "ਭੇਖ", "transliteration": "Bhaykh", "meaning_en": "Garb / Costume", "meaning_pa": "ਭੇਖ" }
+    ]
+  },
+  {
+    "id": "dg-004",
+    "scripture": "DG",
+    "ang": 2,
+    "gurmukhi": "ਅਜਪਾ ਜਾਪ ਅਲੇਖ ਅਭੇਖੀ",
+    "transliteration": "Ajapaa Jaap Alekh Abhaykhee",
+    "translation_en": "He is recited without recitation, beyond description, beyond disguise.",
+    "translation_pa": "ਉਹ ਜਾਪ ਤੋਂ ਬਿਨਾਂ ਜਪਿਆ ਜਾਂਦਾ ਹੈ, ਅਲੇਖ, ਭੇਖ ਤੋਂ ਪਰੇ।",
+    "words": [
+      { "gurmukhi": "ਅਜਪਾ", "transliteration": "Ajapaa", "meaning_en": "Without recitation", "meaning_pa": "ਜਾਪ ਤੋਂ ਬਿਨਾਂ" },
+      { "gurmukhi": "ਅਲੇਖ", "transliteration": "Alekh", "meaning_en": "Beyond description", "meaning_pa": "ਅਵਰਣਯੋਗ" },
+      { "gurmukhi": "ਅਭੇਖੀ", "transliteration": "Abhaykhee", "meaning_en": "Without garb / disguise", "meaning_pa": "ਭੇਖ ਤੋਂ ਪਰੇ" }
+    ]
+  },
+  {
+    "id": "dg-005",
+    "scripture": "DG",
+    "ang": 2,
+    "gurmukhi": "ਸਰਬ ਮਾਨ ਤੁਮ ਹੋ ਪ੍ਰਭ ਆਦਿ",
+    "transliteration": "Sarab Maan Tum Ho Prabh Aad",
+    "translation_en": "You are the honor of all, O God, from the very beginning.",
+    "translation_pa": "ਤੂੰ ਸਭ ਦਾ ਮਾਣ ਹੈ, ਹੇ ਪ੍ਰਭੂ, ਆਦਿ ਤੋਂ।",
+    "words": [
+      { "gurmukhi": "ਸਰਬ", "transliteration": "Sarab", "meaning_en": "All / Everyone", "meaning_pa": "ਸਭ" },
+      { "gurmukhi": "ਮਾਨ", "transliteration": "Maan", "meaning_en": "Honor / Respect", "meaning_pa": "ਮਾਣ" },
+      { "gurmukhi": "ਪ੍ਰਭ", "transliteration": "Prabh", "meaning_en": "God / Lord", "meaning_pa": "ਪ੍ਰਭੂ" },
+      { "gurmukhi": "ਆਦਿ", "transliteration": "Aad", "meaning_en": "From the beginning", "meaning_pa": "ਆਦਿ ਤੋਂ" }
+    ]
+  },
+  {
+    "id": "dg-006",
+    "scripture": "DG",
+    "ang": 3,
+    "gurmukhi": "ਨਮਸਕਾਰ ਸ੍ਰੀ ਖੜਗ ਕੋ ਕਰਉ ਸੁ ਹਿਤੁ ਚਿਤੁ ਲਾਇ",
+    "transliteration": "Namaskaar Sri Kharhag Ko Kara-o Su Hit Chit Laa-ay",
+    "translation_en": "I bow to the Blessed Sword, with love and focused mind.",
+    "translation_pa": "ਮੈਂ ਸ੍ਰੀ ਖੜਗ ਨੂੰ ਪ੍ਰੇਮ ਅਤੇ ਧਿਆਨ ਨਾਲ ਨਮਸਕਾਰ ਕਰਦਾ ਹਾਂ।",
+    "words": [
+      { "gurmukhi": "ਨਮਸਕਾਰ", "transliteration": "Namaskaar", "meaning_en": "Bow / Salutation", "meaning_pa": "ਨਮਸਕਾਰ" },
+      { "gurmukhi": "ਖੜਗ", "transliteration": "Kharhag", "meaning_en": "Sword", "meaning_pa": "ਤਲਵਾਰ" },
+      { "gurmukhi": "ਹਿਤੁ", "transliteration": "Hit", "meaning_en": "Love / Affection", "meaning_pa": "ਪ੍ਰੇਮ" },
+      { "gurmukhi": "ਚਿਤੁ", "transliteration": "Chit", "meaning_en": "Mind / Consciousness", "meaning_pa": "ਚਿੱਤ" }
+    ]
+  },
+  {
+    "id": "dg-007",
+    "scripture": "DG",
+    "ang": 3,
+    "gurmukhi": "ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸ੍ਵੈਯੇ",
+    "transliteration": "Tav Prasaad Savaiye",
+    "translation_en": "By Your Grace — Savaiye.",
+    "translation_pa": "ਤੇਰੀ ਕਿਰਪਾ ਨਾਲ — ਸਵੱਯੇ।",
+    "words": [
+      { "gurmukhi": "ਤ੍ਵ", "transliteration": "Tav", "meaning_en": "Your", "meaning_pa": "ਤੇਰਾ" },
+      { "gurmukhi": "ਪ੍ਰਸਾਦਿ", "transliteration": "Prasaad", "meaning_en": "Grace / Blessing", "meaning_pa": "ਕਿਰਪਾ" },
+      { "gurmukhi": "ਸ੍ਵੈਯੇ", "transliteration": "Savaiye", "meaning_en": "Hymns in Savaiya meter", "meaning_pa": "ਸਵੱਯੇ" }
+    ]
+  },
+  {
+    "id": "dg-008",
+    "scripture": "DG",
+    "ang": 4,
+    "gurmukhi": "ਸਾਵਧਾਨ ਹੋਇ ਸੁਨਹੁ ਸਭ ਕੋਈ",
+    "transliteration": "Saavadhaan Ho-ay Sunhu Sabh Ko-ee",
+    "translation_en": "Be attentive and listen, everyone.",
+    "translation_pa": "ਸਾਵਧਾਨ ਹੋ ਕੇ ਸਭ ਸੁਣੋ।",
+    "words": [
+      { "gurmukhi": "ਸਾਵਧਾਨ", "transliteration": "Saavadhaan", "meaning_en": "Attentive / Careful", "meaning_pa": "ਸਾਵਧਾਨ" },
+      { "gurmukhi": "ਸੁਨਹੁ", "transliteration": "Sunhu", "meaning_en": "Listen", "meaning_pa": "ਸੁਣੋ" },
+      { "gurmukhi": "ਸਭ", "transliteration": "Sabh", "meaning_en": "All / Everyone", "meaning_pa": "ਸਭ" }
+    ]
+  },
+  {
+    "id": "dg-009",
+    "scripture": "DG",
+    "ang": 5,
+    "gurmukhi": "ਦੇਹ ਸਿਵਾ ਬਰੁ ਮੋਹਿ ਇਹੈ ਸੁਭ ਕਰਮਨ ਤੇ ਕਬਹੂੰ ਨ ਟਰੋਂ",
+    "transliteration": "Deh Sivaa Bar Mohi Ihai Subh Karman Tay Kabhoon Na Taron",
+    "translation_en": "O God, grant me this boon — that I may never turn away from righteous deeds.",
+    "translation_pa": "ਹੇ ਅਕਾਲ ਪੁਰਖ, ਮੈਨੂੰ ਇਹ ਵਰ ਦੇ ਕਿ ਮੈਂ ਕਦੇ ਚੰਗੇ ਕਰਮਾਂ ਤੋਂ ਨਾ ਟਲਾਂ।",
+    "words": [
+      { "gurmukhi": "ਦੇਹ", "transliteration": "Deh", "meaning_en": "Grant / Give", "meaning_pa": "ਦੇ" },
+      { "gurmukhi": "ਸਿਵਾ", "transliteration": "Sivaa", "meaning_en": "O God (Shiva / Akaal)", "meaning_pa": "ਹੇ ਪ੍ਰਭੂ" },
+      { "gurmukhi": "ਬਰੁ", "transliteration": "Bar", "meaning_en": "Boon / Gift", "meaning_pa": "ਵਰ" },
+      { "gurmukhi": "ਸੁਭ", "transliteration": "Subh", "meaning_en": "Righteous / Auspicious", "meaning_pa": "ਸ਼ੁਭ" },
+      { "gurmukhi": "ਕਰਮਨ", "transliteration": "Karman", "meaning_en": "Deeds / Actions", "meaning_pa": "ਕਰਮ" },
+      { "gurmukhi": "ਟਰੋਂ", "transliteration": "Taron", "meaning_en": "Turn away / Stray", "meaning_pa": "ਟਲਾਂ" }
+    ]
+  },
+  {
+    "id": "dg-010",
+    "scripture": "DG",
+    "ang": 5,
+    "gurmukhi": "ਨ ਡਰੋਂ ਅਰਿ ਸੋ ਜਬ ਜਾਇ ਲਰੋਂ ਨਿਸਚੈ ਕਰਿ ਆਪਨੀ ਜੀਤ ਕਰੋਂ",
+    "transliteration": "Na Daron Ar So Jab Jaa-ay Laron Nischay Kar Aapnee Jeet Karon",
+    "translation_en": "I shall not fear the enemy; when I go to fight, I shall certainly achieve victory.",
+    "translation_pa": "ਮੈਂ ਦੁਸ਼ਮਣ ਤੋਂ ਨਹੀਂ ਡਰਾਂਗਾ; ਜਦੋਂ ਲੜਨ ਜਾਵਾਂਗਾ, ਨਿਸ਼ਚੇ ਜਿੱਤਾਂਗਾ।",
+    "words": [
+      { "gurmukhi": "ਡਰੋਂ", "transliteration": "Daron", "meaning_en": "Fear", "meaning_pa": "ਡਰਾਂ" },
+      { "gurmukhi": "ਅਰਿ", "transliteration": "Ar", "meaning_en": "Enemy", "meaning_pa": "ਦੁਸ਼ਮਣ" },
+      { "gurmukhi": "ਲਰੋਂ", "transliteration": "Laron", "meaning_en": "Fight", "meaning_pa": "ਲੜਾਂ" },
+      { "gurmukhi": "ਨਿਸਚੈ", "transliteration": "Nischay", "meaning_en": "Certainly / Determined", "meaning_pa": "ਨਿਸ਼ਚੇ" },
+      { "gurmukhi": "ਜੀਤ", "transliteration": "Jeet", "meaning_en": "Victory", "meaning_pa": "ਜਿੱਤ" }
+    ]
+  }
+]
