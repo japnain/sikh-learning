@@ -28,7 +28,7 @@ function todayLocal(): string {
 
 export const useProgressStore = create<ProgressState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       studied: [],
       reviewQueue: [],
       lastStudied: null,

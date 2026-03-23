@@ -32,6 +32,7 @@ export function generateQuiz(
 
   const questions: Question[] = []
   const allWords = studiedEntries.flatMap(e => e.words)
+  if (allWords.length === 0) return []
   const shuffledWords = shuffle(allWords)
 
   for (let i = 0; i < 10; i++) {
