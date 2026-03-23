@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { generateQuiz } from './quiz'
-import type { ScriptureEntry, VocabEntry } from '../types'
+import type { ScriptureEntry } from '../types'
 
 const makeEntry = (id: string, wordCount = 3): ScriptureEntry => ({
   id, scripture: 'SGGS', ang: 1,
