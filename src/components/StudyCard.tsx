@@ -5,19 +5,21 @@ import { useVocabStore } from '../store/vocab'
 
 interface Props {
   entry: ScriptureEntry
+  wordData?: Word[] | null
   onSwipeRight: () => void
   onSwipeLeft: () => void
 }
 
-export default function StudyCard({ entry, onSwipeRight, onSwipeLeft }: Props) {
+export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [lang, setLang] = useState<'en' | 'pa'>('en')
   const addWord = useVocabStore(s => s.addWord)
 
   const handleWordTap = (wordText: string) => {
-    if (!entry.words?.length) return
-    const found = entry.words.find(w => wordText.includes(w.gurmukhi))
+    const wordsToSearch = wordData ?? entry.words ?? []
+    if (!wordsToSearch.length) return
+    const found = wordsToSearch.find(w => wordText.includes(w.gurmukhi))
     if (found) setActiveWord(found)
   }
 
