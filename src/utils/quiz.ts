@@ -60,7 +60,7 @@ export function generateQuiz(
       const fw = vocabWord ?? word
       questions.push({
         type: 'flashcard',
-        prompt: (fw as any).gurmukhi ?? (fw as any).word,
+        prompt: 'word' in fw ? fw.word : fw.gurmukhi,
         correctAnswer: fw.meaning_en,
         options: [],
       })
