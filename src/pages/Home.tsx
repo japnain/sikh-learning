@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { ALL_ENTRIES } from '../data'
 import { useProgressStore } from '../store/progress'
 import { useCustomTextsStore } from '../store/customTexts'
-import { getDailyPick } from '../utils/dailyPick'
+import { getDailyPickAng } from '../utils/dailyPick'
+import { useAng } from '../hooks/useAng'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
 
@@ -17,7 +18,9 @@ export default function Home() {
   const navigate = useNavigate()
   const { streak, currentSession, studied } = useProgressStore()
   const { customTexts } = useCustomTextsStore()
-  const todaysPick = getDailyPick(ALL_ENTRIES)
+  const { source, ang } = getDailyPickAng()
+  const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
+  const todaysPick = pickEntries[0] ?? null
 
   const recentlyStudied = [...studied]
     .sort((a: StudiedEntry, b: StudiedEntry) =>
@@ -44,16 +47,24 @@ export default function Home() {
       {/* Today's Pick */}
       <div className="mb-6">
         <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-3">Today's Pick</h2>
-        <div
-          onClick={() => navigate(`/study/${todaysPick.scripture.toLowerCase().replace(/\s+/g, '-')}`)}
-          className="bg-[#1A1A1A] border border-[#2a2a2a] rounded-2xl p-5 cursor-pointer active:border-[#C9A84C] transition-colors"
-        >
-          <p className="text-gray-500 text-xs mb-2">{todaysPick.scripture} · Ang {todaysPick.ang}</p>
-          <p lang="pa-Guru" className="font-gurmukhi text-white text-xl leading-relaxed line-clamp-2" style={{ fontSize: '22px' }}>
-            {todaysPick.gurmukhi}
-          </p>
-          <p className="text-gray-400 text-sm mt-2 line-clamp-1">{todaysPick.translation_en}</p>
-        </div>
+        {pickLoading ? (
+          <div className="bg-[#1A1A1A] rounded-2xl p-6 min-h-[120px] animate-pulse border border-[#2a2a2a]">
+            <div className="h-4 bg-[#2a2a2a] rounded w-1/3 mb-3" />
+            <div className="h-6 bg-[#2a2a2a] rounded w-full mb-2" />
+            <div className="h-4 bg-[#2a2a2a] rounded w-2/3" />
+          </div>
+        ) : todaysPick ? (
+          <div
+            onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
+            className="bg-[#1A1A1A] border border-[#2a2a2a] rounded-2xl p-5 cursor-pointer active:border-[#C9A84C] transition-colors"
+          >
+            <p className="text-gray-500 text-xs mb-2">{todaysPick.scripture} · Ang {todaysPick.ang}</p>
+            <p lang="pa-Guru" className="font-gurmukhi text-white text-xl leading-relaxed line-clamp-2" style={{ fontSize: '22px' }}>
+              {todaysPick.gurmukhi}
+            </p>
+            <p className="text-gray-400 text-sm mt-2 line-clamp-1">{todaysPick.translation_en}</p>
+          </div>
+        ) : null}
       </div>
 
       {/* Continue Reading */}
