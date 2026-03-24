@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getDailyPick } from './dailyPick'
+import { getDailyPick, getDailyPickAng } from './dailyPick'
 import type { ScriptureEntry } from '../types'
 
 const makeEntry = (id: string): ScriptureEntry => ({
@@ -30,5 +30,29 @@ describe('getDailyPick', () => {
       })
     )
     expect(picks.size).toBeGreaterThan(1)
+  })
+})
+
+describe('getDailyPickAng', () => {
+  it('returns source G for even day-of-year', () => {
+    // Jan 2 = day 2 (even)
+    const result = getDailyPickAng(new Date(2026, 0, 2))
+    expect(result.source).toBe('G')
+    expect(result.ang).toBeGreaterThanOrEqual(1)
+    expect(result.ang).toBeLessThanOrEqual(1430)
+  })
+
+  it('returns source D for odd day-of-year', () => {
+    // Jan 1 = day 1 (odd)
+    const result = getDailyPickAng(new Date(2026, 0, 1))
+    expect(result.source).toBe('D')
+    expect(result.ang).toBeGreaterThanOrEqual(1)
+    expect(result.ang).toBeLessThanOrEqual(1428)
+  })
+
+  it('is deterministic for same date', () => {
+    const a = getDailyPickAng(new Date(2026, 2, 22))
+    const b = getDailyPickAng(new Date(2026, 2, 22))
+    expect(a).toEqual(b)
   })
 })
