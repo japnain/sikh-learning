@@ -2,14 +2,20 @@ import { useState, useMemo } from 'react'
 import { useProgressStore } from '../store/progress'
 import { useVocabStore } from '../store/vocab'
 import { ALL_ENTRIES } from '../data'
+import { useScriptureCacheStore } from '../store/scriptureCache'
 import { generateQuiz } from '../utils/quiz'
 import type { Question } from '../utils/quiz'
+import type { ScriptureEntry } from '../types'
 
 export default function Quiz() {
   const { studied } = useProgressStore()
   const { vocab } = useVocabStore()
+  const { getEntryById } = useScriptureCacheStore()
 
-  const studiedEntries = ALL_ENTRIES.filter(e => studied.some(s => s.id === e.id))
+  const studiedIds = studied.map(s => s.id)
+  const studiedEntries = studiedIds
+    .map(id => ALL_ENTRIES.find(e => e.id === id) ?? getEntryById(id))
+    .filter((e): e is ScriptureEntry => e !== undefined)
   const questions = useMemo(() => generateQuiz(studiedEntries, vocab), [studied.length, vocab.length])
 
   const [qIndex, setQIndex] = useState(0)
