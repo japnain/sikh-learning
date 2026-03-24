@@ -51,7 +51,7 @@ export const useProgressStore = create<ProgressState>()(
       recordSwipeToday: () => set(state => {
         const today = todayLocal()
         const updated = getUpdatedStreak({ streak: state.streak, lastStudied: state.lastStudied }, today)
-        return { ...state, ...updated }
+        return updated
       }),
     }),
     { name: 'sikh-progress' }
