@@ -56,12 +56,13 @@ export function generateQuiz(
         options: shuffle([word.gurmukhi, ...distractors]),
       })
     } else {
-      const vocabWord = vocabEntries[i % Math.max(vocabEntries.length, 1)]
-      const fw = vocabWord ?? word
+      const vocabWord: VocabEntry | undefined = vocabEntries[i % Math.max(vocabEntries.length, 1)]
+      const prompt = vocabWord != null ? vocabWord.word : word.gurmukhi
+      const meaning = vocabWord != null ? vocabWord.meaning_en : word.meaning_en
       questions.push({
         type: 'flashcard',
-        prompt: 'word' in fw ? fw.word : fw.gurmukhi,
-        correctAnswer: fw.meaning_en,
+        prompt,
+        correctAnswer: meaning,
         options: [],
       })
     }
