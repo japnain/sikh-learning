@@ -27,7 +27,7 @@ Applied on the page wrapper div as an inline style or utility class. Content scr
 ## Typography
 
 - **Add to Google Fonts import:** `Silkscreen` (weights 400, 700)
-- **Add to Tailwind config:** `font-pixel: ['Silkscreen', 'cursive']`
+- **Add to Tailwind config:** `font-pixel: ['Silkscreen', 'sans-serif']`
 - **Apply `font-pixel` to:** greeting text, date line, all section labels, all button labels
 - **Gurmukhi text:** unchanged — stays as `font-gurmukhi` (Noto Sans Gurmukhi)
 - **Inter:** removed from UI elements
@@ -49,7 +49,7 @@ Structure unchanged (greeting → hero card → continue reading → quick actio
 
 - Date line: `font-pixel` text-xs, muted amber (`text-[#8B6914]`)
 - Greeting: `font-pixel` text-lg, white
-- Streak badge: coal background, amber glow ring (`box-shadow: 0 0 8px #C9A84C55`), fire emoji stays
+- Streak badge: coal background, amber glow ring (inline style `{ boxShadow: '0 0 8px #C9A84C55' }`), fire emoji stays; streak count text gets `font-pixel`
 
 ### Today's Pick — Hero Card
 
@@ -57,13 +57,14 @@ The campfire focal point. Larger presence than current:
 
 - Background: `#1A0800` (coal)
 - Border: `border-[#C9A84C]` (full amber, not muted)
-- Outer ember glow: `box-shadow: 0 0 20px #7B2D0088, 0 0 40px #3D120044`
+- Outer ember glow: inline style `{ boxShadow: '0 0 20px #7B2D0088, 0 0 40px #3D120044' }`
 - More padding: `p-6` (up from `p-5`)
 - Gurmukhi text: `text-2xl` (up from `text-xl` / 22px)
 - Scripture/ang label: `font-pixel` text-xs, amber
 - Translation: text-sm, warm gray (`text-[#A07850]`)
-- Active state: glow intensifies (`box-shadow: 0 0 30px #C9A84C66`)
-- Loading skeleton: coal bg with ember-tinted shimmer
+- Active state: glow intensifies — use inline `style` toggled via React state or `onMouseDown`/`onTouchStart`: `{ boxShadow: '0 0 30px #C9A84C66' }`
+- Loading skeleton: coal bg with ember-tinted shimmer (`bg-[#1A0800]` with animated `opacity` pulse)
+- Null state (loading complete but `todaysPick` is null): render a coal card with amber border and pixel text "No verse available today" centered — same dimensions as loaded state
 
 ### Continue Reading (conditional)
 
@@ -85,10 +86,11 @@ Same structure, less prominent than hero:
 | Library | `#1A0800` | `#C9A84C66` | `font-pixel` white |
 | Add Text | `#1A0800` | `#C9A84C66` | `font-pixel` white |
 
-All buttons: `active:box-shadow: 0 0 12px #C9A84C88` tap glow.
+All buttons: tap glow via inline style on `onMouseDown`/`onTouchStart` → `{ boxShadow: '0 0 12px #C9A84C88' }`, cleared on `onMouseUp`/`onTouchEnd`.
 
 ### Recently Studied
 
+- Section hidden when `recentlyStudied.length === 0` (intentional — no placeholder)
 - Cards: `#1A0800` bg, thin amber border `#C9A84C44`
 - Scripture label: `font-pixel` text-[10px], muted amber
 - Gurmukhi: unchanged size, white text
