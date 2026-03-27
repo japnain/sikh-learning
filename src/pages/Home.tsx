@@ -69,6 +69,8 @@ export default function Home() {
             onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
             className="bg-coal border border-[#C9A84C] rounded-2xl p-6 cursor-pointer transition-shadow"
             style={heroGlow}
+            onMouseDown={(e) => { e.currentTarget.style.boxShadow = heroActiveGlow.boxShadow }}
+            onMouseUp={(e) => { e.currentTarget.style.boxShadow = heroGlow.boxShadow }}
             onTouchStart={(e) => { e.currentTarget.style.boxShadow = heroActiveGlow.boxShadow }}
             onTouchEnd={(e) => { e.currentTarget.style.boxShadow = heroGlow.boxShadow }}
           >
