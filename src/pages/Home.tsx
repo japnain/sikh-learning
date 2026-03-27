@@ -35,7 +35,7 @@ export default function Home() {
         || customTexts.find(e => e.id === s.id)
       return entry ? { ...entry, swipedAt: s.swipedAt } : null
     })
-    .filter(Boolean)
+    .filter((e): e is NonNullable<typeof e> => e !== null)
 
   const btnGlow = { boxShadow: '0 0 12px #C9A84C88' }
   const heroGlow = { boxShadow: '0 0 20px #7B2D0088, 0 0 40px #3D120044' }
@@ -145,14 +145,14 @@ export default function Home() {
         <div>
           <h2 className="text-[#8B6914] text-xs font-pixel uppercase tracking-wider mb-3">Recently Studied</h2>
           <div className="flex gap-3 overflow-x-auto pb-2">
-            {recentlyStudied.map((entry: any) => (
+            {recentlyStudied.map((entry) => (
               <div
                 key={entry.id}
                 className="flex-shrink-0 w-48 bg-coal border border-[#C9A84C44] rounded-xl p-3 cursor-pointer"
                 onClick={() => navigate('/study')}
               >
                 <p className="text-[#8B6914] font-pixel text-[10px] mb-1">{entry.scripture}</p>
-                <p lang="pa-Guru" className="font-gurmukhi text-white text-sm line-clamp-2" style={{ fontSize: '14px' }}>
+                <p lang="pa-Guru" className="font-gurmukhi text-white text-sm line-clamp-2">
                   {entry.gurmukhi}
                 </p>
               </div>
