@@ -7,6 +7,6 @@ test('renders all 5 nav tabs', () => {
   expect(screen.getByText('Home')).toBeInTheDocument()
   expect(screen.getByText('Library')).toBeInTheDocument()
   expect(screen.getByText('Study')).toBeInTheDocument()
-  expect(screen.getByText('Quiz')).toBeInTheDocument()
+  expect(screen.getByText('Banis')).toBeInTheDocument()
   expect(screen.getByText('Vocab')).toBeInTheDocument()
 })
