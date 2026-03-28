@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCustomTextsStore } from '../store/customTexts'
+import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import type { CustomText } from '../types'
 
@@ -44,7 +45,10 @@ function AngBrowser({ source, totalAngs }: { source: 'G' | 'D'; totalAngs: numbe
 export default function Library() {
   const navigate = useNavigate()
   const { customTexts } = useCustomTextsStore()
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({})
+  const { bookmarks, removeBookmark } = useBookmarksStore()
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>(() => ({
+    bookmarks: bookmarks.length > 0,
+  }))
 
   const toggle = (id: string) => setCollapsed(c => ({ ...c, [id]: !c[id] }))
 
@@ -63,6 +67,51 @@ export default function Library() {
   return (
     <div className="p-4 max-w-md mx-auto mt-4">
       <h1 className="text-white font-semibold text-lg mb-6">Library</h1>
+
+      {bookmarks.length > 0 && (
+        <div className="mb-4">
+          <button
+            onClick={() => toggle('bookmarks')}
+            className="w-full flex justify-between items-center bg-[#1A1A1A] border border-[#2a2a2a] rounded-2xl p-4 min-h-[44px]"
+          >
+            <div className="text-left">
+              <p className="text-white font-medium">🔖 Bookmarks</p>
+              <p className="text-gray-500 text-xs">{bookmarks.length} saved</p>
+            </div>
+            <span className="text-gray-400">{collapsed['bookmarks'] ? '▲' : '▼'}</span>
+          </button>
+          {collapsed['bookmarks'] && (
+            <div className="mt-2 ml-2 flex flex-col gap-2">
+              {bookmarks.map((bookmark: Bookmark) => (
+                <div
+                  key={bookmark.id}
+                  className="bg-[#0D0D0D] border border-[#1a1a1a] rounded-xl p-3 relative"
+                >
+                  <button
+                    onClick={() => removeBookmark(bookmark.id)}
+                    className="absolute top-2 right-2 text-gray-600 text-xs min-h-[24px] min-w-[24px] flex items-center justify-center"
+                    aria-label="Remove bookmark"
+                  >
+                    ✕
+                  </button>
+                  <button
+                    onClick={() => navigate(`/study?source=${bookmark.source}&ang=${bookmark.ang}`)}
+                    className="text-left w-full pr-6"
+                  >
+                    <p className="text-white font-pixel text-sm">{bookmark.title}</p>
+                    {bookmark.description && (
+                      <p className="text-gray-400 text-xs italic mt-0.5">{bookmark.description}</p>
+                    )}
+                    <p className="text-[#C9A84C] text-[10px] mt-1 font-pixel">
+                      {bookmark.source === 'G' ? 'SGGS' : 'DG'} · Ang {bookmark.ang}
+                    </p>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* SGGS + DG — ang browser */}
       {sections.map(s => (
