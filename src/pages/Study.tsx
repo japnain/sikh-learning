@@ -6,6 +6,7 @@ import { useAng } from '../hooks/useAng'
 import { useWordData } from '../hooks/useWordData'
 import StudyCard from '../components/StudyCard'
 import type { ScriptureEntry } from '../types'
+import { useBookmarksStore } from '../store/bookmarks'
 
 function parseShabadId(entryId: string): number | null {
   const parts = entryId.split('-')
@@ -40,6 +41,27 @@ export default function Study() {
   const allUnseen = unseenEntries.length === 0
 
   const [index, setIndex] = useState(0)
+
+  const { addBookmark, hasBookmark } = useBookmarksStore()
+  const [showBookmarkForm, setShowBookmarkForm] = useState(false)
+  const [bookmarkText, setBookmarkText] = useState('')
+
+  const isBookmarked = isApiMode && source !== null && angParam !== null
+    ? hasBookmark(source, angParam)
+    : false
+
+  const handleSaveBookmark = () => {
+    if (!source || !angParam || !currentEntry) return
+    addBookmark({
+      type: 'shabad',
+      title: `${currentEntry.scripture} · Ang ${angParam}`,
+      source,
+      ang: angParam,
+      description: bookmarkText || undefined,
+    })
+    setShowBookmarkForm(false)
+    setBookmarkText('')
+  }
 
   const displayEntries = allUnseen ? entries : unseenEntries
   const total = displayEntries.length
@@ -139,7 +161,32 @@ export default function Study() {
       <div className="flex items-center justify-between mb-4">
         <button onClick={() => navigate(-1)} className="text-gray-400 text-sm min-h-[44px] min-w-[44px]">← Back</button>
         <p className="text-gray-500 text-xs">{index + 1} / {total}</p>
+        {isApiMode && entries.length > 0 && (
+          <button
+            onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
+            className={`text-xl min-h-[44px] min-w-[44px] ${isBookmarked ? 'text-[#C9A84C]' : 'text-gray-500'}`}
+          >
+            🔖
+          </button>
+        )}
       </div>
+      {isApiMode && entries.length > 0 && showBookmarkForm && (
+        <div className="mb-4">
+          <input
+            type="text"
+            value={bookmarkText}
+            onChange={e => setBookmarkText(e.target.value)}
+            placeholder="Add a note..."
+            className="w-full bg-[#1A1A1A] border border-[#2a2a2a] rounded-xl px-3 py-2 text-white text-sm mb-2 outline-none"
+          />
+          <button
+            onClick={handleSaveBookmark}
+            className="w-full bg-[#1A1A1A] border border-[#C9A84C] rounded-xl py-2 text-[#C9A84C] text-sm min-h-[44px]"
+          >
+            Save Bookmark
+          </button>
+        </div>
+      )}
       <div className="w-full bg-[#2a2a2a] rounded-full h-1 mb-6">
         <div className="bg-[#C9A84C] h-1 rounded-full transition-all" style={{ width: `${((index + 1) / total) * 100}%` }} />
       </div>
