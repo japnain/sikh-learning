@@ -36,12 +36,12 @@ test('shows today\'s pick after load', async () => {
   })
 })
 
-test('shows all four quick action buttons', () => {
+test('shows quick action buttons', () => {
   renderHome()
   expect(screen.getByText(/study/i)).toBeInTheDocument()
-  expect(screen.getByText(/quiz/i)).toBeInTheDocument()
   expect(screen.getByText(/library/i)).toBeInTheDocument()
   expect(screen.getByText(/add text/i)).toBeInTheDocument()
+  expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
 })
 
 test('does not show recently studied section when empty', () => {

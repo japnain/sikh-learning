@@ -114,7 +114,6 @@ export default function Home() {
       <div className="grid grid-cols-2 gap-3 mb-6">
         {[
           { key: 'study', label: '📖 Study', path: '/study', primary: true },
-          { key: 'quiz', label: '✏️ Quiz', path: '/quiz', primary: false },
           { key: 'library', label: '📚 Library', path: '/library', primary: false },
           { key: 'add', label: '+ Add Text', path: '/add', primary: false },
         ].map(({ key, label, path, primary }) => (

@@ -79,7 +79,7 @@ export default function AddText() {
         </div>
       ))}
 
-      <p className="text-gray-600 text-xs mb-4">Note: Word-level definitions and quiz questions are available for curated library content only.</p>
+      <p className="text-gray-600 text-xs mb-4">Note: Word-level definitions are available for curated library content only.</p>
 
       <button
         onClick={handleSave}
