@@ -68,10 +68,10 @@ Two top-level collapsible sections. Each expands to show subcategories. Each sub
 ### Info Card Content (per bani)
 
 - Bani name (`font-pixel`, white)
-- Scripture + ang range (`font-pixel text-xs text-[#C9A84C]`)
+- Scripture + ang range displayed as `"SGGS · Ang 262–296"` or `"DG · Ang 1–10"` (`font-pixel text-xs text-[#C9A84C]`)
 - Short description (1 sentence, warm gray)
 - **Begin Study →** button — navigates to `/study?source=<source>&ang=<startAng>`
-- **🔖 Bookmark** button — opens inline description input, saves bookmark on submit
+- **🔖 Bookmark** button — renders filled/active when `hasBookmark(source, startAng)` is true; tapping (when not bookmarked) opens inline description input (optional), Save button always enabled
 
 ### Bani Data
 
@@ -189,7 +189,6 @@ interface Bani {
 |------|----------|--------|
 | Shabad Hazare Patshahi 10 | 134 | 136 |
 | Swaiyas Patshahi 10 | 13 | 18 |
-| Ath Patsahi Das Swaiyas | 13 | 18 |
 | Sastra Naam Mala | 358 | 393 |
 
 ---
@@ -202,12 +201,12 @@ New file: `src/store/bookmarks.ts`
 
 ```ts
 interface Bookmark {
-  id: string              // uuid or timestamp-based
+  id: string              // `bookmark-${Date.now()}`
   type: 'shabad' | 'bani'
-  title: string           // auto-filled: bani name or scripture+ang
+  title: string           // auto-filled: bani name or "${scripture} · Ang ${ang}"
   source: 'G' | 'D'
   ang: number             // startAng for banis
-  description: string     // user-written
+  description?: string    // user-written, optional — Library card omits row when absent
   savedAt: string         // ISO timestamp
 }
 
@@ -215,17 +214,21 @@ interface BookmarksState {
   bookmarks: Bookmark[]
   addBookmark: (b: Omit<Bookmark, 'id' | 'savedAt'>) => void
   removeBookmark: (id: string) => void
+  hasBookmark: (source: 'G' | 'D', ang: number) => boolean
 }
 ```
+
+`addBookmark` is a no-op if a bookmark with the same `source + ang` already exists (no duplicates). `hasBookmark(source, ang)` returns true if such a bookmark exists — used to show the bookmark button in an active/filled state.
 
 Persisted to localStorage via Zustand `persist` middleware (key: `'sikh-bookmarks'`).
 
 ### Adding a Bookmark
 
 **From Study page (`src/pages/Study.tsx`):**
-- Add a 🔖 icon button in the top-right header area
-- Tapping it reveals an inline text input: "Add a note..." with a **Save** button
-- On save: calls `addBookmark` with `type: 'shabad'`, current `source`, current `ang`, `title: "${scripture} · Ang ${ang}"`, user's description
+- Bookmark button is only rendered when `isApiMode === true` and `entries.length > 0` (not during loading skeleton or scripture picker state)
+- Add a 🔖 icon button in the top-right header area; renders filled/active when `hasBookmark(source, ang)` is true
+- Tapping it (when not yet bookmarked) reveals an inline text input: "Add a note..." with a **Save** button; Save is enabled even with empty input (description is optional)
+- On save: calls `addBookmark` with `type: 'shabad'`, current `source`, current `ang`, `title: "${scripture} · Ang ${ang}"`, user's description (may be empty)
 
 **From Banis page (`src/pages/Banis.tsx`):**
 - Each expanded info card has a **🔖 Bookmark** button
@@ -250,6 +253,8 @@ Each bookmark card shows:
 - A ✕ delete button (top-right of card) calls `removeBookmark`
 
 Section hidden when `bookmarks.length === 0`.
+
+**Collapsed state default:** Bookmarks section defaults to expanded (`collapsed['bookmarks'] = true`) when first rendered with bookmarks present — matching the existing Library convention where `collapsed[id] = true` means open (the variable name is inverted; true = open, false = closed). Implementer must follow this same inverted convention.
 
 ---
 
