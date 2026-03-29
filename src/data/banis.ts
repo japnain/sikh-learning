@@ -50,7 +50,7 @@ export const BANIS: Bani[] = [
   { id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, category: 'Saloks & Short Banis', description: 'Four rounds of the Anand Karaj (Sikh wedding ceremony) by Guru Ram Das Ji.' },
   { id: 'shabad-hazare', name: 'Shabad Hazare (M.5)', scripture: 'SGGS', source: 'G', startAng: 295, endAng: 296, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of longing for the Guru by Guru Arjan Dev Ji.' },
   { id: 'mundavani', name: 'Mundavani', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1429, category: 'Saloks & Short Banis', description: 'Seal of SGGS Ji — Guru Arjan Dev Ji\'s closing statement on the three gifts of gurbani.' },
-  { id: 'ragmala', name: 'Ragmala', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1430, category: 'Saloks & Short Banis', description: 'Garland of raags — a listing of the musical modes of SGGS Ji.' },
+  { id: 'ragmala', name: 'Ragmala', scripture: 'SGGS', source: 'G', startAng: 1430, endAng: 1430, category: 'Saloks & Short Banis', description: 'Garland of raags — a listing of the musical modes of SGGS Ji.' },
   { id: 'gatha', name: 'Gatha', scripture: 'SGGS', source: 'G', startAng: 1360, endAng: 1360, category: 'Saloks & Short Banis', description: 'Composition by Guru Arjan Dev Ji in Sanskrit-style verse.' },
   { id: 'funhe', name: 'Funhe', scripture: 'SGGS', source: 'G', startAng: 1360, endAng: 1361, category: 'Saloks & Short Banis', description: 'Short playful couplets by Guru Arjan Dev Ji.' },
   { id: 'chaubole', name: 'Chaubole', scripture: 'SGGS', source: 'G', startAng: 1362, endAng: 1363, category: 'Saloks & Short Banis', description: 'Four-line verses by Guru Arjan Dev Ji.' },
