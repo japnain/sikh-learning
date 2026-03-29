@@ -34,9 +34,9 @@ sand: '#dbc2b0',             // ghost borders at 15% opacity
 
 **Remove:** Silkscreen font (all `font-pixel` references across codebase)
 
-**Add to Google Fonts import:**
-- `Noto Serif Gurmukhi` (weights 400, 600, 700) — replaces Noto Sans Gurmukhi
-- `Plus Jakarta Sans` (weights 400, 500, 600) — replaces Inter
+**Update Google Fonts import (`src/index.css`):**
+- Replace `Noto Sans Gurmukhi` with `Noto Serif Gurmukhi` (weights 400, 600, 700) — remove the old import line entirely
+- Replace `Inter` with `Plus Jakarta Sans` (weights 400, 500, 600) — remove the old import line entirely
 
 **Tailwind font families:**
 ```ts
@@ -64,6 +64,8 @@ Remove `font-pixel` and `font-ui` font families.
 ### Global
 
 All pages: `bg-parchment min-h-screen` wrapper. Body background `#fff8ef`. Bottom nav parchment/saffron styling.
+
+`App.tsx` root wrapper also sets `bg-parchment` (replacing `bg-[#0D0D0D]`) so the flash of dark background on first paint is eliminated. Both the App-level and page-level `bg-parchment` are intentional — the App wrapper covers any unmounted-component gap.
 
 ### NavBar (`src/components/NavBar.tsx`)
 
@@ -120,6 +122,10 @@ Structure (top to bottom):
 Scripture picker (no source/ang params):
 - Cards: `bg-parchment-card rounded-2xl`, scripture name `text-ink font-sans font-medium`, short name `text-ink/50 text-xs`
 - Order: SGGS first, DG second, then B (Bhai Gurdas Ji Vaaran), N (Bhai Nand Lal Ji Vaaran), A (Amrit Keertan), S (Bhai Gurdas Singh Ji Vaaran), R (Panthic Sources)
+- Sarbloh Granth (SG) **removed** from SCRIPTURES — it has no BaniDB API source ID and cannot use the standard ang-fetch flow
+- Click handler for all picker cards (including new sources): navigate to `/study?source=<sourceId>&ang=1`
+- Loading skeleton within Study page (picker not shown): `bg-parchment-low animate-pulse rounded-2xl`
+- Scripture picker card skeleton: `bg-parchment-low animate-pulse rounded-2xl` (replaces current `bg-[#1A1A1A]` skeleton)
 
 ### Library (`src/pages/Library.tsx`)
 
@@ -140,7 +146,7 @@ Scripture section order:
 4. Bhai Nand Lal Ji Vaaran
 5. Amrit Keertan
 6. Bhai Gurdas Singh Ji Vaaran
-7. Panthic Sources & Codes of Conduct — source R has variable ang count; show a single "Browse" link entry (no numbered ang grid) instead of a full ang button grid
+7. Panthic Sources & Codes of Conduct — source R has variable ang count; show a single "Browse →" button (styled as `bg-parchment-card rounded-lg text-saffron font-sans text-sm w-full`) navigating to `/study?source=R&ang=1`, instead of a numbered ang button grid
 
 ### Banis (`src/pages/Banis.tsx`)
 
@@ -205,6 +211,12 @@ These will not cause build errors (they are not imported anywhere else) and are 
 
 **`src/hooks/useAng.ts`** — `source` param currently typed as `'G' | 'D'`; widen to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so new sources resolve correctly.
 
+**`src/api/banidb.ts`** — two changes required:
+1. Widen local `BaniSource` type from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`
+2. Extend `toScripture` mapping for new source IDs: `B → 'BGV'`, `N → 'BNL'`, `A → 'AK'`, `S → 'BGSV'`, `R → 'PS'`
+
+**`src/store/scriptureCache.ts`** — widen local `BaniSource` type from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so cache read/write calls for new sources type-check correctly.
+
 **`src/pages/Library.tsx`** — add 5 new collapsible sections using ang counts fetched from BaniDB or hardcoded. Hardcode ang counts for now (avoids extra API call):
 - B: 628 angs
 - N: 128 angs
@@ -218,9 +230,9 @@ These will not cause build errors (they are not imported anywhere else) and are 
 
 ---
 
-## Feature 5: Remove `font-pixel` References
+## Feature 5: Remove `font-pixel` and `font-ui` References
 
-All `font-pixel` class references removed across the entire codebase (Home, Banis, Library, NavBar, StreakBadge, StudyCard). Replace with `font-sans` for UI text and `font-gurmukhi` for scripture.
+All `font-pixel` and `font-ui` class references removed across the **entire codebase** (every file — not just the list in Feature 2). Replace with `font-sans` for UI text and `font-gurmukhi` for scripture. This includes but is not limited to: Home, Banis, Library, NavBar, StreakBadge, StudyCard, WordPopover, Vocab, and any other file containing these class names. Run a global search (`grep -r "font-pixel\|font-ui" src/`) to find all occurrences before starting.
 
 ---
 
@@ -242,8 +254,10 @@ All `font-pixel` class references removed across the entire codebase (Home, Bani
 | `src/pages/AddText.tsx` | **Delete** |
 | `src/App.tsx` | Remove AddText route/import; update root background to `bg-parchment` |
 | `src/data/banis.ts` | Add new source entries; widen `source` and `scripture` union types |
-| `src/data/index.ts` | Add all 7 sources to SCRIPTURES array for Study scripture picker |
+| `src/data/index.ts` | Replace SCRIPTURES array: 7 BaniDB sources (SGGS, DG, B, N, A, S, R); remove Sarbloh Granth |
 | `src/hooks/useAng.ts` | Widen `source` param type to include B, N, A, S, R |
+| `src/api/banidb.ts` | Widen `BaniSource` type; extend `toScripture` mapping for B, N, A, S, R |
+| `src/store/scriptureCache.ts` | Widen `BaniSource` type to include B, N, A, S, R |
 
 ---
 
