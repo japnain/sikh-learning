@@ -119,7 +119,7 @@ Structure (top to bottom):
 
 Scripture picker (no source/ang params):
 - Cards: `bg-parchment-card rounded-2xl`, scripture name `text-ink font-sans font-medium`, short name `text-ink/50 text-xs`
-- SGGS listed first, DG second, then all other sources in order
+- Order: SGGS first, DG second, then B (Bhai Gurdas Ji Vaaran), N (Bhai Nand Lal Ji Vaaran), A (Amrit Keertan), S (Bhai Gurdas Singh Ji Vaaran), R (Panthic Sources)
 
 ### Library (`src/pages/Library.tsx`)
 
@@ -140,7 +140,7 @@ Scripture section order:
 4. Bhai Nand Lal Ji Vaaran
 5. Amrit Keertan
 6. Bhai Gurdas Singh Ji Vaaran
-7. Panthic Sources & Codes of Conduct
+7. Panthic Sources & Codes of Conduct — source R has variable ang count; show a single "Browse" link entry (no numbered ang grid) instead of a full ang button grid
 
 ### Banis (`src/pages/Banis.tsx`)
 
@@ -173,8 +173,15 @@ Scripture section order:
 - `src/pages/AddText.tsx`
 
 ### Files to Modify
-- `src/App.tsx` — remove AddText import and `/add` route
+- `src/App.tsx` — remove AddText import and `/add` route; change body/root background from `bg-[#0D0D0D]` to `bg-parchment`
 - `src/pages/Home.tsx` — remove "Add Text" quick action button (grid becomes 3 buttons: Study, Library, Banis; no more 2×2 grid — use 1 primary + 2 secondary)
+
+### Known Orphans (no action required)
+After deleting `AddText.tsx`, the following become dead code but are intentionally left for a future cleanup pass:
+- `src/store/customTexts.ts` — Zustand store for user-added texts
+- `CustomText` type — used only by `customTexts.ts` and `AddText.tsx`
+
+These will not cause build errors (they are not imported anywhere else) and are explicitly out of scope for Phase 1.
 
 ---
 
@@ -192,9 +199,11 @@ Scripture section order:
 
 ### Files to Modify
 
-**`src/data/banis.ts`** — `BANIS` array source field already typed as `'G' | 'D'`. Widen to include new source IDs. Add entries for new sources with `type: 'browse-only'` flag (no subcategory tree, just ang browser entry point).
+**`src/data/banis.ts`** — `BANIS` array source field typed as `'G' | 'D'`; widen to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`. Add entries for new sources with `type: 'browse-only'` flag (no subcategory tree, just ang browser entry point). The `scripture` field union type must be widened from `'SGGS' | 'DG'` to `'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'BGSV' | 'PS'` to accommodate the short names of new sources.
 
-**`src/pages/Study.tsx`** — `source` param type widened from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`. `useAng` hook already accepts any source string — verify this.
+**`src/pages/Study.tsx`** — `source` param type widened from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`.
+
+**`src/hooks/useAng.ts`** — `source` param currently typed as `'G' | 'D'`; widen to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so new sources resolve correctly.
 
 **`src/pages/Library.tsx`** — add 5 new collapsible sections using ang counts fetched from BaniDB or hardcoded. Hardcode ang counts for now (avoids extra API call):
 - B: 628 angs
@@ -231,8 +240,10 @@ All `font-pixel` class references removed across the entire codebase (Home, Bani
 | `src/pages/Banis.tsx` | Parchment styling, add 5 new source browse sections |
 | `src/pages/Vocab.tsx` | Parchment styling |
 | `src/pages/AddText.tsx` | **Delete** |
-| `src/App.tsx` | Remove AddText route/import |
-| `src/data/banis.ts` | Add new source entries |
+| `src/App.tsx` | Remove AddText route/import; update root background to `bg-parchment` |
+| `src/data/banis.ts` | Add new source entries; widen `source` and `scripture` union types |
+| `src/data/index.ts` | Add all 7 sources to SCRIPTURES array for Study scripture picker |
+| `src/hooks/useAng.ts` | Widen `source` param type to include B, N, A, S, R |
 
 ---
 
