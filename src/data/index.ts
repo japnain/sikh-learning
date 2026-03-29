@@ -8,9 +8,9 @@ export const SARBLOH_ENTRIES: ScriptureEntry[] = sarblohData as ScriptureEntry[]
 export const ALL_ENTRIES: ScriptureEntry[] = SARBLOH_ENTRIES
 
 export const SCRIPTURES: Scripture[] = [
-  { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', shortName: 'SGGS' },
-  { id: 'dasam-granth', name: 'Dasam Granth', shortName: 'DG' },
-  { id: 'sarbloh-granth', name: 'Sarbloh Granth', shortName: 'SG' },
+  { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', shortName: 'SGGS', sourceId: 'G' },
+  { id: 'dasam-granth', name: 'Dasam Granth', shortName: 'DG', sourceId: 'D' },
+  { id: 'sarbloh-granth', name: 'Sarbloh Granth', shortName: 'SG', sourceId: 'R' },
 ]
 
 export function getEntriesByScripture(scriptureId: string): ScriptureEntry[] {
