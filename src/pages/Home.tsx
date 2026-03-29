@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ALL_ENTRIES } from '../data'
 import { useProgressStore } from '../store/progress'
-import { useCustomTextsStore } from '../store/customTexts'
+import { useScriptureCacheStore } from '../store/scriptureCache'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { useAng } from '../hooks/useAng'
 import StreakBadge from '../components/StreakBadge'
@@ -18,7 +17,7 @@ function greeting(): string {
 export default function Home() {
   const navigate = useNavigate()
   const { streak, currentSession, studied } = useProgressStore()
-  const { customTexts } = useCustomTextsStore()
+  const { getEntryById } = useScriptureCacheStore()
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
@@ -31,63 +30,57 @@ export default function Home() {
     )
     .slice(0, 6)
     .map((s: StudiedEntry) => {
-      const entry = ALL_ENTRIES.find(e => e.id === s.id)
-        || customTexts.find(e => e.id === s.id)
+      const entry = getEntryById(s.id)
       return entry ? { ...entry, swipedAt: s.swipedAt } : null
     })
     .filter((e): e is NonNullable<typeof e> => e !== null)
 
-  const btnGlow = { boxShadow: '0 0 12px #C9A84C88' }
-  const heroGlow = { boxShadow: '0 0 20px #7B2D0088, 0 0 40px #3D120044' }
-  const heroActiveGlow = { boxShadow: '0 0 30px #C9A84C66' }
+  const actions = [
+    { key: 'study', label: '📖 Study', path: '/study', primary: true },
+    { key: 'library', label: '📚 Library', path: '/library', primary: false },
+    { key: 'banis', label: '🙏 Banis', path: '/banis', primary: false },
+  ]
 
   return (
-    <div
-      className="p-4 max-w-md mx-auto min-h-screen"
-      style={{
-        background: 'radial-gradient(ellipse at 50% 45%, #7B2D00 0%, #3D1200 25%, #1A0800 50%, #0D0D0D 75%)'
-      }}
-    >
-      {/* Greeting */}
-      <div className="flex justify-between items-center mb-6 mt-4">
-        <div>
-          <p className="text-[#8B6914] text-xs font-pixel">
-            {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
-          </p>
-          <h1 className="text-white font-semibold text-lg font-pixel">{greeting()}</h1>
-        </div>
+    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment">
+      {/* Top bar */}
+      <div className="flex justify-between items-center mb-2 mt-4">
+        <span className="font-sans font-bold text-saffron text-base">Nitnem</span>
         <StreakBadge streak={streak} />
       </div>
 
+      {/* Date + Greeting */}
+      <p className="font-sans text-xs text-ink/50 mb-1">
+        {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+      </p>
+      <h1 className="font-sans font-semibold text-lg text-ink mb-6">{greeting()}</h1>
+
       {/* Today's Pick */}
-      <div className="mb-6">
-        <h2 className="text-[#8B6914] text-xs font-pixel uppercase tracking-wider mb-3">Today's Pick</h2>
+      <div className="bg-parchment-low rounded-2xl p-4 mb-6">
+        <p className="font-sans text-xs text-saffron uppercase tracking-wide mb-3">Today's Pick</p>
         {pickLoading ? (
-          <div className="bg-coal rounded-2xl p-6 min-h-[120px] animate-pulse border border-[#C9A84C]" />
+          <div className="bg-parchment-low rounded-2xl p-6 min-h-[120px] animate-pulse" />
         ) : todaysPick ? (
           <div
             onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="bg-coal border border-[#C9A84C] rounded-2xl p-6 cursor-pointer transition-shadow"
-            style={heroGlow}
-            onMouseDown={(e) => { e.currentTarget.style.boxShadow = heroActiveGlow.boxShadow }}
-            onMouseUp={(e) => { e.currentTarget.style.boxShadow = heroGlow.boxShadow }}
-            onTouchStart={(e) => { e.currentTarget.style.boxShadow = heroActiveGlow.boxShadow }}
-            onTouchEnd={(e) => { e.currentTarget.style.boxShadow = heroGlow.boxShadow }}
+            className="bg-parchment-card rounded-2xl p-6 cursor-pointer transition-shadow duration-300"
           >
-            <p className="text-[#C9A84C] text-xs font-pixel mb-2">
+            <p className="font-sans text-xs text-saffron uppercase tracking-wide mb-2">
               {todaysPick.scripture} · Ang {todaysPick.ang}
             </p>
-            <p lang="pa-Guru" className="font-gurmukhi text-white text-2xl leading-relaxed line-clamp-2">
+            <p lang="pa-Guru" className="font-gurmukhi text-2xl text-ink leading-relaxed line-clamp-2">
               {todaysPick.gurmukhi}
             </p>
-            <p className="text-[#A07850] text-sm mt-2 line-clamp-1">{todaysPick.translation_en}</p>
+            <p className="font-sans text-sm text-ink/70 mt-2 line-clamp-1">{todaysPick.translation_en}</p>
+            <div className="mt-4 flex justify-end">
+              <button className="font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-5 py-2 rounded-full transition-colors duration-300">
+                Read →
+              </button>
+            </div>
           </div>
         ) : (
-          <div
-            className="bg-coal border border-[#C9A84C] rounded-2xl p-6 min-h-[120px] flex items-center justify-center"
-            style={heroGlow}
-          >
-            <p className="text-[#8B6914] text-sm font-pixel">No verse available today</p>
+          <div className="bg-parchment-card rounded-2xl p-6 min-h-[120px] flex items-center justify-center">
+            <p className="font-sans text-ink/50 text-sm">No verse available today</p>
           </div>
         )}
       </div>
@@ -95,28 +88,22 @@ export default function Home() {
       {/* Continue Reading */}
       {currentSession && (
         <div className="mb-6">
-          <h2 className="text-[#8B6914] text-xs font-pixel uppercase tracking-wider mb-3">Continue Reading</h2>
           <div
             onClick={() => navigate(`/study/${currentSession.scriptureId}`)}
-            className="bg-coal border border-[#C9A84C66] rounded-2xl p-4 cursor-pointer flex justify-between items-center"
-            style={{ boxShadow: '0 0 8px #C9A84C44' }}
+            className="bg-parchment-low rounded-2xl p-4 cursor-pointer flex justify-between items-center transition-colors duration-300"
           >
             <div>
-              <p className="text-white font-medium text-sm font-pixel">Pick up where you left off</p>
-              <p className="text-[#8B6914] text-xs mt-0.5 font-pixel">{currentSession.scriptureId.toUpperCase()}</p>
+              <p className="font-sans font-medium text-ink text-sm">Pick up where you left off</p>
+              <p className="font-sans text-saffron text-xs mt-0.5">{currentSession.scriptureId.toUpperCase()}</p>
             </div>
-            <span className="text-[#C9A84C] text-lg">→</span>
+            <span className="text-saffron text-lg">→</span>
           </div>
         </div>
       )}
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        {[
-          { key: 'study', label: '📖 Study', path: '/study', primary: true },
-          { key: 'library', label: '📚 Library', path: '/library', primary: false },
-          { key: 'add', label: '+ Add Text', path: '/add', primary: false },
-        ].map(({ key, label, path, primary }) => (
+      <div className="flex flex-col gap-3 mb-6">
+        {actions.map(({ key, label, path, primary }) => (
           <button
             key={key}
             onClick={() => navigate(path)}
@@ -124,15 +111,11 @@ export default function Home() {
             onMouseUp={() => setPressedBtn(null)}
             onTouchStart={() => setPressedBtn(key)}
             onTouchEnd={() => setPressedBtn(null)}
-            className={`font-pixel rounded-2xl p-4 text-sm min-h-[44px] border ${
+            className={`font-sans rounded-full p-4 text-sm font-semibold min-h-[44px] transition-all duration-300 ${
               primary
-                ? 'text-white border-[#C9A84C]'
-                : 'bg-coal text-white border-[#C9A84C66]'
-            }`}
-            style={{
-              ...(primary ? { background: 'linear-gradient(135deg, #7B2D00, #C9A84C22)' } : {}),
-              ...(pressedBtn === key ? btnGlow : {}),
-            }}
+                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                : 'bg-parchment-low text-ink border border-sand/15'
+            } ${pressedBtn === key ? 'opacity-80' : ''}`}
           >
             {label}
           </button>
@@ -142,16 +125,16 @@ export default function Home() {
       {/* Recently Studied */}
       {recentlyStudied.length > 0 && (
         <div>
-          <h2 className="text-[#8B6914] text-xs font-pixel uppercase tracking-wider mb-3">Recently Studied</h2>
+          <p className="font-sans text-xs text-ink/50 uppercase tracking-wider mb-3">Recently Studied</p>
           <div className="flex gap-3 overflow-x-auto pb-2">
             {recentlyStudied.map((entry) => (
               <div
                 key={entry.id}
-                className="flex-shrink-0 w-48 bg-coal border border-[#C9A84C44] rounded-xl p-3 cursor-pointer"
+                className="flex-shrink-0 w-48 bg-parchment-card rounded-xl p-3 cursor-pointer"
                 onClick={() => navigate('/study')}
               >
-                <p className="text-[#8B6914] font-pixel text-[10px] mb-1">{entry.scripture}</p>
-                <p lang="pa-Guru" className="font-gurmukhi text-white text-sm line-clamp-2">
+                <p className="font-sans text-saffron text-[10px] mb-1 uppercase tracking-wide">{entry.scripture}</p>
+                <p lang="pa-Guru" className="font-gurmukhi text-ink text-sm leading-relaxed line-clamp-2">
                   {entry.gurmukhi}
                 </p>
               </div>
