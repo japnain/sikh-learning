@@ -139,7 +139,7 @@ Scripture picker (no source/ang params):
 - Ang buttons: `bg-parchment-card rounded-lg text-ink hover:text-saffron`
 - Bookmarks section: at top, `bg-parchment-card rounded-2xl`, title `font-sans font-semibold text-ink`, bookmark cards `bg-parchment-low rounded-xl`
 - Bookmark title: `font-sans font-semibold text-sm text-ink`
-- Bookmark reference: `font-sans text-[10px] text-saffron`
+- Bookmark reference: `font-sans text-[10px] text-saffron` — format: `<shortName> · Ang <ang>`; use a lookup map `{ G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK', S: 'BGSV', R: 'PS' }` (replacing the current hardcoded `G → 'SGGS'`, `D → 'DG'` ternary)
 - Pagination: `text-saffron`
 
 Scripture section order:
@@ -185,12 +185,21 @@ Scripture section order:
 - `src/App.tsx` — remove AddText import and `/add` route; change body/root background from `bg-[#0D0D0D]` to `bg-parchment`
 - `src/pages/Home.tsx` — remove "Add Text" quick action button (grid becomes 3 buttons: Study, Library, Banis; no more 2×2 grid — use 1 primary + 2 secondary)
 
-### Known Orphans (no action required)
-After deleting `AddText.tsx`, the following become dead code but are intentionally left for a future cleanup pass:
-- `src/store/customTexts.ts` — Zustand store for user-added texts
-- `CustomText` type — used only by `customTexts.ts` and `AddText.tsx`
+### Files to Modify (beyond App.tsx and Home.tsx)
 
-These will not cause build errors (they are not imported anywhere else) and are explicitly out of scope for Phase 1.
+**`src/pages/Library.tsx`** — two additional removals required alongside the parchment restyle:
+1. Remove the **Sarbloh Granth** collapsible section (the static scripture section driven by `SARBLOH_ENTRIES`)
+2. Remove the **Custom Texts** collapsible section (driven by `useCustomTextsStore`)
+3. Remove the **"+ Add New Book / Text"** button (currently navigates to `/add` — that route will no longer exist)
+
+After these removals, `useCustomTextsStore` is no longer imported by any file other than `customTexts.ts` itself.
+
+### Known Orphans (no action required)
+After the above removals, the following become fully dead code and are intentionally left for a future cleanup pass:
+- `src/store/customTexts.ts` — Zustand store for user-added texts; no longer imported by any page
+- `CustomText` type — used only within `customTexts.ts`
+
+These will not cause build errors and are explicitly out of scope for Phase 1.
 
 ---
 
@@ -222,7 +231,9 @@ These will not cause build errors (they are not imported anywhere else) and are 
 
 **`src/store/bookmarks.ts`** — widen `source` field in the `Bookmark` interface and in `hasBookmark`/`addBookmark` signatures from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so bookmarks can be saved from any new-source ang page.
 
-**`src/data/index.ts`** — update SCRIPTURES array: add all 7 BaniDB sources with a `sourceId` field (matching the BaniDB source letter: `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`), remove Sarbloh Granth entry. Update the `Scripture` type to include `sourceId: string`. Replace the hardcoded `if/else` navigation in `Study.tsx`'s scripture picker click handler with a data-driven call: `navigate('/study?source=${s.sourceId}&ang=1')`. The following become dead code when Sarbloh Granth is removed and should be deleted from `data/index.ts`: the `sarbloh-granth.json` import, `SARBLOH_ENTRIES`, `ALL_ENTRIES`, and `getEntriesByScripture`. `Study.tsx` currently imports `ALL_ENTRIES` for non-API (static) mode; once Sarbloh Granth is removed from the picker, the static-mode branch (`isApiMode === false`) can be deleted from `Study.tsx` as well since there are no longer any static scripture sources.
+**`src/types.ts`** — add `sourceId: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` field to the `Scripture` interface. This field is used by the Study scripture picker to navigate to the correct BaniDB source without hardcoded `if/else` branches.
+
+**`src/data/index.ts`** — update SCRIPTURES array: add all 7 BaniDB sources each with a `sourceId` field matching the type above, remove Sarbloh Granth entry. Replace the hardcoded `if/else` navigation in `Study.tsx`'s scripture picker click handler with a data-driven call: `navigate('/study?source=${s.sourceId}&ang=1')`. The following become dead code when Sarbloh Granth is removed and should be deleted from `data/index.ts`: the `sarbloh-granth.json` import, `SARBLOH_ENTRIES`, `ALL_ENTRIES`, and `getEntriesByScripture`. `Study.tsx` currently imports `ALL_ENTRIES` for non-API (static) mode; once Sarbloh Granth is removed from the picker, the static-mode branch (`isApiMode === false`) can be deleted from `Study.tsx` as well since there are no longer any static scripture sources.
 
 **`src/pages/Library.tsx`** — add 5 new collapsible sections using ang counts fetched from BaniDB or hardcoded. Hardcode ang counts for now (avoids extra API call):
 - B: 628 angs
@@ -264,6 +275,7 @@ All `font-pixel` and `font-ui` class references removed across the **entire code
 | `src/api/banidb.ts` | Widen `BaniSource` type; extend `toScripture` mapping for B, N, A, S, R |
 | `src/store/scriptureCache.ts` | Widen `BaniSource` type to include B, N, A, S, R |
 | `src/store/bookmarks.ts` | Widen `source` field type in `Bookmark` interface and store signatures |
+| `src/types.ts` | Add `sourceId` field to `Scripture` interface |
 
 ---
 
