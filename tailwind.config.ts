@@ -3,15 +3,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: '#C9A84C',
-        surface: '#1A1A1A',
-        ember: '#7B2D00',
-        coal: '#1A0800',
+        parchment: '#fff8ef',
+        'parchment-low': '#fbf3e4',
+        'parchment-card': '#ffffff',
+        ink: '#1e1b13',
+        saffron: '#904d00',
+        'saffron-light': '#f99c45',
+        sand: '#dbc2b0',
       },
       fontFamily: {
-        gurmukhi: ['"Noto Sans Gurmukhi"', 'sans-serif'],
-        ui: ['Inter', 'sans-serif'],
-        pixel: ['Silkscreen', 'sans-serif'],
+        gurmukhi: ['Noto Serif Gurmukhi', 'serif'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
       },
     },
   },
