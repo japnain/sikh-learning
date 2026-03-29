@@ -65,6 +65,8 @@ Remove `font-pixel` and `font-ui` font families.
 
 All pages: `bg-parchment min-h-screen` wrapper. Body background `#fff8ef`. Bottom nav parchment/saffron styling.
 
+In `src/index.css`, update the `body` rule: set `background-color: #fff8ef` and `color: #1e1b13` (replacing existing `background-color: #0D0D0D` and `color: #ffffff`).
+
 `App.tsx` root wrapper also sets `bg-parchment` (replacing `bg-[#0D0D0D]`) so the flash of dark background on first paint is eliminated. Both the App-level and page-level `bg-parchment` are intentional — the App wrapper covers any unmounted-component gap.
 
 ### NavBar (`src/components/NavBar.tsx`)
@@ -118,6 +120,7 @@ Structure (top to bottom):
 - Swipe indicators: saffron (right/known), `text-ink/30` (left/review)
 - Word popover: `bg-parchment-card rounded-xl shadow-sm border-sand/15`
 - Bookmark form: `bg-parchment-low rounded-xl`, input `bg-parchment-card`
+- **Word popover for new sources (B, N, A, S, R):** `parseShabadId` in `Study.tsx` currently only returns a shabad ID for source `G` or `D` — all other sources return `null` and the word popover will never appear. This is acceptable for Phase 1; do **not** fix `parseShabadId`. Word-tap interactivity for new sources is deferred to a future phase.
 
 Scripture picker (no source/ang params):
 - Cards: `bg-parchment-card rounded-2xl`, scripture name `text-ink font-sans font-medium`, short name `text-ink/50 text-xs`
@@ -205,7 +208,7 @@ These will not cause build errors (they are not imported anywhere else) and are 
 
 ### Files to Modify
 
-**`src/data/banis.ts`** — `BANIS` array source field typed as `'G' | 'D'`; widen to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`. Add entries for new sources with `type: 'browse-only'` flag (no subcategory tree, just ang browser entry point). The `scripture` field union type must be widened from `'SGGS' | 'DG'` to `'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'BGSV' | 'PS'` to accommodate the short names of new sources.
+**`src/data/banis.ts`** — `BANIS` array source field typed as `'G' | 'D'`; widen to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`. Add a `type?: 'browse-only'` optional field to the `Bani` interface. Add 5 entries for new sources with `type: 'browse-only'` (no subcategory tree, just ang browser entry point). The `scripture` field union type must be widened from `'SGGS' | 'DG'` to `'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'BGSV' | 'PS'` to accommodate the short names of new sources.
 
 **`src/pages/Study.tsx`** — `source` param type widened from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`.
 
@@ -217,6 +220,10 @@ These will not cause build errors (they are not imported anywhere else) and are 
 
 **`src/store/scriptureCache.ts`** — widen local `BaniSource` type from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so cache read/write calls for new sources type-check correctly.
 
+**`src/store/bookmarks.ts`** — widen `source` field in the `Bookmark` interface and in `hasBookmark`/`addBookmark` signatures from `'G' | 'D'` to `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'` so bookmarks can be saved from any new-source ang page.
+
+**`src/data/index.ts`** — update SCRIPTURES array: add all 7 BaniDB sources with a `sourceId` field (matching the BaniDB source letter: `'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'`), remove Sarbloh Granth entry. Update the `Scripture` type to include `sourceId: string`. Replace the hardcoded `if/else` navigation in `Study.tsx`'s scripture picker click handler with a data-driven call: `navigate('/study?source=${s.sourceId}&ang=1')`. The following become dead code when Sarbloh Granth is removed and should be deleted from `data/index.ts`: the `sarbloh-granth.json` import, `SARBLOH_ENTRIES`, `ALL_ENTRIES`, and `getEntriesByScripture`. `Study.tsx` currently imports `ALL_ENTRIES` for non-API (static) mode; once Sarbloh Granth is removed from the picker, the static-mode branch (`isApiMode === false`) can be deleted from `Study.tsx` as well since there are no longer any static scripture sources.
+
 **`src/pages/Library.tsx`** — add 5 new collapsible sections using ang counts fetched from BaniDB or hardcoded. Hardcode ang counts for now (avoids extra API call):
 - B: 628 angs
 - N: 128 angs
@@ -225,8 +232,6 @@ These will not cause build errors (they are not imported anywhere else) and are 
 - R: varies — show "Browse" entry without numbered ang grid
 
 **`src/pages/Banis.tsx`** — add 5 new source sections below DG, each with single "Browse by Ang →" CTA.
-
-**`src/data/index.ts` or `src/data/scriptures.ts`** — update SCRIPTURES array with all 7 sources for scripture picker in Study page.
 
 ---
 
@@ -258,6 +263,7 @@ All `font-pixel` and `font-ui` class references removed across the **entire code
 | `src/hooks/useAng.ts` | Widen `source` param type to include B, N, A, S, R |
 | `src/api/banidb.ts` | Widen `BaniSource` type; extend `toScripture` mapping for B, N, A, S, R |
 | `src/store/scriptureCache.ts` | Widen `BaniSource` type to include B, N, A, S, R |
+| `src/store/bookmarks.ts` | Widen `source` field type in `Bookmark` interface and store signatures |
 
 ---
 
