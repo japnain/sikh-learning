@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi:wght@400;600;700&family=Inter:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gurmukhi:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #0D0D0D;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  background-color: #fff8ef;
+  color: #1e1b13;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
