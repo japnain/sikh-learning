@@ -5,12 +5,11 @@ import Study from './pages/Study'
 import Library from './pages/Library'
 import Banis from './pages/Banis'
 import Vocab from './pages/Vocab'
-import AddText from './pages/AddText'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#0D0D0D] pb-20">
+      <div className="min-h-screen bg-parchment pb-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/study" element={<Study />} />
@@ -18,7 +17,6 @@ export default function App() {
           <Route path="/library" element={<Library />} />
           <Route path="/banis" element={<Banis />} />
           <Route path="/vocab" element={<Vocab />} />
-          <Route path="/add" element={<AddText />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <NavBar />
