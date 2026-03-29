@@ -40,11 +40,11 @@ export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }
       <div
         data-testid="study-card"
         onClick={() => setFlipped(f => !f)}
-        className="bg-[#1A1A1A] rounded-2xl p-6 min-h-[300px] flex flex-col justify-between cursor-pointer select-none border border-[#2a2a2a] active:border-[#C9A84C] transition-colors"
+        className="bg-parchment-card rounded-2xl p-6 min-h-[300px] flex flex-col justify-between cursor-pointer select-none border border-sand/15 active:border-saffron/30 transition-colors duration-300 ease-in-out"
       >
         {!flipped ? (
           <div className="flex-1 flex flex-col justify-center">
-            <p className="text-xs text-gray-500 mb-3 uppercase tracking-wider">
+            <p className="font-sans text-xs text-saffron uppercase tracking-wide mb-3">
               {entry.scripture} · Ang {entry.ang}
             </p>
             <div className="flex flex-wrap gap-2">
@@ -52,7 +52,7 @@ export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }
                 <span
                   key={i}
                   lang="pa-Guru"
-                  className="font-gurmukhi text-2xl text-white leading-relaxed cursor-pointer hover:text-[#C9A84C] transition-colors"
+                  className="font-gurmukhi text-2xl text-ink leading-relaxed cursor-pointer hover:text-saffron transition-colors duration-300"
                   style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
                   onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
                 >
@@ -60,36 +60,36 @@ export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }
                 </span>
               ))}
             </div>
-            <p className="text-gray-600 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
+            <p className="font-sans text-ink/40 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
           </div>
         ) : (
           <div className="flex-1 flex flex-col justify-center gap-3">
-            <p className="text-gray-400 text-sm">{entry.transliteration}</p>
+            <p className="font-sans text-sm text-ink/60 italic">{entry.transliteration}</p>
             <div className="flex gap-2 mb-2">
               <button
                 onClick={e => { e.stopPropagation(); setLang('en') }}
-                className={`text-xs px-3 py-1 rounded-full ${lang === 'en' ? 'bg-[#C9A84C] text-black' : 'bg-[#2a2a2a] text-gray-400'}`}
+                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'en' ? 'bg-saffron text-white' : 'bg-parchment-low text-ink/60'}`}
               >EN</button>
               <button
                 onClick={e => { e.stopPropagation(); setLang('pa') }}
-                className={`text-xs px-3 py-1 rounded-full ${lang === 'pa' ? 'bg-[#C9A84C] text-black' : 'bg-[#2a2a2a] text-gray-400'}`}
+                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'pa' ? 'bg-saffron text-white' : 'bg-parchment-low text-ink/60'}`}
               >PA</button>
             </div>
             {lang === 'en'
-              ? <p className="text-white text-base leading-relaxed">{entry.translation_en}</p>
-              : <p lang="pa-Guru" className="font-gurmukhi text-white text-base leading-relaxed">{entry.translation_pa}</p>
+              ? <p className="font-sans text-base text-ink/80 leading-relaxed">{entry.translation_en}</p>
+              : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 leading-relaxed">{entry.translation_pa}</p>
             }
           </div>
         )}
 
-        <div className="flex justify-between mt-4 pt-4 border-t border-[#2a2a2a]">
+        <div className="flex justify-between mt-4 pt-4 border-t border-sand/15">
           <button
             onClick={e => { e.stopPropagation(); onSwipeLeft() }}
-            className="flex-1 mr-2 py-2 rounded-xl bg-[#2a2a2a] text-gray-400 text-sm font-medium min-h-[44px]"
+            className="flex-1 mr-2 py-2 rounded-xl bg-parchment-low text-ink/60 font-sans text-sm font-medium min-h-[44px] transition-colors duration-300"
           >← Review Later</button>
           <button
             onClick={e => { e.stopPropagation(); onSwipeRight() }}
-            className="flex-1 ml-2 py-2 rounded-xl bg-[#C9A84C] text-black text-sm font-semibold min-h-[44px]"
+            className="flex-1 ml-2 py-2 rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300"
           >Got It →</button>
         </div>
       </div>

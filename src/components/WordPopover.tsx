@@ -10,16 +10,16 @@ export default function WordPopover({ word, onSave, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" onClick={onClose}>
       <div
-        className="bg-[#1A1A1A] border border-[#2a2a2a] rounded-t-2xl p-6 w-full max-w-md mb-0"
+        className="bg-parchment-card border border-sand/15 rounded-t-2xl p-6 w-full max-w-md mb-0 shadow-sm"
         onClick={e => e.stopPropagation()}
       >
-        <p lang="pa-Guru" className="font-gurmukhi text-3xl text-white mb-1">{word.gurmukhi}</p>
-        <p className="text-gray-400 text-sm mb-1">{word.transliteration}</p>
-        <p className="text-white font-medium mb-1">{word.meaning_en}</p>
-        <p lang="pa-Guru" className="font-gurmukhi text-gray-300 text-sm mb-4">{word.meaning_pa}</p>
+        <p lang="pa-Guru" className="font-gurmukhi text-3xl text-ink mb-1">{word.gurmukhi}</p>
+        <p className="font-sans text-ink/60 text-sm mb-1">{word.transliteration}</p>
+        <p className="font-sans text-ink font-medium mb-1">{word.meaning_en}</p>
+        <p lang="pa-Guru" className="font-gurmukhi text-ink/70 text-sm mb-4">{word.meaning_pa}</p>
         <button
           onClick={() => { onSave(word); onClose() }}
-          className="w-full py-3 rounded-xl bg-[#C9A84C] text-black font-semibold text-sm min-h-[44px]"
+          className="w-full py-3 rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"
         >
           Save to Vocab
         </button>
