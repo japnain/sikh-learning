@@ -2,7 +2,7 @@ import type { ScriptureEntry, Word } from '../types'
 
 const BASE = 'https://api.banidb.com/v2'
 
-type BaniSource = 'G' | 'D'
+type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
 
 interface BaniVerse {
   verseId: number
@@ -24,7 +24,10 @@ interface BaniShabadVerse {
 }
 
 function toScripture(source: BaniSource): string {
-  return source === 'G' ? 'SGGS' : 'DG'
+  const map: Record<BaniSource, string> = {
+    G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK', S: 'BGSV', R: 'PS',
+  }
+  return map[source]
 }
 
 export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {

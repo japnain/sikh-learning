@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { ScriptureEntry, Word } from '../types'
 
-type BaniSource = 'G' | 'D'
+type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
 
 interface ScriptureCacheState {
   angCache: Record<string, ScriptureEntry[]>
