@@ -40,8 +40,16 @@ test('shows quick action buttons', () => {
   renderHome()
   expect(screen.getByText(/study/i)).toBeInTheDocument()
   expect(screen.getByText(/library/i)).toBeInTheDocument()
-  expect(screen.getByText(/add text/i)).toBeInTheDocument()
+  expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
+})
+
+it('shows Study, Library, and Banis quick action buttons', async () => {
+  render(<Home />, { wrapper: ({ children }) => <MemoryRouter>{children}</MemoryRouter> })
+  expect(screen.getByText(/study/i)).toBeInTheDocument()
+  expect(screen.getByText(/library/i)).toBeInTheDocument()
+  expect(screen.getByText(/banis/i)).toBeInTheDocument()
+  expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
 })
 
 test('does not show recently studied section when empty', () => {
@@ -59,5 +67,5 @@ test('shows continue reading when session exists', () => {
     currentSession: { scriptureId: 'sggs', lastCardIndex: 0 }
   })
   renderHome()
-  expect(screen.getByText(/continue reading/i)).toBeInTheDocument()
+  expect(screen.getByText(/pick up where you left off/i)).toBeInTheDocument()
 })
