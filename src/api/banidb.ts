@@ -99,10 +99,15 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
 }
 
 export async function fetchHukamnama(): Promise<HukamnamaResult> {
-  // Try /today first, fall back to base hukamnama endpoint
-  let res = await fetch(`${BASE}/hukamnama/today`)
-  if (!res.ok) res = await fetch(`${BASE}/hukamnama`)
-  if (!res.ok) throw new Error(`BaniDB /hukamnama error: ${res.status}`)
+  // BaniDB v2 endpoint: /hukamnamas/{year}/{month}/{day}
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+
+  let res = await fetch(`${BASE}/hukamnamas/${year}/${month}/${day}`)
+  if (!res.ok) res = await fetch(`${BASE}/hukamnamas`)
+  if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
 
   const data = await res.json() as {
     hukamnamaInfo?: { ang?: number; source?: { id?: string } }
