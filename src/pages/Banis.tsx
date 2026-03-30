@@ -35,11 +35,8 @@ export default function Banis() {
   }
 
   return (
-    <div
-      className="p-4 max-w-md mx-auto min-h-screen"
-      style={{ background: 'radial-gradient(ellipse at 50% 45%, #7B2D00 0%, #3D1200 25%, #1A0800 50%, #0D0D0D 75%)' }}
-    >
-      <h1 className="text-white font-pixel text-lg mb-6 mt-4">Banis</h1>
+    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment">
+      <h1 className="font-sans font-semibold text-lg text-ink mb-6 mt-4">Banis</h1>
 
       {(['SGGS', 'DG'] as Scripture[]).map(scripture => {
         const meta = SCRIPTURE_META[scripture]
@@ -47,19 +44,19 @@ export default function Banis() {
         const isOpen = expanded[sectionKey]
         const categories = CATEGORY_ORDER[scripture]
         const baniCount = BANIS.filter(b => b.scripture === scripture).length
+        const isSSGS = scripture === 'SGGS'
 
         return (
           <div key={scripture} className="mb-4">
             <button
               onClick={() => toggle(sectionKey)}
-              className="w-full flex justify-between items-center bg-coal border border-[#C9A84C44] rounded-2xl p-4 min-h-[44px]"
-              style={isOpen ? { boxShadow: '0 0 12px #C9A84C44' } : undefined}
+              className={`w-full flex justify-between items-center ${isSSGS ? 'bg-parchment-card' : 'bg-parchment-low'} border border-sand/15 rounded-2xl p-4 min-h-[44px]`}
             >
               <div className="text-left">
-                <p className="text-white font-pixel text-sm">{meta.emoji} {meta.label}</p>
-                <p className="text-[#8B6914] font-pixel text-[10px] mt-0.5">{baniCount} banis</p>
+                <p className={`font-sans font-semibold text-base ${isSSGS ? 'text-saffron' : 'text-ink'}`}>{meta.emoji} {meta.label}</p>
+                <p className="font-sans text-ink/50 text-xs mt-0.5">{baniCount} banis</p>
               </div>
-              <span className="text-[#C9A84C] font-pixel text-sm">{isOpen ? '▲' : '▼'}</span>
+              <span className="text-saffron font-sans text-sm">{isOpen ? '▲' : '▼'}</span>
             </button>
 
             {isOpen && (
@@ -74,10 +71,10 @@ export default function Banis() {
                     <div key={category} className="mb-2">
                       <button
                         onClick={() => toggle(categoryKey)}
-                        className="w-full flex justify-between items-center bg-coal border border-[#C9A84C33] rounded-xl p-3 min-h-[44px]"
+                        className="w-full flex justify-between items-center bg-parchment-card border border-sand/15 rounded-xl p-3 min-h-[44px]"
                       >
-                        <p className="text-[#8B6914] font-pixel text-xs uppercase tracking-wider">{category}</p>
-                        <span className="text-[#8B6914] font-pixel text-xs">{isCatOpen ? '▲' : '▼'}</span>
+                        <p className="font-sans text-xs text-ink/50 uppercase tracking-wider">{category}</p>
+                        <span className="font-sans text-xs text-ink/50">{isCatOpen ? '▲' : '▼'}</span>
                       </button>
 
                       {isCatOpen && (
@@ -91,28 +88,24 @@ export default function Banis() {
                               <div key={bani.id} className="mb-1">
                                 <button
                                   onClick={() => toggle(bani.id)}
-                                  className="w-full flex justify-between items-center bg-coal border border-[#C9A84C22] rounded-xl p-3 min-h-[44px] text-left"
+                                  className="w-full flex justify-between items-center bg-parchment-card border border-sand/15 rounded-xl p-3 min-h-[44px] text-left"
                                 >
-                                  <p className="text-white font-pixel text-xs">{bani.name}</p>
-                                  <span className="text-[#8B6914] font-pixel text-xs">{isInfoOpen ? '▲' : '▼'}</span>
+                                  <p className="font-sans text-ink text-xs">{bani.name}</p>
+                                  <span className="font-sans text-xs text-ink/50">{isInfoOpen ? '▲' : '▼'}</span>
                                 </button>
 
                                 {isInfoOpen && (
-                                  <div
-                                    className="bg-coal border border-[#C9A84C] rounded-xl p-4 mt-1 ml-2"
-                                    style={{ boxShadow: '0 0 20px #7B2D0088, 0 0 40px #3D120044' }}
-                                  >
-                                    <p className="text-white font-pixel text-sm mb-1">{bani.name}</p>
-                                    <p className="text-[#C9A84C] font-pixel text-xs mb-2">
+                                  <div className="bg-parchment-card rounded-2xl shadow-sm border border-sand/15 p-4 mt-1 ml-2">
+                                    <p className="font-gurmukhi text-ink text-sm mb-1">{bani.name}</p>
+                                    <p className="font-sans text-xs text-saffron mb-2">
                                       {bani.scripture} · Ang {bani.startAng}–{bani.endAng}
                                     </p>
-                                    <p className="text-[#A07850] text-xs mb-4">{bani.description}</p>
+                                    <p className="font-sans text-sm text-ink/70 mb-4">{bani.description}</p>
 
                                     <div className="flex gap-2">
                                       <button
                                         onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
-                                        className="flex-1 border border-[#C9A84C] rounded-xl py-2 text-white font-pixel text-xs min-h-[44px]"
-                                        style={{ background: 'linear-gradient(135deg, #7B2D00, #C9A84C22)' }}
+                                        className="flex-1 bg-gradient-to-r from-saffron to-saffron-light text-white rounded-full py-2 font-sans text-xs min-h-[44px]"
                                       >
                                         Begin Study →
                                       </button>
@@ -120,10 +113,10 @@ export default function Banis() {
                                         onClick={() => {
                                           if (!isBookmarked) setBookmarkForm({ id: bani.id, text: '' })
                                         }}
-                                        className={`px-3 rounded-xl border min-h-[44px] font-pixel text-xs ${
+                                        className={`px-3 rounded-xl border min-h-[44px] font-sans text-xs ${
                                           isBookmarked
-                                            ? 'border-[#C9A84C] text-[#C9A84C] bg-coal'
-                                            : 'border-[#C9A84C44] text-[#8B6914] bg-coal'
+                                            ? 'border-saffron/30 text-saffron'
+                                            : 'border-sand/15 text-ink/50'
                                         }`}
                                       >
                                         🔖 Bookmark
@@ -137,11 +130,11 @@ export default function Banis() {
                                           value={bookmarkForm!.text}
                                           onChange={e => setBookmarkForm({ id: bani.id, text: e.target.value })}
                                           placeholder="Add a note..."
-                                          className="w-full bg-[#0D0D0D] border border-[#C9A84C44] rounded-xl px-3 py-2 text-white font-pixel text-xs mb-2 outline-none"
+                                          className="w-full bg-parchment border border-sand/15 rounded-xl px-3 py-2 font-sans text-xs text-ink mb-2 outline-none"
                                         />
                                         <button
                                           onClick={() => handleSaveBookmark(bani)}
-                                          className="w-full bg-coal border border-[#C9A84C] rounded-xl py-2 text-[#C9A84C] font-pixel text-xs min-h-[44px]"
+                                          className="w-full bg-parchment-card border border-sand/15 rounded-xl py-2 font-sans text-xs text-saffron min-h-[44px]"
                                         >
                                           Save Bookmark
                                         </button>
@@ -162,6 +155,22 @@ export default function Banis() {
           </div>
         )
       })}
+
+      {/* New Sources */}
+      {BANIS.filter(b => b.type === 'browse-only').map(source => (
+        <div key={source.id} className="mb-4">
+          <div className="bg-parchment-low rounded-xl p-4">
+            <p className="font-sans font-semibold text-sm text-ink mb-1">{source.name}</p>
+            <p className="font-sans text-xs text-ink/50 mb-3">{source.description}</p>
+            <button
+              onClick={() => navigate(`/study?source=${source.source}&ang=1`)}
+              className="w-full bg-parchment-card border border-sand/15 rounded-xl font-sans text-sm text-saffron py-3 min-h-[44px] transition-colors duration-300"
+            >
+              Browse by Ang →
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

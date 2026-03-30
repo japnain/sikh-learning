@@ -68,3 +68,13 @@ test('bookmark saved when save button clicked from info card', () => {
   fireEvent.click(screen.getByText('Save Bookmark'))
   expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
 })
+
+it('shows browse buttons for all 5 new sources', () => {
+  renderBanis()
+  // New source sections should be visible
+  expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
+  expect(screen.getByText('Bhai Nand Lal Ji Vaaran')).toBeInTheDocument()
+  expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
+  expect(screen.getByText('Bhai Gurdas Singh Ji Vaaran')).toBeInTheDocument()
+  expect(screen.getByText('Panthic Sources & Codes of Conduct')).toBeInTheDocument()
+})
