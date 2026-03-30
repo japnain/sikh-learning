@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest'
+import { describe, it, test, expect, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import Study from './Study'
@@ -51,5 +51,15 @@ describe('Study bookmark button', () => {
     fireEvent.click(screen.getByText('🔖'))
     fireEvent.click(screen.getByText('Save Bookmark'))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
+  })
+})
+
+describe('Study scripture picker', () => {
+  it('scripture picker shows 7 sources', async () => {
+    render(<MemoryRouter><Study /></MemoryRouter>)
+    expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
+    expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
+    expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
+    expect(screen.queryByText('Sarbloh Granth')).not.toBeInTheDocument()
   })
 })
