@@ -65,11 +65,11 @@ const SECTIONS: Section[] = [
 export default function Library() {
   const navigate = useNavigate()
   const { bookmarks, removeBookmark } = useBookmarksStore()
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>(() => ({
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
   }))
 
-  const toggle = (id: string) => setCollapsed(c => ({ ...c, [id]: !c[id] }))
+  const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
     <div className="p-4 max-w-md mx-auto mt-4 bg-parchment min-h-screen">
@@ -86,9 +86,9 @@ export default function Library() {
               <p className="font-sans font-semibold text-ink">🔖 Bookmarks</p>
               <p className="font-sans text-ink/50 text-xs">{bookmarks.length} saved</p>
             </div>
-            <span className="font-sans text-saffron text-sm">{collapsed['bookmarks'] ? '▲' : '▼'}</span>
+            <span className="font-sans text-saffron text-sm">{expanded['bookmarks'] ? '▲' : '▼'}</span>
           </button>
-          {collapsed['bookmarks'] && (
+          {expanded['bookmarks'] && (
             <div className="mt-2 ml-2 flex flex-col gap-2">
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
@@ -123,7 +123,7 @@ export default function Library() {
 
       {/* Scripture Sections */}
       {SECTIONS.map((section, i) => {
-        const isOpen = collapsed[section.id]
+        const isOpen = expanded[section.id]
         const isLarge = i === 0 // SGGS gets largest heading
 
         return (
