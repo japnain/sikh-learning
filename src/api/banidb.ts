@@ -99,21 +99,28 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
 }
 
 export async function fetchHukamnama(): Promise<HukamnamaResult> {
-  const res = await fetch(`${BASE}/hukamnama/today`)
+  // Try /today first, fall back to base hukamnama endpoint
+  let res = await fetch(`${BASE}/hukamnama/today`)
+  if (!res.ok) res = await fetch(`${BASE}/hukamnama`)
   if (!res.ok) throw new Error(`BaniDB /hukamnama error: ${res.status}`)
+
   const data = await res.json() as {
     hukamnamaInfo?: { ang?: number; source?: { id?: string } }
     shabads?: Array<{
       shabad?: {
-        shabadInfo?: { shabadId?: number }
+        shabadInfo?: { shabadId?: number; ang?: { ang?: number } }
         verses?: BaniVerse[]
       }
     }>
   }
 
-  const ang = data.hukamnamaInfo?.ang ?? 1
-  const sourceId = data.hukamnamaInfo?.source?.id ?? 'G'
   const allShabads = data.shabads ?? []
+  // ang can live at hukamnamaInfo.ang or inside the first shabad's shabadInfo
+  const ang =
+    data.hukamnamaInfo?.ang ??
+    allShabads[0]?.shabad?.shabadInfo?.ang?.ang ??
+    1
+  const sourceId = data.hukamnamaInfo?.source?.id ?? 'G'
   const shabadId = allShabads[0]?.shabad?.shabadInfo?.shabadId ?? 0
   const allVerses = allShabads.flatMap(s => s.shabad?.verses ?? [])
 
