@@ -22,7 +22,7 @@ function parseShabadId(entryId: string): number | null {
 
 export default function Study() {
   const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
 
   let source = searchParams.get('source') as BaniSource | null
@@ -47,23 +47,19 @@ export default function Study() {
     isApiMode ? source! : 'G'
   )
 
-  const [cardIndex, setCardIndex] = useState(0)
-
-  useEffect(() => { setCardIndex(0) }, [angParam, source])
-
   const { updateSession } = useProgressStore()
 
   useEffect(() => {
     if (isApiMode && source && angParam) {
-      updateSession({ scriptureId: `${source}-${angParam}`, lastCardIndex: cardIndex })
+      updateSession({ scriptureId: `${source}-${angParam}`, lastCardIndex: 0 })
     }
-  }, [cardIndex, source, angParam, isApiMode, updateSession])
+  }, [source, angParam, isApiMode, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
 
-  const currentEntry = entries[cardIndex] ?? null
+  const currentEntry = entries[0] ?? null
   const currentShabadId = currentEntry ? parseShabadId(currentEntry.id) : null
   const { words: wordData } = useWordData(isApiMode ? currentShabadId : null)
 
@@ -121,9 +117,6 @@ export default function Study() {
     <div className="p-4 max-w-md mx-auto mt-4 bg-parchment min-h-screen">
       <div className="flex items-center justify-between mb-4">
         <button onClick={() => navigate(-1)} className="font-sans text-saffron text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
-        <p className="font-sans text-ink/50 text-xs">
-          {entries.length > 1 ? `${cardIndex + 1} / ${entries.length}` : ''}
-        </p>
         <button
           onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
           className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron' : 'text-ink/30'}`}
@@ -151,34 +144,19 @@ export default function Study() {
       )}
 
       <StudyCard
-        key={`${source}-${angParam}-${cardIndex}`}
+        key={`${source}-${angParam}`}
         entry={currentEntry}
         wordData={wordData}
       />
 
-      {entries.length > 1 && (
-        <div className="flex justify-between items-center mt-3">
-          <button
-            onClick={() => setCardIndex(i => Math.max(0, i - 1))}
-            disabled={cardIndex === 0}
-            className="font-sans text-saffron text-sm disabled:opacity-30 min-h-[44px] px-3"
-          >&#8592; Prev shabad</button>
-          <button
-            onClick={() => setCardIndex(i => Math.min(entries.length - 1, i + 1))}
-            disabled={cardIndex === entries.length - 1}
-            className="font-sans text-saffron text-sm disabled:opacity-30 min-h-[44px] px-3"
-          >Next shabad &#8594;</button>
-        </div>
-      )}
-
       <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15">
         <button
-          onClick={() => navigate(`/study?source=${source}&ang=${angParam! - 1}`)}
+          onClick={() => setSearchParams({ source: source!, ang: String(angParam! - 1) })}
           disabled={angParam! <= 1}
           className="flex-1 py-3 rounded-2xl bg-parchment-low text-ink/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
         >&#8592; Ang {angParam! - 1}</button>
         <button
-          onClick={() => navigate(`/study?source=${source}&ang=${angParam! + 1}`)}
+          onClick={() => setSearchParams({ source: source!, ang: String(angParam! + 1) })}
           disabled={angParam! >= maxAng}
           className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
         >Ang {angParam! + 1} &#8594;</button>
