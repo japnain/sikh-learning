@@ -3,7 +3,7 @@ import type { ScriptureEntry } from '../types'
 import { fetchAng } from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'R'
 
 export function useAng(ang: number, source: BaniSource) {
   const { getAng, setAng } = useScriptureCacheStore()

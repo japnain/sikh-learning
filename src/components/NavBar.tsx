@@ -3,9 +3,7 @@ import { NavLink } from 'react-router-dom'
 const tabs = [
   { to: '/', label: 'Home', icon: '🏠' },
   { to: '/library', label: 'Library', icon: '📚' },
-  { to: '/study', label: 'Study', icon: '📖' },
   { to: '/banis', label: 'Banis', icon: '🙏' },
-  { to: '/vocab', label: 'Vocab', icon: '💬' },
 ]
 
 export default function NavBar() {

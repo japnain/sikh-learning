@@ -2,11 +2,10 @@ import type { Word } from '../types'
 
 interface Props {
   word: Word
-  onSave: (word: Word) => void
   onClose: () => void
 }
 
-export default function WordPopover({ word, onSave, onClose }: Props) {
+export default function WordPopover({ word, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" onClick={onClose}>
       <div
@@ -18,10 +17,10 @@ export default function WordPopover({ word, onSave, onClose }: Props) {
         <p className="font-sans text-ink font-medium mb-1">{word.meaning_en}</p>
         <p lang="pa-Guru" className="font-gurmukhi text-ink/70 text-sm mb-4">{word.meaning_pa}</p>
         <button
-          onClick={() => { onSave(word); onClose() }}
-          className="w-full py-3 rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"
+          onClick={onClose}
+          className="w-full py-3 rounded-full bg-parchment-low text-ink/60 font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"
         >
-          Save to Vocab
+          Close
         </button>
       </div>
     </div>

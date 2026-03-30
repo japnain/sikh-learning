@@ -15,12 +15,12 @@ const entry: ScriptureEntry = {
 }
 
 test('shows Gurmukhi text on front', () => {
-  render(<StudyCard entry={entry} onSwipeRight={() => {}} onSwipeLeft={() => {}} />)
+  render(<StudyCard entry={entry} />)
   expect(screen.getByText(/ੴ/)).toBeInTheDocument()
 })
 
 test('flips to show translation on tap', () => {
-  render(<StudyCard entry={entry} onSwipeRight={() => {}} onSwipeLeft={() => {}} />)
+  render(<StudyCard entry={entry} />)
   fireEvent.click(screen.getByTestId('study-card'))
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
 })

@@ -156,21 +156,6 @@ export default function Banis() {
         )
       })}
 
-      {/* New Sources */}
-      {BANIS.filter(b => b.type === 'browse-only').map(source => (
-        <div key={source.id} className="mb-4">
-          <div className="bg-parchment-low rounded-xl p-4">
-            <p className="font-sans font-semibold text-sm text-ink mb-1">{source.name}</p>
-            <p className="font-sans text-xs text-ink/50 mb-3">{source.description}</p>
-            <button
-              onClick={() => navigate(`/study?source=${source.source}&ang=1`)}
-              className="w-full bg-parchment-card border border-sand/15 rounded-xl font-sans text-sm text-saffron py-3 min-h-[44px] transition-colors duration-300"
-            >
-              Browse by Ang →
-            </button>
-          </div>
-        </div>
-      ))}
     </div>
   )
 }
