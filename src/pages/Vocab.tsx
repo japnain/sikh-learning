@@ -28,7 +28,7 @@ export default function Vocab() {
         placeholder="Search words..."
         value={search}
         onChange={e => setSearch(e.target.value)}
-        className="w-full bg-parchment-card border border-sand/15 font-sans text-ink text-sm mb-3 focus:outline-none focus:border-saffron/30 focus:transition-colors focus:duration-300 rounded-full px-4 py-3 min-h-[44px]"
+        className="w-full bg-parchment-card border border-sand/15 font-sans text-ink text-sm mb-3 focus:outline-none focus:border-saffron/30 transition-colors duration-300 rounded-full px-4 py-3 min-h-[44px]"
       />
 
       <div className="flex gap-2 overflow-x-auto pb-2 mb-4">
