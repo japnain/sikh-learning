@@ -48,3 +48,33 @@ describe('Library bookmarks section', () => {
     expect(useBookmarksStore.getState().bookmarks).toHaveLength(0)
   })
 })
+
+describe('Library removed sections', () => {
+  beforeEach(() => {
+    useBookmarksStore.setState({ bookmarks: [] })
+  })
+
+  it('does not show Sarbloh Granth section', () => {
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.queryByText(/sarbloh/i)).not.toBeInTheDocument()
+  })
+
+  it('does not show Custom Texts section', () => {
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.queryByText(/custom texts/i)).not.toBeInTheDocument()
+  })
+
+  it('does not show Add New Book button', () => {
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.queryByText(/add new/i)).not.toBeInTheDocument()
+  })
+
+  it('shows all 5 new source sections', () => {
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
+    expect(screen.getByText('Bhai Nand Lal Ji Vaaran')).toBeInTheDocument()
+    expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
+    expect(screen.getByText('Bhai Gurdas Singh Ji Vaaran')).toBeInTheDocument()
+    expect(screen.getByText('Panthic Sources & Codes of Conduct')).toBeInTheDocument()
+  })
+})
