@@ -58,7 +58,6 @@ const SECTIONS: Section[] = [
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
   { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', source: 'N', totalAngs: 128 },
   { id: 'amrit-keertan', name: 'Amrit Keertan', source: 'A', totalAngs: 1430 },
-  { id: 'bhai-gurdas-singh-vaaran', name: 'Bhai Gurdas Singh Ji Vaaran', source: 'S', totalAngs: 284 },
   { id: 'panthic-sources', name: 'Panthic Sources & Codes of Conduct', source: 'R', totalAngs: 0, browseOnly: true },
 ]
 

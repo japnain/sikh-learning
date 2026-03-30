@@ -4,7 +4,6 @@ import Home from './pages/Home'
 import Study from './pages/Study'
 import Library from './pages/Library'
 import Banis from './pages/Banis'
-import Vocab from './pages/Vocab'
 
 export default function App() {
   return (
@@ -16,7 +15,6 @@ export default function App() {
           <Route path="/study/:scriptureId" element={<Study />} />
           <Route path="/library" element={<Library />} />
           <Route path="/banis" element={<Banis />} />
-          <Route path="/vocab" element={<Vocab />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <NavBar />

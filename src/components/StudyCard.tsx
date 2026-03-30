@@ -1,38 +1,22 @@
 import { useState } from 'react'
 import type { ScriptureEntry, Word } from '../types'
 import WordPopover from './WordPopover'
-import { useVocabStore } from '../store/vocab'
 
 interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
-  onSwipeRight: () => void
-  onSwipeLeft: () => void
 }
 
-export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }: Props) {
+export default function StudyCard({ entry, wordData }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [lang, setLang] = useState<'en' | 'pa'>('en')
-  const addWord = useVocabStore(s => s.addWord)
 
   const handleWordTap = (wordText: string) => {
     const wordsToSearch = wordData ?? entry.words ?? []
     if (!wordsToSearch.length) return
     const found = wordsToSearch.find(w => wordText.includes(w.gurmukhi))
     if (found) setActiveWord(found)
-  }
-
-  const handleSaveVocab = (word: Word) => {
-    addWord({
-      word: word.gurmukhi,
-      transliteration: word.transliteration,
-      meaning_en: word.meaning_en,
-      meaning_pa: word.meaning_pa,
-      scripture: entry.scripture,
-      sourceId: entry.id,
-      savedAt: new Date().toISOString().split('T')[0],
-    })
   }
 
   return (
@@ -81,23 +65,11 @@ export default function StudyCard({ entry, wordData, onSwipeRight, onSwipeLeft }
             }
           </div>
         )}
-
-        <div className="flex justify-between mt-4 pt-4 border-t border-sand/15">
-          <button
-            onClick={e => { e.stopPropagation(); onSwipeLeft() }}
-            className="flex-1 mr-2 py-2 rounded-xl bg-parchment-low text-ink/60 font-sans text-sm font-medium min-h-[44px] transition-colors duration-300"
-          >← Review Later</button>
-          <button
-            onClick={e => { e.stopPropagation(); onSwipeRight() }}
-            className="flex-1 ml-2 py-2 rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300"
-          >Got It →</button>
-        </div>
       </div>
 
       {activeWord && (
         <WordPopover
           word={activeWord}
-          onSave={handleSaveVocab}
           onClose={() => setActiveWord(null)}
         />
       )}

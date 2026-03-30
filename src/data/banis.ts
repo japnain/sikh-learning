@@ -1,8 +1,8 @@
 export interface Bani {
   id: string
   name: string
-  scripture: 'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'BGSV' | 'PS'
-  source: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+  scripture: 'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'PS'
+  source: 'G' | 'D' | 'B' | 'N' | 'A' | 'R'
   startAng: number
   endAng: number
   category: string
@@ -94,8 +94,7 @@ export const BANIS: Bani[] = [
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vars by Bhai Gurdas Ji elucidating Sikh philosophy and history.', type: 'browse-only' },
   { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', scripture: 'BNL', source: 'N', startAng: 1, endAng: 128, category: 'Vars', description: 'Persian and Punjabi poetry by Bhai Nand Lal Ji, devoted Sikh of Guru Gobind Singh Ji.', type: 'browse-only' },
   { id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Compilation of shabads from various scriptures selected for congregational singing.', type: 'browse-only' },
-  { id: 'bhai-gurdas-singh-vaaran', name: 'Bhai Gurdas Singh Ji Vaaran', scripture: 'BGSV', source: 'S', startAng: 1, endAng: 284, category: 'Vars', description: 'Vars by Bhai Gurdas Singh Ji expanding on Sikh teachings and history.', type: 'browse-only' },
-  { id: 'panthic-sources', name: 'Panthic Sources & Codes of Conduct', scripture: 'PS', source: 'R', startAng: 1, endAng: 1, category: 'Panthic', description: 'Rehatnames, tankhanamas, and authoritative Panthic documents.', type: 'browse-only' },
+{ id: 'panthic-sources', name: 'Panthic Sources & Codes of Conduct', scripture: 'PS', source: 'R', startAng: 1, endAng: 1, category: 'Panthic', description: 'Rehatnames, tankhanamas, and authoritative Panthic documents.', type: 'browse-only' },
 ]
 
 export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Saloks & Short Banis'] as const
