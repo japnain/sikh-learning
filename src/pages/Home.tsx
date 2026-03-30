@@ -180,6 +180,12 @@ export default function Home() {
             {label}
           </button>
         ))}
+        <button
+          onClick={() => navigate(`/study?source=G&ang=${Math.floor(Math.random() * 1430) + 1}`)}
+          className="font-sans rounded-full p-4 text-sm font-semibold min-h-[44px] bg-parchment-low text-ink border border-sand/15 transition-all duration-300"
+        >
+          Random Ang
+        </button>
       </div>
 
       {/* Recently Studied */}
