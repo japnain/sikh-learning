@@ -16,16 +16,6 @@ export interface ScriptureEntry {
   words: Word[]
 }
 
-export interface CustomText {
-  id: string
-  scripture: string
-  gurmukhi: string
-  transliteration: string
-  translation_en: string
-  translation_pa: string
-  addedAt: string
-}
-
 export interface VocabEntry {
   word: string
   transliteration: string
