@@ -14,9 +14,10 @@ export function useAng(ang: number, source: BaniSource) {
 
   useEffect(() => {
     if (cached) { setEntries(cached); setLoading(false); return }
-    let cancelled = false
+    setEntries([])
     setLoading(true)
     setError(null)
+    let cancelled = false
     fetchAng(ang, source)
       .then(data => {
         if (cancelled) return
