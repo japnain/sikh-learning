@@ -20,6 +20,9 @@ const AK_BANI_IDS = [
   'asa-di-var', 'sukhmani-sahib', 'sidh-gosht', 'barah-maha-majh',
   'laavan', 'jaap-sahib', 'tav-prasad-savaiye', 'chaupai-sahib',
   'onkar', 'aarti', 'salok-mahalla-9', 'shabad-hazare',
+  'dukh-bhanjani', 'shabad-hazare-10', 'chandi-di-var', 'var-majh',
+  'salok-farid', 'salok-kabir', 'patti', 'mundavani', 'ragmala',
+  'barah-maha-tukhari', 'ghorian', 'ramkali-sadd',
 ]
 const AK_BANIS = BANIS.filter(b => AK_BANI_IDS.includes(b.id))
 
@@ -31,19 +34,19 @@ function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
 }) {
   const isBookmarked = hasBookmark(bani.source, bani.startAng)
   return (
-    <div className="flex items-center bg-parchment-card border border-sand/15 rounded-xl mb-1 overflow-hidden">
+    <div className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
       <button
         onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
         className="flex-1 text-left px-3 py-3 min-h-[52px]"
       >
-        <p className="font-sans text-ink text-sm">{bani.name}</p>
-        <p className="font-sans text-saffron text-xs mt-0.5">Ang {bani.startAng}–{bani.endAng}</p>
+        <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
+        <p className="font-sans text-saffron dark:text-saffron-light text-xs mt-0.5">Ang {bani.startAng}–{bani.endAng}</p>
       </button>
       <button
         onClick={() => {
           if (!isBookmarked) addBookmark({ type: 'bani', title: bani.name, source: bani.source, ang: bani.startAng })
         }}
-        className={`pr-4 pl-2 min-h-[52px] flex items-center justify-center font-sans text-base transition-colors duration-300 ${isBookmarked ? 'text-saffron' : 'text-ink/25'}`}
+        className={`pr-4 pl-2 min-h-[52px] flex items-center justify-center font-sans text-base transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/25 dark:text-dark-text/25'}`}
         aria-label={isBookmarked ? 'Bookmarked' : 'Bookmark'}
       >
         🔖
@@ -62,8 +65,8 @@ export default function Banis() {
   const rowProps = { navigate, addBookmark, hasBookmark }
 
   return (
-    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment">
-      <h1 className="font-sans font-semibold text-lg text-ink mb-6 mt-4">Banis</h1>
+    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
+      <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6 mt-4">Banis</h1>
 
       {/* SGGS + DG */}
       {(['SGGS', 'DG'] as Scripture[]).map(scripture => {
@@ -78,13 +81,13 @@ export default function Banis() {
           <div key={scripture} className="mb-4">
             <button
               onClick={() => toggle(sectionKey)}
-              className={`w-full flex justify-between items-center ${isSSGS ? 'bg-parchment-card' : 'bg-parchment-low'} border border-sand/15 rounded-2xl p-4 min-h-[44px]`}
+              className={`w-full flex justify-between items-center ${isSSGS ? 'bg-parchment-card dark:bg-dark-card' : 'bg-parchment-low dark:bg-dark-surface'} border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300`}
             >
               <div className="text-left">
-                <p className={`font-sans font-semibold text-base ${isSSGS ? 'text-saffron' : 'text-ink'}`}>{meta.emoji} {meta.label}</p>
-                <p className="font-sans text-ink/50 text-xs mt-0.5">{baniCount} banis</p>
+                <p className={`font-sans font-semibold text-base ${isSSGS ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.emoji} {meta.label}</p>
+                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{baniCount} banis</p>
               </div>
-              <span className="text-saffron font-sans text-sm">{isOpen ? '▲' : '▼'}</span>
+              <span className="text-saffron dark:text-saffron-light font-sans text-sm">{isOpen ? '▲' : '▼'}</span>
             </button>
 
             {isOpen && (
@@ -99,10 +102,10 @@ export default function Banis() {
                     <div key={category} className="mb-2">
                       <button
                         onClick={() => toggle(categoryKey)}
-                        className="w-full flex justify-between items-center bg-parchment-card border border-sand/15 rounded-xl p-3 min-h-[44px]"
+                        className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300"
                       >
-                        <p className="font-sans text-xs text-ink/50 uppercase tracking-wider">{category}</p>
-                        <span className="font-sans text-xs text-ink/50">{isCatOpen ? '▲' : '▼'}</span>
+                        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{category}</p>
+                        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{isCatOpen ? '▲' : '▼'}</span>
                       </button>
 
                       {isCatOpen && (
@@ -125,13 +128,13 @@ export default function Banis() {
       <div className="mb-4">
         <button
           onClick={() => toggle('ak')}
-          className="w-full flex justify-between items-center bg-parchment-low border border-sand/15 rounded-2xl p-4 min-h-[44px]"
+          className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300"
         >
           <div className="text-left">
-            <p className="font-sans font-semibold text-base text-ink">Amrit Keertan</p>
-            <p className="font-sans text-ink/50 text-xs mt-0.5">Popular keertan compositions</p>
+            <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Popular keertan compositions</p>
           </div>
-          <span className="text-saffron font-sans text-sm">{expanded['ak'] ? '▲' : '▼'}</span>
+          <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['ak'] ? '▲' : '▼'}</span>
         </button>
 
         {expanded['ak'] && (

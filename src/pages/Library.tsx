@@ -21,7 +21,7 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
           <button
             key={ang}
             onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="bg-parchment-card rounded-lg py-2 font-sans text-sm text-ink hover:text-saffron border border-sand/15 transition-colors duration-300 min-h-[44px]"
+            className="bg-parchment-card dark:bg-dark-card rounded-lg py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-saffron dark:hover:text-saffron-light border border-sand/15 dark:border-dark-text/10 transition-colors duration-300 min-h-[44px]"
           >
             {ang}
           </button>
@@ -31,13 +31,13 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
         <button
           onClick={() => setPage(p => Math.max(0, p - 1))}
           disabled={page === 0}
-          className="font-sans text-saffron text-sm disabled:opacity-30 min-h-[44px] px-3"
+          className="font-sans text-saffron dark:text-saffron-light text-sm disabled:opacity-30 min-h-[44px] px-3"
         >← Prev</button>
-        <span className="font-sans text-ink/50 text-xs">Ang {start}–{end} of {totalAngs}</span>
+        <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">Ang {start}–{end} of {totalAngs}</span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={end >= totalAngs}
-          className="font-sans text-saffron text-sm disabled:opacity-30 min-h-[44px] px-3"
+          className="font-sans text-saffron dark:text-saffron-light text-sm disabled:opacity-30 min-h-[44px] px-3"
         >Next →</button>
       </div>
     </div>
@@ -71,32 +71,32 @@ export default function Library() {
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment min-h-screen">
-      <h1 className="font-sans font-semibold text-lg text-ink mb-6">Library</h1>
+    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+      <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">Library</h1>
 
       {/* Bookmarks */}
       {bookmarks.length > 0 && (
         <div className="mb-4">
           <button
             onClick={() => toggle('bookmarks')}
-            className="w-full flex justify-between items-center bg-parchment-card rounded-2xl p-4 min-h-[44px] border border-sand/15"
+            className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
           >
             <div className="text-left">
-              <p className="font-sans font-semibold text-ink">🔖 Bookmarks</p>
-              <p className="font-sans text-ink/50 text-xs">{bookmarks.length} saved</p>
+              <p className="font-sans font-semibold text-ink dark:text-dark-text">🔖 Bookmarks</p>
+              <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{bookmarks.length} saved</p>
             </div>
-            <span className="font-sans text-saffron text-sm">{expanded['bookmarks'] ? '▲' : '▼'}</span>
+            <span className="font-sans text-saffron dark:text-saffron-light text-sm">{expanded['bookmarks'] ? '▲' : '▼'}</span>
           </button>
           {expanded['bookmarks'] && (
             <div className="mt-2 ml-2 flex flex-col gap-2">
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
                   key={bookmark.id}
-                  className="bg-parchment-low rounded-xl p-3 relative"
+                  className="bg-parchment-low dark:bg-dark-surface rounded-xl p-3 relative transition-colors duration-300"
                 >
                   <button
                     onClick={() => removeBookmark(bookmark.id)}
-                    className="absolute top-2 right-2 font-sans text-ink/40 text-xs min-h-[24px] min-w-[24px] flex items-center justify-center"
+                    className="absolute top-2 right-2 font-sans text-ink/40 dark:text-dark-text/40 text-xs min-h-[24px] min-w-[24px] flex items-center justify-center"
                     aria-label="Remove bookmark"
                   >
                     ✕
@@ -105,11 +105,11 @@ export default function Library() {
                     onClick={() => navigate(`/study?source=${bookmark.source}&ang=${bookmark.ang}`)}
                     className="text-left w-full pr-6"
                   >
-                    <p className="font-sans font-semibold text-sm text-ink">{bookmark.title}</p>
+                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{bookmark.title}</p>
                     {bookmark.description && (
-                      <p className="font-sans text-xs text-ink/60 italic mt-0.5">{bookmark.description}</p>
+                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-0.5">{bookmark.description}</p>
                     )}
-                    <p className="font-sans text-[10px] text-saffron mt-1">
+                    <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
                       {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · Ang {bookmark.ang}
                     </p>
                   </button>
@@ -129,19 +129,19 @@ export default function Library() {
           <div key={section.id} className="mb-4">
             <button
               onClick={() => toggle(section.id)}
-              className="w-full flex justify-between items-center bg-parchment-low rounded-2xl p-4 min-h-[44px]"
+              className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 min-h-[44px] transition-colors duration-300"
             >
-              <p className={`font-sans font-semibold text-ink uppercase tracking-wider ${isLarge ? 'text-base' : 'text-xs'}`}>
+              <p className={`font-sans font-semibold text-ink dark:text-dark-text uppercase tracking-wider ${isLarge ? 'text-base' : 'text-xs'}`}>
                 {section.name}
               </p>
-              <span className="font-sans text-saffron text-sm">{isOpen ? '▲' : '▼'}</span>
+              <span className="font-sans text-saffron dark:text-saffron-light text-sm">{isOpen ? '▲' : '▼'}</span>
             </button>
             {isOpen && (
-              <div className="mt-2 ml-2 p-3 bg-parchment-low rounded-2xl">
+              <div className="mt-2 ml-2 p-3 bg-parchment-low dark:bg-dark-surface rounded-2xl transition-colors duration-300">
                 {section.browseOnly ? (
                   <button
                     onClick={() => navigate(`/study?source=${section.source}&ang=1`)}
-                    className="w-full bg-parchment-card rounded-lg font-sans text-sm text-saffron py-3 min-h-[44px] border border-sand/15 transition-colors duration-300"
+                    className="w-full bg-parchment-card dark:bg-dark-card rounded-lg font-sans text-sm text-saffron dark:text-saffron-light py-3 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
                   >
                     Browse →
                   </button>

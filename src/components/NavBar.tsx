@@ -8,7 +8,7 @@ const tabs = [
 
 export default function NavBar() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-parchment/80 backdrop-blur-xl border-t border-sand/15 flex justify-around items-center h-16 px-2 z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-parchment/80 dark:bg-dark-bg/80 backdrop-blur-xl border-t border-sand/15 dark:border-dark-text/10 flex justify-around items-center h-16 px-2 z-50 transition-colors duration-300">
       {tabs.map(tab => (
         <NavLink
           key={tab.to}
@@ -16,7 +16,7 @@ export default function NavBar() {
           end={tab.to === '/'}
           className={({ isActive }) =>
             `flex flex-col items-center gap-0.5 px-3 py-1 rounded-xl min-w-[44px] min-h-[44px] justify-center transition-colors duration-300 ease-in-out ${
-              isActive ? 'text-saffron' : 'text-ink/40'
+              isActive ? 'text-saffron dark:text-saffron-light' : 'text-ink/40 dark:text-dark-text/40'
             }`
           }
         >
