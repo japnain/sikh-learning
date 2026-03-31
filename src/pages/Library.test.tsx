@@ -69,12 +69,13 @@ describe('Library removed sections', () => {
     expect(screen.queryByText(/add new/i)).not.toBeInTheDocument()
   })
 
-  it('shows all 5 new source sections', () => {
+  it('shows all 6 source sections', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
+    expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
     expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
     expect(screen.getByText('Bhai Nand Lal Ji Vaaran')).toBeInTheDocument()
     expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
-    expect(screen.getByText('Bhai Gurdas Singh Ji Vaaran')).toBeInTheDocument()
     expect(screen.getByText('Panthic Sources & Codes of Conduct')).toBeInTheDocument()
   })
 })
