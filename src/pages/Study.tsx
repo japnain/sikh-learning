@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
-import { useWordData } from '../hooks/useWordData'
+import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 
@@ -14,8 +14,9 @@ const MAX_ANG: Record<string, number> = {
 
 function parseShabadId(entryId: string): number | null {
   const parts = entryId.split('-')
-  if (parts.length === 3 && (parts[0] === 'G' || parts[0] === 'D')) {
-    return Number(parts[2])
+  if (parts.length === 3) {
+    const id = Number(parts[2])
+    return Number.isFinite(id) ? id : null
   }
   return null
 }
@@ -60,8 +61,11 @@ export default function Study() {
   const [bookmarkText, setBookmarkText] = useState('')
 
   const currentEntry = entries[0] ?? null
-  const currentShabadId = currentEntry ? parseShabadId(currentEntry.id) : null
-  const { words: wordData } = useWordData(isApiMode ? currentShabadId : null)
+  const shabadIds = useMemo(
+    () => entries.map(e => parseShabadId(e.id)),
+    [entries]
+  )
+  const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
 
   const isBookmarked = isApiMode && source && angParam
     ? hasBookmark(source, angParam)
@@ -143,11 +147,18 @@ export default function Study() {
         </div>
       )}
 
-      <StudyCard
-        key={`${source}-${angParam}`}
-        entry={currentEntry}
-        wordData={wordData}
-      />
+      <div className="space-y-4">
+        {entries.map(entry => {
+          const shabadId = parseShabadId(entry.id)
+          return (
+            <StudyCard
+              key={entry.id}
+              entry={entry}
+              wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
+            />
+          )
+        })}
+      </div>
 
       <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15">
         <button
