@@ -4,7 +4,6 @@ import { useProgressStore } from '../store/progress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { useAng } from '../hooks/useAng'
-import { useBookmarksStore } from '../store/bookmarks'
 import { useThemeStore } from '../store/theme'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
@@ -20,7 +19,6 @@ export default function Home() {
   const navigate = useNavigate()
   const { streak, currentSession, studied } = useProgressStore()
   const { getEntryById } = useScriptureCacheStore()
-  const { addBookmark, hasBookmark } = useBookmarksStore()
   const { dark, toggle: toggleTheme } = useThemeStore()
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
