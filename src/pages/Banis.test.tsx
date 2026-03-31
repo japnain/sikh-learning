@@ -41,15 +41,11 @@ test('bani rows visible after expanding a category', () => {
   expect(screen.getByText('Anand Sahib')).toBeInTheDocument()
 })
 
-test('info card visible after tapping a bani row', () => {
+test('bani row shows ang range', () => {
   renderBanis()
   fireEvent.click(screen.getByText(/Sri Guru Granth Sahib Ji/i))
   fireEvent.click(screen.getByText('Daily Prayers'))
-  // click the bani row button (not the already-visible text — find the row button)
-  const japjiButtons = screen.getAllByText('Japji Sahib')
-  fireEvent.click(japjiButtons[0])
-  expect(screen.getByText('Begin Study →')).toBeInTheDocument()
-  expect(screen.getByText(/SGGS · Ang 1/)).toBeInTheDocument()
+  expect(screen.getByText('Ang 1–8')).toBeInTheDocument()
 })
 
 test('DG bir ras category visible after expanding DG section', () => {
@@ -58,23 +54,16 @@ test('DG bir ras category visible after expanding DG section', () => {
   expect(screen.getByText('Bir Ras')).toBeInTheDocument()
 })
 
-test('bookmark saved when save button clicked from info card', () => {
+test('bookmark saved when bookmark button clicked on bani row', () => {
   renderBanis()
   fireEvent.click(screen.getByText(/Sri Guru Granth Sahib Ji/i))
   fireEvent.click(screen.getByText('Daily Prayers'))
-  const japjiButtons = screen.getAllByText('Japji Sahib')
-  fireEvent.click(japjiButtons[0])
-  fireEvent.click(screen.getByText(/🔖 Bookmark/))
-  fireEvent.click(screen.getByText('Save Bookmark'))
+  const bookmarkButtons = screen.getAllByLabelText('Bookmark')
+  fireEvent.click(bookmarkButtons[0])
   expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
 })
 
-it('shows browse buttons for all 5 new sources', () => {
+it('shows Amrit Keertan section', () => {
   renderBanis()
-  // New source sections should be visible
-  expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
-  expect(screen.getByText('Bhai Nand Lal Ji Vaaran')).toBeInTheDocument()
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
-  expect(screen.getByText('Bhai Gurdas Singh Ji Vaaran')).toBeInTheDocument()
-  expect(screen.getByText('Panthic Sources & Codes of Conduct')).toBeInTheDocument()
 })

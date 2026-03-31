@@ -15,14 +15,12 @@ beforeEach(() => {
 
 test('renders greeting', () => {
   renderHome()
-  // greeting function returns one of three strings depending on time of day
   const greeting = screen.getByRole('heading', { level: 1 })
   expect(greeting).toBeInTheDocument()
 })
 
 test('shows loading skeleton initially', () => {
   renderHome()
-  // Loading skeleton has animate-pulse class; Today's Pick section is present
   expect(screen.getByText(/today'?s pick/i)).toBeInTheDocument()
 })
 
@@ -30,7 +28,6 @@ test('shows today\'s pick after load', async () => {
   renderHome()
   await waitFor(() => {
     expect(screen.queryByText(/no verse available today/i)).not.toBeInTheDocument()
-    // MSW returns verses; at least one Gurmukhi element should be present
     const gurmukhi = document.querySelector('[lang="pa-Guru"]')
     expect(gurmukhi).toBeInTheDocument()
   })
@@ -38,18 +35,17 @@ test('shows today\'s pick after load', async () => {
 
 test('shows quick action buttons', () => {
   renderHome()
-  expect(screen.getByText(/study/i)).toBeInTheDocument()
-  expect(screen.getByText(/library/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /library/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /banis/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /random ang/i })).toBeInTheDocument()
   expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
 })
 
-it('shows Study, Library, and Banis quick action buttons', async () => {
-  render(<Home />, { wrapper: ({ children }) => <MemoryRouter>{children}</MemoryRouter> })
-  expect(screen.getByText(/study/i)).toBeInTheDocument()
-  expect(screen.getByText(/library/i)).toBeInTheDocument()
-  expect(screen.getByText(/banis/i)).toBeInTheDocument()
-  expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
+test('shows Take Hukamnama section', () => {
+  renderHome()
+  expect(screen.getByText(/take a hukamnama/i)).toBeInTheDocument()
+  expect(screen.getByText(/take hukamnama/i)).toBeInTheDocument()
 })
 
 test('does not show recently studied section when empty', () => {
@@ -68,4 +64,10 @@ test('shows continue reading when session exists', () => {
   })
   renderHome()
   expect(screen.getByText(/pick up where you left off/i)).toBeInTheDocument()
+})
+
+test('shows dark mode toggle', () => {
+  renderHome()
+  const toggle = screen.getByLabelText(/switch to dark mode|switch to light mode/i)
+  expect(toggle).toBeInTheDocument()
 })
