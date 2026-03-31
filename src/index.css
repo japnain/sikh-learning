@@ -8,3 +8,8 @@ body {
   color: #1e1b13;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+.dark body {
+  background-color: #1a1a2e;
+  color: #e8e0d4;
+}

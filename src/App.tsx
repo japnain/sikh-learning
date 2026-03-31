@@ -1,14 +1,26 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import Study from './pages/Study'
 import Library from './pages/Library'
 import Banis from './pages/Banis'
+import { useThemeStore } from './store/theme'
 
 export default function App() {
+  const dark = useThemeStore(s => s.dark)
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [dark])
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-parchment pb-20">
+      <div className="min-h-screen bg-parchment dark:bg-dark-bg pb-20 transition-colors duration-300">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/study" element={<Study />} />

@@ -90,15 +90,15 @@ export default function Study() {
 
   if (loading) {
     return (
-      <div className="p-4 max-w-md mx-auto mt-4 bg-parchment min-h-screen">
+      <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
         <div className="flex items-center justify-between mb-4">
-          <button onClick={() => navigate(-1)} className="text-saffron font-sans text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
+          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
         </div>
-        <div className="bg-parchment-low rounded-2xl p-6 min-h-[300px] animate-pulse">
-          <div className="h-3 bg-sand/30 rounded w-1/4 mb-4" />
-          <div className="h-8 bg-sand/30 rounded w-full mb-3" />
-          <div className="h-8 bg-sand/30 rounded w-4/5 mb-3" />
-          <div className="h-4 bg-sand/30 rounded w-2/3" />
+        <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-6 min-h-[300px] animate-pulse">
+          <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
+          <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-full mb-3" />
+          <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-4/5 mb-3" />
+          <div className="h-4 bg-sand/30 dark:bg-dark-text/10 rounded w-2/3" />
         </div>
       </div>
     )
@@ -106,37 +106,37 @@ export default function Study() {
 
   if (source === 'R' || error || entries.length === 0) {
     return (
-      <div className="p-4 max-w-md mx-auto text-center mt-20 bg-parchment min-h-screen">
-        <p className="font-sans text-ink/60 mb-2">
+      <div className="p-4 max-w-md mx-auto text-center mt-20 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+        <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
           {source === 'R'
             ? 'Panthic Sources are not organised by ang in this app.'
             : 'No verses found for this ang.'}
         </p>
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron mt-4 block mx-auto">&#8592; Back</button>
+        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light mt-4 block mx-auto">&#8592; Back</button>
       </div>
     )
   }
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment min-h-screen">
+    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
       <div className="flex items-center justify-between mb-4">
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
+        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
         <button
           onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
-          className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron' : 'text-ink/30'}`}
+          className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
         >
           &#128278;
         </button>
       </div>
 
       {showBookmarkForm && (
-        <div className="mb-4 bg-parchment-low rounded-xl p-4">
+        <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-xl p-4 transition-colors duration-300">
           <input
             type="text"
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
             placeholder="Add a note..."
-            className="w-full bg-parchment-card border border-sand/15 rounded-xl px-3 py-2 font-sans text-ink text-sm mb-2 outline-none focus:border-saffron/30 transition-colors duration-300"
+            className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-2 font-sans text-ink dark:text-dark-text text-sm mb-2 outline-none focus:border-saffron/30 transition-colors duration-300"
           />
           <button
             onClick={handleSaveBookmark}
@@ -160,11 +160,11 @@ export default function Study() {
         })}
       </div>
 
-      <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15">
+      <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
         <button
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! - 1) })}
           disabled={angParam! <= 1}
-          className="flex-1 py-3 rounded-2xl bg-parchment-low text-ink/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+          className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
         >&#8592; Ang {angParam! - 1}</button>
         <button
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! + 1) })}
