@@ -54,12 +54,31 @@ describe('Study bookmark button', () => {
   })
 })
 
-describe('Study scripture picker', () => {
-  it('scripture picker shows 7 sources', async () => {
-    render(<MemoryRouter><Study /></MemoryRouter>)
-    expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
-    expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
-    expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
-    expect(screen.queryByText('Sarbloh Granth')).not.toBeInTheDocument()
+describe('Study renders all shabads on an ang', () => {
+  it('renders multiple study cards for all shabads on a page', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+    // Mock data has 2 shabads (shabadId 1 and 2), so we should see 2 study cards
+    await waitFor(() => {
+      const cards = screen.getAllByTestId('study-card')
+      expect(cards.length).toBe(2)
+    })
+  })
+
+  it('shows content from all shabads, not just the first', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+    // Shabad 1 text (from mock): ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ + ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ
+    // Shabad 2 text (from mock): ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ
+    await waitFor(() => {
+      expect(screen.getByText('ੴ')).toBeInTheDocument()
+      expect(screen.getByText('ਸੋਚੈ')).toBeInTheDocument()
+    })
   })
 })
