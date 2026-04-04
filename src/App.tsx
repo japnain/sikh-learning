@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Study from './pages/Study'
 import Library from './pages/Library'
 import Banis from './pages/Banis'
+import More from './pages/More'
 import { useThemeStore } from './store/theme'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/study/:scriptureId" element={<Study />} />
           <Route path="/library" element={<Library />} />
           <Route path="/banis" element={<Banis />} />
+          <Route path="/more" element={<More />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <NavBar />

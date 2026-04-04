@@ -2,6 +2,7 @@ export interface Word {
   gurmukhi: string
   transliteration: string
   meaning_en: string
+  meaning_hi: string
   meaning_pa: string
 }
 
@@ -12,6 +13,7 @@ export interface ScriptureEntry {
   gurmukhi: string
   transliteration: string
   translation_en: string
+  translation_hi: string
   translation_pa: string
   words: Word[]
 }

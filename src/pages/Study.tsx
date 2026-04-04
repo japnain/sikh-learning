@@ -6,10 +6,10 @@ import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'R'
+type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A'
 
 const MAX_ANG: Record<string, number> = {
-  G: 1430, D: 1428, B: 628, N: 128, A: 1430, R: 1,
+  G: 1430, D: 1428, B: 628, N: 128, A: 1430,
 }
 
 function parseShabadId(entryId: string): number | null {
@@ -75,7 +75,7 @@ export default function Study() {
     if (!source || !angParam || !currentEntry) return
     addBookmark({
       type: 'shabad',
-      title: `${currentEntry.scripture} · Ang ${angParam}`,
+      title: `${currentEntry.scripture} · ${source === 'G' || source === 'D' ? 'Ang' : 'Page'} ${angParam}`,
       source,
       ang: angParam,
       description: bookmarkText || undefined,
@@ -104,13 +104,11 @@ export default function Study() {
     )
   }
 
-  if (source === 'R' || error || entries.length === 0) {
+  if (error || entries.length === 0) {
     return (
       <div className="p-4 max-w-md mx-auto text-center mt-20 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
         <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
-          {source === 'R'
-            ? 'Panthic Sources are not organised by ang in this app.'
-            : 'No verses found for this ang.'}
+          No verses found for this {source === 'G' || source === 'D' ? 'ang' : 'page'}.
         </p>
         <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light mt-4 block mx-auto">&#8592; Back</button>
       </div>
@@ -165,12 +163,12 @@ export default function Study() {
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! - 1) })}
           disabled={angParam! <= 1}
           className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-        >&#8592; Ang {angParam! - 1}</button>
+        >&#8592; {source === 'G' || source === 'D' ? 'Ang' : 'Page'} {angParam! - 1}</button>
         <button
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! + 1) })}
           disabled={angParam! >= maxAng}
           className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-        >Ang {angParam! + 1} &#8594;</button>
+        >{source === 'G' || source === 'D' ? 'Ang' : 'Page'} {angParam! + 1} &#8594;</button>
       </div>
     </div>
   )

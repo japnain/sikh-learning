@@ -4,6 +4,7 @@ const tabs = [
   { to: '/', label: 'Home', icon: '🏠' },
   { to: '/library', label: 'Library', icon: '📚' },
   { to: '/banis', label: 'Banis', icon: '🙏' },
+  { to: '/more', label: 'More', icon: '⚙️' },
 ]
 
 export default function NavBar() {

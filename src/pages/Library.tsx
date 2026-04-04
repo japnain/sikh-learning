@@ -4,8 +4,10 @@ import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 
 const SOURCE_SHORT_NAME: Record<string, string> = {
-  G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK', S: 'BGSV', R: 'PS',
+  G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK',
 }
+
+const angLabel = (source: string) => source === 'G' || source === 'D' ? 'Ang' : 'Page'
 
 function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }) {
   const navigate = useNavigate()
@@ -33,7 +35,7 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
           disabled={page === 0}
           className="font-sans text-saffron dark:text-saffron-light text-sm disabled:opacity-30 min-h-[44px] px-3"
         >← Prev</button>
-        <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">Ang {start}–{end} of {totalAngs}</span>
+        <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{angLabel(source)} {start}–{end} of {totalAngs}</span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={end >= totalAngs}
@@ -58,7 +60,6 @@ const SECTIONS: Section[] = [
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
   { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', source: 'N', totalAngs: 128 },
   { id: 'amrit-keertan', name: 'Amrit Keertan', source: 'A', totalAngs: 1430 },
-  { id: 'panthic-sources', name: 'Panthic Sources & Codes of Conduct', source: 'R', totalAngs: 0, browseOnly: true },
 ]
 
 export default function Library() {
@@ -110,7 +111,7 @@ export default function Library() {
                       <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-0.5">{bookmark.description}</p>
                     )}
                     <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
-                      {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · Ang {bookmark.ang}
+                      {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · {angLabel(bookmark.source)} {bookmark.ang}
                     </p>
                   </button>
                 </div>

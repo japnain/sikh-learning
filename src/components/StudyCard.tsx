@@ -10,7 +10,7 @@ interface Props {
 export default function StudyCard({ entry, wordData }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
-  const [lang, setLang] = useState<'en' | 'pa'>('en')
+  const [lang, setLang] = useState<'en' | 'hi' | 'pa'>('en')
 
   const handleWordTap = (wordText: string) => {
     const wordsToSearch = wordData ?? entry.words ?? []
@@ -29,7 +29,7 @@ export default function StudyCard({ entry, wordData }: Props) {
         {!flipped ? (
           <div className="flex-1 flex flex-col justify-center">
             <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">
-              {entry.scripture} · Ang {entry.ang}
+              {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
             </p>
             <div className="flex flex-wrap gap-2">
               {entry.gurmukhi.split(' ').map((word, i) => (
@@ -50,19 +50,17 @@ export default function StudyCard({ entry, wordData }: Props) {
           <div className="flex-1 flex flex-col justify-center gap-3">
             <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic">{entry.transliteration}</p>
             <div className="flex gap-2 mb-2">
-              <button
-                onClick={e => { e.stopPropagation(); setLang('en') }}
-                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'en' ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
-              >EN</button>
-              <button
-                onClick={e => { e.stopPropagation(); setLang('pa') }}
-                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'pa' ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
-              >PA</button>
+              {(['en', 'hi', 'pa'] as const).map(l => (
+                <button
+                  key={l}
+                  onClick={e => { e.stopPropagation(); setLang(l) }}
+                  className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === l ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
+                >{l.toUpperCase()}</button>
+              ))}
             </div>
-            {lang === 'en'
-              ? <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_en}</p>
-              : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>
-            }
+            {lang === 'en' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_en}</p>}
+            {lang === 'hi' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_hi}</p>}
+            {lang === 'pa' && <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>}
           </div>
         )}
       </div>

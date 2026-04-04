@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, type Bani } from '../data/banis'
+import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, BNL_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useBookmarksStore } from '../store/bookmarks'
+import { fetchSearch, type SearchResult } from '../api/banidb'
 
-type Scripture = 'SGGS' | 'DG'
+type Scripture = 'SGGS' | 'DG' | 'BNL'
 
 const SCRIPTURE_META: Record<Scripture, { label: string; emoji: string }> = {
   SGGS: { label: 'Sri Guru Granth Sahib Ji', emoji: '📖' },
   DG: { label: 'Dasam Granth', emoji: '⚔️' },
+  BNL: { label: 'Bhai Nand Lal Ji', emoji: '🪶' },
 }
 
 const CATEGORY_ORDER: Record<Scripture, readonly string[]> = {
   SGGS: SGGS_CATEGORY_ORDER,
   DG: DG_CATEGORY_ORDER,
+  BNL: BNL_CATEGORY_ORDER,
 }
 
 const AK_BANI_IDS = [
@@ -40,7 +43,7 @@ function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
         className="flex-1 text-left px-3 py-3 min-h-[52px]"
       >
         <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
-        <p className="font-sans text-saffron dark:text-saffron-light text-xs mt-0.5">Ang {bani.startAng}–{bani.endAng}</p>
+        <p className="font-sans text-saffron dark:text-saffron-light text-xs mt-0.5">{bani.scripture === 'SGGS' || bani.scripture === 'DG' ? 'Ang' : 'Page'} {bani.startAng}–{bani.endAng}</p>
       </button>
       <button
         onClick={() => {
@@ -59,8 +62,28 @@ export default function Banis() {
   const navigate = useNavigate()
   const { addBookmark, hasBookmark } = useBookmarksStore()
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([])
+  const [searching, setSearching] = useState(false)
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
+
+  const handleSearch = useCallback(async (query: string) => {
+    setSearchQuery(query)
+    if (query.trim().length < 2) {
+      setSearchResults([])
+      return
+    }
+    setSearching(true)
+    try {
+      const results = await fetchSearch(query.trim())
+      setSearchResults(results)
+    } catch {
+      setSearchResults([])
+    } finally {
+      setSearching(false)
+    }
+  }, [])
 
   const rowProps = { navigate, addBookmark, hasBookmark }
 
@@ -68,8 +91,39 @@ export default function Banis() {
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6 mt-4">Banis</h1>
 
-      {/* SGGS + DG */}
-      {(['SGGS', 'DG'] as Scripture[]).map(scripture => {
+      {/* Search */}
+      <div className="mb-6">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={e => handleSearch(e.target.value)}
+          placeholder="Search Gurbani..."
+          className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
+        />
+        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching...</p>}
+        {searchResults.length > 0 && (
+          <div className="mt-2 space-y-1">
+            {searchResults.map(r => (
+              <button
+                key={`${r.shabadId}-${r.verseId}`}
+                onClick={() => navigate(`/study?source=${r.source}&ang=${r.pageNo}`)}
+                className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
+              >
+                <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{r.gurmukhi}</p>
+                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">{r.transliteration}</p>
+                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5">{r.translation_en}</p>
+                <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">Ang {r.pageNo}</p>
+              </button>
+            ))}
+          </div>
+        )}
+        {searchQuery.trim().length >= 2 && !searching && searchResults.length === 0 && (
+          <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
+        )}
+      </div>
+
+      {/* SGGS + DG + BNL */}
+      {(['SGGS', 'DG', 'BNL'] as Scripture[]).map(scripture => {
         const meta = SCRIPTURE_META[scripture]
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
