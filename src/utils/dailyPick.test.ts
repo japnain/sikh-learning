@@ -5,7 +5,7 @@ import type { ScriptureEntry } from '../types'
 const makeEntry = (id: string): ScriptureEntry => ({
   id, scripture: 'SGGS', ang: 1,
   gurmukhi: 'test', transliteration: 'test',
-  translation_en: 'test', translation_pa: 'test', words: []
+  translation_en: 'test', translation_hi: 'test', translation_pa: 'test', words: []
 })
 
 describe('getDailyPick', () => {

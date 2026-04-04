@@ -44,6 +44,7 @@ describe('fetchShabadWords', () => {
       gurmukhi: 'ੴ',
       transliteration: 'ikOankaar',
       meaning_en: 'One Universal Creator',
+      meaning_hi: 'एक ओंकार',
       meaning_pa: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ',
     })
   })
