@@ -151,6 +151,18 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
   }))
 }
 
+export async function fetchAudio(shabadId: number): Promise<string | null> {
+  try {
+    const res = await fetch(`${BASE}/audio/shabad/${shabadId}`)
+    if (!res.ok) return null
+    const data = await res.json() as { audio?: Array<{ url?: string; fileUrl?: string }> }
+    const url = data.audio?.[0]?.url ?? data.audio?.[0]?.fileUrl ?? null
+    return url ?? null
+  } catch {
+    return null
+  }
+}
+
 export async function fetchHukamnama(): Promise<HukamnamaResult> {
   const now = new Date()
   const year = now.getFullYear()

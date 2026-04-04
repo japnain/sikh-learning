@@ -4,7 +4,9 @@ import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
+import AudioPlayer from '../components/AudioPlayer'
 import { useBookmarksStore } from '../store/bookmarks'
+import { useReadingProgressStore } from '../store/readingProgress'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -57,8 +59,34 @@ export default function Study() {
   }, [source, angParam, isApiMode, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
+  const { recordAng } = useReadingProgressStore()
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
+  const [showCopied, setShowCopied] = useState(false)
+
+  useEffect(() => {
+    if (isApiMode && source && angParam) {
+      recordAng(source, angParam)
+    }
+  }, [source, angParam, isApiMode, recordAng])
+
+  const handleShare = async () => {
+    if (!currentEntry) return
+    const text = [
+      currentEntry.gurmukhi,
+      currentEntry.transliteration,
+      currentEntry.translation_en,
+      `— ${currentEntry.scripture} · ${source === 'G' || source === 'D' ? 'Ang' : 'Page'} ${angParam}`,
+      'via Nitnem App',
+    ].join('\n')
+    if (navigator.share) {
+      try { await navigator.share({ text }) } catch { /* user dismissed */ }
+    } else {
+      await navigator.clipboard.writeText(text)
+      setShowCopied(true)
+      setTimeout(() => setShowCopied(false), 2000)
+    }
+  }
 
   const currentEntry = entries[0] ?? null
   const shabadIds = useMemo(
@@ -119,12 +147,21 @@ export default function Study() {
     <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
       <div className="flex items-center justify-between mb-4">
         <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
-        <button
-          onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
-          className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
-        >
-          &#128278;
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={handleShare}
+            className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300"
+            aria-label="Share"
+          >
+            {showCopied ? <span className="font-sans text-xs text-saffron dark:text-saffron-light">Copied!</span> : '📤'}
+          </button>
+          <button
+            onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
+            className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
+          >
+            &#128278;
+          </button>
+        </div>
       </div>
 
       {showBookmarkForm && (
@@ -149,11 +186,13 @@ export default function Study() {
         {entries.map(entry => {
           const shabadId = parseShabadId(entry.id)
           return (
-            <StudyCard
-              key={entry.id}
-              entry={entry}
-              wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
-            />
+            <div key={entry.id}>
+              {shabadId && <AudioPlayer shabadId={shabadId} />}
+              <StudyCard
+                entry={entry}
+                wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
+              />
+            </div>
           )
         })}
       </div>

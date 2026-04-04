@@ -7,6 +7,7 @@ import { useAng } from '../hooks/useAng'
 import { useThemeStore } from '../store/theme'
 import { useLanguageStore } from '../store/language'
 import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
+import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
 
@@ -23,6 +24,9 @@ export default function Home() {
   const { getEntryById } = useScriptureCacheStore()
   const { dark, toggle: toggleTheme } = useThemeStore()
   const hindiMode = useLanguageStore(s => s.hindiMode)
+  const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
+  resetIfNewDay()
+  const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
@@ -79,6 +83,52 @@ export default function Home() {
           >
             Take Hukamnama
           </button>
+        </div>
+      </div>
+
+      {/* Nitnem Daily Tracker */}
+      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300">
+        <div className="flex items-center justify-between mb-3">
+          <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide">Nitnem · Daily Prayers</p>
+          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{nitnemDone} / {NITNEM_BANIS.length}</p>
+        </div>
+        {/* Progress bar */}
+        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full mb-3 overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500"
+            style={{ width: `${(nitnemDone / NITNEM_BANIS.length) * 100}%` }}
+          />
+        </div>
+        {nitnemDone === NITNEM_BANIS.length && (
+          <p className="font-sans text-xs text-saffron dark:text-saffron-light text-center mb-3">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ · All Nitnem complete 🙏</p>
+        )}
+        <div className="space-y-1.5">
+          {NITNEM_BANIS.map(bani => {
+            const done = isComplete(bani.id)
+            return (
+              <div key={bani.id} className="flex items-center gap-2 bg-parchment-card dark:bg-dark-card rounded-xl px-3 py-2 min-h-[44px] transition-colors duration-300">
+                <button
+                  onClick={() => done ? unmarkComplete(bani.id) : markComplete(bani.id)}
+                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${done ? 'bg-saffron border-saffron text-white' : 'border-sand/40 dark:border-dark-text/20'}`}
+                >
+                  {done && <span className="text-xs">✓</span>}
+                </button>
+                <button
+                  onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
+                  className="flex-1 text-left"
+                >
+                  <p className={`font-sans text-sm transition-colors duration-300 ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
+                    {bani.name}
+                  </p>
+                </button>
+                <span className={`font-sans text-[10px] px-2 py-0.5 rounded-full ${
+                  bani.time === 'Morning' ? 'bg-saffron/15 text-saffron dark:text-saffron-light' :
+                  bani.time === 'Evening' ? 'bg-blue-500/15 text-blue-400' :
+                  'bg-purple-500/15 text-purple-400'
+                }`}>{bani.time}</span>
+              </div>
+            )
+          })}
         </div>
       </div>
 
