@@ -5,6 +5,8 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { useAng } from '../hooks/useAng'
 import { useThemeStore } from '../store/theme'
+import { useLanguageStore } from '../store/language'
+import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
 
@@ -20,6 +22,7 @@ export default function Home() {
   const { streak, currentSession, studied } = useProgressStore()
   const { getEntryById } = useScriptureCacheStore()
   const { dark, toggle: toggleTheme } = useThemeStore()
+  const hindiMode = useLanguageStore(s => s.hindiMode)
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
@@ -92,8 +95,8 @@ export default function Home() {
             <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-2">
               {todaysPick.scripture} · Ang {todaysPick.ang}
             </p>
-            <p lang="pa-Guru" className="font-gurmukhi text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2">
-              {todaysPick.gurmukhi}
+            <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2`}>
+              {hindiMode ? gurmukhiToHindi(todaysPick.gurmukhi) : todaysPick.gurmukhi}
             </p>
             <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1">{todaysPick.translation_en}</p>
             <div className="mt-4 flex justify-end">
@@ -172,8 +175,8 @@ export default function Home() {
                 }}
               >
                 <p className="font-sans text-saffron dark:text-saffron-light text-[10px] mb-1 uppercase tracking-wide">{entry.scripture}</p>
-                <p lang="pa-Guru" className="font-gurmukhi text-ink dark:text-dark-text text-sm leading-relaxed line-clamp-2">
-                  {entry.gurmukhi}
+                <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text text-sm leading-relaxed line-clamp-2`}>
+                  {hindiMode ? gurmukhiToHindi(entry.gurmukhi) : entry.gurmukhi}
                 </p>
               </div>
             ))}
