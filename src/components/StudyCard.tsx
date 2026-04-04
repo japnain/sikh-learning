@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { ScriptureEntry, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import WordPopover from './WordPopover'
@@ -11,8 +11,12 @@ interface Props {
 export default function StudyCard({ entry, wordData }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
-  const [lang, setLang] = useState<'en' | 'alt'>('en')
   const hindiMode = useLanguageStore(s => s.hindiMode)
+  const [lang, setLang] = useState<'en' | 'alt'>(hindiMode ? 'alt' : 'en')
+
+  useEffect(() => {
+    setLang(hindiMode ? 'alt' : 'en')
+  }, [hindiMode])
 
   const handleWordTap = (wordText: string) => {
     const wordsToSearch = wordData ?? entry.words ?? []
