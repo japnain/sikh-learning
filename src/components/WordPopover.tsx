@@ -1,4 +1,5 @@
 import type { Word } from '../types'
+import { useLanguageStore } from '../store/language'
 
 interface Props {
   word: Word
@@ -6,6 +7,7 @@ interface Props {
 }
 
 export default function WordPopover({ word, onClose }: Props) {
+  const hindiMode = useLanguageStore(s => s.hindiMode)
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center" onClick={onClose}>
       <div
@@ -15,8 +17,10 @@ export default function WordPopover({ word, onClose }: Props) {
         <p lang="pa-Guru" className="font-gurmukhi text-3xl text-ink dark:text-dark-text mb-1">{word.gurmukhi}</p>
         <p className="font-sans text-ink/60 dark:text-dark-text/60 text-sm mb-1">{word.transliteration}</p>
         <p className="font-sans text-ink dark:text-dark-text font-medium mb-1">{word.meaning_en}</p>
-        {word.meaning_hi && <p className="font-sans text-ink/70 dark:text-dark-text/70 text-sm mb-1">{word.meaning_hi}</p>}
-        <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_pa}</p>
+        {hindiMode
+          ? <p className="font-sans text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_hi}</p>
+          : <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_pa}</p>
+        }
         <button
           onClick={onClose}
           className="w-full py-3 rounded-full bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60 font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"

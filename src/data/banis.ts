@@ -1,8 +1,8 @@
 export interface Bani {
   id: string
   name: string
-  scripture: 'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK'
-  source: 'G' | 'D' | 'B' | 'N' | 'A'
+  scripture: 'SGGS' | 'DG' | 'BGV' | 'AK'
+  source: 'G' | 'D' | 'B' | 'A'
   startAng: number
   endAng: number
   category: string
@@ -104,20 +104,8 @@ export const BANIS: Bani[] = [
 
   // ── Browse-Only Sources ────────────────────────────────────────────────────
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vars by Bhai Gurdas Ji elucidating Sikh philosophy and history.', type: 'browse-only' },
-  { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', scripture: 'BNL', source: 'N', startAng: 1, endAng: 128, category: 'Vars', description: 'Persian and Punjabi poetry by Bhai Nand Lal Ji, devoted Sikh of Guru Gobind Singh Ji.', type: 'browse-only' },
   { id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Compilation of shabads from various scriptures selected for congregational singing.', type: 'browse-only' },
-
-  // ── Bhai Nand Lal Ji · Individual Banis ─────────────────────────────────
-  { id: 'divan-i-goya', name: 'Divan-i-Goya', scripture: 'BNL', source: 'N', startAng: 1, endAng: 27, category: 'Persian Poetry', description: 'Persian ghazals of divine love and devotion by Bhai Nand Lal Ji.' },
-  { id: 'zindginama', name: 'Zindginama', scripture: 'BNL', source: 'N', startAng: 28, endAng: 53, category: 'Persian Poetry', description: 'Book of Life — Persian masnavi on the path of a devoted Sikh.' },
-  { id: 'ganjnama', name: 'Ganjnama', scripture: 'BNL', source: 'N', startAng: 54, endAng: 68, category: 'Persian Poetry', description: 'Treasure Book — Persian poem in praise of each of the ten Gurus.' },
-  { id: 'jot-bikas', name: 'Jot Bikas', scripture: 'BNL', source: 'N', startAng: 69, endAng: 85, category: 'Punjabi Poetry', description: 'Expansion of the Divine Light — Punjabi verses on the glory of Guru Gobind Singh Ji.' },
-  { id: 'jot-bikas-persian', name: 'Jot Bikas (Persian)', scripture: 'BNL', source: 'N', startAng: 86, endAng: 96, category: 'Persian Poetry', description: 'Persian version of Jot Bikas on the splendour of the Guru.' },
-  { id: 'rahitnama', name: 'Rahitnama', scripture: 'BNL', source: 'N', startAng: 97, endAng: 106, category: 'Punjabi Poetry', description: 'Code of Conduct — guidelines for Sikh living as given by Guru Gobind Singh Ji.' },
-  { id: 'tankhah-nama', name: 'Tankhah Nama', scripture: 'BNL', source: 'N', startAng: 107, endAng: 118, category: 'Punjabi Poetry', description: 'Penal Code — transgressions a Sikh should avoid, as instructed by the Guru.' },
-  { id: 'dasturul-insha', name: 'Dasturul Insha', scripture: 'BNL', source: 'N', startAng: 119, endAng: 128, category: 'Persian Poetry', description: 'Collection of Persian letters and writings by Bhai Nand Lal Ji.' },
 ]
 
 export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Saloks & Short Banis'] as const
 export const DG_CATEGORY_ORDER = ['Daily Prayers', 'Bir Ras', 'Major Compositions', 'Shorter Banis'] as const
-export const BNL_CATEGORY_ORDER = ['Persian Poetry', 'Punjabi Poetry'] as const

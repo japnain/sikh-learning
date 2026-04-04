@@ -37,5 +37,5 @@ export interface Scripture {
   id: string
   name: string
   shortName: string
-  sourceId: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+  sourceId: 'G' | 'D' | 'B' | 'A'
 }

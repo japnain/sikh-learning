@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ScriptureEntry, Word } from '../types'
+import { useLanguageStore } from '../store/language'
 import WordPopover from './WordPopover'
 
 interface Props {
@@ -10,7 +11,8 @@ interface Props {
 export default function StudyCard({ entry, wordData }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
-  const [lang, setLang] = useState<'en' | 'hi' | 'pa'>('en')
+  const [lang, setLang] = useState<'en' | 'alt'>('en')
+  const hindiMode = useLanguageStore(s => s.hindiMode)
 
   const handleWordTap = (wordText: string) => {
     const wordsToSearch = wordData ?? entry.words ?? []
@@ -50,17 +52,20 @@ export default function StudyCard({ entry, wordData }: Props) {
           <div className="flex-1 flex flex-col justify-center gap-3">
             <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic">{entry.transliteration}</p>
             <div className="flex gap-2 mb-2">
-              {(['en', 'hi', 'pa'] as const).map(l => (
-                <button
-                  key={l}
-                  onClick={e => { e.stopPropagation(); setLang(l) }}
-                  className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === l ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
-                >{l.toUpperCase()}</button>
-              ))}
+              <button
+                onClick={e => { e.stopPropagation(); setLang('en') }}
+                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'en' ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
+              >EN</button>
+              <button
+                onClick={e => { e.stopPropagation(); setLang('alt') }}
+                className={`font-sans text-xs px-3 py-1 rounded-full transition-colors duration-300 ${lang === 'alt' ? 'bg-saffron text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
+              >{hindiMode ? 'HI' : 'PA'}</button>
             </div>
             {lang === 'en' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_en}</p>}
-            {lang === 'hi' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_hi}</p>}
-            {lang === 'pa' && <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>}
+            {lang === 'alt' && (hindiMode
+              ? <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_hi}</p>
+              : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>
+            )}
           </div>
         )}
       </div>
