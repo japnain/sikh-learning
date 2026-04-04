@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
+import { useVocabStore } from '../store/vocab'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 
 const SOURCE_SHORT_NAME: Record<string, string> = {
@@ -64,6 +65,7 @@ const SECTIONS: Section[] = [
 export default function Library() {
   const navigate = useNavigate()
   const { bookmarks, removeBookmark } = useBookmarksStore()
+  const { vocab } = useVocabStore()
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
   }))
@@ -73,6 +75,22 @@ export default function Library() {
   return (
     <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">Library</h1>
+
+      {/* My Vocabulary */}
+      <div className="mb-4">
+        <button
+          onClick={() => navigate('/vocab')}
+          className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
+        >
+          <div className="text-left">
+            <p className="font-sans font-semibold text-ink dark:text-dark-text">📚 My Vocabulary</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+              {vocab.length === 0 ? 'No words saved yet' : `${vocab.length} word${vocab.length === 1 ? '' : 's'} saved`}
+            </p>
+          </div>
+          <span className="font-sans text-saffron dark:text-saffron-light text-sm">→</span>
+        </button>
+      </div>
 
       {/* Bookmarks */}
       {bookmarks.length > 0 && (

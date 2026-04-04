@@ -13,6 +13,7 @@ export default function StudyCard({ entry, wordData }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const hindiMode = useLanguageStore(s => s.hindiMode)
+  const fontSize = useLanguageStore(s => s.fontSize)
   const [lang, setLang] = useState<'en' | 'alt'>(hindiMode ? 'alt' : 'en')
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function StudyCard({ entry, wordData }: Props) {
                   key={i}
                   lang={hindiMode ? 'hi' : 'pa-Guru'}
                   className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300`}
-                  style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
+                  style={{ fontSize: `${fontSize}px`, minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
                   onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
                 >
                   {hindiMode ? gurmukhiToHindi(word) : word}
@@ -79,6 +80,8 @@ export default function StudyCard({ entry, wordData }: Props) {
         <WordPopover
           word={activeWord}
           onClose={() => setActiveWord(null)}
+          scripture={entry.scripture}
+          sourceId={entry.id.split('-')[0]}
         />
       )}
     </>

@@ -1,86 +1,136 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useVocabStore } from '../store/vocab'
-import { SCRIPTURES } from '../data'
+import { useLanguageStore } from '../store/language'
+import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
+import type { VocabEntry } from '../types'
 
 export default function Vocab() {
+  const navigate = useNavigate()
   const { vocab, removeWord } = useVocabStore()
-  const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState('all')
-  const [detail, setDetail] = useState<string | null>(null)
+  const hindiMode = useLanguageStore(s => s.hindiMode)
+  const [mode, setMode] = useState<'list' | 'flashcard'>('list')
+  const [cardIdx, setCardIdx] = useState(0)
+  const [revealed, setRevealed] = useState(false)
 
-  const filtered = vocab.filter(v => {
-    const matchSearch = !search ||
-      v.word.toLowerCase().includes(search.toLowerCase()) ||
-      v.transliteration.toLowerCase().includes(search.toLowerCase()) ||
-      v.meaning_en.toLowerCase().includes(search.toLowerCase())
-    const matchFilter = filter === 'all' || v.scripture.toLowerCase() === filter.toLowerCase()
-    return matchSearch && matchFilter
-  })
+  if (vocab.length === 0) {
+    return (
+      <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
+        <div className="flex items-center gap-3 mb-6 mt-4">
+          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
+            &#8592; Back
+          </button>
+          <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text">My Vocabulary</h1>
+        </div>
+        <div className="flex flex-col items-center mt-20 gap-3">
+          <p lang="pa-Guru" className="font-gurmukhi text-4xl text-ink/20 dark:text-dark-text/20">ਸ਼ਬਦ</p>
+          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-sm text-center">
+            No words saved yet.<br />Tap any word while studying to save it here.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
-  const detailWord = vocab.find(v => v.word === detail)
+  const safeIdx = cardIdx % vocab.length
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment">
-      <h1 className="font-sans font-semibold text-lg text-ink mb-4">Vocab</h1>
+    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
+      <div className="flex items-center justify-between mb-4 mt-4">
+        <div className="flex items-center gap-3">
+          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
+            &#8592; Back
+          </button>
+          <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text">My Vocabulary</h1>
+        </div>
+        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{vocab.length} words</span>
+      </div>
 
-      <input
-        type="text"
-        placeholder="Search words..."
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        className="w-full bg-parchment-card border border-sand/15 font-sans text-ink text-sm mb-3 focus:outline-none focus:border-saffron/30 transition-colors duration-300 rounded-full px-4 py-3 min-h-[44px]"
-      />
-
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-4">
-        <button
-          onClick={() => setFilter('all')}
-          className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full min-h-[44px] ${filter === 'all' ? 'bg-saffron text-white' : 'bg-parchment-low text-ink/60'}`}
-        >All</button>
-        {SCRIPTURES.map(s => (
+      {/* Mode toggle */}
+      <div className="flex gap-2 mb-4">
+        {(['list', 'flashcard'] as const).map(m => (
           <button
-            key={s.id}
-            onClick={() => setFilter(s.shortName)}
-            className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full min-h-[44px] ${filter === s.shortName ? 'bg-saffron text-white' : 'bg-parchment-low text-ink/60'}`}
-          >{s.shortName}</button>
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <p className="font-sans text-ink/50 text-sm text-center mt-10">
-          {vocab.length === 0 ? 'No words saved yet. Tap words while studying to save them.' : 'No results.'}
-        </p>
-      )}
-
-      <div className="flex flex-col gap-2">
-        {filtered.map(v => (
-          <div
-            key={v.word}
-            onClick={() => setDetail(v.word)}
-            className="bg-parchment-card border border-sand/15 rounded-2xl p-3 flex justify-between items-center cursor-pointer min-h-[44px]"
+            key={m}
+            onClick={() => { setMode(m); setCardIdx(0); setRevealed(false) }}
+            className={`flex-1 py-2 rounded-xl font-sans text-xs font-medium transition-colors duration-300 ${
+              mode === m ? 'bg-saffron text-white' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60'
+            }`}
           >
-            <div>
-              <span lang="pa-Guru" className="font-gurmukhi text-lg text-ink mr-2">{v.word}</span>
-              <span className="font-sans text-ink/60 text-xs">{v.transliteration}</span>
-              <p className="font-sans text-ink/70 text-xs mt-0.5">{v.meaning_en}</p>
-            </div>
-            <span className="font-sans text-[10px] text-saffron uppercase ml-2">{v.scripture}</span>
-          </div>
+            {m === 'list' ? 'Word List' : 'Flashcards'}
+          </button>
         ))}
       </div>
 
-      {detailWord && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center" onClick={() => setDetail(null)}>
-          <div className="bg-parchment-card border border-sand/15 rounded-t-2xl p-6 w-full max-w-md" onClick={e => e.stopPropagation()}>
-            <p lang="pa-Guru" className="font-gurmukhi text-ink text-3xl mb-1" style={{ fontSize: '30px' }}>{detailWord.word}</p>
-            <p className="font-sans text-ink/60 text-sm mb-1">{detailWord.transliteration}</p>
-            <p className="font-sans text-ink font-medium mb-1">{detailWord.meaning_en}</p>
-            <p lang="pa-Guru" className="font-gurmukhi text-ink/70 text-sm mb-2">{detailWord.meaning_pa}</p>
-            <p className="font-sans text-ink/40 text-xs mb-4">From {detailWord.scripture} · Saved {detailWord.savedAt}</p>
-            <button
-              onClick={() => { removeWord(detailWord.word); setDetail(null) }}
-              className="w-full py-3 border border-red-900 text-red-400 rounded-xl text-sm min-h-[44px]"
-            >Remove from Vocab</button>
+      {mode === 'flashcard' ? (
+        <div className="flex flex-col items-center gap-6 mt-4">
+          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wide">
+            {safeIdx + 1} of {vocab.length}
+          </p>
+          <div
+            onClick={() => setRevealed(r => !r)}
+            className="w-full bg-parchment-card dark:bg-dark-card rounded-2xl p-8 flex flex-col items-center cursor-pointer border border-sand/15 dark:border-dark-text/10 min-h-[220px] justify-center gap-4 transition-colors duration-300"
+          >
+            <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-5xl text-ink dark:text-dark-text`}>
+              {hindiMode ? gurmukhiToHindi(vocab[safeIdx].word) : vocab[safeIdx].word}
+            </p>
+            <p className="font-sans text-sm text-ink/50 dark:text-dark-text/50">{vocab[safeIdx].transliteration}</p>
+            {revealed ? (
+              <div className="text-center">
+                <p className="font-sans font-medium text-ink dark:text-dark-text">{vocab[safeIdx].meaning_en}</p>
+                {hindiMode && vocab[safeIdx].meaning_hi && (
+                  <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-1">{vocab[safeIdx].meaning_hi}</p>
+                )}
+                {!hindiMode && (
+                  <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/70 dark:text-dark-text/70 mt-1">{vocab[safeIdx].meaning_pa}</p>
+                )}
+              </div>
+            ) : (
+              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40">Tap to reveal meaning</p>
+            )}
           </div>
+          <div className="flex gap-3 w-full">
+            <button
+              onClick={() => { setCardIdx(i => Math.max(0, i - 1)); setRevealed(false) }}
+              disabled={safeIdx === 0}
+              className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 disabled:opacity-30 min-h-[44px] transition-colors duration-300"
+            >← Prev</button>
+            <button
+              onClick={() => { setCardIdx(i => i + 1); setRevealed(false) }}
+              disabled={safeIdx === vocab.length - 1}
+              className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+            >Next →</button>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {vocab.map((entry: VocabEntry) => (
+            <div
+              key={entry.word}
+              className="bg-parchment-card dark:bg-dark-card rounded-xl p-4 border border-sand/15 dark:border-dark-text/10 flex items-start justify-between gap-3 transition-colors duration-300"
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-baseline gap-2 mb-0.5">
+                  <span lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-xl text-ink dark:text-dark-text`}>
+                    {hindiMode ? gurmukhiToHindi(entry.word) : entry.word}
+                  </span>
+                  <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{entry.transliteration}</span>
+                </div>
+                <p className="font-sans text-sm text-ink/80 dark:text-dark-text/80">{entry.meaning_en}</p>
+                {hindiMode && entry.meaning_hi && (
+                  <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60">{entry.meaning_hi}</p>
+                )}
+                {!hindiMode && (
+                  <p lang="pa-Guru" className="font-gurmukhi text-xs text-ink/60 dark:text-dark-text/60">{entry.meaning_pa}</p>
+                )}
+                <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">{entry.scripture}</p>
+              </div>
+              <button
+                onClick={() => removeWord(entry.word)}
+                className="text-ink/30 dark:text-dark-text/30 font-sans text-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Remove word"
+              >✕</button>
+            </div>
+          ))}
         </div>
       )}
     </div>
