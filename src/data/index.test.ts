@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { SCRIPTURES } from './index'
 
 describe('SCRIPTURES', () => {
-  it('has exactly 6 BaniDB sources', () => {
-    expect(SCRIPTURES).toHaveLength(6)
+  it('has exactly 4 BaniDB sources', () => {
+    expect(SCRIPTURES).toHaveLength(4)
   })
 
   it('does not contain Sarbloh Granth', () => {
@@ -12,7 +12,7 @@ describe('SCRIPTURES', () => {
 
   it('every entry has a sourceId', () => {
     const ids = SCRIPTURES.map(s => s.sourceId)
-    expect(ids).toEqual(['G', 'D', 'B', 'N', 'A', 'R'])
+    expect(ids).toEqual(['G', 'D', 'B', 'A'])
   })
 
   it('SGGS is first, DG is second', () => {

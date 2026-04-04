@@ -5,7 +5,7 @@ export interface Bookmark {
   id: string
   type: 'shabad' | 'bani'
   title: string
-  source: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+  source: 'G' | 'D' | 'B' | 'A'
   ang: number
   description?: string
   savedAt: string
@@ -15,7 +15,7 @@ interface BookmarksState {
   bookmarks: Bookmark[]
   addBookmark: (b: Omit<Bookmark, 'id' | 'savedAt'>) => void
   removeBookmark: (id: string) => void
-  hasBookmark: (source: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R', ang: number) => boolean
+  hasBookmark: (source: 'G' | 'D' | 'B' | 'A', ang: number) => boolean
 }
 
 export const useBookmarksStore = create<BookmarksState>()(

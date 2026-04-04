@@ -1,21 +1,19 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, BNL_CATEGORY_ORDER, type Bani } from '../data/banis'
+import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useBookmarksStore } from '../store/bookmarks'
 import { fetchSearch, type SearchResult } from '../api/banidb'
 
-type Scripture = 'SGGS' | 'DG' | 'BNL'
+type Scripture = 'SGGS' | 'DG'
 
 const SCRIPTURE_META: Record<Scripture, { label: string; emoji: string }> = {
   SGGS: { label: 'Sri Guru Granth Sahib Ji', emoji: '📖' },
   DG: { label: 'Dasam Granth', emoji: '⚔️' },
-  BNL: { label: 'Bhai Nand Lal Ji', emoji: '🪶' },
 }
 
 const CATEGORY_ORDER: Record<Scripture, readonly string[]> = {
   SGGS: SGGS_CATEGORY_ORDER,
   DG: DG_CATEGORY_ORDER,
-  BNL: BNL_CATEGORY_ORDER,
 }
 
 const AK_BANI_IDS = [
@@ -76,7 +74,9 @@ export default function Banis() {
     }
     setSearching(true)
     try {
-      const results = await fetchSearch(query.trim())
+      const trimmed = query.trim()
+      const isEnglish = /^[a-zA-Z\s.,!?'-]+$/.test(trimmed)
+      const results = await fetchSearch(trimmed, isEnglish ? 3 : 1)
       setSearchResults(results)
     } catch {
       setSearchResults([])
@@ -122,8 +122,8 @@ export default function Banis() {
         )}
       </div>
 
-      {/* SGGS + DG + BNL */}
-      {(['SGGS', 'DG', 'BNL'] as Scripture[]).map(scripture => {
+      {/* SGGS + DG */}
+      {(['SGGS', 'DG'] as Scripture[]).map(scripture => {
         const meta = SCRIPTURE_META[scripture]
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
