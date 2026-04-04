@@ -7,10 +7,11 @@ const entry: ScriptureEntry = {
   gurmukhi: 'ੴ ਸਤਿ',
   transliteration: 'Ik Oankaar Sat',
   translation_en: 'One Creator Truth',
+  translation_hi: 'एक ओंकार सत्य',
   translation_pa: 'ਇੱਕ ਅਕਾਲ ਸੱਚ',
   words: [
-    { gurmukhi: 'ੴ', transliteration: 'Ik Oankaar', meaning_en: 'One Creator', meaning_pa: 'ਇੱਕ ਅਕਾਲ' },
-    { gurmukhi: 'ਸਤਿ', transliteration: 'Sat', meaning_en: 'Truth', meaning_pa: 'ਸੱਚ' },
+    { gurmukhi: 'ੴ', transliteration: 'Ik Oankaar', meaning_en: 'One Creator', meaning_hi: 'एक ओंकार', meaning_pa: 'ਇੱਕ ਅਕਾਲ' },
+    { gurmukhi: 'ਸਤਿ', transliteration: 'Sat', meaning_en: 'Truth', meaning_hi: 'सत्य', meaning_pa: 'ਸੱਚ' },
   ]
 }
 

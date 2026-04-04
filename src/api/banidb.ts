@@ -2,21 +2,21 @@ import type { ScriptureEntry, Word } from '../types'
 
 const BASE = 'https://api.banidb.com/v2'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'R'
+type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A'
 
 interface BaniVerse {
   verseId: number
   shabadId: number
   verse: { unicode: string }
   transliteration: { english: string }
-  translation: { en: { bdb: string }; pu: { ss: { unicode: string } } }
+  translation: Record<string, Record<string, string | Record<string, string>>>
   pageNo: number
 }
 
 interface BaniWord {
   word: { unicode: string }
   transliteration: { english: string }
-  translation: { en: { bdb: string }; pu: { ss: { unicode: string } } }
+  translation: Record<string, Record<string, string | Record<string, string>>>
 }
 
 interface BaniShabadVerse {
@@ -27,30 +27,63 @@ export interface HukamnamaResult {
   gurmukhi: string
   transliteration: string
   translation_en: string
+  translation_hi: string
   translation_pa: string
   ang: number
   source: string
   shabadId: number
 }
 
+export interface SearchResult {
+  shabadId: number
+  verseId: number
+  source: string
+  pageNo: number
+  gurmukhi: string
+  transliteration: string
+  translation_en: string
+}
+
 function toScripture(source: BaniSource): string {
   const map: Record<BaniSource, string> = {
-    G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK', R: 'PS',
+    G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK',
   }
   return map[source]
 }
 
-function safeText(val: string | undefined | null): string {
-  return val ?? ''
+function safeText(val: unknown): string {
+  if (typeof val === 'string') return val
+  return ''
+}
+
+function getHindi(t: BaniVerse['translation'] | undefined): string {
+  if (!t?.hi) return ''
+  const hi = t.hi as Record<string, unknown>
+  // BaniDB may return hi.ss as string or hi.ss.unicode as string
+  if (typeof hi.ss === 'string') return hi.ss
+  if (hi.ss && typeof (hi.ss as Record<string, string>).unicode === 'string') return (hi.ss as Record<string, string>).unicode
+  return ''
+}
+
+function getEnglish(t: BaniVerse['translation'] | undefined): string {
+  if (!t?.en) return ''
+  const en = t.en as Record<string, string>
+  return safeText(en.bdb)
+}
+
+function getPunjabi(t: BaniVerse['translation'] | undefined): string {
+  if (!t?.pu) return ''
+  const pu = t.pu as Record<string, unknown>
+  if (typeof pu.ss === 'string') return pu.ss
+  if (pu.ss && typeof (pu.ss as Record<string, string>).unicode === 'string') return (pu.ss as Record<string, string>).unicode
+  return ''
 }
 
 export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {
-  if (source === 'R') return []
   const res = await fetch(`${BASE}/angs/${ang}/${source}`)
   if (!res.ok) throw new Error(`BaniDB /angs error: ${res.status}`)
   const data = await res.json() as Record<string, unknown>
 
-  // BaniDB returns verses under `page`; fall back to alternative keys if needed
   const rawPage = (data.page ?? data.verses ?? data.shabads) as BaniVerse[] | undefined
   if (!rawPage?.length) return []
 
@@ -68,8 +101,9 @@ export async function fetchAng(ang: number, source: BaniSource): Promise<Scriptu
     ang,
     gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
     transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
-    translation_en: verses.map(v => safeText(v.translation?.en?.bdb)).join(' '),
-    translation_pa: verses.map(v => safeText(v.translation?.pu?.ss?.unicode)).join(' '),
+    translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
+    translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
+    translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
     words: [],
   }))
 }
@@ -84,22 +118,40 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
   const words: Word[] = []
   for (const verse of data.verses) {
     for (const w of verse.words ?? []) {
-      const key = w.word?.unicode
+      const key = safeText(w.word?.unicode)
       if (!key || seen.has(key)) continue
       seen.add(key)
       words.push({
-        gurmukhi: safeText(w.word?.unicode),
+        gurmukhi: key,
         transliteration: safeText(w.transliteration?.english),
-        meaning_en: safeText(w.translation?.en?.bdb),
-        meaning_pa: safeText(w.translation?.pu?.ss?.unicode),
+        meaning_en: getEnglish(w.translation),
+        meaning_hi: getHindi(w.translation),
+        meaning_pa: getPunjabi(w.translation),
       })
     }
   }
   return words
 }
 
+export async function fetchSearch(query: string, searchType: number = 1): Promise<SearchResult[]> {
+  const encoded = encodeURIComponent(query)
+  const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=all`)
+  if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
+  const data = await res.json() as { verses?: BaniVerse[] }
+  const verses = data.verses ?? []
+
+  return verses.slice(0, 30).map(v => ({
+    shabadId: v.shabadId,
+    verseId: v.verseId,
+    source: 'G',
+    pageNo: v.pageNo,
+    gurmukhi: safeText(v.verse?.unicode),
+    transliteration: safeText(v.transliteration?.english),
+    translation_en: getEnglish(v.translation),
+  }))
+}
+
 export async function fetchHukamnama(): Promise<HukamnamaResult> {
-  // BaniDB v2 endpoint: /hukamnamas/{year}/{month}/{day}
   const now = new Date()
   const year = now.getFullYear()
   const month = String(now.getMonth() + 1).padStart(2, '0')
@@ -120,7 +172,6 @@ export async function fetchHukamnama(): Promise<HukamnamaResult> {
   }
 
   const allShabads = data.shabads ?? []
-  // ang can live at hukamnamaInfo.ang or inside the first shabad's shabadInfo
   const ang =
     data.hukamnamaInfo?.ang ??
     allShabads[0]?.shabad?.shabadInfo?.ang?.ang ??
@@ -132,8 +183,9 @@ export async function fetchHukamnama(): Promise<HukamnamaResult> {
   return {
     gurmukhi: allVerses.map(v => safeText(v.verse?.unicode)).join(' '),
     transliteration: allVerses.map(v => safeText(v.transliteration?.english)).join(' '),
-    translation_en: allVerses.map(v => safeText(v.translation?.en?.bdb)).join(' '),
-    translation_pa: allVerses.map(v => safeText(v.translation?.pu?.ss?.unicode)).join(' '),
+    translation_en: allVerses.map(v => getEnglish(v.translation)).join(' '),
+    translation_hi: allVerses.map(v => getHindi(v.translation)).join(' '),
+    translation_pa: allVerses.map(v => getPunjabi(v.translation)).join(' '),
     ang,
     source: sourceId,
     shabadId,
