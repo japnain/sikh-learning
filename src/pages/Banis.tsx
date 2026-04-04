@@ -27,6 +27,22 @@ const AK_BANI_IDS = [
 ]
 const AK_BANIS = BANIS.filter(b => AK_BANI_IDS.includes(b.id))
 
+function Highlight({ text, query }: { text: string; query: string }) {
+  if (!query || query.length < 2) return <>{text}</>
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const regex = new RegExp(`(${escaped})`, 'gi')
+  const parts = text.split(regex)
+  return (
+    <>
+      {parts.map((part, i) =>
+        regex.test(part)
+          ? <span key={i} className="bg-saffron/30 text-saffron dark:text-saffron-light font-semibold rounded-sm px-0.5">{part}</span>
+          : <span key={i}>{part}</span>
+      )}
+    </>
+  )
+}
+
 function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
   bani: Bani
   navigate: (path: string) => void
@@ -109,9 +125,9 @@ export default function Banis() {
                 onClick={() => navigate(`/study?source=${r.source}&ang=${r.pageNo}`)}
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
-                <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{r.gurmukhi}</p>
-                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">{r.transliteration}</p>
-                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5">{r.translation_en}</p>
+                <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><Highlight text={r.gurmukhi} query={searchQuery} /></p>
+                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
+                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
                 <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">Ang {r.pageNo}</p>
               </button>
             ))}
