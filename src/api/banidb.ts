@@ -153,11 +153,24 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
 
 export async function fetchAudio(shabadId: number): Promise<string | null> {
   try {
-    const res = await fetch(`${BASE}/audio/shabad/${shabadId}`)
+    // Try the shabad endpoint — it may include audio URLs in the response
+    const res = await fetch(`${BASE}/shabads/${shabadId}`)
     if (!res.ok) return null
-    const data = await res.json() as { audio?: Array<{ url?: string; fileUrl?: string }> }
-    const url = data.audio?.[0]?.url ?? data.audio?.[0]?.fileUrl ?? null
-    return url ?? null
+    const data = await res.json() as Record<string, unknown>
+    // Check various possible audio field locations
+    const shabadInfo = data.shabadInfo as Record<string, unknown> | undefined
+    if (shabadInfo?.audio) {
+      const audio = shabadInfo.audio as Record<string, unknown>
+      const url = audio.url ?? audio.fileUrl
+      if (typeof url === 'string') return url
+    }
+    // Check top-level audio field
+    if (data.audio) {
+      if (typeof data.audio === 'string') return data.audio
+      const audioArr = data.audio as Array<{ url?: string; fileUrl?: string }>
+      return audioArr?.[0]?.url ?? audioArr?.[0]?.fileUrl ?? null
+    }
+    return null
   } catch {
     return null
   }

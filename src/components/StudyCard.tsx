@@ -20,11 +20,34 @@ export default function StudyCard({ entry, wordData }: Props) {
     setLang(hindiMode ? 'alt' : 'en')
   }, [hindiMode])
 
-  const handleWordTap = (wordText: string) => {
+  // Strip Gurmukhi vishram marks and punctuation for matching
+  const cleanGurmukhi = (s: string) =>
+    s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
+
+  const handleWordTap = (originalGurmukhi: string) => {
     const wordsToSearch = wordData ?? entry.words ?? []
-    if (!wordsToSearch.length) return
-    const found = wordsToSearch.find(w => wordText.includes(w.gurmukhi))
-    if (found) setActiveWord(found)
+    const cleaned = cleanGurmukhi(originalGurmukhi)
+    if (!cleaned) return
+
+    if (wordsToSearch.length > 0) {
+      // Try exact match first
+      const exact = wordsToSearch.find(w => cleanGurmukhi(w.gurmukhi) === cleaned)
+      if (exact) { setActiveWord(exact); return }
+      // Try contains in both directions
+      const partial = wordsToSearch.find(w =>
+        cleaned.includes(cleanGurmukhi(w.gurmukhi)) || cleanGurmukhi(w.gurmukhi).includes(cleaned)
+      )
+      if (partial) { setActiveWord(partial); return }
+    }
+
+    // Fallback: show a basic word popup even without API data
+    setActiveWord({
+      gurmukhi: originalGurmukhi,
+      transliteration: '',
+      meaning_en: '',
+      meaning_hi: '',
+      meaning_pa: '',
+    })
   }
 
   return (
@@ -40,11 +63,11 @@ export default function StudyCard({ entry, wordData }: Props) {
               {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
             </p>
             <div className="flex flex-wrap gap-2">
-              {entry.gurmukhi.split(' ').map((word, i) => (
+              {entry.gurmukhi.split(' ').filter(Boolean).map((word, i) => (
                 <span
                   key={i}
                   lang={hindiMode ? 'hi' : 'pa-Guru'}
-                  className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300`}
+                  className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer active:text-saffron dark:active:text-saffron-light hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300`}
                   style={{ fontSize: `${fontSize}px`, minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
                   onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
                 >
