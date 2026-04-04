@@ -35,12 +35,16 @@ export default function WordPopover({ word, onClose, scripture = '', sourceId = 
         onClick={e => e.stopPropagation()}
       >
         <p lang="pa-Guru" className="font-gurmukhi text-3xl text-ink dark:text-dark-text mb-1">{word.gurmukhi}</p>
-        <p className="font-sans text-ink/60 dark:text-dark-text/60 text-sm mb-1">{word.transliteration}</p>
-        <p className="font-sans text-ink dark:text-dark-text font-medium mb-1">{word.meaning_en}</p>
-        {hindiMode
-          ? <p className="font-sans text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_hi}</p>
-          : <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_pa}</p>
+        {word.transliteration && <p className="font-sans text-ink/60 dark:text-dark-text/60 text-sm mb-1">{word.transliteration}</p>}
+        {word.meaning_en
+          ? <p className="font-sans text-ink dark:text-dark-text font-medium mb-1">{word.meaning_en}</p>
+          : <p className="font-sans text-ink/40 dark:text-dark-text/40 text-sm italic mb-1">Meaning not available — you can still save this word</p>
         }
+        {(hindiMode ? word.meaning_hi : word.meaning_pa) && (
+          hindiMode
+            ? <p className="font-sans text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_hi}</p>
+            : <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4">{word.meaning_pa}</p>
+        )}
         <div className="flex gap-2">
           <button
             onClick={handleSave}
