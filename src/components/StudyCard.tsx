@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { ScriptureEntry, Word } from '../types'
 import { useLanguageStore } from '../store/language'
+import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
 import WordPopover from './WordPopover'
 
 interface Props {
@@ -37,23 +38,19 @@ export default function StudyCard({ entry, wordData }: Props) {
             <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">
               {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
             </p>
-            {hindiMode ? (
-              <p className="font-sans text-xl text-ink dark:text-dark-text leading-relaxed">{entry.translation_hi}</p>
-            ) : (
-              <div className="flex flex-wrap gap-2">
-                {entry.gurmukhi.split(' ').map((word, i) => (
-                  <span
-                    key={i}
-                    lang="pa-Guru"
-                    className="font-gurmukhi text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300"
-                    style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
-                    onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-wrap gap-2">
+              {entry.gurmukhi.split(' ').map((word, i) => (
+                <span
+                  key={i}
+                  lang={hindiMode ? 'hi' : 'pa-Guru'}
+                  className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300`}
+                  style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
+                  onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
+                >
+                  {hindiMode ? gurmukhiToHindi(word) : word}
+                </span>
+              ))}
+            </div>
             <p className="font-sans text-ink/40 dark:text-dark-text/40 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
           </div>
         ) : (
