@@ -37,21 +37,22 @@ export default function StudyCard({ entry, wordData }: Props) {
             <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">
               {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {entry.gurmukhi.split(' ').map((word, i) => (
-                <span
-                  key={i}
-                  lang="pa-Guru"
-                  className="font-gurmukhi text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300"
-                  style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
-                  onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
-                >
-                  {word}
-                </span>
-              ))}
-            </div>
-            {hindiMode && entry.translation_hi && (
-              <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed">{entry.translation_hi}</p>
+            {hindiMode ? (
+              <p className="font-sans text-xl text-ink dark:text-dark-text leading-relaxed">{entry.translation_hi}</p>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {entry.gurmukhi.split(' ').map((word, i) => (
+                  <span
+                    key={i}
+                    lang="pa-Guru"
+                    className="font-gurmukhi text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer hover:text-saffron dark:hover:text-saffron-light transition-colors duration-300"
+                    style={{ fontSize: '22px', minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
+                    onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </div>
             )}
             <p className="font-sans text-ink/40 dark:text-dark-text/40 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
           </div>
