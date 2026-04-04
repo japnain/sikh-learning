@@ -4,7 +4,7 @@ import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 
 const SOURCE_SHORT_NAME: Record<string, string> = {
-  G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK',
+  G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
 }
 
 const angLabel = (source: string) => source === 'G' || source === 'D' ? 'Ang' : 'Page'
@@ -58,7 +58,6 @@ const SECTIONS: Section[] = [
   { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
   { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
-  { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', source: 'N', totalAngs: 128 },
   { id: 'amrit-keertan', name: 'Amrit Keertan', source: 'A', totalAngs: 1430 },
 ]
 

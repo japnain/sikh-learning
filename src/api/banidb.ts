@@ -2,7 +2,7 @@ import type { ScriptureEntry, Word } from '../types'
 
 const BASE = 'https://api.banidb.com/v2'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A'
+type BaniSource = 'G' | 'D' | 'B' | 'A'
 
 interface BaniVerse {
   verseId: number
@@ -46,7 +46,7 @@ export interface SearchResult {
 
 function toScripture(source: BaniSource): string {
   const map: Record<BaniSource, string> = {
-    G: 'SGGS', D: 'DG', B: 'BGV', N: 'BNL', A: 'AK',
+    G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
   }
   return map[source]
 }

@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { useMusicStore, SOUNDS } from '../store/music'
+import { useLanguageStore } from '../store/language'
 import { playSound, stopSound, setMasterVolume } from '../utils/soundEngine'
 
 export default function More() {
   const { currentSound, playing, volume, setSound, setPlaying, setVolume } = useMusicStore()
+  const { hindiMode, toggleHindi } = useLanguageStore()
 
   useEffect(() => {
     if (playing && currentSound) {
@@ -73,11 +75,30 @@ export default function More() {
         </div>
       </div>
 
+      {/* Language Toggle */}
+      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300">
+        <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">Language</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-sans text-sm text-ink dark:text-dark-text">Hindi translations</p>
+            <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">
+              {hindiMode ? 'Showing Hindi instead of Punjabi' : 'Showing Punjabi translations'}
+            </p>
+          </div>
+          <button
+            onClick={toggleHindi}
+            className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${hindiMode ? 'bg-saffron' : 'bg-sand/30 dark:bg-dark-text/20'}`}
+          >
+            <span className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-transform duration-300 ${hindiMode ? 'translate-x-5' : ''}`} />
+          </button>
+        </div>
+      </div>
+
       {/* Language Info */}
       <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300">
-        <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">Languages</p>
+        <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-3">Tips</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
-          Tap any card in Study mode to flip it. Use the <strong>EN</strong> / <strong>HI</strong> / <strong>PA</strong> buttons to switch between English, Hindi, and Punjabi translations.
+          Tap any card in Study mode to flip it. Use the <strong>EN</strong> / <strong>{hindiMode ? 'HI' : 'PA'}</strong> buttons to switch between English and {hindiMode ? 'Hindi' : 'Punjabi'} translations.
         </p>
       </div>
 

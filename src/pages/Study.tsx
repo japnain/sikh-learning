@@ -6,10 +6,10 @@ import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A'
+type BaniSource = 'G' | 'D' | 'B' | 'A'
 
 const MAX_ANG: Record<string, number> = {
-  G: 1430, D: 1428, B: 628, N: 128, A: 1430,
+  G: 1430, D: 1428, B: 628, A: 1430,
 }
 
 function parseShabadId(entryId: string): number | null {
