@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useBookmarksStore } from '../store/bookmarks'
 import { fetchSearch, type SearchResult } from '../api/banidb'
+import { NITNEM_BANIS } from '../store/nitnem'
 
 type Scripture = 'SGGS' | 'DG'
 
@@ -135,6 +136,55 @@ export default function Banis() {
         )}
         {searchQuery.trim().length >= 2 && !searching && searchResults.length === 0 && (
           <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
+        )}
+      </div>
+
+      {/* Sundar Gutka */}
+      <div className="mb-4">
+        <button
+          onClick={() => toggle('sundar-gutka')}
+          className="w-full flex justify-between items-center bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-saffron/15 dark:to-saffron-light/15 border border-saffron/20 dark:border-saffron/20 rounded-2xl p-4 min-h-[44px] transition-colors duration-300"
+        >
+          <div className="text-left">
+            <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">🙏 ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Daily Nitnem prayers in prescribed order</p>
+          </div>
+          <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['sundar-gutka'] ? '▲' : '▼'}</span>
+        </button>
+
+        {expanded['sundar-gutka'] && (
+          <div className="mt-2 ml-2">
+            {NITNEM_BANIS.map(bani => {
+              const isBookmarked = hasBookmark(bani.source as Bani['source'], bani.startAng)
+              return (
+                <div key={bani.id} className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
+                  <button
+                    onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
+                    className="flex-1 text-left px-3 py-3 min-h-[52px]"
+                  >
+                    <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <p className="font-sans text-saffron dark:text-saffron-light text-xs">Ang {bani.startAng}</p>
+                      <span className={`font-sans text-[10px] px-1.5 py-0.5 rounded-full ${
+                        bani.time === 'Morning' ? 'bg-saffron/15 text-saffron dark:text-saffron-light' :
+                        bani.time === 'Evening' ? 'bg-blue-500/15 text-blue-400' :
+                        'bg-purple-500/15 text-purple-400'
+                      }`}>{bani.time}</span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (!isBookmarked) addBookmark({ type: 'bani', title: bani.name, source: bani.source as Bani['source'], ang: bani.startAng })
+                    }}
+                    className={`pr-4 pl-2 min-h-[52px] flex items-center justify-center font-sans text-base transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/25 dark:text-dark-text/25'}`}
+                    aria-label={isBookmarked ? 'Bookmarked' : 'Bookmark'}
+                  >
+                    🔖
+                  </button>
+                </div>
+              )
+            })}
+          </div>
         )}
       </div>
 

@@ -22,6 +22,7 @@ export interface VocabEntry {
   word: string
   transliteration: string
   meaning_en: string
+  meaning_hi: string
   meaning_pa: string
   scripture: string
   sourceId: string
