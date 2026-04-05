@@ -2,6 +2,7 @@ export interface Word {
   gurmukhi: string
   transliteration: string
   meaning_en: string
+  meaning_hi: string
   meaning_pa: string
 }
 
@@ -12,6 +13,7 @@ export interface ScriptureEntry {
   gurmukhi: string
   transliteration: string
   translation_en: string
+  translation_hi: string
   translation_pa: string
   words: Word[]
 }
@@ -20,6 +22,7 @@ export interface VocabEntry {
   word: string
   transliteration: string
   meaning_en: string
+  meaning_hi: string
   meaning_pa: string
   scripture: string
   sourceId: string
@@ -35,5 +38,5 @@ export interface Scripture {
   id: string
   name: string
   shortName: string
-  sourceId: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+  sourceId: 'G' | 'D' | 'B' | 'A'
 }
