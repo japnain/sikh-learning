@@ -175,6 +175,78 @@ export const MOCK_BANI_RESPONSE = {
   ],
 }
 
+export const MOCK_REHRAS_BANI_RESPONSE = {
+  verses: [
+    {
+      header: 1,
+      verse: {
+        verseId: 2628,
+        shabadId: 21,
+        verse: { unicode: 'ਰਹਰਾਸਿ ਸਾਹਿਬ' },
+        transliteration: { english: 'raharaas saahib' },
+        translation: {
+          en: { bdb: 'Rehras Sahib', ms: 'Rehras Sahib', ssk: 'Rehras Sahib' },
+          hi: {},
+          pu: { ss: { unicode: '' } },
+        },
+        pageNo: null,
+      },
+    },
+    {
+      verse: {
+        verseId: 2629,
+        shabadId: 21,
+        verse: { unicode: 'ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥' },
+        transliteration: { english: 'sree vaahiguroo jee kee fateh ||' },
+        translation: {
+          en: { bdb: "Victory is the Lord's.", ms: "Victory belongs to the Divine.", ssk: "Victory is the Lord's." },
+          hi: { ss: 'श्री वाहेगुरू जी की फतेह।' },
+          pu: { ss: { unicode: 'ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ।' } },
+        },
+        pageNo: null,
+      },
+    },
+    {
+      verse: {
+        verseId: 2630,
+        shabadId: 21,
+        verse: { unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥' },
+        transliteration: { english: 'ikOankaar satigur prasaadh ||' },
+        translation: {
+          en: {
+            bdb: 'The Lord is One and can be realized through the True Guru.',
+            ms: 'There is One God. By the True Guru His grace is obtained.',
+            ssk: 'One Universal Creator God. By The Grace Of The True Guru.',
+          },
+          hi: { ss: 'एक ओंकार सतिगुर प्रसादि।' },
+          pu: { ss: { unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ।' } },
+        },
+        pageNo: 8,
+        source: { id: 'G' },
+      },
+    },
+    {
+      verse: {
+        verseId: 2631,
+        shabadId: 21,
+        verse: { unicode: 'ਸੋ ਦਰੁ ਤੇਰਾ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ' },
+        transliteration: { english: 'so dhar teraa kehaa so ghar kehaa' },
+        translation: {
+          en: {
+            bdb: 'Where is that Gate of Yours, and where is that Home?',
+            ms: 'What is that gate and what is that house of Yours?',
+            ssk: 'What is that Gate, and what is that Dwelling, O Lord?',
+          },
+          hi: { ss: 'तेरा वह द्वार कैसा है, वह घर कैसा है?' },
+          pu: { ss: { unicode: 'ਤੇਰਾ ਉਹ ਦਰ ਕਿਹੋ ਜਿਹਾ ਹੈ, ਉਹ ਘਰ ਕਿਹੋ ਜਿਹਾ ਹੈ?' } },
+        },
+        pageNo: 8,
+        source: { id: 'G' },
+      },
+    },
+  ],
+}
+
 export const MOCK_AMRIT_HEADERS = {
   headers: [
     {
@@ -290,7 +362,9 @@ export const handlers = [
     return HttpResponse.json(MOCK_BANIS_INDEX)
   }),
 
-  http.get('https://api.banidb.com/v2/banis/:baniId', () => {
+  http.get('https://api.banidb.com/v2/banis/:baniId', ({ params }) => {
+    const { baniId } = params as { baniId: string }
+    if (baniId === '21') return HttpResponse.json(MOCK_REHRAS_BANI_RESPONSE)
     return HttpResponse.json(MOCK_BANI_RESPONSE)
   }),
 

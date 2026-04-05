@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
-import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
-import { getLineEnglishText } from '../utils/translations'
+import { getLineMeaningText, renderScriptText } from '../utils/readerDisplay'
 import WordPopover from './WordPopover'
 
 interface Props {
@@ -26,7 +25,9 @@ function fallbackLine(entry: ScriptureEntry): ScriptureLine {
 
 export default function StudyCard({ entry, wordData }: Props) {
   const [activeWord, setActiveWord] = useState<Word | null>(null)
-  const hindiMode = useLanguageStore(s => s.hindiMode)
+  const scriptMode = useLanguageStore(s => s.scriptMode)
+  const showTransliteration = useLanguageStore(s => s.showTransliteration)
+  const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const fontSize = useLanguageStore(s => s.fontSize)
   const englishSource = useLanguageStore(s => s.englishSource)
 
@@ -34,6 +35,9 @@ export default function StudyCard({ entry, wordData }: Props) {
     () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
     [entry]
   )
+  const introLines = lines.filter(line => line.isHeader)
+  const mainLines = lines.filter(line => !line.isHeader)
+  const visibleMainLines = mainLines.length > 0 ? mainLines : lines
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -78,10 +82,49 @@ export default function StudyCard({ entry, wordData }: Props) {
           )}
         </div>
 
+        {introLines.length > 0 && (
+          <div className="mb-4 rounded-2xl bg-gold/8 dark:bg-gold/10 border border-gold/15 dark:border-gold/15 px-4 py-4">
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+              Intro
+            </p>
+            <div className="space-y-3">
+              {introLines.map((line, index) => {
+                const introMeaning = getLineMeaningText(line, meaningLanguage, englishSource)
+                return (
+                  <div key={`intro-${line.verseId}-${index}`}>
+                    <p
+                      lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text leading-relaxed`}
+                      style={{ fontSize: `${fontSize}px` }}
+                    >
+                      {renderScriptText(line.gurmukhi, scriptMode)}
+                    </p>
+                    {showTransliteration && line.transliteration && (
+                      <p className="font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed">
+                        {line.transliteration}
+                      </p>
+                    )}
+                    {introMeaning && (
+                      meaningLanguage === 'pa' ? (
+                        <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed">
+                          {introMeaning}
+                        </p>
+                      ) : (
+                        <p className="font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed">
+                          {introMeaning}
+                        </p>
+                      )
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         <div className="space-y-4">
-          {lines.map((line, index) => {
-            const altTranslation = hindiMode ? line.translation_hi : line.translation_pa
-            const englishText = getLineEnglishText(line, englishSource)
+          {visibleMainLines.map((line, index) => {
+            const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
 
             return (
               <article
@@ -94,36 +137,30 @@ export default function StudyCard({ entry, wordData }: Props) {
                     <button
                       key={`${line.verseId}-${wordIndex}`}
                       type="button"
-                      lang={hindiMode ? 'hi' : 'pa-Guru'}
-                      className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 text-left text-ink dark:text-dark-text leading-[1.9] active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                      lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 text-left text-ink dark:text-dark-text leading-[1.9] active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
                       style={{ fontSize: `${fontSize}px` }}
                       onClick={() => handleWordTap(word)}
                     >
-                      {hindiMode ? gurmukhiToHindi(word) : word}
+                      {renderScriptText(word, scriptMode)}
                     </button>
                   ))}
                 </div>
 
-                {line.transliteration && (
+                {showTransliteration && line.transliteration && (
                   <p className="font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed">
                     {line.transliteration}
                   </p>
                 )}
 
-                {englishText && (
-                  <p className="font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed">
-                    {englishText}
-                  </p>
-                )}
-
-                {altTranslation && (
-                  hindiMode ? (
-                    <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2 leading-relaxed">
-                      {altTranslation}
+                {meaningText && (
+                  meaningLanguage === 'pa' ? (
+                    <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed">
+                      {meaningText}
                     </p>
                   ) : (
-                    <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/65 dark:text-dark-text/65 mt-2 leading-relaxed">
-                      {altTranslation}
+                    <p className="font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed">
+                      {meaningText}
                     </p>
                   )
                 )}

@@ -7,6 +7,8 @@ export interface Word {
 }
 
 export type EnglishSource = 'bdb' | 'ms' | 'ssk'
+export type ScriptMode = 'gurmukhi' | 'devanagari'
+export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 
 export interface EnglishTranslations {
   bdb?: string
@@ -18,6 +20,8 @@ export interface ScriptureLine {
   verseId: number
   shabadId: number
   ang: number
+  originalAng?: number | null
+  isHeader?: boolean
   gurmukhi: string
   transliteration: string
   translation_en: string

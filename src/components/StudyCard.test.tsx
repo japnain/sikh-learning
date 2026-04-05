@@ -34,7 +34,13 @@ const entry: ScriptureEntry = {
 }
 
 beforeEach(() => {
-  useLanguageStore.setState({ hindiMode: false, fontSize: 22, englishSource: 'bdb' })
+  useLanguageStore.setState({
+    scriptMode: 'gurmukhi',
+    showTransliteration: false,
+    meaningLanguage: 'en',
+    fontSize: 22,
+    englishSource: 'bdb',
+  })
 })
 
 test('shows Gurmukhi text on front', () => {
@@ -45,12 +51,26 @@ test('shows Gurmukhi text on front', () => {
 test('shows translation inline without flipping', () => {
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
+  expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
 })
 
 test('switches to selected English source', () => {
   useLanguageStore.setState({ englishSource: 'ms' })
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('There is but one truth')).toBeInTheDocument()
+})
+
+test('shows transliteration when enabled', () => {
+  useLanguageStore.setState({ showTransliteration: true })
+  render(<StudyCard entry={entry} />)
+  expect(screen.getByText('Ik Oankaar Sat')).toBeInTheDocument()
+})
+
+test('switches meaning language to Punjabi', () => {
+  useLanguageStore.setState({ meaningLanguage: 'pa' })
+  render(<StudyCard entry={entry} />)
+  expect(screen.getByText('ਇੱਕ ਅਕਾਲ ਸੱਚ')).toBeInTheDocument()
+  expect(screen.queryByText('One Creator Truth')).not.toBeInTheDocument()
 })
 
 test('opens word popover on word tap', () => {

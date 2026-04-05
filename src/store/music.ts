@@ -5,15 +5,16 @@ export interface Sound {
   id: string
   name: string
   icon: string
+  src: string
 }
 
 export const SOUNDS: Sound[] = [
-  { id: 'fireplace', name: 'Fireplace', icon: '🔥' },
-  { id: 'thunderstorm', name: 'Thunderstorm', icon: '⛈️' },
-  { id: 'ocean-waves', name: 'Ocean Waves', icon: '🌊' },
-  { id: 'forest-campfire', name: 'Forest Campfire', icon: '🏕️' },
-  { id: 'wind-chimes', name: 'Wind Chimes', icon: '🎐' },
-  { id: 'night-garden', name: 'Night Garden', icon: '🌙' },
+  { id: 'gentle-rain', name: 'Gentle Rain', icon: '🌧️', src: '/audio/ambient/gentle-rain.mp3' },
+  { id: 'forest-canopy', name: 'Forest Canopy', icon: '🌿', src: '/audio/ambient/forest-canopy.mp3' },
+  { id: 'mountain-stream', name: 'Mountain Stream', icon: '🏞️', src: '/audio/ambient/mountain-stream.mp3' },
+  { id: 'sea-waves', name: 'Sea Waves', icon: '🌊', src: '/audio/ambient/sea-waves.mp3' },
+  { id: 'night-meadow', name: 'Night Meadow', icon: '🌙', src: '/audio/ambient/night-meadow.mp3' },
+  { id: 'temple-fountain', name: 'Temple Fountain', icon: '⛩️', src: '/audio/ambient/temple-fountain.mp3' },
 ]
 
 interface MusicState {

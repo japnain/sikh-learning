@@ -17,7 +17,7 @@ export const NITNEM_BANIS: NitemBani[] = [
   { id: 'tav-prasad-savaiye',  name: 'Tav Prasad Savaiye',   source: 'D', startAng: 10,  endAng: 10,  time: 'Morning', baniDbId: 3 },
   { id: 'chaupai-sahib',       name: 'Chaupai Sahib',        source: 'D', startAng: 201, endAng: 205, time: 'Morning', baniDbId: 4 },
   { id: 'anand-sahib',         name: 'Anand Sahib',          source: 'G', startAng: 917, endAng: 922, time: 'Morning', baniDbId: 6 },
-  { id: 'rehras-sahib',        name: 'Rehras Sahib',         source: 'G', startAng: 8,   endAng: 12,  time: 'Evening', baniDbId: 8 },
+  { id: 'rehras-sahib',        name: 'Rehras Sahib',         source: 'G', startAng: 8,   endAng: 12,  time: 'Evening', baniDbId: 21 },
   { id: 'kirtan-sohila',       name: 'Kirtan Sohila',        source: 'G', startAng: 12,  endAng: 13,  time: 'Night',   baniDbId: 9 },
 ]
 

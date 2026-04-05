@@ -43,4 +43,7 @@ test('loads Amrit Keertan chapter shabads', async () => {
   fireEvent.click(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥'))
 
   await waitFor(() => expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument())
+  expect(screen.getAllByText('Sri Guru Granth Sahib Ji').length).toBeGreaterThan(0)
+  expect(screen.getByText('Raag Gauree')).toBeInTheDocument()
+  expect(screen.getByText('Ang 65')).toBeInTheDocument()
 })

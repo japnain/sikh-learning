@@ -10,8 +10,9 @@ import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
 import type { ScriptureEntry } from '../types'
-import { getEntryEnglishText } from '../utils/translations'
+import { MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
+import { getEntryMeaningText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
@@ -114,6 +115,12 @@ export default function Study() {
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
   const englishSource = useLanguageStore(s => s.englishSource)
+  const scriptMode = useLanguageStore(s => s.scriptMode)
+  const setScriptMode = useLanguageStore(s => s.setScriptMode)
+  const showTransliteration = useLanguageStore(s => s.showTransliteration)
+  const setShowTransliteration = useLanguageStore(s => s.setShowTransliteration)
+  const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
+  const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
 
   const { updateSession } = useProgressStore()
 
@@ -140,10 +147,10 @@ export default function Study() {
     const text = [
       currentEntry.gurmukhi,
       currentEntry.transliteration,
-      getEntryEnglishText(currentEntry, englishSource),
+      getEntryMeaningText(currentEntry, meaningLanguage, englishSource),
       baniName ? `— ${baniName} · Ang ${currentEntry.ang}` : `— ${currentEntry.scripture} · Ang ${currentEntry.ang}`,
       'via Nitnem App',
-    ].join('\n')
+    ].filter(Boolean).join('\n')
     if (navigator.share) {
       try { await navigator.share({ text }) } catch { /* user dismissed */ }
     } else {
@@ -260,6 +267,62 @@ export default function Study() {
           >
             {isBookmarked ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
           </button>
+        </div>
+      </div>
+
+      <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-2xl p-3 border border-sand/15 dark:border-dark-text/10 shadow-card">
+        <div className="flex gap-2 mb-2">
+          {(['gurmukhi', 'devanagari'] as const).map(mode => {
+            const selected = scriptMode === mode
+            return (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setScriptMode(mode)}
+                className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                  selected
+                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                }`}
+              >
+                {SCRIPT_MODE_LABELS[mode]}
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="flex gap-2 mb-2">
+          <button
+            type="button"
+            onClick={() => setShowTransliteration(!showTransliteration)}
+            className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+              showTransliteration
+                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+            }`}
+          >
+            Transliteration {showTransliteration ? 'On' : 'Off'}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-4 gap-2">
+          {(['none', 'en', 'pa', 'hi'] as const).map(option => {
+            const selected = meaningLanguage === option
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setMeaningLanguage(option)}
+                className={`rounded-xl px-2 py-2 font-sans text-[11px] font-medium min-h-[42px] transition-all duration-300 ${
+                  selected
+                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                }`}
+              >
+                {MEANING_LANGUAGE_LABELS[option]}
+              </button>
+            )
+          })}
         </div>
       </div>
 

@@ -8,7 +8,13 @@ import { useLanguageStore } from '../store/language'
 
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
-  useLanguageStore.setState({ hindiMode: false, fontSize: 22, englishSource: 'bdb' })
+  useLanguageStore.setState({
+    scriptMode: 'gurmukhi',
+    showTransliteration: false,
+    meaningLanguage: 'en',
+    fontSize: 22,
+    englishSource: 'bdb',
+  })
 })
 
 describe('Study bookmark button', () => {
@@ -109,6 +115,39 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getByText(/There is but One God/i)).toBeInTheDocument()
     })
   })
+
+  it('shows transliteration after toggling it on', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: /transliteration off/i }))
+
+    expect(screen.getByText(/ikOankaar sat naam/i)).toBeInTheDocument()
+  })
+
+  it('switches meanings inside the reader controls', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('One Universal Creator God. The Name Is Truth.')).toBeInTheDocument()
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: /^Punjabi$/i }))
+
+    expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
+    expect(screen.queryByText('One Universal Creator God. The Name Is Truth.')).not.toBeInTheDocument()
+  })
 })
 
 describe('Study exact shabad mode', () => {
@@ -143,6 +182,20 @@ describe('Study hukamnama mode', () => {
       expect(screen.getAllByText(/Raag Dhanaasree/i).length).toBeGreaterThan(0)
       expect(screen.getByText(/Go to source shabad/i)).toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
+    })
+  })
+
+  it('renders Rehras intro lines without Ang 0', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?baniDbId=21&bani=Rehras%20Sahib']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Intro')).toBeInTheDocument()
+      expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument()
+      expect(screen.queryByText(/Ang 0/i)).not.toBeInTheDocument()
     })
   })
 })

@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom'
 import Home from './Home'
 import { useProgressStore } from '../store/progress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
+import { useLanguageStore } from '../store/language'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
@@ -11,6 +12,13 @@ function renderHome() {
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
+  useLanguageStore.setState({
+    scriptMode: 'gurmukhi',
+    showTransliteration: false,
+    meaningLanguage: 'en',
+    fontSize: 22,
+    englishSource: 'bdb',
+  })
 })
 
 test('renders greeting', () => {
@@ -47,6 +55,14 @@ test('shows Take Hukamnama section', async () => {
   expect(screen.getByText(/take a hukamnama/i)).toBeInTheDocument()
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open today's hukamnama/i })).toBeInTheDocument()
+  })
+})
+
+test('hides preview meanings when meaning language is off', async () => {
+  useLanguageStore.setState({ meaningLanguage: 'none' })
+  renderHome()
+  await waitFor(() => {
+    expect(screen.queryByText(/People try to deceive others/i)).not.toBeInTheDocument()
   })
 })
 

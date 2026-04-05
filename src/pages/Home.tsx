@@ -7,8 +7,7 @@ import { getDailyPickAng } from '../utils/dailyPick'
 import { useAng } from '../hooks/useAng'
 import { useThemeStore } from '../store/theme'
 import { useLanguageStore } from '../store/language'
-import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
-import { getEntryEnglishText } from '../utils/translations'
+import { getEntryMeaningText, renderScriptText } from '../utils/readerDisplay'
 import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useHukamnama } from '../hooks/useHukamnama'
@@ -28,7 +27,8 @@ export default function Home() {
   const { streak, currentSession, studied } = useProgressStore()
   const { getEntryById } = useScriptureCacheStore()
   const { dark, toggle: toggleTheme } = useThemeStore()
-  const hindiMode = useLanguageStore(s => s.hindiMode)
+  const scriptMode = useLanguageStore(s => s.scriptMode)
+  const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
   resetIfNewDay()
@@ -108,16 +108,16 @@ export default function Home() {
                 {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}{hukamnama.entry.scripture} · Ang {hukamnama.ang}
               </p>
               <p
-                lang={hindiMode ? 'hi' : 'pa-Guru'}
-                className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-center text-ink dark:text-dark-text leading-relaxed line-clamp-3`}
+                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl text-center text-ink dark:text-dark-text leading-relaxed line-clamp-3`}
               >
-                {hindiMode
-                  ? gurmukhiToHindi(hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi)
-                  : (hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi)}
+                {renderScriptText(hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
               </p>
-              <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 text-center mt-3 line-clamp-2">
-                {getEntryEnglishText(hukamnama.entry, englishSource)}
-              </p>
+              {meaningLanguage !== 'none' && (
+                <p className={`text-sm text-ink/70 dark:text-dark-text/70 text-center mt-3 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                  {getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)}
+                </p>
+              )}
               <button
                 onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
                 className="w-full mt-4 font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
@@ -215,12 +215,14 @@ export default function Home() {
             <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">
               {todaysPick.scripture} · Ang {todaysPick.ang}
             </p>
-            <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2`}>
-              {hindiMode ? gurmukhiToHindi(todaysPick.gurmukhi) : todaysPick.gurmukhi}
+            <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2`}>
+              {renderScriptText(todaysPick.gurmukhi, scriptMode)}
             </p>
-            <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1">
-              {getEntryEnglishText(todaysPick, englishSource)}
-            </p>
+            {meaningLanguage !== 'none' && (
+              <p className={`text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                {getEntryMeaningText(todaysPick, meaningLanguage, englishSource)}
+              </p>
+            )}
             <div className="mt-4 flex justify-end">
               <button className="font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-5 py-2 rounded-full active:scale-95 transition-transform duration-150">
                 Read
@@ -322,8 +324,8 @@ export default function Home() {
                 }}
               >
                 <p className="font-sans text-saffron dark:text-saffron-light text-[10px] mb-1 uppercase tracking-wide">{entry.scripture}</p>
-                <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text text-sm leading-relaxed line-clamp-2`}>
-                  {hindiMode ? gurmukhiToHindi(entry.gurmukhi) : entry.gurmukhi}
+                <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text text-sm leading-relaxed line-clamp-2`}>
+                  {renderScriptText(entry.gurmukhi, scriptMode)}
                 </p>
               </div>
             ))}

@@ -32,6 +32,19 @@ interface BaniShabadVerse {
   words: BaniWord[]
 }
 
+interface BaniResponseVerse {
+  header?: number
+  paragraph?: number
+  verse?: BaniShabadVerse & {
+    verseId?: number
+    shabadId?: number
+    pageNo?: number | null
+    source?: { id?: BaniSource }
+  }
+  pageNo?: number | null
+  source?: { id?: BaniSource }
+}
+
 interface ShabadInfo {
   shabadId?: number
   pageNo?: number
@@ -171,7 +184,8 @@ function buildLine(
   fallbackAng: number,
   fallbackShabadId: number
 ): ScriptureLine {
-  const ang = verse.pageNo ?? fallbackAng
+  const originalAng = 'originalPageNo' in verse ? verse.originalPageNo ?? null : verse.pageNo ?? null
+  const ang = originalAng ?? fallbackAng
   const verseId = verse.verseId ?? 0
   const shabadId = verse.shabadId ?? fallbackShabadId
   const translations_en = getEnglishTranslations(verse.translation)
@@ -180,6 +194,8 @@ function buildLine(
     verseId,
     shabadId,
     ang,
+    originalAng,
+    isHeader: 'isHeader' in verse ? Boolean(verse.isHeader) : originalAng === null,
     gurmukhi: safeText(verse.verse?.unicode),
     transliteration: safeText(verse.transliteration?.english),
     translation_en: translations_en.bdb ?? '',
@@ -212,12 +228,13 @@ function buildEntry({
   writer?: string
   hukamnamaDate?: string
 }): ScriptureEntry {
-  const lines = verses.map(verse => buildLine(verse, ang, shabadId ?? verse.shabadId ?? 0))
+  const resolvedAng = verses.find(verse => verse.pageNo !== null && verse.pageNo !== undefined)?.pageNo ?? ang
+  const lines = verses.map(verse => buildLine(verse, resolvedAng, shabadId ?? verse.shabadId ?? 0))
 
   return {
     id,
     scripture,
-    ang,
+    ang: resolvedAng,
     source,
     shabadId,
     verseIds: lines.map(line => line.verseId).filter(Boolean),
@@ -297,8 +314,10 @@ interface BaniFlatVerse {
   verse: { unicode: string }
   transliteration: { english: string }
   translation: Record<string, Record<string, string | Record<string, string>>>
-  pageNo: number
+  pageNo: number | null
+  originalPageNo?: number | null
   source: { id: string }
+  isHeader?: boolean
 }
 
 export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
@@ -306,30 +325,66 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
   if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
   const data = await res.json() as Record<string, unknown>
 
-  const rawArray = (data.verses ?? []) as Array<Record<string, unknown>>
+  const rawArray = (data.verses ?? []) as BaniResponseVerse[]
   if (!rawArray.length) return []
 
-  // BaniDB may return verses flat or nested inside a "verse" property
-  const flatVerses: BaniFlatVerse[] = rawArray.map(item => {
-    // If nested: { verse: { verseId, verse: {unicode}, ... }, ... }
-    const inner = (item.verse as Record<string, unknown>) ?? item
-    return {
-      verseId: (inner.verseId ?? item.verseId ?? 0) as number,
-      shabadId: (inner.shabadId ?? item.shabadId ?? 0) as number,
-      verse: (inner.verse as { unicode: string }) ?? { unicode: '' },
-      transliteration: (inner.transliteration as { english: string }) ?? { english: '' },
-      translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
-      pageNo: (inner.pageNo ?? item.pageNo ?? 0) as number,
-      source: (inner.source as { id: string }) ?? { id: 'G' },
+  const flatVerses: BaniFlatVerse[] = []
+  const pendingHeaderLines: BaniFlatVerse[] = []
+  let currentPageNo: number | null = null
+
+  for (const item of rawArray) {
+    const nestedVerse = item.verse && typeof item.verse === 'object' && (
+      'verseId' in item.verse || 'shabadId' in item.verse || 'translation' in item.verse || 'transliteration' in item.verse
+    ) ? item.verse : null
+    const inner = (nestedVerse ?? item) as BaniShabadVerse & {
+      verseId?: number
+      shabadId?: number
+      pageNo?: number | null
+      source?: { id?: string }
     }
-  })
+    const pageNo = inner.pageNo ?? item.pageNo ?? null
+    const flatVerse: BaniFlatVerse = {
+      verseId: inner.verseId ?? 0,
+      shabadId: inner.shabadId ?? 0,
+      verse: inner.verse ?? { unicode: '' },
+      transliteration: inner.transliteration ?? { english: '' },
+      translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
+      pageNo,
+      originalPageNo: pageNo,
+      source: (inner.source ?? item.source ?? { id: 'G' }) as { id: string },
+      isHeader: Boolean(item.header) || pageNo === null,
+    }
+
+    if (pageNo === null && currentPageNo === null) {
+      pendingHeaderLines.push(flatVerse)
+      continue
+    }
+
+    if (pageNo !== null) {
+      currentPageNo = pageNo
+      if (pendingHeaderLines.length > 0) {
+        flatVerses.push(
+          ...pendingHeaderLines.map(headerLine => ({
+            ...headerLine,
+            pageNo,
+          }))
+        )
+        pendingHeaderLines.length = 0
+      }
+    }
+
+    flatVerses.push({
+      ...flatVerse,
+      pageNo: pageNo ?? currentPageNo,
+    })
+  }
 
   const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
 
   // Group by page + shabad so the reader can render one section per shabad.
   const grouped = new Map<string, BaniFlatVerse[]>()
   for (const v of flatVerses) {
-    const key = `${v.pageNo}-${v.shabadId}`
+    const key = `${v.pageNo ?? currentPageNo ?? 1}-${v.shabadId}`
     const list = grouped.get(key) ?? []
     list.push(v)
     grouped.set(key, list)

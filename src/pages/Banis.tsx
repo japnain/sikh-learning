@@ -60,6 +60,14 @@ function IndexRow({
   )
 }
 
+function MetadataChip({ children }: { children: ReactNode }) {
+  return (
+    <span className="rounded-full bg-gold/10 dark:bg-gold/10 border border-gold/15 dark:border-gold/20 px-2 py-1 font-sans text-[10px] text-gold dark:text-gold-light">
+      {children}
+    </span>
+  )
+}
+
 export default function Banis() {
   const navigate = useNavigate()
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
@@ -351,12 +359,25 @@ export default function Banis() {
                       {loadingAmritHeader === header.headerId && shabads.length === 0 ? (
                         <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
                       ) : shabads.map(shabad => (
-                        <IndexRow
+                        <button
                           key={shabad.shabadId}
-                          label={shabad.gurmukhi}
-                          detail={[shabad.transliteration, shabad.source, shabad.raag, shabad.pageNo ? `Ang ${shabad.pageNo}` : ''].filter(Boolean).join(' · ')}
                           onClick={() => navigate(`/study?shabadId=${shabad.shabadId}`)}
-                        />
+                          className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                        >
+                          <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text leading-relaxed">
+                            {shabad.gurmukhi}
+                          </p>
+                          {shabad.transliteration && shabad.transliteration.length <= 80 && (
+                            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
+                              {shabad.transliteration}
+                            </p>
+                          )}
+                          <div className="flex flex-wrap gap-1.5 mt-2">
+                            {shabad.source && <MetadataChip>{shabad.source}</MetadataChip>}
+                            {shabad.raag && <MetadataChip>{shabad.raag}</MetadataChip>}
+                            {shabad.pageNo ? <MetadataChip>{`Ang ${shabad.pageNo}`}</MetadataChip> : null}
+                          </div>
+                        </button>
                       ))}
                     </div>
                   )}

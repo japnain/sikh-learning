@@ -15,7 +15,7 @@ export const BANIS: Bani[] = [
   // ── SGGS · Daily Prayers (sorted by ang) ─────────────────────────────────
   { id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of SGGS Ji — recited every morning at amrit vela.', baniDbId: 1 },
   { id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, category: 'Daily Prayers', description: 'Asks where the gate of the Lord is — opens Rehras Sahib.', baniDbId: 7 },
-  { id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, category: 'Daily Prayers', description: 'Evening prayer — a collection of shabads recited at dusk.', baniDbId: 8 },
+  { id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, category: 'Daily Prayers', description: 'Evening prayer — a collection of shabads recited at dusk.', baniDbId: 21 },
   { id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, category: 'Daily Prayers', description: 'Night prayer recited before sleep, celebrating the soul\'s union with Waheguru.', baniDbId: 9 },
   { id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji, part of the Nitnem.', baniDbId: 6 },
 
