@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useMusicStore, SOUNDS } from '../store/music'
 import { useLanguageStore } from '../store/language'
 import { playSound, stopSound, setMasterVolume } from '../utils/soundEngine'
+import { ENGLISH_SOURCE_LABELS } from '../utils/translations'
 import { IconMusic, IconArrowRight } from '../components/icons'
 
 export default function More() {
   const navigate = useNavigate()
   const { currentSound, playing, volume, setSound, setPlaying, setVolume } = useMusicStore()
-  const { hindiMode, toggleHindi, fontSize, setFontSize } = useLanguageStore()
+  const { hindiMode, toggleHindi, fontSize, setFontSize, englishSource, setEnglishSource } = useLanguageStore()
 
   useEffect(() => {
     if (playing && currentSound) {
@@ -113,6 +114,35 @@ export default function More() {
             <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">Large</span>
           </div>
         </div>
+
+        <div className="mt-5 pt-4 border-t border-sand/15 dark:border-dark-text/10">
+          <p className="font-sans text-sm text-ink dark:text-dark-text mb-1">English translation</p>
+          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-3">
+            Choose which English source appears in Study, Home, and Hukamnama.
+          </p>
+
+          <div className="grid gap-2">
+            {Object.entries(ENGLISH_SOURCE_LABELS).map(([key, label]) => {
+              const selected = englishSource === key
+              return (
+                <button
+                  key={key}
+                  onClick={() => setEnglishSource(key as typeof englishSource)}
+                  className={`w-full flex items-center justify-between rounded-xl px-3 py-3 border min-h-[48px] transition-all duration-300 active:scale-95 ${
+                    selected
+                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      : 'bg-parchment-card dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                  }`}
+                >
+                  <span className="font-sans text-sm font-medium">{label}</span>
+                  <span className="font-sans text-[10px] uppercase tracking-[0.18em] opacity-70">
+                    {selected ? 'Selected' : 'Tap to use'}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Learn Gurmukhi */}
@@ -134,7 +164,7 @@ export default function More() {
       <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card animate-slide-up stagger-4">
         <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Tips</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
-          Tap any word while studying to see its meaning and save it to your vocabulary. Tap a card to see the translation.
+          Tap any Gurbani word while studying to see its meaning and save it to your vocabulary. Use the English translation setting above to switch sources across the app.
         </p>
       </div>
 

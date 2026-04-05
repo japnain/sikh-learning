@@ -24,6 +24,86 @@ Object.defineProperty(globalThis, 'localStorage', {
   configurable: true,
 })
 
+class MockAudioContext {
+  state = 'running'
+  currentTime = 0
+  sampleRate = 44100
+  destination = {}
+
+  resume() {
+    return Promise.resolve()
+  }
+
+  createGain() {
+    return {
+      gain: { value: 1 },
+      connect: () => {},
+      disconnect: () => {},
+    }
+  }
+
+  createBufferSource() {
+    return {
+      buffer: null,
+      connect: () => {},
+      disconnect: () => {},
+      start: () => {},
+      stop: () => {},
+      loop: false,
+    }
+  }
+
+  createOscillator() {
+    return {
+      type: 'sine',
+      frequency: {
+        value: 0,
+        setValueAtTime: () => {},
+        linearRampToValueAtTime: () => {},
+        exponentialRampToValueAtTime: () => {},
+      },
+      connect: () => {},
+      disconnect: () => {},
+      start: () => {},
+      stop: () => {},
+    }
+  }
+
+  createBiquadFilter() {
+    return {
+      type: 'lowpass',
+      frequency: {
+        value: 0,
+        setValueAtTime: () => {},
+        linearRampToValueAtTime: () => {},
+      },
+      Q: { value: 0 },
+      connect: () => {},
+      disconnect: () => {},
+    }
+  }
+
+  createBuffer() {
+    return {
+      getChannelData: () => new Float32Array(1),
+    }
+  }
+
+  decodeAudioData() {
+    return Promise.resolve({})
+  }
+}
+
+Object.defineProperty(window, 'AudioContext', {
+  value: MockAudioContext,
+  configurable: true,
+})
+
+Object.defineProperty(window, 'webkitAudioContext', {
+  value: MockAudioContext,
+  configurable: true,
+})
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterEach(() => {
   server.resetHandlers()

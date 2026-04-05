@@ -42,10 +42,12 @@ test('shows quick action buttons', () => {
   expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
 })
 
-test('shows Take Hukamnama section', () => {
+test('shows Take Hukamnama section', async () => {
   renderHome()
   expect(screen.getByText(/take a hukamnama/i)).toBeInTheDocument()
-  expect(screen.getByText(/take hukamnama/i)).toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: /open today's hukamnama/i })).toBeInTheDocument()
+  })
 })
 
 test('does not show recently studied section when empty', () => {

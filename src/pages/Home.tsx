@@ -8,8 +8,10 @@ import { useAng } from '../hooks/useAng'
 import { useThemeStore } from '../store/theme'
 import { useLanguageStore } from '../store/language'
 import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
+import { getEntryEnglishText } from '../utils/translations'
 import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { useHukamnama } from '../hooks/useHukamnama'
 import { BANIS } from '../data/banis'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
@@ -27,12 +29,14 @@ export default function Home() {
   const { getEntryById } = useScriptureCacheStore()
   const { dark, toggle: toggleTheme } = useThemeStore()
   const hindiMode = useLanguageStore(s => s.hindiMode)
+  const englishSource = useLanguageStore(s => s.englishSource)
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
   resetIfNewDay()
   const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
+  const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
 
   const [pressedBtn, setPressedBtn] = useState<string | null>(null)
   const [nitnemOpen, setNitnemOpen] = useState(false)
@@ -92,15 +96,48 @@ export default function Home() {
       <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card dark:shadow-gold animate-slide-up stagger-1">
         <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Take a Hukamnama</p>
         <div className="bg-parchment-card dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center transition-colors duration-300">
-          <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 text-center mb-4">
-            Open Sri Guru Granth Sahib Ji to a random ang and receive the Guru's guidance.
-          </p>
-          <button
-            onClick={() => navigate(`/study?source=G&ang=${Math.floor(Math.random() * 1430) + 1}`)}
-            className="w-full font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
-          >
-            Take Hukamnama
-          </button>
+          {hukamnamaLoading ? (
+            <div className="w-full animate-pulse">
+              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-2/3 mb-3" />
+              <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10 mb-3" />
+              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-5/6" />
+            </div>
+          ) : hukamnama ? (
+            <>
+              <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 text-center mb-2">
+                {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}{hukamnama.entry.scripture} · Ang {hukamnama.ang}
+              </p>
+              <p
+                lang={hindiMode ? 'hi' : 'pa-Guru'}
+                className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-center text-ink dark:text-dark-text leading-relaxed line-clamp-3`}
+              >
+                {hindiMode
+                  ? gurmukhiToHindi(hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi)
+                  : (hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi)}
+              </p>
+              <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 text-center mt-3 line-clamp-2">
+                {getEntryEnglishText(hukamnama.entry, englishSource)}
+              </p>
+              <button
+                onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
+                className="w-full mt-4 font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
+              >
+                Open Today&apos;s Hukamnama
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 text-center mb-4">
+                Today&apos;s hukamnama is unavailable right now.
+              </p>
+              <button
+                onClick={() => navigate('/banis')}
+                className="w-full font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
+              >
+                Browse Gurbani
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -181,7 +218,9 @@ export default function Home() {
             <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2`}>
               {hindiMode ? gurmukhiToHindi(todaysPick.gurmukhi) : todaysPick.gurmukhi}
             </p>
-            <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1">{todaysPick.translation_en}</p>
+            <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1">
+              {getEntryEnglishText(todaysPick, englishSource)}
+            </p>
             <div className="mt-4 flex justify-end">
               <button className="font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-5 py-2 rounded-full active:scale-95 transition-transform duration-150">
                 Read

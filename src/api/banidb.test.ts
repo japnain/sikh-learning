@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fetchAng, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads } from './banidb'
+import { fetchAng, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama } from './banidb'
 
 describe('fetchAng', () => {
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
@@ -13,6 +13,8 @@ describe('fetchAng', () => {
     expect(entries[0].translation_en).toContain('One Universal Creator God')
     expect(entries[0].translation_pa).toContain('ਅਕਾਲ')
     expect(entries[0].words).toEqual([])
+    expect(entries[0].lines).toHaveLength(2)
+    expect(entries[0].lines?.[0].translations_en.ms).toContain('There is but One God')
   })
 
   it('concatenates multiple verses in same shabadId', async () => {
@@ -65,6 +67,8 @@ describe('fetchShabad', () => {
     expect(entry?.shabadId).toBe(50)
     expect(entry?.scripture).toBe('SGGS')
     expect(entry?.gurmukhi).toContain('ੴ')
+    expect(entry?.lines).toHaveLength(2)
+    expect(entry?.writer).toBe('Guru Nanak Dev Ji')
   })
 })
 
@@ -101,5 +105,17 @@ describe('index fetchers', () => {
     const shabads = await fetchAmritKeertanShabads(1)
     expect(shabads[0].shabadId).toBe(816)
     expect(shabads[0].gurmukhi).toContain('ਡੰਡਉਤਿ')
+  })
+})
+
+describe('fetchHukamnama', () => {
+  it('returns normalized hukamnama entry data', async () => {
+    const hukamnama = await fetchHukamnama('2026-04-05')
+    expect(hukamnama.date).toBe('2026-04-05')
+    expect(hukamnama.ang).toBe(680)
+    expect(hukamnama.shabadId).toBe(2591)
+    expect(hukamnama.entry.lines).toHaveLength(2)
+    expect(hukamnama.entry.raag).toBe('Raag Dhanaasree')
+    expect(hukamnama.entry.lines?.[0].translations_en.ssk).toContain('Inner-knower')
   })
 })

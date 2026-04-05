@@ -6,11 +6,17 @@ const MOCK_VERSE_1 = {
   verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' },
   transliteration: { english: 'ikOankaar sat naam kartaa purakh' },
   translation: {
-    en: { bdb: 'One Universal Creator God. The Name Is Truth.' },
+    en: {
+      bdb: 'One Universal Creator God. The Name Is Truth.',
+      ms: 'There is but One God. True is His Name.',
+      ssk: 'One Universal Creator God. The Name Is Truth.',
+    },
     hi: { ss: 'एक ओंकार सतिनाम करता पुरख' },
     pu: { ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' } },
   },
   pageNo: 1,
+  raag: { english: 'Jap' },
+  writer: { english: 'Guru Nanak Dev Ji' },
 }
 
 const MOCK_VERSE_2 = {
@@ -19,11 +25,17 @@ const MOCK_VERSE_2 = {
   verse: { unicode: 'ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ' },
   transliteration: { english: 'nirbhau nirvair akaal moorat' },
   translation: {
-    en: { bdb: 'No Fear. No Hatred. Image Of The Undying.' },
+    en: {
+      bdb: 'No Fear. No Hatred. Image Of The Undying.',
+      ms: 'Fearless and without hate, immortal in form.',
+      ssk: 'No Fear. No Hatred. Image Of The Undying.',
+    },
     hi: { ss: 'निर्भय निर्वैर अकाल मूरत' },
     pu: { ss: { unicode: 'ਨਿਡਰ, ਵੈਰ ਰਹਿਤ, ਅਕਾਲ ਦੀ ਮੂਰਤ' } },
   },
   pageNo: 1,
+  raag: { english: 'Jap' },
+  writer: { english: 'Guru Nanak Dev Ji' },
 }
 
 const MOCK_VERSE_3 = {
@@ -32,11 +44,17 @@ const MOCK_VERSE_3 = {
   verse: { unicode: 'ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ' },
   transliteration: { english: 'sochai soch na hovee' },
   translation: {
-    en: { bdb: 'By thinking, He cannot be reduced to thought.' },
+    en: {
+      bdb: 'By thinking, He cannot be reduced to thought.',
+      ms: 'By thought one can think Him not.',
+      ssk: 'By thinking, He cannot be reduced to thought.',
+    },
     hi: { ss: 'सोचने से वह सोचा नहीं जा सकता' },
     pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
   },
   pageNo: 1,
+  raag: { english: 'Jap' },
+  writer: { english: 'Guru Nanak Dev Ji' },
 }
 
 export const MOCK_ANG_PAGE = [MOCK_VERSE_1, MOCK_VERSE_2, MOCK_VERSE_3]
@@ -45,7 +63,9 @@ export const MOCK_SHABAD_RESPONSE = {
   shabadInfo: {
     shabadId: 1,
     pageNo: 1,
-    source: { sourceId: 'G' },
+    source: { sourceId: 'G', english: 'Sri Guru Granth Sahib Ji' },
+    raag: { english: 'Jap' },
+    writer: { english: 'Guru Nanak Dev Ji' },
   },
   verses: [
     {
@@ -55,7 +75,11 @@ export const MOCK_SHABAD_RESPONSE = {
       verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ' },
       transliteration: { english: 'ikOankaar sat naam' },
       translation: {
-        en: { bdb: 'One Universal Creator God. Truth.' },
+        en: {
+          bdb: 'One Universal Creator God. Truth.',
+          ms: 'There is but One God. Truth.',
+          ssk: 'One Universal Creator God. Truth.',
+        },
         hi: { ss: 'एक ओंकार सतिनाम' },
         pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚ।' } },
       },
@@ -79,7 +103,11 @@ export const MOCK_SHABAD_RESPONSE = {
       verse: { unicode: 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ' },
       transliteration: { english: 'karataa purakh nirabhau' },
       translation: {
-        en: { bdb: 'Creative Being. No Fear.' },
+        en: {
+          bdb: 'Creative Being. No Fear.',
+          ms: 'Creative being, beyond fear.',
+          ssk: 'Creative Being. No Fear.',
+        },
         hi: { ss: 'करता पुरख निर्भउ' },
         pu: { ss: { unicode: 'ਕਰਤਾ ਪੁਰਖ। ਨਿਰਭਉ।' } },
       },
@@ -116,7 +144,11 @@ export const MOCK_BANI_RESPONSE = {
       verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' },
       transliteration: { english: 'ikOankaar sat naam kartaa purakh' },
       translation: {
-        en: { bdb: 'One Universal Creator God. The Name Is Truth.' },
+        en: {
+          bdb: 'One Universal Creator God. The Name Is Truth.',
+          ms: 'There is but One God. True is His Name.',
+          ssk: 'One Universal Creator God. The Name Is Truth.',
+        },
         hi: { ss: 'एक ओंकार सतिनाम करता पुरख' },
         pu: { ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' } },
       },
@@ -129,7 +161,11 @@ export const MOCK_BANI_RESPONSE = {
       verse: { unicode: 'ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ' },
       transliteration: { english: 'sochai soch na hovee' },
       translation: {
-        en: { bdb: 'By thinking, He cannot be reduced to thought.' },
+        en: {
+          bdb: 'By thinking, He cannot be reduced to thought.',
+          ms: 'By thought one can think Him not.',
+          ssk: 'By thinking, He cannot be reduced to thought.',
+        },
         hi: { ss: 'सोचने से वह सोचा नहीं जा सकता' },
         pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
       },
@@ -158,6 +194,62 @@ export const MOCK_AMRIT_HEADER_RESPONSE = {
       SourceEnglish: 'Sri Guru Granth Sahib Ji',
       RaagEnglish: 'Raag Gauree',
       PageNo: 65,
+    },
+  ],
+}
+
+export const MOCK_HUKAMNAMA_RESPONSE = {
+  isLatest: true,
+  date: {
+    gregorian: {
+      year: 2026,
+      month: 4,
+      date: 5,
+    },
+  },
+  shabads: [
+    {
+      shabadInfo: {
+        shabadId: 2591,
+        pageNo: 680,
+        source: { sourceId: 'G', english: 'Sri Guru Granth Sahib Ji' },
+        raag: { english: 'Raag Dhanaasree' },
+        writer: { english: 'Guru Arjan Dev Ji' },
+      },
+      verses: [
+        {
+          verseId: 29344,
+          shabadId: 2591,
+          verse: { unicode: 'ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥' },
+          transliteration: { english: 'jatan karai maanukh ddahakaavai oh a(n)tarajaamee jaanai ||' },
+          translation: {
+            en: {
+              bdb: 'People try to deceive others, but the Inner-knower knows everything.',
+              ms: 'The man makes efforts to deceive others, but the Lord knows everything.',
+              ssk: 'People try to deceive others, but the Inner-knower knows everything.',
+            },
+            hi: { ss: 'मनुष्य धोखा देता है पर प्रभु सब जानता है।' },
+            pu: { ss: { unicode: 'ਮਨੁੱਖ ਧੋਖਾ ਦੇਂਦਾ ਹੈ ਪਰ ਪ੍ਰਭੂ ਸਭ ਜਾਣਦਾ ਹੈ।' } },
+          },
+          pageNo: 680,
+        },
+        {
+          verseId: 29347,
+          shabadId: 2591,
+          verse: { unicode: 'ਉਤ ਤਾਕੈ ਉਤ ਤੇ ਉਤ ਪੇਖੈ ਆਵੈ ਲੋਭੀ ਫੇਰਿ ॥ ਰਹਾਉ ॥' },
+          transliteration: { english: 'aut taakai ut te ut pekhai aavai lobhee fer || rahaau ||' },
+          translation: {
+            en: {
+              bdb: 'Looking around, this way and that, the greedy people come and go. ||Pause||',
+              ms: 'The greedy man looks all around and returns again. Pause.',
+              ssk: 'Looking around, this way and that, the greedy people come and go. ||Pause||',
+            },
+            hi: { ss: 'लोभी मनुष्य इधर उधर देखता फिरता है। रहाउ।' },
+            pu: { ss: { unicode: 'ਲੋਭੀ ਮਨੁੱਖ ਇੱਧਰ ਉੱਧਰ ਵੇਖਦਾ ਫਿਰਦਾ ਹੈ। ਰਹਾਉ।' } },
+          },
+          pageNo: 680,
+        },
+      ],
     },
   ],
 }
@@ -208,5 +300,13 @@ export const handlers = [
 
   http.get('https://api.banidb.com/v2/amritkeertan/index/:headerId', () => {
     return HttpResponse.json(MOCK_AMRIT_HEADER_RESPONSE)
+  }),
+
+  http.get('https://api.banidb.com/v2/hukamnamas', () => {
+    return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+  }),
+
+  http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', () => {
+    return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
   }),
 ]

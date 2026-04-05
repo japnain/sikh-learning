@@ -1,11 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import type { EnglishSource } from '../types'
 
 interface LanguageState {
   hindiMode: boolean
   toggleHindi: () => void
   fontSize: number
   setFontSize: (n: number) => void
+  englishSource: EnglishSource
+  setEnglishSource: (source: EnglishSource) => void
 }
 
 export const useLanguageStore = create<LanguageState>()(
@@ -15,6 +18,8 @@ export const useLanguageStore = create<LanguageState>()(
       toggleHindi: () => set(s => ({ hindiMode: !s.hindiMode })),
       fontSize: 22,
       setFontSize: (n) => set({ fontSize: n }),
+      englishSource: 'bdb',
+      setEnglishSource: (englishSource) => set({ englishSource }),
     }),
     { name: 'sikh-language' }
   )
