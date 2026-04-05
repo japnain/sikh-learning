@@ -133,7 +133,7 @@ export default function Home() {
                       {done && <IconCheck size={14} />}
                     </button>
                     <button
-                      onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
+                      onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
                       className="flex-1 text-left"
                     >
                       <p className={`font-sans text-sm transition-colors duration-300 ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
@@ -239,7 +239,7 @@ export default function Home() {
             {progressItems.map(p => (
               <button
                 key={p.id}
-                onClick={() => navigate(`/study?source=${p.source}&ang=${p.startAng}`)}
+                onClick={() => navigate(`/study?source=${p.source}&ang=${p.startAng}&bani=${encodeURIComponent(p.name)}`)}
                 className="w-full bg-parchment-low dark:bg-dark-surface rounded-xl p-3 text-left active:scale-95 transition-transform duration-150"
               >
                 <div className="flex justify-between items-center mb-1">

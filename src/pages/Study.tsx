@@ -31,6 +31,7 @@ export default function Study() {
 
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
+  const baniName = searchParams.get('bani')
 
   if ((!source || !angParam) && scriptureId) {
     const parts = scriptureId.split('-')
@@ -181,6 +182,13 @@ export default function Study() {
           >
             Save Bookmark
           </button>
+        </div>
+      )}
+
+      {baniName && (
+        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
+          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">Begins on this {source === 'G' || source === 'D' ? 'ang' : 'page'}</p>
         </div>
       )}
 
