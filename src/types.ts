@@ -6,6 +6,26 @@ export interface Word {
   meaning_pa: string
 }
 
+export type EnglishSource = 'bdb' | 'ms' | 'ssk'
+
+export interface EnglishTranslations {
+  bdb?: string
+  ms?: string
+  ssk?: string
+}
+
+export interface ScriptureLine {
+  verseId: number
+  shabadId: number
+  ang: number
+  gurmukhi: string
+  transliteration: string
+  translation_en: string
+  translations_en: EnglishTranslations
+  translation_hi: string
+  translation_pa: string
+}
+
 export interface ScriptureEntry {
   id: string
   scripture: string
@@ -13,6 +33,11 @@ export interface ScriptureEntry {
   source?: 'G' | 'D' | 'B' | 'A'
   shabadId?: number
   verseIds?: number[]
+  sourceName?: string
+  raag?: string
+  writer?: string
+  hukamnamaDate?: string
+  lines?: ScriptureLine[]
   gurmukhi: string
   transliteration: string
   translation_en: string

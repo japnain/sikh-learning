@@ -4,9 +4,11 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useScriptureCacheStore } from '../store/scriptureCache'
+import { useLanguageStore } from '../store/language'
 
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
+  useLanguageStore.setState({ hindiMode: false, fontSize: 22, englishSource: 'bdb' })
 })
 
 describe('Study bookmark button', () => {
@@ -81,6 +83,32 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getByText('ਸੋਚੈ')).toBeInTheDocument()
     })
   })
+
+  it('renders separate verse blocks inside the reader', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      const lines = screen.getAllByTestId('study-line')
+      expect(lines.length).toBeGreaterThan(2)
+    })
+  })
+
+  it('uses the selected English translation source', async () => {
+    useLanguageStore.setState({ englishSource: 'ms' })
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText(/There is but One God/i)).toBeInTheDocument()
+    })
+  })
 })
 
 describe('Study exact shabad mode', () => {
@@ -97,6 +125,24 @@ describe('Study exact shabad mode', () => {
       const cards = screen.getAllByTestId('study-card')
       expect(cards.length).toBe(1)
       expect(screen.getByText('ੴ')).toBeInTheDocument()
+      expect(screen.getByText(/open full shabad/i)).toBeInTheDocument()
+    })
+  })
+})
+
+describe('Study hukamnama mode', () => {
+  it('renders the normalized hukamnama reader view', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText(/Hukamnama · 2026-04-05/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/Raag Dhanaasree/i).length).toBeGreaterThan(0)
+      expect(screen.getByText(/Go to source shabad/i)).toBeInTheDocument()
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
     })
   })
 })

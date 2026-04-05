@@ -69,12 +69,12 @@ describe('Library removed sections', () => {
     expect(screen.queryByText(/add new/i)).not.toBeInTheDocument()
   })
 
-  it('shows all 4 source sections', () => {
+  it('shows the remaining scripture sections without Amrit Keertan', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
     expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
     expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
     expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
-    expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
+    expect(screen.queryByText('Amrit Keertan')).not.toBeInTheDocument()
   })
 
   it('does not show Panthic Sources or BNL', () => {

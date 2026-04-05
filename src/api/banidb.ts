@@ -1,4 +1,4 @@
-import type { ScriptureEntry, Word } from '../types'
+import type { EnglishTranslations, ScriptureEntry, ScriptureLine, Word } from '../types'
 
 const BASE = 'https://api.banidb.com/v2'
 
@@ -12,6 +12,8 @@ interface BaniVerse {
   translation: Record<string, Record<string, string | Record<string, string>>>
   pageNo: number
   source?: { id: BaniSource }
+  raag?: { english?: string }
+  writer?: { english?: string }
 }
 
 interface BaniWord {
@@ -28,6 +30,22 @@ interface BaniShabadVerse {
   translation?: Record<string, Record<string, string | Record<string, string>>>
   pageNo?: number
   words: BaniWord[]
+}
+
+interface ShabadInfo {
+  shabadId?: number
+  pageNo?: number
+  ang?: { ang?: number }
+  source?: {
+    sourceId?: BaniSource
+    english?: string
+  }
+  raag?: {
+    english?: string
+  }
+  writer?: {
+    english?: string
+  }
 }
 
 interface BaniInfoResponse {
@@ -61,13 +79,10 @@ interface AmritKeertanIndexResponse {
 }
 
 export interface HukamnamaResult {
-  gurmukhi: string
-  transliteration: string
-  translation_en: string
-  translation_hi: string
-  translation_pa: string
+  date: string
+  entry: ScriptureEntry
   ang: number
-  source: string
+  source: BaniSource
   shabadId: number
 }
 
@@ -120,7 +135,17 @@ function getEnglishTransliteration(val: unknown): string {
   return safeText(record.english ?? record.en)
 }
 
-function getHindi(t: BaniVerse['translation'] | undefined): string {
+function getEnglishTranslations(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): EnglishTranslations {
+  if (!t?.en) return {}
+  const en = t.en as Record<string, unknown>
+  return {
+    bdb: safeText(en.bdb),
+    ms: safeText(en.ms),
+    ssk: safeText(en.ssk),
+  }
+}
+
+function getHindi(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
   if (!t?.hi) return ''
   const hi = t.hi as Record<string, unknown>
   // BaniDB may return hi.ss as string or hi.ss.unicode as string
@@ -129,18 +154,85 @@ function getHindi(t: BaniVerse['translation'] | undefined): string {
   return ''
 }
 
-function getEnglish(t: BaniVerse['translation'] | undefined): string {
-  if (!t?.en) return ''
-  const en = t.en as Record<string, string>
-  return safeText(en.bdb)
+function getEnglish(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
+  return getEnglishTranslations(t).bdb ?? ''
 }
 
-function getPunjabi(t: BaniVerse['translation'] | undefined): string {
+function getPunjabi(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
   if (!t?.pu) return ''
   const pu = t.pu as Record<string, unknown>
   if (typeof pu.ss === 'string') return pu.ss
   if (pu.ss && typeof (pu.ss as Record<string, string>).unicode === 'string') return (pu.ss as Record<string, string>).unicode
   return ''
+}
+
+function buildLine(
+  verse: BaniVerse | BaniFlatVerse | BaniShabadVerse,
+  fallbackAng: number,
+  fallbackShabadId: number
+): ScriptureLine {
+  const ang = verse.pageNo ?? fallbackAng
+  const verseId = verse.verseId ?? 0
+  const shabadId = verse.shabadId ?? fallbackShabadId
+  const translations_en = getEnglishTranslations(verse.translation)
+
+  return {
+    verseId,
+    shabadId,
+    ang,
+    gurmukhi: safeText(verse.verse?.unicode),
+    transliteration: safeText(verse.transliteration?.english),
+    translation_en: translations_en.bdb ?? '',
+    translations_en,
+    translation_hi: getHindi(verse.translation),
+    translation_pa: getPunjabi(verse.translation),
+  }
+}
+
+function buildEntry({
+  id,
+  scripture,
+  ang,
+  source,
+  shabadId,
+  verses,
+  sourceName,
+  raag,
+  writer,
+  hukamnamaDate,
+}: {
+  id: string
+  scripture: string
+  ang: number
+  source: BaniSource
+  shabadId?: number
+  verses: Array<BaniVerse | BaniFlatVerse | BaniShabadVerse>
+  sourceName?: string
+  raag?: string
+  writer?: string
+  hukamnamaDate?: string
+}): ScriptureEntry {
+  const lines = verses.map(verse => buildLine(verse, ang, shabadId ?? verse.shabadId ?? 0))
+
+  return {
+    id,
+    scripture,
+    ang,
+    source,
+    shabadId,
+    verseIds: lines.map(line => line.verseId).filter(Boolean),
+    sourceName,
+    raag,
+    writer,
+    hukamnamaDate,
+    lines,
+    gurmukhi: lines.map(line => line.gurmukhi).join(' '),
+    transliteration: lines.map(line => line.transliteration).join(' '),
+    translation_en: lines.map(line => line.translation_en).join(' '),
+    translation_hi: lines.map(line => line.translation_hi).join(' '),
+    translation_pa: lines.map(line => line.translation_pa).join(' '),
+    words: [],
+  }
 }
 
 export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {
@@ -159,20 +251,19 @@ export async function fetchAng(ang: number, source: BaniSource): Promise<Scriptu
   }
 
   const scripture = toScripture(source)
-  return Array.from(grouped.entries()).map(([shabadId, verses]) => ({
-    id: `${source}-${ang}-${shabadId}`,
-    scripture,
-    ang,
-    source,
-    shabadId,
-    verseIds: verses.map(v => v.verseId),
-    gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
-    transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
-    translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
-    translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
-    translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
-    words: [],
-  }))
+  return Array.from(grouped.entries()).map(([shabadId, verses]) =>
+    buildEntry({
+      id: `${source}-${ang}-${shabadId}`,
+      scripture,
+      ang,
+      source,
+      shabadId,
+      verses,
+      sourceName: verses[0]?.source?.id ? toScripture(verses[0].source.id) : scripture,
+      raag: safeText(verses[0]?.raag?.english),
+      writer: safeText(verses[0]?.writer?.english),
+    })
+  )
 }
 
 export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
@@ -235,30 +326,28 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
 
   const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
 
-  // Group by pageNo so each card = one ang's worth of content
-  const grouped = new Map<number, BaniFlatVerse[]>()
+  // Group by page + shabad so the reader can render one section per shabad.
+  const grouped = new Map<string, BaniFlatVerse[]>()
   for (const v of flatVerses) {
-    const list = grouped.get(v.pageNo) ?? []
+    const key = `${v.pageNo}-${v.shabadId}`
+    const list = grouped.get(key) ?? []
     list.push(v)
-    grouped.set(v.pageNo, list)
+    grouped.set(key, list)
   }
 
-  return Array.from(grouped.entries()).map(([pageNo, verses]) => {
+  return Array.from(grouped.entries()).map(([key, verses]) => {
+    const [pageNoString] = key.split('-')
+    const pageNo = Number(pageNoString)
     const srcId = verses[0]?.source?.id ?? 'G'
-    return {
-      id: `bani-${baniDbId}-${pageNo}`,
+    return buildEntry({
+      id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
       scripture: sourceMap[srcId] ?? 'SGGS',
       ang: pageNo,
       source: (srcId as BaniSource) ?? 'G',
       shabadId: verses[0]?.shabadId,
-      verseIds: verses.map(v => v.verseId),
-      gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
-      transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
-      translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
-      translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
-      translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
-      words: [],
-    }
+      verses,
+      sourceName: sourceMap[srcId] ?? 'SGGS',
+    })
   })
 }
 
@@ -283,14 +372,7 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
 export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | null> {
   const res = await fetch(`${BASE}/shabads/${shabadId}`)
   if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-  const data = await res.json() as {
-    shabadInfo?: {
-      shabadId?: number
-      pageNo?: number
-      source?: { sourceId?: BaniSource }
-    }
-    verses?: BaniShabadVerse[]
-  }
+  const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
 
   const verses = data.verses ?? []
   if (!verses.length) return null
@@ -299,51 +381,27 @@ export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | nu
   const ang = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
   const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
 
-  if (verses.length === 1) {
-    const verse = verses[0]
-    return {
-      id: `${source}-${ang}-${resolvedShabadId}-${verse.verseId ?? 0}`,
-      scripture: toScripture(source),
-      ang,
-      source,
-      shabadId: resolvedShabadId,
-      verseIds: verse.verseId ? [verse.verseId] : [],
-      gurmukhi: safeText(verse.verse?.unicode),
-      transliteration: safeText(verse.transliteration?.english),
-      translation_en: getEnglish(verse.translation),
-      translation_hi: getHindi(verse.translation),
-      translation_pa: getPunjabi(verse.translation),
-      words: [],
-    }
-  }
+  const id = verses.length === 1
+    ? `${source}-${ang}-${resolvedShabadId}-${verses[0]?.verseId ?? 0}`
+    : `${source}-${ang}-${resolvedShabadId}`
 
-  return {
-    id: `${source}-${ang}-${resolvedShabadId}`,
+  return buildEntry({
+    id,
     scripture: toScripture(source),
     ang,
     source,
     shabadId: resolvedShabadId,
-    verseIds: verses.map(v => v.verseId ?? 0).filter(Boolean),
-    gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
-    transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
-    translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
-    translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
-    translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
-    words: [],
-  }
+    verses,
+    sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
+    raag: safeText(data.shabadInfo?.raag?.english),
+    writer: safeText(data.shabadInfo?.writer?.english),
+  })
 }
 
 export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntry[]> {
   const res = await fetch(`${BASE}/shabads/${shabadId}`)
   if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-  const data = await res.json() as {
-    shabadInfo?: {
-      shabadId?: number
-      pageNo?: number
-      source?: { sourceId?: BaniSource }
-    }
-    verses?: BaniShabadVerse[]
-  }
+  const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
 
   const verses = data.verses ?? []
   if (!verses.length) return []
@@ -352,20 +410,19 @@ export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntr
   const fallbackAng = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
   const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
 
-  return verses.map(verse => ({
-    id: `${source}-${verse.pageNo ?? fallbackAng}-${resolvedShabadId}-${verse.verseId ?? 0}`,
-    scripture: toScripture(source),
-    ang: verse.pageNo ?? fallbackAng,
-    source,
-    shabadId: resolvedShabadId,
-    verseIds: verse.verseId ? [verse.verseId] : [],
-    gurmukhi: safeText(verse.verse?.unicode),
-    transliteration: safeText(verse.transliteration?.english),
-    translation_en: getEnglish(verse.translation),
-    translation_hi: getHindi(verse.translation),
-    translation_pa: getPunjabi(verse.translation),
-    words: [],
-  }))
+  return verses.map(verse =>
+    buildEntry({
+      id: `${source}-${verse.pageNo ?? fallbackAng}-${resolvedShabadId}-${verse.verseId ?? 0}`,
+      scripture: toScripture(source),
+      ang: verse.pageNo ?? fallbackAng,
+      source,
+      shabadId: resolvedShabadId,
+      verses: [verse],
+      sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
+      raag: safeText(data.shabadInfo?.raag?.english),
+      writer: safeText(data.shabadInfo?.writer?.english),
+    })
+  )
 }
 
 export async function fetchBanisIndex(): Promise<BaniIndexItem[]> {
@@ -432,43 +489,55 @@ export async function fetchAudio(shabadId: number): Promise<string | null> {
   }
 }
 
-export async function fetchHukamnama(): Promise<HukamnamaResult> {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
+export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
+  const targetDate = date ? new Date(`${date}T00:00:00`) : new Date()
+  const year = targetDate.getFullYear()
+  const month = String(targetDate.getMonth() + 1).padStart(2, '0')
+  const day = String(targetDate.getDate()).padStart(2, '0')
 
   let res = await fetch(`${BASE}/hukamnamas/${year}/${month}/${day}`)
   if (!res.ok) res = await fetch(`${BASE}/hukamnamas`)
   if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
 
   const data = await res.json() as {
-    hukamnamaInfo?: { ang?: number; source?: { id?: string } }
+    isLatest?: boolean
+    date?: { gregorian?: { year?: number; month?: number; date?: number } }
+    hukamnamaInfo?: { ang?: number; source?: { id?: BaniSource } }
     shabads?: Array<{
+      shabadInfo?: ShabadInfo
+      verses?: BaniVerse[]
       shabad?: {
-        shabadInfo?: { shabadId?: number; ang?: { ang?: number } }
+        shabadInfo?: ShabadInfo & { ang?: { ang?: number } }
         verses?: BaniVerse[]
       }
     }>
   }
 
   const allShabads = data.shabads ?? []
-  const ang =
-    data.hukamnamaInfo?.ang ??
-    allShabads[0]?.shabad?.shabadInfo?.ang?.ang ??
-    1
-  const sourceId = data.hukamnamaInfo?.source?.id ?? 'G'
-  const shabadId = allShabads[0]?.shabad?.shabadInfo?.shabadId ?? 0
-  const allVerses = allShabads.flatMap(s => s.shabad?.verses ?? [])
+  const firstShabad = allShabads[0]
+  const shabadInfo = firstShabad?.shabadInfo ?? firstShabad?.shabad?.shabadInfo
+  const allVerses = allShabads.flatMap(s => s.verses ?? s.shabad?.verses ?? [])
+  const ang = data.hukamnamaInfo?.ang ?? shabadInfo?.pageNo ?? shabadInfo?.ang?.ang ?? 1
+  const sourceId = data.hukamnamaInfo?.source?.id ?? shabadInfo?.source?.sourceId ?? 'G'
+  const shabadId = shabadInfo?.shabadId ?? 0
+  const dateString = [
+    data.date?.gregorian?.year ?? year,
+    String(data.date?.gregorian?.month ?? month).padStart(2, '0'),
+    String(data.date?.gregorian?.date ?? day).padStart(2, '0'),
+  ].join('-')
 
-  return {
-    gurmukhi: allVerses.map(v => safeText(v.verse?.unicode)).join(' '),
-    transliteration: allVerses.map(v => safeText(v.transliteration?.english)).join(' '),
-    translation_en: allVerses.map(v => getEnglish(v.translation)).join(' '),
-    translation_hi: allVerses.map(v => getHindi(v.translation)).join(' '),
-    translation_pa: allVerses.map(v => getPunjabi(v.translation)).join(' '),
+  const entry = buildEntry({
+    id: `hukamnama-${dateString}-${sourceId}-${shabadId}`,
+    scripture: toScripture(sourceId),
     ang,
     source: sourceId,
     shabadId,
-  }
+    verses: allVerses,
+    sourceName: safeText(shabadInfo?.source?.english) || toScripture(sourceId),
+    raag: safeText(shabadInfo?.raag?.english),
+    writer: safeText(shabadInfo?.writer?.english),
+    hukamnamaDate: dateString,
+  })
+
+  return { date: dateString, entry, ang, source: sourceId, shabadId }
 }

@@ -4,11 +4,14 @@ import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useBani } from '../hooks/useBani'
 import { useShabad } from '../hooks/useShabad'
+import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
 import type { ScriptureEntry } from '../types'
+import { getEntryEnglishText } from '../utils/translations'
+import { useLanguageStore } from '../store/language'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
@@ -40,6 +43,7 @@ export default function Study() {
   const shabadIdParam = Number(searchParams.get('shabadId')) || null
   const verseIdParam = Number(searchParams.get('verseId')) || null
   const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
+  const hukamnamaDateParam = searchParams.get('hukamnamaDate')
 
   if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam) {
     const parts = scriptureId.split('-')
@@ -51,9 +55,10 @@ export default function Study() {
 
   const isExactShabadMode = shabadIdParam !== null
   const isBaniDbMode = baniDbIdParam !== null
+  const isHukamnamaMode = Boolean(hukamnamaDateParam)
   const isBaniRangeMode = baniName !== null && endAngParam !== null && source !== null && angParam !== null
-  const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode
-  const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode
+  const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode && !isHukamnamaMode
+  const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode || isHukamnamaMode
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
@@ -65,6 +70,7 @@ export default function Study() {
   )
   const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null)
   const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
+  const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
 
   const baniPageEntries = useMemo(() => {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
@@ -85,18 +91,21 @@ export default function Study() {
   }, [isExactShabadMode, shabadResult.entries, verseIdParam])
 
   const entries = useMemo(() => {
+    if (isHukamnamaMode) return hukamnamaResult.data ? [hukamnamaResult.data.entry] : []
     if (isExactShabadMode) return exactEntries
     if (isBaniDbMode) return baniPageEntries
     if (isAngMode) return angResult.entries
     return []
-  }, [angResult.entries, baniPageEntries, exactEntries, isAngMode, isBaniDbMode, isExactShabadMode])
+  }, [angResult.entries, baniPageEntries, exactEntries, hukamnamaResult.data, isAngMode, isBaniDbMode, isExactShabadMode, isHukamnamaMode])
 
   const loading =
+    isHukamnamaMode ? hukamnamaResult.loading :
     isExactShabadMode ? shabadResult.loading :
     isBaniDbMode ? baniResult.loading :
     angResult.loading
 
   const error =
+    isHukamnamaMode ? hukamnamaResult.error :
     isExactShabadMode ? shabadResult.error :
     isBaniDbMode ? baniResult.error :
     angResult.error
@@ -104,6 +113,7 @@ export default function Study() {
   const currentEntry = entries[0] ?? null
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
+  const englishSource = useLanguageStore(s => s.englishSource)
 
   const { updateSession } = useProgressStore()
 
@@ -130,7 +140,7 @@ export default function Study() {
     const text = [
       currentEntry.gurmukhi,
       currentEntry.transliteration,
-      currentEntry.translation_en,
+      getEntryEnglishText(currentEntry, englishSource),
       baniName ? `— ${baniName} · Ang ${currentEntry.ang}` : `— ${currentEntry.scripture} · Ang ${currentEntry.ang}`,
       'via Nitnem App',
     ].join('\n')
@@ -271,6 +281,25 @@ export default function Study() {
         </div>
       )}
 
+      {isHukamnamaMode && currentEntry && (
+        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">
+            Hukamnama{hukamnamaResult.data?.date ? ` · ${hukamnamaResult.data.date}` : ''}
+          </p>
+          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+            {currentEntry.raag ? `${currentEntry.raag} · ` : ''}{currentEntry.writer ? `${currentEntry.writer} · ` : ''}{currentEntry.scripture} · Ang {currentEntry.ang}
+          </p>
+          {hukamnamaResult.data?.shabadId ? (
+            <button
+              onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
+              className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"
+            >
+              Go to source shabad
+            </button>
+          ) : null}
+        </div>
+      )}
+
       {isExactShabadMode && currentEntry && (
         <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">Exact Search Result</p>
@@ -312,7 +341,7 @@ export default function Study() {
         })}
       </div>
 
-      {!isExactShabadMode && currentAng && navMinAng !== null && navMaxAng !== null && (
+      {!isExactShabadMode && !isHukamnamaMode && currentAng && navMinAng !== null && navMaxAng !== null && (
         <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
           <button
             onClick={() => navTo(currentAng - 1)}

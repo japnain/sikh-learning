@@ -60,7 +60,6 @@ const SECTIONS: Section[] = [
   { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
   { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
-  { id: 'amrit-keertan', name: 'Amrit Keertan', source: 'A', totalAngs: 1430 },
 ]
 
 export default function Library() {

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import type { ScriptureEntry, Word } from '../types'
+import { useMemo, useState } from 'react'
+import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
+import { getLineEnglishText } from '../utils/translations'
 import WordPopover from './WordPopover'
 
 interface Props {
@@ -9,16 +10,30 @@ interface Props {
   wordData?: Word[] | null
 }
 
+function fallbackLine(entry: ScriptureEntry): ScriptureLine {
+  return {
+    verseId: entry.verseIds?.[0] ?? 0,
+    shabadId: entry.shabadId ?? 0,
+    ang: entry.ang,
+    gurmukhi: entry.gurmukhi,
+    transliteration: entry.transliteration,
+    translation_en: entry.translation_en,
+    translations_en: { bdb: entry.translation_en },
+    translation_hi: entry.translation_hi,
+    translation_pa: entry.translation_pa,
+  }
+}
+
 export default function StudyCard({ entry, wordData }: Props) {
-  const [flipped, setFlipped] = useState(false)
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const hindiMode = useLanguageStore(s => s.hindiMode)
   const fontSize = useLanguageStore(s => s.fontSize)
-  const [lang, setLang] = useState<'en' | 'alt'>(hindiMode ? 'alt' : 'en')
+  const englishSource = useLanguageStore(s => s.englishSource)
 
-  useEffect(() => {
-    setLang(hindiMode ? 'alt' : 'en')
-  }, [hindiMode])
+  const lines = useMemo(
+    () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
+    [entry]
+  )
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -48,58 +63,79 @@ export default function StudyCard({ entry, wordData }: Props) {
 
   return (
     <>
-      <div
+      <section
         data-testid="study-card"
-        className="animate-scale-in ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none"
-        onClick={() => setFlipped(f => !f)}
+        className="animate-scale-in ornate-top bg-parchment-card dark:bg-dark-card rounded-3xl p-5 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10"
       >
-          {!flipped ? (
-            /* Front: Gurmukhi text */
-            <div>
-              <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">
-                {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {entry.gurmukhi.split(' ').filter(Boolean).map((word, i) => (
-                  <span
-                    key={i}
-                    lang={hindiMode ? 'hi' : 'pa-Guru'}
-                    className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-all duration-300`}
-                    style={{ fontSize: `${fontSize}px`, minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
-                    onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
-                  >
-                    {hindiMode ? gurmukhiToHindi(word) : word}
-                  </span>
-                ))}
-              </div>
-              <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
-            </div>
-          ) : (
-            /* Back: Translation */
-            <div>
-              <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">
-                {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
-              </p>
-              <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic mb-3">{entry.transliteration}</p>
-              <div className="flex gap-2 mb-3">
-                <button
-                  onClick={e => { e.stopPropagation(); setLang('en') }}
-                  className={`font-sans text-xs px-3 py-1 rounded-full active:scale-95 transition-all duration-300 ${lang === 'en' ? 'bg-gold text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
-                >EN</button>
-                <button
-                  onClick={e => { e.stopPropagation(); setLang('alt') }}
-                  className={`font-sans text-xs px-3 py-1 rounded-full active:scale-95 transition-all duration-300 ${lang === 'alt' ? 'bg-gold text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
-                >{hindiMode ? 'HI' : 'PA'}</button>
-              </div>
-              {lang === 'en' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_en}</p>}
-              {lang === 'alt' && (hindiMode
-                ? <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_hi}</p>
-                : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>
-              )}
-              <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">Tap card to see original</p>
-            </div>
+        <div className="mb-4 pb-4 border-b border-sand/15 dark:border-dark-text/10">
+          <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.18em]">
+            {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
+          </p>
+          {(entry.raag || entry.writer || entry.sourceName) && (
+            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
+              {[entry.raag, entry.writer, entry.sourceName].filter(Boolean).join(' · ')}
+            </p>
           )}
-      </div>
+        </div>
+
+        <div className="space-y-4">
+          {lines.map((line, index) => {
+            const altTranslation = hindiMode ? line.translation_hi : line.translation_pa
+            const englishText = getLineEnglishText(line, englishSource)
+
+            return (
+              <article
+                key={`${line.verseId}-${index}`}
+                data-testid="study-line"
+                className="rounded-2xl bg-parchment/55 dark:bg-dark-surface/70 border border-sand/10 dark:border-dark-text/10 px-4 py-4"
+              >
+                <div className="flex flex-wrap gap-x-2 gap-y-3">
+                  {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
+                    <button
+                      key={`${line.verseId}-${wordIndex}`}
+                      type="button"
+                      lang={hindiMode ? 'hi' : 'pa-Guru'}
+                      className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 text-left text-ink dark:text-dark-text leading-[1.9] active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                      style={{ fontSize: `${fontSize}px` }}
+                      onClick={() => handleWordTap(word)}
+                    >
+                      {hindiMode ? gurmukhiToHindi(word) : word}
+                    </button>
+                  ))}
+                </div>
+
+                {line.transliteration && (
+                  <p className="font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed">
+                    {line.transliteration}
+                  </p>
+                )}
+
+                {englishText && (
+                  <p className="font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed">
+                    {englishText}
+                  </p>
+                )}
+
+                {altTranslation && (
+                  hindiMode ? (
+                    <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2 leading-relaxed">
+                      {altTranslation}
+                    </p>
+                  ) : (
+                    <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/65 dark:text-dark-text/65 mt-2 leading-relaxed">
+                      {altTranslation}
+                    </p>
+                  )
+                )}
+              </article>
+            )
+          })}
+        </div>
+
+        <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">
+          Tap any Gurbani word for meaning
+        </p>
+      </section>
 
       {activeWord && (
         <WordPopover
