@@ -1,4 +1,4 @@
-import type { EnglishSource, EnglishTranslations, MeaningLanguage, ScriptureEntry, ScriptureLine, ScriptMode } from '../types'
+import type { EnglishSource, EnglishTranslations, LearningLevel, MeaningLanguage, ScriptureEntry, ScriptureLine, ScriptMode } from '../types'
 
 export const ENGLISH_SOURCE_LABELS: Record<EnglishSource, string> = {
   bdb: 'BaniDB',
@@ -16,6 +16,12 @@ export const MEANING_LANGUAGE_LABELS: Record<MeaningLanguage, string> = {
   en: 'English',
   pa: 'Punjabi',
   hi: 'Hindi',
+}
+
+export const LEARNING_LEVEL_LABELS: Record<LearningLevel, string> = {
+  beginner: 'Beginner',
+  familiar: 'Familiar',
+  'daily-reader': 'Daily Reader',
 }
 
 export function getPreferredEnglishText(

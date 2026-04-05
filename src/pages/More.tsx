@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMusicStore, SOUNDS } from '../store/music'
 import { useLanguageStore } from '../store/language'
+import { useOnboardingStore } from '../store/onboarding'
 import { playSound, stopSound, setMasterVolume } from '../utils/soundEngine'
-import { ENGLISH_SOURCE_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translations'
+import { ENGLISH_SOURCE_LABELS, LEARNING_LEVEL_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translations'
 import { renderScriptText } from '../utils/readerDisplay'
 import { IconMusic, IconArrowRight } from '../components/icons'
 
@@ -22,6 +23,7 @@ export default function More() {
     englishSource,
     setEnglishSource,
   } = useLanguageStore()
+  const { learningLevel, setLearningLevel, resetOnboarding } = useOnboardingStore()
 
   useEffect(() => {
     if (playing && currentSound) {
@@ -207,6 +209,39 @@ export default function More() {
                 </button>
               )
             })}
+          </div>
+
+          <div className="mt-5 pt-4 border-t border-sand/15 dark:border-dark-text/10">
+            <p className="font-sans text-sm text-ink dark:text-dark-text mb-1">Learning level</p>
+            <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-3">
+              This changes the coaching tone in Learn and what Home recommends first.
+            </p>
+
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {(['beginner', 'familiar', 'daily-reader'] as const).map(level => {
+                const selected = learningLevel === level
+                return (
+                  <button
+                    key={level}
+                    onClick={() => setLearningLevel(level)}
+                    className={`rounded-xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium transition-all duration-300 active:scale-95 ${
+                      selected
+                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                        : 'bg-parchment-card dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                    }`}
+                  >
+                    {LEARNING_LEVEL_LABELS[level]}
+                  </button>
+                )
+              })}
+            </div>
+
+            <button
+              onClick={resetOnboarding}
+              className="font-sans text-xs text-saffron dark:text-saffron-light underline underline-offset-2"
+            >
+              Re-open first setup on Home
+            </button>
           </div>
         </div>
       </div>

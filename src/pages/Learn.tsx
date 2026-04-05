@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { GURMUKHI_LETTERS, GURMUKHI_VOWELS, type GurmukhiLetter } from '../data/gurmukhi'
 import { LEARNING_BRIDGE_ITEMS } from '../data/learningBridge'
 import { useLearningStore } from '../store/learning'
+import { useOnboardingStore } from '../store/onboarding'
+import { LEARNING_LEVEL_LABELS } from '../utils/translations'
 
 type Tab = 'letters' | 'vowels' | 'practice' | 'bridge'
 
@@ -44,6 +46,7 @@ export default function Learn() {
     completeLesson,
     recordPracticeSession,
   } = useLearningStore()
+  const learningLevel = useOnboardingStore(s => s.learningLevel)
 
   const practiceList = useMemo(
     () => [...GURMUKHI_LETTERS, ...GURMUKHI_VOWELS].sort(() => Math.random() - 0.5),
@@ -70,6 +73,10 @@ export default function Learn() {
 
   const masteredCount = masteredSymbols.length
   const completionPct = Math.round((masteredCount / (GURMUKHI_LETTERS.length + GURMUKHI_VOWELS.length)) * 100)
+  const recommendedTab: Tab =
+    learningLevel === 'beginner' ? 'letters' :
+    learningLevel === 'familiar' ? 'practice' :
+    'bridge'
 
   return (
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
@@ -94,6 +101,28 @@ export default function Learn() {
         <p className="font-sans text-[10px] text-ink/45 dark:text-dark-text/45 mt-2">
           {totalPracticeSessions} total practice sessions
         </p>
+      </div>
+
+      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-4 border border-sand/15 dark:border-dark-text/10">
+        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">Current Track</p>
+        <p className="font-sans text-sm text-ink dark:text-dark-text">
+          {LEARNING_LEVEL_LABELS[learningLevel]}
+        </p>
+        <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-1">
+          {learningLevel === 'beginner'
+            ? 'Start with letters and vowels, then move into guided recognition drills.'
+            : learningLevel === 'familiar'
+              ? 'Use practice mode to tighten recognition speed before moving into live pankti.'
+              : 'Work mainly from Gurbani bridge items and use letters only when you hit weak spots.'}
+        </p>
+        {tab !== recommendedTab && (
+          <button
+            onClick={() => setTab(recommendedTab)}
+            className="mt-3 font-sans text-xs text-saffron dark:text-saffron-light underline underline-offset-2"
+          >
+            Jump to recommended track
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-4 gap-2 mb-4">
@@ -154,6 +183,11 @@ export default function Learn() {
         </div>
       ) : tab === 'bridge' ? (
         <div className="space-y-3">
+          <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 border border-sand/15 dark:border-dark-text/10">
+            <p className="font-sans text-sm text-ink dark:text-dark-text">
+              Read short real pankti with translation support, then jump straight into Study.
+            </p>
+          </div>
           {LEARNING_BRIDGE_ITEMS.map(item => (
             <button
               key={item.id}
