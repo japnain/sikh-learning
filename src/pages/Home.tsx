@@ -14,8 +14,11 @@ import { useHukamnama } from '../hooks/useHukamnama'
 import { BANIS } from '../data/banis'
 import { useVocabStore } from '../store/vocab'
 import { useLearningStore } from '../store/learning'
+import { useOnboardingStore } from '../store/onboarding'
+import OnboardingSheet from '../components/OnboardingSheet'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
+import { LEARNING_LEVEL_LABELS } from '../utils/translations'
 
 function greeting(): string {
   const h = new Date().getHours()
@@ -32,6 +35,11 @@ export default function Home() {
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
+  const setScriptMode = useLanguageStore(s => s.setScriptMode)
+  const showTransliteration = useLanguageStore(s => s.showTransliteration)
+  const setShowTransliteration = useLanguageStore(s => s.setShowTransliteration)
+  const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
+  const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
   resetIfNewDay()
   const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
@@ -46,6 +54,12 @@ export default function Home() {
   const vocab = useVocabStore(s => s.vocab)
   const dueWords = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
   const { masteredSymbols, completedLessons, practiceStreak } = useLearningStore()
+  const {
+    hasCompletedOnboarding,
+    learningLevel,
+    setLearningLevel,
+    completeOnboarding,
+  } = useOnboardingStore()
 
   // Top banis to show reading progress for
   const PROGRESS_BANIS = BANIS.filter(b => ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id))
@@ -162,7 +176,7 @@ export default function Home() {
           >
             <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Grow</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {masteredSymbols.length} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day streak
+              {LEARNING_LEVEL_LABELS[learningLevel]} · {masteredSymbols.length} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day streak
             </p>
           </button>
           <button
@@ -367,6 +381,22 @@ export default function Home() {
             ))}
           </div>
         </div>
+      )}
+
+      {!hasCompletedOnboarding && (
+        <OnboardingSheet
+          scriptMode={scriptMode}
+          setScriptMode={setScriptMode}
+          showTransliteration={showTransliteration}
+          setShowTransliteration={setShowTransliteration}
+          meaningLanguage={meaningLanguage}
+          setMeaningLanguage={setMeaningLanguage}
+          englishSource={englishSource}
+          setEnglishSource={setEnglishSource}
+          learningLevel={learningLevel}
+          setLearningLevel={setLearningLevel}
+          onComplete={() => completeOnboarding(learningLevel)}
+        />
       )}
     </div>
   )

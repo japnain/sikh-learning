@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
 import { useLanguageStore } from '../store/language'
+import { useOnboardingStore } from '../store/onboarding'
 
 beforeEach(() => {
   useLanguageStore.setState({
@@ -10,6 +11,10 @@ beforeEach(() => {
     meaningLanguage: 'en',
     fontSize: 22,
     englishSource: 'bdb',
+  })
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    learningLevel: 'beginner',
   })
 })
 
@@ -37,4 +42,10 @@ test('persists reader display defaults', () => {
   expect(state.scriptMode).toBe('devanagari')
   expect(state.meaningLanguage).toBe('pa')
   expect(state.showTransliteration).toBe(true)
+})
+
+test('persists selected learning level', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
+  expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
 })

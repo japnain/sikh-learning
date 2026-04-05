@@ -10,6 +10,7 @@ export type EnglishSource = 'bdb' | 'ms' | 'ssk'
 export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 export type SearchMode = 'first-letters' | 'gurmukhi' | 'english' | 'transliteration'
+export type LearningLevel = 'beginner' | 'familiar' | 'daily-reader'
 
 export interface EnglishTranslations {
   bdb?: string
