@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { useVocabStore } from '../store/vocab'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
+import { IconLibrary, IconBookmarkFilled, IconChevronUp, IconChevronDown, IconClose, IconArrowRight, IconArrowLeft } from '../components/icons'
 
 const SOURCE_SHORT_NAME: Record<string, string> = {
   G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
@@ -24,7 +25,7 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
           <button
             key={ang}
             onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="bg-parchment-card dark:bg-dark-card rounded-lg py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-saffron dark:hover:text-saffron-light border border-sand/15 dark:border-dark-text/10 transition-colors duration-300 min-h-[44px]"
+            className="bg-parchment-card dark:bg-dark-card rounded-lg py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light border border-sand/15 dark:border-dark-text/10 transition-all duration-300 min-h-[44px] active:scale-95"
           >
             {ang}
           </button>
@@ -34,14 +35,14 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
         <button
           onClick={() => setPage(p => Math.max(0, p - 1))}
           disabled={page === 0}
-          className="font-sans text-saffron dark:text-saffron-light text-sm disabled:opacity-30 min-h-[44px] px-3"
-        >← Prev</button>
+          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1 active:scale-95 transition-transform duration-150"
+        ><IconArrowLeft size={14} /> Prev</button>
         <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{angLabel(source)} {start}–{end} of {totalAngs}</span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={end >= totalAngs}
-          className="font-sans text-saffron dark:text-saffron-light text-sm disabled:opacity-30 min-h-[44px] px-3"
-        >Next →</button>
+          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1 active:scale-95 transition-transform duration-150"
+        >Next <IconArrowRight size={14} /></button>
       </div>
     </div>
   )
@@ -73,51 +74,57 @@ export default function Library() {
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300 animate-fade-in">
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">Library</h1>
 
       {/* My Vocabulary */}
-      <div className="mb-4">
+      <div className="mb-4 animate-slide-up stagger-1">
         <button
           onClick={() => navigate('/vocab')}
-          className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
+          className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-gold/10 shadow-card dark:shadow-gold transition-all duration-300 active:scale-[0.98]"
         >
-          <div className="text-left">
-            <p className="font-sans font-semibold text-ink dark:text-dark-text">📚 My Vocabulary</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
-              {vocab.length === 0 ? 'No words saved yet' : `${vocab.length} word${vocab.length === 1 ? '' : 's'} saved`}
-            </p>
+          <div className="text-left flex items-center gap-3">
+            <IconLibrary size={20} className="text-gold dark:text-gold-light" />
+            <div>
+              <p className="font-sans font-semibold text-ink dark:text-dark-text">My Vocabulary</p>
+              <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+                {vocab.length === 0 ? 'No words saved yet' : `${vocab.length} word${vocab.length === 1 ? '' : 's'} saved`}
+              </p>
+            </div>
           </div>
-          <span className="font-sans text-saffron dark:text-saffron-light text-sm">→</span>
+          <IconArrowRight size={16} className="text-gold dark:text-gold-light" />
         </button>
       </div>
 
       {/* Bookmarks */}
       {bookmarks.length > 0 && (
-        <div className="mb-4">
+        <div className="mb-4 animate-slide-up stagger-2">
           <button
             onClick={() => toggle('bookmarks')}
-            className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
+            className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-gold/10 shadow-card transition-colors duration-300 active:scale-[0.98]"
           >
-            <div className="text-left">
-              <p className="font-sans font-semibold text-ink dark:text-dark-text">🔖 Bookmarks</p>
-              <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{bookmarks.length} saved</p>
+            <div className="text-left flex items-center gap-3">
+              <IconBookmarkFilled size={20} className="text-gold dark:text-gold-light" />
+              <div>
+                <p className="font-sans font-semibold text-ink dark:text-dark-text">Bookmarks</p>
+                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{bookmarks.length} saved</p>
+              </div>
             </div>
-            <span className="font-sans text-saffron dark:text-saffron-light text-sm">{expanded['bookmarks'] ? '▲' : '▼'}</span>
+            <span className="text-gold dark:text-gold-light">{expanded['bookmarks'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
           </button>
           {expanded['bookmarks'] && (
             <div className="mt-2 ml-2 flex flex-col gap-2">
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
                   key={bookmark.id}
-                  className="bg-parchment-low dark:bg-dark-surface rounded-xl p-3 relative transition-colors duration-300"
+                  className="bg-parchment-low dark:bg-dark-surface rounded-xl p-3 relative transition-colors duration-300 animate-scale-in"
                 >
                   <button
                     onClick={() => removeBookmark(bookmark.id)}
-                    className="absolute top-2 right-2 font-sans text-ink/40 dark:text-dark-text/40 text-xs min-h-[24px] min-w-[24px] flex items-center justify-center"
+                    className="absolute top-2 right-2 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center active:scale-90 transition-transform duration-150"
                     aria-label="Remove bookmark"
                   >
-                    ✕
+                    <IconClose size={14} />
                   </button>
                   <button
                     onClick={() => navigate(`/study?source=${bookmark.source}&ang=${bookmark.ang}`)}
@@ -127,7 +134,7 @@ export default function Library() {
                     {bookmark.description && (
                       <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-0.5">{bookmark.description}</p>
                     )}
-                    <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
+                    <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">
                       {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · {angLabel(bookmark.source)} {bookmark.ang}
                     </p>
                   </button>
@@ -141,27 +148,27 @@ export default function Library() {
       {/* Scripture Sections */}
       {SECTIONS.map((section, i) => {
         const isOpen = expanded[section.id]
-        const isLarge = i === 0 // SGGS gets largest heading
+        const isLarge = i === 0
 
         return (
-          <div key={section.id} className="mb-4">
+          <div key={section.id} className={`mb-4 animate-slide-up stagger-${Math.min(i + 3, 8)}`}>
             <button
               onClick={() => toggle(section.id)}
-              className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 min-h-[44px] transition-colors duration-300"
+              className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-[0.98]"
             >
               <p className={`font-sans font-semibold text-ink dark:text-dark-text uppercase tracking-wider ${isLarge ? 'text-base' : 'text-xs'}`}>
                 {section.name}
               </p>
-              <span className="font-sans text-saffron dark:text-saffron-light text-sm">{isOpen ? '▲' : '▼'}</span>
+              <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
             </button>
             {isOpen && (
-              <div className="mt-2 ml-2 p-3 bg-parchment-low dark:bg-dark-surface rounded-2xl transition-colors duration-300">
+              <div className="mt-2 ml-2 p-3 bg-parchment-low dark:bg-dark-surface rounded-2xl transition-colors duration-300 animate-scale-in">
                 {section.browseOnly ? (
                   <button
                     onClick={() => navigate(`/study?source=${section.source}&ang=1`)}
-                    className="w-full bg-parchment-card dark:bg-dark-card rounded-lg font-sans text-sm text-saffron dark:text-saffron-light py-3 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300"
+                    className="w-full bg-parchment-card dark:bg-dark-card rounded-lg font-sans text-sm text-gold dark:text-gold-light py-3 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300 active:scale-95"
                   >
-                    Browse →
+                    Browse
                   </button>
                 ) : (
                   <AngBrowser source={section.source} totalAngs={section.totalAngs} />

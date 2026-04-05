@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { fetchAudio } from '../api/banidb'
+import { IconPlay, IconPause } from './icons'
 
 interface Props {
   shabadId: number
@@ -41,14 +42,14 @@ export default function AudioPlayer({ shabadId }: Props) {
   if (loading || !audioUrl) return null
 
   return (
-    <div className="flex items-center gap-2 px-1">
+    <div className="flex items-center gap-2 px-1 mb-1">
       {audioUrl && <audio ref={audioRef} src={audioUrl} preload="none" />}
       <button
         onClick={toggle}
-        className="flex items-center gap-2 font-sans text-xs text-saffron dark:text-saffron-light min-h-[44px] min-w-[44px] justify-center"
+        className="flex items-center gap-2 font-sans text-xs text-gold dark:text-gold-light min-h-[44px] min-w-[44px] justify-center active:scale-95 transition-transform duration-150"
         aria-label={playing ? 'Pause recitation' : 'Play recitation'}
       >
-        <span className="text-lg">{playing ? '⏸' : '▶️'}</span>
+        {playing ? <IconPause size={16} /> : <IconPlay size={16} />}
         <span>{playing ? 'Pause' : 'Listen'}</span>
       </button>
     </div>
