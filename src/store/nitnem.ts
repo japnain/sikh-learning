@@ -8,16 +8,17 @@ export interface NitemBani {
   startAng: number
   endAng: number
   time: 'Morning' | 'Evening' | 'Night'
+  baniDbId: number
 }
 
 export const NITNEM_BANIS: NitemBani[] = [
-  { id: 'japji-sahib',         name: 'Japji Sahib',          source: 'G', startAng: 1,   endAng: 8,   time: 'Morning' },
-  { id: 'jaap-sahib',          name: 'Jaap Sahib',           source: 'D', startAng: 1,   endAng: 10,  time: 'Morning' },
-  { id: 'tav-prasad-savaiye',  name: 'Tav Prasad Savaiye',   source: 'D', startAng: 10,  endAng: 10,  time: 'Morning' },
-  { id: 'chaupai-sahib',       name: 'Chaupai Sahib',        source: 'D', startAng: 201, endAng: 205, time: 'Morning' },
-  { id: 'anand-sahib',         name: 'Anand Sahib',          source: 'G', startAng: 917, endAng: 922, time: 'Morning' },
-  { id: 'rehras-sahib',        name: 'Rehras Sahib',         source: 'G', startAng: 8,   endAng: 12,  time: 'Evening' },
-  { id: 'kirtan-sohila',       name: 'Kirtan Sohila',        source: 'G', startAng: 12,  endAng: 13,  time: 'Night'   },
+  { id: 'japji-sahib',         name: 'Japji Sahib',          source: 'G', startAng: 1,   endAng: 8,   time: 'Morning', baniDbId: 1 },
+  { id: 'jaap-sahib',          name: 'Jaap Sahib',           source: 'D', startAng: 1,   endAng: 10,  time: 'Morning', baniDbId: 2 },
+  { id: 'tav-prasad-savaiye',  name: 'Tav Prasad Savaiye',   source: 'D', startAng: 10,  endAng: 10,  time: 'Morning', baniDbId: 3 },
+  { id: 'chaupai-sahib',       name: 'Chaupai Sahib',        source: 'D', startAng: 201, endAng: 205, time: 'Morning', baniDbId: 4 },
+  { id: 'anand-sahib',         name: 'Anand Sahib',          source: 'G', startAng: 917, endAng: 922, time: 'Morning', baniDbId: 6 },
+  { id: 'rehras-sahib',        name: 'Rehras Sahib',         source: 'G', startAng: 8,   endAng: 12,  time: 'Evening', baniDbId: 8 },
+  { id: 'kirtan-sohila',       name: 'Kirtan Sohila',        source: 'G', startAng: 12,  endAng: 13,  time: 'Night',   baniDbId: 9 },
 ]
 
 interface NitemState {

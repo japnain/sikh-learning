@@ -1,9 +1,10 @@
-import { useState, useCallback, type ReactNode } from 'react'
+import { useState, useCallback, useRef, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useBookmarksStore } from '../store/bookmarks'
 import { fetchSearch, type SearchResult } from '../api/banidb'
 import { NITNEM_BANIS } from '../store/nitnem'
+import { useRecentSearchStore } from '../store/recentSearch'
 import { IconSearch, IconBookmark, IconBookmarkFilled, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
@@ -55,7 +56,11 @@ function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
   return (
     <div className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
       <button
-        onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
+        onClick={() => {
+          const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name })
+          if (bani.baniDbId) params.set('baniId', String(bani.baniDbId))
+          navigate(`/study?${params}`)
+        }}
         className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
       >
         <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
@@ -84,24 +89,32 @@ export default function Banis() {
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
-  const handleSearch = useCallback(async (query: string) => {
+  const { recent, addRecent, clearRecent } = useRecentSearchStore()
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query)
+    if (debounceRef.current) clearTimeout(debounceRef.current)
     if (query.trim().length < 2) {
       setSearchResults([])
+      setSearching(false)
       return
     }
     setSearching(true)
-    try {
-      const trimmed = query.trim()
-      const isEnglish = /^[a-zA-Z\s.,!?'-]+$/.test(trimmed)
-      const results = await fetchSearch(trimmed, isEnglish ? 3 : 1)
-      setSearchResults(results)
-    } catch {
-      setSearchResults([])
-    } finally {
-      setSearching(false)
-    }
-  }, [])
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const trimmed = query.trim()
+        const isEnglish = /^[a-zA-Z\s.,!?'-]+$/.test(trimmed)
+        const results = await fetchSearch(trimmed, isEnglish ? 3 : 1)
+        setSearchResults(results)
+        addRecent(trimmed)
+      } catch {
+        setSearchResults([])
+      } finally {
+        setSearching(false)
+      }
+    }, 300)
+  }, [addRecent])
 
   const rowProps = { navigate, addBookmark, hasBookmark }
 
@@ -133,13 +146,28 @@ export default function Banis() {
                 <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><Highlight text={r.gurmukhi} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
-                <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">Ang {r.pageNo}</p>
+                <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">
+                  {r.source === 'D' ? 'DG' : r.source === 'B' ? 'BGV' : 'SGGS'} · Ang {r.pageNo}
+                </p>
               </button>
             ))}
           </div>
         )}
         {searchQuery.trim().length >= 2 && !searching && searchResults.length === 0 && (
           <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
+        )}
+        {!searchQuery && recent.length > 0 && (
+          <div className="mt-2">
+            <div className="flex justify-between items-center mb-1">
+              <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 uppercase tracking-wider">Recent</p>
+              <button onClick={clearRecent} className="font-sans text-[10px] text-ink/30 dark:text-dark-text/30">Clear</button>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {recent.map(q => (
+                <button key={q} onClick={() => handleSearch(q)} className="font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-1 text-ink/60 dark:text-dark-text/60 active:scale-95 transition-transform duration-150">{q}</button>
+              ))}
+            </div>
+          </div>
         )}
       </div>
 
@@ -163,7 +191,10 @@ export default function Banis() {
               return (
                 <div key={bani.id} className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
                   <button
-                    onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
+                    onClick={() => {
+                      const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, baniId: String(bani.baniDbId) })
+                      navigate(`/study?${params}`)
+                    }}
                     className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
                   >
                     <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
