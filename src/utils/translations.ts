@@ -1,9 +1,21 @@
-import type { EnglishSource, EnglishTranslations, ScriptureEntry, ScriptureLine } from '../types'
+import type { EnglishSource, EnglishTranslations, MeaningLanguage, ScriptureEntry, ScriptureLine, ScriptMode } from '../types'
 
 export const ENGLISH_SOURCE_LABELS: Record<EnglishSource, string> = {
   bdb: 'BaniDB',
   ms: 'Manmohan Singh',
   ssk: 'Sant Singh Khalsa',
+}
+
+export const SCRIPT_MODE_LABELS: Record<ScriptMode, string> = {
+  gurmukhi: 'Gurmukhi',
+  devanagari: 'Hindi',
+}
+
+export const MEANING_LANGUAGE_LABELS: Record<MeaningLanguage, string> = {
+  none: 'Off',
+  en: 'English',
+  pa: 'Punjabi',
+  hi: 'Hindi',
 }
 
 export function getPreferredEnglishText(

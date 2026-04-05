@@ -104,6 +104,32 @@ Object.defineProperty(window, 'webkitAudioContext', {
   configurable: true,
 })
 
+class MockAudio {
+  src = ''
+  preload = 'auto'
+  loop = false
+  volume = 1
+  currentTime = 0
+  paused = true
+
+  play() {
+    this.paused = false
+    return Promise.resolve()
+  }
+
+  pause() {
+    this.paused = true
+  }
+
+  addEventListener() {}
+  removeEventListener() {}
+}
+
+Object.defineProperty(globalThis, 'Audio', {
+  value: MockAudio,
+  configurable: true,
+})
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterEach(() => {
   server.resetHandlers()

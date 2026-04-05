@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fetchAng, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama } from './banidb'
+import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama } from './banidb'
 
 describe('fetchAng', () => {
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
@@ -105,6 +105,17 @@ describe('index fetchers', () => {
     const shabads = await fetchAmritKeertanShabads(1)
     expect(shabads[0].shabadId).toBe(816)
     expect(shabads[0].gurmukhi).toContain('ਡੰਡਉਤਿ')
+  })
+})
+
+describe('fetchBani', () => {
+  it('normalizes Rehras intro lines without producing Ang 0', async () => {
+    const entries = await fetchBani(21)
+    expect(entries).toHaveLength(1)
+    expect(entries[0].ang).toBe(8)
+    expect(entries[0].lines?.[0].isHeader).toBe(true)
+    expect(entries[0].lines?.[0].originalAng).toBeNull()
+    expect(entries[0].lines?.[2].ang).toBe(8)
   })
 })
 

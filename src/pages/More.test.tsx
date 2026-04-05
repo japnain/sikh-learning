@@ -5,7 +5,9 @@ import { useLanguageStore } from '../store/language'
 
 beforeEach(() => {
   useLanguageStore.setState({
-    hindiMode: false,
+    scriptMode: 'gurmukhi',
+    showTransliteration: false,
+    meaningLanguage: 'en',
     fontSize: 22,
     englishSource: 'bdb',
   })
@@ -23,4 +25,16 @@ test('persists selected English source', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /Manmohan Singh/i }))
   expect(useLanguageStore.getState().englishSource).toBe('ms')
+})
+
+test('persists reader display defaults', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  fireEvent.click(screen.getAllByRole('button', { name: /Hindi/i })[0])
+  fireEvent.click(screen.getByRole('button', { name: /Punjabi/i }))
+  fireEvent.click(screen.getByLabelText(/toggle transliteration/i))
+
+  const state = useLanguageStore.getState()
+  expect(state.scriptMode).toBe('devanagari')
+  expect(state.meaningLanguage).toBe('pa')
+  expect(state.showTransliteration).toBe(true)
 })

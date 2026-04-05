@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useVocabStore } from '../store/vocab'
 import { useLanguageStore } from '../store/language'
-import { gurmukhiToHindi } from '../utils/gurmukhiToHindi'
+import { renderScriptText } from '../utils/readerDisplay'
 import type { VocabEntry } from '../types'
 
 export default function Vocab() {
   const navigate = useNavigate()
   const { vocab, removeWord } = useVocabStore()
-  const hindiMode = useLanguageStore(s => s.hindiMode)
+  const scriptMode = useLanguageStore(s => s.scriptMode)
+  const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const [mode, setMode] = useState<'list' | 'flashcard'>('list')
   const [cardIdx, setCardIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
@@ -70,17 +71,17 @@ export default function Vocab() {
             onClick={() => setRevealed(r => !r)}
             className="w-full bg-parchment-card dark:bg-dark-card rounded-2xl p-8 flex flex-col items-center cursor-pointer border border-sand/15 dark:border-dark-text/10 min-h-[220px] justify-center gap-4 transition-colors duration-300"
           >
-            <p lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-5xl text-ink dark:text-dark-text`}>
-              {hindiMode ? gurmukhiToHindi(vocab[safeIdx].word) : vocab[safeIdx].word}
+            <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-5xl text-ink dark:text-dark-text`}>
+              {renderScriptText(vocab[safeIdx].word, scriptMode)}
             </p>
             <p className="font-sans text-sm text-ink/50 dark:text-dark-text/50">{vocab[safeIdx].transliteration}</p>
             {revealed ? (
               <div className="text-center">
                 <p className="font-sans font-medium text-ink dark:text-dark-text">{vocab[safeIdx].meaning_en}</p>
-                {hindiMode && vocab[safeIdx].meaning_hi && (
+                {meaningLanguage === 'hi' && vocab[safeIdx].meaning_hi && (
                   <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 mt-1">{vocab[safeIdx].meaning_hi}</p>
                 )}
-                {!hindiMode && (
+                {meaningLanguage === 'pa' && (
                   <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/70 dark:text-dark-text/70 mt-1">{vocab[safeIdx].meaning_pa}</p>
                 )}
               </div>
@@ -110,16 +111,16 @@ export default function Vocab() {
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 mb-0.5">
-                  <span lang={hindiMode ? 'hi' : 'pa-Guru'} className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-xl text-ink dark:text-dark-text`}>
-                    {hindiMode ? gurmukhiToHindi(entry.word) : entry.word}
+                  <span lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-xl text-ink dark:text-dark-text`}>
+                    {renderScriptText(entry.word, scriptMode)}
                   </span>
                   <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{entry.transliteration}</span>
                 </div>
                 <p className="font-sans text-sm text-ink/80 dark:text-dark-text/80">{entry.meaning_en}</p>
-                {hindiMode && entry.meaning_hi && (
+                {meaningLanguage === 'hi' && entry.meaning_hi && (
                   <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60">{entry.meaning_hi}</p>
                 )}
-                {!hindiMode && (
+                {meaningLanguage === 'pa' && (
                   <p lang="pa-Guru" className="font-gurmukhi text-xs text-ink/60 dark:text-dark-text/60">{entry.meaning_pa}</p>
                 )}
                 <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">{entry.scripture}</p>
