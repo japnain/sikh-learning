@@ -42,10 +42,23 @@ const MOCK_VERSE_3 = {
 export const MOCK_ANG_PAGE = [MOCK_VERSE_1, MOCK_VERSE_2, MOCK_VERSE_3]
 
 export const MOCK_SHABAD_RESPONSE = {
+  shabadInfo: {
+    shabadId: 1,
+    pageNo: 1,
+    source: { sourceId: 'G' },
+  },
   verses: [
     {
       verseId: 1,
+      shabadId: 1,
+      pageNo: 1,
       verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ' },
+      transliteration: { english: 'ikOankaar sat naam' },
+      translation: {
+        en: { bdb: 'One Universal Creator God. Truth.' },
+        hi: { ss: 'एक ओंकार सतिनाम' },
+        pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚ।' } },
+      },
       words: [
         {
           word: { unicode: 'ੴ' },
@@ -58,6 +71,19 @@ export const MOCK_SHABAD_RESPONSE = {
           translation: { en: { bdb: 'Truth' }, hi: { ss: 'सत्य' }, pu: { ss: { unicode: 'ਸੱਚ' } } },
         },
       ],
+    },
+    {
+      verseId: 2,
+      shabadId: 1,
+      pageNo: 1,
+      verse: { unicode: 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ' },
+      transliteration: { english: 'karataa purakh nirabhau' },
+      translation: {
+        en: { bdb: 'Creative Being. No Fear.' },
+        hi: { ss: 'करता पुरख निर्भउ' },
+        pu: { ss: { unicode: 'ਕਰਤਾ ਪੁਰਖ। ਨਿਰਭਉ।' } },
+      },
+      words: [],
     },
   ],
 }
@@ -75,6 +101,67 @@ export const MOCK_SEARCH_RESPONSE = {
   ],
 }
 
+export const MOCK_BANIS_INDEX = [
+  { ID: 2, gurmukhiUni: 'ਜਪੁਜੀ ਸਾਹਿਬ', transliterations: { english: 'japujee saahib' } },
+  { ID: 21, gurmukhiUni: 'ਰਹਰਾਸਿ ਸਾਹਿਬ', transliterations: { english: 'raharaas saahib' } },
+  { ID: 90, gurmukhiUni: 'ਆਸਾ ਦੀ ਵਾਰ', transliterations: { english: 'aasaa dhee vaar' } },
+  { ID: 33, gurmukhiUni: 'ਬਾਵਨ ਅਖਰੀ', transliterations: { english: 'baavan akharee' } },
+]
+
+export const MOCK_BANI_RESPONSE = {
+  verses: [
+    {
+      verseId: 1,
+      shabadId: 1,
+      verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' },
+      transliteration: { english: 'ikOankaar sat naam kartaa purakh' },
+      translation: {
+        en: { bdb: 'One Universal Creator God. The Name Is Truth.' },
+        hi: { ss: 'एक ओंकार सतिनाम करता पुरख' },
+        pu: { ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' } },
+      },
+      pageNo: 1,
+      source: { id: 'G' },
+    },
+    {
+      verseId: 2,
+      shabadId: 2,
+      verse: { unicode: 'ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ' },
+      transliteration: { english: 'sochai soch na hovee' },
+      translation: {
+        en: { bdb: 'By thinking, He cannot be reduced to thought.' },
+        hi: { ss: 'सोचने से वह सोचा नहीं जा सकता' },
+        pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
+      },
+      pageNo: 2,
+      source: { id: 'G' },
+    },
+  ],
+}
+
+export const MOCK_AMRIT_HEADERS = {
+  headers: [
+    {
+      HeaderID: 1,
+      GurmukhiUni: 'ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥',
+      Transliterations: { en: 'dhui kar joR karau aradhaas ||' },
+    },
+  ],
+}
+
+export const MOCK_AMRIT_HEADER_RESPONSE = {
+  index: [
+    {
+      ShabadID: 816,
+      GurmukhiUni: 'ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥',
+      Transliterations: { en: 'dda(n)ddaut ba(n)dhan anik baar sarab kalaa samarath ||' },
+      SourceEnglish: 'Sri Guru Granth Sahib Ji',
+      RaagEnglish: 'Raag Gauree',
+      PageNo: 65,
+    },
+  ],
+}
+
 export const handlers = [
   http.get('https://api.banidb.com/v2/angs/:ang/:source', ({ params }) => {
     const { ang } = params as { ang: string; source: string }
@@ -88,10 +175,38 @@ export const handlers = [
     const { shabadId } = params as { shabadId: string }
     if (shabadId === '9999') return HttpResponse.json({ verses: [] })
     if (shabadId === 'error') return HttpResponse.error()
-    return HttpResponse.json(MOCK_SHABAD_RESPONSE)
+    const shabadIdNumber = Number(shabadId)
+    return HttpResponse.json({
+      ...MOCK_SHABAD_RESPONSE,
+      shabadInfo: {
+        ...MOCK_SHABAD_RESPONSE.shabadInfo,
+        shabadId: shabadIdNumber,
+      },
+      verses: MOCK_SHABAD_RESPONSE.verses.map((verse, index) => ({
+        ...verse,
+        shabadId: shabadIdNumber,
+        verseId: shabadIdNumber === 50 ? 100 + index : verse.verseId,
+      })),
+    })
   }),
 
   http.get('https://api.banidb.com/v2/search/:query', () => {
     return HttpResponse.json(MOCK_SEARCH_RESPONSE)
+  }),
+
+  http.get('https://api.banidb.com/v2/banis', () => {
+    return HttpResponse.json(MOCK_BANIS_INDEX)
+  }),
+
+  http.get('https://api.banidb.com/v2/banis/:baniId', () => {
+    return HttpResponse.json(MOCK_BANI_RESPONSE)
+  }),
+
+  http.get('https://api.banidb.com/v2/amritkeertan', () => {
+    return HttpResponse.json(MOCK_AMRIT_HEADERS)
+  }),
+
+  http.get('https://api.banidb.com/v2/amritkeertan/index/:headerId', () => {
+    return HttpResponse.json(MOCK_AMRIT_HEADER_RESPONSE)
   }),
 ]

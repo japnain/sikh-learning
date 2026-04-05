@@ -10,6 +10,9 @@ export interface ScriptureEntry {
   id: string
   scripture: string
   ang: number
+  source?: 'G' | 'D' | 'B' | 'A'
+  shabadId?: number
+  verseIds?: number[]
   gurmukhi: string
   transliteration: string
   translation_en: string

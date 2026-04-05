@@ -11,6 +11,7 @@ interface BaniVerse {
   transliteration: { english: string }
   translation: Record<string, Record<string, string | Record<string, string>>>
   pageNo: number
+  source?: { id: BaniSource }
 }
 
 interface BaniWord {
@@ -20,7 +21,43 @@ interface BaniWord {
 }
 
 interface BaniShabadVerse {
+  verseId?: number
+  shabadId?: number
+  verse?: { unicode: string }
+  transliteration?: { english: string }
+  translation?: Record<string, Record<string, string | Record<string, string>>>
+  pageNo?: number
   words: BaniWord[]
+}
+
+interface BaniInfoResponse {
+  ID: number
+  gurmukhiUni: string
+  transliterations?: {
+    english?: string
+    en?: string
+  }
+}
+
+interface AmritKeertanHeaderResponse {
+  HeaderID: number
+  GurmukhiUni: string
+  Transliterations?: {
+    en?: string
+    english?: string
+  }
+}
+
+interface AmritKeertanIndexResponse {
+  ShabadID: number
+  GurmukhiUni: string
+  Transliterations?: {
+    en?: string
+    english?: string
+  }
+  SourceEnglish?: string
+  RaagEnglish?: string
+  PageNo?: number
 }
 
 export interface HukamnamaResult {
@@ -44,6 +81,27 @@ export interface SearchResult {
   translation_en: string
 }
 
+export interface BaniIndexItem {
+  id: number
+  gurmukhi: string
+  transliteration: string
+}
+
+export interface AmritKeertanHeader {
+  headerId: number
+  gurmukhi: string
+  transliteration: string
+}
+
+export interface AmritKeertanShabad {
+  shabadId: number
+  gurmukhi: string
+  transliteration: string
+  source: string
+  raag: string
+  pageNo: number
+}
+
 function toScripture(source: BaniSource): string {
   const map: Record<BaniSource, string> = {
     G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
@@ -54,6 +112,12 @@ function toScripture(source: BaniSource): string {
 function safeText(val: unknown): string {
   if (typeof val === 'string') return val
   return ''
+}
+
+function getEnglishTransliteration(val: unknown): string {
+  if (!val || typeof val !== 'object') return ''
+  const record = val as Record<string, unknown>
+  return safeText(record.english ?? record.en)
 }
 
 function getHindi(t: BaniVerse['translation'] | undefined): string {
@@ -99,6 +163,9 @@ export async function fetchAng(ang: number, source: BaniSource): Promise<Scriptu
     id: `${source}-${ang}-${shabadId}`,
     scripture,
     ang,
+    source,
+    shabadId,
+    verseIds: verses.map(v => v.verseId),
     gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
     transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
     translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
@@ -182,6 +249,9 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
       id: `bani-${baniDbId}-${pageNo}`,
       scripture: sourceMap[srcId] ?? 'SGGS',
       ang: pageNo,
+      source: (srcId as BaniSource) ?? 'G',
+      shabadId: verses[0]?.shabadId,
+      verseIds: verses.map(v => v.verseId),
       gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
       transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
       translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
@@ -207,6 +277,133 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
     gurmukhi: safeText(v.verse?.unicode),
     transliteration: safeText(v.transliteration?.english),
     translation_en: getEnglish(v.translation),
+  }))
+}
+
+export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | null> {
+  const res = await fetch(`${BASE}/shabads/${shabadId}`)
+  if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
+  const data = await res.json() as {
+    shabadInfo?: {
+      shabadId?: number
+      pageNo?: number
+      source?: { sourceId?: BaniSource }
+    }
+    verses?: BaniShabadVerse[]
+  }
+
+  const verses = data.verses ?? []
+  if (!verses.length) return null
+
+  const source = data.shabadInfo?.source?.sourceId ?? 'G'
+  const ang = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
+  const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
+
+  if (verses.length === 1) {
+    const verse = verses[0]
+    return {
+      id: `${source}-${ang}-${resolvedShabadId}-${verse.verseId ?? 0}`,
+      scripture: toScripture(source),
+      ang,
+      source,
+      shabadId: resolvedShabadId,
+      verseIds: verse.verseId ? [verse.verseId] : [],
+      gurmukhi: safeText(verse.verse?.unicode),
+      transliteration: safeText(verse.transliteration?.english),
+      translation_en: getEnglish(verse.translation),
+      translation_hi: getHindi(verse.translation),
+      translation_pa: getPunjabi(verse.translation),
+      words: [],
+    }
+  }
+
+  return {
+    id: `${source}-${ang}-${resolvedShabadId}`,
+    scripture: toScripture(source),
+    ang,
+    source,
+    shabadId: resolvedShabadId,
+    verseIds: verses.map(v => v.verseId ?? 0).filter(Boolean),
+    gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
+    transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
+    translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
+    translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
+    translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
+    words: [],
+  }
+}
+
+export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntry[]> {
+  const res = await fetch(`${BASE}/shabads/${shabadId}`)
+  if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
+  const data = await res.json() as {
+    shabadInfo?: {
+      shabadId?: number
+      pageNo?: number
+      source?: { sourceId?: BaniSource }
+    }
+    verses?: BaniShabadVerse[]
+  }
+
+  const verses = data.verses ?? []
+  if (!verses.length) return []
+
+  const source = data.shabadInfo?.source?.sourceId ?? 'G'
+  const fallbackAng = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
+  const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
+
+  return verses.map(verse => ({
+    id: `${source}-${verse.pageNo ?? fallbackAng}-${resolvedShabadId}-${verse.verseId ?? 0}`,
+    scripture: toScripture(source),
+    ang: verse.pageNo ?? fallbackAng,
+    source,
+    shabadId: resolvedShabadId,
+    verseIds: verse.verseId ? [verse.verseId] : [],
+    gurmukhi: safeText(verse.verse?.unicode),
+    transliteration: safeText(verse.transliteration?.english),
+    translation_en: getEnglish(verse.translation),
+    translation_hi: getHindi(verse.translation),
+    translation_pa: getPunjabi(verse.translation),
+    words: [],
+  }))
+}
+
+export async function fetchBanisIndex(): Promise<BaniIndexItem[]> {
+  const res = await fetch(`${BASE}/banis`)
+  if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
+  const data = await res.json() as BaniInfoResponse[]
+
+  return data.map(item => ({
+    id: item.ID,
+    gurmukhi: item.gurmukhiUni,
+    transliteration: getEnglishTransliteration(item.transliterations),
+  }))
+}
+
+export async function fetchAmritKeertanIndex(): Promise<AmritKeertanHeader[]> {
+  const res = await fetch(`${BASE}/amritkeertan`)
+  if (!res.ok) throw new Error(`BaniDB /amritkeertan error: ${res.status}`)
+  const data = await res.json() as { headers?: AmritKeertanHeaderResponse[] }
+
+  return (data.headers ?? []).map(item => ({
+    headerId: item.HeaderID,
+    gurmukhi: item.GurmukhiUni,
+    transliteration: getEnglishTransliteration(item.Transliterations),
+  }))
+}
+
+export async function fetchAmritKeertanShabads(headerId: number): Promise<AmritKeertanShabad[]> {
+  const res = await fetch(`${BASE}/amritkeertan/index/${headerId}`)
+  if (!res.ok) throw new Error(`BaniDB /amritkeertan/index error: ${res.status}`)
+  const data = await res.json() as { index?: AmritKeertanIndexResponse[] }
+
+  return (data.index ?? []).map(item => ({
+    shabadId: item.ShabadID,
+    gurmukhi: item.GurmukhiUni,
+    transliteration: getEnglishTransliteration(item.Transliterations),
+    source: safeText(item.SourceEnglish),
+    raag: safeText(item.RaagEnglish),
+    pageNo: item.PageNo ?? 0,
   }))
 }
 
