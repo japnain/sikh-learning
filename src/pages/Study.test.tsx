@@ -17,7 +17,7 @@ describe('Study bookmark button', () => {
   test('bookmark button not rendered when not in API mode', () => {
     render(<MemoryRouter><Study /></MemoryRouter>)
     // In non-API mode (scripture picker), bookmark button should not appear
-    expect(screen.queryByText('🔖')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('Bookmark')).not.toBeInTheDocument()
   })
 
   test('bookmark button rendered in API mode after entries load', async () => {
@@ -26,7 +26,7 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByText('🔖')).toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
   })
 
   test('bookmark form appears on clicking unactive bookmark button', async () => {
@@ -35,8 +35,8 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByText('🔖')).toBeInTheDocument())
-    fireEvent.click(screen.getByText('🔖'))
+    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText('Bookmark'))
     expect(screen.getByPlaceholderText('Add a note...')).toBeInTheDocument()
     expect(screen.getByText('Save Bookmark')).toBeInTheDocument()
   })
@@ -47,8 +47,8 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByText('🔖')).toBeInTheDocument())
-    fireEvent.click(screen.getByText('🔖'))
+    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText('Bookmark'))
     fireEvent.click(screen.getByText('Save Bookmark'))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
   })

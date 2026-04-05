@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import SplashScreen from './components/SplashScreen'
 import Home from './pages/Home'
 import Study from './pages/Study'
 import Library from './pages/Library'
@@ -25,6 +26,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <SplashScreen />
       <div className="min-h-screen bg-parchment dark:bg-dark-bg pb-20 transition-colors duration-300">
         <Routes>
           <Route path="/" element={<Home />} />

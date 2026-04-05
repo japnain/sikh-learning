@@ -7,6 +7,7 @@ import StudyCard from '../components/StudyCard'
 import AudioPlayer from '../components/AudioPlayer'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -120,7 +121,7 @@ export default function Study() {
     return (
       <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
         <div className="flex items-center justify-between mb-4">
-          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
+          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         </div>
         <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-6 min-h-[300px] animate-pulse">
           <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
@@ -138,34 +139,35 @@ export default function Study() {
         <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
           No verses found for this {source === 'G' || source === 'D' ? 'ang' : 'page'}.
         </p>
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light mt-4 block mx-auto">&#8592; Back</button>
+        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light mt-4 flex items-center gap-1 mx-auto active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
       </div>
     )
   }
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300 animate-fade-in">
       <div className="flex items-center justify-between mb-4">
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px]">&#8592; Back</button>
+        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         <div className="flex items-center gap-1">
           <button
             onClick={handleShare}
-            className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300"
+            className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
             aria-label="Share"
           >
-            {showCopied ? <span className="font-sans text-xs text-saffron dark:text-saffron-light">Copied!</span> : '📤'}
+            {showCopied ? <span className="font-sans text-xs text-saffron dark:text-saffron-light">Copied!</span> : <IconShare size={20} />}
           </button>
           <button
             onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
-            className={`text-xl min-h-[44px] min-w-[44px] transition-colors duration-300 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
+            aria-label="Bookmark"
+            className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
           >
-            &#128278;
+            {isBookmarked ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
           </button>
         </div>
       </div>
 
       {showBookmarkForm && (
-        <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-xl p-4 transition-colors duration-300">
+        <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-xl p-4 transition-colors duration-300 shadow-card dark:shadow-gold">
           <input
             type="text"
             value={bookmarkText}
@@ -201,12 +203,12 @@ export default function Study() {
         <button
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! - 1) })}
           disabled={angParam! <= 1}
-          className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+          className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
         >&#8592; {source === 'G' || source === 'D' ? 'Ang' : 'Page'} {angParam! - 1}</button>
         <button
           onClick={() => setSearchParams({ source: source!, ang: String(angParam! + 1) })}
           disabled={angParam! >= maxAng}
-          className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
+          className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
         >{source === 'G' || source === 'D' ? 'Ang' : 'Page'} {angParam! + 1} &#8594;</button>
       </div>
     </div>
