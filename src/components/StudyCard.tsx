@@ -50,15 +50,12 @@ export default function StudyCard({ entry, wordData }: Props) {
     <>
       <div
         data-testid="study-card"
-        className="card-flip-container animate-scale-in"
+        className="animate-scale-in ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none"
+        onClick={() => setFlipped(f => !f)}
       >
-        <div
-          className={`card-flip-inner ${flipped ? 'flipped' : ''}`}
-          onClick={() => setFlipped(f => !f)}
-        >
-          {/* Front face */}
-          <div className="card-face ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none">
-            <div className="flex-1 flex flex-col justify-center h-full">
+          {!flipped ? (
+            /* Front: Gurmukhi text */
+            <div>
               <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">
                 {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
               </p>
@@ -67,7 +64,7 @@ export default function StudyCard({ entry, wordData }: Props) {
                   <span
                     key={i}
                     lang={hindiMode ? 'hi' : 'pa-Guru'}
-                    className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-all duration-300 animate-fade-in stagger-${Math.min(i + 1, 8)}`}
+                    className={`${hindiMode ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed cursor-pointer active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-all duration-300`}
                     style={{ fontSize: `${fontSize}px`, minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
                     onClick={(e) => { e.stopPropagation(); handleWordTap(word) }}
                   >
@@ -77,13 +74,14 @@ export default function StudyCard({ entry, wordData }: Props) {
               </div>
               <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">Tap card to see translation · Tap word for meaning</p>
             </div>
-          </div>
-
-          {/* Back face */}
-          <div className="card-face-back ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none absolute inset-0">
-            <div className="flex-1 flex flex-col justify-center gap-3 h-full">
-              <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic">{entry.transliteration}</p>
-              <div className="flex gap-2 mb-2">
+          ) : (
+            /* Back: Translation */
+            <div>
+              <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">
+                {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
+              </p>
+              <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic mb-3">{entry.transliteration}</p>
+              <div className="flex gap-2 mb-3">
                 <button
                   onClick={e => { e.stopPropagation(); setLang('en') }}
                   className={`font-sans text-xs px-3 py-1 rounded-full active:scale-95 transition-all duration-300 ${lang === 'en' ? 'bg-gold text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
@@ -93,14 +91,14 @@ export default function StudyCard({ entry, wordData }: Props) {
                   className={`font-sans text-xs px-3 py-1 rounded-full active:scale-95 transition-all duration-300 ${lang === 'alt' ? 'bg-gold text-white' : 'bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60'}`}
                 >{hindiMode ? 'HI' : 'PA'}</button>
               </div>
-              {lang === 'en' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed animate-fade-in">{entry.translation_en}</p>}
+              {lang === 'en' && <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_en}</p>}
               {lang === 'alt' && (hindiMode
-                ? <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed animate-fade-in">{entry.translation_hi}</p>
-                : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed animate-fade-in">{entry.translation_pa}</p>
+                ? <p className="font-sans text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_hi}</p>
+                : <p lang="pa-Guru" className="font-gurmukhi text-base text-ink/80 dark:text-dark-text/80 leading-relaxed">{entry.translation_pa}</p>
               )}
+              <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">Tap card to see original</p>
             </div>
-          </div>
-        </div>
+          )}
       </div>
 
       {activeWord && (

@@ -133,27 +133,44 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
   return words
 }
 
+interface BaniFlatVerse {
+  verseId: number
+  shabadId: number
+  verse: { unicode: string }
+  transliteration: { english: string }
+  translation: Record<string, Record<string, string | Record<string, string>>>
+  pageNo: number
+  source: { id: string }
+}
+
 export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
   const res = await fetch(`${BASE}/banis/${baniDbId}`)
   if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
   const data = await res.json() as Record<string, unknown>
 
-  const rawVerses = (data.verses ?? []) as Array<{
-    verseId: number
-    shabadId: number
-    verse: { unicode: string }
-    transliteration: { english: string }
-    translation: Record<string, Record<string, string | Record<string, string>>>
-    pageNo: number
-    source: { id: string }
-  }>
-  if (!rawVerses.length) return []
+  const rawArray = (data.verses ?? []) as Array<Record<string, unknown>>
+  if (!rawArray.length) return []
+
+  // BaniDB may return verses flat or nested inside a "verse" property
+  const flatVerses: BaniFlatVerse[] = rawArray.map(item => {
+    // If nested: { verse: { verseId, verse: {unicode}, ... }, ... }
+    const inner = (item.verse as Record<string, unknown>) ?? item
+    return {
+      verseId: (inner.verseId ?? item.verseId ?? 0) as number,
+      shabadId: (inner.shabadId ?? item.shabadId ?? 0) as number,
+      verse: (inner.verse as { unicode: string }) ?? { unicode: '' },
+      transliteration: (inner.transliteration as { english: string }) ?? { english: '' },
+      translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
+      pageNo: (inner.pageNo ?? item.pageNo ?? 0) as number,
+      source: (inner.source as { id: string }) ?? { id: 'G' },
+    }
+  })
 
   const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
 
   // Group by pageNo so each card = one ang's worth of content
-  const grouped = new Map<number, typeof rawVerses>()
-  for (const v of rawVerses) {
+  const grouped = new Map<number, BaniFlatVerse[]>()
+  for (const v of flatVerses) {
     const list = grouped.get(v.pageNo) ?? []
     list.push(v)
     grouped.set(v.pageNo, list)
