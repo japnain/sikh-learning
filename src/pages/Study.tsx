@@ -52,25 +52,29 @@ export default function Study() {
     if (!isApiMode) navigate('/library', { replace: true })
   }, [isApiMode, navigate])
 
-  // Ang-based fetching (fallback)
+  // Ang-based fetching (always fetch with correct source/ang as fallback)
   const angResult = useAng(
-    isAngMode && !isBaniMode ? angParam! : 1,
+    isAngMode ? angParam! : 1,
     isAngMode ? source! : 'G'
   )
 
   // Bani-based fetching
   const baniResult = useBani(isBaniMode ? baniDbId : null)
 
-  const entries = isBaniMode ? baniResult.entries : angResult.entries
-  const loading = isBaniMode ? baniResult.loading : angResult.loading
-  const error = isBaniMode ? baniResult.error : angResult.error
+  // Use bani results if available, otherwise fall back to ang results
+  const baniFailed = isBaniMode && !baniResult.loading && (baniResult.error || baniResult.entries.length === 0)
+  const useBaniEntries = isBaniMode && !baniFailed
+
+  const entries = useBaniEntries ? baniResult.entries : angResult.entries
+  const loading = useBaniEntries ? baniResult.loading : (isBaniMode ? (baniResult.loading || angResult.loading) : angResult.loading)
+  const error = useBaniEntries ? baniResult.error : angResult.error
 
   // For bani mode, track which ang page we're viewing
   const [baniPageIndex, setBaniPageIndex] = useState(0)
   useEffect(() => { setBaniPageIndex(0) }, [baniDbId])
 
-  // In bani mode, show one ang at a time; in ang mode show all entries
-  const visibleEntries = isBaniMode && entries.length > 0
+  // In bani mode with bani entries, show one ang at a time; otherwise show all entries
+  const visibleEntries = useBaniEntries && entries.length > 0
     ? [entries[Math.min(baniPageIndex, entries.length - 1)]]
     : entries
 
@@ -227,7 +231,7 @@ export default function Study() {
       {baniName && (
         <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
-          {isBaniMode && entries.length > 1 && (
+          {useBaniEntries && entries.length > 1 && (
             <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">Page {baniPageIndex + 1} of {entries.length}</p>
           )}
         </div>
@@ -247,7 +251,7 @@ export default function Study() {
       </div>
 
       {/* Navigation */}
-      {isBaniMode ? (
+      {useBaniEntries ? (
         <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
           <button
             onClick={() => setBaniPageIndex(i => i - 1)}

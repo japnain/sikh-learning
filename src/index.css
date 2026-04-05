@@ -29,25 +29,6 @@ body {
   border-radius: 1px;
 }
 
-/* Card flip 3D */
-.card-flip-container {
-  perspective: 1000px;
-}
-.card-flip-inner {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-flip-inner.flipped {
-  transform: rotateY(180deg);
-}
-.card-face {
-  backface-visibility: hidden;
-}
-.card-face-back {
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-}
 
 /* Stagger animation delays */
 .stagger-1 { animation-delay: 0.05s; }
