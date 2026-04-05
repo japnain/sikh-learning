@@ -3,7 +3,7 @@ import type { ScriptureEntry } from '../types'
 import { fetchAng } from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 
-type BaniSource = 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+type BaniSource = 'G' | 'D' | 'B' | 'A'
 
 export function useAng(ang: number, source: BaniSource) {
   const { getAng, setAng } = useScriptureCacheStore()
@@ -14,9 +14,10 @@ export function useAng(ang: number, source: BaniSource) {
 
   useEffect(() => {
     if (cached) { setEntries(cached); setLoading(false); return }
-    let cancelled = false
+    setEntries([])
     setLoading(true)
     setError(null)
+    let cancelled = false
     fetchAng(ang, source)
       .then(data => {
         if (cancelled) return

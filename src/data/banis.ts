@@ -1,8 +1,8 @@
 export interface Bani {
   id: string
   name: string
-  scripture: 'SGGS' | 'DG' | 'BGV' | 'BNL' | 'AK' | 'BGSV' | 'PS'
-  source: 'G' | 'D' | 'B' | 'N' | 'A' | 'S' | 'R'
+  scripture: 'SGGS' | 'DG' | 'BGV' | 'AK'
+  source: 'G' | 'D' | 'B' | 'A'
   startAng: number
   endAng: number
   category: string
@@ -62,6 +62,16 @@ export const BANIS: Bani[] = [
   { id: 'swaiyas-m4', name: 'Swaiyas (M.4)', scripture: 'SGGS', source: 'G', startAng: 1389, endAng: 1396, category: 'Saloks & Short Banis', description: 'Swaiyas in praise of the fourth Guru, Guru Ram Das Ji.' },
   { id: 'swaiyas-m5', name: 'Swaiyas (M.5)', scripture: 'SGGS', source: 'G', startAng: 1396, endAng: 1409, category: 'Saloks & Short Banis', description: 'Swaiyas in praise of the fifth Guru, Guru Arjan Dev Ji.' },
   { id: 'dakhne-m5', name: 'Dakhne (M.5)', scripture: 'SGGS', source: 'G', startAng: 1096, endAng: 1101, category: 'Saloks & Short Banis', description: 'Southern couplets by Guru Arjan Dev Ji.' },
+  { id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Destroyer of suffering — healing shabads compiled from Guru Arjan Dev Ji\'s bani.' },
+  { id: 'shabad-hazare-m1', name: 'Shabad Hazare (M.1)', scripture: 'SGGS', source: 'G', startAng: 14, endAng: 15, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of Guru Nanak Dev Ji on longing for the Divine.' },
+  { id: 'salok-vaaran-te-vadhik', name: 'Salok Vaaran Te Vadhik', scripture: 'SGGS', source: 'G', startAng: 1410, endAng: 1426, category: 'Saloks & Short Banis', description: 'Additional saloks by the Gurus beyond those in the Vars.' },
+  { id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 557, endAng: 558, category: 'Saloks & Short Banis', description: 'Songs of separation — the soul\'s anguish at being apart from the Divine.' },
+  { id: 'chhant-dhanasri', name: 'Chhant Dhanasri (M.1)', scripture: 'SGGS', source: 'G', startAng: 687, endAng: 689, category: 'Long Compositions', description: 'Lyrical composition by Guru Nanak Dev Ji in Dhanasri raag on Divine love.' },
+  { id: 'salok-m1', name: 'Salok Mahalla 1', scripture: 'SGGS', source: 'G', startAng: 1410, endAng: 1412, category: 'Saloks & Short Banis', description: 'Couplets of Guru Nanak Dev Ji on truth and the nature of the Divine.' },
+  { id: 'salok-m2', name: 'Salok Mahalla 2', scripture: 'SGGS', source: 'G', startAng: 1412, endAng: 1414, category: 'Saloks & Short Banis', description: 'Couplets of Guru Angad Dev Ji on humility and devotion.' },
+  { id: 'salok-m3', name: 'Salok Mahalla 3', scripture: 'SGGS', source: 'G', startAng: 1414, endAng: 1421, category: 'Saloks & Short Banis', description: 'Couplets of Guru Amar Das Ji on ego, service, and the Guru\'s grace.' },
+  { id: 'salok-m4', name: 'Salok Mahalla 4', scripture: 'SGGS', source: 'G', startAng: 1421, endAng: 1423, category: 'Saloks & Short Banis', description: 'Couplets of Guru Ram Das Ji on love and longing for the Divine.' },
+  { id: 'salok-m5', name: 'Salok Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1423, endAng: 1426, category: 'Saloks & Short Banis', description: 'Couplets of Guru Arjan Dev Ji on surrender, trust, and the Divine Name.' },
 
   // ── Dasam Granth · Daily Prayers ─────────────────────────────────────────
   { id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji listing the names of the Divine.' },
@@ -89,13 +99,12 @@ export const BANIS: Bani[] = [
   { id: 'shabad-hazare-10', name: 'Shabad Hazare Patshahi 10', scripture: 'DG', source: 'D', startAng: 134, endAng: 136, category: 'Shorter Banis', description: 'Shabads of longing and love by Guru Gobind Singh Ji.' },
   { id: 'swaiyas-patshahi-10', name: 'Swaiyas Patshahi 10', scripture: 'DG', source: 'D', startAng: 13, endAng: 18, category: 'Shorter Banis', description: 'Swaiyas in praise of Guru Gobind Singh Ji.' },
   { id: 'sastra-naam-mala', name: 'Sastra Naam Mala', scripture: 'DG', source: 'D', startAng: 358, endAng: 393, category: 'Shorter Banis', description: 'Garland of Weapons — meditation on the Divine through the names of weapons.' },
+  { id: 'khalsa-mehma', name: 'Khalsa Mehma', scripture: 'DG', source: 'D', startAng: 63, endAng: 64, category: 'Shorter Banis', description: 'Praise of the Khalsa — Guru Gobind Singh Ji\'s tribute to the purity of the Khalsa.' },
+  { id: 'hikayats', name: 'Hikayats', scripture: 'DG', source: 'D', startAng: 404, endAng: 428, category: 'Major Compositions', description: 'Persian tales of moral wisdom and justice by Guru Gobind Singh Ji.' },
 
   // ── Browse-Only Sources ────────────────────────────────────────────────────
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vars by Bhai Gurdas Ji elucidating Sikh philosophy and history.', type: 'browse-only' },
-  { id: 'bhai-nand-lal-vaaran', name: 'Bhai Nand Lal Ji Vaaran', scripture: 'BNL', source: 'N', startAng: 1, endAng: 128, category: 'Vars', description: 'Persian and Punjabi poetry by Bhai Nand Lal Ji, devoted Sikh of Guru Gobind Singh Ji.', type: 'browse-only' },
   { id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Compilation of shabads from various scriptures selected for congregational singing.', type: 'browse-only' },
-  { id: 'bhai-gurdas-singh-vaaran', name: 'Bhai Gurdas Singh Ji Vaaran', scripture: 'BGSV', source: 'S', startAng: 1, endAng: 284, category: 'Vars', description: 'Vars by Bhai Gurdas Singh Ji expanding on Sikh teachings and history.', type: 'browse-only' },
-  { id: 'panthic-sources', name: 'Panthic Sources & Codes of Conduct', scripture: 'PS', source: 'R', startAng: 1, endAng: 1, category: 'Panthic', description: 'Rehatnames, tankhanamas, and authoritative Panthic documents.', type: 'browse-only' },
 ]
 
 export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Saloks & Short Banis'] as const
