@@ -11,6 +11,7 @@ export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 export type SearchMode = 'first-letters' | 'gurmukhi' | 'english' | 'transliteration'
 export type LearningLevel = 'beginner' | 'familiar' | 'daily-reader'
+export type VocabKind = 'word' | 'phrase'
 
 export interface EnglishTranslations {
   bdb?: string
@@ -53,6 +54,7 @@ export interface ScriptureEntry {
 }
 
 export interface VocabEntry {
+  kind?: VocabKind
   word: string
   transliteration: string
   meaning_en: string

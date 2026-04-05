@@ -9,10 +9,12 @@ import { IconBookmark, IconBookmarkFilled, IconShare } from './icons'
 interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
+  onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onBookmarkLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   isLineBookmarked?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
+  isPhraseSaved?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
 }
 
 function fallbackLine(entry: ScriptureEntry): ScriptureLine {
@@ -32,10 +34,12 @@ function fallbackLine(entry: ScriptureEntry): ScriptureLine {
 export default function StudyCard({
   entry,
   wordData,
+  onSavePhrase,
   onCopyLine,
   onShareLine,
   onBookmarkLine,
   isLineBookmarked,
+  isPhraseSaved,
 }: Props) {
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
@@ -187,13 +191,26 @@ export default function StudyCard({
                 )}
 
                 <div className="mt-3 pt-3 border-t border-sand/10 dark:border-dark-text/10 flex items-center justify-between gap-2">
-                  <button
-                    type="button"
-                    onClick={() => onCopyLine?.(line, entry)}
-                    className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 uppercase tracking-[0.18em]"
-                  >
-                    Copy
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => onSavePhrase?.(line, entry)}
+                      className={`font-sans text-[11px] uppercase tracking-[0.18em] ${
+                        isPhraseSaved?.(line, entry)
+                          ? 'text-saffron dark:text-saffron-light'
+                          : 'text-ink/45 dark:text-dark-text/45'
+                      }`}
+                    >
+                      {isPhraseSaved?.(line, entry) ? 'Saved' : 'Save Phrase'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onCopyLine?.(line, entry)}
+                      className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 uppercase tracking-[0.18em]"
+                    >
+                      Copy
+                    </button>
+                  </div>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"

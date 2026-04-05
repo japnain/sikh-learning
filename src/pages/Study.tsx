@@ -14,6 +14,7 @@ import { MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translatio
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
+import { useVocabStore } from '../store/vocab'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -131,6 +132,7 @@ export default function Study() {
   }, [currentAng, currentSource, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
+  const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
@@ -225,8 +227,33 @@ export default function Study() {
     })
   }
 
+  const handleSavePhrase = (line: ScriptureLine, entry: ScriptureEntry) => {
+    if (vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')) return
+    addWord({
+      kind: 'phrase',
+      word: line.gurmukhi,
+      transliteration: line.transliteration,
+      meaning_en: getLineMeaningText(line, 'en', englishSource),
+      meaning_hi: line.translation_hi,
+      meaning_pa: line.translation_pa,
+      scripture: entry.scripture,
+      sourceId: entry.source ?? currentSource,
+      savedAt: new Date().toISOString(),
+      context: {
+        scripture: entry.scripture,
+        sourceId: entry.source ?? currentSource,
+        ang: line.ang,
+        shabadId: line.shabadId,
+        verseId: line.verseId,
+        line: line.gurmukhi,
+      },
+    })
+  }
+
   const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) =>
     hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
+  const isPhraseSaved = (line: ScriptureLine) =>
+    vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
   const navMinAng = isBaniDbMode
@@ -442,10 +469,12 @@ export default function Study() {
               key={entry.id}
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
+              onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}
               onBookmarkLine={handleBookmarkLine}
               isLineBookmarked={(line, item) => isLineBookmarked(line, item)}
+              isPhraseSaved={(line) => isPhraseSaved(line)}
             />
           )
         })}

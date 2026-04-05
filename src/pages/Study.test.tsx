@@ -5,9 +5,11 @@ import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
+import { useVocabStore } from '../store/vocab'
 
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
+  useVocabStore.setState({ vocab: [] })
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: false,
@@ -114,6 +116,24 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByRole('button', { name: /share verse/i }).length).toBeGreaterThan(0)
       expect(screen.getAllByRole('button', { name: /bookmark verse/i }).length).toBeGreaterThan(0)
     })
+  })
+
+  it('can save a full verse as a phrase for review', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByText(/save phrase/i).length).toBeGreaterThan(0)
+    })
+
+    fireEvent.click(screen.getAllByText(/save phrase/i)[0])
+
+    expect(
+      useVocabStore.getState().vocab.some(item => item.kind === 'phrase' && item.word.includes('ੴ'))
+    ).toBe(true)
   })
 
   it('uses the selected English translation source', async () => {

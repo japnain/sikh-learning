@@ -33,6 +33,7 @@ export default function WordPopover({
   const handleSave = () => {
     if (isSaved) return
     addWord({
+      kind: 'word',
       word: word.gurmukhi,
       transliteration: word.transliteration,
       meaning_en: word.meaning_en,
