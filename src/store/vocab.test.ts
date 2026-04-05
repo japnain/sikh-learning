@@ -39,3 +39,37 @@ test('moves reviewed words out of the due queue', () => {
   useVocabStore.getState().reviewWord('ਸਤਿ', 'good')
   expect(useVocabStore.getState().getDueWords()).toHaveLength(0)
 })
+
+test('keeps words and phrases separate in the review store', () => {
+  const store = useVocabStore.getState()
+
+  store.addWord({
+    kind: 'word',
+    word: 'ਨਾਮੁ',
+    transliteration: 'naam',
+    meaning_en: 'Name',
+    meaning_hi: 'नाम',
+    meaning_pa: 'ਨਾਮ',
+    scripture: 'SGGS',
+    sourceId: 'G',
+    savedAt: '2026-04-05T00:00:00.000Z',
+  })
+
+  store.addWord({
+    kind: 'phrase',
+    word: 'ੴ ਸਤਿ ਨਾਮੁ',
+    transliteration: 'ik oankaar sat naam',
+    meaning_en: 'One Creator, Truth is the Name',
+    meaning_hi: 'एक ओंकार सतिनाम',
+    meaning_pa: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ, ਸੱਚਾ ਨਾਮ',
+    scripture: 'SGGS',
+    sourceId: 'G',
+    savedAt: '2026-04-05T00:00:00.000Z',
+  })
+
+  store.reviewWord('ੴ ਸਤਿ ਨਾਮੁ', 'easy', 'phrase')
+
+  expect(useVocabStore.getState().vocab).toHaveLength(2)
+  expect(useVocabStore.getState().getDueWords()).toHaveLength(1)
+  expect(useVocabStore.getState().getDueWords()[0].word).toBe('ਨਾਮੁ')
+})

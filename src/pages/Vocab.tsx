@@ -75,8 +75,8 @@ export default function Vocab() {
         <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">Review Loop</p>
         <p className="font-sans text-sm text-ink dark:text-dark-text">
           {dueWords.length > 0
-            ? `${dueWords.length} words are ready for spaced review.`
-            : 'No words are due right now. Keep saving words while reading.'}
+            ? `${dueWords.length} saved items are ready for spaced review.`
+            : 'No saved items are due right now. Keep saving words and phrases while reading.'}
         </p>
       </div>
 
@@ -116,6 +116,9 @@ export default function Vocab() {
             >
               <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-5xl text-ink dark:text-dark-text text-center`}>
                 {renderScriptText(activeCard.word, scriptMode)}
+              </p>
+              <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                {(activeCard.kind ?? 'word') === 'phrase' ? 'Phrase Review' : 'Word Review'}
               </p>
               <p className="font-sans text-sm text-ink/50 dark:text-dark-text/50">{activeCard.transliteration}</p>
               {revealed ? (
@@ -200,6 +203,8 @@ export default function Vocab() {
                   <p lang="pa-Guru" className="font-gurmukhi text-xs text-ink/60 dark:text-dark-text/60">{entry.meaning_pa}</p>
                 )}
                 <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
+                  {(entry.kind ?? 'word') === 'phrase' ? 'Phrase' : 'Word'}
+                  {' · '}
                   {(entry.context?.scripture ?? entry.scripture)}
                   {entry.context?.ang ? ` · Ang ${entry.context.ang}` : ''}
                   {entry.context?.line ? ' · Saved from verse' : ''}
@@ -209,7 +214,7 @@ export default function Vocab() {
                 </p>
               </div>
               <button
-                onClick={() => removeWord(entry.word)}
+                onClick={() => removeWord(entry.word, entry.kind ?? 'word')}
                 className="text-ink/30 dark:text-dark-text/30 font-sans text-xs min-h-[44px] min-w-[44px] flex items-center justify-center"
                 aria-label="Remove word"
               >

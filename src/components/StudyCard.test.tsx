@@ -52,7 +52,7 @@ test('shows translation inline without flipping', () => {
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
   expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /play recitation/i })).toBeInTheDocument()
+  expect(screen.getByText(/recitation coming soon/i)).toBeInTheDocument()
 })
 
 test('switches to selected English source', () => {

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { VocabContext, VocabEntry, VocabReviewState } from '../types'
+import type { VocabContext, VocabEntry, VocabKind, VocabReviewState } from '../types'
 
 type ReviewRating = 'again' | 'good' | 'easy'
 
@@ -11,8 +11,8 @@ interface AddWordInput extends Omit<VocabEntry, 'review' | 'context'> {
 interface VocabState {
   vocab: VocabEntry[]
   addWord: (entry: AddWordInput) => void
-  removeWord: (word: string) => void
-  reviewWord: (word: string, rating: ReviewRating) => void
+  removeWord: (word: string, kind?: VocabKind) => void
+  reviewWord: (word: string, rating: ReviewRating, kind?: VocabKind) => void
   getDueWords: (at?: Date) => VocabEntry[]
 }
 
@@ -55,6 +55,7 @@ function getNextReviewState(current: VocabReviewState | undefined, rating: Revie
 function normalizeEntry(entry: VocabEntry): VocabEntry {
   return {
     ...entry,
+    kind: entry.kind ?? 'word',
     context: entry.context ?? {
       scripture: entry.scripture,
       sourceId: entry.sourceId,
@@ -68,10 +69,11 @@ export const useVocabStore = create<VocabState>()(
     (set, get) => ({
       vocab: [],
       addWord: (entry) => set(state => ({
-        vocab: state.vocab.some(v => v.word === entry.word)
+        vocab: state.vocab.some(v => v.word === entry.word && (v.kind ?? 'word') === (entry.kind ?? 'word'))
           ? state.vocab
           : [...state.vocab, {
             ...entry,
+            kind: entry.kind ?? 'word',
             context: entry.context ?? {
               scripture: entry.scripture,
               sourceId: entry.sourceId,
@@ -79,12 +81,12 @@ export const useVocabStore = create<VocabState>()(
             review: createInitialReviewState(new Date(entry.savedAt)),
           }],
       })),
-      removeWord: (word) => set(state => ({
-        vocab: state.vocab.filter(v => v.word !== word),
+      removeWord: (word, kind = 'word') => set(state => ({
+        vocab: state.vocab.filter(v => !(v.word === word && (v.kind ?? 'word') === kind)),
       })),
-      reviewWord: (word, rating) => set(state => ({
+      reviewWord: (word, rating, kind = 'word') => set(state => ({
         vocab: state.vocab.map(entry => (
-          entry.word === word
+          entry.word === word && (entry.kind ?? 'word') === kind
             ? { ...entry, review: getNextReviewState(entry.review, rating) }
             : entry
         )),
