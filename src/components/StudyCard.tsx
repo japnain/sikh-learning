@@ -106,7 +106,7 @@ export default function StudyCard({ entry, wordData }: Props) {
           word={activeWord}
           onClose={() => setActiveWord(null)}
           scripture={entry.scripture}
-          sourceId={entry.id.split('-')[0]}
+          sourceId={entry.source ?? entry.id.split('-')[0]}
         />
       )}
     </>

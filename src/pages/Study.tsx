@@ -2,10 +2,13 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
+import { useBani } from '../hooks/useBani'
+import { useShabad } from '../hooks/useShabad'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
+import type { ScriptureEntry } from '../types'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
@@ -14,8 +17,9 @@ const MAX_ANG: Record<string, number> = {
   G: 1430, D: 1428, B: 628, A: 1430,
 }
 
-function parseShabadId(entryId: string): number | null {
-  const parts = entryId.split('-')
+function parseShabadId(entry: ScriptureEntry): number | null {
+  if (typeof entry.shabadId === 'number') return entry.shabadId
+  const parts = entry.id.split('-')
   if (parts.length === 3) {
     const id = Number(parts[2])
     return Number.isFinite(id) ? id : null
@@ -31,9 +35,13 @@ export default function Study() {
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
   const baniName = searchParams.get('bani')
+  const startAngParam = Number(searchParams.get('startAng')) || null
   const endAngParam = Number(searchParams.get('endAng')) || null
+  const shabadIdParam = Number(searchParams.get('shabadId')) || null
+  const verseIdParam = Number(searchParams.get('verseId')) || null
+  const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
 
-  if ((!source || !angParam) && scriptureId) {
+  if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam) {
     const parts = scriptureId.split('-')
     if (parts.length >= 2) {
       source = parts[0] as BaniSource
@@ -41,32 +49,69 @@ export default function Study() {
     }
   }
 
-  // Bani mode = we have a bani name + endAng range
-  const isBaniMode = baniName !== null && endAngParam !== null
-  const isAngMode = source !== null && angParam !== null
-  const isApiMode = isAngMode
+  const isExactShabadMode = shabadIdParam !== null
+  const isBaniDbMode = baniDbIdParam !== null
+  const isBaniRangeMode = baniName !== null && endAngParam !== null && source !== null && angParam !== null
+  const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode
+  const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
   }, [isApiMode, navigate])
 
-  // Ang-based fetching — works for both regular and bani mode
   const angResult = useAng(
     isAngMode ? angParam! : 1,
     isAngMode ? source! : 'G'
   )
+  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null)
+  const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
 
-  const entries = angResult.entries
-  const loading = angResult.loading
-  const error = angResult.error
+  const baniPageEntries = useMemo(() => {
+    if (!isBaniDbMode || baniResult.entries.length === 0) return []
+    const targetAng = angParam ?? baniResult.entries[0]?.ang ?? null
+    if (targetAng === null) return []
+    return baniResult.entries.filter(entry => entry.ang === targetAng)
+  }, [angParam, baniResult.entries, isBaniDbMode])
+
+  const exactEntries = useMemo(() => {
+    if (!isExactShabadMode) return []
+    if (!verseIdParam) return shabadResult.entries
+
+    const matchedEntries = shabadResult.entries.filter(entry =>
+      entry.verseIds?.includes(verseIdParam)
+    )
+
+    return matchedEntries.length > 0 ? matchedEntries : shabadResult.entries
+  }, [isExactShabadMode, shabadResult.entries, verseIdParam])
+
+  const entries = useMemo(() => {
+    if (isExactShabadMode) return exactEntries
+    if (isBaniDbMode) return baniPageEntries
+    if (isAngMode) return angResult.entries
+    return []
+  }, [angResult.entries, baniPageEntries, exactEntries, isAngMode, isBaniDbMode, isExactShabadMode])
+
+  const loading =
+    isExactShabadMode ? shabadResult.loading :
+    isBaniDbMode ? baniResult.loading :
+    angResult.loading
+
+  const error =
+    isExactShabadMode ? shabadResult.error :
+    isBaniDbMode ? baniResult.error :
+    angResult.error
+
+  const currentEntry = entries[0] ?? null
+  const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
+  const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
 
   const { updateSession } = useProgressStore()
 
   useEffect(() => {
-    if (isAngMode && source && angParam) {
-      updateSession({ scriptureId: `${source}-${angParam}`, lastCardIndex: 0 })
+    if (currentAng) {
+      updateSession({ scriptureId: `${currentSource}-${currentAng}`, lastCardIndex: 0 })
     }
-  }, [source, angParam, isAngMode, updateSession])
+  }, [currentAng, currentSource, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
   const { recordAng } = useReadingProgressStore()
@@ -75,10 +120,10 @@ export default function Study() {
   const [showCopied, setShowCopied] = useState(false)
 
   useEffect(() => {
-    if (isAngMode && source && angParam) {
-      recordAng(source, angParam)
+    if (currentAng) {
+      recordAng(currentSource, currentAng)
     }
-  }, [source, angParam, isAngMode, recordAng])
+  }, [currentAng, currentSource, recordAng])
 
   const handleShare = async () => {
     if (!currentEntry) return
@@ -98,15 +143,11 @@ export default function Study() {
     }
   }
 
-  const currentEntry = entries[0] ?? null
   const shabadIds = useMemo(
-    () => entries.map(e => parseShabadId(e.id)),
+    () => entries.map(entry => parseShabadId(entry)),
     [entries]
   )
   const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
-
-  const currentAng = currentEntry?.ang ?? angParam
-  const currentSource = source ?? 'G'
 
   const isBookmarked = currentAng
     ? hasBookmark(currentSource, currentAng)
@@ -127,15 +168,36 @@ export default function Study() {
     setBookmarkText('')
   }
 
-  // Navigation bounds: for bani mode, limit to startAng..endAng
-  const startAng = isBaniMode ? angParam! : 1
-  const navMinAng = isBaniMode ? startAng : 1
-  const navMaxAng = isBaniMode ? endAngParam! : (MAX_ANG[source!] ?? 1)
+  const rangeEntries = isBaniDbMode ? baniResult.entries : entries
+  const navMinAng = isBaniDbMode
+      ? (rangeEntries[0]?.ang ?? null)
+    : isBaniRangeMode
+      ? (startAngParam ?? angParam)
+      : isAngMode
+        ? 1
+        : null
+  const navMaxAng = isBaniDbMode
+    ? (rangeEntries[rangeEntries.length - 1]?.ang ?? null)
+    : isBaniRangeMode
+      ? endAngParam
+      : isAngMode
+        ? (MAX_ANG[source!] ?? 1)
+        : null
 
-  // Build params for navigation, preserving bani context
   const navTo = (newAng: number) => {
+    if (isBaniDbMode) {
+      const params: Record<string, string> = {
+        baniDbId: String(baniDbIdParam!),
+        ang: String(newAng),
+      }
+      if (baniName) params.bani = baniName
+      setSearchParams(params)
+      return
+    }
+
     const params: Record<string, string> = { source: source!, ang: String(newAng) }
     if (baniName) params.bani = baniName
+    if (isBaniRangeMode) params.startAng = String(startAngParam ?? angParam!)
     if (endAngParam) params.endAng = String(endAngParam)
     setSearchParams(params)
   }
@@ -209,12 +271,29 @@ export default function Study() {
         </div>
       )}
 
-      {baniName && (
+      {isExactShabadMode && currentEntry && (
+        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">Exact Search Result</p>
+          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+            {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · Verse ${verseIdParam}` : ''}
+          </p>
+          {verseIdParam && shabadResult.entries.length > entries.length && (
+            <button
+              onClick={() => navigate(`/study?shabadId=${shabadIdParam}`)}
+              className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"
+            >
+              Open full shabad
+            </button>
+          )}
+        </div>
+      )}
+
+      {baniName && !isExactShabadMode && (
         <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
-          {isBaniMode && (
+          {isBaniRangeMode && (
             <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
-              Ang {angParam} of {startAng}–{endAngParam}
+              Ang {currentAng} of {startAngParam ?? angParam}–{endAngParam}
             </p>
           )}
         </div>
@@ -222,7 +301,7 @@ export default function Study() {
 
       <div className="space-y-4">
         {entries.map(entry => {
-          const shabadId = parseShabadId(entry.id)
+          const shabadId = parseShabadId(entry)
           return (
             <StudyCard
               key={entry.id}
@@ -233,19 +312,20 @@ export default function Study() {
         })}
       </div>
 
-      {/* Navigation */}
-      <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
-        <button
-          onClick={() => navTo(angParam! - 1)}
-          disabled={angParam! <= navMinAng}
-          className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-        >&#8592; Ang {angParam! - 1}</button>
-        <button
-          onClick={() => navTo(angParam! + 1)}
-          disabled={angParam! >= navMaxAng}
-          className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-        >Ang {angParam! + 1} &#8594;</button>
-      </div>
+      {!isExactShabadMode && currentAng && navMinAng !== null && navMaxAng !== null && (
+        <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
+          <button
+            onClick={() => navTo(currentAng - 1)}
+            disabled={currentAng <= navMinAng}
+            className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+          >&#8592; Ang {currentAng - 1}</button>
+          <button
+            onClick={() => navTo(currentAng + 1)}
+            disabled={currentAng >= navMaxAng}
+            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+          >Ang {currentAng + 1} &#8594;</button>
+        </div>
+      )}
     </div>
   )
 }

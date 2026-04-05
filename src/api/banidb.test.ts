@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fetchAng, fetchShabadWords } from './banidb'
+import { fetchAng, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads } from './banidb'
 
 describe('fetchAng', () => {
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
@@ -56,5 +56,50 @@ describe('fetchShabadWords', () => {
 
   it('throws on network error', async () => {
     await expect(fetchShabadWords('error' as unknown as number)).rejects.toThrow()
+  })
+})
+
+describe('fetchShabad', () => {
+  it('returns a single exact shabad entry', async () => {
+    const entry = await fetchShabad(50)
+    expect(entry?.shabadId).toBe(50)
+    expect(entry?.scripture).toBe('SGGS')
+    expect(entry?.gurmukhi).toContain('ੴ')
+  })
+})
+
+describe('fetchShabadVerses', () => {
+  it('returns verse-level entries for an exact search result view', async () => {
+    const entries = await fetchShabadVerses(50)
+    expect(entries).toHaveLength(2)
+    expect(entries[0].shabadId).toBe(50)
+    expect(entries[0].verseIds).toEqual([100])
+    expect(entries[0].gurmukhi).toBe('ੴ ਸਤਿ ਨਾਮੁ')
+  })
+})
+
+describe('index fetchers', () => {
+  it('loads the Sundar Gutka bani index', async () => {
+    const banis = await fetchBanisIndex()
+    expect(banis[0]).toEqual({
+      id: 2,
+      gurmukhi: 'ਜਪੁਜੀ ਸਾਹਿਬ',
+      transliteration: 'japujee saahib',
+    })
+  })
+
+  it('loads the Amrit Keertan header index', async () => {
+    const headers = await fetchAmritKeertanIndex()
+    expect(headers[0]).toEqual({
+      headerId: 1,
+      gurmukhi: 'ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥',
+      transliteration: 'dhui kar joR karau aradhaas ||',
+    })
+  })
+
+  it('loads shabads for an Amrit Keertan header', async () => {
+    const shabads = await fetchAmritKeertanShabads(1)
+    expect(shabads[0].shabadId).toBe(816)
+    expect(shabads[0].gurmukhi).toContain('ਡੰਡਉਤਿ')
   })
 })

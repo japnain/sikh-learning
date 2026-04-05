@@ -1,34 +1,28 @@
-import { useState, useCallback, useRef, type ReactNode } from 'react'
+import { useState, useCallback, useRef, useEffect, useMemo, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BANIS, SGGS_CATEGORY_ORDER, DG_CATEGORY_ORDER, type Bani } from '../data/banis'
-import { useBookmarksStore } from '../store/bookmarks'
-import { fetchSearch, type SearchResult } from '../api/banidb'
-import { NITNEM_BANIS } from '../store/nitnem'
+import {
+  fetchSearch,
+  fetchBanisIndex,
+  fetchAmritKeertanIndex,
+  fetchAmritKeertanShabads,
+  type SearchResult,
+  type BaniIndexItem,
+  type AmritKeertanHeader,
+  type AmritKeertanShabad,
+} from '../api/banidb'
+import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
-import { IconSearch, IconBookmark, IconBookmarkFilled, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
+import { IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
 
-const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode }> = {
-  SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} /> },
-  DG: { label: 'Dasam Granth', icon: <IconSword size={18} /> },
+const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items: ScriptureIndexItem[] }> = {
+  SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, items: SGGS_INDEX },
+  DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, items: DG_INDEX },
 }
 
-const CATEGORY_ORDER: Record<Scripture, readonly string[]> = {
-  SGGS: SGGS_CATEGORY_ORDER,
-  DG: DG_CATEGORY_ORDER,
-}
-
-const AK_BANI_IDS = [
-  'japji-sahib', 'anand-sahib', 'rehras-sahib', 'kirtan-sohila',
-  'asa-di-var', 'sukhmani-sahib', 'sidh-gosht', 'barah-maha-majh',
-  'laavan', 'jaap-sahib', 'tav-prasad-savaiye', 'chaupai-sahib',
-  'onkar', 'aarti', 'salok-mahalla-9', 'shabad-hazare',
-  'dukh-bhanjani', 'shabad-hazare-10', 'chandi-di-var', 'var-majh',
-  'salok-farid', 'salok-kabir', 'patti', 'mundavani', 'ragmala',
-  'barah-maha-tukhari', 'ghorian', 'ramkali-sadd',
-]
-const AK_BANIS = BANIS.filter(b => AK_BANI_IDS.includes(b.id))
+const SUNDAR_GUTKA_NITNEM_IDS = [2, 4, 6, 9, 10, 20, 21, 23]
+const SUNDAR_GUTKA_POPULAR_IDS = [90, 30, 31, 22]
 
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query || query.length < 2) return <>{text}</>
@@ -38,7 +32,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
   return (
     <>
       {parts.map((part, i) =>
-        regex.test(part)
+        i % 2 === 1
           ? <span key={i} className="bg-saffron/30 text-saffron dark:text-saffron-light font-semibold rounded-sm px-0.5">{part}</span>
           : <span key={i}>{part}</span>
       )}
@@ -46,50 +40,81 @@ function Highlight({ text, query }: { text: string; query: string }) {
   )
 }
 
-function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
-  bani: Bani
-  navigate: (path: string) => void
-  addBookmark: (b: { type: 'bani'; title: string; source: Bani['source']; ang: number }) => void
-  hasBookmark: (source: Bani['source'], ang: number) => boolean
+function IndexRow({
+  label,
+  detail,
+  onClick,
+}: {
+  label: string
+  detail: string
+  onClick: () => void
 }) {
-  const isBookmarked = hasBookmark(bani.source, bani.startAng)
   return (
-    <div className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
-      <button
-        onClick={() => {
-          const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
-          navigate(`/study?${params}`)
-        }}
-        className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
-      >
-        <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
-        <p className="font-sans text-gold dark:text-gold-light text-xs mt-0.5">{bani.scripture === 'SGGS' || bani.scripture === 'DG' ? 'Ang' : 'Page'} {bani.startAng}–{bani.endAng}</p>
-      </button>
-      <button
-        onClick={() => {
-          if (!isBookmarked) addBookmark({ type: 'bani', title: bani.name, source: bani.source, ang: bani.startAng })
-        }}
-        className={`pr-4 pl-2 min-h-[52px] flex items-center justify-center font-sans text-base transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/25 dark:text-dark-text/25'}`}
-        aria-label={isBookmarked ? 'Bookmarked' : 'Bookmark'}
-      >
-        {isBookmarked ? <IconBookmarkFilled size={18} /> : <IconBookmark size={18} />}
-      </button>
-    </div>
+    <button
+      onClick={onClick}
+      className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
+    >
+      <p className="font-sans text-sm text-ink dark:text-dark-text">{label}</p>
+      <p className="font-sans text-xs text-gold dark:text-gold-light mt-0.5">{detail}</p>
+    </button>
   )
 }
 
 export default function Banis() {
   const navigate = useNavigate()
-  const { addBookmark, hasBookmark } = useBookmarksStore()
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searching, setSearching] = useState(false)
+  const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
+  const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
+  const [amritHeaders, setAmritHeaders] = useState<AmritKeertanHeader[]>([])
+  const [loadingAmritHeaders, setLoadingAmritHeaders] = useState(true)
+  const [amritShabadsByHeader, setAmritShabadsByHeader] = useState<Record<number, AmritKeertanShabad[]>>({})
+  const [loadingAmritHeader, setLoadingAmritHeader] = useState<number | null>(null)
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
   const { recent, addRecent, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    setLoadingSundarGutka(true)
+    fetchBanisIndex()
+      .then(data => {
+        if (!cancelled) setSundarGutkaBanis(data)
+      })
+      .catch(() => {
+        if (!cancelled) setSundarGutkaBanis([])
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingSundarGutka(false)
+      })
+
+    setLoadingAmritHeaders(true)
+    fetchAmritKeertanIndex()
+      .then(data => {
+        if (!cancelled) setAmritHeaders(data)
+      })
+      .catch(() => {
+        if (!cancelled) setAmritHeaders([])
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingAmritHeaders(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
+  }, [])
 
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query)
@@ -115,13 +140,47 @@ export default function Banis() {
     }, 300)
   }, [addRecent])
 
-  const rowProps = { navigate, addBookmark, hasBookmark }
+  const openSearchResult = (result: SearchResult) => {
+    navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
+  }
+
+  const openScriptureIndexItem = (source: 'G' | 'D', item: ScriptureIndexItem) => {
+    navigate(`/study?source=${source}&ang=${item.pages[0]}&startAng=${item.pages[0]}&bani=${encodeURIComponent(item.name)}&endAng=${item.pages[1]}`)
+  }
+
+  const openSundarGutkaBani = (item: BaniIndexItem) => {
+    navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(item.transliteration || item.gurmukhi)}`)
+  }
+
+  const loadAmritHeader = async (headerId: number) => {
+    if (amritShabadsByHeader[headerId] || loadingAmritHeader === headerId) return
+    setLoadingAmritHeader(headerId)
+    try {
+      const shabads = await fetchAmritKeertanShabads(headerId)
+      setAmritShabadsByHeader(current => ({ ...current, [headerId]: shabads }))
+    } catch {
+      setAmritShabadsByHeader(current => ({ ...current, [headerId]: [] }))
+    } finally {
+      setLoadingAmritHeader(current => (current === headerId ? null : current))
+    }
+  }
+
+  const sundarGutkaGroups = useMemo(() => {
+    const nitnem = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_NITNEM_IDS.includes(item.id))
+    const popular = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_POPULAR_IDS.includes(item.id))
+    const other = sundarGutkaBanis.filter(item => !SUNDAR_GUTKA_NITNEM_IDS.includes(item.id) && !SUNDAR_GUTKA_POPULAR_IDS.includes(item.id))
+
+    return [
+      { key: 'nitnem', label: 'Nitnem', items: nitnem },
+      { key: 'popular', label: 'Popular Bani', items: popular },
+      { key: 'other', label: 'Other', items: other },
+    ].filter(group => group.items.length > 0)
+  }, [sundarGutkaBanis])
 
   return (
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6 mt-4">Banis</h1>
 
-      {/* Search */}
       <div className="mb-6">
         <div className="relative">
           <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
@@ -133,20 +192,20 @@ export default function Banis() {
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
           />
         </div>
-        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching...</p>}
+        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
         {searchResults.length > 0 && (
           <div className="mt-2 space-y-1">
             {searchResults.map(r => (
               <button
                 key={`${r.shabadId}-${r.verseId}`}
-                onClick={() => navigate(`/study?source=${r.source}&ang=${r.pageNo}`)}
+                onClick={() => openSearchResult(r)}
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
                 <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><Highlight text={r.gurmukhi} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
                 <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">
-                  {r.source === 'D' ? 'DG' : r.source === 'B' ? 'BGV' : 'SGGS'} · Ang {r.pageNo}
+                  {r.source === 'D' ? 'DG' : r.source === 'B' ? 'BGV' : r.source === 'A' ? 'AK' : 'SGGS'} · Ang {r.pageNo} · Open exact shabad
                 </p>
               </button>
             ))}
@@ -170,7 +229,6 @@ export default function Banis() {
         )}
       </div>
 
-      {/* Sundar Gutka */}
       <div className="mb-4">
         <button
           onClick={() => toggle('sundar-gutka')}
@@ -178,43 +236,38 @@ export default function Banis() {
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Daily Nitnem prayers in prescribed order</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Live bani index grouped like STTM</p>
           </div>
           <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
 
         {expanded['sundar-gutka'] && (
           <div className="mt-2 ml-2">
-            {NITNEM_BANIS.map(bani => {
-              const isBookmarked = hasBookmark(bani.source as Bani['source'], bani.startAng)
+            {loadingSundarGutka ? (
+              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Sundar Gutka…</p>
+            ) : sundarGutkaGroups.map(group => {
+              const groupKey = `sundar-gutka-${group.key}`
               return (
-                <div key={bani.id} className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
+                <div key={group.key} className="mb-2">
                   <button
-                    onClick={() => {
-                      const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
-                      navigate(`/study?${params}`)
-                    }}
-                    className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
+                    onClick={() => toggle(groupKey)}
+                    className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
                   >
-                    <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <p className="font-sans text-gold dark:text-gold-light text-xs">Ang {bani.startAng}</p>
-                      <span className={`font-sans text-[10px] px-1.5 py-0.5 rounded-full ${
-                        bani.time === 'Morning' ? 'bg-saffron/15 text-saffron dark:text-saffron-light' :
-                        bani.time === 'Evening' ? 'bg-blue-500/15 text-blue-400' :
-                        'bg-purple-500/15 text-purple-400'
-                      }`}>{bani.time}</span>
+                    <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.label}</p>
+                    <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                  </button>
+                  {expanded[groupKey] && (
+                    <div className="mt-1 ml-2">
+                      {group.items.map(item => (
+                        <IndexRow
+                          key={item.id}
+                          label={item.gurmukhi}
+                          detail={item.transliteration || `Bani #${item.id}`}
+                          onClick={() => openSundarGutkaBani(item)}
+                        />
+                      ))}
                     </div>
-                  </button>
-                  <button
-                    onClick={() => {
-                      if (!isBookmarked) addBookmark({ type: 'bani', title: bani.name, source: bani.source as Bani['source'], ang: bani.startAng })
-                    }}
-                    className={`pr-4 pl-2 min-h-[52px] flex items-center justify-center font-sans text-base transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/25 dark:text-dark-text/25'}`}
-                    aria-label={isBookmarked ? 'Bookmarked' : 'Bookmark'}
-                  >
-                    {isBookmarked ? <IconBookmarkFilled size={18} /> : <IconBookmark size={18} />}
-                  </button>
+                  )}
                 </div>
               )
             })}
@@ -222,63 +275,41 @@ export default function Banis() {
         )}
       </div>
 
-      {/* SGGS + DG */}
       {(['SGGS', 'DG'] as Scripture[]).map(scripture => {
         const meta = SCRIPTURE_META[scripture]
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
-        const categories = CATEGORY_ORDER[scripture]
-        const baniCount = BANIS.filter(b => b.scripture === scripture).length
-        const isSSGS = scripture === 'SGGS'
+        const source = scripture === 'SGGS' ? 'G' : 'D'
 
         return (
           <div key={scripture} className="mb-4">
             <button
               onClick={() => toggle(sectionKey)}
-              className={`w-full flex justify-between items-center ${isSSGS ? 'bg-parchment-card dark:bg-dark-card' : 'bg-parchment-low dark:bg-dark-surface'} border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150`}
+              className={`w-full flex justify-between items-center ${scripture === 'SGGS' ? 'bg-parchment-card dark:bg-dark-card' : 'bg-parchment-low dark:bg-dark-surface'} border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150`}
             >
               <div className="text-left">
-                <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${isSSGS ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
-                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{baniCount} banis</p>
+                <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
+                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{meta.items.length} sections</p>
               </div>
               <span className="text-saffron dark:text-saffron-light font-sans text-sm">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
             </button>
 
             {isOpen && (
               <div className="mt-2 ml-2">
-                {categories.map(category => {
-                  const categoryKey = `${sectionKey}-${category}`
-                  const isCatOpen = expanded[categoryKey]
-                  const banis = BANIS.filter(b => b.scripture === scripture && b.category === category)
-                  if (banis.length === 0) return null
-
-                  return (
-                    <div key={category} className="mb-2">
-                      <button
-                        onClick={() => toggle(categoryKey)}
-                        className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
-                      >
-                        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{category}</p>
-                        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{isCatOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
-                      </button>
-
-                      {isCatOpen && (
-                        <div className="mt-1 ml-2">
-                          {banis.map(bani => (
-                            <BaniRow key={bani.id} bani={bani} {...rowProps} />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
+                {meta.items.map(item => (
+                  <IndexRow
+                    key={item.name}
+                    label={item.name}
+                    detail={`Ang ${item.pages[0]}–${item.pages[1]}`}
+                    onClick={() => openScriptureIndexItem(source, item)}
+                  />
+                ))}
               </div>
             )}
           </div>
         )
       })}
 
-      {/* Amrit Keertan */}
       <div className="mb-4">
         <button
           onClick={() => toggle('ak')}
@@ -286,16 +317,52 @@ export default function Banis() {
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Popular keertan compositions</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Expandable chapter index like STTM</p>
           </div>
           <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
 
         {expanded['ak'] && (
           <div className="mt-2 ml-2">
-            {AK_BANIS.map(bani => (
-              <BaniRow key={bani.id} bani={bani} {...rowProps} />
-            ))}
+            {loadingAmritHeaders ? (
+              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Amrit Keertan…</p>
+            ) : amritHeaders.map(header => {
+              const headerKey = `ak-header-${header.headerId}`
+              const isOpen = expanded[headerKey]
+              const shabads = amritShabadsByHeader[header.headerId] ?? []
+              return (
+                <div key={header.headerId} className="mb-2">
+                  <button
+                    onClick={() => {
+                      toggle(headerKey)
+                      if (!isOpen) void loadAmritHeader(header.headerId)
+                    }}
+                    className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                  >
+                    <div className="text-left">
+                      <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{header.gurmukhi}</p>
+                      <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 mt-0.5">{header.transliteration}</p>
+                    </div>
+                    <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="mt-1 ml-2">
+                      {loadingAmritHeader === header.headerId && shabads.length === 0 ? (
+                        <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
+                      ) : shabads.map(shabad => (
+                        <IndexRow
+                          key={shabad.shabadId}
+                          label={shabad.gurmukhi}
+                          detail={[shabad.transliteration, shabad.source, shabad.raag, shabad.pageNo ? `Ang ${shabad.pageNo}` : ''].filter(Boolean).join(' · ')}
+                          onClick={() => navigate(`/study?shabadId=${shabad.shabadId}`)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         )}
       </div>

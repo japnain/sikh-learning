@@ -82,3 +82,21 @@ describe('Study renders all shabads on an ang', () => {
     })
   })
 })
+
+describe('Study exact shabad mode', () => {
+  it('renders a focused exact search result view', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Exact Search Result')).toBeInTheDocument()
+      expect(screen.getByText(/SGGS · Ang 1 · Verse 100/i)).toBeInTheDocument()
+      const cards = screen.getAllByTestId('study-card')
+      expect(cards.length).toBe(1)
+      expect(screen.getByText('ੴ')).toBeInTheDocument()
+    })
+  })
+})
