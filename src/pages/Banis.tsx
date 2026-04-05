@@ -55,7 +55,7 @@ function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
   return (
     <div className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
       <button
-        onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
+        onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
         className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
       >
         <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>
@@ -163,7 +163,7 @@ export default function Banis() {
               return (
                 <div key={bani.id} className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
                   <button
-                    onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}`)}
+                    onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
                     className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
                   >
                     <p className="font-sans text-ink dark:text-dark-text text-sm">{bani.name}</p>

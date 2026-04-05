@@ -30,7 +30,7 @@ export default function WordPopover({ word, onClose, scripture = '', sourceId = 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/20 dark:bg-black/40 popover-overlay" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-end justify-center pb-20 bg-ink/20 dark:bg-black/40 popover-overlay" onClick={onClose}>
       <div
         className="ornate-top bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-gold/10 rounded-t-2xl p-6 w-full max-w-md mb-0 shadow-gold-strong animate-slide-up transition-colors duration-300"
         onClick={e => e.stopPropagation()}

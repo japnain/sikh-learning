@@ -55,10 +55,9 @@ export default function StudyCard({ entry, wordData }: Props) {
         <div
           className={`card-flip-inner ${flipped ? 'flipped' : ''}`}
           onClick={() => setFlipped(f => !f)}
-          style={{ minHeight: '300px' }}
         >
           {/* Front face */}
-          <div className={`ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none ${flipped ? 'card-face-back' : 'card-face'}`} style={{ minHeight: '300px' }}>
+          <div className="card-face ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none">
             <div className="flex-1 flex flex-col justify-center h-full">
               <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">
                 {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
@@ -81,7 +80,7 @@ export default function StudyCard({ entry, wordData }: Props) {
           </div>
 
           {/* Back face */}
-          <div className={`ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none absolute inset-0 ${flipped ? 'card-face' : 'card-face-back'}`}>
+          <div className="card-face-back ornate-top bg-parchment-card dark:bg-dark-card rounded-2xl p-6 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10 cursor-pointer select-none absolute inset-0">
             <div className="flex-1 flex flex-col justify-center gap-3 h-full">
               <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 italic">{entry.transliteration}</p>
               <div className="flex gap-2 mb-2">
