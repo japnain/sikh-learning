@@ -104,9 +104,12 @@ export interface SearchResult {
   verseId: number
   source: string
   pageNo: number
+  sourceName: string
   gurmukhi: string
   transliteration: string
   translation_en: string
+  raag: string
+  writer: string
 }
 
 export interface BaniIndexItem {
@@ -406,9 +409,13 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
   })
 }
 
-export async function fetchSearch(query: string, searchType: number = 1): Promise<SearchResult[]> {
+export async function fetchSearch(
+  query: string,
+  searchType: number = 0,
+  source: BaniSource | 'all' = 'all'
+): Promise<SearchResult[]> {
   const encoded = encodeURIComponent(query)
-  const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=all`)
+  const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=${source}`)
   if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
   const data = await res.json() as { verses?: BaniVerse[] }
   const verses = data.verses ?? []
@@ -418,9 +425,12 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
     verseId: v.verseId,
     source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
     pageNo: v.pageNo,
+    sourceName: v.source?.id ? toScripture(v.source.id) : 'SGGS',
     gurmukhi: safeText(v.verse?.unicode),
     transliteration: safeText(v.transliteration?.english),
     translation_en: getEnglish(v.translation),
+    raag: safeText(v.raag?.english),
+    writer: safeText(v.writer?.english),
   }))
 }
 

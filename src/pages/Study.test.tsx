@@ -103,6 +103,19 @@ describe('Study renders all shabads on an ang', () => {
     })
   })
 
+  it('renders verse action controls inside the reader', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByRole('button', { name: /share verse/i }).length).toBeGreaterThan(0)
+      expect(screen.getAllByRole('button', { name: /bookmark verse/i }).length).toBeGreaterThan(0)
+    })
+  })
+
   it('uses the selected English translation source', async () => {
     useLanguageStore.setState({ englishSource: 'ms' })
     render(

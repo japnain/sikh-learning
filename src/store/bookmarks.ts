@@ -3,10 +3,13 @@ import { persist } from 'zustand/middleware'
 
 export interface Bookmark {
   id: string
-  type: 'shabad' | 'bani'
+  type: 'shabad' | 'bani' | 'verse'
   title: string
   source: 'G' | 'D' | 'B' | 'A'
   ang: number
+  shabadId?: number
+  verseId?: number
+  excerpt?: string
   description?: string
   savedAt: string
 }
@@ -15,7 +18,7 @@ interface BookmarksState {
   bookmarks: Bookmark[]
   addBookmark: (b: Omit<Bookmark, 'id' | 'savedAt'>) => void
   removeBookmark: (id: string) => void
-  hasBookmark: (source: 'G' | 'D' | 'B' | 'A', ang: number) => boolean
+  hasBookmark: (source: 'G' | 'D' | 'B' | 'A', ang: number, verseId?: number) => boolean
 }
 
 export const useBookmarksStore = create<BookmarksState>()(
@@ -23,7 +26,7 @@ export const useBookmarksStore = create<BookmarksState>()(
     (set, get) => ({
       bookmarks: [],
       addBookmark: (b) => {
-        if (get().hasBookmark(b.source, b.ang)) return
+        if (get().hasBookmark(b.source, b.ang, b.verseId)) return
         set(state => ({
           bookmarks: [...state.bookmarks, {
             ...b,
@@ -35,8 +38,12 @@ export const useBookmarksStore = create<BookmarksState>()(
       removeBookmark: (id) => set(state => ({
         bookmarks: state.bookmarks.filter(b => b.id !== id),
       })),
-      hasBookmark: (source, ang) =>
-        get().bookmarks.some(b => b.source === source && b.ang === ang),
+      hasBookmark: (source, ang, verseId) =>
+        get().bookmarks.some(b =>
+          b.source === source
+          && b.ang === ang
+          && (verseId ? b.verseId === verseId : !b.verseId)
+        ),
     }),
     { name: 'sikh-bookmarks' }
   )

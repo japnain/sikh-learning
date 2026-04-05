@@ -1,0 +1,41 @@
+import { beforeEach, expect, test } from 'vitest'
+import { useVocabStore } from './vocab'
+
+beforeEach(() => {
+  localStorage.clear()
+  useVocabStore.setState({ vocab: [] })
+})
+
+test('adds saved word with review metadata', () => {
+  useVocabStore.getState().addWord({
+    word: 'ਨਾਮੁ',
+    transliteration: 'naam',
+    meaning_en: 'Name',
+    meaning_hi: 'नाम',
+    meaning_pa: 'ਨਾਮ',
+    scripture: 'SGGS',
+    sourceId: 'G',
+    savedAt: '2026-04-05T00:00:00.000Z',
+  })
+
+  const entry = useVocabStore.getState().vocab[0]
+  expect(entry.review?.intervalDays).toBe(0)
+  expect(entry.context?.scripture).toBe('SGGS')
+})
+
+test('moves reviewed words out of the due queue', () => {
+  useVocabStore.getState().addWord({
+    word: 'ਸਤਿ',
+    transliteration: 'sat',
+    meaning_en: 'Truth',
+    meaning_hi: 'सत्य',
+    meaning_pa: 'ਸੱਚ',
+    scripture: 'SGGS',
+    sourceId: 'G',
+    savedAt: '2026-04-05T00:00:00.000Z',
+  })
+
+  expect(useVocabStore.getState().getDueWords()).toHaveLength(1)
+  useVocabStore.getState().reviewWord('ਸਤਿ', 'good')
+  expect(useVocabStore.getState().getDueWords()).toHaveLength(0)
+})

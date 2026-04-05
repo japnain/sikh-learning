@@ -9,6 +9,8 @@ function renderBanis() {
 test('renders page heading', () => {
   renderBanis()
   expect(screen.getByText('Banis')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /first letters/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /^SGGS$/i })).toBeInTheDocument()
 })
 
 test('renders the four main content sections', () => {

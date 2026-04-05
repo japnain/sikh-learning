@@ -12,6 +12,7 @@ import {
 } from '../api/banidb'
 import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
+import type { SearchMode } from '../types'
 import { IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
@@ -23,6 +24,19 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items:
 
 const SUNDAR_GUTKA_NITNEM_IDS = [2, 4, 6, 9, 10, 20, 21, 23]
 const SUNDAR_GUTKA_POPULAR_IDS = [90, 30, 31, 22]
+const SEARCH_SOURCE_LABELS = {
+  all: 'All',
+  G: 'SGGS',
+  D: 'DG',
+  B: 'BGV',
+  A: 'AK',
+} as const
+const SEARCH_MODE_META: Record<SearchMode, { label: string; type: number; placeholder: string }> = {
+  'first-letters': { label: 'First Letters', type: 0, placeholder: 'Search first letters in Gurmukhi...' },
+  gurmukhi: { label: 'Gurmukhi', type: 2, placeholder: 'Search full Gurbani words...' },
+  english: { label: 'English', type: 3, placeholder: 'Search English meanings...' },
+  transliteration: { label: 'Romanized', type: 4, placeholder: 'Search transliteration...' },
+}
 
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query || query.length < 2) return <>{text}</>
@@ -74,6 +88,8 @@ export default function Banis() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searching, setSearching] = useState(false)
+  const [searchMode, setSearchMode] = useState<SearchMode>('first-letters')
+  const [searchSource, setSearchSource] = useState<keyof typeof SEARCH_SOURCE_LABELS>('all')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
   const [amritHeaders, setAmritHeaders] = useState<AmritKeertanHeader[]>([])
@@ -124,7 +140,7 @@ export default function Banis() {
     }
   }, [])
 
-  const handleSearch = useCallback((query: string) => {
+  const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source = searchSource) => {
     setSearchQuery(query)
     if (debounceRef.current) clearTimeout(debounceRef.current)
     if (query.trim().length < 2) {
@@ -136,8 +152,7 @@ export default function Banis() {
     debounceRef.current = setTimeout(async () => {
       try {
         const trimmed = query.trim()
-        const isEnglish = /^[a-zA-Z\s.,!?'-]+$/.test(trimmed)
-        const results = await fetchSearch(trimmed, isEnglish ? 3 : 1)
+        const results = await fetchSearch(trimmed, SEARCH_MODE_META[mode].type, source)
         setSearchResults(results)
         addRecent(trimmed)
       } catch {
@@ -146,7 +161,13 @@ export default function Banis() {
         setSearching(false)
       }
     }, 300)
-  }, [addRecent])
+  }, [addRecent, searchMode, searchSource])
+
+  useEffect(() => {
+    if (searchQuery.trim().length >= 2) {
+      handleSearch(searchQuery, searchMode, searchSource)
+    }
+  }, [handleSearch, searchMode, searchSource, searchQuery])
 
   const openSearchResult = (result: SearchResult) => {
     navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
@@ -196,9 +217,45 @@ export default function Banis() {
             type="text"
             value={searchQuery}
             onChange={e => handleSearch(e.target.value)}
-            placeholder="Search Gurbani..."
+            placeholder={SEARCH_MODE_META[searchMode].placeholder}
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
           />
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode, meta]) => {
+            const selected = searchMode === mode
+            return (
+              <button
+                key={mode}
+                onClick={() => setSearchMode(mode)}
+                className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                  selected
+                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                }`}
+              >
+                {meta.label}
+              </button>
+            )
+          })}
+        </div>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {Object.entries(SEARCH_SOURCE_LABELS).map(([value, label]) => {
+            const selected = searchSource === value
+            return (
+              <button
+                key={value}
+                onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
+                className={`rounded-full px-3 py-1.5 font-sans text-[11px] border transition-all duration-300 ${
+                  selected
+                    ? 'bg-saffron text-white border-saffron'
+                    : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
+                }`}
+              >
+                {label}
+              </button>
+            )
+          })}
         </div>
         {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
         {searchResults.length > 0 && (
@@ -212,9 +269,12 @@ export default function Banis() {
                 <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><Highlight text={r.gurmukhi} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
-                <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">
-                  {r.source === 'D' ? 'DG' : r.source === 'B' ? 'BGV' : r.source === 'A' ? 'AK' : 'SGGS'} · Ang {r.pageNo} · Open exact shabad
-                </p>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  <MetadataChip>{r.sourceName}</MetadataChip>
+                  <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>
+                  {r.raag && <MetadataChip>{r.raag}</MetadataChip>}
+                  {r.writer && <MetadataChip>{r.writer}</MetadataChip>}
+                </div>
               </button>
             ))}
           </div>

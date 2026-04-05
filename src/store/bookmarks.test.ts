@@ -54,3 +54,13 @@ test('description is optional', () => {
   useBookmarksStore.getState().addBookmark({ type: 'bani', title: 'Japji Sahib', source: 'G', ang: 1 })
   expect(useBookmarksStore.getState().bookmarks[0].description).toBeUndefined()
 })
+
+test('supports verse-level bookmarks without colliding with ang bookmarks', () => {
+  const store = useBookmarksStore.getState()
+  store.addBookmark({ type: 'shabad', title: 'Japji Sahib', source: 'G', ang: 1 })
+  store.addBookmark({ type: 'verse', title: 'SGGS · Ang 1', source: 'G', ang: 1, verseId: 100, shabadId: 50 })
+
+  expect(useBookmarksStore.getState().bookmarks).toHaveLength(2)
+  expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
+  expect(useBookmarksStore.getState().hasBookmark('G', 1, 100)).toBe(true)
+})

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama } from './banidb'
+import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama, fetchSearch } from './banidb'
 
 describe('fetchAng', () => {
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
@@ -79,6 +79,14 @@ describe('fetchShabadVerses', () => {
     expect(entries[0].shabadId).toBe(50)
     expect(entries[0].verseIds).toEqual([100])
     expect(entries[0].gurmukhi).toBe('ੴ ਸਤਿ ਨਾਮੁ')
+  })
+})
+
+describe('fetchSearch', () => {
+  it('returns richer result metadata for Banis search', async () => {
+    const results = await fetchSearch('waheguru', 3, 'all')
+    expect(results[0].sourceName).toBe('SGGS')
+    expect(results[0].translation_en).toContain('Waaheguru')
   })
 })
 
