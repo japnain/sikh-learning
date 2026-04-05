@@ -133,6 +133,48 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
   return words
 }
 
+export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
+  const res = await fetch(`${BASE}/banis/${baniDbId}`)
+  if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
+  const data = await res.json() as Record<string, unknown>
+
+  const rawVerses = (data.verses ?? []) as Array<{
+    verseId: number
+    shabadId: number
+    verse: { unicode: string }
+    transliteration: { english: string }
+    translation: Record<string, Record<string, string | Record<string, string>>>
+    pageNo: number
+    source: { id: string }
+  }>
+  if (!rawVerses.length) return []
+
+  const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
+
+  // Group by pageNo so each card = one ang's worth of content
+  const grouped = new Map<number, typeof rawVerses>()
+  for (const v of rawVerses) {
+    const list = grouped.get(v.pageNo) ?? []
+    list.push(v)
+    grouped.set(v.pageNo, list)
+  }
+
+  return Array.from(grouped.entries()).map(([pageNo, verses]) => {
+    const srcId = verses[0]?.source?.id ?? 'G'
+    return {
+      id: `bani-${baniDbId}-${pageNo}`,
+      scripture: sourceMap[srcId] ?? 'SGGS',
+      ang: pageNo,
+      gurmukhi: verses.map(v => safeText(v.verse?.unicode)).join(' '),
+      transliteration: verses.map(v => safeText(v.transliteration?.english)).join(' '),
+      translation_en: verses.map(v => getEnglish(v.translation)).join(' '),
+      translation_hi: verses.map(v => getHindi(v.translation)).join(' '),
+      translation_pa: verses.map(v => getPunjabi(v.translation)).join(' '),
+      words: [],
+    }
+  })
+}
+
 export async function fetchSearch(query: string, searchType: number = 1): Promise<SearchResult[]> {
   const encoded = encodeURIComponent(query)
   const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=all`)
@@ -143,7 +185,7 @@ export async function fetchSearch(query: string, searchType: number = 1): Promis
   return verses.slice(0, 30).map(v => ({
     shabadId: v.shabadId,
     verseId: v.verseId,
-    source: 'G',
+    source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
     pageNo: v.pageNo,
     gurmukhi: safeText(v.verse?.unicode),
     transliteration: safeText(v.transliteration?.english),

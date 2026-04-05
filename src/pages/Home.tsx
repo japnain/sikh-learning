@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { IconSun, IconMoon, IconChevronUp, IconChevronDown, IconCheck, IconArrowRight } from '../components/icons'
+import { IconSun, IconMoon, IconChevronUp, IconChevronDown, IconCheck, IconArrowRight, IconSearch } from '../components/icons'
 import { useProgressStore } from '../store/progress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { getDailyPickAng } from '../utils/dailyPick'
@@ -74,9 +74,18 @@ export default function Home() {
         </div>
       </div>
 
-      <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-1">
+      <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-3">
         {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
       </p>
+
+      {/* Quick Search */}
+      <button
+        onClick={() => navigate('/banis')}
+        className="w-full flex items-center gap-2 bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-6 transition-colors duration-300 active:scale-[0.98] transition-transform duration-150"
+      >
+        <IconSearch size={16} className="text-ink/30 dark:text-dark-text/30" />
+        <span className="font-sans text-sm text-ink/40 dark:text-dark-text/40">Search Gurbani...</span>
+      </button>
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">{greeting()}</h1>
 
       {/* Take a Hukamnama */}
@@ -133,7 +142,10 @@ export default function Home() {
                       {done && <IconCheck size={14} />}
                     </button>
                     <button
-                      onClick={() => navigate(`/study?source=${bani.source}&ang=${bani.startAng}&bani=${encodeURIComponent(bani.name)}`)}
+                      onClick={() => {
+                        const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, baniId: String(bani.baniDbId) })
+                        navigate(`/study?${params}`)
+                      }}
                       className="flex-1 text-left"
                     >
                       <p className={`font-sans text-sm transition-colors duration-300 ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>

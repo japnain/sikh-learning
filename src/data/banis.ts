@@ -8,22 +8,23 @@ export interface Bani {
   category: string
   description: string
   type?: 'browse-only'
+  baniDbId?: number
 }
 
 export const BANIS: Bani[] = [
   // ── SGGS · Daily Prayers (sorted by ang) ─────────────────────────────────
-  { id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of SGGS Ji — recited every morning at amrit vela.' },
-  { id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, category: 'Daily Prayers', description: 'Asks where the gate of the Lord is — opens Rehras Sahib.' },
-  { id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, category: 'Daily Prayers', description: 'Evening prayer — a collection of shabads recited at dusk.' },
-  { id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, category: 'Daily Prayers', description: 'Night prayer recited before sleep, celebrating the soul\'s union with Waheguru.' },
-  { id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji, part of the Nitnem.' },
+  { id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of SGGS Ji — recited every morning at amrit vela.', baniDbId: 1 },
+  { id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, category: 'Daily Prayers', description: 'Asks where the gate of the Lord is — opens Rehras Sahib.', baniDbId: 7 },
+  { id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, category: 'Daily Prayers', description: 'Evening prayer — a collection of shabads recited at dusk.', baniDbId: 8 },
+  { id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, category: 'Daily Prayers', description: 'Night prayer recited before sleep, celebrating the soul\'s union with Waheguru.', baniDbId: 9 },
+  { id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji, part of the Nitnem.', baniDbId: 6 },
 
   // ── SGGS · Long Compositions (sorted by ang) ────────────────────────────
   { id: 'pehre', name: 'Pehre', scripture: 'SGGS', source: 'G', startAng: 74, endAng: 78, category: 'Long Compositions', description: 'The four watches of the night — describes the stages of human life.' },
   { id: 'barah-maha-majh', name: 'Barah Maha (Majh)', scripture: 'SGGS', source: 'G', startAng: 133, endAng: 136, category: 'Long Compositions', description: 'Twelve months — the soul\'s longing for the Divine through the seasons, in Majh raag.' },
   { id: 'bavan-akhri', name: 'Bavan Akhri', scripture: 'SGGS', source: 'G', startAng: 250, endAng: 262, category: 'Long Compositions', description: 'Acrostic poem by Guru Arjan Dev Ji covering all 52 letters of the Gurmukhi alphabet.' },
-  { id: 'sukhmani-sahib', name: 'Sukhmani Sahib', scripture: 'SGGS', source: 'G', startAng: 262, endAng: 296, category: 'Long Compositions', description: 'Pearl of Peace — most cherished composition of Guru Arjan Dev Ji.' },
-  { id: 'asa-di-var', name: 'Asa Di Var', scripture: 'SGGS', source: 'G', startAng: 462, endAng: 475, category: 'Long Compositions', description: 'Morning ballad by Guru Nanak Dev Ji, sung in Asa raag at dawn.' },
+  { id: 'sukhmani-sahib', name: 'Sukhmani Sahib', scripture: 'SGGS', source: 'G', startAng: 262, endAng: 296, category: 'Long Compositions', description: 'Pearl of Peace — most cherished composition of Guru Arjan Dev Ji.', baniDbId: 20 },
+  { id: 'asa-di-var', name: 'Asa Di Var', scripture: 'SGGS', source: 'G', startAng: 462, endAng: 475, category: 'Long Compositions', description: 'Morning ballad by Guru Nanak Dev Ji, sung in Asa raag at dawn.', baniDbId: 21 },
   { id: 'ghorian', name: 'Ghorian', scripture: 'SGGS', source: 'G', startAng: 573, endAng: 577, category: 'Long Compositions', description: 'Wedding songs describing the soul\'s union with Waheguru.' },
   { id: 'alahanian', name: 'Alahanian', scripture: 'SGGS', source: 'G', startAng: 578, endAng: 582, category: 'Long Compositions', description: 'Songs of lamentation — the soul weeps at separation from the Divine.' },
   { id: 'chhant-dhanasri', name: 'Chhant Dhanasri (M.1)', scripture: 'SGGS', source: 'G', startAng: 687, endAng: 689, category: 'Long Compositions', description: 'Lyrical composition by Guru Nanak Dev Ji in Dhanasri raag on Divine love.' },
@@ -45,13 +46,13 @@ export const BANIS: Bani[] = [
 
   // ── SGGS · Saloks & Short Banis (sorted by ang) ──────────────────────────
   { id: 'shabad-hazare-m1', name: 'Shabad Hazare (M.1)', scripture: 'SGGS', source: 'G', startAng: 14, endAng: 15, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of Guru Nanak Dev Ji on longing for the Divine.' },
-  { id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Destroyer of suffering — healing shabads compiled from Guru Arjan Dev Ji\'s bani.' },
+  { id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Destroyer of suffering — healing shabads compiled from Guru Arjan Dev Ji\'s bani.', baniDbId: 10 },
   { id: 'shabad-hazare', name: 'Shabad Hazare (M.5)', scripture: 'SGGS', source: 'G', startAng: 295, endAng: 296, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of longing for the Guru by Guru Arjan Dev Ji.' },
   { id: 'thiiti-majh', name: 'Thiiti (Majh)', scripture: 'SGGS', source: 'G', startAng: 296, endAng: 300, category: 'Saloks & Short Banis', description: 'Lunar calendar composition by Guru Nanak Dev Ji in Majh raag.' },
   { id: 'patti', name: 'Patti', scripture: 'SGGS', source: 'G', startAng: 432, endAng: 435, category: 'Saloks & Short Banis', description: 'Alphabet composition by Guru Nanak Dev Ji — each letter praises the Divine.' },
   { id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 557, endAng: 558, category: 'Saloks & Short Banis', description: 'Songs of separation — the soul\'s anguish at being apart from the Divine.' },
-  { id: 'aarti', name: 'Aarti', scripture: 'SGGS', source: 'G', startAng: 663, endAng: 663, category: 'Saloks & Short Banis', description: 'Guru Nanak Dev Ji\'s celebration of Waheguru as the true light of the universe.' },
-  { id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, category: 'Saloks & Short Banis', description: 'Four rounds of the Anand Karaj (Sikh wedding ceremony) by Guru Ram Das Ji.' },
+  { id: 'aarti', name: 'Aarti', scripture: 'SGGS', source: 'G', startAng: 663, endAng: 663, category: 'Saloks & Short Banis', description: 'Guru Nanak Dev Ji\'s celebration of Waheguru as the true light of the universe.', baniDbId: 12 },
+  { id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, category: 'Saloks & Short Banis', description: 'Four rounds of the Anand Karaj (Sikh wedding ceremony) by Guru Ram Das Ji.', baniDbId: 11 },
   { id: 'ramkali-sadd', name: 'Ramkali Sadd', scripture: 'SGGS', source: 'G', startAng: 923, endAng: 924, category: 'Saloks & Short Banis', description: 'Call of the Divine — recited at moments of spiritual transition.' },
   { id: 'dakhne-m5', name: 'Dakhne (M.5)', scripture: 'SGGS', source: 'G', startAng: 1096, endAng: 1101, category: 'Saloks & Short Banis', description: 'Southern couplets by Guru Arjan Dev Ji.' },
   { id: 'salok-sehskritee', name: 'Salok Sehskritee', scripture: 'SGGS', source: 'G', startAng: 1353, endAng: 1360, category: 'Saloks & Short Banis', description: 'Saloks in Sanskrit by Guru Arjan Dev Ji and Guru Nanak Dev Ji.' },
@@ -69,14 +70,14 @@ export const BANIS: Bani[] = [
   { id: 'salok-m4', name: 'Salok Mahalla 4', scripture: 'SGGS', source: 'G', startAng: 1421, endAng: 1423, category: 'Saloks & Short Banis', description: 'Couplets of Guru Ram Das Ji on love and longing for the Divine.' },
   { id: 'salok-m5', name: 'Salok Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1423, endAng: 1426, category: 'Saloks & Short Banis', description: 'Couplets of Guru Arjan Dev Ji on surrender, trust, and the Divine Name.' },
   { id: 'salok-vaaran-te-vadhik', name: 'Salok Vaaran Te Vadhik', scripture: 'SGGS', source: 'G', startAng: 1410, endAng: 1426, category: 'Saloks & Short Banis', description: 'Additional saloks by the Gurus beyond those in the Vars.' },
-  { id: 'salok-mahalla-9', name: 'Salok Mahalla 9', scripture: 'SGGS', source: 'G', startAng: 1426, endAng: 1429, category: 'Saloks & Short Banis', description: 'Saloks of Guru Tegh Bahadur Ji on impermanence, detachment, and the Divine.' },
+  { id: 'salok-mahalla-9', name: 'Salok Mahalla 9', scripture: 'SGGS', source: 'G', startAng: 1426, endAng: 1429, category: 'Saloks & Short Banis', description: 'Saloks of Guru Tegh Bahadur Ji on impermanence, detachment, and the Divine.', baniDbId: 23 },
   { id: 'mundavani', name: 'Mundavani', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1429, category: 'Saloks & Short Banis', description: 'Seal of SGGS Ji — Guru Arjan Dev Ji\'s closing statement on the three gifts of gurbani.' },
   { id: 'ragmala', name: 'Ragmala', scripture: 'SGGS', source: 'G', startAng: 1430, endAng: 1430, category: 'Saloks & Short Banis', description: 'Garland of raags — a listing of the musical modes of SGGS Ji.' },
 
   // ── Dasam Granth · Daily Prayers (sorted by ang) ────────────────────────
-  { id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji listing the names of the Divine.' },
-  { id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, category: 'Daily Prayers', description: 'Swaiyas of Guru Gobind Singh Ji rejecting empty rituals and praising true devotion.' },
-  { id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 201, endAng: 205, category: 'Daily Prayers', description: 'Prayer of protection by Guru Gobind Singh Ji, part of the evening Nitnem.' },
+  { id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji listing the names of the Divine.', baniDbId: 2 },
+  { id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, category: 'Daily Prayers', description: 'Swaiyas of Guru Gobind Singh Ji rejecting empty rituals and praising true devotion.', baniDbId: 3 },
+  { id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 201, endAng: 205, category: 'Daily Prayers', description: 'Prayer of protection by Guru Gobind Singh Ji, part of the evening Nitnem.', baniDbId: 4 },
 
   // ── Dasam Granth · Bir Ras (sorted by ang) ───────────────────────────────
   { id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Fierce prayer to the Divine — a powerful invocation of the protector of the righteous.' },
