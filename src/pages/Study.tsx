@@ -9,10 +9,10 @@ import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
-import type { ScriptureEntry } from '../types'
+import type { ScriptureEntry, ScriptureLine } from '../types'
 import { MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
-import { getEntryMeaningText } from '../utils/readerDisplay'
+import { getEntryMeaningText, getLineMeaningText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
@@ -184,6 +184,49 @@ export default function Study() {
     setShowBookmarkForm(false)
     setBookmarkText('')
   }
+
+  const buildLineText = (entry: ScriptureEntry, line: ScriptureLine) => [
+    line.gurmukhi,
+    showTransliteration ? line.transliteration : '',
+    getLineMeaningText(line, meaningLanguage, englishSource),
+    `— ${entry.scripture} · Ang ${line.ang}`,
+    'via Nitnem App',
+  ].filter(Boolean).join('\n')
+
+  const handleCopyLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
+    await navigator.clipboard.writeText(buildLineText(entry, line))
+    setShowCopied(true)
+    setTimeout(() => setShowCopied(false), 2000)
+  }
+
+  const handleShareLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
+    const text = buildLineText(entry, line)
+    if (navigator.share) {
+      try { await navigator.share({ text }) } catch { /* user dismissed */ }
+    } else {
+      await navigator.clipboard.writeText(text)
+      setShowCopied(true)
+      setTimeout(() => setShowCopied(false), 2000)
+    }
+  }
+
+  const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
+    const entrySource = (entry.source ?? currentSource) as BaniSource
+    if (hasBookmark(entrySource, line.ang, line.verseId)) return
+    addBookmark({
+      type: 'verse',
+      title: `${entry.scripture} · Ang ${line.ang}`,
+      source: entrySource,
+      ang: line.ang,
+      shabadId: line.shabadId,
+      verseId: line.verseId,
+      excerpt: line.gurmukhi,
+      description: line.transliteration || undefined,
+    })
+  }
+
+  const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) =>
+    hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
   const navMinAng = isBaniDbMode
@@ -399,6 +442,10 @@ export default function Study() {
               key={entry.id}
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
+              onCopyLine={handleCopyLine}
+              onShareLine={handleShareLine}
+              onBookmarkLine={handleBookmarkLine}
+              isLineBookmarked={(line, item) => isLineBookmarked(line, item)}
             />
           )
         })}

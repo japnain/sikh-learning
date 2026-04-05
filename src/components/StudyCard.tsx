@@ -3,10 +3,16 @@ import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { getLineMeaningText, renderScriptText } from '../utils/readerDisplay'
 import WordPopover from './WordPopover'
+import AudioPlayer from './AudioPlayer'
+import { IconBookmark, IconBookmarkFilled, IconShare } from './icons'
 
 interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
+  onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
+  onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
+  onBookmarkLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
+  isLineBookmarked?: (line: ScriptureLine, entry: ScriptureEntry) => boolean
 }
 
 function fallbackLine(entry: ScriptureEntry): ScriptureLine {
@@ -23,8 +29,16 @@ function fallbackLine(entry: ScriptureEntry): ScriptureLine {
   }
 }
 
-export default function StudyCard({ entry, wordData }: Props) {
+export default function StudyCard({
+  entry,
+  wordData,
+  onCopyLine,
+  onShareLine,
+  onBookmarkLine,
+  isLineBookmarked,
+}: Props) {
   const [activeWord, setActiveWord] = useState<Word | null>(null)
+  const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
@@ -42,18 +56,18 @@ export default function StudyCard({ entry, wordData }: Props) {
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
 
-  const handleWordTap = (originalGurmukhi: string) => {
+  const handleWordTap = (originalGurmukhi: string, line: ScriptureLine) => {
     const wordsToSearch = wordData ?? entry.words ?? []
     const cleaned = cleanGurmukhi(originalGurmukhi)
     if (!cleaned) return
 
     if (wordsToSearch.length > 0) {
       const exact = wordsToSearch.find(w => cleanGurmukhi(w.gurmukhi) === cleaned)
-      if (exact) { setActiveWord(exact); return }
+      if (exact) { setActiveWord(exact); setActiveLine(line); return }
       const partial = wordsToSearch.find(w =>
         cleaned.includes(cleanGurmukhi(w.gurmukhi)) || cleanGurmukhi(w.gurmukhi).includes(cleaned)
       )
-      if (partial) { setActiveWord(partial); return }
+      if (partial) { setActiveWord(partial); setActiveLine(line); return }
     }
 
     setActiveWord({
@@ -63,6 +77,7 @@ export default function StudyCard({ entry, wordData }: Props) {
       meaning_hi: '',
       meaning_pa: '',
     })
+    setActiveLine(line)
   }
 
   return (
@@ -81,6 +96,12 @@ export default function StudyCard({ entry, wordData }: Props) {
             </p>
           )}
         </div>
+
+        {entry.shabadId ? (
+          <div className="mb-4">
+            <AudioPlayer shabadId={entry.shabadId} />
+          </div>
+        ) : null}
 
         {introLines.length > 0 && (
           <div className="mb-4 rounded-2xl bg-gold/8 dark:bg-gold/10 border border-gold/15 dark:border-gold/15 px-4 py-4">
@@ -140,7 +161,7 @@ export default function StudyCard({ entry, wordData }: Props) {
                       lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
                       className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 text-left text-ink dark:text-dark-text leading-[1.9] active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
                       style={{ fontSize: `${fontSize}px` }}
-                      onClick={() => handleWordTap(word)}
+                      onClick={() => handleWordTap(word, line)}
                     >
                       {renderScriptText(word, scriptMode)}
                     </button>
@@ -164,6 +185,40 @@ export default function StudyCard({ entry, wordData }: Props) {
                     </p>
                   )
                 )}
+
+                <div className="mt-3 pt-3 border-t border-sand/10 dark:border-dark-text/10 flex items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onCopyLine?.(line, entry)}
+                    className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 uppercase tracking-[0.18em]"
+                  >
+                    Copy
+                  </button>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => onShareLine?.(line, entry)}
+                      className="min-h-[32px] min-w-[32px] flex items-center justify-center text-ink/40 dark:text-dark-text/40"
+                      aria-label="Share verse"
+                    >
+                      <IconShare size={15} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onBookmarkLine?.(line, entry)}
+                      className={`min-h-[32px] min-w-[32px] flex items-center justify-center ${
+                        isLineBookmarked?.(line, entry)
+                          ? 'text-saffron dark:text-saffron-light'
+                          : 'text-ink/40 dark:text-dark-text/40'
+                      }`}
+                      aria-label="Bookmark verse"
+                    >
+                      {isLineBookmarked?.(line, entry)
+                        ? <IconBookmarkFilled size={15} />
+                        : <IconBookmark size={15} />}
+                    </button>
+                  </div>
+                </div>
               </article>
             )
           })}
@@ -177,9 +232,16 @@ export default function StudyCard({ entry, wordData }: Props) {
       {activeWord && (
         <WordPopover
           word={activeWord}
-          onClose={() => setActiveWord(null)}
+          onClose={() => {
+            setActiveWord(null)
+            setActiveLine(null)
+          }}
           scripture={entry.scripture}
           sourceId={entry.source ?? entry.id.split('-')[0]}
+          ang={activeLine?.ang ?? entry.ang}
+          shabadId={activeLine?.shabadId ?? entry.shabadId}
+          verseId={activeLine?.verseId}
+          line={activeLine?.gurmukhi}
         />
       )}
     </>

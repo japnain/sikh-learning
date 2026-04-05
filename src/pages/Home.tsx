@@ -12,6 +12,8 @@ import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { BANIS } from '../data/banis'
+import { useVocabStore } from '../store/vocab'
+import { useLearningStore } from '../store/learning'
 import StreakBadge from '../components/StreakBadge'
 import type { StudiedEntry } from '../types'
 
@@ -41,6 +43,9 @@ export default function Home() {
   const [pressedBtn, setPressedBtn] = useState<string | null>(null)
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const { getProgress } = useReadingProgressStore()
+  const vocab = useVocabStore(s => s.vocab)
+  const dueWords = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
+  const { masteredSymbols, completedLessons, practiceStreak } = useLearningStore()
 
   // Top banis to show reading progress for
   const PROGRESS_BANIS = BANIS.filter(b => ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id))
@@ -138,6 +143,37 @@ export default function Home() {
               </button>
             </>
           )}
+        </div>
+      </div>
+
+      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card dark:shadow-gold animate-slide-up stagger-2">
+        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Daily Path</p>
+        <div className="space-y-2">
+          <button
+            onClick={() => navigate(currentSession ? `/study?source=${currentSession.scriptureId.split('-')[0]}&ang=${currentSession.scriptureId.split('-')[1]}` : '/banis')}
+            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
+          >
+            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Read</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open today&apos;s bani or pick up your current reading.</p>
+          </button>
+          <button
+            onClick={() => navigate('/learn')}
+            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
+          >
+            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Grow</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
+              {masteredSymbols.length} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day streak
+            </p>
+          </button>
+          <button
+            onClick={() => navigate('/vocab')}
+            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
+          >
+            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Review</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
+              {dueWords.length > 0 ? `${dueWords.length} saved words are due for review.` : 'No review backlog right now. Add words while studying.'}
+            </p>
+          </button>
         </div>
       </div>
 

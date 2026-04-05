@@ -4,7 +4,7 @@ import type { ScriptureEntry } from '../types'
 import { useLanguageStore } from '../store/language'
 
 const entry: ScriptureEntry = {
-  id: 'test-1', scripture: 'SGGS', ang: 1,
+  id: 'test-1', scripture: 'SGGS', ang: 1, shabadId: 1,
   gurmukhi: 'ੴ ਸਤਿ',
   transliteration: 'Ik Oankaar Sat',
   translation_en: 'One Creator Truth',
@@ -52,6 +52,7 @@ test('shows translation inline without flipping', () => {
   render(<StudyCard entry={entry} />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
   expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /play recitation/i })).toBeInTheDocument()
 })
 
 test('switches to selected English source', () => {

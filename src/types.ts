@@ -9,6 +9,7 @@ export interface Word {
 export type EnglishSource = 'bdb' | 'ms' | 'ssk'
 export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
+export type SearchMode = 'first-letters' | 'gurmukhi' | 'english' | 'transliteration'
 
 export interface EnglishTranslations {
   bdb?: string
@@ -59,6 +60,8 @@ export interface VocabEntry {
   scripture: string
   sourceId: string
   savedAt: string
+  context?: VocabContext
+  review?: VocabReviewState
 }
 
 export interface StudiedEntry {
@@ -71,4 +74,40 @@ export interface Scripture {
   name: string
   shortName: string
   sourceId: 'G' | 'D' | 'B' | 'A'
+}
+
+export interface VocabContext {
+  scripture: string
+  sourceId: string
+  ang?: number
+  shabadId?: number
+  verseId?: number
+  line?: string
+}
+
+export interface VocabReviewState {
+  dueAt: string
+  intervalDays: number
+  reviewCount: number
+  lastReviewedAt?: string
+}
+
+export interface LearningProgressState {
+  masteredSymbols: string[]
+  completedLessons: string[]
+  practiceStreak: number
+  lastPracticedOn?: string
+  totalPracticeSessions: number
+}
+
+export interface LearningBridgeItem {
+  id: string
+  title: string
+  scripture: string
+  source: 'G' | 'D'
+  ang: number
+  gurmukhi: string
+  transliteration: string
+  meaning: string
+  focus: string
 }

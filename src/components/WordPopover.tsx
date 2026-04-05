@@ -9,9 +9,22 @@ interface Props {
   onClose: () => void
   scripture?: string
   sourceId?: string
+  ang?: number
+  shabadId?: number
+  verseId?: number
+  line?: string
 }
 
-export default function WordPopover({ word, onClose, scripture = '', sourceId = '' }: Props) {
+export default function WordPopover({
+  word,
+  onClose,
+  scripture = '',
+  sourceId = '',
+  ang,
+  shabadId,
+  verseId,
+  line,
+}: Props) {
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const { vocab, addWord } = useVocabStore()
@@ -28,6 +41,14 @@ export default function WordPopover({ word, onClose, scripture = '', sourceId = 
       scripture,
       sourceId,
       savedAt: new Date().toISOString(),
+      context: {
+        scripture,
+        sourceId,
+        ang,
+        shabadId,
+        verseId,
+        line,
+      },
     })
   }
 

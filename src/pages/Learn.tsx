@@ -1,21 +1,26 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GURMUKHI_LETTERS, GURMUKHI_VOWELS, type GurmukhiLetter } from '../data/gurmukhi'
+import { LEARNING_BRIDGE_ITEMS } from '../data/learningBridge'
+import { useLearningStore } from '../store/learning'
 
-type Tab = 'letters' | 'vowels' | 'practice'
+type Tab = 'letters' | 'vowels' | 'practice' | 'bridge'
 
-function LetterCard({ letter, onSelect, selected }: {
+function LetterCard({ letter, onSelect, selected, mastered }: {
   letter: GurmukhiLetter
   onSelect: (l: GurmukhiLetter) => void
   selected: boolean
+  mastered: boolean
 }) {
   return (
     <button
       onClick={() => onSelect(letter)}
-      className={`flex flex-col items-center justify-center rounded-xl p-2 min-h-[64px] border transition-colors duration-300 ${
+      className={`flex flex-col items-center justify-center rounded-xl p-2 min-h-[68px] border transition-colors duration-300 ${
         selected
           ? 'bg-saffron text-white border-saffron'
-          : 'bg-parchment-card dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+          : mastered
+            ? 'bg-gold/10 dark:bg-gold/10 border-gold/20 text-ink dark:text-dark-text'
+            : 'bg-parchment-card dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
       }`}
     >
       <span lang="pa-Guru" className="font-gurmukhi text-2xl leading-none">{letter.gurmukhi}</span>
@@ -28,14 +33,43 @@ export default function Learn() {
   const navigate = useNavigate()
   const [tab, setTab] = useState<Tab>('letters')
   const [selected, setSelected] = useState<GurmukhiLetter | null>(null)
-
-  // Practice mode state
   const [practiceIdx, setPracticeIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
-  const practiceList = [...GURMUKHI_LETTERS, ...GURMUKHI_VOWELS]
-    .sort(() => Math.random() - 0.5)
+  const {
+    masteredSymbols,
+    completedLessons,
+    practiceStreak,
+    totalPracticeSessions,
+    toggleMasteredSymbol,
+    completeLesson,
+    recordPracticeSession,
+  } = useLearningStore()
+
+  const practiceList = useMemo(
+    () => [...GURMUKHI_LETTERS, ...GURMUKHI_VOWELS].sort(() => Math.random() - 0.5),
+    []
+  )
 
   const letters = tab === 'vowels' ? GURMUKHI_VOWELS : GURMUKHI_LETTERS
+  const activePractice = practiceList[practiceIdx % practiceList.length]
+
+  const handleSelect = (letter: GurmukhiLetter) => {
+    setSelected(letter)
+    completeLesson(tab === 'vowels' ? 'vowels' : 'letters')
+  }
+
+  const handlePracticeResult = (mastered: boolean) => {
+    recordPracticeSession()
+    completeLesson('practice')
+    if (mastered) {
+      toggleMasteredSymbol(activePractice.gurmukhi)
+    }
+    setPracticeIdx(index => index + 1)
+    setRevealed(false)
+  }
+
+  const masteredCount = masteredSymbols.length
+  const completionPct = Math.round((masteredCount / (GURMUKHI_LETTERS.length + GURMUKHI_VOWELS.length)) * 100)
 
   return (
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
@@ -46,17 +80,32 @@ export default function Learn() {
         <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text">ਪੈਂਤੀ · Learn Gurmukhi</h1>
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-2 mb-4">
-        {(['letters', 'vowels', 'practice'] as Tab[]).map(t => (
+      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-4 border border-sand/15 dark:border-dark-text/10">
+        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">Progress</p>
+        <p className="font-sans text-sm text-ink dark:text-dark-text">
+          {masteredCount} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day practice streak
+        </p>
+        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-3">
+          <div
+            className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500"
+            style={{ width: `${completionPct}%` }}
+          />
+        </div>
+        <p className="font-sans text-[10px] text-ink/45 dark:text-dark-text/45 mt-2">
+          {totalPracticeSessions} total practice sessions
+        </p>
+      </div>
+
+      <div className="grid grid-cols-4 gap-2 mb-4">
+        {(['letters', 'vowels', 'practice', 'bridge'] as Tab[]).map(t => (
           <button
             key={t}
             onClick={() => { setTab(t); setSelected(null); setRevealed(false); setPracticeIdx(0) }}
-            className={`flex-1 py-2 rounded-xl font-sans text-xs font-medium capitalize transition-colors duration-300 ${
+            className={`py-2 rounded-xl font-sans text-xs font-medium capitalize transition-colors duration-300 ${
               tab === t ? 'bg-saffron text-white' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60'
             }`}
           >
-            {t === 'letters' ? 'Letters' : t === 'vowels' ? 'Vowels' : 'Practice'}
+            {t === 'bridge' ? 'Gurbani' : t}
           </button>
         ))}
       </div>
@@ -68,37 +117,69 @@ export default function Learn() {
           </p>
           <div
             onClick={() => setRevealed(r => !r)}
-            className="w-full bg-parchment-card dark:bg-dark-card rounded-2xl p-8 flex flex-col items-center cursor-pointer border border-sand/15 dark:border-dark-text/10 min-h-[200px] justify-center gap-4 transition-colors duration-300"
+            className="w-full bg-parchment-card dark:bg-dark-card rounded-2xl p-8 flex flex-col items-center cursor-pointer border border-sand/15 dark:border-dark-text/10 min-h-[220px] justify-center gap-4 transition-colors duration-300"
           >
             <span lang="pa-Guru" className="font-gurmukhi text-7xl text-ink dark:text-dark-text">
-              {practiceList[practiceIdx % practiceList.length].gurmukhi}
+              {activePractice.gurmukhi}
             </span>
             {revealed ? (
               <div className="text-center">
-                <p className="font-sans font-semibold text-ink dark:text-dark-text">{practiceList[practiceIdx % practiceList.length].name}</p>
-                <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">{practiceList[practiceIdx % practiceList.length].pronunciation}</p>
+                <p className="font-sans font-semibold text-ink dark:text-dark-text">{activePractice.name}</p>
+                <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">{activePractice.pronunciation}</p>
                 <p lang="pa-Guru" className="font-gurmukhi text-saffron dark:text-saffron-light mt-2">
-                  {practiceList[practiceIdx % practiceList.length].example}
+                  {activePractice.example}
                 </p>
                 <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50">
-                  {practiceList[practiceIdx % practiceList.length].exampleMeaning}
+                  {activePractice.exampleMeaning}
                 </p>
               </div>
             ) : (
               <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40">Tap to reveal</p>
             )}
           </div>
-          <div className="flex gap-3 w-full">
+          <div className="grid grid-cols-2 gap-3 w-full">
             <button
-              onClick={() => { setPracticeIdx(i => Math.max(0, i - 1)); setRevealed(false) }}
-              disabled={practiceIdx === 0}
-              className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 disabled:opacity-30 min-h-[44px] transition-colors duration-300"
-            >← Prev</button>
+              onClick={() => handlePracticeResult(false)}
+              className="py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px] transition-colors duration-300"
+            >
+              Review Again
+            </button>
             <button
-              onClick={() => { setPracticeIdx(i => i + 1); setRevealed(false) }}
-              className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300"
-            >Next →</button>
+              onClick={() => handlePracticeResult(true)}
+              className="py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300"
+            >
+              I Know This
+            </button>
           </div>
+        </div>
+      ) : tab === 'bridge' ? (
+        <div className="space-y-3">
+          {LEARNING_BRIDGE_ITEMS.map(item => (
+            <button
+              key={item.id}
+              onClick={() => {
+                completeLesson('bridge')
+                navigate(`/study?source=${item.source}&ang=${item.ang}&bani=${encodeURIComponent(item.title)}`)
+              }}
+              className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl p-4 border border-sand/15 dark:border-dark-text/10"
+            >
+              <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">
+                {item.title} · {item.scripture} · Ang {item.ang}
+              </p>
+              <p lang="pa-Guru" className="font-gurmukhi text-xl text-ink dark:text-dark-text leading-relaxed mt-2">
+                {item.gurmukhi}
+              </p>
+              <p className="font-sans text-sm italic text-ink/55 dark:text-dark-text/55 mt-2">
+                {item.transliteration}
+              </p>
+              <p className="font-sans text-sm text-ink/80 dark:text-dark-text/80 mt-2">
+                {item.meaning}
+              </p>
+              <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-3">
+                {item.focus}
+              </p>
+            </button>
+          ))}
         </div>
       ) : (
         <>
@@ -107,8 +188,9 @@ export default function Learn() {
               <LetterCard
                 key={l.gurmukhi}
                 letter={l}
-                onSelect={setSelected}
+                onSelect={handleSelect}
                 selected={selected?.gurmukhi === l.gurmukhi}
+                mastered={masteredSymbols.includes(l.gurmukhi)}
               />
             ))}
           </div>
@@ -127,6 +209,16 @@ export default function Learn() {
                 <p lang="pa-Guru" className="font-gurmukhi text-xl text-ink dark:text-dark-text">{selected.example}</p>
                 <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-1">{selected.exampleMeaning}</p>
               </div>
+              <button
+                onClick={() => toggleMasteredSymbol(selected.gurmukhi)}
+                className={`w-full mt-4 py-3 rounded-2xl font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300 ${
+                  masteredSymbols.includes(selected.gurmukhi)
+                    ? 'bg-gold/15 text-gold dark:text-gold-light'
+                    : 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                }`}
+              >
+                {masteredSymbols.includes(selected.gurmukhi) ? 'Marked as Mastered' : 'Mark as Mastered'}
+              </button>
             </div>
           )}
         </>
