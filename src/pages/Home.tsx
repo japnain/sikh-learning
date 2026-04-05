@@ -143,7 +143,7 @@ export default function Home() {
                     </button>
                     <button
                       onClick={() => {
-                        const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, baniId: String(bani.baniDbId) })
+                        const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
                         navigate(`/study?${params}`)
                       }}
                       className="flex-1 text-left"

@@ -57,8 +57,7 @@ function BaniRow({ bani, navigate, addBookmark, hasBookmark }: {
     <div className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
       <button
         onClick={() => {
-          const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name })
-          if (bani.baniDbId) params.set('baniId', String(bani.baniDbId))
+          const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
           navigate(`/study?${params}`)
         }}
         className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"
@@ -192,7 +191,7 @@ export default function Banis() {
                 <div key={bani.id} className="flex items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl mb-1 overflow-hidden transition-colors duration-300">
                   <button
                     onClick={() => {
-                      const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, baniId: String(bani.baniDbId) })
+                      const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
                       navigate(`/study?${params}`)
                     }}
                     className="flex-1 text-left px-3 py-3 min-h-[52px] active:scale-95 transition-transform duration-150"

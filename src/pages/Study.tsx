@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
-import { useBani } from '../hooks/useBani'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
@@ -16,9 +15,8 @@ const MAX_ANG: Record<string, number> = {
 }
 
 function parseShabadId(entryId: string): number | null {
-  // Supports both "G-8-123" and "bani-1-8" formats
   const parts = entryId.split('-')
-  if (parts.length === 3 && parts[0] !== 'bani') {
+  if (parts.length === 3) {
     const id = Number(parts[2])
     return Number.isFinite(id) ? id : null
   }
@@ -33,7 +31,7 @@ export default function Study() {
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
   const baniName = searchParams.get('bani')
-  const baniDbId = Number(searchParams.get('baniId')) || null
+  const endAngParam = Number(searchParams.get('endAng')) || null
 
   if ((!source || !angParam) && scriptureId) {
     const parts = scriptureId.split('-')
@@ -43,40 +41,24 @@ export default function Study() {
     }
   }
 
-  // Bani mode: fetch specific bani content from /banis/{id}
-  const isBaniMode = baniDbId !== null
+  // Bani mode = we have a bani name + endAng range
+  const isBaniMode = baniName !== null && endAngParam !== null
   const isAngMode = source !== null && angParam !== null
-  const isApiMode = isBaniMode || isAngMode
+  const isApiMode = isAngMode
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
   }, [isApiMode, navigate])
 
-  // Ang-based fetching (always fetch with correct source/ang as fallback)
+  // Ang-based fetching — works for both regular and bani mode
   const angResult = useAng(
     isAngMode ? angParam! : 1,
     isAngMode ? source! : 'G'
   )
 
-  // Bani-based fetching
-  const baniResult = useBani(isBaniMode ? baniDbId : null)
-
-  // Use bani results if available, otherwise fall back to ang results
-  const baniFailed = isBaniMode && !baniResult.loading && (baniResult.error || baniResult.entries.length === 0)
-  const useBaniEntries = isBaniMode && !baniFailed
-
-  const entries = useBaniEntries ? baniResult.entries : angResult.entries
-  const loading = useBaniEntries ? baniResult.loading : (isBaniMode ? (baniResult.loading || angResult.loading) : angResult.loading)
-  const error = useBaniEntries ? baniResult.error : angResult.error
-
-  // For bani mode, track which ang page we're viewing
-  const [baniPageIndex, setBaniPageIndex] = useState(0)
-  useEffect(() => { setBaniPageIndex(0) }, [baniDbId])
-
-  // In bani mode with bani entries, show one ang at a time; otherwise show all entries
-  const visibleEntries = useBaniEntries && entries.length > 0
-    ? [entries[Math.min(baniPageIndex, entries.length - 1)]]
-    : entries
+  const entries = angResult.entries
+  const loading = angResult.loading
+  const error = angResult.error
 
   const { updateSession } = useProgressStore()
 
@@ -98,16 +80,6 @@ export default function Study() {
     }
   }, [source, angParam, isAngMode, recordAng])
 
-  // Record progress for bani mode too
-  useEffect(() => {
-    if (isBaniMode && visibleEntries.length > 0) {
-      const entry = visibleEntries[0]
-      const srcMap: Record<string, BaniSource> = { SGGS: 'G', DG: 'D', BGV: 'B', AK: 'A' }
-      const src = srcMap[entry.scripture] ?? 'G'
-      recordAng(src, entry.ang)
-    }
-  }, [isBaniMode, baniPageIndex, visibleEntries])
-
   const handleShare = async () => {
     if (!currentEntry) return
     const text = [
@@ -126,17 +98,15 @@ export default function Study() {
     }
   }
 
-  const currentEntry = visibleEntries[0] ?? null
+  const currentEntry = entries[0] ?? null
   const shabadIds = useMemo(
-    () => visibleEntries.map(e => parseShabadId(e.id)),
-    [visibleEntries]
+    () => entries.map(e => parseShabadId(e.id)),
+    [entries]
   )
   const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
 
   const currentAng = currentEntry?.ang ?? angParam
-  const currentSource = source ?? (currentEntry ? (
-    currentEntry.scripture === 'SGGS' ? 'G' : currentEntry.scripture === 'DG' ? 'D' : 'G'
-  ) as BaniSource : 'G')
+  const currentSource = source ?? 'G'
 
   const isBookmarked = currentAng
     ? hasBookmark(currentSource, currentAng)
@@ -157,7 +127,18 @@ export default function Study() {
     setBookmarkText('')
   }
 
-  const maxAng = source ? (MAX_ANG[source] ?? 1) : 1
+  // Navigation bounds: for bani mode, limit to startAng..endAng
+  const startAng = isBaniMode ? angParam! : 1
+  const navMinAng = isBaniMode ? startAng : 1
+  const navMaxAng = isBaniMode ? endAngParam! : (MAX_ANG[source!] ?? 1)
+
+  // Build params for navigation, preserving bani context
+  const navTo = (newAng: number) => {
+    const params: Record<string, string> = { source: source!, ang: String(newAng) }
+    if (baniName) params.bani = baniName
+    if (endAngParam) params.endAng = String(endAngParam)
+    setSearchParams(params)
+  }
 
   if (!isApiMode) return null
 
@@ -231,14 +212,16 @@ export default function Study() {
       {baniName && (
         <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
-          {useBaniEntries && entries.length > 1 && (
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">Page {baniPageIndex + 1} of {entries.length}</p>
+          {isBaniMode && (
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+              Ang {angParam} of {startAng}–{endAngParam}
+            </p>
           )}
         </div>
       )}
 
       <div className="space-y-4">
-        {visibleEntries.map(entry => {
+        {entries.map(entry => {
           const shabadId = parseShabadId(entry.id)
           return (
             <StudyCard
@@ -251,33 +234,18 @@ export default function Study() {
       </div>
 
       {/* Navigation */}
-      {useBaniEntries ? (
-        <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
-          <button
-            onClick={() => setBaniPageIndex(i => i - 1)}
-            disabled={baniPageIndex <= 0}
-            className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-          >&#8592; Previous</button>
-          <button
-            onClick={() => setBaniPageIndex(i => i + 1)}
-            disabled={baniPageIndex >= entries.length - 1}
-            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-          >Next &#8594;</button>
-        </div>
-      ) : (
-        <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
-          <button
-            onClick={() => setSearchParams({ source: source!, ang: String(angParam! - 1) })}
-            disabled={angParam! <= 1}
-            className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-          >&#8592; Ang {angParam! - 1}</button>
-          <button
-            onClick={() => setSearchParams({ source: source!, ang: String(angParam! + 1) })}
-            disabled={angParam! >= maxAng}
-            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
-          >Ang {angParam! + 1} &#8594;</button>
-        </div>
-      )}
+      <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
+        <button
+          onClick={() => navTo(angParam! - 1)}
+          disabled={angParam! <= navMinAng}
+          className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+        >&#8592; Ang {angParam! - 1}</button>
+        <button
+          onClick={() => navTo(angParam! + 1)}
+          disabled={angParam! >= navMaxAng}
+          className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+        >Ang {angParam! + 1} &#8594;</button>
+      </div>
     </div>
   )
 }
