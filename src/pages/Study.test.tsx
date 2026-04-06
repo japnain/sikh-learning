@@ -164,6 +164,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
 
+    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
     fireEvent.click(screen.getByRole('button', { name: /transliteration off/i }))
 
     expect(screen.getByText(/ikOankaar sat naam/i)).toBeInTheDocument()
@@ -180,6 +181,7 @@ describe('Study renders all shabads on an ang', () => {
       expect(screen.getByText('One Universal Creator God. The Name Is Truth.')).toBeInTheDocument()
     })
 
+    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
     fireEvent.click(screen.getByRole('button', { name: /^Punjabi$/i }))
 
     expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
