@@ -55,9 +55,12 @@ export default function More() {
 
   const handleToggle = (id: string) => {
     if (currentSound === id && playing) {
+      stopSound()
+      setSound(null)
       setPlaying(false)
     } else {
       setSound(id)
+      setPlaying(true)
     }
   }
 

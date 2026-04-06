@@ -30,15 +30,17 @@ export default function OnboardingSheet({
   onComplete,
 }: Props) {
   return (
-    <div className="fixed inset-0 z-50 bg-ink/40 dark:bg-black/60 flex items-end justify-center px-4 pb-6">
-      <div className="w-full max-w-md rounded-3xl bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-gold/10 shadow-gold-strong p-5">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em] mb-2">First Setup</p>
-        <h2 className="font-sans font-semibold text-xl text-ink dark:text-dark-text">Set your reading defaults</h2>
-        <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2 mb-4">
-          Choose how Gurbani should open and how much support you want while learning.
-        </p>
+    <div className="fixed inset-0 z-50 bg-ink/40 dark:bg-black/60 flex items-end justify-center px-4 py-4">
+      <div className="w-full max-w-md max-h-[calc(100vh-2rem)] overflow-hidden rounded-[32px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-gold/10 shadow-gold-strong">
+        <div className="px-5 pt-5 pb-4 border-b border-sand/10 dark:border-dark-text/10">
+          <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em] mb-2">Welcome</p>
+          <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">Set your reading defaults</h2>
+          <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-3">
+            Choose how Gurbani should open and how much support you want while learning.
+          </p>
+        </div>
 
-        <div className="space-y-4">
+        <div className="px-5 py-4 overflow-y-auto max-h-[calc(100vh-14rem)] space-y-4">
           <div>
             <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Reading script</p>
             <div className="grid grid-cols-2 gap-2">
@@ -127,12 +129,14 @@ export default function OnboardingSheet({
           </div>
         </div>
 
-        <button
-          onClick={onComplete}
-          className="w-full mt-5 bg-gradient-to-r from-saffron to-saffron-light rounded-2xl py-3 text-white font-sans font-semibold text-sm min-h-[48px]"
-        >
-          Save Setup
-        </button>
+        <div className="px-5 pb-5 pt-4 border-t border-sand/10 dark:border-dark-text/10 bg-parchment-card dark:bg-dark-card">
+          <button
+            onClick={onComplete}
+            className="w-full bg-gradient-to-r from-saffron to-saffron-light rounded-2xl py-3 text-white font-sans font-semibold text-sm min-h-[48px]"
+          >
+            Save Setup
+          </button>
+        </div>
       </div>
     </div>
   )

@@ -29,10 +29,7 @@ import { LEARNING_LEVEL_LABELS } from '../utils/translations'
 import { getDailyPickAng } from '../utils/dailyPick'
 
 function greeting(): string {
-  const h = new Date().getHours()
-  if (h < 12) return 'Sat Sri Akaal'
-  if (h < 17) return 'Waheguru Ji'
-  return 'Waheguru Ji Ka Khalsa'
+  return 'SatShriAkaal'
 }
 
 function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
@@ -160,24 +157,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-4">
         <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
           {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
         </p>
-        <h1 className="font-display text-[2.2rem] leading-none text-ink dark:text-dark-text mt-2">
+        <h1 className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text mt-2">
           {greeting()}
         </h1>
       </div>
-
-      <button
-        onClick={() => navigate('/banis')}
-        className="section-shell-quiet w-full flex items-center gap-3 px-4 py-3 mb-5 active:scale-[0.99] transition-transform duration-150"
-      >
-        <IconSearch size={16} className="text-ink/35 dark:text-dark-text/35" />
-        <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
-          Search Gurbani, first letters, transliteration, or meaning
-        </span>
-      </button>
 
       <section className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1">
         <div className="flex items-center justify-between gap-3 mb-4">
@@ -234,20 +221,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-3 mb-5 animate-slide-up stagger-2">
-        <button
-          onClick={() => navigate('/learn')}
-          className="section-shell p-4 text-left active:scale-[0.99] transition-transform duration-150"
-        >
-          <p className="eyebrow">Grow</p>
-          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
-            {LEARNING_LEVEL_LABELS[learningLevel]} track
-          </p>
-          <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
-            {masteredSymbols.length} symbols mastered, {completedLessons.length} lessons complete, {practiceStreak} day practice streak.
-          </p>
-        </button>
+      <button
+        onClick={() => navigate('/banis')}
+        className="section-shell-quiet w-full flex items-center gap-3 px-4 py-3 mb-5 active:scale-[0.99] transition-transform duration-150"
+      >
+        <IconSearch size={16} className="text-ink/35 dark:text-dark-text/35" />
+        <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
+          Search Gurbani, first letters, transliteration, or meaning
+        </span>
+      </button>
 
+      <section className="grid grid-cols-1 gap-3 mb-5 animate-slide-up stagger-2">
         <button
           onClick={() => navigate('/vocab')}
           className="section-shell p-4 text-left active:scale-[0.99] transition-transform duration-150"
@@ -258,6 +242,19 @@ export default function Home() {
           </p>
           <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
             Saved words and full phrases stay ready for short daily revision.
+          </p>
+        </button>
+
+        <button
+          onClick={() => navigate('/learn')}
+          className="section-shell p-4 text-left active:scale-[0.99] transition-transform duration-150"
+        >
+          <p className="eyebrow">Grow</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
+            {LEARNING_LEVEL_LABELS[learningLevel]} track
+          </p>
+          <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+            {masteredSymbols.length} symbols mastered, {completedLessons.length} lessons complete, {practiceStreak} day practice streak.
           </p>
         </button>
       </section>

@@ -113,6 +113,43 @@ export default function Library() {
         </p>
       </div>
 
+      <section className="section-shell-quiet p-4 mb-5">
+        <button
+          onClick={() => toggle('library')}
+          className="w-full flex justify-between items-center gap-3"
+        >
+          <div className="text-left">
+            <p className="eyebrow">Source Browsing</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open scripture by ang or page when you need it.</p>
+          </div>
+          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+        </button>
+
+        {expanded.library && (
+          <div className="mt-4 space-y-3">
+            {SECTIONS.map(section => {
+              const isOpen = expanded[section.id]
+              return (
+                <div key={section.id} className="section-shell px-4 py-4">
+                  <button
+                    onClick={() => toggle(section.id)}
+                    className="w-full flex justify-between items-center gap-3"
+                  >
+                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
+                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="mt-4">
+                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
+
       <section className="hero-surface p-5 mb-5">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -262,42 +299,6 @@ export default function Library() {
         </section>
       )}
 
-      <section className="section-shell-quiet p-4">
-        <button
-          onClick={() => toggle('library')}
-          className="w-full flex justify-between items-center gap-3"
-        >
-          <div className="text-left">
-            <p className="eyebrow">Source Browsing</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open scripture by ang or page when you need it.</p>
-          </div>
-          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-        </button>
-
-        {expanded.library && (
-          <div className="mt-4 space-y-3">
-            {SECTIONS.map(section => {
-              const isOpen = expanded[section.id]
-              return (
-                <div key={section.id} className="section-shell px-4 py-4">
-                  <button
-                    onClick={() => toggle(section.id)}
-                    className="w-full flex justify-between items-center gap-3"
-                  >
-                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
-                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-                  </button>
-                  {isOpen && (
-                    <div className="mt-4">
-                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </section>
     </div>
   )
 }

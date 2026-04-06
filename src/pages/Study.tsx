@@ -145,6 +145,7 @@ export default function Study() {
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
   const [showCopied, setShowCopied] = useState(false)
+  const [controlsOpen, setControlsOpen] = useState(false)
 
   useEffect(() => {
     if (currentAng) {
@@ -359,9 +360,27 @@ export default function Study() {
       </div>
 
       <div className="mb-4 section-shell-quiet p-4 shadow-card">
-        <p className="eyebrow mb-3">Reader Controls</p>
+        <button
+          type="button"
+          onClick={() => setControlsOpen(open => !open)}
+          className="w-full flex items-center justify-between gap-3"
+          aria-expanded={controlsOpen}
+          aria-label={controlsOpen ? 'Hide reader controls' : 'Show reader controls'}
+        >
+          <div className="text-left">
+            <p className="eyebrow">Reader Controls</p>
+            <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
+              {SCRIPT_MODE_LABELS[scriptMode]} · {MEANING_LANGUAGE_LABELS[meaningLanguage]} · {showTransliteration ? 'Translit On' : 'Translit Off'}
+            </p>
+          </div>
+          <span className="text-gold dark:text-gold-light">
+            {controlsOpen ? 'Hide' : 'Show'}
+          </span>
+        </button>
 
-        <div className="flex gap-2 mb-3">
+        {controlsOpen && (
+          <div className="mt-4">
+            <div className="flex gap-2 mb-3">
           {(['gurmukhi', 'devanagari'] as const).map(mode => {
             const selected = scriptMode === mode
             return (
@@ -379,9 +398,9 @@ export default function Study() {
               </button>
             )
           })}
-        </div>
+            </div>
 
-        <div className="flex gap-2 mb-3">
+            <div className="flex gap-2 mb-3">
           <button
             type="button"
             onClick={() => setShowTransliteration(!showTransliteration)}
@@ -404,9 +423,9 @@ export default function Study() {
           >
             Larivaar {larivaar ? 'On' : 'Off'}
           </button>
-        </div>
+            </div>
 
-        <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="grid grid-cols-4 gap-2 mb-3">
           {(['none', 'en', 'pa', 'hi'] as const).map(option => {
             const selected = meaningLanguage === option
             return (
@@ -424,9 +443,9 @@ export default function Study() {
               </button>
             )
           })}
-        </div>
+            </div>
 
-        <div className="grid grid-cols-2 gap-2 mb-3">
+            <div className="grid grid-cols-2 gap-2 mb-3">
           <button
             type="button"
             onClick={() => setShowVishraam(!showVishraam)}
@@ -457,10 +476,10 @@ export default function Study() {
                 </button>
               )
             })}
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
           {(['left', 'center'] as const).map(option => {
             const selected = textAlign === option
             return (
@@ -478,7 +497,9 @@ export default function Study() {
               </button>
             )
           })}
-        </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {showBookmarkForm && (
