@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
-import { IconBookmark, IconBookmarkFilled, IconShare } from './icons'
+import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconShare } from './icons'
 
 interface Props {
   entry: ScriptureEntry
@@ -31,6 +31,35 @@ function fallbackLine(entry: ScriptureEntry): ScriptureLine {
   }
 }
 
+function LineActionItem({
+  label,
+  onClick,
+  icon,
+  active = false,
+}: {
+  label: string
+  onClick: () => void
+  icon?: ReactNode
+  active?: boolean
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full rounded-2xl border px-4 py-3 text-left font-sans text-sm transition-all duration-300 ${
+        active
+          ? 'bg-saffron/10 dark:bg-saffron/15 border-saffron/20 text-saffron dark:text-saffron-light'
+          : 'bg-parchment-low dark:bg-dark-surface border-sand/10 dark:border-dark-text/10 text-ink dark:text-dark-text'
+      }`}
+    >
+      <span className="flex items-center justify-between gap-3">
+        <span>{label}</span>
+        {icon ? <span className="shrink-0">{icon}</span> : null}
+      </span>
+    </button>
+  )
+}
+
 export default function StudyCard({
   entry,
   wordData,
@@ -43,6 +72,7 @@ export default function StudyCard({
 }: Props) {
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
+  const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
@@ -67,6 +97,7 @@ export default function StudyCard({
   const scriptAlignmentClass = textAlign === 'center' ? 'text-center items-center' : 'text-left items-start'
   const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
+  const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
 
   const handleWordTap = (originalGurmukhi: string, line: ScriptureLine) => {
     const wordsToSearch = wordData ?? entry.words ?? []
@@ -90,6 +121,15 @@ export default function StudyCard({
       meaning_pa: '',
     })
     setActiveLine(line)
+  }
+
+  const closeActionSheet = () => {
+    setActionLine(null)
+  }
+
+  const handleLineAction = (line: ScriptureLine, action?: (line: ScriptureLine, entry: ScriptureEntry) => void) => {
+    action?.(line, entry)
+    closeActionSheet()
   }
 
   return (
@@ -163,8 +203,19 @@ export default function StudyCard({
               <article
                 key={`${line.verseId}-${index}`}
                 data-testid="study-line"
-                className={`reader-divider px-1 py-5 ${meaningAlignmentClass}`}
+                className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass}`}
               >
+                <button
+                  type="button"
+                  onClick={() => setActionLine(line)}
+                  aria-label={`Open verse actions for line ${index + 1}`}
+                  className={`absolute right-0 top-4 flex min-h-[32px] min-w-[32px] items-center justify-center rounded-full border border-transparent text-ink/28 transition-colors duration-300 hover:border-sand/20 hover:text-ink/55 dark:text-dark-text/28 dark:hover:border-dark-text/10 dark:hover:text-dark-text/55 ${
+                    isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
+                  }`}
+                >
+                  <IconMoreHorizontal size={16} />
+                </button>
+
                 <div className={`flex flex-wrap ${larivaar ? 'gap-x-0 gap-y-2' : 'gap-x-2 gap-y-3'} ${scriptAlignmentClass}`}>
                   {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
                     <button
@@ -198,52 +249,6 @@ export default function StudyCard({
                   )
                 )}
 
-                <div className={`mt-4 pt-3 border-t border-sand/10 dark:border-dark-text/10 flex items-center gap-2 ${textAlign === 'center' ? 'justify-center flex-wrap' : 'justify-between'}`}>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => onSavePhrase?.(line, entry)}
-                      className={`font-sans text-[11px] uppercase tracking-[0.18em] ${
-                        isPhraseSaved?.(line, entry)
-                          ? 'text-saffron dark:text-saffron-light'
-                          : 'text-ink/45 dark:text-dark-text/45'
-                      }`}
-                    >
-                      {isPhraseSaved?.(line, entry) ? 'Saved' : 'Save Phrase'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onCopyLine?.(line, entry)}
-                      className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 uppercase tracking-[0.18em]"
-                    >
-                      Copy
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => onShareLine?.(line, entry)}
-                      className="min-h-[32px] min-w-[32px] flex items-center justify-center text-ink/40 dark:text-dark-text/40"
-                      aria-label="Share verse"
-                    >
-                      <IconShare size={15} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onBookmarkLine?.(line, entry)}
-                      className={`min-h-[32px] min-w-[32px] flex items-center justify-center ${
-                        isLineBookmarked?.(line, entry)
-                          ? 'text-saffron dark:text-saffron-light'
-                          : 'text-ink/40 dark:text-dark-text/40'
-                      }`}
-                      aria-label="Bookmark verse"
-                    >
-                      {isLineBookmarked?.(line, entry)
-                        ? <IconBookmarkFilled size={15} />
-                        : <IconBookmark size={15} />}
-                    </button>
-                  </div>
-                </div>
               </article>
             )
           })}
@@ -268,6 +273,80 @@ export default function StudyCard({
           verseId={activeLine?.verseId}
           line={activeLine?.gurmukhi}
         />
+      )}
+
+      {actionLine && (
+        <div className="fixed inset-0 z-[70] bg-ink/35 dark:bg-black/60">
+          <button
+            type="button"
+            onClick={closeActionSheet}
+            className="absolute inset-0"
+            aria-label="Close verse actions"
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Verse actions"
+            className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-md rounded-t-[30px] border border-sand/15 bg-parchment-card px-4 pb-5 pt-3 shadow-gold-strong dark:border-dark-text/10 dark:bg-dark-card"
+            style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
+          >
+            <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  Verse Actions
+                </p>
+                <p
+                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
+                >
+                  {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam })}
+                </p>
+                {showTransliteration && actionLine.transliteration && (
+                  <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
+                    {actionLine.transliteration}
+                  </p>
+                )}
+                {actionMeaning && (
+                  <p className={`mt-2 text-sm text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                    {actionMeaning}
+                  </p>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={closeActionSheet}
+                aria-label="Dismiss verse actions"
+                className="flex min-h-[36px] min-w-[36px] items-center justify-center rounded-full bg-parchment-low text-ink/50 dark:bg-dark-surface dark:text-dark-text/50"
+              >
+                <IconClose size={16} />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <LineActionItem
+                label={isPhraseSaved?.(actionLine, entry) ? 'Phrase Saved' : 'Save Phrase'}
+                onClick={() => handleLineAction(actionLine, onSavePhrase)}
+                active={Boolean(isPhraseSaved?.(actionLine, entry))}
+              />
+              <LineActionItem
+                label="Copy"
+                onClick={() => handleLineAction(actionLine, onCopyLine)}
+              />
+              <LineActionItem
+                label="Share"
+                onClick={() => handleLineAction(actionLine, onShareLine)}
+                icon={<IconShare size={16} />}
+              />
+              <LineActionItem
+                label={isLineBookmarked?.(actionLine, entry) ? 'Bookmarked' : 'Bookmark'}
+                onClick={() => handleLineAction(actionLine, onBookmarkLine)}
+                active={Boolean(isLineBookmarked?.(actionLine, entry))}
+                icon={isLineBookmarked?.(actionLine, entry) ? <IconBookmarkFilled size={16} /> : <IconBookmark size={16} />}
+              />
+            </div>
+          </div>
+        </div>
       )}
     </>
   )

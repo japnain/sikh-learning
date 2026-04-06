@@ -9,7 +9,6 @@ import {
   IconSearch,
   IconSun,
 } from '../components/icons'
-import OnboardingSheet from '../components/OnboardingSheet'
 import StreakBadge from '../components/StreakBadge'
 import { BANIS } from '../data/banis'
 import { useHukamnama } from '../hooks/useHukamnama'
@@ -50,20 +49,12 @@ export default function Home() {
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
-  const setScriptMode = useLanguageStore(s => s.setScriptMode)
-  const showTransliteration = useLanguageStore(s => s.showTransliteration)
-  const setShowTransliteration = useLanguageStore(s => s.setShowTransliteration)
-  const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
-  const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
   const { getProgress } = useReadingProgressStore()
   const vocab = useVocabStore(s => s.vocab)
   const { masteredSymbols, completedLessons, practiceStreak } = useLearningStore()
   const {
-    hasCompletedOnboarding,
     learningLevel,
-    setLearningLevel,
-    completeOnboarding,
   } = useOnboardingStore()
   const [nitnemOpen, setNitnemOpen] = useState(false)
 
@@ -438,22 +429,6 @@ export default function Home() {
             )}
           </div>
         </section>
-      )}
-
-      {!hasCompletedOnboarding && (
-        <OnboardingSheet
-          scriptMode={scriptMode}
-          setScriptMode={setScriptMode}
-          showTransliteration={showTransliteration}
-          setShowTransliteration={setShowTransliteration}
-          meaningLanguage={meaningLanguage}
-          setMeaningLanguage={setMeaningLanguage}
-          englishSource={englishSource}
-          setEnglishSource={setEnglishSource}
-          learningLevel={learningLevel}
-          setLearningLevel={setLearningLevel}
-          onComplete={() => completeOnboarding(learningLevel)}
-        />
       )}
     </div>
   )

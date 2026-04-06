@@ -3,47 +3,72 @@ import { SOUNDS } from '../store/music'
 let activeAudio: HTMLAudioElement | null = null
 let activeSoundId: string | null = null
 let targetVolume = 0.6
-const fadeTimers = new Set<number>()
+let fadeTimer: number | null = null
 
-function clearFadeTimers() {
-  for (const timer of fadeTimers) {
-    window.clearInterval(timer)
+function clampVolume(value: number) {
+  return Math.max(0, Math.min(1, value))
+}
+
+function clearFadeTimer() {
+  if (fadeTimer !== null) {
+    window.clearTimeout(fadeTimer)
+    fadeTimer = null
   }
-  fadeTimers.clear()
+}
+
+function cleanupAudio(audio: HTMLAudioElement) {
+  audio.pause()
+  audio.currentTime = 0
 }
 
 function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void) {
-  const step = nextVolume > audio.volume ? 0.05 : -0.05
-  const timer = window.setInterval(() => {
-    const reachedTarget = step > 0 ? audio.volume >= nextVolume : audio.volume <= nextVolume
+  clearFadeTimer()
+
+  const clampedTarget = clampVolume(nextVolume)
+  if (clampedTarget === 0) {
+    audio.volume = 0
+    onDone?.()
+    return
+  }
+
+  const step = clampedTarget > audio.volume ? 0.05 : -0.05
+  const tick = () => {
+    const reachedTarget = step > 0 ? audio.volume >= clampedTarget : audio.volume <= clampedTarget
     if (reachedTarget) {
-      audio.volume = Math.max(0, Math.min(1, nextVolume))
-      window.clearInterval(timer)
-      fadeTimers.delete(timer)
+      audio.volume = clampedTarget
+      fadeTimer = null
       onDone?.()
       return
     }
 
     const candidate = Number((audio.volume + step).toFixed(3))
-    if ((step > 0 && candidate > nextVolume) || (step < 0 && candidate < nextVolume)) {
-      audio.volume = nextVolume
+    if ((step > 0 && candidate > clampedTarget) || (step < 0 && candidate < clampedTarget)) {
+      audio.volume = clampedTarget
     } else {
-      audio.volume = Math.max(0, Math.min(1, candidate))
+      audio.volume = clampVolume(candidate)
     }
-  }, 50)
-  fadeTimers.add(timer)
+
+    fadeTimer = window.setTimeout(tick, 50)
+  }
+
+  fadeTimer = window.setTimeout(tick, 50)
 }
 
 export function playSound(id: string): void {
   const sound = SOUNDS.find(entry => entry.id === id)
   if (!sound) return
-  clearFadeTimers()
+  clearFadeTimer()
 
   if (activeAudio && activeSoundId === id) {
     activeAudio.loop = true
+    activeAudio.volume = targetVolume === 0 ? 0 : activeAudio.volume
     void activeAudio.play()
     fadeTo(activeAudio, targetVolume)
     return
+  }
+
+  if (activeAudio) {
+    cleanupAudio(activeAudio)
   }
 
   const nextAudio = new Audio(sound.src)
@@ -51,42 +76,58 @@ export function playSound(id: string): void {
   nextAudio.preload = 'auto'
   nextAudio.volume = 0
 
-  const previousAudio = activeAudio
   activeAudio = nextAudio
   activeSoundId = id
 
-  void nextAudio.play().then(() => {
-    fadeTo(nextAudio, targetVolume)
-  }).catch(() => {
-    if (activeAudio === nextAudio) {
-      activeAudio = null
-      activeSoundId = null
-    }
-  })
-
-  if (previousAudio) {
-    fadeTo(previousAudio, 0, () => {
-      previousAudio.pause()
-      previousAudio.currentTime = 0
+  void nextAudio.play()
+    .then(() => {
+      fadeTo(nextAudio, targetVolume)
     })
-  }
+    .catch(() => {
+      if (activeAudio === nextAudio) {
+        cleanupAudio(nextAudio)
+        activeAudio = null
+        activeSoundId = null
+      }
+    })
 }
 
 export function stopSound(): void {
   if (!activeAudio) return
-  clearFadeTimers()
+  clearFadeTimer()
   const audioToStop = activeAudio
   activeAudio = null
   activeSoundId = null
-  fadeTo(audioToStop, 0, () => {
-    audioToStop.pause()
-    audioToStop.currentTime = 0
-  })
+  audioToStop.volume = 0
+  cleanupAudio(audioToStop)
 }
 
 export function setMasterVolume(v: number): void {
-  targetVolume = Math.max(0, Math.min(1, v))
+  targetVolume = clampVolume(v)
+  clearFadeTimer()
   if (activeAudio) {
     activeAudio.volume = targetVolume
+  }
+}
+
+export function __resetSoundEngineForTests(): void {
+  clearFadeTimer()
+  if (activeAudio) {
+    cleanupAudio(activeAudio)
+  }
+  activeAudio = null
+  activeSoundId = null
+  targetVolume = 0.6
+}
+
+export function __getSoundEngineSnapshotForTests(): {
+  activeAudio: HTMLAudioElement | null
+  activeSoundId: string | null
+  targetVolume: number
+} {
+  return {
+    activeAudio,
+    activeSoundId,
+    targetVolume,
   }
 }

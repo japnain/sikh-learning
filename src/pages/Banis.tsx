@@ -13,7 +13,7 @@ import {
 import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
 import type { SearchMode } from '../types'
-import { IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
+import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
 
@@ -96,6 +96,7 @@ export default function Banis() {
   const [loadingAmritHeaders, setLoadingAmritHeaders] = useState(true)
   const [amritShabadsByHeader, setAmritShabadsByHeader] = useState<Record<number, AmritKeertanShabad[]>>({})
   const [loadingAmritHeader, setLoadingAmritHeader] = useState<number | null>(null)
+  const [selectedAmritHeaderId, setSelectedAmritHeaderId] = useState<number | null>(null)
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
@@ -205,6 +206,28 @@ export default function Banis() {
       { key: 'other', label: 'Other', items: other },
     ].filter(group => group.items.length > 0)
   }, [sundarGutkaBanis])
+
+  const selectedAmritHeader = useMemo(
+    () => amritHeaders.find(header => header.headerId === selectedAmritHeaderId) ?? null,
+    [amritHeaders, selectedAmritHeaderId]
+  )
+  const selectedAmritShabads = selectedAmritHeaderId ? (amritShabadsByHeader[selectedAmritHeaderId] ?? []) : []
+
+  const handleToggleAmritKeertan = () => {
+    if (expanded.ak) {
+      setSelectedAmritHeaderId(null)
+    }
+    toggle('ak')
+  }
+
+  const openAmritHeader = async (header: AmritKeertanHeader) => {
+    setSelectedAmritHeaderId(header.headerId)
+    await loadAmritHeader(header.headerId)
+  }
+
+  const openAmritShabad = (shabadId: number) => {
+    navigate(`/study?shabadId=${shabadId}`)
+  }
 
   return (
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
@@ -380,12 +403,12 @@ export default function Banis() {
 
       <div className="mb-4">
         <button
-          onClick={() => toggle('ak')}
+          onClick={handleToggleAmritKeertan}
           className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Expandable chapter index like STTM</p>
+            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Songbook-style chapter reading with quieter metadata</p>
           </div>
           <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
@@ -394,56 +417,106 @@ export default function Banis() {
           <div className="mt-2 ml-2">
             {loadingAmritHeaders ? (
               <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Amrit Keertan…</p>
-            ) : amritHeaders.map(header => {
-              const headerKey = `ak-header-${header.headerId}`
-              const isOpen = expanded[headerKey]
-              const shabads = amritShabadsByHeader[header.headerId] ?? []
-              return (
-                <div key={header.headerId} className="mb-2">
+            ) : selectedAmritHeader ? (
+              <div className="space-y-3">
+                <div className="section-shell rounded-[26px] p-4">
                   <button
-                    onClick={() => {
-                      toggle(headerKey)
-                      if (!isOpen) void loadAmritHeader(header.headerId)
-                    }}
-                    className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                    type="button"
+                    onClick={() => setSelectedAmritHeaderId(null)}
+                    className="mb-4 inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
                   >
-                    <div className="text-left">
-                      <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{header.gurmukhi}</p>
-                      <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 mt-0.5">{header.transliteration}</p>
-                    </div>
-                    <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                    <IconArrowLeft size={14} />
+                    Back to chapters
                   </button>
-
-                  {isOpen && (
-                    <div className="mt-1 ml-2">
-                      {loadingAmritHeader === header.headerId && shabads.length === 0 ? (
-                        <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
-                      ) : shabads.map(shabad => (
-                        <button
-                          key={shabad.shabadId}
-                          onClick={() => navigate(`/study?shabadId=${shabad.shabadId}`)}
-                          className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
-                        >
-                          <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text leading-relaxed">
-                            {shabad.gurmukhi}
-                          </p>
-                          {shabad.transliteration && shabad.transliteration.length <= 80 && (
-                            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
-                              {shabad.transliteration}
-                            </p>
-                          )}
-                          <div className="flex flex-wrap gap-1.5 mt-2">
-                            {shabad.source && <MetadataChip>{shabad.source}</MetadataChip>}
-                            {shabad.raag && <MetadataChip>{shabad.raag}</MetadataChip>}
-                            {shabad.pageNo ? <MetadataChip>{`Ang ${shabad.pageNo}`}</MetadataChip> : null}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
+                  <p className="eyebrow mb-2">Amrit Keertan Chapter</p>
+                  <p lang="pa-Guru" className="font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
+                    {selectedAmritHeader.gurmukhi}
+                  </p>
+                  {selectedAmritHeader.transliteration && (
+                    <p className="mt-2 font-sans text-sm italic text-ink/50 dark:text-dark-text/50">
+                      {selectedAmritHeader.transliteration}
+                    </p>
                   )}
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <MetadataChip>{selectedAmritShabads.length} shabads</MetadataChip>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (selectedAmritShabads[0]) {
+                          openAmritShabad(selectedAmritShabads[0].shabadId)
+                        }
+                      }}
+                      disabled={selectedAmritShabads.length === 0}
+                      className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      Start from first shabad
+                      <IconArrowRight size={14} />
+                    </button>
+                  </div>
                 </div>
-              )
-            })}
+
+                {loadingAmritHeader === selectedAmritHeader.headerId && selectedAmritShabads.length === 0 ? (
+                  <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
+                ) : (
+                  <div className="space-y-2">
+                    {selectedAmritShabads.map((shabad, index) => (
+                      <button
+                        key={shabad.shabadId}
+                        onClick={() => openAmritShabad(shabad.shabadId)}
+                        className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text">
+                              {shabad.gurmukhi}
+                            </p>
+                            {shabad.transliteration && shabad.transliteration.length <= 80 && (
+                              <p className="mt-2 font-sans text-sm italic text-ink/45 dark:text-dark-text/45">
+                                {shabad.transliteration}
+                              </p>
+                            )}
+                            <div className="mt-3 flex flex-wrap gap-1.5">
+                              {shabad.source ? <MetadataChip>{shabad.source}</MetadataChip> : null}
+                              {shabad.raag ? <MetadataChip>{shabad.raag}</MetadataChip> : null}
+                              {shabad.pageNo ? <MetadataChip>{`Ang ${shabad.pageNo}`}</MetadataChip> : null}
+                            </div>
+                          </div>
+                          <span className="font-sans text-xs text-ink/30 dark:text-dark-text/30">
+                            {index + 1}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {amritHeaders.map(header => (
+                  <button
+                    key={header.headerId}
+                    onClick={() => void openAmritHeader(header)}
+                    className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p lang="pa-Guru" className="font-gurmukhi text-base leading-relaxed text-ink dark:text-dark-text">
+                          {header.gurmukhi}
+                        </p>
+                        {header.transliteration && (
+                          <p className="mt-1 font-sans text-xs italic text-ink/40 dark:text-dark-text/40">
+                            {header.transliteration}
+                          </p>
+                        )}
+                      </div>
+                      <span className="mt-1 font-sans text-xs text-gold dark:text-gold-light">
+                        Open
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
