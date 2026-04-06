@@ -10,7 +10,7 @@ describe('Library bookmarks section', () => {
 
   test('bookmarks section hidden when no bookmarks', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
-    expect(screen.queryByText(/Bookmarks/)).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /saved passage/i })).not.toBeInTheDocument()
   })
 
   test('bookmarks section visible when bookmarks exist', () => {
@@ -21,7 +21,7 @@ describe('Library bookmarks section', () => {
       }]
     })
     render(<MemoryRouter><Library /></MemoryRouter>)
-    expect(screen.getByText(/Bookmarks/)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /1 saved passage/i })).toBeInTheDocument()
     expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
   })
 
@@ -71,6 +71,7 @@ describe('Library removed sections', () => {
 
   it('shows the remaining scripture sections without Amrit Keertan', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
+    fireEvent.click(screen.getByRole('button', { name: /source browsing/i }))
     expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
     expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
     expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()

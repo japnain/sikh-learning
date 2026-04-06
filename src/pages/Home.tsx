@@ -1,30 +1,48 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { IconSun, IconMoon, IconChevronUp, IconChevronDown, IconCheck, IconArrowRight, IconSearch } from '../components/icons'
-import { useProgressStore } from '../store/progress'
-import { useScriptureCacheStore } from '../store/scriptureCache'
-import { getDailyPickAng } from '../utils/dailyPick'
-import { useAng } from '../hooks/useAng'
-import { useThemeStore } from '../store/theme'
-import { useLanguageStore } from '../store/language'
-import { getEntryMeaningText, renderScriptText } from '../utils/readerDisplay'
-import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
-import { useReadingProgressStore } from '../store/readingProgress'
-import { useHukamnama } from '../hooks/useHukamnama'
-import { BANIS } from '../data/banis'
-import { useVocabStore } from '../store/vocab'
-import { useLearningStore } from '../store/learning'
-import { useOnboardingStore } from '../store/onboarding'
+import {
+  IconArrowRight,
+  IconCheck,
+  IconChevronDown,
+  IconChevronUp,
+  IconMoon,
+  IconSearch,
+  IconSun,
+} from '../components/icons'
 import OnboardingSheet from '../components/OnboardingSheet'
 import StreakBadge from '../components/StreakBadge'
+import { BANIS } from '../data/banis'
+import { useHukamnama } from '../hooks/useHukamnama'
+import { useAng } from '../hooks/useAng'
+import { useLanguageStore } from '../store/language'
+import { useLearningStore } from '../store/learning'
+import { useOnboardingStore } from '../store/onboarding'
+import { useProgressStore } from '../store/progress'
+import { useReadingProgressStore } from '../store/readingProgress'
+import { useScriptureCacheStore } from '../store/scriptureCache'
+import { useThemeStore } from '../store/theme'
+import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
+import { useVocabStore } from '../store/vocab'
 import type { StudiedEntry } from '../types'
+import { getEntryMeaningText, renderScriptText } from '../utils/readerDisplay'
 import { LEARNING_LEVEL_LABELS } from '../utils/translations'
+import { getDailyPickAng } from '../utils/dailyPick'
 
 function greeting(): string {
   const h = new Date().getHours()
   if (h < 12) return 'Sat Sri Akaal'
   if (h < 17) return 'Waheguru Ji'
   return 'Waheguru Ji Ka Khalsa'
+}
+
+function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
+  if (!scriptureId) return { source: null, ang: null }
+  const parts = scriptureId.split('-')
+  if (parts.length < 2) return { source: null, ang: null }
+  return {
+    source: parts[0] ?? null,
+    ang: Number(parts[1]) || null,
+  }
 }
 
 export default function Home() {
@@ -41,18 +59,8 @@ export default function Home() {
   const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
   const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
-  resetIfNewDay()
-  const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
-  const { source, ang } = getDailyPickAng()
-  const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
-  const todaysPick = pickEntries[0] ?? null
-  const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
-
-  const [pressedBtn, setPressedBtn] = useState<string | null>(null)
-  const [nitnemOpen, setNitnemOpen] = useState(false)
   const { getProgress } = useReadingProgressStore()
   const vocab = useVocabStore(s => s.vocab)
-  const dueWords = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
   const { masteredSymbols, completedLessons, practiceStreak } = useLearningStore()
   const {
     hasCompletedOnboarding,
@@ -60,327 +68,379 @@ export default function Home() {
     setLearningLevel,
     completeOnboarding,
   } = useOnboardingStore()
+  const [nitnemOpen, setNitnemOpen] = useState(false)
 
-  // Top banis to show reading progress for
-  const PROGRESS_BANIS = BANIS.filter(b => ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id))
-  const progressItems = PROGRESS_BANIS.map(b => ({ ...b, ...getProgress(b.id) })).filter(p => p.done > 0)
+  resetIfNewDay()
+
+  const { source, ang } = getDailyPickAng()
+  const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
+  const todaysPick = pickEntries[0] ?? null
+  const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
+
+  const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
+  const dueReview = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
+  const savedWords = vocab.filter(entry => (entry.kind ?? 'word') === 'word').length
+  const savedPhrases = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
+
+  const PROGRESS_BANIS = BANIS.filter(b =>
+    ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id)
+  )
+  const progressItems = PROGRESS_BANIS
+    .map(b => ({ ...b, ...getProgress(b.id) }))
+    .filter(p => p.done > 0)
 
   const recentlyStudied = [...studied]
     .sort((a: StudiedEntry, b: StudiedEntry) =>
       new Date(b.swipedAt).getTime() - new Date(a.swipedAt).getTime()
     )
-    .slice(0, 6)
+    .slice(0, 5)
     .map((s: StudiedEntry) => {
       const entry = getEntryById(s.id)
       return entry ? { ...entry, swipedAt: s.swipedAt } : null
     })
     .filter((e): e is NonNullable<typeof e> => e !== null)
 
-  const actions = [
-    { key: 'library', label: 'Library', path: '/library', primary: true },
-    { key: 'banis', label: 'Banis', path: '/banis', primary: false },
-  ]
+  const sessionTarget = parseSession(currentSession?.scriptureId)
+  const showLearnHero = learningLevel === 'beginner' && !currentSession
+
+  const heroPrimary = useMemo(() => {
+    if (showLearnHero) {
+      return {
+        eyebrow: 'Grow',
+        title: 'Build the habit before the overwhelm.',
+        body: 'Start with guided letters, practice recognition, then move into live pankti when you are ready.',
+        buttonLabel: 'Continue Learn',
+        buttonAction: () => navigate('/learn'),
+        secondaryLabel: 'Open today’s hukamnama',
+        secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
+      }
+    }
+
+    if (currentSession && sessionTarget.source && sessionTarget.ang) {
+      return {
+        eyebrow: 'Read',
+        title: 'Pick up exactly where you paused.',
+        body: 'Nitnem should feel immediate. Resume your last reading without hunting through the library.',
+        buttonLabel: 'Resume Reading',
+        buttonAction: () => navigate(`/study?source=${sessionTarget.source}&ang=${sessionTarget.ang}`),
+        secondaryLabel: 'Open today’s hukamnama',
+        secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
+      }
+    }
+
+    return {
+      eyebrow: 'Read',
+      title: 'Begin with today’s hukamnama.',
+      body: 'A calm first step for daily reading, with meaning controls and a cleaner mobile reader built in.',
+      buttonLabel: 'Open Today’s Hukamnama',
+      buttonAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
+      secondaryLabel: 'Browse Read',
+      secondaryAction: () => navigate('/banis'),
+    }
+  }, [currentSession, hukamnama, navigate, sessionTarget.ang, sessionTarget.source, showLearnHero])
 
   return (
-    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
-      <div className="flex justify-between items-center mb-2 mt-4">
-        <span className="font-sans font-bold text-saffron dark:text-saffron-light text-base">Nitnem</span>
+    <div className="page-shell animate-fade-in">
+      <div className="flex justify-between items-start gap-3 mb-5">
+        <div>
+          <p className="font-display text-3xl text-ink dark:text-dark-text leading-none">Nitnem</p>
+          <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-1">
+            Read Gurbani daily. Understand it better. Grow into it steadily.
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-xl active:scale-95 transition-transform duration-150"
+            className="section-shell-quiet min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/75 dark:text-dark-text/75 active:scale-95 transition-transform duration-150"
             aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {dark ? <IconSun size={20} /> : <IconMoon size={20} />}
+            {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
           </button>
           <StreakBadge streak={streak} />
         </div>
       </div>
 
-      <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-3">
-        {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
-      </p>
+      <div className="mb-5">
+        <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+          {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+        </p>
+        <h1 className="font-display text-[2.2rem] leading-none text-ink dark:text-dark-text mt-2">
+          {greeting()}
+        </h1>
+      </div>
 
-      {/* Quick Search */}
       <button
         onClick={() => navigate('/banis')}
-        className="w-full flex items-center gap-2 bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-6 transition-colors duration-300 active:scale-[0.98] transition-transform duration-150"
+        className="section-shell-quiet w-full flex items-center gap-3 px-4 py-3 mb-5 active:scale-[0.99] transition-transform duration-150"
       >
-        <IconSearch size={16} className="text-ink/30 dark:text-dark-text/30" />
-        <span className="font-sans text-sm text-ink/40 dark:text-dark-text/40">Search Gurbani...</span>
+        <IconSearch size={16} className="text-ink/35 dark:text-dark-text/35" />
+        <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
+          Search Gurbani, first letters, transliteration, or meaning
+        </span>
       </button>
-      <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">{greeting()}</h1>
 
-      {/* Take a Hukamnama */}
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card dark:shadow-gold animate-slide-up stagger-1">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Take a Hukamnama</p>
-        <div className="bg-parchment-card dark:bg-dark-card rounded-2xl p-6 flex flex-col items-center transition-colors duration-300">
-          {hukamnamaLoading ? (
-            <div className="w-full animate-pulse">
-              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-2/3 mb-3" />
-              <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10 mb-3" />
-              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-5/6" />
-            </div>
-          ) : hukamnama ? (
-            <>
-              <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 text-center mb-2">
-                {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}{hukamnama.entry.scripture} · Ang {hukamnama.ang}
-              </p>
-              <p
-                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl text-center text-ink dark:text-dark-text leading-relaxed line-clamp-3`}
-              >
-                {renderScriptText(hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
-              </p>
-              {meaningLanguage !== 'none' && (
-                <p className={`text-sm text-ink/70 dark:text-dark-text/70 text-center mt-3 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                  {getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)}
-                </p>
-              )}
-              <button
-                onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
-                className="w-full mt-4 font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
-              >
-                Open Today&apos;s Hukamnama
-              </button>
-            </>
-          ) : (
-            <>
-              <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70 text-center mb-4">
-                Today&apos;s hukamnama is unavailable right now.
-              </p>
-              <button
-                onClick={() => navigate('/banis')}
-                className="w-full font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-4 py-3 rounded-full min-h-[44px] active:scale-95 transition-transform duration-150"
-              >
-                Browse Gurbani
-              </button>
-            </>
-          )}
+      <section className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <span className="eyebrow">{heroPrimary.eyebrow}</span>
+          <span className="chip-pill">{LEARNING_LEVEL_LABELS[learningLevel]}</span>
         </div>
-      </div>
+        <h2 className="font-display text-[2rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
+          {heroPrimary.title}
+        </h2>
+        <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[32ch]">
+          {heroPrimary.body}
+        </p>
 
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card dark:shadow-gold animate-slide-up stagger-2">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Daily Path</p>
-        <div className="space-y-2">
+        {hukamnamaLoading ? (
+          <div className="section-shell-quiet mt-5 p-4 animate-pulse">
+            <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-24 mb-3" />
+            <div className="h-6 rounded bg-sand/20 dark:bg-dark-text/10 mb-2" />
+            <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+          </div>
+        ) : hukamnama ? (
+          <div className="section-shell-quiet mt-5 p-4">
+            <p className="eyebrow mb-2">Today’s Hukamnama</p>
+            <p className="font-sans text-[11px] text-ink/50 dark:text-dark-text/50 mb-2">
+              {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
+              {hukamnama.entry.scripture} · Ang {hukamnama.ang}
+            </p>
+            <p
+              lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+              className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl leading-relaxed text-ink dark:text-dark-text line-clamp-3`}
+            >
+              {renderScriptText(hukamnama.entry.lines?.[0]?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+            </p>
+            {meaningLanguage !== 'none' && (
+              <p className={`mt-3 text-sm text-ink/70 dark:text-dark-text/70 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                {getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)}
+              </p>
+            )}
+          </div>
+        ) : null}
+
+        <div className="grid grid-cols-1 gap-3 mt-5">
           <button
-            onClick={() => navigate(currentSession ? `/study?source=${currentSession.scriptureId.split('-')[0]}&ang=${currentSession.scriptureId.split('-')[1]}` : '/banis')}
-            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
+            onClick={heroPrimary.buttonAction}
+            className="min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold px-5 active:scale-95 transition-transform duration-150"
           >
-            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Read</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open today&apos;s bani or pick up your current reading.</p>
+            {heroPrimary.buttonLabel}
           </button>
           <button
-            onClick={() => navigate('/learn')}
-            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
+            onClick={heroPrimary.secondaryAction}
+            className="min-h-[48px] rounded-full bg-white/70 dark:bg-dark-card/70 text-ink dark:text-dark-text font-sans text-sm font-medium px-5 border border-sand/15 dark:border-dark-text/10 active:scale-95 transition-transform duration-150"
           >
-            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Grow</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {LEARNING_LEVEL_LABELS[learningLevel]} · {masteredSymbols.length} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day streak
-            </p>
-          </button>
-          <button
-            onClick={() => navigate('/vocab')}
-            className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl px-4 py-3 border border-sand/15 dark:border-dark-text/10"
-          >
-            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">Review</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {dueWords.length > 0 ? `${dueWords.length} saved words are due for review.` : 'No review backlog right now. Add words while studying.'}
-            </p>
+            {heroPrimary.secondaryLabel}
           </button>
         </div>
-      </div>
+      </section>
 
-      {/* Nitnem Daily Tracker — collapsible */}
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl mb-6 transition-colors duration-300 overflow-hidden shadow-card dark:shadow-gold animate-slide-up stagger-2">
+      <section className="grid grid-cols-1 gap-3 mb-5 animate-slide-up stagger-2">
+        <button
+          onClick={() => navigate('/learn')}
+          className="section-shell p-4 text-left active:scale-[0.99] transition-transform duration-150"
+        >
+          <p className="eyebrow">Grow</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
+            {LEARNING_LEVEL_LABELS[learningLevel]} track
+          </p>
+          <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+            {masteredSymbols.length} symbols mastered, {completedLessons.length} lessons complete, {practiceStreak} day practice streak.
+          </p>
+        </button>
+
+        <button
+          onClick={() => navigate('/vocab')}
+          className="section-shell p-4 text-left active:scale-[0.99] transition-transform duration-150"
+        >
+          <p className="eyebrow">Review</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
+            {dueReview.length > 0 ? `${dueReview.length} review item${dueReview.length === 1 ? '' : 's'} due` : 'Your review queue is clear'}
+          </p>
+          <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+            Saved words and full phrases stay ready for short daily revision.
+          </p>
+        </button>
+      </section>
+
+      <section className="section-shell-quiet p-4 mb-5 animate-slide-up stagger-3">
         <button
           onClick={() => setNitnemOpen(o => !o)}
-          className="w-full flex items-center justify-between p-4 min-h-[44px] active:scale-95 transition-transform duration-150"
+          className="w-full flex items-center justify-between gap-3 min-h-[44px]"
         >
-          <div className="flex items-center gap-2">
-            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide">Nitnem · Daily Prayers</p>
+          <div className="text-left">
+            <p className="eyebrow">Nitnem Progress</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
+              {nitnemDone} of {NITNEM_BANIS.length} daily banis complete
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{nitnemDone}/{NITNEM_BANIS.length}</p>
-            <span className="font-sans text-xs text-gold dark:text-gold-light">{nitnemOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
-          </div>
+          <span className="text-gold dark:text-gold-light">
+            {nitnemOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
+          </span>
         </button>
-        {/* Progress bar always visible */}
-        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 mx-4 mb-3 rounded-full overflow-hidden">
+        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-4">
           <div
             className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500"
             style={{ width: `${(nitnemDone / NITNEM_BANIS.length) * 100}%` }}
           />
         </div>
         {nitnemOpen && (
-          <div className="px-4 pb-4">
-            {nitnemDone === NITNEM_BANIS.length && (
-              <p className="font-sans text-xs text-gold dark:text-gold-light text-center mb-3">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ · All Nitnem complete</p>
-            )}
-            <div className="space-y-1.5">
-              {NITNEM_BANIS.map(bani => {
-                const done = isComplete(bani.id)
-                return (
-                  <div key={bani.id} className="flex items-center gap-2 bg-parchment-card dark:bg-dark-card rounded-xl px-3 py-2 min-h-[44px] transition-colors duration-300">
+          <div className="mt-4 space-y-2">
+            {NITNEM_BANIS.map(bani => {
+              const done = isComplete(bani.id)
+              return (
+                <div key={bani.id} className="section-shell px-3 py-3 flex items-center gap-3">
+                  <button
+                    onClick={() => done ? unmarkComplete(bani.id) : markComplete(bani.id)}
+                    className={`w-7 h-7 rounded-full border flex items-center justify-center flex-shrink-0 ${
+                      done ? 'bg-saffron border-saffron text-white' : 'border-sand/35 dark:border-dark-text/20 text-transparent'
+                    }`}
+                  >
+                    <IconCheck size={14} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const params = new URLSearchParams({
+                        source: bani.source,
+                        ang: String(bani.startAng),
+                        bani: bani.name,
+                        endAng: String(bani.endAng),
+                      })
+                      navigate(`/study?${params}`)
+                    }}
+                    className="flex-1 text-left"
+                  >
+                    <p className={`font-sans text-sm ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
+                      {bani.name}
+                    </p>
+                    <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 mt-1">
+                      {bani.time}
+                    </p>
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
+
+      <section className="section-shell p-4 mb-5 animate-slide-up stagger-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="eyebrow">Saved</p>
+            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">Keep what matters.</h3>
+          </div>
+          <button
+            onClick={() => navigate('/library')}
+            className="font-sans text-sm text-gold dark:text-gold-light flex items-center gap-1"
+          >
+            Open Saved <IconArrowRight size={14} />
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedWords}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Words</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedPhrases}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Phrases</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{progressItems.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">In Progress</p>
+          </div>
+        </div>
+      </section>
+
+      {(progressItems.length > 0 || todaysPick || recentlyStudied.length > 0) && (
+        <section className="section-shell-quiet p-4 animate-slide-up stagger-5">
+          <p className="eyebrow mb-4">Discovery & History</p>
+
+          {progressItems.length > 0 && (
+            <div className="mb-4">
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">In-progress banis</p>
+              <div className="space-y-2">
+                {progressItems.slice(0, 3).map(p => (
+                  <button
+                    key={p.id}
+                    onClick={() => navigate(`/study?source=${p.source}&ang=${p.startAng}&bani=${encodeURIComponent(p.name)}`)}
+                    className="w-full section-shell px-4 py-3 text-left"
+                  >
+                    <div className="flex justify-between gap-3">
+                      <p className="font-sans text-sm text-ink dark:text-dark-text">{p.name}</p>
+                      <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45">{p.pct}%</p>
+                    </div>
+                    <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
+                      <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${p.pct}%` }} />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-3">
+            <div>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">Today’s pick</p>
+              {pickLoading ? (
+                <div className="section-shell px-4 py-4 animate-pulse">
+                  <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-20 mb-3" />
+                  <div className="h-6 rounded bg-sand/20 dark:bg-dark-text/10 mb-2" />
+                </div>
+              ) : todaysPick ? (
+                <button
+                  onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
+                  className="w-full section-shell px-4 py-4 text-left"
+                >
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    Today&apos;s Pick · {todaysPick.scripture} · Ang {todaysPick.ang}
+                  </p>
+                  <p
+                    lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                    className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-xl leading-relaxed text-ink dark:text-dark-text mt-2 line-clamp-2`}
+                  >
+                    {renderScriptText(todaysPick.gurmukhi, scriptMode)}
+                  </p>
+                  {meaningLanguage !== 'none' && (
+                    <p className={`mt-2 text-sm text-ink/65 dark:text-dark-text/65 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                      {getEntryMeaningText(todaysPick, meaningLanguage, englishSource)}
+                    </p>
+                  )}
+                </button>
+              ) : (
+                <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">No verse available today.</p>
+              )}
+            </div>
+
+            {recentlyStudied.length > 0 && (
+              <div>
+                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">Recently studied</p>
+                <div className="flex gap-3 overflow-x-auto pb-1">
+                  {recentlyStudied.map(entry => (
                     <button
-                      onClick={() => done ? unmarkComplete(bani.id) : markComplete(bani.id)}
-                      className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform duration-150 ${done ? 'bg-saffron border-saffron text-white' : 'border-sand/40 dark:border-dark-text/20'}`}
-                    >
-                      {done && <IconCheck size={14} />}
-                    </button>
-                    <button
+                      key={entry.id}
+                      className="flex-shrink-0 w-52 section-shell px-4 py-4 text-left"
                       onClick={() => {
-                        const params = new URLSearchParams({ source: bani.source, ang: String(bani.startAng), bani: bani.name, endAng: String(bani.endAng) })
-                        navigate(`/study?${params}`)
+                        const parts = entry.id.split('-')
+                        if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
                       }}
-                      className="flex-1 text-left"
                     >
-                      <p className={`font-sans text-sm transition-colors duration-300 ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
-                        {bani.name}
+                      <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        {entry.scripture}
+                      </p>
+                      <p
+                        lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                        className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-sm leading-7 text-ink dark:text-dark-text mt-2 line-clamp-3`}
+                      >
+                        {renderScriptText(entry.gurmukhi, scriptMode)}
                       </p>
                     </button>
-                    <span className={`font-sans text-[10px] px-2 py-0.5 rounded-full ${
-                      bani.time === 'Morning' ? 'bg-gold/15 text-gold dark:text-gold-light' :
-                      bani.time === 'Evening' ? 'bg-blue-500/15 text-blue-400' :
-                      'bg-purple-500/15 text-purple-400'
-                    }`}>{bani.time}</span>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Today's Pick */}
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-6 transition-colors duration-300 shadow-card dark:shadow-gold animate-slide-up stagger-3">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-3">Today's Pick</p>
-        {pickLoading ? (
-          <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-6 min-h-[120px] animate-pulse" />
-        ) : todaysPick ? (
-          <div
-            onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="bg-parchment-card dark:bg-dark-card rounded-2xl p-6 cursor-pointer transition-shadow duration-300 ornate-top"
-          >
-            <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">
-              {todaysPick.scripture} · Ang {todaysPick.ang}
-            </p>
-            <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl text-ink dark:text-dark-text leading-relaxed line-clamp-2`}>
-              {renderScriptText(todaysPick.gurmukhi, scriptMode)}
-            </p>
-            {meaningLanguage !== 'none' && (
-              <p className={`text-sm text-ink/70 dark:text-dark-text/70 mt-2 line-clamp-1 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                {getEntryMeaningText(todaysPick, meaningLanguage, englishSource)}
-              </p>
-            )}
-            <div className="mt-4 flex justify-end">
-              <button className="font-sans text-sm font-semibold bg-gradient-to-r from-saffron to-saffron-light text-white px-5 py-2 rounded-full active:scale-95 transition-transform duration-150">
-                Read
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-parchment-card dark:bg-dark-card rounded-2xl p-6 min-h-[120px] flex items-center justify-center">
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-sm">No verse available today</p>
-          </div>
-        )}
-      </div>
-
-      {/* Continue Reading */}
-      {currentSession && (
-        <div className="mb-6 animate-slide-up stagger-4">
-          <div
-            onClick={() => {
-              const parts = currentSession.scriptureId.split('-')
-              if (parts.length >= 2) {
-                navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
-              }
-            }}
-            className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 cursor-pointer flex justify-between items-center transition-colors duration-300"
-          >
-            <div>
-              <p className="font-sans font-medium text-ink dark:text-dark-text text-sm">Pick up where you left off</p>
-              <p className="font-sans text-gold dark:text-gold-light text-xs mt-0.5">{currentSession.scriptureId.toUpperCase()}</p>
-            </div>
-            <span className="text-gold dark:text-gold-light"><IconArrowRight size={18} /></span>
-          </div>
-        </div>
-      )}
-
-      {/* Quick Actions */}
-      <div className="flex flex-col gap-3 mb-6 animate-slide-up stagger-5">
-        {actions.map(({ key, label, path, primary }) => (
-          <button
-            key={key}
-            onClick={() => navigate(path)}
-            onMouseDown={() => setPressedBtn(key)}
-            onMouseUp={() => setPressedBtn(null)}
-            onTouchStart={() => setPressedBtn(key)}
-            onTouchEnd={() => setPressedBtn(null)}
-            className={`font-sans rounded-full p-4 text-sm font-semibold min-h-[44px] active:scale-95 transition-all duration-300 ${
-              primary
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                : 'bg-parchment-low dark:bg-dark-surface text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
-            } ${pressedBtn === key ? 'opacity-80' : ''}`}
-          >
-            {label}
-          </button>
-        ))}
-        <button
-          onClick={() => navigate(`/study?source=G&ang=${Math.floor(Math.random() * 1430) + 1}`)}
-          className="font-sans rounded-full p-4 text-sm font-semibold min-h-[44px] bg-parchment-low dark:bg-dark-surface text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10 active:scale-95 transition-all duration-300"
-        >
-          Random Ang
-        </button>
-      </div>
-
-      {/* Reading Progress */}
-      {progressItems.length > 0 && (
-        <div className="mb-6 animate-slide-up stagger-6">
-          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider mb-3">Reading Progress</p>
-          <div className="space-y-2">
-            {progressItems.map(p => (
-              <button
-                key={p.id}
-                onClick={() => navigate(`/study?source=${p.source}&ang=${p.startAng}&bani=${encodeURIComponent(p.name)}`)}
-                className="w-full bg-parchment-low dark:bg-dark-surface rounded-xl p-3 text-left active:scale-95 transition-transform duration-150"
-              >
-                <div className="flex justify-between items-center mb-1">
-                  <p className="font-sans text-sm text-ink dark:text-dark-text">{p.name}</p>
-                  <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{p.pct}%</p>
+                  ))}
                 </div>
-                <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500" style={{ width: `${p.pct}%` }} />
-                </div>
-                <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 mt-1">{p.done} of {p.total} angs read</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Recently Studied */}
-      {recentlyStudied.length > 0 && (
-        <div className="animate-slide-up stagger-7">
-          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider mb-3">Recently Studied</p>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {recentlyStudied.map((entry) => (
-              <div
-                key={entry.id}
-                className="flex-shrink-0 w-48 bg-parchment-card dark:bg-dark-card rounded-xl p-3 cursor-pointer transition-colors duration-300"
-                onClick={() => {
-                  const parts = entry.id.split('-')
-                  if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
-                }}
-              >
-                <p className="font-sans text-saffron dark:text-saffron-light text-[10px] mb-1 uppercase tracking-wide">{entry.scripture}</p>
-                <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text text-sm leading-relaxed line-clamp-2`}>
-                  {renderScriptText(entry.gurmukhi, scriptMode)}
-                </p>
               </div>
-            ))}
+            )}
           </div>
-        </div>
+        </section>
       )}
 
       {!hasCompletedOnboarding && (

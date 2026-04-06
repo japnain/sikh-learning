@@ -10,7 +10,7 @@ import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useReadingProgressStore } from '../store/readingProgress'
 import type { ScriptureEntry, ScriptureLine } from '../types'
-import { MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS } from '../utils/translations'
+import { LINE_SPACING_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS, TEXT_ALIGNMENT_LABELS } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
@@ -122,6 +122,14 @@ export default function Study() {
   const setShowTransliteration = useLanguageStore(s => s.setShowTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const setMeaningLanguage = useLanguageStore(s => s.setMeaningLanguage)
+  const larivaar = useLanguageStore(s => s.larivaar)
+  const setLarivaar = useLanguageStore(s => s.setLarivaar)
+  const showVishraam = useLanguageStore(s => s.showVishraam)
+  const setShowVishraam = useLanguageStore(s => s.setShowVishraam)
+  const lineSpacing = useLanguageStore(s => s.lineSpacing)
+  const setLineSpacing = useLanguageStore(s => s.setLineSpacing)
+  const textAlign = useLanguageStore(s => s.textAlign)
+  const setTextAlign = useLanguageStore(s => s.setTextAlign)
 
   const { updateSession } = useProgressStore()
 
@@ -293,11 +301,11 @@ export default function Study() {
 
   if (loading) {
     return (
-      <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+      <div className="page-shell">
         <div className="flex items-center justify-between mb-4">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         </div>
-        <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-6 min-h-[300px] animate-pulse">
+        <div className="section-shell p-6 min-h-[300px] animate-pulse">
           <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-full mb-3" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-4/5 mb-3" />
@@ -309,7 +317,7 @@ export default function Study() {
 
   if (error || entries.length === 0) {
     return (
-      <div className="p-4 max-w-md mx-auto text-center mt-20 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300">
+      <div className="page-shell text-center mt-20">
         <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
           No verses found{baniName ? ` for ${baniName}` : ''}.
         </p>
@@ -319,7 +327,7 @@ export default function Study() {
   }
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300 animate-fade-in">
+    <div className="page-shell animate-fade-in">
       <div className="flex items-center justify-between mb-4">
         <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         <div className="flex items-center gap-1">
@@ -340,8 +348,20 @@ export default function Study() {
         </div>
       </div>
 
-      <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-2xl p-3 border border-sand/15 dark:border-dark-text/10 shadow-card">
-        <div className="flex gap-2 mb-2">
+      <div className="hero-surface p-5 mb-4">
+        <p className="eyebrow mb-2">Understand</p>
+        <h1 className="font-display text-4xl leading-none text-ink dark:text-dark-text">
+          {baniName ?? (isHukamnamaMode ? 'Hukamnama' : currentEntry?.scripture ?? 'Reader')}
+        </h1>
+        <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2">
+          Comfortable reading first. Controls stay close, the text stays primary, and audio remains clearly marked until it is real.
+        </p>
+      </div>
+
+      <div className="mb-4 section-shell-quiet p-4 shadow-card">
+        <p className="eyebrow mb-3">Reader Controls</p>
+
+        <div className="flex gap-2 mb-3">
           {(['gurmukhi', 'devanagari'] as const).map(mode => {
             const selected = scriptMode === mode
             return (
@@ -361,7 +381,7 @@ export default function Study() {
           })}
         </div>
 
-        <div className="flex gap-2 mb-2">
+        <div className="flex gap-2 mb-3">
           <button
             type="button"
             onClick={() => setShowTransliteration(!showTransliteration)}
@@ -373,9 +393,20 @@ export default function Study() {
           >
             Transliteration {showTransliteration ? 'On' : 'Off'}
           </button>
+          <button
+            type="button"
+            onClick={() => setLarivaar(!larivaar)}
+            className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+              larivaar
+                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+            }`}
+          >
+            Larivaar {larivaar ? 'On' : 'Off'}
+          </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2 mb-3">
           {(['none', 'en', 'pa', 'hi'] as const).map(option => {
             const selected = meaningLanguage === option
             return (
@@ -394,10 +425,64 @@ export default function Study() {
             )
           })}
         </div>
+
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <button
+            type="button"
+            onClick={() => setShowVishraam(!showVishraam)}
+            className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+              showVishraam
+                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+            }`}
+          >
+            Vishraam {showVishraam ? 'On' : 'Off'}
+          </button>
+
+          <div className="grid grid-cols-2 gap-2">
+            {(['compact', 'relaxed'] as const).map(option => {
+              const selected = lineSpacing === option
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setLineSpacing(option)}
+                  className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                    selected
+                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                      : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                  }`}
+                >
+                  {LINE_SPACING_LABELS[option]}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          {(['left', 'center'] as const).map(option => {
+            const selected = textAlign === option
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => setTextAlign(option)}
+                className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                  selected
+                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                }`}
+              >
+                {TEXT_ALIGNMENT_LABELS[option]} Align
+              </button>
+            )
+          })}
+        </div>
       </div>
 
       {showBookmarkForm && (
-        <div className="mb-4 bg-parchment-low dark:bg-dark-surface rounded-xl p-4 transition-colors duration-300 shadow-card dark:shadow-gold">
+        <div className="mb-4 section-shell p-4 transition-colors duration-300 shadow-card dark:shadow-gold">
           <input
             type="text"
             value={bookmarkText}
@@ -415,7 +500,7 @@ export default function Study() {
       )}
 
       {isHukamnamaMode && currentEntry && (
-        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+        <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">
             Hukamnama{hukamnamaResult.data?.date ? ` · ${hukamnamaResult.data.date}` : ''}
           </p>
@@ -434,7 +519,7 @@ export default function Study() {
       )}
 
       {isExactShabadMode && currentEntry && (
-        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+        <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">Exact Search Result</p>
           <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
             {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · Verse ${verseIdParam}` : ''}
@@ -451,7 +536,7 @@ export default function Study() {
       )}
 
       {baniName && !isExactShabadMode && (
-        <div className="bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-gold/10 dark:to-gold-light/10 rounded-xl p-3 mb-4 border border-saffron/20 dark:border-gold/20">
+        <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
           {isBaniRangeMode && (
             <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
@@ -485,12 +570,12 @@ export default function Study() {
           <button
             onClick={() => navTo(currentAng - 1)}
             disabled={currentAng <= navMinAng}
-            className="flex-1 py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+            className="flex-1 py-3 rounded-2xl section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
           >&#8592; Ang {currentAng - 1}</button>
           <button
             onClick={() => navTo(currentAng + 1)}
             disabled={currentAng >= navMaxAng}
-            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300 border border-gold/20 dark:border-gold/15"
+            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
           >Ang {currentAng + 1} &#8594;</button>
         </div>
       )}

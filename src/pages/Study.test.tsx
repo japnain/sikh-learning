@@ -14,6 +14,10 @@ beforeEach(() => {
     scriptMode: 'gurmukhi',
     showTransliteration: false,
     meaningLanguage: 'en',
+    larivaar: false,
+    showVishraam: true,
+    lineSpacing: 'relaxed',
+    textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
   })

@@ -17,6 +17,10 @@ beforeEach(() => {
     scriptMode: 'gurmukhi',
     showTransliteration: false,
     meaningLanguage: 'en',
+    larivaar: false,
+    showVishraam: true,
+    lineSpacing: 'relaxed',
+    textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
   })
@@ -32,9 +36,9 @@ test('renders greeting', () => {
   expect(greeting).toBeInTheDocument()
 })
 
-test('shows loading skeleton initially', () => {
+test('shows the new hero shell immediately', () => {
   renderHome()
-  expect(screen.getByText(/today'?s pick/i)).toBeInTheDocument()
+  expect(screen.getByText(/Read Gurbani daily\. Understand it better\. Grow into it steadily\./i)).toBeInTheDocument()
 })
 
 test('shows today\'s pick after load', async () => {
@@ -46,20 +50,19 @@ test('shows today\'s pick after load', async () => {
   })
 })
 
-test('shows quick action buttons', () => {
+test('shows the new daily actions', () => {
   renderHome()
-  expect(screen.getByRole('button', { name: /library/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /banis/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /random ang/i })).toBeInTheDocument()
+  expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
+  expect(screen.getByRole('button', { name: /grow/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /review/i })).toBeInTheDocument()
   expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
 })
 
-test('shows Take Hukamnama section', async () => {
+test('shows today’s hukamnama action', async () => {
   renderHome()
-  expect(screen.getByText(/take a hukamnama/i)).toBeInTheDocument()
   await waitFor(() => {
-    expect(screen.getByRole('button', { name: /open today's hukamnama/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /open today’s hukamnama/i })).toBeInTheDocument()
   })
 })
 
@@ -83,10 +86,10 @@ test('does not show continue reading when no session', () => {
 
 test('shows continue reading when session exists', () => {
   useProgressStore.setState({
-    currentSession: { scriptureId: 'sggs', lastCardIndex: 0 }
+    currentSession: { scriptureId: 'G-12', lastCardIndex: 0 }
   })
   renderHome()
-  expect(screen.getByText(/pick up where you left off/i)).toBeInTheDocument()
+  expect(screen.getByText(/pick up exactly where you paused/i)).toBeInTheDocument()
 })
 
 test('shows dark mode toggle', () => {

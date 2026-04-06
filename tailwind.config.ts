@@ -6,21 +6,25 @@ export default {
       colors: {
         parchment: '#fff8ef',
         'parchment-low': '#fbf3e4',
+        'parchment-deep': '#f3e6d2',
         'parchment-card': '#ffffff',
         ink: '#1e1b13',
         saffron: '#904d00',
         'saffron-light': '#f99c45',
         sand: '#dbc2b0',
+        mist: '#ede2d4',
         gold: '#c5963a',
         'gold-light': '#e8c468',
         'gold-dark': '#8b6914',
         'dark-bg': '#0f0a1e',
+        'dark-panel': '#120d27',
         'dark-card': '#1d1535',
         'dark-surface': '#161230',
         'dark-text': '#e8e0d4',
       },
       fontFamily: {
         gurmukhi: ['Noto Serif Gurmukhi', 'serif'],
+        display: ['Cormorant Garamond', 'serif'],
         sans: ['Plus Jakarta Sans', 'sans-serif'],
       },
       keyframes: {
@@ -50,6 +54,7 @@ export default {
       boxShadow: {
         card: '0 2px 12px rgba(0,0,0,0.06)',
         'card-hover': '0 4px 20px rgba(0,0,0,0.1)',
+        soft: '0 18px 45px rgba(30, 27, 19, 0.08)',
         gold: '0 2px 16px rgba(197,150,58,0.2)',
         'gold-strong': '0 4px 24px rgba(197,150,58,0.35)',
       },
