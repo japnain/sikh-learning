@@ -37,14 +37,16 @@ test('loads Sundar Gutka groups and items', async () => {
   expect(screen.getByText('ਜਪੁਜੀ ਸਾਹਿਬ')).toBeInTheDocument()
 })
 
-test('loads Amrit Keertan chapter shabads', async () => {
+test('loads Amrit Keertan into a focused chapter view', async () => {
   renderBanis()
   fireEvent.click(screen.getByText('Amrit Keertan'))
 
   await waitFor(() => expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument())
   fireEvent.click(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥'))
 
-  await waitFor(() => expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument())
+  await waitFor(() => expect(screen.getByRole('button', { name: /back to chapters/i })).toBeInTheDocument())
+  expect(screen.getByText(/Start from first shabad/i)).toBeInTheDocument()
+  expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
   expect(screen.getAllByText('Sri Guru Granth Sahib Ji').length).toBeGreaterThan(0)
   expect(screen.getByText('Raag Gauree')).toBeInTheDocument()
   expect(screen.getByText('Ang 65')).toBeInTheDocument()

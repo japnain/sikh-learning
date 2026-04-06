@@ -1,5 +1,5 @@
 import { describe, it, test, expect, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
@@ -109,7 +109,7 @@ describe('Study renders all shabads on an ang', () => {
     })
   })
 
-  it('renders verse action controls inside the reader', async () => {
+  it('keeps verse actions hidden until the overflow menu is opened', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -117,9 +117,19 @@ describe('Study renders all shabads on an ang', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getAllByRole('button', { name: /share verse/i }).length).toBeGreaterThan(0)
-      expect(screen.getAllByRole('button', { name: /bookmark verse/i }).length).toBeGreaterThan(0)
+      expect(screen.getAllByRole('button', { name: /open verse actions/i }).length).toBeGreaterThan(0)
     })
+
+    expect(screen.queryByRole('dialog', { name: /verse actions/i })).not.toBeInTheDocument()
+    expect(screen.queryByText(/^Save Phrase$/i)).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
+
+    const dialog = screen.getByRole('dialog', { name: /verse actions/i })
+    expect(within(dialog).getByRole('button', { name: /save phrase/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: /^Copy$/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: /^Share$/i })).toBeInTheDocument()
+    expect(within(dialog).getByRole('button', { name: /^Bookmark$/i })).toBeInTheDocument()
   })
 
   it('can save a full verse as a phrase for review', async () => {
@@ -130,10 +140,13 @@ describe('Study renders all shabads on an ang', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getAllByText(/save phrase/i).length).toBeGreaterThan(0)
+      expect(screen.getAllByRole('button', { name: /open verse actions/i }).length).toBeGreaterThan(0)
     })
 
-    fireEvent.click(screen.getAllByText(/save phrase/i)[0])
+    fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
+    fireEvent.click(
+      within(screen.getByRole('dialog', { name: /verse actions/i })).getByRole('button', { name: /save phrase/i })
+    )
 
     expect(
       useVocabStore.getState().vocab.some(item => item.kind === 'phrase' && item.word.includes('ੴ'))

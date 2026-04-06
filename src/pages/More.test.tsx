@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
 import { useLanguageStore } from '../store/language'
+import { useMusicStore } from '../store/music'
 import { useOnboardingStore } from '../store/onboarding'
 
 beforeEach(() => {
@@ -19,6 +20,11 @@ beforeEach(() => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     learningLevel: 'beginner',
+  })
+  useMusicStore.setState({
+    selectedSoundId: null,
+    isPlaying: false,
+    volume: 0.6,
   })
 })
 
@@ -60,4 +66,16 @@ test('persists selected learning level', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
   expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
+})
+
+test('toggles ambient playback without clearing the selected sound', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(true)
+
+  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(false)
 })

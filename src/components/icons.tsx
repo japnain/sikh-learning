@@ -216,6 +216,17 @@ export function IconMusic({ className = '', size = 24 }: IconProps) {
   )
 }
 
+// More horizontal / verse actions
+export function IconMoreHorizontal({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none" className={className}>
+      <circle cx="6" cy="12" r="1.7" />
+      <circle cx="12" cy="12" r="1.7" />
+      <circle cx="18" cy="12" r="1.7" />
+    </svg>
+  )
+}
+
 // Heart / Save
 export function IconHeart({ className = '', size = 24 }: IconProps) {
   return (

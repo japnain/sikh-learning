@@ -98,12 +98,11 @@ test('shows dark mode toggle', () => {
   expect(toggle).toBeInTheDocument()
 })
 
-test('shows onboarding sheet for first-time users', () => {
+test('does not embed onboarding inside the home page anymore', () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: false,
     learningLevel: 'beginner',
   })
   renderHome()
-  expect(screen.getByText(/set your reading defaults/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /save setup/i })).toBeInTheDocument()
+  expect(screen.queryByText(/set your reading defaults/i)).not.toBeInTheDocument()
 })

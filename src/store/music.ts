@@ -18,24 +18,40 @@ export const SOUNDS: Sound[] = [
 ]
 
 interface MusicState {
-  currentSound: string | null
-  playing: boolean
+  selectedSoundId: string | null
+  isPlaying: boolean
   volume: number
-  setSound: (id: string | null) => void
-  setPlaying: (playing: boolean) => void
+  selectSound: (id: string | null) => void
+  playSelected: () => void
+  stopPlayback: () => void
+  toggleSound: (id: string) => void
   setVolume: (v: number) => void
 }
 
 export const useMusicStore = create<MusicState>()(
   persist(
     (set) => ({
-      currentSound: null,
-      playing: false,
+      selectedSoundId: null,
+      isPlaying: false,
       volume: 0.6,
-      setSound: (id) => set({ currentSound: id, playing: id !== null }),
-      setPlaying: (playing) => set({ playing }),
+      selectSound: (id) => set({ selectedSoundId: id }),
+      playSelected: () => set(state => (state.selectedSoundId ? { isPlaying: true } : state)),
+      stopPlayback: () => set({ isPlaying: false }),
+      toggleSound: (id) => set(state => {
+        if (state.selectedSoundId === id) {
+          return { isPlaying: !state.isPlaying }
+        }
+
+        return {
+          selectedSoundId: id,
+          isPlaying: true,
+        }
+      }),
       setVolume: (v) => set({ volume: v }),
     }),
-    { name: 'sikh-music', partialize: (s) => ({ currentSound: s.currentSound, volume: s.volume }) }
+    {
+      name: 'sikh-music',
+      partialize: (s) => ({ selectedSoundId: s.selectedSoundId, volume: s.volume }),
+    }
   )
 )

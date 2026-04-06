@@ -17,7 +17,11 @@ import { IconArrowRight, IconMusic } from '../components/icons'
 
 export default function More() {
   const navigate = useNavigate()
-  const { currentSound, playing, volume, setSound, setPlaying, setVolume } = useMusicStore()
+  const selectedSoundId = useMusicStore(s => s.selectedSoundId)
+  const isPlaying = useMusicStore(s => s.isPlaying)
+  const volume = useMusicStore(s => s.volume)
+  const toggleSound = useMusicStore(s => s.toggleSound)
+  const setVolume = useMusicStore(s => s.setVolume)
   const {
     scriptMode,
     setScriptMode,
@@ -41,28 +45,16 @@ export default function More() {
   const { learningLevel, setLearningLevel, resetOnboarding } = useOnboardingStore()
 
   useEffect(() => {
-    if (playing && currentSound) {
-      playSound(currentSound)
-      setMasterVolume(volume)
-    } else {
-      stopSound()
-    }
-  }, [currentSound, playing, volume])
-
-  useEffect(() => {
     setMasterVolume(volume)
   }, [volume])
 
-  const handleToggle = (id: string) => {
-    if (currentSound === id && playing) {
-      stopSound()
-      setSound(null)
-      setPlaying(false)
+  useEffect(() => {
+    if (isPlaying && selectedSoundId) {
+      playSound(selectedSoundId)
     } else {
-      setSound(id)
-      setPlaying(true)
+      stopSound()
     }
-  }
+  }, [isPlaying, selectedSoundId])
 
   return (
     <div className="page-shell animate-fade-in">
@@ -95,19 +87,26 @@ export default function More() {
 
         <div className="grid grid-cols-2 gap-2 mb-4">
           {SOUNDS.map(sound => {
-            const isActive = currentSound === sound.id && playing
+            const isSelected = selectedSoundId === sound.id
+            const isActive = isSelected && isPlaying
             return (
               <button
                 key={sound.id}
-                onClick={() => handleToggle(sound.id)}
+                onClick={() => toggleSound(sound.id)}
                 className={`flex items-center gap-2 p-3 rounded-2xl border min-h-[52px] transition-all duration-300 active:scale-95 ${
                   isActive
                     ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron shadow-gold'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                    : isSelected
+                      ? 'bg-saffron/8 dark:bg-saffron/12 border-saffron/30 text-saffron dark:text-saffron-light'
+                      : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                 }`}
+                aria-pressed={isActive}
               >
                 <span className="text-lg">{sound.icon}</span>
-                <span className="font-sans text-xs font-medium">{sound.name}</span>
+                <span className="font-sans text-xs font-medium">
+                  {sound.name}
+                  {isActive ? ' · Playing' : isSelected ? ' · Paused' : ''}
+                </span>
               </button>
             )
           })}
