@@ -1,14 +1,25 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type {
-  LearningAssessmentRecord,
   GuidedJourneyProgress,
+  LearnActivity,
+  LearnPlacementResult,
+  LearnProgramId,
+  LearnProgramProgress,
+  LearningAssessmentRecord,
   LearningLessonProgress,
   LearningSkillKind,
   LearningSkillProgress,
 } from '../types'
 
 type SkillRating = 'again' | 'good' | 'easy'
+
+const LEARN_PROGRAM_IDS: LearnProgramId[] = [
+  'start-reading',
+  'build-fluency',
+  'understand-gurbani',
+  'deep-study',
+]
 
 interface LearningState {
   masteredSymbols: string[]
@@ -21,6 +32,11 @@ interface LearningState {
   assessmentHistory: LearningAssessmentRecord[]
   journeys: Record<string, GuidedJourneyProgress>
   activeJourneyId: string | null
+  activeProgramId: LearnProgramId
+  programProgress: Record<LearnProgramId, LearnProgramProgress>
+  queuedReviewModuleIds: string[]
+  placementResult: LearnPlacementResult | null
+  lastLearnActivity: LearnActivity | null
   toggleMasteredSymbol: (symbol: string) => void
   completeLesson: (lessonId: string) => void
   recordPracticeSession: () => void
@@ -30,6 +46,82 @@ interface LearningState {
   startJourney: (journeyId: string) => void
   setActiveJourney: (journeyId: string | null) => void
   completeJourneyStep: (journeyId: string, stepId: string, totalSteps?: number) => void
+  setActiveProgram: (programId: LearnProgramId) => void
+  setProgramModule: (programId: LearnProgramId, moduleId: string | null) => void
+  completeModule: (programId: LearnProgramId, moduleId: string, reviewIds?: string[]) => void
+  queueReviewModules: (moduleIds: string[]) => void
+  clearQueuedReview: (moduleId: string) => void
+  setPlacementResult: (result: LearnPlacementResult | null) => void
+  recordLearnActivity: (activity: LearnActivity) => void
+}
+
+type PersistedLearningState = Partial<
+  Pick<
+    LearningState,
+    | 'masteredSymbols'
+    | 'completedLessons'
+    | 'practiceStreak'
+    | 'lastPracticedOn'
+    | 'totalPracticeSessions'
+    | 'skills'
+    | 'lessonProgress'
+    | 'assessmentHistory'
+    | 'journeys'
+    | 'activeJourneyId'
+    | 'activeProgramId'
+    | 'programProgress'
+    | 'queuedReviewModuleIds'
+    | 'placementResult'
+    | 'lastLearnActivity'
+  >
+>
+
+function createDefaultProgramProgress(): Record<LearnProgramId, LearnProgramProgress> {
+  return {
+    'start-reading': { currentModuleId: null, completedModuleIds: [] },
+    'build-fluency': { currentModuleId: null, completedModuleIds: [] },
+    'understand-gurbani': { currentModuleId: null, completedModuleIds: [] },
+    'deep-study': { currentModuleId: null, completedModuleIds: [] },
+  }
+}
+
+function normalizeProgramProgress(
+  progress: PersistedLearningState['programProgress'] | undefined
+): Record<LearnProgramId, LearnProgramProgress> {
+  const defaults = createDefaultProgramProgress()
+
+  for (const programId of LEARN_PROGRAM_IDS) {
+    const existing = progress?.[programId]
+    if (!existing) continue
+
+    defaults[programId] = {
+      currentModuleId: existing.currentModuleId ?? null,
+      completedModuleIds: existing.completedModuleIds ?? [],
+      lastActivityAt: existing.lastActivityAt,
+    }
+  }
+
+  return defaults
+}
+
+function normalizePersistedState(persisted: PersistedLearningState | undefined): PersistedLearningState {
+  return {
+    masteredSymbols: persisted?.masteredSymbols ?? [],
+    completedLessons: persisted?.completedLessons ?? [],
+    practiceStreak: persisted?.practiceStreak ?? 0,
+    lastPracticedOn: persisted?.lastPracticedOn,
+    totalPracticeSessions: persisted?.totalPracticeSessions ?? 0,
+    skills: persisted?.skills ?? {},
+    lessonProgress: persisted?.lessonProgress ?? {},
+    assessmentHistory: persisted?.assessmentHistory ?? [],
+    journeys: persisted?.journeys ?? {},
+    activeJourneyId: persisted?.activeJourneyId ?? null,
+    activeProgramId: persisted?.activeProgramId ?? 'start-reading',
+    programProgress: normalizeProgramProgress(persisted?.programProgress),
+    queuedReviewModuleIds: persisted?.queuedReviewModuleIds ?? [],
+    placementResult: persisted?.placementResult ?? null,
+    lastLearnActivity: persisted?.lastLearnActivity ?? null,
+  }
 }
 
 function toDayStamp(date: Date): string {
@@ -64,6 +156,11 @@ export const useLearningStore = create<LearningState>()(
       assessmentHistory: [],
       journeys: {},
       activeJourneyId: null,
+      activeProgramId: 'start-reading',
+      programProgress: createDefaultProgramProgress(),
+      queuedReviewModuleIds: [],
+      placementResult: null,
+      lastLearnActivity: null,
       toggleMasteredSymbol: (symbol) => set(state => ({
         masteredSymbols: state.masteredSymbols.includes(symbol)
           ? state.masteredSymbols.filter(current => current !== symbol)
@@ -231,7 +328,78 @@ export const useLearningStore = create<LearningState>()(
           },
         }
       }),
+      setActiveProgram: (programId) => set({ activeProgramId: programId }),
+      setProgramModule: (programId, moduleId) => set(state => ({
+        activeProgramId: programId,
+        programProgress: {
+          ...state.programProgress,
+          [programId]: {
+            ...state.programProgress[programId],
+            currentModuleId: moduleId,
+            lastActivityAt: new Date().toISOString(),
+          },
+        },
+      })),
+      completeModule: (programId, moduleId, reviewIds = []) => set(state => {
+        const current = state.programProgress[programId]
+        const nextCompletedModuleIds = current.completedModuleIds.includes(moduleId)
+          ? current.completedModuleIds
+          : [...current.completedModuleIds, moduleId]
+        const completedLessons = state.completedLessons.includes(moduleId)
+          ? state.completedLessons
+          : [...state.completedLessons, moduleId]
+        const queuedReviewModuleIds = Array.from(new Set([...reviewIds, ...state.queuedReviewModuleIds]))
+
+        return {
+          completedLessons,
+          queuedReviewModuleIds,
+          activeProgramId: programId,
+          programProgress: {
+            ...state.programProgress,
+            [programId]: {
+              ...current,
+              currentModuleId: current.currentModuleId === moduleId ? null : current.currentModuleId,
+              completedModuleIds: nextCompletedModuleIds,
+              lastActivityAt: new Date().toISOString(),
+            },
+          },
+        }
+      }),
+      queueReviewModules: (moduleIds) => set(state => ({
+        queuedReviewModuleIds: Array.from(new Set([...moduleIds, ...state.queuedReviewModuleIds])),
+      })),
+      clearQueuedReview: (moduleId) => set(state => ({
+        queuedReviewModuleIds: state.queuedReviewModuleIds.filter(id => id !== moduleId),
+      })),
+      setPlacementResult: (result) => set(state => ({
+        placementResult: result,
+        activeProgramId: result?.programId ?? state.activeProgramId,
+      })),
+      recordLearnActivity: (activity) => set(state => ({
+        activeProgramId: activity.programId,
+        lastLearnActivity: activity,
+        programProgress: {
+          ...state.programProgress,
+          [activity.programId]: {
+            ...state.programProgress[activity.programId],
+            currentModuleId: activity.moduleId,
+            lastActivityAt: activity.visitedAt,
+          },
+        },
+      })),
     }),
-    { name: 'sikh-learning-state' }
+    {
+      name: 'sikh-learning-state',
+      version: 2,
+      migrate: (persistedState, version) => {
+        const normalized = normalizePersistedState(persistedState as PersistedLearningState | undefined)
+
+        if (version < 2) {
+          return normalized
+        }
+
+        return normalized
+      },
+    }
   )
 )

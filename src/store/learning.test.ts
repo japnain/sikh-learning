@@ -43,3 +43,23 @@ test('tracks guided journey progress', () => {
   expect(state.activeJourneyId).toBe('journey-japji-opening')
   expect(state.journeys['journey-japji-opening']?.completedStepIds).toContain('japji-foundation')
 })
+
+test('completes modules and queues related review work', () => {
+  useLearningStore.setState({
+    activeProgramId: 'start-reading',
+    programProgress: {
+      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
+      'build-fluency': { currentModuleId: null, completedModuleIds: [] },
+      'understand-gurbani': { currentModuleId: null, completedModuleIds: [] },
+      'deep-study': { currentModuleId: null, completedModuleIds: [] },
+    },
+    queuedReviewModuleIds: [],
+  })
+
+  useLearningStore.getState().completeModule('start-reading', 'start-core-letters', ['start-matras'])
+
+  const state = useLearningStore.getState()
+  expect(state.programProgress['start-reading'].completedModuleIds).toContain('start-core-letters')
+  expect(state.programProgress['start-reading'].currentModuleId).toBe(null)
+  expect(state.queuedReviewModuleIds).toContain('start-matras')
+})

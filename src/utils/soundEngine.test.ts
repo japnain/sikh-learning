@@ -1,4 +1,4 @@
-import { beforeEach, expect, test } from 'vitest'
+import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import {
   __getSoundEngineSnapshotForTests,
   __resetSoundEngineForTests,
@@ -7,17 +7,27 @@ import {
   stopSound,
 } from './soundEngine'
 
+async function settlePlayback(duration = 1400) {
+  await Promise.resolve()
+  await vi.advanceTimersByTimeAsync(duration)
+}
+
 beforeEach(() => {
+  vi.useFakeTimers()
   __resetSoundEngineForTests()
+})
+
+afterEach(() => {
+  vi.useRealTimers()
 })
 
 test('switching sounds stops the previous audio deterministically', async () => {
   playSound('gentle-rain')
-  await Promise.resolve()
+  await settlePlayback()
   const firstAudio = __getSoundEngineSnapshotForTests().activeAudio
 
   playSound('forest-canopy')
-  await Promise.resolve()
+  await settlePlayback()
   const snapshot = __getSoundEngineSnapshotForTests()
 
   expect(snapshot.activeSoundId).toBe('forest-canopy')
@@ -27,7 +37,7 @@ test('switching sounds stops the previous audio deterministically', async () => 
 
 test('volume changes apply directly to the active audio instance and zero stays muted', async () => {
   playSound('gentle-rain')
-  await Promise.resolve()
+  await settlePlayback()
 
   setMasterVolume(0.35)
   expect(__getSoundEngineSnapshotForTests().activeAudio?.volume).toBe(0.35)
@@ -38,9 +48,10 @@ test('volume changes apply directly to the active audio instance and zero stays 
 
 test('stopSound clears the active audio instance', async () => {
   playSound('gentle-rain')
-  await Promise.resolve()
+  await settlePlayback()
 
   stopSound()
+  await settlePlayback(700)
 
   const snapshot = __getSoundEngineSnapshotForTests()
   expect(snapshot.activeAudio).toBe(null)
