@@ -326,6 +326,39 @@ export const MOCK_HUKAMNAMA_RESPONSE = {
   ],
 }
 
+const MOCK_MAHANKOSH_RESPONSES: Record<string, { lines: Array<Record<string, unknown>> }> = {
+  'ੴ': {
+    lines: [
+      {
+        ID: 1,
+        srch: 'ੴ',
+        translit: 'ik oankaar',
+        word: 'ੴ',
+        roman: 'ik oankar',
+        hindi: 'इक ओंकार',
+        description: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ.',
+        roman_desc: 'ik akaal purakh.',
+        hindi_desc: 'एक अकाल पुरुष।',
+      },
+    ],
+  },
+  'ਸਤਿ': {
+    lines: [
+      {
+        ID: 2,
+        srch: 'ਸਤਿ',
+        translit: 'sat',
+        word: 'ਸਤਿ',
+        roman: 'sat',
+        hindi: 'सति',
+        description: 'ਸੱਚ.',
+        roman_desc: 'sach.',
+        hindi_desc: 'सत्य।',
+      },
+    ],
+  },
+}
+
 export const handlers = [
   http.get('https://api.banidb.com/v2/angs/:ang/:source', ({ params }) => {
     const { ang } = params as { ang: string; source: string }
@@ -382,5 +415,11 @@ export const handlers = [
 
   http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', () => {
     return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+  }),
+
+  http.get('https://backend.searchgurbani.com/api/res/mahan-kosh/view', ({ request }) => {
+    const url = new URL(request.url)
+    const keyword = url.searchParams.get('keyword') ?? ''
+    return HttpResponse.json(MOCK_MAHANKOSH_RESPONSES[keyword] ?? { lines: [] })
   }),
 ]
