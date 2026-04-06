@@ -3,7 +3,7 @@ import { SOUNDS } from '../store/music'
 let activeAudio: HTMLAudioElement | null = null
 let activeSoundId: string | null = null
 let targetVolume = 0.6
-let fadeTimer: number | null = null
+let fadeTimer: ReturnType<typeof globalThis.setTimeout> | null = null
 
 function clampVolume(value: number) {
   return Math.max(0, Math.min(1, value))
@@ -11,7 +11,7 @@ function clampVolume(value: number) {
 
 function clearFadeTimer() {
   if (fadeTimer !== null) {
-    window.clearTimeout(fadeTimer)
+    globalThis.clearTimeout(fadeTimer)
     fadeTimer = null
   }
 }
@@ -48,10 +48,10 @@ function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void
       audio.volume = clampVolume(candidate)
     }
 
-    fadeTimer = window.setTimeout(tick, 50)
+    fadeTimer = globalThis.setTimeout(tick, 50)
   }
 
-  fadeTimer = window.setTimeout(tick, 50)
+  fadeTimer = globalThis.setTimeout(tick, 50)
 }
 
 export function playSound(id: string): void {

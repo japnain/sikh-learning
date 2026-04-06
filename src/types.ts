@@ -6,6 +6,19 @@ export interface Word {
   meaning_pa: string
 }
 
+export interface MahanKoshEntry {
+  id: number
+  word: string
+  searchKey: string
+  transliteration: string
+  roman: string
+  hindi: string
+  description: string
+  description_hi: string
+  exactMatch: boolean
+  sourceUrl: string
+}
+
 export type EnglishSource = 'bdb' | 'ms' | 'ssk'
 export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'

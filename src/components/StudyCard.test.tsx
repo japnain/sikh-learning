@@ -74,8 +74,10 @@ test('switches meaning language to Punjabi', () => {
   expect(screen.queryByText('One Creator Truth')).not.toBeInTheDocument()
 })
 
-test('opens word popover on word tap', () => {
+test('opens word popover on word tap and shows Mahankosh context', async () => {
   render(<StudyCard entry={entry} />)
   fireEvent.click(screen.getByRole('button', { name: 'ੴ' }))
   expect(screen.getByText('One Creator')).toBeInTheDocument()
+  expect(await screen.findByText('Mahankosh')).toBeInTheDocument()
+  expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
 })
