@@ -1,10 +1,9 @@
-import { useEffect, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useMusicStore, SOUNDS } from '../store/music'
+import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
-import { playSound, setMasterVolume, stopSound } from '../utils/soundEngine'
 import {
   ENGLISH_SOURCE_LABELS,
   LEARNING_GOAL_LABELS,
@@ -17,7 +16,7 @@ import {
   UI_LOCALE_LABELS,
 } from '../utils/translations'
 import { renderScriptText } from '../utils/readerDisplay'
-import { IconArrowRight, IconMusic } from '../components/icons'
+import { IconArrowRight } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 
 function SettingsBlock({
@@ -44,11 +43,6 @@ function SettingsBlock({
 
 export default function More() {
   const navigate = useNavigate()
-  const selectedSoundId = useMusicStore(s => s.selectedSoundId)
-  const isPlaying = useMusicStore(s => s.isPlaying)
-  const volume = useMusicStore(s => s.volume)
-  const toggleSound = useMusicStore(s => s.toggleSound)
-  const setVolume = useMusicStore(s => s.setVolume)
   const {
     scriptMode,
     setScriptMode,
@@ -82,18 +76,6 @@ export default function More() {
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
 
-  useEffect(() => {
-    setMasterVolume(volume)
-  }, [volume])
-
-  useEffect(() => {
-    if (isPlaying && selectedSoundId) {
-      playSound(selectedSoundId)
-    } else {
-      stopSound()
-    }
-  }, [isPlaying, selectedSoundId])
-
   return (
     <div className="page-shell animate-fade-in">
       <div className="mb-5">
@@ -114,55 +96,9 @@ export default function More() {
         </p>
       </section>
 
-      <section className="section-shell p-4 mb-5">
-        <div className="flex items-center gap-2 mb-3">
-          <IconMusic size={14} className="text-gold dark:text-gold-light" />
-          <p className="eyebrow">Ambient Audio</p>
-        </div>
-        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mb-4">
-          Ambient recordings are optional atmosphere. Recitation remains intentionally marked as coming soon until there is a real source.
-        </p>
-
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {SOUNDS.map(sound => {
-            const isSelected = selectedSoundId === sound.id
-            const isActive = isSelected && isPlaying
-            return (
-              <button
-                key={sound.id}
-                onClick={() => toggleSound(sound.id)}
-                className={`flex items-center gap-2 p-3 rounded-2xl border min-h-[52px] transition-all duration-300 active:scale-95 ${
-                  isActive
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron shadow-gold'
-                    : isSelected
-                      ? 'bg-saffron/8 dark:bg-saffron/12 border-saffron/30 text-saffron dark:text-saffron-light'
-                      : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-                aria-pressed={isActive}
-              >
-                <span className="text-lg">{sound.icon}</span>
-                <span className="font-sans text-xs font-medium">
-                  {sound.name}
-                  {isActive ? ' · Playing' : isSelected ? ' · Paused' : ''}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
-        <div className="flex items-center gap-3">
-          <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">Vol</span>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.05"
-            value={volume}
-            onChange={e => setVolume(Number(e.target.value))}
-            className="flex-1 h-1 accent-gold"
-          />
-        </div>
-      </section>
+      <div className="mb-5">
+        <SoundscapeControls context="study" variant="full" />
+      </div>
 
       <section className="section-shell-quiet p-4 mb-5">
         <p className="eyebrow mb-4">Reader Defaults</p>

@@ -6,10 +6,12 @@ import { useBani } from '../hooks/useBani'
 import { useShabad } from '../hooks/useShabad'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
+import SoundscapeControls from '../components/SoundscapeControls'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
 import type { ScriptureEntry, ScriptureLine } from '../types'
 import { LINE_SPACING_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS, TEXT_ALIGNMENT_LABELS } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
@@ -68,6 +70,8 @@ export default function Study() {
   const verseIdParam = Number(searchParams.get('verseId')) || null
   const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
+  const learnProgramParam = searchParams.get('learnProgram')
+  const learnModuleParam = searchParams.get('learnModule')
 
   if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam) {
     const parts = scriptureId.split('-')
@@ -83,6 +87,10 @@ export default function Study() {
   const isBaniRangeMode = baniName !== null && endAngParam !== null && source !== null && angParam !== null
   const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode && !isHukamnamaMode
   const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode || isHukamnamaMode
+  const learnModule = learnModuleParam ? LEARN_MODULE_BY_ID[learnModuleParam] : null
+  const learnProgram = learnProgramParam
+    ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
+    : null
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
@@ -350,6 +358,8 @@ export default function Study() {
         ang: String(newAng),
       }
       if (baniName) params.bani = baniName
+      if (learnProgramParam) params.learnProgram = learnProgramParam
+      if (learnModuleParam) params.learnModule = learnModuleParam
       setSearchParams(params)
       return
     }
@@ -358,6 +368,8 @@ export default function Study() {
     if (baniName) params.bani = baniName
     if (isBaniRangeMode) params.startAng = String(startAngParam ?? angParam!)
     if (endAngParam) params.endAng = String(endAngParam)
+    if (learnProgramParam) params.learnProgram = learnProgramParam
+    if (learnModuleParam) params.learnModule = learnModuleParam
     setSearchParams(params)
   }
 
@@ -439,6 +451,33 @@ export default function Study() {
         <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2">
           Comfortable reading first. Controls stay close, the text stays primary, and audio remains clearly marked until it is real.
         </p>
+      </div>
+
+      {(learnProgram || learnModule) && (
+        <div className="section-shell-quiet p-4 mb-4">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">Learn Context</p>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mt-2">
+                {learnModule?.title ?? 'Return to your active Learn path'}
+              </p>
+              <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-2">
+                {learnProgram?.name ?? 'Learn'}{learnModule ? ` · ${learnModule.estimatedMinutes} min module` : ''}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate(`/learn?program=${learnProgramParam ?? ''}${learnModuleParam ? `&module=${learnModuleParam}` : ''}`)}
+              className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
+            >
+              Return to Learn
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="mb-4">
+        <SoundscapeControls context="study" variant="compact" />
       </div>
 
       <div className="mb-4 section-shell-quiet p-4 shadow-card">

@@ -19,6 +19,11 @@ export interface MahanKoshEntry {
   sourceUrl: string
 }
 
+export interface MahanKoshEnglishGloss {
+  gloss: string
+  source: 'bdb' | 'generated'
+}
+
 export type EnglishSource = 'bdb' | 'ms' | 'ssk'
 export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
@@ -39,6 +44,14 @@ export type OnboardingAudience = 'child' | 'teen' | 'adult'
 export type LearningGoal = 'read' | 'understand' | 'habit'
 export type LearningSkillKind = 'symbol' | 'sound' | 'pattern' | 'guided-reading' | 'comprehension'
 export type GuidedJourneyStepType = 'learn' | 'guided' | 'study' | 'review'
+export type SoundCategory = 'rain' | 'water' | 'wind' | 'night' | 'sanctuary'
+export type FocusContext = 'learn' | 'study' | 'review'
+export type FocusPresetId = 'settle' | 'focus' | 'night'
+export type SupportDensity = 'full' | 'guided' | 'light' | 'minimal'
+export type LearnProgramId = 'start-reading' | 'build-fluency' | 'understand-gurbani' | 'deep-study'
+export type LearnModuleType = 'symbol' | 'sound' | 'decode' | 'guided' | 'meaning' | 'compare' | 'review'
+export type LearnActivityContext = 'learn' | 'study' | 'review'
+export type PlacementConfidence = 'gentle' | 'steady' | 'immersed'
 
 export interface EnglishTranslations {
   bdb?: string
@@ -133,6 +146,94 @@ export interface LearningProgressState {
   assessmentHistory?: LearningAssessmentRecord[]
   journeys?: Record<string, GuidedJourneyProgress>
   activeJourneyId?: string | null
+  activeProgramId?: LearnProgramId
+  programProgress?: Record<LearnProgramId, LearnProgramProgress>
+  queuedReviewModuleIds?: string[]
+  placementResult?: LearnPlacementResult | null
+  lastLearnActivity?: LearnActivity | null
+}
+
+export interface LearnProgram {
+  id: LearnProgramId
+  name: string
+  eyebrow: string
+  description: string
+  outcome: string
+  defaultSupportDensity: SupportDensity
+}
+
+export interface LearnCompareRow {
+  label: string
+  text: string
+}
+
+export interface LearnModuleOption {
+  id: string
+  label: string
+  detail?: string
+}
+
+export interface LearnModule {
+  id: string
+  programId: LearnProgramId
+  type: LearnModuleType
+  title: string
+  summary: string
+  scriptureAnchor?: string
+  source?: 'G' | 'D'
+  ang?: number
+  estimatedMinutes: number
+  supportDensity: SupportDensity
+  skillIds: string[]
+  prerequisiteIds: string[]
+  relatedReviewIds: string[]
+  prompt?: string
+  focus?: string
+  supportHint?: string
+  keywords?: string[]
+  symbolGroups?: string[][]
+  parts?: string[]
+  combined?: string
+  transliteration?: string
+  meaning?: string
+  scriptText?: string
+  options?: LearnModuleOption[]
+  answerId?: string
+  explanation?: string
+  compareRows?: LearnCompareRow[]
+  note?: string
+  relatedJourneyIds?: string[]
+}
+
+export interface LearnProgramProgress {
+  currentModuleId: string | null
+  completedModuleIds: string[]
+  lastActivityAt?: string
+}
+
+export interface LearnPlacementResult {
+  confidence: PlacementConfidence
+  readingScore: number
+  meaningScore: number
+  programId: LearnProgramId
+  supportDensity: SupportDensity
+  placedAt: string
+}
+
+export interface LearnActivity {
+  programId: LearnProgramId
+  moduleId: string
+  context: LearnActivityContext
+  visitedAt: string
+}
+
+export interface FocusPreset {
+  id: FocusPresetId
+  name: string
+  description: string
+  soundId: string
+  recommendedContexts: FocusContext[]
+  defaultVolume: number
 }
 
 export interface LearningBridgeItem {
@@ -237,6 +338,7 @@ export interface GuidedJourneyStep {
 
 export interface GuidedJourney {
   id: string
+  programId?: LearnProgramId
   title: string
   subtitle: string
   description: string

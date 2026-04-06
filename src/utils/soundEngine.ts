@@ -4,6 +4,7 @@ let activeAudio: HTMLAudioElement | null = null
 let activeSoundId: string | null = null
 let targetVolume = 0.6
 let fadeTimer: ReturnType<typeof globalThis.setTimeout> | null = null
+let transitionId = 0
 
 function clampVolume(value: number) {
   return Math.max(0, Math.min(1, value))
@@ -25,12 +26,6 @@ function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void
   clearFadeTimer()
 
   const clampedTarget = clampVolume(nextVolume)
-  if (clampedTarget === 0) {
-    audio.volume = 0
-    onDone?.()
-    return
-  }
-
   const step = clampedTarget > audio.volume ? 0.05 : -0.05
   const tick = () => {
     const reachedTarget = step > 0 ? audio.volume >= clampedTarget : audio.volume <= clampedTarget
@@ -54,22 +49,9 @@ function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void
   fadeTimer = globalThis.setTimeout(tick, 50)
 }
 
-export function playSound(id: string): void {
+function startSoundPlayback(id: string, currentTransitionId: number) {
   const sound = SOUNDS.find(entry => entry.id === id)
   if (!sound) return
-  clearFadeTimer()
-
-  if (activeAudio && activeSoundId === id) {
-    activeAudio.loop = true
-    activeAudio.volume = targetVolume === 0 ? 0 : activeAudio.volume
-    void activeAudio.play()
-    fadeTo(activeAudio, targetVolume)
-    return
-  }
-
-  if (activeAudio) {
-    cleanupAudio(activeAudio)
-  }
 
   const nextAudio = new Audio(sound.src)
   nextAudio.loop = true
@@ -81,6 +63,10 @@ export function playSound(id: string): void {
 
   void nextAudio.play()
     .then(() => {
+      if (currentTransitionId !== transitionId) {
+        cleanupAudio(nextAudio)
+        return
+      }
       fadeTo(nextAudio, targetVolume)
     })
     .catch(() => {
@@ -92,14 +78,46 @@ export function playSound(id: string): void {
     })
 }
 
+export function playSound(id: string): void {
+  if (!SOUNDS.some(entry => entry.id === id)) return
+  clearFadeTimer()
+  transitionId += 1
+  const currentTransitionId = transitionId
+
+  if (activeAudio && activeSoundId === id) {
+    activeAudio.loop = true
+    activeAudio.volume = targetVolume === 0 ? 0 : activeAudio.volume
+    void activeAudio.play()
+    fadeTo(activeAudio, targetVolume)
+    return
+  }
+
+  if (activeAudio) {
+    const previousAudio = activeAudio
+    activeAudio = null
+    activeSoundId = null
+    fadeTo(previousAudio, 0, () => {
+      cleanupAudio(previousAudio)
+      if (currentTransitionId === transitionId) {
+        startSoundPlayback(id, currentTransitionId)
+      }
+    })
+    return
+  }
+
+  startSoundPlayback(id, currentTransitionId)
+}
+
 export function stopSound(): void {
   if (!activeAudio) return
   clearFadeTimer()
+  transitionId += 1
   const audioToStop = activeAudio
   activeAudio = null
   activeSoundId = null
-  audioToStop.volume = 0
-  cleanupAudio(audioToStop)
+  fadeTo(audioToStop, 0, () => {
+    cleanupAudio(audioToStop)
+  })
 }
 
 export function setMasterVolume(v: number): void {

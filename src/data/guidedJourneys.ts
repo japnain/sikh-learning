@@ -3,6 +3,7 @@ import type { GuidedJourney } from '../types'
 export const GUIDED_JOURNEYS: GuidedJourney[] = [
   {
     id: 'journey-japji-opening',
+    programId: 'start-reading',
     title: 'Japji Opening Flow',
     subtitle: 'From recognition into the first Nitnem line',
     description: 'Use the Japji opening to connect letters, meaning, and real reading in one path.',
@@ -15,7 +16,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
         detail: 'Warm up on the core symbols used in the opening line.',
         type: 'learn',
         track: 'foundations',
-        lessonId: 'foundations-core-letters',
+        lessonId: 'start-core-letters',
       },
       {
         id: 'japji-guided',
@@ -44,6 +45,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
   },
   {
     id: 'journey-rehras-entry',
+    programId: 'build-fluency',
     title: 'Rehras Entry Flow',
     subtitle: 'Daily-reader evening pathway',
     description: 'Use the Rehras opening to move from guided recognition into habitual evening reading.',
@@ -56,7 +58,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
         detail: 'Tighten symbol and matra combinations before reading the salutation.',
         type: 'learn',
         track: 'decoding',
-        lessonId: 'decode-vaheguru',
+        lessonId: 'build-kartaa-decode',
       },
       {
         id: 'rehras-guided',
@@ -85,6 +87,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
   },
   {
     id: 'journey-jaap-rhythm',
+    programId: 'understand-gurbani',
     title: 'Jaap Rhythm Flow',
     subtitle: 'Pattern recognition in flowing bani',
     description: 'Use repeated Jaap phrasing to move from decoding into rhythm and comprehension.',
@@ -97,7 +100,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
         detail: 'Use phonics practice to keep paired sounds distinct.',
         type: 'learn',
         track: 'phonics',
-        lessonId: 'phonics-tatta-pair',
+        lessonId: 'understand-clusters',
       },
       {
         id: 'jaap-guided',

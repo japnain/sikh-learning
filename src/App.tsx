@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
 import SplashScreen from './components/SplashScreen'
 import Home from './pages/Home'
@@ -48,6 +49,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <SplashScreen />
+      <MusicControllerBridge />
       <div className="min-h-screen bg-parchment dark:bg-dark-bg pb-20 transition-colors duration-300">
         <Routes>
           <Route path="/" element={<Home />} />
