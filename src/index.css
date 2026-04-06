@@ -1,36 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Gurmukhi:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+Gurmukhi:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #fff8ef;
-  color: #1e1b13;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+@layer base {
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(232, 196, 104, 0.18), transparent 28%),
+      linear-gradient(180deg, #fff8ef 0%, #fbf3e4 100%);
+    color: #1e1b13;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .dark body {
+    background:
+      radial-gradient(circle at top, rgba(232, 196, 104, 0.08), transparent 26%),
+      linear-gradient(180deg, #120d27 0%, #0f0a1e 100%);
+    color: #e8e0d4;
+  }
 }
 
-.dark body {
-  background-color: #0f0a1e;
-  color: #e8e0d4;
+@layer components {
+  .page-shell {
+    @apply max-w-md mx-auto min-h-screen px-4 pt-4 pb-28;
+  }
+
+  .section-shell {
+    @apply rounded-[28px] bg-white dark:bg-dark-card shadow-soft dark:shadow-gold border border-sand/10 dark:border-gold/10 backdrop-blur-sm;
+  }
+
+  .section-shell-quiet {
+    @apply rounded-[24px] bg-parchment-low dark:bg-dark-surface border border-sand/10 dark:border-dark-text/10 backdrop-blur-sm;
+  }
+
+  .hero-surface {
+    @apply rounded-[32px] border border-gold/15 bg-gradient-to-br from-parchment-card via-parchment-low to-parchment-deep dark:from-dark-card dark:via-dark-surface dark:to-dark-panel shadow-soft dark:shadow-gold;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] uppercase tracking-[0.22em] text-gold dark:text-gold-light;
+  }
+
+  .chip-pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 font-sans text-[11px] font-medium bg-gold/10 text-gold-dark dark:bg-gold/10 dark:text-gold-light;
+  }
+
+  .reader-divider {
+    @apply border-b border-sand/10 dark:border-dark-text/10 last:border-b-0;
+  }
 }
 
-/* Ornate gold top accent for cards */
 .ornate-top {
   position: relative;
 }
+
 .ornate-top::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 12%;
+  right: 12%;
   height: 2px;
   background: linear-gradient(90deg, transparent, #c5963a, #e8c468, #c5963a, transparent);
   border-radius: 1px;
 }
 
-
-/* Stagger animation delays */
 .stagger-1 { animation-delay: 0.05s; }
 .stagger-2 { animation-delay: 0.1s; }
 .stagger-3 { animation-delay: 0.15s; }
@@ -40,28 +75,28 @@ body {
 .stagger-7 { animation-delay: 0.35s; }
 .stagger-8 { animation-delay: 0.4s; }
 
-/* Thin gold scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #c5963a40; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #c5963a80; }
 
-/* Smooth popover overlay */
 .popover-overlay {
   animation: fade-in 0.2s ease-out;
 }
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* Splash screen */
 .splash-glow {
-  text-shadow: 0 0 40px rgba(197,150,58,0.5), 0 0 80px rgba(197,150,58,0.3);
+  text-shadow: 0 0 40px rgba(197, 150, 58, 0.5), 0 0 80px rgba(197, 150, 58, 0.3);
 }
+
 .splash-fade-out {
   animation: splash-exit 0.5s ease-in forwards;
 }
+
 @keyframes splash-exit {
   to { opacity: 0; pointer-events: none; }
 }

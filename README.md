@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# Nitnem
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nitnem is a mobile-first Gurbani reading and learning app.
 
-Currently, two official plugins are available:
+Its product direction is simple:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Read Gurbani daily. Understand it better. Grow into it steadily.
 
-## React Compiler
+## Product Shape
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Nitnem is designed around three connected pillars:
 
-## Expanding the ESLint configuration
+- `Read`: Banis, hukamnama, scripture browsing, bookmarks, and a cleaner mobile reader
+- `Understand`: translation controls, transliteration, source context, word lookup, and saved phrases
+- `Grow`: Learn, review, mastery tracking, practice streaks, and Gurbani bridge exercises
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The goal is not to copy every advanced desktop scripture tool. The goal is to be a trustworthy daily-use mobile companion for both newer readers and regular readers.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Current Focus
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- premium, calm reading experience on mobile
+- honest product behavior: no fake audio controls, no misleading data affordances
+- stronger learning loops tied directly back into real Gurbani
+- user-owned value in Saved: bookmarks, words, phrases, progress
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Zustand
+- BaniDB v2 API
+
+## Local Development
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Quality Checks
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npx vitest run
 ```
+
+## Data
+
+Scripture and translation data is sourced from BaniDB. Ambient audio is bundled locally. Recitation playback remains intentionally unavailable until a real working audio source exists.

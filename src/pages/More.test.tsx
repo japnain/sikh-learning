@@ -9,6 +9,10 @@ beforeEach(() => {
     scriptMode: 'gurmukhi',
     showTransliteration: false,
     meaningLanguage: 'en',
+    larivaar: false,
+    showVishraam: true,
+    lineSpacing: 'relaxed',
+    textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
   })
@@ -34,14 +38,22 @@ test('persists selected English source', () => {
 
 test('persists reader display defaults', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
-  fireEvent.click(screen.getAllByRole('button', { name: /Hindi/i })[0])
-  fireEvent.click(screen.getByRole('button', { name: /Punjabi/i }))
+  fireEvent.click(screen.getAllByRole('button', { name: /^Hindi$/i })[0])
+  fireEvent.click(screen.getAllByRole('button', { name: /Punjabi/i })[0])
   fireEvent.click(screen.getByLabelText(/toggle transliteration/i))
+  fireEvent.click(screen.getByRole('button', { name: /Larivaar Off/i }))
+  fireEvent.click(screen.getByRole('button', { name: /Vishraam On/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^Compact$/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^Center$/i }))
 
   const state = useLanguageStore.getState()
   expect(state.scriptMode).toBe('devanagari')
   expect(state.meaningLanguage).toBe('pa')
   expect(state.showTransliteration).toBe(true)
+  expect(state.larivaar).toBe(true)
+  expect(state.showVishraam).toBe(false)
+  expect(state.lineSpacing).toBe('compact')
+  expect(state.textAlign).toBe('center')
 })
 
 test('persists selected learning level', () => {

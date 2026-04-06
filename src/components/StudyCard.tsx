@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
-import { getLineMeaningText, renderScriptText } from '../utils/readerDisplay'
+import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
 import { IconBookmark, IconBookmarkFilled, IconShare } from './icons'
@@ -48,6 +48,10 @@ export default function StudyCard({
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const fontSize = useLanguageStore(s => s.fontSize)
   const englishSource = useLanguageStore(s => s.englishSource)
+  const larivaar = useLanguageStore(s => s.larivaar)
+  const showVishraam = useLanguageStore(s => s.showVishraam)
+  const lineSpacing = useLanguageStore(s => s.lineSpacing)
+  const textAlign = useLanguageStore(s => s.textAlign)
 
   const lines = useMemo(
     () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
@@ -59,6 +63,10 @@ export default function StudyCard({
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
+
+  const scriptAlignmentClass = textAlign === 'center' ? 'text-center items-center' : 'text-left items-start'
+  const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
+  const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
 
   const handleWordTap = (originalGurmukhi: string, line: ScriptureLine) => {
     const wordsToSearch = wordData ?? entry.words ?? []
@@ -88,14 +96,14 @@ export default function StudyCard({
     <>
       <section
         data-testid="study-card"
-        className="animate-scale-in ornate-top bg-parchment-card dark:bg-dark-card rounded-3xl p-5 shadow-card dark:shadow-gold border border-sand/15 dark:border-gold/10"
+        className="animate-scale-in ornate-top section-shell rounded-[30px] px-5 py-6"
       >
-        <div className="mb-4 pb-4 border-b border-sand/15 dark:border-dark-text/10">
-          <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.18em]">
+        <div className="mb-5">
+          <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.2em]">
             {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
           </p>
           {(entry.raag || entry.writer || entry.sourceName) && (
-            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
+            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1 leading-5">
               {[entry.raag, entry.writer, entry.sourceName].filter(Boolean).join(' · ')}
             </p>
           )}
@@ -108,7 +116,7 @@ export default function StudyCard({
         ) : null}
 
         {introLines.length > 0 && (
-          <div className="mb-4 rounded-2xl bg-gold/8 dark:bg-gold/10 border border-gold/15 dark:border-gold/15 px-4 py-4">
+          <div className="mb-5 section-shell-quiet rounded-[24px] px-4 py-4">
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
               Intro
             </p>
@@ -119,23 +127,23 @@ export default function StudyCard({
                   <div key={`intro-${line.verseId}-${index}`}>
                     <p
                       lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text leading-relaxed`}
+                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
                       style={{ fontSize: `${fontSize}px` }}
                     >
-                      {renderScriptText(line.gurmukhi, scriptMode)}
+                      {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam })}
                     </p>
                     {showTransliteration && line.transliteration && (
-                      <p className="font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed">
+                      <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                         {line.transliteration}
                       </p>
                     )}
                     {introMeaning && (
                       meaningLanguage === 'pa' ? (
-                        <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed">
+                        <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                           {introMeaning}
                         </p>
                       ) : (
-                        <p className="font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed">
+                        <p className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
                           {introMeaning}
                         </p>
                       )
@@ -147,7 +155,7 @@ export default function StudyCard({
           </div>
         )}
 
-        <div className="space-y-4">
+        <div className="space-y-0">
           {visibleMainLines.map((line, index) => {
             const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
 
@@ -155,42 +163,42 @@ export default function StudyCard({
               <article
                 key={`${line.verseId}-${index}`}
                 data-testid="study-line"
-                className="rounded-2xl bg-parchment/55 dark:bg-dark-surface/70 border border-sand/10 dark:border-dark-text/10 px-4 py-4"
+                className={`reader-divider px-1 py-5 ${meaningAlignmentClass}`}
               >
-                <div className="flex flex-wrap gap-x-2 gap-y-3">
+                <div className={`flex flex-wrap ${larivaar ? 'gap-x-0 gap-y-2' : 'gap-x-2 gap-y-3'} ${scriptAlignmentClass}`}>
                   {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
                     <button
                       key={`${line.verseId}-${wordIndex}`}
                       type="button"
                       lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 text-left text-ink dark:text-dark-text leading-[1.9] active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 ${larivaar ? '' : 'mr-[0.1em]'} text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
                       style={{ fontSize: `${fontSize}px` }}
                       onClick={() => handleWordTap(word, line)}
                     >
-                      {renderScriptText(word, scriptMode)}
+                      {formatGurbaniWord(word, { scriptMode, showVishraam })}
                     </button>
                   ))}
                 </div>
 
                 {showTransliteration && line.transliteration && (
-                  <p className="font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed">
+                  <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                     {line.transliteration}
                   </p>
                 )}
 
                 {meaningText && (
                   meaningLanguage === 'pa' ? (
-                    <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed">
+                    <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                       {meaningText}
                     </p>
                   ) : (
-                    <p className="font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed">
+                    <p className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
                       {meaningText}
                     </p>
                   )
                 )}
 
-                <div className="mt-3 pt-3 border-t border-sand/10 dark:border-dark-text/10 flex items-center justify-between gap-2">
+                <div className={`mt-4 pt-3 border-t border-sand/10 dark:border-dark-text/10 flex items-center gap-2 ${textAlign === 'center' ? 'justify-center flex-wrap' : 'justify-between'}`}>
                   <div className="flex items-center gap-3">
                     <button
                       type="button"
@@ -241,7 +249,7 @@ export default function StudyCard({
           })}
         </div>
 
-        <p className="font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-4">
+        <p className={`font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-5 ${meaningAlignmentClass}`}>
           Tap any Gurbani word for meaning
         </p>
       </section>

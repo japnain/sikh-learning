@@ -1,4 +1,14 @@
-import type { EnglishSource, EnglishTranslations, LearningLevel, MeaningLanguage, ScriptureEntry, ScriptureLine, ScriptMode } from '../types'
+import type {
+  EnglishSource,
+  EnglishTranslations,
+  LearningLevel,
+  MeaningLanguage,
+  ReaderAlignment,
+  ReaderLineSpacing,
+  ScriptureEntry,
+  ScriptureLine,
+  ScriptMode,
+} from '../types'
 
 export const ENGLISH_SOURCE_LABELS: Record<EnglishSource, string> = {
   bdb: 'BaniDB',
@@ -16,6 +26,16 @@ export const MEANING_LANGUAGE_LABELS: Record<MeaningLanguage, string> = {
   en: 'English',
   pa: 'Punjabi',
   hi: 'Hindi',
+}
+
+export const LINE_SPACING_LABELS: Record<ReaderLineSpacing, string> = {
+  compact: 'Compact',
+  relaxed: 'Relaxed',
+}
+
+export const TEXT_ALIGNMENT_LABELS: Record<ReaderAlignment, string> = {
+  left: 'Left',
+  center: 'Center',
 }
 
 export const LEARNING_LEVEL_LABELS: Record<LearningLevel, string> = {

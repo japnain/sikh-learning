@@ -1,9 +1,21 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BANIS } from '../data/banis'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
+import { useProgressStore } from '../store/progress'
+import { useReadingProgressStore } from '../store/readingProgress'
+import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
-import { IconLibrary, IconBookmarkFilled, IconChevronUp, IconChevronDown, IconClose, IconArrowRight, IconArrowLeft } from '../components/icons'
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconBookmarkFilled,
+  IconChevronDown,
+  IconChevronUp,
+  IconClose,
+  IconLibrary,
+} from '../components/icons'
 
 const SOURCE_SHORT_NAME: Record<string, string> = {
   G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
@@ -25,7 +37,7 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
           <button
             key={ang}
             onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="bg-parchment-card dark:bg-dark-card rounded-lg py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light border border-sand/15 dark:border-dark-text/10 transition-all duration-300 min-h-[44px] active:scale-95"
+            className="section-shell min-h-[44px] rounded-2xl py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light"
           >
             {ang}
           </button>
@@ -35,13 +47,13 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
         <button
           onClick={() => setPage(p => Math.max(0, p - 1))}
           disabled={page === 0}
-          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1 active:scale-95 transition-transform duration-150"
+          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1"
         ><IconArrowLeft size={14} /> Prev</button>
         <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{angLabel(source)} {start}–{end} of {totalAngs}</span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={end >= totalAngs}
-          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1 active:scale-95 transition-transform duration-150"
+          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1"
         >Next <IconArrowRight size={14} /></button>
       </div>
     </div>
@@ -53,7 +65,6 @@ interface Section {
   name: string
   source: string
   totalAngs: number
-  browseOnly?: boolean
 }
 
 const SECTIONS: Section[] = [
@@ -66,61 +77,140 @@ export default function Library() {
   const navigate = useNavigate()
   const { bookmarks, removeBookmark } = useBookmarksStore()
   const { vocab } = useVocabStore()
+  const { currentSession, studied } = useProgressStore()
+  const { getProgress } = useReadingProgressStore()
+  const { getEntryById } = useScriptureCacheStore()
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
+    library: false,
   }))
+
+  const words = vocab.filter(item => (item.kind ?? 'word') === 'word')
+  const phrases = vocab.filter(item => (item.kind ?? 'word') === 'phrase')
+  const inProgress = useMemo(
+    () => BANIS
+      .map(bani => ({ ...bani, ...getProgress(bani.id) }))
+      .filter(item => item.done > 0 && item.done < item.total)
+      .sort((a, b) => b.pct - a.pct)
+      .slice(0, 4),
+    [getProgress]
+  )
+  const recentStudy = studied
+    .slice(-3)
+    .reverse()
+    .map(item => getEntryById(item.id))
+    .filter(Boolean)
 
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
-    <div className="p-4 max-w-md mx-auto mt-4 bg-parchment dark:bg-dark-bg min-h-screen transition-colors duration-300 animate-fade-in">
-      <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6">Library</h1>
-
-      {/* My Vocabulary */}
-      <div className="mb-4 animate-slide-up stagger-1">
-        <button
-          onClick={() => navigate('/vocab')}
-          className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-gold/10 shadow-card dark:shadow-gold transition-all duration-300 active:scale-[0.98]"
-        >
-          <div className="text-left flex items-center gap-3">
-            <IconLibrary size={20} className="text-gold dark:text-gold-light" />
-            <div>
-              <p className="font-sans font-semibold text-ink dark:text-dark-text">My Vocabulary</p>
-              <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
-                {vocab.length === 0 ? 'No words saved yet' : `${vocab.length} word${vocab.length === 1 ? '' : 's'} saved`}
-              </p>
-            </div>
-          </div>
-          <IconArrowRight size={16} className="text-gold dark:text-gold-light" />
-        </button>
+    <div className="page-shell animate-fade-in">
+      <div className="mb-5">
+        <p className="eyebrow">Saved</p>
+        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">Your reading shelf.</h1>
+        <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
+          Keep bookmarks, saved words, saved phrases, and in-progress banis in one place. Scripture browsing stays available, but it no longer leads the product.
+        </p>
       </div>
 
-      {/* Bookmarks */}
+      <section className="hero-surface p-5 mb-5">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="eyebrow">Saved Snapshot</p>
+            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">Return to what you want to keep.</p>
+          </div>
+          <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
+        </div>
+        <div className="grid grid-cols-3 gap-2 mt-5">
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Bookmarks</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{words.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Words</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Phrases</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="grid gap-3 mb-5">
+        <button
+          onClick={() => navigate('/vocab')}
+          className="section-shell p-4 text-left"
+        >
+          <p className="eyebrow">Review Bank</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Words and phrases in one review flow</p>
+          <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
+            {words.length} saved words and {phrases.length} saved phrases are ready for review.
+          </p>
+        </button>
+
+        {currentSession && (
+          <button
+            onClick={() => {
+              const parts = currentSession.scriptureId.split('-')
+              if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
+            }}
+            className="section-shell p-4 text-left"
+          >
+            <p className="eyebrow">Resume</p>
+            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Continue your current reading</p>
+            <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
+              {currentSession.scriptureId.toUpperCase()}
+            </p>
+          </button>
+        )}
+      </div>
+
+      {inProgress.length > 0 && (
+        <section className="section-shell-quiet p-4 mb-5">
+          <p className="eyebrow mb-3">In Progress</p>
+          <div className="space-y-2">
+            {inProgress.map(item => (
+              <button
+                key={item.id}
+                onClick={() => navigate(`/study?source=${item.source}&ang=${item.startAng}&bani=${encodeURIComponent(item.name)}`)}
+                className="w-full section-shell px-4 py-3 text-left"
+              >
+                <div className="flex justify-between gap-3">
+                  <p className="font-sans text-sm text-ink dark:text-dark-text">{item.name}</p>
+                  <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45">{item.pct}%</p>
+                </div>
+                <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
+                  <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${item.pct}%` }} />
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       {bookmarks.length > 0 && (
-        <div className="mb-4 animate-slide-up stagger-2">
+        <section className="section-shell-quiet p-4 mb-5">
           <button
             onClick={() => toggle('bookmarks')}
-            className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card rounded-2xl p-4 min-h-[44px] border border-sand/15 dark:border-gold/10 shadow-card transition-colors duration-300 active:scale-[0.98]"
+            className="w-full flex justify-between items-center gap-3"
           >
-            <div className="text-left flex items-center gap-3">
-              <IconBookmarkFilled size={20} className="text-gold dark:text-gold-light" />
-              <div>
-                <p className="font-sans font-semibold text-ink dark:text-dark-text">Bookmarks</p>
-                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{bookmarks.length} saved</p>
-              </div>
+            <div className="text-left">
+              <p className="eyebrow">Bookmarks</p>
+              <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
             </div>
-            <span className="text-gold dark:text-gold-light">{expanded['bookmarks'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+            <span className="text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
-          {expanded['bookmarks'] && (
-            <div className="mt-2 ml-2 flex flex-col gap-2">
+          {expanded.bookmarks && (
+            <div className="mt-4 space-y-2">
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
                   key={bookmark.id}
-                  className="bg-parchment-low dark:bg-dark-surface rounded-xl p-3 relative transition-colors duration-300 animate-scale-in"
+                  className="section-shell px-4 py-4 relative"
                 >
                   <button
                     onClick={() => removeBookmark(bookmark.id)}
-                    className="absolute top-2 right-2 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center active:scale-90 transition-transform duration-150"
+                    className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
                     aria-label="Remove bookmark"
                   >
                     <IconClose size={14} />
@@ -129,54 +219,85 @@ export default function Library() {
                     onClick={() => navigate(`/study?source=${bookmark.source}&ang=${bookmark.ang}`)}
                     className="text-left w-full pr-6"
                   >
+                    <div className="flex items-center gap-2 mb-2">
+                      <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
+                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · {angLabel(bookmark.source)} {bookmark.ang}
+                      </span>
+                    </div>
                     <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{bookmark.title}</p>
                     {bookmark.description && (
-                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-0.5">{bookmark.description}</p>
+                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-1">{bookmark.description}</p>
                     )}
-                    <p className="font-sans text-[10px] text-gold dark:text-gold-light mt-1">
-                      {SOURCE_SHORT_NAME[bookmark.source] ?? bookmark.source} · {angLabel(bookmark.source)} {bookmark.ang}
-                    </p>
                   </button>
                 </div>
               ))}
             </div>
           )}
-        </div>
+        </section>
       )}
 
-      {/* Scripture Sections */}
-      {SECTIONS.map((section, i) => {
-        const isOpen = expanded[section.id]
-        const isLarge = i === 0
-
-        return (
-          <div key={section.id} className={`mb-4 animate-slide-up stagger-${Math.min(i + 3, 8)}`}>
-            <button
-              onClick={() => toggle(section.id)}
-              className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-[0.98]"
-            >
-              <p className={`font-sans font-semibold text-ink dark:text-dark-text uppercase tracking-wider ${isLarge ? 'text-base' : 'text-xs'}`}>
-                {section.name}
-              </p>
-              <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
-            </button>
-            {isOpen && (
-              <div className="mt-2 ml-2 p-3 bg-parchment-low dark:bg-dark-surface rounded-2xl transition-colors duration-300 animate-scale-in">
-                {section.browseOnly ? (
-                  <button
-                    onClick={() => navigate(`/study?source=${section.source}&ang=1`)}
-                    className="w-full bg-parchment-card dark:bg-dark-card rounded-lg font-sans text-sm text-gold dark:text-gold-light py-3 min-h-[44px] border border-sand/15 dark:border-dark-text/10 transition-colors duration-300 active:scale-95"
-                  >
-                    Browse
-                  </button>
-                ) : (
-                  <AngBrowser source={section.source} totalAngs={section.totalAngs} />
-                )}
-              </div>
-            )}
+      {recentStudy.length > 0 && (
+        <section className="section-shell p-4 mb-5">
+          <p className="eyebrow mb-3">Recent Study</p>
+          <div className="space-y-2">
+            {recentStudy.map(entry => (
+              <button
+                key={entry!.id}
+                onClick={() => {
+                  const parts = entry!.id.split('-')
+                  if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
+                }}
+                className="w-full section-shell-quiet px-4 py-4 text-left"
+              >
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  {entry!.scripture}
+                </p>
+                <p className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text mt-2 line-clamp-2">
+                  {entry!.gurmukhi}
+                </p>
+              </button>
+            ))}
           </div>
-        )
-      })}
+        </section>
+      )}
+
+      <section className="section-shell-quiet p-4">
+        <button
+          onClick={() => toggle('library')}
+          className="w-full flex justify-between items-center gap-3"
+        >
+          <div className="text-left">
+            <p className="eyebrow">Source Browsing</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open scripture by ang or page when you need it.</p>
+          </div>
+          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+        </button>
+
+        {expanded.library && (
+          <div className="mt-4 space-y-3">
+            {SECTIONS.map(section => {
+              const isOpen = expanded[section.id]
+              return (
+                <div key={section.id} className="section-shell px-4 py-4">
+                  <button
+                    onClick={() => toggle(section.id)}
+                    className="w-full flex justify-between items-center gap-3"
+                  >
+                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
+                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="mt-4">
+                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
     </div>
   )
 }

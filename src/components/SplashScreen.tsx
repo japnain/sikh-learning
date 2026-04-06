@@ -34,7 +34,7 @@ export default function SplashScreen() {
         Nitnem
       </p>
       <p className="font-sans text-xs text-gold/50 mt-2 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-        Learn &middot; Recite &middot; Grow
+        Read &middot; Understand &middot; Grow
       </p>
     </div>
   )

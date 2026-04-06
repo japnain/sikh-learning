@@ -17,16 +17,16 @@ function LetterCard({ letter, onSelect, selected, mastered }: {
   return (
     <button
       onClick={() => onSelect(letter)}
-      className={`flex flex-col items-center justify-center rounded-xl p-2 min-h-[68px] border transition-colors duration-300 ${
+      className={`flex flex-col items-center justify-center rounded-2xl p-3 min-h-[78px] border transition-colors duration-300 ${
         selected
           ? 'bg-saffron text-white border-saffron'
           : mastered
             ? 'bg-gold/10 dark:bg-gold/10 border-gold/20 text-ink dark:text-dark-text'
-            : 'bg-parchment-card dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+            : 'bg-white/70 dark:bg-dark-card/75 border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
       }`}
     >
       <span lang="pa-Guru" className="font-gurmukhi text-2xl leading-none">{letter.gurmukhi}</span>
-      <span className="font-sans text-[9px] mt-1 opacity-70">{letter.name}</span>
+      <span className="font-sans text-[9px] mt-1 opacity-70 uppercase tracking-[0.14em]">{letter.name}</span>
     </button>
   )
 }
@@ -64,9 +64,7 @@ export default function Learn() {
   const handlePracticeResult = (mastered: boolean) => {
     recordPracticeSession()
     completeLesson('practice')
-    if (mastered) {
-      toggleMasteredSymbol(activePractice.gurmukhi)
-    }
+    if (mastered) toggleMasteredSymbol(activePractice.gurmukhi)
     setPracticeIdx(index => index + 1)
     setRevealed(false)
   }
@@ -79,59 +77,75 @@ export default function Learn() {
     'bridge'
 
   return (
-    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300">
-      <div className="flex items-center gap-3 mb-4 mt-4">
-        <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
+    <div className="page-shell">
+      <div className="mb-5">
+        <button onClick={() => navigate(-1)} className="font-sans text-sm text-gold dark:text-gold-light min-h-[44px]">
           &#8592; Back
         </button>
-        <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text">ਪੈਂਤੀ · Learn Gurmukhi</h1>
+        <p className="eyebrow mt-3">Grow</p>
+        <h1 className="font-display text-4xl leading-none text-ink dark:text-dark-text mt-2">Learn your way into Gurbani.</h1>
+        <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
+          The goal is not memorizing isolated letters. It is moving from recognition into real reading with confidence.
+        </p>
       </div>
 
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-4 border border-sand/15 dark:border-dark-text/10">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">Progress</p>
-        <p className="font-sans text-sm text-ink dark:text-dark-text">
-          {masteredCount} symbols mastered · {completedLessons.length} lessons complete · {practiceStreak} day practice streak
-        </p>
-        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-3">
+      <section className="hero-surface p-5 mb-5">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="eyebrow">Current Track</p>
+            <p className="font-sans text-lg font-semibold text-ink dark:text-dark-text mt-2">
+              {LEARNING_LEVEL_LABELS[learningLevel]}
+            </p>
+            <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2 max-w-[30ch]">
+              {learningLevel === 'beginner'
+                ? 'Start with letters and vowels, then move into guided recognition drills.'
+                : learningLevel === 'familiar'
+                  ? 'Tighten recognition speed, then move into real Gurbani lines with less scaffolding.'
+                  : 'Use Gurbani bridge work as your main lane and return to symbols only when you hit weak spots.'}
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="font-display text-4xl text-ink dark:text-dark-text">{completionPct}%</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">Mastery</p>
+          </div>
+        </div>
+        <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-4">
           <div
             className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500"
             style={{ width: `${completionPct}%` }}
           />
         </div>
-        <p className="font-sans text-[10px] text-ink/45 dark:text-dark-text/45 mt-2">
-          {totalPracticeSessions} total practice sessions
-        </p>
-      </div>
-
-      <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 mb-4 border border-sand/15 dark:border-dark-text/10">
-        <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-wide mb-2">Current Track</p>
-        <p className="font-sans text-sm text-ink dark:text-dark-text">
-          {LEARNING_LEVEL_LABELS[learningLevel]}
-        </p>
-        <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-1">
-          {learningLevel === 'beginner'
-            ? 'Start with letters and vowels, then move into guided recognition drills.'
-            : learningLevel === 'familiar'
-              ? 'Use practice mode to tighten recognition speed before moving into live pankti.'
-              : 'Work mainly from Gurbani bridge items and use letters only when you hit weak spots.'}
-        </p>
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{masteredCount}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Symbols</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{completedLessons.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Lessons</p>
+          </div>
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{practiceStreak}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Streak</p>
+          </div>
+        </div>
         {tab !== recommendedTab && (
           <button
             onClick={() => setTab(recommendedTab)}
-            className="mt-3 font-sans text-xs text-saffron dark:text-saffron-light underline underline-offset-2"
+            className="mt-4 font-sans text-sm text-gold dark:text-gold-light underline underline-offset-2"
           >
-            Jump to recommended track
+            Jump to the recommended next step
           </button>
         )}
-      </div>
+      </section>
 
-      <div className="grid grid-cols-4 gap-2 mb-4">
+      <div className="grid grid-cols-4 gap-2 mb-5">
         {(['letters', 'vowels', 'practice', 'bridge'] as Tab[]).map(t => (
           <button
             key={t}
             onClick={() => { setTab(t); setSelected(null); setRevealed(false); setPracticeIdx(0) }}
-            className={`py-2 rounded-xl font-sans text-xs font-medium capitalize transition-colors duration-300 ${
-              tab === t ? 'bg-saffron text-white' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60'
+            className={`py-3 rounded-2xl font-sans text-[11px] font-medium uppercase tracking-[0.14em] transition-colors duration-300 ${
+              tab === t ? 'bg-saffron text-white' : 'section-shell text-ink/60 dark:text-dark-text/60'
             }`}
           >
             {t === 'bridge' ? 'Gurbani' : t}
@@ -140,52 +154,61 @@ export default function Learn() {
       </div>
 
       {tab === 'practice' ? (
-        <div className="flex flex-col items-center gap-6 mt-8">
-          <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wide">
-            Card {(practiceIdx % practiceList.length) + 1} of {practiceList.length}
-          </p>
-          <div
-            onClick={() => setRevealed(r => !r)}
-            className="w-full bg-parchment-card dark:bg-dark-card rounded-2xl p-8 flex flex-col items-center cursor-pointer border border-sand/15 dark:border-dark-text/10 min-h-[220px] justify-center gap-4 transition-colors duration-300"
-          >
-            <span lang="pa-Guru" className="font-gurmukhi text-7xl text-ink dark:text-dark-text">
-              {activePractice.gurmukhi}
-            </span>
-            {revealed ? (
-              <div className="text-center">
-                <p className="font-sans font-semibold text-ink dark:text-dark-text">{activePractice.name}</p>
-                <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">{activePractice.pronunciation}</p>
-                <p lang="pa-Guru" className="font-gurmukhi text-saffron dark:text-saffron-light mt-2">
-                  {activePractice.example}
-                </p>
-                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50">
-                  {activePractice.exampleMeaning}
-                </p>
-              </div>
-            ) : (
-              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40">Tap to reveal</p>
-            )}
-          </div>
-          <div className="grid grid-cols-2 gap-3 w-full">
+        <div className="animate-slide-up">
+          <div className="section-shell p-5 text-center">
+            <p className="eyebrow">Recognition Drill</p>
+            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-2 uppercase tracking-[0.18em]">
+              Card {(practiceIdx % practiceList.length) + 1} of {practiceList.length}
+            </p>
             <button
-              onClick={() => handlePracticeResult(false)}
-              className="py-3 rounded-2xl bg-parchment-low dark:bg-dark-surface font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px] transition-colors duration-300"
+              onClick={() => setRevealed(r => !r)}
+              className="w-full section-shell-quiet rounded-[28px] p-8 min-h-[260px] flex flex-col items-center justify-center gap-4 mt-4"
             >
-              Review Again
+              <span lang="pa-Guru" className="font-gurmukhi text-7xl text-ink dark:text-dark-text">
+                {activePractice.gurmukhi}
+              </span>
+              {revealed ? (
+                <div className="text-center">
+                  <p className="font-sans font-semibold text-ink dark:text-dark-text">{activePractice.name}</p>
+                  <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">{activePractice.pronunciation}</p>
+                  <p lang="pa-Guru" className="font-gurmukhi text-saffron dark:text-saffron-light mt-3 text-2xl">
+                    {activePractice.example}
+                  </p>
+                  <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-2">
+                    {activePractice.exampleMeaning}
+                  </p>
+                </div>
+              ) : (
+                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 uppercase tracking-[0.18em]">
+                  Tap to reveal
+                </p>
+              )}
             </button>
-            <button
-              onClick={() => handlePracticeResult(true)}
-              className="py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300"
-            >
-              I Know This
-            </button>
+            <div className="grid grid-cols-2 gap-3 w-full mt-4">
+              <button
+                onClick={() => handlePracticeResult(false)}
+                className="py-3 rounded-2xl section-shell-quiet font-sans text-sm text-ink/70 dark:text-dark-text/70 min-h-[44px]"
+              >
+                Review Again
+              </button>
+              <button
+                onClick={() => handlePracticeResult(true)}
+                className="py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px]"
+              >
+                I Know This
+              </button>
+            </div>
+            <p className="font-sans text-[11px] text-ink/40 dark:text-dark-text/40 mt-4">
+              {totalPracticeSessions} total practice sessions completed
+            </p>
           </div>
         </div>
       ) : tab === 'bridge' ? (
-        <div className="space-y-3">
-          <div className="bg-parchment-low dark:bg-dark-surface rounded-2xl p-4 border border-sand/15 dark:border-dark-text/10">
-            <p className="font-sans text-sm text-ink dark:text-dark-text">
-              Read short real pankti with translation support, then jump straight into Study.
+        <div className="space-y-3 animate-slide-up">
+          <div className="section-shell p-4">
+            <p className="eyebrow">Gurbani Bridge</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-2">
+              Move from drills into short real pankti, then open the full reader with one tap.
             </p>
           </div>
           {LEARNING_BRIDGE_ITEMS.map(item => (
@@ -195,15 +218,15 @@ export default function Learn() {
                 completeLesson('bridge')
                 navigate(`/study?source=${item.source}&ang=${item.ang}&bani=${encodeURIComponent(item.title)}`)
               }}
-              className="w-full text-left bg-parchment-card dark:bg-dark-card rounded-2xl p-4 border border-sand/15 dark:border-dark-text/10"
+              className="w-full text-left section-shell p-5"
             >
-              <p className="font-sans text-xs text-gold dark:text-gold-light uppercase tracking-[0.18em]">
+              <p className="eyebrow">
                 {item.title} · {item.scripture} · Ang {item.ang}
               </p>
-              <p lang="pa-Guru" className="font-gurmukhi text-xl text-ink dark:text-dark-text leading-relaxed mt-2">
+              <p lang="pa-Guru" className="font-gurmukhi text-2xl text-ink dark:text-dark-text leading-relaxed mt-3">
                 {item.gurmukhi}
               </p>
-              <p className="font-sans text-sm italic text-ink/55 dark:text-dark-text/55 mt-2">
+              <p className="font-sans text-sm italic text-ink/55 dark:text-dark-text/55 mt-3">
                 {item.transliteration}
               </p>
               <p className="font-sans text-sm text-ink/80 dark:text-dark-text/80 mt-2">
@@ -216,7 +239,14 @@ export default function Learn() {
           ))}
         </div>
       ) : (
-        <>
+        <div className="animate-slide-up">
+          <div className="section-shell p-4 mb-4">
+            <p className="eyebrow">{tab === 'letters' ? 'Letters' : 'Vowels'}</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-2">
+              Tap one symbol to study pronunciation, example usage, and mark mastery when it feels stable.
+            </p>
+          </div>
+
           <div className="grid grid-cols-5 gap-2 mb-4">
             {letters.map(l => (
               <LetterCard
@@ -230,22 +260,22 @@ export default function Learn() {
           </div>
 
           {selected && (
-            <div className="bg-parchment-card dark:bg-dark-card rounded-2xl p-5 border border-sand/15 dark:border-dark-text/10 transition-colors duration-300">
-              <div className="flex items-start gap-4 mb-3">
-                <span lang="pa-Guru" className="font-gurmukhi text-5xl text-saffron dark:text-saffron-light leading-none">{selected.gurmukhi}</span>
+            <div className="section-shell p-5">
+              <div className="flex items-start gap-4 mb-4">
+                <span lang="pa-Guru" className="font-gurmukhi text-6xl text-saffron dark:text-saffron-light leading-none">{selected.gurmukhi}</span>
                 <div>
                   <p className="font-sans font-semibold text-ink dark:text-dark-text">{selected.name}</p>
                   <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">{selected.pronunciation}</p>
                 </div>
               </div>
-              <div className="bg-parchment-low dark:bg-dark-surface rounded-xl p-3">
-                <p className="font-sans text-xs text-saffron dark:text-saffron-light uppercase tracking-wide mb-1">Example from Gurbani</p>
-                <p lang="pa-Guru" className="font-gurmukhi text-xl text-ink dark:text-dark-text">{selected.example}</p>
-                <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-1">{selected.exampleMeaning}</p>
+              <div className="section-shell-quiet p-4">
+                <p className="eyebrow mb-2">Example from Gurbani</p>
+                <p lang="pa-Guru" className="font-gurmukhi text-2xl text-ink dark:text-dark-text">{selected.example}</p>
+                <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2">{selected.exampleMeaning}</p>
               </div>
               <button
                 onClick={() => toggleMasteredSymbol(selected.gurmukhi)}
-                className={`w-full mt-4 py-3 rounded-2xl font-sans text-sm font-semibold min-h-[44px] transition-colors duration-300 ${
+                className={`w-full mt-4 py-3 rounded-2xl font-sans text-sm font-semibold min-h-[44px] ${
                   masteredSymbols.includes(selected.gurmukhi)
                     ? 'bg-gold/15 text-gold dark:text-gold-light'
                     : 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -255,7 +285,7 @@ export default function Learn() {
               </button>
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   )
