@@ -11,6 +11,7 @@ import More from './pages/More'
 import Learn from './pages/Learn'
 import Vocab from './pages/Vocab'
 import { useLanguageStore } from './store/language'
+import { useLocaleStore } from './store/locale'
 import { useOnboardingStore } from './store/onboarding'
 import { useThemeStore } from './store/theme'
 import { useNitemOfflineCache } from './hooks/useNitemOfflineCache'
@@ -27,8 +28,13 @@ export default function App() {
   const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const hasCompletedOnboarding = useOnboardingStore(s => s.hasCompletedOnboarding)
   const learningLevel = useOnboardingStore(s => s.learningLevel)
+  const audience = useOnboardingStore(s => s.audience)
+  const learningGoal = useOnboardingStore(s => s.learningGoal)
   const setLearningLevel = useOnboardingStore(s => s.setLearningLevel)
+  const setAudience = useOnboardingStore(s => s.setAudience)
+  const setLearningGoal = useOnboardingStore(s => s.setLearningGoal)
   const completeOnboarding = useOnboardingStore(s => s.completeOnboarding)
+  const locale = useLocaleStore(s => s.locale)
   useNitemOfflineCache()
 
   useEffect(() => {
@@ -56,6 +62,7 @@ export default function App() {
         </Routes>
         {!hasCompletedOnboarding && (
           <OnboardingSheet
+            locale={locale}
             scriptMode={scriptMode}
             setScriptMode={setScriptMode}
             showTransliteration={showTransliteration}
@@ -66,6 +73,10 @@ export default function App() {
             setEnglishSource={setEnglishSource}
             learningLevel={learningLevel}
             setLearningLevel={setLearningLevel}
+            audience={audience}
+            setAudience={setAudience}
+            learningGoal={learningGoal}
+            setLearningGoal={setLearningGoal}
             onComplete={() => completeOnboarding(learningLevel)}
           />
         )}

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BANIS } from '../data/banis'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
@@ -14,6 +15,7 @@ import {
   IconChevronDown,
   IconChevronUp,
   IconClose,
+  IconHeartFilled,
   IconLibrary,
 } from '../components/icons'
 
@@ -21,7 +23,21 @@ const SOURCE_SHORT_NAME: Record<string, string> = {
   G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK',
 }
 
+const SOURCE_FULL_NAME: Record<string, string> = {
+  G: 'Sri Guru Granth Sahib Ji',
+  D: 'Dasam Granth',
+  B: 'Bhai Gurdas Ji Vaaran',
+  A: 'Amrit Keertan',
+}
+
 const angLabel = (source: string) => source === 'G' || source === 'D' ? 'Ang' : 'Page'
+
+function formatSessionReference(scriptureId: string): string {
+  const [source, ang] = scriptureId.split('-')
+  if (!source || !ang) return scriptureId.toUpperCase()
+  const sourceLabel = SOURCE_FULL_NAME[source] ?? SOURCE_SHORT_NAME[source] ?? source.toUpperCase()
+  return `${sourceLabel} · ${angLabel(source)} ${ang}`
+}
 
 function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }) {
   const navigate = useNavigate()
@@ -76,6 +92,7 @@ const SECTIONS: Section[] = [
 export default function Library() {
   const navigate = useNavigate()
   const { bookmarks, removeBookmark } = useBookmarksStore()
+  const { favorites, removeFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
   const { currentSession, studied } = useProgressStore()
   const { getProgress } = useReadingProgressStore()
@@ -100,6 +117,7 @@ export default function Library() {
     .reverse()
     .map(item => getEntryById(item.id))
     .filter(Boolean)
+  const resumeReference = currentSession ? formatSessionReference(currentSession.scriptureId) : null
 
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
@@ -164,8 +182,8 @@ export default function Library() {
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Bookmarks</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{words.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Words</p>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{favorites.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Favorites</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
@@ -173,6 +191,43 @@ export default function Library() {
           </div>
         </div>
       </section>
+
+      {favorites.length > 0 && (
+        <section className="section-shell-quiet p-4 mb-5">
+          <p className="eyebrow mb-3">Favorites</p>
+          <div className="space-y-2">
+            {favorites.map(favorite => (
+              <div key={favorite.id} className="section-shell px-4 py-4 relative">
+                <button
+                  onClick={() => removeFavorite(favorite.id)}
+                  className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
+                  aria-label="Remove favorite"
+                >
+                  <IconClose size={14} />
+                </button>
+                <button
+                  onClick={() => {
+                    if (favorite.shabadId) {
+                      navigate(`/study?shabadId=${favorite.shabadId}`)
+                      return
+                    }
+                    navigate(`/study?source=${favorite.source}&ang=${favorite.ang}`)
+                  }}
+                  className="text-left w-full pr-6"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <IconHeartFilled size={14} className="text-saffron dark:text-saffron-light" />
+                    <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                      {SOURCE_SHORT_NAME[favorite.source] ?? favorite.source} · {angLabel(favorite.source)} {favorite.ang}
+                    </span>
+                  </div>
+                  <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{favorite.title}</p>
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="grid gap-3 mb-5">
         <button
@@ -197,7 +252,7 @@ export default function Library() {
             <p className="eyebrow">Resume</p>
             <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Continue your current reading</p>
             <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
-              {currentSession.scriptureId.toUpperCase()}
+              {resumeReference}
             </p>
           </button>
         )}
@@ -276,7 +331,7 @@ export default function Library() {
 
       {recentStudy.length > 0 && (
         <section className="section-shell p-4 mb-5">
-          <p className="eyebrow mb-3">Recent Study</p>
+          <p className="eyebrow mb-3">Reading History</p>
           <div className="space-y-2">
             {recentStudy.map(entry => (
               <button

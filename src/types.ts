@@ -11,9 +11,21 @@ export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 export type ReaderLineSpacing = 'compact' | 'relaxed'
 export type ReaderAlignment = 'left' | 'center'
-export type SearchMode = 'first-letters' | 'gurmukhi' | 'english' | 'transliteration'
+export type SearchMode =
+  | 'first-letters'
+  | 'first-letters-anywhere'
+  | 'gurmukhi'
+  | 'english'
+  | 'transliteration'
+  | 'ang'
+  | 'auto-detect'
 export type LearningLevel = 'beginner' | 'familiar' | 'daily-reader'
 export type VocabKind = 'word' | 'phrase'
+export type UiLocale = 'en' | 'pa' | 'hi'
+export type OnboardingAudience = 'child' | 'teen' | 'adult'
+export type LearningGoal = 'read' | 'understand' | 'habit'
+export type LearningSkillKind = 'symbol' | 'sound' | 'pattern' | 'guided-reading' | 'comprehension'
+export type GuidedJourneyStepType = 'learn' | 'guided' | 'study' | 'review'
 
 export interface EnglishTranslations {
   bdb?: string
@@ -103,6 +115,11 @@ export interface LearningProgressState {
   practiceStreak: number
   lastPracticedOn?: string
   totalPracticeSessions: number
+  skills?: Record<string, LearningSkillProgress>
+  lessonProgress?: Record<string, LearningLessonProgress>
+  assessmentHistory?: LearningAssessmentRecord[]
+  journeys?: Record<string, GuidedJourneyProgress>
+  activeJourneyId?: string | null
 }
 
 export interface LearningBridgeItem {
@@ -115,4 +132,109 @@ export interface LearningBridgeItem {
   transliteration: string
   meaning: string
   focus: string
+}
+
+export interface LearningSkillProgress {
+  kind: LearningSkillKind
+  mastery: number
+  attempts: number
+  successes: number
+  lastReviewedOn?: string
+}
+
+export interface LearningLessonProgress {
+  attempts: number
+  bestScore: number
+  completedAt?: string
+  lastPracticedAt?: string
+}
+
+export interface LearningAssessmentRecord {
+  lessonId: string
+  score: number
+  skillIds: string[]
+  recordedAt: string
+}
+
+export interface FoundationModule {
+  id: string
+  title: string
+  summary: string
+  focus: string
+  lessonIds: string[]
+  symbolGroups: string[][]
+}
+
+export interface PhonicsDrill {
+  id: string
+  title: string
+  prompt: string
+  answer: string
+  contrast: string
+  explanation: string
+  skillIds: string[]
+}
+
+export interface DecodingDrill {
+  id: string
+  title: string
+  parts: string[]
+  combined: string
+  transliteration: string
+  meaning: string
+  skillIds: string[]
+}
+
+export interface GuidedReadingExercise {
+  id: string
+  title: string
+  scripture: string
+  source: 'G' | 'D'
+  ang: number
+  gurmukhi: string
+  transliteration: string
+  meaning: string
+  supportHint: string
+  keywords: string[]
+  skillIds: string[]
+}
+
+export interface ComprehensionExercise {
+  id: string
+  guidedExerciseId: string
+  question: string
+  options: string[]
+  answer: string
+  explanation: string
+  skillIds: string[]
+}
+
+export interface GuidedJourneyStep {
+  id: string
+  title: string
+  detail: string
+  type: GuidedJourneyStepType
+  track?: 'foundations' | 'phonics' | 'decoding' | 'guided' | 'comprehension'
+  lessonId?: string
+  guidedExerciseId?: string
+  source?: 'G' | 'D'
+  ang?: number
+  baniTitle?: string
+}
+
+export interface GuidedJourney {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  source: 'G' | 'D'
+  startAng: number
+  steps: GuidedJourneyStep[]
+}
+
+export interface GuidedJourneyProgress {
+  startedAt: string
+  completedStepIds: string[]
+  lastTouchedAt: string
+  completedAt?: string
 }

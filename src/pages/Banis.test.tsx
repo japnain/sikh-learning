@@ -51,3 +51,28 @@ test('loads Amrit Keertan into a focused chapter view', async () => {
   expect(screen.getByText('Raag Gauree')).toBeInTheDocument()
   expect(screen.getByText('Ang 65')).toBeInTheDocument()
 })
+
+test('supports searching within an Amrit Keertan chapter', async () => {
+  renderBanis()
+  fireEvent.click(screen.getByText('Amrit Keertan'))
+
+  await waitFor(() => expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥'))
+
+  await waitFor(() => expect(screen.getByPlaceholderText(/search within this chapter/i)).toBeInTheDocument())
+  fireEvent.change(screen.getByPlaceholderText(/search within this chapter/i), { target: { value: 'ਡੰਡਉਤਿ' } })
+
+  expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
+  expect(screen.queryByText('ਪ੍ਰਭ ਪਾਸਿ ਜਨ ਕੀ ਅਰਦਾਸਿ ਤੂ ਸਚਾ ਸਾਂਈ ॥')).not.toBeInTheDocument()
+})
+
+test('supports direct ang lookup mode', async () => {
+  renderBanis()
+  fireEvent.click(screen.getByRole('button', { name: /ang \/ page/i }))
+  fireEvent.change(screen.getByPlaceholderText(/open an ang or page directly/i), { target: { value: '12' } })
+
+  await waitFor(() => {
+    expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /open dg ang 12/i })).toBeInTheDocument()
+  })
+})

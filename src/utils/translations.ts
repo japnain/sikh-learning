@@ -1,13 +1,17 @@
 import type {
   EnglishSource,
   EnglishTranslations,
+  LearningGoal,
   LearningLevel,
+  OnboardingAudience,
   MeaningLanguage,
   ReaderAlignment,
   ReaderLineSpacing,
+  SearchMode,
   ScriptureEntry,
   ScriptureLine,
   ScriptMode,
+  UiLocale,
 } from '../types'
 
 export const ENGLISH_SOURCE_LABELS: Record<EnglishSource, string> = {
@@ -42,6 +46,34 @@ export const LEARNING_LEVEL_LABELS: Record<LearningLevel, string> = {
   beginner: 'Beginner',
   familiar: 'Familiar',
   'daily-reader': 'Daily Reader',
+}
+
+export const UI_LOCALE_LABELS: Record<UiLocale, string> = {
+  en: 'English',
+  pa: 'Punjabi',
+  hi: 'Hindi',
+}
+
+export const ONBOARDING_AUDIENCE_LABELS: Record<OnboardingAudience, string> = {
+  child: 'Child',
+  teen: 'Teen',
+  adult: 'Adult',
+}
+
+export const LEARNING_GOAL_LABELS: Record<LearningGoal, string> = {
+  read: 'I want to read',
+  understand: 'I want to understand',
+  habit: 'I want to build habit',
+}
+
+export const SEARCH_MODE_LABELS: Record<SearchMode, string> = {
+  'first-letters': 'First Letters',
+  'first-letters-anywhere': 'Anywhere',
+  gurmukhi: 'Gurmukhi',
+  english: 'English',
+  transliteration: 'Romanized',
+  ang: 'Ang / Page',
+  'auto-detect': 'Auto',
 }
 
 export function getPreferredEnglishText(

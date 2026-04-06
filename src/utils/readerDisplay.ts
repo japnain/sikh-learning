@@ -39,6 +39,18 @@ export function formatGurbaniWord(
   return renderScriptText(next, scriptMode)
 }
 
+export function isStructuralTitleLine(text: string): boolean {
+  const compact = text
+    .replace(/[।॥0-9੦-੯]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  if (!compact) return true
+  if (compact.length <= 8) return true
+
+  return /^(ਪਉੜੀ|ਸਲੋਕ|ਮਹਲਾ|ਮਃ|ਰਹਾਉ|ਚਉਪਈ|ਚੌਪਈ|ਦੋਹਰਾ|ਸਵਈਆ|ਸਵੈਯਾ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ)\b/.test(compact)
+}
+
 export function getEntryMeaningText(
   entry: ScriptureEntry,
   meaningLanguage: MeaningLanguage,

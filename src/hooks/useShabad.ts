@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ScriptureEntry } from '../types'
-import { fetchShabadVerses } from '../api/banidb'
+import { fetchShabad } from '../api/banidb'
 
 export function useShabad(shabadId: number | null) {
   const [entries, setEntries] = useState<ScriptureEntry[]>([])
@@ -20,9 +20,9 @@ export function useShabad(shabadId: number | null) {
     setError(null)
     setEntries([])
 
-    fetchShabadVerses(shabadId)
+    fetchShabad(shabadId)
       .then(data => {
-        if (!cancelled) setEntries(data)
+        if (!cancelled) setEntries(data ? [data] : [])
       })
       .catch(e => {
         if (!cancelled) setError(String(e))

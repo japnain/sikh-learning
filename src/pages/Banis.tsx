@@ -13,9 +13,11 @@ import {
 import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
 import type { SearchMode } from '../types'
-import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword } from '../components/icons'
+import { SEARCH_MODE_LABELS } from '../utils/translations'
+import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
+type SearchSource = keyof typeof SEARCH_SOURCE_LABELS
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items: ScriptureIndexItem[] }> = {
   SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, items: SGGS_INDEX },
@@ -24,6 +26,7 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items:
 
 const SUNDAR_GUTKA_NITNEM_IDS = [2, 4, 6, 9, 10, 20, 21, 23]
 const SUNDAR_GUTKA_POPULAR_IDS = [90, 30, 31, 22]
+const AMRIT_KEERTAN_PAGE_SIZE = 12
 const SEARCH_SOURCE_LABELS = {
   all: 'All',
   G: 'SGGS',
@@ -31,11 +34,34 @@ const SEARCH_SOURCE_LABELS = {
   B: 'BGV',
   A: 'AK',
 } as const
-const SEARCH_MODE_META: Record<SearchMode, { label: string; type: number; placeholder: string }> = {
-  'first-letters': { label: 'First Letters', type: 0, placeholder: 'Search first letters in Gurmukhi...' },
-  gurmukhi: { label: 'Gurmukhi', type: 2, placeholder: 'Search full Gurbani words...' },
-  english: { label: 'English', type: 3, placeholder: 'Search English meanings...' },
-  transliteration: { label: 'Romanized', type: 4, placeholder: 'Search transliteration...' },
+const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; minLength: number }> = {
+  'first-letters': { type: 0, placeholder: 'Search first letters in Gurmukhi...', minLength: 2 },
+  'first-letters-anywhere': { type: 1, placeholder: 'Search first letters anywhere in the line...', minLength: 2 },
+  gurmukhi: { type: 2, placeholder: 'Search full Gurbani words...', minLength: 2 },
+  english: { type: 3, placeholder: 'Search English meanings...', minLength: 2 },
+  transliteration: { type: 4, placeholder: 'Search transliteration...', minLength: 2 },
+  ang: { type: -1, placeholder: 'Open an ang or page directly...', minLength: 1 },
+  'auto-detect': { type: 8, placeholder: 'Let the app detect the search style...', minLength: 2 },
+}
+const ANG_SOURCE_META = {
+  G: { label: 'SGGS', max: 1430, kind: 'Ang' },
+  D: { label: 'DG', max: 1428, kind: 'Ang' },
+  B: { label: 'BGV', max: 628, kind: 'Page' },
+} as const
+
+interface GroupedSearchResult {
+  key: string
+  shabadId: number
+  verseId: number
+  pageNo: number
+  source: string
+  sourceName: string
+  gurmukhi: string
+  transliteration: string
+  translation_en: string
+  raag: string
+  writer: string
+  matchCount: number
 }
 
 function Highlight({ text, query }: { text: string; query: string }) {
@@ -89,7 +115,9 @@ export default function Banis() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searching, setSearching] = useState(false)
   const [searchMode, setSearchMode] = useState<SearchMode>('first-letters')
-  const [searchSource, setSearchSource] = useState<keyof typeof SEARCH_SOURCE_LABELS>('all')
+  const [searchSource, setSearchSource] = useState<SearchSource>('all')
+  const [raagFilter, setRaagFilter] = useState<string>('all')
+  const [writerFilter, setWriterFilter] = useState<string>('all')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
   const [amritHeaders, setAmritHeaders] = useState<AmritKeertanHeader[]>([])
@@ -97,10 +125,12 @@ export default function Banis() {
   const [amritShabadsByHeader, setAmritShabadsByHeader] = useState<Record<number, AmritKeertanShabad[]>>({})
   const [loadingAmritHeader, setLoadingAmritHeader] = useState<number | null>(null)
   const [selectedAmritHeaderId, setSelectedAmritHeaderId] = useState<number | null>(null)
+  const [amritChapterQuery, setAmritChapterQuery] = useState('')
+  const [visibleAmritCount, setVisibleAmritCount] = useState(AMRIT_KEERTAN_PAGE_SIZE)
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
-  const { recent, addRecent, clearRecent } = useRecentSearchStore()
+  const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -141,10 +171,18 @@ export default function Banis() {
     }
   }, [])
 
-  const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source = searchSource) => {
+  const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source: SearchSource = searchSource) => {
     setSearchQuery(query)
+    setRaagFilter('all')
+    setWriterFilter('all')
     if (debounceRef.current) clearTimeout(debounceRef.current)
-    if (query.trim().length < 2) {
+    const trimmed = query.trim()
+    if (trimmed.length < SEARCH_MODE_META[mode].minLength) {
+      setSearchResults([])
+      setSearching(false)
+      return
+    }
+    if (mode === 'ang') {
       setSearchResults([])
       setSearching(false)
       return
@@ -152,10 +190,9 @@ export default function Banis() {
     setSearching(true)
     debounceRef.current = setTimeout(async () => {
       try {
-        const trimmed = query.trim()
         const results = await fetchSearch(trimmed, SEARCH_MODE_META[mode].type, source)
         setSearchResults(results)
-        addRecent(trimmed)
+        addRecent(trimmed, mode)
       } catch {
         setSearchResults([])
       } finally {
@@ -170,7 +207,7 @@ export default function Banis() {
     }
   }, [handleSearch, searchMode, searchSource, searchQuery])
 
-  const openSearchResult = (result: SearchResult) => {
+  const openSearchResult = (result: GroupedSearchResult) => {
     navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
   }
 
@@ -212,22 +249,111 @@ export default function Banis() {
     [amritHeaders, selectedAmritHeaderId]
   )
   const selectedAmritShabads = selectedAmritHeaderId ? (amritShabadsByHeader[selectedAmritHeaderId] ?? []) : []
+  const normalizedAmritChapterQuery = amritChapterQuery.trim().toLowerCase()
+  const filteredAmritShabads = useMemo(() => {
+    if (!normalizedAmritChapterQuery) return selectedAmritShabads
+
+    return selectedAmritShabads.filter(shabad => {
+      const searchable = [
+        shabad.gurmukhi,
+        shabad.transliteration,
+        shabad.source,
+        shabad.raag,
+        String(shabad.pageNo || ''),
+      ]
+        .join(' ')
+        .toLowerCase()
+
+      return searchable.includes(normalizedAmritChapterQuery)
+    })
+  }, [normalizedAmritChapterQuery, selectedAmritShabads])
+  const visibleAmritShabads = useMemo(
+    () => filteredAmritShabads.slice(0, visibleAmritCount),
+    [filteredAmritShabads, visibleAmritCount]
+  )
+  const hasMoreAmritShabads = visibleAmritShabads.length < filteredAmritShabads.length
 
   const handleToggleAmritKeertan = () => {
     if (expanded.ak) {
       setSelectedAmritHeaderId(null)
+      setAmritChapterQuery('')
+      setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
     }
     toggle('ak')
   }
 
   const openAmritHeader = async (header: AmritKeertanHeader) => {
     setSelectedAmritHeaderId(header.headerId)
+    setAmritChapterQuery('')
+    setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
     await loadAmritHeader(header.headerId)
   }
 
   const openAmritShabad = (shabadId: number) => {
     navigate(`/study?shabadId=${shabadId}`)
   }
+
+  const groupedSearchResults = useMemo(() => {
+    const filtered = searchResults.filter(result => (
+      (raagFilter === 'all' || result.raag === raagFilter)
+      && (writerFilter === 'all' || result.writer === writerFilter)
+    ))
+    const grouped = new Map<string, GroupedSearchResult>()
+    for (const result of filtered) {
+      const key = `${result.source}-${result.pageNo}-${result.shabadId}`
+      const existing = grouped.get(key)
+      if (existing) {
+        existing.matchCount += 1
+        continue
+      }
+      grouped.set(key, {
+        key,
+        shabadId: result.shabadId,
+        verseId: result.verseId,
+        pageNo: result.pageNo,
+        source: result.source,
+        sourceName: result.sourceName,
+        gurmukhi: result.gurmukhi,
+        transliteration: result.transliteration,
+        translation_en: result.translation_en,
+        raag: result.raag,
+        writer: result.writer,
+        matchCount: 1,
+      })
+    }
+
+    return Array.from(grouped.values())
+  }, [raagFilter, searchResults, writerFilter])
+
+  const availableRaags = useMemo(
+    () => Array.from(new Set(searchResults.map(result => result.raag).filter(Boolean))).slice(0, 6),
+    [searchResults]
+  )
+  const availableWriters = useMemo(
+    () => Array.from(new Set(searchResults.map(result => result.writer).filter(Boolean))).slice(0, 6),
+    [searchResults]
+  )
+  const angLookup = useMemo(() => {
+    if (searchMode !== 'ang') return null
+    const value = Number(searchQuery.trim())
+    return Number.isFinite(value) && value > 0 ? value : null
+  }, [searchMode, searchQuery])
+  const angTargets = useMemo(() => {
+    if (!angLookup) return []
+    const sources = searchSource === 'all'
+      ? (Object.keys(ANG_SOURCE_META) as Array<keyof typeof ANG_SOURCE_META>)
+      : searchSource in ANG_SOURCE_META
+        ? [searchSource as keyof typeof ANG_SOURCE_META]
+        : []
+
+    return sources
+      .filter(source => angLookup <= ANG_SOURCE_META[source].max)
+      .map(source => ({
+        source,
+        label: ANG_SOURCE_META[source].label,
+        kind: ANG_SOURCE_META[source].kind,
+      }))
+  }, [angLookup, searchSource])
 
   return (
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
@@ -244,8 +370,8 @@ export default function Banis() {
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
           />
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode, meta]) => {
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
             const selected = searchMode === mode
             return (
               <button
@@ -257,7 +383,7 @@ export default function Banis() {
                     : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                 }`}
               >
-                {meta.label}
+                {SEARCH_MODE_LABELS[mode]}
               </button>
             )
           })}
@@ -280,12 +406,77 @@ export default function Banis() {
             )
           })}
         </div>
-        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
-        {searchResults.length > 0 && (
-          <div className="mt-2 space-y-1">
-            {searchResults.map(r => (
+        {searchMode === 'ang' && angLookup && (
+          <div className="mt-3 space-y-2">
+            {angTargets.length > 0 ? angTargets.map(target => (
               <button
-                key={`${r.shabadId}-${r.verseId}`}
+                key={target.source}
+                onClick={() => {
+                  addRecent(String(angLookup), 'ang')
+                  navigate(`/study?source=${target.source}&ang=${angLookup}`)
+                }}
+                className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
+              >
+                <p className="font-sans text-sm text-ink dark:text-dark-text">
+                  Open {target.label} {target.kind} {angLookup}
+                </p>
+                <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
+                  Direct page lookup without running a word search.
+                </p>
+              </button>
+            )) : (
+              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No matching source can open that ang/page.</p>
+            )}
+          </div>
+        )}
+        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
+        {searchResults.length > 0 && searchMode !== 'ang' && (
+          <div className="mt-2 space-y-1">
+            {(availableRaags.length > 0 || availableWriters.length > 0) && (
+              <div className="space-y-2 pb-2">
+                {availableRaags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setRaagFilter('all')}
+                      className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                    >
+                      All Raags
+                    </button>
+                    {availableRaags.map(raag => (
+                      <button
+                        key={raag}
+                        onClick={() => setRaagFilter(raag)}
+                        className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                      >
+                        {raag}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {availableWriters.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setWriterFilter('all')}
+                      className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                    >
+                      All Writers
+                    </button>
+                    {availableWriters.map(writer => (
+                      <button
+                        key={writer}
+                        onClick={() => setWriterFilter(writer)}
+                        className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                      >
+                        {writer}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            {groupedSearchResults.map(r => (
+              <button
+                key={r.key}
                 onClick={() => openSearchResult(r)}
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
@@ -295,6 +486,7 @@ export default function Banis() {
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   <MetadataChip>{r.sourceName}</MetadataChip>
                   <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>
+                  {r.matchCount > 1 && <MetadataChip>{`${r.matchCount} matches`}</MetadataChip>}
                   {r.raag && <MetadataChip>{r.raag}</MetadataChip>}
                   {r.writer && <MetadataChip>{r.writer}</MetadataChip>}
                 </div>
@@ -302,7 +494,7 @@ export default function Banis() {
             ))}
           </div>
         )}
-        {searchQuery.trim().length >= 2 && !searching && searchResults.length === 0 && (
+        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && searchResults.length === 0 && searchMode !== 'ang' && (
           <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
         )}
         {!searchQuery && recent.length > 0 && (
@@ -311,9 +503,26 @@ export default function Banis() {
               <p className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40 uppercase tracking-wider">Recent</p>
               <button onClick={clearRecent} className="font-sans text-[10px] text-ink/30 dark:text-dark-text/30">Clear</button>
             </div>
-            <div className="flex flex-wrap gap-1">
-              {recent.map(q => (
-                <button key={q} onClick={() => handleSearch(q)} className="font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-1 text-ink/60 dark:text-dark-text/60 active:scale-95 transition-transform duration-150">{q}</button>
+            <div className="space-y-2">
+              {recent.map(item => (
+                <div key={`${item.query}-${item.mode}`} className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      setSearchMode(item.mode)
+                      handleSearch(item.query, item.mode, searchSource)
+                    }}
+                    className="flex-1 text-left font-sans text-xs bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-full px-3 py-2 text-ink/60 dark:text-dark-text/60 active:scale-95 transition-transform duration-150"
+                  >
+                    {item.query} · {SEARCH_MODE_LABELS[item.mode]}
+                  </button>
+                  <button
+                    onClick={() => togglePinned(item.query, item.mode)}
+                    aria-label={item.pinned ? `Unpin ${item.query}` : `Pin ${item.query}`}
+                    className="min-h-[40px] min-w-[40px] rounded-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 flex items-center justify-center text-ink/45 dark:text-dark-text/45"
+                  >
+                    {item.pinned ? <IconBookmarkFilled size={15} className="text-saffron dark:text-saffron-light" /> : <IconBookmark size={15} />}
+                  </button>
+                </div>
               ))}
             </div>
           </div>
@@ -422,7 +631,11 @@ export default function Banis() {
                 <div className="section-shell rounded-[26px] p-4">
                   <button
                     type="button"
-                    onClick={() => setSelectedAmritHeaderId(null)}
+                    onClick={() => {
+                      setSelectedAmritHeaderId(null)
+                      setAmritChapterQuery('')
+                      setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
+                    }}
                     className="mb-4 inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
                   >
                     <IconArrowLeft size={14} />
@@ -439,6 +652,9 @@ export default function Banis() {
                   )}
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     <MetadataChip>{selectedAmritShabads.length} shabads</MetadataChip>
+                    {normalizedAmritChapterQuery ? (
+                      <MetadataChip>{filteredAmritShabads.length} matching</MetadataChip>
+                    ) : null}
                     <button
                       type="button"
                       onClick={() => {
@@ -458,10 +674,45 @@ export default function Banis() {
                 {loadingAmritHeader === selectedAmritHeader.headerId && selectedAmritShabads.length === 0 ? (
                   <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
                 ) : (
-                  <div className="space-y-2">
-                    {selectedAmritShabads.map((shabad, index) => (
+                  <div className="space-y-3">
+                    <div className="section-shell-quiet rounded-[24px] px-4 py-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="eyebrow">Chapter search</p>
+                          <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
+                            Search by line opening, transliteration, raag, source, or ang.
+                          </p>
+                        </div>
+                        <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                          Showing {visibleAmritShabads.length} of {filteredAmritShabads.length}
+                        </p>
+                      </div>
+                      <div className="relative mt-3">
+                        <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
+                        <input
+                          type="text"
+                          value={amritChapterQuery}
+                          onChange={event => {
+                            setAmritChapterQuery(event.target.value)
+                            setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
+                          }}
+                          placeholder="Search within this chapter..."
+                          className="w-full rounded-2xl border border-sand/15 bg-parchment-card pl-9 pr-4 py-3 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+                        />
+                      </div>
+                    </div>
+
+                    {visibleAmritShabads.length === 0 ? (
+                      <div className="section-shell-quiet rounded-[24px] px-4 py-5">
+                        <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
+                          No shabads match this chapter search yet.
+                        </p>
+                      </div>
+                    ) : null}
+
+                    {visibleAmritShabads.map((shabad, index) => (
                       <button
-                        key={shabad.shabadId}
+                        key={`${selectedAmritHeader.headerId}-${shabad.shabadId}-${index}`}
                         onClick={() => openAmritShabad(shabad.shabadId)}
                         className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
                       >
@@ -487,6 +738,16 @@ export default function Banis() {
                         </div>
                       </button>
                     ))}
+
+                    {hasMoreAmritShabads ? (
+                      <button
+                        type="button"
+                        onClick={() => setVisibleAmritCount(count => count + AMRIT_KEERTAN_PAGE_SIZE)}
+                        className="w-full rounded-2xl border border-sand/15 bg-parchment-low px-4 py-3 font-sans text-sm font-medium text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text"
+                      >
+                        Show {Math.min(AMRIT_KEERTAN_PAGE_SIZE, filteredAmritShabads.length - visibleAmritShabads.length)} more shabads
+                      </button>
+                    ) : null}
                   </div>
                 )}
               </div>

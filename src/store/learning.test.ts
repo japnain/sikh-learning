@@ -9,6 +9,11 @@ beforeEach(() => {
     practiceStreak: 0,
     lastPracticedOn: undefined,
     totalPracticeSessions: 0,
+    skills: {},
+    lessonProgress: {},
+    assessmentHistory: [],
+    journeys: {},
+    activeJourneyId: null,
   })
 })
 
@@ -28,4 +33,13 @@ test('records practice sessions', () => {
   expect(state.practiceStreak).toBe(1)
   expect(state.totalPracticeSessions).toBe(1)
   expect(state.lastPracticedOn).toBeTruthy()
+})
+
+test('tracks guided journey progress', () => {
+  useLearningStore.getState().startJourney('journey-japji-opening')
+  useLearningStore.getState().completeJourneyStep('journey-japji-opening', 'japji-foundation', 4)
+
+  const state = useLearningStore.getState()
+  expect(state.activeJourneyId).toBe('journey-japji-opening')
+  expect(state.journeys['journey-japji-opening']?.completedStepIds).toContain('japji-foundation')
 })
