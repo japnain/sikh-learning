@@ -72,7 +72,7 @@ test('shows today\'s pick after load', async () => {
 test('shows the new daily actions', () => {
   renderHome()
   expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
-  expect(screen.getByText(/today's path/i)).toBeInTheDocument()
+  expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /grow/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByRole('button', { name: /review/i }).length).toBeGreaterThan(0)
   expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()

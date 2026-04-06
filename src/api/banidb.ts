@@ -103,7 +103,7 @@ export interface SearchResult {
   shabadId: number
   verseId: number
   source: string
-  pageNo: number
+  pageNo: number | null
   sourceName: string
   gurmukhi: string
   transliteration: string
@@ -424,8 +424,8 @@ export async function fetchSearch(
     shabadId: v.shabadId,
     verseId: v.verseId,
     source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
-    pageNo: v.pageNo,
-    sourceName: v.source?.id ? toScripture(v.source.id) : 'SGGS',
+    pageNo: v.pageNo ?? null,
+    sourceName: safeText(((v.source as { english?: string } | undefined)?.english)) || (v.source?.id ? toScripture(v.source.id) : ''),
     gurmukhi: safeText(v.verse?.unicode),
     transliteration: safeText(v.transliteration?.english),
     translation_en: getEnglish(v.translation),

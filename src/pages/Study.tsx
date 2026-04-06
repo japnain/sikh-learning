@@ -13,11 +13,13 @@ import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
 import type { ScriptureEntry, ScriptureLine } from '../types'
-import { LINE_SPACING_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS, TEXT_ALIGNMENT_LABELS } from '../utils/translations'
+import { getLineSpacingLabels, getMeaningLanguageLabels, getScriptModeLabels, getTextAlignmentLabels } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
+import { useLocaleStore } from '../store/locale'
+import { getUiCopy } from '../utils/uiCopy'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -60,6 +62,14 @@ export default function Study() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
+  const locale = useLocaleStore(s => s.locale)
+  const copy = getUiCopy(locale)
+  const commonCopy = copy.common
+  const studyCopy = copy.study
+  const lineSpacingLabels = getLineSpacingLabels(locale)
+  const meaningLanguageLabels = getMeaningLanguageLabels(locale)
+  const scriptModeLabels = getScriptModeLabels(locale)
+  const textAlignmentLabels = getTextAlignmentLabels(locale)
 
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
@@ -432,7 +442,7 @@ export default function Study() {
       </div>
 
       <div className="hero-surface p-5 mb-4">
-        <p className="eyebrow mb-2">Understand</p>
+        <p className="eyebrow mb-2">{studyCopy.eyebrow}</p>
         <h1
           lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
           className={`leading-tight text-ink dark:text-dark-text ${
@@ -449,7 +459,7 @@ export default function Study() {
           </p>
         ) : null}
         <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2">
-          Comfortable reading first. Controls stay close, the text stays primary, and audio remains clearly marked until it is real.
+          {studyCopy.introBody}
         </p>
       </div>
 
@@ -457,7 +467,7 @@ export default function Study() {
         <div className="section-shell-quiet p-4 mb-4">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="eyebrow">Learn Context</p>
+              <p className="eyebrow">{studyCopy.learnContext}</p>
               <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mt-2">
                 {learnModule?.title ?? 'Return to your active Learn path'}
               </p>
@@ -470,7 +480,7 @@ export default function Study() {
               onClick={() => navigate(`/learn?program=${learnProgramParam ?? ''}${learnModuleParam ? `&module=${learnModuleParam}` : ''}`)}
               className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
             >
-              Return to Learn
+              {studyCopy.returnToLearn}
             </button>
           </div>
         </div>
@@ -489,13 +499,13 @@ export default function Study() {
           aria-label={controlsOpen ? 'Hide reader controls' : 'Show reader controls'}
         >
           <div className="text-left">
-            <p className="eyebrow">Reader Controls</p>
+            <p className="eyebrow">{studyCopy.readerControls}</p>
             <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-              {SCRIPT_MODE_LABELS[scriptMode]} · {MEANING_LANGUAGE_LABELS[meaningLanguage]} · {showTransliteration ? 'Translit On' : 'Translit Off'}
+              {scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
             </p>
           </div>
           <span className="text-gold dark:text-gold-light">
-            {controlsOpen ? 'Hide' : 'Show'}
+            {controlsOpen ? commonCopy.hide : commonCopy.show}
           </span>
         </button>
 
@@ -515,7 +525,7 @@ export default function Study() {
                     : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                 }`}
               >
-                {SCRIPT_MODE_LABELS[mode]}
+                {scriptModeLabels[mode]}
               </button>
             )
           })}
@@ -531,7 +541,7 @@ export default function Study() {
                 : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Transliteration {showTransliteration ? 'On' : 'Off'}
+            {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
           </button>
           <button
             type="button"
@@ -542,7 +552,7 @@ export default function Study() {
                 : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Larivaar {larivaar ? 'On' : 'Off'}
+            {studyCopy.larivaar} {larivaar ? commonCopy.on : commonCopy.off}
           </button>
             </div>
 
@@ -560,7 +570,7 @@ export default function Study() {
                     : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                 }`}
               >
-                {MEANING_LANGUAGE_LABELS[option]}
+                {meaningLanguageLabels[option]}
               </button>
             )
           })}
@@ -576,7 +586,7 @@ export default function Study() {
                 : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Vishraam {showVishraam ? 'On' : 'Off'}
+            {studyCopy.vishraam} {showVishraam ? commonCopy.on : commonCopy.off}
           </button>
 
           <div className="grid grid-cols-2 gap-2">
@@ -593,7 +603,7 @@ export default function Study() {
                       : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                   }`}
                 >
-                  {LINE_SPACING_LABELS[option]}
+                  {lineSpacingLabels[option]}
                 </button>
               )
             })}
@@ -614,7 +624,7 @@ export default function Study() {
                     : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                 }`}
               >
-                {TEXT_ALIGNMENT_LABELS[option]} Align
+                {textAlignmentLabels[option]} {commonCopy.align}
               </button>
             )
           })}
@@ -629,14 +639,14 @@ export default function Study() {
             type="text"
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
-            placeholder="Add a note..."
+            placeholder={studyCopy.addNote}
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-2 font-sans text-ink dark:text-dark-text text-sm mb-2 outline-none focus:border-saffron/30 transition-colors duration-300"
           />
           <button
             onClick={handleSaveBookmark}
             className="w-full bg-gradient-to-r from-saffron to-saffron-light rounded-xl py-2 text-white font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"
           >
-            Save Bookmark
+            {studyCopy.saveBookmark}
           </button>
         </div>
       )}
@@ -654,7 +664,7 @@ export default function Study() {
               onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
               className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"
             >
-              Go to source shabad
+              {studyCopy.goToSourceShabad}
             </button>
           ) : null}
         </div>
@@ -662,16 +672,16 @@ export default function Study() {
 
       {isExactSearchResult && currentEntry && (
         <div className="section-shell p-4 mb-4">
-          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">Exact Search Result</p>
+          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{studyCopy.exactSearchResult}</p>
           <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
-            {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · Verse ${verseIdParam}` : ''}
+            {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · ${studyCopy.verse} ${verseIdParam}` : ''}
           </p>
           {verseIdParam && fullShabadEntry && (currentEntry.lines?.length ?? 0) < (fullShabadEntry.lines?.length ?? 0) && (
             <button
               onClick={() => navigate(`/study?shabadId=${shabadIdParam}`)}
               className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"
             >
-              Open full shabad
+              {studyCopy.openFullShabad}
             </button>
           )}
         </div>

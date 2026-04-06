@@ -23,9 +23,9 @@ import type {
   SupportDensity,
 } from '../types'
 import {
-  LEARNING_GOAL_LABELS,
-  LEARNING_LEVEL_LABELS,
-  ONBOARDING_AUDIENCE_LABELS,
+  getLearningGoalLabels,
+  getLearningLevelLabels,
+  getOnboardingAudienceLabels,
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 
@@ -283,6 +283,9 @@ export default function Learn() {
   const [searchParams] = useSearchParams()
   const locale = useLocaleStore(state => state.locale)
   const copy = getUiCopy(locale)
+  const learningGoalLabels = getLearningGoalLabels(locale)
+  const learningLevelLabels = getLearningLevelLabels(locale)
+  const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
   const { learningLevel, audience, learningGoal } = useOnboardingStore()
   const vocab = useVocabStore(state => state.vocab)
   const {
@@ -566,6 +569,7 @@ export default function Learn() {
       context: 'Learn',
     }
   })()
+  const programJourneys = GUIDED_JOURNEYS.filter(journey => journey.programId === activeProgramId)
 
   return (
     <div className="page-shell animate-fade-in">
@@ -673,7 +677,7 @@ export default function Learn() {
         </p>
         <div className="mt-4 flex items-center justify-between gap-3">
           <span className="rounded-full bg-gold/10 border border-gold/15 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-            {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : LEARNING_LEVEL_LABELS[learningLevel]}
+            {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : learningLevelLabels[learningLevel]}
           </span>
           <button
             type="button"
@@ -736,7 +740,7 @@ export default function Learn() {
           <div>
             <p className="eyebrow">Programs</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {LEARNING_LEVEL_LABELS[learningLevel]} · {LEARNING_GOAL_LABELS[learningGoal]} · {ONBOARDING_AUDIENCE_LABELS[audience]}
+              {learningLevelLabels[learningLevel]} · {learningGoalLabels[learningGoal]} · {onboardingAudienceLabels[audience]}
             </p>
           </div>
           {placementResult && (
@@ -1183,16 +1187,27 @@ export default function Learn() {
         </div>
 
         <div className="space-y-3 mt-4">
-          {GUIDED_JOURNEYS.filter(journey => journey.programId === activeProgramId).map(journey => (
-            <JourneyCard
-              key={journey.id}
-              journey={journey}
-              active={activeJourney?.id === journey.id}
-              completedCount={journeys[journey.id]?.completedStepIds.length ?? 0}
-              onOpen={() => openJourneyStep(journey)}
-              onActivate={() => setActiveJourney(journey.id)}
-            />
-          ))}
+          {programJourneys.length > 0 ? (
+            programJourneys.map(journey => (
+              <JourneyCard
+                key={journey.id}
+                journey={journey}
+                active={activeJourney?.id === journey.id}
+                completedCount={journeys[journey.id]?.completedStepIds.length ?? 0}
+                onOpen={() => openJourneyStep(journey)}
+                onActivate={() => setActiveJourney(journey.id)}
+              />
+            ))
+          ) : (
+            <div className="section-shell px-4 py-4">
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                Applied practice is still being curated for this path.
+              </p>
+              <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-2">
+                Keep moving through the active module and Today stack for now. Practice journeys will appear here as they are added.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>

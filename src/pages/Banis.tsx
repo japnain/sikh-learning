@@ -53,7 +53,7 @@ interface GroupedSearchResult {
   key: string
   shabadId: number
   verseId: number
-  pageNo: number
+  pageNo: number | null
   source: string
   sourceName: string
   gurmukhi: string
@@ -300,7 +300,7 @@ export default function Banis() {
     ))
     const grouped = new Map<string, GroupedSearchResult>()
     for (const result of filtered) {
-      const key = `${result.source}-${result.pageNo}-${result.shabadId}`
+      const key = `${result.source}-${result.pageNo ?? 'unknown'}-${result.shabadId}`
       const existing = grouped.get(key)
       if (existing) {
         existing.matchCount += 1
@@ -484,8 +484,8 @@ export default function Banis() {
                 <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
                 <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
                 <div className="flex flex-wrap gap-1.5 mt-2">
-                  <MetadataChip>{r.sourceName}</MetadataChip>
-                  <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>
+                  {r.sourceName && <MetadataChip>{r.sourceName}</MetadataChip>}
+                  {typeof r.pageNo === 'number' && r.pageNo > 0 && <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>}
                   {r.matchCount > 1 && <MetadataChip>{`${r.matchCount} matches`}</MetadataChip>}
                   {r.raag && <MetadataChip>{r.raag}</MetadataChip>}
                   {r.writer && <MetadataChip>{r.writer}</MetadataChip>}

@@ -76,8 +76,8 @@ test('persists locale, audience, and learning goal', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
 
   fireEvent.click(screen.getAllByRole('button', { name: /^Punjabi$/i })[1])
-  fireEvent.click(screen.getByRole('button', { name: /^Teen$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /ਕਿਸ਼ੋਰ/i }))
+  fireEvent.click(screen.getByRole('button', { name: /ਸਮਝਣਾ/i }))
 
   expect(useLocaleStore.getState().locale).toBe('pa')
   expect(useOnboardingStore.getState().audience).toBe('teen')

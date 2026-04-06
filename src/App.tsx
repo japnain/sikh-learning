@@ -28,6 +28,7 @@ export default function App() {
   const englishSource = useLanguageStore(s => s.englishSource)
   const setEnglishSource = useLanguageStore(s => s.setEnglishSource)
   const hasCompletedOnboarding = useOnboardingStore(s => s.hasCompletedOnboarding)
+  const isOnboardingOpen = useOnboardingStore(s => s.isOnboardingOpen)
   const learningLevel = useOnboardingStore(s => s.learningLevel)
   const audience = useOnboardingStore(s => s.audience)
   const learningGoal = useOnboardingStore(s => s.learningGoal)
@@ -62,7 +63,7 @@ export default function App() {
           <Route path="/vocab" element={<Vocab />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        {!hasCompletedOnboarding && (
+        {(!hasCompletedOnboarding || isOnboardingOpen) && (
           <OnboardingSheet
             locale={locale}
             scriptMode={scriptMode}
