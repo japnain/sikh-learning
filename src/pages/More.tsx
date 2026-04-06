@@ -5,15 +5,15 @@ import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
 import {
-  ENGLISH_SOURCE_LABELS,
-  LEARNING_GOAL_LABELS,
-  LEARNING_LEVEL_LABELS,
-  LINE_SPACING_LABELS,
-  MEANING_LANGUAGE_LABELS,
-  ONBOARDING_AUDIENCE_LABELS,
-  SCRIPT_MODE_LABELS,
-  TEXT_ALIGNMENT_LABELS,
-  UI_LOCALE_LABELS,
+  getEnglishSourceLabels,
+  getLearningGoalLabels,
+  getLearningLevelLabels,
+  getLineSpacingLabels,
+  getMeaningLanguageLabels,
+  getOnboardingAudienceLabels,
+  getScriptModeLabels,
+  getTextAlignmentLabels,
+  getUiLocaleLabels,
 } from '../utils/translations'
 import { renderScriptText } from '../utils/readerDisplay'
 import { IconArrowRight } from '../components/icons'
@@ -72,27 +72,37 @@ export default function More() {
     setAudience,
     learningGoal,
     setLearningGoal,
-    resetOnboarding,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
+  const commonCopy = copy.common
+  const moreCopy = copy.more
+  const englishSourceLabels = getEnglishSourceLabels(locale)
+  const learningGoalLabels = getLearningGoalLabels(locale)
+  const learningLevelLabels = getLearningLevelLabels(locale)
+  const lineSpacingLabels = getLineSpacingLabels(locale)
+  const meaningLanguageLabels = getMeaningLanguageLabels(locale)
+  const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
+  const scriptModeLabels = getScriptModeLabels(locale)
+  const textAlignmentLabels = getTextAlignmentLabels(locale)
+  const uiLocaleLabels = getUiLocaleLabels(locale)
 
   return (
     <div className="page-shell animate-fade-in">
       <div className="mb-5">
-        <p className="eyebrow">More</p>
-        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">Set the tone of the app.</h1>
+        <p className="eyebrow">{moreCopy.eyebrow}</p>
+        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{moreCopy.title}</h1>
         <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
-          The defaults here shape Home, Study, Hukamnama, and Learn. The app should feel deliberate, calm, and consistent every time you open it.
+          {moreCopy.body}
         </p>
       </div>
 
       <section className="hero-surface p-5 mb-5">
-        <p className="eyebrow">Product Promise</p>
+        <p className="eyebrow">{moreCopy.productPromise}</p>
         <p className="font-display text-3xl leading-none text-ink dark:text-dark-text mt-2">
           {copy.home.promise}
         </p>
         <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-3 max-w-[34ch]">
-          Nitnem is being shaped as a mobile-first reading and learning companion, not a generic utility dashboard.
+          {moreCopy.promiseBody}
         </p>
       </section>
 
@@ -101,13 +111,13 @@ export default function More() {
       </div>
 
       <section className="section-shell-quiet p-4 mb-5">
-        <p className="eyebrow mb-4">Reader Defaults</p>
+        <p className="eyebrow mb-4">{moreCopy.readerDefaults}</p>
         <div className="space-y-3">
         <SettingsBlock
-          title="Script & Layout"
-          description="Choose the script, text size, spacing, and alignment that keep long reading comfortable."
+          title={moreCopy.scriptLayoutTitle}
+          description={moreCopy.scriptLayoutDescription}
         >
-          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Reading script</p>
+          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.readingScript}</p>
           <div className="grid grid-cols-2 gap-2">
             {(['gurmukhi', 'devanagari'] as const).map(mode => {
               const selected = scriptMode === mode
@@ -121,7 +131,7 @@ export default function More() {
                       : 'bg-white/70 dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                   }`}
                 >
-                  {SCRIPT_MODE_LABELS[mode]}
+                  {scriptModeLabels[mode]}
                 </button>
               )
             })}
@@ -129,7 +139,7 @@ export default function More() {
 
           <div className="mt-4">
             <div className="flex justify-between mb-1">
-            <p className="font-sans text-sm text-ink dark:text-dark-text">Script size</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text">{moreCopy.scriptSize}</p>
             <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{fontSize}px</span>
             </div>
             <input
@@ -142,7 +152,7 @@ export default function More() {
               className="w-full h-1 accent-gold"
             />
             <div className="flex justify-between mt-2">
-              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">Small</span>
+              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">{commonCopy.small}</span>
               <span
                 lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
                 className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-gold dark:text-gold-light`}
@@ -150,12 +160,12 @@ export default function More() {
               >
                 {renderScriptText('ੴ', scriptMode)}
               </span>
-              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">Large</span>
+              <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">{commonCopy.large}</span>
             </div>
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-2">
-            {Object.entries(LINE_SPACING_LABELS).map(([key, label]) => {
+            {Object.entries(lineSpacingLabels).map(([key, label]) => {
               const selected = lineSpacing === key
               return (
                 <button
@@ -171,7 +181,7 @@ export default function More() {
                 </button>
               )
             })}
-            {Object.entries(TEXT_ALIGNMENT_LABELS).map(([key, label]) => {
+            {Object.entries(textAlignmentLabels).map(([key, label]) => {
               const selected = textAlign === key
               return (
                 <button
@@ -191,8 +201,8 @@ export default function More() {
         </SettingsBlock>
 
         <SettingsBlock
-          title="Reading Support"
-          description="Toggle the extra support layers that make the reader lighter or more guided."
+          title={moreCopy.readingSupportTitle}
+          description={moreCopy.readingSupportDescription}
         >
         <div className="grid grid-cols-2 gap-2">
           <button
@@ -204,7 +214,7 @@ export default function More() {
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Transliteration {showTransliteration ? 'On' : 'Off'}
+            {moreCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
           </button>
           <button
             onClick={() => setLarivaar(!larivaar)}
@@ -214,7 +224,7 @@ export default function More() {
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Larivaar {larivaar ? 'On' : 'Off'}
+            {moreCopy.larivaar} {larivaar ? commonCopy.on : commonCopy.off}
           </button>
           <button
             onClick={() => setShowVishraam(!showVishraam)}
@@ -224,12 +234,12 @@ export default function More() {
                 : 'bg-white/70 dark:bg-dark-card text-ink dark:text-dark-text border border-sand/15 dark:border-dark-text/10'
             }`}
           >
-            Vishraam {showVishraam ? 'On' : 'Off'}
+            {moreCopy.vishraam} {showVishraam ? commonCopy.on : commonCopy.off}
           </button>
         </div>
 
         <div className="mt-4">
-          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Meaning language</p>
+          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.meaningLanguage}</p>
           <div className="grid grid-cols-4 gap-2">
             {(['none', 'en', 'pa', 'hi'] as const).map(option => {
               const selected = meaningLanguage === option
@@ -243,7 +253,7 @@ export default function More() {
                       : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                   }`}
                 >
-                  {MEANING_LANGUAGE_LABELS[option]}
+                  {meaningLanguageLabels[option]}
                 </button>
               )
             })}
@@ -252,12 +262,12 @@ export default function More() {
         </SettingsBlock>
 
         <SettingsBlock
-          title="Translation Source"
-          description="Keep one English source selected so the reader stays consistent."
+          title={moreCopy.translationSourceTitle}
+          description={moreCopy.translationSourceDescription}
         >
-          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">English translation</p>
+          <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.englishTranslation}</p>
           <div className="grid gap-2">
-            {Object.entries(ENGLISH_SOURCE_LABELS).map(([key, label]) => {
+            {Object.entries(englishSourceLabels).map(([key, label]) => {
               const selected = englishSource === key
               return (
                 <button
@@ -271,7 +281,7 @@ export default function More() {
                 >
                   <span className="font-sans text-sm font-medium">{label}</span>
                   <span className="font-sans text-[10px] uppercase tracking-[0.18em] opacity-70">
-                    {selected ? 'Selected' : 'Tap to use'}
+                    {selected ? commonCopy.selected : commonCopy.tapToUse}
                   </span>
                 </button>
               )
@@ -282,11 +292,11 @@ export default function More() {
       </section>
 
       <section className="section-shell p-4 mb-5">
-        <p className="eyebrow mb-4">Profile & App Language</p>
+        <p className="eyebrow mb-4">{moreCopy.profileLanguage}</p>
         <div className="space-y-3">
         <SettingsBlock
-          title="App Language"
-          description="This changes the app chrome and guidance copy, not the scripture text itself."
+          title={moreCopy.appLanguageTitle}
+          description={moreCopy.appLanguageDescription}
         >
         <div className="grid grid-cols-3 gap-2">
           {(['en', 'pa', 'hi'] as const).map(option => {
@@ -301,7 +311,7 @@ export default function More() {
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                 }`}
               >
-                {UI_LOCALE_LABELS[option]}
+                {uiLocaleLabels[option]}
               </button>
               )
             })}
@@ -309,8 +319,8 @@ export default function More() {
         </SettingsBlock>
 
         <SettingsBlock
-          title="Learning Profile"
-          description="This changes what Home recommends first and how Learn frames the path ahead."
+          title={moreCopy.learningProfileTitle}
+          description={moreCopy.learningProfileDescription}
         >
         <div className="grid grid-cols-3 gap-2 mb-3">
           {(['beginner', 'familiar', 'daily-reader'] as const).map(level => {
@@ -325,7 +335,7 @@ export default function More() {
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                 }`}
               >
-                {LEARNING_LEVEL_LABELS[level]}
+                {learningLevelLabels[level]}
               </button>
             )
           })}
@@ -343,7 +353,7 @@ export default function More() {
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                 }`}
               >
-                {ONBOARDING_AUDIENCE_LABELS[option]}
+                {onboardingAudienceLabels[option]}
               </button>
             )
           })}
@@ -361,31 +371,31 @@ export default function More() {
                     : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
                 }`}
               >
-                {LEARNING_GOAL_LABELS[goal]}
+                {learningGoalLabels[goal]}
               </button>
             )
           })}
         </div>
         <button
-          onClick={resetOnboarding}
+          onClick={() => navigate('/', { state: { reopenOnboarding: true } })}
           className="font-sans text-xs text-saffron dark:text-saffron-light underline underline-offset-2"
         >
-          Re-open first setup on Home
+          {moreCopy.reopenOnHome}
         </button>
         </SettingsBlock>
         </div>
       </section>
 
       <section className="section-shell-quiet p-4 mb-5">
-        <p className="eyebrow mb-3">Grow</p>
+        <p className="eyebrow mb-3">{moreCopy.grow}</p>
         <button
           onClick={() => navigate('/learn')}
           className="w-full flex items-center justify-between section-shell px-4 py-4 min-h-[52px]"
         >
           <div className="text-left">
-            <p className="font-sans text-sm font-medium text-ink dark:text-dark-text">Open Learn</p>
+            <p className="font-sans text-sm font-medium text-ink dark:text-dark-text">{moreCopy.openLearn}</p>
             <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">
-              Letters, recognition drills, Gurbani bridge, and mastery tracking
+              {moreCopy.growDescription}
             </p>
           </div>
           <IconArrowRight size={16} className="text-gold dark:text-gold-light" />
@@ -393,15 +403,15 @@ export default function More() {
       </section>
 
       <section className="section-shell p-4">
-        <p className="eyebrow mb-3">About</p>
+        <p className="eyebrow mb-3">{moreCopy.about}</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
-          Nitnem is a Sikh scripture reading and learning app shaped around three pillars: Read, Understand, and Grow.
+          {moreCopy.aboutBody}
         </p>
         <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2">
-          Scripture data is sourced from BaniDB v2. Recitation remains intentionally disabled until a working source exists.
+          {moreCopy.aboutSource}
         </p>
         <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2">
-          Source transparency and correction reporting are part of the trust layer. Until those flows are built, issues should be treated as product work, not hidden edge cases.
+          {moreCopy.aboutTrust}
         </p>
       </section>
     </div>

@@ -7,7 +7,9 @@ import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
+import { useLocaleStore } from '../store/locale'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
+import { getUiCopy } from '../utils/uiCopy'
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -91,6 +93,9 @@ const SECTIONS: Section[] = [
 
 export default function Library() {
   const navigate = useNavigate()
+  const locale = useLocaleStore(s => s.locale)
+  const copy = getUiCopy(locale)
+  const libraryCopy = copy.library
   const { bookmarks, removeBookmark } = useBookmarksStore()
   const { favorites, removeFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
@@ -124,10 +129,10 @@ export default function Library() {
   return (
     <div className="page-shell animate-fade-in">
       <div className="mb-5">
-        <p className="eyebrow">Saved</p>
-        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">Your reading shelf.</h1>
+        <p className="eyebrow">{libraryCopy.eyebrow}</p>
+        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>
         <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
-          Keep bookmarks, saved words, saved phrases, and in-progress banis in one place. Scripture browsing stays available, but it no longer leads the product.
+          {libraryCopy.body}
         </p>
       </div>
 
@@ -137,8 +142,8 @@ export default function Library() {
           className="w-full flex justify-between items-center gap-3"
         >
           <div className="text-left">
-            <p className="eyebrow">Source Browsing</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">Open scripture by ang or page when you need it.</p>
+            <p className="eyebrow">{libraryCopy.sourceBrowsing}</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
           </div>
           <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
         </button>
@@ -171,23 +176,23 @@ export default function Library() {
       <section className="hero-surface p-5 mb-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">Saved Snapshot</p>
-            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">Return to what you want to keep.</p>
+            <p className="eyebrow">{libraryCopy.savedSnapshot}</p>
+            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.returnKeep}</p>
           </div>
           <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
         </div>
         <div className="grid grid-cols-3 gap-2 mt-5">
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Bookmarks</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.bookmarks}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{favorites.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Favorites</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.favorites}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Phrases</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.phrases}</p>
           </div>
         </div>
       </section>
@@ -234,8 +239,8 @@ export default function Library() {
           onClick={() => navigate('/vocab')}
           className="section-shell p-4 text-left"
         >
-          <p className="eyebrow">Review Bank</p>
-          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Words and phrases in one review flow</p>
+          <p className="eyebrow">{libraryCopy.reviewBank}</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.reviewBankTitle}</p>
           <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
             {words.length} saved words and {phrases.length} saved phrases are ready for review.
           </p>
@@ -249,8 +254,8 @@ export default function Library() {
             }}
             className="section-shell p-4 text-left"
           >
-            <p className="eyebrow">Resume</p>
-            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Continue your current reading</p>
+            <p className="eyebrow">{libraryCopy.resume}</p>
+            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.resumeTitle}</p>
             <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
               {resumeReference}
             </p>

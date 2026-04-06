@@ -9,12 +9,12 @@ import type {
   UiLocale,
 } from '../types'
 import {
-  ENGLISH_SOURCE_LABELS,
-  LEARNING_GOAL_LABELS,
-  LEARNING_LEVEL_LABELS,
-  MEANING_LANGUAGE_LABELS,
-  ONBOARDING_AUDIENCE_LABELS,
-  SCRIPT_MODE_LABELS,
+  getEnglishSourceLabels,
+  getLearningGoalLabels,
+  getLearningLevelLabels,
+  getMeaningLanguageLabels,
+  getOnboardingAudienceLabels,
+  getScriptModeLabels,
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 
@@ -56,6 +56,12 @@ export default function OnboardingSheet({
   onComplete,
 }: Props) {
   const copy = getUiCopy(locale)
+  const englishSourceLabels = getEnglishSourceLabels(locale)
+  const learningGoalLabels = getLearningGoalLabels(locale)
+  const learningLevelLabels = getLearningLevelLabels(locale)
+  const meaningLanguageLabels = getMeaningLanguageLabels(locale)
+  const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
+  const scriptModeLabels = getScriptModeLabels(locale)
 
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow
@@ -99,7 +105,7 @@ export default function OnboardingSheet({
 
           <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4 overscroll-contain space-y-4">
             <div>
-              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Reading script</p>
+              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{copy.onboarding.readingScript}</p>
               <div className="grid grid-cols-2 gap-2">
                 {(['gurmukhi', 'devanagari'] as const).map(mode => (
                   <button
@@ -111,14 +117,14 @@ export default function OnboardingSheet({
                         : 'bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {SCRIPT_MODE_LABELS[mode]}
+                    {scriptModeLabels[mode]}
                   </button>
                 ))}
               </div>
             </div>
 
             <div>
-              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Meaning</p>
+              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{copy.onboarding.meaning}</p>
               <div className="grid grid-cols-4 gap-2">
                 {(['none', 'en', 'pa', 'hi'] as const).map(option => (
                   <button
@@ -130,7 +136,7 @@ export default function OnboardingSheet({
                         : 'bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {MEANING_LANGUAGE_LABELS[option]}
+                    {meaningLanguageLabels[option]}
                   </button>
                 ))}
               </div>
@@ -138,7 +144,7 @@ export default function OnboardingSheet({
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <p className="font-sans text-sm text-ink dark:text-dark-text">Transliteration</p>
+                <p className="font-sans text-sm text-ink dark:text-dark-text">{copy.onboarding.transliteration}</p>
                 <button
                   onClick={() => setShowTransliteration(!showTransliteration)}
                   aria-label="Toggle onboarding transliteration"
@@ -149,7 +155,7 @@ export default function OnboardingSheet({
               </div>
               {meaningLanguage === 'en' && (
                 <div className="grid gap-2">
-                  {Object.entries(ENGLISH_SOURCE_LABELS).map(([key, label]) => (
+                  {Object.entries(englishSourceLabels).map(([key, label]) => (
                     <button
                       key={key}
                       onClick={() => setEnglishSource(key as EnglishSource)}
@@ -179,7 +185,7 @@ export default function OnboardingSheet({
                         : 'bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {ONBOARDING_AUDIENCE_LABELS[option]}
+                    {onboardingAudienceLabels[option]}
                   </button>
                 ))}
               </div>
@@ -198,14 +204,14 @@ export default function OnboardingSheet({
                         : 'bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {LEARNING_GOAL_LABELS[option]}
+                    {learningGoalLabels[option]}
                   </button>
                 ))}
               </div>
             </div>
 
             <div>
-              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">Learning level</p>
+              <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{copy.onboarding.learningLevel}</p>
               <div className="grid grid-cols-3 gap-2">
                 {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
                   <button
@@ -217,7 +223,7 @@ export default function OnboardingSheet({
                         : 'bg-parchment-low dark:bg-dark-surface text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
-                    {LEARNING_LEVEL_LABELS[level]}
+                    {learningLevelLabels[level]}
                   </button>
                 ))}
               </div>

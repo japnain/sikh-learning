@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
   IconCheck,
@@ -26,11 +26,12 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useThemeStore } from '../store/theme'
 import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
-import type { StudiedEntry } from '../types'
+import type { StudiedEntry, UiLocale } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
-import { LEARNING_LEVEL_LABELS } from '../utils/translations'
+import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
+import { formatUiDate } from '../utils/formatUiDate'
 
 function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
   if (!scriptureId) return { source: null, ang: null }
@@ -42,7 +43,98 @@ function parseSession(scriptureId: string | null | undefined): { source: string 
   }
 }
 
+const HOME_MESSAGES: Record<UiLocale, {
+  resumeReading: string
+  resumeStudyBody: string
+  resumeReadingBody: string
+  openTodaysHukamnama: string
+  todaysMeaningBody: string
+  todaysReadingBody: string
+  buildHabitTitle: string
+  learnScriptTitle: string
+  buildConfidenceTitle: string
+  childLearnBody: string
+  adultLearnBody: string
+  pickUpPausedTitle: string
+  nitnemImmediateBody: string
+  beginTodayTitle: string
+  beginTodayMeaningTitle: string
+  beginTodayMeaningBody: string
+  beginTodayBody: string
+  browseRead: string
+  trackSuffix: string
+  reviewDue: (count: number) => string
+}> = {
+  en: {
+    resumeReading: 'Resume Reading',
+    resumeStudyBody: 'Return to the last passage you were studying so the context stays intact.',
+    resumeReadingBody: 'Open the passage you were already working through.',
+    openTodaysHukamnama: 'Open Today’s Hukamnama',
+    todaysMeaningBody: 'Start with the daily hukamnama and keep the meaning close.',
+    todaysReadingBody: 'Start with the daily hukamnama and stay in a steady daily rhythm.',
+    buildHabitTitle: 'Build a reading habit before adding more weight.',
+    learnScriptTitle: 'Learn the script before chasing too much meaning.',
+    buildConfidenceTitle: 'Build reading confidence before the overwhelm.',
+    childLearnBody: 'Keep the next step simple: guided letters, short drills, then one real line at a time.',
+    adultLearnBody: 'Start with guided letters, practice recognition, then move into live pankti when you are ready.',
+    pickUpPausedTitle: 'Pick up exactly where you paused.',
+    nitnemImmediateBody: 'Nitnem should feel immediate. Resume your last reading without hunting through the library.',
+    beginTodayTitle: 'Begin with today’s hukamnama.',
+    beginTodayMeaningTitle: 'Begin with today’s hukamnama and keep the meaning close.',
+    beginTodayMeaningBody: 'A calm first step for daily reading, with meaning controls and guided support built into the reader.',
+    beginTodayBody: 'A calm first step for daily reading, with meaning controls and a cleaner mobile reader built in.',
+    browseRead: 'Browse Read',
+    trackSuffix: 'track',
+    reviewDue: (count) => `${count} review item${count === 1 ? '' : 's'} due`,
+  },
+  pa: {
+    resumeReading: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ',
+    resumeStudyBody: 'ਜਿੱਥੇ ਤੁਸੀਂ ਅਖੀਰ ਵਾਰ ਅਰਥ ਨਾਲ ਪੜ੍ਹ ਰਹੇ ਸੀ, ਓਥੇ ਹੀ ਵਾਪਸ ਜਾਓ ਤਾਂ ਜੋ ਸੰਦਰਭ ਬਣਾ ਰਹੇ।',
+    resumeReadingBody: 'ਉਹੀ ਪੰਕਤੀ ਖੋਲ੍ਹੋ ਜਿਸ ਤੇ ਤੁਸੀਂ ਪਹਿਲਾਂ ਕੰਮ ਕਰ ਰਹੇ ਸੀ।',
+    openTodaysHukamnama: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਖੋਲ੍ਹੋ',
+    todaysMeaningBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
+    todaysReadingBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਪਾਠ ਦੀ ਲਯ ਬਣਾਈ ਰੱਖੋ।',
+    buildHabitTitle: 'ਹੋਰ ਭਾਰ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੀ ਆਦਤ ਬਣਾਓ।',
+    learnScriptTitle: 'ਬਹੁਤ ਅਰਥ ਦੇ ਪਿੱਛੇ ਦੌੜਨ ਤੋਂ ਪਹਿਲਾਂ ਲਿਪੀ ਸਿੱਖੋ।',
+    buildConfidenceTitle: 'ਘਬਰਾਹਟ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦਾ ਵਿਸ਼ਵਾਸ ਬਣਾਓ।',
+    childLearnBody: 'ਅਗਲਾ ਕਦਮ ਸੌਖਾ ਰੱਖੋ: ਮਾਰਗਦਰਸ਼ਿਤ ਅੱਖਰ, ਛੋਟੇ ਅਭਿਆਸ, ਫਿਰ ਇੱਕ ਅਸਲੀ ਲਾਈਨ।',
+    adultLearnBody: 'ਮਾਰਗਦਰਸ਼ਿਤ ਅੱਖਰਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਪਛਾਣ ਦਾ ਅਭਿਆਸ ਕਰੋ, ਫਿਰ ਜਦੋਂ ਤਿਆਰ ਹੋਵੋ ਤਾਂ ਜੀਵੰਤ ਪੰਕਤੀ ਵੱਲ ਵਧੋ।',
+    pickUpPausedTitle: 'ਜਿੱਥੇ ਰੁਕੇ ਸੀ ਓਥੇ ਹੀ ਤੋਂ ਚੁੱਕੋ।',
+    nitnemImmediateBody: 'ਨਿਤਨੇਮ ਤੁਰੰਤ ਮਹਿਸੂਸ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਲੱਭਣ ਤੋਂ ਬਿਨਾਂ ਆਪਣਾ ਪਿਛਲਾ ਪਾਠ ਜਾਰੀ ਰੱਖੋ।',
+    beginTodayTitle: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।',
+    beginTodayMeaningTitle: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
+    beginTodayMeaningBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਪਹਿਲਾ ਕਦਮ, ਜਿਸ ਵਿੱਚ ਅਰਥ ਨਿਯੰਤਰਣ ਅਤੇ ਮਾਰਗਦਰਸ਼ਿਤ ਸਹਾਇਤਾ ਬਣੀ ਹੋਈ ਹੈ।',
+    beginTodayBody: 'ਰੋਜ਼ਾਨਾ ਪਾਠ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਪਹਿਲਾ ਕਦਮ, ਜਿਸ ਵਿੱਚ ਅਰਥ ਨਿਯੰਤਰਣ ਅਤੇ ਹੋਰ ਸਾਫ਼ ਮੋਬਾਈਲ ਪਾਠਕ ਸ਼ਾਮਲ ਹੈ।',
+    browseRead: 'ਪੜ੍ਹੋ ਬ੍ਰਾਊਜ਼ ਕਰੋ',
+    trackSuffix: 'ਮਾਰਗ',
+    reviewDue: (count) => `${count} ਦੁਹਰਾਈ ਆਇਟਮ ਬਾਕੀ`,
+  },
+  hi: {
+    resumeReading: 'पढ़ना जारी रखें',
+    resumeStudyBody: 'जिस अंश को आप अर्थ के साथ पढ़ रहे थे, वहीं लौटें ताकि संदर्भ बना रहे।',
+    resumeReadingBody: 'वही अंश खोलें जिस पर आप पहले काम कर रहे थे।',
+    openTodaysHukamnama: 'आज का हुकमनामा खोलें',
+    todaysMeaningBody: 'दैनिक हुकमनामे से शुरू करें और अर्थ को पास रखें।',
+    todaysReadingBody: 'दैनिक हुकमनामे से शुरू करें और पढ़ने की लय बनाए रखें।',
+    buildHabitTitle: 'और भार जोड़ने से पहले पढ़ने की आदत बनाइए।',
+    learnScriptTitle: 'बहुत अर्थ पकड़ने से पहले लिपि सीखिए।',
+    buildConfidenceTitle: 'घबराहट से पहले पढ़ने का आत्मविश्वास बनाइए।',
+    childLearnBody: 'अगला कदम सरल रखें: मार्गदर्शित अक्षर, छोटे अभ्यास, फिर एक वास्तविक पंक्ति।',
+    adultLearnBody: 'मार्गदर्शित अक्षरों से शुरू करें, पहचान का अभ्यास करें, फिर तैयार होने पर जीवंत पंक्ति में जाएँ।',
+    pickUpPausedTitle: 'जहाँ रुके थे, वहीं से आगे बढ़ें।',
+    nitnemImmediateBody: 'नितनेम तुरंत उपलब्ध लगना चाहिए। लाइब्रेरी में खोजे बिना अपना पिछला पाठ जारी रखें।',
+    beginTodayTitle: 'आज के हुकमनामे से शुरू करें।',
+    beginTodayMeaningTitle: 'आज के हुकमनामे से शुरू करें और अर्थ को पास रखें।',
+    beginTodayMeaningBody: 'दैनिक पाठ के लिए एक शांत पहला कदम, जिसमें अर्थ नियंत्रण और मार्गदर्शित सहायता पहले से जुड़ी हो।',
+    beginTodayBody: 'दैनिक पाठ के लिए एक शांत पहला कदम, जिसमें अर्थ नियंत्रण और एक अधिक साफ़ मोबाइल रीडर शामिल है।',
+    browseRead: 'रीड ब्राउज़ करें',
+    trackSuffix: 'मार्ग',
+    reviewDue: (count) => `${count} रिव्यू आइटम बाकी`,
+  },
+}
+
 export default function Home() {
+  const location = useLocation()
   const navigate = useNavigate()
   const { streak, currentSession, studied } = useProgressStore()
   const { getEntryById } = useScriptureCacheStore()
@@ -63,8 +155,13 @@ export default function Home() {
     learningLevel,
     audience,
     learningGoal,
+    openOnboarding,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
+  const commonCopy = copy.common
+  const homeCopy = copy.home
+  const homeMessages = HOME_MESSAGES[locale]
+  const learningLevelLabels = getLearningLevelLabels(locale)
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const [showCopied, setShowCopied] = useState(false)
 
@@ -72,6 +169,14 @@ export default function Home() {
     resetIfNewDay()
     ensureDailyToday()
   }, [ensureDailyToday, resetIfNewDay])
+
+  useEffect(() => {
+    const shouldReopen = Boolean((location.state as { reopenOnboarding?: boolean } | null)?.reopenOnboarding)
+    if (!shouldReopen) return
+
+    openOnboarding()
+    navigate(location.pathname, { replace: true, state: null })
+  }, [location.pathname, location.state, navigate, openOnboarding])
 
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
@@ -116,38 +221,38 @@ export default function Home() {
   const readAction = useMemo(() => {
     if (currentSession && sessionTarget.source && sessionTarget.ang) {
       return {
-        title: 'Resume Reading',
+        title: homeMessages.resumeReading,
         body: learningGoal === 'understand'
-          ? 'Return to the last passage you were studying so the context stays intact.'
-          : 'Open the passage you were already working through.',
+          ? homeMessages.resumeStudyBody
+          : homeMessages.resumeReadingBody,
         onAction: () => navigate(`/study?source=${sessionTarget.source}&ang=${sessionTarget.ang}`),
       }
     }
 
     return {
-      title: 'Open Today’s Hukamnama',
+      title: homeMessages.openTodaysHukamnama,
       body: learningGoal === 'understand'
-        ? 'Start with the daily hukamnama and keep the meaning close.'
-        : 'Start with the daily hukamnama and stay in a steady daily rhythm.',
+        ? homeMessages.todaysMeaningBody
+        : homeMessages.todaysReadingBody,
       onAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
     }
-  }, [currentSession, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source])
+  }, [currentSession, homeMessages, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source])
 
   const heroPrimary = useMemo(() => {
     if (showLearnHero) {
       return {
         eyebrow: 'Grow',
         title: learningGoal === 'habit'
-          ? 'Build a reading habit before adding more weight.'
+          ? homeMessages.buildHabitTitle
           : learningGoal === 'understand'
-            ? 'Learn the script before chasing too much meaning.'
-            : 'Build reading confidence before the overwhelm.',
+            ? homeMessages.learnScriptTitle
+            : homeMessages.buildConfidenceTitle,
         body: audience === 'child'
-          ? 'Keep the next step simple: guided letters, short drills, then one real line at a time.'
-          : 'Start with guided letters, practice recognition, then move into live pankti when you are ready.',
+          ? homeMessages.childLearnBody
+          : homeMessages.adultLearnBody,
         buttonLabel: 'Continue Learn',
         buttonAction: () => navigate('/learn'),
-        secondaryLabel: 'Open today’s hukamnama',
+        secondaryLabel: homeMessages.openTodaysHukamnama,
         secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
       }
     }
@@ -155,13 +260,13 @@ export default function Home() {
     if (currentSession && sessionTarget.source && sessionTarget.ang) {
       return {
         eyebrow: 'Read',
-        title: 'Pick up exactly where you paused.',
+        title: homeMessages.pickUpPausedTitle,
         body: learningGoal === 'understand'
-          ? 'Return to the last passage you were studying so the context stays intact.'
-          : 'Nitnem should feel immediate. Resume your last reading without hunting through the library.',
-        buttonLabel: 'Resume Reading',
+          ? homeMessages.resumeStudyBody
+          : homeMessages.nitnemImmediateBody,
+        buttonLabel: homeMessages.resumeReading,
         buttonAction: () => navigate(`/study?source=${sessionTarget.source}&ang=${sessionTarget.ang}`),
-        secondaryLabel: 'Open today’s hukamnama',
+        secondaryLabel: homeMessages.openTodaysHukamnama,
         secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
       }
     }
@@ -169,19 +274,19 @@ export default function Home() {
     return {
       eyebrow: 'Read',
       title: learningGoal === 'habit'
-        ? 'Begin with today’s hukamnama.'
+        ? homeMessages.beginTodayTitle
         : learningGoal === 'understand'
-          ? 'Begin with today’s hukamnama and keep the meaning close.'
-          : 'Begin with today’s hukamnama.',
+          ? homeMessages.beginTodayMeaningTitle
+          : homeMessages.beginTodayTitle,
       body: learningGoal === 'understand'
-        ? 'A calm first step for daily reading, with meaning controls and guided support built into the reader.'
-        : 'A calm first step for daily reading, with meaning controls and a cleaner mobile reader built in.',
-      buttonLabel: 'Open Today’s Hukamnama',
+        ? homeMessages.beginTodayMeaningBody
+        : homeMessages.beginTodayBody,
+      buttonLabel: homeMessages.openTodaysHukamnama,
       buttonAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
-      secondaryLabel: 'Browse Read',
+      secondaryLabel: homeMessages.browseRead,
       secondaryAction: () => navigate('/banis'),
     }
-  }, [audience, currentSession, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source, showLearnHero])
+  }, [audience, currentSession, homeMessages, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source, showLearnHero])
 
   const openGrowAction = () => {
     toggleDailyAction('grow')
@@ -211,7 +316,7 @@ export default function Home() {
       return {
         title: readAction.title,
         body: readAction.body,
-        actionLabel: 'Do reading step',
+        actionLabel: homeCopy.doReadingStep,
         onAction: openReadAction,
       }
     }
@@ -221,28 +326,28 @@ export default function Home() {
         title: activeJourney ? activeJourney.title : 'Continue Learn',
         body: nextJourneyStep
           ? nextJourneyStep.title
-          : `${LEARNING_LEVEL_LABELS[learningLevel]} track should stay active today.`,
-        actionLabel: 'Do growth step',
+          : `${learningLevelLabels[learningLevel]} ${homeMessages.trackSuffix} should stay active today.`,
+        actionLabel: homeCopy.doGrowthStep,
         onAction: openGrowAction,
       }
     }
 
     if (!isDailyActionDone('review')) {
       return {
-        title: dueReview.length > 0 ? `${dueReview.length} review item${dueReview.length === 1 ? '' : 's'} due` : 'Quick review pass',
+        title: dueReview.length > 0 ? homeMessages.reviewDue(dueReview.length) : 'Quick review pass',
         body: 'Use saved words and phrases to keep comprehension sticky.',
-        actionLabel: 'Do review step',
+        actionLabel: homeCopy.doReviewStep,
         onAction: openReviewAction,
       }
     }
 
     return {
-      title: 'Today’s core loop is complete',
-      body: 'You can revisit a journey, continue a bani, or leave the day with a clean streak.',
-      actionLabel: 'Open Saved',
+      title: homeCopy.coreLoopComplete,
+      body: homeCopy.coreLoopCompleteBody,
+      actionLabel: homeCopy.openSaved,
       onAction: () => navigate('/library'),
     }
-  }, [activeJourney, dueReview.length, isDailyActionDone, learningLevel, navigate, nextJourneyStep, readAction])
+  }, [activeJourney, dueReview.length, homeCopy, homeMessages, isDailyActionDone, learningLevel, learningLevelLabels, navigate, nextJourneyStep, readAction])
 
   const todaysPickPreview = useMemo(() => {
     if (!todaysPick) return null
@@ -322,7 +427,7 @@ export default function Home() {
 
       <div className="mb-4">
         <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-          {new Date().toLocaleDateString(locale === 'pa' ? 'pa-IN' : locale === 'hi' ? 'hi-IN' : 'en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+          {formatUiDate(locale)}
         </p>
         <h1 className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text mt-2">
           {copy.home.greeting}
@@ -332,7 +437,7 @@ export default function Home() {
       <section className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1">
         <div className="flex items-center justify-between gap-3 mb-4">
           <span className="eyebrow">{heroPrimary.eyebrow}</span>
-          <span className="chip-pill">{LEARNING_LEVEL_LABELS[learningLevel]}</span>
+          <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
         <h2 className="font-display text-[2rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
           {heroPrimary.title}
@@ -349,7 +454,7 @@ export default function Home() {
           </div>
         ) : hukamnama ? (
           <div className="section-shell-quiet mt-5 p-4">
-            <p className="eyebrow mb-2">Today’s Hukamnama</p>
+            <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
             <p className="font-sans text-[11px] text-ink/50 dark:text-dark-text/50 mb-2">
               {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
               {hukamnama.entry.scripture} · Ang {hukamnama.ang}
@@ -390,14 +495,14 @@ export default function Home() {
       >
         <IconSearch size={16} className="text-ink/35 dark:text-dark-text/35" />
         <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
-          Search Gurbani, first letters, transliteration, or meaning
+          {homeCopy.searchPlaceholder}
         </span>
       </button>
 
       <section className="section-shell p-4 mb-5 animate-slide-up stagger-2">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">Today&apos;s Path</p>
+            <p className="eyebrow">{homeCopy.todaysPath}</p>
             <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
               {nextStep.title}
             </p>
@@ -408,16 +513,16 @@ export default function Home() {
           <button
             onClick={handleShareProgress}
             className="min-h-[40px] min-w-[40px] rounded-full section-shell-quiet flex items-center justify-center text-gold dark:text-gold-light"
-            aria-label="Share progress"
+            aria-label={homeCopy.shareProgress}
           >
-            {showCopied ? <span className="font-sans text-[10px]">Copied</span> : <IconShare size={16} />}
+            {showCopied ? <span className="font-sans text-[10px]">{commonCopy.copied}</span> : <IconShare size={16} />}
           </button>
         </div>
         <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-4">
           <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${(completedDailyCount / 3) * 100}%` }} />
         </div>
         <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-2">
-          {completedDailyCount} of 3 core actions done
+          {completedDailyCount} / 3 {homeCopy.coreActionsDone}
         </p>
         <button
           onClick={nextStep.onAction}
@@ -433,7 +538,7 @@ export default function Home() {
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="eyebrow">Read</p>
+                <p className="eyebrow">{homeCopy.read}</p>
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
                   {readAction.title}
                 </p>
@@ -451,12 +556,12 @@ export default function Home() {
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="eyebrow">Grow</p>
+                <p className="eyebrow">{homeCopy.grow}</p>
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
-                  {activeJourney ? activeJourney.title : `${LEARNING_LEVEL_LABELS[learningLevel]} track`}
+                  {activeJourney ? activeJourney.title : `${learningLevelLabels[learningLevel]} ${homeMessages.trackSuffix}`}
                 </p>
                 <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
-                  {nextJourneyStep ? nextJourneyStep.title : 'Keep one guided step active so progress compounds over time.'}
+                  {nextJourneyStep ? nextJourneyStep.title : homeCopy.keepGrowthActive}
                 </p>
               </div>
               {isDailyActionDone('grow') ? <IconCheck size={16} className="text-saffron dark:text-saffron-light" /> : null}
@@ -469,12 +574,12 @@ export default function Home() {
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="eyebrow">Review</p>
+                <p className="eyebrow">{homeCopy.review}</p>
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
-                  {dueReview.length > 0 ? `${dueReview.length} item${dueReview.length === 1 ? '' : 's'} due` : 'Quick review pass'}
+                  {dueReview.length > 0 ? homeMessages.reviewDue(dueReview.length) : 'Quick review pass'}
                 </p>
                 <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
-                  Saved words and full phrases stay ready for short daily revision.
+                  {homeCopy.reviewReady}
                 </p>
               </div>
               {isDailyActionDone('review') ? <IconCheck size={16} className="text-saffron dark:text-saffron-light" /> : null}
@@ -489,9 +594,9 @@ export default function Home() {
           className="w-full flex items-center justify-between gap-3 min-h-[44px]"
         >
           <div className="text-left">
-            <p className="eyebrow">Nitnem Progress</p>
+            <p className="eyebrow">{homeCopy.nitnemProgress}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {nitnemDone} of {NITNEM_BANIS.length} daily banis complete
+              {nitnemDone} / {NITNEM_BANIS.length} {homeCopy.dailyBanisComplete}
             </p>
           </div>
           <span className="text-gold dark:text-gold-light">
@@ -547,39 +652,39 @@ export default function Home() {
       <section className="section-shell p-4 mb-5 animate-slide-up stagger-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">Saved</p>
-            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">Keep what matters.</h3>
+            <p className="eyebrow">{homeCopy.savedEyebrow}</p>
+            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">{homeCopy.savedTitle}</h3>
           </div>
           <button
             onClick={() => navigate('/library')}
             className="font-sans text-sm text-gold dark:text-gold-light flex items-center gap-1"
           >
-            Open Saved <IconArrowRight size={14} />
+            {homeCopy.openSaved} <IconArrowRight size={14} />
           </button>
         </div>
         <div className="grid grid-cols-3 gap-2 mt-4">
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedWords}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Words</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.words}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedPhrases}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Phrases</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.phrases}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{progressItems.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">In Progress</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.inProgress}</p>
           </div>
         </div>
       </section>
 
       {(progressItems.length > 0 || todaysPick || recentlyStudied.length > 0) && (
         <section className="section-shell-quiet p-4 animate-slide-up stagger-5">
-          <p className="eyebrow mb-4">Discovery & History</p>
+          <p className="eyebrow mb-4">{homeCopy.discoveryHistory}</p>
 
           {progressItems.length > 0 && (
             <div className="mb-4">
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">In-progress banis</p>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">{homeCopy.inProgressBanis}</p>
               <div className="space-y-2">
                 {progressItems.slice(0, 3).map(p => (
                   <button
@@ -602,7 +707,7 @@ export default function Home() {
 
           <div className="space-y-3">
             <div>
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">Today’s pick</p>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">{homeCopy.todaysPick}</p>
               {pickLoading ? (
                 <div className="section-shell px-4 py-4 animate-pulse">
                   <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-20 mb-3" />
@@ -614,7 +719,7 @@ export default function Home() {
                   className="w-full section-shell px-4 py-4 text-left"
                 >
                   <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                    Today&apos;s Pick · {todaysPickPreview.scripture} · Ang {todaysPickPreview.ang}
+                      {homeCopy.todaysPick} · {todaysPickPreview.scripture} · Ang {todaysPickPreview.ang}
                   </p>
                   <p
                     lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
@@ -629,13 +734,13 @@ export default function Home() {
                   )}
                 </button>
               ) : (
-                <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">No verse available today.</p>
+                <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">{homeCopy.noVerseAvailable}</p>
               )}
             </div>
 
             {recentlyStudied.length > 0 && (
               <div>
-                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">Recently studied</p>
+                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text mb-2">{homeCopy.recentlyStudied}</p>
                 <div className="flex gap-3 overflow-x-auto pb-1">
                   {recentlyStudied.map(entry => (
                     <button
