@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom'
 import { IconHome, IconLibrary, IconBanis, IconMore, IconStar } from './icons'
-
-const tabs = [
-  { to: '/', label: 'Home', Icon: IconHome },
-  { to: '/banis', label: 'Read', Icon: IconBanis },
-  { to: '/learn', label: 'Learn', Icon: IconStar },
-  { to: '/library', label: 'Saved', Icon: IconLibrary },
-  { to: '/more', label: 'More', Icon: IconMore },
-]
+import { useLocaleStore } from '../store/locale'
+import { getUiCopy } from '../utils/uiCopy'
 
 export default function NavBar() {
+  const locale = useLocaleStore(s => s.locale)
+  const copy = getUiCopy(locale)
+  const tabs = [
+    { to: '/', label: copy.nav.home, Icon: IconHome },
+    { to: '/banis', label: copy.nav.read, Icon: IconBanis },
+    { to: '/learn', label: copy.nav.learn, Icon: IconStar },
+    { to: '/library', label: copy.nav.saved, Icon: IconLibrary },
+    { to: '/more', label: copy.nav.more, Icon: IconMore },
+  ]
+
   return (
     <nav className="fixed bottom-3 left-3 right-3 max-w-md mx-auto section-shell-quiet px-2 py-2 flex justify-around items-center z-50 transition-colors duration-300">
       {tabs.map(tab => (

@@ -8,12 +8,13 @@ import { useHukamnama } from '../hooks/useHukamnama'
 import { useMultiShabadWordData } from '../hooks/useMultiShabadWordData'
 import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import type { ScriptureEntry, ScriptureLine } from '../types'
 import { LINE_SPACING_LABELS, MEANING_LANGUAGE_LABELS, SCRIPT_MODE_LABELS, TEXT_ALIGNMENT_LABELS } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
-import { getEntryMeaningText, getLineMeaningText } from '../utils/readerDisplay'
-import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled } from '../components/icons'
+import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
@@ -30,6 +31,27 @@ function parseShabadId(entry: ScriptureEntry): number | null {
     return Number.isFinite(id) ? id : null
   }
   return null
+}
+
+function sliceEntryToLines(entry: ScriptureEntry, lines: ScriptureLine[]): ScriptureEntry {
+  const nextAng = lines.find(line => line.ang)?.ang ?? entry.ang
+
+  return {
+    ...entry,
+    ang: nextAng,
+    lines,
+    verseIds: lines.map(line => line.verseId).filter(Boolean),
+    gurmukhi: lines.map(line => line.gurmukhi).join(' '),
+    transliteration: lines.map(line => line.transliteration).join(' '),
+    translation_en: lines.map(line => line.translation_en).join(' '),
+    translation_hi: lines.map(line => line.translation_hi).join(' '),
+    translation_pa: lines.map(line => line.translation_pa).join(' '),
+  }
+}
+
+function buildReaderTitle(line: string): string {
+  const compact = line.replace(/\s+/g, ' ').trim()
+  return compact.length > 44 ? `${compact.slice(0, 44).trim()}…` : compact
 }
 
 export default function Study() {
@@ -81,16 +103,16 @@ export default function Study() {
     return baniResult.entries.filter(entry => entry.ang === targetAng)
   }, [angParam, baniResult.entries, isBaniDbMode])
 
+  const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
   const exactEntries = useMemo(() => {
-    if (!isExactShabadMode) return []
-    if (!verseIdParam) return shabadResult.entries
+    if (!isExactShabadMode || !fullShabadEntry) return []
+    if (!verseIdParam) return [fullShabadEntry]
 
-    const matchedEntries = shabadResult.entries.filter(entry =>
-      entry.verseIds?.includes(verseIdParam)
-    )
+    const matchedLines = fullShabadEntry.lines?.filter(line => line.verseId === verseIdParam) ?? []
+    if (matchedLines.length === 0) return [fullShabadEntry]
 
-    return matchedEntries.length > 0 ? matchedEntries : shabadResult.entries
-  }, [isExactShabadMode, shabadResult.entries, verseIdParam])
+    return [sliceEntryToLines(fullShabadEntry, matchedLines)]
+  }, [fullShabadEntry, isExactShabadMode, verseIdParam])
 
   const entries = useMemo(() => {
     if (isHukamnamaMode) return hukamnamaResult.data ? [hukamnamaResult.data.entry] : []
@@ -140,6 +162,7 @@ export default function Study() {
   }, [currentAng, currentSource, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
+  const { addFavorite, removeFavorite, isFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
@@ -180,6 +203,14 @@ export default function Study() {
   const isBookmarked = currentAng
     ? hasBookmark(currentSource, currentAng)
     : false
+  const currentFavorite = currentEntry && currentAng
+    ? favorites.find(favorite =>
+      favorite.source === currentSource
+      && favorite.ang === currentAng
+      && favorite.shabadId === (currentEntry.shabadId ?? undefined)
+    ) ?? null
+    : null
+  const isFavorited = currentAng ? isFavorite(currentSource, currentAng, currentEntry?.shabadId) : false
 
   const handleSaveBookmark = () => {
     if (!currentEntry || !currentAng) return
@@ -194,6 +225,23 @@ export default function Study() {
     })
     setShowBookmarkForm(false)
     setBookmarkText('')
+  }
+
+  const toggleFavorite = () => {
+    if (!currentEntry || !currentAng) return
+    if (currentFavorite) {
+      removeFavorite(currentFavorite.id)
+      return
+    }
+    addFavorite({
+      title: baniName
+        ? `${baniName} · Ang ${currentAng}`
+        : `${currentEntry.scripture} · Ang ${currentAng}`,
+      source: currentSource,
+      ang: currentAng,
+      shabadId: currentEntry.shabadId,
+      type: currentEntry.shabadId ? 'shabad' : 'ang',
+    })
   }
 
   const buildLineText = (entry: ScriptureEntry, line: ScriptureLine) => [
@@ -263,6 +311,21 @@ export default function Study() {
     hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
   const isPhraseSaved = (line: ScriptureLine) =>
     vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
+  const isExactSearchResult = isExactShabadMode && verseIdParam !== null
+  const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
+    ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
+    ?? currentEntry?.gurmukhi
+    ?? ''
+  const readerTitleUsesScript = Boolean(titleLine) && !baniName && !isHukamnamaMode
+  const readerTitle = readerTitleUsesScript
+    ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
+    : (baniName ?? (isHukamnamaMode ? 'Hukamnama' : currentEntry?.scripture ?? 'Reader'))
+  const readerMeta = [
+    currentEntry?.scripture,
+    currentAng ? `${currentEntry?.scripture === 'SGGS' || currentEntry?.scripture === 'DG' ? 'Ang' : 'Page'} ${currentAng}` : null,
+    currentEntry?.raag,
+    currentEntry?.writer,
+  ].filter(Boolean).join(' · ')
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
   const navMinAng = isBaniDbMode
@@ -340,6 +403,13 @@ export default function Study() {
             {showCopied ? <span className="font-sans text-xs text-saffron dark:text-saffron-light">Copied!</span> : <IconShare size={20} />}
           </button>
           <button
+            onClick={toggleFavorite}
+            aria-label="Favorite"
+            className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isFavorited ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
+          >
+            {isFavorited ? <IconHeartFilled size={20} /> : <IconHeart size={20} />}
+          </button>
+          <button
             onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
             aria-label="Bookmark"
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
@@ -351,9 +421,21 @@ export default function Study() {
 
       <div className="hero-surface p-5 mb-4">
         <p className="eyebrow mb-2">Understand</p>
-        <h1 className="font-display text-4xl leading-none text-ink dark:text-dark-text">
-          {baniName ?? (isHukamnamaMode ? 'Hukamnama' : currentEntry?.scripture ?? 'Reader')}
+        <h1
+          lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
+          className={`leading-tight text-ink dark:text-dark-text ${
+            readerTitleUsesScript
+              ? `${scriptMode === 'devanagari' ? 'font-sans text-[2rem]' : 'font-gurmukhi text-[2.3rem]'}`
+              : 'font-display text-4xl'
+          }`}
+        >
+          {readerTitle}
         </h1>
+        {readerMeta ? (
+          <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light mt-3">
+            {readerMeta}
+          </p>
+        ) : null}
         <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2">
           Comfortable reading first. Controls stay close, the text stays primary, and audio remains clearly marked until it is real.
         </p>
@@ -539,13 +621,13 @@ export default function Study() {
         </div>
       )}
 
-      {isExactShabadMode && currentEntry && (
+      {isExactSearchResult && currentEntry && (
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">Exact Search Result</p>
           <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
             {currentEntry.scripture} · Ang {currentEntry.ang}{verseIdParam ? ` · Verse ${verseIdParam}` : ''}
           </p>
-          {verseIdParam && shabadResult.entries.length > entries.length && (
+          {verseIdParam && fullShabadEntry && (currentEntry.lines?.length ?? 0) < (fullShabadEntry.lines?.length ?? 0) && (
             <button
               onClick={() => navigate(`/study?shabadId=${shabadIdParam}`)}
               className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
 import { useLanguageStore } from '../store/language'
+import { useLocaleStore } from '../store/locale'
 import { useMusicStore } from '../store/music'
 import { useOnboardingStore } from '../store/onboarding'
 
@@ -20,7 +21,10 @@ beforeEach(() => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
   })
+  useLocaleStore.setState({ locale: 'en' })
   useMusicStore.setState({
     selectedSoundId: null,
     isPlaying: false,
@@ -66,6 +70,18 @@ test('persists selected learning level', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
   expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
+})
+
+test('persists locale, audience, and learning goal', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  fireEvent.click(screen.getAllByRole('button', { name: /^Punjabi$/i })[1])
+  fireEvent.click(screen.getByRole('button', { name: /^Teen$/i }))
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+
+  expect(useLocaleStore.getState().locale).toBe('pa')
+  expect(useOnboardingStore.getState().audience).toBe('teen')
+  expect(useOnboardingStore.getState().learningGoal).toBe('understand')
 })
 
 test('toggles ambient playback without clearing the selected sound', () => {

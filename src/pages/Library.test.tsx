@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
+import { useProgressStore } from '../store/progress'
 
 describe('Library bookmarks section', () => {
   beforeEach(() => {
@@ -52,6 +53,7 @@ describe('Library bookmarks section', () => {
 describe('Library removed sections', () => {
   beforeEach(() => {
     useBookmarksStore.setState({ bookmarks: [] })
+    useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
   })
 
   it('does not show Sarbloh Granth section', () => {
@@ -82,5 +84,14 @@ describe('Library removed sections', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
     expect(screen.queryByText(/Panthic Sources/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Bhai Nand Lal/i)).not.toBeInTheDocument()
+  })
+
+  it('shows a readable resume reference instead of the raw internal session id', () => {
+    useProgressStore.setState({
+      currentSession: { scriptureId: 'G-256', lastCardIndex: 0 },
+    })
+    render(<MemoryRouter><Library /></MemoryRouter>)
+    expect(screen.getByText(/Sri Guru Granth Sahib Ji · Ang 256/i)).toBeInTheDocument()
+    expect(screen.queryByText(/^G-256$/i)).not.toBeInTheDocument()
   })
 })

@@ -203,6 +203,21 @@ describe('Study renders all shabads on an ang', () => {
 })
 
 describe('Study exact shabad mode', () => {
+  it('renders a direct shabad open as one reader card with multiple verse blocks', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.queryByText('Exact Search Result')).not.toBeInTheDocument()
+      expect(screen.getAllByTestId('study-card')).toHaveLength(1)
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
+      expect(screen.getByRole('heading', { level: 1 }).textContent).not.toBe('SGGS')
+    })
+  })
+
   it('renders a focused exact search result view', async () => {
     render(
       <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
