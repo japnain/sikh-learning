@@ -1,4 +1,6 @@
 import type { Word } from '../types'
+import { getWordFamilyForWord } from '../data/wordFamilies'
+import useMilestoneCheck from '../hooks/useMilestoneCheck'
 import { useLanguageStore } from '../store/language'
 import { useVocabStore } from '../store/vocab'
 import { renderScriptText } from '../utils/readerDisplay'
@@ -30,7 +32,9 @@ export default function WordPopover({
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const { vocab, addWord } = useVocabStore()
+  const checkMilestones = useMilestoneCheck()
   const isSaved = vocab.some(v => v.word === word.gurmukhi)
+  const wordFamily = getWordFamilyForWord(word.gurmukhi)
   const { entries, loading, error, normalizedWord } = useMahanKosh(word.gurmukhi)
   const visibleEntries = entries.slice(0, 3)
   const fullLookupUrl = visibleEntries[0]?.sourceUrl ?? buildMahanKoshUrl(normalizedWord || word.gurmukhi)
@@ -56,6 +60,7 @@ export default function WordPopover({
         line,
       },
     })
+    checkMilestones()
   }
 
   return (
@@ -79,6 +84,20 @@ export default function WordPopover({
           {meaningLanguage === 'pa' && word.meaning_pa && (
             <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4 leading-relaxed">{word.meaning_pa}</p>
           )}
+
+          {wordFamily ? (
+            <section className="mt-5 rounded-[24px] border border-sand/15 dark:border-gold/10 bg-parchment-low/80 dark:bg-dark-surface/70 px-4 py-4">
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                Word Family
+              </p>
+              <p className="mt-2 font-sans text-sm text-ink dark:text-dark-text">
+                This word is in the <span lang="pa-Guru" className="font-gurmukhi">{wordFamily.root}</span> family.
+              </p>
+              <p className="mt-2 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+                Root meaning: {wordFamily.rootMeaning}
+              </p>
+            </section>
+          ) : null}
 
           <section className="mt-5 rounded-[24px] border border-sand/15 dark:border-gold/10 bg-parchment-low/80 dark:bg-dark-surface/70 px-4 py-4">
             <div className="flex items-center justify-between gap-3 mb-3">

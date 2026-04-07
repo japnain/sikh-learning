@@ -21,6 +21,20 @@ beforeEach(() => {
     masteredSymbols: [],
     completedLessons: [],
     practiceStreak: 0,
+    streakCalendar: {},
+    longestStreak: 0,
+    earnedMilestoneIds: [],
+    pendingMilestoneId: null,
+    dailyLesson: {
+      date: '2026-04-07',
+      steps: [
+        { id: 'one', kind: 'module', title: 'Core Letters', estimatedSeconds: 120, moduleId: 'start-core-letters' },
+        { id: 'two', kind: 'quick-connect', title: 'Quick connect', estimatedSeconds: 90 },
+      ],
+      completedStepIds: ['one'],
+      generatedAt: '2026-04-07T00:00:00',
+      totalEstimatedSeconds: 210,
+    },
     lastPracticedOn: undefined,
     totalPracticeSessions: 0,
     skills: {},
@@ -28,6 +42,20 @@ beforeEach(() => {
     assessmentHistory: [],
     journeys: {},
     activeJourneyId: null,
+    activeProgramId: 'start-reading',
+    programProgress: {
+      'start-reading': { currentModuleId: null, completedModuleIds: [] },
+      'build-fluency': { currentModuleId: null, completedModuleIds: [] },
+      'understand-gurbani': { currentModuleId: null, completedModuleIds: [] },
+      'deep-study': { currentModuleId: null, completedModuleIds: [] },
+    },
+    queuedReviewModuleIds: [],
+    placementResult: null,
+    lastLearnActivity: null,
+    grammarNotesSeen: [],
+    masteredWordFamilyIds: [],
+    themePathProgress: {},
+    completedThemePathIds: [],
   })
   useLocaleStore.setState({ locale: 'en' })
   useLanguageStore.setState({
@@ -73,6 +101,7 @@ test('shows today\'s pick after load', async () => {
 test('shows the new daily actions', () => {
   renderHome()
   expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
+  expect(screen.getByText(/1 of 2 steps done/i)).toBeInTheDocument()
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /grow/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByRole('button', { name: /review/i }).length).toBeGreaterThan(0)

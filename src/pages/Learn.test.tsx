@@ -44,6 +44,11 @@ beforeEach(() => {
     masteredSymbols: [],
     completedLessons: [],
     practiceStreak: 0,
+    streakCalendar: {},
+    longestStreak: 0,
+    earnedMilestoneIds: [],
+    pendingMilestoneId: null,
+    dailyLesson: null,
     lastPracticedOn: undefined,
     totalPracticeSessions: 0,
     skills: {},
@@ -56,6 +61,10 @@ beforeEach(() => {
     queuedReviewModuleIds: [],
     placementResult: null,
     lastLearnActivity: null,
+    grammarNotesSeen: [],
+    masteredWordFamilyIds: [],
+    themePathProgress: {},
+    completedThemePathIds: [],
   })
 })
 
@@ -65,8 +74,10 @@ test('renders the placement-first Learn structure', () => {
   expect(screen.getByText(/Placement/i)).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Set my default path/i })).toBeInTheDocument()
   expect(screen.getByText(/^Continue$/i)).toBeInTheDocument()
+  expect(screen.getByText(/Today's Lesson/i)).toBeInTheDocument()
   expect(screen.getByText(/^Programs$/i)).toBeInTheDocument()
   expect(screen.getByText(/^Applied Practice$/i)).toBeInTheDocument()
+  expect(screen.getByText(/^Paths$/i)).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Program 1 Start Reading/i })).toBeInTheDocument()
 })
 
@@ -140,4 +151,59 @@ test('learn soundscapes start collapsed and can be expanded', () => {
 
   fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
   expect(screen.getByRole('button', { name: /Settle/i })).toBeInTheDocument()
+})
+
+test('shows a milestone celebration when one is pending', () => {
+  useLearningStore.setState({
+    pendingMilestoneId: 'first-module-complete',
+    earnedMilestoneIds: ['first-module-complete'],
+  })
+
+  render(<MemoryRouter><Learn /></MemoryRouter>)
+
+  expect(screen.getByRole('dialog', { name: /first module complete earned/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Waheguru/i })).toBeInTheDocument()
+})
+
+test('renders grammar modules with examples', () => {
+  useLearningStore.setState({
+    placementResult: createPlacementResult({ programId: 'understand-gurbani' }),
+    activeProgramId: 'understand-gurbani',
+    programProgress: {
+      ...createProgramProgress(),
+      'understand-gurbani': { currentModuleId: 'understand-nir-prefix', completedModuleIds: [] },
+    },
+  })
+
+  render(<MemoryRouter><Learn /></MemoryRouter>)
+
+  expect(screen.getAllByText(/The ਨਿਰ- Prefix/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/ਨਿਰਭਉ/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Mark learned/i })).toBeInTheDocument()
+})
+
+test('renders word-family modules and saves family members to vocab', () => {
+  useLearningStore.setState({
+    placementResult: createPlacementResult({ programId: 'understand-gurbani' }),
+    activeProgramId: 'understand-gurbani',
+    programProgress: {
+      ...createProgramProgress(),
+      'understand-gurbani': { currentModuleId: 'understand-naam-root', completedModuleIds: [] },
+    },
+  })
+
+  render(<MemoryRouter><Learn /></MemoryRouter>)
+
+  expect(screen.getAllByText(/The ਨਾਮ Root Family/i).length).toBeGreaterThan(0)
+  fireEvent.click(screen.getAllByRole('button', { name: /^Save$/i })[0]!)
+
+  expect(useVocabStore.getState().vocab.some(entry => entry.word === 'ਨਾਮੁ')).toBe(true)
+})
+
+test('starts a theme path and stores its progress', () => {
+  render(<MemoryRouter><Learn /></MemoryRouter>)
+
+  fireEvent.click(screen.getAllByRole('button', { name: /^Start$/i })[0]!)
+
+  expect(Object.keys(useLearningStore.getState().themePathProgress).length).toBeGreaterThan(0)
 })
