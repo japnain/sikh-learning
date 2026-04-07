@@ -131,6 +131,7 @@ export const MOCK_SEARCH_RESPONSE = {
 
 export const MOCK_BANIS_INDEX = [
   { ID: 2, gurmukhiUni: 'ਜਪੁਜੀ ਸਾਹਿਬ', transliterations: { english: 'japujee saahib' } },
+  { ID: 24, gurmukhiUni: 'ਅਰਦਾਸ', transliterations: { english: 'aradhaas' } },
   { ID: 21, gurmukhiUni: 'ਰਹਰਾਸਿ ਸਾਹਿਬ', transliterations: { english: 'raharaas saahib' } },
   { ID: 90, gurmukhiUni: 'ਆਸਾ ਦੀ ਵਾਰ', transliterations: { english: 'aasaa dhee vaar' } },
   { ID: 33, gurmukhiUni: 'ਬਾਵਨ ਅਖਰੀ', transliterations: { english: 'baavan akharee' } },
@@ -170,6 +171,45 @@ export const MOCK_BANI_RESPONSE = {
         pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
       },
       pageNo: 2,
+      source: { id: 'G' },
+    },
+  ],
+}
+
+export const MOCK_ARDAAS_BANI_RESPONSE = {
+  verses: [
+    {
+      verseId: 2401,
+      shabadId: 24,
+      verse: { unicode: 'ਏਕ ਓਅੰਕਾਰ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥' },
+      transliteration: { english: 'ek oa(n)kaar vaahiguroo jee kee fateh ||' },
+      translation: {
+        en: {
+          bdb: 'One Universal Creator. Victory belongs to Waheguru.',
+          ms: 'The One Divine. Victory belongs to Waheguru.',
+          ssk: 'One Universal Creator. Victory belongs to Waheguru.',
+        },
+        hi: { ss: 'एक ओअंकार। वाहेगुरु जी की फतेह।' },
+        pu: { ss: { unicode: 'ਇੱਕ ਓਅੰਕਾਰ। ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ।' } },
+      },
+      pageNo: 1,
+      source: { id: 'G' },
+    },
+    {
+      verseId: 2402,
+      shabadId: 24,
+      verse: { unicode: 'ਸ੍ਰੀ ਭਗੌਤੀ ਜੀ ਸਹਾਇ ॥' },
+      transliteration: { english: 'sree bhagautee jee sahaaei ||' },
+      translation: {
+        en: {
+          bdb: 'May the Divine Power help us.',
+          ms: 'May the Divine Power assist us.',
+          ssk: 'May the Divine Power help us.',
+        },
+        hi: { ss: 'श्री भगौती जी सहायता करें।' },
+        pu: { ss: { unicode: 'ਸ੍ਰੀ ਭਗੌਤੀ ਜੀ ਸਹਾਇ ਹੋਣ।' } },
+      },
+      pageNo: 1,
       source: { id: 'G' },
     },
   ],
@@ -398,6 +438,7 @@ export const handlers = [
   http.get('https://api.banidb.com/v2/banis/:baniId', ({ params }) => {
     const { baniId } = params as { baniId: string }
     if (baniId === '21') return HttpResponse.json(MOCK_REHRAS_BANI_RESPONSE)
+    if (baniId === '24') return HttpResponse.json(MOCK_ARDAAS_BANI_RESPONSE)
     return HttpResponse.json(MOCK_BANI_RESPONSE)
   }),
 

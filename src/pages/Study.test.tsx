@@ -1,15 +1,26 @@
-import { describe, it, test, expect, beforeEach } from 'vitest'
+import { describe, it, test, expect, beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
+import { useMusicStore } from '../store/music'
+import { useProgressStore } from '../store/progress'
+import { useReadingProgressStore } from '../store/readingProgress'
 import { useVocabStore } from '../store/vocab'
 
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
   useVocabStore.setState({ vocab: [] })
+  useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
+  useReadingProgressStore.setState({ progress: {} })
+  useMusicStore.setState({
+    selectedSoundId: null,
+    selectedPresetId: null,
+    isPlaying: false,
+    volume: 0.6,
+  })
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: false,
@@ -213,6 +224,103 @@ describe('Study renders all shabads on an ang', () => {
 
     expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
     expect(screen.queryByText('One Universal Creator God. The Name Is Truth.')).not.toBeInTheDocument()
+  })
+})
+
+describe('Study soundscapes and tracking', () => {
+  it('keeps compact soundscapes collapsed by default while retaining playback controls', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /expand soundscapes/i })).toBeInTheDocument()
+    })
+
+    expect(screen.queryByRole('button', { name: /Settle/i })).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /play soundscape/i }))
+    expect(useMusicStore.getState().selectedSoundId).toBe('mountain-stream')
+    expect(useMusicStore.getState().isPlaying).toBe(true)
+
+    fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
+    expect(screen.getByRole('button', { name: /Settle/i })).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
+    expect(useMusicStore.getState().selectedSoundId).toBe('mountain-stream')
+    expect(useMusicStore.getState().isPlaying).toBe(false)
+  })
+
+  it('credits streak once per day for standard Study reading routes', async () => {
+    const firstRender = render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-card')).toHaveLength(2)
+    })
+
+    expect(useProgressStore.getState().streak).toBe(1)
+    expect(useProgressStore.getState().currentSession).toEqual({ scriptureId: 'G-1', lastCardIndex: 0 })
+
+    firstRender.unmount()
+
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-card')).toHaveLength(2)
+    })
+
+    expect(useProgressStore.getState().streak).toBe(1)
+  })
+
+  it('excludes the Ardaas + Hukamnama flow from streaks, session resume, and reading progress', async () => {
+    const session = { scriptureId: 'G-256', lastCardIndex: 0 }
+    useProgressStore.setState({ streak: 2, currentSession: session, studied: [], reviewQueue: [], lastStudied: null })
+
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0)
+
+    render(
+      <MemoryRouter initialEntries={['/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    try {
+      await waitFor(() => {
+        expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
+      })
+
+      expect(useProgressStore.getState().streak).toBe(2)
+      expect(useProgressStore.getState().currentSession).toEqual(session)
+      expect(useReadingProgressStore.getState().progress).toEqual({})
+
+      fireEvent.click(screen.getByRole('button', { name: /take hukamnama/i }))
+
+      await waitFor(() => {
+        expect(screen.getByText('Hukamnama after Ardaas')).toBeInTheDocument()
+      })
+
+      expect(screen.getByText(/Randomly selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
+      expect(screen.getByText('Hukamnama begins here')).toBeInTheDocument()
+      expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
+      expect(screen.queryByText(/Go to source shabad/i)).not.toBeInTheDocument()
+      expect(screen.queryByText('Exact Search Result')).not.toBeInTheDocument()
+      expect(useProgressStore.getState().streak).toBe(2)
+      expect(useProgressStore.getState().currentSession).toEqual(session)
+      expect(useReadingProgressStore.getState().progress).toEqual({})
+    } finally {
+      randomSpy.mockRestore()
+    }
   })
 })
 

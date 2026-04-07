@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { FocusContext } from '../types'
-import { IconMusic, IconPause, IconPlay } from './icons'
+import { IconChevronDown, IconChevronUp, IconMusic, IconPause, IconPlay } from './icons'
 import {
   FOCUS_PRESETS,
   SOUND_LIBRARY_TARGETS,
@@ -53,102 +54,26 @@ export default function SoundscapeControls({
   const setVolume = useMusicStore(state => state.setVolume)
   const stopPlayback = useMusicStore(state => state.stopPlayback)
   const toggleSound = useMusicStore(state => state.toggleSound)
+  const [isExpanded, setIsExpanded] = useState(variant === 'full')
 
   const visibleSounds = SOUNDS.filter(sound => sound.recommendedContexts.includes(context))
   const selectedSound = SOUNDS.find(sound => sound.id === selectedSoundId) ?? null
+  const selectedPreset = FOCUS_PRESETS.find(preset => preset.id === selectedPresetId) ?? null
   const targetLibraryCount = Object.values(SOUND_LIBRARY_TARGETS).reduce((sum, count) => sum + count, 0)
+  const panelId = `soundscape-panel-${context}-${variant}`
 
-  if (variant === 'compact') {
-    return (
-      <section className="section-shell-quiet p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2">
-              <IconMusic size={14} className="text-gold dark:text-gold-light" />
-              <p className="eyebrow">Study Soundscapes</p>
-            </div>
-            <p className="mt-2 font-sans text-sm text-ink dark:text-dark-text">
-              {selectedSound
-                ? `${selectedSound.name} is ready for ${CONTEXT_LABELS[context].toLowerCase()}.`
-                : `Pick a quieter bed for ${CONTEXT_LABELS[context].toLowerCase()} without pulling focus away from Gurbani.`}
-            </p>
-          </div>
-          <Link to="/more" className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2">
-            Full library
-          </Link>
-        </div>
+  const summaryTitle = selectedSound?.name ?? (selectedPreset ? `${selectedPreset.name} preset ready` : 'Focus preset ready')
+  const summaryBody = selectedSound?.description
+    ?? selectedPreset?.description
+    ?? 'Choose a preset or an individual field recording below.'
 
-        <div className="mt-4 grid grid-cols-3 gap-2">
-          {FOCUS_PRESETS.map(preset => {
-            const selected = selectedPresetId === preset.id
-            return (
-              <button
-                key={preset.id}
-                type="button"
-                onClick={() => activatePreset(preset.id)}
-                className={`rounded-2xl border px-3 py-3 text-left min-h-[56px] ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
-                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
-                }`}
-              >
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em]">{preset.name}</p>
-                <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
-                  {preset.description}
-                </p>
-              </button>
-            )
-          })}
-        </div>
-
-        <div className="mt-4 rounded-[22px] border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                {selectedSound?.name ?? 'No sound selected'}
-              </p>
-              <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
-                {selectedSound?.description ?? `Current shipped library: ${SOUNDS.length}/${targetLibraryCount} approved slots.`}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                if (!selectedSoundId) {
-                  activatePreset('focus')
-                  return
-                }
-                if (isPlaying) {
-                  stopPlayback()
-                  return
-                }
-                playSelected()
-              }}
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white"
-              aria-label={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
-            >
-              {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}
-            </button>
-          </div>
-          <div className="mt-4 flex items-center gap-3">
-            <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">
-              Vol
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.05"
-              value={volume}
-              onChange={event => setVolume(Number(event.target.value))}
-              className="h-1 flex-1 accent-gold"
-              aria-label="Adjust soundscape volume"
-            />
-          </div>
-        </div>
-      </section>
-    )
-  }
+  const headerBody = variant === 'compact'
+    ? (
+        selectedSound
+          ? `${selectedSound.name} is ready for ${CONTEXT_LABELS[context].toLowerCase()}.`
+          : `Pick a quieter bed for ${CONTEXT_LABELS[context].toLowerCase()} without pulling focus away from Gurbani.`
+      )
+    : 'Natural ambient beds only. No melody, no vocals, no sharp transients, and no fake recitation overlap.'
 
   const groupedSounds = Object.entries(CATEGORY_LABELS).map(([category, label]) => ({
     category,
@@ -157,21 +82,63 @@ export default function SoundscapeControls({
     target: SOUND_LIBRARY_TARGETS[category as keyof typeof SOUND_LIBRARY_TARGETS],
   }))
 
-  return (
-    <section className="section-shell p-4">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="flex items-center gap-2">
-            <IconMusic size={14} className="text-gold dark:text-gold-light" />
-            <p className="eyebrow">Study Soundscapes</p>
-          </div>
-          <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">
-            Natural ambient beds only. No melody, no vocals, no sharp transients, and no fake recitation overlap.
-          </p>
-        </div>
-        <span className="chip-pill">{SOUNDS.length}/{targetLibraryCount} bundled</span>
+  const handlePlaybackToggle = () => {
+    if (!selectedSoundId) {
+      activatePreset('focus')
+      return
+    }
+
+    if (isPlaying) {
+      stopPlayback()
+      return
+    }
+
+    playSelected()
+  }
+
+  const details = variant === 'compact' ? (
+    <div id={panelId} hidden={!isExpanded}>
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        {FOCUS_PRESETS.map(preset => {
+          const selected = selectedPresetId === preset.id
+          return (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => activatePreset(preset.id)}
+              className={`rounded-2xl border px-3 py-3 text-left min-h-[56px] ${
+                selected
+                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                  : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+              }`}
+            >
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em]">{preset.name}</p>
+              <p className={`mt-1 font-sans text-[11px] leading-4 ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+                {preset.description}
+              </p>
+            </button>
+          )
+        })}
       </div>
 
+      <div className="mt-4 flex items-center gap-3">
+        <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">
+          Vol
+        </span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.05"
+          value={volume}
+          onChange={event => setVolume(Number(event.target.value))}
+          className="h-1 flex-1 accent-gold"
+          aria-label="Adjust soundscape volume"
+        />
+      </div>
+    </div>
+  ) : (
+    <div id={panelId} hidden={!isExpanded}>
       <div className="mt-4 grid grid-cols-3 gap-2">
         {FOCUS_PRESETS.map(preset => {
           const selected = selectedPresetId === preset.id
@@ -193,35 +160,6 @@ export default function SoundscapeControls({
             </button>
           )
         })}
-      </div>
-
-      <div className="mt-4 flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => {
-            if (!selectedSoundId) {
-              activatePreset('focus')
-              return
-            }
-            if (isPlaying) {
-              stopPlayback()
-              return
-            }
-            playSelected()
-          }}
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white"
-          aria-label={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
-        >
-          {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}
-        </button>
-        <div className="min-w-0 flex-1">
-          <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-            {selectedSound?.name ?? 'Focus preset ready'}
-          </p>
-          <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
-            {selectedSound?.description ?? 'Choose a preset or an individual field recording below.'}
-          </p>
-        </div>
       </div>
 
       <div className="mt-4 flex items-center gap-3">
@@ -288,6 +226,66 @@ export default function SoundscapeControls({
           )
         })}
       </div>
+    </div>
+  )
+
+  return (
+    <section className={variant === 'compact' ? 'section-shell-quiet p-4' : 'section-shell p-4'}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <IconMusic size={14} className="text-gold dark:text-gold-light" />
+            <p className="eyebrow">Study Soundscapes</p>
+          </div>
+          <p className={`mt-2 font-sans text-sm ${variant === 'compact' ? 'text-ink dark:text-dark-text' : 'text-ink/65 dark:text-dark-text/65'}`}>
+            {headerBody}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {variant === 'compact' ? (
+            <Link to="/more" className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2">
+              Full library
+            </Link>
+          ) : (
+            <span className="chip-pill">{SOUNDS.length}/{targetLibraryCount} bundled</span>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setIsExpanded(open => !open)}
+            aria-expanded={isExpanded}
+            aria-controls={panelId}
+            aria-label={isExpanded ? 'Collapse soundscapes' : 'Expand soundscapes'}
+            className="flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full border border-sand/15 bg-white/60 text-gold transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card/60 dark:text-gold-light"
+          >
+            {isExpanded ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-[22px] border border-sand/15 bg-white/70 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-card">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+              {summaryTitle}
+            </p>
+            <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+              {summaryBody}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handlePlaybackToggle}
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white"
+            aria-label={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
+          >
+            {isPlaying ? <IconPause size={14} /> : <IconPlay size={14} />}
+          </button>
+        </div>
+      </div>
+
+      {details}
     </section>
   )
 }

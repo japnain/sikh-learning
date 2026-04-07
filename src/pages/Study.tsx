@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { fetchAng, fetchShabad } from '../api/banidb'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useBani } from '../hooks/useBani'
@@ -25,6 +26,10 @@ type BaniSource = 'G' | 'D' | 'B' | 'A'
 
 const MAX_ANG: Record<string, number> = {
   G: 1430, D: 1428, B: 628, A: 1430,
+}
+
+function getRandomSggsAng(randomValue: number): number {
+  return Math.floor(randomValue * MAX_ANG.G) + 1
 }
 
 function parseShabadId(entry: ScriptureEntry): number | null {
@@ -58,6 +63,18 @@ function buildReaderTitle(line: string): string {
   return compact.length > 44 ? `${compact.slice(0, 44).trim()}…` : compact
 }
 
+function findFirstRenderableLine(entries: ScriptureEntry[]): ScriptureLine | null {
+  for (const entry of entries) {
+    for (const line of entry.lines ?? []) {
+      if (!line.isHeader && line.gurmukhi.trim()) {
+        return line
+      }
+    }
+  }
+
+  return null
+}
+
 export default function Study() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -80,6 +97,9 @@ export default function Study() {
   const verseIdParam = Number(searchParams.get('verseId')) || null
   const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
+  const flowParam = searchParams.get('flow')
+  const randomHukamnamaAngParam = Number(searchParams.get('randomHukamnamaAng')) || null
+  const highlightVerseIdParam = Number(searchParams.get('highlightVerseId')) || null
   const learnProgramParam = searchParams.get('learnProgram')
   const learnModuleParam = searchParams.get('learnModule')
 
@@ -94,9 +114,21 @@ export default function Study() {
   const isExactShabadMode = shabadIdParam !== null
   const isBaniDbMode = baniDbIdParam !== null
   const isHukamnamaMode = Boolean(hukamnamaDateParam)
+  const isArdaasHukamnamaFlow = flowParam === 'ardaas-hukamnama'
+  const isRandomHukamnamaMode =
+    isArdaasHukamnamaFlow
+    && isExactShabadMode
+    && randomHukamnamaAngParam !== null
+    && highlightVerseIdParam !== null
+  const isArdaasReaderFlow =
+    isArdaasHukamnamaFlow
+    && isBaniDbMode
+    && baniDbIdParam === 24
+    && !isRandomHukamnamaMode
   const isBaniRangeMode = baniName !== null && endAngParam !== null && source !== null && angParam !== null
   const isAngMode = source !== null && angParam !== null && !isExactShabadMode && !isBaniDbMode && !isHukamnamaMode
   const isApiMode = isAngMode || isExactShabadMode || isBaniDbMode || isHukamnamaMode
+  const shouldTrackProgress = !isArdaasHukamnamaFlow
   const learnModule = learnModuleParam ? LEARN_MODULE_BY_ID[learnModuleParam] : null
   const learnProgram = learnProgramParam
     ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
@@ -171,13 +203,14 @@ export default function Study() {
   const textAlign = useLanguageStore(s => s.textAlign)
   const setTextAlign = useLanguageStore(s => s.setTextAlign)
 
-  const { updateSession } = useProgressStore()
+  const updateSession = useProgressStore(state => state.updateSession)
+  const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
 
   useEffect(() => {
-    if (currentAng) {
+    if (shouldTrackProgress && currentAng) {
       updateSession({ scriptureId: `${currentSource}-${currentAng}`, lastCardIndex: 0 })
     }
-  }, [currentAng, currentSource, updateSession])
+  }, [currentAng, currentSource, shouldTrackProgress, updateSession])
 
   const { addBookmark, hasBookmark } = useBookmarksStore()
   const { addFavorite, removeFavorite, isFavorite, favorites } = useFavoritesStore()
@@ -186,13 +219,19 @@ export default function Study() {
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
   const [showCopied, setShowCopied] = useState(false)
+  const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
 
   useEffect(() => {
-    if (currentAng) {
+    if (shouldTrackProgress && currentAng) {
       recordAng(currentSource, currentAng)
     }
-  }, [currentAng, currentSource, recordAng])
+  }, [currentAng, currentSource, recordAng, shouldTrackProgress])
+
+  useEffect(() => {
+    if (!shouldTrackProgress || loading || error || entries.length === 0) return
+    recordSwipeToday()
+  }, [entries.length, error, loading, recordSwipeToday, shouldTrackProgress])
 
   const handleShare = async () => {
     if (!currentEntry) return
@@ -323,6 +362,35 @@ export default function Study() {
         line: line.gurmukhi,
       },
     })
+  }
+
+  const handleTakeHukamnama = async () => {
+    if (isTakingHukamnama) return
+
+    setIsTakingHukamnama(true)
+
+    try {
+      const randomAng = getRandomSggsAng(Math.random())
+      const angEntries = await fetchAng(randomAng, 'G')
+      const firstLine = findFirstRenderableLine(angEntries)
+
+      if (!firstLine?.shabadId || !firstLine.verseId) {
+        throw new Error('No Hukamnama verse found on selected ang')
+      }
+
+      const shabad = await fetchShabad(firstLine.shabadId)
+      if (!shabad) {
+        throw new Error('No Hukamnama shabad found for selected verse')
+      }
+
+      navigate(
+        `/study?shabadId=${firstLine.shabadId}&flow=ardaas-hukamnama&randomHukamnamaAng=${randomAng}&highlightVerseId=${firstLine.verseId}`
+      )
+    } catch {
+      navigate('/banis', { replace: true })
+    } finally {
+      setIsTakingHukamnama(false)
+    }
   }
 
   const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) =>
@@ -670,6 +738,20 @@ export default function Study() {
         </div>
       )}
 
+      {isRandomHukamnamaMode && currentEntry && randomHukamnamaAngParam && (
+        <div className="section-shell p-4 mb-4">
+          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">
+            Hukamnama after Ardaas
+          </p>
+          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+            Randomly selected from Sri Guru Granth Sahib Ji · Ang {randomHukamnamaAngParam}
+          </p>
+          <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
+            The highlighted verse is the first verse on this random ang.
+          </p>
+        </div>
+      )}
+
       {isExactSearchResult && currentEntry && (
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{studyCopy.exactSearchResult}</p>
@@ -706,6 +788,7 @@ export default function Study() {
               key={entry.id}
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
+              highlightVerseId={highlightVerseIdParam}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}
@@ -716,6 +799,23 @@ export default function Study() {
           )
         })}
       </div>
+
+      {isArdaasReaderFlow && (
+        <div className="section-shell p-4 mt-4">
+          <p className="eyebrow">Ardaas + Hukamnama</p>
+          <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">
+            After Ardaas, take a random Hukamnama from Sri Guru Granth Sahib Ji.
+          </p>
+          <button
+            type="button"
+            onClick={handleTakeHukamnama}
+            disabled={isTakingHukamnama}
+            className="mt-4 w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-70"
+          >
+            {isTakingHukamnama ? 'Taking Hukamnama...' : 'Take Hukamnama'}
+          </button>
+        </div>
+      )}
 
       {!isExactShabadMode && !isHukamnamaMode && currentAng && navMinAng !== null && navMaxAng !== null && (
         <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">

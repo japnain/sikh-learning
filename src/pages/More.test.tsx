@@ -107,3 +107,23 @@ test('pause button stops playback without clearing the selected sound', () => {
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(false)
 })
+
+test('full soundscape library collapses without clearing playback state', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(true)
+
+  fireEvent.click(screen.getByRole('button', { name: /collapse soundscapes/i }))
+  expect(screen.queryByRole('button', { name: /gentle rain/i })).not.toBeInTheDocument()
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(true)
+
+  fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(false)
+
+  fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
+  expect(screen.getByRole('button', { name: /gentle rain/i })).toBeInTheDocument()
+})

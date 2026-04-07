@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import Banis from './Banis'
+import Study from './Study'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
@@ -16,14 +17,14 @@ test('renders page heading', () => {
 test('renders the four main content sections', () => {
   renderBanis()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
-  expect(screen.getByText(/Sri Guru Granth Sahib Ji/i)).toBeInTheDocument()
+  expect(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).length).toBeGreaterThan(0)
   expect(screen.getByText(/Dasam Granth/i)).toBeInTheDocument()
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
 test('shows SGGS index items after expanding SGGS section', () => {
   renderBanis()
-  fireEvent.click(screen.getByText(/Sri Guru Granth Sahib Ji/i))
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
   expect(screen.getByText('Raag Sri')).toBeInTheDocument()
   expect(screen.getByText('Asa Ki Vaar')).toBeInTheDocument()
 })
@@ -35,6 +36,39 @@ test('loads Sundar Gutka groups and items', async () => {
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
   expect(screen.getByText('ਜਪੁਜੀ ਸਾਹਿਬ')).toBeInTheDocument()
+})
+
+test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other', async () => {
+  renderBanis()
+
+  expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
+  expect(
+    screen.getByText('Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.')
+  ).toBeInTheDocument()
+
+  fireEvent.click(screen.getByText(/Sundar Gutka/i))
+  await waitFor(() => expect(screen.getByText('Other')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Other'))
+
+  expect(screen.getByText('ਅਰਦਾਸ')).toBeInTheDocument()
+})
+
+test('featured Ardaas + Hukamnama card opens the devotional Study flow', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<Banis />} />
+        <Route path="/study" element={<Study />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole('button', { name: /Ardaas \+ Hukamnama/i }))
+
+  await waitFor(() => {
+    expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
+    expect(screen.getByText(/After Ardaas, take a random Hukamnama/i)).toBeInTheDocument()
+  })
 })
 
 test('loads Amrit Keertan into a focused chapter view', async () => {
