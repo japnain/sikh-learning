@@ -33,11 +33,11 @@ function getRandomSggsAng(randomValue: number): number {
 }
 
 function parseShabadId(entry: ScriptureEntry): number | null {
-  if (typeof entry.shabadId === 'number') return entry.shabadId
+  if (typeof entry.shabadId === 'number') return entry.shabadId > 0 ? entry.shabadId : null
   const parts = entry.id.split('-')
   if (parts.length === 3) {
     const id = Number(parts[2])
-    return Number.isFinite(id) ? id : null
+    return Number.isFinite(id) && id > 0 ? id : null
   }
   return null
 }
@@ -769,7 +769,7 @@ export default function Study() {
         </div>
       )}
 
-      {baniName && !isExactShabadMode && (
+      {baniName && !isExactShabadMode && !isBaniDbMode && (
         <div className="section-shell p-4 mb-4">
           <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">{baniName}</p>
           {isBaniRangeMode && (
@@ -817,7 +817,7 @@ export default function Study() {
         </div>
       )}
 
-      {!isExactShabadMode && !isHukamnamaMode && currentAng && navMinAng !== null && navMaxAng !== null && (
+      {!isExactShabadMode && !isHukamnamaMode && !isArdaasHukamnamaFlow && currentAng && navMinAng !== null && navMaxAng !== null && (
         <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
           <button
             onClick={() => navTo(currentAng - 1)}
