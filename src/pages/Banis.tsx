@@ -529,6 +529,27 @@ export default function Banis() {
         )}
       </div>
 
+      <button
+        type="button"
+        onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
+        className="hero-surface mb-4 w-full p-5 text-left active:scale-[0.99] transition-transform duration-150"
+      >
+        <p className="eyebrow">Featured Flow</p>
+        <div className="mt-3 flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">
+              Ardaas + Hukamnama
+            </h2>
+            <p className="mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+              Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.
+            </p>
+          </div>
+          <span className="mt-1 shrink-0 text-gold dark:text-gold-light">
+            <IconArrowRight size={18} />
+          </span>
+        </div>
+      </button>
+
       <div className="mb-4">
         <button
           onClick={() => toggle('sundar-gutka')}

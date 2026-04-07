@@ -131,3 +131,13 @@ test('starts an applied practice journey for the active program', () => {
 
   expect(useLearningStore.getState().activeJourneyId).toBe('journey-japji-opening')
 })
+
+test('learn soundscapes start collapsed and can be expanded', () => {
+  render(<MemoryRouter><Learn /></MemoryRouter>)
+
+  expect(screen.getByRole('button', { name: /expand soundscapes/i })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /Settle/i })).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
+  expect(screen.getByRole('button', { name: /Settle/i })).toBeInTheDocument()
+})
