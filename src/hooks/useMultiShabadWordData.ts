@@ -10,7 +10,7 @@ export function useMultiShabadWordData(shabadIds: (number | null)[]) {
   const prevKeyRef = useRef('')
 
   useEffect(() => {
-    const validIds = shabadIds.filter((id): id is number => id !== null)
+    const validIds = shabadIds.filter((id): id is number => typeof id === 'number' && id > 0)
     const key = validIds.join(',')
     if (key === prevKeyRef.current) return
     prevKeyRef.current = key
