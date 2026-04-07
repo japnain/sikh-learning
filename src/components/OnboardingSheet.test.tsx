@@ -11,7 +11,7 @@ import type {
 } from '../types'
 import OnboardingSheet from './OnboardingSheet'
 
-function Harness() {
+function Harness({ presentation = 'first-run' as const }: { presentation?: 'first-run' | 'overlay' }) {
   const [scriptMode, setScriptMode] = useState<ScriptMode>('gurmukhi')
   const [showTransliteration, setShowTransliteration] = useState(false)
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguage>('en')
@@ -24,7 +24,7 @@ function Harness() {
   return (
     <>
       <OnboardingSheet
-        presentation="first-run"
+        presentation={presentation}
         locale="en"
         scriptMode={scriptMode}
         setScriptMode={setScriptMode}
@@ -41,6 +41,7 @@ function Harness() {
         learningGoal={learningGoal}
         setLearningGoal={setLearningGoal}
         onComplete={onComplete}
+        onDismiss={presentation === 'overlay' ? vi.fn() : undefined}
       />
       <pre data-testid="state">
         {JSON.stringify({
@@ -87,4 +88,26 @@ test('quiet preset keeps the preview text-first', () => {
   expect(screen.queryByText(/One Universal Creator/i)).not.toBeInTheDocument()
   expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
+})
+
+test('first-run onboarding does not lock document scrolling', () => {
+  render(<Harness presentation="first-run" />)
+
+  expect(document.body.style.overflow).toBe('')
+  expect(document.body.style.overscrollBehavior).toBe('')
+  expect(document.documentElement.style.overflow).toBe('')
+})
+
+test('overlay onboarding still locks document scrolling and restores it on unmount', () => {
+  const { unmount } = render(<Harness presentation="overlay" />)
+
+  expect(document.body.style.overflow).toBe('hidden')
+  expect(document.body.style.overscrollBehavior).toBe('none')
+  expect(document.documentElement.style.overflow).toBe('hidden')
+
+  unmount()
+
+  expect(document.body.style.overflow).toBe('')
+  expect(document.body.style.overscrollBehavior).toBe('')
+  expect(document.documentElement.style.overflow).toBe('')
 })

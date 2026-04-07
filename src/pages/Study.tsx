@@ -789,6 +789,7 @@ export default function Study() {
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
               highlightVerseId={highlightVerseIdParam}
+              hideMainLines={isArdaasReaderFlow}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}

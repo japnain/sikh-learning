@@ -299,6 +299,8 @@ describe('Study soundscapes and tracking', () => {
         expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
       })
 
+      expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
+      expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
       expect(screen.queryByText(/SGGS · Ang 119/i)).not.toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 118/i })).not.toBeInTheDocument()
       expect(screen.queryByRole('button', { name: /Ang 120/i })).not.toBeInTheDocument()
