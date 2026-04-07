@@ -43,6 +43,7 @@ beforeEach(() => {
   })
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
+    presentationMode: 'overlay',
     learningLevel: 'beginner',
     audience: 'adult',
     learningGoal: 'read',
@@ -137,8 +138,9 @@ test('shows dark mode toggle', () => {
 test('does not embed onboarding inside the home page anymore', () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: false,
+    presentationMode: 'first-run',
     learningLevel: 'beginner',
   })
   renderHome()
-  expect(screen.queryByText(/set your reading defaults/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/shape how gurbani opens for you/i)).not.toBeInTheDocument()
 })

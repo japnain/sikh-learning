@@ -34,6 +34,7 @@ beforeEach(() => {
   useLocaleStore.setState({ locale: 'en' })
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
+    presentationMode: 'overlay',
     learningLevel: 'beginner',
     audience: 'adult',
     learningGoal: 'read',

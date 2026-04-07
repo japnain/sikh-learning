@@ -24,6 +24,38 @@ Object.defineProperty(globalThis, 'localStorage', {
   configurable: true,
 })
 
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  configurable: true,
+  value: (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }),
+})
+
+Object.defineProperty(window.navigator, 'standalone', {
+  value: false,
+  configurable: true,
+})
+
+Object.defineProperty(globalThis, 'requestAnimationFrame', {
+  value: (callback: FrameRequestCallback) => window.setTimeout(() => callback(performance.now()), 0),
+  configurable: true,
+  writable: true,
+})
+
+Object.defineProperty(globalThis, 'cancelAnimationFrame', {
+  value: (id: number) => window.clearTimeout(id),
+  configurable: true,
+  writable: true,
+})
+
 class MockAudioContext {
   state = 'running'
   currentTime = 0
@@ -136,6 +168,11 @@ Object.defineProperty(window.HTMLMediaElement.prototype, 'play', {
 })
 
 Object.defineProperty(window.HTMLMediaElement.prototype, 'pause', {
+  configurable: true,
+  value: () => {},
+})
+
+Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
   configurable: true,
   value: () => {},
 })

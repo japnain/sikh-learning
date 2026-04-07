@@ -108,13 +108,19 @@ export function playSound(id: string): void {
   startSoundPlayback(id, currentTransitionId)
 }
 
-export function stopSound(): void {
+export function stopSound(immediate: boolean = true): void {
   if (!activeAudio) return
   clearFadeTimer()
   transitionId += 1
   const audioToStop = activeAudio
   activeAudio = null
   activeSoundId = null
+
+  if (immediate) {
+    cleanupAudio(audioToStop)
+    return
+  }
+
   fadeTo(audioToStop, 0, () => {
     cleanupAudio(audioToStop)
   })
