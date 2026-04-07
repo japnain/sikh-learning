@@ -10,6 +10,7 @@ import {
   type AmritKeertanHeader,
   type AmritKeertanShabad,
 } from '../api/banidb'
+import { BANIS, type Bani } from '../data/banis'
 import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
 import type { SearchMode } from '../types'
@@ -24,8 +25,6 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items:
   DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, items: DG_INDEX },
 }
 
-const SUNDAR_GUTKA_NITNEM_IDS = [2, 4, 6, 9, 10, 20, 21, 23]
-const SUNDAR_GUTKA_POPULAR_IDS = [90, 30, 31, 22]
 const AMRIT_KEERTAN_PAGE_SIZE = 12
 const SEARCH_SOURCE_LABELS = {
   all: 'All',
@@ -48,6 +47,110 @@ const ANG_SOURCE_META = {
   D: { label: 'DG', max: 1428, kind: 'Ang' },
   B: { label: 'BGV', max: 628, kind: 'Page' },
 } as const
+
+const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set([
+  'japji-sahib',
+  'jaap-sahib',
+  'tav-prasad-savaiye',
+  'chaupai-sahib',
+  'anand-sahib',
+  'rehras-sahib',
+  'kirtan-sohila',
+  'salok-mahalla-9',
+  'sukhmani-sahib',
+  'asa-di-var',
+  'aarti',
+  'laavan',
+])
+
+const NITNEM_SUNDAR_GUTKA_BANI_IDS = new Set([
+  'japji-sahib',
+  'jaap-sahib',
+  'tav-prasad-savaiye',
+  'chaupai-sahib',
+  'anand-sahib',
+  'rehras-sahib',
+  'kirtan-sohila',
+])
+
+const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
+  'asa-di-var',
+  'salok-mahalla-9',
+  'sukhmani-sahib',
+  'aarti',
+  'laavan',
+])
+
+const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
+
+function normalizeBaniLabel(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[’'`()]/g, '')
+    .replace(/[^a-z0-9\u0A00-\u0A7F]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL = new Map<string, string>([
+  ['ਜਪੁਜੀ ਸਾਹਿਬ', 'japji-sahib'],
+  ['japujee saahib', 'japji-sahib'],
+  ['japji sahib', 'japji-sahib'],
+  ['ਜਾਪੁ ਸਾਹਿਬ', 'jaap-sahib'],
+  ['jaap saahib', 'jaap-sahib'],
+  ['jaap sahib', 'jaap-sahib'],
+  ['ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸਵੱਯੇ ਸ੍ਰਾਵਗ ਸੁੱਧ', 'tav-prasad-savaiye'],
+  ["tavai prasaadh savaye sraavag sudh", 'tav-prasad-savaiye'],
+  ['tav prasad savaiye', 'tav-prasad-savaiye'],
+  ['ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ', 'chaupai-sahib'],
+  ['benatee chauapiee saahib', 'chaupai-sahib'],
+  ['benati chaupai sahib', 'chaupai-sahib'],
+  ['chaupai sahib', 'chaupai-sahib'],
+  ['ਅਨੰਦੁ ਸਾਹਿਬ', 'anand-sahib'],
+  ['anandh saahib', 'anand-sahib'],
+  ['anand sahib', 'anand-sahib'],
+  ['ਰਹਰਾਸਿ ਸਾਹਿਬ', 'rehras-sahib'],
+  ['raharaas saahib', 'rehras-sahib'],
+  ['raharaas sahib', 'rehras-sahib'],
+  ['rehras sahib', 'rehras-sahib'],
+  ['ਸੋਹਿਲਾ ਸਾਹਿਬ', 'kirtan-sohila'],
+  ['sohilaa saahib', 'kirtan-sohila'],
+  ['sohila sahib', 'kirtan-sohila'],
+  ['kirtan sohila', 'kirtan-sohila'],
+  ['ਸਲੋਕ ਮਹਲਾ ੯', 'salok-mahalla-9'],
+  ['salok mahalaa nauvaa', 'salok-mahalla-9'],
+  ['salok mahalla 9', 'salok-mahalla-9'],
+  ['ਸੁਖਮਨੀ ਸਾਹਿਬ', 'sukhmani-sahib'],
+  ['sukhamanee saahib', 'sukhmani-sahib'],
+  ['sukhmani sahib', 'sukhmani-sahib'],
+  ['ਆਸਾ ਦੀ ਵਾਰ', 'asa-di-var'],
+  ['aasaa dhee vaar', 'asa-di-var'],
+  ['asa di var', 'asa-di-var'],
+  ['ਆਰਤੀ', 'aarti'],
+  ['aaratee', 'aarti'],
+  ['aarti', 'aarti'],
+  ['ਲਾਵਾਂ', 'laavan'],
+  ['laavaan', 'laavan'],
+  ['laavan', 'laavan'],
+].map(([label, baniId]) => [normalizeBaniLabel(label), baniId]))
+
+function getCanonicalSundarGutkaBani(item: BaniIndexItem): Bani | null {
+  const candidates = [item.gurmukhi, item.transliteration]
+
+  for (const candidate of candidates) {
+    const canonicalId = SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL.get(normalizeBaniLabel(candidate))
+    if (!canonicalId) continue
+
+    const canonicalBani = CANONICAL_BANI_BY_ID.get(canonicalId)
+    if (canonicalBani && CANONICAL_SUNDAR_GUTKA_BANI_IDS.has(canonicalBani.id)) {
+      return canonicalBani
+    }
+  }
+
+  return null
+}
 
 interface GroupedSearchResult {
   key: string
@@ -216,6 +319,15 @@ export default function Banis() {
   }
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
+    const canonicalBani = getCanonicalSundarGutkaBani(item)
+
+    if (canonicalBani) {
+      navigate(
+        `/study?source=${canonicalBani.source}&ang=${canonicalBani.startAng}&startAng=${canonicalBani.startAng}&bani=${encodeURIComponent(canonicalBani.name)}&endAng=${canonicalBani.endAng}`
+      )
+      return
+    }
+
     navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(item.transliteration || item.gurmukhi)}`)
   }
 
@@ -233,9 +345,20 @@ export default function Banis() {
   }
 
   const sundarGutkaGroups = useMemo(() => {
-    const nitnem = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_NITNEM_IDS.includes(item.id))
-    const popular = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_POPULAR_IDS.includes(item.id))
-    const other = sundarGutkaBanis.filter(item => !SUNDAR_GUTKA_NITNEM_IDS.includes(item.id) && !SUNDAR_GUTKA_POPULAR_IDS.includes(item.id))
+    const nitnem = sundarGutkaBanis.filter(item => {
+      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
+      return canonicalId ? NITNEM_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) : false
+    })
+    const popular = sundarGutkaBanis.filter(item => {
+      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
+      return canonicalId ? POPULAR_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) : false
+    })
+    const other = sundarGutkaBanis.filter(item => {
+      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
+      return canonicalId
+        ? !NITNEM_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) && !POPULAR_SUNDAR_GUTKA_BANI_IDS.has(canonicalId)
+        : true
+    })
 
     return [
       { key: 'nitnem', label: 'Nitnem', items: nitnem },
