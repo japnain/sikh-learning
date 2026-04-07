@@ -198,6 +198,11 @@ export const useMusicStore = create<MusicState>()(
     {
       name: 'sikh-music',
       version: 2,
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...(persistedState as PersistedMusicState | undefined),
+        isPlaying: false,
+      }),
       partialize: (state) => ({
         selectedSoundId: state.selectedSoundId,
         selectedPresetId: state.selectedPresetId,

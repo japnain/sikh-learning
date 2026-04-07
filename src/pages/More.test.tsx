@@ -20,6 +20,7 @@ beforeEach(() => {
   })
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
+    presentationMode: 'overlay',
     learningLevel: 'beginner',
     audience: 'adult',
     learningGoal: 'read',
@@ -92,6 +93,17 @@ test('toggles ambient playback without clearing the selected sound', () => {
   expect(useMusicStore.getState().isPlaying).toBe(true)
 
   fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
+  expect(useMusicStore.getState().isPlaying).toBe(false)
+})
+
+test('pause button stops playback without clearing the selected sound', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  expect(useMusicStore.getState().isPlaying).toBe(true)
+
+  fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(false)
 })

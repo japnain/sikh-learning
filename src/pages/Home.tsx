@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
@@ -164,6 +164,8 @@ export default function Home() {
   const learningLevelLabels = getLearningLevelLabels(locale)
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const [showCopied, setShowCopied] = useState(false)
+  const [highlightTodaysPath, setHighlightTodaysPath] = useState(false)
+  const todaysPathRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     resetIfNewDay()
@@ -171,11 +173,36 @@ export default function Home() {
   }, [ensureDailyToday, resetIfNewDay])
 
   useEffect(() => {
-    const shouldReopen = Boolean((location.state as { reopenOnboarding?: boolean } | null)?.reopenOnboarding)
-    if (!shouldReopen) return
+    const state = (location.state as {
+      reopenOnboarding?: boolean
+      highlightTodayPath?: boolean
+    } | null) ?? null
 
-    openOnboarding()
+    if (!state?.reopenOnboarding && !state?.highlightTodayPath) return
+
+    let highlightTimer: number | null = null
+
+    if (state.reopenOnboarding) {
+      openOnboarding()
+    }
+
+    if (state.highlightTodayPath) {
+      setHighlightTodaysPath(true)
+      globalThis.requestAnimationFrame(() => {
+        todaysPathRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      })
+      highlightTimer = window.setTimeout(() => {
+        setHighlightTodaysPath(false)
+      }, 2600)
+    }
+
     navigate(location.pathname, { replace: true, state: null })
+
+    return () => {
+      if (highlightTimer !== null) {
+        window.clearTimeout(highlightTimer)
+      }
+    }
   }, [location.pathname, location.state, navigate, openOnboarding])
 
   const { source, ang } = getDailyPickAng()
@@ -499,7 +526,15 @@ export default function Home() {
         </span>
       </button>
 
-      <section className="section-shell p-4 mb-5 animate-slide-up stagger-2">
+      <section
+        ref={todaysPathRef}
+        tabIndex={-1}
+        className={`section-shell p-4 mb-5 animate-slide-up stagger-2 transition-[box-shadow,transform,border-color] duration-500 ${
+          highlightTodaysPath
+            ? 'border-gold/45 shadow-gold-strong ring-2 ring-gold/35 ring-offset-2 ring-offset-parchment dark:ring-offset-dark-bg'
+            : ''
+        }`}
+      >
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{homeCopy.todaysPath}</p>

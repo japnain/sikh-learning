@@ -70,7 +70,7 @@ export default function NavBar() {
   ]
 
   return (
-    <nav className="fixed bottom-3 left-1/2 z-50 flex w-[calc(100%-1.5rem)] max-w-md -translate-x-1/2 items-center rounded-[30px] border border-white/55 bg-parchment-card/88 px-2 py-2 shadow-[0_18px_38px_rgba(77,53,22,0.14)] backdrop-blur-xl transition-colors duration-300 dark:border-gold/10 dark:bg-dark-card/88 dark:shadow-[0_22px_44px_rgba(0,0,0,0.45)]">
+    <nav className="app-nav z-50 flex items-center rounded-[30px] border border-white/55 bg-parchment-card/88 px-2 py-2 shadow-[0_18px_38px_rgba(77,53,22,0.14)] backdrop-blur-xl transition-colors duration-300 dark:border-gold/10 dark:bg-dark-card/88 dark:shadow-[0_22px_44px_rgba(0,0,0,0.45)]">
       <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-gold/20" />
       {tabs.map(tab => (
         <NavLink

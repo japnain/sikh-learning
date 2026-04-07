@@ -6,8 +6,10 @@ type LocaleCopy = {
     off: string
     selected: string
     tapToUse: string
+    continueLabel: string
     show: string
     hide: string
+    close: string
     small: string
     large: string
     copied: string
@@ -26,13 +28,41 @@ type LocaleCopy = {
     eyebrow: string
     title: string
     body: string
+    step: string
+    intentTitle: string
+    intentBody: string
+    styleTitle: string
+    styleBody: string
+    previewTitle: string
+    previewBody: string
+    previewEyebrow: string
+    ready: string
+    recommended: string
+    goalReadBody: string
+    goalUnderstandBody: string
+    goalHabitBody: string
+    styleQuiet: string
+    styleQuietBody: string
+    styleGuided: string
+    styleGuidedBody: string
+    styleDeep: string
+    styleDeepBody: string
+    tuneReader: string
+    hideTuning: string
+    fineTune: string
+    textFirstBody: string
     audience: string
-    goal: string
-    save: string
     readingScript: string
     meaning: string
     transliteration: string
     learningLevel: string
+    englishSource: string
+    openReader: string
+    openWithMeaning: string
+    startToday: string
+    routeRead: string
+    routeUnderstand: string
+    routeHabit: string
   }
   home: {
     promise: string
@@ -142,8 +172,10 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       off: 'Off',
       selected: 'Selected',
       tapToUse: 'Tap to use',
+      continueLabel: 'Continue',
       show: 'Show',
       hide: 'Hide',
+      close: 'Close',
       small: 'Small',
       large: 'Large',
       copied: 'Copied',
@@ -160,15 +192,43 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     onboarding: {
       eyebrow: 'Welcome',
-      title: 'Set your reading defaults',
-      body: 'Choose how Gurbani should open and how much support you want while learning.',
+      title: 'Shape how Gurbani opens for you.',
+      body: 'A strong first session should feel calm, guided, and unmistakably yours. Start with intent, choose the atmosphere, then open straight into a reader that already fits.',
+      step: 'Step',
+      intentTitle: 'How do you want to begin?',
+      intentBody: 'Pick the main feeling you want from the app first. The rest of the setup will narrow itself around that.',
+      styleTitle: 'What should the text feel like?',
+      styleBody: 'Choose a reading atmosphere, not a pile of settings. You can still fine-tune the details before you begin.',
+      previewTitle: 'This is how your reader will open.',
+      previewBody: 'One live preview, one clear next step. If the tone feels right, begin. If not, tune the reader before you enter.',
+      previewEyebrow: 'Live Preview',
+      ready: 'Ready',
+      recommended: 'Recommended',
+      goalReadBody: 'Keep the text clean and immediate so reading feels natural from the first tap.',
+      goalUnderstandBody: 'Keep meaning close and let the reader support understanding without getting noisy.',
+      goalHabitBody: 'Build a daily rhythm first, then let the app layer in depth over time.',
+      styleQuiet: 'Quiet Reading',
+      styleQuietBody: 'Text first. No meaning layer by default. A cleaner rhythm for people who want to settle straight into reading.',
+      styleGuided: 'Reading + Meaning',
+      styleGuidedBody: 'Meaning stays nearby and transliteration helps you stay oriented while the text still leads.',
+      styleDeep: 'Deep Study',
+      styleDeepBody: 'Meaning remains close, transliteration steps back, and the reader feels lighter and more focused.',
+      tuneReader: 'Fine tune reader',
+      hideTuning: 'Keep this feel',
+      fineTune: 'Open the lower-level choices only if you want to refine script, support, or profile details now.',
+      textFirstBody: 'Text-first reading stays active here. Meaning can be added later without rebuilding your setup.',
       audience: 'Audience',
-      goal: 'Primary goal',
-      save: 'Save Setup',
       readingScript: 'Reading script',
       meaning: 'Meaning',
       transliteration: 'Transliteration',
       learningLevel: 'Learning level',
+      englishSource: 'English source',
+      openReader: 'Open my reader',
+      openWithMeaning: 'Open with meaning',
+      startToday: 'Start today’s path',
+      routeRead: 'You will land in a cleaner reader with the text leading from the first line.',
+      routeUnderstand: 'You will open with meaning close, guided support visible, and the text still kept primary.',
+      routeHabit: 'You will start in a calm daily rhythm that can deepen later without changing the whole app.',
     },
     home: {
       promise: 'Read Gurbani daily. Understand it better. Grow into it steadily.',
@@ -276,8 +336,10 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       off: 'ਬੰਦ',
       selected: 'ਚੁਣਿਆ',
       tapToUse: 'ਵਰਤਣ ਲਈ ਛੂਹੋ',
+      continueLabel: 'ਜਾਰੀ ਰੱਖੋ',
       show: 'ਦਿਖਾਓ',
       hide: 'ਲੁਕਾਓ',
+      close: 'ਬੰਦ ਕਰੋ',
       small: 'ਛੋਟਾ',
       large: 'ਵੱਡਾ',
       copied: 'ਕਾਪੀ ਹੋਇਆ',
@@ -294,15 +356,43 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     onboarding: {
       eyebrow: 'ਜੀ ਆਇਆਂ ਨੂੰ',
-      title: 'ਆਪਣੇ ਪੜ੍ਹਨ ਵਾਲੇ ਮੂਲ ਸੈੱਟ ਕਰੋ',
-      body: 'ਚੁਣੋ ਕਿ ਗੁਰਬਾਣੀ ਕਿਵੇਂ ਖੁੱਲੇ ਅਤੇ ਸਿੱਖਣ ਵੇਲੇ ਕਿੰਨੀ ਮਦਦ ਦਿਖਾਈ ਜਾਵੇ।',
+      title: 'ਗੁਰਬਾਣੀ ਤੁਹਾਡੇ ਲਈ ਕਿਵੇਂ ਖੁੱਲੇ, ਇਹ ਤੈਅ ਕਰੋ।',
+      body: 'ਪਹਿਲਾ ਅਨੁਭਵ ਸ਼ਾਂਤ, ਮਾਰਗਦਰਸ਼ਿਤ ਅਤੇ ਤੁਹਾਡਾ ਆਪਣਾ ਮਹਿਸੂਸ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਪਹਿਲਾਂ ਮਨੋਰਥ ਚੁਣੋ, ਫਿਰ ਪੜ੍ਹਨ ਦਾ ਮਿਜ਼ਾਜ, ਫਿਰ ਸਿੱਧੇ ਉਸ ਪਾਠਕ ਵਿੱਚ ਜਾਓ ਜੋ ਤੁਹਾਡੇ ਲਈ ਤਿਆਰ ਹੈ।',
+      step: 'ਕਦਮ',
+      intentTitle: 'ਤੁਸੀਂ ਕਿਵੇਂ ਸ਼ੁਰੂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?',
+      intentBody: 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਐਪ ਤੋਂ ਆਪਣੀ ਮੁੱਖ ਉਮੀਦ ਚੁਣੋ। ਬਾਕੀ ਸੈਟਅੱਪ ਆਪਣੇ ਆਪ ਉਸ ਦੇ ਆਲੇ ਦੁਆਲੇ ਢਲ ਜਾਵੇਗਾ।',
+      styleTitle: 'ਪਾਠ ਕਿਵੇਂ ਮਹਿਸੂਸ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ?',
+      styleBody: 'ਸੈਟਿੰਗਾਂ ਦੇ ਢੇਰ ਦੀ ਥਾਂ ਇੱਕ ਪੜ੍ਹਨ ਵਾਲਾ ਮਿਜ਼ਾਜ ਚੁਣੋ। ਜੇ ਚਾਹੋ ਤਾਂ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹੋਰ ਬਾਰੀਕੀ ਨਾਲ ਵੀ ਠੀਕ ਕਰ ਸਕਦੇ ਹੋ।',
+      previewTitle: 'ਤੁਹਾਡਾ ਪਾਠਕ ਇਸੇ ਤਰ੍ਹਾਂ ਖੁੱਲੇਗਾ।',
+      previewBody: 'ਇੱਕ ਜੀਵੰਤ ਝਲਕ, ਇੱਕ ਸਾਫ਼ ਅਗਲਾ ਕਦਮ। ਜੇ ਮਿਜ਼ਾਜ ਠੀਕ ਲੱਗੇ ਤਾਂ ਸ਼ੁਰੂ ਕਰੋ, ਨਹੀਂ ਤਾਂ ਪਹਿਲਾਂ ਪਾਠਕ ਨੂੰ ਹੋਰ ਸੰਵਾਰੋ।',
+      previewEyebrow: 'ਜੀਵੰਤ ਝਲਕ',
+      ready: 'ਤਿਆਰ',
+      recommended: 'ਸਿਫ਼ਾਰਸ਼ੀ',
+      goalReadBody: 'ਪਾਠ ਨੂੰ ਸਾਫ਼ ਅਤੇ ਤੁਰੰਤ ਰੱਖੋ ਤਾਂ ਜੋ ਪਹਿਲੇ ਛੂਹੇ ਤੋਂ ਹੀ ਪੜ੍ਹਨਾ ਕੁਦਰਤੀ ਲੱਗੇ।',
+      goalUnderstandBody: 'ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ ਅਤੇ ਪਾਠਕ ਨੂੰ ਇਸ ਤਰ੍ਹਾਂ ਮਦਦ ਕਰਨ ਦਿਓ ਕਿ ਉਹ ਭਾਰੀ ਜਾਂ ਸ਼ੋਰ ਵਾਲਾ ਨਾ ਬਣੇ।',
+      goalHabitBody: 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਰੋਜ਼ਾਨਾ ਦੀ ਲਯ ਬਣਾਓ, ਫਿਰ ਐਪ ਹੌਲੀ ਹੌਲੀ ਹੋਰ ਡੂੰਘਾਈ ਜੋੜੇ।',
+      styleQuiet: 'ਸ਼ਾਂਤ ਪਾਠ',
+      styleQuietBody: 'ਪਹਿਲਾਂ ਪਾਠ। ਮੂਲ ਰੂਪ ਵਿੱਚ ਕੋਈ ਅਰਥ ਪਰਤ ਨਹੀਂ। ਉਹਨਾਂ ਲਈ ਸਾਫ਼ ਲਯ ਜੋ ਸਿੱਧੇ ਪਾਠ ਵਿੱਚ ਡੁੱਬਣਾ ਚਾਹੁੰਦੇ ਹਨ।',
+      styleGuided: 'ਪਾਠ + ਅਰਥ',
+      styleGuidedBody: 'ਅਰਥ ਨੇੜੇ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਲਿਪਾਂਤਰ ਦਿਸ਼ਾ ਬਣਾਈ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ, ਜਦੋਂ ਕਿ ਪਾਠ ਫਿਰ ਵੀ ਕੇਂਦਰ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ।',
+      styleDeep: 'ਡੂੰਘਾ ਅਧਿਐਨ',
+      styleDeepBody: 'ਅਰਥ ਨੇੜੇ ਰਹਿੰਦਾ ਹੈ, ਲਿਪਾਂਤਰ ਪਿੱਛੇ ਹੁੰਦਾ ਹੈ ਅਤੇ ਪਾਠਕ ਹੋਰ ਹਲਕਾ ਤੇ ਕੇਂਦ੍ਰਿਤ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।',
+      tuneReader: 'ਪਾਠਕ ਹੋਰ ਠੀਕ ਕਰੋ',
+      hideTuning: 'ਇਹ ਮਿਜ਼ਾਜ ਰੱਖੋ',
+      fineTune: 'ਹੇਠਾਂ ਵਾਲੀਆਂ ਛੋਟੀਆਂ ਚੋਣਾਂ ਤਦੋਂ ਹੀ ਖੋਲ੍ਹੋ ਜਦੋਂ ਤੁਸੀਂ ਹੁਣੇ ਲਿਪੀ, ਸਹਾਇਤਾ ਜਾਂ ਪ੍ਰੋਫ਼ਾਈਲ ਨੂੰ ਹੋਰ ਸੰਵਾਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।',
+      textFirstBody: 'ਇੱਥੇ ਪਾਠ-ਪਹਿਲਾਂ ਅਨੁਭਵ ਚਾਲੂ ਹੈ। ਲੋੜ ਪੈਣ ਤੇ ਅਰਥ ਬਾਅਦ ਵਿੱਚ ਵੀ ਜੋੜੇ ਜਾ ਸਕਦੇ ਹਨ।',
       audience: 'ਸਰੋਤਾ',
-      goal: 'ਮੁੱਖ ਮਨੋਰਥ',
-      save: 'ਸੈੱਟਅੱਪ ਸੰਭਾਲੋ',
       readingScript: 'ਪੜ੍ਹਨ ਦੀ ਲਿਪੀ',
       meaning: 'ਅਰਥ',
       transliteration: 'ਲਿਪਾਂਤਰ',
       learningLevel: 'ਸਿੱਖਣ ਦਾ ਪੱਧਰ',
+      englishSource: 'ਅੰਗਰੇਜ਼ੀ ਸਰੋਤ',
+      openReader: 'ਮੇਰਾ ਪਾਠਕ ਖੋਲ੍ਹੋ',
+      openWithMeaning: 'ਅਰਥ ਨਾਲ ਖੋਲ੍ਹੋ',
+      startToday: 'ਅੱਜ ਦਾ ਰਸਤਾ ਸ਼ੁਰੂ ਕਰੋ',
+      routeRead: 'ਤੁਸੀਂ ਇੱਕ ਹੋਰ ਸਾਫ਼ ਪਾਠਕ ਵਿੱਚ ਜਾਵੋਗੇ ਜਿੱਥੇ ਪਹਿਲੀ ਲਾਈਨ ਤੋਂ ਹੀ ਪਾਠ ਅੱਗੇ ਰਹੇਗਾ।',
+      routeUnderstand: 'ਤੁਸੀਂ ਅਰਥ ਨੇੜੇ, ਮਾਰਗਦਰਸ਼ਿਤ ਸਹਾਇਤਾ ਦਿੱਖ ਰਹੀ ਅਤੇ ਪਾਠ ਮੁੱਖ ਰਹਿੰਦਾ ਹੋਇਆ ਖੋਲ੍ਹੋਗੇ।',
+      routeHabit: 'ਤੁਸੀਂ ਇੱਕ ਸ਼ਾਂਤ ਰੋਜ਼ਾਨਾ ਲਯ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋਗੇ ਜੋ ਬਾਅਦ ਵਿੱਚ ਪੂਰੀ ਐਪ ਬਦਲੇ ਬਿਨਾਂ ਹੋਰ ਡੂੰਘੀ ਹੋ ਸਕਦੀ ਹੈ।',
     },
     home: {
       promise: 'ਰੋਜ਼ ਗੁਰਬਾਣੀ ਪੜ੍ਹੋ। ਵਧੇਰੇ ਸਮਝੋ। ਹੌਲੇ ਹੌਲੇ ਅੱਗੇ ਵਧੋ।',
@@ -410,8 +500,10 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       off: 'बंद',
       selected: 'चयनित',
       tapToUse: 'इस्तेमाल करने के लिए टैप करें',
+      continueLabel: 'जारी रखें',
       show: 'दिखाएँ',
       hide: 'छुपाएँ',
+      close: 'बंद करें',
       small: 'छोटा',
       large: 'बड़ा',
       copied: 'कॉपी हुआ',
@@ -428,15 +520,43 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     onboarding: {
       eyebrow: 'स्वागत',
-      title: 'अपनी पढ़ने की डिफॉल्ट सेटिंग चुनें',
-      body: 'चुनिए कि गुरबाणी कैसे खुले और सीखते समय कितनी सहायता दिखे।',
+      title: 'तय करें कि गुरबाणी आपके लिए कैसे खुले।',
+      body: 'पहला अनुभव शांत, मार्गदर्शित और अपना-सा महसूस होना चाहिए। पहले इरादा चुनिए, फिर पढ़ने का माहौल, फिर सीधे उसी रीडर में जाइए जो पहले से आपके लिए तैयार है।',
+      step: 'चरण',
+      intentTitle: 'आप कैसे शुरू करना चाहते हैं?',
+      intentBody: 'सबसे पहले ऐप से अपनी मुख्य चाहत चुनिए। बाकी सेटअप उसी के अनुसार अपने आप सिमट जाएगा।',
+      styleTitle: 'पाठ कैसा महसूस होना चाहिए?',
+      styleBody: 'सेटिंग्स के ढेर की जगह एक पढ़ने का माहौल चुनिए। चाहें तो शुरू करने से पहले बारीकियों को भी बदल सकते हैं।',
+      previewTitle: 'आपका रीडर ऐसे खुलेगा।',
+      previewBody: 'एक जीवंत झलक, एक साफ़ अगला कदम। अगर यह सही लगे तो शुरू करें, नहीं तो पहले रीडर को और अपने मुताबिक करें।',
+      previewEyebrow: 'लाइव झलक',
+      ready: 'तैयार',
+      recommended: 'सिफ़ारिश',
+      goalReadBody: 'पाठ को साफ़ और सीधा रखिए ताकि पहली टैप से ही पढ़ना स्वाभाविक लगे।',
+      goalUnderstandBody: 'अर्थ को पास रखिए और रीडर को समझ में मदद करने दीजिए, बिना उसे भारी या शोरभरा बनाए।',
+      goalHabitBody: 'पहले रोज़ की लय बनाइए, फिर ऐप धीरे धीरे और गहराई जोड़ दे।',
+      styleQuiet: 'शांत पाठ',
+      styleQuietBody: 'पहले पाठ। डिफॉल्ट रूप से कोई अर्थ परत नहीं। उन लोगों के लिए साफ़ लय जो सीधे पढ़ने में डूबना चाहते हैं।',
+      styleGuided: 'पाठ + अर्थ',
+      styleGuidedBody: 'अर्थ पास रहता है और लिप्यंतरण दिशा बनाए रखने में मदद करता है, जबकि पाठ फिर भी केंद्र में रहता है।',
+      styleDeep: 'गहरा अध्ययन',
+      styleDeepBody: 'अर्थ पास रहता है, लिप्यंतरण पीछे हटता है और रीडर अधिक हल्का और केंद्रित महसूस होता है।',
+      tuneReader: 'रीडर को और ठीक करें',
+      hideTuning: 'यही एहसास रखें',
+      fineTune: 'नीचे की छोटी सेटिंग्स तभी खोलें जब आप अभी लिपि, सहायता या प्रोफ़ाइल को और सटीक करना चाहते हों।',
+      textFirstBody: 'यहाँ पाठ-प्रथम अनुभव सक्रिय है। अर्थ बाद में भी जोड़ा जा सकता है।',
       audience: 'श्रोता',
-      goal: 'मुख्य लक्ष्य',
-      save: 'सेटअप सेव करें',
       readingScript: 'पढ़ने की लिपि',
       meaning: 'अर्थ',
       transliteration: 'लिप्यंतरण',
       learningLevel: 'सीखने का स्तर',
+      englishSource: 'अंग्रेज़ी स्रोत',
+      openReader: 'मेरा रीडर खोलें',
+      openWithMeaning: 'अर्थ के साथ खोलें',
+      startToday: 'आज का मार्ग शुरू करें',
+      routeRead: 'आप एक साफ़ रीडर में जाएँगे जहाँ पहली पंक्ति से ही पाठ आगे रहेगा।',
+      routeUnderstand: 'आप अर्थ पास, मार्गदर्शित सहायता दिखती हुई और पाठ को मुख्य रखते हुए शुरुआत करेंगे।',
+      routeHabit: 'आप एक शांत दैनिक लय से शुरू करेंगे जो बाद में पूरी ऐप बदले बिना और गहरी हो सकती है।',
     },
     home: {
       promise: 'रोज़ गुरबाणी पढ़ें। बेहतर समझें। धीरे धीरे आगे बढ़ें।',

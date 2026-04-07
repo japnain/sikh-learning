@@ -49,11 +49,13 @@ test('volume changes apply directly to the active audio instance and zero stays 
 test('stopSound clears the active audio instance', async () => {
   playSound('gentle-rain')
   await settlePlayback()
+  const activeAudio = __getSoundEngineSnapshotForTests().activeAudio
 
   stopSound()
-  await settlePlayback(700)
 
   const snapshot = __getSoundEngineSnapshotForTests()
   expect(snapshot.activeAudio).toBe(null)
   expect(snapshot.activeSoundId).toBe(null)
+  expect(activeAudio?.paused).toBe(true)
+  expect(activeAudio?.currentTime).toBe(0)
 })
