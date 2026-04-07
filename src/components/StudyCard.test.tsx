@@ -33,6 +33,36 @@ const entry: ScriptureEntry = {
   ]
 }
 
+const introOnlyEntry: ScriptureEntry = {
+  ...entry,
+  id: 'ardaas-test',
+  lines: [
+    {
+      verseId: 10,
+      shabadId: 1,
+      ang: 119,
+      gurmukhi: 'ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥',
+      transliteration: 'Vaheguroo Jee Kee Fateh',
+      translation_en: 'and to Waheguru belongs Victory',
+      translations_en: { bdb: 'and to Waheguru belongs Victory' },
+      translation_hi: 'और विजय वाहेगुरु की है',
+      translation_pa: 'ਅਤੇ ਫਤਹਿ ਵਾਹਿਗੁਰੂ ਦੀ ਹੈ',
+      isHeader: true,
+    },
+    {
+      verseId: 11,
+      shabadId: 1,
+      ang: 119,
+      gurmukhi: 'ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ',
+      transliteration: 'Pritham Bhagautee Simar Kai',
+      translation_en: 'In the beginning I remember Bhagauti',
+      translations_en: { bdb: 'In the beginning I remember Bhagauti' },
+      translation_hi: 'आरंभ में मैं भगौती को स्मरण करता हूँ',
+      translation_pa: 'ਆਰੰਭ ਵਿੱਚ ਮੈਂ ਭਗੌਤੀ ਨੂੰ ਸਿਮਰਦਾ ਹਾਂ',
+    },
+  ],
+}
+
 beforeEach(() => {
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
@@ -80,4 +110,12 @@ test('opens word popover on word tap and shows Mahankosh context', async () => {
   expect(screen.getByText('One Creator')).toBeInTheDocument()
   expect(await screen.findByText('Mahankosh')).toBeInTheDocument()
   expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
+})
+
+test('can hide non-header lines for devotional readers like Ardaas', () => {
+  render(<StudyCard entry={introOnlyEntry} hideMainLines />)
+
+  expect(screen.getByText('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')).toBeInTheDocument()
+  expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
+  expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
 })

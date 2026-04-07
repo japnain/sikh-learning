@@ -332,6 +332,8 @@ export default function OnboardingSheet({
   )
 
   useEffect(() => {
+    if (presentation !== 'overlay') return
+
     const previousBodyOverflow = document.body.style.overflow
     const previousBodyOverscroll = document.body.style.overscrollBehavior
     const previousHtmlOverflow = document.documentElement.style.overflow
@@ -345,7 +347,7 @@ export default function OnboardingSheet({
       document.body.style.overscrollBehavior = previousBodyOverscroll
       document.documentElement.style.overflow = previousHtmlOverflow
     }
-  }, [])
+  }, [presentation])
 
   useEffect(() => {
     if (presentation !== 'first-run') return
@@ -623,8 +625,12 @@ export default function OnboardingSheet({
     )
   }
 
+  const isOverlayPresentation = presentation === 'overlay'
+
   const chrome = (
-    <div className="relative flex h-full min-h-0 flex-col overflow-hidden rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card">
+    <div className={`relative flex flex-col rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card ${
+      isOverlayPresentation ? 'h-full min-h-0 overflow-hidden' : 'overflow-visible'
+    }`}>
       <div className="pointer-events-none absolute -right-8 top-0 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-16 h-44 w-44 rounded-full bg-gold/15 blur-3xl" />
 
@@ -653,7 +659,9 @@ export default function OnboardingSheet({
         </p>
       </div>
 
-      <div className="relative min-h-0 flex-1 overflow-y-auto px-5 py-4 overscroll-contain">
+      <div className={`relative px-5 py-4 ${
+        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain' : ''
+      }`}>
         <div className="space-y-4">
           <StepIndicator currentStep={currentStep} locale={locale} />
 
@@ -720,7 +728,7 @@ export default function OnboardingSheet({
   }
 
   return (
-    <main className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg">
+    <main className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg overflow-y-auto">
       <div
         className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-4"
         style={{
@@ -734,7 +742,7 @@ export default function OnboardingSheet({
             <p className="mt-2 text-sm text-ink/55 dark:text-dark-text/55">{copy.home.promise}</p>
           </div>
         </div>
-        <div className="min-h-0 flex-1 pb-4">
+        <div className="pb-4">
           {chrome}
         </div>
       </div>

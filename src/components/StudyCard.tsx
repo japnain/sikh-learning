@@ -11,6 +11,7 @@ interface Props {
   wordData?: Word[] | null
   highlightVerseId?: number | null
   highlightLabel?: string
+  hideMainLines?: boolean
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
@@ -67,6 +68,7 @@ export default function StudyCard({
   wordData,
   highlightVerseId = null,
   highlightLabel = 'Hukamnama begins here',
+  hideMainLines = false,
   onSavePhrase,
   onCopyLine,
   onShareLine,
@@ -93,7 +95,7 @@ export default function StudyCard({
   )
   const introLines = lines.filter(line => line.isHeader)
   const mainLines = lines.filter(line => !line.isHeader)
-  const visibleMainLines = mainLines.length > 0 ? mainLines : lines
+  const visibleMainLines = hideMainLines ? [] : (mainLines.length > 0 ? mainLines : lines)
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -199,78 +201,82 @@ export default function StudyCard({
           </div>
         )}
 
-        <div className="space-y-0">
-          {visibleMainLines.map((line, index) => {
-            const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
-            const isHighlighted = highlightVerseId !== null && line.verseId === highlightVerseId
+        {visibleMainLines.length > 0 && (
+          <>
+            <div className="space-y-0">
+              {visibleMainLines.map((line, index) => {
+                const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
+                const isHighlighted = highlightVerseId !== null && line.verseId === highlightVerseId
 
-            return (
-              <article
-                key={`${line.verseId}-${index}`}
-                data-testid="study-line"
-                className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass} ${
-                  isHighlighted
-                    ? 'my-3 rounded-[24px] border border-saffron/25 bg-saffron/5 px-4 shadow-soft dark:border-gold/20 dark:bg-gold/5'
-                    : ''
-                }`}
-              >
-                {isHighlighted ? (
-                  <span className="chip-pill mb-3 inline-flex">
-                    {highlightLabel}
-                  </span>
-                ) : null}
-                <button
-                  type="button"
-                  onClick={() => setActionLine(line)}
-                  aria-label={`Open verse actions for line ${index + 1}`}
-                  className={`absolute right-0 top-4 flex min-h-[32px] min-w-[32px] items-center justify-center rounded-full border border-transparent text-ink/28 transition-colors duration-300 hover:border-sand/20 hover:text-ink/55 dark:text-dark-text/28 dark:hover:border-dark-text/10 dark:hover:text-dark-text/55 ${
-                    isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
-                  }`}
-                >
-                  <IconMoreHorizontal size={16} />
-                </button>
-
-                <div className={`flex flex-wrap ${larivaar ? 'gap-x-0 gap-y-2' : 'gap-x-2 gap-y-3'} ${scriptAlignmentClass}`}>
-                  {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
+                return (
+                  <article
+                    key={`${line.verseId}-${index}`}
+                    data-testid="study-line"
+                    className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass} ${
+                      isHighlighted
+                        ? 'my-3 rounded-[24px] border border-saffron/25 bg-saffron/5 px-4 shadow-soft dark:border-gold/20 dark:bg-gold/5'
+                        : ''
+                    }`}
+                  >
+                    {isHighlighted ? (
+                      <span className="chip-pill mb-3 inline-flex">
+                        {highlightLabel}
+                      </span>
+                    ) : null}
                     <button
-                      key={`${line.verseId}-${wordIndex}`}
                       type="button"
-                      lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 ${larivaar ? '' : 'mr-[0.1em]'} text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
-                      style={{ fontSize: `${fontSize}px` }}
-                      onClick={() => handleWordTap(word, line)}
+                      onClick={() => setActionLine(line)}
+                      aria-label={`Open verse actions for line ${index + 1}`}
+                      className={`absolute right-0 top-4 flex min-h-[32px] min-w-[32px] items-center justify-center rounded-full border border-transparent text-ink/28 transition-colors duration-300 hover:border-sand/20 hover:text-ink/55 dark:text-dark-text/28 dark:hover:border-dark-text/10 dark:hover:text-dark-text/55 ${
+                        isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
+                      }`}
                     >
-                      {formatGurbaniWord(word, { scriptMode, showVishraam })}
+                      <IconMoreHorizontal size={16} />
                     </button>
-                  ))}
-                </div>
 
-                {showTransliteration && line.transliteration && (
-                  <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
-                    {line.transliteration}
-                  </p>
-                )}
+                    <div className={`flex flex-wrap ${larivaar ? 'gap-x-0 gap-y-2' : 'gap-x-2 gap-y-3'} ${scriptAlignmentClass}`}>
+                      {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
+                        <button
+                          key={`${line.verseId}-${wordIndex}`}
+                          type="button"
+                          lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                          className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 ${larivaar ? '' : 'mr-[0.1em]'} text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                          style={{ fontSize: `${fontSize}px` }}
+                          onClick={() => handleWordTap(word, line)}
+                        >
+                          {formatGurbaniWord(word, { scriptMode, showVishraam })}
+                        </button>
+                      ))}
+                    </div>
 
-                {meaningText && (
-                  meaningLanguage === 'pa' ? (
-                    <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
-                      {meaningText}
-                    </p>
-                  ) : (
-                    <p className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
-                      {meaningText}
-                    </p>
-                  )
-                )}
+                    {showTransliteration && line.transliteration && (
+                      <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                        {line.transliteration}
+                      </p>
+                    )}
 
-              </article>
-            )
-          })}
-        </div>
+                    {meaningText && (
+                      meaningLanguage === 'pa' ? (
+                        <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                          {meaningText}
+                        </p>
+                      ) : (
+                        <p className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                          {meaningText}
+                        </p>
+                      )
+                    )}
 
-        <p className={`font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-5 ${meaningAlignmentClass}`}>
-          Tap any Gurbani word for meaning
-        </p>
+                  </article>
+                )
+              })}
+            </div>
+
+            <p className={`font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-5 ${meaningAlignmentClass}`}>
+              Tap any Gurbani word for meaning
+            </p>
+          </>
+        )}
       </section>
 
       {activeWord && (
