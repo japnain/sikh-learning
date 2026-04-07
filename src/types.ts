@@ -50,9 +50,11 @@ export type FocusContext = 'learn' | 'study' | 'review'
 export type FocusPresetId = 'settle' | 'focus' | 'night'
 export type SupportDensity = 'full' | 'guided' | 'light' | 'minimal'
 export type LearnProgramId = 'start-reading' | 'build-fluency' | 'understand-gurbani' | 'deep-study'
-export type LearnModuleType = 'symbol' | 'sound' | 'decode' | 'guided' | 'meaning' | 'compare' | 'review'
+export type LearnModuleType = 'symbol' | 'sound' | 'decode' | 'guided' | 'meaning' | 'compare' | 'review' | 'grammar' | 'word-family'
 export type LearnActivityContext = 'learn' | 'study' | 'review'
 export type PlacementConfidence = 'gentle' | 'steady' | 'immersed'
+export type DailyLessonStepKind = 'vocab-review' | 'module' | 'quick-connect' | 'grammar-note' | 'word-family'
+export type MilestoneId = string
 
 export interface EnglishTranslations {
   bdb?: string
@@ -142,6 +144,15 @@ export interface LearningProgressState {
   practiceStreak: number
   lastPracticedOn?: string
   totalPracticeSessions: number
+  streakCalendar?: Record<string, boolean>
+  longestStreak?: number
+  earnedMilestoneIds?: MilestoneId[]
+  pendingMilestoneId?: MilestoneId | null
+  dailyLesson?: DailyLesson | null
+  grammarNotesSeen?: string[]
+  masteredWordFamilyIds?: string[]
+  themePathProgress?: Record<string, ThemePathProgress>
+  completedThemePathIds?: string[]
   skills?: Record<string, LearningSkillProgress>
   lessonProgress?: Record<string, LearningLessonProgress>
   assessmentHistory?: LearningAssessmentRecord[]
@@ -204,6 +215,12 @@ export interface LearnModule {
   compareRows?: LearnCompareRow[]
   note?: string
   relatedJourneyIds?: string[]
+  grammarPattern?: string
+  grammarExamples?: Array<{ gurmukhi: string; transliteration: string; meaning: string; highlight?: string }>
+  grammarNoteId?: string
+  wordFamilyId?: string
+  wordFamilyRoot?: string
+  wordFamilyMembers?: Array<{ gurmukhi: string; transliteration: string; meaning: string }>
 }
 
 export interface LearnProgramProgress {
@@ -269,6 +286,87 @@ export interface LearningAssessmentRecord {
   score: number
   skillIds: string[]
   recordedAt: string
+}
+
+export interface Milestone {
+  id: MilestoneId
+  title: string
+  gurmukhi?: string
+  description: string
+  earnedMessage: string
+}
+
+export interface DailyLessonStep {
+  id: string
+  kind: DailyLessonStepKind
+  title: string
+  estimatedSeconds: number
+  body?: string
+  moduleId?: string
+  vocabWords?: string[]
+  grammarNoteId?: string
+  wordFamilyId?: string
+  source?: 'G' | 'D'
+  ang?: number
+  baniTitle?: string
+  gurmukhi?: string
+  transliteration?: string
+  meaning?: string
+}
+
+export interface DailyLesson {
+  date: string
+  steps: DailyLessonStep[]
+  completedStepIds: string[]
+  generatedAt: string
+  totalEstimatedSeconds: number
+}
+
+export interface GrammarNote {
+  id: string
+  title: string
+  pattern: string
+  examples: Array<{
+    gurmukhi: string
+    transliteration: string
+    meaning: string
+    sourceAng?: number
+  }>
+  explanation: string
+  relatedSkillIds: string[]
+  programLevel: LearnProgramId
+}
+
+export interface WordFamily {
+  id: string
+  root: string
+  rootTransliteration: string
+  rootMeaning: string
+  theme: string
+  members: Array<{
+    gurmukhi: string
+    transliteration: string
+    meaning: string
+    exampleLine?: string
+    exampleAng?: number
+  }>
+  relatedThemePathId?: string
+}
+
+export interface ThemePath {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  themeTag: string
+  moduleIds: string[]
+  wordFamilyIds: string[]
+  minimumProgramId: LearnProgramId
+}
+
+export interface ThemePathProgress {
+  startedAt: string
+  completedModuleIds: string[]
 }
 
 export interface FoundationModule {

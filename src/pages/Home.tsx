@@ -15,6 +15,7 @@ import { BANIS } from '../data/banis'
 import { GUIDED_JOURNEYS } from '../data/guidedJourneys'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { useAng } from '../hooks/useAng'
+import useDailyLesson from '../hooks/useDailyLesson'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
@@ -143,6 +144,11 @@ export default function Home() {
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
   const locale = useLocaleStore(s => s.locale)
+  const {
+    lesson: dailyLesson,
+    needsPersist: dailyLessonNeedsPersist,
+    persistLesson,
+  } = useDailyLesson()
   const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
   const ensureDailyToday = useDailyFlowStore(s => s.ensureToday)
   const toggleDailyAction = useDailyFlowStore(s => s.toggleAction)
@@ -171,6 +177,12 @@ export default function Home() {
     resetIfNewDay()
     ensureDailyToday()
   }, [ensureDailyToday, resetIfNewDay])
+
+  useEffect(() => {
+    if (dailyLessonNeedsPersist) {
+      persistLesson()
+    }
+  }, [dailyLessonNeedsPersist, persistLesson])
 
   useEffect(() => {
     const state = (location.state as {
@@ -524,6 +536,27 @@ export default function Home() {
         <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
           {homeCopy.searchPlaceholder}
         </span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => navigate('/learn?view=daily')}
+        className="section-shell-quiet w-full px-4 py-4 mb-5 text-left active:scale-[0.99] transition-transform duration-150"
+      >
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="eyebrow">Today&apos;s Lesson</p>
+            <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+              {dailyLesson.completedStepIds.length} of {dailyLesson.steps.length} steps done
+            </p>
+            <p className="mt-1 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+              {dailyLesson.steps[0]?.title ?? 'Open Learn to start today’s lesson.'}
+            </p>
+          </div>
+          <span className="chip-pill">
+            {Math.max(1, Math.round(dailyLesson.totalEstimatedSeconds / 60))} min
+          </span>
+        </div>
       </button>
 
       <section

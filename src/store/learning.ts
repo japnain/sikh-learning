@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { THEME_PATH_BY_ID } from '../data/themePaths'
 import type {
+  DailyLesson,
   GuidedJourneyProgress,
   LearnActivity,
   LearnPlacementResult,
@@ -10,7 +12,10 @@ import type {
   LearningLessonProgress,
   LearningSkillKind,
   LearningSkillProgress,
+  MilestoneId,
+  ThemePathProgress,
 } from '../types'
+import { dayDiffLocal, parseLocalDayStamp, toLocalDayStamp } from '../utils/learnDates'
 
 type SkillRating = 'again' | 'good' | 'easy'
 
@@ -27,6 +32,11 @@ interface LearningState {
   practiceStreak: number
   lastPracticedOn?: string
   totalPracticeSessions: number
+  streakCalendar: Record<string, boolean>
+  longestStreak: number
+  earnedMilestoneIds: MilestoneId[]
+  pendingMilestoneId: MilestoneId | null
+  dailyLesson: DailyLesson | null
   skills: Record<string, LearningSkillProgress>
   lessonProgress: Record<string, LearningLessonProgress>
   assessmentHistory: LearningAssessmentRecord[]
@@ -37,9 +47,18 @@ interface LearningState {
   queuedReviewModuleIds: string[]
   placementResult: LearnPlacementResult | null
   lastLearnActivity: LearnActivity | null
+  grammarNotesSeen: string[]
+  masteredWordFamilyIds: string[]
+  themePathProgress: Record<string, ThemePathProgress>
+  completedThemePathIds: string[]
   toggleMasteredSymbol: (symbol: string) => void
   completeLesson: (lessonId: string) => void
   recordPracticeSession: () => void
+  recordStreakDay: (dateStamp: string) => void
+  earnMilestone: (id: MilestoneId) => void
+  clearPendingMilestone: () => void
+  setDailyLesson: (lesson: DailyLesson | null) => void
+  completeDailyLessonStep: (stepId: string, lessonDate: string) => void
   scoreSkills: (skillIds: string[], kind: LearningSkillKind, rating: SkillRating) => void
   recordLessonAttempt: (lessonId: string, score: number, skillIds: string[], kind: LearningSkillKind) => void
   getWeakSkillIds: () => string[]
@@ -53,6 +72,10 @@ interface LearningState {
   clearQueuedReview: (moduleId: string) => void
   setPlacementResult: (result: LearnPlacementResult | null) => void
   recordLearnActivity: (activity: LearnActivity) => void
+  markGrammarNoteSeen: (noteId: string) => void
+  completeWordFamily: (familyId: string) => void
+  startThemePath: (pathId: string) => void
+  completeThemePathModule: (pathId: string, moduleId: string) => void
 }
 
 type PersistedLearningState = Partial<
@@ -63,6 +86,11 @@ type PersistedLearningState = Partial<
     | 'practiceStreak'
     | 'lastPracticedOn'
     | 'totalPracticeSessions'
+    | 'streakCalendar'
+    | 'longestStreak'
+    | 'earnedMilestoneIds'
+    | 'pendingMilestoneId'
+    | 'dailyLesson'
     | 'skills'
     | 'lessonProgress'
     | 'assessmentHistory'
@@ -73,6 +101,10 @@ type PersistedLearningState = Partial<
     | 'queuedReviewModuleIds'
     | 'placementResult'
     | 'lastLearnActivity'
+    | 'grammarNotesSeen'
+    | 'masteredWordFamilyIds'
+    | 'themePathProgress'
+    | 'completedThemePathIds'
   >
 >
 
@@ -104,34 +136,134 @@ function normalizeProgramProgress(
   return defaults
 }
 
-function normalizePersistedState(persisted: PersistedLearningState | undefined): PersistedLearningState {
-  return {
-    masteredSymbols: persisted?.masteredSymbols ?? [],
-    completedLessons: persisted?.completedLessons ?? [],
-    practiceStreak: persisted?.practiceStreak ?? 0,
-    lastPracticedOn: persisted?.lastPracticedOn,
-    totalPracticeSessions: persisted?.totalPracticeSessions ?? 0,
-    skills: persisted?.skills ?? {},
-    lessonProgress: persisted?.lessonProgress ?? {},
-    assessmentHistory: persisted?.assessmentHistory ?? [],
-    journeys: persisted?.journeys ?? {},
-    activeJourneyId: persisted?.activeJourneyId ?? null,
-    activeProgramId: persisted?.activeProgramId ?? 'start-reading',
-    programProgress: normalizeProgramProgress(persisted?.programProgress),
-    queuedReviewModuleIds: persisted?.queuedReviewModuleIds ?? [],
-    placementResult: persisted?.placementResult ?? null,
-    lastLearnActivity: persisted?.lastLearnActivity ?? null,
+function sortDayStamps(dayStamps: string[]): string[] {
+  return [...dayStamps].sort((a, b) => a.localeCompare(b))
+}
+
+function getLongestStreak(calendar: Record<string, boolean>): number {
+  const activeDays = sortDayStamps(Object.keys(calendar).filter(day => calendar[day]))
+  if (activeDays.length === 0) return 0
+
+  let longest = 1
+  let current = 1
+
+  for (let index = 1; index < activeDays.length; index += 1) {
+    const previousDay = activeDays[index - 1]
+    const currentDay = activeDays[index]
+    if (dayDiffLocal(previousDay, currentDay) === 1) {
+      current += 1
+      longest = Math.max(longest, current)
+      continue
+    }
+
+    current = 1
+  }
+
+  return longest
+}
+
+function getCurrentStreak(calendar: Record<string, boolean>, latestDay: string | undefined): number {
+  if (!latestDay || !calendar[latestDay]) return 0
+
+  let streak = 1
+  let currentDay = latestDay
+
+  while (true) {
+    const previous = parseLocalDayStamp(currentDay)
+    previous.setDate(previous.getDate() - 1)
+    const previousStamp = toLocalDayStamp(previous)
+
+    if (!calendar[previousStamp]) {
+      return streak
+    }
+
+    streak += 1
+    currentDay = previousStamp
   }
 }
 
-function toDayStamp(date: Date): string {
-  return date.toISOString().slice(0, 10)
+function getLatestPracticedOn(calendar: Record<string, boolean>, lastPracticedOn?: string): string | undefined {
+  const activeDays = sortDayStamps(Object.keys(calendar).filter(day => calendar[day]))
+  const latestCalendarDay = activeDays[activeDays.length - 1]
+
+  if (!lastPracticedOn) return latestCalendarDay
+  if (!latestCalendarDay) return lastPracticedOn
+  return latestCalendarDay > lastPracticedOn ? latestCalendarDay : lastPracticedOn
 }
 
-function dayDiff(a: string, b: string): number {
-  const start = new Date(`${a}T00:00:00Z`)
-  const end = new Date(`${b}T00:00:00Z`)
-  return Math.round((end.getTime() - start.getTime()) / 86400000)
+function createDefaultState() {
+  return {
+    masteredSymbols: [],
+    completedLessons: [],
+    practiceStreak: 0,
+    lastPracticedOn: undefined as string | undefined,
+    totalPracticeSessions: 0,
+    streakCalendar: {} as Record<string, boolean>,
+    longestStreak: 0,
+    earnedMilestoneIds: [] as MilestoneId[],
+    pendingMilestoneId: null as MilestoneId | null,
+    dailyLesson: null as DailyLesson | null,
+    skills: {} as Record<string, LearningSkillProgress>,
+    lessonProgress: {} as Record<string, LearningLessonProgress>,
+    assessmentHistory: [] as LearningAssessmentRecord[],
+    journeys: {} as Record<string, GuidedJourneyProgress>,
+    activeJourneyId: null as string | null,
+    activeProgramId: 'start-reading' as LearnProgramId,
+    programProgress: createDefaultProgramProgress(),
+    queuedReviewModuleIds: [] as string[],
+    placementResult: null as LearnPlacementResult | null,
+    lastLearnActivity: null as LearnActivity | null,
+    grammarNotesSeen: [] as string[],
+    masteredWordFamilyIds: [] as string[],
+    themePathProgress: {} as Record<string, ThemePathProgress>,
+    completedThemePathIds: [] as string[],
+  }
+}
+
+function normalizePersistedState(persisted: PersistedLearningState | undefined): PersistedLearningState {
+  const defaults = createDefaultState()
+  const streakCalendar = {
+    ...defaults.streakCalendar,
+    ...(persisted?.streakCalendar ?? {}),
+  }
+
+  if (persisted?.lastPracticedOn) {
+    streakCalendar[persisted.lastPracticedOn] = true
+  }
+
+  const lastPracticedOn = getLatestPracticedOn(streakCalendar, persisted?.lastPracticedOn)
+  const practiceStreak = getCurrentStreak(streakCalendar, lastPracticedOn)
+  const longestStreak = Math.max(
+    persisted?.longestStreak ?? 0,
+    getLongestStreak(streakCalendar)
+  )
+
+  return {
+    masteredSymbols: persisted?.masteredSymbols ?? defaults.masteredSymbols,
+    completedLessons: persisted?.completedLessons ?? defaults.completedLessons,
+    practiceStreak,
+    lastPracticedOn,
+    totalPracticeSessions: persisted?.totalPracticeSessions ?? defaults.totalPracticeSessions,
+    streakCalendar,
+    longestStreak,
+    earnedMilestoneIds: persisted?.earnedMilestoneIds ?? defaults.earnedMilestoneIds,
+    pendingMilestoneId: persisted?.pendingMilestoneId ?? defaults.pendingMilestoneId,
+    dailyLesson: persisted?.dailyLesson ?? defaults.dailyLesson,
+    skills: persisted?.skills ?? defaults.skills,
+    lessonProgress: persisted?.lessonProgress ?? defaults.lessonProgress,
+    assessmentHistory: persisted?.assessmentHistory ?? defaults.assessmentHistory,
+    journeys: persisted?.journeys ?? defaults.journeys,
+    activeJourneyId: persisted?.activeJourneyId ?? defaults.activeJourneyId,
+    activeProgramId: persisted?.activeProgramId ?? defaults.activeProgramId,
+    programProgress: normalizeProgramProgress(persisted?.programProgress),
+    queuedReviewModuleIds: persisted?.queuedReviewModuleIds ?? defaults.queuedReviewModuleIds,
+    placementResult: persisted?.placementResult ?? defaults.placementResult,
+    lastLearnActivity: persisted?.lastLearnActivity ?? defaults.lastLearnActivity,
+    grammarNotesSeen: persisted?.grammarNotesSeen ?? defaults.grammarNotesSeen,
+    masteredWordFamilyIds: persisted?.masteredWordFamilyIds ?? defaults.masteredWordFamilyIds,
+    themePathProgress: persisted?.themePathProgress ?? defaults.themePathProgress,
+    completedThemePathIds: persisted?.completedThemePathIds ?? defaults.completedThemePathIds,
+  }
 }
 
 function nextMastery(current: number, rating: SkillRating): number {
@@ -144,40 +276,49 @@ function symbolFromSkillId(skillId: string): string {
   return skillId.startsWith('symbol:') ? skillId.slice('symbol:'.length) : skillId
 }
 
+function getNextStreakFields(
+  state: Pick<LearningState, 'streakCalendar' | 'lastPracticedOn'>
+  , dateStamp: string
+) {
+  const streakCalendar = {
+    ...state.streakCalendar,
+    [dateStamp]: true,
+  }
+  const lastPracticedOn = getLatestPracticedOn(streakCalendar, state.lastPracticedOn)
+
+  return {
+    streakCalendar,
+    lastPracticedOn,
+    practiceStreak: getCurrentStreak(streakCalendar, lastPracticedOn),
+    longestStreak: getLongestStreak(streakCalendar),
+  }
+}
+
 export const useLearningStore = create<LearningState>()(
   persist(
     (set, get) => ({
-      masteredSymbols: [],
-      completedLessons: [],
-      practiceStreak: 0,
-      totalPracticeSessions: 0,
-      skills: {},
-      lessonProgress: {},
-      assessmentHistory: [],
-      journeys: {},
-      activeJourneyId: null,
-      activeProgramId: 'start-reading',
-      programProgress: createDefaultProgramProgress(),
-      queuedReviewModuleIds: [],
-      placementResult: null,
-      lastLearnActivity: null,
-      toggleMasteredSymbol: (symbol) => set(state => ({
-        masteredSymbols: state.masteredSymbols.includes(symbol)
-          ? state.masteredSymbols.filter(current => current !== symbol)
-          : [...state.masteredSymbols, symbol],
-        skills: {
-          ...state.skills,
-          [`symbol:${symbol}`]: {
-            kind: 'symbol',
-            mastery: state.masteredSymbols.includes(symbol) ? 0.45 : 1,
-            attempts: (state.skills[`symbol:${symbol}`]?.attempts ?? 0) + 1,
-            successes: state.masteredSymbols.includes(symbol)
-              ? state.skills[`symbol:${symbol}`]?.successes ?? 0
-              : (state.skills[`symbol:${symbol}`]?.successes ?? 0) + 1,
-            lastReviewedOn: new Date().toISOString(),
+      ...createDefaultState(),
+      toggleMasteredSymbol: (symbol) => set(state => {
+        const isAlreadyMastered = state.masteredSymbols.includes(symbol)
+
+        return {
+          masteredSymbols: isAlreadyMastered
+            ? state.masteredSymbols.filter(current => current !== symbol)
+            : [...state.masteredSymbols, symbol],
+          skills: {
+            ...state.skills,
+            [`symbol:${symbol}`]: {
+              kind: 'symbol',
+              mastery: isAlreadyMastered ? 0.45 : 1,
+              attempts: (state.skills[`symbol:${symbol}`]?.attempts ?? 0) + 1,
+              successes: isAlreadyMastered
+                ? state.skills[`symbol:${symbol}`]?.successes ?? 0
+                : (state.skills[`symbol:${symbol}`]?.successes ?? 0) + 1,
+              lastReviewedOn: new Date().toISOString(),
+            },
           },
-        },
-      })),
+        }
+      }),
       completeLesson: (lessonId) => set(state => ({
         completedLessons: state.completedLessons.includes(lessonId)
           ? state.completedLessons
@@ -193,24 +334,41 @@ export const useLearningStore = create<LearningState>()(
         },
       })),
       recordPracticeSession: () => {
-        const today = toDayStamp(new Date())
-        const { lastPracticedOn, practiceStreak, totalPracticeSessions } = get()
-
-        if (lastPracticedOn === today) {
-          set({ totalPracticeSessions: totalPracticeSessions + 1 })
-          return
+        const today = toLocalDayStamp(new Date())
+        set(state => ({
+          ...getNextStreakFields(state, today),
+          totalPracticeSessions: state.totalPracticeSessions + 1,
+        }))
+      },
+      recordStreakDay: (dateStamp) => set(state => getNextStreakFields(state, dateStamp)),
+      earnMilestone: (id) => set(state => {
+        if (state.earnedMilestoneIds.includes(id)) {
+          return {}
         }
 
-        const nextStreak = lastPracticedOn && dayDiff(lastPracticedOn, today) === 1
-          ? practiceStreak + 1
-          : 1
+        return {
+          earnedMilestoneIds: [...state.earnedMilestoneIds, id],
+          pendingMilestoneId: state.pendingMilestoneId ?? id,
+        }
+      }),
+      clearPendingMilestone: () => set({ pendingMilestoneId: null }),
+      setDailyLesson: (lesson) => set({ dailyLesson: lesson }),
+      completeDailyLessonStep: (stepId, lessonDate) => set(state => {
+        if (!state.dailyLesson || state.dailyLesson.date !== lessonDate) {
+          return {}
+        }
 
-        set({
-          lastPracticedOn: today,
-          practiceStreak: nextStreak,
-          totalPracticeSessions: totalPracticeSessions + 1,
-        })
-      },
+        if (state.dailyLesson.completedStepIds.includes(stepId)) {
+          return {}
+        }
+
+        return {
+          dailyLesson: {
+            ...state.dailyLesson,
+            completedStepIds: [...state.dailyLesson.completedStepIds, stepId],
+          },
+        }
+      }),
       scoreSkills: (skillIds, kind, rating) => set(state => {
         const nextSkills = { ...state.skills }
         const nextMasteredSymbols = new Set(state.masteredSymbols)
@@ -349,10 +507,25 @@ export const useLearningStore = create<LearningState>()(
           ? state.completedLessons
           : [...state.completedLessons, moduleId]
         const queuedReviewModuleIds = Array.from(new Set([...reviewIds, ...state.queuedReviewModuleIds]))
+        const dailyLesson = state.dailyLesson?.steps.some(step => step.moduleId === moduleId)
+          ? {
+            ...state.dailyLesson,
+            completedStepIds: state.dailyLesson.completedStepIds.includes(moduleId)
+              ? state.dailyLesson.completedStepIds
+              : [
+                ...state.dailyLesson.completedStepIds,
+                ...state.dailyLesson.steps
+                  .filter(step => step.moduleId === moduleId)
+                  .map(step => step.id)
+                  .filter(stepId => !state.dailyLesson?.completedStepIds.includes(stepId)),
+              ],
+          }
+          : state.dailyLesson
 
         return {
           completedLessons,
           queuedReviewModuleIds,
+          dailyLesson,
           activeProgramId: programId,
           programProgress: {
             ...state.programProgress,
@@ -387,19 +560,58 @@ export const useLearningStore = create<LearningState>()(
           },
         },
       })),
+      markGrammarNoteSeen: (noteId) => set(state => ({
+        grammarNotesSeen: state.grammarNotesSeen.includes(noteId)
+          ? state.grammarNotesSeen
+          : [...state.grammarNotesSeen, noteId],
+      })),
+      completeWordFamily: (familyId) => set(state => ({
+        masteredWordFamilyIds: state.masteredWordFamilyIds.includes(familyId)
+          ? state.masteredWordFamilyIds
+          : [...state.masteredWordFamilyIds, familyId],
+      })),
+      startThemePath: (pathId) => set(state => ({
+        themePathProgress: {
+          ...state.themePathProgress,
+          [pathId]: state.themePathProgress[pathId] ?? {
+            startedAt: new Date().toISOString(),
+            completedModuleIds: [],
+          },
+        },
+      })),
+      completeThemePathModule: (pathId, moduleId) => set(state => {
+        const current = state.themePathProgress[pathId] ?? {
+          startedAt: new Date().toISOString(),
+          completedModuleIds: [],
+        }
+        const completedModuleIds = current.completedModuleIds.includes(moduleId)
+          ? current.completedModuleIds
+          : [...current.completedModuleIds, moduleId]
+        const themePath = THEME_PATH_BY_ID[pathId]
+        const isComplete = themePath
+          ? themePath.moduleIds.every(id => completedModuleIds.includes(id))
+          : false
+
+        return {
+          themePathProgress: {
+            ...state.themePathProgress,
+            [pathId]: {
+              ...current,
+              completedModuleIds,
+            },
+          },
+          completedThemePathIds: isComplete && !state.completedThemePathIds.includes(pathId)
+            ? [...state.completedThemePathIds, pathId]
+            : state.completedThemePathIds,
+        }
+      }),
     }),
     {
       name: 'sikh-learning-state',
-      version: 2,
-      migrate: (persistedState, version) => {
-        const normalized = normalizePersistedState(persistedState as PersistedLearningState | undefined)
-
-        if (version < 2) {
-          return normalized
-        }
-
-        return normalized
-      },
+      version: 3,
+      migrate: (persistedState) => normalizePersistedState(
+        persistedState as PersistedLearningState | undefined
+      ),
     }
   )
 )

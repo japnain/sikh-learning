@@ -1,7 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import DailyLessonCard from '../components/DailyLessonCard'
+import MilestoneCelebration from '../components/MilestoneCelebration'
 import SoundscapeControls from '../components/SoundscapeControls'
+import StreakCalendar from '../components/StreakCalendar'
+import ThemePathCard from '../components/ThemePathCard'
 import { GURMUKHI_LETTERS, GURMUKHI_VOWELS, type GurmukhiLetter } from '../data/gurmukhi'
+import { GRAMMAR_NOTE_BY_ID } from '../data/grammarNotes'
 import { GUIDED_JOURNEYS } from '../data/guidedJourneys'
 import {
   getDefaultProgramForLevel,
@@ -10,6 +15,11 @@ import {
   LEARN_PROGRAMS,
   PROGRAM_MODULES,
 } from '../data/learningCurriculum'
+import { MILESTONE_BY_ID } from '../data/milestones'
+import { THEME_PATHS } from '../data/themePaths'
+import { WORD_FAMILY_BY_ID } from '../data/wordFamilies'
+import useDailyLesson from '../hooks/useDailyLesson'
+import useMilestoneCheck from '../hooks/useMilestoneCheck'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
@@ -281,6 +291,7 @@ function getNextUnlockedModule(programId: LearnProgramId, completedIds: Set<stri
 export default function Learn() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
+  const dailyLessonRef = useRef<HTMLElement | null>(null)
   const locale = useLocaleStore(state => state.locale)
   const copy = getUiCopy(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
@@ -288,10 +299,13 @@ export default function Learn() {
   const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
   const { learningLevel, audience, learningGoal } = useOnboardingStore()
   const vocab = useVocabStore(state => state.vocab)
+  const addWord = useVocabStore(state => state.addWord)
   const {
     masteredSymbols,
     completedLessons,
     practiceStreak,
+    streakCalendar,
+    longestStreak,
     totalPracticeSessions,
     skills,
     lessonProgress,
@@ -302,6 +316,9 @@ export default function Learn() {
     queuedReviewModuleIds,
     placementResult,
     lastLearnActivity,
+    pendingMilestoneId,
+    grammarNotesSeen,
+    masteredWordFamilyIds,
     toggleMasteredSymbol,
     recordLessonAttempt,
     getWeakSkillIds,
@@ -314,7 +331,23 @@ export default function Learn() {
     clearQueuedReview,
     setPlacementResult,
     recordLearnActivity,
+    clearPendingMilestone,
+    markGrammarNoteSeen,
+    completeWordFamily,
+    themePathProgress,
+    completedThemePathIds,
+    completeThemePathModule,
   } = useLearningStore()
+  const checkMilestones = useMilestoneCheck()
+  const {
+    lesson: dailyLesson,
+    currentStep: currentDailyStep,
+    completeStep: completeDailyLessonStep,
+    isComplete: isDailyLessonComplete,
+    timeEstimate: dailyLessonMinutes,
+    needsPersist: dailyLessonNeedsPersist,
+    persistLesson,
+  } = useDailyLesson()
 
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
   const [revealDecode, setRevealDecode] = useState(false)
@@ -322,6 +355,7 @@ export default function Learn() {
   const [placementConfidence, setPlacementConfidence] = useState<PlacementConfidence>('steady')
   const [readingCheckId, setReadingCheckId] = useState<string>('reading-joining')
   const [meaningCheckId, setMeaningCheckId] = useState<string>('meaning-patterns')
+  const [pathsOpen, setPathsOpen] = useState(true)
 
   const allCompletedIds = useMemo(() => {
     const nextIds = new Set(completedLessons)
@@ -338,6 +372,10 @@ export default function Learn() {
   )
   const savedPhrases = useMemo(
     () => vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length,
+    [vocab]
+  )
+  const savedWordKeys = useMemo(
+    () => new Set(vocab.filter(entry => (entry.kind ?? 'word') === 'word').map(entry => entry.word)),
     [vocab]
   )
   const hasExistingProgramProgress = useMemo(
@@ -407,6 +445,41 @@ export default function Learn() {
   const activeJourneyProgress = activeJourney ? journeys[activeJourney.id] : null
   const activeJourneyStep = activeJourney?.steps.find(step => !activeJourneyProgress?.completedStepIds.includes(step.id)) ?? null
 
+  useEffect(() => {
+    if (dailyLessonNeedsPersist) {
+      persistLesson()
+    }
+  }, [dailyLessonNeedsPersist, persistLesson])
+
+  useEffect(() => {
+    if (searchParams.get('view') !== 'daily') return
+
+    window.requestAnimationFrame(() => {
+      dailyLessonRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+  }, [searchParams])
+
+  useEffect(() => {
+    checkMilestones()
+  }, [
+    checkMilestones,
+    completedLessons.length,
+    grammarNotesSeen.length,
+    masteredSymbols.length,
+    masteredWordFamilyIds.length,
+    pendingMilestoneId,
+    practiceStreak,
+    themePathProgress,
+    vocab.length,
+    journeys,
+  ])
+
+  useEffect(() => {
+    if (activeModule?.type === 'grammar' && activeModule.grammarNoteId) {
+      markGrammarNoteSeen(activeModule.grammarNoteId)
+    }
+  }, [activeModule?.grammarNoteId, activeModule?.type, markGrammarNoteSeen])
+
   const recordModuleView = (module: LearnModule, context: 'learn' | 'study' | 'review' = 'learn') => {
     recordLearnActivity({
       programId: module.programId,
@@ -420,6 +493,25 @@ export default function Learn() {
     setActiveProgram(module.programId)
     setProgramModule(module.programId, module.id)
     recordModuleView(module)
+  }
+
+  const openModuleFromDaily = (moduleId: string) => {
+    const module = LEARN_MODULE_BY_ID[moduleId]
+    if (!module) return
+    jumpToModule(module)
+  }
+
+  const openStudyFromDailyLesson = (source: 'G' | 'D', ang: number, baniTitle?: string) => {
+    const params = new URLSearchParams({
+      source,
+      ang: String(ang),
+    })
+
+    if (baniTitle) {
+      params.set('bani', baniTitle)
+    }
+
+    navigate(`/study?${params.toString()}`)
   }
 
   const openStudyFromModule = (module: LearnModule) => {
@@ -438,11 +530,19 @@ export default function Learn() {
 
   const finishModule = (module: LearnModule, score: number) => {
     recordLessonAttempt(module.id, score, module.skillIds, getLearningSkillKind(module))
+    if (module.type === 'word-family' && module.wordFamilyId) {
+      completeWordFamily(module.wordFamilyId)
+    }
     completeModule(
       module.programId,
       module.id,
       module.relatedReviewIds.length > 0 ? module.relatedReviewIds : [module.id]
     )
+    THEME_PATHS.forEach(path => {
+      if (themePathProgress[path.id] && path.moduleIds.includes(module.id)) {
+        completeThemePathModule(path.id, module.id)
+      }
+    })
     if (activeJourney && activeJourneyStep) {
       const journeyModuleId = getJourneyStepModuleId(activeJourney, activeJourneyStep.id, activeJourneyStep.lessonId)
       if (
@@ -452,6 +552,7 @@ export default function Learn() {
         completeJourneyStep(activeJourney.id, activeJourneyStep.id, activeJourney.steps.length)
       }
     }
+    checkMilestones()
   }
 
   const openQueuedReview = () => {
@@ -478,7 +579,7 @@ export default function Learn() {
     }
 
     if (nextStep.type === 'guided' && nextStep.guidedExerciseId) {
-      const moduleId = getJourneyStepModuleId(journey, nextStep.id)
+      const moduleId = getJourneyStepModuleId(journey, nextStep.id, nextStep.lessonId)
       const module = moduleId ? LEARN_MODULE_BY_ID[moduleId] : null
       if (module) {
         jumpToModule(module)
@@ -517,6 +618,24 @@ export default function Learn() {
     if (firstModule) {
       setProgramModule(programId, firstModule.id)
       recordModuleView(firstModule)
+    }
+  }
+
+  const openThemePath = (pathId: string) => {
+    const path = THEME_PATHS.find(item => item.id === pathId)
+    if (!path) return
+
+    if (!themePathProgress[pathId]) {
+      useLearningStore.getState().startThemePath(pathId)
+    }
+
+    const nextModuleId = path.moduleIds.find(moduleId => !themePathProgress[pathId]?.completedModuleIds.includes(moduleId))
+      ?? path.moduleIds[0]
+    const nextModule = nextModuleId ? LEARN_MODULE_BY_ID[nextModuleId] : null
+
+    if (nextModule) {
+      jumpToModule(nextModule)
+      checkMilestones()
     }
   }
 
@@ -689,6 +808,18 @@ export default function Learn() {
         </div>
       </section>
 
+      <section ref={dailyLessonRef} className="mb-5">
+        <DailyLessonCard
+          lesson={dailyLesson}
+          currentStep={currentDailyStep}
+          timeEstimate={dailyLessonMinutes}
+          isComplete={isDailyLessonComplete}
+          onCompleteStep={completeDailyLessonStep}
+          onOpenModule={openModuleFromDaily}
+          onOpenStudy={openStudyFromDailyLesson}
+        />
+      </section>
+
       <div className="mb-5">
         <SoundscapeControls context="learn" variant="compact" />
       </div>
@@ -732,6 +863,13 @@ export default function Learn() {
           >
             {todayCard.actionLabel}
           </button>
+        </div>
+        <div className="mt-4">
+          <StreakCalendar
+            streakCalendar={streakCalendar}
+            practiceStreak={practiceStreak}
+            longestStreak={longestStreak}
+          />
         </div>
       </section>
 
@@ -1147,6 +1285,152 @@ export default function Learn() {
             </div>
           )}
 
+          {activeModule.type === 'grammar' && (
+            <div className="mt-4">
+              <div className="section-shell-quiet p-4">
+                <p className="eyebrow">Pattern</p>
+                <p className="mt-2 font-sans text-sm text-ink dark:text-dark-text">
+                  {activeModule.grammarPattern}
+                </p>
+                {activeModule.grammarNoteId && GRAMMAR_NOTE_BY_ID[activeModule.grammarNoteId] ? (
+                  <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">
+                    {GRAMMAR_NOTE_BY_ID[activeModule.grammarNoteId].explanation}
+                  </p>
+                ) : null}
+              </div>
+              <div className="space-y-3 mt-4">
+                {activeModule.grammarExamples?.map(example => (
+                  <div key={`${activeModule.id}-${example.gurmukhi}`} className="section-shell-quiet p-4">
+                    <p lang="pa-Guru" className="font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
+                      {example.gurmukhi}
+                    </p>
+                    <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
+                      {example.transliteration}
+                    </p>
+                    <p className="mt-2 font-sans text-sm text-ink/75 dark:text-dark-text/75">
+                      {example.meaning}
+                    </p>
+                    {example.highlight ? (
+                      <p className="mt-2 font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        Watch: {example.highlight}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-4">
+                {activeModule.source && activeModule.ang ? (
+                  <button
+                    type="button"
+                    onClick={() => openStudyFromModule(activeModule)}
+                    className="section-shell-quiet py-3 font-sans text-xs min-h-[44px]"
+                  >
+                    Open Study
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => navigate('/vocab')}
+                    className="section-shell-quiet py-3 font-sans text-xs min-h-[44px]"
+                  >
+                    Open Saved
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => finishModule(activeModule, 0.92)}
+                  className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
+                >
+                  Mark learned
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeModule.type === 'word-family' && (
+            <div className="mt-4">
+              <div className="section-shell-quiet p-4">
+                <p className="eyebrow">Root</p>
+                <p lang="pa-Guru" className="mt-2 font-gurmukhi text-3xl leading-none text-ink dark:text-dark-text">
+                  {activeModule.wordFamilyRoot ?? WORD_FAMILY_BY_ID[activeModule.wordFamilyId ?? '']?.root}
+                </p>
+                <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">
+                  {WORD_FAMILY_BY_ID[activeModule.wordFamilyId ?? '']?.rootMeaning ?? activeModule.summary}
+                </p>
+              </div>
+              <div className="space-y-3 mt-4">
+                {activeModule.wordFamilyMembers?.map(member => {
+                  const isSaved = savedWordKeys.has(member.gurmukhi)
+
+                  return (
+                    <div key={`${activeModule.id}-${member.gurmukhi}`} className="section-shell-quiet p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p lang="pa-Guru" className="font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
+                            {member.gurmukhi}
+                          </p>
+                          <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
+                            {member.transliteration}
+                          </p>
+                          <p className="mt-2 font-sans text-sm text-ink/75 dark:text-dark-text/75">
+                            {member.meaning}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          disabled={isSaved}
+                          onClick={() => {
+                            if (isSaved) return
+                            addWord({
+                              kind: 'word',
+                              word: member.gurmukhi,
+                              transliteration: member.transliteration,
+                              meaning_en: member.meaning,
+                              meaning_hi: '',
+                              meaning_pa: '',
+                              scripture: activeModule.title,
+                              sourceId: activeModule.source ?? 'G',
+                              savedAt: new Date().toISOString(),
+                              context: {
+                                scripture: activeModule.title,
+                                sourceId: activeModule.source ?? 'G',
+                                ang: activeModule.ang,
+                              },
+                            })
+                            checkMilestones()
+                          }}
+                          className={`rounded-full px-3 py-2 font-sans text-xs font-semibold ${
+                            isSaved
+                              ? 'bg-gold/15 text-gold dark:text-gold-light'
+                              : 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                          }`}
+                        >
+                          {isSaved ? 'Saved' : 'Save'}
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="grid grid-cols-2 gap-2 mt-4">
+                <button
+                  type="button"
+                  onClick={() => navigate('/vocab')}
+                  className="section-shell-quiet py-3 font-sans text-xs min-h-[44px]"
+                >
+                  Open Vocab
+                </button>
+                <button
+                  type="button"
+                  onClick={() => finishModule(activeModule, 0.94)}
+                  className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
+                >
+                  Mark family learned
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="section-shell-quiet p-4 mt-5">
             <p className="eyebrow">Assessment</p>
             <p className="mt-2 font-sans text-sm text-ink/70 dark:text-dark-text/70">
@@ -1210,6 +1494,50 @@ export default function Learn() {
           )}
         </div>
       </section>
+
+      <section className="section-shell-quiet p-4 mb-5">
+        <button
+          type="button"
+          onClick={() => setPathsOpen(open => !open)}
+          className="flex w-full items-start justify-between gap-3 text-left"
+        >
+          <div>
+            <p className="eyebrow">Paths</p>
+            <p className="mt-1 font-sans text-sm text-ink dark:text-dark-text">
+              Follow curated vocabulary and grammar paths instead of choosing every next step yourself.
+            </p>
+          </div>
+          <span className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+            {pathsOpen ? 'Hide' : 'Show'}
+          </span>
+        </button>
+
+        {pathsOpen ? (
+          <div className="space-y-3 mt-4">
+            {THEME_PATHS.map(path => {
+              const progress = themePathProgress[path.id]
+              return (
+                <ThemePathCard
+                  key={path.id}
+                  path={path}
+                  completedCount={progress?.completedModuleIds.length ?? 0}
+                  isStarted={Boolean(progress)}
+                  isComplete={completedThemePathIds.includes(path.id)}
+                  onStart={() => openThemePath(path.id)}
+                  onOpen={() => openThemePath(path.id)}
+                />
+              )
+            })}
+          </div>
+        ) : null}
+      </section>
+
+      {pendingMilestoneId && MILESTONE_BY_ID[pendingMilestoneId] ? (
+        <MilestoneCelebration
+          milestone={MILESTONE_BY_ID[pendingMilestoneId]}
+          onDismiss={clearPendingMilestone}
+        />
+      ) : null}
     </div>
   )
 }
