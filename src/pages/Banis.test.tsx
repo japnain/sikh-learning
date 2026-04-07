@@ -1,10 +1,15 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
 import Study from './Study'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
+}
+
+function LocationSpy() {
+  const location = useLocation()
+  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
 }
 
 test('renders page heading', () => {
@@ -68,6 +73,29 @@ test('featured Ardaas + Hukamnama card opens the devotional Study flow', async (
   await waitFor(() => {
     expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
     expect(screen.getByText(/After Ardaas, take a random Hukamnama/i)).toBeInTheDocument()
+  })
+})
+
+test('opens Sundar Gutka Rehras Sahib through the canonical SGGS range route', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/study" element={<><Study /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByText(/Sundar Gutka/i))
+
+  await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Nitnem'))
+
+  await waitFor(() => expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&bani=Rehras%20Sahib&endAng=12')
   })
 })
 
