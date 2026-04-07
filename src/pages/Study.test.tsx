@@ -225,6 +225,32 @@ describe('Study renders all shabads on an ang', () => {
     expect(screen.getByText(/ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ/i)).toBeInTheDocument()
     expect(screen.queryByText('One Universal Creator God. The Name Is Truth.')).not.toBeInTheDocument()
   })
+
+  it('shows a bani start marker on the first ang of a named bani route', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&bani=Japji%20Sahib&endAng=8']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Japji Sahib starts here')).toBeInTheDocument()
+    })
+  })
+
+  it('hides the bani start marker after the first ang', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=2&startAng=1&bani=Japji%20Sahib&endAng=8']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
+    })
+
+    expect(screen.queryByText('Japji Sahib starts here')).not.toBeInTheDocument()
+  })
 })
 
 describe('Study soundscapes and tracking', () => {

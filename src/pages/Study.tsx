@@ -17,6 +17,7 @@ import type { ScriptureEntry, ScriptureLine } from '../types'
 import { getLineSpacingLabels, getMeaningLanguageLabels, getScriptModeLabels, getTextAlignmentLabels } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { resolveBaniStartMarker } from '../utils/baniStartMarker'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
@@ -398,6 +399,22 @@ export default function Study() {
   const isPhraseSaved = (line: ScriptureLine) =>
     vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
   const isExactSearchResult = isExactShabadMode && verseIdParam !== null
+  const baniStartMarker = useMemo(() => {
+    if (highlightVerseIdParam !== null) {
+      return {
+        verseId: highlightVerseIdParam,
+        label: 'Hukamnama begins here',
+      }
+    }
+
+    return resolveBaniStartMarker({
+      baniName,
+      source: source ?? currentSource,
+      startAng: startAngParam ?? angParam,
+      currentAng,
+      entries,
+    })
+  }, [angParam, baniName, currentAng, currentSource, entries, highlightVerseIdParam, source, startAngParam])
   const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
@@ -788,7 +805,8 @@ export default function Study() {
               key={entry.id}
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
-              highlightVerseId={highlightVerseIdParam}
+              highlightVerseId={baniStartMarker?.verseId ?? null}
+              highlightLabel={baniStartMarker?.label ?? 'Hukamnama begins here'}
               hideMainLines={isArdaasReaderFlow}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
