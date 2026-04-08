@@ -12,6 +12,7 @@ interface Props {
   highlightVerseId?: number | null
   highlightLabel?: string
   hideMainLines?: boolean
+  showAudioPlayer?: boolean
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
@@ -69,6 +70,7 @@ export default function StudyCard({
   highlightVerseId = null,
   highlightLabel = 'Hukamnama begins here',
   hideMainLines = false,
+  showAudioPlayer = false,
   onSavePhrase,
   onCopyLine,
   onShareLine,
@@ -155,7 +157,7 @@ export default function StudyCard({
           )}
         </div>
 
-        {entry.shabadId ? (
+        {showAudioPlayer && entry.shabadId ? (
           <div className="mb-4">
             <AudioPlayer shabadId={entry.shabadId} />
           </div>
@@ -212,6 +214,7 @@ export default function StudyCard({
                   <article
                     key={`${line.verseId}-${index}`}
                     data-testid="study-line"
+                    data-verse-id={line.verseId}
                     className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass} ${
                       isHighlighted
                         ? 'my-3 rounded-[24px] border border-saffron/25 bg-saffron/5 px-4 shadow-soft dark:border-gold/20 dark:bg-gold/5'

@@ -415,6 +415,18 @@ export default function Study() {
       entries,
     })
   }, [angParam, baniName, currentAng, currentSource, entries, highlightVerseIdParam, source, startAngParam])
+
+  const baniStartVerseId = baniStartMarker?.verseId ?? null
+  useEffect(() => {
+    if (!baniStartVerseId || loading) return
+    const el = document.querySelector(`[data-verse-id="${baniStartVerseId}"]`)
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 150)
+    }
+  }, [baniStartVerseId, loading])
+
   const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
@@ -798,7 +810,7 @@ export default function Study() {
       )}
 
       <div className="space-y-4">
-        {entries.map(entry => {
+        {entries.map((entry, index) => {
           const shabadId = parseShabadId(entry)
           return (
             <StudyCard
@@ -808,6 +820,7 @@ export default function Study() {
               highlightVerseId={baniStartMarker?.verseId ?? null}
               highlightLabel={baniStartMarker?.label ?? 'Hukamnama begins here'}
               hideMainLines={isArdaasReaderFlow}
+              showAudioPlayer={index === 0}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}
               onShareLine={handleShareLine}
