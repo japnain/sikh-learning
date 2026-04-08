@@ -31,7 +31,7 @@ afterEach(() => {
   sessionStorage.clear()
 })
 
-test('shows onboarding above the app shell and hides nav until setup is saved', async () => {
+test('shows onboarding above the app shell and lands home after first-run setup', async () => {
   render(<App />)
 
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
@@ -48,7 +48,7 @@ test('shows onboarding above the app shell and hides nav until setup is saved', 
   })
 
   await waitFor(() => {
-    expect(window.location.pathname).toBe('/study')
+    expect(window.location.pathname).toBe('/')
   })
 })
 

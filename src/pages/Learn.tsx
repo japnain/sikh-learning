@@ -446,6 +446,7 @@ export default function Learn() {
     || totalPracticeSessions > 0
     || hasCompletedProgramProgress
   )
+  const showLearnDashboard = hasEstablishedLearnState
   const showContinueCard = Boolean(continueModule && hasEstablishedLearnState)
   const activeJourney = useMemo(() => {
     if (activeJourneyId) {
@@ -807,17 +808,19 @@ export default function Learn() {
         </section>
       )}
 
-      <section ref={dailyLessonRef} className="mb-5">
-        <DailyLessonCard
-          lesson={dailyLesson}
-          currentStep={currentDailyStep}
-          timeEstimate={dailyLessonMinutes}
-          isComplete={isDailyLessonComplete}
-          onCompleteStep={completeDailyLessonStep}
-          onOpenModule={openModuleFromDaily}
-          onOpenStudy={openStudyFromDailyLesson}
-        />
-      </section>
+      {showLearnDashboard && (
+        <section ref={dailyLessonRef} className="mb-5">
+          <DailyLessonCard
+            lesson={dailyLesson}
+            currentStep={currentDailyStep}
+            timeEstimate={dailyLessonMinutes}
+            isComplete={isDailyLessonComplete}
+            onCompleteStep={completeDailyLessonStep}
+            onOpenModule={openModuleFromDaily}
+            onOpenStudy={openStudyFromDailyLesson}
+          />
+        </section>
+      )}
 
       {showContinueCard && (
         <section className="section-shell p-4 mb-4">
@@ -843,58 +846,62 @@ export default function Learn() {
         </section>
       )}
 
-      <div className="mb-5">
-        <SoundscapeControls context="learn" variant="compact" />
-      </div>
+      {showLearnDashboard && (
+        <div className="mb-5">
+          <SoundscapeControls context="learn" variant="compact" />
+        </div>
+      )}
 
-      <section className="section-shell-quiet p-4 mb-5">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="eyebrow">Today</p>
-            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
-              {todayCard.title}
-            </p>
-            <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2 max-w-[30ch]">
-              {todayCard.body}
-            </p>
+      {showLearnDashboard && (
+        <section className="section-shell-quiet p-4 mb-5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">Today</p>
+              <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
+                {todayCard.title}
+              </p>
+              <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2 max-w-[30ch]">
+                {todayCard.body}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="font-display text-3xl text-ink dark:text-dark-text">{allCompletedIds.size}</p>
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">Done</p>
+            </div>
           </div>
-          <div className="text-right">
-            <p className="font-display text-3xl text-ink dark:text-dark-text">{allCompletedIds.size}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45">Done</p>
+          <div className="grid grid-cols-3 gap-2 mt-4">
+            <div className="section-shell-quiet px-3 py-3">
+              <p className="font-sans text-2xl text-ink dark:text-dark-text">{practiceStreak}</p>
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Streak</p>
+            </div>
+            <div className="section-shell-quiet px-3 py-3">
+              <p className="font-sans text-2xl text-ink dark:text-dark-text">{totalPracticeSessions}</p>
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Sessions</p>
+            </div>
+            <div className="section-shell-quiet px-3 py-3">
+              <p className="font-sans text-2xl text-ink dark:text-dark-text">{dueReview.length}</p>
+              <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Due</p>
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-2 mt-4">
-          <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{practiceStreak}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Streak</p>
+          <div className="mt-4 flex items-center justify-between gap-3">
+            <span className="chip-pill">{todayCard.context}</span>
+            <button
+              type="button"
+              onClick={todayCard.action}
+              className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-sm font-semibold min-h-[44px]"
+            >
+              {todayCard.actionLabel}
+            </button>
           </div>
-          <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{totalPracticeSessions}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Sessions</p>
+          <div className="mt-4">
+            <StreakCalendar
+              streakCalendar={streakCalendar}
+              practiceStreak={practiceStreak}
+              longestStreak={longestStreak}
+            />
           </div>
-          <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{dueReview.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">Due</p>
-          </div>
-        </div>
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="chip-pill">{todayCard.context}</span>
-          <button
-            type="button"
-            onClick={todayCard.action}
-            className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-sm font-semibold min-h-[44px]"
-          >
-            {todayCard.actionLabel}
-          </button>
-        </div>
-        <div className="mt-4">
-          <StreakCalendar
-            streakCalendar={streakCalendar}
-            practiceStreak={practiceStreak}
-            longestStreak={longestStreak}
-          />
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="section-shell p-4 mb-5">
         <div className="flex items-start justify-between gap-3">
@@ -937,19 +944,32 @@ export default function Learn() {
         </div>
 
         <div className="section-shell-quiet p-4 mt-4">
-          <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-            {LEARN_PROGRAMS.find(program => program.id === activeProgramId)?.outcome}
-          </p>
-          <p className="mt-2 font-sans text-xs text-ink/55 dark:text-dark-text/55">
-            Support density: {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : SUPPORT_LABELS[LEARN_PROGRAMS.find(program => program.id === activeProgramId)?.defaultSupportDensity ?? 'guided']}
-          </p>
-          <p className="mt-2 font-sans text-xs text-ink/55 dark:text-dark-text/55">
-            {savedPhrases} saved phrase{savedPhrases === 1 ? '' : 's'} currently available to reinforce understanding.
-          </p>
+          {showLearnDashboard ? (
+            <>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                {LEARN_PROGRAMS.find(program => program.id === activeProgramId)?.outcome}
+              </p>
+              <p className="mt-2 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                Support density: {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : SUPPORT_LABELS[LEARN_PROGRAMS.find(program => program.id === activeProgramId)?.defaultSupportDensity ?? 'guided']}
+              </p>
+              <p className="mt-2 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                {savedPhrases} saved phrase{savedPhrases === 1 ? '' : 's'} currently available to reinforce understanding.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                Pick a lane once, then Learn will open with a tighter daily lesson, streak view, and active module.
+              </p>
+              <p className="mt-2 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                Until placement is set, this page stays focused on getting you into the right program instead of showing the full dashboard stack.
+              </p>
+            </>
+          )}
         </div>
       </section>
 
-      {activeModule && (
+      {showLearnDashboard && activeModule && (
         <section className="section-shell p-5 mb-5">
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -1474,86 +1494,90 @@ export default function Learn() {
         </section>
       )}
 
-      <section className="section-shell-quiet p-4 mb-5">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="eyebrow">Applied Practice</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              Use short bani-specific paths to turn modules into repeatable reading progress.
-            </p>
-          </div>
-          {activeJourney ? (
-            <button
-              type="button"
-              onClick={() => setActiveJourney(null)}
-              className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2"
-            >
-              Clear active
-            </button>
-          ) : null}
-        </div>
-
-        <div className="space-y-3 mt-4">
-          {programJourneys.length > 0 ? (
-            programJourneys.map(journey => (
-              <JourneyCard
-                key={journey.id}
-                journey={journey}
-                active={activeJourney?.id === journey.id}
-                completedCount={journeys[journey.id]?.completedStepIds.length ?? 0}
-                onOpen={() => openJourneyStep(journey)}
-                onActivate={() => setActiveJourney(journey.id)}
-              />
-            ))
-          ) : (
-            <div className="section-shell px-4 py-4">
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                Applied practice is still being curated for this path.
-              </p>
-              <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-2">
-                Keep moving through the active module and Today stack for now. Practice journeys will appear here as they are added.
+      {showLearnDashboard && (
+        <section className="section-shell-quiet p-4 mb-5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">Applied Practice</p>
+              <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
+                Use short bani-specific paths to turn modules into repeatable reading progress.
               </p>
             </div>
-          )}
-        </div>
-      </section>
-
-      <section className="section-shell-quiet p-4 mb-5">
-        <button
-          type="button"
-          onClick={() => setPathsOpen(open => !open)}
-          className="flex w-full items-start justify-between gap-3 text-left"
-        >
-          <div>
-            <p className="eyebrow">Paths</p>
-            <p className="mt-1 font-sans text-sm text-ink dark:text-dark-text">
-              Follow curated vocabulary and grammar paths instead of choosing every next step yourself.
-            </p>
+            {activeJourney ? (
+              <button
+                type="button"
+                onClick={() => setActiveJourney(null)}
+                className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2"
+              >
+                Clear active
+              </button>
+            ) : null}
           </div>
-          <span className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-            {pathsOpen ? 'Hide' : 'Show'}
-          </span>
-        </button>
 
-        {pathsOpen ? (
           <div className="space-y-3 mt-4">
-            {THEME_PATHS.map(path => {
-              const progress = themePathProgress[path.id]
-              return (
-                <ThemePathCard
-                  key={path.id}
-                  path={path}
-                  completedCount={progress?.completedModuleIds.length ?? 0}
-                  isStarted={Boolean(progress)}
-                  isComplete={completedThemePathIds.includes(path.id)}
-                  onStart={() => openThemePath(path.id)}
-                  onOpen={() => openThemePath(path.id)}
+            {programJourneys.length > 0 ? (
+              programJourneys.map(journey => (
+                <JourneyCard
+                  key={journey.id}
+                  journey={journey}
+                  active={activeJourney?.id === journey.id}
+                  completedCount={journeys[journey.id]?.completedStepIds.length ?? 0}
+                  onOpen={() => openJourneyStep(journey)}
+                  onActivate={() => setActiveJourney(journey.id)}
                 />
-              )
-            })}
+              ))
+            ) : (
+              <div className="section-shell px-4 py-4">
+                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                  Applied practice is still being curated for this path.
+                </p>
+                <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-2">
+                  Keep moving through the active module and Today stack for now. Practice journeys will appear here as they are added.
+                </p>
+              </div>
+            )}
           </div>
-        ) : null}
-      </section>
+        </section>
+      )}
+
+      {showLearnDashboard && (
+        <section className="section-shell-quiet p-4 mb-5">
+          <button
+            type="button"
+            onClick={() => setPathsOpen(open => !open)}
+            className="flex w-full items-start justify-between gap-3 text-left"
+          >
+            <div>
+              <p className="eyebrow">Paths</p>
+              <p className="mt-1 font-sans text-sm text-ink dark:text-dark-text">
+                Follow curated vocabulary and grammar paths instead of choosing every next step yourself.
+              </p>
+            </div>
+            <span className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+              {pathsOpen ? 'Hide' : 'Show'}
+            </span>
+          </button>
+
+          {pathsOpen ? (
+            <div className="space-y-3 mt-4">
+              {THEME_PATHS.map(path => {
+                const progress = themePathProgress[path.id]
+                return (
+                  <ThemePathCard
+                    key={path.id}
+                    path={path}
+                    completedCount={progress?.completedModuleIds.length ?? 0}
+                    isStarted={Boolean(progress)}
+                    isComplete={completedThemePathIds.includes(path.id)}
+                    onStart={() => openThemePath(path.id)}
+                    onOpen={() => openThemePath(path.id)}
+                  />
+                )
+              })}
+            </div>
+          ) : null}
+        </section>
+      )}
 
       {pendingMilestoneId && MILESTONE_BY_ID[pendingMilestoneId] ? (
         <MilestoneCelebration
