@@ -68,16 +68,17 @@ beforeEach(() => {
   })
 })
 
-test('renders the placement-first Learn structure', () => {
+test('renders a tighter placement-first Learn structure', () => {
   render(<MemoryRouter><Learn /></MemoryRouter>)
 
   expect(screen.getAllByText(/^Placement$/i).length).toBeGreaterThan(0)
   expect(screen.getByRole('button', { name: /Set my default path/i })).toBeInTheDocument()
-  expect(screen.getByText(/Today's Lesson/i)).toBeInTheDocument()
   expect(screen.getByText(/^Programs$/i)).toBeInTheDocument()
-  expect(screen.getByText(/^Applied Practice$/i)).toBeInTheDocument()
-  expect(screen.getByText(/^Paths$/i)).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Program 1 Start Reading/i })).toBeInTheDocument()
+  expect(screen.queryByText(/Today's Lesson/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/^Applied Practice$/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/^Paths$/i)).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /expand soundscapes/i })).not.toBeInTheDocument()
 })
 
 test('placement can route an immersed reader into deep study', () => {
@@ -143,6 +144,15 @@ test('starts an applied practice journey for the active program', () => {
 })
 
 test('learn soundscapes start collapsed and can be expanded', () => {
+  useLearningStore.setState({
+    placementResult: createPlacementResult(),
+    activeProgramId: 'start-reading',
+    programProgress: {
+      ...createProgramProgress(),
+      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
+    },
+  })
+
   render(<MemoryRouter><Learn /></MemoryRouter>)
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toBeInTheDocument()
@@ -200,6 +210,15 @@ test('renders word-family modules and saves family members to vocab', () => {
 })
 
 test('starts a theme path and stores its progress', () => {
+  useLearningStore.setState({
+    placementResult: createPlacementResult(),
+    activeProgramId: 'start-reading',
+    programProgress: {
+      ...createProgramProgress(),
+      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
+    },
+  })
+
   render(<MemoryRouter><Learn /></MemoryRouter>)
 
   fireEvent.click(screen.getByRole('button', { name: /Paths/i }))

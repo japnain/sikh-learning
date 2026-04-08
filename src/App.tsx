@@ -1,6 +1,5 @@
 import { startTransition, useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import { fetchHukamnama } from './api/banidb'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
@@ -62,29 +61,19 @@ function AppShell() {
     setIsCompletingOnboarding(true)
 
     try {
-      if (learningGoal === 'habit') {
-        completeOnboarding(learningLevel)
-        startTransition(() => {
-          navigate('/', {
-            replace: true,
-            state: { highlightTodayPath: true },
-          })
-        })
+      const returningFromOverlay = hasCompletedOnboarding && presentationMode === 'overlay'
+
+      completeOnboarding(learningLevel)
+
+      if (returningFromOverlay) {
         return
       }
 
-      let nextPath = '/banis'
-
-      try {
-        const hukamnama = await fetchHukamnama()
-        nextPath = `/study?hukamnamaDate=${hukamnama.date}`
-      } catch {
-        nextPath = '/banis'
-      }
-
-      completeOnboarding(learningLevel)
       startTransition(() => {
-        navigate(nextPath, { replace: true })
+        navigate('/', {
+          replace: true,
+          state: learningGoal === 'habit' ? { highlightTodayPath: true } : null,
+        })
       })
     } finally {
       setIsCompletingOnboarding(false)
