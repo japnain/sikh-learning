@@ -322,6 +322,13 @@ export default function Banis() {
     const canonicalBani = getCanonicalSundarGutkaBani(item)
 
     if (canonicalBani) {
+      // Prefer baniDbId mode when available — BaniDB returns only the correct
+      // verses for that baani, fixing mid-ang start issues (e.g. Tav Prasad
+      // Savaiye on DG Ang 10, Chaupai Sahib on DG Ang 1386).
+      if (canonicalBani.baniDbId) {
+        navigate(`/study?baniDbId=${canonicalBani.baniDbId}&bani=${encodeURIComponent(canonicalBani.name)}`)
+        return
+      }
       navigate(
         `/study?source=${canonicalBani.source}&ang=${canonicalBani.startAng}&startAng=${canonicalBani.startAng}&bani=${encodeURIComponent(canonicalBani.name)}&endAng=${canonicalBani.endAng}`
       )

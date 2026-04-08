@@ -220,7 +220,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
     subtitle: 'Short protective language with lighter support',
     description: 'Use a compact Chaupai Sahib line to practice steadier deep-study reading.',
     source: 'D',
-    startAng: 46,
+    startAng: 1386,
     steps: [
       {
         id: 'chaupai-foundation',
@@ -245,7 +245,7 @@ export const GUIDED_JOURNEYS: GuidedJourney[] = [
         detail: 'Read the line in context with the full study controls available.',
         type: 'study',
         source: 'D',
-        ang: 46,
+        ang: 1386,
         baniTitle: 'Chaupai Sahib',
       },
       {
