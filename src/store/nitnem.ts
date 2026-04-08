@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { BANIS } from '../data/banis'
 
 export interface NitemBani {
   id: string
@@ -11,15 +12,41 @@ export interface NitemBani {
   baniDbId: number
 }
 
+const NITNEM_TIME_BY_BANI_ID: Record<string, NitemBani['time']> = {
+  'japji-sahib': 'Morning',
+  'jaap-sahib': 'Morning',
+  'tav-prasad-savaiye': 'Morning',
+  'chaupai-sahib': 'Morning',
+  'anand-sahib': 'Morning',
+  'rehras-sahib': 'Evening',
+  'kirtan-sohila': 'Night',
+}
+
 export const NITNEM_BANIS: NitemBani[] = [
-  { id: 'japji-sahib',         name: 'Japji Sahib',          source: 'G', startAng: 1,   endAng: 8,   time: 'Morning', baniDbId: 1 },
-  { id: 'jaap-sahib',          name: 'Jaap Sahib',           source: 'D', startAng: 1,   endAng: 10,  time: 'Morning', baniDbId: 2 },
-  { id: 'tav-prasad-savaiye',  name: 'Tav Prasad Savaiye',   source: 'D', startAng: 10,  endAng: 10,  time: 'Morning', baniDbId: 3 },
-  { id: 'chaupai-sahib',       name: 'Chaupai Sahib',        source: 'D', startAng: 1386, endAng: 1388, time: 'Morning', baniDbId: 4 },
-  { id: 'anand-sahib',         name: 'Anand Sahib',          source: 'G', startAng: 917, endAng: 922, time: 'Morning', baniDbId: 6 },
-  { id: 'rehras-sahib',        name: 'Rehras Sahib',         source: 'G', startAng: 8,   endAng: 12,  time: 'Evening', baniDbId: 21 },
-  { id: 'kirtan-sohila',       name: 'Kirtan Sohila',        source: 'G', startAng: 12,  endAng: 13,  time: 'Night',   baniDbId: 9 },
-]
+  'japji-sahib',
+  'jaap-sahib',
+  'tav-prasad-savaiye',
+  'chaupai-sahib',
+  'anand-sahib',
+  'rehras-sahib',
+  'kirtan-sohila',
+].map(id => {
+  const bani = BANIS.find(entry => entry.id === id)
+  const time = NITNEM_TIME_BY_BANI_ID[id]
+  if (!bani || (bani.source !== 'G' && bani.source !== 'D') || !bani.baniDbId || !time) {
+    throw new Error(`Missing canonical Nitnem bani metadata for ${id}`)
+  }
+
+  return {
+    id: bani.id,
+    name: bani.name,
+    source: bani.source,
+    startAng: bani.startAng,
+    endAng: bani.endAng,
+    time,
+    baniDbId: bani.baniDbId,
+  }
+})
 
 interface NitemState {
   completedDate: string

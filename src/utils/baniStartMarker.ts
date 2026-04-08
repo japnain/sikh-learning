@@ -1,4 +1,4 @@
-import { BANIS, type Bani } from '../data/banis'
+import { READ_EXACT_BANIS, type Bani } from '../data/banis'
 import type { ScriptureEntry, ScriptureLine } from '../types'
 
 function normalizeBaniName(value: string): string {
@@ -12,10 +12,10 @@ function normalizeBaniName(value: string): string {
     .trim()
 }
 
-function findFirstRenderableLine(entries: ScriptureEntry[]): ScriptureLine | null {
+function findFirstRenderableLineForAng(entries: ScriptureEntry[], ang: number): ScriptureLine | null {
   for (const entry of entries) {
     for (const line of entry.lines ?? []) {
-      if (!line.isHeader && line.gurmukhi.trim()) {
+      if (!line.isHeader && line.gurmukhi.trim() && line.ang === ang) {
         return line
       }
     }
@@ -37,7 +37,7 @@ export function findRouteBani(
 
   const normalizedName = normalizeBaniName(baniName)
 
-  return BANIS.find(bani =>
+  return READ_EXACT_BANIS.find(bani =>
     bani.source === source
     && bani.startAng === startAng
     && normalizeBaniName(bani.name) === normalizedName
@@ -48,25 +48,24 @@ export function resolveBaniStartMarker({
   baniName,
   source,
   startAng,
-  currentAng,
   entries,
 }: {
   baniName: string | null
   source: Bani['source'] | null
   startAng: number | null
-  currentAng: number | null
   entries: ScriptureEntry[]
 }): { verseId: number; label: string; bani: Bani } | null {
   const matchedBani = findRouteBani(baniName, source, startAng)
-  if (!matchedBani || currentAng !== matchedBani.startAng) return null
+  if (!matchedBani) return null
 
-  const fallbackLine = findFirstRenderableLine(entries)
-  if (!fallbackLine) return null
+  const fallbackLine = findFirstRenderableLineForAng(entries, matchedBani.startAng)
 
   const verseId =
     matchedBani.startVerseId && hasVerse(entries, matchedBani.startVerseId)
       ? matchedBani.startVerseId
-      : fallbackLine.verseId
+      : fallbackLine?.verseId
+
+  if (!verseId) return null
 
   return {
     verseId,

@@ -35,6 +35,11 @@ interface BaniShabadVerse {
 interface BaniResponseVerse {
   header?: number
   paragraph?: number
+  mangalPosition?: 'above' | 'current' | null
+  existsSGPC?: number
+  existsMedium?: number
+  existsTaksal?: number
+  existsBuddhaDal?: number
   verse?: BaniShabadVerse & {
     verseId?: number
     shabadId?: number
@@ -323,6 +328,8 @@ interface BaniFlatVerse {
   isHeader?: boolean
 }
 
+const STTM_DEFAULT_SGPC_BANI_IDS = new Set([9, 21, 22, 23])
+
 export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
   const res = await fetch(`${BASE}/banis/${baniDbId}`)
   if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
@@ -331,11 +338,18 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
   const rawArray = (data.verses ?? []) as BaniResponseVerse[]
   if (!rawArray.length) return []
 
+  const filteredRawArray = STTM_DEFAULT_SGPC_BANI_IDS.has(baniDbId)
+    ? rawArray.filter(item => {
+        if (item.mangalPosition === 'above') return false
+        return typeof item.existsSGPC === 'undefined' ? true : Boolean(item.existsSGPC)
+      })
+    : rawArray
+
   const flatVerses: BaniFlatVerse[] = []
   const pendingHeaderLines: BaniFlatVerse[] = []
   let currentPageNo: number | null = null
 
-  for (const item of rawArray) {
+  for (const item of filteredRawArray) {
     const nestedVerse = item.verse && typeof item.verse === 'object' && (
       'verseId' in item.verse || 'shabadId' in item.verse || 'translation' in item.verse || 'transliteration' in item.verse
     ) ? item.verse : null

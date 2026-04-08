@@ -220,6 +220,7 @@ export const MOCK_REHRAS_BANI_RESPONSE = {
   verses: [
     {
       header: 1,
+      existsSGPC: 1,
       verse: {
         verseId: 2628,
         shabadId: 21,
@@ -234,6 +235,7 @@ export const MOCK_REHRAS_BANI_RESPONSE = {
       },
     },
     {
+      existsSGPC: 1,
       verse: {
         verseId: 2629,
         shabadId: 21,
@@ -248,6 +250,7 @@ export const MOCK_REHRAS_BANI_RESPONSE = {
       },
     },
     {
+      existsSGPC: 1,
       verse: {
         verseId: 2630,
         shabadId: 21,
@@ -267,6 +270,7 @@ export const MOCK_REHRAS_BANI_RESPONSE = {
       },
     },
     {
+      existsSGPC: 1,
       verse: {
         verseId: 2631,
         shabadId: 21,
@@ -282,6 +286,46 @@ export const MOCK_REHRAS_BANI_RESPONSE = {
           pu: { ss: { unicode: 'ਤੇਰਾ ਉਹ ਦਰ ਕਿਹੋ ਜਿਹਾ ਹੈ, ਉਹ ਘਰ ਕਿਹੋ ਜਿਹਾ ਹੈ?' } },
         },
         pageNo: 8,
+        source: { id: 'G' },
+      },
+    },
+    {
+      existsSGPC: 1,
+      verse: {
+        verseId: 4001,
+        shabadId: 210,
+        verse: { unicode: 'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ਚੌਪਈ ॥' },
+        transliteration: { english: 'kabiyo baach benatee chauapiee ||' },
+        translation: {
+          en: {
+            bdb: 'The poets utter the Prayer of Chaupai.',
+            ms: 'The poets speak the prayer of Chaupai.',
+            ssk: 'The poets utter the Prayer of Chaupai.',
+          },
+          hi: { ss: 'कवियों द्वारा कही गई बेनती चौपई।' },
+          pu: { ss: { unicode: 'ਕਵੀਆਂ ਦੁਆਰਾ ਉਚਾਰੀ ਗਈ ਬੇਨਤੀ ਚੌਪਈ।' } },
+        },
+        pageNo: 1386,
+        source: { id: 'D' },
+      },
+    },
+    {
+      existsSGPC: 1,
+      verse: {
+        verseId: 4002,
+        shabadId: 211,
+        verse: { unicode: 'ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥' },
+        transliteration: { english: 'ana(n)dh bhiaa meree maae satiguroo mai paiaa ||' },
+        translation: {
+          en: {
+            bdb: 'Bliss has welled up, O my mother, for I have found the True Guru.',
+            ms: 'My mother, I am in bliss, for I have found the True Guru.',
+            ssk: 'Bliss has welled up, O my mother, for I have found the True Guru.',
+          },
+          hi: { ss: 'आनंद हुआ, हे मेरी माता, क्योंकि मैंने सतिगुरु पाया।' },
+          pu: { ss: { unicode: 'ਹੇ ਮੇਰੀ ਮਾਂ, ਮੈਨੂੰ ਅਨੰਦ ਹੋਇਆ ਹੈ ਕਿਉਂਕਿ ਮੈਂ ਸਤਿਗੁਰੂ ਨੂੰ ਲੱਭ ਲਿਆ ਹੈ।' } },
+        },
+        pageNo: 917,
         source: { id: 'G' },
       },
     },

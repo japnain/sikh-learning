@@ -184,7 +184,7 @@ test('does not embed onboarding inside the home page anymore', () => {
   expect(screen.queryByText(/shape how gurbani opens for you/i)).not.toBeInTheDocument()
 })
 
-test('opens Nitnem banis through bounded BaniDB routes', async () => {
+test('opens Nitnem banis through exact BaniDB routes', async () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <Routes>
@@ -198,6 +198,6 @@ test('opens Nitnem banis through bounded BaniDB routes', async () => {
   fireEvent.click(screen.getByText('Rehras Sahib'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1')
   })
 })

@@ -9,6 +9,7 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
+import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getUiCopy } from '../utils/uiCopy'
 import {
   IconArrowLeft,
@@ -270,7 +271,7 @@ export default function Library() {
             {inProgress.map(item => (
               <button
                 key={item.id}
-                onClick={() => navigate(`/study?source=${item.source}&ang=${item.startAng}&bani=${encodeURIComponent(item.name)}`)}
+                onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                 className="w-full section-shell px-4 py-3 text-left"
               >
                 <div className="flex justify-between gap-3">
