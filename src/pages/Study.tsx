@@ -149,30 +149,8 @@ export default function Study() {
 
   const baniPageEntries = useMemo(() => {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
-    const boundedEntries =
-      startAngParam !== null && endAngParam !== null
-        ? baniResult.entries.filter(entry => entry.ang >= startAngParam && entry.ang <= endAngParam)
-        : baniResult.entries
-
-    if (boundedEntries.length === 0) return baniResult.entries
-
-    return [...boundedEntries]
-      .map((entry, index) => ({ entry, index }))
-      .sort((left, right) => {
-        if (left.entry.ang !== right.entry.ang) {
-          return left.entry.ang - right.entry.ang
-        }
-
-        const leftVerse = left.entry.lines?.find(line => !line.isHeader)?.verseId ?? Number.MAX_SAFE_INTEGER
-        const rightVerse = right.entry.lines?.find(line => !line.isHeader)?.verseId ?? Number.MAX_SAFE_INTEGER
-        if (leftVerse !== rightVerse) {
-          return leftVerse - rightVerse
-        }
-
-        return left.index - right.index
-      })
-      .map(item => item.entry)
-  }, [baniResult.entries, endAngParam, isBaniDbMode, startAngParam])
+    return baniResult.entries
+  }, [baniResult.entries, isBaniDbMode])
 
   const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
   const exactEntries = useMemo(() => {
@@ -431,21 +409,20 @@ export default function Study() {
       baniName,
       source: source ?? currentSource,
       startAng: startAngParam ?? angParam,
-      currentAng,
       entries,
     })
-  }, [angParam, baniName, currentAng, currentSource, entries, highlightVerseIdParam, source, startAngParam])
+  }, [angParam, baniName, currentSource, entries, highlightVerseIdParam, source, startAngParam])
 
   const baniStartVerseId = baniStartMarker?.verseId ?? null
   useEffect(() => {
-    if (!baniStartVerseId || loading) return
+    if (!baniStartVerseId || loading || highlightVerseIdParam === null) return
     const el = document.querySelector(`[data-verse-id="${baniStartVerseId}"]`)
     if (el) {
       setTimeout(() => {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }, 150)
     }
-  }, [baniStartVerseId, loading])
+  }, [baniStartVerseId, highlightVerseIdParam, loading])
 
   const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi

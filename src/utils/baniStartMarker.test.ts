@@ -112,7 +112,6 @@ describe('bani start marker helpers', () => {
         baniName: 'Rehras Sahib',
         source: 'G',
         startAng: 8,
-        currentAng: 8,
         entries: rehrasPageEntries,
       })
     ).toEqual({
@@ -128,7 +127,6 @@ describe('bani start marker helpers', () => {
         baniName: 'Japji Sahib',
         source: 'G',
         startAng: 1,
-        currentAng: 1,
         entries: japjiEntries,
       })
     ).toEqual({
@@ -138,15 +136,18 @@ describe('bani start marker helpers', () => {
     })
   })
 
-  it('does not show a start marker after the first ang of a bani', () => {
+  it('still finds the start marker when the exact bani includes earlier intro sections', () => {
     expect(
       resolveBaniStartMarker({
         baniName: 'Japji Sahib',
         source: 'G',
         startAng: 1,
-        currentAng: 2,
         entries: japjiEntries,
       })
-    ).toBeNull()
+    ).toEqual({
+      verseId: 1,
+      label: 'Japji Sahib starts here',
+      bani: expect.objectContaining({ id: 'japji-sahib' }),
+    })
   })
 })

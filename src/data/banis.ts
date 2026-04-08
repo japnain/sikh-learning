@@ -12,102 +12,163 @@ export interface Bani {
   baniDbId?: number
 }
 
-export const BANIS: Bani[] = [
-  // ── SGGS · Daily Prayers (sorted by ang) ─────────────────────────────────
-  { id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of SGGS Ji — recited every morning at amrit vela.', baniDbId: 1 },
-  { id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'Asks where the gate of the Lord is — opens Rehras Sahib.', baniDbId: 7 },
-  { id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening prayer — a collection of shabads recited at dusk.', baniDbId: 21 },
-  { id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, startVerseId: 534, category: 'Daily Prayers', description: 'Night prayer recited before sleep, celebrating the soul\'s union with Waheguru.', baniDbId: 9 },
-  { id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, startVerseId: 39128, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji, part of the Nitnem.', baniDbId: 6 },
+function exactBani(bani: Omit<Bani, 'type'> & { baniDbId: number }): Bani {
+  return bani
+}
 
-  // ── SGGS · Long Compositions (sorted by ang) ────────────────────────────
-  { id: 'pehre', name: 'Pehre', scripture: 'SGGS', source: 'G', startAng: 74, endAng: 78, category: 'Long Compositions', description: 'The four watches of the night — describes the stages of human life.' },
-  { id: 'barah-maha-majh', name: 'Barah Maha (Majh)', scripture: 'SGGS', source: 'G', startAng: 133, endAng: 136, category: 'Long Compositions', description: 'Twelve months — the soul\'s longing for the Divine through the seasons, in Majh raag.' },
-  { id: 'bavan-akhri', name: 'Bavan Akhri', scripture: 'SGGS', source: 'G', startAng: 250, endAng: 262, category: 'Long Compositions', description: 'Acrostic poem by Guru Arjan Dev Ji covering all 52 letters of the Gurmukhi alphabet.' },
-  { id: 'sukhmani-sahib', name: 'Sukhmani Sahib', scripture: 'SGGS', source: 'G', startAng: 262, endAng: 296, startVerseId: 11494, category: 'Long Compositions', description: 'Pearl of Peace — most cherished composition of Guru Arjan Dev Ji.', baniDbId: 20 },
-  { id: 'asa-di-var', name: 'Asa Di Var', scripture: 'SGGS', source: 'G', startAng: 462, endAng: 475, startVerseId: 20756, category: 'Long Compositions', description: 'Morning ballad by Guru Nanak Dev Ji, sung in Asa raag at dawn.', baniDbId: 90 },
-  { id: 'ghorian', name: 'Ghorian', scripture: 'SGGS', source: 'G', startAng: 573, endAng: 577, category: 'Long Compositions', description: 'Wedding songs describing the soul\'s union with Waheguru.' },
-  { id: 'alahanian', name: 'Alahanian', scripture: 'SGGS', source: 'G', startAng: 578, endAng: 582, category: 'Long Compositions', description: 'Songs of lamentation — the soul weeps at separation from the Divine.' },
-  { id: 'chhant-dhanasri', name: 'Chhant Dhanasri (M.1)', scripture: 'SGGS', source: 'G', startAng: 687, endAng: 689, category: 'Long Compositions', description: 'Lyrical composition by Guru Nanak Dev Ji in Dhanasri raag on Divine love.' },
-  { id: 'onkar', name: 'Onkar', scripture: 'SGGS', source: 'G', startAng: 929, endAng: 938, category: 'Long Compositions', description: 'Composition by Guru Nanak Dev Ji on the nature of the One Creator.' },
-  { id: 'sidh-gosht', name: 'Sidh Gosht', scripture: 'SGGS', source: 'G', startAng: 938, endAng: 946, category: 'Long Compositions', description: 'Dialogue between Guru Nanak Dev Ji and the Siddhas on the nature of the Divine.' },
-  { id: 'barah-maha-tukhari', name: 'Barah Maha (Tukhari)', scripture: 'SGGS', source: 'G', startAng: 1107, endAng: 1110, category: 'Long Compositions', description: 'Twelve months by Guru Arjan Dev Ji in Tukhari raag.' },
+function browseOnlyBani(bani: Omit<Bani, 'baniDbId'> & { type: 'browse-only' }): Bani {
+  return bani
+}
 
-  // ── SGGS · Vars (sorted by ang) ─────────────────────────────────────────
-  { id: 'var-majh', name: 'Var Majh', scripture: 'SGGS', source: 'G', startAng: 137, endAng: 150, category: 'Vars', description: 'Ballad in Majh raag by Guru Nanak Dev Ji on devotion and ego.' },
-  { id: 'var-gujri', name: 'Var Gujri', scripture: 'SGGS', source: 'G', startAng: 508, endAng: 517, category: 'Vars', description: 'Ballad in Gujri raag by Guru Nanak Dev Ji.' },
-  { id: 'var-vadahans', name: 'Var Vadahans', scripture: 'SGGS', source: 'G', startAng: 585, endAng: 594, category: 'Vars', description: 'Ballad in Vadahans raag by Guru Nanak Dev Ji and Guru Ram Das Ji.' },
-  { id: 'var-sorath', name: 'Var Sorath', scripture: 'SGGS', source: 'G', startAng: 642, endAng: 654, category: 'Vars', description: 'Ballad in Sorath raag by Guru Ram Das Ji.' },
-  { id: 'var-suhi', name: 'Var Suhi', scripture: 'SGGS', source: 'G', startAng: 785, endAng: 792, category: 'Vars', description: 'Ballad in Suhi raag by Guru Ram Das Ji and Guru Nanak Dev Ji.' },
-  { id: 'var-bilaval', name: 'Var Bilaval', scripture: 'SGGS', source: 'G', startAng: 849, endAng: 855, category: 'Vars', description: 'Ballad in Bilaval raag by Guru Ram Das Ji.' },
-  { id: 'var-ramkali', name: 'Var Ramkali', scripture: 'SGGS', source: 'G', startAng: 947, endAng: 956, category: 'Vars', description: 'Ballad in Ramkali raag by Guru Nanak Dev Ji.' },
-  { id: 'var-maru', name: 'Var Maru', scripture: 'SGGS', source: 'G', startAng: 1086, endAng: 1094, category: 'Vars', description: 'Ballad in Maru raag by Guru Nanak Dev Ji and Guru Arjan Dev Ji.' },
-  { id: 'var-sarang', name: 'Var Sarang', scripture: 'SGGS', source: 'G', startAng: 1237, endAng: 1251, category: 'Vars', description: 'Ballad in Sarang raag by Guru Ram Das Ji.' },
-  { id: 'var-malhar', name: 'Var Malhar', scripture: 'SGGS', source: 'G', startAng: 1278, endAng: 1291, category: 'Vars', description: 'Ballad in Malhar raag by Guru Nanak Dev Ji.' },
+const EXACT_SGGS_BANIS: Bani[] = [
+  exactBani({ id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of Sri Guru Granth Sahib Ji recited at amrit vela.', baniDbId: 2 }),
+  exactBani({ id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'The So Dar section that opens Rehras Sahib.', baniDbId: 7 }),
+  exactBani({ id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening Nitnem composition with the full composite bani flow.', baniDbId: 21 }),
+  exactBani({ id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, startVerseId: 534, category: 'Daily Prayers', description: 'Night prayer recited before sleep.', baniDbId: 23 }),
+  exactBani({ id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, startVerseId: 39128, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji.', baniDbId: 10 }),
 
-  // ── SGGS · Saloks & Short Banis (sorted by ang) ──────────────────────────
-  { id: 'shabad-hazare-m1', name: 'Shabad Hazare (M.1)', scripture: 'SGGS', source: 'G', startAng: 14, endAng: 15, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of Guru Nanak Dev Ji on longing for the Divine.' },
-  { id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Destroyer of suffering — healing shabads compiled from Guru Arjan Dev Ji\'s bani.', baniDbId: 10 },
-  { id: 'shabad-hazare', name: 'Shabad Hazare (M.5)', scripture: 'SGGS', source: 'G', startAng: 295, endAng: 296, category: 'Saloks & Short Banis', description: 'Thousand-fold shabads of longing for the Guru by Guru Arjan Dev Ji.' },
-  { id: 'thiiti-majh', name: 'Thiiti (Majh)', scripture: 'SGGS', source: 'G', startAng: 296, endAng: 300, category: 'Saloks & Short Banis', description: 'Lunar calendar composition by Guru Nanak Dev Ji in Majh raag.' },
-  { id: 'patti', name: 'Patti', scripture: 'SGGS', source: 'G', startAng: 432, endAng: 435, category: 'Saloks & Short Banis', description: 'Alphabet composition by Guru Nanak Dev Ji — each letter praises the Divine.' },
-  { id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 557, endAng: 558, category: 'Saloks & Short Banis', description: 'Songs of separation — the soul\'s anguish at being apart from the Divine.' },
-  { id: 'aarti', name: 'Aarti', scripture: 'SGGS', source: 'G', startAng: 663, endAng: 663, startVerseId: 28685, category: 'Saloks & Short Banis', description: 'Guru Nanak Dev Ji\'s celebration of Waheguru as the true light of the universe.', baniDbId: 12 },
-  { id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, startVerseId: 32936, category: 'Saloks & Short Banis', description: 'Four rounds of the Anand Karaj (Sikh wedding ceremony) by Guru Ram Das Ji.', baniDbId: 11 },
-  { id: 'ramkali-sadd', name: 'Ramkali Sadd', scripture: 'SGGS', source: 'G', startAng: 923, endAng: 924, category: 'Saloks & Short Banis', description: 'Call of the Divine — recited at moments of spiritual transition.' },
-  { id: 'dakhne-m5', name: 'Dakhne (M.5)', scripture: 'SGGS', source: 'G', startAng: 1096, endAng: 1101, category: 'Saloks & Short Banis', description: 'Southern couplets by Guru Arjan Dev Ji.' },
-  { id: 'salok-sehskritee', name: 'Salok Sehskritee', scripture: 'SGGS', source: 'G', startAng: 1353, endAng: 1360, category: 'Saloks & Short Banis', description: 'Saloks in Sanskrit by Guru Arjan Dev Ji and Guru Nanak Dev Ji.' },
-  { id: 'gatha', name: 'Gatha', scripture: 'SGGS', source: 'G', startAng: 1360, endAng: 1361, category: 'Saloks & Short Banis', description: 'Composition by Guru Arjan Dev Ji in Sanskrit-style verse.' },
-  { id: 'funhe', name: 'Funhe', scripture: 'SGGS', source: 'G', startAng: 1361, endAng: 1363, category: 'Saloks & Short Banis', description: 'Short playful couplets by Guru Arjan Dev Ji.' },
-  { id: 'chaubole', name: 'Chaubole', scripture: 'SGGS', source: 'G', startAng: 1363, endAng: 1364, category: 'Saloks & Short Banis', description: 'Four-line verses by Guru Arjan Dev Ji.' },
-  { id: 'salok-kabir', name: 'Salok Kabir Ji', scripture: 'SGGS', source: 'G', startAng: 1364, endAng: 1377, category: 'Saloks & Short Banis', description: 'Couplets of Bhagat Kabir Ji on truth, devotion, and the nature of the Divine.' },
-  { id: 'salok-farid', name: 'Salok Sheikh Farid Ji', scripture: 'SGGS', source: 'G', startAng: 1377, endAng: 1385, category: 'Saloks & Short Banis', description: 'Couplets of Sufi saint Sheikh Farid Ji on love, life, and the Divine.' },
-  { id: 'swaiyas-m3', name: 'Swaiyas (M.3)', scripture: 'SGGS', source: 'G', startAng: 1385, endAng: 1389, category: 'Saloks & Short Banis', description: 'Swaiyas in praise of the third Guru, Guru Amar Das Ji.' },
-  { id: 'swaiyas-m4', name: 'Swaiyas (M.4)', scripture: 'SGGS', source: 'G', startAng: 1389, endAng: 1396, category: 'Saloks & Short Banis', description: 'Swaiyas in praise of the fourth Guru, Guru Ram Das Ji.' },
-  { id: 'swaiyas-m5', name: 'Swaiyas (M.5)', scripture: 'SGGS', source: 'G', startAng: 1396, endAng: 1409, category: 'Saloks & Short Banis', description: 'Swaiyas in praise of the fifth Guru, Guru Arjan Dev Ji.' },
-  { id: 'salok-m1', name: 'Salok Mahalla 1', scripture: 'SGGS', source: 'G', startAng: 1410, endAng: 1412, category: 'Saloks & Short Banis', description: 'Couplets of Guru Nanak Dev Ji on truth and the nature of the Divine.' },
-  { id: 'salok-m2', name: 'Salok Mahalla 2', scripture: 'SGGS', source: 'G', startAng: 1412, endAng: 1414, category: 'Saloks & Short Banis', description: 'Couplets of Guru Angad Dev Ji on humility and devotion.' },
-  { id: 'salok-m3', name: 'Salok Mahalla 3', scripture: 'SGGS', source: 'G', startAng: 1414, endAng: 1421, category: 'Saloks & Short Banis', description: 'Couplets of Guru Amar Das Ji on ego, service, and the Guru\'s grace.' },
-  { id: 'salok-m4', name: 'Salok Mahalla 4', scripture: 'SGGS', source: 'G', startAng: 1421, endAng: 1423, category: 'Saloks & Short Banis', description: 'Couplets of Guru Ram Das Ji on love and longing for the Divine.' },
-  { id: 'salok-m5', name: 'Salok Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1423, endAng: 1426, category: 'Saloks & Short Banis', description: 'Couplets of Guru Arjan Dev Ji on surrender, trust, and the Divine Name.' },
-  { id: 'salok-vaaran-te-vadhik', name: 'Salok Vaaran Te Vadhik', scripture: 'SGGS', source: 'G', startAng: 1410, endAng: 1426, category: 'Saloks & Short Banis', description: 'Additional saloks by the Gurus beyond those in the Vars.' },
-  { id: 'salok-mahalla-9', name: 'Salok Mahalla 9', scripture: 'SGGS', source: 'G', startAng: 1426, endAng: 1429, startVerseId: 60214, category: 'Saloks & Short Banis', description: 'Saloks of Guru Tegh Bahadur Ji on impermanence, detachment, and the Divine.', baniDbId: 23 },
-  { id: 'mundavani', name: 'Mundavani', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1429, category: 'Saloks & Short Banis', description: 'Seal of SGGS Ji — Guru Arjan Dev Ji\'s closing statement on the three gifts of gurbani.' },
-  { id: 'ragmala', name: 'Ragmala', scripture: 'SGGS', source: 'G', startAng: 1430, endAng: 1430, category: 'Saloks & Short Banis', description: 'Garland of raags — a listing of the musical modes of SGGS Ji.' },
+  exactBani({ id: 'barah-maha-majh', name: 'Barah Maha (Majh)', scripture: 'SGGS', source: 'G', startAng: 133, endAng: 136, category: 'Long Compositions', description: 'The soul\'s longing through the twelve months in Majh raag.', baniDbId: 27 }),
+  exactBani({ id: 'bavan-akhri', name: 'Bavan Akhri', scripture: 'SGGS', source: 'G', startAng: 250, endAng: 262, category: 'Long Compositions', description: 'Acrostic bani covering the Gurmukhi letters.', baniDbId: 33 }),
+  exactBani({ id: 'sukhmani-sahib', name: 'Sukhmani Sahib', scripture: 'SGGS', source: 'G', startAng: 262, endAng: 296, startVerseId: 11494, category: 'Long Compositions', description: 'Pearl of peace by Guru Arjan Dev Ji.', baniDbId: 31 }),
+  exactBani({ id: 'asa-di-var', name: 'Asa Di Var', scripture: 'SGGS', source: 'G', startAng: 462, endAng: 475, startVerseId: 20756, category: 'Long Compositions', description: 'Morning ballad traditionally sung in Asa raag.', baniDbId: 90 }),
+  exactBani({ id: 'ghorian', name: 'Ghorian', scripture: 'SGGS', source: 'G', startAng: 573, endAng: 577, category: 'Long Compositions', description: 'Wedding songs on the soul\'s union with the Divine.', baniDbId: 40 }),
+  exactBani({ id: 'onkar', name: 'Onkar', scripture: 'SGGS', source: 'G', startAng: 929, endAng: 938, category: 'Long Compositions', description: 'Guru Nanak Dev Ji\'s reflection on the One Creator.', baniDbId: 35 }),
+  exactBani({ id: 'sidh-gosht', name: 'Sidh Gosht', scripture: 'SGGS', source: 'G', startAng: 938, endAng: 946, category: 'Long Compositions', description: 'Dialogue between Guru Nanak Dev Ji and the Siddhas.', baniDbId: 34 }),
 
-  // ── Dasam Granth · Daily Prayers (sorted by ang) ────────────────────────
-  { id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji listing the names of the Divine.', baniDbId: 2 },
-  { id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, startVerseId: 74956, category: 'Daily Prayers', description: 'Swaiyas of Guru Gobind Singh Ji rejecting empty rituals and praising true devotion.', baniDbId: 3 },
-  { id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 1386, endAng: 1388, category: 'Daily Prayers', description: 'Prayer of protection by Guru Gobind Singh Ji, part of the evening Nitnem.', baniDbId: 4 },
+  exactBani({ id: 'sri-raag-ki-vaar', name: 'Sri Raag Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 83, endAng: 91, category: 'Vars', description: 'Vaar within Sri Raag.', baniDbId: 86 }),
+  exactBani({ id: 'var-majh', name: 'Vaar Manjh Ki', scripture: 'SGGS', source: 'G', startAng: 137, endAng: 150, category: 'Vars', description: 'Vaar in Majh raag by Guru Nanak Dev Ji.', baniDbId: 87 }),
+  exactBani({ id: 'gauri-ki-vaar-m4', name: 'Gauri Ki Vaar M4', scripture: 'SGGS', source: 'G', startAng: 300, endAng: 317, category: 'Vars', description: 'Vaar in Gauri raag associated with Guru Ram Das Ji.', baniDbId: 88 }),
+  exactBani({ id: 'gauri-ki-vaar-m5', name: 'Gauri Ki Vaar M5', scripture: 'SGGS', source: 'G', startAng: 318, endAng: 323, category: 'Vars', description: 'Vaar in Gauri raag associated with Guru Arjan Dev Ji.', baniDbId: 89 }),
+  exactBani({ id: 'var-gujri', name: 'Gujari Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 508, endAng: 517, category: 'Vars', description: 'Vaar in Gujari raag.', baniDbId: 91 }),
+  exactBani({ id: 'bihagare-ki-vaar', name: 'Bihagare Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 548, endAng: 556, category: 'Vars', description: 'Vaar in Bihagara raag.', baniDbId: 93 }),
+  exactBani({ id: 'var-vadahans', name: 'Vadahans Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 585, endAng: 594, category: 'Vars', description: 'Vaar in Vadahans raag.', baniDbId: 94 }),
+  exactBani({ id: 'var-sorath', name: 'Sorath Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 642, endAng: 654, category: 'Vars', description: 'Vaar in Sorath raag.', baniDbId: 95 }),
+  exactBani({ id: 'jaitsri-vaar-m5', name: 'Jaitsri M5 Vaar Saloka Naal', scripture: 'SGGS', source: 'G', startAng: 705, endAng: 710, category: 'Vars', description: 'Jaitsri vaar with saloks.', baniDbId: 96 }),
+  exactBani({ id: 'var-suhi', name: 'Vaar Suhi Ki', scripture: 'SGGS', source: 'G', startAng: 785, endAng: 792, category: 'Vars', description: 'Vaar in Suhi raag.', baniDbId: 97 }),
+  exactBani({ id: 'var-bilaval', name: 'Bilaval Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 849, endAng: 855, category: 'Vars', description: 'Vaar in Bilaval raag.', baniDbId: 98 }),
+  exactBani({ id: 'var-ramkali-m3', name: 'Ramkali Ki Vaar M3', scripture: 'SGGS', source: 'G', startAng: 947, endAng: 956, category: 'Vars', description: 'Ramkali vaar linked with Guru Amar Das Ji.', baniDbId: 99 }),
+  exactBani({ id: 'var-ramkali-m5', name: 'Ramkali Ki Vaar M5', scripture: 'SGGS', source: 'G', startAng: 957, endAng: 966, category: 'Vars', description: 'Ramkali vaar linked with Guru Arjan Dev Ji.', baniDbId: 100 }),
+  exactBani({ id: 'var-ramkali-rai-balvand', name: 'Ramkali Ki Vaar Rai Balvand', scripture: 'SGGS', source: 'G', startAng: 966, endAng: 968, category: 'Vars', description: 'The Rai Balvand and Satta ramkali vaar.', baniDbId: 101 }),
+  exactBani({ id: 'var-maru', name: 'Maru Vaar M3', scripture: 'SGGS', source: 'G', startAng: 1086, endAng: 1094, category: 'Vars', description: 'Maru vaar linked with Guru Amar Das Ji.', baniDbId: 102 }),
+  exactBani({ id: 'basant-ki-vaar', name: 'Basant Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 1193, endAng: 1193, category: 'Vars', description: 'Single-ang vaar in Basant raag.', baniDbId: 104 }),
+  exactBani({ id: 'var-sarang', name: 'Sarang Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 1237, endAng: 1251, category: 'Vars', description: 'Vaar in Sarang raag.', baniDbId: 105 }),
+  exactBani({ id: 'var-mallar', name: 'Vaar Mallar Ki', scripture: 'SGGS', source: 'G', startAng: 1278, endAng: 1291, category: 'Vars', description: 'Vaar in Mallar raag.', baniDbId: 106 }),
+  exactBani({ id: 'kanare-ki-vaar', name: 'Kanare Ki Vaar', scripture: 'SGGS', source: 'G', startAng: 1312, endAng: 1318, category: 'Vars', description: 'Vaar in Kanara raag.', baniDbId: 107 }),
 
-  // ── Dasam Granth · Bir Ras (sorted by ang) ───────────────────────────────
-  { id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Fierce prayer to the Divine — a powerful invocation of the protector of the righteous.' },
-  { id: 'chandi-charitar-1', name: 'Chandi Charitar 1', scripture: 'DG', source: 'D', startAng: 74, endAng: 100, category: 'Bir Ras', description: 'Warrior composition narrating the battles of Goddess Chandi.' },
-  { id: 'chandi-charitar-2', name: 'Chandi Charitar 2', scripture: 'DG', source: 'D', startAng: 100, endAng: 119, category: 'Bir Ras', description: 'Second composition on the exploits of Chandi, filled with heroic Braj Bhasha poetry.' },
-  { id: 'chandi-di-var', name: 'Chandi Di Var', scripture: 'DG', source: 'D', startAng: 119, endAng: 127, category: 'Bir Ras', description: 'Heroic Punjabi ballad by Guru Gobind Singh Ji — the most celebrated bir ras bani.' },
-  { id: 'krishna-avtar', name: 'Krishna Avtar', scripture: 'DG', source: 'D', startAng: 155, endAng: 611, category: 'Bir Ras', description: 'Longest composition in Dasam Granth — the story of Krishna as a heroic warrior and liberator.' },
-  { id: 'ram-avtar', name: 'Ram Avtar', scripture: 'DG', source: 'D', startAng: 155, endAng: 611, category: 'Bir Ras', description: 'Epic retelling of the story of Rama by Guru Gobind Singh Ji in heroic poetry.' },
-
-  // ── Dasam Granth · Major Compositions (sorted by ang) ───────────────────
-  { id: 'akal-ustat', name: 'Akal Ustat', scripture: 'DG', source: 'D', startAng: 11, endAng: 38, category: 'Major Compositions', description: 'Praise of the Timeless One — Guru Gobind Singh Ji\'s meditation on the formless Divine.' },
-  { id: 'chaubis-avtar', name: 'Chaubis Avtar', scripture: 'DG', source: 'D', startAng: 155, endAng: 611, category: 'Major Compositions', description: '24 Avatars — Guru Gobind Singh Ji\'s retelling of stories of divine incarnations.' },
-  { id: 'bachitra-natak', name: 'Bachitra Natak', scripture: 'DG', source: 'D', startAng: 39, endAng: 73, category: 'Major Compositions', description: 'Wonderful Drama — Guru Gobind Singh Ji\'s autobiography and account of his divine mission.' },
-  { id: 'brahm-avtar', name: 'Brahm Avtar', scripture: 'DG', source: 'D', startAng: 611, endAng: 635, category: 'Major Compositions', description: 'Avatars of Brahma — compositions on sages and divine teachers.' },
-  { id: 'rudra-avtar', name: 'Rudra Avtar', scripture: 'DG', source: 'D', startAng: 635, endAng: 709, category: 'Major Compositions', description: 'Avatars of Rudra — heroic compositions on divine warriors.' },
-  { id: 'gyan-parbodh', name: 'Gyan Parbodh', scripture: 'DG', source: 'D', startAng: 127, endAng: 155, category: 'Major Compositions', description: 'Awakening of Knowledge — philosophical discourse on the nature of God and creation.' },
-  { id: 'zafarnama', name: 'Zafarnama', scripture: 'DG', source: 'D', startAng: 1389, endAng: 1389, category: 'Major Compositions', description: 'Letter of Victory — Guru Gobind Singh Ji\'s Persian letter to Aurangzeb after Chamkaur.' },
-  { id: 'hikayats', name: 'Hikayats', scripture: 'DG', source: 'D', startAng: 1394, endAng: 1428, category: 'Major Compositions', description: 'Persian tales of moral wisdom and justice by Guru Gobind Singh Ji.' },
-
-  // ── Dasam Granth · Shorter Banis (sorted by ang) ────────────────────────
-  { id: 'swaiyas-patshahi-10', name: 'Swaiyas Patshahi 10', scripture: 'DG', source: 'D', startAng: 712, endAng: 716, category: 'Shorter Banis', description: 'Swaiyas in praise of Guru Gobind Singh Ji.' },
-  { id: 'khalsa-mehma', name: 'Khalsa Mehma', scripture: 'DG', source: 'D', startAng: 716, endAng: 717, category: 'Shorter Banis', description: 'Praise of the Khalsa — Guru Gobind Singh Ji\'s tribute to the purity of the Khalsa.' },
-  { id: 'shabad-hazare-10', name: 'Shabad Hazare Patshahi 10', scripture: 'DG', source: 'D', startAng: 709, endAng: 712, category: 'Shorter Banis', description: 'Shabads of longing and love by Guru Gobind Singh Ji.' },
-  { id: 'sastra-naam-mala', name: 'Sastra Naam Mala', scripture: 'DG', source: 'D', startAng: 717, endAng: 809, category: 'Shorter Banis', description: 'Garland of Weapons — meditation on the Divine through the names of weapons.' },
-
-  // ── Browse-Only Sources ────────────────────────────────────────────────────
-  { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vars by Bhai Gurdas Ji elucidating Sikh philosophy and history.', type: 'browse-only' },
-  { id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Compilation of shabads from various scriptures selected for congregational singing.', type: 'browse-only' },
+  exactBani({ id: 'dukh-bhanjani', name: 'Dukh Bhanjani Sahib', scripture: 'SGGS', source: 'G', startAng: 218, endAng: 220, category: 'Saloks & Short Banis', description: 'Healing bani often read for comfort and recovery.', baniDbId: 36 }),
+  exactBani({ id: 'thiiti-majh', name: 'Thiiti (Majh)', scripture: 'SGGS', source: 'G', startAng: 296, endAng: 300, category: 'Saloks & Short Banis', description: 'Lunar-calendar composition in Majh raag.', baniDbId: 49 }),
+  exactBani({ id: 'birhade', name: 'Birhade', scripture: 'SGGS', source: 'G', startAng: 557, endAng: 558, category: 'Saloks & Short Banis', description: 'Short songs of longing and separation.', baniDbId: 42 }),
+  exactBani({ id: 'aarti', name: 'Aarti', scripture: 'SGGS', source: 'G', startAng: 663, endAng: 663, startVerseId: 28685, category: 'Saloks & Short Banis', description: 'Guru Nanak Dev Ji\'s cosmic aarti.', baniDbId: 22 }),
+  exactBani({ id: 'laavan', name: 'Laavan', scripture: 'SGGS', source: 'G', startAng: 773, endAng: 774, startVerseId: 32936, category: 'Saloks & Short Banis', description: 'The four laavaan of Anand Karaj.', baniDbId: 11 }),
+  exactBani({ id: 'ramkali-sadd', name: 'Ramkali Sadd', scripture: 'SGGS', source: 'G', startAng: 923, endAng: 924, category: 'Saloks & Short Banis', description: 'Short Ramkali composition on spiritual departure.', baniDbId: 46 }),
+  exactBani({ id: 'funehe', name: 'Funehe Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1361, endAng: 1363, category: 'Saloks & Short Banis', description: 'Short poetic composition by Guru Arjan Dev Ji.', baniDbId: 17 }),
+  exactBani({ id: 'choubole', name: 'Choubole Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1363, endAng: 1364, category: 'Saloks & Short Banis', description: 'Four-line verses by Guru Arjan Dev Ji.', baniDbId: 18 }),
+  exactBani({ id: 'salok-bhagat-kabir', name: 'Salok Bhagat Kabir Jio Ke', scripture: 'SGGS', source: 'G', startAng: 1364, endAng: 1377, category: 'Saloks & Short Banis', description: 'Kabir Ji\'s saloks collected in SGGS.', baniDbId: 77 }),
+  exactBani({ id: 'salok-farid', name: 'Salok Sheikh Farid Ji', scripture: 'SGGS', source: 'G', startAng: 1377, endAng: 1385, category: 'Saloks & Short Banis', description: 'Sheikh Farid Ji\'s saloks collected in SGGS.', baniDbId: 78 }),
+  exactBani({ id: 'salok-mahalla-9', name: 'Salok Mahalla 9', scripture: 'SGGS', source: 'G', startAng: 1426, endAng: 1429, startVerseId: 60214, category: 'Saloks & Short Banis', description: 'Saloks of Guru Tegh Bahadur Ji.', baniDbId: 30 }),
+  exactBani({ id: 'raag-maala', name: 'Raag Maala', scripture: 'SGGS', source: 'G', startAng: 1429, endAng: 1430, category: 'Saloks & Short Banis', description: 'Closing raag garland at the end of SGGS.', baniDbId: 38 }),
 ]
 
-export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Saloks & Short Banis'] as const
-export const DG_CATEGORY_ORDER = ['Daily Prayers', 'Bir Ras', 'Major Compositions', 'Shorter Banis'] as const
+const EXACT_DG_BANIS: Bani[] = [
+  exactBani({ id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji.', baniDbId: 4 }),
+  exactBani({ id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, startVerseId: 74956, category: 'Daily Prayers', description: 'Nitnem swaiyas rejecting empty ritual.', baniDbId: 6 }),
+  exactBani({ id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 1386, endAng: 1388, category: 'Daily Prayers', description: 'Benati Chaupai Sahib as read in Nitnem.', baniDbId: 9 }),
+
+  exactBani({ id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Fierce devotional composition invoking the Divine protector.', baniDbId: 53 }),
+  exactBani({ id: 'vaar-sri-bhagauti-ji-ki', name: 'Vaar Sri Bhagauti Ji Ki', scripture: 'DG', source: 'D', startAng: 119, endAng: 127, category: 'Bir Ras', description: 'Also known as Chandi Di Vaar.', baniDbId: 13 }),
+
+  exactBani({ id: 'akal-ustat', name: 'Akal Ustat', scripture: 'DG', source: 'D', startAng: 11, endAng: 38, category: 'Major Compositions', description: 'Praise of the Timeless One.', baniDbId: 29 }),
+  exactBani({ id: 'zafarnama', name: 'Zafarnama', scripture: 'DG', source: 'D', startAng: 1389, endAng: 1389, category: 'Major Compositions', description: 'Guru Gobind Singh Ji\'s Persian letter to Aurangzeb.', baniDbId: 98 }),
+
+  exactBani({ id: 'shabad-hazare-10', name: 'Shabad Hazare Patshahi 10', scripture: 'DG', source: 'D', startAng: 709, endAng: 712, category: 'Shorter Banis', description: 'Shabads of longing and love by Guru Gobind Singh Ji.', baniDbId: 5 }),
+  exactBani({ id: 'sastra-naam-mala', name: 'Shastar Naam Mala', scripture: 'DG', source: 'D', startAng: 717, endAng: 809, category: 'Shorter Banis', description: 'Meditation through the names of weapons.', baniDbId: 19 }),
+]
+
+const READ_ONLY_SGGS_EXACT_BANIS: Bani[] = [
+  exactBani({ id: 'gur-mantar', name: 'Gur Mantar', scripture: 'SGGS', source: 'G', startAng: 13, endAng: 13, category: 'Saloks & Short Banis', description: 'Short foundational mantra at the start of SGGS reading.', baniDbId: 1 }),
+  exactBani({ id: 'shabad-hazare', name: 'Shabad Hazare', scripture: 'SGGS', source: 'G', startAng: 96, endAng: 795, category: 'Long Compositions', description: 'Collected Shabad Hazare composition served as one exact BaniDB bani.', baniDbId: 3 }),
+  exactBani({ id: 'kuchji', name: 'Kuchji', scripture: 'SGGS', source: 'G', startAng: 762, endAng: 762, category: 'Saloks & Short Banis', description: 'Short bani traditionally grouped with wedding and union imagery.', baniDbId: 14 }),
+  exactBani({ id: 'suchji', name: 'Suchji', scripture: 'SGGS', source: 'G', startAng: 762, endAng: 762, category: 'Saloks & Short Banis', description: 'Short bani traditionally paired with Kuchji.', baniDbId: 15 }),
+  exactBani({ id: 'gunvanti', name: 'Gunvanti', scripture: 'SGGS', source: 'G', startAng: 763, endAng: 763, category: 'Saloks & Short Banis', description: 'Short composition on spiritual worthiness and virtue.', baniDbId: 16 }),
+  exactBani({ id: 'sukhmana-sahib', name: 'Sukhmana Sahib', scripture: 'SGGS', source: 'G', startAng: 833, endAng: 1326, category: 'Long Compositions', description: 'Exact BaniDB Sukhmana Sahib composition.', baniDbId: 32 }),
+  exactBani({ id: 'bavan-akhri-kabir', name: 'Bavan Akhri Kabir Ji', scripture: 'SGGS', source: 'G', startAng: 340, endAng: 343, category: 'Long Compositions', description: 'Bavan Akhri composition of Bhagat Kabir Ji.', baniDbId: 39 }),
+  exactBani({ id: 'karhale', name: 'Karhale', scripture: 'SGGS', source: 'G', startAng: 234, endAng: 234, category: 'Saloks & Short Banis', description: 'Compact SGGS composition served as its own exact bani.', baniDbId: 41 }),
+  exactBani({ id: 'patti-likhi', name: 'Patti Likhi', scripture: 'SGGS', source: 'G', startAng: 432, endAng: 434, category: 'Saloks & Short Banis', description: 'Alphabet-based teaching composition.', baniDbId: 43 }),
+  exactBani({ id: 'patti-mahalla-3', name: 'Patti Mahalla 3', scripture: 'SGGS', source: 'G', startAng: 434, endAng: 435, category: 'Saloks & Short Banis', description: 'Patti composition from Guru Amar Das Ji.', baniDbId: 44 }),
+  exactBani({ id: 'ruti-mahalla-5', name: 'Ruti Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 927, endAng: 929, category: 'Saloks & Short Banis', description: 'Seasonal composition from Guru Arjan Dev Ji.', baniDbId: 45 }),
+  exactBani({ id: 'thitanti-kabir', name: 'Thitanti Kabir Ji', scripture: 'SGGS', source: 'G', startAng: 343, endAng: 344, category: 'Saloks & Short Banis', description: 'Thitanti composition of Bhagat Kabir Ji.', baniDbId: 47 }),
+  exactBani({ id: 'thiti-mahalla-1', name: 'Thiti Mahalla 1', scripture: 'SGGS', source: 'G', startAng: 838, endAng: 840, category: 'Saloks & Short Banis', description: 'Thiti composition from Guru Nanak Dev Ji.', baniDbId: 48 }),
+  exactBani({ id: 'gauri-vaar-kabir', name: 'Gauri Vaar Kabir Ji', scripture: 'SGGS', source: 'G', startAng: 344, endAng: 345, category: 'Vars', description: 'Vaar of Bhagat Kabir Ji in Gauri.', baniDbId: 50 }),
+  exactBani({ id: 'bilaval-mahalla-3-vaar-sat', name: 'Bilaval Mahalla 3 Vaar Sat', scripture: 'SGGS', source: 'G', startAng: 841, endAng: 842, category: 'Vars', description: 'Bilaval vaar composition linked with Guru Amar Das Ji.', baniDbId: 51 }),
+  exactBani({ id: 'vanjara', name: 'Vanjara', scripture: 'SGGS', source: 'G', startAng: 81, endAng: 82, category: 'Saloks & Short Banis', description: 'Compact SGGS bani on the trader-soul metaphor.', baniDbId: 52 }),
+
+  exactBani({ id: 'raag-siri-raag-kabir', name: 'Raag Siri Raag (Kabir Ji Ka)', scripture: 'SGGS', source: 'G', startAng: 91, endAng: 93, category: 'Raag Sections', description: 'Exact BaniDB raag section for Kabir Ji in Siri Raag.', baniDbId: 55 }),
+  exactBani({ id: 'raag-gauri', name: 'Raag Gauri', scripture: 'SGGS', source: 'G', startAng: 323, endAng: 346, category: 'Raag Sections', description: 'Exact BaniDB raag section for Gauri.', baniDbId: 56 }),
+  exactBani({ id: 'raag-asa', name: 'Raag Asa', scripture: 'SGGS', source: 'G', startAng: 475, endAng: 488, category: 'Raag Sections', description: 'Exact BaniDB raag section for Asa.', baniDbId: 57 }),
+  exactBani({ id: 'raag-gujri', name: 'Raag Gujri', scripture: 'SGGS', source: 'G', startAng: 524, endAng: 526, category: 'Raag Sections', description: 'Exact BaniDB raag section for Gujri.', baniDbId: 58 }),
+  exactBani({ id: 'raag-sorath', name: 'Raag Sorath', scripture: 'SGGS', source: 'G', startAng: 654, endAng: 659, category: 'Raag Sections', description: 'Exact BaniDB raag section for Sorath.', baniDbId: 59 }),
+  exactBani({ id: 'raag-dhanasri', name: 'Raag Dhanasri', scripture: 'SGGS', source: 'G', startAng: 691, endAng: 695, category: 'Raag Sections', description: 'Exact BaniDB raag section for Dhanasri.', baniDbId: 60 }),
+  exactBani({ id: 'raag-jaitsri', name: 'Raag Jaitsri', scripture: 'SGGS', source: 'G', startAng: 710, endAng: 710, category: 'Raag Sections', description: 'Exact BaniDB raag section for Jaitsri.', baniDbId: 61 }),
+  exactBani({ id: 'raag-todi-bhagat', name: 'Raag Todi (Bhagat Bani)', scripture: 'SGGS', source: 'G', startAng: 718, endAng: 718, category: 'Raag Sections', description: 'Exact BaniDB raag section for Bhagat bani in Todi.', baniDbId: 62 }),
+  exactBani({ id: 'raag-tilang-kabir', name: 'Raag Tilang (Kabir Ji)', scripture: 'SGGS', source: 'G', startAng: 727, endAng: 727, category: 'Raag Sections', description: 'Exact BaniDB raag section for Kabir Ji in Tilang.', baniDbId: 63 }),
+  exactBani({ id: 'raag-suhi', name: 'Raag Suhi', scripture: 'SGGS', source: 'G', startAng: 792, endAng: 794, category: 'Raag Sections', description: 'Exact BaniDB raag section for Suhi.', baniDbId: 64 }),
+  exactBani({ id: 'raag-bilaval', name: 'Raag Bilaval', scripture: 'SGGS', source: 'G', startAng: 855, endAng: 858, category: 'Raag Sections', description: 'Exact BaniDB raag section for Bilaval.', baniDbId: 65 }),
+  exactBani({ id: 'raag-gond', name: 'Raag Gond', scripture: 'SGGS', source: 'G', startAng: 870, endAng: 875, category: 'Raag Sections', description: 'Exact BaniDB raag section for Gond.', baniDbId: 66 }),
+  exactBani({ id: 'raag-ramkali-sadd', name: 'Raag Ramkali (Sadd)', scripture: 'SGGS', source: 'G', startAng: 923, endAng: 974, category: 'Raag Sections', description: 'Exact BaniDB Ramkali section keyed around Sadd.', baniDbId: 67 }),
+  exactBani({ id: 'raag-mali-gaura', name: 'Raag Mali Gaura', scripture: 'SGGS', source: 'G', startAng: 988, endAng: 988, category: 'Raag Sections', description: 'Exact BaniDB raag section for Mali Gaura.', baniDbId: 68 }),
+  exactBani({ id: 'raag-maru', name: 'Raag Maru', scripture: 'SGGS', source: 'G', startAng: 1102, endAng: 1106, category: 'Raag Sections', description: 'Exact BaniDB raag section for Maru.', baniDbId: 69 }),
+  exactBani({ id: 'raag-kedara', name: 'Raag Kedara', scripture: 'SGGS', source: 'G', startAng: 1123, endAng: 1124, category: 'Raag Sections', description: 'Exact BaniDB raag section for Kedara.', baniDbId: 70 }),
+  exactBani({ id: 'raag-bhairao', name: 'Raag Bhairao', scripture: 'SGGS', source: 'G', startAng: 1157, endAng: 1167, category: 'Raag Sections', description: 'Exact BaniDB raag section for Bhairao.', baniDbId: 71 }),
+  exactBani({ id: 'raag-basant', name: 'Raag Basant', scripture: 'SGGS', source: 'G', startAng: 1193, endAng: 1196, category: 'Raag Sections', description: 'Exact BaniDB raag section for Basant.', baniDbId: 72 }),
+  exactBani({ id: 'raag-sarang', name: 'Raag Sarang', scripture: 'SGGS', source: 'G', startAng: 1251, endAng: 1253, category: 'Raag Sections', description: 'Exact BaniDB raag section for Sarang.', baniDbId: 73 }),
+  exactBani({ id: 'raag-malaar', name: 'Raag Malaar', scripture: 'SGGS', source: 'G', startAng: 1292, endAng: 1293, category: 'Raag Sections', description: 'Exact BaniDB raag section for Malaar.', baniDbId: 74 }),
+  exactBani({ id: 'raag-kanara', name: 'Raag Kanara', scripture: 'SGGS', source: 'G', startAng: 1318, endAng: 1318, category: 'Raag Sections', description: 'Exact BaniDB raag section for Kanara.', baniDbId: 75 }),
+  exactBani({ id: 'raag-prabhati', name: 'Raag Prabhati', scripture: 'SGGS', source: 'G', startAng: 1349, endAng: 1351, category: 'Raag Sections', description: 'Exact BaniDB raag section for Prabhati.', baniDbId: 76 }),
+
+  exactBani({ id: 'savaiye-sri-mukhbaak-m5-1', name: 'Savaiye Sri Mukhbaak Mahalla 5 - 1', scripture: 'SGGS', source: 'G', startAng: 1385, endAng: 1387, category: 'Swaiye', description: 'First exact Savaiye cluster of Guru Arjan Dev Ji.', baniDbId: 79 }),
+  exactBani({ id: 'savaiye-sri-mukhbaak-m5-2', name: 'Savaiye Sri Mukhbaak Mahalla 5 - 2', scripture: 'SGGS', source: 'G', startAng: 1387, endAng: 1389, category: 'Swaiye', description: 'Second exact Savaiye cluster of Guru Arjan Dev Ji.', baniDbId: 80 }),
+  exactBani({ id: 'savaiye-mahalla-1', name: 'Savaiye Mahalla 1', scripture: 'SGGS', source: 'G', startAng: 1389, endAng: 1390, category: 'Swaiye', description: 'Exact Savaiye set of Guru Nanak Dev Ji.', baniDbId: 81 }),
+  exactBani({ id: 'savaiye-mahalla-2', name: 'Savaiye Mahalla 2', scripture: 'SGGS', source: 'G', startAng: 1391, endAng: 1392, category: 'Swaiye', description: 'Exact Savaiye set of Guru Angad Dev Ji.', baniDbId: 82 }),
+  exactBani({ id: 'savaiye-mahalla-3', name: 'Savaiye Mahalla 3', scripture: 'SGGS', source: 'G', startAng: 1392, endAng: 1396, category: 'Swaiye', description: 'Exact Savaiye set of Guru Amar Das Ji.', baniDbId: 83 }),
+  exactBani({ id: 'savaiye-mahalla-4', name: 'Savaiye Mahalla 4', scripture: 'SGGS', source: 'G', startAng: 1396, endAng: 1406, category: 'Swaiye', description: 'Exact Savaiye set of Guru Ram Das Ji.', baniDbId: 84 }),
+  exactBani({ id: 'savaiye-mahalla-5', name: 'Savaiye Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 1406, endAng: 1409, category: 'Swaiye', description: 'Exact Savaiye set of Guru Arjan Dev Ji.', baniDbId: 85 }),
+
+  exactBani({ id: 'gujari-vaar-mahalla-5', name: 'Gujari Vaar Mahalla 5', scripture: 'SGGS', source: 'G', startAng: 517, endAng: 524, category: 'Vars', description: 'Exact Gujari vaar composition of Guru Arjan Dev Ji.', baniDbId: 92 }),
+  exactBani({ id: 'maru-vaar-mahalla-5-dakhane', name: 'Maru Vaar Mahalla 5 Dakhane', scripture: 'SGGS', source: 'G', startAng: 1094, endAng: 1102, category: 'Vars', description: 'Exact Maru vaar with dakhane of Guru Arjan Dev Ji.', baniDbId: 103 }),
+]
+
+const READ_ONLY_DG_EXACT_BANIS: Bani[] = [
+  exactBani({ id: 'tav-prasad-savaiye-dinan-ki', name: 'Tav Prasad Savaiye (Dheenan Ki)', scripture: 'DG', source: 'D', startAng: 11, endAng: 37, category: 'Daily Prayers', description: 'The Dheenan Ki exact BaniDB variant of Tav Prasad Savaiye.', baniDbId: 7 }),
+  exactBani({ id: 'akal-ustat-chaupai', name: 'Akal Ustat Chaupai', scripture: 'DG', source: 'D', startAng: 11, endAng: 11, category: 'Supplemental Banis', description: 'Short chaupai section drawn from Akal Ustat.', baniDbId: 8 }),
+  exactBani({ id: 'ath-chandi-charitar', name: 'Ath Chandi Charitar', scripture: 'DG', source: 'D', startAng: 119, endAng: 119, category: 'Bir Ras', description: 'Compact Chandi Charitar composition served as its own exact bani.', baniDbId: 12 }),
+  exactBani({ id: 'barah-maha-savaiyaa', name: 'Barah Maha Savaiyaa', scripture: 'DG', source: 'D', startAng: 383, endAng: 384, category: 'Shorter Banis', description: 'Exact Dasam composition on the twelve months in savaiyaa form.', baniDbId: 28 }),
+]
+
+const BROWSE_ONLY_BANIS: Bani[] = [
+  browseOnlyBani({ id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', scripture: 'BGV', source: 'B', startAng: 1, endAng: 628, category: 'Vars', description: 'Poetic vaaran by Bhai Gurdas Ji.', type: 'browse-only' }),
+  browseOnlyBani({ id: 'amrit-keertan', name: 'Amrit Keertan', scripture: 'AK', source: 'A', startAng: 1, endAng: 1430, category: 'Keertan', description: 'Songbook-style shabad collection for keertan.', type: 'browse-only' }),
+]
+
+export const BANIS: Bani[] = [
+  ...EXACT_SGGS_BANIS,
+  ...EXACT_DG_BANIS,
+  ...BROWSE_ONLY_BANIS,
+]
+
+export const READ_EXACT_SGGS_BANIS: Bani[] = [
+  ...EXACT_SGGS_BANIS,
+  ...READ_ONLY_SGGS_EXACT_BANIS,
+]
+
+export const READ_EXACT_DG_BANIS: Bani[] = [
+  ...EXACT_DG_BANIS,
+  ...READ_ONLY_DG_EXACT_BANIS,
+]
+
+export const READ_EXACT_BANIS: Bani[] = [
+  ...READ_EXACT_SGGS_BANIS,
+  ...READ_EXACT_DG_BANIS,
+]
+
+export const SGGS_CATEGORY_ORDER = ['Daily Prayers', 'Long Compositions', 'Vars', 'Raag Sections', 'Saloks & Short Banis', 'Swaiye'] as const
+export const DG_CATEGORY_ORDER = ['Daily Prayers', 'Bir Ras', 'Major Compositions', 'Supplemental Banis', 'Shorter Banis'] as const

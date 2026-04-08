@@ -10,20 +10,19 @@ import {
   type AmritKeertanHeader,
   type AmritKeertanShabad,
 } from '../api/banidb'
-import { BANIS, type Bani } from '../data/banis'
-import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
+import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useRecentSearchStore } from '../store/recentSearch'
 import type { SearchMode } from '../types'
-import { buildStudyRouteSearchParams, findBoundedBaniDbId } from '../utils/baniRouteResolver'
+import { buildCanonicalBaniStudyPath, buildStudyRouteSearchParams } from '../utils/baniRouteResolver'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
 type SearchSource = keyof typeof SEARCH_SOURCE_LABELS
 
-const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; items: ScriptureIndexItem[] }> = {
-  SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, items: SGGS_INDEX },
-  DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, items: DG_INDEX },
+const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
+  SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
+  DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, categoryOrder: DG_CATEGORY_ORDER },
 }
 
 const AMRIT_KEERTAN_PAGE_SIZE = 12
@@ -83,6 +82,10 @@ const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
 ])
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
+const EXACT_BANIS_BY_SCRIPTURE = {
+  SGGS: READ_EXACT_SGGS_BANIS.filter((bani): bani is Bani & { baniDbId: number } => typeof bani.baniDbId === 'number'),
+  DG: READ_EXACT_DG_BANIS.filter((bani): bani is Bani & { baniDbId: number } => typeof bani.baniDbId === 'number'),
+} satisfies Record<Scripture, Array<Bani & { baniDbId: number }>>
 
 function normalizeBaniLabel(value: string) {
   return value
@@ -315,19 +318,6 @@ export default function Banis() {
     navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)
   }
 
-  const openScriptureIndexItem = (source: 'G' | 'D', item: ScriptureIndexItem) => {
-    const baniDbId = findBoundedBaniDbId(source, item.pages[0], item.pages[1])
-    const params = buildStudyRouteSearchParams({
-      source,
-      startAng: item.pages[0],
-      endAng: item.pages[1],
-      bani: item.name,
-      baniDbId,
-    })
-
-    navigate(`/study?${params.toString()}`)
-  }
-
   const openSundarGutkaBani = (item: BaniIndexItem) => {
     const canonicalBani = getCanonicalSundarGutkaBani(item)
     const name = canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
@@ -382,6 +372,25 @@ export default function Banis() {
       { key: 'other', label: 'Other', items: other },
     ].filter(group => group.items.length > 0)
   }, [sundarGutkaBanis])
+
+  const scriptureGroups = useMemo(() => {
+    return (Object.keys(SCRIPTURE_META) as Scripture[]).reduce<Record<Scripture, Array<{ category: string; items: Array<Bani & { baniDbId: number }> }>>>((groups, scripture) => {
+      const items = EXACT_BANIS_BY_SCRIPTURE[scripture]
+      const orderedCategories = SCRIPTURE_META[scripture].categoryOrder
+
+      groups[scripture] = orderedCategories
+        .map(category => ({
+          category,
+          items: items.filter(item => item.category === category),
+        }))
+        .filter(group => group.items.length > 0)
+
+      return groups
+    }, {
+      SGGS: [],
+      DG: [],
+    })
+  }, [])
 
   const selectedAmritHeader = useMemo(
     () => amritHeaders.find(header => header.headerId === selectedAmritHeaderId) ?? null,
@@ -739,7 +748,8 @@ export default function Banis() {
         const meta = SCRIPTURE_META[scripture]
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
-        const source = scripture === 'SGGS' ? 'G' : 'D'
+        const groups = scriptureGroups[scripture]
+        const totalItems = groups.reduce((count, group) => count + group.items.length, 0)
 
         return (
           <div key={scripture} className="mb-4">
@@ -749,21 +759,42 @@ export default function Banis() {
             >
               <div className="text-left">
                 <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
-                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{meta.items.length} sections</p>
+                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{totalItems} exact BaniDB banis</p>
               </div>
               <span className="text-saffron dark:text-saffron-light font-sans text-sm">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
             </button>
 
             {isOpen && (
               <div className="mt-2 ml-2">
-                {meta.items.map(item => (
-                  <IndexRow
-                    key={item.name}
-                    label={item.name}
-                    detail={`Ang ${item.pages[0]}–${item.pages[1]}`}
-                    onClick={() => openScriptureIndexItem(source, item)}
-                  />
-                ))}
+                {groups.map(group => {
+                  const groupKey = `${sectionKey}-${group.category}`
+                  return (
+                    <div key={group.category} className="mb-2">
+                      <button
+                        onClick={() => toggle(groupKey)}
+                        className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                      >
+                        <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.category}</p>
+                        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                      </button>
+                      {expanded[groupKey] && (
+                        <div className="mt-1 ml-2">
+                          {group.items.map(item => {
+                            const angDetail = item.startAng === item.endAng ? `Ang ${item.startAng}` : `Ang ${item.startAng}–${item.endAng}`
+                            return (
+                              <IndexRow
+                                key={item.id}
+                                label={item.name}
+                                detail={`BaniDB #${item.baniDbId} · ${angDetail}`}
+                                onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                              />
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )}
           </div>

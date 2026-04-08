@@ -27,11 +27,23 @@ test('renders the four main content sections', () => {
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
-test('shows SGGS index items after expanding SGGS section', () => {
+test('shows exact SGGS bani items after expanding SGGS section', () => {
   renderBanis()
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
-  expect(screen.getByText('Raag Sri')).toBeInTheDocument()
-  expect(screen.getByText('Asa Ki Vaar')).toBeInTheDocument()
+  fireEvent.click(screen.getByText('Daily Prayers'))
+
+  expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
+  expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
+  expect(screen.queryByText('Raag Sri')).not.toBeInTheDocument()
+})
+
+test('shows the exhaustive exact SGGS categories including raag sections', () => {
+  renderBanis()
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+
+  expect(screen.getByText('Raag Sections')).toBeInTheDocument()
+  fireEvent.click(screen.getByText('Raag Sections'))
+  expect(screen.getByText('Raag Gauri')).toBeInTheDocument()
 })
 
 test('loads Sundar Gutka groups and items', async () => {
@@ -76,7 +88,7 @@ test('featured Ardaas + Hukamnama card opens the devotional Study flow', async (
   })
 })
 
-test('opens Sundar Gutka Rehras Sahib through the canonical SGGS range route', async () => {
+test('opens Sundar Gutka Rehras Sahib through the canonical exact bani route', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -95,11 +107,11 @@ test('opens Sundar Gutka Rehras Sahib through the canonical SGGS range route', a
   fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1')
   })
 })
 
-test('opens Asa Ki Vaar through a bounded BaniDB route from the SGGS list', async () => {
+test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -110,10 +122,30 @@ test('opens Asa Ki Vaar through a bounded BaniDB route from the SGGS list', asyn
   )
 
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
-  fireEvent.click(screen.getByText('Asa Ki Vaar'))
+  fireEvent.click(screen.getByText('Long Compositions'))
+  fireEvent.click(screen.getByText('Asa Di Var'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=462&startAng=462&endAng=475&bani=Asa+Ki+Vaar&baniDbId=90')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=462&startAng=462&endAng=475&bani=Asa+Di+Var&baniDbId=90&exactBani=1')
+  })
+})
+
+test('opens Raag Gauri through an exact BaniDB route from the exhaustive SGGS list', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/study" element={<><Study /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getByText('Raag Sections'))
+  fireEvent.click(screen.getByText('Raag Gauri'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=323&startAng=323&endAng=346&bani=Raag+Gauri&baniDbId=56&exactBani=1')
   })
 })
 

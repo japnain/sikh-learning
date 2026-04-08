@@ -33,7 +33,7 @@ import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
-import { buildStudyRouteSearchParams, findBoundedBaniDbId } from '../utils/baniRouteResolver'
+import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 
 function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
   if (!scriptureId) return { source: null, ang: null }
@@ -694,14 +694,7 @@ export default function Home() {
                   </button>
                   <button
                     onClick={() => {
-                      const params = buildStudyRouteSearchParams({
-                        source: bani.source,
-                        startAng: bani.startAng,
-                        endAng: bani.endAng,
-                        bani: bani.name,
-                        baniDbId: findBoundedBaniDbId(bani.source, bani.startAng, bani.endAng) ?? bani.baniDbId,
-                      })
-                      navigate(`/study?${params}`)
+                      navigate(buildCanonicalBaniStudyPath(bani))
                     }}
                     className="flex-1 text-left"
                   >
@@ -759,7 +752,7 @@ export default function Home() {
                 {progressItems.slice(0, 3).map(p => (
                   <button
                     key={p.id}
-                    onClick={() => navigate(`/study?source=${p.source}&ang=${p.startAng}&bani=${encodeURIComponent(p.name)}`)}
+                    onClick={() => navigate(buildCanonicalBaniStudyPath(p))}
                     className="w-full section-shell px-4 py-3 text-left"
                   >
                     <div className="flex justify-between gap-3">
