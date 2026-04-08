@@ -149,10 +149,11 @@ export default function Study() {
 
   const baniPageEntries = useMemo(() => {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
-    const targetAng = angParam ?? baniResult.entries[0]?.ang ?? null
-    if (targetAng === null) return []
-    return baniResult.entries.filter(entry => entry.ang === targetAng)
-  }, [angParam, baniResult.entries, isBaniDbMode])
+    // Show the entire baani at once (matching STTM Sundar Gutka behaviour).
+    // Composite baanis like Rehras Sahib span multiple angs and sources; filtering
+    // to a single ang would hide most of the content.
+    return baniResult.entries
+  }, [isBaniDbMode, baniResult.entries])
 
   const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
   const exactEntries = useMemo(() => {
@@ -849,7 +850,7 @@ export default function Study() {
         </div>
       )}
 
-      {!isExactShabadMode && !isHukamnamaMode && !isArdaasHukamnamaFlow && currentAng && navMinAng !== null && navMaxAng !== null && (
+      {!isExactShabadMode && !isHukamnamaMode && !isArdaasHukamnamaFlow && !isBaniDbMode && currentAng && navMinAng !== null && navMaxAng !== null && (
         <div className="flex gap-3 mt-4 pt-4 border-t border-sand/15 dark:border-dark-text/10">
           <button
             onClick={() => navTo(currentAng - 1)}
