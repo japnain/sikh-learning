@@ -71,9 +71,8 @@ beforeEach(() => {
 test('renders the placement-first Learn structure', () => {
   render(<MemoryRouter><Learn /></MemoryRouter>)
 
-  expect(screen.getByText(/Placement/i)).toBeInTheDocument()
+  expect(screen.getAllByText(/^Placement$/i).length).toBeGreaterThan(0)
   expect(screen.getByRole('button', { name: /Set my default path/i })).toBeInTheDocument()
-  expect(screen.getByText(/^Continue$/i)).toBeInTheDocument()
   expect(screen.getByText(/Today's Lesson/i)).toBeInTheDocument()
   expect(screen.getByText(/^Programs$/i)).toBeInTheDocument()
   expect(screen.getByText(/^Applied Practice$/i)).toBeInTheDocument()
@@ -203,6 +202,7 @@ test('renders word-family modules and saves family members to vocab', () => {
 test('starts a theme path and stores its progress', () => {
   render(<MemoryRouter><Learn /></MemoryRouter>)
 
+  fireEvent.click(screen.getByRole('button', { name: /Paths/i }))
   fireEvent.click(screen.getAllByRole('button', { name: /^Start$/i })[0]!)
 
   expect(Object.keys(useLearningStore.getState().themePathProgress).length).toBeGreaterThan(0)

@@ -132,6 +132,7 @@ export const MOCK_SEARCH_RESPONSE = {
 
 export const MOCK_BANIS_INDEX = [
   { ID: 2, gurmukhiUni: 'ਜਪੁਜੀ ਸਾਹਿਬ', transliterations: { english: 'japujee saahib' } },
+  { ID: 9, gurmukhiUni: 'ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ', transliterations: { english: 'benatee chauapiee saahib' } },
   { ID: 24, gurmukhiUni: 'ਅਰਦਾਸ', transliterations: { english: 'aradhaas' } },
   { ID: 21, gurmukhiUni: 'ਰਹਰਾਸਿ ਸਾਹਿਬ', transliterations: { english: 'raharaas saahib' } },
   { ID: 90, gurmukhiUni: 'ਆਸਾ ਦੀ ਵਾਰ', transliterations: { english: 'aasaa dhee vaar' } },

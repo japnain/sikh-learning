@@ -12,6 +12,7 @@ import {
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useRecentSearchStore } from '../store/recentSearch'
+import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { SearchMode } from '../types'
 import { buildCanonicalBaniStudyPath, buildStudyRouteSearchParams } from '../utils/baniRouteResolver'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
@@ -19,6 +20,7 @@ import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDo
 
 type Scripture = 'SGGS' | 'DG'
 type SearchSource = keyof typeof SEARCH_SOURCE_LABELS
+type ExactBani = Bani & { baniDbId: number }
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
   SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
@@ -83,9 +85,20 @@ const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
 const EXACT_BANIS_BY_SCRIPTURE = {
-  SGGS: READ_EXACT_SGGS_BANIS.filter((bani): bani is Bani & { baniDbId: number } => typeof bani.baniDbId === 'number'),
-  DG: READ_EXACT_DG_BANIS.filter((bani): bani is Bani & { baniDbId: number } => typeof bani.baniDbId === 'number'),
-} satisfies Record<Scripture, Array<Bani & { baniDbId: number }>>
+  SGGS: READ_EXACT_SGGS_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
+  DG: READ_EXACT_DG_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
+} satisfies Record<Scripture, ExactBani[]>
+
+const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
+  .flat()
+  .filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number')
+  .reduce<Map<string, ExactBani[]>>((groups, bani) => {
+    const baseId = bani.variantOf ?? bani.id
+    const list = groups.get(baseId) ?? []
+    list.push(bani)
+    groups.set(baseId, list)
+    return groups
+  }, new Map())
 
 function normalizeBaniLabel(value: string) {
   return value
@@ -154,6 +167,49 @@ function getCanonicalSundarGutkaBani(item: BaniIndexItem): Bani | null {
   }
 
   return null
+}
+
+function getNitnemRouteOptionsForBani(item: BaniIndexItem) {
+  const canonicalId = getCanonicalSundarGutkaBani(item)?.id
+  if (!canonicalId) return []
+
+  return NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === canonicalId)
+}
+
+function getExactRouteOptionsForBani(bani: ExactBani) {
+  const baseId = bani.variantOf ?? bani.id
+  const nitnemOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === baseId)
+
+  if (nitnemOptions.length > 1) {
+    return nitnemOptions.map(option => ({
+      key: option.id,
+      label: nitnemOptions.length > 1 && option.variantLabel
+        ? `${bani.name} · ${option.variantLabel}`
+        : option.name,
+      detail: option.detail,
+      path: buildNitnemStudyPath(option),
+    }))
+  }
+
+  const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(baseId) ?? []
+  if (exactVariants.length <= 1) return []
+
+  const baseLabel = exactVariants[0]?.name ?? bani.name
+
+  return exactVariants.map(option => {
+    const angDetail = option.startAng === option.endAng
+      ? `Ang ${option.startAng}`
+      : `Ang ${option.startAng}–${option.endAng}`
+
+    return {
+      key: option.id,
+      label: option.variantLabel
+        ? `${baseLabel} · ${option.variantLabel}`
+        : option.name,
+      detail: `BaniDB #${option.baniDbId} · ${angDetail}`,
+      path: buildCanonicalBaniStudyPath(option),
+    }
+  })
 }
 
 interface GroupedSearchResult {
@@ -727,14 +783,33 @@ export default function Banis() {
                   </button>
                   {expanded[groupKey] && (
                     <div className="mt-1 ml-2">
-                      {group.items.map(item => (
-                        <IndexRow
-                          key={item.id}
-                          label={item.gurmukhi}
-                          detail={item.transliteration || `Bani #${item.id}`}
-                          onClick={() => openSundarGutkaBani(item)}
-                        />
-                      ))}
+                      {group.items.flatMap(item => {
+                        const routeOptions = group.key === 'nitnem'
+                          ? getNitnemRouteOptionsForBani(item)
+                          : []
+
+                        if (routeOptions.length > 0) {
+                          return routeOptions.map(option => (
+                            <IndexRow
+                              key={`${item.id}-${option.id}`}
+                              label={routeOptions.length > 1 && option.variantLabel
+                                ? `${item.gurmukhi} · ${option.variantLabel}`
+                                : item.gurmukhi}
+                              detail={option.name === item.gurmukhi ? option.detail : `${option.name} · ${option.detail}`}
+                              onClick={() => navigate(buildNitnemStudyPath(option))}
+                            />
+                          ))
+                        }
+
+                        return (
+                          <IndexRow
+                            key={item.id}
+                            label={item.gurmukhi}
+                            detail={item.transliteration || `Bani #${item.id}`}
+                            onClick={() => openSundarGutkaBani(item)}
+                          />
+                        )
+                      })}
                     </div>
                   )}
                 </div>
@@ -779,7 +854,23 @@ export default function Banis() {
                       </button>
                       {expanded[groupKey] && (
                         <div className="mt-1 ml-2">
-                          {group.items.map(item => {
+                          {group.items.flatMap(item => {
+                            if (item.variantOf) {
+                              return []
+                            }
+
+                            const routeOptions = getExactRouteOptionsForBani(item)
+                            if (routeOptions.length > 0) {
+                              return routeOptions.map(option => (
+                                <IndexRow
+                                  key={option.key}
+                                  label={option.label}
+                                  detail={option.detail}
+                                  onClick={() => navigate(option.path)}
+                                />
+                              ))
+                            }
+
                             const angDetail = item.startAng === item.endAng ? `Ang ${item.startAng}` : `Ang ${item.startAng}–${item.endAng}`
                             return (
                               <IndexRow

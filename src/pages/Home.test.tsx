@@ -7,6 +7,7 @@ import { useLocaleStore } from '../store/locale'
 import { useProgressStore } from '../store/progress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
+import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
 
 function renderHome() {
@@ -24,9 +25,15 @@ function todayStamp() {
 }
 
 beforeEach(() => {
+  localStorage.clear()
   useScriptureCacheStore.getState().clearAll()
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
   useDailyFlowStore.setState({ date: todayStamp(), completedActionIds: [] })
+  useNitemStore.setState({
+    completedDate: todayStamp(),
+    completedIds: [],
+    selectedIds: [...DEFAULT_NITNEM_OPTION_IDS],
+  })
   useLearningStore.setState({
     masteredSymbols: [],
     completedLessons: [],
@@ -194,10 +201,19 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByRole('button', { name: /nitnem progress/i }))
-  fireEvent.click(screen.getByText('Rehras Sahib'))
+  fireEvent.click(screen.getAllByRole('button', { name: /nitnem progress/i })[0]!)
+  fireEvent.click(screen.getByText('Rehras Sahib (Puraatan)'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib+%28Puraatan%29&baniDbId=21&exactBani=1&baniId=rehras-sahib')
   })
+})
+
+test('can customize the home Nitnem list with focused variants', () => {
+  renderHome()
+
+  fireEvent.click(screen.getByRole('button', { name: /customize/i }))
+  fireEvent.click(screen.getByRole('button', { name: /Rehras Sahib \(Focused\)/i }))
+
+  expect(screen.getAllByText('Rehras Sahib (Focused)').length).toBeGreaterThan(0)
 })

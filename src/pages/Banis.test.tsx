@@ -33,8 +33,29 @@ test('shows exact SGGS bani items after expanding SGGS section', () => {
   fireEvent.click(screen.getByText('Daily Prayers'))
 
   expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
-  expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
+  expect(screen.getByText('Rehras Sahib · Puraatan')).toBeInTheDocument()
+  expect(screen.getByText('Rehras Sahib · Focused')).toBeInTheDocument()
   expect(screen.queryByText('Raag Sri')).not.toBeInTheDocument()
+})
+
+test('shows exact-variant rows in the Dasam Granth section when BaniDB supports them', () => {
+  renderBanis()
+  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getByText('Daily Prayers'))
+
+  expect(screen.getByText('Tav Prasad Savaiye · Sraavag Suddh')).toBeInTheDocument()
+  expect(screen.getByText('Tav Prasad Savaiye · Dheenan Ki')).toBeInTheDocument()
+  expect(screen.getByText('Chaupai Sahib · Puraatan')).toBeInTheDocument()
+  expect(screen.getByText('Chaupai Sahib · Focused')).toBeInTheDocument()
+})
+
+test('shows both Sri Bhagauti Astotr exact variants in Dasam Granth supplemental banis', () => {
+  renderBanis()
+  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getByText('Supplemental Banis'))
+
+  expect(screen.getByText('Sri Bhagauti Astotr · Panth Prakash')).toBeInTheDocument()
+  expect(screen.getByText('Sri Bhagauti Astotr · Hazur Sahib')).toBeInTheDocument()
 })
 
 test('shows the exhaustive exact SGGS categories including raag sections', () => {
@@ -103,12 +124,25 @@ test('opens Sundar Gutka Rehras Sahib through the canonical exact bani route', a
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
 
-  await waitFor(() => expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ'))
+  await waitFor(() => expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib+%28Puraatan%29&baniDbId=21&exactBani=1&baniId=rehras-sahib')
   })
+})
+
+test('shows focused and exact Nitnem variants in Sundar Gutka', async () => {
+  renderBanis()
+  fireEvent.click(screen.getByText(/Sundar Gutka/i))
+
+  await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Nitnem'))
+
+  expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument()
+  expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Focused')).toBeInTheDocument()
+  expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument()
+  expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ · Focused')).toBeInTheDocument()
 })
 
 test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async () => {
@@ -127,6 +161,25 @@ test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async 
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=462&startAng=462&endAng=475&bani=Asa+Di+Var&baniDbId=90&exactBani=1')
+  })
+})
+
+test('opens the Dheenan Ki Savaiye variant through its exact BaniDB route', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/study" element={<><Study /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getByText('Daily Prayers'))
+  fireEvent.click(screen.getByText('Tav Prasad Savaiye · Dheenan Ki'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=D&ang=11&startAng=11&endAng=37&bani=Tav+Prasad+Savaiye+%28Dheenan+Ki%29&baniDbId=7&exactBani=1&baniId=tav-prasad-savaiye')
   })
 })
 

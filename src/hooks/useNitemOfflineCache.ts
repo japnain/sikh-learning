@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { NITNEM_BANIS } from '../store/nitnem'
+import { NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import { fetchAng } from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 
@@ -11,7 +11,13 @@ export function useNitemOfflineCache() {
   const { getAng, setAng } = useScriptureCacheStore()
 
   useEffect(() => {
-    for (const bani of NITNEM_BANIS) {
+    const seen = new Set<string>()
+
+    for (const bani of NITNEM_ROUTE_OPTIONS) {
+      const cacheKey = `${bani.source}-${bani.startAng}`
+      if (seen.has(cacheKey)) continue
+      seen.add(cacheKey)
+
       if (!getAng(bani.source, bani.startAng)) {
         fetchAng(bani.startAng, bani.source)
           .then(data => setAng(bani.source, bani.startAng, data))

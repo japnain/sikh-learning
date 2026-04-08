@@ -32,12 +32,14 @@ export function buildStudyRouteSearchParams({
   endAng,
   bani,
   baniDbId,
+  baniId,
 }: {
   source: BaniSource
   startAng: number
   endAng: number
   bani: string
   baniDbId?: number | null
+  baniId?: string | null
 }): URLSearchParams {
   const params = new URLSearchParams({
     source,
@@ -52,14 +54,19 @@ export function buildStudyRouteSearchParams({
     params.set('exactBani', '1')
   }
 
+  if (baniId) {
+    params.set('baniId', baniId)
+  }
+
   return params
 }
 
 export function buildCanonicalBaniStudyPath(
-  bani: Pick<Bani, 'source' | 'startAng' | 'endAng' | 'name' | 'baniDbId'>,
+  bani: Pick<Bani, 'id' | 'source' | 'startAng' | 'endAng' | 'name' | 'baniDbId' | 'variantOf'>,
   overrides?: {
     baniDbId?: number | null
     baniName?: string
+    baniId?: string | null
   }
 ): string {
   const baniDbId =
@@ -73,6 +80,7 @@ export function buildCanonicalBaniStudyPath(
     endAng: bani.endAng,
     bani: overrides?.baniName ?? bani.name,
     baniDbId,
+    baniId: overrides?.baniId ?? bani.variantOf ?? null,
   })
 
   return `/study?${params.toString()}`
