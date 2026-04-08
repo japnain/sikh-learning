@@ -79,7 +79,7 @@ test('shows Gurmukhi text on front', () => {
 })
 
 test('shows translation inline without flipping', () => {
-  render(<StudyCard entry={entry} />)
+  render(<StudyCard entry={entry} showAudioPlayer />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
   expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
   expect(screen.getByText(/recitation coming soon/i)).toBeInTheDocument()

@@ -121,6 +121,7 @@ export const MOCK_SEARCH_RESPONSE = {
     {
       verseId: 100,
       shabadId: 50,
+      source: { id: 'G' },
       verse: { unicode: 'ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ' },
       transliteration: { english: 'vaahiguroo vaahiguroo' },
       translation: { en: { bdb: 'Waaheguru, Waaheguru' }, pu: { ss: { unicode: '' } } },
