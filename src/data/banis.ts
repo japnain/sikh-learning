@@ -10,6 +10,8 @@ export interface Bani {
   description: string
   type?: 'browse-only'
   baniDbId?: number
+  variantOf?: string
+  variantLabel?: string
 }
 
 function exactBani(bani: Omit<Bani, 'type'> & { baniDbId: number }): Bani {
@@ -23,7 +25,7 @@ function browseOnlyBani(bani: Omit<Bani, 'baniDbId'> & { type: 'browse-only' }):
 const EXACT_SGGS_BANIS: Bani[] = [
   exactBani({ id: 'japji-sahib', name: 'Japji Sahib', scripture: 'SGGS', source: 'G', startAng: 1, endAng: 8, category: 'Daily Prayers', description: 'Opening bani of Sri Guru Granth Sahib Ji recited at amrit vela.', baniDbId: 2 }),
   exactBani({ id: 'sodar', name: 'Sodar', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 8, startVerseId: 386, category: 'Daily Prayers', description: 'The So Dar section that opens Rehras Sahib.', baniDbId: 7 }),
-  exactBani({ id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening Nitnem composition with the full composite bani flow.', baniDbId: 21 }),
+  exactBani({ id: 'rehras-sahib', name: 'Rehras Sahib', scripture: 'SGGS', source: 'G', startAng: 8, endAng: 12, startVerseId: 386, category: 'Daily Prayers', description: 'Evening Nitnem composition with the full composite bani flow.', baniDbId: 21, variantLabel: 'Puraatan' }),
   exactBani({ id: 'kirtan-sohila', name: 'Kirtan Sohila', scripture: 'SGGS', source: 'G', startAng: 12, endAng: 13, startVerseId: 534, category: 'Daily Prayers', description: 'Night prayer recited before sleep.', baniDbId: 23 }),
   exactBani({ id: 'anand-sahib', name: 'Anand Sahib', scripture: 'SGGS', source: 'G', startAng: 917, endAng: 922, startVerseId: 39128, category: 'Daily Prayers', description: 'Bani of bliss by Guru Amar Das Ji.', baniDbId: 10 }),
 
@@ -71,8 +73,8 @@ const EXACT_SGGS_BANIS: Bani[] = [
 
 const EXACT_DG_BANIS: Bani[] = [
   exactBani({ id: 'jaap-sahib', name: 'Jaap Sahib', scripture: 'DG', source: 'D', startAng: 1, endAng: 10, category: 'Daily Prayers', description: 'Morning Nitnem bani by Guru Gobind Singh Ji.', baniDbId: 4 }),
-  exactBani({ id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, startVerseId: 74956, category: 'Daily Prayers', description: 'Nitnem swaiyas rejecting empty ritual.', baniDbId: 6 }),
-  exactBani({ id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 1386, endAng: 1388, category: 'Daily Prayers', description: 'Benati Chaupai Sahib as read in Nitnem.', baniDbId: 9 }),
+  exactBani({ id: 'tav-prasad-savaiye', name: 'Tav Prasad Savaiye', scripture: 'DG', source: 'D', startAng: 10, endAng: 10, startVerseId: 74956, category: 'Daily Prayers', description: 'Nitnem swaiyas rejecting empty ritual.', baniDbId: 6, variantLabel: 'Sraavag Suddh' }),
+  exactBani({ id: 'chaupai-sahib', name: 'Chaupai Sahib', scripture: 'DG', source: 'D', startAng: 1386, endAng: 1388, category: 'Daily Prayers', description: 'Benati Chaupai Sahib as read in Nitnem.', baniDbId: 9, variantLabel: 'Puraatan' }),
 
   exactBani({ id: 'ugardanti', name: 'Ugardanti', scripture: 'DG', source: 'D', startAng: 55, endAng: 64, category: 'Bir Ras', description: 'Fierce devotional composition invoking the Divine protector.', baniDbId: 53 }),
   exactBani({ id: 'vaar-sri-bhagauti-ji-ki', name: 'Vaar Sri Bhagauti Ji Ki', scripture: 'DG', source: 'D', startAng: 119, endAng: 127, category: 'Bir Ras', description: 'Also known as Chandi Di Vaar.', baniDbId: 13 }),
@@ -138,8 +140,10 @@ const READ_ONLY_SGGS_EXACT_BANIS: Bani[] = [
 ]
 
 const READ_ONLY_DG_EXACT_BANIS: Bani[] = [
-  exactBani({ id: 'tav-prasad-savaiye-dinan-ki', name: 'Tav Prasad Savaiye (Dheenan Ki)', scripture: 'DG', source: 'D', startAng: 11, endAng: 37, category: 'Daily Prayers', description: 'The Dheenan Ki exact BaniDB variant of Tav Prasad Savaiye.', baniDbId: 7 }),
+  exactBani({ id: 'tav-prasad-savaiye-dinan-ki', name: 'Tav Prasad Savaiye (Dheenan Ki)', scripture: 'DG', source: 'D', startAng: 11, endAng: 37, category: 'Daily Prayers', description: 'The Dheenan Ki exact BaniDB variant of Tav Prasad Savaiye.', baniDbId: 7, variantOf: 'tav-prasad-savaiye', variantLabel: 'Dheenan Ki' }),
   exactBani({ id: 'akal-ustat-chaupai', name: 'Akal Ustat Chaupai', scripture: 'DG', source: 'D', startAng: 11, endAng: 11, category: 'Supplemental Banis', description: 'Short chaupai section drawn from Akal Ustat.', baniDbId: 8 }),
+  exactBani({ id: 'sri-bhagauti-astotr', name: 'Sri Bhagauti Astotr', scripture: 'DG', source: 'D', startAng: 1428, endAng: 1428, category: 'Supplemental Banis', description: 'Panth Prakash exact BaniDB variant of Sri Bhagauti Astotr.', baniDbId: 25, variantLabel: 'Panth Prakash' }),
+  exactBani({ id: 'sri-bhagauti-astotr-hazur-sahib', name: 'Sri Bhagauti Astotr (Hazur Sahib)', scripture: 'DG', source: 'D', startAng: 1428, endAng: 1428, category: 'Supplemental Banis', description: 'Hazur Sahib exact BaniDB variant of Sri Bhagauti Astotr.', baniDbId: 26, variantOf: 'sri-bhagauti-astotr', variantLabel: 'Hazur Sahib' }),
   exactBani({ id: 'ath-chandi-charitar', name: 'Ath Chandi Charitar', scripture: 'DG', source: 'D', startAng: 119, endAng: 119, category: 'Bir Ras', description: 'Compact Chandi Charitar composition served as its own exact bani.', baniDbId: 12 }),
   exactBani({ id: 'barah-maha-savaiyaa', name: 'Barah Maha Savaiyaa', scripture: 'DG', source: 'D', startAng: 383, endAng: 384, category: 'Shorter Banis', description: 'Exact Dasam composition on the twelve months in savaiyaa form.', baniDbId: 28 }),
 ]

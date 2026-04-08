@@ -1,4 +1,4 @@
-import { READ_EXACT_BANIS, type Bani } from '../data/banis'
+import { BANIS, READ_EXACT_BANIS, type Bani } from '../data/banis'
 import type { ScriptureEntry, ScriptureLine } from '../types'
 
 function normalizeBaniName(value: string): string {
@@ -29,11 +29,23 @@ function hasVerse(entries: ScriptureEntry[], verseId: number): boolean {
 }
 
 export function findRouteBani(
+  baniId: string | null,
   baniName: string | null,
   source: Bani['source'] | null,
   startAng: number | null
 ): Bani | null {
-  if (!baniName || !source || startAng === null) return null
+  if (!source || startAng === null) return null
+
+  if (baniId) {
+    const byId = READ_EXACT_BANIS.find(bani => bani.id === baniId)
+      ?? BANIS.find(bani => bani.id === baniId)
+
+    if (byId && byId.source === source && byId.startAng === startAng) {
+      return byId
+    }
+  }
+
+  if (!baniName) return null
 
   const normalizedName = normalizeBaniName(baniName)
 
@@ -45,17 +57,19 @@ export function findRouteBani(
 }
 
 export function resolveBaniStartMarker({
+  baniId,
   baniName,
   source,
   startAng,
   entries,
 }: {
+  baniId: string | null
   baniName: string | null
   source: Bani['source'] | null
   startAng: number | null
   entries: ScriptureEntry[]
 }): { verseId: number; label: string; bani: Bani } | null {
-  const matchedBani = findRouteBani(baniName, source, startAng)
+  const matchedBani = findRouteBani(baniId, baniName, source, startAng)
   if (!matchedBani) return null
 
   const fallbackLine = findFirstRenderableLineForAng(entries, matchedBani.startAng)

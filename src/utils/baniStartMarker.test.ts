@@ -102,13 +102,18 @@ const japjiEntries: ScriptureEntry[] = [
 
 describe('bani start marker helpers', () => {
   it('matches canonical bani routes by source, start ang, and name', () => {
-    expect(findRouteBani('Rehras Sahib', 'G', 8)?.id).toBe('rehras-sahib')
-    expect(findRouteBani('Japji Sahib', 'G', 1)?.id).toBe('japji-sahib')
+    expect(findRouteBani(null, 'Rehras Sahib', 'G', 8)?.id).toBe('rehras-sahib')
+    expect(findRouteBani(null, 'Japji Sahib', 'G', 1)?.id).toBe('japji-sahib')
+  })
+
+  it('prefers an explicit bani id when the visible route title uses a variant label', () => {
+    expect(findRouteBani('rehras-sahib', 'Rehras Sahib (Focused)', 'G', 8)?.id).toBe('rehras-sahib')
   })
 
   it('uses the exact override verse for overlapping bani starts like Rehras Sahib', () => {
     expect(
       resolveBaniStartMarker({
+        baniId: null,
         baniName: 'Rehras Sahib',
         source: 'G',
         startAng: 8,
@@ -124,6 +129,7 @@ describe('bani start marker helpers', () => {
   it('falls back to the first renderable line when a bani has no exact override', () => {
     expect(
       resolveBaniStartMarker({
+        baniId: null,
         baniName: 'Japji Sahib',
         source: 'G',
         startAng: 1,
@@ -139,6 +145,7 @@ describe('bani start marker helpers', () => {
   it('still finds the start marker when the exact bani includes earlier intro sections', () => {
     expect(
       resolveBaniStartMarker({
+        baniId: null,
         baniName: 'Japji Sahib',
         source: 'G',
         startAng: 1,

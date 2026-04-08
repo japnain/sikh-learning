@@ -355,7 +355,7 @@ export default function Learn() {
   const [placementConfidence, setPlacementConfidence] = useState<PlacementConfidence>('steady')
   const [readingCheckId, setReadingCheckId] = useState<string>('reading-joining')
   const [meaningCheckId, setMeaningCheckId] = useState<string>('meaning-patterns')
-  const [pathsOpen, setPathsOpen] = useState(true)
+  const [pathsOpen, setPathsOpen] = useState(false)
 
   const allCompletedIds = useMemo(() => {
     const nextIds = new Set(completedLessons)
@@ -380,6 +380,10 @@ export default function Learn() {
   )
   const hasExistingProgramProgress = useMemo(
     () => Object.values(programProgress).some(progress => progress.currentModuleId || progress.completedModuleIds.length > 0),
+    [programProgress]
+  )
+  const hasCompletedProgramProgress = useMemo(
+    () => Object.values(programProgress).some(progress => progress.completedModuleIds.length > 0),
     [programProgress]
   )
   const onboardingProgram = useMemo(
@@ -436,6 +440,13 @@ export default function Learn() {
     }
     return activeModule
   }, [activeModule, lastLearnActivity?.moduleId])
+  const hasEstablishedLearnState = Boolean(
+    placementResult
+    || lastLearnActivity
+    || totalPracticeSessions > 0
+    || hasCompletedProgramProgress
+  )
+  const showContinueCard = Boolean(continueModule && hasEstablishedLearnState)
   const activeJourney = useMemo(() => {
     if (activeJourneyId) {
       return GUIDED_JOURNEYS.find(journey => journey.id === activeJourneyId) ?? null
@@ -640,6 +651,16 @@ export default function Learn() {
   }
 
   const todayCard = (() => {
+    if (!hasEstablishedLearnState) {
+      return {
+        title: 'Set your default path',
+        body: 'Start with placement once, then the rest of Learn can stay tighter and more personal.',
+        actionLabel: 'Open placement',
+        action: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+        context: 'Placement',
+      }
+    }
+
     if (dueReview.length > 0) {
       return {
         title: `${dueReview.length} review item${dueReview.length === 1 ? '' : 's'} due`,
@@ -786,28 +807,6 @@ export default function Learn() {
         </section>
       )}
 
-      <section className="section-shell p-4 mb-4">
-        <p className="eyebrow">Continue</p>
-        <p className="font-sans text-lg font-semibold text-ink dark:text-dark-text mt-2">
-          {continueModule?.title ?? 'Choose a program to continue'}
-        </p>
-        <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2">
-          {continueModule?.summary ?? 'Pick the next lane that matches your current reading and meaning depth.'}
-        </p>
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="rounded-full bg-gold/10 border border-gold/15 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-            {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : learningLevelLabels[learningLevel]}
-          </span>
-          <button
-            type="button"
-            onClick={() => continueModule && jumpToModule(continueModule)}
-            className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-sm font-semibold min-h-[48px]"
-          >
-            Continue Learn
-          </button>
-        </div>
-      </section>
-
       <section ref={dailyLessonRef} className="mb-5">
         <DailyLessonCard
           lesson={dailyLesson}
@@ -819,6 +818,30 @@ export default function Learn() {
           onOpenStudy={openStudyFromDailyLesson}
         />
       </section>
+
+      {showContinueCard && (
+        <section className="section-shell p-4 mb-4">
+          <p className="eyebrow">Continue</p>
+          <p className="font-sans text-lg font-semibold text-ink dark:text-dark-text mt-2">
+            {continueModule?.title ?? 'Choose a program to continue'}
+          </p>
+          <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-2">
+            {continueModule?.summary ?? 'Pick the next lane that matches your current reading and meaning depth.'}
+          </p>
+          <div className="mt-4 flex items-center justify-between gap-3">
+            <span className="rounded-full bg-gold/10 border border-gold/15 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+              {placementResult ? SUPPORT_LABELS[placementResult.supportDensity] : learningLevelLabels[learningLevel]}
+            </span>
+            <button
+              type="button"
+              onClick={() => continueModule && jumpToModule(continueModule)}
+              className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-white font-sans text-sm font-semibold min-h-[48px]"
+            >
+              Continue Learn
+            </button>
+          </div>
+        </section>
+      )}
 
       <div className="mb-5">
         <SoundscapeControls context="learn" variant="compact" />

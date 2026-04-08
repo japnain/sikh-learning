@@ -24,6 +24,7 @@ export default function StreakCalendar({
 }: Props) {
   const recentDays = getLastNDays(91).reverse()
   const weeks = chunkWeeks(recentDays)
+  const hasPractice = Object.values(streakCalendar).some(Boolean)
 
   return (
     <section className="section-shell-quiet p-4">
@@ -52,25 +53,33 @@ export default function StreakCalendar({
         </div>
       </div>
 
-      <div className="mt-4 overflow-x-auto">
-        <div className="grid min-w-[16rem] grid-cols-13 gap-1.5">
-          {weeks.map((week, weekIndex) => (
-            <div key={`week-${weekIndex}`} className="grid grid-rows-7 gap-1.5">
-              {week.map(dayStamp => (
-                <div
-                  key={dayStamp}
-                  title={dayStamp}
-                  className={`h-4 rounded-md border border-transparent ${
-                    streakCalendar[dayStamp]
-                      ? 'bg-saffron/80 shadow-soft'
-                      : 'bg-sand/20 dark:bg-dark-text/10'
-                  }`}
-                />
-              ))}
-            </div>
-          ))}
+      {hasPractice ? (
+        <div className="mt-4 overflow-x-auto">
+          <div className="grid min-w-[16rem] grid-cols-13 gap-1.5">
+            {weeks.map((week, weekIndex) => (
+              <div key={`week-${weekIndex}`} className="grid grid-rows-7 gap-1.5">
+                {week.map(dayStamp => (
+                  <div
+                    key={dayStamp}
+                    title={dayStamp}
+                    className={`h-4 rounded-md border border-transparent ${
+                      streakCalendar[dayStamp]
+                        ? 'bg-saffron/80 shadow-soft'
+                        : 'bg-sand/20 dark:bg-dark-text/10'
+                    }`}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="section-shell px-4 py-4 mt-4">
+          <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
+            Your practice days will light up here after the first Learn session.
+          </p>
+        </div>
+      )}
     </section>
   )
 }

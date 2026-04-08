@@ -92,6 +92,7 @@ export default function Study() {
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
   const baniName = searchParams.get('bani')
+  const baniIdParam = searchParams.get('baniId')
   const startAngParam = Number(searchParams.get('startAng')) || null
   const endAngParam = Number(searchParams.get('endAng')) || null
   const shabadIdParam = Number(searchParams.get('shabadId')) || null
@@ -406,12 +407,13 @@ export default function Study() {
     }
 
     return resolveBaniStartMarker({
+      baniId: baniIdParam,
       baniName,
       source: source ?? currentSource,
       startAng: startAngParam ?? angParam,
       entries,
     })
-  }, [angParam, baniName, currentSource, entries, highlightVerseIdParam, source, startAngParam])
+  }, [angParam, baniIdParam, baniName, currentSource, entries, highlightVerseIdParam, source, startAngParam])
 
   const baniStartVerseId = baniStartMarker?.verseId ?? null
   useEffect(() => {
@@ -462,6 +464,7 @@ export default function Study() {
         ang: String(newAng),
       }
       if (baniName) params.bani = baniName
+      if (baniIdParam) params.baniId = baniIdParam
       if (learnProgramParam) params.learnProgram = learnProgramParam
       if (learnModuleParam) params.learnModule = learnModuleParam
       setSearchParams(params)
@@ -470,6 +473,7 @@ export default function Study() {
 
     const params: Record<string, string> = { source: source!, ang: String(newAng) }
     if (baniName) params.bani = baniName
+    if (baniIdParam) params.baniId = baniIdParam
     if (isBaniRangeMode) params.startAng = String(startAngParam ?? angParam!)
     if (endAngParam) params.endAng = String(endAngParam)
     if (learnProgramParam) params.learnProgram = learnProgramParam

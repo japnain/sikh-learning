@@ -25,7 +25,7 @@ import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useThemeStore } from '../store/theme'
-import { useNitemStore, NITNEM_BANIS } from '../store/nitnem'
+import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import type { StudiedEntry, UiLocale } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
@@ -135,6 +135,12 @@ const HOME_MESSAGES: Record<UiLocale, {
   },
 }
 
+const NITNEM_TIME_ORDER: Record<NitnemRouteOption['time'], number> = {
+  Morning: 0,
+  Evening: 1,
+  Night: 2,
+}
+
 export default function Home() {
   const location = useLocation()
   const navigate = useNavigate()
@@ -150,7 +156,15 @@ export default function Home() {
     needsPersist: dailyLessonNeedsPersist,
     persistLesson,
   } = useDailyLesson()
-  const { markComplete, unmarkComplete, isComplete, resetIfNewDay } = useNitemStore()
+  const {
+    selectedIds,
+    markComplete,
+    unmarkComplete,
+    isComplete,
+    toggleSelected,
+    resetSelections,
+    resetIfNewDay,
+  } = useNitemStore()
   const ensureDailyToday = useDailyFlowStore(s => s.ensureToday)
   const toggleDailyAction = useDailyFlowStore(s => s.toggleAction)
   const isDailyActionDone = useDailyFlowStore(s => s.isCompleted)
@@ -170,6 +184,7 @@ export default function Home() {
   const homeMessages = HOME_MESSAGES[locale]
   const learningLevelLabels = getLearningLevelLabels(locale)
   const [nitnemOpen, setNitnemOpen] = useState(false)
+  const [nitnemEditing, setNitnemEditing] = useState(false)
   const [showCopied, setShowCopied] = useState(false)
   const [highlightTodaysPath, setHighlightTodaysPath] = useState(false)
   const todaysPathRef = useRef<HTMLElement | null>(null)
@@ -223,7 +238,36 @@ export default function Home() {
   const todaysPick = pickEntries[0] ?? null
   const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
 
-  const nitnemDone = NITNEM_BANIS.filter(b => isComplete(b.id)).length
+  const selectedNitnemOptions = useMemo(() => {
+    return selectedIds
+      .map(optionId => NITNEM_ROUTE_OPTIONS.find(option => option.id === optionId) ?? null)
+      .filter((option): option is NitnemRouteOption => option !== null)
+      .sort((left, right) =>
+        NITNEM_TIME_ORDER[left.time] - NITNEM_TIME_ORDER[right.time]
+        || left.startAng - right.startAng
+        || left.name.localeCompare(right.name)
+      )
+  }, [selectedIds])
+  const groupedNitnemOptions = useMemo(() => {
+    return selectedNitnemOptions.reduce<Record<NitnemRouteOption['time'], NitnemRouteOption[]>>(
+      (groups, option) => {
+        groups[option.time].push(option)
+        return groups
+      },
+      { Morning: [], Evening: [], Night: [] }
+    )
+  }, [selectedNitnemOptions])
+  const availableNitnemOptions = useMemo(() => {
+    return [...NITNEM_ROUTE_OPTIONS].sort((left, right) =>
+      NITNEM_TIME_ORDER[left.time] - NITNEM_TIME_ORDER[right.time]
+      || left.startAng - right.startAng
+      || left.name.localeCompare(right.name)
+    )
+  }, [])
+  const nitnemDone = selectedNitnemOptions.filter(option => isComplete(option.id)).length
+  const nitnemProgressPct = selectedNitnemOptions.length > 0
+    ? (nitnemDone / selectedNitnemOptions.length) * 100
+    : 0
   const dueReview = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
   const savedWords = vocab.filter(entry => (entry.kind ?? 'word') === 'word').length
   const savedPhrases = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
@@ -426,7 +470,7 @@ export default function Home() {
       `${streak} day streak`,
       `${masteredSymbols.length} symbols mastered`,
       `${completedLessons.length} lessons completed`,
-      `${nitnemDone} of ${NITNEM_BANIS.length} Nitnem banis complete today`,
+      `${nitnemDone} of ${selectedNitnemOptions.length} daily Nitnem banis complete today`,
       activeJourney ? `${activeJourney.title}: ${activeJourneyProgress?.completedStepIds.length ?? 0}/${activeJourney.steps.length} steps` : '',
     ].filter(Boolean).join('\n')
 
@@ -658,56 +702,154 @@ export default function Home() {
       </section>
 
       <section className="section-shell-quiet p-4 mb-5 animate-slide-up stagger-3">
-        <button
-          onClick={() => setNitnemOpen(o => !o)}
-          className="w-full flex items-center justify-between gap-3 min-h-[44px]"
-        >
-          <div className="text-left">
+        <div className="flex items-start justify-between gap-3">
+          <button
+            onClick={() => setNitnemOpen(open => !open)}
+            className="flex-1 text-left min-h-[44px]"
+            aria-label="Nitnem progress"
+          >
             <p className="eyebrow">{homeCopy.nitnemProgress}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
-              {nitnemDone} / {NITNEM_BANIS.length} {homeCopy.dailyBanisComplete}
+              {nitnemDone} / {selectedNitnemOptions.length} {homeCopy.dailyBanisComplete}
             </p>
+            <p className="mt-2 font-sans text-xs text-ink/50 dark:text-dark-text/50">
+              {selectedNitnemOptions.length > 0
+                ? `${selectedNitnemOptions[0]?.time} through ${selectedNitnemOptions[selectedNitnemOptions.length - 1]?.time} routes`
+                : 'Choose the banis that make up your daily Nitnem.'}
+            </p>
+          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setNitnemOpen(true)
+                setNitnemEditing(editing => !editing)
+              }}
+              className="rounded-full section-shell px-3 py-2 font-sans text-xs font-medium text-gold dark:text-gold-light min-h-[40px]"
+            >
+              {nitnemEditing ? 'Done' : 'Customize'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setNitnemOpen(open => !open)}
+              className="min-h-[40px] min-w-[40px] rounded-full section-shell flex items-center justify-center text-gold dark:text-gold-light"
+              aria-label={nitnemOpen ? 'Collapse nitnem progress' : 'Expand nitnem progress'}
+            >
+              {nitnemOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
+            </button>
           </div>
-          <span className="text-gold dark:text-gold-light">
-            {nitnemOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
-          </span>
-        </button>
+        </div>
         <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-4">
           <div
             className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full transition-all duration-500"
-            style={{ width: `${(nitnemDone / NITNEM_BANIS.length) * 100}%` }}
+            style={{ width: `${nitnemProgressPct}%` }}
           />
         </div>
         {nitnemOpen && (
-          <div className="mt-4 space-y-2">
-            {NITNEM_BANIS.map(bani => {
-              const done = isComplete(bani.id)
-              return (
-                <div key={bani.id} className="section-shell px-3 py-3 flex items-center gap-3">
-                  <button
-                    onClick={() => done ? unmarkComplete(bani.id) : markComplete(bani.id)}
-                    className={`w-7 h-7 rounded-full border flex items-center justify-center flex-shrink-0 ${
-                      done ? 'bg-saffron border-saffron text-white' : 'border-sand/35 dark:border-dark-text/20 text-transparent'
-                    }`}
-                  >
-                    <IconCheck size={14} />
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate(buildCanonicalBaniStudyPath(bani))
-                    }}
-                    className="flex-1 text-left"
-                  >
-                    <p className={`font-sans text-sm ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
-                      {bani.name}
+          <div className="mt-4 space-y-4">
+            {(['Morning', 'Evening', 'Night'] as const).map(time => (
+              groupedNitnemOptions[time].length > 0 ? (
+                <div key={time}>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                    {time}
+                  </p>
+                  <div className="space-y-2">
+                    {groupedNitnemOptions[time].map(option => {
+                      const done = isComplete(option.id)
+                      return (
+                        <div key={option.id} className="section-shell px-3 py-3 flex items-center gap-3">
+                          <button
+                            onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
+                            className={`w-7 h-7 rounded-full border flex items-center justify-center flex-shrink-0 ${
+                              done ? 'bg-saffron border-saffron text-white' : 'border-sand/35 dark:border-dark-text/20 text-transparent'
+                            }`}
+                            aria-label={done ? `Mark ${option.name} incomplete` : `Mark ${option.name} complete`}
+                          >
+                            <IconCheck size={14} />
+                          </button>
+                          <button
+                            onClick={() => navigate(buildNitnemStudyPath(option))}
+                            className="flex-1 text-left"
+                          >
+                            <p className={`font-sans text-sm ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
+                              {option.name}
+                            </p>
+                            <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 mt-1">
+                              {option.detail}
+                            </p>
+                          </button>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : null
+            ))}
+
+            {nitnemEditing && (
+              <div className="section-shell px-4 py-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="eyebrow">Customize Daily Nitnem</p>
+                    <p className="mt-2 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+                      Add or remove routes, including focused and puraatan variants where the reader supports them.
                     </p>
-                    <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 mt-1">
-                      {bani.time}
-                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={resetSelections}
+                    className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2"
+                  >
+                    Reset
                   </button>
                 </div>
-              )
-            })}
+
+                <div className="space-y-3 mt-4">
+                  {(['Morning', 'Evening', 'Night'] as const).map(time => (
+                    <div key={`manage-${time}`}>
+                      <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                        {time}
+                      </p>
+                      <div className="space-y-2">
+                        {availableNitnemOptions
+                          .filter(option => option.time === time)
+                          .map(option => {
+                            const selected = selectedIds.includes(option.id)
+                            return (
+                              <button
+                                key={`manage-${option.id}`}
+                                type="button"
+                                onClick={() => toggleSelected(option.id)}
+                                className={`w-full rounded-2xl border px-3 py-3 text-left transition-colors duration-300 ${
+                                  selected
+                                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                                    : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                                }`}
+                              >
+                                <div className="flex items-start justify-between gap-3">
+                                  <div>
+                                    <p className="font-sans text-sm font-semibold">{option.name}</p>
+                                    <p className={`mt-1 font-sans text-xs ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+                                      {option.detail}
+                                    </p>
+                                  </div>
+                                  <span className={`rounded-full px-2 py-1 font-sans text-[10px] uppercase tracking-[0.18em] ${
+                                    selected
+                                      ? 'bg-white/15 text-white'
+                                      : 'bg-gold/10 text-gold dark:text-gold-light'
+                                  }`}>
+                                    {selected ? 'Shown' : 'Hidden'}
+                                  </span>
+                                </div>
+                              </button>
+                            )
+                          })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </section>
