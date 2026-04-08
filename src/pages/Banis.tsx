@@ -319,23 +319,13 @@ export default function Banis() {
   }
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
+    // Always use item.id from BaniDB's own Sundar Gutka index — it is the
+    // authoritative ID for the full bani (e.g. the version of Rehras Sahib
+    // that BaniDB returns already includes Chaupai Sahib and all other sections).
+    // Use our canonical name for display if available.
     const canonicalBani = getCanonicalSundarGutkaBani(item)
-
-    if (canonicalBani) {
-      // Prefer baniDbId mode when available — BaniDB returns only the correct
-      // verses for that baani, fixing mid-ang start issues (e.g. Tav Prasad
-      // Savaiye on DG Ang 10, Chaupai Sahib on DG Ang 1386).
-      if (canonicalBani.baniDbId) {
-        navigate(`/study?baniDbId=${canonicalBani.baniDbId}&bani=${encodeURIComponent(canonicalBani.name)}`)
-        return
-      }
-      navigate(
-        `/study?source=${canonicalBani.source}&ang=${canonicalBani.startAng}&startAng=${canonicalBani.startAng}&bani=${encodeURIComponent(canonicalBani.name)}&endAng=${canonicalBani.endAng}`
-      )
-      return
-    }
-
-    navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(item.transliteration || item.gurmukhi)}`)
+    const name = canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
+    navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
   const loadAmritHeader = async (headerId: number) => {
