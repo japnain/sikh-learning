@@ -419,4 +419,19 @@ describe('Study hukamnama mode', () => {
       expect(screen.queryByText(/Ang 0/i)).not.toBeInTheDocument()
     })
   })
+
+  it('clamps BaniDB bani routes to the requested ang range', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?baniDbId=2&source=G&ang=2&startAng=2&endAng=2&bani=Japji%20Sahib']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-card')).toHaveLength(1)
+      expect(screen.getByText('ਸੋਚੈ')).toBeInTheDocument()
+    })
+
+    expect(screen.queryByText('ੴ')).not.toBeInTheDocument()
+  })
 })

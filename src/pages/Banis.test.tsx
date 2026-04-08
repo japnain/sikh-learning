@@ -95,7 +95,25 @@ test('opens Sundar Gutka Rehras Sahib through the canonical SGGS range route', a
   fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&bani=Rehras%20Sahib&endAng=12')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21')
+  })
+})
+
+test('opens Asa Ki Vaar through a bounded BaniDB route from the SGGS list', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/study" element={<><Study /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getByText('Asa Ki Vaar'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=462&startAng=462&endAng=475&bani=Asa+Ki+Vaar&baniDbId=90')
   })
 })
 

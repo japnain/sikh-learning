@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './Home'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLearningStore } from '../store/learning'
@@ -13,10 +13,20 @@ function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
 }
 
+function LocationSpy() {
+  const location = useLocation()
+  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+}
+
+function todayStamp() {
+  const now = new Date()
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+}
+
 beforeEach(() => {
   useScriptureCacheStore.getState().clearAll()
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
-  useDailyFlowStore.setState({ date: '2026-04-06', completedActionIds: [] })
+  useDailyFlowStore.setState({ date: todayStamp(), completedActionIds: [] })
   useLearningStore.setState({
     masteredSymbols: [],
     completedLessons: [],
@@ -26,13 +36,13 @@ beforeEach(() => {
     earnedMilestoneIds: [],
     pendingMilestoneId: null,
     dailyLesson: {
-      date: '2026-04-07',
+      date: todayStamp(),
       steps: [
         { id: 'one', kind: 'module', title: 'Core Letters', estimatedSeconds: 120, moduleId: 'start-core-letters' },
         { id: 'two', kind: 'quick-connect', title: 'Quick connect', estimatedSeconds: 90 },
       ],
       completedStepIds: ['one'],
-      generatedAt: '2026-04-07T00:00:00',
+      generatedAt: `${todayStamp()}T00:00:00`,
       totalEstimatedSeconds: 210,
     },
     lastPracticedOn: undefined,
@@ -172,4 +182,22 @@ test('does not embed onboarding inside the home page anymore', () => {
   })
   renderHome()
   expect(screen.queryByText(/shape how gurbani opens for you/i)).not.toBeInTheDocument()
+})
+
+test('opens Nitnem banis through bounded BaniDB routes', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/study" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole('button', { name: /nitnem progress/i }))
+  fireEvent.click(screen.getByText('Rehras Sahib'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21')
+  })
 })

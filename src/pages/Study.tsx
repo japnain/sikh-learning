@@ -149,11 +149,30 @@ export default function Study() {
 
   const baniPageEntries = useMemo(() => {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
-    // Show the entire baani at once (matching STTM Sundar Gutka behaviour).
-    // Composite baanis like Rehras Sahib span multiple angs and sources; filtering
-    // to a single ang would hide most of the content.
-    return baniResult.entries
-  }, [isBaniDbMode, baniResult.entries])
+    const boundedEntries =
+      startAngParam !== null && endAngParam !== null
+        ? baniResult.entries.filter(entry => entry.ang >= startAngParam && entry.ang <= endAngParam)
+        : baniResult.entries
+
+    if (boundedEntries.length === 0) return baniResult.entries
+
+    return [...boundedEntries]
+      .map((entry, index) => ({ entry, index }))
+      .sort((left, right) => {
+        if (left.entry.ang !== right.entry.ang) {
+          return left.entry.ang - right.entry.ang
+        }
+
+        const leftVerse = left.entry.lines?.find(line => !line.isHeader)?.verseId ?? Number.MAX_SAFE_INTEGER
+        const rightVerse = right.entry.lines?.find(line => !line.isHeader)?.verseId ?? Number.MAX_SAFE_INTEGER
+        if (leftVerse !== rightVerse) {
+          return leftVerse - rightVerse
+        }
+
+        return left.index - right.index
+      })
+      .map(item => item.entry)
+  }, [baniResult.entries, endAngParam, isBaniDbMode, startAngParam])
 
   const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
   const exactEntries = useMemo(() => {

@@ -14,6 +14,7 @@ import { BANIS, type Bani } from '../data/banis'
 import { SGGS_INDEX, DG_INDEX, type ScriptureIndexItem } from '../data/scriptureIndex'
 import { useRecentSearchStore } from '../store/recentSearch'
 import type { SearchMode } from '../types'
+import { buildStudyRouteSearchParams, findBoundedBaniDbId } from '../utils/baniRouteResolver'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
@@ -315,16 +316,34 @@ export default function Banis() {
   }
 
   const openScriptureIndexItem = (source: 'G' | 'D', item: ScriptureIndexItem) => {
-    navigate(`/study?source=${source}&ang=${item.pages[0]}&startAng=${item.pages[0]}&bani=${encodeURIComponent(item.name)}&endAng=${item.pages[1]}`)
+    const baniDbId = findBoundedBaniDbId(source, item.pages[0], item.pages[1])
+    const params = buildStudyRouteSearchParams({
+      source,
+      startAng: item.pages[0],
+      endAng: item.pages[1],
+      bani: item.name,
+      baniDbId,
+    })
+
+    navigate(`/study?${params.toString()}`)
   }
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
-    // Always use item.id from BaniDB's own Sundar Gutka index — it is the
-    // authoritative ID for the full bani (e.g. the version of Rehras Sahib
-    // that BaniDB returns already includes Chaupai Sahib and all other sections).
-    // Use our canonical name for display if available.
     const canonicalBani = getCanonicalSundarGutkaBani(item)
     const name = canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
+
+    if (canonicalBani) {
+      const params = buildStudyRouteSearchParams({
+        source: canonicalBani.source,
+        startAng: canonicalBani.startAng,
+        endAng: canonicalBani.endAng,
+        bani: name,
+        baniDbId: item.id,
+      })
+      navigate(`/study?${params.toString()}`)
+      return
+    }
+
     navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
