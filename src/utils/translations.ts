@@ -30,7 +30,7 @@ type LocaleLabelMaps = {
 const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
   en: {
     englishSources: {
-      bdb: 'BaniDB',
+      bdb: 'Standard',
       ms: 'Manmohan Singh',
       ssk: 'Sant Singh Khalsa',
     },
@@ -84,7 +84,7 @@ const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
   },
   pa: {
     englishSources: {
-      bdb: 'ਬਾਣੀਡੀਬੀ',
+      bdb: 'ਮਿਆਰੀ',
       ms: 'ਮਨਮੋਹਨ ਸਿੰਘ',
       ssk: 'ਸੰਤ ਸਿੰਘ ਖਾਲਸਾ',
     },
@@ -138,7 +138,7 @@ const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
   },
   hi: {
     englishSources: {
-      bdb: 'BaniDB',
+      bdb: 'मानक',
       ms: 'मनमोहन सिंह',
       ssk: 'संत सिंह खालसा',
     },

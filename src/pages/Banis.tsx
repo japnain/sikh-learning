@@ -12,15 +12,12 @@ import {
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useRecentSearchStore } from '../store/recentSearch'
-import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { SearchMode } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
-  getSundarGutkaLengthDetail,
   isSundarGutkaLengthSupportedBaniId,
-  type SupportedSundarGutkaBaniId,
 } from '../utils/sundarGutkaLength'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
@@ -31,9 +28,7 @@ type ExactBani = Bani & { baniDbId: number }
 interface ResolvedRouteOption {
   key: string
   label: string
-  detail: string
   path: string
-  adjustableBaniId?: SupportedSundarGutkaBaniId
 }
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
@@ -201,7 +196,6 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
     return [{
       key: routeOption?.id ?? baseId,
       label,
-      detail: '',
       path: routeOption
         ? buildNitnemStudyPath(routeOption)
         : buildCanonicalBaniStudyPath(bani, {
@@ -209,7 +203,6 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
             baniId: baseId,
             baniName: SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].name,
           }),
-      adjustableBaniId: baseId,
     }] satisfies ResolvedRouteOption[]
   }
 
@@ -219,7 +212,6 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
       label: nitnemOptions.length > 1 && option.variantLabel
         ? `${bani.name} · ${option.variantLabel}`
         : option.name,
-      detail: option.detail,
       path: buildNitnemStudyPath(option),
     })) satisfies ResolvedRouteOption[]
   }
@@ -230,16 +222,11 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
   const baseLabel = exactVariants[0]?.name ?? bani.name
 
   return exactVariants.map(option => {
-    const angDetail = option.startAng === option.endAng
-      ? `Ang ${option.startAng}`
-      : `Ang ${option.startAng}–${option.endAng}`
-
     return {
       key: option.id,
       label: option.variantLabel
         ? `${baseLabel} · ${option.variantLabel}`
         : option.name,
-      detail: `BaniDB #${option.baniDbId} · ${angDetail}`,
       path: buildCanonicalBaniStudyPath(option),
     } satisfies ResolvedRouteOption
   })
@@ -282,7 +269,7 @@ function IndexRow({
   onClick,
 }: {
   label: string
-  detail: string
+  detail?: string
   onClick: () => void
 }) {
   return (
@@ -291,7 +278,9 @@ function IndexRow({
       className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
     >
       <p className="font-sans text-sm text-ink dark:text-dark-text">{label}</p>
-      <p className="font-sans text-xs text-gold dark:text-gold-light mt-0.5">{detail}</p>
+      {detail ? (
+        <p className="font-sans text-xs text-gold dark:text-gold-light mt-0.5">{detail}</p>
+      ) : null}
     </button>
   )
 }
@@ -323,16 +312,10 @@ export default function Banis() {
   const [selectedAmritHeaderId, setSelectedAmritHeaderId] = useState<number | null>(null)
   const [amritChapterQuery, setAmritChapterQuery] = useState('')
   const [visibleAmritCount, setVisibleAmritCount] = useState(AMRIT_KEERTAN_PAGE_SIZE)
-  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
-
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  const getAdjustableLengthDetail = useCallback((baniId: SupportedSundarGutkaBaniId) => {
-    return getSundarGutkaLengthDetail(sundarGutkaLengths[baniId])
-  }, [sundarGutkaLengths])
 
   useEffect(() => {
     let cancelled = false
@@ -798,7 +781,6 @@ export default function Banis() {
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Live bani index grouped like STTM</p>
           </div>
           <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
@@ -821,10 +803,6 @@ export default function Banis() {
                   {expanded[groupKey] && (
                     <div className="mt-1 ml-2">
                       {group.items.flatMap(item => {
-                        const canonicalBani = getCanonicalSundarGutkaBani(item)
-                        const adjustableBaniId = canonicalBani && isSundarGutkaLengthSupportedBaniId(canonicalBani.id)
-                          ? canonicalBani.id
-                          : null
                         const routeOptions = group.key === 'nitnem'
                           ? getNitnemRouteOptionsForBani(item)
                           : []
@@ -836,11 +814,6 @@ export default function Banis() {
                               label={routeOptions.length > 1 && option.variantLabel
                                 ? `${item.gurmukhi} · ${option.variantLabel}`
                                 : item.gurmukhi}
-                              detail={adjustableBaniId
-                                ? getAdjustableLengthDetail(adjustableBaniId)
-                                : option.name === item.gurmukhi
-                                  ? option.detail
-                                  : `${option.name} · ${option.detail}`}
                               onClick={() => navigate(buildNitnemStudyPath(option))}
                             />
                           ))
@@ -850,9 +823,6 @@ export default function Banis() {
                           <IndexRow
                             key={item.id}
                             label={item.gurmukhi}
-                            detail={adjustableBaniId
-                              ? getAdjustableLengthDetail(adjustableBaniId)
-                              : item.transliteration || `Bani #${item.id}`}
                             onClick={() => openSundarGutkaBani(item)}
                           />
                         )
@@ -871,7 +841,6 @@ export default function Banis() {
         const sectionKey = scripture.toLowerCase()
         const isOpen = expanded[sectionKey]
         const groups = scriptureGroups[scripture]
-        const totalItems = groups.reduce((count, group) => count + group.items.length, 0)
 
         return (
           <div key={scripture} className="mb-4">
@@ -881,7 +850,6 @@ export default function Banis() {
             >
               <div className="text-left">
                 <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
-                <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">{totalItems} exact BaniDB banis</p>
               </div>
               <span className="text-saffron dark:text-saffron-light font-sans text-sm">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
             </button>
@@ -912,20 +880,15 @@ export default function Banis() {
                                 <IndexRow
                                   key={option.key}
                                   label={option.label}
-                                  detail={option.adjustableBaniId
-                                    ? getAdjustableLengthDetail(option.adjustableBaniId)
-                                    : option.detail}
                                   onClick={() => navigate(option.path)}
                                 />
                               ))
                             }
 
-                            const angDetail = item.startAng === item.endAng ? `Ang ${item.startAng}` : `Ang ${item.startAng}–${item.endAng}`
                             return (
                               <IndexRow
                                 key={item.id}
                                 label={item.name}
-                                detail={`BaniDB #${item.baniDbId} · ${angDetail}`}
                                 onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                               />
                             )
@@ -948,7 +911,6 @@ export default function Banis() {
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
-            <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs mt-0.5">Songbook-style chapter reading with quieter metadata</p>
           </div>
           <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>

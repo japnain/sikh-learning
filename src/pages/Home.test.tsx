@@ -225,4 +225,5 @@ test('shows adjustable STTM length detail for supported Nitnem banis', () => {
 
   expect(screen.getAllByRole('button', { name: /Rehras Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByRole('button', { name: /Benati Chaupai Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
+  expect(screen.queryByText(/BaniDB|STTM|API/i)).not.toBeInTheDocument()
 })

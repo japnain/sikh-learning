@@ -92,7 +92,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Japji Sahib',
     baniDbId: 2,
     variant: 'standard',
-    detail: 'Core morning bani in its exact BaniDB composition.',
+    detail: 'Core morning bani.',
   }),
   createNitnemOption({
     id: 'jaap-sahib',
@@ -100,7 +100,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Jaap Sahib',
     baniDbId: 4,
     variant: 'standard',
-    detail: 'Core morning bani in its exact BaniDB composition.',
+    detail: 'Core morning bani.',
   }),
   createNitnemOption({
     id: 'tav-prasad-savaiye',
@@ -109,7 +109,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     baniDbId: 6,
     variant: 'standard',
     variantLabel: 'Sraavag Suddh',
-    detail: 'Standard Nitnem Savaiye composition.',
+    detail: 'Morning savaiye selection.',
   }),
   createNitnemOption({
     id: 'tav-prasad-savaiye-dheenan-ki',
@@ -118,7 +118,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     baniDbId: 7,
     variant: 'exact-variant',
     variantLabel: 'Dheenan Ki',
-    detail: 'Alternate exact BaniDB variant where the API exposes a distinct composition.',
+    detail: 'Alternate morning savaiye route.',
     startAng: 11,
     endAng: 37,
   }),
@@ -136,7 +136,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Anand Sahib',
     baniDbId: 10,
     variant: 'standard',
-    detail: 'Core Anand Sahib exact composition.',
+    detail: 'Core Anand Sahib selection.',
   }),
   createNitnemOption({
     id: 'rehras-sahib',

@@ -293,7 +293,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       growDescription: 'Letters, recognition drills, Gurbani bridge, and mastery tracking',
       about: 'About',
       aboutBody: 'Nitnem is a Sikh scripture reading and learning app shaped around three pillars: Read, Understand, and Grow.',
-      aboutSource: 'Scripture data is sourced from BaniDB v2. Recitation remains intentionally disabled until a working source exists.',
+      aboutSource: 'Scripture text comes from a live source. Recitation remains intentionally disabled until a working source exists.',
       aboutTrust: 'Source transparency and correction reporting are part of the trust layer. Until those flows are built, issues should be treated as product work, not hidden edge cases.',
     },
     study: {
@@ -457,7 +457,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       growDescription: 'ਅੱਖਰ, ਪਛਾਣ ਅਭਿਆਸ, ਗੁਰਬਾਣੀ ਪੁਲ ਅਤੇ ਨਿਪੁੰਨਤਾ ਟਰੈਕਿੰਗ',
       about: 'ਬਾਰੇ',
       aboutBody: 'ਨਿਤਨੇਮ ਇੱਕ ਸਿੱਖ ਧਰਮਗ੍ਰੰਥ ਪੜ੍ਹਨ ਅਤੇ ਸਿੱਖਣ ਵਾਲੀ ਐਪ ਹੈ ਜੋ ਤਿੰਨ ਥੰਮ੍ਹਾਂ ਤੇ ਟਿਕੀ ਹੈ: ਪੜ੍ਹੋ, ਸਮਝੋ ਅਤੇ ਵਧੋ।',
-      aboutSource: 'ਧਰਮਗ੍ਰੰਥ ਦਾ ਡਾਟਾ BaniDB v2 ਤੋਂ ਆਉਂਦਾ ਹੈ। ਸਹੀ ਸਰੋਤ ਉਪਲਬਧ ਹੋਣ ਤੱਕ ਪਾਠ ਆਵਾਜ਼ ਜਾਣਬੁੱਝ ਕੇ ਬੰਦ ਰੱਖੀ ਗਈ ਹੈ।',
+      aboutSource: 'ਧਰਮਗ੍ਰੰਥ ਦਾ ਪਾਠ ਇੱਕ ਜੀਵੰਤ ਸਰੋਤ ਤੋਂ ਆਉਂਦਾ ਹੈ। ਸਹੀ ਸਰੋਤ ਉਪਲਬਧ ਹੋਣ ਤੱਕ ਪਾਠ ਆਵਾਜ਼ ਜਾਣਬੁੱਝ ਕੇ ਬੰਦ ਰੱਖੀ ਗਈ ਹੈ।',
       aboutTrust: 'ਸਰੋਤ ਪਾਰਦਰਸ਼ਤਾ ਅਤੇ ਸੁਧਾਰ ਰਿਪੋਰਟਿੰਗ ਭਰੋਸੇ ਦੀ ਪਰਤ ਦਾ ਹਿੱਸਾ ਹਨ। ਜਦ ਤੱਕ ਉਹ ਫਲੋ ਬਣਦੇ ਨਹੀਂ, ਮਸਲਿਆਂ ਨੂੰ ਛੁਪੇ ਹੋਏ ਕੋਨੇ ਨਹੀਂ ਸਗੋਂ ਉਤਪਾਦ ਕੰਮ ਸਮਝਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।',
     },
     study: {
@@ -621,7 +621,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       growDescription: 'अक्षर, पहचान अभ्यास, गुरबाणी पुल और महारत ट्रैकिंग',
       about: 'परिचय',
       aboutBody: 'नितनेम एक सिख धर्मग्रंथ पढ़ने और सीखने की ऐप है जो तीन स्तंभों पर बनी है: पढ़ें, समझें और बढ़ें।',
-      aboutSource: 'धर्मग्रंथ डेटा BaniDB v2 से लिया गया है। सही स्रोत मिलने तक पाठ-आवाज़ जानबूझकर बंद रखी गई है।',
+      aboutSource: 'धर्मग्रंथ का पाठ एक लाइव स्रोत से आता है। सही स्रोत मिलने तक पाठ-आवाज़ जानबूझकर बंद रखी गई है।',
       aboutTrust: 'स्रोत पारदर्शिता और सुधार रिपोर्टिंग भरोसे की परत का हिस्सा हैं। जब तक वे प्रवाह नहीं बनते, मुद्दों को छिपे हुए किनारे नहीं बल्कि उत्पाद कार्य माना जाना चाहिए।',
     },
     study: {

@@ -801,7 +801,7 @@ export default function Home() {
                   <div>
                     <p className="eyebrow">Customize Daily Nitnem</p>
                     <p className="mt-2 font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                      Add or remove your daily routes. Adjustable STTM length stays inside the reader for supported Sundar Gutka banis.
+                      Add or remove your daily routes. Length choices for supported banis stay inside the reader.
                     </p>
                   </div>
                   <button

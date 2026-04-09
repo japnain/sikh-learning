@@ -48,7 +48,8 @@ test('shows exact SGGS bani items after expanding SGGS section', () => {
 
   expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
   expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
-  expect(screen.getAllByText('Adjustable length · currently Short').length).toBeGreaterThan(0)
+  expect(screen.queryByText(/Adjustable length/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/BaniDB/i)).not.toBeInTheDocument()
   expect(screen.queryByText('Raag Sri')).not.toBeInTheDocument()
 })
 
@@ -87,6 +88,7 @@ test('loads Sundar Gutka groups and items', async () => {
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
   expect(screen.getByText('ਜਪੁਜੀ ਸਾਹਿਬ')).toBeInTheDocument()
+  expect(screen.queryByText(/STTM|BaniDB|Adjustable length/i)).not.toBeInTheDocument()
 })
 
 test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other', async () => {
