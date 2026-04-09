@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom'
 import type { Milestone } from '../types'
 
 interface Props {
@@ -6,13 +7,26 @@ interface Props {
 }
 
 export default function MilestoneCelebration({ milestone, onDismiss }: Props) {
-  return (
-    <div className="fixed inset-0 z-[90] flex items-end justify-center bg-ink/55 px-4 pb-6 pt-10 dark:bg-black/70">
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 flex items-end justify-center bg-ink/55 px-4 pt-10 dark:bg-black/70"
+      style={{
+        zIndex: 120,
+        paddingBottom: 'max(1.5rem, calc(var(--safe-area-bottom) + 7rem))',
+      }}
+    >
       <div
         role="dialog"
         aria-modal="true"
         aria-label={`${milestone.title} earned`}
-        className="hero-surface w-full max-w-md animate-slide-up rounded-[32px] px-6 py-6 shadow-gold-strong"
+        className="hero-surface w-full max-w-md animate-slide-up overflow-y-auto rounded-[32px] px-6 py-6 shadow-gold-strong"
+        style={{
+          maxHeight: 'min(32rem, calc(100dvh - var(--safe-area-top) - var(--safe-area-bottom) - 9rem))',
+        }}
       >
         <p className="eyebrow">Milestone Earned</p>
         {milestone.gurmukhi ? (
@@ -39,6 +53,7 @@ export default function MilestoneCelebration({ milestone, onDismiss }: Props) {
           Waheguru
         </button>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
