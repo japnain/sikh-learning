@@ -24,11 +24,13 @@ import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import type { StudiedEntry, UiLocale } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
@@ -188,6 +190,13 @@ export default function Home() {
   const [showCopied, setShowCopied] = useState(false)
   const [highlightTodaysPath, setHighlightTodaysPath] = useState(false)
   const todaysPathRef = useRef<HTMLElement | null>(null)
+  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
+
+  const getNitnemOptionDetail = (option: NitnemRouteOption) => (
+    isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
+      ? getSundarGutkaLengthDetail(sundarGutkaLengths[option.baseBaniId])
+      : option.detail
+  )
 
   useEffect(() => {
     resetIfNewDay()
@@ -775,7 +784,7 @@ export default function Home() {
                               {option.name}
                             </p>
                             <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 mt-1">
-                              {option.detail}
+                              {getNitnemOptionDetail(option)}
                             </p>
                           </button>
                         </div>
@@ -792,7 +801,7 @@ export default function Home() {
                   <div>
                     <p className="eyebrow">Customize Daily Nitnem</p>
                     <p className="mt-2 font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                      Add or remove routes, including focused and puraatan variants where the reader supports them.
+                      Add or remove your daily routes. Adjustable STTM length stays inside the reader for supported Sundar Gutka banis.
                     </p>
                   </div>
                   <button
@@ -830,7 +839,7 @@ export default function Home() {
                                   <div>
                                     <p className="font-sans text-sm font-semibold">{option.name}</p>
                                     <p className={`mt-1 font-sans text-xs ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
-                                      {option.detail}
+                                      {getNitnemOptionDetail(option)}
                                     </p>
                                   </div>
                                   <span className={`rounded-full px-2 py-1 font-sans text-[10px] uppercase tracking-[0.18em] ${

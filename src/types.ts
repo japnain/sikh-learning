@@ -29,6 +29,7 @@ export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 export type ReaderLineSpacing = 'compact' | 'relaxed'
 export type ReaderAlignment = 'left' | 'center'
+export type SundarGutkaLength = 'short' | 'medium' | 'long' | 'extralong'
 export type SearchMode =
   | 'first-letters'
   | 'first-letters-anywhere'

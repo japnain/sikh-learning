@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { BANIS } from '../data/banis'
 import { toLocalDayStamp } from '../utils/learnDates'
-import { buildStudyRouteSearchParams } from '../utils/baniRouteResolver'
+import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
 
 export interface NitnemRouteOption {
   id: string
@@ -13,7 +13,7 @@ export interface NitnemRouteOption {
   endAng: number
   time: 'Morning' | 'Evening' | 'Night'
   baniDbId?: number
-  variant: 'standard' | 'focused' | 'puraatan' | 'exact-variant'
+  variant: 'standard' | 'adjustable' | 'exact-variant'
   variantLabel?: string
   detail: string
 }
@@ -125,19 +125,10 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
   createNitnemOption({
     id: 'chaupai-sahib',
     baseBaniId: 'chaupai-sahib',
-    name: 'Chaupai Sahib (Puraatan)',
+    name: 'Benati Chaupai Sahib',
     baniDbId: 9,
-    variant: 'puraatan',
-    variantLabel: 'Puraatan',
-    detail: 'Full composite reader with the traditional extended flow.',
-  }),
-  createNitnemOption({
-    id: 'chaupai-sahib-focused',
-    baseBaniId: 'chaupai-sahib',
-    name: 'Chaupai Sahib (Focused)',
-    variant: 'focused',
-    variantLabel: 'Focused',
-    detail: 'Bounded Dasam-only reading for a shorter, tighter reader view.',
+    variant: 'adjustable',
+    detail: 'Adjustable STTM length inside the reader controls.',
   }),
   createNitnemOption({
     id: 'anand-sahib',
@@ -150,27 +141,18 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
   createNitnemOption({
     id: 'rehras-sahib',
     baseBaniId: 'rehras-sahib',
-    name: 'Rehras Sahib (Puraatan)',
+    name: 'Rehras Sahib',
     baniDbId: 21,
-    variant: 'puraatan',
-    variantLabel: 'Puraatan',
-    detail: 'Full composite reader with SGGS, DG, and Anand Sahib sections intact.',
-  }),
-  createNitnemOption({
-    id: 'rehras-sahib-focused',
-    baseBaniId: 'rehras-sahib',
-    name: 'Rehras Sahib (Focused)',
-    variant: 'focused',
-    variantLabel: 'Focused',
-    detail: 'Bounded SGGS-only reading for a shorter evening reader.',
+    variant: 'adjustable',
+    detail: 'Adjustable STTM length inside the reader controls.',
   }),
   createNitnemOption({
     id: 'kirtan-sohila',
     baseBaniId: 'kirtan-sohila',
     name: 'Kirtan Sohila',
     baniDbId: 23,
-    variant: 'standard',
-    detail: 'Core night bani in its exact BaniDB composition.',
+    variant: 'adjustable',
+    detail: 'Adjustable STTM length inside the reader controls.',
   }),
 ]
 
@@ -214,6 +196,10 @@ export function getNitnemOption(optionId: string): NitnemRouteOption | null {
 }
 
 export function buildNitnemStudyPath(option: NitnemRouteOption): string {
+  const sgLength = resolveStudyRouteSgLength({
+    baniId: option.baseBaniId,
+    baniDbId: option.baniDbId,
+  })
   const params = buildStudyRouteSearchParams({
     source: option.source,
     startAng: option.startAng,
@@ -221,9 +207,32 @@ export function buildNitnemStudyPath(option: NitnemRouteOption): string {
     bani: option.name,
     baniDbId: option.baniDbId,
     baniId: option.baseBaniId,
+    sgLength,
   })
 
   return `/study?${params.toString()}`
+}
+
+const LEGACY_NITNEM_ID_MAP: Record<string, string> = {
+  'rehras-sahib-focused': 'rehras-sahib',
+  'chaupai-sahib-focused': 'chaupai-sahib',
+}
+
+export function normalizePersistedNitnemIds(
+  ids: string[] | undefined,
+  fallbackToDefault: boolean = true
+): string[] {
+  if (!ids || ids.length === 0) {
+    return fallbackToDefault ? [...DEFAULT_NITNEM_OPTION_IDS] : []
+  }
+
+  const normalized = ids
+    .map(id => LEGACY_NITNEM_ID_MAP[id] ?? id)
+    .filter(id => Boolean(getNitnemOption(id)))
+
+  return normalized.length > 0
+    ? Array.from(new Set(normalized))
+    : (fallbackToDefault ? [...DEFAULT_NITNEM_OPTION_IDS] : [])
 }
 
 export const useNitemStore = create<NitemState>()(
@@ -300,15 +309,13 @@ export const useNitemStore = create<NitemState>()(
     }),
     {
       name: 'sikh-nitnem',
-      version: 2,
+      version: 3,
       migrate: (persisted) => {
         const state = (persisted ?? {}) as Partial<NitemState>
         return {
           completedDate: state.completedDate ?? todayStr(),
-          completedIds: state.completedIds ?? [],
-          selectedIds: state.selectedIds && state.selectedIds.length > 0
-            ? state.selectedIds.filter(id => Boolean(getNitnemOption(id)))
-            : [...DEFAULT_NITNEM_OPTION_IDS],
+          completedIds: normalizePersistedNitnemIds(state.completedIds, false),
+          selectedIds: normalizePersistedNitnemIds(state.selectedIds),
         }
       },
     }

@@ -9,8 +9,6 @@ import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconSh
 interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
-  highlightVerseId?: number | null
-  highlightLabel?: string
   hideMainLines?: boolean
   showAudioPlayer?: boolean
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
@@ -67,8 +65,6 @@ function LineActionItem({
 export default function StudyCard({
   entry,
   wordData,
-  highlightVerseId = null,
-  highlightLabel = 'Hukamnama begins here',
   hideMainLines = false,
   showAudioPlayer = false,
   onSavePhrase,
@@ -208,24 +204,14 @@ export default function StudyCard({
             <div className="space-y-0">
               {visibleMainLines.map((line, index) => {
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
-                const isHighlighted = highlightVerseId !== null && line.verseId === highlightVerseId
 
                 return (
                   <article
                     key={`${line.verseId}-${index}`}
                     data-testid="study-line"
                     data-verse-id={line.verseId}
-                    className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass} ${
-                      isHighlighted
-                        ? 'my-3 rounded-[24px] border border-saffron/25 bg-saffron/5 px-4 shadow-soft dark:border-gold/20 dark:bg-gold/5'
-                        : ''
-                    }`}
+                    className={`reader-divider relative px-1 pr-10 py-5 ${meaningAlignmentClass}`}
                   >
-                    {isHighlighted ? (
-                      <span className="chip-pill mb-3 inline-flex">
-                        {highlightLabel}
-                      </span>
-                    ) : null}
                     <button
                       type="button"
                       onClick={() => setActionLine(line)}

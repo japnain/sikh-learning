@@ -12,16 +12,26 @@ import StudyCard from '../components/StudyCard'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
-import type { ScriptureEntry, ScriptureLine } from '../types'
+import type { ScriptureEntry, ScriptureLine, SundarGutkaLength } from '../types'
 import { getLineSpacingLabels, getMeaningLanguageLabels, getScriptModeLabels, getTextAlignmentLabels } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
-import { resolveBaniStartMarker } from '../utils/baniStartMarker'
+import { findCanonicalBaniById } from '../utils/baniRouteResolver'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
+import {
+  SUNDAR_GUTKA_LENGTH_LABELS,
+  SUNDAR_GUTKA_LENGTH_ORDER,
+  SUNDAR_GUTKA_SUPPORTED_BANIS,
+  asSupportedSundarGutkaBaniId,
+  getSupportedSundarGutkaBaniIdByBaniDbId,
+  inferLegacySundarGutkaLength,
+  normalizeSundarGutkaLength,
+} from '../utils/sundarGutkaLength'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -93,6 +103,7 @@ export default function Study() {
   let angParam = Number(searchParams.get('ang')) || null
   const baniName = searchParams.get('bani')
   const baniIdParam = searchParams.get('baniId')
+  const sgLengthParam = normalizeSundarGutkaLength(searchParams.get('sgLength'))
   const startAngParam = Number(searchParams.get('startAng')) || null
   const endAngParam = Number(searchParams.get('endAng')) || null
   const shabadIdParam = Number(searchParams.get('shabadId')) || null
@@ -101,7 +112,6 @@ export default function Study() {
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
   const flowParam = searchParams.get('flow')
   const randomHukamnamaAngParam = Number(searchParams.get('randomHukamnamaAng')) || null
-  const highlightVerseIdParam = Number(searchParams.get('highlightVerseId')) || null
   const learnProgramParam = searchParams.get('learnProgram')
   const learnModuleParam = searchParams.get('learnModule')
 
@@ -113,6 +123,28 @@ export default function Study() {
     }
   }
 
+  const supportedSundarGutkaBaniId =
+    asSupportedSundarGutkaBaniId(baniIdParam)
+    ?? getSupportedSundarGutkaBaniIdByBaniDbId(baniDbIdParam)
+  const supportedSundarGutkaBani = supportedSundarGutkaBaniId
+    ? findCanonicalBaniById(supportedSundarGutkaBaniId)
+    : null
+  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
+  const setSundarGutkaLength = useSundarGutkaLengthStore(state => state.setLength)
+  const rememberedSgLength = supportedSundarGutkaBaniId
+    ? sundarGutkaLengths[supportedSundarGutkaBaniId]
+    : null
+  const legacySgLength = inferLegacySundarGutkaLength({
+    baniId: supportedSundarGutkaBaniId,
+    baniName,
+  })
+  const resolvedSgLength = supportedSundarGutkaBaniId
+    ? (sgLengthParam
+      ?? legacySgLength
+      ?? rememberedSgLength
+      ?? SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].defaultLength)
+    : null
+
   const isExactShabadMode = shabadIdParam !== null
   const isBaniDbMode = baniDbIdParam !== null
   const isHukamnamaMode = Boolean(hukamnamaDateParam)
@@ -121,7 +153,6 @@ export default function Study() {
     isArdaasHukamnamaFlow
     && isExactShabadMode
     && randomHukamnamaAngParam !== null
-    && highlightVerseIdParam !== null
   const isArdaasReaderFlow =
     isArdaasHukamnamaFlow
     && isBaniDbMode
@@ -135,16 +166,48 @@ export default function Study() {
   const learnProgram = learnProgramParam
     ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
     : null
+  const searchParamsString = searchParams.toString()
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
   }, [isApiMode, navigate])
 
+  useEffect(() => {
+    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !resolvedSgLength) return
+
+    const nextParams = new URLSearchParams(searchParamsString)
+    const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
+    const nextName = SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].name
+    const nextBaniDbId = String(SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].baniDbId)
+
+    nextParams.set('source', supportedSundarGutkaBani.source)
+    nextParams.set('ang', String(currentAng))
+    nextParams.set('startAng', String(supportedSundarGutkaBani.startAng))
+    nextParams.set('endAng', String(supportedSundarGutkaBani.endAng))
+    nextParams.set('bani', nextName)
+    nextParams.set('baniId', supportedSundarGutkaBaniId)
+    nextParams.set('baniDbId', nextBaniDbId)
+    nextParams.set('exactBani', '1')
+    nextParams.set('sgLength', resolvedSgLength)
+
+    if (nextParams.toString() !== searchParamsString) {
+      setSearchParams(nextParams, { replace: true })
+    }
+  }, [
+    angParam,
+    resolvedSgLength,
+    searchParamsString,
+    setSearchParams,
+    startAngParam,
+    supportedSundarGutkaBani,
+    supportedSundarGutkaBaniId,
+  ])
+
   const angResult = useAng(
     isAngMode ? angParam! : 1,
     isAngMode ? source! : 'G'
   )
-  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null)
+  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, resolvedSgLength)
   const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
   const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
 
@@ -152,6 +215,18 @@ export default function Study() {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
     return baniResult.entries
   }, [baniResult.entries, isBaniDbMode])
+  const availableSundarGutkaLengths = useMemo(() => {
+    if (!supportedSundarGutkaBaniId || !resolvedSgLength) return []
+
+    const available = baniResult.availableLengths.length > 0
+      ? baniResult.availableLengths
+      : [resolvedSgLength]
+
+    return SUNDAR_GUTKA_LENGTH_ORDER.filter(length => available.includes(length))
+  }, [baniResult.availableLengths, resolvedSgLength, supportedSundarGutkaBaniId])
+  const currentSundarGutkaLengthLabel = supportedSundarGutkaBaniId && resolvedSgLength
+    ? SUNDAR_GUTKA_LENGTH_LABELS[resolvedSgLength]
+    : null
 
   const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
   const exactEntries = useMemo(() => {
@@ -384,7 +459,7 @@ export default function Study() {
       }
 
       navigate(
-        `/study?shabadId=${firstLine.shabadId}&flow=ardaas-hukamnama&randomHukamnamaAng=${randomAng}&highlightVerseId=${firstLine.verseId}`
+        `/study?shabadId=${firstLine.shabadId}&flow=ardaas-hukamnama&randomHukamnamaAng=${randomAng}`
       )
     } catch {
       navigate('/banis', { replace: true })
@@ -393,38 +468,32 @@ export default function Study() {
     }
   }
 
+  const handleSundarGutkaLengthChange = (nextLength: SundarGutkaLength) => {
+    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || nextLength === resolvedSgLength) return
+
+    setSundarGutkaLength(supportedSundarGutkaBaniId, nextLength)
+
+    const nextParams = new URLSearchParams(searchParamsString)
+    const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
+
+    nextParams.set('source', supportedSundarGutkaBani.source)
+    nextParams.set('ang', String(currentAng))
+    nextParams.set('startAng', String(supportedSundarGutkaBani.startAng))
+    nextParams.set('endAng', String(supportedSundarGutkaBani.endAng))
+    nextParams.set('bani', SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].name)
+    nextParams.set('baniId', supportedSundarGutkaBaniId)
+    nextParams.set('baniDbId', String(SUNDAR_GUTKA_SUPPORTED_BANIS[supportedSundarGutkaBaniId].baniDbId))
+    nextParams.set('exactBani', '1')
+    nextParams.set('sgLength', nextLength)
+
+    setSearchParams(nextParams, { replace: true })
+  }
+
   const isLineBookmarked = (line: ScriptureLine, entry: ScriptureEntry) =>
     hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
   const isPhraseSaved = (line: ScriptureLine) =>
     vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
   const isExactSearchResult = isExactShabadMode && verseIdParam !== null
-  const baniStartMarker = useMemo(() => {
-    if (highlightVerseIdParam !== null) {
-      return {
-        verseId: highlightVerseIdParam,
-        label: 'Hukamnama begins here',
-      }
-    }
-
-    return resolveBaniStartMarker({
-      baniId: baniIdParam,
-      baniName,
-      source: source ?? currentSource,
-      startAng: startAngParam ?? angParam,
-      entries,
-    })
-  }, [angParam, baniIdParam, baniName, currentSource, entries, highlightVerseIdParam, source, startAngParam])
-
-  const baniStartVerseId = baniStartMarker?.verseId ?? null
-  useEffect(() => {
-    if (!baniStartVerseId || loading || highlightVerseIdParam === null) return
-    const el = document.querySelector(`[data-verse-id="${baniStartVerseId}"]`)
-    if (el) {
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 150)
-    }
-  }, [baniStartVerseId, highlightVerseIdParam, loading])
 
   const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
@@ -435,6 +504,7 @@ export default function Study() {
     ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
     : (baniName ?? (isHukamnamaMode ? 'Hukamnama' : currentEntry?.scripture ?? 'Reader'))
   const readerMeta = [
+    currentSundarGutkaLengthLabel,
     currentEntry?.scripture,
     currentAng ? `${currentEntry?.scripture === 'SGGS' || currentEntry?.scripture === 'DG' ? 'Ang' : 'Page'} ${currentAng}` : null,
     currentEntry?.raag,
@@ -456,6 +526,14 @@ export default function Study() {
       : isAngMode
         ? (MAX_ANG[source!] ?? 1)
         : null
+  const previousNavAng =
+    currentAng !== null && navMinAng !== null
+      ? Math.max(navMinAng, currentAng - 1)
+      : null
+  const nextNavAng =
+    currentAng !== null && navMaxAng !== null
+      ? Math.min(navMaxAng, currentAng + 1)
+      : null
 
   const navTo = (newAng: number) => {
     if (isBaniDbMode) {
@@ -465,6 +543,7 @@ export default function Study() {
       }
       if (baniName) params.bani = baniName
       if (baniIdParam) params.baniId = baniIdParam
+      if (resolvedSgLength) params.sgLength = resolvedSgLength
       if (learnProgramParam) params.learnProgram = learnProgramParam
       if (learnModuleParam) params.learnModule = learnModuleParam
       setSearchParams(params)
@@ -599,7 +678,7 @@ export default function Study() {
           <div className="text-left">
             <p className="eyebrow">{studyCopy.readerControls}</p>
             <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-              {scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
+              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ` : ''}{scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
             </p>
           </div>
           <span className="text-gold dark:text-gold-light">
@@ -609,6 +688,33 @@ export default function Study() {
 
         {controlsOpen && (
           <div className="mt-4">
+            {supportedSundarGutkaBaniId && availableSundarGutkaLengths.length > 0 && (
+              <div className="mb-3">
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                  Length
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {availableSundarGutkaLengths.map(length => {
+                    const selected = resolvedSgLength === length
+                    return (
+                      <button
+                        key={length}
+                        type="button"
+                        onClick={() => handleSundarGutkaLengthChange(length)}
+                        className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                          selected
+                            ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                            : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                        }`}
+                      >
+                        {SUNDAR_GUTKA_LENGTH_LABELS[length]}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
             <div className="flex gap-2 mb-3">
           {(['gurmukhi', 'devanagari'] as const).map(mode => {
             const selected = scriptMode === mode
@@ -777,7 +883,7 @@ export default function Study() {
             Randomly selected from Sri Guru Granth Sahib Ji · Ang {randomHukamnamaAngParam}
           </p>
           <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
-            The highlighted verse is the first verse on this random ang.
+            This opens the first shabad found on the selected ang.
           </p>
         </div>
       )}
@@ -818,8 +924,6 @@ export default function Study() {
               key={entry.id}
               entry={entry}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
-              highlightVerseId={baniStartMarker?.verseId ?? null}
-              highlightLabel={baniStartMarker?.label ?? 'Hukamnama begins here'}
               hideMainLines={isArdaasReaderFlow}
               showAudioPlayer={index === 0}
               onSavePhrase={handleSavePhrase}
@@ -856,12 +960,12 @@ export default function Study() {
             onClick={() => navTo(currentAng - 1)}
             disabled={currentAng <= navMinAng}
             className="flex-1 py-3 rounded-2xl section-shell-quiet text-ink/70 dark:text-dark-text/70 font-sans text-sm font-medium min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-          >&#8592; Ang {currentAng - 1}</button>
+          >&#8592; Ang {previousNavAng ?? navMinAng}</button>
           <button
             onClick={() => navTo(currentAng + 1)}
             disabled={currentAng >= navMaxAng}
             className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[44px] disabled:opacity-30 transition-colors duration-300"
-          >Ang {currentAng + 1} &#8594;</button>
+          >Ang {nextNavAng ?? navMaxAng} &#8594;</button>
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 import { describe, it, test, expect, beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
-import { MemoryRouter, Routes, Route } from 'react-router-dom'
+import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useScriptureCacheStore } from '../store/scriptureCache'
@@ -8,9 +8,16 @@ import { useLanguageStore } from '../store/language'
 import { useMusicStore } from '../store/music'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
 
+function LocationSpy() {
+  const location = useLocation()
+  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+}
+
 beforeEach(() => {
+  localStorage.clear()
   useScriptureCacheStore.getState().clearAll()
   useVocabStore.setState({ vocab: [] })
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
@@ -31,6 +38,14 @@ beforeEach(() => {
     textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
+  })
+  useSundarGutkaLengthStore.setState({
+    lengths: {
+      'chaupai-sahib': 'short',
+      'rehras-sahib': 'short',
+      aarti: 'short',
+      'kirtan-sohila': 'short',
+    },
   })
 })
 
@@ -226,7 +241,7 @@ describe('Study renders all shabads on an ang', () => {
     expect(screen.queryByText('One Universal Creator God. The Name Is Truth.')).not.toBeInTheDocument()
   })
 
-  it('shows a bani start marker on the first ang of a named bani route', async () => {
+  it('does not show a bani start marker on the first ang of a named bani route', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&bani=Japji%20Sahib&endAng=8']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -234,11 +249,14 @@ describe('Study renders all shabads on an ang', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('Japji Sahib starts here')).toBeInTheDocument()
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
     })
+
+    expect(screen.queryByText('Japji Sahib starts here')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Ang 0/i })).not.toBeInTheDocument()
   })
 
-  it('hides the bani start marker after the first ang', async () => {
+  it('does not show a bani start marker after the first ang either', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=2&startAng=1&bani=Japji%20Sahib&endAng=8']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -341,8 +359,9 @@ describe('Study soundscapes and tracking', () => {
       })
 
       expect(screen.getByText(/Randomly selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
+      expect(screen.getByText('This opens the first shabad found on the selected ang.')).toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
-      expect(screen.getByText('Hukamnama begins here')).toBeInTheDocument()
+      expect(screen.queryByText('Hukamnama begins here')).not.toBeInTheDocument()
       expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
       expect(screen.queryByText(/Go to source shabad/i)).not.toBeInTheDocument()
       expect(screen.queryByText('Exact Search Result')).not.toBeInTheDocument()
@@ -406,7 +425,7 @@ describe('Study hukamnama mode', () => {
     })
   })
 
-  it('renders Rehras intro lines without Ang 0', async () => {
+  it('renders short Rehras without the legacy extra intro block or Ang 0', async () => {
     render(
       <MemoryRouter initialEntries={['/study?baniDbId=21&bani=Rehras%20Sahib']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -414,10 +433,14 @@ describe('Study hukamnama mode', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('Intro')).toBeInTheDocument()
-      expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument()
+      expect(screen.getByRole('heading', { name: 'Rehras Sahib' })).toBeInTheDocument()
+      expect(screen.getByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥')).toBeInTheDocument()
       expect(screen.queryByText(/Ang 0/i)).not.toBeInTheDocument()
     })
+
+    expect(screen.queryByText('Intro')).not.toBeInTheDocument()
+    expect(screen.queryByText('Rehras Sahib starts here')).not.toBeInTheDocument()
+    expect(screen.queryByText('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')).not.toBeInTheDocument()
   })
 
   it('keeps full composite bani sections when opening an exact BaniDB route', async () => {
@@ -429,6 +452,65 @@ describe('Study hukamnama mode', () => {
 
     await waitFor(() => {
       expect(screen.getAllByTestId('study-card')).toHaveLength(3)
+    })
+  })
+})
+
+describe('Study adjustable STTM lengths', () => {
+  it('updates the URL, store, and visible start when switching Rehras length', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras%20Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short']}>
+        <Routes>
+          <Route path="/study" element={<><Study /><LocationSpy /></>} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥')).toBeInTheDocument()
+      expect(screen.getByTestId('location').textContent).toContain('sgLength=short')
+    })
+
+    expect(screen.queryByText('Rehras Sahib starts here')).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+    fireEvent.click(screen.getByRole('button', { name: /^Long$/i }))
+
+    await waitFor(() => {
+      expect(screen.getByText('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')).toBeInTheDocument()
+      expect(screen.getByTestId('location').textContent).toContain('sgLength=long')
+      expect(useSundarGutkaLengthStore.getState().lengths['rehras-sahib']).toBe('long')
+    })
+  })
+
+  it('normalizes legacy focused Rehras links onto the canonical long route', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras%20Sahib%20(Focused)&baniDbId=21&exactBani=1&baniId=rehras-sahib']}>
+        <Routes>
+          <Route path="/study" element={<><Study /><LocationSpy /></>} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      const location = screen.getByTestId('location').textContent ?? ''
+      expect(location).toContain('bani=Rehras+Sahib')
+      expect(location).toContain('sgLength=long')
+      expect(screen.getByText('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')).toBeInTheDocument()
+    })
+  })
+
+  it('shows the extra-long intro block for Rehras when requested', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras%20Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=extralong']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Intro')).toBeInTheDocument()
+      expect(screen.getAllByText('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥').length).toBeGreaterThan(0)
+      expect(screen.getByText('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')).toBeInTheDocument()
     })
   })
 })
