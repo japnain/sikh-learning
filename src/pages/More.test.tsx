@@ -36,7 +36,7 @@ beforeEach(() => {
 test('renders English translation source controls', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   expect(screen.getByText(/^English translation$/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /BaniDB/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Standard/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Manmohan Singh/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Sant Singh Khalsa/i })).toBeInTheDocument()
 })
