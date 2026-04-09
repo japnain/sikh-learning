@@ -3,11 +3,21 @@ import {
   buildNitnemStudyPath,
   DEFAULT_NITNEM_OPTION_IDS,
   getNitnemOption,
+  normalizePersistedNitnemIds,
   useNitemStore,
 } from './nitnem'
+import { useSundarGutkaLengthStore } from './sundarGutkaLength'
 
 beforeEach(() => {
   localStorage.clear()
+  useSundarGutkaLengthStore.setState({
+    lengths: {
+      'chaupai-sahib': 'short',
+      'rehras-sahib': 'short',
+      aarti: 'short',
+      'kirtan-sohila': 'short',
+    },
+  })
   useNitemStore.setState({
     completedDate: '2026-04-08',
     completedIds: [],
@@ -19,27 +29,25 @@ test('keeps the default daily nitnem selection', () => {
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
 })
 
-test('can add a focused nitnem variant to the selected home list', () => {
-  useNitemStore.getState().toggleSelected('rehras-sahib-focused')
-
-  expect(useNitemStore.getState().selectedIds).toContain('rehras-sahib-focused')
+test('normalizes legacy focused selections onto the single supported bani route', () => {
+  expect(normalizePersistedNitnemIds(['rehras-sahib-focused', 'rehras-sahib'])).toEqual(['rehras-sahib'])
 })
 
-test('builds a full exact study path for the puraatan rehras route', () => {
+test('builds an exact study path with sgLength for adjustable Rehras Sahib', () => {
   const option = getNitnemOption('rehras-sahib')
   expect(option).not.toBeNull()
 
   expect(buildNitnemStudyPath(option!)).toBe(
-    '/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib+%28Puraatan%29&baniDbId=21&exactBani=1&baniId=rehras-sahib'
+    '/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short'
   )
 })
 
-test('builds a focused range route when no exact bani id exists', () => {
-  const option = getNitnemOption('chaupai-sahib-focused')
+test('builds an adjustable exact route for Benati Chaupai Sahib', () => {
+  const option = getNitnemOption('chaupai-sahib')
   expect(option).not.toBeNull()
 
   expect(buildNitnemStudyPath(option!)).toBe(
-    '/study?source=D&ang=1386&startAng=1386&endAng=1388&bani=Chaupai+Sahib+%28Focused%29&baniId=chaupai-sahib'
+    '/study?source=D&ang=1386&startAng=1386&endAng=1388&bani=Benati+Chaupai+Sahib&baniDbId=9&exactBani=1&baniId=chaupai-sahib&sgLength=short'
   )
 })
 

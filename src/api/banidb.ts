@@ -1,4 +1,10 @@
-import type { EnglishTranslations, ScriptureEntry, ScriptureLine, Word } from '../types'
+import type { EnglishTranslations, ScriptureEntry, ScriptureLine, SundarGutkaLength, Word } from '../types'
+import {
+  SUNDAR_GUTKA_LENGTH_EXISTS_KEY,
+  SUNDAR_GUTKA_LENGTH_ORDER,
+  SUNDAR_GUTKA_SUPPORTED_BANIS,
+  getSupportedSundarGutkaBaniIdByBaniDbId,
+} from '../utils/sundarGutkaLength'
 
 const BASE = 'https://api.banidb.com/v2'
 
@@ -136,6 +142,11 @@ export interface AmritKeertanShabad {
   source: string
   raag: string
   pageNo: number
+}
+
+export interface BaniFetchResult {
+  entries: ScriptureEntry[]
+  availableLengths: SundarGutkaLength[]
 }
 
 function toScripture(source: BaniSource): string {
@@ -328,20 +339,51 @@ interface BaniFlatVerse {
   isHeader?: boolean
 }
 
-const STTM_DEFAULT_SGPC_BANI_IDS = new Set([9, 21, 22, 23])
+function getAvailableSundarGutkaLengths(rawArray: BaniResponseVerse[]): SundarGutkaLength[] {
+  return SUNDAR_GUTKA_LENGTH_ORDER.filter(length =>
+    rawArray.some(item => {
+      const flag = item[SUNDAR_GUTKA_LENGTH_EXISTS_KEY[length] as keyof BaniResponseVerse]
+      return Boolean(flag)
+    })
+  )
+}
 
-export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
+export async function fetchBani(
+  baniDbId: number,
+  sgLength?: SundarGutkaLength | null
+): Promise<BaniFetchResult> {
   const res = await fetch(`${BASE}/banis/${baniDbId}`)
   if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
   const data = await res.json() as Record<string, unknown>
 
   const rawArray = (data.verses ?? []) as BaniResponseVerse[]
-  if (!rawArray.length) return []
+  if (!rawArray.length) {
+    return {
+      entries: [],
+      availableLengths: [],
+    }
+  }
 
-  const filteredRawArray = STTM_DEFAULT_SGPC_BANI_IDS.has(baniDbId)
+  const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
+  const availableLengths = supportedBaniId
+    ? getAvailableSundarGutkaLengths(rawArray)
+    : []
+  const selectedLength = supportedBaniId
+    ? (sgLength ?? SUNDAR_GUTKA_SUPPORTED_BANIS[supportedBaniId].defaultLength)
+    : null
+
+  const filteredRawArray = supportedBaniId && selectedLength
     ? rawArray.filter(item => {
         if (item.mangalPosition === 'above') return false
-        return typeof item.existsSGPC === 'undefined' ? true : Boolean(item.existsSGPC)
+        const flag = item[SUNDAR_GUTKA_LENGTH_EXISTS_KEY[selectedLength] as keyof BaniResponseVerse]
+        const hasLengthFlags =
+          typeof item.existsSGPC !== 'undefined'
+          || typeof item.existsMedium !== 'undefined'
+          || typeof item.existsTaksal !== 'undefined'
+          || typeof item.existsBuddhaDal !== 'undefined'
+
+        if (!hasLengthFlags) return true
+        return Boolean(flag)
       })
     : rawArray
 
@@ -407,20 +449,23 @@ export async function fetchBani(baniDbId: number): Promise<ScriptureEntry[]> {
     grouped.set(key, list)
   }
 
-  return Array.from(grouped.entries()).map(([key, verses]) => {
-    const [pageNoString] = key.split('-')
-    const pageNo = Number(pageNoString)
-    const srcId = verses[0]?.source?.id ?? 'G'
-    return buildEntry({
-      id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
-      scripture: sourceMap[srcId] ?? 'SGGS',
-      ang: pageNo,
-      source: (srcId as BaniSource) ?? 'G',
-      shabadId: verses[0]?.shabadId,
-      verses,
-      sourceName: sourceMap[srcId] ?? 'SGGS',
-    })
-  })
+  return {
+    entries: Array.from(grouped.entries()).map(([key, verses]) => {
+      const [pageNoString] = key.split('-')
+      const pageNo = Number(pageNoString)
+      const srcId = verses[0]?.source?.id ?? 'G'
+      return buildEntry({
+        id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
+        scripture: sourceMap[srcId] ?? 'SGGS',
+        ang: pageNo,
+        source: (srcId as BaniSource) ?? 'G',
+        shabadId: verses[0]?.shabadId,
+        verses,
+        sourceName: sourceMap[srcId] ?? 'SGGS',
+      })
+    }),
+    availableLengths,
+  }
 }
 
 export async function fetchSearch(

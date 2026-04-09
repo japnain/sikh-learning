@@ -1,4 +1,10 @@
 import { BANIS, type Bani } from '../data/banis'
+import { getStoredSundarGutkaLength } from '../store/sundarGutkaLength'
+import type { SundarGutkaLength } from '../types'
+import {
+  asSupportedSundarGutkaBaniId,
+  getSupportedSundarGutkaBaniIdByBaniDbId,
+} from './sundarGutkaLength'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -33,6 +39,7 @@ export function buildStudyRouteSearchParams({
   bani,
   baniDbId,
   baniId,
+  sgLength,
 }: {
   source: BaniSource
   startAng: number
@@ -40,6 +47,7 @@ export function buildStudyRouteSearchParams({
   bani: string
   baniDbId?: number | null
   baniId?: string | null
+  sgLength?: SundarGutkaLength | null
 }): URLSearchParams {
   const params = new URLSearchParams({
     source,
@@ -58,7 +66,31 @@ export function buildStudyRouteSearchParams({
     params.set('baniId', baniId)
   }
 
+  if (sgLength) {
+    params.set('sgLength', sgLength)
+  }
+
   return params
+}
+
+export function resolveStudyRouteSgLength({
+  baniId,
+  baniDbId,
+  sgLength,
+}: {
+  baniId?: string | null
+  baniDbId?: number | null
+  sgLength?: SundarGutkaLength | null
+}): SundarGutkaLength | null {
+  if (sgLength) return sgLength
+
+  const supportedBaniId =
+    asSupportedSundarGutkaBaniId(baniId)
+    ?? getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
+
+  if (!supportedBaniId) return null
+
+  return getStoredSundarGutkaLength(supportedBaniId)
 }
 
 export function buildCanonicalBaniStudyPath(
@@ -67,12 +99,14 @@ export function buildCanonicalBaniStudyPath(
     baniDbId?: number | null
     baniName?: string
     baniId?: string | null
+    sgLength?: SundarGutkaLength | null
   }
 ): string {
   const baniDbId =
     overrides?.baniDbId
     ?? bani.baniDbId
     ?? findBoundedBaniDbId(bani.source, bani.startAng, bani.endAng)
+  const baniId = overrides?.baniId ?? bani.variantOf ?? bani.id
 
   const params = buildStudyRouteSearchParams({
     source: bani.source,
@@ -80,7 +114,12 @@ export function buildCanonicalBaniStudyPath(
     endAng: bani.endAng,
     bani: overrides?.baniName ?? bani.name,
     baniDbId,
-    baniId: overrides?.baniId ?? bani.variantOf ?? null,
+    baniId,
+    sgLength: resolveStudyRouteSgLength({
+      baniId,
+      baniDbId,
+      sgLength: overrides?.sgLength,
+    }),
   })
 
   return `/study?${params.toString()}`

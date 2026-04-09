@@ -12,15 +12,29 @@ import {
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useRecentSearchStore } from '../store/recentSearch'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { SearchMode } from '../types'
-import { buildCanonicalBaniStudyPath, buildStudyRouteSearchParams } from '../utils/baniRouteResolver'
+import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+import {
+  SUNDAR_GUTKA_SUPPORTED_BANIS,
+  getSundarGutkaLengthDetail,
+  isSundarGutkaLengthSupportedBaniId,
+  type SupportedSundarGutkaBaniId,
+} from '../utils/sundarGutkaLength'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 
 type Scripture = 'SGGS' | 'DG'
 type SearchSource = keyof typeof SEARCH_SOURCE_LABELS
 type ExactBani = Bani & { baniDbId: number }
+interface ResolvedRouteOption {
+  key: string
+  label: string
+  detail: string
+  path: string
+  adjustableBaniId?: SupportedSundarGutkaBaniId
+}
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
   SGGS: { label: 'Sri Guru Granth Sahib Ji', icon: <IconLibrary size={18} />, categoryOrder: SGGS_CATEGORY_ORDER },
@@ -176,9 +190,28 @@ function getNitnemRouteOptionsForBani(item: BaniIndexItem) {
   return NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === canonicalId)
 }
 
-function getExactRouteOptionsForBani(bani: ExactBani) {
+function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
   const baseId = bani.variantOf ?? bani.id
   const nitnemOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === baseId)
+
+  if (isSundarGutkaLengthSupportedBaniId(baseId)) {
+    const routeOption = nitnemOptions[0] ?? null
+    const label = routeOption?.name ?? SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].name
+
+    return [{
+      key: routeOption?.id ?? baseId,
+      label,
+      detail: '',
+      path: routeOption
+        ? buildNitnemStudyPath(routeOption)
+        : buildCanonicalBaniStudyPath(bani, {
+            baniDbId: SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].baniDbId,
+            baniId: baseId,
+            baniName: SUNDAR_GUTKA_SUPPORTED_BANIS[baseId].name,
+          }),
+      adjustableBaniId: baseId,
+    }] satisfies ResolvedRouteOption[]
+  }
 
   if (nitnemOptions.length > 1) {
     return nitnemOptions.map(option => ({
@@ -188,7 +221,7 @@ function getExactRouteOptionsForBani(bani: ExactBani) {
         : option.name,
       detail: option.detail,
       path: buildNitnemStudyPath(option),
-    }))
+    })) satisfies ResolvedRouteOption[]
   }
 
   const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(baseId) ?? []
@@ -208,7 +241,7 @@ function getExactRouteOptionsForBani(bani: ExactBani) {
         : option.name,
       detail: `BaniDB #${option.baniDbId} · ${angDetail}`,
       path: buildCanonicalBaniStudyPath(option),
-    }
+    } satisfies ResolvedRouteOption
   })
 }
 
@@ -290,11 +323,16 @@ export default function Banis() {
   const [selectedAmritHeaderId, setSelectedAmritHeaderId] = useState<number | null>(null)
   const [amritChapterQuery, setAmritChapterQuery] = useState('')
   const [visibleAmritCount, setVisibleAmritCount] = useState(AMRIT_KEERTAN_PAGE_SIZE)
+  const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
 
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const getAdjustableLengthDetail = useCallback((baniId: SupportedSundarGutkaBaniId) => {
+    return getSundarGutkaLengthDetail(sundarGutkaLengths[baniId])
+  }, [sundarGutkaLengths])
 
   useEffect(() => {
     let cancelled = false
@@ -376,17 +414,16 @@ export default function Banis() {
 
   const openSundarGutkaBani = (item: BaniIndexItem) => {
     const canonicalBani = getCanonicalSundarGutkaBani(item)
-    const name = canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
+    const name = canonicalBani && isSundarGutkaLengthSupportedBaniId(canonicalBani.id)
+      ? SUNDAR_GUTKA_SUPPORTED_BANIS[canonicalBani.id].name
+      : canonicalBani?.name ?? item.transliteration ?? item.gurmukhi
 
     if (canonicalBani) {
-      const params = buildStudyRouteSearchParams({
-        source: canonicalBani.source,
-        startAng: canonicalBani.startAng,
-        endAng: canonicalBani.endAng,
-        bani: name,
+      navigate(buildCanonicalBaniStudyPath(canonicalBani, {
         baniDbId: item.id,
-      })
-      navigate(`/study?${params.toString()}`)
+        baniId: canonicalBani.variantOf ?? canonicalBani.id,
+        baniName: name,
+      }))
       return
     }
 
@@ -784,6 +821,10 @@ export default function Banis() {
                   {expanded[groupKey] && (
                     <div className="mt-1 ml-2">
                       {group.items.flatMap(item => {
+                        const canonicalBani = getCanonicalSundarGutkaBani(item)
+                        const adjustableBaniId = canonicalBani && isSundarGutkaLengthSupportedBaniId(canonicalBani.id)
+                          ? canonicalBani.id
+                          : null
                         const routeOptions = group.key === 'nitnem'
                           ? getNitnemRouteOptionsForBani(item)
                           : []
@@ -795,7 +836,11 @@ export default function Banis() {
                               label={routeOptions.length > 1 && option.variantLabel
                                 ? `${item.gurmukhi} · ${option.variantLabel}`
                                 : item.gurmukhi}
-                              detail={option.name === item.gurmukhi ? option.detail : `${option.name} · ${option.detail}`}
+                              detail={adjustableBaniId
+                                ? getAdjustableLengthDetail(adjustableBaniId)
+                                : option.name === item.gurmukhi
+                                  ? option.detail
+                                  : `${option.name} · ${option.detail}`}
                               onClick={() => navigate(buildNitnemStudyPath(option))}
                             />
                           ))
@@ -805,7 +850,9 @@ export default function Banis() {
                           <IndexRow
                             key={item.id}
                             label={item.gurmukhi}
-                            detail={item.transliteration || `Bani #${item.id}`}
+                            detail={adjustableBaniId
+                              ? getAdjustableLengthDetail(adjustableBaniId)
+                              : item.transliteration || `Bani #${item.id}`}
                             onClick={() => openSundarGutkaBani(item)}
                           />
                         )
@@ -865,7 +912,9 @@ export default function Banis() {
                                 <IndexRow
                                   key={option.key}
                                   label={option.label}
-                                  detail={option.detail}
+                                  detail={option.adjustableBaniId
+                                    ? getAdjustableLengthDetail(option.adjustableBaniId)
+                                    : option.detail}
                                   onClick={() => navigate(option.path)}
                                 />
                               ))

@@ -1,5 +1,17 @@
 import { describe, it, expect } from 'vitest'
 import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama, fetchSearch } from './banidb'
+import type { ScriptureEntry } from '../types'
+
+function firstVisibleLine(entries: ScriptureEntry[]) {
+  return entries
+    .flatMap(entry => entry.lines ?? [])
+    .find(line => !line.isHeader && line.gurmukhi.trim())
+    ?.gurmukhi ?? null
+}
+
+function introLines(entries: ScriptureEntry[]) {
+  return entries.flatMap(entry => entry.lines ?? []).filter(line => line.isHeader).map(line => line.gurmukhi)
+}
 
 describe('fetchAng', () => {
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
@@ -117,15 +129,49 @@ describe('index fetchers', () => {
 })
 
 describe('fetchBani', () => {
-  it('normalizes Rehras intro lines without producing Ang 0 and keeps later sections', async () => {
-    const entries = await fetchBani(21)
-    expect(entries).toHaveLength(3)
-    expect(entries[0].ang).toBe(8)
-    expect(entries[0].lines?.[0].isHeader).toBe(true)
-    expect(entries[0].lines?.[0].originalAng).toBeNull()
-    expect(entries[0].lines?.[2].ang).toBe(8)
-    expect(entries[1].ang).toBe(1386)
-    expect(entries[2].ang).toBe(917)
+  it('defaults Rehras Sahib to the short STTM length without producing Ang 0 and keeps later sections', async () => {
+    const result = await fetchBani(21)
+    expect(result.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(result.entries).toHaveLength(3)
+    expect(result.entries[0].ang).toBe(8)
+    expect(result.entries[0].lines?.[0].isHeader).toBe(false)
+    expect(result.entries[0].lines?.[0].originalAng).toBe(8)
+    expect(result.entries[0].lines?.[0].ang).toBe(8)
+    expect(result.entries[1].ang).toBe(1386)
+    expect(result.entries[2].ang).toBe(917)
+    expect(firstVisibleLine(result.entries)).toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥')
+    expect(introLines(result.entries)).not.toContain('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')
+  })
+
+  it('filters Rehras Sahib to the long STTM start when requested', async () => {
+    const result = await fetchBani(21, 'long')
+    expect(firstVisibleLine(result.entries)).toBe('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')
+  })
+
+  it('keeps the extra-long Rehras intro lines available for the reader intro block', async () => {
+    const result = await fetchBani(21, 'extralong')
+    expect(introLines(result.entries)).toContain('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')
+  })
+
+  it('maps Benati Chaupai Sahib short and long starts correctly', async () => {
+    const shortResult = await fetchBani(9, 'short')
+    const longResult = await fetchBani(9, 'long')
+    const extraLongResult = await fetchBani(9, 'extralong')
+
+    expect(shortResult.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(firstVisibleLine(shortResult.entries)).toBe('ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥')
+    expect(firstVisibleLine(longResult.entries)).toBe('ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥')
+    expect(introLines(extraLongResult.entries)).toContain('ਦੋਹਰਾ ॥')
+  })
+
+  it('reports Aarti and Kirtan Sohila as adjustable and keeps their expanded intros', async () => {
+    const aarti = await fetchBani(22, 'extralong')
+    const sohila = await fetchBani(23, 'long')
+
+    expect(aarti.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(sohila.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(introLines(aarti.entries)).toContain('ਆਰਤੀ-ਆਰਤਾ')
+    expect(introLines(sohila.entries)).toContain('ਸੋਹਿਲਾ ਸਾਹਿਬ')
   })
 })
 

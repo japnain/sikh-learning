@@ -178,6 +178,61 @@ export const MOCK_BANI_RESPONSE = {
   ],
 }
 
+function createBaniTranslation(label: string) {
+  return {
+    en: {
+      bdb: label,
+      ms: label,
+      ssk: label,
+    },
+    hi: { ss: label },
+    pu: { ss: { unicode: label } },
+  }
+}
+
+function createStructuredBaniVerse({
+  verseId,
+  shabadId,
+  unicode,
+  transliteration,
+  pageNo,
+  source = 'G',
+  existsSGPC,
+  existsMedium,
+  existsTaksal,
+  existsBuddhaDal,
+  header,
+}: {
+  verseId: number
+  shabadId: number
+  unicode: string
+  transliteration: string
+  pageNo: number | null
+  source?: 'G' | 'D'
+  existsSGPC?: number
+  existsMedium?: number
+  existsTaksal?: number
+  existsBuddhaDal?: number
+  header?: number
+}) {
+  return {
+    ...(typeof header === 'number' ? { header } : {}),
+    ...(typeof existsSGPC === 'number' ? { existsSGPC } : {}),
+    ...(typeof existsMedium === 'number' ? { existsMedium } : {}),
+    ...(typeof existsTaksal === 'number' ? { existsTaksal } : {}),
+    ...(typeof existsBuddhaDal === 'number' ? { existsBuddhaDal } : {}),
+    verse: {
+      verseId,
+      shabadId,
+      verse: { unicode },
+      transliteration: { english: transliteration },
+      translation: createBaniTranslation(unicode),
+      pageNo,
+      source: { id: source },
+    },
+  }
+}
+
 export const MOCK_ARDAAS_BANI_RESPONSE = {
   verses: [
     {
@@ -219,117 +274,213 @@ export const MOCK_ARDAAS_BANI_RESPONSE = {
 
 export const MOCK_REHRAS_BANI_RESPONSE = {
   verses: [
-    {
+    createStructuredBaniVerse({
+      verseId: 2628,
+      shabadId: 21,
+      unicode: 'ਰਹਰਾਸਿ ਸਾਹਿਬ',
+      transliteration: 'raharaas saahib',
+      pageNo: null,
       header: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2629,
+      shabadId: 21,
+      unicode: 'ਸਲੋਕ ਮਃ ੧ ॥',
+      transliteration: 'salok mahalaa pehilaa ||',
+      pageNo: null,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2630,
+      shabadId: 21,
+      unicode: 'ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥',
+      transliteration: 'dha(n)nu su kaagadh kalam dha(n)nu dhan bhaa(n)ddaa dhan mas ||',
+      pageNo: null,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2631,
+      shabadId: 21,
+      unicode: 'ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥',
+      transliteration: 'har jug jug bhagat upaiaa paij rakhadhaa aaiaa raam raaje ||',
+      pageNo: 8,
+      source: 'G',
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2632,
+      shabadId: 21,
+      unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',
+      transliteration: 'ik oa(n)kaar satigur prasaadh ||',
+      pageNo: 8,
+      source: 'G',
       existsSGPC: 1,
-      verse: {
-        verseId: 2628,
-        shabadId: 21,
-        verse: { unicode: 'ਰਹਰਾਸਿ ਸਾਹਿਬ' },
-        transliteration: { english: 'raharaas saahib' },
-        translation: {
-          en: { bdb: 'Rehras Sahib', ms: 'Rehras Sahib', ssk: 'Rehras Sahib' },
-          hi: {},
-          pu: { ss: { unicode: '' } },
-        },
-        pageNo: null,
-      },
-    },
-    {
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2633,
+      shabadId: 21,
+      unicode: 'ਸੋ ਦਰੁ ਤੇਰਾ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ ਜਿਤੁ ਬਹਿ ਸਰਬ ਸਮਾਲੇ ॥',
+      transliteration: 'so dhar teraa kehaa so ghar kehaa jit beh sarab samaale ||',
+      pageNo: 8,
+      source: 'G',
       existsSGPC: 1,
-      verse: {
-        verseId: 2629,
-        shabadId: 21,
-        verse: { unicode: 'ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥' },
-        transliteration: { english: 'sree vaahiguroo jee kee fateh ||' },
-        translation: {
-          en: { bdb: "Victory is the Lord's.", ms: "Victory belongs to the Divine.", ssk: "Victory is the Lord's." },
-          hi: { ss: 'श्री वाहेगुरू जी की फतेह।' },
-          pu: { ss: { unicode: 'ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ।' } },
-        },
-        pageNo: null,
-      },
-    },
-    {
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 4001,
+      shabadId: 210,
+      unicode: 'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ਚੌਪਈ ॥',
+      transliteration: 'kabiyo baach benatee chauapiee ||',
+      pageNo: 1386,
+      source: 'D',
       existsSGPC: 1,
-      verse: {
-        verseId: 2630,
-        shabadId: 21,
-        verse: { unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥' },
-        transliteration: { english: 'ikOankaar satigur prasaadh ||' },
-        translation: {
-          en: {
-            bdb: 'The Lord is One and can be realized through the True Guru.',
-            ms: 'There is One God. By the True Guru His grace is obtained.',
-            ssk: 'One Universal Creator God. By The Grace Of The True Guru.',
-          },
-          hi: { ss: 'एक ओंकार सतिगुर प्रसादि।' },
-          pu: { ss: { unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ।' } },
-        },
-        pageNo: 8,
-        source: { id: 'G' },
-      },
-    },
-    {
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 4002,
+      shabadId: 211,
+      unicode: 'ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥',
+      transliteration: 'ana(n)dh bhiaa meree maae satiguroo mai paiaa ||',
+      pageNo: 917,
+      source: 'G',
       existsSGPC: 1,
-      verse: {
-        verseId: 2631,
-        shabadId: 21,
-        verse: { unicode: 'ਸੋ ਦਰੁ ਤੇਰਾ ਕੇਹਾ ਸੋ ਘਰੁ ਕੇਹਾ' },
-        transliteration: { english: 'so dhar teraa kehaa so ghar kehaa' },
-        translation: {
-          en: {
-            bdb: 'Where is that Gate of Yours, and where is that Home?',
-            ms: 'What is that gate and what is that house of Yours?',
-            ssk: 'What is that Gate, and what is that Dwelling, O Lord?',
-          },
-          hi: { ss: 'तेरा वह द्वार कैसा है, वह घर कैसा है?' },
-          pu: { ss: { unicode: 'ਤੇਰਾ ਉਹ ਦਰ ਕਿਹੋ ਜਿਹਾ ਹੈ, ਉਹ ਘਰ ਕਿਹੋ ਜਿਹਾ ਹੈ?' } },
-        },
-        pageNo: 8,
-        source: { id: 'G' },
-      },
-    },
-    {
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+  ],
+}
+
+export const MOCK_CHAUPAI_BANI_RESPONSE = {
+  verses: [
+    createStructuredBaniVerse({
+      verseId: 9001,
+      shabadId: 9,
+      unicode: 'ਦੋਹਰਾ ॥',
+      transliteration: 'dhoharaa ||',
+      pageNo: null,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 9002,
+      shabadId: 9,
+      unicode: 'ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥',
+      transliteration: 'ik oa(n)kaar sree vaahiguroo jee kee fateh ||',
+      pageNo: 1386,
+      source: 'D',
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 9003,
+      shabadId: 9,
+      unicode: 'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥',
+      transliteration: 'kabiyo baach benatee ||',
+      pageNo: 1386,
+      source: 'D',
       existsSGPC: 1,
-      verse: {
-        verseId: 4001,
-        shabadId: 210,
-        verse: { unicode: 'ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ਚੌਪਈ ॥' },
-        transliteration: { english: 'kabiyo baach benatee chauapiee ||' },
-        translation: {
-          en: {
-            bdb: 'The poets utter the Prayer of Chaupai.',
-            ms: 'The poets speak the prayer of Chaupai.',
-            ssk: 'The poets utter the Prayer of Chaupai.',
-          },
-          hi: { ss: 'कवियों द्वारा कही गई बेनती चौपई।' },
-          pu: { ss: { unicode: 'ਕਵੀਆਂ ਦੁਆਰਾ ਉਚਾਰੀ ਗਈ ਬੇਨਤੀ ਚੌਪਈ।' } },
-        },
-        pageNo: 1386,
-        source: { id: 'D' },
-      },
-    },
-    {
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 9004,
+      shabadId: 9,
+      unicode: 'ਹਮਰੀ ਕਰੋ ਹਾਥ ਦੈ ਰੱਛਾ ॥',
+      transliteration: 'hamaree karo haath dhai racha ||',
+      pageNo: 1386,
+      source: 'D',
       existsSGPC: 1,
-      verse: {
-        verseId: 4002,
-        shabadId: 211,
-        verse: { unicode: 'ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ ਸਤਿਗੁਰੂ ਮੈ ਪਾਇਆ ॥' },
-        transliteration: { english: 'ana(n)dh bhiaa meree maae satiguroo mai paiaa ||' },
-        translation: {
-          en: {
-            bdb: 'Bliss has welled up, O my mother, for I have found the True Guru.',
-            ms: 'My mother, I am in bliss, for I have found the True Guru.',
-            ssk: 'Bliss has welled up, O my mother, for I have found the True Guru.',
-          },
-          hi: { ss: 'आनंद हुआ, हे मेरी माता, क्योंकि मैंने सतिगुरु पाया।' },
-          pu: { ss: { unicode: 'ਹੇ ਮੇਰੀ ਮਾਂ, ਮੈਨੂੰ ਅਨੰਦ ਹੋਇਆ ਹੈ ਕਿਉਂਕਿ ਮੈਂ ਸਤਿਗੁਰੂ ਨੂੰ ਲੱਭ ਲਿਆ ਹੈ।' } },
-        },
-        pageNo: 917,
-        source: { id: 'G' },
-      },
-    },
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+  ],
+}
+
+export const MOCK_AARTI_BANI_RESPONSE = {
+  verses: [
+    createStructuredBaniVerse({
+      verseId: 2201,
+      shabadId: 22,
+      unicode: 'ਆਰਤੀ-ਆਰਤਾ',
+      transliteration: 'aaratee aarataa',
+      pageNo: null,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2202,
+      shabadId: 22,
+      unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',
+      transliteration: 'ik oa(n)kaar satigur prasaadh ||',
+      pageNo: 663,
+      source: 'G',
+      existsSGPC: 1,
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2203,
+      shabadId: 22,
+      unicode: 'ਗਗਨ ਮੈ ਥਾਲੁ ਰਵਿ ਚੰਦੁ ਦੀਪਕ ਬਨੇ ਤਾਰਿਕਾ ਮੰਡਲ ਜਨਕ ਮੋਤੀ ॥',
+      transliteration: 'gagan mai thaal rav cha(n)dh dheepak bane taarikaa ma(n)ddal janak motee ||',
+      pageNo: 663,
+      source: 'G',
+      existsSGPC: 1,
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+  ],
+}
+
+export const MOCK_SOHILA_BANI_RESPONSE = {
+  verses: [
+    createStructuredBaniVerse({
+      verseId: 2301,
+      shabadId: 23,
+      unicode: 'ਸੋਹਿਲਾ ਸਾਹਿਬ',
+      transliteration: 'sohilaa saahib',
+      pageNo: null,
+      header: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2302,
+      shabadId: 23,
+      unicode: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',
+      transliteration: 'ik oa(n)kaar satigur prasaadh ||',
+      pageNo: 12,
+      source: 'G',
+      existsSGPC: 1,
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
+    createStructuredBaniVerse({
+      verseId: 2303,
+      shabadId: 23,
+      unicode: 'ਜੈ ਘਰਿ ਕੀਰਤਿ ਆਖੀਐ ਕਰਤੇ ਕਾ ਹੋਇ ਬੀਚਾਰੋ ॥',
+      transliteration: 'jai ghar keerat aakheeaai karate kaa hoi beechaaro ||',
+      pageNo: 12,
+      source: 'G',
+      existsSGPC: 1,
+      existsMedium: 1,
+      existsTaksal: 1,
+      existsBuddhaDal: 1,
+    }),
   ],
 }
 
@@ -484,7 +635,10 @@ export const handlers = [
   http.get('https://api.banidb.com/v2/banis/:baniId', ({ params }) => {
     const { baniId } = params as { baniId: string }
     if (baniId === '21') return HttpResponse.json(MOCK_REHRAS_BANI_RESPONSE)
+    if (baniId === '22') return HttpResponse.json(MOCK_AARTI_BANI_RESPONSE)
+    if (baniId === '23') return HttpResponse.json(MOCK_SOHILA_BANI_RESPONSE)
     if (baniId === '24') return HttpResponse.json(MOCK_ARDAAS_BANI_RESPONSE)
+    if (baniId === '9') return HttpResponse.json(MOCK_CHAUPAI_BANI_RESPONSE)
     return HttpResponse.json(MOCK_BANI_RESPONSE)
   }),
 

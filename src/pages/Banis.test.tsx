@@ -1,7 +1,9 @@
+import { beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
 import Study from './Study'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
@@ -11,6 +13,18 @@ function LocationSpy() {
   const location = useLocation()
   return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
 }
+
+beforeEach(() => {
+  localStorage.clear()
+  useSundarGutkaLengthStore.setState({
+    lengths: {
+      'chaupai-sahib': 'short',
+      'rehras-sahib': 'short',
+      aarti: 'short',
+      'kirtan-sohila': 'short',
+    },
+  })
+})
 
 test('renders page heading', () => {
   renderBanis()
@@ -33,8 +47,8 @@ test('shows exact SGGS bani items after expanding SGGS section', () => {
   fireEvent.click(screen.getByText('Daily Prayers'))
 
   expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
-  expect(screen.getByText('Rehras Sahib · Puraatan')).toBeInTheDocument()
-  expect(screen.getByText('Rehras Sahib · Focused')).toBeInTheDocument()
+  expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
+  expect(screen.getAllByText('Adjustable length · currently Short').length).toBeGreaterThan(0)
   expect(screen.queryByText('Raag Sri')).not.toBeInTheDocument()
 })
 
@@ -45,8 +59,7 @@ test('shows exact-variant rows in the Dasam Granth section when BaniDB supports 
 
   expect(screen.getByText('Tav Prasad Savaiye · Sraavag Suddh')).toBeInTheDocument()
   expect(screen.getByText('Tav Prasad Savaiye · Dheenan Ki')).toBeInTheDocument()
-  expect(screen.getByText('Chaupai Sahib · Puraatan')).toBeInTheDocument()
-  expect(screen.getByText('Chaupai Sahib · Focused')).toBeInTheDocument()
+  expect(screen.getByText('Benati Chaupai Sahib')).toBeInTheDocument()
 })
 
 test('shows both Sri Bhagauti Astotr exact variants in Dasam Granth supplemental banis', () => {
@@ -124,25 +137,24 @@ test('opens Sundar Gutka Rehras Sahib through the canonical exact bani route', a
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
 
-  await waitFor(() => expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan'))
+  await waitFor(() => expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib+%28Puraatan%29&baniDbId=21&exactBani=1&baniId=rehras-sahib')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short')
   })
 })
 
-test('shows focused and exact Nitnem variants in Sundar Gutka', async () => {
+test('shows single clean Nitnem entries for adjustable Sundar Gutka banis', async () => {
   renderBanis()
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
 
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
 
-  expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument()
-  expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ · Focused')).toBeInTheDocument()
-  expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ · Puraatan')).toBeInTheDocument()
-  expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ · Focused')).toBeInTheDocument()
+  expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument()
+  expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ')).toBeInTheDocument()
+  expect(screen.queryByText(/Focused|Puraatan/i)).not.toBeInTheDocument()
 })
 
 test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async () => {

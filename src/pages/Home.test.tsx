@@ -9,6 +9,7 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
 import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
@@ -85,6 +86,14 @@ beforeEach(() => {
     textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
+  })
+  useSundarGutkaLengthStore.setState({
+    lengths: {
+      'chaupai-sahib': 'short',
+      'rehras-sahib': 'short',
+      aarti: 'short',
+      'kirtan-sohila': 'short',
+    },
   })
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
@@ -202,18 +211,18 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
   )
 
   fireEvent.click(screen.getAllByRole('button', { name: /nitnem progress/i })[0]!)
-  fireEvent.click(screen.getByText('Rehras Sahib (Puraatan)'))
+  fireEvent.click(screen.getByText('Rehras Sahib'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib+%28Puraatan%29&baniDbId=21&exactBani=1&baniId=rehras-sahib')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short')
   })
 })
 
-test('can customize the home Nitnem list with focused variants', () => {
+test('shows adjustable STTM length detail for supported Nitnem banis', () => {
   renderHome()
 
   fireEvent.click(screen.getByRole('button', { name: /customize/i }))
-  fireEvent.click(screen.getByRole('button', { name: /Rehras Sahib \(Focused\)/i }))
 
-  expect(screen.getAllByText('Rehras Sahib (Focused)').length).toBeGreaterThan(0)
+  expect(screen.getAllByRole('button', { name: /Rehras Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
+  expect(screen.getAllByRole('button', { name: /Benati Chaupai Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
 })
