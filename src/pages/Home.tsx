@@ -15,6 +15,7 @@ import { BANIS } from '../data/banis'
 import { GUIDED_JOURNEYS } from '../data/guidedJourneys'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { useAng } from '../hooks/useAng'
+import { useCurrentTime } from '../hooks/useCurrentTime'
 import useDailyLesson from '../hooks/useDailyLesson'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLanguageStore } from '../store/language'
@@ -36,6 +37,16 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+
+const TODAYS_PATH_HIGHLIGHT_CLASSES = [
+  'border-gold/45',
+  'shadow-gold-strong',
+  'ring-2',
+  'ring-gold/35',
+  'ring-offset-2',
+  'ring-offset-parchment',
+  'dark:ring-offset-dark-bg',
+]
 
 function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
   if (!scriptureId) return { source: null, ang: null }
@@ -188,9 +199,9 @@ export default function Home() {
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const [nitnemEditing, setNitnemEditing] = useState(false)
   const [showCopied, setShowCopied] = useState(false)
-  const [highlightTodaysPath, setHighlightTodaysPath] = useState(false)
   const todaysPathRef = useRef<HTMLElement | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
+  const now = useCurrentTime()
 
   const getNitnemOptionDetail = (option: NitnemRouteOption) => (
     isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
@@ -224,12 +235,12 @@ export default function Home() {
     }
 
     if (state.highlightTodayPath) {
-      setHighlightTodaysPath(true)
       globalThis.requestAnimationFrame(() => {
+        todaysPathRef.current?.classList.add(...TODAYS_PATH_HIGHLIGHT_CLASSES)
         todaysPathRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       })
       highlightTimer = window.setTimeout(() => {
-        setHighlightTodaysPath(false)
+        todaysPathRef.current?.classList.remove(...TODAYS_PATH_HIGHLIGHT_CLASSES)
       }, 2600)
     }
 
@@ -277,7 +288,10 @@ export default function Home() {
   const nitnemProgressPct = selectedNitnemOptions.length > 0
     ? (nitnemDone / selectedNitnemOptions.length) * 100
     : 0
-  const dueReview = vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now())
+  const dueReview = useMemo(
+    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
+    [now, vocab]
+  )
   const savedWords = vocab.filter(entry => (entry.kind ?? 'word') === 'word').length
   const savedPhrases = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
 
@@ -404,7 +418,7 @@ export default function Home() {
     navigate('/vocab')
   }
 
-  const nextStep = useMemo(() => {
+  const nextStep = (() => {
     if (!isDailyActionDone('read')) {
       return {
         title: readAction.title,
@@ -440,7 +454,7 @@ export default function Home() {
       actionLabel: homeCopy.openSaved,
       onAction: () => navigate('/library'),
     }
-  }, [activeJourney, dueReview.length, homeCopy, homeMessages, isDailyActionDone, learningLevel, learningLevelLabels, navigate, nextJourneyStep, readAction])
+  })()
 
   const todaysPickPreview = useMemo(() => {
     if (!todaysPick) return null
@@ -616,11 +630,7 @@ export default function Home() {
       <section
         ref={todaysPathRef}
         tabIndex={-1}
-        className={`section-shell p-4 mb-5 animate-slide-up stagger-2 transition-[box-shadow,transform,border-color] duration-500 ${
-          highlightTodaysPath
-            ? 'border-gold/45 shadow-gold-strong ring-2 ring-gold/35 ring-offset-2 ring-offset-parchment dark:ring-offset-dark-bg'
-            : ''
-        }`}
+        className="section-shell p-4 mb-5 animate-slide-up stagger-2 transition-[box-shadow,transform,border-color] duration-500"
       >
         <div className="flex items-start justify-between gap-3">
           <div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import { useProgressStore } from '../store/progress'
@@ -296,6 +296,7 @@ export default function Study() {
   const [showCopied, setShowCopied] = useState(false)
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
+  const readerControlsRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (shouldTrackProgress && currentAng) {
@@ -307,6 +308,31 @@ export default function Study() {
     if (!shouldTrackProgress || loading || error || entries.length === 0) return
     recordSwipeToday()
   }, [entries.length, error, loading, recordSwipeToday, shouldTrackProgress])
+
+  useEffect(() => {
+    if (!controlsOpen || typeof window === 'undefined' || window.innerWidth > 640) return
+
+    const frame = window.requestAnimationFrame(() => {
+      const container = readerControlsRef.current
+      if (!container) return
+
+      const nav = document.querySelector('.app-nav')
+      const navPadding = nav instanceof HTMLElement
+        ? nav.getBoundingClientRect().height + 28
+        : 120
+      const visibleBottom = window.innerHeight - navPadding
+      const rect = container.getBoundingClientRect()
+
+      if (rect.bottom > visibleBottom) {
+        window.scrollBy({
+          top: rect.bottom - visibleBottom,
+          behavior: 'smooth',
+        })
+      }
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [controlsOpen])
 
   const handleShare = async () => {
     if (!currentEntry) return
@@ -667,7 +693,7 @@ export default function Study() {
         <SoundscapeControls context="study" variant="compact" />
       </div>
 
-      <div className="mb-4 section-shell-quiet p-4 shadow-card">
+      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4 shadow-card">
         <button
           type="button"
           onClick={() => setControlsOpen(open => !open)}

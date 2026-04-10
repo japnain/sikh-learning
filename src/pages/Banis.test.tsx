@@ -29,6 +29,11 @@ beforeEach(() => {
 test('renders page heading', () => {
   renderBanis()
   expect(screen.getByText('Banis')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /refine/i })).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /first letters/i })).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: /refine/i }))
+
   expect(screen.getByRole('button', { name: /first letters/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /^SGGS$/i })).toBeInTheDocument()
 })
@@ -247,6 +252,7 @@ test('supports searching within an Amrit Keertan chapter', async () => {
 
 test('supports direct ang lookup mode', async () => {
   renderBanis()
+  fireEvent.click(screen.getByRole('button', { name: /refine/i }))
   fireEvent.click(screen.getByRole('button', { name: /ang \/ page/i }))
   fireEvent.change(screen.getByPlaceholderText(/open an ang or page directly/i), { target: { value: '12' } })
 

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useVocabStore } from '../store/vocab'
 import { useLanguageStore } from '../store/language'
 import { renderScriptText } from '../utils/readerDisplay'
@@ -7,9 +8,9 @@ import type { VocabEntry } from '../types'
 
 type Mode = 'list' | 'flashcard' | 'review'
 
-function timeLabel(entry: VocabEntry): string {
+function timeLabel(entry: VocabEntry, now: number): string {
   const dueAt = entry.review?.dueAt ?? entry.savedAt
-  const diff = new Date(dueAt).getTime() - Date.now()
+  const diff = new Date(dueAt).getTime() - now
   if (diff <= 0) return 'Due now'
   const days = Math.ceil(diff / 86400000)
   return `Due in ${days} day${days === 1 ? '' : 's'}`
@@ -23,10 +24,11 @@ export default function Vocab() {
   const [mode, setMode] = useState<Mode>('list')
   const [cardIdx, setCardIdx] = useState(0)
   const [revealed, setRevealed] = useState(false)
+  const now = useCurrentTime()
 
   const dueWords = useMemo(
-    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now()),
-    [vocab]
+    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
+    [now, vocab]
   )
 
   if (vocab.length === 0) {
@@ -210,7 +212,7 @@ export default function Vocab() {
                   {entry.context?.line ? ' · Saved from verse' : ''}
                 </p>
                 <p className="font-sans text-[10px] text-ink/45 dark:text-dark-text/45 mt-1">
-                  {timeLabel(entry)}
+                  {timeLabel(entry, now)}
                 </p>
               </div>
               <button

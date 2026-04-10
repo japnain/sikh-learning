@@ -4,56 +4,53 @@ import { fetchMahanKoshEntries } from '../api/mahankosh'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { normalizeLookupWord } from '../utils/wordLookup'
 
+type MahanKoshRequestState = {
+  key: string
+  entries: MahanKoshEntry[]
+  error: string | null
+}
+
 export function useMahanKosh(word: string) {
   const normalizedWord = useMemo(() => normalizeLookupWord(word), [word])
   const { getMahanKosh, setMahanKosh } = useScriptureCacheStore()
-  const [entries, setEntries] = useState<MahanKoshEntry[]>(() => normalizedWord ? (getMahanKosh(normalizedWord) ?? []) : [])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const cachedEntries = normalizedWord ? (getMahanKosh(normalizedWord) ?? null) : null
+  const [state, setState] = useState<MahanKoshRequestState | null>(null)
+  const requestKey = normalizedWord || null
+  const currentState = requestKey && state?.key === requestKey ? state : null
 
   useEffect(() => {
-    if (!normalizedWord) {
-      setEntries([])
-      setLoading(false)
-      setError(null)
-      return
-    }
-
-    const cached = getMahanKosh(normalizedWord)
-    if (cached) {
-      setEntries(cached)
-      setLoading(false)
-      setError(null)
-      return
-    }
+    if (!requestKey || cachedEntries || currentState) return
 
     let cancelled = false
-    setLoading(true)
-    setError(null)
 
-    fetchMahanKoshEntries(normalizedWord)
+    fetchMahanKoshEntries(requestKey)
       .then(result => {
         if (cancelled) return
-        setEntries(result)
-        setMahanKosh(normalizedWord, result)
-        setLoading(false)
+        setMahanKosh(requestKey, result)
+        setState({
+          key: requestKey,
+          entries: result,
+          error: null,
+        })
       })
       .catch(() => {
         if (cancelled) return
-        setEntries([])
-        setError('Unable to load Mahankosh right now.')
-        setLoading(false)
+        setState({
+          key: requestKey,
+          entries: [],
+          error: 'Unable to load Mahankosh right now.',
+        })
       })
 
     return () => {
       cancelled = true
     }
-  }, [getMahanKosh, normalizedWord, setMahanKosh])
+  }, [cachedEntries, currentState, requestKey, setMahanKosh])
 
   return {
-    entries,
-    loading,
-    error,
+    entries: cachedEntries ?? currentState?.entries ?? [],
+    loading: Boolean(requestKey) && !cachedEntries && currentState === null,
+    error: currentState?.error ?? null,
     normalizedWord,
   }
 }

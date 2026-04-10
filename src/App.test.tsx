@@ -63,7 +63,9 @@ test('habit onboarding completion returns home and highlights today’s path', a
     expect(window.location.pathname).toBe('/')
   })
 
-  expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
+  await waitFor(() => {
+    expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
+  })
 })
 
 test('reopening onboarding from more keeps the saved profile selections', async () => {
@@ -79,7 +81,7 @@ test('reopening onboarding from more keeps the saved profile selections', async 
 
   render(<App />)
 
-  fireEvent.click(screen.getByRole('button', { name: /re-open first setup on home/i }))
+  fireEvent.click(await screen.findByRole('button', { name: /re-open first setup on home/i }))
 
   await waitFor(() => {
     expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
