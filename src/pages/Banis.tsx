@@ -53,6 +53,15 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   ang: { type: -1, placeholder: 'Open an ang or page directly...', minLength: 1 },
   'auto-detect': { type: 8, placeholder: 'Let the app detect the search style...', minLength: 2 },
 }
+const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
+  'first-letters': 'Search by first letters and slip into the right bani with less hunting.',
+  'first-letters-anywhere': 'Catch first letters even when they appear later in the line.',
+  gurmukhi: 'Search the Gurbani itself when the line is already in your mind.',
+  english: 'Search by meaning when the thought arrives before the words.',
+  transliteration: 'Search by pronunciation when that is what you remember first.',
+  ang: 'Open an ang or page directly without running a word search.',
+  'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
+}
 const ANG_SOURCE_META = {
   G: { label: 'SGGS', max: 1430, kind: 'Ang' },
   D: { label: 'DG', max: 1428, kind: 'Ang' },
@@ -313,6 +322,7 @@ export default function Banis() {
   const [amritChapterQuery, setAmritChapterQuery] = useState('')
   const [visibleAmritCount, setVisibleAmritCount] = useState(AMRIT_KEERTAN_PAGE_SIZE)
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
+  const searchOptionsOpen = expanded['search-options'] ?? false
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -472,7 +482,10 @@ export default function Banis() {
     () => amritHeaders.find(header => header.headerId === selectedAmritHeaderId) ?? null,
     [amritHeaders, selectedAmritHeaderId]
   )
-  const selectedAmritShabads = selectedAmritHeaderId ? (amritShabadsByHeader[selectedAmritHeaderId] ?? []) : []
+  const selectedAmritShabads = useMemo(
+    () => selectedAmritHeaderId ? (amritShabadsByHeader[selectedAmritHeaderId] ?? []) : [],
+    [amritShabadsByHeader, selectedAmritHeaderId]
+  )
   const normalizedAmritChapterQuery = amritChapterQuery.trim().toLowerCase()
   const filteredAmritShabads = useMemo(() => {
     if (!normalizedAmritChapterQuery) return selectedAmritShabads
@@ -583,8 +596,24 @@ export default function Banis() {
     <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
       <h1 className="font-sans font-semibold text-lg text-ink dark:text-dark-text mb-6 mt-4">Banis</h1>
 
-      <div className="mb-6">
-        <div className="relative">
+      <div className="mb-6 section-shell-quiet p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="eyebrow">Quick Find</p>
+            <p className="mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+              {SEARCH_OPTION_SUMMARY[searchMode]}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => toggle('search-options')}
+            className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/65"
+          >
+            {searchOptionsOpen ? 'Simplify' : 'Refine'}
+          </button>
+        </div>
+
+        <div className="relative mt-4">
           <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
           <input
             type="text"
@@ -594,42 +623,55 @@ export default function Banis() {
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
           />
         </div>
-        <div className="mt-3 grid grid-cols-3 gap-2">
-          {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
-            const selected = searchMode === mode
-            return (
-              <button
-                key={mode}
-                onClick={() => setSearchMode(mode)}
-                className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                }`}
-              >
-                {SEARCH_MODE_LABELS[mode]}
-              </button>
-            )
-          })}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <MetadataChip>{SEARCH_MODE_LABELS[searchMode]}</MetadataChip>
+          {searchSource !== 'all' && <MetadataChip>{SEARCH_SOURCE_LABELS[searchSource]}</MetadataChip>}
+          {searchMode === 'ang' && <MetadataChip>Direct open</MetadataChip>}
+          {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && searchMode !== 'ang' && (
+            <MetadataChip>{searching ? 'Searching' : 'Ready'}</MetadataChip>
+          )}
         </div>
-        <div className="flex flex-wrap gap-2 mt-3">
-          {Object.entries(SEARCH_SOURCE_LABELS).map(([value, label]) => {
-            const selected = searchSource === value
-            return (
-              <button
-                key={value}
-                onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
-                className={`rounded-full px-3 py-1.5 font-sans text-[11px] border transition-all duration-300 ${
-                  selected
-                    ? 'bg-saffron text-white border-saffron'
-                    : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
-                }`}
-              >
-                {label}
-              </button>
-            )
-          })}
-        </div>
+
+        {searchOptionsOpen && (
+          <>
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
+                const selected = searchMode === mode
+                return (
+                  <button
+                    key={mode}
+                    onClick={() => setSearchMode(mode)}
+                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                      selected
+                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                    }`}
+                  >
+                    {SEARCH_MODE_LABELS[mode]}
+                  </button>
+                )
+              })}
+            </div>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {Object.entries(SEARCH_SOURCE_LABELS).map(([value, label]) => {
+                const selected = searchSource === value
+                return (
+                  <button
+                    key={value}
+                    onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
+                    className={`rounded-full px-3 py-1.5 font-sans text-[11px] border transition-all duration-300 ${
+                      selected
+                        ? 'bg-saffron text-white border-saffron'
+                        : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+          </>
+        )}
         {searchMode === 'ang' && angLookup && (
           <div className="mt-3 space-y-2">
             {angTargets.length > 0 ? angTargets.map(target => (

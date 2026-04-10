@@ -1,65 +1,76 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import type { Word } from '../types'
 import { fetchShabadWords } from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 
+type WordDataRequestState = {
+  key: string
+  wordDataMap: Record<number, Word[]>
+}
+
 export function useMultiShabadWordData(shabadIds: (number | null)[]) {
   const { getWords, setWords } = useScriptureCacheStore()
-  const [wordDataMap, setWordDataMap] = useState<Record<number, Word[]>>({})
-  const [loading, setLoading] = useState(false)
-  const prevKeyRef = useRef('')
+  const [state, setState] = useState<WordDataRequestState | null>(null)
+  const validIds = useMemo(
+    () => Array.from(new Set(shabadIds.filter((id): id is number => typeof id === 'number' && id > 0))),
+    [shabadIds]
+  )
+  const requestKey = validIds.join(',')
+  const { cachedMap, idsToFetch } = useMemo(() => {
+    const nextCachedMap: Record<number, Word[]> = {}
+    const nextIdsToFetch: number[] = []
 
-  useEffect(() => {
-    const validIds = shabadIds.filter((id): id is number => typeof id === 'number' && id > 0)
-    const key = validIds.join(',')
-    if (key === prevKeyRef.current) return
-    prevKeyRef.current = key
-
-    if (validIds.length === 0) {
-      setWordDataMap({})
-      return
-    }
-
-    // Immediately populate from cache
-    const result: Record<number, Word[]> = {}
-    const toFetch: number[] = []
-    for (const id of validIds) {
+    validIds.forEach(id => {
       const cached = getWords(id)
       if (cached) {
-        result[id] = cached
+        nextCachedMap[id] = cached
       } else {
-        toFetch.push(id)
+        nextIdsToFetch.push(id)
       }
-    }
+    })
 
-    if (toFetch.length === 0) {
-      setWordDataMap(result)
-      return
+    return {
+      cachedMap: nextCachedMap,
+      idsToFetch: nextIdsToFetch,
     }
+  }, [getWords, validIds])
+  const currentState = requestKey && state?.key === requestKey ? state : null
+
+  useEffect(() => {
+    if (!requestKey || idsToFetch.length === 0 || currentState) return
 
     let cancelled = false
-    setLoading(true)
-    setWordDataMap(result)
-
     Promise.all(
-      toFetch.map(id =>
+      idsToFetch.map(id =>
         fetchShabadWords(id)
           .then(words => ({ id, words }))
           .catch(() => ({ id, words: [] as Word[] }))
       )
     ).then(results => {
       if (cancelled) return
-      const updated = { ...result }
+
+      const nextWordDataMap = { ...cachedMap }
       for (const { id, words } of results) {
         setWords(id, words)
-        updated[id] = words
+        nextWordDataMap[id] = words
       }
-      setWordDataMap(updated)
-      setLoading(false)
+
+      setState({
+        key: requestKey,
+        wordDataMap: nextWordDataMap,
+      })
     })
 
     return () => { cancelled = true }
-  }, [shabadIds.filter((id): id is number => id !== null).join(',')])
+  }, [cachedMap, currentState, idsToFetch, requestKey, setWords])
 
-  return { wordDataMap, loading }
+  return {
+    wordDataMap: requestKey
+      ? {
+          ...cachedMap,
+          ...(currentState?.wordDataMap ?? {}),
+        }
+      : {},
+    loading: requestKey.length > 0 && idsToFetch.length > 0 && currentState === null,
+  }
 }

@@ -38,6 +38,7 @@ import {
   getOnboardingAudienceLabels,
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
+import { useCurrentTime } from '../hooks/useCurrentTime'
 
 const SYMBOL_LOOKUP = new Map<string, GurmukhiLetter>(
   [...GURMUKHI_LETTERS, ...GURMUKHI_VOWELS].map(letter => [letter.gurmukhi, letter])
@@ -293,6 +294,7 @@ export default function Learn() {
   const [searchParams] = useSearchParams()
   const dailyLessonRef = useRef<HTMLElement | null>(null)
   const locale = useLocaleStore(state => state.locale)
+  const now = useCurrentTime()
   const copy = getUiCopy(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
   const learningLevelLabels = getLearningLevelLabels(locale)
@@ -307,7 +309,6 @@ export default function Learn() {
     streakCalendar,
     longestStreak,
     totalPracticeSessions,
-    skills,
     lessonProgress,
     journeys,
     activeJourneyId,
@@ -352,6 +353,9 @@ export default function Learn() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
   const [revealDecode, setRevealDecode] = useState(false)
   const [guidedSupport, setGuidedSupport] = useState(true)
+  const [selectedOptionModuleId, setSelectedOptionModuleId] = useState<string | null>(null)
+  const [revealDecodeModuleId, setRevealDecodeModuleId] = useState<string | null>(null)
+  const [guidedSupportModuleId, setGuidedSupportModuleId] = useState<string | null>(null)
   const [placementConfidence, setPlacementConfidence] = useState<PlacementConfidence>('steady')
   const [readingCheckId, setReadingCheckId] = useState<string>('reading-joining')
   const [meaningCheckId, setMeaningCheckId] = useState<string>('meaning-patterns')
@@ -365,10 +369,10 @@ export default function Learn() {
     return nextIds
   }, [completedLessons, programProgress])
 
-  const weakSkillIds = useMemo(() => getWeakSkillIds().slice(0, 4), [getWeakSkillIds, skills])
+  const weakSkillIds = useMemo(() => getWeakSkillIds().slice(0, 4), [getWeakSkillIds])
   const dueReview = useMemo(
-    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= Date.now()),
-    [vocab]
+    () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
+    [now, vocab]
   )
   const savedPhrases = useMemo(
     () => vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length,
@@ -421,25 +425,26 @@ export default function Learn() {
 
     return nextUnlockedModule
   }, [activeProgramId, activeProgramProgress.currentModuleId, nextUnlockedModule, requestedModuleId])
+  const defaultGuidedSupport = activeModule?.supportDensity !== 'minimal'
+  const effectiveSelectedOptionId = selectedOptionModuleId === activeModule?.id ? selectedOptionId : null
+  const effectiveRevealDecode = revealDecodeModuleId === activeModule?.id ? revealDecode : false
+  const effectiveGuidedSupport = guidedSupportModuleId === activeModule?.id ? guidedSupport : defaultGuidedSupport
 
   useEffect(() => {
     if (!activeModule) return
-    setSelectedOptionId(null)
-    setRevealDecode(false)
-    setGuidedSupport(activeModule.supportDensity !== 'minimal')
     setProgramModule(activeProgramId, activeModule.id)
-  }, [activeModule?.id, activeProgramId, activeModule, setProgramModule])
+  }, [activeModule, activeProgramId, setProgramModule])
 
   const selectedQueuedReview = useMemo(
     () => queuedReviewModuleIds.map(moduleId => LEARN_MODULE_BY_ID[moduleId]).find(Boolean) ?? null,
     [queuedReviewModuleIds]
   )
-  const continueModule = useMemo(() => {
+  const continueModule = (() => {
     if (lastLearnActivity?.moduleId && LEARN_MODULE_BY_ID[lastLearnActivity.moduleId]) {
       return LEARN_MODULE_BY_ID[lastLearnActivity.moduleId]
     }
     return activeModule
-  }, [activeModule, lastLearnActivity?.moduleId])
+  })()
   const hasEstablishedLearnState = Boolean(
     placementResult
     || lastLearnActivity
@@ -811,6 +816,7 @@ export default function Learn() {
       {showLearnDashboard && (
         <section ref={dailyLessonRef} className="mb-5">
           <DailyLessonCard
+            key={`${currentDailyStep?.id ?? 'complete'}:${dailyLesson.completedStepIds.length}`}
             lesson={dailyLesson}
             currentStep={currentDailyStep}
             timeEstimate={dailyLessonMinutes}
@@ -1030,7 +1036,7 @@ export default function Learn() {
               )}
               <div className="grid gap-2 mt-4">
                 {activeModule.options?.map(option => {
-                  const selected = selectedOptionId === option.id
+                  const selected = effectiveSelectedOptionId === option.id
                   const correct = selected && option.id === activeModule.answerId
                   const incorrect = selected && option.id !== activeModule.answerId
                   return (
@@ -1038,7 +1044,8 @@ export default function Learn() {
                       key={option.id}
                       type="button"
                       onClick={() => {
-                        if (selectedOptionId) return
+                        if (effectiveSelectedOptionId) return
+                        setSelectedOptionModuleId(activeModule.id)
                         setSelectedOptionId(option.id)
                         recordLessonAttempt(
                           activeModule.id,
@@ -1065,14 +1072,14 @@ export default function Learn() {
                   )
                 })}
               </div>
-              {selectedOptionId && activeModule.explanation && (
+              {effectiveSelectedOptionId && activeModule.explanation && (
                 <div className="section-shell-quiet p-4 mt-4">
                   <p className="font-sans text-sm text-ink dark:text-dark-text">{activeModule.explanation}</p>
                 </div>
               )}
               <button
                 type="button"
-                onClick={() => finishModule(activeModule, selectedOptionId === activeModule.answerId ? 1 : 0.55)}
+                onClick={() => finishModule(activeModule, effectiveSelectedOptionId === activeModule.answerId ? 1 : 0.55)}
                 className="mt-4 w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-white font-sans text-sm font-semibold min-h-[48px]"
               >
                 Continue
@@ -1092,7 +1099,7 @@ export default function Learn() {
                   </span>
                 ))}
               </div>
-              {revealDecode && (
+              {effectiveRevealDecode && (
                 <div className="section-shell-quiet p-4 mt-4">
                   <p lang="pa-Guru" className="font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
                     {activeModule.combined}
@@ -1113,10 +1120,16 @@ export default function Learn() {
               <div className="grid grid-cols-3 gap-2 mt-4">
                 <button
                   type="button"
-                  onClick={() => setRevealDecode(show => !show)}
+                  onClick={() => {
+                    setRevealDecodeModuleId(activeModule.id)
+                    setRevealDecode(show => {
+                      if (revealDecodeModuleId !== activeModule.id) return true
+                      return !show
+                    })
+                  }}
                   className="section-shell-quiet py-3 font-sans text-xs min-h-[44px]"
                 >
-                  {revealDecode ? 'Hide' : 'Combine'}
+                  {effectiveRevealDecode ? 'Hide' : 'Combine'}
                 </button>
                 <button
                   type="button"
@@ -1143,7 +1156,7 @@ export default function Learn() {
                   {activeModule.scriptText}
                 </p>
               )}
-              {guidedSupport ? (
+              {effectiveGuidedSupport ? (
                 <>
                   {activeModule.transliteration && (
                     <p className="mt-3 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
@@ -1169,10 +1182,16 @@ export default function Learn() {
               <div className="grid grid-cols-4 gap-2 mt-4">
                 <button
                   type="button"
-                  onClick={() => setGuidedSupport(show => !show)}
+                  onClick={() => {
+                    setGuidedSupportModuleId(activeModule.id)
+                    setGuidedSupport(show => {
+                      if (guidedSupportModuleId !== activeModule.id) return !defaultGuidedSupport
+                      return !show
+                    })
+                  }}
                   className="section-shell-quiet py-3 font-sans text-xs min-h-[44px]"
                 >
-                  {guidedSupport ? 'Reduce' : 'Support'}
+                  {effectiveGuidedSupport ? 'Reduce' : 'Support'}
                 </button>
                 <button
                   type="button"
@@ -1211,7 +1230,7 @@ export default function Learn() {
               )}
               <div className="grid gap-2 mt-4">
                 {activeModule.options?.map(option => {
-                  const selected = selectedOptionId === option.id
+                  const selected = effectiveSelectedOptionId === option.id
                   const correct = selected && option.id === activeModule.answerId
                   const incorrect = selected && option.id !== activeModule.answerId
                   return (
@@ -1219,7 +1238,8 @@ export default function Learn() {
                       key={option.id}
                       type="button"
                       onClick={() => {
-                        if (selectedOptionId) return
+                        if (effectiveSelectedOptionId) return
+                        setSelectedOptionModuleId(activeModule.id)
                         setSelectedOptionId(option.id)
                         recordLessonAttempt(
                           activeModule.id,
@@ -1241,10 +1261,10 @@ export default function Learn() {
                   )
                 })}
               </div>
-              {selectedOptionId && activeModule.explanation && (
+              {effectiveSelectedOptionId && activeModule.explanation && (
                 <div className="section-shell-quiet p-4 mt-4">
                   <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                    {selectedOptionId === activeModule.answerId ? 'Aligned' : 'Recenter'}
+                    {effectiveSelectedOptionId === activeModule.answerId ? 'Aligned' : 'Recenter'}
                   </p>
                   <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">{activeModule.explanation}</p>
                   {activeModule.note && (
@@ -1272,7 +1292,7 @@ export default function Learn() {
                 )}
                 <button
                   type="button"
-                  onClick={() => finishModule(activeModule, selectedOptionId === activeModule.answerId ? 1 : 0.55)}
+                  onClick={() => finishModule(activeModule, effectiveSelectedOptionId === activeModule.answerId ? 1 : 0.55)}
                   className="rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-white font-sans text-xs font-semibold min-h-[44px]"
                 >
                   Continue

@@ -2,39 +2,48 @@ import { useEffect, useState } from 'react'
 import type { ScriptureEntry } from '../types'
 import { fetchShabad } from '../api/banidb'
 
+type ShabadRequestState = {
+  key: string
+  entries: ScriptureEntry[]
+  error: string | null
+}
+
 export function useShabad(shabadId: number | null) {
-  const [entries, setEntries] = useState<ScriptureEntry[]>([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [state, setState] = useState<ShabadRequestState | null>(null)
+  const requestKey = shabadId ? String(shabadId) : null
+  const currentState = requestKey && state?.key === requestKey ? state : null
 
   useEffect(() => {
-    if (!shabadId) {
-      setEntries([])
-      setLoading(false)
-      setError(null)
-      return
-    }
+    if (!shabadId || !requestKey || currentState) return
 
     let cancelled = false
-    setLoading(true)
-    setError(null)
-    setEntries([])
 
     fetchShabad(shabadId)
       .then(data => {
-        if (!cancelled) setEntries(data ? [data] : [])
+        if (cancelled) return
+        setState({
+          key: requestKey,
+          entries: data ? [data] : [],
+          error: null,
+        })
       })
-      .catch(e => {
-        if (!cancelled) setError(String(e))
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
+      .catch(error => {
+        if (cancelled) return
+        setState({
+          key: requestKey,
+          entries: [],
+          error: String(error),
+        })
       })
 
     return () => {
       cancelled = true
     }
-  }, [shabadId])
+  }, [currentState, requestKey, shabadId])
 
-  return { entries, loading, error }
+  return {
+    entries: currentState?.entries ?? [],
+    loading: requestKey !== null && currentState === null,
+    error: currentState?.error ?? null,
+  }
 }

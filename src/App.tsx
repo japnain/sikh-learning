@@ -1,4 +1,4 @@
-import { startTransition, useEffect, useState } from 'react'
+import { lazy, Suspense, startTransition, useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
@@ -6,17 +6,88 @@ import OnboardingSheet from './components/OnboardingSheet'
 import SplashScreen from './components/SplashScreen'
 import { useDisplayMode } from './hooks/useDisplayMode'
 import { useNitemOfflineCache } from './hooks/useNitemOfflineCache'
-import Home from './pages/Home'
-import Study from './pages/Study'
-import Library from './pages/Library'
-import Banis from './pages/Banis'
-import More from './pages/More'
-import Learn from './pages/Learn'
-import Vocab from './pages/Vocab'
 import { useLanguageStore } from './store/language'
 import { useLocaleStore } from './store/locale'
 import { useOnboardingStore } from './store/onboarding'
 import { useThemeStore } from './store/theme'
+
+const HomePage = lazy(() => import('./pages/Home'))
+const StudyPage = lazy(() => import('./pages/Study'))
+const LibraryPage = lazy(() => import('./pages/Library'))
+const BanisPage = lazy(() => import('./pages/Banis'))
+const MorePage = lazy(() => import('./pages/More'))
+const LearnPage = lazy(() => import('./pages/Learn'))
+const VocabPage = lazy(() => import('./pages/Vocab'))
+
+function SkeletonBlock({ className }: { className: string }) {
+  return (
+    <div
+      className={`rounded-full bg-white/60 dark:bg-dark-text/10 ${className}`}
+      aria-hidden="true"
+    />
+  )
+}
+
+function RouteFallback() {
+  return (
+    <div className="page-shell">
+      <div className="space-y-5 animate-pulse">
+        <div className="flex items-center justify-between px-1">
+          <SkeletonBlock className="h-3 w-20 bg-gold/15 dark:bg-gold/10" />
+          <div
+            className="h-10 w-10 rounded-full border border-sand/15 bg-white/55 dark:border-dark-text/10 dark:bg-dark-surface/75"
+            aria-hidden="true"
+          />
+        </div>
+
+        <section className="hero-surface overflow-hidden px-5 py-6">
+          <div className="space-y-3">
+            <SkeletonBlock className="h-3 w-14 bg-gold/15 dark:bg-gold/10" />
+            <SkeletonBlock className="h-10 w-[76%] rounded-[24px]" />
+            <SkeletonBlock className="h-4 w-[48%] bg-white/45 dark:bg-dark-text/8" />
+          </div>
+        </section>
+
+        <section className="section-shell-quiet p-4">
+          <div className="space-y-3">
+            <SkeletonBlock className="h-3 w-24 bg-gold/12 dark:bg-gold/8" />
+            <SkeletonBlock className="h-4 w-[88%] bg-white/48 dark:bg-dark-text/8" />
+            <SkeletonBlock className="h-4 w-[68%] bg-white/42 dark:bg-dark-text/7" />
+          </div>
+        </section>
+
+        <div className="grid grid-cols-2 gap-3">
+          <section className="section-shell px-4 py-4">
+            <div className="space-y-3">
+              <SkeletonBlock className="h-3 w-16 bg-gold/12 dark:bg-gold/8" />
+              <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
+              <SkeletonBlock className="h-3 w-20 bg-white/42 dark:bg-dark-text/7" />
+            </div>
+          </section>
+
+          <section className="section-shell px-4 py-4">
+            <div className="space-y-3">
+              <SkeletonBlock className="h-3 w-20 bg-gold/12 dark:bg-gold/8" />
+              <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
+              <SkeletonBlock className="h-3 w-16 bg-white/42 dark:bg-dark-text/7" />
+            </div>
+          </section>
+        </div>
+
+        <section className="section-shell p-4">
+          <div className="space-y-3">
+            <SkeletonBlock className="h-3 w-20 bg-gold/12 dark:bg-gold/8" />
+            <div className="space-y-2">
+              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/85 dark:bg-dark-surface/90" />
+              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/80 dark:bg-dark-surface/85" />
+              <SkeletonBlock className="h-12 w-full rounded-[22px] bg-parchment-low/75 dark:bg-dark-surface/80" />
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}
 
 function AppShell() {
   const navigate = useNavigate()
@@ -114,17 +185,19 @@ function AppShell() {
           className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
           data-display-mode={displayMode}
         >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/study" element={<Study />} />
-            <Route path="/study/:scriptureId" element={<Study />} />
-            <Route path="/library" element={<Library />} />
-            <Route path="/banis" element={<Banis />} />
-            <Route path="/more" element={<More />} />
-            <Route path="/learn" element={<Learn />} />
-            <Route path="/vocab" element={<Vocab />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/study" element={<StudyPage />} />
+              <Route path="/study/:scriptureId" element={<StudyPage />} />
+              <Route path="/library" element={<LibraryPage />} />
+              <Route path="/banis" element={<BanisPage />} />
+              <Route path="/more" element={<MorePage />} />
+              <Route path="/learn" element={<LearnPage />} />
+              <Route path="/vocab" element={<VocabPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
 
           {showOverlay && (
             <OnboardingSheet

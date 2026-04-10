@@ -2,30 +2,49 @@ import { useState, useEffect } from 'react'
 import type { ScriptureEntry, SundarGutkaLength } from '../types'
 import { fetchBani } from '../api/banidb'
 
+type BaniRequestState = {
+  key: string
+  entries: ScriptureEntry[]
+  availableLengths: SundarGutkaLength[]
+  error: string | null
+}
+
 export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | null) {
-  const [entries, setEntries] = useState<ScriptureEntry[]>([])
-  const [availableLengths, setAvailableLengths] = useState<SundarGutkaLength[]>([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [state, setState] = useState<BaniRequestState | null>(null)
+  const requestKey = baniDbId ? `${baniDbId}:${sgLength ?? 'default'}` : null
+  const currentState = requestKey && state?.key === requestKey ? state : null
 
   useEffect(() => {
-    if (!baniDbId) return
-    setEntries([])
-    setAvailableLengths([])
-    setLoading(true)
-    setError(null)
+    if (!baniDbId || !requestKey || currentState) return
+
     let cancelled = false
     fetchBani(baniDbId, sgLength)
       .then(data => {
-        if (!cancelled) {
-          setEntries(data.entries)
-          setAvailableLengths(data.availableLengths)
-        }
+        if (cancelled) return
+        setState({
+          key: requestKey,
+          entries: data.entries,
+          availableLengths: data.availableLengths,
+          error: null,
+        })
       })
-      .catch(e => { if (!cancelled) setError(String(e)) })
-      .finally(() => { if (!cancelled) setLoading(false) })
-    return () => { cancelled = true }
-  }, [baniDbId, sgLength])
+      .catch(error => {
+        if (cancelled) return
+        setState({
+          key: requestKey,
+          entries: [],
+          availableLengths: [],
+          error: String(error),
+        })
+      })
 
-  return { entries, availableLengths, loading, error }
+    return () => { cancelled = true }
+  }, [baniDbId, currentState, requestKey, sgLength])
+
+  return {
+    entries: currentState?.entries ?? [],
+    availableLengths: currentState?.availableLengths ?? [],
+    loading: requestKey !== null && currentState === null,
+    error: currentState?.error ?? null,
+  }
 }

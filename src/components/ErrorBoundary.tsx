@@ -5,7 +5,7 @@ interface State { hasError: boolean }
 
 export default class ErrorBoundary extends Component<Props, State> {
   state = { hasError: false }
-  static getDerivedStateFromError(_error: Error) { return { hasError: true } }
+  static getDerivedStateFromError() { return { hasError: true } }
   componentDidCatch(error: Error, info: ErrorInfo) { console.error('ErrorBoundary caught:', error, info.componentStack) }
   render() {
     if (this.state.hasError) {

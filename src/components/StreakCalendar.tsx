@@ -55,14 +55,21 @@ export default function StreakCalendar({
 
       {hasPractice ? (
         <div className="mt-4 overflow-x-auto">
-          <div className="grid min-w-[16rem] grid-cols-13 gap-1.5">
+          <div
+            className="grid min-w-[16rem] gap-1.5"
+            style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))` }}
+          >
             {weeks.map((week, weekIndex) => (
-              <div key={`week-${weekIndex}`} className="grid grid-rows-7 gap-1.5">
+              <div
+                key={`week-${weekIndex}`}
+                className="grid gap-1.5"
+                style={{ gridTemplateRows: 'repeat(7, minmax(0, 1fr))' }}
+              >
                 {week.map(dayStamp => (
                   <div
                     key={dayStamp}
                     title={dayStamp}
-                    className={`h-4 rounded-md border border-transparent ${
+                    className={`h-4 w-4 justify-self-center rounded-md border border-transparent ${
                       streakCalendar[dayStamp]
                         ? 'bg-saffron/80 shadow-soft'
                         : 'bg-sand/20 dark:bg-dark-text/10'
