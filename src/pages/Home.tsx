@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { fetchSearch, type SearchResult } from '../api/banidb'
 import {
   IconArrowRight,
   IconCheck,
@@ -37,6 +38,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+import { getAngTargets, getAppSearchMatches, groupSearchResults } from '../utils/appSearch'
 import { getEditorialCopy } from '../content/editorialCopy'
 
 const TODAYS_PATH_HIGHLIGHT_CLASSES = [
@@ -201,7 +203,11 @@ export default function Home() {
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const [nitnemEditing, setNitnemEditing] = useState(false)
   const [showCopied, setShowCopied] = useState(false)
+  const [homeSearchQuery, setHomeSearchQuery] = useState('')
+  const [homeSearchResults, setHomeSearchResults] = useState<SearchResult[]>([])
+  const [homeSearching, setHomeSearching] = useState(false)
   const todaysPathRef = useRef<HTMLElement | null>(null)
+  const homeSearchDebounceRef = useRef<number | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
 
@@ -221,6 +227,14 @@ export default function Home() {
       persistLesson()
     }
   }, [dailyLessonNeedsPersist, persistLesson])
+
+  useEffect(() => {
+    return () => {
+      if (homeSearchDebounceRef.current !== null) {
+        window.clearTimeout(homeSearchDebounceRef.current)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     const state = (location.state as {
@@ -488,6 +502,43 @@ export default function Home() {
     }
     return getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
   }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
+  const homeAppMatches = useMemo(
+    () => homeSearchQuery.trim().length >= 2 ? getAppSearchMatches(homeSearchQuery, 'all').slice(0, 6) : [],
+    [homeSearchQuery]
+  )
+  const homeAngTargets = useMemo(
+    () => getAngTargets(homeSearchQuery, 'all'),
+    [homeSearchQuery]
+  )
+  const groupedHomeSearchResults = useMemo(
+    () => groupSearchResults(homeSearchResults).slice(0, 4),
+    [homeSearchResults]
+  )
+
+  useEffect(() => {
+    const trimmed = homeSearchQuery.trim()
+    if (homeSearchDebounceRef.current !== null) {
+      window.clearTimeout(homeSearchDebounceRef.current)
+    }
+
+    if (trimmed.length < 2) {
+      setHomeSearchResults([])
+      setHomeSearching(false)
+      return
+    }
+
+    setHomeSearching(true)
+    homeSearchDebounceRef.current = window.setTimeout(async () => {
+      try {
+        const results = await fetchSearch(trimmed, 8, 'all')
+        setHomeSearchResults(results)
+      } catch {
+        setHomeSearchResults([])
+      } finally {
+        setHomeSearching(false)
+      }
+    }, 260)
+  }, [homeSearchQuery])
 
   const handleShareProgress = async () => {
     const text = [
@@ -619,72 +670,186 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="grid gap-3 mb-5" data-testid="home-gateways">
-        <button
-          type="button"
-          onClick={() => navigate('/learn', { state: { focusSearch: true } })}
-          className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
-          data-testid="home-open-learn"
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="eyebrow">{editorial?.home.learnSearchEyebrow ?? 'Learn'}</p>
-              <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-                {editorial?.home.learnSearchTitle ?? 'Search the Learn archive'}
-              </p>
-              <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-                {editorial?.home.learnSearchBody ?? homeCopy.searchPlaceholder}
-              </p>
-              <p className="mt-3 font-sans text-xs text-ink/56 dark:text-dark-text/58">
-                {editorial?.home.learnSearchPlaceholder ?? homeCopy.searchPlaceholder}
-              </p>
-            </div>
-            <IconSearch size={16} className="mt-1 text-ink/35 dark:text-dark-text/35" />
-          </div>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => navigate('/banis')}
-          className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
-          data-testid="home-open-read"
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="eyebrow">{editorial?.home.readGatewayEyebrow ?? 'Read'}</p>
-              <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-                {editorial?.home.readGatewayTitle ?? homeMessages.browseRead}
-              </p>
-              <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-                {editorial?.home.readGatewayBody ?? homeMessages.beginTodayBody}
-              </p>
-            </div>
-            <IconArrowRight size={16} className="mt-1 text-gold dark:text-gold-light" />
-          </div>
-        </button>
-      </div>
-
-      <button
-        type="button"
-        onClick={() => navigate('/learn')}
-        className="section-shell-quiet w-full px-4 py-4 mb-5 text-left active:scale-[0.99] transition-transform duration-150"
-        data-testid="home-open-daily-lesson"
+      <section
+        className="section-shell p-5 mb-5 animate-slide-up stagger-2"
+        aria-labelledby="home-smart-search-title"
+        data-testid="home-smart-search"
+        data-ai-surface="home-smart-search"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">{editorial?.home.lessonEyebrow ?? "Today's Lesson"}</p>
-            <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-              {dailyLesson.completedStepIds.length} of {dailyLesson.steps.length} steps done
-            </p>
-            <p className="mt-1 font-sans text-sm text-ink/60 dark:text-dark-text/60">
-              {dailyLesson.steps[0]?.title ?? editorial?.home.lessonFallback ?? 'Open Learn to start today’s lesson.'}
+            <p className="eyebrow">{editorial?.home.learnSearchEyebrow ?? 'Quick Find'}</p>
+            <h2 id="home-smart-search-title" className="mt-2 font-display text-[1.85rem] leading-none text-ink dark:text-dark-text">
+              {editorial?.home.learnSearchTitle ?? 'Search paths already inside the app.'}
+            </h2>
+            <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
+              {editorial?.home.learnSearchBody ?? 'Type a topic, bani, shabad, or ang. Direct destinations appear first, then broader Gurbani search results.'}
             </p>
           </div>
-          <span className="chip-pill">
-            {Math.max(1, Math.round(dailyLesson.totalEstimatedSeconds / 60))} min
-          </span>
+          <div className="rounded-[22px] border border-gold/20 bg-white/72 p-3 text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_16px_28px_rgba(224,154,70,0.12)] dark:border-gold/12 dark:bg-dark-surface/86 dark:text-gold-light dark:shadow-[inset_0_1px_0_rgba(255,214,153,0.08),0_18px_32px_rgba(0,0,0,0.3)]">
+            <IconSearch size={18} />
+          </div>
         </div>
-      </button>
+
+        <label
+          htmlFor="home-smart-search-input"
+          className="mt-5 flex items-center gap-3 rounded-[24px] border border-gold/18 bg-[linear-gradient(180deg,rgba(255,252,244,0.96),rgba(247,236,215,0.92))] px-4 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_18px_34px_rgba(77,53,22,0.12)] transition-shadow duration-300 focus-within:border-saffron/28 focus-within:shadow-[inset_0_1px_0_rgba(255,255,255,0.96),0_20px_36px_rgba(224,154,70,0.18)] dark:border-gold/12 dark:bg-[linear-gradient(180deg,rgba(36,27,46,0.96),rgba(27,20,38,0.94))] dark:shadow-[inset_0_1px_0_rgba(255,214,153,0.08),0_18px_34px_rgba(0,0,0,0.34)]"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/16 bg-white/85 text-saffron shadow-[0_10px_24px_rgba(224,154,70,0.18)] dark:border-gold/10 dark:bg-dark-card/92 dark:text-gold-light dark:shadow-[0_14px_24px_rgba(0,0,0,0.32)]">
+            <IconSearch size={16} />
+          </span>
+          <input
+            id="home-smart-search-input"
+            name="home-smart-search"
+            type="search"
+            value={homeSearchQuery}
+            onChange={(event) => setHomeSearchQuery(event.target.value)}
+            placeholder={editorial?.home.learnSearchPlaceholder ?? 'Try anxiety, Japji Sahib, hukam, or Ang 12'}
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
+            enterKeyHint="search"
+            aria-label="Search paths, banis, topics, or angs"
+            className="w-full bg-transparent font-sans text-sm text-ink placeholder:text-ink/40 focus:outline-none dark:text-dark-text dark:placeholder:text-dark-text/36"
+            data-testid="home-smart-search-input"
+            data-ai-search-input="home-smart-search"
+          />
+        </label>
+
+        <div className="mt-4 flex flex-wrap gap-2" data-testid="home-smart-search-quick-links">
+          <button
+            type="button"
+            onClick={() => navigate('/learn')}
+            className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            data-testid="home-open-learn"
+          >
+            Continue Learn
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/banis')}
+            className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            data-testid="home-open-read"
+          >
+            Browse Read
+          </button>
+        </div>
+
+        <div
+          className="mt-4 space-y-3"
+          aria-live="polite"
+          data-testid="home-smart-search-results"
+          data-ai-search-state={homeSearchQuery.trim().length >= 2 ? 'active' : 'idle'}
+        >
+          {homeSearchQuery.trim().length < 2 ? (
+            <p className="font-sans text-xs leading-5 text-ink/46 dark:text-dark-text/46">
+              Direct app paths appear first. Broader Gurbani results stay available underneath when the query needs it.
+            </p>
+          ) : null}
+
+          {homeAngTargets.length > 0 ? (
+            <div className="space-y-2" data-testid="home-smart-search-ang-results">
+              <div className="flex items-center justify-between gap-3 px-1">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                  Direct ang
+                </p>
+                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                  Open the page without running a word search
+                </p>
+              </div>
+              {homeAngTargets.map(target => (
+                <button
+                  key={target.source}
+                  type="button"
+                  onClick={() => navigate(target.path)}
+                  className="w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
+                  data-ai-result-kind="ang"
+                >
+                  <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                    Open {target.label} {target.kind} {homeSearchQuery.trim()}
+                  </p>
+                  <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                    Direct page lookup without leaving the home surface.
+                  </p>
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {homeAppMatches.length > 0 ? (
+            <div className="space-y-2" data-testid="home-smart-search-app-results">
+              <div className="flex items-center justify-between gap-3 px-1">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                  In the app
+                </p>
+                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                  Exact destinations first
+                </p>
+              </div>
+              {homeAppMatches.map(match => (
+                <button
+                  key={match.key}
+                  type="button"
+                  onClick={() => navigate(match.path)}
+                  className="w-full rounded-[24px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-saffron/18 dark:from-saffron/12 dark:to-saffron-light/12"
+                  data-ai-result-kind={match.kind}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{match.label}</p>
+                      <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">{match.detail}</p>
+                    </div>
+                    <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {homeSearching ? (
+            <p className="px-1 font-sans text-xs text-ink/42 dark:text-dark-text/42">
+              Searching Gurbani results...
+            </p>
+          ) : null}
+
+          {!homeSearching && groupedHomeSearchResults.length > 0 ? (
+            <div className="space-y-2" data-testid="home-smart-search-gurbani-results">
+              <div className="flex items-center justify-between gap-3 px-1">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                  Gurbani search
+                </p>
+                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                  Broader matches after direct paths
+                </p>
+              </div>
+              {groupedHomeSearchResults.map(result => (
+                <button
+                  key={result.key}
+                  type="button"
+                  onClick={() => navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)}
+                  className="w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
+                  data-ai-result-kind="gurbani-search"
+                >
+                  <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{result.gurmukhi}</p>
+                  <p className="mt-0.5 font-sans text-xs text-ink/50 dark:text-dark-text/50">{result.transliteration}</p>
+                  <p className="mt-0.5 font-sans text-xs text-ink/42 dark:text-dark-text/42">{result.translation_en}</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {result.sourceName ? <span className="chip-pill">{result.sourceName}</span> : null}
+                    {typeof result.pageNo === 'number' && result.pageNo > 0 ? <span className="chip-pill">{`Ang ${result.pageNo}`}</span> : null}
+                    {result.matchCount > 1 ? <span className="chip-pill">{`${result.matchCount} matches`}</span> : null}
+                  </div>
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          {homeSearchQuery.trim().length >= 2 && !homeSearching && homeAppMatches.length === 0 && homeAngTargets.length === 0 && groupedHomeSearchResults.length === 0 ? (
+            <p className="px-1 font-sans text-xs text-ink/42 dark:text-dark-text/42">
+              No in-app or Gurbani matches found yet.
+            </p>
+          ) : null}
+        </div>
+      </section>
 
       <section
         ref={todaysPathRef}
@@ -718,6 +883,36 @@ export default function Home() {
         <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-2">
           {completedDailyCount} / 3 {homeCopy.coreActionsDone}
         </p>
+        <div
+          className="section-shell-quiet mt-4 p-4"
+          data-testid="home-todays-path-lesson-summary"
+          data-ai-surface="home-todays-path-lesson"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">{editorial?.home.lessonEyebrow ?? "Today's Lesson"}</p>
+              <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+                {dailyLesson.completedStepIds.length} of {dailyLesson.steps.length} steps done
+              </p>
+              <p className="mt-1 font-sans text-sm text-ink/60 dark:text-dark-text/60">
+                {dailyLesson.steps[0]?.title ?? editorial?.home.lessonFallback ?? 'Open Learn to start today’s lesson.'}
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-col items-end gap-2">
+              <span className="chip-pill">
+                {Math.max(1, Math.round(dailyLesson.totalEstimatedSeconds / 60))} min
+              </span>
+              <button
+                type="button"
+                onClick={() => navigate('/learn')}
+                className="font-sans text-xs font-semibold text-gold dark:text-gold-light"
+                data-testid="home-open-daily-lesson"
+              >
+                Open Learn
+              </button>
+            </div>
+          </div>
+        </div>
         <button
           onClick={nextStep.onAction}
           className="mt-4 w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[48px]"

@@ -177,6 +177,37 @@ Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
   value: () => {},
 })
 
+class MockIntersectionObserver {
+  constructor(_callback: IntersectionObserverCallback) {}
+
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+  takeRecords() {
+    return []
+  }
+}
+
+Object.defineProperty(globalThis, 'IntersectionObserver', {
+  configurable: true,
+  writable: true,
+  value: MockIntersectionObserver,
+})
+
+class MockResizeObserver {
+  constructor(_callback: ResizeObserverCallback) {}
+
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+}
+
+Object.defineProperty(globalThis, 'ResizeObserver', {
+  configurable: true,
+  writable: true,
+  value: MockResizeObserver,
+})
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterEach(() => {
   server.resetHandlers()
