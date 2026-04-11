@@ -96,6 +96,23 @@ test("shows live inventory proof instead of fixed launch claims", () => {
   expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
 })
 
+test("learn controls can collapse without losing the current summary", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole("button", { name: /Reading Depth Balanced Current/i }))
+
+  expect(screen.queryByRole("button", { name: /Gentle/i })).not.toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Reading Depth Balanced Current/i })).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole("button", { name: /Reading Depth Balanced Current/i }))
+
+  expect(screen.getByRole("button", { name: /Gentle/i })).toBeInTheDocument()
+})
+
 test("uses stable search input attributes for the archive search", () => {
   render(
     <MemoryRouter initialEntries={["/learn"]}>

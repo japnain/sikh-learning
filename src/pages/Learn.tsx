@@ -1,4 +1,4 @@
-import { startTransition, useDeferredValue, useEffect, useRef } from "react"
+import { startTransition, useDeferredValue, useEffect, useRef, useState, type ReactNode } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   COLLECTION_BY_ID,
@@ -19,7 +19,14 @@ import type {
   ShabadDeepDive,
   TopicGuide,
 } from "../types"
-import { IconArrowRight, IconBookmark, IconBookmarkFilled, IconSearch } from "../components/icons"
+import {
+  IconArrowRight,
+  IconBookmark,
+  IconBookmarkFilled,
+  IconChevronDown,
+  IconChevronUp,
+  IconSearch,
+} from "../components/icons"
 import { toLocalDayStamp } from "../utils/learnDates"
 import {
   filterShabadDeepDives,
@@ -38,6 +45,12 @@ const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: st
   { id: "deep", label: "Deep", detail: "Favor denser study and slower reflection." },
 ]
 
+const TAB_OPTIONS: Array<{ id: LearnTab; label: string; detail: string }> = [
+  { id: "today", label: "Today", detail: "A shorter first surface for the day." },
+  { id: "topics", label: "Topics", detail: "Search the archive by question or ache." },
+  { id: "shabads", label: "Shabads", detail: "Filter full-context study by theme and depth." },
+  { id: "saved", label: "Saved", detail: "Return to what still needs your attention." },
+]
 
 function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<LearnTab, { title: string; body: string }> {
   return {
@@ -89,6 +102,57 @@ function QueryTab({
       <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em]">{label}</p>
       <p className="mt-1 font-sans text-[11px] leading-5 opacity-75">{detail}</p>
     </button>
+  )
+}
+
+function CollapsibleSection({
+  eyebrow,
+  title,
+  summary,
+  children,
+  defaultOpen = true,
+  className = "section-shell-quiet mt-5 p-4",
+  bodyClassName = "mt-4",
+  badge,
+  titleClassName = "font-sans text-base font-semibold text-ink dark:text-dark-text",
+}: {
+  eyebrow: string
+  title: string
+  summary?: string
+  children: ReactNode
+  defaultOpen?: boolean
+  className?: string
+  bodyClassName?: string
+  badge?: string
+  titleClassName?: string
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+
+  return (
+    <section className={className}>
+      <button
+        type="button"
+        onClick={() => setOpen(current => !current)}
+        aria-expanded={open}
+        className="flex w-full items-start justify-between gap-4 text-left"
+      >
+        <div className="min-w-0 flex-1">
+          <p className="eyebrow">{eyebrow}</p>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <p className={titleClassName}>{title}</p>
+            {badge ? <span className="chip-pill">{badge}</span> : null}
+          </div>
+          {summary ? (
+            <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/68">{summary}</p>
+          ) : null}
+        </div>
+        <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand/10 bg-white/60 text-ink/55 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-surface/72 dark:text-dark-text/55">
+          {open ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}
+        </span>
+      </button>
+
+      {open ? <div className={bodyClassName}>{children}</div> : null}
+    </section>
   )
 }
 
@@ -551,7 +615,7 @@ function CollectionCard({
     <button
       type="button"
       onClick={onOpen}
-      className={`w-[17.5rem] shrink-0 rounded-[30px] border px-4 py-4 text-left transition-all duration-300 ${
+      className={`w-[17.5rem] shrink-0 snap-start rounded-[30px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
           : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"
@@ -779,6 +843,9 @@ export default function Learn() {
   const activeTopicParam = searchParams.get("topic")
   const activeShabadParam = searchParams.get("shabad")
   const activeCollectionParam = searchParams.get("collection")
+  const activeTabOption = TAB_OPTIONS.find(option => option.id === activeTab) ?? TAB_OPTIONS[0]
+  const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === learnState.depthPreference) ?? DEPTH_OPTIONS[1]
+  const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
@@ -1049,40 +1116,36 @@ export default function Learn() {
           {editorial?.learn.heroSearchHint}
         </p>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          <QueryTab
-            active={activeTab === "today"}
-            label="Today"
-            detail="A shorter first surface for the day."
-            onClick={() => setTab("today")}
-          />
-          <QueryTab
-            active={activeTab === "topics"}
-            label="Topics"
-            detail="Search the archive by question or ache."
-            onClick={() => setTab("topics")}
-          />
-          <QueryTab
-            active={activeTab === "shabads"}
-            label="Shabads"
-            detail="Filter full-context study by theme and depth."
-            onClick={() => setTab("shabads")}
-          />
-          <QueryTab
-            active={activeTab === "saved"}
-            label="Saved"
-            detail="Return to what still needs your attention."
-            onClick={() => setTab("saved")}
-          />
-        </div>
+        <CollapsibleSection
+          eyebrow="Archive Surface"
+          title={activeTabOption.label}
+          summary={activeTabOption.detail}
+          badge="Current"
+          className="section-shell-quiet mt-5 p-4"
+        >
+          <div className="grid gap-3 sm:grid-cols-2">
+            {TAB_OPTIONS.map(option => (
+              <QueryTab
+                key={option.id}
+                active={activeTab === option.id}
+                label={option.label}
+                detail={option.detail}
+                onClick={() => setTab(option.id)}
+              />
+            ))}
+          </div>
+        </CollapsibleSection>
       </section>
 
-      <section className="section-shell mt-5 p-5">
-        <SectionHeader
-          eyebrow={editorial?.learn.proofEyebrow ?? "Inventory"}
-          title={editorial?.learn.proofTitle ?? "The library is growing in public."}
-          body={editorial?.learn.proofBody}
-        />
+      <CollapsibleSection
+        eyebrow={editorial?.learn.proofEyebrow ?? "Inventory"}
+        title={editorial?.learn.proofTitle ?? "The library is growing in public."}
+        summary={editorial?.learn.proofBody ?? inventorySummary}
+        badge="Live"
+        className="section-shell mt-5 p-5"
+        bodyClassName="mt-5"
+        titleClassName="font-display text-[2rem] leading-none text-ink dark:text-dark-text"
+      >
         <div className="grid gap-3 sm:grid-cols-2">
           <InventoryMetric
             label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
@@ -1108,11 +1171,15 @@ export default function Learn() {
         <p className="mt-4 font-sans text-xs leading-5 text-ink/52 dark:text-dark-text/52">
           {editorial?.learn.proofFooter}
         </p>
-      </section>
+      </CollapsibleSection>
 
-      <section className="section-shell-quiet mt-5 p-4">
-        <p className="eyebrow">Reading Depth</p>
-        <div className="mt-3 grid gap-3 md:grid-cols-3">
+      <CollapsibleSection
+        eyebrow="Reading Depth"
+        title={activeDepthOption.label}
+        summary={activeDepthOption.detail}
+        badge="Current"
+      >
+        <div className="grid gap-3 md:grid-cols-3">
           {DEPTH_OPTIONS.map(option => (
             <button
               key={option.id}
@@ -1130,7 +1197,7 @@ export default function Learn() {
             </button>
           ))}
         </div>
-      </section>
+      </CollapsibleSection>
 
       {activeTab === "today" && (
         <>
@@ -1213,7 +1280,7 @@ export default function Learn() {
 
           <section className="section-shell mt-5 p-5">
             <div className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
-              <div>
+              <div className="min-w-0">
                 <SectionHeader
                   eyebrow="Open by State"
                   title="A few stronger doors into the archive."
@@ -1231,13 +1298,13 @@ export default function Learn() {
                 </div>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <SectionHeader
                   eyebrow="Editor's Paths"
                   title="Collections worth opening next."
                   body={editorial?.learn.compactCollectionsBody ?? "Structured paths that begin with short guidance and open into deeper study."}
                 />
-                <div className="flex gap-4 overflow-x-auto pb-1">
+                <div className="min-w-0 snap-x snap-mandatory flex gap-4 overflow-x-auto pb-1 pr-1">
                   {todaySurface.featuredCollections.map(collection => (
                     <CollectionCard
                       key={collection.id}

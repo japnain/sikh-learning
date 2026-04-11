@@ -20,6 +20,8 @@
   body,
   #root {
     min-height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   html {
@@ -34,6 +36,7 @@
 @layer base {
   body {
     min-height: 100dvh;
+    overflow-x: hidden;
     background:
       radial-gradient(circle at top, rgba(232, 196, 104, 0.18), transparent 28%),
       linear-gradient(180deg, #fff8ef 0%, #fbf3e4 100%);
@@ -53,6 +56,8 @@
   .page-shell {
     @apply max-w-md mx-auto;
     min-height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
     padding-top: calc(var(--safe-area-top) + 1rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
     padding-bottom: calc(7rem + var(--safe-area-bottom));
@@ -61,6 +66,7 @@
 
   .app-shell {
     min-height: 100dvh;
+    overflow-x: hidden;
     padding-bottom: calc(5.5rem + var(--safe-area-bottom));
   }
 
