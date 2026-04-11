@@ -10,7 +10,7 @@ import {
   type AmritKeertanHeader,
   type AmritKeertanShabad,
 } from '../api/banidb'
-import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
+import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import { useRecentSearchStore } from '../store/recentSearch'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { SearchMode } from '../types'
@@ -22,22 +22,22 @@ import {
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 import { getEditorialCopy } from '../content/editorialCopy'
+import {
+  getAngTargets,
+  getAppSearchMatches,
+  getAvailableSearchMeta,
+  groupSearchResults,
+  SEARCH_SOURCE_LABELS,
+  type GroupedSearchResult,
+  type SearchSource,
+} from '../utils/appSearch'
 
 type Scripture = 'SGGS' | 'DG'
-type SearchSource = keyof typeof SEARCH_SOURCE_LABELS
 type ExactBani = Bani & { baniDbId: number }
 interface ResolvedRouteOption {
   key: string
   label: string
   path: string
-}
-
-interface CanonicalRouteMatch {
-  key: string
-  label: string
-  detail: string
-  path: string
-  score: number
 }
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
@@ -46,13 +46,6 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; catego
 }
 
 const AMRIT_KEERTAN_PAGE_SIZE = 12
-const SEARCH_SOURCE_LABELS = {
-  all: 'All',
-  G: 'SGGS',
-  D: 'DG',
-  B: 'BGV',
-  A: 'AK',
-} as const
 const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; minLength: number }> = {
   'first-letters': { type: 0, placeholder: 'Search first letters in Gurmukhi...', minLength: 2 },
   'first-letters-anywhere': { type: 1, placeholder: 'Search first letters anywhere in the line...', minLength: 2 },
@@ -71,12 +64,6 @@ const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   ang: 'Open an ang or page directly without running a word search.',
   'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
 }
-const ANG_SOURCE_META = {
-  G: { label: 'SGGS', max: 1430, kind: 'Ang' },
-  D: { label: 'DG', max: 1428, kind: 'Ang' },
-  B: { label: 'BGV', max: 628, kind: 'Page' },
-} as const
-
 const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set([
   'japji-sahib',
   'jaap-sahib',
@@ -111,9 +98,6 @@ const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
 ])
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
-const ROUTABLE_EXACT_BANIS = READ_EXACT_BANIS
-  .filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number')
-  .filter(bani => !bani.variantOf)
 const EXACT_BANIS_BY_SCRIPTURE = {
   SGGS: READ_EXACT_SGGS_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
   DG: READ_EXACT_DG_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
@@ -139,79 +123,6 @@ function normalizeBaniLabel(value: string) {
     .replace(/[^a-z0-9\u0A00-\u0A7F]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-}
-
-function normalizeRomanizedBaniLabel(value: string) {
-  return normalizeBaniLabel(value)
-    .replace(/\bsaahib\b/g, 'sahib')
-    .replace(/\bbenatee\b/g, 'benati')
-    .replace(/\braharaas\b/g, 'rehras')
-    .replace(/\bsohilaa\b/g, 'sohila')
-    .replace(/\bsukhamanee\b/g, 'sukhmani')
-    .replace(/\baasaa\b/g, 'asa')
-    .replace(/\bdhee\b/g, 'di')
-    .replace(/aa/g, 'a')
-    .replace(/ee/g, 'i')
-    .replace(/oo/g, 'u')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-const CANONICAL_BANI_ALIASES_BY_ID = new Map<string, string[]>([
-  ['japji-sahib', ['jap', 'japji']],
-  ['jaap-sahib', ['jaap', 'jap sahib']],
-  ['tav-prasad-savaiye', ['tav prasad', 'savaiye', 'swaiye']],
-  ['chaupai-sahib', ['chaupai', 'benati chaupai', 'chaupai sahib']],
-  ['anand-sahib', ['anand', 'anand sahib']],
-  ['rehras-sahib', ['rehras', 'rahras', 'rehraas']],
-  ['kirtan-sohila', ['sohila', 'kirtan sohila']],
-  ['sukhmani-sahib', ['sukhmani', 'sukhmani sahib']],
-  ['asa-di-var', ['asa', 'asa di var']],
-  ['aarti', ['arti', 'aarti']],
-  ['laavan', ['lavan', 'laavaan']],
-  ['salok-mahalla-9', ['salok 9', 'mahalla 9', 'salok mahalla 9']],
-  ['dukh-bhanjani', ['dukh bhanjani']],
-  ['akal-ustat', ['akal ustat']],
-  ['ardaas', ['ardas', 'ardaas']],
-])
-
-function getCanonicalRouteMatchScore(query: string, labels: string[]) {
-  const normalizedQuery = normalizeBaniLabel(query)
-  const romanizedQuery = normalizeRomanizedBaniLabel(query)
-
-  if (!normalizedQuery) return -1
-
-  let bestScore = -1
-
-  for (const label of labels) {
-    const normalizedLabel = normalizeBaniLabel(label)
-    const romanizedLabel = normalizeRomanizedBaniLabel(label)
-    if (!normalizedLabel) continue
-
-    if (normalizedLabel === normalizedQuery) {
-      bestScore = Math.max(bestScore, 140)
-    } else if (normalizedLabel.startsWith(`${normalizedQuery} `) || normalizedLabel.startsWith(normalizedQuery)) {
-      bestScore = Math.max(bestScore, 118)
-    } else if (normalizedLabel.includes(` ${normalizedQuery} `) || normalizedLabel.endsWith(` ${normalizedQuery}`)) {
-      bestScore = Math.max(bestScore, 102)
-    } else if (normalizedLabel.includes(normalizedQuery)) {
-      bestScore = Math.max(bestScore, 90)
-    }
-
-    if (!romanizedQuery || !romanizedLabel) continue
-
-    if (romanizedLabel === romanizedQuery) {
-      bestScore = Math.max(bestScore, 126)
-    } else if (romanizedLabel.startsWith(`${romanizedQuery} `) || romanizedLabel.startsWith(romanizedQuery)) {
-      bestScore = Math.max(bestScore, 112)
-    } else if (romanizedLabel.includes(` ${romanizedQuery} `) || romanizedLabel.endsWith(` ${romanizedQuery}`)) {
-      bestScore = Math.max(bestScore, 96)
-    } else if (romanizedLabel.includes(romanizedQuery)) {
-      bestScore = Math.max(bestScore, 82)
-    }
-  }
-
-  return bestScore
 }
 
 const SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL = new Map<string, string>([
@@ -255,13 +166,6 @@ const SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL = new Map<string, string>([
   ['laavaan', 'laavan'],
   ['laavan', 'laavan'],
 ].map(([label, baniId]) => [normalizeBaniLabel(label), baniId]))
-
-const CANONICAL_SEARCH_LABELS_BY_ID = Array.from(SUNDAR_GUTKA_CANONICAL_ROUTE_BY_LABEL.entries()).reduce<Map<string, string[]>>((groups, [label, baniId]) => {
-  const current = groups.get(baniId) ?? []
-  current.push(label)
-  groups.set(baniId, current)
-  return groups
-}, new Map())
 
 function getCanonicalSundarGutkaBani(item: BaniIndexItem): Bani | null {
   const candidates = [item.gurmukhi, item.transliteration]
@@ -331,21 +235,6 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
       path: buildCanonicalBaniStudyPath(option),
     } satisfies ResolvedRouteOption
   })
-}
-
-interface GroupedSearchResult {
-  key: string
-  shabadId: number
-  verseId: number
-  pageNo: number | null
-  source: string
-  sourceName: string
-  gurmukhi: string
-  transliteration: string
-  translation_en: string
-  raag: string
-  writer: string
-  matchCount: number
 }
 
 function Highlight({ text, query }: { text: string; query: string }) {
@@ -623,116 +512,28 @@ export default function Banis() {
     navigate(`/study?shabadId=${shabadId}`)
   }
 
-  const groupedSearchResults = useMemo(() => {
-    const filtered = searchResults.filter(result => (
-      (raagFilter === 'all' || result.raag === raagFilter)
-      && (writerFilter === 'all' || result.writer === writerFilter)
-    ))
-    const grouped = new Map<string, GroupedSearchResult>()
-    for (const result of filtered) {
-      const key = `${result.source}-${result.pageNo ?? 'unknown'}-${result.shabadId}`
-      const existing = grouped.get(key)
-      if (existing) {
-        existing.matchCount += 1
-        continue
-      }
-      grouped.set(key, {
-        key,
-        shabadId: result.shabadId,
-        verseId: result.verseId,
-        pageNo: result.pageNo,
-        source: result.source,
-        sourceName: result.sourceName,
-        gurmukhi: result.gurmukhi,
-        transliteration: result.transliteration,
-        translation_en: result.translation_en,
-        raag: result.raag,
-        writer: result.writer,
-        matchCount: 1,
-      })
-    }
+  const groupedSearchResults = useMemo(
+    () => groupSearchResults(searchResults, { raag: raagFilter, writer: writerFilter }),
+    [raagFilter, searchResults, writerFilter]
+  )
 
-    return Array.from(grouped.values())
-  }, [raagFilter, searchResults, writerFilter])
-
-  const availableRaags = useMemo(
-    () => Array.from(new Set(searchResults.map(result => result.raag).filter(Boolean))).slice(0, 6),
+  const { raags: availableRaags, writers: availableWriters } = useMemo(
+    () => getAvailableSearchMeta(searchResults),
     [searchResults]
   )
-  const availableWriters = useMemo(
-    () => Array.from(new Set(searchResults.map(result => result.writer).filter(Boolean))).slice(0, 6),
-    [searchResults]
-  )
-  const angLookup = useMemo(() => {
-    if (searchMode !== 'ang') return null
-    const value = Number(searchQuery.trim())
-    return Number.isFinite(value) && value > 0 ? value : null
-  }, [searchMode, searchQuery])
-  const angTargets = useMemo(() => {
-    if (!angLookup) return []
-    const sources = searchSource === 'all'
-      ? (Object.keys(ANG_SOURCE_META) as Array<keyof typeof ANG_SOURCE_META>)
-      : searchSource in ANG_SOURCE_META
-        ? [searchSource as keyof typeof ANG_SOURCE_META]
-        : []
 
-    return sources
-      .filter(source => angLookup <= ANG_SOURCE_META[source].max)
-      .map(source => ({
-        source,
-        label: ANG_SOURCE_META[source].label,
-        kind: ANG_SOURCE_META[source].kind,
-      }))
-  }, [angLookup, searchSource])
-  const canonicalRouteMatches = useMemo(() => {
+  const angTargets = useMemo(
+    () => searchMode === 'ang' ? getAngTargets(searchQuery, searchSource) : [],
+    [searchMode, searchQuery, searchSource]
+  )
+
+  const appSearchMatches = useMemo(() => {
     const trimmedQuery = searchQuery.trim()
     if (searchMode === 'ang' || trimmedQuery.length < SEARCH_MODE_META[searchMode].minLength) {
       return []
     }
 
-    const allowedSources = searchSource === 'all'
-      ? new Set(['G', 'D'])
-      : new Set(['G', 'D'].includes(searchSource) ? [searchSource] : [])
-
-    const matches = ROUTABLE_EXACT_BANIS.flatMap((bani): CanonicalRouteMatch[] => {
-      if (!allowedSources.has(bani.source)) return []
-
-      const routeOptions = getExactRouteOptionsForBani(bani)
-      const resolvedRoutes = routeOptions.length > 0
-        ? routeOptions
-        : [{
-            key: bani.id,
-            label: bani.name,
-            path: buildCanonicalBaniStudyPath(bani),
-          }] satisfies ResolvedRouteOption[]
-
-      return resolvedRoutes
-        .map(route => {
-          const searchLabels = Array.from(new Set([
-            route.label,
-            bani.name,
-            bani.id.replace(/-/g, ' '),
-            ...(CANONICAL_SEARCH_LABELS_BY_ID.get(bani.id) ?? []),
-            ...(CANONICAL_BANI_ALIASES_BY_ID.get(bani.id) ?? []),
-          ]))
-
-          const score = getCanonicalRouteMatchScore(trimmedQuery, searchLabels)
-          if (score < 0) return null
-
-          return {
-            key: `${bani.id}-${route.key}`,
-            label: route.label,
-            detail: `${SCRIPTURE_META[bani.scripture as Scripture].label} · ${bani.category}`,
-            path: route.path,
-            score,
-          } satisfies CanonicalRouteMatch
-        })
-        .filter((match): match is CanonicalRouteMatch => Boolean(match))
-    })
-
-    return matches
-      .sort((left, right) => right.score - left.score || left.label.length - right.label.length || left.label.localeCompare(right.label))
-      .slice(0, 6)
+    return getAppSearchMatches(trimmedQuery, searchSource)
   }, [searchMode, searchQuery, searchSource])
 
   return (
@@ -755,6 +556,7 @@ export default function Banis() {
         className="mb-6 section-shell-quiet p-4"
         aria-labelledby="banis-quick-find-title"
         data-testid="banis-quick-find"
+        data-ai-surface="read-smart-search"
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -777,7 +579,7 @@ export default function Banis() {
           </button>
         </div>
 
-        <div className="relative mt-4">
+        <div className="relative mt-4" data-ai-search-shell="read-smart-search">
           <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
           <input
             id="banis-search"
@@ -847,19 +649,19 @@ export default function Banis() {
             </div>
           </div>
         )}
-        {searchMode === 'ang' && angLookup && (
-          <div className="mt-3 space-y-2">
+        {searchMode === 'ang' && searchQuery.trim() && (
+          <div className="mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
             {angTargets.length > 0 ? angTargets.map(target => (
               <button
                 key={target.source}
                 onClick={() => {
-                  addRecent(String(angLookup), 'ang')
-                  navigate(`/study?source=${target.source}&ang=${angLookup}`)
+                  addRecent(searchQuery.trim(), 'ang')
+                  navigate(target.path)
                 }}
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
                 <p className="font-sans text-sm text-ink dark:text-dark-text">
-                  Open {target.label} {target.kind} {angLookup}
+                  Open {target.label} {target.kind} {searchQuery.trim()}
                 </p>
                 <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
                   Direct page lookup without running a word search.
@@ -871,30 +673,35 @@ export default function Banis() {
           </div>
         )}
         {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
-        {canonicalRouteMatches.length > 0 && searchMode !== 'ang' && (
-          <div className="mt-3 space-y-2">
+        {appSearchMatches.length > 0 && searchMode !== 'ang' && (
+          <div className="mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
             <div className="flex items-center justify-between gap-3 px-1">
               <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
-                Direct Bani Routes
+                In the app
               </p>
               <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
-                Canonical matches first
+                Exact destinations first
               </p>
             </div>
-            {canonicalRouteMatches.map(match => (
+            {appSearchMatches.map(match => (
               <button
                 key={match.key}
                 onClick={() => navigate(match.path)}
                 className="w-full text-left rounded-[22px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:from-saffron/12 dark:to-saffron-light/12"
               >
-                <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{match.label}</p>
-                <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">{match.detail}</p>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{match.label}</p>
+                    <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">{match.detail}</p>
+                  </div>
+                  <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
+                </div>
               </button>
             ))}
           </div>
         )}
         {searchResults.length > 0 && searchMode !== 'ang' && (
-          <div className="mt-2 space-y-1">
+          <div className="mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
             {(availableRaags.length > 0 || availableWriters.length > 0) && (
               <div className="space-y-2 pb-2">
                 {availableRaags.length > 0 && (
@@ -961,7 +768,7 @@ export default function Banis() {
             ))}
           </div>
         )}
-        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && searchResults.length === 0 && canonicalRouteMatches.length === 0 && searchMode !== 'ang' && (
+        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
           <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
         )}
         {!searchQuery && recent.length > 0 && (

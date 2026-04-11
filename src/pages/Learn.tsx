@@ -1,4 +1,4 @@
-import { startTransition, useDeferredValue, useEffect, useRef, useState, type ReactNode } from "react"
+import { startTransition, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   COLLECTION_BY_ID,
@@ -10,6 +10,7 @@ import {
 } from "../data/learnContent"
 import { useCurrentTime } from "../hooks/useCurrentTime"
 import { useLearningStore } from "../store/learning"
+import { useLearnRailStore } from "../store/learnRail"
 import { useLocaleStore } from "../store/locale"
 import type {
   Collection,
@@ -37,19 +38,18 @@ import {
   resolveLineReference,
   resolveTopicGuide,
 } from "../utils/learnExperience"
+import {
+  getLearnDetailRailByKey,
+  getLearnDetailRailKey,
+  getLearnRouteScrollTargetId,
+  LEARN_SUBSECTION_RAILS,
+} from "../utils/learnRails"
 import { getEditorialCopy } from "../content/editorialCopy"
 
 const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: string }> = [
   { id: "gentle", label: "Gentle", detail: "More accessible and immediate guidance." },
   { id: "balanced", label: "Balanced", detail: "Mix approachable reading with deeper study." },
   { id: "deep", label: "Deep", detail: "Favor denser study and slower reflection." },
-]
-
-const TAB_OPTIONS: Array<{ id: LearnTab; label: string; detail: string }> = [
-  { id: "today", label: "Today", detail: "A shorter first surface for the day." },
-  { id: "topics", label: "Topics", detail: "Search the archive by question or ache." },
-  { id: "shabads", label: "Shabads", detail: "Filter full-context study by theme and depth." },
-  { id: "saved", label: "Saved", detail: "Return to what still needs your attention." },
 ]
 
 function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<LearnTab, { title: string; body: string }> {
@@ -75,34 +75,6 @@ function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<Lea
 
 function isTab(value: string | null): value is LearnTab {
   return value === "today" || value === "topics" || value === "shabads" || value === "saved"
-}
-
-function QueryTab({
-  active,
-  label,
-  detail,
-  onClick,
-}: {
-  active: boolean
-  label: string
-  detail: string
-  onClick: () => void
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={`min-h-[52px] rounded-[24px] border px-4 py-3 text-left transition-all duration-300 ${
-        active
-          ? "border-saffron/35 bg-white text-ink shadow-soft dark:border-gold/30 dark:bg-dark-card dark:text-dark-text"
-          : "border-sand/15 bg-parchment-low/85 text-ink/72 dark:border-dark-text/10 dark:!bg-dark-surface dark:text-dark-text/72"
-      }`}
-    >
-      <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em]">{label}</p>
-      <p className="mt-1 font-sans text-[11px] leading-5 opacity-75">{detail}</p>
-    </button>
-  )
 }
 
 function CollapsibleSection({
@@ -369,7 +341,7 @@ function DailyGuidanceDetail({
   onOpenShabad: () => void
 }) {
   return (
-    <section className="section-shell p-5">
+    <section className="section-shell p-5" data-testid="learn-detail-guidance" data-ai-surface="learn-guidance-detail">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="eyebrow">Today's Guidance</p>
@@ -379,16 +351,34 @@ function DailyGuidanceDetail({
         <SaveButton saved={saved} onClick={onToggleSave} label={guidanceTitle} />
       </div>
 
-      <div className="mt-5">
+      <div
+        className="mt-5"
+        id="learn-detail-guidance-excerpt"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="guidance-excerpt"
+      >
         <ExcerptBlock excerpt={excerpt} shabad={shabad} />
       </div>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-guidance-takeaway"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="guidance-takeaway"
+        >
           <p className="eyebrow">Takeaway</p>
           <p className="mt-2 font-sans text-base leading-7 text-ink dark:text-dark-text">{takeaway}</p>
         </div>
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-guidance-life"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="guidance-life"
+        >
           <p className="eyebrow">Life Application</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{lifeApplication}</p>
         </div>
@@ -443,7 +433,7 @@ function TopicGuideDetail({
   onOpenShabad: (shabadId: string) => void
 }) {
   return (
-    <section className="section-shell p-5">
+    <section className="section-shell p-5" data-testid="learn-detail-topic" data-ai-surface="learn-topic-detail">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="eyebrow">What Guru Says About…</p>
@@ -453,12 +443,24 @@ function TopicGuideDetail({
         <SaveButton saved={saved} onClick={onToggleSave} label={topic.shortTitle} />
       </div>
 
-      <div className="mt-5 section-shell-quiet p-4">
+      <div
+        className="mt-5 section-shell-quiet p-4"
+        id="learn-detail-topic-insight"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="topic-insight"
+      >
         <p className="eyebrow">Central Insight</p>
         <p className="mt-2 font-sans text-base leading-7 text-ink dark:text-dark-text">{topic.centralInsight}</p>
       </div>
 
-      <div className="mt-5 space-y-4">
+      <div
+        className="mt-5 space-y-4"
+        id="learn-detail-topic-excerpts"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="topic-excerpts"
+      >
         {topic.excerpts.map(excerpt => {
           const resolved = resolveLineReference(excerpt.source)
           return (
@@ -491,11 +493,23 @@ function TopicGuideDetail({
       </div>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-topic-reflection"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="topic-reflection"
+        >
           <p className="eyebrow">Reflection</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{topic.practicalReflection}</p>
         </div>
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-topic-action"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="topic-action"
+        >
           <p className="eyebrow">Action</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{topic.actionPrompt}</p>
         </div>
@@ -560,7 +574,7 @@ function ShabadDetail({
   onToggleSave: () => void
 }) {
   return (
-    <section className="section-shell p-5">
+    <section className="section-shell p-5" data-testid="learn-detail-shabad" data-ai-surface="learn-shabad-detail">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="eyebrow">Featured Shabad</p>
@@ -570,7 +584,7 @@ function ShabadDetail({
         <SaveButton saved={saved} onClick={onToggleSave} label={shabad.title} />
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
+      <div className="mt-4 grid gap-4 md:grid-cols-2" id="learn-detail-shabad-summary" data-learn-anchor data-learn-detail-anchor="true" data-ai-anchor="shabad-summary">
         <div className="section-shell-quiet p-4">
           <CitationLine shabad={shabad} />
           <p className="mt-3 font-sans text-sm leading-6 text-ink dark:text-dark-text">{shabad.summary}</p>
@@ -582,7 +596,13 @@ function ShabadDetail({
         </div>
       </div>
 
-      <div className="mt-5 section-shell-quiet p-4">
+      <div
+        className="mt-5 section-shell-quiet p-4"
+        id="learn-detail-shabad-structure"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="shabad-structure"
+      >
         <p className="eyebrow">Structure</p>
         <div className="mt-3 space-y-3">
           {shabad.structure.map(item => (
@@ -591,7 +611,13 @@ function ShabadDetail({
         </div>
       </div>
 
-      <div className="mt-5 section-shell-quiet p-4">
+      <div
+        className="mt-5 section-shell-quiet p-4"
+        id="learn-detail-shabad-lines"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="shabad-lines"
+      >
         <CitationLine shabad={shabad} />
         <div className="mt-3 space-y-3">
           {shabad.lines.map(line => (
@@ -654,8 +680,14 @@ function CollectionDetail({
   const shabadItems = collection.items.filter(item => item.kind === "shabad-deep-dive")
 
   return (
-    <section className="section-shell p-5">
-      <div className="grid gap-5 lg:grid-cols-[1.15fr,0.85fr]">
+    <section className="section-shell p-5" data-testid="learn-detail-collection" data-ai-surface="learn-collection-detail">
+      <div
+        className="grid gap-5 lg:grid-cols-[1.15fr,0.85fr]"
+        id="learn-detail-collection-overview"
+        data-learn-anchor
+        data-learn-detail-anchor="true"
+        data-ai-anchor="collection-overview"
+      >
         <div>
           <SectionHeader eyebrow="Collection" title={collection.title} body={collection.description} />
           <ExcerptBlock excerpt={heroExcerpt} shabad={heroExcerpt.deepDive} />
@@ -696,7 +728,13 @@ function CollectionDetail({
       </div>
 
       <div className="mt-5 grid gap-4 xl:grid-cols-3">
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-collection-guidance"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="collection-guidance"
+        >
           <p className="eyebrow">Guidance Openings</p>
           <div className="mt-3 space-y-3">
             {guidanceItems.map(item => {
@@ -723,7 +761,13 @@ function CollectionDetail({
           </div>
         </div>
 
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-collection-topics"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="collection-topics"
+        >
           <p className="eyebrow">Topic Guides</p>
           <div className="mt-3 space-y-3">
             {topicItems.map(item => {
@@ -750,7 +794,13 @@ function CollectionDetail({
           </div>
         </div>
 
-        <div className="section-shell-quiet p-4">
+        <div
+          className="section-shell-quiet p-4"
+          id="learn-detail-collection-shabads"
+          data-learn-anchor
+          data-learn-detail-anchor="true"
+          data-ai-anchor="collection-shabads"
+        >
           <p className="eyebrow">Full Shabad Study</p>
           <div className="mt-3 space-y-3">
             {shabadItems.map(item => {
@@ -786,6 +836,7 @@ export default function Learn() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const topicSearchInputRef = useRef<HTMLInputElement | null>(null)
+  const lastRouteScrollKeyRef = useRef<string | null>(null)
   const locale = useLocaleStore(state => state.locale)
   const editorial = getEditorialCopy(locale) ?? getEditorialCopy("en")
   const now = useCurrentTime()
@@ -795,6 +846,9 @@ export default function Learn() {
   const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const setActiveLearnCollection = useLearningStore(state => state.setActiveLearnCollection)
   const setLearnDepthPreference = useLearningStore(state => state.setLearnDepthPreference)
+  const setActiveSectionId = useLearnRailStore(state => state.setActiveSectionId)
+  const setActiveDetailSectionId = useLearnRailStore(state => state.setActiveDetailSectionId)
+  const setVisibleDetailRailKey = useLearnRailStore(state => state.setVisibleDetailRailKey)
 
   const activeTab = isTab(searchParams.get("tab")) ? (searchParams.get("tab") as LearnTab) : "today"
   const pageCopy = getPageCopy(editorial)[activeTab]
@@ -850,9 +904,28 @@ export default function Learn() {
   const activeTopicParam = searchParams.get("topic")
   const activeShabadParam = searchParams.get("shabad")
   const activeCollectionParam = searchParams.get("collection")
-  const activeTabOption = TAB_OPTIONS.find(option => option.id === activeTab) ?? TAB_OPTIONS[0]
   const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === learnState.depthPreference) ?? DEPTH_OPTIONS[1]
   const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
+  const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
+  const activeDetailRailKey =
+    activeTab === "shabads" && selectedShabad
+      ? "shabads-shabad"
+      : getLearnDetailRailKey(activeTab, activeDetail)
+  const activeDetailRail = getLearnDetailRailByKey(activeDetailRailKey)
+  const routeScrollTargetId = getLearnRouteScrollTargetId({
+    tab: activeTab,
+    detail: activeDetail,
+    hasTopicParam: Boolean(activeTopicParam),
+    hasShabadParam: Boolean(activeShabadParam),
+    hasCollectionParam: Boolean(activeCollectionParam),
+  })
+  const routeScrollKey = [
+    activeTab,
+    activeDetail ?? "",
+    activeTopicParam ?? "",
+    activeShabadParam ?? "",
+    activeCollectionParam ?? "",
+  ].join("|")
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
@@ -865,24 +938,6 @@ export default function Learn() {
     })
     startTransition(() => {
       setSearchParams(next)
-    })
-  }
-
-  function setTab(tab: LearnTab) {
-    setParams({
-      tab,
-      query: null,
-      topic: null,
-      shabad: null,
-      collection: null,
-      detail: null,
-      theme: null,
-      guru: null,
-      raag: null,
-      difficulty: null,
-      length: null,
-      savedOnly: null,
-      completedOnly: null,
     })
   }
 
@@ -1062,9 +1117,77 @@ export default function Learn() {
     }
   }, [recordLearnItemView, selectedCollection])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setVisibleDetailRailKey(activeDetailRailKey)
+  }, [activeDetailRailKey, setVisibleDetailRailKey])
+
+  useLayoutEffect(() => {
+    if (lastRouteScrollKeyRef.current === routeScrollKey) return
+    lastRouteScrollKeyRef.current = routeScrollKey
+
+    if (routeScrollTargetId) {
+      document.getElementById(routeScrollTargetId)?.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+      })
+      return
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: "auto" })
-  }, [activeCollectionParam, activeDetail, activeShabadParam, activeTab, activeTopicParam])
+  }, [routeScrollKey, routeScrollTargetId])
+
+  useEffect(() => {
+    setActiveSectionId(activeSubsectionRail[0]?.targetId ?? null)
+    setActiveDetailSectionId(activeDetailRail[0]?.targetId ?? null)
+  }, [activeDetailRail, activeSubsectionRail, setActiveDetailSectionId, setActiveSectionId])
+
+  useEffect(() => {
+    const sectionElements = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-learn-section-anchor="true"]')
+    )
+    const detailElements = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-learn-detail-anchor="true"]')
+    )
+
+    const updateSection = (entries: IntersectionObserverEntry[]) => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((left, right) => left.boundingClientRect.top - right.boundingClientRect.top)
+      const target = visible[0]?.target as HTMLElement | undefined
+      if (target?.id) {
+        setActiveSectionId(target.id)
+      }
+    }
+
+    const updateDetail = (entries: IntersectionObserverEntry[]) => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((left, right) => left.boundingClientRect.top - right.boundingClientRect.top)
+      const target = visible[0]?.target as HTMLElement | undefined
+      if (target?.id) {
+        setActiveDetailSectionId(target.id)
+      }
+    }
+
+    const sectionObserver = new IntersectionObserver(updateSection, {
+      root: null,
+      rootMargin: '-15% 0px -55% 0px',
+      threshold: 0.15,
+    })
+    const detailObserver = new IntersectionObserver(updateDetail, {
+      root: null,
+      rootMargin: '-18% 0px -52% 0px',
+      threshold: 0.15,
+    })
+
+    sectionElements.forEach(element => sectionObserver.observe(element))
+    detailElements.forEach(element => detailObserver.observe(element))
+
+    return () => {
+      sectionObserver.disconnect()
+      detailObserver.disconnect()
+    }
+  }, [activeDetail, activeTab, setActiveDetailSectionId, setActiveSectionId])
 
   useEffect(() => {
     const state = (location.state as { focusSearch?: boolean } | null) ?? null
@@ -1123,28 +1246,6 @@ export default function Learn() {
         <p className="mt-3 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/62">
           {editorial?.learn.heroSearchHint}
         </p>
-
-      <CollapsibleSection
-        eyebrow="Archive Surface"
-        title={activeTabOption.label}
-        summary={activeTabOption.detail}
-        badge="Current"
-        className="section-shell-quiet mt-5 p-4"
-        sectionId="learn-archive-surface"
-        testId="learn-archive-surface"
-      >
-          <div className="grid gap-3 sm:grid-cols-2">
-            {TAB_OPTIONS.map(option => (
-              <QueryTab
-                key={option.id}
-                active={activeTab === option.id}
-                label={option.label}
-                detail={option.detail}
-                onClick={() => setTab(option.id)}
-              />
-            ))}
-          </div>
-        </CollapsibleSection>
       </section>
 
       <CollapsibleSection
@@ -1217,7 +1318,7 @@ export default function Learn() {
         <>
           <section className="section-shell mt-5 p-5">
             <div className="grid gap-6 xl:grid-cols-[1.05fr,0.95fr]">
-              <div>
+              <div id="learn-today-continue" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Continue Learning"
                   title={continueLearning.title}
@@ -1259,7 +1360,7 @@ export default function Learn() {
                 )}
               </div>
 
-              <div>
+              <div id="learn-today-surface" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Today in the archive"
                   title="Open one doorway, then go deep."
@@ -1294,7 +1395,7 @@ export default function Learn() {
 
           <section className="section-shell mt-5 p-5">
             <div className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
-              <div className="min-w-0">
+              <div className="min-w-0" id="learn-today-doors" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Open by State"
                   title="A few stronger doors into the archive."
@@ -1312,7 +1413,7 @@ export default function Learn() {
                 </div>
               </div>
 
-              <div className="min-w-0">
+              <div className="min-w-0" id="learn-today-paths" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Editor's Paths"
                   title="Collections worth opening next."
@@ -1333,7 +1434,7 @@ export default function Learn() {
           </section>
 
           {activeDetail === "guidance" ? (
-            <div className="mt-5">
+            <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
               <DailyGuidanceDetail
                 guidanceTitle={todaySurface.dailyGuidance.item.title}
                 summary={todaySurface.dailyGuidance.item.summary}
@@ -1349,7 +1450,7 @@ export default function Learn() {
           ) : null}
 
           {activeDetail === "topic" ? (
-            <div className="mt-5">
+            <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
               <TopicGuideDetail
                 topic={selectedTopic}
                 saved={learnState.savedItemIds.includes(selectedTopic.id)}
@@ -1360,7 +1461,7 @@ export default function Learn() {
           ) : null}
 
           {activeDetail === "shabad" && selectedShabad ? (
-            <div className="mt-5">
+            <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
               <ShabadDetail
                 shabad={selectedShabad}
                 saved={learnState.savedItemIds.includes(selectedShabad.id)}
@@ -1370,7 +1471,7 @@ export default function Learn() {
           ) : null}
 
           {activeDetail === "collection" && selectedCollection ? (
-            <div className="mt-5">
+            <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
               <CollectionDetail collection={selectedCollection} onOpenItem={openCollectionItem} />
             </div>
           ) : null}
@@ -1379,7 +1480,7 @@ export default function Learn() {
 
       {activeTab === "topics" && (
         <>
-          <section className="section-shell mt-5 p-5">
+          <section className="section-shell mt-5 p-5" id="learn-topics-search" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Topics"
               title={editorial?.learn.topicsIntroTitle ?? "Find the approved guide"}
@@ -1432,7 +1533,7 @@ export default function Learn() {
             </div>
           </section>
 
-          <div className="mt-5">
+          <div className="mt-5" id="learn-topics-current-guide" data-learn-anchor data-learn-section-anchor="true">
             <TopicGuideDetail
               topic={selectedTopic}
               saved={learnState.savedItemIds.includes(selectedTopic.id)}
@@ -1441,7 +1542,7 @@ export default function Learn() {
             />
           </div>
 
-          <section className="mt-5 grid gap-4">
+          <section className="mt-5 grid gap-4" id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
             {TOPIC_GUIDES.map(topic => (
               <TopicCard
                 key={topic.id}
@@ -1456,7 +1557,7 @@ export default function Learn() {
 
       {activeTab === "shabads" && (
         <>
-          <section className="section-shell mt-5 p-5">
+          <section className="section-shell mt-5 p-5" id="learn-shabads-filters" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Shabads"
               title={editorial?.learn.shabadsIntroTitle ?? "Study the full context"}
@@ -1545,7 +1646,7 @@ export default function Learn() {
           </section>
 
           {selectedShabad ? (
-            <div className="mt-5">
+            <div className="mt-5" id="learn-shabads-current" data-learn-anchor data-learn-section-anchor="true">
               <ShabadDetail
                 shabad={selectedShabad}
                 saved={learnState.savedItemIds.includes(selectedShabad.id)}
@@ -1554,7 +1655,7 @@ export default function Learn() {
             </div>
           ) : null}
 
-          <section className="mt-5 grid gap-4">
+          <section className="mt-5 grid gap-4" id="learn-shabads-all" data-learn-anchor data-learn-section-anchor="true">
             {filteredShabads.map(shabad => (
               <ShabadCard
                 key={shabad.id}
@@ -1580,7 +1681,7 @@ export default function Learn() {
 
       {activeTab === "saved" && (
         <>
-          <section className="section-shell mt-5 p-5">
+          <section className="section-shell mt-5 p-5" id="learn-saved-overview" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Saved"
               title={editorial?.learn.savedIntroTitle ?? "Keep verses, topics, and shabads together"}
@@ -1588,7 +1689,7 @@ export default function Learn() {
             />
           </section>
 
-          <section className="mt-5 grid gap-4">
+          <section className="mt-5 grid gap-4" id="learn-saved-items" data-learn-anchor data-learn-section-anchor="true">
             {savedItems.length === 0 ? (
               <div className="section-shell-quiet rounded-[28px] p-5">
                 <p className="eyebrow">Nothing saved yet</p>

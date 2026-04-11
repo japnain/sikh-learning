@@ -286,7 +286,7 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
 
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
 
-  expect(await screen.findByText(/Direct Bani Routes/i)).toBeInTheDocument()
+  expect(await screen.findByText(/^In the app$/i)).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Japji Sahib/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /Jaap Sahib/i })).toBeInTheDocument()
 
@@ -295,4 +295,14 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib')
   })
+})
+
+test('surfaces learn topic destinations ahead of broader read search results', async () => {
+  renderBanis()
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'stress' } })
+
+  expect(await screen.findByText(/^In the app$/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /When the mind is anxious/i })).toBeInTheDocument()
+  expect(screen.getByText(/^Learn$/i)).toBeInTheDocument()
 })

@@ -115,10 +115,11 @@ test('shows the new hero shell immediately', () => {
   renderHome()
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
   expect(screen.getByText(/A deliberate daily space for Gurbani, meaning, and return\./i)).toBeInTheDocument()
-  expect(screen.getByText(/Search the living archive\./i)).toBeInTheDocument()
+  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
 })
 
-test('routes the home search gateway into learn', async () => {
+test('routes the compact learn quick link into learn', async () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <Routes>
@@ -128,11 +129,41 @@ test('routes the home search gateway into learn', async () => {
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByRole('button', { name: /learn search the living archive/i }))
+  fireEvent.click(screen.getByTestId('home-open-learn'))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/learn')
   })
+})
+
+test('shows in-app matches first on home smart search and routes into learn detail', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/learn" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
+
+  expect(await screen.findByText(/In the app/i)).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: /When the mind is anxious/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/learn?tab=topics&topic=topic-anxiety&detail=topic')
+  })
+})
+
+test('shows direct ang targets before broader search results on home', async () => {
+  renderHome()
+
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: '12' } })
+
+  expect(await screen.findByText(/Direct ang/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Open SGGS Ang 12/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Open DG Ang 12/i })).toBeInTheDocument()
 })
 
 test('shows today\'s pick after load', async () => {
@@ -147,6 +178,7 @@ test('shows today\'s pick after load', async () => {
 test('shows the new daily actions', () => {
   renderHome()
   expect(screen.getByTestId('home-todays-path')).toBeInTheDocument()
+  expect(screen.getByTestId('home-todays-path-lesson-summary')).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
   expect(screen.getByText(/1 of 2 steps done/i)).toBeInTheDocument()
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
