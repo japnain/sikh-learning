@@ -1128,10 +1128,10 @@ export const SHABAD_DEEP_DIVES: ShabadDeepDive[] = [
 export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   {
     id: "guidance-hukam",
-    title: "Begin inside Hukam",
-    summary: "The day is not waiting for your control before it becomes livable.",
+    title: "Begin within Hukam",
+    summary: "The day does not need to come under your control before it can be met truthfully.",
     takeaway: "You can meet what arrives without pretending you authored it.",
-    lifeApplication: "Before reacting, name one thing already here that you need to stop fighting.",
+    lifeApplication: "Before reacting, name one thing already here that you need to stop resisting.",
     source: ref(
       "shabad-hukam-inside-everything",
       [11, 15],
@@ -1162,9 +1162,9 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-human-opportunity",
-    title: "This life is a chance, not just a schedule",
+    title: "This life is more than a schedule",
     summary: "Human birth is framed as an opening for meeting, sangat, and Naam.",
-    takeaway: "Do not let busyness steal the point of being here.",
+    takeaway: "Do not let busyness bury the point of being here.",
     lifeApplication: "Choose one practice today that treats life as an opportunity for meeting rather than maintenance.",
     source: ref(
       "shabad-human-birth-is-chance",
@@ -1179,7 +1179,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-sangat-and-naam",
-    title: "Do not try to carry the whole path alone",
+    title: "You were not meant to carry the path alone",
     summary: "This shabad moves immediately from opportunity to sangat and Naam.",
     takeaway: "Direction gets sturdier in holy company.",
     lifeApplication: "Reach for a place, person, or practice that reorients you toward sangat today.",
@@ -1196,10 +1196,10 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-selfless-service",
-    title: "Let seva stop advertising you",
-    summary: "Service changes meaning when the self is no longer trying to be seen through it.",
-    takeaway: "Quiet service can carry more truth than visible service.",
-    lifeApplication: "Choose one act of help today that does not need acknowledgement to feel worthwhile.",
+    title: "Let seva loosen the need to be seen",
+    summary: "Service changes when it is no longer used to secure visibility, approval, or identity.",
+    takeaway: "The deepest service is often the least self-announcing.",
+    lifeApplication: "Choose one act of help today that does not need witness, credit, or acknowledgement to feel worthwhile.",
     source: ref(
       "shabad-selfless-service",
       [12947, 12948],
@@ -1230,7 +1230,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-ego-cure",
-    title: "Name ego as illness",
+    title: "Call ego what it is: illness",
     summary: "The point is not self-hatred. The point is honest diagnosis.",
     takeaway: "What is named clearly can stop ruling secretly.",
     lifeApplication: "When you feel offended, ask what wound to the ego you are defending.",
@@ -1264,7 +1264,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-the-creator-acts",
-    title: "You are not the sole actor in this moment",
+    title: "You are not the sole author of this moment",
     summary: "The shabad turns the mind away from self-importance and back toward the Creator's action.",
     takeaway: "Rest is possible when you stop carrying authorship that was never yours.",
     lifeApplication: "Where are you exhausting yourself by behaving as if everything depends on you alone?",
@@ -1332,7 +1332,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-remember-and-find-peace",
-    title: "Repeat remembrance until it starts to hold you",
+    title: "Keep returning until remembrance holds you",
     summary: "The shabad is repetitive on purpose. Peace is cultivated by returning again.",
     takeaway: "Remembrance is a rhythm, not a one-time correction.",
     lifeApplication: "Choose one short simran phrase and return to it instead of feeding the same anxious loop.",
@@ -1349,7 +1349,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
   {
     id: "guidance-work-and-give",
-    title: "Honest work is spiritual texture",
+    title: "Honest work belongs to the spiritual life",
     summary: "Guru cuts through posturing and gives a plain path: labor honestly and share.",
     takeaway: "Truth is lived in how you earn and how you open your hand.",
     lifeApplication: "Let one concrete act of generosity become part of your workday, not separate from it.",
@@ -1495,10 +1495,10 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-ego",
-    title: "When ego keeps narrating everything",
+    title: "When ego insists on the center",
     shortTitle: "Ego",
     category: "most-needed",
-    issueStatement: "Everything comes back to me: my image, my hurt, my control, my place.",
+    issueStatement: "Everything loops back to the self: my image, my hurt, my control, my place.",
     centralInsight: "Gurbani does not treat ego as personality. It treats ego as disease, bondage, and distortion.",
     practicalReflection: "The goal is not self-erasure. It is truthful self-placement inside Hukam and Guru's Shabad.",
     actionPrompt: "Notice one sentence in your head today that begins and ends with the self. Lay it beside the shabad honestly.",
@@ -1539,7 +1539,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-loneliness",
-    title: "When you feel alone",
+    title: "When loneliness settles in",
     shortTitle: "Loneliness",
     category: "most-needed",
     issueStatement: "The heart feels unheld, unseen, or left to carry too much alone.",
@@ -1583,7 +1583,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-discipline",
-    title: "When you need discipline, not more mood",
+    title: "When discipline matters more than mood",
     shortTitle: "Discipline",
     category: "practice",
     issueStatement: "You know what matters, but drift, distraction, and emotional weather keep deciding the day.",
@@ -1627,10 +1627,10 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-gratitude",
-    title: "When gratitude feels thin or forced",
+    title: "When gratitude feels thin",
     shortTitle: "Gratitude",
     category: "practice",
-    issueStatement: "You may know you should be grateful, but the heart feels dull, entitled, or too occupied with what is missing.",
+    issueStatement: "You may know gratitude matters, but the heart feels dulled by entitlement, fatigue, or what is still missing.",
     centralInsight: "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation.",
     practicalReflection: "Gratitude becomes truer when it stops being a performance of positivity and becomes recognition of mercy.",
     actionPrompt: "Name one mercy beneath the surface event: guidance, restraint, sangat, forgiveness, or breath itself.",
@@ -1759,7 +1759,7 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-attachment",
-    title: "When attachment keeps hooking the mind",
+    title: "When attachment keeps binding the mind",
     shortTitle: "Attachment",
     category: "inner-work",
     issueStatement: "The heart feels dragged around by approval, comfort, possession, or a version of life you do not want to lose.",
@@ -1803,12 +1803,12 @@ export const TOPIC_GUIDES: TopicGuide[] = [
   },
   {
     id: "topic-seva",
-    title: "When you want to live in seva",
+    title: "When you want your life to become seva",
     shortTitle: "Seva",
     category: "practice",
-    issueStatement: "You want your life to be useful, but service can easily become busy identity or burnout.",
+    issueStatement: "You want your life to be useful, but service can easily harden into spiritual performance or burnout.",
     centralInsight: "Guru joins seva with humility, obedience, hiddenness, and remembrance. Seva is not just effort. It is a spiritual way of being.",
-    practicalReflection: "Useful work without inner alignment can harden the self. Nishkaam seva opens it.",
+    practicalReflection: "Useful work without inner alignment can harden the self; nishkaam seva softens and reorders it.",
     actionPrompt: "Choose one act of service today that is faithful, sustainable, and not secretly hungry for praise.",
     searchTerms: ["seva", "service", "serve", "help others", "volunteer"],
     excerpts: [

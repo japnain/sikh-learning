@@ -38,6 +38,16 @@ test("changes the featured shabad on a three-day cadence", () => {
   expect(first.featuredShabad.item.id).not.toBe(second.featuredShabad.item.id)
 })
 
+test("keeps the same topic spotlight after saving an unrelated item on the same day", () => {
+  const first = getTodayLearnSurface("2026-04-11", baseLearnState)
+  const second = getTodayLearnSurface("2026-04-11", {
+    ...baseLearnState,
+    savedItemIds: ["guidance-seva-without-advertising"],
+  })
+
+  expect(first.topicSpotlight.item.id).toBe(second.topicSpotlight.item.id)
+})
+
 test("filters shabads by theme and saved state", () => {
   const filtered = filterShabadDeepDives(
     { theme: "seva", savedOnly: true },
