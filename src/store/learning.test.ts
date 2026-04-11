@@ -33,6 +33,13 @@ beforeEach(() => {
     masteredWordFamilyIds: [],
     themePathProgress: {},
     completedThemePathIds: [],
+    learnState: {
+      viewedItems: [],
+      savedItemIds: [],
+      recentTopicIds: [],
+      activeCollectionId: null,
+      depthPreference: 'balanced',
+    },
   })
 })
 
@@ -98,7 +105,7 @@ test('tracks daily lesson completion against the lesson date', () => {
   expect(useLearningStore.getState().dailyLesson?.completedStepIds).toEqual(['module:one'])
 })
 
-test('migrates older persisted state into version 3 defaults', async () => {
+test('migrates older persisted state into version 4 defaults', async () => {
   localStorage.setItem('sikh-learning-state', JSON.stringify({
     state: {
       masteredSymbols: ['ੳ'],
@@ -122,7 +129,7 @@ test('migrates older persisted state into version 3 defaults', async () => {
       placementResult: null,
       lastLearnActivity: null,
     },
-    version: 2,
+    version: 3,
   }))
 
   await useLearningStore.persist.rehydrate()
@@ -135,6 +142,7 @@ test('migrates older persisted state into version 3 defaults', async () => {
   expect(state.dailyLesson).toBe(null)
   expect(state.grammarNotesSeen).toEqual([])
   expect(state.themePathProgress).toEqual({})
+  expect(state.learnState.savedItemIds).toEqual([])
 })
 
 test('tracks guided journey progress', () => {
@@ -164,4 +172,17 @@ test('completes modules and queues related review work', () => {
   expect(state.programProgress['start-reading'].completedModuleIds).toContain('start-core-letters')
   expect(state.programProgress['start-reading'].currentModuleId).toBe(null)
   expect(state.queuedReviewModuleIds).toContain('start-matras')
+})
+
+test('tracks saved learn items, recent topics, and depth preference', () => {
+  useLearningStore.getState().toggleSavedLearnItem('topic-anxiety')
+  useLearningStore.getState().recordLearnItemView('topic-anxiety', 'topic-guide')
+  useLearningStore.getState().setActiveLearnCollection('collection-fear-to-trust')
+  useLearningStore.getState().setLearnDepthPreference('deep')
+
+  const state = useLearningStore.getState()
+  expect(state.learnState.savedItemIds).toContain('topic-anxiety')
+  expect(state.learnState.recentTopicIds[0]).toBe('topic-anxiety')
+  expect(state.learnState.activeCollectionId).toBe('collection-fear-to-trust')
+  expect(state.learnState.depthPreference).toBe('deep')
 })
