@@ -369,11 +369,9 @@ export function getLearnInventorySummary() {
 }
 
 export function getTodayLearnSurface(dayStamp: string, learnState: UserLearningState): TodayLearnSurface {
-  const savedThemes = getSavedThemes(learnState.savedItemIds)
-
   const dailyGuidance = getRotationSelection(DAILY_GUIDANCE_ENTRIES, "daily_guidance", dayStamp, [])
   const featuredShabad = getRotationSelection(SHABAD_DEEP_DIVES, "featured_shabad", dayStamp, [])
-  const topicSpotlight = getRotationSelection(TOPIC_GUIDES, "topic_spotlight", dayStamp, savedThemes)
+  const topicSpotlight = getRotationSelection(TOPIC_GUIDES, "topic_spotlight", dayStamp, [])
 
   const continueLearning = getContinueLearningCard(learnState)
   const themeRail = NEED_STATE_TOPIC_IDS.map(id => TOPIC_GUIDE_BY_ID[id]).filter(Boolean)

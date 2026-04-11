@@ -37,6 +37,25 @@ const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: st
   { id: "deep", label: "Deep", detail: "Favor denser study and slower reflection." },
 ]
 
+const PAGE_COPY: Record<LearnTab, { title: string; body: string }> = {
+  today: {
+    title: "Today",
+    body: "Daily Gurbani guidance, full-shabad study, and trusted topic pages drawn from approved source material.",
+  },
+  topics: {
+    title: "Topics",
+    body: "Search modern struggles and open canonical Gurbani guidance without open-ended interpretation.",
+  },
+  shabads: {
+    title: "Shabads",
+    body: "Study full shabad context with filters for theme, Guru, raag, and depth.",
+  },
+  saved: {
+    title: "Saved",
+    body: "Return to the verses, topics, and shabads you marked for deeper study.",
+  },
+}
+
 function isTab(value: string | null): value is LearnTab {
   return value === "today" || value === "topics" || value === "shabads" || value === "saved"
 }
@@ -56,6 +75,7 @@ function QueryTab({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={`min-h-[52px] rounded-[24px] border px-4 py-3 text-left transition-all duration-300 ${
         active
           ? "border-saffron/35 bg-white text-ink shadow-soft dark:border-gold/30 dark:bg-dark-card dark:text-dark-text"
@@ -451,6 +471,7 @@ export default function Learn() {
   const setLearnDepthPreference = useLearningStore(state => state.setLearnDepthPreference)
 
   const activeTab = isTab(searchParams.get("tab")) ? (searchParams.get("tab") as LearnTab) : "today"
+  const pageCopy = PAGE_COPY[activeTab]
   const deferredQuery = useDeferredValue(searchParams.get("query") ?? "")
   const todaySurface = getTodayLearnSurface(dayStamp, learnState)
   const queryResolution = resolveTopicGuide(deferredQuery)
@@ -459,7 +480,7 @@ export default function Learn() {
     TOPIC_GUIDE_BY_ID[searchParams.get("topic") ?? ""]
     ?? (deferredQuery ? queryResolution.topic : null)
     ?? todaySurface.topicSpotlight.item
-  const selectedShabad =
+  const requestedShabad =
     SHABAD_DEEP_DIVE_BY_ID[searchParams.get("shabad") ?? ""]
     ?? todaySurface.featuredShabad.item
   const selectedCollection =
@@ -488,6 +509,11 @@ export default function Learn() {
     learnState
   )
 
+  const selectedShabad =
+    activeTab === "shabads"
+      ? filteredShabads.find(item => item.id === requestedShabad.id) ?? filteredShabads[0] ?? null
+      : requestedShabad
+
   const savedItems = getLearnSavedItems(learnState.savedItemIds)
   const viewedIds = new Set(learnState.viewedItems.map(item => item.itemId))
   const continueLearning = todaySurface.continueLearning
@@ -495,6 +521,9 @@ export default function Learn() {
   const raags = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.raag)))
   const shabadThemes = Array.from(new Set(SHABAD_DEEP_DIVES.flatMap(item => item.themes)))
   const activeDetail = searchParams.get("detail") ?? "topic"
+  const activeTopicParam = searchParams.get("topic")
+  const activeShabadParam = searchParams.get("shabad")
+  const activeCollectionParam = searchParams.get("collection")
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
@@ -510,20 +539,61 @@ export default function Learn() {
     })
   }
 
-  function openTopic(topicId: string, tab: LearnTab = activeTab) {
+  function setTab(tab: LearnTab) {
     setParams({
       tab,
-      topic: topicId,
-      detail: "topic",
-      query: tab === "topics" ? searchParams.get("query") : null,
+      query: null,
+      topic: null,
+      shabad: null,
+      collection: null,
+      detail: null,
+      theme: null,
+      guru: null,
+      raag: null,
+      difficulty: null,
+      length: null,
+      savedOnly: null,
+      completedOnly: null,
     })
   }
 
-  function openShabad(shabadId: string, tab: LearnTab = activeTab) {
+  function openTopic(topicId: string, tab: LearnTab = "topics") {
+    setParams({
+      tab,
+      topic: topicId,
+      query: null,
+      shabad: null,
+      collection: null,
+      detail: tab === "saved" ? "topic" : null,
+      theme: null,
+      guru: null,
+      raag: null,
+      difficulty: null,
+      length: null,
+      savedOnly: null,
+      completedOnly: null,
+    })
+  }
+
+  function openShabad(
+    shabadId: string,
+    tab: LearnTab = "shabads",
+    options?: { preserveFilters?: boolean }
+  ) {
     setParams({
       tab,
       shabad: shabadId,
+      topic: null,
+      collection: null,
       detail: "shabad",
+      query: null,
+      theme: options?.preserveFilters ? shabadThemeFilter || null : null,
+      guru: options?.preserveFilters ? shabadGuruFilter || null : null,
+      raag: options?.preserveFilters ? shabadRaagFilter || null : null,
+      difficulty: options?.preserveFilters ? shabadDifficultyFilter || null : null,
+      length: options?.preserveFilters ? shabadLengthFilter || null : null,
+      savedOnly: options?.preserveFilters ? (shabadSavedOnly ? "1" : null) : null,
+      completedOnly: options?.preserveFilters ? (shabadCompletedOnly ? "1" : null) : null,
     })
   }
 
@@ -531,8 +601,18 @@ export default function Learn() {
     setActiveLearnCollection(collectionId)
     setParams({
       tab: "today",
+      query: null,
+      topic: null,
+      shabad: null,
       collection: collectionId,
       detail: "collection",
+      theme: null,
+      guru: null,
+      raag: null,
+      difficulty: null,
+      length: null,
+      savedOnly: null,
+      completedOnly: null,
     })
   }
 
@@ -549,7 +629,7 @@ export default function Learn() {
 
     if (kind === "daily-guidance") {
       const guidance = DAILY_GUIDANCE_ENTRIES.find(item => item.id === itemId)
-      openShabad(guidance?.relatedShabadIds[0] ?? selectedShabad.id)
+      openShabad(guidance?.relatedShabadIds[0] ?? todaySurface.featuredShabad.item.id)
     }
   }
 
@@ -575,13 +655,17 @@ export default function Learn() {
     }
   }, [recordLearnItemView, selectedCollection])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+  }, [activeCollectionParam, activeDetail, activeShabadParam, activeTab, activeTopicParam])
+
   return (
     <div className="page-shell animate-fade-in">
       <div className="mb-6">
         <p className="eyebrow">Learn</p>
-        <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">Today</h1>
+        <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">{pageCopy.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/68">
-          Daily Gurbani guidance, full shabad study, and trusted topic pages built from approved source material.
+          {pageCopy.body}
         </p>
       </div>
 
@@ -590,26 +674,26 @@ export default function Learn() {
           <QueryTab
             active={activeTab === "today"}
             label="Today"
-            detail="Fresh daily guidance, featured shabad, and topic spotlight."
-            onClick={() => setParams({ tab: "today", query: null })}
+            detail="Fresh daily guidance, a featured shabad, and a topic spotlight."
+            onClick={() => setTab("today")}
           />
           <QueryTab
             active={activeTab === "topics"}
             label="Topics"
-            detail="Search approved guides for anger, anxiety, ego, loneliness, and more."
-            onClick={() => setParams({ tab: "topics" })}
+            detail="Search trusted guides for anger, anxiety, ego, loneliness, and more."
+            onClick={() => setTab("topics")}
           />
           <QueryTab
             active={activeTab === "shabads"}
             label="Shabads"
-            detail="Filter the study library by theme, Guru, raag, and depth."
-            onClick={() => setParams({ tab: "shabads" })}
+            detail="Filter the study library by theme, Guru, raag, and reading depth."
+            onClick={() => setTab("shabads")}
           />
           <QueryTab
             active={activeTab === "saved"}
             label="Saved"
-            detail="Keep verses, topic guides, and shabads together with clear labels."
-            onClick={() => setParams({ tab: "saved" })}
+            detail="Keep saved verses, topic guides, and shabads together in one place."
+            onClick={() => setTab("saved")}
           />
         </div>
       </section>
@@ -622,6 +706,7 @@ export default function Learn() {
               key={option.id}
               type="button"
               onClick={() => setLearnDepthPreference(option.id)}
+              aria-pressed={learnState.depthPreference === option.id}
               className={`rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
                 learnState.depthPreference === option.id
                   ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
@@ -676,7 +761,7 @@ export default function Learn() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => openShabad(todaySurface.dailyGuidance.item.relatedShabadIds[0] ?? todaySurface.featuredShabad.item.id)}
+                  onClick={() => openShabad(todaySurface.dailyGuidance.item.relatedShabadIds[0] ?? todaySurface.featuredShabad.item.id, "shabads")}
                   className="mt-4 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light"
                 >
                   Read full meaning <IconArrowRight size={16} />
@@ -712,7 +797,7 @@ export default function Learn() {
 
               <button
                 type="button"
-                onClick={() => openShabad(todaySurface.featuredShabad.item.id)}
+                onClick={() => openShabad(todaySurface.featuredShabad.item.id, "shabads")}
                 className="mt-5 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light"
               >
                 Study this shabad <IconArrowRight size={16} />
@@ -730,9 +815,9 @@ export default function Learn() {
                   <button
                     key={topic.id}
                     type="button"
-                    onClick={() => openTopic(topic.id)}
+                    onClick={() => openTopic(topic.id, "topics")}
                     className={`shrink-0 rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
-                      selectedTopic.id === topic.id
+                      todaySurface.topicSpotlight.item.id === topic.id
                         ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
                         : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
                     }`}
@@ -761,10 +846,10 @@ export default function Learn() {
               </div>
               <button
                 type="button"
-                onClick={() => openTopic(todaySurface.topicSpotlight.item.id)}
+                onClick={() => openTopic(todaySurface.topicSpotlight.item.id, "topics")}
                 className="mt-4 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light"
               >
-                Open approved guide <IconArrowRight size={16} />
+                Read topic guide <IconArrowRight size={16} />
               </button>
             </div>
           </section>
@@ -788,7 +873,7 @@ export default function Learn() {
             ) : (
               <button
                 type="button"
-                onClick={() => openTopic(continueLearning.topic.id)}
+                onClick={() => openTopic(continueLearning.topic.id, "topics")}
                 className="section-shell-quiet w-full rounded-[26px] px-4 py-4 text-left"
               >
                 <p className="eyebrow">Topic Guide</p>
@@ -803,7 +888,11 @@ export default function Learn() {
           </section>
 
           <section className="section-shell mt-5 p-5">
-            <SectionHeader eyebrow="Explore by Theme" title="Collections and journeys" body="Structured paths that move from short guidance into deeper study." />
+            <SectionHeader
+              eyebrow="Explore by Theme"
+              title="Guided study paths"
+              body="Structured paths that begin with short guidance and open into deeper study."
+            />
             <div className="flex gap-4 overflow-x-auto pb-1">
               {todaySurface.exploreCollections.map(collection => (
                 <CollectionCard
@@ -816,46 +905,11 @@ export default function Learn() {
             </div>
           </section>
 
-          {activeDetail === "topic" && selectedTopic ? (
-            <div className="mt-5">
-              <TopicGuideDetail
-                topic={selectedTopic}
-                saved={learnState.savedItemIds.includes(selectedTopic.id)}
-                onToggleSave={() => toggleSavedLearnItem(selectedTopic.id)}
-                onOpenShabad={openShabad}
-              />
-            </div>
-          ) : null}
-
-          {activeDetail === "shabad" && selectedShabad ? (
-            <div className="mt-5">
-              <ShabadDetail
-                shabad={selectedShabad}
-                saved={learnState.savedItemIds.includes(selectedShabad.id)}
-                onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
-              />
-            </div>
-          ) : null}
-
           {activeDetail === "collection" && selectedCollection ? (
             <div className="mt-5">
               <CollectionDetail collection={selectedCollection} onOpenItem={openCollectionItem} />
             </div>
           ) : null}
-
-          <section className="section-shell-quiet mt-5 p-4">
-            <p className="eyebrow">Curation Notes</p>
-            <div className="mt-3 space-y-2 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">
-              <p>Daily guidance: {todaySurface.dailyGuidance.reason}</p>
-              <p>Featured shabad: {todaySurface.featuredShabad.reason}</p>
-              <p>Topic spotlight: {todaySurface.topicSpotlight.reason}</p>
-              {todaySurface.inventory.readyForLaunch ? null : (
-                <p>
-                  Current seed inventory is below the launch threshold for a paid Learn product, so the rotation engine is allowed to widen to adjacent approved items instead of leaving empty slots.
-                </p>
-              )}
-            </div>
-          </section>
         </>
       )}
 
@@ -864,8 +918,8 @@ export default function Learn() {
           <section className="section-shell mt-5 p-5">
             <SectionHeader
               eyebrow="Topics"
-              title="Find the approved guide first"
-              body="Search modern need-states and land on canonical Gurbani-based topic pages, not speculative synthesis."
+              title="Find the approved guide"
+              body="Search modern struggles and land on canonical Gurbani-based topic pages, not improvised interpretation."
             />
             <label className="section-shell-quiet flex items-center gap-3 rounded-[24px] px-4 py-3">
               <IconSearch size={18} className="text-ink/45 dark:text-dark-text/45" />
@@ -909,7 +963,7 @@ export default function Learn() {
               topic={selectedTopic}
               saved={learnState.savedItemIds.includes(selectedTopic.id)}
               onToggleSave={() => toggleSavedLearnItem(selectedTopic.id)}
-              onOpenShabad={shabadId => openShabad(shabadId, "topics")}
+              onOpenShabad={shabadId => openShabad(shabadId, "shabads")}
             />
           </div>
 
@@ -1012,13 +1066,15 @@ export default function Learn() {
             </div>
           </section>
 
-          <div className="mt-5">
-            <ShabadDetail
-              shabad={selectedShabad}
-              saved={learnState.savedItemIds.includes(selectedShabad.id)}
-              onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
-            />
-          </div>
+          {selectedShabad ? (
+            <div className="mt-5">
+              <ShabadDetail
+                shabad={selectedShabad}
+                saved={learnState.savedItemIds.includes(selectedShabad.id)}
+                onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
+              />
+            </div>
+          ) : null}
 
           <section className="mt-5 grid gap-4">
             {filteredShabads.map(shabad => (
@@ -1028,7 +1084,7 @@ export default function Learn() {
                 active={selectedShabad.id === shabad.id}
                 completed={viewedIds.has(shabad.id)}
                 saved={learnState.savedItemIds.includes(shabad.id)}
-                onOpen={() => openShabad(shabad.id, "shabads")}
+                onOpen={() => openShabad(shabad.id, "shabads", { preserveFilters: true })}
                 onToggleSave={() => toggleSavedLearnItem(shabad.id)}
               />
             ))}
@@ -1078,11 +1134,11 @@ export default function Learn() {
                     type="button"
                     onClick={() => {
                       if (item.kind === "topic-guide") {
-                        openTopic(item.id, "saved")
+                        openTopic(item.id, "topics")
                         return
                       }
                       if (item.kind === "shabad-deep-dive") {
-                        openShabad(item.id, "saved")
+                        openShabad(item.id, "shabads")
                         return
                       }
                       if (item.kind === "collection") {
@@ -1090,37 +1146,16 @@ export default function Learn() {
                         return
                       }
                       const guidance = DAILY_GUIDANCE_ENTRIES.find(entry => entry.id === item.id)
-                      openShabad(guidance?.relatedShabadIds[0] ?? selectedShabad.id, "saved")
+                      openShabad(guidance?.relatedShabadIds[0] ?? todaySurface.featuredShabad.item.id, "shabads")
                     }}
                     className="inline-flex min-h-[40px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light"
                   >
-                    Open {getLearnItemLabel(item.kind).toLowerCase()} <IconArrowRight size={16} />
+                    {item.kind === "daily-guidance" ? "Open source shabad" : `Open ${getLearnItemLabel(item.kind).toLowerCase()}`} <IconArrowRight size={16} />
                   </button>
                 </div>
               </div>
             ))}
           </section>
-
-          {activeDetail === "topic" && selectedTopic ? (
-            <div className="mt-5">
-              <TopicGuideDetail
-                topic={selectedTopic}
-                saved={learnState.savedItemIds.includes(selectedTopic.id)}
-                onToggleSave={() => toggleSavedLearnItem(selectedTopic.id)}
-                onOpenShabad={shabadId => openShabad(shabadId, "saved")}
-              />
-            </div>
-          ) : null}
-
-          {activeDetail === "shabad" && selectedShabad ? (
-            <div className="mt-5">
-              <ShabadDetail
-                shabad={selectedShabad}
-                saved={learnState.savedItemIds.includes(selectedShabad.id)}
-                onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
-              />
-            </div>
-          ) : null}
         </>
       )}
     </div>
