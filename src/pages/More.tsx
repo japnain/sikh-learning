@@ -24,14 +24,22 @@ function SettingsBlock({
   title,
   description,
   children,
+  headingId,
+  testId,
 }: {
   title: string
   description?: string
   children: ReactNode
+  headingId?: string
+  testId?: string
 }) {
   return (
-    <div className="section-shell bg-white/55 dark:bg-dark-card/60 px-4 py-4">
-      <p className="eyebrow">{title}</p>
+    <div
+      className="section-shell bg-white/55 dark:bg-dark-card/60 px-4 py-4"
+      aria-labelledby={headingId}
+      data-testid={testId}
+    >
+      <p id={headingId} className="eyebrow">{title}</p>
       {description ? (
         <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-1 mb-3">
           {description}
@@ -89,7 +97,7 @@ export default function More() {
   const uiLocaleLabels = getUiLocaleLabels(locale)
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more">
       <div className="mb-5">
         <p className="eyebrow">{moreCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">
@@ -100,9 +108,13 @@ export default function More() {
         </p>
       </div>
 
-      <section className="hero-surface p-5 mb-5">
+      <section
+        className="hero-surface p-5 mb-5"
+        aria-labelledby="more-promise-title"
+        data-testid="more-promise"
+      >
         <p className="eyebrow">{moreCopy.productPromise}</p>
-        <p className="font-display text-3xl leading-none text-ink dark:text-dark-text mt-2">
+        <p id="more-promise-title" className="font-display text-3xl leading-none text-ink dark:text-dark-text mt-2">
           {editorial?.brand.promise ?? copy.home.promise}
         </p>
         <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-3 max-w-[34ch]">
@@ -114,12 +126,14 @@ export default function More() {
         <SoundscapeControls context="study" variant="full" />
       </div>
 
-      <section className="section-shell-quiet p-4 mb-5">
-        <p className="eyebrow mb-4">{moreCopy.readerDefaults}</p>
+      <section className="section-shell-quiet p-4 mb-5" aria-labelledby="more-reader-defaults-title" data-testid="more-reader-defaults">
+        <p id="more-reader-defaults-title" className="eyebrow mb-4">{moreCopy.readerDefaults}</p>
         <div className="space-y-3">
         <SettingsBlock
           title={moreCopy.scriptLayoutTitle}
           description={moreCopy.scriptLayoutDescription}
+          headingId="more-script-layout-title"
+          testId="more-script-layout"
         >
           <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.readingScript}</p>
           <div className="grid grid-cols-2 gap-2">
@@ -129,6 +143,7 @@ export default function More() {
                 <button
                   key={mode}
                   onClick={() => setScriptMode(mode)}
+                  aria-pressed={selected}
                   className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[44px] transition-all duration-300 ${
                     selected
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -175,6 +190,7 @@ export default function More() {
                 <button
                   key={key}
                   onClick={() => setLineSpacing(key as typeof lineSpacing)}
+                  aria-pressed={selected}
                   className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                     selected
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -191,6 +207,7 @@ export default function More() {
                 <button
                   key={key}
                   onClick={() => setTextAlign(key as typeof textAlign)}
+                  aria-pressed={selected}
                   className={`rounded-2xl px-2 py-3 font-sans text-xs font-medium min-h-[48px] ${
                     selected
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -207,11 +224,14 @@ export default function More() {
         <SettingsBlock
           title={moreCopy.readingSupportTitle}
           description={moreCopy.readingSupportDescription}
+          headingId="more-reading-support-title"
+          testId="more-reading-support"
         >
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setShowTransliteration(!showTransliteration)}
             aria-label="Toggle transliteration"
+            aria-pressed={showTransliteration}
             className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               showTransliteration
                 ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -222,6 +242,7 @@ export default function More() {
           </button>
           <button
             onClick={() => setLarivaar(!larivaar)}
+            aria-pressed={larivaar}
             className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               larivaar
                 ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -232,6 +253,7 @@ export default function More() {
           </button>
           <button
             onClick={() => setShowVishraam(!showVishraam)}
+            aria-pressed={showVishraam}
             className={`rounded-2xl px-3 py-3 font-sans text-xs font-medium min-h-[48px] ${
               showVishraam
                 ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -268,6 +290,8 @@ export default function More() {
         <SettingsBlock
           title={moreCopy.translationSourceTitle}
           description={moreCopy.translationSourceDescription}
+          headingId="more-translation-source-title"
+          testId="more-translation-source"
         >
           <p className="font-sans text-sm text-ink dark:text-dark-text mb-2">{moreCopy.englishTranslation}</p>
           <div className="grid gap-2">
@@ -277,6 +301,7 @@ export default function More() {
                 <button
                   key={key}
                   onClick={() => setEnglishSource(key as typeof englishSource)}
+                  aria-pressed={selected}
                   className={`w-full flex items-center justify-between rounded-2xl px-3 py-3 border min-h-[48px] ${
                     selected
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -295,12 +320,14 @@ export default function More() {
         </div>
       </section>
 
-      <section className="section-shell p-4 mb-5">
-        <p className="eyebrow mb-4">{moreCopy.profileLanguage}</p>
+      <section className="section-shell p-4 mb-5" aria-labelledby="more-profile-language-title" data-testid="more-profile-language">
+        <p id="more-profile-language-title" className="eyebrow mb-4">{moreCopy.profileLanguage}</p>
         <div className="space-y-3">
         <SettingsBlock
           title={moreCopy.appLanguageTitle}
           description={moreCopy.appLanguageDescription}
+          headingId="more-app-language-title"
+          testId="more-app-language"
         >
         <div className="grid grid-cols-3 gap-2">
           {(['en', 'pa', 'hi'] as const).map(option => {
@@ -309,6 +336,7 @@ export default function More() {
               <button
                 key={option}
                 onClick={() => setLocale(option)}
+                aria-pressed={selected}
                 className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                   selected
                     ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -325,6 +353,8 @@ export default function More() {
         <SettingsBlock
           title={moreCopy.learningProfileTitle}
           description={moreCopy.learningProfileDescription}
+          headingId="more-learning-profile-title"
+          testId="more-learning-profile"
         >
         <div className="grid grid-cols-3 gap-2 mb-3">
           {(['beginner', 'familiar', 'daily-reader'] as const).map(level => {
@@ -333,6 +363,7 @@ export default function More() {
               <button
                 key={level}
                 onClick={() => setLearningLevel(level)}
+                aria-pressed={selected}
                 className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                   selected
                     ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -351,6 +382,7 @@ export default function More() {
               <button
                 key={option}
                 onClick={() => setAudience(option)}
+                aria-pressed={selected}
                 className={`rounded-2xl px-2 py-3 border min-h-[48px] font-sans text-xs font-medium ${
                   selected
                     ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -369,6 +401,7 @@ export default function More() {
               <button
                 key={goal}
                 onClick={() => setLearningGoal(goal)}
+                aria-pressed={selected}
                 className={`rounded-2xl px-3 py-3 border min-h-[48px] text-left font-sans text-xs font-medium ${
                   selected
                     ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
@@ -390,11 +423,12 @@ export default function More() {
         </div>
       </section>
 
-      <section className="section-shell-quiet p-4 mb-5">
-        <p className="eyebrow mb-3">{moreCopy.grow}</p>
+      <section className="section-shell-quiet p-4 mb-5" aria-labelledby="more-grow-title" data-testid="more-grow">
+        <p id="more-grow-title" className="eyebrow mb-3">{moreCopy.grow}</p>
         <button
           onClick={() => navigate('/learn')}
           className="w-full flex items-center justify-between section-shell px-4 py-4 min-h-[52px]"
+          data-testid="more-open-learn"
         >
           <div className="text-left">
             <p className="font-sans text-sm font-medium text-ink dark:text-dark-text">{moreCopy.openLearn}</p>
@@ -406,8 +440,8 @@ export default function More() {
         </button>
       </section>
 
-      <section className="section-shell p-4">
-        <p className="eyebrow mb-3">{moreCopy.about}</p>
+      <section className="section-shell p-4" aria-labelledby="more-about-title" data-testid="more-about">
+        <p id="more-about-title" className="eyebrow mb-3">{moreCopy.about}</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
           {editorial?.more.aboutBody ?? moreCopy.aboutBody}
         </p>

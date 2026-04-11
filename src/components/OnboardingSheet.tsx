@@ -512,6 +512,8 @@ export default function OnboardingSheet({
             type="button"
             onClick={() => setShowFineTune(value => !value)}
             className="flex w-full items-center justify-between gap-3 text-left"
+            aria-expanded={showFineTune}
+            aria-controls={fineTunePanelId}
           >
             <div>
               <p className="font-display text-xl text-ink dark:text-dark-text">
@@ -527,7 +529,7 @@ export default function OnboardingSheet({
           </button>
 
           {showFineTune && (
-            <div className="mt-4 space-y-4 border-t border-sand/10 pt-4 dark:border-dark-text/10">
+            <div id={fineTunePanelId} className="mt-4 space-y-4 border-t border-sand/10 pt-4 dark:border-dark-text/10">
               <div>
                 <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.readingScript}</p>
                 <div className="grid grid-cols-2 gap-2">
@@ -628,11 +630,17 @@ export default function OnboardingSheet({
   }
 
   const isOverlayPresentation = presentation === 'overlay'
+  const titleId = 'onboarding-title'
+  const descriptionId = 'onboarding-description'
+  const fineTunePanelId = 'onboarding-fine-tune-panel'
 
   const chrome = (
-    <div className={`relative flex flex-col rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card ${
-      isOverlayPresentation ? 'h-full min-h-0 overflow-hidden' : 'overflow-visible'
-    }`}>
+    <div
+      className={`relative flex flex-col rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card ${
+        isOverlayPresentation ? 'h-full min-h-0 overflow-hidden' : 'overflow-visible'
+      }`}
+      data-testid={isOverlayPresentation ? 'onboarding-dialog' : 'onboarding-first-run-panel'}
+    >
       <div className="pointer-events-none absolute -right-8 top-0 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-16 h-44 w-44 rounded-full bg-gold/15 blur-3xl" />
 
@@ -642,7 +650,7 @@ export default function OnboardingSheet({
             <p className="mb-2 font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
               {copy.onboarding.eyebrow}
             </p>
-            <h2 className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
+            <h2 id={titleId} className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
               {copy.onboarding.title}
             </h2>
           </div>
@@ -656,7 +664,7 @@ export default function OnboardingSheet({
             </button>
           ) : null}
         </div>
-        <p className="mt-3 max-w-[28rem] text-sm leading-5 text-ink/65 dark:text-dark-text/65">
+        <p id={descriptionId} className="mt-3 max-w-[28rem] text-sm leading-5 text-ink/65 dark:text-dark-text/65">
           {editorial?.onboarding.brandBody ?? copy.onboarding.body}
         </p>
       </div>
@@ -715,6 +723,9 @@ export default function OnboardingSheet({
         className="fixed inset-0 z-[110] overflow-hidden bg-ink/55 backdrop-blur-sm dark:bg-black/80"
         role="dialog"
         aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        data-testid="onboarding-overlay"
       >
         <div
           className="mx-auto flex h-[100dvh] w-full max-w-md flex-col px-4"
@@ -730,7 +741,13 @@ export default function OnboardingSheet({
   }
 
   return (
-    <main className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg overflow-y-auto">
+    <main
+      className="app-shell app-shell--first-run bg-parchment transition-colors duration-300 dark:bg-dark-bg overflow-y-auto"
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      data-testid="onboarding-first-run"
+      data-page="onboarding"
+    >
       <div
         className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-4"
         style={{

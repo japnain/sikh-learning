@@ -34,6 +34,7 @@ afterEach(() => {
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
   render(<App />)
 
+  expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '#main-content')
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
   expect(screen.queryByRole('heading', { level: 1, name: /satshriakaal/i })).not.toBeInTheDocument()
@@ -66,6 +67,8 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   render(<App />)
 
   expect(await screen.findByRole('main')).toBeInTheDocument()
+  expect(screen.getByTestId('main-content')).toBeInTheDocument()
+  expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
 
 test('habit onboarding completion returns home and highlights today’s path', async () => {

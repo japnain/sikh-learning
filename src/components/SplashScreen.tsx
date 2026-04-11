@@ -29,6 +29,10 @@ export default function SplashScreen() {
     <div
       className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0f0a1e] ${exiting ? 'splash-fade-out' : ''}`}
       onClick={() => setExiting(true)}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading NaamRas"
+      data-testid="splash-screen"
     >
       <div className="animate-glow-pulse rounded-full p-8">
         <p className="font-gurmukhi text-7xl text-gold splash-glow select-none">ੴ</p>
