@@ -19,6 +19,7 @@ import {
   getScriptModeLabels,
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
+import { getEditorialCopy } from '../content/editorialCopy'
 
 type OnboardingStep = 'setup' | 'preview'
 type ReadingPresetId = 'quiet' | 'guided' | 'deep'
@@ -305,6 +306,7 @@ export default function OnboardingSheet({
   const [showFineTune, setShowFineTune] = useState(false)
 
   const copy = getUiCopy(locale)
+  const editorial = getEditorialCopy(locale)
   const englishSourceLabels = getEnglishSourceLabels(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
   const learningLevelLabels = getLearningLevelLabels(locale)
@@ -655,7 +657,7 @@ export default function OnboardingSheet({
           ) : null}
         </div>
         <p className="mt-3 max-w-[28rem] text-sm leading-5 text-ink/65 dark:text-dark-text/65">
-          {copy.onboarding.body}
+          {editorial?.onboarding.brandBody ?? copy.onboarding.body}
         </p>
       </div>
 
@@ -738,8 +740,8 @@ export default function OnboardingSheet({
       >
         <div className="flex items-center justify-center py-4">
           <div className="text-center">
-            <p className="font-display text-4xl leading-none text-ink dark:text-dark-text">Nitnem</p>
-            <p className="mt-2 text-sm text-ink/55 dark:text-dark-text/55">{copy.home.promise}</p>
+            <p className="font-display text-4xl leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
+            <p className="mt-2 text-sm text-ink/55 dark:text-dark-text/55">{editorial?.brand.promise ?? copy.home.promise}</p>
           </div>
         </div>
         <div className="pb-4">

@@ -37,6 +37,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+import { getEditorialCopy } from '../content/editorialCopy'
 
 const TODAYS_PATH_HIGHLIGHT_CLASSES = [
   'border-gold/45',
@@ -192,6 +193,7 @@ export default function Home() {
     openOnboarding,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
+  const editorial = getEditorialCopy(locale)
   const commonCopy = copy.common
   const homeCopy = copy.home
   const homeMessages = HOME_MESSAGES[locale]
@@ -489,7 +491,7 @@ export default function Home() {
 
   const handleShareProgress = async () => {
     const text = [
-      'Nitnem progress update',
+      `${editorial?.brand.name ?? 'NaamRas'} progress note`,
       `${streak} day streak`,
       `${masteredSymbols.length} symbols mastered`,
       `${completedLessons.length} lessons completed`,
@@ -515,9 +517,12 @@ export default function Home() {
     <div className="page-shell animate-fade-in">
       <div className="flex justify-between items-start gap-3 mb-5">
         <div>
-          <p className="font-display text-3xl text-ink dark:text-dark-text leading-none">Nitnem</p>
-          <p className="font-sans text-xs text-ink/55 dark:text-dark-text/55 mt-1">
-            {copy.home.promise}
+          <p className="eyebrow">{editorial?.brand.domain ?? 'Naamras.xyz'}</p>
+          <p className="font-display text-[3.1rem] text-ink dark:text-dark-text leading-none mt-2">
+            {editorial?.brand.name ?? 'NaamRas'}
+          </p>
+          <p className="font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62 mt-3 max-w-[26ch]">
+            {editorial?.brand.promise ?? copy.home.promise}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -543,15 +548,25 @@ export default function Home() {
 
       <section className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1">
         <div className="flex items-center justify-between gap-3 mb-4">
-          <span className="eyebrow">{heroPrimary.eyebrow}</span>
+          <span className="eyebrow">{editorial?.home.heroEyebrow ?? heroPrimary.eyebrow}</span>
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
-        <h2 className="font-display text-[2rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
-          {heroPrimary.title}
+        <h2 className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
+          {editorial?.home.heroTitle ?? heroPrimary.title}
         </h2>
-        <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[32ch]">
-          {heroPrimary.body}
+        <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[34ch]">
+          {editorial?.home.heroBody ?? heroPrimary.body}
         </p>
+
+        <div className="section-shell-quiet mt-5 p-4">
+          <p className="eyebrow">{heroPrimary.eyebrow}</p>
+          <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+            {heroPrimary.title}
+          </p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
+            {heroPrimary.body}
+          </p>
+        </div>
 
         {hukamnamaLoading ? (
           <div className="section-shell-quiet mt-5 p-4 animate-pulse">
@@ -596,29 +611,62 @@ export default function Home() {
         </div>
       </section>
 
-      <button
-        onClick={() => navigate('/banis')}
-        className="section-shell-quiet w-full flex items-center gap-3 px-4 py-3 mb-5 active:scale-[0.99] transition-transform duration-150"
-      >
-        <IconSearch size={16} className="text-ink/35 dark:text-dark-text/35" />
-        <span className="font-sans text-sm text-ink/45 dark:text-dark-text/45">
-          {homeCopy.searchPlaceholder}
-        </span>
-      </button>
+      <div className="grid gap-3 mb-5">
+        <button
+          type="button"
+          onClick={() => navigate('/learn', { state: { focusSearch: true } })}
+          className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">{editorial?.home.learnSearchEyebrow ?? 'Learn'}</p>
+              <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+                {editorial?.home.learnSearchTitle ?? 'Search the Learn archive'}
+              </p>
+              <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
+                {editorial?.home.learnSearchBody ?? homeCopy.searchPlaceholder}
+              </p>
+              <p className="mt-3 font-sans text-xs text-ink/56 dark:text-dark-text/58">
+                {editorial?.home.learnSearchPlaceholder ?? homeCopy.searchPlaceholder}
+              </p>
+            </div>
+            <IconSearch size={16} className="mt-1 text-ink/35 dark:text-dark-text/35" />
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate('/banis')}
+          className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="eyebrow">{editorial?.home.readGatewayEyebrow ?? 'Read'}</p>
+              <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+                {editorial?.home.readGatewayTitle ?? homeMessages.browseRead}
+              </p>
+              <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
+                {editorial?.home.readGatewayBody ?? homeMessages.beginTodayBody}
+              </p>
+            </div>
+            <IconArrowRight size={16} className="mt-1 text-gold dark:text-gold-light" />
+          </div>
+        </button>
+      </div>
 
       <button
         type="button"
-        onClick={() => navigate('/learn?view=daily')}
+        onClick={() => navigate('/learn')}
         className="section-shell-quiet w-full px-4 py-4 mb-5 text-left active:scale-[0.99] transition-transform duration-150"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">Today&apos;s Lesson</p>
+            <p className="eyebrow">{editorial?.home.lessonEyebrow ?? "Today's Lesson"}</p>
             <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
               {dailyLesson.completedStepIds.length} of {dailyLesson.steps.length} steps done
             </p>
             <p className="mt-1 font-sans text-sm text-ink/60 dark:text-dark-text/60">
-              {dailyLesson.steps[0]?.title ?? 'Open Learn to start today’s lesson.'}
+              {dailyLesson.steps[0]?.title ?? editorial?.home.lessonFallback ?? 'Open Learn to start today’s lesson.'}
             </p>
           </div>
           <span className="chip-pill">
@@ -638,14 +686,14 @@ export default function Home() {
             <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
               {nextStep.title}
             </p>
-            <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
-              {nextStep.body}
+            <p className="font-sans text-sm text-ink/74 dark:text-dark-text/76 mt-1">
+              {editorial?.home.pathBodyPrefix ? `${editorial.home.pathBodyPrefix} ${nextStep.body}` : nextStep.body}
             </p>
           </div>
           <button
             onClick={handleShareProgress}
             className="min-h-[40px] min-w-[40px] rounded-full section-shell-quiet flex items-center justify-center text-gold dark:text-gold-light"
-            aria-label={homeCopy.shareProgress}
+            aria-label={editorial?.home.shareProgress ?? homeCopy.shareProgress}
           >
             {showCopied ? <span className="font-sans text-[10px]">{commonCopy.copied}</span> : <IconShare size={16} />}
           </button>
@@ -674,7 +722,7 @@ export default function Home() {
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
                   {readAction.title}
                 </p>
-                <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+                <p className="font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76 mt-1">
                   {readAction.body}
                 </p>
               </div>
@@ -692,7 +740,7 @@ export default function Home() {
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
                   {activeJourney ? activeJourney.title : `${learningLevelLabels[learningLevel]} ${homeMessages.trackSuffix}`}
                 </p>
-                <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+                <p className="font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76 mt-1">
                   {nextJourneyStep ? nextJourneyStep.title : homeCopy.keepGrowthActive}
                 </p>
               </div>
@@ -710,7 +758,7 @@ export default function Home() {
                 <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
                   {dueReview.length > 0 ? homeMessages.reviewDue(dueReview.length) : 'Quick review pass'}
                 </p>
-                <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-1">
+                <p className="font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76 mt-1">
                   {homeCopy.reviewReady}
                 </p>
               </div>
@@ -725,13 +773,14 @@ export default function Home() {
           <button
             onClick={() => setNitnemOpen(open => !open)}
             className="flex-1 text-left min-h-[44px]"
-            aria-label="Nitnem progress"
+            aria-expanded={nitnemOpen}
+            aria-controls="nitnem-progress-panel"
           >
             <p className="eyebrow">{homeCopy.nitnemProgress}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
               {nitnemDone} / {selectedNitnemOptions.length} {homeCopy.dailyBanisComplete}
             </p>
-            <p className="mt-2 font-sans text-xs text-ink/50 dark:text-dark-text/50">
+            <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/62">
               {selectedNitnemOptions.length > 0
                 ? `${selectedNitnemOptions[0]?.time} through ${selectedNitnemOptions[selectedNitnemOptions.length - 1]?.time} routes`
                 : 'Choose the banis that make up your daily Nitnem.'}
@@ -765,7 +814,7 @@ export default function Home() {
           />
         </div>
         {nitnemOpen && (
-          <div className="mt-4 space-y-4">
+          <div id="nitnem-progress-panel" className="mt-4 space-y-4">
             {(['Morning', 'Evening', 'Night'] as const).map(time => (
               groupedNitnemOptions[time].length > 0 ? (
                 <div key={time}>
@@ -877,7 +926,9 @@ export default function Home() {
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{homeCopy.savedEyebrow}</p>
-            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">{homeCopy.savedTitle}</h3>
+            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
+              {editorial?.home.savedTitle ?? homeCopy.savedTitle}
+            </h3>
           </div>
           <button
             onClick={() => navigate('/library')}
@@ -904,7 +955,7 @@ export default function Home() {
 
       {(progressItems.length > 0 || todaysPick || recentlyStudied.length > 0) && (
         <section className="section-shell-quiet p-4 animate-slide-up stagger-5">
-          <p className="eyebrow mb-4">{homeCopy.discoveryHistory}</p>
+          <p className="eyebrow mb-4">{editorial?.home.discoveryEyebrow ?? homeCopy.discoveryHistory}</p>
 
           {progressItems.length > 0 && (
             <div className="mb-4">

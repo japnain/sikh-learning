@@ -19,6 +19,11 @@ test("resolves modern search synonyms to canonical approved topic guides", () =>
   expect(resolveTopicGuide("anger").topic?.id).toBe("topic-anger")
   expect(resolveTopicGuide("ego").topic?.id).toBe("topic-ego")
   expect(resolveTopicGuide("loneliness").topic?.id).toBe("topic-loneliness")
+  expect(resolveTopicGuide("second guessing").topic?.id).toBe("topic-doubt")
+  expect(resolveTopicGuide("gossip").topic?.id).toBe("topic-speech")
+  expect(resolveTopicGuide("resentment").topic?.id).toBe("topic-forgiveness")
+  expect(resolveTopicGuide("micromanaging").topic?.id).toBe("topic-control")
+  expect(resolveTopicGuide("burnt out").topic?.id).toBe("topic-exhaustion")
 })
 
 test("builds a today surface with no empty slots and a stable continue-learning card", () => {
@@ -28,6 +33,8 @@ test("builds a today surface with no empty slots and a stable continue-learning 
   expect(surface.featuredShabad.item.id).toBeTruthy()
   expect(surface.topicSpotlight.item.id).toBeTruthy()
   expect(surface.continueLearning.title).toBeTruthy()
+  expect(surface.themeRail).toHaveLength(4)
+  expect(surface.featuredCollections).toHaveLength(3)
   expect(surface.exploreCollections.length).toBeGreaterThan(0)
 })
 
@@ -63,8 +70,10 @@ test("filters shabads by theme and saved state", () => {
 test("reports the current inventory as below paid-launch readiness", () => {
   const summary = getLearnInventorySummary()
 
-  expect(summary.dailyGuidance).toBeGreaterThan(0)
-  expect(summary.shabadDeepDives).toBeGreaterThan(0)
-  expect(summary.topicGuides).toBeGreaterThan(0)
+  expect(summary.dailyGuidance).toBeGreaterThanOrEqual(48)
+  expect(summary.shabadDeepDives).toBeGreaterThanOrEqual(24)
+  expect(summary.topicGuides).toBeGreaterThanOrEqual(28)
+  expect(summary.collections).toBeGreaterThanOrEqual(14)
+  expect(summary.crossLinks).toBeGreaterThanOrEqual(700)
   expect(summary.readyForLaunch).toBe(false)
 })

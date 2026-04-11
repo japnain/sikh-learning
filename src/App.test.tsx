@@ -35,6 +35,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   render(<App />)
 
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
+  expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
   expect(screen.queryByRole('heading', { level: 1, name: /satshriakaal/i })).not.toBeInTheDocument()
   expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
@@ -50,6 +51,21 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
   })
+})
+
+test('wraps routed content in the main landmark once onboarding is complete', async () => {
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByRole('main')).toBeInTheDocument()
 })
 
 test('habit onboarding completion returns home and highlights today’s path', async () => {

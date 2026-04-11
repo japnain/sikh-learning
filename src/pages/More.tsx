@@ -18,6 +18,7 @@ import {
 import { renderScriptText } from '../utils/readerDisplay'
 import { IconArrowRight } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
+import { getEditorialCopy } from '../content/editorialCopy'
 
 function SettingsBlock({
   title,
@@ -74,6 +75,7 @@ export default function More() {
     setLearningGoal,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
+  const editorial = getEditorialCopy(locale)
   const commonCopy = copy.common
   const moreCopy = copy.more
   const englishSourceLabels = getEnglishSourceLabels(locale)
@@ -90,19 +92,21 @@ export default function More() {
     <div className="page-shell animate-fade-in">
       <div className="mb-5">
         <p className="eyebrow">{moreCopy.eyebrow}</p>
-        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{moreCopy.title}</h1>
+        <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">
+          {editorial?.more.title ?? moreCopy.title}
+        </h1>
         <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
-          {moreCopy.body}
+          {editorial?.more.body ?? moreCopy.body}
         </p>
       </div>
 
       <section className="hero-surface p-5 mb-5">
         <p className="eyebrow">{moreCopy.productPromise}</p>
         <p className="font-display text-3xl leading-none text-ink dark:text-dark-text mt-2">
-          {copy.home.promise}
+          {editorial?.brand.promise ?? copy.home.promise}
         </p>
         <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-3 max-w-[34ch]">
-          {moreCopy.promiseBody}
+          {editorial?.more.promiseBody ?? moreCopy.promiseBody}
         </p>
       </section>
 
@@ -395,7 +399,7 @@ export default function More() {
           <div className="text-left">
             <p className="font-sans text-sm font-medium text-ink dark:text-dark-text">{moreCopy.openLearn}</p>
             <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5">
-              {moreCopy.growDescription}
+              {editorial?.more.growDescription ?? moreCopy.growDescription}
             </p>
           </div>
           <IconArrowRight size={16} className="text-gold dark:text-gold-light" />
@@ -405,7 +409,7 @@ export default function More() {
       <section className="section-shell p-4">
         <p className="eyebrow mb-3">{moreCopy.about}</p>
         <p className="font-sans text-sm text-ink/70 dark:text-dark-text/70">
-          {moreCopy.aboutBody}
+          {editorial?.more.aboutBody ?? moreCopy.aboutBody}
         </p>
         <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2">
           {moreCopy.aboutSource}

@@ -71,6 +71,7 @@ export type TodayLearnSurface = {
   topicSpotlight: RotationSelection<TopicGuide>
   continueLearning: ContinueLearningCard
   themeRail: TopicGuide[]
+  featuredCollections: Collection[]
   exploreCollections: Collection[]
   inventory: ReturnType<typeof getLearnInventorySummary>
 }
@@ -82,15 +83,6 @@ const SLOT_CONFIG: Record<RotationSlot, { cadenceDays: number; cooldownDays: num
 }
 
 const ROTATION_START_STAMP = "2026-01-01"
-
-const NEED_STATE_TOPIC_IDS = [
-  "topic-anger",
-  "topic-anxiety",
-  "topic-comparison",
-  "topic-loneliness",
-  "topic-gratitude",
-  "topic-purpose",
-] as const
 
 function stableHash(input: string): number {
   let hash = 0
@@ -373,9 +365,10 @@ export function getTodayLearnSurface(dayStamp: string, learnState: UserLearningS
   const featuredShabad = getRotationSelection(SHABAD_DEEP_DIVES, "featured_shabad", dayStamp, [])
   const topicSpotlight = getRotationSelection(TOPIC_GUIDES, "topic_spotlight", dayStamp, [])
 
-  const continueLearning = getContinueLearningCard(learnState)
-  const themeRail = NEED_STATE_TOPIC_IDS.map(id => TOPIC_GUIDE_BY_ID[id]).filter(Boolean)
-  const exploreCollections = getExploreCollections(learnState)
+  const themeRail = getThemeRail(dayStamp, learnState)
+  const exploreCollections = getExploreCollections(dayStamp, learnState)
+  const featuredCollections = exploreCollections.slice(0, 3)
+  const continueLearning = getContinueLearningCard(learnState, featuredCollections)
 
   return {
     dayStamp,
@@ -384,12 +377,16 @@ export function getTodayLearnSurface(dayStamp: string, learnState: UserLearningS
     topicSpotlight,
     continueLearning,
     themeRail,
+    featuredCollections,
     exploreCollections,
     inventory: getLearnInventorySummary(),
   }
 }
 
-function getContinueLearningCard(learnState: UserLearningState): ContinueLearningCard {
+function getContinueLearningCard(
+  learnState: UserLearningState,
+  featuredCollections: Collection[]
+): ContinueLearningCard {
   if (learnState.activeCollectionId && COLLECTION_BY_ID[learnState.activeCollectionId]) {
     const collection = COLLECTION_BY_ID[learnState.activeCollectionId]
     return {
@@ -412,9 +409,10 @@ function getContinueLearningCard(learnState: UserLearningState): ContinueLearnin
   }
 
   const collection =
-    learnState.depthPreference === "deep"
+    featuredCollections[0]
+    ?? (learnState.depthPreference === "deep"
       ? COLLECTION_BY_ID["collection-gratitude-and-contentment"]
-      : COLLECTION_BY_ID["collection-fear-to-trust"]
+      : COLLECTION_BY_ID["collection-fear-to-trust"])
 
   return {
     kind: "collection",
@@ -424,11 +422,48 @@ function getContinueLearningCard(learnState: UserLearningState): ContinueLearnin
   }
 }
 
-function getExploreCollections(learnState: UserLearningState): Collection[] {
+function getThemeRail(dayStamp: string, learnState: UserLearningState): TopicGuide[] {
   const savedThemes = new Set(getSavedThemes(learnState.savedItemIds))
+  const recentTopicIds = new Set(learnState.recentTopicIds)
+
+  return [...TOPIC_GUIDES]
+    .sort((left, right) => {
+      const leftScore =
+        (recentTopicIds.has(left.id) ? 18 : 0)
+        + left.searchTerms.filter(term => savedThemes.has(term)).length * 6
+        + (savedThemes.has(left.rotation.theme) ? 10 : 0)
+        + (left.category === "most-needed" ? 7 : left.category === "practice" ? 3 : 0)
+        + (stableHash(`${dayStamp}:topic:${left.id}`) % 23)
+      const rightScore =
+        (recentTopicIds.has(right.id) ? 18 : 0)
+        + right.searchTerms.filter(term => savedThemes.has(term)).length * 6
+        + (savedThemes.has(right.rotation.theme) ? 10 : 0)
+        + (right.category === "most-needed" ? 7 : right.category === "practice" ? 3 : 0)
+        + (stableHash(`${dayStamp}:topic:${right.id}`) % 23)
+
+      return rightScore - leftScore || left.title.localeCompare(right.title)
+    })
+    .slice(0, 4)
+}
+
+function getExploreCollections(dayStamp: string, learnState: UserLearningState): Collection[] {
+  const savedThemes = new Set(getSavedThemes(learnState.savedItemIds))
+  const recentTopicIds = new Set(learnState.recentTopicIds)
+
   return [...COLLECTIONS].sort((left, right) => {
-    const leftScore = left.themes.filter(theme => savedThemes.has(theme)).length
-    const rightScore = right.themes.filter(theme => savedThemes.has(theme)).length
+    const leftScore =
+      left.themes.filter(theme => savedThemes.has(theme)).length * 8
+      + left.relatedTopicIds.filter(topicId => recentTopicIds.has(topicId)).length * 10
+      + (learnState.activeCollectionId === left.id ? 30 : 0)
+      + (left.items.length >= 6 ? 4 : 0)
+      + (stableHash(`${dayStamp}:collection:${left.id}`) % 19)
+    const rightScore =
+      right.themes.filter(theme => savedThemes.has(theme)).length * 8
+      + right.relatedTopicIds.filter(topicId => recentTopicIds.has(topicId)).length * 10
+      + (learnState.activeCollectionId === right.id ? 30 : 0)
+      + (right.items.length >= 6 ? 4 : 0)
+      + (stableHash(`${dayStamp}:collection:${right.id}`) % 19)
+
     return rightScore - leftScore || left.title.localeCompare(right.title)
   })
 }

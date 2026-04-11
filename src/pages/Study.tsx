@@ -14,7 +14,7 @@ import { useFavoritesStore } from '../store/favorites'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
-import type { ScriptureEntry, ScriptureLine, SundarGutkaLength } from '../types'
+import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
 import { getLineSpacingLabels, getMeaningLanguageLabels, getScriptModeLabels, getTextAlignmentLabels } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
@@ -23,6 +23,7 @@ import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, 
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
+import { getEditorialCopy } from '../content/editorialCopy'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -86,12 +87,98 @@ function findFirstRenderableLine(entries: ScriptureEntry[]): ScriptureLine | nul
   return null
 }
 
+function findStudyEntryTitle(entry: ScriptureEntry): string {
+  const titleLine = entry.lines?.find(
+    line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi)
+  )?.gurmukhi
+    ?? entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
+    ?? entry.gurmukhi
+
+  return buildReaderTitle(titleLine)
+}
+
+function getStudyEntryLineCount(entry: ScriptureEntry): number {
+  const mainLineCount = entry.lines?.filter(line => !line.isHeader).length ?? 0
+  return mainLineCount > 0 ? mainLineCount : 1
+}
+
+const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
+  shareCopied: string
+  shareOpened: string
+  bookmarkSaved: string
+  bookmarkExists: string
+  favoriteAdded: string
+  favoriteRemoved: string
+  lineCopied: string
+  lineBookmarked: string
+  phraseSaved: string
+  phraseAlreadySaved: string
+  entryOutlineEyebrow: string
+  entryOutlineBody: string
+  hukamnamaEyebrow: string
+  hukamnamaBody: string
+  sectionLabel: (index: number, total: number) => string
+}> = {
+  en: {
+    shareCopied: 'Copied to clipboard for sharing.',
+    shareOpened: 'Share sheet opened.',
+    bookmarkSaved: 'Bookmark saved.',
+    bookmarkExists: 'This passage is already bookmarked.',
+    favoriteAdded: 'Added to favorites.',
+    favoriteRemoved: 'Removed from favorites.',
+    lineCopied: 'Verse copied to clipboard.',
+    lineBookmarked: 'Verse bookmarked.',
+    phraseSaved: 'Verse saved to review.',
+    phraseAlreadySaved: 'This verse is already saved for review.',
+    entryOutlineEyebrow: 'On This Ang',
+    entryOutlineBody: 'Jump between shabads instead of working through one long continuous scroll.',
+    hukamnamaEyebrow: "Today's Hukamnama",
+    hukamnamaBody: 'Receive the day through the Hukamnama first, then open the full source shabad when you want the wider context.',
+    sectionLabel: (index, total) => `Shabad ${index} of ${total}`,
+  },
+  pa: {
+    shareCopied: 'ਸਾਂਝਾ ਕਰਨ ਲਈ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ।',
+    shareOpened: 'ਸ਼ੇਅਰ ਸ਼ੀਟ ਖੁਲ੍ਹ ਗਈ ਹੈ।',
+    bookmarkSaved: 'ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।',
+    bookmarkExists: 'ਇਹ ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।',
+    favoriteAdded: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ ਹੈ।',
+    favoriteRemoved: 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ।',
+    lineCopied: 'ਪੰਕਤੀ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਈ ਹੈ।',
+    lineBookmarked: 'ਪੰਕਤੀ ਬੁੱਕਮਾਰਕ ਹੋ ਗਈ ਹੈ।',
+    phraseSaved: 'ਪੰਕਤੀ ਦੁਹਰਾਈ ਲਈ ਸੰਭਾਲੀ ਗਈ ਹੈ।',
+    phraseAlreadySaved: 'ਇਹ ਪੰਕਤੀ ਪਹਿਲਾਂ ਹੀ ਦੁਹਰਾਈ ਲਈ ਸੰਭਾਲੀ ਹੋਈ ਹੈ।',
+    entryOutlineEyebrow: 'ਇਸ ਅੰਗ ਵਿੱਚ',
+    entryOutlineBody: 'ਲੰਬੀ ਲਗਾਤਾਰ ਸਕ੍ਰੋਲ ਦੀ ਥਾਂ ਸਿੱਧੇ ਵੱਖ-ਵੱਖ ਸ਼ਬਦਾਂ ਤੇ ਜਾਓ।',
+    hukamnamaEyebrow: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ',
+    hukamnamaBody: 'ਦਿਨ ਦੀ ਸ਼ੁਰੂਆਤ ਹੁਕਮਨਾਮੇ ਨਾਲ ਕਰੋ, ਫਿਰ ਚਾਹੋ ਤਾਂ ਮੂਲ ਸ਼ਬਦ ਦਾ ਪੂਰਾ ਸੰਦਰਭ ਖੋਲ੍ਹੋ।',
+    sectionLabel: (index, total) => `ਸ਼ਬਦ ${index} / ${total}`,
+  },
+  hi: {
+    shareCopied: 'शेयर करने के लिए क्लिपबोर्ड में कॉपी हो गया।',
+    shareOpened: 'शेयर शीट खुल गई है।',
+    bookmarkSaved: 'बुकमार्क सेव हो गया।',
+    bookmarkExists: 'यह अंश पहले से बुकमार्क किया हुआ है।',
+    favoriteAdded: 'पसंदीदा में जोड़ दिया गया।',
+    favoriteRemoved: 'पसंदीदा से हटा दिया गया।',
+    lineCopied: 'पंक्ति क्लिपबोर्ड में कॉपी हो गई।',
+    lineBookmarked: 'पंक्ति बुकमार्क हो गई।',
+    phraseSaved: 'पंक्ति रिव्यू के लिए सेव हो गई।',
+    phraseAlreadySaved: 'यह पंक्ति पहले से रिव्यू के लिए सेव है।',
+    entryOutlineEyebrow: 'इस अंग पर',
+    entryOutlineBody: 'एक लंबी लगातार स्क्रॉल के बजाय अलग-अलग शबदों के बीच सीधे जाएँ।',
+    hukamnamaEyebrow: 'आज का हुकमनामा',
+    hukamnamaBody: 'दिन को पहले हुकमनामे से ग्रहण करें, फिर चाहें तो मूल शबद का पूरा संदर्भ खोलें।',
+    sectionLabel: (index, total) => `शबद ${index} / ${total}`,
+  },
+}
+
 export default function Study() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
+  const editorial = getEditorialCopy(locale)
   const commonCopy = copy.common
   const studyCopy = copy.study
   const lineSpacingLabels = getLineSpacingLabels(locale)
@@ -291,12 +378,35 @@ export default function Study() {
   const { addFavorite, removeFavorite, isFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
+  const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
   const [showBookmarkForm, setShowBookmarkForm] = useState(false)
   const [bookmarkText, setBookmarkText] = useState('')
-  const [showCopied, setShowCopied] = useState(false)
+  const [actionNotice, setActionNotice] = useState<string | null>(null)
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
   const readerControlsRef = useRef<HTMLDivElement | null>(null)
+  const actionNoticeTimeoutRef = useRef<number | null>(null)
+
+  const announceAction = (message: string) => {
+    setActionNotice(message)
+
+    if (typeof window === 'undefined') return
+
+    if (actionNoticeTimeoutRef.current !== null) {
+      window.clearTimeout(actionNoticeTimeoutRef.current)
+    }
+
+    actionNoticeTimeoutRef.current = window.setTimeout(() => {
+      setActionNotice(null)
+      actionNoticeTimeoutRef.current = null
+    }, 2400)
+  }
+
+  useEffect(() => () => {
+    if (actionNoticeTimeoutRef.current !== null && typeof window !== 'undefined') {
+      window.clearTimeout(actionNoticeTimeoutRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     if (shouldTrackProgress && currentAng) {
@@ -341,14 +451,18 @@ export default function Study() {
       currentEntry.transliteration,
       getEntryMeaningText(currentEntry, meaningLanguage, englishSource),
       baniName ? `— ${baniName} · Ang ${currentEntry.ang}` : `— ${currentEntry.scripture} · Ang ${currentEntry.ang}`,
-      'via Nitnem App',
+      editorial?.brand.attribution ?? 'via NaamRas',
     ].filter(Boolean).join('\n')
     if (navigator.share) {
-      try { await navigator.share({ text }) } catch { /* user dismissed */ }
+      try {
+        await navigator.share({ text })
+        announceAction(studyExperienceCopy.shareOpened)
+      } catch {
+        /* user dismissed */
+      }
     } else {
       await navigator.clipboard.writeText(text)
-      setShowCopied(true)
-      setTimeout(() => setShowCopied(false), 2000)
+      announceAction(studyExperienceCopy.shareCopied)
     }
   }
 
@@ -383,12 +497,14 @@ export default function Study() {
     })
     setShowBookmarkForm(false)
     setBookmarkText('')
+    announceAction(studyExperienceCopy.bookmarkSaved)
   }
 
   const toggleFavorite = () => {
     if (!currentEntry || !currentAng) return
     if (currentFavorite) {
       removeFavorite(currentFavorite.id)
+      announceAction(studyExperienceCopy.favoriteRemoved)
       return
     }
     addFavorite({
@@ -400,6 +516,7 @@ export default function Study() {
       shabadId: currentEntry.shabadId,
       type: currentEntry.shabadId ? 'shabad' : 'ang',
     })
+    announceAction(studyExperienceCopy.favoriteAdded)
   }
 
   const buildLineText = (entry: ScriptureEntry, line: ScriptureLine) => [
@@ -407,29 +524,35 @@ export default function Study() {
     showTransliteration ? line.transliteration : '',
     getLineMeaningText(line, meaningLanguage, englishSource),
     `— ${entry.scripture} · Ang ${line.ang}`,
-    'via Nitnem App',
+    editorial?.brand.attribution ?? 'via NaamRas',
   ].filter(Boolean).join('\n')
 
   const handleCopyLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
     await navigator.clipboard.writeText(buildLineText(entry, line))
-    setShowCopied(true)
-    setTimeout(() => setShowCopied(false), 2000)
+    announceAction(studyExperienceCopy.lineCopied)
   }
 
   const handleShareLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
     const text = buildLineText(entry, line)
     if (navigator.share) {
-      try { await navigator.share({ text }) } catch { /* user dismissed */ }
+      try {
+        await navigator.share({ text })
+        announceAction(studyExperienceCopy.shareOpened)
+      } catch {
+        /* user dismissed */
+      }
     } else {
       await navigator.clipboard.writeText(text)
-      setShowCopied(true)
-      setTimeout(() => setShowCopied(false), 2000)
+      announceAction(studyExperienceCopy.shareCopied)
     }
   }
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {
     const entrySource = (entry.source ?? currentSource) as BaniSource
-    if (hasBookmark(entrySource, line.ang, line.verseId)) return
+    if (hasBookmark(entrySource, line.ang, line.verseId)) {
+      announceAction(studyExperienceCopy.bookmarkExists)
+      return
+    }
     addBookmark({
       type: 'verse',
       title: `${entry.scripture} · Ang ${line.ang}`,
@@ -440,10 +563,14 @@ export default function Study() {
       excerpt: line.gurmukhi,
       description: line.transliteration || undefined,
     })
+    announceAction(studyExperienceCopy.lineBookmarked)
   }
 
   const handleSavePhrase = (line: ScriptureLine, entry: ScriptureEntry) => {
-    if (vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')) return
+    if (vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')) {
+      announceAction(studyExperienceCopy.phraseAlreadySaved)
+      return
+    }
     addWord({
       kind: 'phrase',
       word: line.gurmukhi,
@@ -463,6 +590,7 @@ export default function Study() {
         line: line.gurmukhi,
       },
     })
+    announceAction(studyExperienceCopy.phraseSaved)
   }
 
   const handleTakeHukamnama = async () => {
@@ -536,6 +664,23 @@ export default function Study() {
     currentEntry?.raag,
     currentEntry?.writer,
   ].filter(Boolean).join(' · ')
+  const readerIntroBody = isHukamnamaMode
+    ? studyExperienceCopy.hukamnamaBody
+    : studyCopy.introBody
+  const entryOutline = useMemo(() => entries.map((entry, index) => {
+    const sectionId = `study-entry-${index + 1}`
+    const detailBits = [entry.raag, entry.writer, entry.sourceName].filter(Boolean)
+
+    return {
+      entry,
+      sectionId,
+      title: findStudyEntryTitle(entry),
+      lineCount: getStudyEntryLineCount(entry),
+      detail: detailBits[0] ?? `${entry.scripture} · ${entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} ${entry.ang}`,
+      eyebrow: studyExperienceCopy.sectionLabel(index + 1, entries.length),
+    }
+  }), [entries, studyExperienceCopy])
+  const showEntryOutline = entries.length > 1
 
   const rangeEntries = isBaniDbMode ? baniResult.entries : entries
   const navMinAng = isBaniDbMode
@@ -586,6 +731,13 @@ export default function Study() {
     setSearchParams(params)
   }
 
+  const jumpToEntry = (sectionId: string) => {
+    const target = document.getElementById(sectionId)
+    if (!target) return
+
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   if (!isApiMode) return null
 
   if (loading) {
@@ -625,18 +777,25 @@ export default function Study() {
             className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
             aria-label="Share"
           >
-            {showCopied ? <span className="font-sans text-xs text-saffron dark:text-saffron-light">Copied!</span> : <IconShare size={20} />}
+            <IconShare size={20} />
           </button>
           <button
             onClick={toggleFavorite}
-            aria-label="Favorite"
+            aria-label={isFavorited ? 'Remove favorite' : 'Add favorite'}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isFavorited ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
           >
             {isFavorited ? <IconHeartFilled size={20} /> : <IconHeart size={20} />}
           </button>
           <button
-            onClick={() => { if (!isBookmarked) setShowBookmarkForm(v => !v) }}
-            aria-label="Bookmark"
+            onClick={() => {
+              if (isBookmarked) {
+                announceAction(studyExperienceCopy.bookmarkExists)
+                return
+              }
+
+              setShowBookmarkForm(v => !v)
+            }}
+            aria-label={isBookmarked ? 'Bookmark saved' : 'Add bookmark'}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
           >
             {isBookmarked ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
@@ -644,8 +803,16 @@ export default function Study() {
         </div>
       </div>
 
+      <div aria-live="polite" aria-atomic="true" className="mb-4 min-h-[1.5rem]">
+        {actionNotice ? (
+          <div role="status" className="inline-flex rounded-full bg-saffron/10 px-3 py-1.5 font-sans text-xs font-medium text-saffron dark:bg-gold/12 dark:text-gold-light">
+            {actionNotice}
+          </div>
+        ) : null}
+      </div>
+
       <div className="hero-surface p-5 mb-4">
-        <p className="eyebrow mb-2">{studyCopy.eyebrow}</p>
+        <p className="eyebrow mb-2">{isHukamnamaMode ? studyExperienceCopy.hukamnamaEyebrow : studyCopy.eyebrow}</p>
         <h1
           lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
           className={`leading-tight text-ink dark:text-dark-text ${
@@ -661,8 +828,8 @@ export default function Study() {
             {readerMeta}
           </p>
         ) : null}
-        <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-2">
-          {studyCopy.introBody}
+        <p className="font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76 mt-2">
+          {readerIntroBody}
         </p>
       </div>
 
@@ -689,6 +856,38 @@ export default function Study() {
         </div>
       )}
 
+      {showEntryOutline && (
+        <section className="section-shell-quiet p-4 mb-4">
+          <p className="eyebrow">{studyExperienceCopy.entryOutlineEyebrow}</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+            {studyExperienceCopy.entryOutlineBody}
+          </p>
+          <div className="mt-4 grid gap-2">
+            {entryOutline.map(item => (
+              <button
+                key={item.sectionId}
+                type="button"
+                onClick={() => jumpToEntry(item.sectionId)}
+                className="section-shell px-4 py-4 text-left"
+              >
+                <p className="eyebrow">{item.eyebrow}</p>
+                <p
+                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                  className={`mt-2 leading-tight text-ink dark:text-dark-text ${
+                    scriptMode === 'devanagari' ? 'font-sans text-lg' : 'font-gurmukhi text-2xl'
+                  }`}
+                >
+                  {renderScriptText(item.title, scriptMode)}
+                </p>
+                <p className="mt-2 font-sans text-xs text-ink/56 dark:text-dark-text/58">
+                  {item.lineCount} {studyCopy.verse} · {item.detail}
+                </p>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       <div className="mb-4">
         <SoundscapeControls context="study" variant="compact" />
       </div>
@@ -703,7 +902,7 @@ export default function Study() {
         >
           <div className="text-left">
             <p className="eyebrow">{studyCopy.readerControls}</p>
-            <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
+            <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">
               {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ` : ''}{scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
             </p>
           </div>
@@ -866,6 +1065,8 @@ export default function Study() {
       {showBookmarkForm && (
         <div className="mb-4 section-shell p-4 transition-colors duration-300 shadow-card dark:shadow-gold">
           <input
+            id="study-bookmark-note"
+            name="study-bookmark-note"
             type="text"
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
@@ -882,17 +1083,21 @@ export default function Study() {
       )}
 
       {isHukamnamaMode && currentEntry && (
-        <div className="section-shell p-4 mb-4">
-          <p className="font-sans font-semibold text-saffron dark:text-gold-light text-sm">
+        <div className="hero-surface p-5 mb-4">
+          <p className="eyebrow">{studyExperienceCopy.hukamnamaEyebrow}</p>
+          <p className="mt-2 font-sans font-semibold text-saffron dark:text-gold-light text-sm">
             Hukamnama{hukamnamaResult.data?.date ? ` · ${hukamnamaResult.data.date}` : ''}
           </p>
-          <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
+          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
+            {studyExperienceCopy.hukamnamaBody}
+          </p>
+          <p className="mt-3 font-sans text-ink/56 dark:text-dark-text/58 text-xs">
             {currentEntry.raag ? `${currentEntry.raag} · ` : ''}{currentEntry.writer ? `${currentEntry.writer} · ` : ''}{currentEntry.scripture} · Ang {currentEntry.ang}
           </p>
           {hukamnamaResult.data?.shabadId ? (
             <button
               onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
-              className="mt-2 font-sans text-xs text-saffron dark:text-gold-light underline underline-offset-2"
+              className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-xs font-semibold text-white"
             >
               {studyCopy.goToSourceShabad}
             </button>
@@ -949,6 +1154,8 @@ export default function Study() {
             <StudyCard
               key={entry.id}
               entry={entry}
+              sectionId={entryOutline[index]?.sectionId}
+              sectionEyebrow={showEntryOutline ? entryOutline[index]?.eyebrow ?? null : null}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
               hideMainLines={isArdaasReaderFlow}
               showAudioPlayer={index === 0}

@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState, type MouseEvent, type ReactNode } from 'react'
 import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
@@ -11,6 +11,8 @@ interface Props {
   wordData?: Word[] | null
   hideMainLines?: boolean
   showAudioPlayer?: boolean
+  sectionId?: string
+  sectionEyebrow?: string | null
   onSavePhrase?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onCopyLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
   onShareLine?: (line: ScriptureLine, entry: ScriptureEntry) => void
@@ -67,6 +69,8 @@ export default function StudyCard({
   wordData,
   hideMainLines = false,
   showAudioPlayer = false,
+  sectionId,
+  sectionEyebrow = null,
   onSavePhrase,
   onCopyLine,
   onShareLine,
@@ -103,7 +107,14 @@ export default function StudyCard({
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
   const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
 
-  const handleWordTap = (originalGurmukhi: string, line: ScriptureLine) => {
+  const handleWordTap = (
+    event: MouseEvent<HTMLButtonElement>,
+    originalGurmukhi: string,
+    line: ScriptureLine
+  ) => {
+    event.preventDefault()
+    event.stopPropagation()
+
     const wordsToSearch = wordData ?? entry.words ?? []
     const cleaned = cleanGurmukhi(originalGurmukhi)
     if (!cleaned) return
@@ -139,10 +150,16 @@ export default function StudyCard({
   return (
     <>
       <section
+        id={sectionId}
         data-testid="study-card"
-        className="animate-scale-in ornate-top section-shell rounded-[30px] px-5 py-6"
+        className="animate-scale-in scroll-mt-24 ornate-top section-shell rounded-[30px] px-5 py-6"
       >
         <div className="mb-5">
+          {sectionEyebrow ? (
+            <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.2em] mb-2">
+              {sectionEyebrow}
+            </p>
+          ) : null}
           <p className="font-sans text-[11px] text-gold dark:text-gold-light uppercase tracking-[0.2em]">
             {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
           </p>
@@ -231,7 +248,8 @@ export default function StudyCard({
                           lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
                           className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 ${larivaar ? '' : 'mr-[0.1em]'} text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
                           style={{ fontSize: `${fontSize}px` }}
-                          onClick={() => handleWordTap(word, line)}
+                          onPointerDown={event => event.stopPropagation()}
+                          onClick={event => handleWordTap(event, word, line)}
                         >
                           {formatGurbaniWord(word, { scriptMode, showVishraam })}
                         </button>

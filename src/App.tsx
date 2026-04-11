@@ -185,19 +185,21 @@ function AppShell() {
           className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
           data-display-mode={displayMode}
         >
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/study" element={<StudyPage />} />
-              <Route path="/study/:scriptureId" element={<StudyPage />} />
-              <Route path="/library" element={<LibraryPage />} />
-              <Route path="/banis" element={<BanisPage />} />
-              <Route path="/more" element={<MorePage />} />
-              <Route path="/learn" element={<LearnPage />} />
-              <Route path="/vocab" element={<VocabPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Suspense>
+          <main id="main-content" className="min-h-screen">
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/study" element={<StudyPage />} />
+                <Route path="/study/:scriptureId" element={<StudyPage />} />
+                <Route path="/library" element={<LibraryPage />} />
+                <Route path="/banis" element={<BanisPage />} />
+                <Route path="/more" element={<MorePage />} />
+                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/vocab" element={<VocabPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </main>
 
           {showOverlay && (
             <OnboardingSheet

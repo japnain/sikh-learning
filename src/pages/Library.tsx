@@ -11,6 +11,7 @@ import { useLocaleStore } from '../store/locale'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getUiCopy } from '../utils/uiCopy'
+import { getEditorialCopy } from '../content/editorialCopy'
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -96,6 +97,7 @@ export default function Library() {
   const navigate = useNavigate()
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
+  const editorial = getEditorialCopy(locale)
   const libraryCopy = copy.library
   const { bookmarks, removeBookmark } = useBookmarksStore()
   const { favorites, removeFavorite } = useFavoritesStore()
@@ -133,7 +135,7 @@ export default function Library() {
         <p className="eyebrow">{libraryCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>
         <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65 mt-3">
-          {libraryCopy.body}
+          {editorial?.library.body ?? libraryCopy.body}
         </p>
       </div>
 
@@ -178,7 +180,9 @@ export default function Library() {
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{libraryCopy.savedSnapshot}</p>
-            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.returnKeep}</p>
+            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
+              {editorial?.library.snapshotTitle ?? libraryCopy.returnKeep}
+            </p>
           </div>
           <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
         </div>
@@ -199,11 +203,17 @@ export default function Library() {
       </section>
 
       {favorites.length > 0 && (
-        <section className="section-shell-quiet p-4 mb-5">
-          <p className="eyebrow mb-3">Favorites</p>
+        <section className="section-shell p-4 mb-5 border border-saffron/15 bg-gradient-to-br from-saffron/6 via-white/70 to-white/95 dark:border-saffron/20 dark:from-saffron/10 dark:via-dark-card dark:to-dark-surface">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <IconHeartFilled size={14} className="text-saffron dark:text-saffron-light" />
+              <p className="eyebrow">{libraryCopy.favorites}</p>
+            </div>
+            <span className="chip-pill">{favorites.length}</span>
+          </div>
           <div className="space-y-2">
             {favorites.map(favorite => (
-              <div key={favorite.id} className="section-shell px-4 py-4 relative">
+              <div key={favorite.id} className="section-shell px-4 py-4 relative border border-saffron/12 dark:border-saffron/16">
                 <button
                   onClick={() => removeFavorite(favorite.id)}
                   className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
@@ -243,7 +253,9 @@ export default function Library() {
           <p className="eyebrow">{libraryCopy.reviewBank}</p>
           <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.reviewBankTitle}</p>
           <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
-            {words.length} saved words and {phrases.length} saved phrases are ready for review.
+            {editorial?.library.reviewBody
+              ? `${words.length} words · ${phrases.length} phrases. ${editorial.library.reviewBody}`
+              : `${words.length} saved words and ${phrases.length} saved phrases are ready for review.`}
           </p>
         </button>
 
@@ -288,14 +300,19 @@ export default function Library() {
       )}
 
       {bookmarks.length > 0 && (
-        <section className="section-shell-quiet p-4 mb-5">
+        <section className="section-shell-quiet p-4 mb-5 border border-gold/15 dark:border-gold/18">
           <button
             onClick={() => toggle('bookmarks')}
             className="w-full flex justify-between items-center gap-3"
           >
-            <div className="text-left">
-              <p className="eyebrow">Bookmarks</p>
-              <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
+            <div className="text-left flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light">
+                <IconBookmarkFilled size={14} />
+              </span>
+              <div>
+                <p className="eyebrow">{libraryCopy.bookmarks}</p>
+                <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
+              </div>
             </div>
             <span className="text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
@@ -304,7 +321,7 @@ export default function Library() {
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
                   key={bookmark.id}
-                  className="section-shell px-4 py-4 relative"
+                  className="section-shell px-4 py-4 relative border border-gold/12 dark:border-gold/16"
                 >
                   <button
                     onClick={() => removeBookmark(bookmark.id)}

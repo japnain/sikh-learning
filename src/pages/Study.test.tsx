@@ -57,7 +57,7 @@ describe('Study bookmark button', () => {
   test('bookmark button not rendered when not in API mode', () => {
     render(<MemoryRouter><Study /></MemoryRouter>)
     // In non-API mode (scripture picker), bookmark button should not appear
-    expect(screen.queryByLabelText('Bookmark')).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/bookmark/i)).not.toBeInTheDocument()
   })
 
   test('bookmark button rendered in API mode after entries load', async () => {
@@ -66,7 +66,7 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
   })
 
   test('bookmark form appears on clicking unactive bookmark button', async () => {
@@ -75,8 +75,8 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
-    fireEvent.click(screen.getByLabelText('Bookmark'))
+    await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText(/add bookmark/i))
     expect(screen.getByPlaceholderText('Add a note...')).toBeInTheDocument()
     expect(screen.getByText('Save Bookmark')).toBeInTheDocument()
   })
@@ -87,10 +87,24 @@ describe('Study bookmark button', () => {
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
-    await waitFor(() => expect(screen.queryByLabelText('Bookmark')).toBeInTheDocument())
-    fireEvent.click(screen.getByLabelText('Bookmark'))
+    await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText(/add bookmark/i))
     fireEvent.click(screen.getByText('Save Bookmark'))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
+    expect(screen.getByText(/bookmark saved/i)).toBeInTheDocument()
+  })
+
+  test('favoriting the current passage shows explicit feedback', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => expect(screen.queryByLabelText(/add favorite/i)).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText(/add favorite/i))
+
+    expect(screen.getByText(/added to favorites/i)).toBeInTheDocument()
   })
 
   test('shows learn return context when opened from Learn', async () => {
@@ -147,6 +161,25 @@ describe('Study renders all shabads on an ang', () => {
       const lines = screen.getAllByTestId('study-line')
       expect(lines.length).toBeGreaterThan(2)
     })
+  })
+
+  it('keeps the study route stable when opening a word popover', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes>
+          <Route path="/study" element={<><Study /><LocationSpy /></>} />
+          <Route path="/" element={<LocationSpy />} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(0)
+    })
+
+    fireEvent.click(within(screen.getAllByTestId('study-card')[0]!).getAllByRole('button', { name: 'ੴ' })[0]!)
+
+    expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=1')
   })
 
   it('keeps verse actions hidden until the overflow menu is opened', async () => {
@@ -434,7 +467,7 @@ describe('Study hukamnama mode', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Rehras Sahib' })).toBeInTheDocument()
-      expect(screen.getByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥')).toBeInTheDocument()
+      expect(screen.getAllByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥').length).toBeGreaterThan(0)
       expect(screen.queryByText(/Ang 0/i)).not.toBeInTheDocument()
     })
 
@@ -467,7 +500,7 @@ describe('Study adjustable STTM lengths', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥')).toBeInTheDocument()
+      expect(screen.getAllByText('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥').length).toBeGreaterThan(0)
       expect(screen.getByTestId('location').textContent).toContain('sgLength=short')
     })
 
