@@ -62,15 +62,19 @@ export default function NavBar() {
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
   const tabs = [
-    { to: '/', label: copy.nav.home, ariaLabel: `${copy.nav.home} tab`, Glyph: HomeGlyph },
-    { to: '/banis', label: copy.nav.read, ariaLabel: `${copy.nav.read} tab`, Glyph: ReadGlyph },
-    { to: '/learn', label: copy.nav.learn, ariaLabel: `${copy.nav.learn} tab`, Glyph: LearnGlyph },
-    { to: '/library', label: copy.nav.saved, ariaLabel: `${copy.nav.saved} tab`, Glyph: SavedGlyph },
-    { to: '/more', label: copy.nav.more, ariaLabel: `${copy.nav.more} tab and settings`, Glyph: MoreGlyph },
+    { id: 'home', to: '/', label: copy.nav.home, ariaLabel: `${copy.nav.home} tab`, Glyph: HomeGlyph },
+    { id: 'read', to: '/banis', label: copy.nav.read, ariaLabel: `${copy.nav.read} tab`, Glyph: ReadGlyph },
+    { id: 'learn', to: '/learn', label: copy.nav.learn, ariaLabel: `${copy.nav.learn} tab`, Glyph: LearnGlyph },
+    { id: 'saved', to: '/library', label: copy.nav.saved, ariaLabel: `${copy.nav.saved} tab`, Glyph: SavedGlyph },
+    { id: 'more', to: '/more', label: copy.nav.more, ariaLabel: `${copy.nav.more} tab and settings`, Glyph: MoreGlyph },
   ]
 
   return (
-    <nav className="app-nav z-50 flex items-center rounded-[30px] border border-white/55 bg-parchment-card/88 px-2 py-2 shadow-[0_18px_38px_rgba(77,53,22,0.14)] backdrop-blur-xl transition-colors duration-300 dark:border-gold/10 dark:bg-dark-card/88 dark:shadow-[0_22px_44px_rgba(0,0,0,0.45)]">
+    <nav
+      className="app-nav z-50 flex items-center rounded-[30px] border border-white/55 bg-parchment-card/88 px-2 py-2 shadow-[0_18px_38px_rgba(77,53,22,0.14)] backdrop-blur-xl transition-colors duration-300 dark:border-gold/10 dark:bg-dark-card/88 dark:shadow-[0_22px_44px_rgba(0,0,0,0.45)]"
+      aria-label="Primary navigation"
+      data-testid="primary-nav"
+    >
       <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-gold/20" />
       {tabs.map(tab => (
         <NavLink
@@ -79,6 +83,7 @@ export default function NavBar() {
           end={tab.to === '/'}
           aria-label={tab.ariaLabel}
           title={tab.ariaLabel}
+          data-testid={`nav-tab-${tab.id}`}
           className="group relative flex min-w-0 flex-1"
         >
           {({ isActive }) => (

@@ -106,6 +106,7 @@ beforeEach(() => {
 
 test('renders greeting', () => {
   renderHome()
+  expect(screen.getByTestId('page-home')).toBeInTheDocument()
   const greeting = screen.getByRole('heading', { level: 1 })
   expect(greeting).toBeInTheDocument()
 })
@@ -145,6 +146,7 @@ test('shows today\'s pick after load', async () => {
 
 test('shows the new daily actions', () => {
   renderHome()
+  expect(screen.getByTestId('home-todays-path')).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
   expect(screen.getByText(/1 of 2 steps done/i)).toBeInTheDocument()
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()

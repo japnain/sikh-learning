@@ -736,7 +736,11 @@ export default function Banis() {
   }, [searchMode, searchQuery, searchSource])
 
   return (
-    <div className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in">
+    <div
+      className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
+      data-testid="page-banis"
+      data-page="banis"
+    >
       <div className="mb-6 mt-4">
         <p className="eyebrow">{editorial?.read.eyebrow ?? 'Read'}</p>
         <h1 className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
@@ -747,11 +751,15 @@ export default function Banis() {
         </p>
       </div>
 
-      <div className="mb-6 section-shell-quiet p-4">
+      <div
+        className="mb-6 section-shell-quiet p-4"
+        aria-labelledby="banis-quick-find-title"
+        data-testid="banis-quick-find"
+      >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="eyebrow">{editorial?.read.quickFindEyebrow ?? 'Quick Find'}</p>
-            <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+            <p id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
               {editorial?.read.quickFindTitle ?? 'Search by the shape you remember first.'}
             </p>
             <p className="mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
@@ -762,6 +770,8 @@ export default function Banis() {
             type="button"
             onClick={() => toggle('search-options')}
             className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/65"
+            aria-expanded={searchOptionsOpen}
+            aria-controls="banis-search-options-panel"
           >
             {searchOptionsOpen ? 'Simplify' : 'Refine'}
           </button>
@@ -773,6 +783,7 @@ export default function Banis() {
             id="banis-search"
             name="banis-search"
             type="search"
+            aria-label="Search Gurbani, meanings, or direct routes"
             autoCapitalize="none"
             autoCorrect="off"
             autoComplete="off"
@@ -795,7 +806,7 @@ export default function Banis() {
         </div>
 
         {searchOptionsOpen && (
-          <>
+          <div id="banis-search-options-panel">
             <div className="mt-4 grid grid-cols-2 gap-2">
               {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
                 const selected = searchMode === mode
@@ -803,6 +814,7 @@ export default function Banis() {
                   <button
                     key={mode}
                     onClick={() => setSearchMode(mode)}
+                    aria-pressed={selected}
                     className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
                       selected
                         ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -821,6 +833,7 @@ export default function Banis() {
                   <button
                     key={value}
                     onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
+                    aria-pressed={selected}
                     className={`rounded-full px-3 py-1.5 font-sans text-[11px] border transition-all duration-300 ${
                       selected
                         ? 'bg-saffron text-white border-saffron'
@@ -832,7 +845,7 @@ export default function Banis() {
                 )
               })}
             </div>
-          </>
+          </div>
         )}
         {searchMode === 'ang' && angLookup && (
           <div className="mt-3 space-y-2">
@@ -888,6 +901,7 @@ export default function Banis() {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setRaagFilter('all')}
+                      aria-pressed={raagFilter === 'all'}
                       className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Raags
@@ -896,6 +910,7 @@ export default function Banis() {
                       <button
                         key={raag}
                         onClick={() => setRaagFilter(raag)}
+                        aria-pressed={raagFilter === raag}
                         className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {raag}
@@ -907,6 +922,7 @@ export default function Banis() {
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setWriterFilter('all')}
+                      aria-pressed={writerFilter === 'all'}
                       className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Writers
@@ -915,6 +931,7 @@ export default function Banis() {
                       <button
                         key={writer}
                         onClick={() => setWriterFilter(writer)}
+                        aria-pressed={writerFilter === writer}
                         className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {writer}
@@ -983,6 +1000,7 @@ export default function Banis() {
         type="button"
         onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
         className="hero-surface mb-4 w-full p-5 text-left active:scale-[0.99] transition-transform duration-150"
+        data-testid="banis-featured-flow"
       >
         <p className="eyebrow">{editorial?.read.featuredFlowEyebrow ?? 'Featured Flow'}</p>
         <div className="mt-3 flex items-start justify-between gap-4">
@@ -1004,6 +1022,8 @@ export default function Banis() {
         <button
           onClick={() => toggle('sundar-gutka')}
           className="w-full flex justify-between items-center bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-saffron/15 dark:to-saffron-light/15 border border-saffron/20 dark:border-saffron/20 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
+          aria-expanded={Boolean(expanded['sundar-gutka'])}
+          aria-controls="banis-sundar-gutka-panel"
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
@@ -1012,7 +1032,7 @@ export default function Banis() {
         </button>
 
         {expanded['sundar-gutka'] && (
-          <div className="mt-2 ml-2">
+          <div id="banis-sundar-gutka-panel" className="mt-2 ml-2">
             {loadingSundarGutka ? (
               <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Sundar Gutka…</p>
             ) : sundarGutkaGroups.map(group => {
@@ -1022,12 +1042,14 @@ export default function Banis() {
                   <button
                     onClick={() => toggle(groupKey)}
                     className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                    aria-expanded={Boolean(expanded[groupKey])}
+                    aria-controls={`${groupKey}-panel`}
                   >
                     <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.label}</p>
                     <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                   </button>
                   {expanded[groupKey] && (
-                    <div className="mt-1 ml-2">
+                    <div id={`${groupKey}-panel`} className="mt-1 ml-2">
                       {group.items.flatMap(item => {
                         const routeOptions = group.key === 'nitnem'
                           ? getNitnemRouteOptionsForBani(item)
@@ -1073,6 +1095,8 @@ export default function Banis() {
             <button
               onClick={() => toggle(sectionKey)}
               className={`w-full flex justify-between items-center ${scripture === 'SGGS' ? 'bg-parchment-card dark:bg-dark-card' : 'bg-parchment-low dark:bg-dark-surface'} border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150`}
+              aria-expanded={Boolean(isOpen)}
+              aria-controls={`banis-${sectionKey}-panel`}
             >
               <div className="text-left">
                 <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
@@ -1081,7 +1105,7 @@ export default function Banis() {
             </button>
 
             {isOpen && (
-              <div className="mt-2 ml-2">
+              <div id={`banis-${sectionKey}-panel`} className="mt-2 ml-2">
                 {groups.map(group => {
                   const groupKey = `${sectionKey}-${group.category}`
                   return (
@@ -1089,12 +1113,14 @@ export default function Banis() {
                       <button
                         onClick={() => toggle(groupKey)}
                         className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                        aria-expanded={Boolean(expanded[groupKey])}
+                        aria-controls={`${groupKey}-panel`}
                       >
                         <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.category}</p>
                         <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                       </button>
                       {expanded[groupKey] && (
-                        <div className="mt-1 ml-2">
+                        <div id={`${groupKey}-panel`} className="mt-1 ml-2">
                           {group.items.flatMap(item => {
                             if (item.variantOf) {
                               return []
@@ -1134,6 +1160,8 @@ export default function Banis() {
         <button
           onClick={handleToggleAmritKeertan}
           className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
+          aria-expanded={Boolean(expanded.ak)}
+          aria-controls="banis-amrit-keertan-panel"
         >
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
@@ -1142,7 +1170,7 @@ export default function Banis() {
         </button>
 
         {expanded['ak'] && (
-          <div className="mt-2 ml-2">
+          <div id="banis-amrit-keertan-panel" className="mt-2 ml-2">
             {loadingAmritHeaders ? (
               <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Amrit Keertan…</p>
             ) : selectedAmritHeader ? (

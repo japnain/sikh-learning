@@ -163,16 +163,16 @@ export default function Vocab() {
 
   if (vocab.length === 0) {
     return (
-      <div className="page-shell animate-fade-in">
+      <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab">
         <div className="flex items-center gap-3 mb-6">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
             &#8592; {copy.back}
           </button>
         </div>
 
-        <section className="hero-surface p-6 text-center">
+        <section className="hero-surface p-6 text-center" aria-labelledby="vocab-empty-title" data-testid="vocab-empty-state">
           <p className="eyebrow">{copy.savedShelfEyebrow}</p>
-          <h1 className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
+          <h1 id="vocab-empty-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
           <p lang="pa-Guru" className="mt-6 font-gurmukhi text-5xl text-ink/20 dark:text-dark-text/20">ਸ਼ਬਦ</p>
           <p className="mt-4 font-sans text-base font-semibold text-ink dark:text-dark-text">{copy.emptyTitle}</p>
           <p className="mt-3 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">{copy.emptyBody}</p>
@@ -193,7 +193,7 @@ export default function Vocab() {
   }
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
@@ -207,7 +207,7 @@ export default function Vocab() {
         <span className="font-sans text-xs text-ink/58 dark:text-dark-text/60">{copy.dueBadge(dueWords.length)}</span>
       </div>
 
-      <section className="hero-surface p-5 mb-4">
+      <section className="hero-surface p-5 mb-4" aria-labelledby="vocab-summary-title" data-testid="vocab-summary">
         <div className="grid grid-cols-3 gap-3">
           <div className="section-shell-quiet rounded-[24px] px-4 py-4">
             <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/45 dark:text-dark-text/45">{copy.totalSaved}</p>
@@ -224,7 +224,7 @@ export default function Vocab() {
         </div>
 
         <div className="section-shell mt-4 p-4">
-          <p className="eyebrow">{copy.reviewEyebrow}</p>
+          <p id="vocab-summary-title" className="eyebrow">{copy.reviewEyebrow}</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
             {dueWords.length > 0 ? copy.reviewReady(dueWords.length) : copy.reviewEmpty}
           </p>
@@ -253,7 +253,7 @@ export default function Vocab() {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-6 mt-4">
+          <div className="flex flex-col items-center gap-6 mt-4" data-testid="vocab-review-card">
             <p className="font-sans text-xs text-ink/54 dark:text-dark-text/56 uppercase tracking-wide">
               {safeIdx + 1} of {reviewPool.length}
             </p>
@@ -329,8 +329,8 @@ export default function Vocab() {
           </div>
         )
       ) : (
-        <section className="section-shell-quiet p-4">
-          <p className="eyebrow mb-3">{copy.savedShelfEyebrow}</p>
+        <section className="section-shell-quiet p-4" aria-labelledby="vocab-saved-list-title" data-testid="vocab-saved-list">
+          <p id="vocab-saved-list-title" className="eyebrow mb-3">{copy.savedShelfEyebrow}</p>
           <div className="space-y-2">
             {vocab.map((entry: VocabEntry) => (
               <div

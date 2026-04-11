@@ -742,7 +742,7 @@ export default function Study() {
 
   if (loading) {
     return (
-      <div className="page-shell">
+      <div className="page-shell" data-testid="page-study" data-page="study">
         <div className="flex items-center justify-between mb-4">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         </div>
@@ -758,7 +758,7 @@ export default function Study() {
 
   if (error || entries.length === 0) {
     return (
-      <div className="page-shell text-center mt-20">
+      <div className="page-shell text-center mt-20" data-testid="page-study" data-page="study">
         <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
           No verses found{baniName ? ` for ${baniName}` : ''}.
         </p>
@@ -768,7 +768,7 @@ export default function Study() {
   }
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study">
       <div className="flex items-center justify-between mb-4">
         <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
         <div className="flex items-center gap-1">
@@ -811,9 +811,10 @@ export default function Study() {
         ) : null}
       </div>
 
-      <div className="hero-surface p-5 mb-4">
+      <div className="hero-surface p-5 mb-4" aria-labelledby="study-reader-title" data-testid="study-reader-header">
         <p className="eyebrow mb-2">{isHukamnamaMode ? studyExperienceCopy.hukamnamaEyebrow : studyCopy.eyebrow}</p>
         <h1
+          id="study-reader-title"
           lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
           className={`leading-tight text-ink dark:text-dark-text ${
             readerTitleUsesScript
@@ -892,12 +893,13 @@ export default function Study() {
         <SoundscapeControls context="study" variant="compact" />
       </div>
 
-      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4 shadow-card">
+      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4 shadow-card" data-testid="study-reader-controls">
         <button
           type="button"
           onClick={() => setControlsOpen(open => !open)}
           className="w-full flex items-center justify-between gap-3"
           aria-expanded={controlsOpen}
+          aria-controls="study-reader-controls-panel"
           aria-label={controlsOpen ? 'Hide reader controls' : 'Show reader controls'}
         >
           <div className="text-left">
@@ -912,7 +914,7 @@ export default function Study() {
         </button>
 
         {controlsOpen && (
-          <div className="mt-4">
+          <div id="study-reader-controls-panel" className="mt-4">
             {supportedSundarGutkaBaniId && availableSundarGutkaLengths.length > 0 && (
               <div className="mb-3">
                 <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
@@ -1068,6 +1070,7 @@ export default function Study() {
             id="study-bookmark-note"
             name="study-bookmark-note"
             type="text"
+            aria-label="Bookmark note"
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
             placeholder={studyCopy.addNote}
@@ -1147,7 +1150,7 @@ export default function Study() {
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-4" data-testid="study-entry-list">
         {entries.map((entry, index) => {
           const shabadId = parseShabadId(entry)
           return (

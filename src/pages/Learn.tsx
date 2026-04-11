@@ -96,7 +96,7 @@ function QueryTab({
       className={`min-h-[52px] rounded-[24px] border px-4 py-3 text-left transition-all duration-300 ${
         active
           ? "border-saffron/35 bg-white text-ink shadow-soft dark:border-gold/30 dark:bg-dark-card dark:text-dark-text"
-          : "border-sand/15 bg-parchment-low/85 text-ink/72 dark:border-dark-text/10 dark:bg-dark-surface/70 dark:text-dark-text/72"
+          : "border-sand/15 bg-parchment-low/85 text-ink/72 dark:border-dark-text/10 dark:!bg-dark-surface dark:text-dark-text/72"
       }`}
     >
       <p className="font-sans text-xs font-semibold uppercase tracking-[0.16em]">{label}</p>
@@ -115,6 +115,8 @@ function CollapsibleSection({
   bodyClassName = "mt-4",
   badge,
   titleClassName = "font-sans text-base font-semibold text-ink dark:text-dark-text",
+  sectionId,
+  testId,
 }: {
   eyebrow: string
   title: string
@@ -125,21 +127,26 @@ function CollapsibleSection({
   bodyClassName?: string
   badge?: string
   titleClassName?: string
+  sectionId?: string
+  testId?: string
 }) {
   const [open, setOpen] = useState(defaultOpen)
+  const headingId = sectionId ? `${sectionId}-title` : undefined
+  const panelId = sectionId ? `${sectionId}-panel` : undefined
 
   return (
-    <section className={className}>
+    <section className={className} aria-labelledby={headingId} data-testid={testId}>
       <button
         type="button"
         onClick={() => setOpen(current => !current)}
         aria-expanded={open}
+        aria-controls={panelId}
         className="flex w-full items-start justify-between gap-4 text-left"
       >
         <div className="min-w-0 flex-1">
           <p className="eyebrow">{eyebrow}</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <p className={titleClassName}>{title}</p>
+            <p id={headingId} className={titleClassName}>{title}</p>
             {badge ? <span className="chip-pill">{badge}</span> : null}
           </div>
           {summary ? (
@@ -151,7 +158,7 @@ function CollapsibleSection({
         </span>
       </button>
 
-      {open ? <div className={bodyClassName}>{children}</div> : null}
+      {open ? <div id={panelId} className={bodyClassName}>{children}</div> : null}
     </section>
   )
 }
@@ -304,7 +311,7 @@ function SpotlightButton({
       className={`rounded-[28px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
-          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"
+          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"
       }`}
     >
       <p className="eyebrow">{eyebrow}</p>
@@ -331,7 +338,7 @@ function TopicDoorCard({
       className={`rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
-          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"
+          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"
       }`}
     >
       <p className="eyebrow">{topic.shortTitle}</p>
@@ -414,7 +421,7 @@ function TopicCard({
       className={`min-h-[96px] rounded-[28px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
-          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"
+          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"
       }`}
     >
       <p className="eyebrow">{topic.category === "most-needed" ? "Most Needed" : topic.category === "practice" ? "Practice" : "Inner Work"}</p>
@@ -513,7 +520,7 @@ function ShabadCard({
   onToggleSave: () => void
 }) {
   return (
-    <div className={`rounded-[30px] border px-4 py-4 transition-all duration-300 ${active ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card" : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"}`}>
+    <div className={`rounded-[30px] border px-4 py-4 transition-all duration-300 ${active ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card" : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"}`}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <CitationLine shabad={shabad} />
@@ -618,7 +625,7 @@ function CollectionCard({
       className={`w-[17.5rem] shrink-0 snap-start rounded-[30px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
-          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/78"
+          : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"
       }`}
     >
       <p className="eyebrow">{collection.durationLabel}</p>
@@ -701,7 +708,7 @@ function CollectionDetail({
                   key={guidance.id}
                   type="button"
                   onClick={() => onOpenItem("daily-guidance", guidance.id)}
-                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:bg-dark-card/65"
+                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:!bg-dark-card"
                 >
                   <p className="eyebrow">Daily guidance</p>
                   <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -728,7 +735,7 @@ function CollectionDetail({
                   key={topic.id}
                   type="button"
                   onClick={() => onOpenItem("topic-guide", topic.id)}
-                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:bg-dark-card/65"
+                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:!bg-dark-card"
                 >
                   <p className="eyebrow">Topic guide</p>
                   <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -755,7 +762,7 @@ function CollectionDetail({
                   key={shabad.id}
                   type="button"
                   onClick={() => onOpenItem("shabad-deep-dive", shabad.id)}
-                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:bg-dark-card/65"
+                  className="w-full rounded-[20px] bg-white/70 px-4 py-4 text-left dark:!bg-dark-card"
                 >
                   <p className="eyebrow">Shabad deep dive</p>
                   <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -1074,7 +1081,7 @@ export default function Learn() {
   }, [location.pathname, location.search, location.state, navigate])
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-learn" data-page="learn">
       <div className="mb-6">
         <p className="eyebrow">{editorial?.learn.eyebrow ?? "Learn"}</p>
         <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">{pageCopy.title}</h1>
@@ -1083,9 +1090,9 @@ export default function Learn() {
         </p>
       </div>
 
-      <section className="hero-surface p-5">
+      <section className="hero-surface p-5" aria-labelledby="learn-hero-title" data-testid="learn-hero">
         <p className="eyebrow">{editorial?.learn.heroEyebrow ?? "Archive"}</p>
-        <h2 className="mt-2 font-display text-[2.45rem] leading-none text-ink dark:text-dark-text">
+        <h2 id="learn-hero-title" className="mt-2 font-display text-[2.45rem] leading-none text-ink dark:text-dark-text">
           {editorial?.learn.heroTitle ?? "Find the guide that meets the question."}
         </h2>
         <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/76 dark:text-dark-text/78">
@@ -1110,19 +1117,22 @@ export default function Learn() {
             onChange={event => handleHeroSearchChange(event.target.value)}
             placeholder={editorial?.learn.heroSearchPlaceholder ?? "Search the archive by question, feeling, or theme…"}
             className="min-w-0 flex-1 bg-transparent font-sans text-sm text-ink outline-none placeholder:text-ink/40 dark:text-dark-text dark:placeholder:text-dark-text/40"
+            data-testid="learn-archive-search"
           />
         </label>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/62">
           {editorial?.learn.heroSearchHint}
         </p>
 
-        <CollapsibleSection
-          eyebrow="Archive Surface"
-          title={activeTabOption.label}
-          summary={activeTabOption.detail}
-          badge="Current"
-          className="section-shell-quiet mt-5 p-4"
-        >
+      <CollapsibleSection
+        eyebrow="Archive Surface"
+        title={activeTabOption.label}
+        summary={activeTabOption.detail}
+        badge="Current"
+        className="section-shell-quiet mt-5 p-4"
+        sectionId="learn-archive-surface"
+        testId="learn-archive-surface"
+      >
           <div className="grid gap-3 sm:grid-cols-2">
             {TAB_OPTIONS.map(option => (
               <QueryTab
@@ -1145,6 +1155,8 @@ export default function Learn() {
         className="section-shell mt-5 p-5"
         bodyClassName="mt-5"
         titleClassName="font-display text-[2rem] leading-none text-ink dark:text-dark-text"
+        sectionId="learn-inventory"
+        testId="learn-inventory"
       >
         <div className="grid gap-3 sm:grid-cols-2">
           <InventoryMetric
@@ -1178,6 +1190,8 @@ export default function Learn() {
         title={activeDepthOption.label}
         summary={activeDepthOption.detail}
         badge="Current"
+        sectionId="learn-reading-depth"
+        testId="learn-reading-depth"
       >
         <div className="grid gap-3 md:grid-cols-3">
           {DEPTH_OPTIONS.map(option => (
@@ -1189,7 +1203,7 @@ export default function Learn() {
               className={`rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
                 learnState.depthPreference === option.id
                   ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
-                  : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:bg-dark-surface/70"
+                  : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:!bg-dark-surface"
               }`}
             >
               <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{option.label}</p>

@@ -130,7 +130,7 @@ export default function Library() {
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-library" data-page="library">
       <div className="mb-5">
         <p className="eyebrow">{libraryCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>
@@ -139,33 +139,42 @@ export default function Library() {
         </p>
       </div>
 
-      <section className="section-shell-quiet p-4 mb-5">
+      <section
+        className="section-shell-quiet p-4 mb-5"
+        aria-labelledby="library-source-browser-title"
+        data-testid="library-source-browser"
+      >
         <button
           onClick={() => toggle('library')}
           className="w-full flex justify-between items-center gap-3"
+          aria-expanded={Boolean(expanded.library)}
+          aria-controls="library-source-browser-panel"
         >
           <div className="text-left">
-            <p className="eyebrow">{libraryCopy.sourceBrowsing}</p>
+            <p id="library-source-browser-title" className="eyebrow">{libraryCopy.sourceBrowsing}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
           </div>
           <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
         </button>
 
         {expanded.library && (
-          <div className="mt-4 space-y-3">
+          <div id="library-source-browser-panel" className="mt-4 space-y-3">
             {SECTIONS.map(section => {
               const isOpen = expanded[section.id]
+              const panelId = `library-source-${section.id}`
               return (
                 <div key={section.id} className="section-shell px-4 py-4">
                   <button
                     onClick={() => toggle(section.id)}
                     className="w-full flex justify-between items-center gap-3"
+                    aria-expanded={Boolean(isOpen)}
+                    aria-controls={panelId}
                   >
                     <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
                     <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
                   </button>
                   {isOpen && (
-                    <div className="mt-4">
+                    <div id={panelId} className="mt-4">
                       <AngBrowser source={section.source} totalAngs={section.totalAngs} />
                     </div>
                   )}
@@ -176,11 +185,15 @@ export default function Library() {
         )}
       </section>
 
-      <section className="hero-surface p-5 mb-5">
+      <section
+        className="hero-surface p-5 mb-5"
+        aria-labelledby="library-snapshot-title"
+        data-testid="library-snapshot"
+      >
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{libraryCopy.savedSnapshot}</p>
-            <p className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
+            <p id="library-snapshot-title" className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
               {editorial?.library.snapshotTitle ?? libraryCopy.returnKeep}
             </p>
           </div>
@@ -203,11 +216,15 @@ export default function Library() {
       </section>
 
       {favorites.length > 0 && (
-        <section className="section-shell p-4 mb-5 border border-saffron/15 bg-gradient-to-br from-saffron/6 via-white/70 to-white/95 dark:border-saffron/20 dark:from-saffron/10 dark:via-dark-card dark:to-dark-surface">
+        <section
+          className="section-shell p-4 mb-5 border border-saffron/15 bg-gradient-to-br from-saffron/6 via-white/70 to-white/95 dark:border-saffron/20 dark:from-saffron/10 dark:via-dark-card dark:to-dark-surface"
+          aria-labelledby="library-favorites-title"
+          data-testid="library-favorites"
+        >
           <div className="mb-3 flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <IconHeartFilled size={14} className="text-saffron dark:text-saffron-light" />
-              <p className="eyebrow">{libraryCopy.favorites}</p>
+              <p id="library-favorites-title" className="eyebrow">{libraryCopy.favorites}</p>
             </div>
             <span className="chip-pill">{favorites.length}</span>
           </div>
@@ -245,10 +262,11 @@ export default function Library() {
         </section>
       )}
 
-      <div className="grid gap-3 mb-5">
+      <div className="grid gap-3 mb-5" data-testid="library-shortcuts">
         <button
           onClick={() => navigate('/vocab')}
           className="section-shell p-4 text-left"
+          data-testid="library-open-vocab"
         >
           <p className="eyebrow">{libraryCopy.reviewBank}</p>
           <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.reviewBankTitle}</p>
@@ -266,6 +284,7 @@ export default function Library() {
               if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
             }}
             className="section-shell p-4 text-left"
+            data-testid="library-resume-reading"
           >
             <p className="eyebrow">{libraryCopy.resume}</p>
             <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.resumeTitle}</p>
@@ -277,8 +296,12 @@ export default function Library() {
       </div>
 
       {inProgress.length > 0 && (
-        <section className="section-shell-quiet p-4 mb-5">
-          <p className="eyebrow mb-3">In Progress</p>
+        <section
+          className="section-shell-quiet p-4 mb-5"
+          aria-labelledby="library-in-progress-title"
+          data-testid="library-in-progress"
+        >
+          <p id="library-in-progress-title" className="eyebrow mb-3">In Progress</p>
           <div className="space-y-2">
             {inProgress.map(item => (
               <button
@@ -300,24 +323,30 @@ export default function Library() {
       )}
 
       {bookmarks.length > 0 && (
-        <section className="section-shell-quiet p-4 mb-5 border border-gold/15 dark:border-gold/18">
+        <section
+          className="section-shell-quiet p-4 mb-5 border border-gold/15 dark:border-gold/18"
+          aria-labelledby="library-bookmarks-title"
+          data-testid="library-bookmarks"
+        >
           <button
             onClick={() => toggle('bookmarks')}
             className="w-full flex justify-between items-center gap-3"
+            aria-expanded={Boolean(expanded.bookmarks)}
+            aria-controls="library-bookmarks-panel"
           >
             <div className="text-left flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light">
                 <IconBookmarkFilled size={14} />
               </span>
               <div>
-                <p className="eyebrow">{libraryCopy.bookmarks}</p>
+                <p id="library-bookmarks-title" className="eyebrow">{libraryCopy.bookmarks}</p>
                 <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
               </div>
             </div>
             <span className="text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
           {expanded.bookmarks && (
-            <div className="mt-4 space-y-2">
+            <div id="library-bookmarks-panel" className="mt-4 space-y-2">
               {bookmarks.map((bookmark: Bookmark) => (
                 <div
                   key={bookmark.id}
@@ -353,8 +382,12 @@ export default function Library() {
       )}
 
       {recentStudy.length > 0 && (
-        <section className="section-shell p-4 mb-5">
-          <p className="eyebrow mb-3">Reading History</p>
+        <section
+          className="section-shell p-4 mb-5"
+          aria-labelledby="library-reading-history-title"
+          data-testid="library-reading-history"
+        >
+          <p id="library-reading-history-title" className="eyebrow mb-3">Reading History</p>
           <div className="space-y-2">
             {recentStudy.map(entry => (
               <button

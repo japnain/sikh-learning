@@ -30,7 +30,12 @@ function SkeletonBlock({ className }: { className: string }) {
 
 function RouteFallback() {
   return (
-    <div className="page-shell">
+    <div
+      className="page-shell"
+      data-testid="route-fallback"
+      aria-busy="true"
+      aria-label="Loading page content"
+    >
       <div className="space-y-5 animate-pulse">
         <div className="flex items-center justify-between px-1">
           <SkeletonBlock className="h-3 w-20 bg-gold/15 dark:bg-gold/10" />
@@ -156,6 +161,13 @@ function AppShell() {
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-medium focus:text-ink dark:focus:bg-dark-card dark:focus:text-dark-text"
+        data-testid="skip-to-content"
+      >
+        Skip to main content
+      </a>
       <SplashScreen />
       <MusicControllerBridge />
 
@@ -184,8 +196,9 @@ function AppShell() {
         <div
           className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
           data-display-mode={displayMode}
+          data-testid="app-shell"
         >
-          <main id="main-content" className="min-h-screen">
+          <main id="main-content" className="min-h-screen" data-testid="main-content">
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<HomePage />} />

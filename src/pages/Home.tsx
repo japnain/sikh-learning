@@ -514,7 +514,7 @@ export default function Home() {
   }
 
   return (
-    <div className="page-shell animate-fade-in">
+    <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home">
       <div className="flex justify-between items-start gap-3 mb-5">
         <div>
           <p className="eyebrow">{editorial?.brand.domain ?? 'Naamras.xyz'}</p>
@@ -530,6 +530,8 @@ export default function Home() {
             onClick={toggleTheme}
             className="section-shell-quiet min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/75 dark:text-dark-text/75 active:scale-95 transition-transform duration-150"
             aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-pressed={dark}
+            data-testid="home-theme-toggle"
           >
             {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
           </button>
@@ -546,12 +548,16 @@ export default function Home() {
         </h1>
       </div>
 
-      <section className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1">
+      <section
+        className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1"
+        aria-labelledby="home-hero-title"
+        data-testid="home-hero"
+      >
         <div className="flex items-center justify-between gap-3 mb-4">
           <span className="eyebrow">{editorial?.home.heroEyebrow ?? heroPrimary.eyebrow}</span>
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
-        <h2 className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
+        <h2 id="home-hero-title" className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
           {editorial?.home.heroTitle ?? heroPrimary.title}
         </h2>
         <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[34ch]">
@@ -599,23 +605,26 @@ export default function Home() {
           <button
             onClick={heroPrimary.buttonAction}
             className="min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold px-5 active:scale-95 transition-transform duration-150"
+            data-testid="home-hero-primary-action"
           >
             {heroPrimary.buttonLabel}
           </button>
           <button
             onClick={heroPrimary.secondaryAction}
             className="min-h-[48px] rounded-full bg-white/70 dark:bg-dark-card/70 text-ink dark:text-dark-text font-sans text-sm font-medium px-5 border border-sand/15 dark:border-dark-text/10 active:scale-95 transition-transform duration-150"
+            data-testid="home-hero-secondary-action"
           >
             {heroPrimary.secondaryLabel}
           </button>
         </div>
       </section>
 
-      <div className="grid gap-3 mb-5">
+      <div className="grid gap-3 mb-5" data-testid="home-gateways">
         <button
           type="button"
           onClick={() => navigate('/learn', { state: { focusSearch: true } })}
           className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
+          data-testid="home-open-learn"
         >
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -638,6 +647,7 @@ export default function Home() {
           type="button"
           onClick={() => navigate('/banis')}
           className="section-shell-quiet w-full px-4 py-4 text-left active:scale-[0.99] transition-transform duration-150"
+          data-testid="home-open-read"
         >
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -658,6 +668,7 @@ export default function Home() {
         type="button"
         onClick={() => navigate('/learn')}
         className="section-shell-quiet w-full px-4 py-4 mb-5 text-left active:scale-[0.99] transition-transform duration-150"
+        data-testid="home-open-daily-lesson"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -679,10 +690,12 @@ export default function Home() {
         ref={todaysPathRef}
         tabIndex={-1}
         className="section-shell p-4 mb-5 animate-slide-up stagger-2 transition-[box-shadow,transform,border-color] duration-500"
+        aria-labelledby="home-todays-path-title"
+        data-testid="home-todays-path"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="eyebrow">{homeCopy.todaysPath}</p>
+            <p id="home-todays-path-title" className="eyebrow">{homeCopy.todaysPath}</p>
             <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
               {nextStep.title}
             </p>
@@ -694,6 +707,7 @@ export default function Home() {
             onClick={handleShareProgress}
             className="min-h-[40px] min-w-[40px] rounded-full section-shell-quiet flex items-center justify-center text-gold dark:text-gold-light"
             aria-label={editorial?.home.shareProgress ?? homeCopy.shareProgress}
+            data-testid="home-share-progress"
           >
             {showCopied ? <span className="font-sans text-[10px]">{commonCopy.copied}</span> : <IconShare size={16} />}
           </button>
@@ -707,6 +721,7 @@ export default function Home() {
         <button
           onClick={nextStep.onAction}
           className="mt-4 w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold min-h-[48px]"
+          data-testid="home-todays-path-action"
         >
           {nextStep.actionLabel}
         </button>
@@ -768,7 +783,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell-quiet p-4 mb-5 animate-slide-up stagger-3">
+      <section
+        className="section-shell-quiet p-4 mb-5 animate-slide-up stagger-3"
+        aria-labelledby="home-nitnem-title"
+        data-testid="home-nitnem-progress"
+      >
         <div className="flex items-start justify-between gap-3">
           <button
             onClick={() => setNitnemOpen(open => !open)}
@@ -776,7 +795,7 @@ export default function Home() {
             aria-expanded={nitnemOpen}
             aria-controls="nitnem-progress-panel"
           >
-            <p className="eyebrow">{homeCopy.nitnemProgress}</p>
+            <p id="home-nitnem-title" className="eyebrow">{homeCopy.nitnemProgress}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">
               {nitnemDone} / {selectedNitnemOptions.length} {homeCopy.dailyBanisComplete}
             </p>
@@ -922,11 +941,15 @@ export default function Home() {
         )}
       </section>
 
-      <section className="section-shell p-4 mb-5 animate-slide-up stagger-4">
+      <section
+        className="section-shell p-4 mb-5 animate-slide-up stagger-4"
+        aria-labelledby="home-saved-title"
+        data-testid="home-saved-overview"
+      >
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="eyebrow">{homeCopy.savedEyebrow}</p>
-            <h3 className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
+            <h3 id="home-saved-title" className="font-display text-3xl text-ink dark:text-dark-text leading-none mt-2">
               {editorial?.home.savedTitle ?? homeCopy.savedTitle}
             </h3>
           </div>
@@ -954,8 +977,12 @@ export default function Home() {
       </section>
 
       {(progressItems.length > 0 || todaysPick || recentlyStudied.length > 0) && (
-        <section className="section-shell-quiet p-4 animate-slide-up stagger-5">
-          <p className="eyebrow mb-4">{editorial?.home.discoveryEyebrow ?? homeCopy.discoveryHistory}</p>
+        <section
+          className="section-shell-quiet p-4 animate-slide-up stagger-5"
+          aria-labelledby="home-discovery-title"
+          data-testid="home-discovery-history"
+        >
+          <p id="home-discovery-title" className="eyebrow mb-4">{editorial?.home.discoveryEyebrow ?? homeCopy.discoveryHistory}</p>
 
           {progressItems.length > 0 && (
             <div className="mb-4">
