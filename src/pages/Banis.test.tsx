@@ -28,14 +28,26 @@ beforeEach(() => {
 
 test('renders page heading', () => {
   renderBanis()
-  expect(screen.getByText('Banis')).toBeInTheDocument()
+  expect(screen.getByRole('heading', { level: 1, name: /move directly into gurbani/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /refine/i })).toBeInTheDocument()
+  expect(screen.getByText(/^Auto$/i)).toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /first letters/i })).not.toBeInTheDocument()
 
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
 
   expect(screen.getByRole('button', { name: /first letters/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /^SGGS$/i })).toBeInTheDocument()
+})
+
+test('uses a search-first default input with stable search attributes', () => {
+  renderBanis()
+
+  const searchInput = document.querySelector('#banis-search') as HTMLInputElement | null
+
+  expect(searchInput).not.toBeNull()
+  expect(searchInput?.getAttribute('name')).toBe('banis-search')
+  expect(searchInput?.getAttribute('autocorrect')).toBe('off')
+  expect(searchInput?.getAttribute('spellcheck')).toBe('false')
 })
 
 test('renders the four main content sections', () => {
@@ -101,7 +113,7 @@ test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other
 
   expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
   expect(
-    screen.getByText('Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.')
+    screen.getByText(/Move from Ardaas into a random Hukamnama/i)
   ).toBeInTheDocument()
 
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
@@ -259,5 +271,28 @@ test('supports direct ang lookup mode', async () => {
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /open sggs ang 12/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /open dg ang 12/i })).toBeInTheDocument()
+  })
+})
+
+test('front-loads canonical bani routes for short romanized queries like jap', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/study" element={<><Study /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
+
+  expect(await screen.findByText(/Direct Bani Routes/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Japji Sahib/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /Jaap Sahib/i })).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: /Japji Sahib/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji+Sahib')
   })
 })

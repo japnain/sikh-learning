@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import { getEditorialCopy } from '../content/editorialCopy'
+
+const editorial = getEditorialCopy('en')
 
 export default function SplashScreen() {
   const [visible, setVisible] = useState(() => {
@@ -31,10 +34,13 @@ export default function SplashScreen() {
         <p className="font-gurmukhi text-7xl text-gold splash-glow select-none">ੴ</p>
       </div>
       <p className="font-sans font-semibold text-xl text-gold-light mt-6 tracking-widest uppercase animate-fade-in">
-        Nitnem
+        {editorial?.brand.name ?? 'NaamRas'}
       </p>
       <p className="font-sans text-xs text-gold/50 mt-2 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-        Read &middot; Understand &middot; Grow
+        {editorial?.brand.domain ?? 'Naamras.xyz'}
+      </p>
+      <p className="font-sans text-[11px] text-gold/45 mt-1 animate-fade-in" style={{ animationDelay: '0.45s' }}>
+        {editorial?.brand.splashTagline ?? 'Read. Reflect. Return.'}
       </p>
     </div>
   )

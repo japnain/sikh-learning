@@ -67,14 +67,48 @@ test("renders the new today-first Gurbani guidance structure", () => {
   )
 
   expect(screen.getByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
-  expect(screen.getByText(/Daily Gurbani guidance, full-shabad study/i)).toBeInTheDocument()
-  expect(screen.getByText(/Today's Guidance/i)).toBeInTheDocument()
-  expect(screen.getAllByText(/Featured Shabad/i).length).toBeGreaterThan(0)
-  expect(screen.getAllByText(/What Guru Says About/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/NaamRas Learn/i)).toBeInTheDocument()
+  expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toBeInTheDocument()
+  expect(screen.getByText(/The library is growing in public\./i)).toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Today's Guidance/i })).toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Featured Shabad/i })).toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Topic Spotlight/i })).toBeInTheDocument()
   expect(screen.getByText(/Continue Learning/i)).toBeInTheDocument()
-  expect(screen.getByText(/Explore by Theme/i)).toBeInTheDocument()
+  expect(screen.getByText(/Open by State/i)).toBeInTheDocument()
+  expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
   expect(screen.queryByText(/Curation Notes/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/^Placement$/i)).not.toBeInTheDocument()
+})
+
+test("shows live inventory proof instead of fixed launch claims", () => {
+  const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
+
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByText(/Daily guidance entries/i)).toBeInTheDocument()
+  expect(screen.getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
+  expect(screen.getByText(/^Cross-links$/i)).toBeInTheDocument()
+  expect(screen.getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
+  expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
+})
+
+test("uses stable search input attributes for the archive search", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  const archiveSearch = document.querySelector("#learn-archive-search") as HTMLInputElement | null
+
+  expect(archiveSearch).not.toBeNull()
+  expect(archiveSearch?.getAttribute("name")).toBe("learn-archive-search")
+  expect(archiveSearch?.getAttribute("autocorrect")).toBe("off")
+  expect(archiveSearch?.getAttribute("spellcheck")).toBe("false")
 })
 
 test("searching stress resolves to the approved anxiety guide", () => {
@@ -93,7 +127,39 @@ test("searching stress resolves to the approved anxiety guide", () => {
   expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
 })
 
-test("read full meaning opens the related full shabad context in one tap", () => {
+test("searching second guessing resolves to the newer doubt guide", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole("button", { name: /Topics/i }))
+  fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
+    target: { value: "second guessing" },
+  })
+
+  expect(screen.getAllByText(/When doubt keeps burning beneath the surface/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/Showing the canonical approved guide for “second guessing”/i)).toBeInTheDocument()
+})
+
+test("searching burnt out resolves to the exhaustion guide", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole("button", { name: /Topics/i }))
+  fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
+    target: { value: "burnt out" },
+  })
+
+  expect(screen.getAllByText(/When the soul feels worn thin/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/Showing the canonical approved guide for “burnt out”/i)).toBeInTheDocument()
+})
+
+test("today's guidance can open the linked shabad detail without leaving the hub", () => {
   const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
   const relatedShabad = SHABAD_DEEP_DIVE_BY_ID[todaySurface.dailyGuidance.item.relatedShabadIds[0]!]!
 
@@ -103,11 +169,28 @@ test("read full meaning opens the related full shabad context in one tap", () =>
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByRole("button", { name: /Read full meaning/i }))
+  fireEvent.click(screen.getByRole("button", { name: /Today's Guidance/i }))
+  fireEvent.click(screen.getByRole("button", { name: /Open the full shabad/i }))
 
-  expect(screen.getByRole("heading", { level: 1, name: /^Shabads$/i })).toBeInTheDocument()
   expect(screen.getAllByText(new RegExp(relatedShabad.title, "i")).length).toBeGreaterThan(0)
   expect(screen.getByText(relatedShabad.lines[0]!.translation)).toBeInTheDocument()
+})
+
+test("opening a featured collection shows grouped editorial landing sections", () => {
+  const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
+  const featuredCollection = todaySurface.featuredCollections[0]!
+
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getAllByRole("button", { name: new RegExp(featuredCollection.title, "i") })[0]!)
+
+  expect(screen.getByText(/Guidance Openings/i)).toBeInTheDocument()
+  expect(screen.getByText(/Topic Guides/i)).toBeInTheDocument()
+  expect(screen.getByText(/^Full Shabad Study$/i)).toBeInTheDocument()
 })
 
 test("choosing a topic chip clears a stale search fallback message", () => {

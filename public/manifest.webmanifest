@@ -1,7 +1,7 @@
 {
-  "name": "Nitnem",
-  "short_name": "Nitnem",
-  "description": "Read Gurbani daily. Understand it better. Grow into it steadily.",
+  "name": "NaamRas",
+  "short_name": "NaamRas",
+  "description": "NaamRas is a premium Gurbani reading and learning app for daily Nitnem, canonical study, and a steadier return to scripture.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

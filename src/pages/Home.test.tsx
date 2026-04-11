@@ -112,7 +112,26 @@ test('renders greeting', () => {
 
 test('shows the new hero shell immediately', () => {
   renderHome()
-  expect(screen.getByText(/Read Gurbani daily\. Understand it better\. Grow into it steadily\./i)).toBeInTheDocument()
+  expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
+  expect(screen.getByText(/A deliberate daily space for Gurbani, meaning, and return\./i)).toBeInTheDocument()
+  expect(screen.getByText(/Search the living archive\./i)).toBeInTheDocument()
+})
+
+test('routes the home search gateway into learn', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/learn" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole('button', { name: /learn search the living archive/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/learn')
+  })
 })
 
 test('shows today\'s pick after load', async () => {

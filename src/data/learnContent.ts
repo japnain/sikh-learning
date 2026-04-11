@@ -8,6 +8,20 @@ import type {
   SourceCitation,
   TopicGuide,
 } from "../types"
+import {
+  PHASE_TWO_COLLECTIONS,
+  PHASE_TWO_DAILY_GUIDANCE_ENTRIES,
+  PHASE_TWO_LEARN_SEARCH_SYNONYMS,
+  PHASE_TWO_SHABAD_DEEP_DIVES,
+  PHASE_TWO_TOPIC_GUIDES,
+} from "./learnContentPhase2"
+import {
+  PHASE_THREE_COLLECTIONS,
+  PHASE_THREE_DAILY_GUIDANCE_ENTRIES,
+  PHASE_THREE_LEARN_SEARCH_SYNONYMS,
+  PHASE_THREE_SHABAD_DEEP_DIVES,
+  PHASE_THREE_TOPIC_GUIDES,
+} from "./learnContentPhase3"
 
 function citation(
   shabadId: number,
@@ -62,11 +76,11 @@ function ref(
 }
 
 export const LEARN_CONTENT_TARGETS = {
-  dailyGuidance: 150,
-  shabadDeepDives: 30,
-  topicGuides: 40,
-  collections: 12,
-  crossLinks: 200,
+  dailyGuidance: 240,
+  shabadDeepDives: 60,
+  topicGuides: 72,
+  collections: 24,
+  crossLinks: 500,
 } as const
 
 export const LEARN_SEARCH_SYNONYMS: Record<string, string> = {
@@ -92,6 +106,8 @@ export const LEARN_SEARCH_SYNONYMS: Record<string, string> = {
   seva: "topic-seva",
   service: "topic-seva",
   hukam: "topic-hukam",
+  ...PHASE_TWO_LEARN_SEARCH_SYNONYMS,
+  ...PHASE_THREE_LEARN_SEARCH_SYNONYMS,
 }
 
 export const SHABAD_DEEP_DIVES: ShabadDeepDive[] = [
@@ -1123,6 +1139,8 @@ export const SHABAD_DEEP_DIVES: ShabadDeepDive[] = [
     relatedCollectionIds: ["collection-gratitude-and-contentment"],
     rotation: rotation("attachment", "deep", 30, 7, "reflection"),
   },
+  ...PHASE_TWO_SHABAD_DEEP_DIVES,
+  ...PHASE_THREE_SHABAD_DEEP_DIVES,
 ]
 
 export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
@@ -1398,6 +1416,8 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     relatedCollectionIds: ["collection-ego-to-humility"],
     rotation: rotation("equality", "beginner", 45, 5, "challenge"),
   },
+  ...PHASE_TWO_DAILY_GUIDANCE_ENTRIES,
+  ...PHASE_THREE_DAILY_GUIDANCE_ENTRIES,
 ]
 
 export const TOPIC_GUIDES: TopicGuide[] = [
@@ -1889,6 +1909,8 @@ export const TOPIC_GUIDES: TopicGuide[] = [
     relatedCollectionIds: ["collection-fear-to-trust"],
     rotation: rotation("hukam", "beginner", 21, 8, "hukam"),
   },
+  ...PHASE_TWO_TOPIC_GUIDES,
+  ...PHASE_THREE_TOPIC_GUIDES,
 ]
 
 export const COLLECTIONS: Collection[] = [
@@ -1993,6 +2015,8 @@ export const COLLECTIONS: Collection[] = [
       "shabad-work-give-know-the-path",
     ],
   },
+  ...PHASE_TWO_COLLECTIONS,
+  ...PHASE_THREE_COLLECTIONS,
 ]
 
 export const SHABAD_DEEP_DIVE_BY_ID = Object.fromEntries(

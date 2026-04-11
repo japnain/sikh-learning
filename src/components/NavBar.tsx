@@ -62,11 +62,11 @@ export default function NavBar() {
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
   const tabs = [
-    { to: '/', label: copy.nav.home, Glyph: HomeGlyph },
-    { to: '/banis', label: copy.nav.read, Glyph: ReadGlyph },
-    { to: '/learn', label: copy.nav.learn, Glyph: LearnGlyph },
-    { to: '/library', label: copy.nav.saved, Glyph: SavedGlyph },
-    { to: '/more', label: copy.nav.more, Glyph: MoreGlyph },
+    { to: '/', label: copy.nav.home, ariaLabel: `${copy.nav.home} tab`, Glyph: HomeGlyph },
+    { to: '/banis', label: copy.nav.read, ariaLabel: `${copy.nav.read} tab`, Glyph: ReadGlyph },
+    { to: '/learn', label: copy.nav.learn, ariaLabel: `${copy.nav.learn} tab`, Glyph: LearnGlyph },
+    { to: '/library', label: copy.nav.saved, ariaLabel: `${copy.nav.saved} tab`, Glyph: SavedGlyph },
+    { to: '/more', label: copy.nav.more, ariaLabel: `${copy.nav.more} tab and settings`, Glyph: MoreGlyph },
   ]
 
   return (
@@ -77,6 +77,8 @@ export default function NavBar() {
           key={tab.to}
           to={tab.to}
           end={tab.to === '/'}
+          aria-label={tab.ariaLabel}
+          title={tab.ariaLabel}
           className="group relative flex min-w-0 flex-1"
         >
           {({ isActive }) => (
