@@ -1,45 +1,25 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
-import Learn from './Learn'
-import { useLearningStore } from '../store/learning'
-import { useLocaleStore } from '../store/locale'
-import { useOnboardingStore } from '../store/onboarding'
-import { useVocabStore } from '../store/vocab'
-import type { LearnProgramId, LearnProgramProgress, LearnPlacementResult } from '../types'
+import { beforeEach, afterEach, expect, test, vi } from "vitest"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { MemoryRouter } from "react-router-dom"
+import Learn from "./Learn"
+import { useLearningStore } from "../store/learning"
+import { getTodayLearnSurface } from "../utils/learnExperience"
+import { SHABAD_DEEP_DIVE_BY_ID } from "../data/learnContent"
 
-function createProgramProgress(): Record<LearnProgramId, LearnProgramProgress> {
+function createDefaultLearnState() {
   return {
-    'start-reading': { currentModuleId: null, completedModuleIds: [] },
-    'build-fluency': { currentModuleId: null, completedModuleIds: [] },
-    'understand-gurbani': { currentModuleId: null, completedModuleIds: [] },
-    'deep-study': { currentModuleId: null, completedModuleIds: [] },
-  }
-}
-
-function createPlacementResult(
-  overrides: Partial<LearnPlacementResult> = {}
-): LearnPlacementResult {
-  return {
-    confidence: 'steady',
-    readingScore: 0.58,
-    meaningScore: 0.62,
-    programId: 'start-reading',
-    supportDensity: 'guided',
-    placedAt: '2026-04-06T12:00:00.000Z',
-    ...overrides,
+    viewedItems: [],
+    savedItemIds: [],
+    recentTopicIds: [],
+    activeCollectionId: null,
+    depthPreference: "balanced" as const,
   }
 }
 
 beforeEach(() => {
-  useLocaleStore.setState({ locale: 'en' })
-  useOnboardingStore.setState({
-    hasCompletedOnboarding: true,
-    presentationMode: 'overlay',
-    learningLevel: 'beginner',
-    audience: 'adult',
-    learningGoal: 'read',
-  })
-  useVocabStore.setState({ vocab: [] })
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date("2026-04-11T09:00:00.000Z"))
+
   useLearningStore.setState({
     masteredSymbols: [],
     completedLessons: [],
@@ -56,8 +36,13 @@ beforeEach(() => {
     assessmentHistory: [],
     journeys: {},
     activeJourneyId: null,
-    activeProgramId: 'start-reading',
-    programProgress: createProgramProgress(),
+    activeProgramId: "start-reading",
+    programProgress: {
+      "start-reading": { currentModuleId: null, completedModuleIds: [] },
+      "build-fluency": { currentModuleId: null, completedModuleIds: [] },
+      "understand-gurbani": { currentModuleId: null, completedModuleIds: [] },
+      "deep-study": { currentModuleId: null, completedModuleIds: [] },
+    },
     queuedReviewModuleIds: [],
     placementResult: null,
     lastLearnActivity: null,
@@ -65,164 +50,87 @@ beforeEach(() => {
     masteredWordFamilyIds: [],
     themePathProgress: {},
     completedThemePathIds: [],
+    learnState: createDefaultLearnState(),
   })
 })
 
-test('renders a tighter placement-first Learn structure', () => {
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  expect(screen.getAllByText(/^Placement$/i).length).toBeGreaterThan(0)
-  expect(screen.getByRole('button', { name: /Set my default path/i })).toBeInTheDocument()
-  expect(screen.getByText(/^Programs$/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Program 1 Start Reading/i })).toBeInTheDocument()
-  expect(screen.queryByText(/Today's Lesson/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/^Applied Practice$/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/^Paths$/i)).not.toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: /expand soundscapes/i })).not.toBeInTheDocument()
+afterEach(() => {
+  vi.useRealTimers()
 })
 
-test('placement can route an immersed reader into deep study', () => {
-  render(<MemoryRouter><Learn /></MemoryRouter>)
+test("renders the new today-first Gurbani guidance structure", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
 
-  fireEvent.click(screen.getByRole('button', { name: /Already immersed/i }))
-  fireEvent.click(screen.getByRole('button', { name: /I can read lines with reasonable flow/i }))
-  fireEvent.click(screen.getByRole('button', { name: /I want translation contrast, themes, and longer reflections/i }))
-  fireEvent.click(screen.getByRole('button', { name: /Set my default path/i }))
-
-  const state = useLearningStore.getState()
-  expect(state.placementResult?.programId).toBe('deep-study')
-  expect(state.activeProgramId).toBe('deep-study')
-  expect(state.programProgress['deep-study'].currentModuleId).toBe('deep-opening-contrast')
+  expect(screen.getByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
+  expect(screen.getByText(/Daily Gurbani guidance, full shabad study/i)).toBeInTheDocument()
+  expect(screen.getByText(/Today's Guidance/i)).toBeInTheDocument()
+  expect(screen.getAllByText(/Featured Shabad/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/What Guru Says About/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/Continue Learning/i)).toBeInTheDocument()
+  expect(screen.getByText(/Explore by Theme/i)).toBeInTheDocument()
+  expect(screen.queryByText(/^Placement$/i)).not.toBeInTheDocument()
 })
 
-test('prioritizes due review over net-new content in today card', () => {
+test("searching stress resolves to the approved anxiety guide", () => {
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole("button", { name: /Topics/i }))
+  fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
+    target: { value: "stress" },
+  })
+
+  expect(screen.getAllByText(/When the mind is anxious/i).length).toBeGreaterThan(0)
+  expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
+})
+
+test("read full meaning opens the related full shabad context in one tap", () => {
+  const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
+  const relatedShabad = SHABAD_DEEP_DIVE_BY_ID[todaySurface.dailyGuidance.item.relatedShabadIds[0]!]!
+
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByRole("button", { name: /Read full meaning/i }))
+
+  expect(screen.getAllByText(new RegExp(relatedShabad.title, "i")).length).toBeGreaterThan(0)
+  expect(screen.getByText(relatedShabad.lines[0]!.translation)).toBeInTheDocument()
+})
+
+test("saved tab mixes daily guidance, topic guides, and shabad deep dives with clear labels", () => {
   useLearningStore.setState({
-    placementResult: createPlacementResult(),
-    activeProgramId: 'start-reading',
-    programProgress: {
-      ...createProgramProgress(),
-      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
-    },
-  })
-  useVocabStore.setState({
-    vocab: [
-      {
-        kind: 'phrase',
-        word: 'ੴ ਸਤਿ ਨਾਮੁ',
-        transliteration: 'ik oankaar sat naam',
-        meaning_en: 'One Universal Creator, Truth is the Name.',
-        meaning_hi: 'एक ओंकार, सत्य नाम।',
-        meaning_pa: 'ਇੱਕ ਓਅੰਕਾਰ, ਸਤਿ ਨਾਮੁ।',
-        scripture: 'Japji Sahib',
-        sourceId: 'G',
-        savedAt: '2026-04-01T12:00:00.000Z',
-      },
-    ],
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  expect(screen.getByText(/1 review item due/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Open review bank/i })).toBeInTheDocument()
-})
-
-test('starts an applied practice journey for the active program', () => {
-  useLearningStore.setState({
-    placementResult: createPlacementResult(),
-    activeProgramId: 'start-reading',
-    programProgress: {
-      ...createProgramProgress(),
-      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
-    },
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  fireEvent.click(screen.getByRole('button', { name: /Start practice/i }))
-
-  expect(useLearningStore.getState().activeJourneyId).toBe('journey-japji-opening')
-})
-
-test('learn soundscapes start collapsed and can be expanded', () => {
-  useLearningStore.setState({
-    placementResult: createPlacementResult(),
-    activeProgramId: 'start-reading',
-    programProgress: {
-      ...createProgramProgress(),
-      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
+    learnState: {
+      ...createDefaultLearnState(),
+      savedItemIds: [
+        "guidance-hukam",
+        "topic-anxiety",
+        "shabad-steadied-by-creator",
+      ],
     },
   })
 
-  render(<MemoryRouter><Learn /></MemoryRouter>)
+  render(
+    <MemoryRouter initialEntries={["/learn"]}>
+      <Learn />
+    </MemoryRouter>
+  )
 
-  expect(screen.getByRole('button', { name: /expand soundscapes/i })).toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: /Settle/i })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByRole("button", { name: /Saved/i }))
 
-  fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
-  expect(screen.getByRole('button', { name: /Settle/i })).toBeInTheDocument()
-})
-
-test('shows a milestone celebration when one is pending', () => {
-  useLearningStore.setState({
-    pendingMilestoneId: 'first-module-complete',
-    earnedMilestoneIds: ['first-module-complete'],
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  expect(screen.getByRole('dialog', { name: /first module complete earned/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Waheguru/i })).toBeInTheDocument()
-})
-
-test('renders grammar modules with examples', () => {
-  useLearningStore.setState({
-    placementResult: createPlacementResult({ programId: 'understand-gurbani' }),
-    activeProgramId: 'understand-gurbani',
-    programProgress: {
-      ...createProgramProgress(),
-      'understand-gurbani': { currentModuleId: 'understand-nir-prefix', completedModuleIds: [] },
-    },
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  expect(screen.getAllByText(/The ਨਿਰ- Prefix/i).length).toBeGreaterThan(0)
-  expect(screen.getByText(/ਨਿਰਭਉ/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Mark learned/i })).toBeInTheDocument()
-})
-
-test('renders word-family modules and saves family members to vocab', () => {
-  useLearningStore.setState({
-    placementResult: createPlacementResult({ programId: 'understand-gurbani' }),
-    activeProgramId: 'understand-gurbani',
-    programProgress: {
-      ...createProgramProgress(),
-      'understand-gurbani': { currentModuleId: 'understand-naam-root', completedModuleIds: [] },
-    },
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  expect(screen.getAllByText(/The ਨਾਮ Root Family/i).length).toBeGreaterThan(0)
-  fireEvent.click(screen.getAllByRole('button', { name: /^Save$/i })[0]!)
-
-  expect(useVocabStore.getState().vocab.some(entry => entry.word === 'ਨਾਮੁ')).toBe(true)
-})
-
-test('starts a theme path and stores its progress', () => {
-  useLearningStore.setState({
-    placementResult: createPlacementResult(),
-    activeProgramId: 'start-reading',
-    programProgress: {
-      ...createProgramProgress(),
-      'start-reading': { currentModuleId: 'start-core-letters', completedModuleIds: [] },
-    },
-  })
-
-  render(<MemoryRouter><Learn /></MemoryRouter>)
-
-  fireEvent.click(screen.getByRole('button', { name: /Paths/i }))
-  fireEvent.click(screen.getAllByRole('button', { name: /^Start$/i })[0]!)
-
-  expect(Object.keys(useLearningStore.getState().themePathProgress).length).toBeGreaterThan(0)
+  expect(screen.getByText(/^Daily guidance$/i)).toBeInTheDocument()
+  expect(screen.getByText(/^Topic guide$/i)).toBeInTheDocument()
+  expect(screen.getByText(/^Shabad deep dive$/i)).toBeInTheDocument()
+  expect(screen.getAllByText(/Begin inside Hukam/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/When the mind is anxious/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/Why Do You Waver\?/i).length).toBeGreaterThan(0)
 })

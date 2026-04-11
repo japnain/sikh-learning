@@ -164,6 +164,7 @@ export interface LearningProgressState {
   queuedReviewModuleIds?: string[]
   placementResult?: LearnPlacementResult | null
   lastLearnActivity?: LearnActivity | null
+  learnState?: UserLearningState
 }
 
 export interface LearnProgram {
@@ -452,4 +453,142 @@ export interface GuidedJourneyProgress {
   completedStepIds: string[]
   lastTouchedAt: string
   completedAt?: string
+}
+
+export type LearnTab = 'today' | 'topics' | 'shabads' | 'saved'
+export type LearnDepthPreference = 'gentle' | 'balanced' | 'deep'
+export type LearnContentKind = 'daily-guidance' | 'shabad-deep-dive' | 'topic-guide' | 'collection'
+export type LearnDifficulty = 'beginner' | 'growing' | 'deep'
+export type LearnFreshnessTier = 'fresh' | 'evergreen' | 'reserve'
+export type LearnBalanceCategory =
+  | 'comfort'
+  | 'challenge'
+  | 'discipline'
+  | 'gratitude'
+  | 'hukam'
+  | 'seva'
+  | 'reflection'
+
+export interface SourceCitation {
+  scripture: 'SGGS'
+  shabad_id: number
+  ang: number
+  guru: string
+  raag: string
+  line_range: [number, number]
+  verse_ids: number[]
+  translator: string
+}
+
+export interface RotationMetadata {
+  theme: string
+  depthLevel: LearnDifficulty
+  cooldownWindowDays: number
+  seasonality: string[]
+  priority: number
+  freshnessTier: LearnFreshnessTier
+  balanceCategory: LearnBalanceCategory
+}
+
+export interface LearnSourceLine {
+  verseId: number
+  gurmukhi: string
+  transliteration: string
+  translation: string
+}
+
+export interface LearnLineReference {
+  deepDiveId: string
+  verseIds: number[]
+  shortMeaning: string
+  lifeApplication: string
+}
+
+export interface DailyGuidance {
+  id: string
+  title: string
+  summary: string
+  takeaway: string
+  lifeApplication: string
+  source: LearnLineReference
+  relatedTopicIds: string[]
+  relatedShabadIds: string[]
+  relatedCollectionIds: string[]
+  rotation: RotationMetadata
+}
+
+export interface ShabadDeepDive {
+  id: string
+  title: string
+  subtitle: string
+  summary: string
+  whyItMatters: string
+  takeaway: string
+  themes: string[]
+  emotionalStates: string[]
+  difficulty: LearnDifficulty
+  estimatedMinutes: number
+  lengthBand: 'short' | 'medium' | 'long'
+  citation: SourceCitation
+  lines: LearnSourceLine[]
+  structure: string[]
+  keyVerseIds: number[]
+  relatedGuidanceIds: string[]
+  relatedTopicIds: string[]
+  relatedCollectionIds: string[]
+  rotation: RotationMetadata
+}
+
+export interface TopicGuideExcerpt {
+  source: LearnLineReference
+  explanation: string
+}
+
+export interface TopicGuide {
+  id: string
+  title: string
+  shortTitle: string
+  category: 'most-needed' | 'inner-work' | 'practice'
+  issueStatement: string
+  centralInsight: string
+  practicalReflection: string
+  actionPrompt: string
+  searchTerms: string[]
+  excerpts: TopicGuideExcerpt[]
+  relatedShabadIds: string[]
+  relatedTopicIds: string[]
+  relatedCollectionIds: string[]
+  rotation: RotationMetadata
+}
+
+export interface CollectionItemReference {
+  kind: Exclude<LearnContentKind, 'collection'>
+  id: string
+}
+
+export interface Collection {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  durationLabel: string
+  themes: string[]
+  heroSource: LearnLineReference
+  items: CollectionItemReference[]
+  relatedTopicIds: string[]
+  relatedShabadIds: string[]
+}
+
+export interface LearnItemView {
+  itemId: string
+  kind: LearnContentKind
+  viewedAt: string
+}
+
+export interface UserLearningState {
+  viewedItems: LearnItemView[]
+  savedItemIds: string[]
+  recentTopicIds: string[]
+  activeCollectionId: string | null
+  depthPreference: LearnDepthPreference
 }

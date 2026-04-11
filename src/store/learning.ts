@@ -5,6 +5,8 @@ import type {
   DailyLesson,
   GuidedJourneyProgress,
   LearnActivity,
+  LearnContentKind,
+  LearnDepthPreference,
   LearnPlacementResult,
   LearnProgramId,
   LearnProgramProgress,
@@ -14,6 +16,7 @@ import type {
   LearningSkillProgress,
   MilestoneId,
   ThemePathProgress,
+  UserLearningState,
 } from '../types'
 import { dayDiffLocal, parseLocalDayStamp, toLocalDayStamp } from '../utils/learnDates'
 
@@ -51,6 +54,7 @@ interface LearningState {
   masteredWordFamilyIds: string[]
   themePathProgress: Record<string, ThemePathProgress>
   completedThemePathIds: string[]
+  learnState: UserLearningState
   toggleMasteredSymbol: (symbol: string) => void
   completeLesson: (lessonId: string) => void
   recordPracticeSession: () => void
@@ -76,6 +80,10 @@ interface LearningState {
   completeWordFamily: (familyId: string) => void
   startThemePath: (pathId: string) => void
   completeThemePathModule: (pathId: string, moduleId: string) => void
+  recordLearnItemView: (itemId: string, kind: LearnContentKind) => void
+  toggleSavedLearnItem: (itemId: string) => void
+  setActiveLearnCollection: (collectionId: string | null) => void
+  setLearnDepthPreference: (depthPreference: LearnDepthPreference) => void
 }
 
 type PersistedLearningState = Partial<
@@ -105,6 +113,7 @@ type PersistedLearningState = Partial<
     | 'masteredWordFamilyIds'
     | 'themePathProgress'
     | 'completedThemePathIds'
+    | 'learnState'
   >
 >
 
@@ -114,6 +123,16 @@ function createDefaultProgramProgress(): Record<LearnProgramId, LearnProgramProg
     'build-fluency': { currentModuleId: null, completedModuleIds: [] },
     'understand-gurbani': { currentModuleId: null, completedModuleIds: [] },
     'deep-study': { currentModuleId: null, completedModuleIds: [] },
+  }
+}
+
+function createDefaultLearnState(): UserLearningState {
+  return {
+    viewedItems: [],
+    savedItemIds: [],
+    recentTopicIds: [],
+    activeCollectionId: null,
+    depthPreference: 'balanced',
   }
 }
 
@@ -217,6 +236,7 @@ function createDefaultState() {
     masteredWordFamilyIds: [] as string[],
     themePathProgress: {} as Record<string, ThemePathProgress>,
     completedThemePathIds: [] as string[],
+    learnState: createDefaultLearnState(),
   }
 }
 
@@ -263,6 +283,15 @@ function normalizePersistedState(persisted: PersistedLearningState | undefined):
     masteredWordFamilyIds: persisted?.masteredWordFamilyIds ?? defaults.masteredWordFamilyIds,
     themePathProgress: persisted?.themePathProgress ?? defaults.themePathProgress,
     completedThemePathIds: persisted?.completedThemePathIds ?? defaults.completedThemePathIds,
+    learnState: {
+      ...defaults.learnState,
+      ...(persisted?.learnState ?? {}),
+      viewedItems: persisted?.learnState?.viewedItems ?? defaults.learnState.viewedItems,
+      savedItemIds: persisted?.learnState?.savedItemIds ?? defaults.learnState.savedItemIds,
+      recentTopicIds: persisted?.learnState?.recentTopicIds ?? defaults.learnState.recentTopicIds,
+      activeCollectionId: persisted?.learnState?.activeCollectionId ?? defaults.learnState.activeCollectionId,
+      depthPreference: persisted?.learnState?.depthPreference ?? defaults.learnState.depthPreference,
+    },
   }
 }
 
@@ -605,10 +634,49 @@ export const useLearningStore = create<LearningState>()(
             : state.completedThemePathIds,
         }
       }),
+      recordLearnItemView: (itemId, kind) => set(state => {
+        const viewedAt = new Date().toISOString()
+        const nextViewedItems = [
+          { itemId, kind, viewedAt },
+          ...state.learnState.viewedItems.filter(item => item.itemId !== itemId),
+        ].slice(0, 80)
+
+        const nextRecentTopicIds = kind === 'topic-guide'
+          ? [itemId, ...state.learnState.recentTopicIds.filter(topicId => topicId !== itemId)].slice(0, 12)
+          : state.learnState.recentTopicIds
+
+        return {
+          learnState: {
+            ...state.learnState,
+            viewedItems: nextViewedItems,
+            recentTopicIds: nextRecentTopicIds,
+          },
+        }
+      }),
+      toggleSavedLearnItem: (itemId) => set(state => ({
+        learnState: {
+          ...state.learnState,
+          savedItemIds: state.learnState.savedItemIds.includes(itemId)
+            ? state.learnState.savedItemIds.filter(current => current !== itemId)
+            : [itemId, ...state.learnState.savedItemIds],
+        },
+      })),
+      setActiveLearnCollection: (collectionId) => set(state => ({
+        learnState: {
+          ...state.learnState,
+          activeCollectionId: collectionId,
+        },
+      })),
+      setLearnDepthPreference: (depthPreference) => set(state => ({
+        learnState: {
+          ...state.learnState,
+          depthPreference,
+        },
+      })),
     }),
     {
       name: 'sikh-learning-state',
-      version: 3,
+      version: 4,
       migrate: (persistedState) => normalizePersistedState(
         persistedState as PersistedLearningState | undefined
       ),
