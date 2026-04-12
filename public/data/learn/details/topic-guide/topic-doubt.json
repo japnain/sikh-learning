@@ -1,19 +1,23 @@
 {
   "id": "topic-doubt",
-  "title": "When doubt keeps burning beneath the surface",
+  "title": "When the question starts ruling the mind",
   "shortTitle": "Doubt",
   "category": "most-needed",
-  "issueStatement": "You keep circling the same question, but the circling itself is starting to scorch the mind.",
-  "centralInsight": "Gurbani treats doubt as an inner fire. It is not cooled by more wandering, but by Guru's word, saint company, and the death of self-insistence.",
-  "practicalReflection": "Doubt often disguises itself as sophistication. Guru asks whether it is actually producing truth, peace, or obedience.",
-  "actionPrompt": "Name the question you keep rehearsing. Then name one instruction you already know but have not yet lived.",
+  "issueStatement": "The question may be real, but the circling has become its own fire. You are no longer only seeking light; you are starting to live inside hesitation.",
+  "centralInsight": "Gurbani does not flatter doubt as depth. It cools doubt by giving the mind somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you.",
+  "practicalReflection": "Some questions must be carried patiently. But some forms of doubt are only self-insistence wearing the clothes of seriousness.",
+  "actionPrompt": "Bring the question into one line, one guide, and one act of obedience before you give it another full day of your mind.",
   "searchTerms": [
     "doubt",
     "confusion",
     "uncertain",
     "second guessing",
     "skeptical",
-    "faith feels thin",
+    "hesitation",
+    "inner fire",
+    "circling questions",
+    "can't trust",
+    "self-insistence",
     "doubt in the ordinary day",
     "doubt daily",
     "today",
@@ -42,7 +46,7 @@
     "doubt return",
     "doubt after slipping",
     "doubt start again",
-    "building a truer practice of doubt",
+    "learning a steadier way with doubt",
     "doubt steady practice",
     "practice",
     "habit",
@@ -58,36 +62,40 @@
       "source": {
         "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
         "verseIds": [
-          918
+          918,
+          920,
+          921,
+          922
         ],
-        "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign",
-        "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "There is no other way to perform devotional worship, except through the Teachings of the True Guru; the fire of doubt is not extinguished, even by wandering through foreign lands and countries",
+        "lifeApplication": "Return to one clear line before reopening every question at once. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: the fire of doubt is not extinguished, even by wandering through foreign."
+      "explanation": "The shabad names the condition exactly: doubt is a fire that wandering cannot solve. Cooling begins where Guru's teaching is finally allowed to live inside the mind."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-63",
+        "deepDiveId": "shabad-child-of-grace",
         "verseIds": [
-          728,
-          734
+          3757,
+          3760
         ],
-        "shortMeaning": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
-        "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+        "lifeApplication": "Return to one clear line before reopening every question at once. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+      "explanation": "Doubt softens when it stops pretending to be self-sufficient. The seeker asks for help, enters sangat, and lets the path be shown rather than endlessly reconstructed."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-109",
+        "deepDiveId": "shabad-steadied-by-creator",
         "verseIds": [
-          1461,
-          1465
+          30988,
+          30989,
+          30994
         ],
-        "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over; god's Glance of Grace does not come to them; those self-willed manmukhs",
-        "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
+        "lifeApplication": "Return to one clear line before reopening every question at once. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani treats doubt as an inner fire. It is not cooled by more wandering, but by Guru's word, saint company, and the death of self-insistence. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "The deepest correction to doubt is not always a new argument. Sometimes it is remembering who made you, who feeds you, and who has not stopped caring for you."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -129,22 +137,22 @@
             "verseIds": [
               918
             ],
-            "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign",
-            "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: the fire of doubt is not extinguished, even by wandering through foreign."
+          "explanation": "Ordinary life is already being addressed here: the fire of doubt is not extinguished, even by wandering through foreign lands and countries."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-63",
             "verseIds": [
-              728,
+              729,
               734
             ],
-            "shortMeaning": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
-            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Return to one clear line before reopening every question at once. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -153,10 +161,10 @@
               1461,
               1465
             ],
-            "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over; god's Glance of Grace does not come to them; those self-willed manmukhs",
-            "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over and over again; god's Glance of Grace does not come to them",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when wandering in doubt, the spiritually blind come and go in reincarnation, over; god's Glance of Grace does not come to them; those self-willed manmukhs."
+          "explanation": "This makes daily faithfulness concrete: wandering in doubt, the spiritually blind come and go in reincarnation, over and over again; god's Glance of Grace does not come to them."
         }
       ],
       "editorial": {
@@ -173,12 +181,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.87,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.48,
-          "beauty": 4.21,
-          "overall": 4.31
+          "beauty": 3.88,
+          "overall": 4.22
         },
         "strengths": [
           "specificity",
@@ -217,36 +225,36 @@
           "source": {
             "deepDiveId": "shabad-generated-63",
             "verseIds": [
-              728,
+              729,
               734
             ],
-            "shortMeaning": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
-            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you."
+          "explanation": "Under strain, the line stays exact: go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-179",
             "verseIds": [
-              2805,
+              2798,
               2812
             ],
-            "shortMeaning": "The True Guru has implanted the Truth within me; I dwell steadfastly; o Nanak, the devotees are happy and peaceful forever. They are absorbed",
-            "lifeApplication": "Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "O Nanak, the devotees are happy and peaceful forever. They are absorbed in the True Name; they see the Truth, and they speak the Truth",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Return to one clear line before reopening every question at once. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-231",
             "verseIds": [
-              3461
+              3462
             ],
-            "shortMeaning": "Those who love the Naam look beauteous at the Gate of Truth",
-            "lifeApplication": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The self-willed manmukhs die in egotism-even their death is painfully ugly",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -263,12 +271,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.72,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.42,
-          "beauty": 4.21,
-          "overall": 4.36
+          "beauty": 3.83,
+          "overall": 4.19
         },
         "strengths": [
           "specificity",
@@ -309,32 +317,32 @@
               1461,
               1465
             ],
-            "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over; god's Glance of Grace does not come to them; those self-willed manmukhs",
-            "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over and over again; god's Glance of Grace does not come to them",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: wandering in doubt, the spiritually blind come and go in reincarnation, over; god's Glance of Grace does not come to them; those self-willed manmukhs."
+          "explanation": "Return is still being offered here: wandering in doubt, the spiritually blind come and go in reincarnation, over and over again; god's Glance of Grace does not come to them."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-179",
             "verseIds": [
-              2799
+              2800
             ],
-            "shortMeaning": "True are their teachings, and True are their instructions; True are the",
-            "lifeApplication": "Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who have forgotten the True One are miserable-they depart weeping and wailing",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Return to one clear line before reopening every question at once. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-509",
             "verseIds": [
-              7106
+              7107
             ],
-            "shortMeaning": "Gauree Poorbee, Fourth Mehla:",
-            "lifeApplication": "Restlessness steadies when for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This mind does not hold still, even for an instant. Distracted by all sorts",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -351,12 +359,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.87,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.64,
-          "beauty": 4.53,
-          "overall": 4.41
+          "beauty": 4.17,
+          "overall": 4.31
         },
         "strengths": [
           "specificity",
@@ -368,7 +376,7 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of doubt",
+      "title": "Learning a steadier way with doubt",
       "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
       "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
       "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
@@ -379,7 +387,7 @@
         "uncertain",
         "second guessing",
         "skeptical",
-        "building a truer practice of doubt",
+        "learning a steadier way with doubt",
         "doubt steady practice",
         "practice",
         "habit",
@@ -395,12 +403,12 @@
           "source": {
             "deepDiveId": "shabad-generated-231",
             "verseIds": [
-              3461
+              3462
             ],
-            "shortMeaning": "Those who love the Naam look beauteous at the Gate of Truth",
-            "lifeApplication": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The self-willed manmukhs die in egotism-even their death is painfully ugly",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: those who love the Naam look beauteous at the Gate of Truth."
+          "explanation": "The line is teaching repetition more than momentary inspiration: the self-willed manmukhs die in egotism-even their death is painfully ugly."
         },
         {
           "source": {
@@ -408,20 +416,20 @@
             "verseIds": [
               918
             ],
-            "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign",
-            "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Return to one clear line before reopening every question at once. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-509",
             "verseIds": [
-              7106,
-              7107
+              7107,
+              7112
             ],
-            "shortMeaning": "Gauree Poorbee, Fourth Mehla:; this mind does not hold still, even for an instant. Distracted by",
-            "lifeApplication": "Restlessness steadies when for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who do not have love for the Lord within their hearts, harbor only false intentions and goals; this mind does not hold still, even for an instant. Distracted by all sorts",
+            "lifeApplication": "Return to one clear line before reopening every question at once. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
@@ -440,12 +448,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.87,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.04,
-          "beauty": 4.37,
-          "overall": 4.29
+          "beauty": 3.89,
+          "overall": 4.18
         },
         "strengths": [
           "specificity",
@@ -457,6 +465,8 @@
   },
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
+    "shabad-child-of-grace",
+    "shabad-steadied-by-creator",
     "shabad-generated-63",
     "shabad-generated-109",
     "shabad-generated-179",
@@ -485,28 +495,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:doubt",
     "evidence": {
-      "coreClaim": "Gurbani treats doubt as an inner fire. It is not cooled by more wandering, but by Guru's word, saint company, and the death of self-insistence.",
+      "coreClaim": "Gurbani does not flatter doubt as depth. It cools doubt by giving the mind somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "You keep circling the same question, but the circling itself is starting to scorch the mind.",
-      "practicalImplication": "Name the question you keep rehearsing. Then name one instruction you already know but have not yet lived.",
+      "turn": "The question may be real, but the circling has become its own fire. You are no longer only seeking light; you are starting to live inside hesitation.",
+      "practicalImplication": "Bring the question into one line, one guide, and one act of obedience before you give it another full day of your mind.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.97,
-      "specificity": 4.78,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.98,
-      "beauty": 3.23,
-      "overall": 3.88
+      "usefulness": 4.48,
+      "beauty": 4.05,
+      "overall": 4.31
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

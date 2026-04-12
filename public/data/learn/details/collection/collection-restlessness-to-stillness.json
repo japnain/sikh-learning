@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-stillness",
   "title": "From Restlessness to Stillness",
-  "subtitle": "For minds that keep moving faster than they settle",
-  "description": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+  "subtitle": "For minds that move faster than they settle",
+  "description": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
   "durationLabel": "6-day journey",
   "themes": [
     "restlessness",
@@ -58,28 +58,28 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+      "coreClaim": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For minds that keep moving faster than they settle",
+      "turn": "For minds that move faster than they settle",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 1.75,
-      "specificity": 4.14,
+      "faithfulness": 3.94,
+      "clarity": 1.95,
+      "specificity": 4.16,
       "emotionalHonesty": 3.54,
       "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.51
+      "beauty": 4.21,
+      "overall": 3.57
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": [
       "runs too long at the sentence level"

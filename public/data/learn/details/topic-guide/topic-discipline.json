@@ -1,12 +1,12 @@
 {
   "id": "topic-discipline",
-  "title": "When discipline has to become deeper than mood",
+  "title": "When discipline has to survive the day you actually have",
   "shortTitle": "Discipline",
   "category": "practice",
-  "issueStatement": "Good intentions keep arriving sincerely, but they are still too dependent on energy, novelty, or emotion to survive an ordinary week.",
-  "centralInsight": "Gurbani locates discipline inside remembrance, restraint, and inner honesty. It is less about intensity and more about truthful repetition.",
-  "practicalReflection": "The point is not to appear serious. The point is to become dependable in the places where the soul keeps leaking away.",
-  "actionPrompt": "Reduce the next faithful act until you know you can keep it without performance or self-deception.",
+  "issueStatement": "You mean it in the morning, but by the middle of the day the mind starts bargaining. What felt clear gets handed back to mood, fatigue, and convenience.",
+  "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not to feel intense for a moment, but to keep returning before the mind slips into self-rule.",
+  "practicalReflection": "A real discipline can live inside an ordinary Tuesday. If it only survives inspiration, it has not yet become part of your life.",
+  "actionPrompt": "Choose one small act of remembrance or restraint you can keep on a tired day, and protect that before you add anything larger.",
   "searchTerms": [
     "discipline",
     "consistency",
@@ -14,84 +14,97 @@
     "self-control",
     "follow through",
     "steady practice",
-    "discipline in the ordinary rhythm",
+    "ordinary week",
+    "tired day",
+    "discipline in the unremarkable middle of the day",
     "discipline daily",
     "routine",
     "ordinary rhythm",
     "daily habit",
+    "middle of the day",
     "discipline routine",
     "discipline ordinary rhythm",
     "discipline consistency",
     "discipline daily habit",
-    "discipline when life gets compressed",
+    "discipline middle of the day",
+    "discipline when the day collapses inward",
     "discipline under pressure",
     "stress",
     "under pressure",
     "all or nothing",
     "compressed day",
+    "busy day",
     "discipline stress",
     "discipline all or nothing",
     "discipline compressed day",
-    "restarting after the pattern broke",
+    "discipline busy day",
+    "returning after you broke the pattern",
     "discipline after the slip",
     "restart",
     "broken streak",
     "repair",
     "start again",
     "after lapse",
+    "start over",
     "discipline restart",
     "discipline broken streak",
     "discipline repair",
     "discipline start again",
     "discipline after lapse",
-    "building discipline that lasts",
+    "discipline start over",
+    "making discipline gentle enough to last",
     "discipline steady practice",
     "lasting discipline",
     "durable practice",
     "repetition",
     "form",
     "boredom",
+    "sustainable practice",
     "discipline lasting discipline",
     "discipline durable practice",
     "discipline repetition",
     "discipline form",
-    "discipline boredom"
+    "discipline boredom",
+    "discipline sustainable practice"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-conquer-the-mind",
         "verseIds": [
-          290
+          290,
+          292
         ],
-        "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
-        "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
+        "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: make contentment your ear-rings, humility your begging bowl, and meditation the ashes."
+      "explanation": "The shabad refuses to let discipline become costume. Contentment, humility, and the conquest of the mind are named as the real equipment of a serious life."
     },
     {
       "source": {
-        "deepDiveId": "shabad-human-birth-is-chance",
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
         "verseIds": [
-          524,
-          525
+          11742,
+          11743,
+          11747
         ],
-        "shortMeaning": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
-        "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
+        "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+      "explanation": "Discipline is made visible here in conduct and inward remembrance together. The line refuses the split between devotional language and the way a life is actually being carried."
     },
     {
       "source": {
-        "deepDiveId": "shabad-selfless-service",
+        "deepDiveId": "shabad-buy-what-goes-with-you",
         "verseIds": [
-          12947,
-          12948
+          934,
+          937,
+          946
         ],
-        "shortMeaning": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
-        "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; those who chant the Name of the Lord earn great profits",
+        "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani locates discipline inside remembrance, restraint, and inner honesty. It is less about intensity and more about truthful repetition. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "The discipline question becomes economic in the sharpest way: what are you storing that will actually go with you? Naam, praise, and truth are treated as durable profit, not sentiment."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -105,62 +118,66 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Discipline in the ordinary rhythm",
-      "issueStatement": "Discipline often fails in the middle stretch of the day, when sincerity is still present but the structure around it has gone slack.",
-      "centralInsight": "The Guru teaches steadiness that can survive the ordinary rhythm, not only the dramatic beginning of a new resolve.",
-      "practicalReflection": "Routine is where discipline is either embodied or exposed. If the pattern cannot live there, it is not ready yet.",
-      "actionPrompt": "Identify the smallest part of your daily rhythm where remembrance can reliably fit, and guard that place for the next seven days.",
+      "title": "Discipline in the unremarkable middle of the day",
+      "issueStatement": "Most patterns do not break in crisis. They loosen in the ordinary middle stretch, when sincerity is still present but nothing feels urgent enough to protect it.",
+      "centralInsight": "The Guru teaches steadiness that can survive plain time. The test is whether remembrance and conduct can hold when the day feels unspectacular.",
+      "practicalReflection": "Ordinary hours expose whether the practice has become real. If it can only live in ideal conditions, it is still mostly aspiration.",
+      "actionPrompt": "Choose one part of the day that already repeats and anchor one small act of remembrance there for the next seven days.",
       "searchTerms": [
         "discipline",
         "consistency",
         "habit",
         "self-control",
         "follow through",
-        "discipline in the ordinary rhythm",
+        "discipline in the unremarkable middle of the day",
         "discipline daily",
         "routine",
         "ordinary rhythm",
         "daily habit",
+        "middle of the day",
         "discipline routine",
         "discipline ordinary rhythm",
         "discipline consistency",
-        "discipline daily habit"
+        "discipline daily habit",
+        "discipline middle of the day"
       ],
       "excerpts": [
         {
           "source": {
             "deepDiveId": "shabad-conquer-the-mind",
             "verseIds": [
-              290
+              290,
+              292
             ],
-            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
-            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: make contentment your ear-rings, humility your begging bowl, and meditation the ashes."
+          "explanation": "The ordinary day is where these inner forms either become embodied or stay decorative. Discipline begins by mastering the inner field rather than curating an image of seriousness."
         },
         {
           "source": {
-            "deepDiveId": "shabad-human-birth-is-chance",
+            "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
             "verseIds": [
-              524,
-              525
+              11746,
+              11747,
+              11748
             ],
-            "shortMeaning": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "is to chant the Name of the Lord in the heart, forever",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          "explanation": "The line joins effort, speech, and ongoing remembrance. That is daily discipline in one movement: what stays in the heart begins to shape what leaves the mouth."
         },
         {
           "source": {
-            "deepDiveId": "shabad-selfless-service",
+            "deepDiveId": "shabad-work-give-know-the-path",
             "verseIds": [
-              12947,
-              12948
+              53371,
+              53372
             ],
-            "shortMeaning": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
-            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who works for what he eats, and gives some of what he has",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when one who performs selfless service, without thought of reward,; shall attain his Lord and Master."
+          "explanation": "This is the anti-theatre verse. Discipline is not announced; it is practiced in honest labor and a life that keeps giving instead of performing itself."
         }
       ],
       "editorial": {
@@ -169,24 +186,24 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-discipline:daily",
         "evidence": {
-          "coreClaim": "The Guru teaches steadiness that can survive the ordinary rhythm, not only the dramatic beginning of a new resolve.",
+          "coreClaim": "The Guru teaches steadiness that can survive plain time. The test is whether remembrance and conduct can hold when the day feels unspectacular.",
           "emotionalState": "reactive, performing, scattered",
-          "turn": "Discipline often fails in the middle stretch of the day, when sincerity is still present but the structure around it has gone slack.",
-          "practicalImplication": "Identify the smallest part of your daily rhythm where remembrance can reliably fit, and guard that place for the next seven days.",
+          "turn": "Most patterns do not break in crisis. They loosen in the ordinary middle stretch, when sincerity is still present but nothing feels urgent enough to protect it.",
+          "practicalImplication": "Choose one part of the day that already repeats and anchor one small act of remembrance there for the next seven days.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.18,
-          "usefulness": 3.82,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.42,
           "beauty": 4.05,
-          "overall": 4.15
+          "overall": 4.33
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "usefulness"
         ],
         "issues": []
       }
@@ -194,26 +211,28 @@
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Discipline when life gets compressed",
-      "issueStatement": "Pressure tempts you to abandon the very practices that would keep the mind from becoming ruled by pressure.",
-      "centralInsight": "Under strain, discipline becomes simplification. The Guru does not ask for theatrical effort, but for faithful continuity.",
-      "practicalReflection": "When the day compresses, the spiritual task is to keep one true thread alive instead of scattering into all-or-nothing thinking.",
-      "actionPrompt": "When pressure spikes, keep one core practice intact on a smaller scale rather than quitting the pattern altogether.",
+      "title": "Discipline when the day collapses inward",
+      "issueStatement": "When the schedule compresses, discipline is the first thing the mind calls optional and the first thing the heart later misses.",
+      "centralInsight": "Under pressure, Gurbani does not ask for a grand performance. It asks for one thread of remembrance sturdy enough to keep urgency from ruling the whole day.",
+      "practicalReflection": "A compressed day does not require abandoning the path. It requires reducing the path to what is still true and still keepable.",
+      "actionPrompt": "When pressure spikes, shrink the practice before you drop it: one pauri, one minute, one act of restraint, still kept on purpose.",
       "searchTerms": [
         "discipline",
         "consistency",
         "habit",
         "self-control",
         "follow through",
-        "discipline when life gets compressed",
+        "discipline when the day collapses inward",
         "discipline under pressure",
         "stress",
         "under pressure",
         "all or nothing",
         "compressed day",
+        "busy day",
         "discipline stress",
         "discipline all or nothing",
-        "discipline compressed day"
+        "discipline compressed day",
+        "discipline busy day"
       ],
       "excerpts": [
         {
@@ -221,35 +240,38 @@
             "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
               524,
-              525
+              525,
+              527
             ],
-            "shortMeaning": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: this human body has been given to you; this is your chance to meet the Lord of the Universe."
+          "explanation": "Pressure narrows the horizon. This line widens it again by reminding you what the day is for, then directing you back to sangat and Naam instead of panic-management."
         },
         {
           "source": {
             "deepDiveId": "shabad-remembrance-brings-peace",
             "verseIds": [
-              11503,
-              11511
+              11502,
+              11503
             ],
-            "shortMeaning": "Worry and anguish shall be dispelled from your body; save me along with them!",
-            "lifeApplication": "Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+          "explanation": "The line is almost stubborn in its simplicity: remember, and peace follows. Under strain, discipline becomes choosing that simple return before anxiety dictates the whole posture."
         },
         {
           "source": {
-            "deepDiveId": "shabad-work-give-know-the-path",
+            "deepDiveId": "shabad-selfless-service",
             "verseIds": [
-              53368
+              12942,
+              12943,
+              12944
             ],
-            "shortMeaning": "Someone else becomes a pan-handler, and loses his social status",
-            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "He is to meditate constantly within his heart on the Name of the Lord; is to obey the Guru's Commands with all his mind",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "Obedience, hiddenness, and constant remembrance form a compressed rule of life here. That is exactly what discipline looks like when the day gives you no room for ornament."
         }
       ],
       "editorial": {
@@ -258,20 +280,20 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-discipline:pressure",
         "evidence": {
-          "coreClaim": "Under strain, discipline becomes simplification. The Guru does not ask for theatrical effort, but for faithful continuity.",
+          "coreClaim": "Under pressure, Gurbani does not ask for a grand performance. It asks for one thread of remembrance sturdy enough to keep urgency from ruling the whole day.",
           "emotionalState": "directionless, numb, wasting-time",
-          "turn": "Pressure tempts you to abandon the very practices that would keep the mind from becoming ruled by pressure.",
-          "practicalImplication": "When pressure spikes, keep one core practice intact on a smaller scale rather than quitting the pattern altogether.",
+          "turn": "When the schedule compresses, discipline is the first thing the mind calls optional and the first thing the heart later misses.",
+          "practicalImplication": "When pressure spikes, shrink the practice before you drop it: one pauri, one minute, one act of restraint, still kept on purpose.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.54,
-          "usefulness": 3.82,
-          "beauty": 4.21,
-          "overall": 4.23
+          "clarity": 4.29,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.04,
+          "beauty": 4.17,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
@@ -283,64 +305,72 @@
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Restarting after the pattern broke",
-      "issueStatement": "The routine has already been broken, and now shame is trying to turn one lapse into a new identity.",
-      "centralInsight": "Gurbani treats return as part of discipline, not evidence against it. The repair itself is training.",
-      "practicalReflection": "You do not prove seriousness by despising the lapse. You prove it by starting again without delay or drama.",
-      "actionPrompt": "Restart today at the smallest honest scale and refuse the voice that says the broken streak made the work unreal.",
+      "title": "Returning after you broke the pattern",
+      "issueStatement": "The lapse has already happened, and now shame is trying to make inconsistency feel more honest than return.",
+      "centralInsight": "Gurbani does not treat restarting as a lesser version of discipline. The return is part of the training.",
+      "practicalReflection": "The ego likes dramatic failure because it postpones obedience. A quieter soul simply starts again.",
+      "actionPrompt": "Resume today at the smallest honest scale, and refuse to turn one missed stretch into a story about who you are.",
       "searchTerms": [
         "discipline",
         "consistency",
         "habit",
         "self-control",
         "follow through",
-        "restarting after the pattern broke",
+        "returning after you broke the pattern",
         "discipline after the slip",
         "restart",
         "broken streak",
         "repair",
         "start again",
         "after lapse",
+        "start over",
         "discipline restart",
         "discipline broken streak",
         "discipline repair",
         "discipline start again",
-        "discipline after lapse"
+        "discipline after lapse",
+        "discipline start over"
       ],
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-selfless-service",
-            "verseIds": [
-              12947,
-              12948
-            ],
-            "shortMeaning": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
-            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
-          },
-          "explanation": "Return stays possible even after the slip: one who performs selfless service, without thought of reward,; shall attain his Lord and Master."
-        },
-        {
-          "source": {
-            "deepDiveId": "shabad-remembrance-brings-peace",
-            "verseIds": [
-              11506
-            ],
-            "shortMeaning": "The Vedas, the Puraanas and the Simritees, the purest of utterances,",
-            "lifeApplication": "Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
-          },
-          "explanation": "The Guru does not leave repair at remorse alone. Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
-        },
-        {
-          "source": {
             "deepDiveId": "shabad-buy-what-goes-with-you",
             "verseIds": [
-              934
+              938,
+              939,
+              944
             ],
-            "shortMeaning": "Buy that object which will go along with you",
-            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "O Nanak, instruct your mind through the Word of the Guru's Shabad, and praise the Lord; those who do not have the Assets of Truth-how can they find peace",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Repair becomes clearer when false dealing is named without excuse. The mind is instructed again through the Shabad, not left alone to rehearse the lapse."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-work-give-know-the-path",
+            "verseIds": [
+              53369,
+              53371,
+              53372
+            ],
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the next return stay smaller and truer than the slip."
+          },
+          "explanation": "The path is recovered by leaving performance and returning to honest action. Discipline after a lapse is plain like this, not dramatic."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              528,
+              529,
+              530,
+              533
+            ],
+            "shortMeaning": "I have not practiced meditation, self-discipline, self-restraint or righteous living; you are squandering this life uselessly in the love of Maya",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Let the next return stay smaller and truer than the slip."
+          },
+          "explanation": "The shabad makes room for confession without letting confession become the end of the story. Human life is still a chance, and sanctuary is still available after the squandered stretch."
         }
       ],
       "editorial": {
@@ -349,24 +379,24 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-discipline:repair",
         "evidence": {
-          "coreClaim": "Gurbani treats return as part of discipline, not evidence against it. The repair itself is training.",
-          "emotionalState": "self-conscious, performing, eager-to-be-seen",
-          "turn": "The routine has already been broken, and now shame is trying to turn one lapse into a new identity.",
-          "practicalImplication": "Restart today at the smallest honest scale and refuse the voice that says the broken streak made the work unreal.",
+          "coreClaim": "Gurbani does not treat restarting as a lesser version of discipline. The return is part of the training.",
+          "emotionalState": "distracted, ambitious, grasping",
+          "turn": "The lapse has already happened, and now shame is trying to make inconsistency feel more honest than return.",
+          "practicalImplication": "Resume today at the smallest honest scale, and refuse to turn one missed stretch into a story about who you are.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.72,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.04,
-          "beauty": 4.53,
-          "overall": 4.35
+          "beauty": 4.37,
+          "overall": 4.29
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
         "issues": []
       }
@@ -374,41 +404,59 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building discipline that lasts",
-      "issueStatement": "The deeper problem is not lack of inspiration; it is lack of a form that can outlast inspiration.",
-      "centralInsight": "Discipline matures when repetition becomes truthful enough to survive boredom, success, and invisibility.",
-      "practicalReflection": "A durable practice is not glamorous. It is shaped to remain intact when no emotional reward arrives immediately.",
-      "actionPrompt": "Choose one practice to simplify, schedule, and repeat until it feels ordinary rather than impressive.",
+      "title": "Making discipline gentle enough to last",
+      "issueStatement": "You do not need another burst of resolve. You need a form that can keep working when nobody notices and nothing feels special.",
+      "centralInsight": "Discipline becomes durable when remembrance is woven into ordinary form. Repetition stops being dead when it is carrying love, truth, and restraint.",
+      "practicalReflection": "The lasting pattern is usually plainer than the impressive one, but it is the plain pattern that survives.",
+      "actionPrompt": "Simplify one practice until it feels sustainable, then keep it long enough for faithfulness to become familiar.",
       "searchTerms": [
         "discipline",
         "consistency",
         "habit",
         "self-control",
         "follow through",
-        "building discipline that lasts",
+        "making discipline gentle enough to last",
         "discipline steady practice",
         "lasting discipline",
         "durable practice",
         "repetition",
         "form",
         "boredom",
+        "sustainable practice",
         "discipline lasting discipline",
         "discipline durable practice",
         "discipline repetition",
         "discipline form",
-        "discipline boredom"
+        "discipline boredom",
+        "discipline sustainable practice"
       ],
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-work-give-know-the-path",
+            "deepDiveId": "shabad-buy-what-goes-with-you",
             "verseIds": [
-              53368
+              934,
+              937,
+              945,
+              946
             ],
-            "shortMeaning": "Someone else becomes a pan-handler, and loses his social status",
-            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who are imbued with the love of the Name of the Lord are not loaded down by doubt; take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: someone else becomes a pan-handler, and loses his social status."
+          "explanation": "A lasting discipline keeps choosing durable profit over quick reward. The line trains desire toward what can cross the threshold with you."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12945,
+              12947,
+              12950
+            ],
+            "shortMeaning": "O Nanak, is the selfless servant who lives the Guru's wisdom; one who sells his mind to the True Guru",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Keep the line close enough to become a repeatable posture."
+          },
+          "explanation": "Practice lasts when the self stops demanding payment. Selling the mind to the Guru and serving without reward are exactly the sort of steady forms that survive invisibility."
         },
         {
           "source": {
@@ -417,22 +465,10 @@
               290,
               292
             ],
-            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
-            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
+            "lifeApplication": "Make the next faithful repetition smaller and truer. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
-        },
-        {
-          "source": {
-            "deepDiveId": "shabad-buy-what-goes-with-you",
-            "verseIds": [
-              934,
-              937
-            ],
-            "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
-            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
-          },
-          "explanation": "This excerpt matters because it trains posture, not only agreement."
+          "explanation": "The goal is not a dramatic feeling of control. It is a trained interior life in which humility, remembrance, and mastery of the mind have become ordinary tools."
         }
       ],
       "editorial": {
@@ -441,20 +477,20 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-discipline:practice",
         "evidence": {
-          "coreClaim": "Discipline matures when repetition becomes truthful enough to survive boredom, success, and invisibility.",
-          "emotionalState": "pretending, unclear, performing",
-          "turn": "The deeper problem is not lack of inspiration; it is lack of a form that can outlast inspiration.",
-          "practicalImplication": "Choose one practice to simplify, schedule, and repeat until it feels ordinary rather than impressive.",
+          "coreClaim": "Discipline becomes durable when remembrance is woven into ordinary form. Repetition stops being dead when it is carrying love, truth, and restraint.",
+          "emotionalState": "distracted, ambitious, grasping",
+          "turn": "You do not need another burst of resolve. You need a form that can keep working when nobody notices and nothing feels special.",
+          "practicalImplication": "Simplify one practice until it feels sustainable, then keep it long enough for faithfulness to become familiar.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 4.78,
-          "emotionalHonesty": 3,
-          "usefulness": 3.98,
+          "emotionalHonesty": 3.18,
+          "usefulness": 3.6,
           "beauty": 4.37,
-          "overall": 4.17
+          "overall": 4.14
         },
         "strengths": [
           "specificity",
@@ -466,11 +502,12 @@
   },
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
-    "shabad-human-birth-is-chance",
-    "shabad-selfless-service",
-    "shabad-remembrance-brings-peace",
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-buy-what-goes-with-you",
     "shabad-work-give-know-the-path",
-    "shabad-buy-what-goes-with-you"
+    "shabad-human-birth-is-chance",
+    "shabad-remembrance-brings-peace",
+    "shabad-selfless-service"
   ],
   "relatedTopicIds": [
     "topic-gratitude",
@@ -493,29 +530,29 @@
     "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:discipline",
     "evidence": {
-      "coreClaim": "Gurbani locates discipline inside remembrance, restraint, and inner honesty. It is less about intensity and more about truthful repetition.",
+      "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not to feel intense for a moment, but to keep returning before the mind slips into self-rule.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "Good intentions keep arriving sincerely, but they are still too dependent on energy, novelty, or emotion to survive an ordinary week.",
-      "practicalImplication": "Reduce the next faithful act until you know you can keep it without performance or self-deception.",
+      "turn": "You mean it in the morning, but by the middle of the day the mind starts bargaining. What felt clear gets handed back to mood, fatigue, and convenience.",
+      "practicalImplication": "Choose one small act of remembrance or restraint you can keep on a tired day, and protect that before you add anything larger.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.09,
-      "specificity": 4.78,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.22,
-      "beauty": 3.53,
-      "overall": 3.77
+      "usefulness": 4.04,
+      "beauty": 4.69,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

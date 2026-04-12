@@ -10,8 +10,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "One who performs selfless service, without thought of reward",
+    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,20 +40,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
+      "coreClaim": "One who performs selfless service, without thought of reward",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
       "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
       "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
+      "faithfulness": 3.86,
       "clarity": 4.17,
-      "specificity": 4.7,
+      "specificity": 4.63,
       "emotionalHonesty": 3.36,
       "usefulness": 4.04,
       "beauty": 4.09,
-      "overall": 4.04
+      "overall": 4.01
     },
     "strengths": [
       "specificity",

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-822",
-  "title": "Fear In Gurbani",
+  "title": "Offering everything to the One who can unite you",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Fear is carried here from  toward o Nanak, my doubts and fears have been dispelled, and the Messenger of Death.",
-  "whyItMatters": "This shabad is useful when life feels afraid, guarded, dreading, because it keeps fear inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death.",
+  "summary": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
+  "whyItMatters": "It matters when fear feels personal and total because the shabad turns the heart from private bargaining toward union, clarity, and release from dread.",
+  "takeaway": "Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
   "themes": [
     "fear",
     "exhaustion",
@@ -56,12 +56,11 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside i offer my body, mind and wealth to anyone who can unite me with.",
-    "The closing movement leaves a return you can actually keep: o Nanak, my doubts and fears have been dispelled, and the Messenger of Death."
+    "It opens with total offering and a plain request for union with the Divine.",
+    "The middle movement keeps pressing past fear and doubt instead of negotiating with them.",
+    "It closes in freedom, where dread no longer gets to govern the soul."
   ],
   "keyVerseIds": [
-    11200,
     11201,
     11202
   ],
@@ -86,25 +85,25 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "approved",
-    "origin": "generated",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Fear is carried here from  toward o Nanak, my doubts and fears have been dispelled, and the Messenger of Death.",
+      "coreClaim": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "The middle movement deepens the correction by holding the mind inside i offer my body, mind and wealth to anyone who can unite me with.",
-      "practicalImplication": "Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death.",
+      "turn": "The middle movement keeps pressing past fear and doubt instead of negotiating with them.",
+      "practicalImplication": "Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.25,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.94,
-      "overall": 3.98
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-64",
-  "title": "It All Worked Out-i Was Saved, And",
+  "title": "It All Worked Out-i Was Saved",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "Ego is carried here from it all worked out-I was saved, and the egotism within my heart was subdued toward o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine.",
-  "whyItMatters": "This shabad is useful when life feels inflated, defensive, self-protective, because it keeps ego inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine.",
+  "summary": "This shabad opens with it all worked out-I was saved, and the egotism within my heart was subdued. It turns the heart toward o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine Article.",
+  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine Article.",
   "themes": [
     "ego",
     "comparison",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: it all worked out-I was saved, and the egotism within my heart was subdued.",
-    "The middle movement deepens the correction by holding the mind inside there are so many beggars, but He is the only Giver.",
-    "The closing movement leaves a return you can actually keep: o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine."
+    "It opens by naming the condition without ornament: it all worked out-I was saved, and the egotism within my heart was subdued.",
+    "The middle movement widens the correction through he is the Giver of the soul, and the praanaa, the breath of life.",
+    "It closes with a return you can actually keep: o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine Article."
   ],
   "keyVerseIds": [
     744,
@@ -179,27 +179,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Ego is carried here from it all worked out-I was saved, and the egotism within my heart was subdued toward o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine.",
+      "coreClaim": "This shabad opens with it all worked out-I was saved, and the egotism within my heart was subdued. It turns the heart toward o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine Article.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement deepens the correction by holding the mind inside there are so many beggars, but He is the only Giver.",
-      "practicalImplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine.",
+      "turn": "The middle movement widens the correction through he is the Giver of the soul, and the praanaa, the breath of life.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine Article.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.37,
-      "specificity": 4.96,
-      "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 3.34,
-      "overall": 3.67
+      "clarity": 1.82,
+      "specificity": 4.77,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.6,
+      "beauty": 3.21,
+      "overall": 3.7
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-704",
-  "title": "Gauree Gwaarayree, First Mehla:",
+  "title": "Mind Is Under The Power",
   "subtitle": "Raag Gauree · Ang 222",
-  "summary": "Ego is carried here from gauree Gwaarayree, First Mehla: toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
-  "whyItMatters": "This shabad is useful when life feels inflated, defensive, self-protective, because it keeps ego inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+  "summary": "This shabad opens with the mind is under the power of the demons of evil intellect and duality. It turns the heart toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
   "themes": [
     "ego",
     "self-worth",
@@ -224,14 +224,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree Gwaarayree, First Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside in the anxious affairs of all these, people lose the game and depart.",
-    "The closing movement leaves a return you can actually keep: o Nanak, the Gurmukh sings the Glorious Praises of the Lord."
+    "It opens by naming the condition without ornament: the mind is under the power of the demons of evil intellect and duality.",
+    "The middle movement widens the correction through in the game of chess, their pieces do not reach their destination.",
+    "It closes with a return you can actually keep: o Nanak, the Gurmukh sings the Glorious Praises of the Lord."
   ],
   "keyVerseIds": [
-    9497,
     9499,
     9506,
+    9513,
     9523
   ],
   "relatedGuidanceIds": [
@@ -263,20 +263,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Ego is carried here from gauree Gwaarayree, First Mehla: toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+      "coreClaim": "This shabad opens with the mind is under the power of the demons of evil intellect and duality. It turns the heart toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement deepens the correction by holding the mind inside in the anxious affairs of all these, people lose the game and depart.",
-      "practicalImplication": "Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+      "turn": "The middle movement widens the correction through in the game of chess, their pieces do not reach their destination.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.31,
-      "specificity": 4.78,
+      "clarity": 3.06,
+      "specificity": 4.6,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.13,
-      "overall": 4.02
+      "usefulness": 3.38,
+      "beauty": 3.9,
+      "overall": 3.94
     },
     "strengths": [
       "specificity",

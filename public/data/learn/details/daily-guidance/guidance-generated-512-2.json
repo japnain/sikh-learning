@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-512-2",
-  "title": "For The Sake Of The Lord, Har,",
+  "title": "The Guru's Teachings, I Am Lovingly Centered",
   "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Gauree Poorbee, Fourth Mehla:; for the sake of the Lord, Har, Har, I have sold my",
+  "takeaway": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
   "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-512",
     "verseIds": [
-      7137,
-      7138
+      7138,
+      7140
     ],
-    "shortMeaning": "Gauree Poorbee, Fourth Mehla:; for the sake of the Lord, Har, Har, I have sold my",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
+    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Gauree Poorbee, Fourth Mehla:; for the sake of the Lord, Har, Har, I have sold my",
+      "coreClaim": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Ego steadies when servant Nanak's honor and respect is the Guru; he has sold his head to.",
+      "turn": "Keep returning to this turn: he has sold his head to the True Guru.",
       "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.85,
-      "clarity": 3.39,
-      "specificity": 4.62,
+      "faithfulness": 4,
+      "clarity": 1.38,
+      "specificity": 4.72,
       "emotionalHonesty": 3.36,
       "usefulness": 4.42,
-      "beauty": 3.51,
-      "overall": 3.86
+      "beauty": 2.96,
+      "overall": 3.53
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

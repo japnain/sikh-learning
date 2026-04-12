@@ -1,19 +1,21 @@
 {
   "id": "topic-loneliness",
-  "title": "When loneliness settles in",
+  "title": "When loneliness starts shrinking the room",
   "shortTitle": "Loneliness",
   "category": "most-needed",
-  "issueStatement": "The heart feels unheld, unseen, or left to carry too much alone.",
-  "centralInsight": "Guru turns loneliness toward sangat, Guru-care, and the Creator's nearness rather than toward self-enclosed despair.",
-  "practicalReflection": "Loneliness narrows the world. Gurbani widens it again by locating you in sangat, in prayer, and in the Lord's ongoing care.",
-  "actionPrompt": "Reach outward in one spiritually honest way today: sangat, message, prayer, or presence.",
+  "issueStatement": "You may still be moving through the day, but inwardly the heart feels unaccompanied, harder to reach, and easier to abandon to itself.",
+  "centralInsight": "Gurbani does not flatter loneliness as private depth. It leads the soul toward sangat, nearness, and the Lord who is already closer than isolation feels.",
+  "practicalReflection": "Loneliness grows heavier when separation starts sounding like identity. The Guru keeps returning the soul to shelter, companionship, and remembered care.",
+  "actionPrompt": "Name the loneliness plainly, then move one step toward prayer, company, or truthful contact before the feeling gets to narrate the whole day.",
   "searchTerms": [
     "loneliness",
     "alone",
     "isolated",
     "disconnected",
     "abandoned",
-    "unseen",
+    "unaccompanied",
+    "apart",
+    "lonely",
     "loneliness in the ordinary day",
     "loneliness daily",
     "today",
@@ -42,7 +44,7 @@
     "loneliness return",
     "loneliness after slipping",
     "loneliness start again",
-    "building a truer practice of loneliness",
+    "learning a steadier way with loneliness",
     "loneliness steady practice",
     "practice",
     "habit",
@@ -58,36 +60,40 @@
       "source": {
         "deepDiveId": "shabad-child-of-grace",
         "verseIds": [
-          3757
+          3757,
+          3760,
+          3762
         ],
-        "shortMeaning": "If only I could have the good fortune to meet some friendly",
-        "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+        "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: if only I could have the good fortune to meet some friendly."
+      "explanation": "Loneliness is answered here by honest need and by company that can actually be entered. The soul does not heal by pretending it is self-sufficient."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-152",
+        "deepDiveId": "shabad-search-ends-in-saint-company",
         "verseIds": [
-          2113,
-          2117
+          3898,
+          3899,
+          3900
         ],
-        "shortMeaning": "Siree Raag, Fifth Mehla:; without being attuned to the Saadh Sangat, the Company of the Holy,",
-        "lifeApplication": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+        "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+      "explanation": "The line treats holy company as shelter, not ornament. Loneliness begins to loosen when the search stops circling alone and finally lands near peace."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-227",
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
         "verseIds": [
-          3438,
-          3440
+          37474,
+          37476,
+          37477
         ],
-        "shortMeaning": "Those, unto whom You give, receive everything. You are far away from; all praise You, O Lord; at Your Door, the Gurmukhs are enlightened",
-        "lifeApplication": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+        "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line stay in charge of what comes next."
       },
-      "explanation": "Guru turns loneliness toward sangat, Guru-care, and the Creator's nearness rather than toward self-enclosed despair. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "Nearness is not manufactured here; it is received. The lonely heart is reminded that it is held, parented, and kept close by the One it fears has gone distant."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -127,41 +133,43 @@
           "source": {
             "deepDiveId": "shabad-child-of-grace",
             "verseIds": [
-              3757
+              3757,
+              3760
             ],
-            "shortMeaning": "If only I could have the good fortune to meet some friendly",
-            "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: if only I could have the good fortune to meet some friendly."
+          "explanation": "Ordinary loneliness often hides behind routine. This line keeps the heart honest by letting it ask for friendly presence instead of pretending the day is enough on its own."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-152",
+            "deepDiveId": "shabad-search-ends-in-saint-company",
             "verseIds": [
-              2113,
-              2117
+              3898,
+              3899,
+              3900
             ],
-            "shortMeaning": "Siree Raag, Fifth Mehla:; without being attuned to the Saadh Sangat, the Company of the Holy,",
-            "lifeApplication": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+          "explanation": "Daily loneliness loosens when the search no longer circles alone. Holy company appears here as shelter that can actually be entered, not admired from a distance."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-227",
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
             "verseIds": [
-              3438,
-              3440
+              37474,
+              37476
             ],
-            "shortMeaning": "Those, unto whom You give, receive everything. You are far away from; all praise You, O Lord; at Your Door, the Gurmukhs are enlightened",
-            "lifeApplication": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when those, unto whom You give, receive everything. You are far away from; all praise You, O Lord; at Your Door, the Gurmukhs are enlightened."
+          "explanation": "The daily ache softens when the soul remembers it is not self-kept. Nearness is received here as care, not as something won by status or noise."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-loneliness:daily",
         "evidence": {
@@ -215,48 +223,52 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-152",
+            "deepDiveId": "shabad-search-ends-in-saint-company",
             "verseIds": [
-              2113,
-              2117
+              3898,
+              3899,
+              3900
             ],
-            "shortMeaning": "Siree Raag, Fifth Mehla:; without being attuned to the Saadh Sangat, the Company of the Holy,",
-            "lifeApplication": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: siree Raag, Fifth Mehla:; without being attuned to the Saadh Sangat, the Company of the Holy,."
+          "explanation": "Pressure makes loneliness feel final. The line answers by cooling the body and mind inside company, not by leaving the soul alone with its tightening thoughts."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-228",
+            "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
-              3444,
-              3445
+              524,
+              525,
+              527
             ],
-            "shortMeaning": "In the love of duality, they try to teach the world, but; they lose their lives uselessly; they die, only to be re-born, over",
-            "lifeApplication": "Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+          "explanation": "Pressure shrinks the horizon until the soul forgets why it has been given this life at all. The verse widens the frame again so isolation does not get to define wisdom."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-560",
+            "deepDiveId": "shabad-steadied-by-creator",
             "verseIds": [
-              7929
+              30988,
+              30989,
+              30994
             ],
-            "shortMeaning": "My Friend is Carefree",
-            "lifeApplication": "Loneliness steadies when my honor and glory are Yours, God. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "When the day closes in, loneliness is corrected first by remembrance of the One already sustaining you. The heart is steadied before it is asked to explain itself."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-loneliness:pressure",
         "evidence": {
           "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Under strain, the line must interrupt panic before panic defines the moment.",
-          "emotionalState": "isolated, impressionable, needing-company",
+          "emotionalState": "wandering, exhausted, seeking",
           "turn": "The heart feels unaccompanied even when people are nearby. Pressure exposes what the mind reaches for first when it feels cornered.",
           "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use one line before the pressure chooses your tone.",
           "bannedOverreach": []
@@ -267,7 +279,7 @@
           "specificity": 5,
           "emotionalHonesty": 3.72,
           "usefulness": 4.64,
-          "beauty": 4.37,
+          "beauty": 4.36,
           "overall": 4.41
         },
         "strengths": [
@@ -304,59 +316,62 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-227",
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
             "verseIds": [
-              3438,
-              3440
+              37474,
+              37476,
+              37477
             ],
-            "shortMeaning": "Those, unto whom You give, receive everything. You are far away from; all praise You, O Lord; at Your Door, the Gurmukhs are enlightened",
-            "lifeApplication": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: those, unto whom You give, receive everything. You are far away from; all praise You, O Lord; at Your Door, the Gurmukhs are enlightened."
+          "explanation": "Repair begins when the lonely heart lets itself be kept again. Nearness becomes believable enough that retreat no longer has to masquerade as wisdom."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-228",
+            "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
-              3443
+              524,
+              527
             ],
-            "shortMeaning": "They do not recognize God within themselves-they are so foolish and ignorant!",
-            "lifeApplication": "Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "vibrate and meditate on the Jewel of the Naam; this human body has been given to you",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+          "explanation": "After withdrawing inward, this verse widens the soul's sense of purpose again. Repair becomes possible when the day is seen as a chance for return rather than a sealed room."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-561",
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
             "verseIds": [
-              7935
+              499,
+              503
             ],
-            "shortMeaning": "Gauree, Fifth Mehla:",
-            "lifeApplication": "Seva steadies when who has shown me the Perfect, Supreme Lord God. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive; you Yourself separate them from Yourself, and You Yourself reunite with them again",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Loneliness after the slip heals better when the soul comes back under Hukam instead of trying to out-think its own separation."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-loneliness:repair",
         "evidence": {
           "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
-          "emotionalState": "inflated, defensive, self-protective",
+          "emotionalState": "small, unwanted, afraid",
           "turn": "The heart feels unaccompanied even when people are nearby. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
           "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Choose the next truthful return instead of rehearsing the failure.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 4.29,
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 5,
-          "beauty": 4.95,
-          "overall": 4.53
+          "beauty": 4.81,
+          "overall": 4.5
         },
         "strengths": [
           "specificity",
@@ -368,7 +383,7 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of loneliness",
+      "title": "Learning a steadier way with loneliness",
       "issueStatement": "The heart feels unaccompanied even when people are nearby. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
       "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
       "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
@@ -379,7 +394,7 @@
         "isolated",
         "disconnected",
         "abandoned",
-        "building a truer practice of loneliness",
+        "learning a steadier way with loneliness",
         "loneliness steady practice",
         "practice",
         "habit",
@@ -393,47 +408,52 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-560",
+            "deepDiveId": "shabad-steadied-by-creator",
             "verseIds": [
-              7929
+              30988,
+              30989,
+              30994
             ],
-            "shortMeaning": "My Friend is Carefree",
-            "lifeApplication": "Loneliness steadies when my honor and glory are Yours, God. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: my Friend is Carefree."
+          "explanation": "Loneliness becomes more livable when steadiness is practiced on purpose. This line trains the heart to receive shelter before absence turns into self-definition."
         },
         {
           "source": {
             "deepDiveId": "shabad-child-of-grace",
             "verseIds": [
-              3757
+              3757,
+              3760,
+              3762
             ],
-            "shortMeaning": "If only I could have the good fortune to meet some friendly",
-            "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+          "explanation": "Practice becomes stable when the soul keeps approaching honestly instead of pretending it does not need company. Dependence here becomes a doorway out of isolation."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-561",
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
             "verseIds": [
-              7935,
-              7939
+              499,
+              501,
+              503
             ],
-            "shortMeaning": "Gauree, Fifth Mehla:; - nothing of the world can touch them at all",
-            "lifeApplication": "Seva steadies when who has shown me the Perfect, Supreme Lord God. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
+            "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "This excerpt matters because it trains posture, not only agreement."
+          "explanation": "A lasting practice of loneliness is learned by consenting to Hukam again and again. The heart stops rehearsing abandonment and begins living as held."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-loneliness:practice",
         "evidence": {
           "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-          "emotionalState": "alone, unseen, disconnected",
+          "emotionalState": "afraid, shaken, alone",
           "turn": "The heart feels unaccompanied even when people are nearby. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
           "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Repeat what you can actually keep.",
           "bannedOverreach": []
@@ -444,8 +464,8 @@
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 4.26,
-          "beauty": 4.69,
-          "overall": 4.38
+          "beauty": 4.85,
+          "overall": 4.4
         },
         "strengths": [
           "specificity",
@@ -457,11 +477,11 @@
   },
   "relatedShabadIds": [
     "shabad-child-of-grace",
-    "shabad-generated-152",
-    "shabad-generated-227",
-    "shabad-generated-228",
-    "shabad-generated-560",
-    "shabad-generated-561"
+    "shabad-search-ends-in-saint-company",
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-human-birth-is-chance",
+    "shabad-steadied-by-creator",
+    "shabad-what-pleases-you-comes-to-pass"
   ],
   "relatedTopicIds": [
     "topic-anxiety",
@@ -485,28 +505,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:loneliness",
     "evidence": {
-      "coreClaim": "Guru turns loneliness toward sangat, Guru-care, and the Creator's nearness rather than toward self-enclosed despair.",
+      "coreClaim": "Gurbani does not flatter loneliness as private depth. It leads the soul toward sangat, nearness, and the Lord who is already closer than isolation feels.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "The heart feels unheld, unseen, or left to carry too much alone.",
-      "practicalImplication": "Reach outward in one spiritually honest way today: sangat, message, prayer, or presence.",
+      "turn": "You may still be moving through the day, but inwardly the heart feels unaccompanied, harder to reach, and easier to abandon to itself.",
+      "practicalImplication": "Name the loneliness plainly, then move one step toward prayer, company, or truthful contact before the feeling gets to narrate the whole day.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.51,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.66,
-      "beauty": 3.97,
-      "overall": 4.03
+      "emotionalHonesty": 4,
+      "usefulness": 4.26,
+      "beauty": 4.95,
+      "overall": 4.48
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

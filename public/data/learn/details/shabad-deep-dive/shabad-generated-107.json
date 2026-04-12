@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-107",
-  "title": "Siree Raag, Third Mehla:",
+  "title": "Whom Shall I Serve? What Shall I",
   "subtitle": "Siree Raag · Ang 34",
-  "summary": "Anxiety is carried here from siree Raag, Third Mehla: toward o Nanak, I am a sacrifice to those who are found to be true.",
-  "whyItMatters": "This shabad is useful when life feels restless, uncertain, fearful, because it keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true.",
+  "summary": "This shabad opens with whom shall I serve? What shall I chant? I will go and ask the Guru. It turns the heart toward o Nanak, I am a sacrifice to those who are found to be true in the True Court.",
+  "whyItMatters": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, I am a sacrifice to those who are found to be true in the True Court.",
   "themes": [
     "anxiety",
     "comparison",
@@ -168,12 +168,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, Third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside doubt runs far away from the bodies of those, whose minds remain forever attuned.",
-    "The closing movement leaves a return you can actually keep: o Nanak, I am a sacrifice to those who are found to be true."
+    "It opens by naming the condition without ornament: whom shall I serve? What shall I chant? I will go and ask the Guru.",
+    "The middle movement widens the correction through the Immaculate Lord and Master is found. He is True.",
+    "It closes with a return you can actually keep: o Nanak, I am a sacrifice to those who are found to be true in the True Court."
   ],
   "keyVerseIds": [
-    1410,
+    1411,
     1415,
     1420,
     1425
@@ -207,20 +207,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anxiety is carried here from siree Raag, Third Mehla: toward o Nanak, I am a sacrifice to those who are found to be true.",
+      "coreClaim": "This shabad opens with whom shall I serve? What shall I chant? I will go and ask the Guru. It turns the heart toward o Nanak, I am a sacrifice to those who are found to be true in the True Court.",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "The middle movement deepens the correction by holding the mind inside doubt runs far away from the bodies of those, whose minds remain forever attuned.",
-      "practicalImplication": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true.",
+      "turn": "The middle movement widens the correction through the Immaculate Lord and Master is found. He is True.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, I am a sacrifice to those who are found to be true in the True Court.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.13,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 3.98
+      "clarity": 3.27,
+      "specificity": 4.57,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.46,
+      "overall": 3.89
     },
     "strengths": [
       "specificity",

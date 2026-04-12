@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-63-1",
-  "title": "Siree Raag, First Mehla:",
+  "title": "Hug Me Close In Your Embrace",
   "summary": "Gratitude is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Siree Raag, First Mehla:",
+  "takeaway": "hug me close in your embrace",
   "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-generated-63",
     "verseIds": [
-      728
+      729
     ],
-    "shortMeaning": "Siree Raag, First Mehla:",
-    "lifeApplication": "Gratitude becomes more truthful when siree Raag, First Mehla:."
+    "shortMeaning": "hug me close in your embrace",
+    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -39,24 +39,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Siree Raag, First Mehla:",
+      "coreClaim": "hug me close in your embrace",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Gratitude steadies when o Nanak, the True King absorbs us into Himself.",
+      "turn": "Keep returning to this turn: O Nanak, the True King absorbs us into Himself.",
       "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.29,
-      "specificity": 4.35,
+      "faithfulness": 3.6,
+      "clarity": 4.23,
+      "specificity": 4.2,
       "emotionalHonesty": 3.36,
       "usefulness": 4.58,
-      "beauty": 4.33,
-      "overall": 4.08
+      "beauty": 4.29,
+      "overall": 4
     },
     "strengths": [
       "usefulness",
-      "specificity"
+      "beauty"
     ],
     "issues": []
   }

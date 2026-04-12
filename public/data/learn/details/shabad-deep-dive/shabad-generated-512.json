@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-512",
-  "title": "Gauree Poorbee, Fourth Mehla:",
+  "title": "For The Sake Of The Lord, Har",
   "subtitle": "Raag Gauree · Ang 171",
-  "summary": "Ego is carried here from gauree Poorbee, Fourth Mehla: toward servant Nanak's honor and respect is the Guru; he has sold his head to.",
-  "whyItMatters": "This shabad is useful when life feels inflated, defensive, self-protective, because it keeps ego inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Ego steadies when servant Nanak's honor and respect is the Guru; he has sold his head to.",
+  "summary": "This shabad opens with for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru. It turns the heart toward he has sold his head to the True Guru.",
+  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: he has sold his head to the True Guru.",
   "themes": [
     "ego",
     "seva",
@@ -119,15 +119,15 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree Poorbee, Fourth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside in the darkness, the Guru has lit the lamp of the Guru's wisdom; I.",
-    "The closing movement leaves a return you can actually keep: servant Nanak's honor and respect is the Guru; he has sold his head to."
+    "It opens by naming the condition without ornament: for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru.",
+    "The middle movement widens the correction through in the darkness, the Guru has lit the lamp of the Guru's wisdom.",
+    "It closes with a return you can actually keep: he has sold his head to the True Guru."
   ],
   "keyVerseIds": [
-    7137,
     7138,
     7140,
-    7145
+    7145,
+    7147
   ],
   "relatedGuidanceIds": [
     "guidance-generated-512-1",
@@ -158,20 +158,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Ego is carried here from gauree Poorbee, Fourth Mehla: toward servant Nanak's honor and respect is the Guru; he has sold his head to.",
+      "coreClaim": "This shabad opens with for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru. It turns the heart toward he has sold his head to the True Guru.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement deepens the correction by holding the mind inside in the darkness, the Guru has lit the lamp of the Guru's wisdom; I.",
-      "practicalImplication": "Ego steadies when servant Nanak's honor and respect is the Guru; he has sold his head to.",
+      "turn": "The middle movement widens the correction through in the darkness, the Guru has lit the lamp of the Guru's wisdom.",
+      "practicalImplication": "Keep returning to this turn: he has sold his head to the True Guru.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.72,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.82,
-      "overall": 3.88
+      "clarity": 2.64,
+      "specificity": 4.59,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.49,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",

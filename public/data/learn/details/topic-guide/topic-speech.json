@@ -1,12 +1,12 @@
 {
   "id": "topic-speech",
-  "title": "When the tongue gets ahead of the soul",
+  "title": "When the tongue keeps outrunning the soul",
   "shortTitle": "Speech",
   "category": "practice",
-  "issueStatement": "Your words are sharper than your conscience, or sweeter than your heart actually is.",
-  "centralInsight": "Guru does not treat speech as cosmetic. Speech reveals what the heart is feeding on and what it still loves too much.",
-  "practicalReflection": "The same mouth can protect dignity, wound people, advertise ego, or carry Naam. The question is not whether you speak, but what spirit your speech serves.",
-  "actionPrompt": "Choose one conversation today where you will lower the heat, refuse contempt, and speak in a way you can still respect tonight.",
+  "issueStatement": "Words are arriving faster than the heart has been cleansed enough to carry them, so speech starts leaving damage before wisdom has entered the room.",
+  "centralInsight": "Gurbani disciplines speech through remembrance, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre.",
+  "practicalReflection": "Speech reveals the inner climate quickly. A mouth that cannot slow down is often showing a heart that has not yet become quiet enough to tell the truth well.",
+  "actionPrompt": "Before the next unnecessary word, ask whether it will leave the room cleaner or more scattered.",
   "searchTerms": [
     "speech",
     "gossip",
@@ -14,8 +14,10 @@
     "tongue",
     "words",
     "talking",
-    "sharp words",
-    "respect",
+    "speech discipline",
+    "careless words",
+    "sharp speech",
+    "clean speech",
     "speech in the ordinary day",
     "speech daily",
     "today",
@@ -44,7 +46,7 @@
     "speech return",
     "speech after slipping",
     "speech start again",
-    "building a truer practice of speech",
+    "learning a steadier way with speech",
     "speech steady practice",
     "practice",
     "habit",
@@ -62,10 +64,10 @@
         "verseIds": [
           634
         ],
-        "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+        "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+      "explanation": "The theme is named plainly here: falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass."
     },
     {
       "source": {
@@ -74,10 +76,10 @@
           1288,
           1290
         ],
-        "shortMeaning": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
-        "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
+        "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+      "explanation": "The shabad widens the issue and gives it a truer direction. Refuse one unnecessary sharp word before it leaves the mouth. Let the line stay in charge of what comes next."
     },
     {
       "source": {
@@ -86,10 +88,10 @@
           11748,
           11750
         ],
-        "shortMeaning": "Of all speech, the most ambrosial speech; of all places, the most sublime place,",
-        "lifeApplication": "The best religion sounds like praise and looks like clean conduct. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Of all speech, the most ambrosial speech",
+        "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line stay in charge of what comes next."
       },
-      "explanation": "Guru does not treat speech as cosmetic. Speech reveals what the heart is feeding on and what it still loves too much. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "Gurbani disciplines speech through remembrance, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre. The line is not a detached quote; it belongs to a fuller turn the whole shabad is making."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -132,10 +134,10 @@
             "verseIds": [
               634
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+          "explanation": "Ordinary life is already being addressed here: falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass."
         },
         {
           "source": {
@@ -144,10 +146,10 @@
               1288,
               1290
             ],
-            "shortMeaning": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
-            "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -156,10 +158,10 @@
               11748,
               11750
             ],
-            "shortMeaning": "Of all speech, the most ambrosial speech; of all places, the most sublime place,",
-            "lifeApplication": "The best religion sounds like praise and looks like clean conduct. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Of all speech, the most ambrosial speech",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when of all speech, the most ambrosial speech; of all places, the most sublime place,."
+          "explanation": "This makes daily faithfulness concrete: of all speech, the most ambrosial speech."
         }
       ],
       "editorial": {
@@ -176,16 +178,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.99,
           "specificity": 5,
-          "emotionalHonesty": 3.18,
+          "emotionalHonesty": 3.36,
           "usefulness": 4.48,
-          "beauty": 4.69,
-          "overall": 4.36
+          "beauty": 4.45,
+          "overall": 4.29
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -224,22 +226,22 @@
               1288,
               1290
             ],
-            "shortMeaning": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
-            "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She."
+          "explanation": "Under strain, the line stays exact: her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-337",
             "verseIds": [
-              4859,
-              4865
+              4865,
+              4871
             ],
-            "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in",
-            "lifeApplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "We could read the account of the Lord, if He were in any account; by Guru's Grace, I know the One",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Refuse one unnecessary sharp word before it leaves the mouth. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
@@ -247,10 +249,10 @@
             "verseIds": [
               9484
             ],
-            "shortMeaning": "The Fearless Lord is in the oceans, just as He is in",
-            "lifeApplication": "Attachment steadies when o Nanak, meditate on the Lord, each and every day. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Fearless Lord is in the oceans, just as He is in the mountains",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -267,12 +269,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.93,
           "specificity": 5,
           "emotionalHonesty": 3.72,
           "usefulness": 4.64,
-          "beauty": 4.53,
-          "overall": 4.44
+          "beauty": 4.24,
+          "overall": 4.33
         },
         "strengths": [
           "specificity",
@@ -314,32 +316,33 @@
               11748,
               11750
             ],
-            "shortMeaning": "Of all speech, the most ambrosial speech; of all places, the most sublime place,",
-            "lifeApplication": "The best religion sounds like praise and looks like clean conduct. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Of all speech, the most ambrosial speech",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: of all speech, the most ambrosial speech; of all places, the most sublime place,."
+          "explanation": "Return is still being offered here: of all speech, the most ambrosial speech."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-337",
             "verseIds": [
-              4860
+              4861
             ],
-            "shortMeaning": "Through the Shabad, I have burned my emotional attachment to Maya",
-            "lifeApplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "I gaze upon the Truest of the True, and I praise Him. Through",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Refuse one unnecessary sharp word before it leaves the mouth. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-820",
             "verseIds": [
-              11188
+              11189,
+              11190
             ],
-            "shortMeaning": "",
-            "lifeApplication": "Speech steadies when - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Where the Holy people constantly vibrate the Kirtan of the Praises of the Lord; the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -356,12 +359,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.99,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 5,
-          "beauty": 4.69,
-          "overall": 4.49
+          "beauty": 4.43,
+          "overall": 4.42
         },
         "strengths": [
           "specificity",
@@ -373,7 +376,7 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of speech",
+      "title": "Learning a steadier way with speech",
       "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
       "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
       "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
@@ -385,7 +388,7 @@
         "tongue",
         "words",
         "talking",
-        "building a truer practice of speech",
+        "learning a steadier way with speech",
         "speech steady practice",
         "practice",
         "habit",
@@ -403,10 +406,10 @@
             "verseIds": [
               9484
             ],
-            "shortMeaning": "The Fearless Lord is in the oceans, just as He is in",
-            "lifeApplication": "Attachment steadies when o Nanak, meditate on the Lord, each and every day. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Fearless Lord is in the oceans, just as He is in the mountains",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: the Fearless Lord is in the oceans, just as He is in."
+          "explanation": "The line is teaching repetition more than momentary inspiration: the Fearless Lord is in the oceans, just as He is in the mountains."
         },
         {
           "source": {
@@ -414,20 +417,19 @@
             "verseIds": [
               634
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Refuse one unnecessary sharp word before it leaves the mouth. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-820",
             "verseIds": [
-              11188,
-              11189
+              11190
             ],
-            "shortMeaning": "Where the Holy people constantly vibrate the Kirtan of the Praises of",
-            "lifeApplication": "Speech steadies when - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death",
+            "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
@@ -446,12 +448,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.99,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.04,
-          "beauty": 4.69,
-          "overall": 4.34
+          "beauty": 4.45,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
@@ -491,28 +493,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:speech",
     "evidence": {
-      "coreClaim": "Guru does not treat speech as cosmetic. Speech reveals what the heart is feeding on and what it still loves too much.",
+      "coreClaim": "Gurbani disciplines speech through remembrance, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Your words are sharper than your conscience, or sweeter than your heart actually is.",
-      "practicalImplication": "Choose one conversation today where you will lower the heat, refuse contempt, and speak in a way you can still respect tonight.",
+      "turn": "Words are arriving faster than the heart has been cleansed enough to carry them, so speech starts leaving damage before wisdom has entered the room.",
+      "practicalImplication": "Before the next unnecessary word, ask whether it will leave the room cleaner or more scattered.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.27,
+      "clarity": 3.33,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.31,
-      "overall": 4
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.66,
+      "beauty": 3.83,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
     "issues": []
   }

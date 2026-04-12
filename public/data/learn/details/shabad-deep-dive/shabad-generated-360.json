@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-360",
-  "title": "Vaar In Maajh, And Shaloks Of The",
+  "title": "To Be Sung To The Tune",
   "subtitle": "Raag Maajh · Ang 137",
-  "summary": "Exhaustion is carried here from vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
-  "whyItMatters": "This shabad is useful when life feels tired, drained, worn-down, because it keeps exhaustion inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+  "summary": "This shabad opens with to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\". It turns the heart toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
+  "whyItMatters": "It matters when life feels tired, drained, and worn-down because the shabad keeps exhaustion inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
   "themes": [
     "exhaustion",
     "comparison",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The.",
-    "The middle movement deepens the correction by holding the mind inside shalok, First Mehla:.",
-    "The closing movement leaves a return you can actually keep: o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you."
+    "It opens by naming the condition without ornament: to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\".",
+    "The middle movement widens the correction through the Guru is the House of ice. The Guru is the Light of the three worlds.",
+    "It closes with a return you can actually keep: o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace."
   ],
   "keyVerseIds": [
     5589,
@@ -110,20 +110,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Exhaustion is carried here from vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+      "coreClaim": "This shabad opens with to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\". It turns the heart toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "The middle movement deepens the correction by holding the mind inside shalok, First Mehla:.",
-      "practicalImplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+      "turn": "The middle movement widens the correction through the Guru is the House of ice. The Guru is the Light of the three worlds.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.21,
-      "specificity": 4.94,
+      "clarity": 3.03,
+      "specificity": 4.76,
       "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 3.43,
-      "overall": 3.95
+      "usefulness": 3.6,
+      "beauty": 3.32,
+      "overall": 3.91
     },
     "strengths": [
       "specificity",

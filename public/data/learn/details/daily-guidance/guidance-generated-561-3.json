@@ -7,11 +7,11 @@
   "source": {
     "deepDiveId": "shabad-generated-561",
     "verseIds": [
-      7940,
+      7944,
       7945
     ],
-    "shortMeaning": "Those whose hearts are filled with their Lord and Master; who has shown me the Perfect, Supreme Lord God",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "who has shown me the Perfect, Supreme Lord God",
+    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,24 +40,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Those whose hearts are filled with their Lord and Master; who has shown me the Perfect, Supreme Lord God",
+      "coreClaim": "who has shown me the Perfect, Supreme Lord God",
       "emotionalState": "performing, transactional, dry",
-      "turn": "Seva steadies when who has shown me the Perfect, Supreme Lord God.",
+      "turn": "Keep returning to this turn: who has shown me the Perfect, Supreme Lord God.",
       "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.25,
+      "faithfulness": 4.02,
       "clarity": 3.99,
-      "specificity": 5,
-      "emotionalHonesty": 3.18,
+      "specificity": 4.78,
+      "emotionalHonesty": 3,
       "usefulness": 4.04,
       "beauty": 3.97,
-      "overall": 4.09
+      "overall": 3.97
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

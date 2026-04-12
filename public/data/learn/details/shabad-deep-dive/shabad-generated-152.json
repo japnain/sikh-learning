@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-152",
-  "title": "Siree Raag, Fifth Mehla:",
+  "title": "Worship The Guru, The Transcendent Lord",
   "subtitle": "Siree Raag · Ang 52",
-  "summary": "Sangat is carried here from siree Raag, Fifth Mehla: toward may I never forget You, Lord. This soul, body and breath are Yours.",
-  "whyItMatters": "This shabad is useful when life feels isolated, impressionable, needing-company, because it keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours.",
+  "summary": "This shabad opens with worship the Guru, the Transcendent Lord, with your mind and body attuned to love. It turns the heart toward nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
+  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
   "themes": [
     "sangat",
     "attachment",
@@ -168,12 +168,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside the Guru is the Creator, the Guru is the Doer. The Gurmukh obtains true.",
-    "The closing movement leaves a return you can actually keep: may I never forget You, Lord. This soul, body and breath are Yours."
+    "It opens by naming the condition without ornament: worship the Guru, the Transcendent Lord, with your mind and body attuned to love.",
+    "The middle movement widens the correction through whatever He wishes comes to pass.",
+    "It closes with a return you can actually keep: nanak: may I never forget You, Lord. This soul, body and breath are Yours."
   ],
   "keyVerseIds": [
-    2113,
+    2114,
     2117,
     2119,
     2131
@@ -207,20 +207,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Sangat is carried here from siree Raag, Fifth Mehla: toward may I never forget You, Lord. This soul, body and breath are Yours.",
+      "coreClaim": "This shabad opens with worship the Guru, the Transcendent Lord, with your mind and body attuned to love. It turns the heart toward nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement deepens the correction by holding the mind inside the Guru is the Creator, the Guru is the Doer. The Gurmukh obtains true.",
-      "practicalImplication": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours.",
+      "turn": "The middle movement widens the correction through whatever He wishes comes to pass.",
+      "practicalImplication": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
-      "specificity": 4.78,
+      "clarity": 3.03,
+      "specificity": 4.6,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.84,
-      "overall": 4.03
+      "usefulness": 3.38,
+      "beauty": 3.35,
+      "overall": 3.85
     },
     "strengths": [
       "specificity",

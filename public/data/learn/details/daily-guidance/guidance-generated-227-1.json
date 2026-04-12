@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-227-1",
-  "title": "Begin with Ego",
+  "title": "All Are Yours, And You Belong",
   "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "",
+  "takeaway": "All are Yours, and You belong to all. You are the wealth of all",
   "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-generated-227",
     "verseIds": [
-      3435
+      3436
     ],
-    "shortMeaning": "",
-    "lifeApplication": "Ego becomes more truthful when ."
+    "shortMeaning": "All are Yours, and You belong to all. You are the wealth of all",
+    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -39,27 +39,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "",
+      "coreClaim": "All are Yours, and You belong to all. You are the wealth of all",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
+      "turn": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
       "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.64,
-      "clarity": 4.35,
-      "specificity": 4.24,
+      "faithfulness": 3.73,
+      "clarity": 3.75,
+      "specificity": 4.32,
       "emotionalHonesty": 3.54,
       "usefulness": 4.2,
-      "beauty": 4.05,
-      "overall": 3.97
+      "beauty": 3.49,
+      "overall": 3.83
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": [
-      "is missing explicit SGGS-grounded evidence"
-    ]
+    "issues": []
   }
 }

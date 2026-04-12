@@ -81,8 +81,8 @@
   {
     "id": "collection-ego-to-humility",
     "title": "From Ego to Humility",
-    "subtitle": "A study path for self-importance and reactivity",
-    "description": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+    "subtitle": "A path out of self-importance",
+    "description": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
     "durationLabel": "5-day journey",
     "themes": [
       "ego",
@@ -131,33 +131,31 @@
       "shabad-speak-what-brings-honor"
     ],
     "editorial": {
-      "status": "approved",
-      "origin": "legacy",
+      "status": "locked",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+        "coreClaim": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
         "emotionalState": "defensive, offended, self-important",
-        "turn": "A study path for self-importance and reactivity",
+        "turn": "A path out of self-importance",
         "practicalImplication": "Move through 5 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.66,
-        "clarity": 2.55,
-        "specificity": 3.9,
+        "faithfulness": 3.76,
+        "clarity": 4.35,
+        "specificity": 4,
         "emotionalHonesty": 3.36,
         "usefulness": 3.38,
-        "beauty": 4.05,
-        "overall": 3.5
+        "beauty": 4.53,
+        "overall": 3.88
       },
       "strengths": [
         "beauty",
-        "specificity"
+        "clarity"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
@@ -243,8 +241,8 @@
   {
     "id": "collection-service-and-purpose",
     "title": "Service and Purpose",
-    "subtitle": "A practical path for meaningful living",
-    "description": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+    "subtitle": "A practical path toward meaningful living",
+    "description": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
     "durationLabel": "6-day journey",
     "themes": [
       "purpose",
@@ -299,32 +297,30 @@
     ],
     "editorial": {
       "status": "locked",
-      "origin": "legacy",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+        "coreClaim": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
         "emotionalState": "directionless, numb, wasting-time",
-        "turn": "A practical path for meaningful living",
+        "turn": "A practical path toward meaningful living",
         "practicalImplication": "Move through 6 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.73,
-        "clarity": 2.95,
-        "specificity": 3.97,
+        "faithfulness": 3.82,
+        "clarity": 4.35,
+        "specificity": 4.05,
         "emotionalHonesty": 3,
         "usefulness": 3.38,
         "beauty": 4.21,
-        "overall": 3.56
+        "overall": 3.8
       },
       "strengths": [
-        "beauty",
-        "specificity"
+        "clarity",
+        "beauty"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
@@ -504,8 +500,8 @@
   {
     "id": "collection-mercy-and-fearlessness",
     "title": "Mercy and Fearlessness",
-    "subtitle": "A study path out of hardness and self-protection",
-    "description": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+    "subtitle": "A path out of hardness and self-protection",
+    "description": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
     "durationLabel": "6-day journey",
     "themes": [
       "mercy",
@@ -560,39 +556,37 @@
     ],
     "editorial": {
       "status": "locked",
-      "origin": "legacy",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+        "coreClaim": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
         "emotionalState": "afraid, bitter, guarded",
-        "turn": "A study path out of hardness and self-protection",
+        "turn": "A path out of hardness and self-protection",
         "practicalImplication": "Move through 6 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.88,
-        "clarity": 2.35,
-        "specificity": 4.1,
-        "emotionalHonesty": 3.18,
+        "faithfulness": 3.92,
+        "clarity": 4.35,
+        "specificity": 4.15,
+        "emotionalHonesty": 3.36,
         "usefulness": 3.38,
         "beauty": 4.21,
-        "overall": 3.55
+        "overall": 3.9
       },
       "strengths": [
-        "beauty",
-        "specificity"
+        "clarity",
+        "beauty"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
     "id": "collection-restlessness-to-stillness",
     "title": "From Restlessness to Stillness",
-    "subtitle": "For minds that keep moving faster than they settle",
-    "description": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+    "subtitle": "For minds that move faster than they settle",
+    "description": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
     "durationLabel": "6-day journey",
     "themes": [
       "restlessness",
@@ -648,28 +642,28 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "legacy",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+        "coreClaim": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
         "emotionalState": "wandering, exhausted, seeking",
-        "turn": "For minds that keep moving faster than they settle",
+        "turn": "For minds that move faster than they settle",
         "practicalImplication": "Move through 6 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.92,
-        "clarity": 1.75,
-        "specificity": 4.14,
+        "faithfulness": 3.94,
+        "clarity": 1.95,
+        "specificity": 4.16,
         "emotionalHonesty": 3.54,
         "usefulness": 3.38,
-        "beauty": 4.05,
-        "overall": 3.51
+        "beauty": 4.21,
+        "overall": 3.57
       },
       "strengths": [
-        "specificity",
-        "beauty"
+        "beauty",
+        "specificity"
       ],
       "issues": [
         "runs too long at the sentence level"
@@ -679,8 +673,8 @@
   {
     "id": "collection-sangat-and-belonging",
     "title": "Sangat and Belonging",
-    "subtitle": "A return to the company that helps the heart breathe",
-    "description": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+    "subtitle": "A return to company that helps the heart breathe",
+    "description": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
     "durationLabel": "6-day journey",
     "themes": [
       "sangat",
@@ -735,24 +729,24 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "legacy",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+        "coreClaim": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
         "emotionalState": "wandering, exhausted, seeking",
-        "turn": "A return to the company that helps the heart breathe",
+        "turn": "A return to company that helps the heart breathe",
         "practicalImplication": "Move through 6 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.82,
-        "clarity": 1.95,
-        "specificity": 4.05,
-        "emotionalHonesty": 3.36,
+        "faithfulness": 3.8,
+        "clarity": 2.55,
+        "specificity": 4.03,
+        "emotionalHonesty": 3.18,
         "usefulness": 3.38,
         "beauty": 4.37,
-        "overall": 3.52
+        "overall": 3.58
       },
       "strengths": [
         "beauty",
@@ -766,8 +760,8 @@
   {
     "id": "collection-truthful-wealth",
     "title": "Truthful Wealth",
-    "subtitle": "A disciplined path out of empty gain",
-    "description": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+    "subtitle": "A path out of empty gain",
+    "description": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
     "durationLabel": "6-day journey",
     "themes": [
       "purpose",
@@ -821,40 +815,38 @@
       "shabad-conquer-the-mind"
     ],
     "editorial": {
-      "status": "approved",
-      "origin": "legacy",
+      "status": "locked",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+        "coreClaim": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
         "emotionalState": "distracted, ambitious, grasping",
-        "turn": "A disciplined path out of empty gain",
+        "turn": "A path out of empty gain",
         "practicalImplication": "Move through 6 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.84,
-        "clarity": 1.75,
-        "specificity": 4.07,
-        "emotionalHonesty": 3.18,
+        "faithfulness": 3.79,
+        "clarity": 4.35,
+        "specificity": 4.02,
+        "emotionalHonesty": 3,
         "usefulness": 3.38,
         "beauty": 4.53,
-        "overall": 3.5
+        "overall": 3.84
       },
       "strengths": [
         "beauty",
-        "specificity"
+        "clarity"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
     "id": "collection-control-to-release",
     "title": "From Control to Release",
-    "subtitle": "A steadier arc for the over-gripping mind",
-    "description": "Start where fear tightens the hand, then move through Hukam, nearness, and grace until action becomes faithful without trying to become absolute.",
+    "subtitle": "For the mind that grips too hard",
+    "description": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
     "durationLabel": "4-step arc",
     "themes": [
       "control",
@@ -903,33 +895,31 @@
       "shabad-generated-942"
     ],
     "editorial": {
-      "status": "approved",
-      "origin": "legacy",
+      "status": "locked",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Start where fear tightens the hand, then move through Hukam, nearness, and grace until action becomes faithful without trying to become absolute.",
+        "coreClaim": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
         "emotionalState": "controlling, unsettled, lonely",
-        "turn": "A steadier arc for the over-gripping mind",
+        "turn": "For the mind that grips too hard",
         "practicalImplication": "Move through 5 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 4.1,
-        "clarity": 1.15,
-        "specificity": 4.32,
+        "faithfulness": 4.09,
+        "clarity": 4.35,
+        "specificity": 4.31,
         "emotionalHonesty": 3.36,
         "usefulness": 3.38,
-        "beauty": 4.21,
-        "overall": 3.49
+        "beauty": 4.05,
+        "overall": 3.94
       },
       "strengths": [
-        "specificity",
-        "beauty"
+        "clarity",
+        "specificity"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
@@ -1024,8 +1014,8 @@
   {
     "id": "collection-tired-heart-to-rest",
     "title": "From a Tired Heart to Rest",
-    "subtitle": "A slower study path for the overused inner life",
-    "description": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+    "subtitle": "A slower path for the overused inner life",
+    "description": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
     "durationLabel": "4-step arc",
     "themes": [
       "exhaustion",
@@ -1084,40 +1074,38 @@
       "shabad-generated-360"
     ],
     "editorial": {
-      "status": "approved",
-      "origin": "legacy",
+      "status": "locked",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+        "coreClaim": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
         "emotionalState": "wandering, exhausted, seeking",
-        "turn": "A slower study path for the overused inner life",
+        "turn": "A slower path for the overused inner life",
         "practicalImplication": "Move through 7 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 4.01,
-        "clarity": 0.15,
-        "specificity": 4.23,
+        "faithfulness": 3.96,
+        "clarity": 4.35,
+        "specificity": 4.18,
         "emotionalHonesty": 3.18,
         "usefulness": 3.38,
         "beauty": 4.21,
-        "overall": 3.27
+        "overall": 3.88
       },
       "strengths": [
-        "specificity",
+        "clarity",
         "beauty"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
     "id": "collection-conduct-and-clean-speech",
     "title": "Conduct and Clean Speech",
-    "subtitle": "A sequence for aligning life, tongue, and practice",
-    "description": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+    "subtitle": "A path for cleaner speech and truer living",
+    "description": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
     "durationLabel": "5-step arc",
     "themes": [
       "speech",
@@ -1179,32 +1167,30 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "legacy",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "collection:journey",
       "evidence": {
-        "coreClaim": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+        "coreClaim": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
         "emotionalState": "performing, harsh, scattered",
-        "turn": "A sequence for aligning life, tongue, and practice",
+        "turn": "A path for cleaner speech and truer living",
         "practicalImplication": "Move through 7 linked steps without dropping the thread.",
         "bannedOverreach": []
       },
       "scores": {
-        "faithfulness": 3.86,
-        "clarity": 0.95,
-        "specificity": 4.09,
+        "faithfulness": 3.84,
+        "clarity": 4.35,
+        "specificity": 4.07,
         "emotionalHonesty": 3,
         "usefulness": 3.38,
         "beauty": 4.05,
-        "overall": 3.29
+        "overall": 3.79
       },
       "strengths": [
-        "specificity",
-        "beauty"
+        "clarity",
+        "specificity"
       ],
-      "issues": [
-        "runs too long at the sentence level"
-      ]
+      "issues": []
     }
   },
   {
@@ -1370,7 +1356,7 @@
         3
       ],
       "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-      "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+      "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -1447,7 +1433,7 @@
         3
       ],
       "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-      "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+      "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -1513,10 +1499,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-65",
       "verseIds": [
-        758
+        759
       ],
-      "shortMeaning": "Siree Raag, First Mehla:",
-      "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+      "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
+      "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -1590,10 +1576,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-65",
       "verseIds": [
-        758
+        759
       ],
-      "shortMeaning": "Siree Raag, First Mehla:",
-      "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+      "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
+      "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4036,8 +4022,8 @@
       "verseIds": [
         17
       ],
-      "shortMeaning": "Some sing of His Power-who has that Power?",
-      "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+      "shortMeaning": "Some sing of His Power-who has that Power",
+      "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4114,8 +4100,8 @@
       "verseIds": [
         17
       ],
-      "shortMeaning": "Some sing of His Power-who has that Power?",
-      "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+      "shortMeaning": "Some sing of His Power-who has that Power",
+      "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4181,10 +4167,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-300",
       "verseIds": [
-        4131
+        4132
       ],
-      "shortMeaning": "Maajh, Fifth Mehla:",
-      "lifeApplication": "Fear becomes more truthful when maajh, Fifth Mehla:."
+      "shortMeaning": "You are my Father, and You are my Mother",
+      "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4259,10 +4245,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-300",
       "verseIds": [
-        4131
+        4132
       ],
-      "shortMeaning": "Maajh, Fifth Mehla:",
-      "lifeApplication": "Fear becomes more truthful when maajh, Fifth Mehla:."
+      "shortMeaning": "You are my Father, and You are my Mother",
+      "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4628,8 +4614,8 @@
       "verseIds": [
         5589
       ],
-      "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
-      "lifeApplication": "Exhaustion becomes more truthful when vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+      "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
+      "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4704,8 +4690,8 @@
       "verseIds": [
         5589
       ],
-      "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
-      "lifeApplication": "Exhaustion becomes more truthful when vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+      "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
+      "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -4945,7 +4931,7 @@
         3
       ],
       "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-      "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+      "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -5030,7 +5016,7 @@
         3
       ],
       "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-      "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+      "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -5112,10 +5098,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-65",
       "verseIds": [
-        758
+        759
       ],
-      "shortMeaning": "Siree Raag, First Mehla:",
-      "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+      "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
+      "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -5197,10 +5183,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-65",
       "verseIds": [
-        758
+        759
       ],
-      "shortMeaning": "Siree Raag, First Mehla:",
-      "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+      "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
+      "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -7785,8 +7771,8 @@
       "verseIds": [
         17
       ],
-      "shortMeaning": "Some sing of His Power-who has that Power?",
-      "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+      "shortMeaning": "Some sing of His Power-who has that Power",
+      "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {
@@ -7868,10 +7854,10 @@
     "heroSource": {
       "deepDiveId": "shabad-generated-300",
       "verseIds": [
-        4131
+        4132
       ],
-      "shortMeaning": "Maajh, Fifth Mehla:",
-      "lifeApplication": "Fear becomes more truthful when maajh, Fifth Mehla:."
+      "shortMeaning": "You are my Father, and You are my Mother",
+      "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
     },
     "items": [
       {

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-109",
-  "title": "Siree Raag, Third Mehla:",
+  "title": "Those Who Contemplate The Word",
   "subtitle": "Siree Raag · Ang 35",
-  "summary": "Doubt is carried here from siree Raag, Third Mehla: toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs.",
-  "whyItMatters": "This shabad is useful when life feels foggy, uncertain, hesitant, because it keeps doubt inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs.",
+  "summary": "This shabad opens with those who contemplate the Word of the Guru's Shabad are filled with the Fear of God. It turns the heart toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
+  "whyItMatters": "It matters when life feels foggy, uncertain, and hesitant because the shabad keeps doubt inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: They alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
   "themes": [
     "doubt",
     "restlessness",
@@ -168,12 +168,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, Third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside through His Light, God is revealed. Without the True Guru, understanding is not obtained.",
-    "The closing movement leaves a return you can actually keep: they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs."
+    "It opens by naming the condition without ornament: those who contemplate the Word of the Guru's Shabad are filled with the Fear of God.",
+    "The middle movement widens the correction through the True Guru comes to meet those who have such pre-ordained destiny.",
+    "It closes with a return you can actually keep: they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him."
   ],
   "keyVerseIds": [
-    1448,
+    1449,
     1460,
     1461,
     1465
@@ -207,20 +207,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Doubt is carried here from siree Raag, Third Mehla: toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs.",
+      "coreClaim": "This shabad opens with those who contemplate the Word of the Guru's Shabad are filled with the Fear of God. It turns the heart toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "The middle movement deepens the correction by holding the mind inside through His Light, God is revealed. Without the True Guru, understanding is not obtained.",
-      "practicalImplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs.",
+      "turn": "The middle movement widens the correction through the True Guru comes to meet those who have such pre-ordained destiny.",
+      "practicalImplication": "Keep returning to this turn: They alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.63,
-      "specificity": 4.96,
+      "clarity": 2.91,
+      "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 3.86,
-      "overall": 4.08
+      "usefulness": 3.6,
+      "beauty": 3.26,
+      "overall": 3.88
     },
     "strengths": [
       "specificity",

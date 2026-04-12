@@ -1,17 +1,17 @@
 {
   "id": "guidance-work-give-know-the-path-2",
-  "title": "One Who Works For What He Eats,",
-  "summary": "Seva is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+  "title": "Honest work makes the path visible",
+  "summary": "Seva becomes credible in honest labor and open-handed giving, not in spiritual performance.",
+  "takeaway": "The true path appears where a person works honestly, shares what they earn, and keeps pretense out of religion.",
+  "lifeApplication": "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
       53369,
       53371
     ],
-    "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
+    "lifeApplication": "Do one useful thing cleanly and quietly, then let the giving matter more than the appearance of being good."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -35,29 +35,29 @@
     "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "approved",
-    "origin": "generated",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+      "coreClaim": "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
       "emotionalState": "pretending, unclear, performing",
       "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+      "practicalImplication": "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 2.1,
-      "specificity": 4.67,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.29,
-      "overall": 3.62
+      "faithfulness": 4.1,
+      "clarity": 4.2,
+      "specificity": 4.68,
+      "emotionalHonesty": 3,
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
     "issues": []
   }

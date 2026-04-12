@@ -1,8 +1,8 @@
 {
   "id": "guidance-generated-231-2",
-  "title": "Praising The Naam, The Name Of The",
+  "title": "Praising The Naam, The Name",
   "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "O Nanak, he is a brave warrior, who conquers and subdues his; praising the Naam, the Name of the Lord, the Gurmukhs redeem their",
+  "takeaway": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
   "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-231",
@@ -10,8 +10,8 @@
       3458,
       3459
     ],
-    "shortMeaning": "O Nanak, he is a brave warrior, who conquers and subdues his; praising the Naam, the Name of the Lord, the Gurmukhs redeem their",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
+    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "O Nanak, he is a brave warrior, who conquers and subdues his; praising the Naam, the Name of the Lord, the Gurmukhs redeem their",
+      "coreClaim": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "turn": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
       "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 2.29,
-      "specificity": 4.72,
+      "faithfulness": 3.91,
+      "clarity": 1.75,
+      "specificity": 4.68,
       "emotionalHonesty": 3.36,
       "usefulness": 4.42,
-      "beauty": 3.27,
-      "overall": 3.7
+      "beauty": 3.11,
+      "overall": 3.58
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

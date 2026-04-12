@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-563",
-  "title": "Gauree, Fifth Mehla:",
+  "title": "Whose Mother Is This? Whose Father",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "Doubt is carried here from gauree, Fifth Mehla: toward i am liberated, and my doubts have been dispelled.",
-  "whyItMatters": "This shabad is useful when life feels foggy, uncertain, hesitant, because it keeps doubt inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Doubt steadies when i am liberated, and my doubts have been dispelled.",
+  "summary": "This shabad opens with whose mother is this? Whose father is this. It turns the heart toward i am liberated, and my doubts have been dispelled.",
+  "whyItMatters": "It matters when life feels foggy, uncertain, and hesitant because the shabad keeps doubt inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: I am liberated, and my doubts have been dispelled.",
   "themes": [
     "doubt",
     "gratitude",
@@ -112,13 +112,13 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside there is the one dust, the one light,.",
-    "The closing movement leaves a return you can actually keep: i am liberated, and my doubts have been dispelled."
+    "It opens by naming the condition without ornament: whose mother is this? Whose father is this.",
+    "The middle movement widens the correction through the one praanic wind. Why are you crying? For whom do you cry.",
+    "It closes with a return you can actually keep: i am liberated, and my doubts have been dispelled."
   ],
   "keyVerseIds": [
-    7957,
     7958,
+    7960,
     7962,
     7967
   ],
@@ -151,20 +151,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Doubt is carried here from gauree, Fifth Mehla: toward i am liberated, and my doubts have been dispelled.",
+      "coreClaim": "This shabad opens with whose mother is this? Whose father is this. It turns the heart toward i am liberated, and my doubts have been dispelled.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "The middle movement deepens the correction by holding the mind inside there is the one dust, the one light,.",
-      "practicalImplication": "Doubt steadies when i am liberated, and my doubts have been dispelled.",
+      "turn": "The middle movement widens the correction through the one praanic wind. Why are you crying? For whom do you cry.",
+      "practicalImplication": "Keep returning to this turn: I am liberated, and my doubts have been dispelled.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.11,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.2,
-      "overall": 4.15
+      "clarity": 3.75,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.92,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",

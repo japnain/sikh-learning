@@ -3,17 +3,19 @@
   "title": "When anger takes over",
   "shortTitle": "Anger",
   "category": "most-needed",
-  "issueStatement": "Anger feels immediate and justified, but it often rides on hurt pride, attachment, and the refusal to let the mind be taught.",
-  "centralInsight": "Guru addresses anger by going underneath it: ego, self-display, and the unconquered mind.",
-  "practicalReflection": "The question is not only what provoked you. The question is what inside you was ruling the moment before the reaction came.",
-  "actionPrompt": "Before sending, saying, or escalating something, ask: what am I protecting here besides truth?",
+  "issueStatement": "The body is already hot and the mind is already arguing its case. Hurt, pride, and urgency have begun calling themselves truth.",
+  "centralInsight": "Gurbani treats anger as fire that consumes discernment. The answer is not denial but cooling through humility, softened speech, and conquest of the mind.",
+  "practicalReflection": "Anger promises strength while quietly handing the self over to impulse. What feels like power in the moment often leaves the heart smaller afterward.",
+  "actionPrompt": "Before the next hard reply, give the heat one line of Naam and one breath more than it wants.",
   "searchTerms": [
     "anger",
     "frustration",
     "rage",
     "irritation",
     "reactive",
-    "offended",
+    "temper",
+    "heated",
+    "sharp reply",
     "anger in the ordinary day",
     "anger daily",
     "today",
@@ -42,52 +44,56 @@
     "anger return",
     "anger after slipping",
     "anger start again",
-    "building a truer practice of anger",
+    "training anger into a smaller first response",
     "anger steady practice",
-    "practice",
-    "habit",
-    "steady return",
-    "formation",
     "anger practice",
+    "slower response",
+    "cooling the heat",
     "anger habit",
-    "anger steady return",
-    "anger formation"
+    "reactivity",
+    "anger anger practice",
+    "anger slower response",
+    "anger cooling the heat",
+    "anger anger habit",
+    "anger reactivity"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-ego-is-disease",
         "verseIds": [
-          20961
+          20961,
+          20963
         ],
-        "shortMeaning": "Where does ego come from? How can it be removed?",
-        "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Ego is a chronic disease, but it contains its own cure as well; where does ego come from? How can it be removed",
+        "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: where does ego come from? How can it be removed?."
+      "explanation": "Anger is not handled here as a separate weather system. The shabad pushes below the flare-up and shows the ego underneath it asking to rule the moment."
     },
     {
       "source": {
-        "deepDiveId": "shabad-speak-what-brings-honor",
+        "deepDiveId": "shabad-sweet-speech-humble-walk",
         "verseIds": [
-          634,
-          637
+          1288,
+          1290,
+          1296
         ],
-        "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
-        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
+        "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+      "explanation": "The correction to anger is concrete. Sweet speech and humble conduct are not niceness theatre; they are evidence that the inner fire has begun to cool."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-1",
+        "deepDiveId": "shabad-conquer-the-mind",
         "verseIds": [
-          8,
-          10
+          290,
+          292
         ],
-        "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
+        "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line stay in charge of what comes next."
       },
-      "explanation": "Guru addresses anger by going underneath it: ego, self-display, and the unconquered mind. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "The real victory is moved inward. Anger loses some of its glamour the moment the struggle is understood as mastery of the mind rather than mastery of the room."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -129,10 +135,10 @@
             "verseIds": [
               20961
             ],
-            "shortMeaning": "Where does ego come from? How can it be removed?",
-            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Where does ego come from? How can it be removed",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: where does ego come from? How can it be removed?."
+          "explanation": "Ordinary life is already being addressed here: where does ego come from? How can it be removed."
         },
         {
           "source": {
@@ -141,10 +147,10 @@
               634,
               637
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Slow the tongue before you defend the self-image behind it. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -153,10 +159,10 @@
               8,
               10
             ],
-            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of."
+          "explanation": "This makes daily faithfulness concrete: hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command."
         }
       ],
       "editorial": {
@@ -173,12 +179,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.87,
           "specificity": 5,
           "emotionalHonesty": 3.72,
           "usefulness": 3.88,
-          "beauty": 4.37,
-          "overall": 4.3
+          "beauty": 4.05,
+          "overall": 4.18
         },
         "strengths": [
           "specificity",
@@ -220,10 +226,10 @@
               634,
               637
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor."
+          "explanation": "Under strain, the line stays exact: falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor."
         },
         {
           "source": {
@@ -232,21 +238,21 @@
               1445,
               1447
             ],
-            "shortMeaning": "Through perfect good destiny, one finds the Sat Sangat, the True Congregation,; o Nanak, merging with the Shabad through the Name, one is immersed",
-            "lifeApplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Through perfect good destiny, one finds the Sat Sangat, the True Congregation, and one comes to meet the True Guru; o Nanak, merging with the Shabad through the Name, one is immersed in the Name",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Slow the tongue before you defend the self-image behind it. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-151",
             "verseIds": [
-              2105
+              2106
             ],
-            "shortMeaning": "Those who have the Treasure of the Naam within emancipate others as",
-            "lifeApplication": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "There is no other Giver as great as the Guru, who has given the gift of the soul",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -263,12 +269,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.72,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.26,
-          "beauty": 4.21,
-          "overall": 4.33
+          "beauty": 3.85,
+          "overall": 4.17
         },
         "strengths": [
           "specificity",
@@ -309,32 +315,32 @@
               8,
               10
             ],
-            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of."
+          "explanation": "Return is still being offered here: hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-108",
             "verseIds": [
-              1438
+              1439
             ],
-            "shortMeaning": "The Word of the Guru's Shabad is Ambrosial Nectar; drinking it in,",
-            "lifeApplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This true mind is attuned to Truth, and it remains permeated with the True One",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Slow the tongue before you defend the self-image behind it. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-226",
             "verseIds": [
-              3426
+              3427
             ],
-            "shortMeaning": "Third Mehla:",
-            "lifeApplication": "Ego steadies when please protect me, by the Pleasure of Your Will. Nanak is Your slave. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Serving the True Guru, peace is obtained. The True Name is the Treasure of Excellence",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -351,16 +357,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.87,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.38
+          "beauty": 4.21,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -368,39 +374,41 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of anger",
-      "issueStatement": "The mind reacts before truth and proportion have time to speak. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-      "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
-      "actionPrompt": "Slow the tongue before you defend the self-image behind it. Repeat what you can actually keep.",
+      "title": "Training anger into a smaller first response",
+      "issueStatement": "Anger is not weakened by one clear realization. It keeps returning through pace, pride, and the habit of treating heat as authority.",
+      "centralInsight": "Gurbani trains anger by cooling the inner field first. Humility, conquered speech, and remembrance make reaction less believable as truth.",
+      "practicalReflection": "A peaceful life is not built by waiting for fewer provocations. It is built by practicing a smaller first movement when the provocation arrives.",
+      "actionPrompt": "Choose one recurring trigger this week and rehearse a slower, softer first sentence there until anger stops feeling automatic.",
       "searchTerms": [
         "anger",
         "frustration",
         "rage",
         "irritation",
         "reactive",
-        "building a truer practice of anger",
+        "training anger into a smaller first response",
         "anger steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
         "anger practice",
+        "slower response",
+        "cooling the heat",
         "anger habit",
-        "anger steady return",
-        "anger formation"
+        "reactivity",
+        "anger anger practice",
+        "anger slower response",
+        "anger cooling the heat",
+        "anger anger habit",
+        "anger reactivity"
       ],
       "excerpts": [
         {
           "source": {
             "deepDiveId": "shabad-generated-151",
             "verseIds": [
-              2105
+              2106
             ],
-            "shortMeaning": "Those who have the Treasure of the Naam within emancipate others as",
-            "lifeApplication": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "There is no other Giver as great as the Guru, who has given the gift of the soul",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: those who have the Treasure of the Naam within emancipate others as."
+          "explanation": "The line is teaching repetition more than momentary inspiration: there is no other Giver as great as the Guru, who has given the gift of the soul."
         },
         {
           "source": {
@@ -408,42 +416,42 @@
             "verseIds": [
               20961
             ],
-            "shortMeaning": "Where does ego come from? How can it be removed?",
-            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Where does ego come from? How can it be removed",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Slow the tongue before you defend the self-image behind it. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-226",
             "verseIds": [
-              3426,
+              3427,
               3431
             ],
-            "shortMeaning": "Third Mehla:; sing the Praises of the True Lord through the Word of His",
-            "lifeApplication": "Ego steadies when please protect me, by the Pleasure of Your Will. Nanak is Your slave. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Serving the True Guru, peace is obtained. The True Name is the Treasure of Excellence; sing the Praises of the True Lord through the Word of His Shabad",
+            "lifeApplication": "Slow the tongue before you defend the self-image behind it. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-anger:practice",
         "evidence": {
-          "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "coreClaim": "Gurbani trains anger by cooling the inner field first. Humility, conquered speech, and remembrance make reaction less believable as truth.",
           "emotionalState": "reactive, heated, sharp",
-          "turn": "The mind reacts before truth and proportion have time to speak. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-          "practicalImplication": "Slow the tongue before you defend the self-image behind it. Repeat what you can actually keep.",
+          "turn": "Anger is not weakened by one clear realization. It keeps returning through pace, pride, and the habit of treating heat as authority.",
+          "practicalImplication": "Choose one recurring trigger this week and rehearse a slower, softer first sentence there until anger stops feeling automatic.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.54,
-          "usefulness": 3.44,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.18,
+          "usefulness": 3.98,
           "beauty": 4.37,
           "overall": 4.2
         },
@@ -457,6 +465,8 @@
   },
   "relatedShabadIds": [
     "shabad-ego-is-disease",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-conquer-the-mind",
     "shabad-speak-what-brings-honor",
     "shabad-generated-1",
     "shabad-generated-108",
@@ -485,24 +495,24 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:anger",
     "evidence": {
-      "coreClaim": "Guru addresses anger by going underneath it: ego, self-display, and the unconquered mind.",
+      "coreClaim": "Gurbani treats anger as fire that consumes discernment. The answer is not denial but cooling through humility, softened speech, and conquest of the mind.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "Anger feels immediate and justified, but it often rides on hurt pride, attachment, and the refusal to let the mind be taught.",
-      "practicalImplication": "Before sending, saying, or escalating something, ask: what am I protecting here besides truth?",
+      "turn": "The body is already hot and the mind is already arguing its case. Hurt, pride, and urgency have begun calling themselves truth.",
+      "practicalImplication": "Before the next hard reply, give the heat one line of Naam and one breath more than it wants.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.63,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.22,
-      "beauty": 3.73,
-      "overall": 3.96
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.88,
+      "beauty": 4.37,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",

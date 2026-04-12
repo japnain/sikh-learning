@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-739",
-  "title": "Gauree, Fifth Mehla:",
+  "title": "I Remember The Guru With Each",
   "subtitle": "Raag Gauree · Ang 239",
-  "summary": "Anxiety is carried here from gauree, Fifth Mehla: toward says Nanak, my Guru is All-powerful.",
-  "whyItMatters": "This shabad is useful when life feels restless, uncertain, fearful, because it keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anxiety steadies when says Nanak, my Guru is All-powerful.",
+  "summary": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
+  "whyItMatters": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: says Nanak, my Guru is All-powerful.",
   "themes": [
     "anxiety",
     "loneliness",
@@ -168,12 +168,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside i carry water for the Guru's household;.",
-    "The closing movement leaves a return you can actually keep: says Nanak, my Guru is All-powerful."
+    "It opens by naming the condition without ornament: i remember the Guru with each and every breath.",
+    "The middle movement widens the correction through from the Guru, I have learned the Way of the One Lord.",
+    "It closes with a return you can actually keep: says Nanak, my Guru is All-powerful."
   ],
   "keyVerseIds": [
-    10433,
+    10434,
     10444,
     10449,
     10451
@@ -204,20 +204,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anxiety is carried here from gauree, Fifth Mehla: toward says Nanak, my Guru is All-powerful.",
+      "coreClaim": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "The middle movement deepens the correction by holding the mind inside i carry water for the Guru's household;.",
-      "practicalImplication": "Anxiety steadies when says Nanak, my Guru is All-powerful.",
+      "turn": "The middle movement widens the correction through from the Guru, I have learned the Way of the One Lord.",
+      "practicalImplication": "Keep returning to this turn: says Nanak, my Guru is All-powerful.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.11,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.21,
-      "overall": 4.15
+      "clarity": 3.69,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.87,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",

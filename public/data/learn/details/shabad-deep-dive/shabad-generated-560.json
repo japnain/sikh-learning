@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-560",
-  "title": "Gauree, Fifth Mehla:",
+  "title": "Whatever My Friend Does, I Accept",
   "subtitle": "Raag Gauree · Ang 187",
-  "summary": "Loneliness is carried here from gauree, Fifth Mehla: toward my honor and glory are Yours, God.",
-  "whyItMatters": "This shabad is useful when life feels alone, unseen, disconnected, because it keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Loneliness steadies when my honor and glory are Yours, God.",
+  "summary": "This shabad opens with whatever my Friend does, I accept. It turns the heart toward nanak: my honor and glory are Yours, God.",
+  "whyItMatters": "It matters when life feels alone, unseen, and disconnected because the shabad keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Nanak: my honor and glory are Yours, God.",
   "themes": [
     "loneliness",
     "comparison",
@@ -112,12 +112,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside my Friend is Carefree.",
-    "The closing movement leaves a return you can actually keep: my honor and glory are Yours, God."
+    "It opens by naming the condition without ornament: whatever my Friend does, I accept.",
+    "The middle movement widens the correction through by Guru's Grace, I give my love to Him.",
+    "It closes with a return you can actually keep: nanak: my honor and glory are Yours, God."
   ],
   "keyVerseIds": [
-    7924,
+    7925,
     7926,
     7933,
     7934
@@ -152,20 +152,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Loneliness is carried here from gauree, Fifth Mehla: toward my honor and glory are Yours, God.",
+      "coreClaim": "This shabad opens with whatever my Friend does, I accept. It turns the heart toward nanak: my honor and glory are Yours, God.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle movement deepens the correction by holding the mind inside my Friend is Carefree.",
-      "practicalImplication": "Loneliness steadies when my honor and glory are Yours, God.",
+      "turn": "The middle movement widens the correction through by Guru's Grace, I give my love to Him.",
+      "practicalImplication": "Keep returning to this turn: Nanak: my honor and glory are Yours, God.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.11,
-      "specificity": 5,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.66,
-      "beauty": 4.21,
-      "overall": 4.23
+      "clarity": 3.81,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.38,
+      "beauty": 3.97,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",

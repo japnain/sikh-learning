@@ -10,8 +10,8 @@
       53371,
       53372
     ],
-    "shortMeaning": "One who works for what he eats, and gives some of what; o Nanak, he knows the Path",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "One who works for what he eats, and gives some of what he has",
+    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,20 +40,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who works for what he eats, and gives some of what; o Nanak, he knows the Path",
+      "coreClaim": "One who works for what he eats, and gives some of what he has",
       "emotionalState": "pretending, unclear, performing",
       "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
       "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 4.17,
-      "specificity": 4.67,
+      "faithfulness": 3.86,
+      "clarity": 4.29,
+      "specificity": 4.63,
       "emotionalHonesty": 3,
       "usefulness": 4.04,
-      "beauty": 4.09,
-      "overall": 3.97
+      "beauty": 4.17,
+      "overall": 3.98
     },
     "strengths": [
       "specificity",

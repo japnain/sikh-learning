@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-511-2",
-  "title": "When The Lord, Merciful To The Meek,",
-  "summary": "Mercy is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Gauree Poorbee, Fourth Mehla:; when the Lord, Merciful to the meek, showed His Mercy, I found",
-  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+  "title": "Mercy lets the hidden sweetness be found",
+  "summary": "Mercy is not forced out of the day. The heart tastes what was already near when the Merciful One opens it.",
+  "takeaway": "When the Merciful One shows mercy, the hidden sweetness of the Divine is finally tasted within.",
+  "lifeApplication": "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
   "source": {
     "deepDiveId": "shabad-generated-511",
     "verseIds": [
-      7127,
+      7128,
       7129
     ],
-    "shortMeaning": "Gauree Poorbee, Fourth Mehla:; when the Lord, Merciful to the meek, showed His Mercy, I found",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
+    "lifeApplication": "Receive mercy before you analyze it, and let that reception change the next tone you bring into the day."
   },
   "relatedTopicIds": [
     "topic-mercy"
@@ -36,28 +36,28 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Gauree Poorbee, Fourth Mehla:; when the Lord, Merciful to the meek, showed His Mercy, I found",
+      "coreClaim": "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,.",
-      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+      "turn": "Keep returning to this turn: in the Sangat, the Holy Congregation, the bitter becomes sweet.",
+      "practicalImplication": "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.87,
-      "clarity": 3.37,
-      "specificity": 4.63,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.79,
-      "overall": 3.9
+      "faithfulness": 3.66,
+      "clarity": 3.87,
+      "specificity": 4.62,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.64,
+      "beauty": 3.95,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

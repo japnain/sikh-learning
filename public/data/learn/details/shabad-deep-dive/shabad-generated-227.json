@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-227",
-  "title": "Ego In Gurbani",
+  "title": "All Are Yours, And You Belong",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "Ego is carried here from  toward all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
-  "whyItMatters": "This shabad is useful when life feels inflated, defensive, self-protective, because it keeps ego inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
+  "summary": "This shabad opens with all are Yours, and You belong to all. You are the wealth of all. It turns the heart toward at Your Door, the Gurmukhs are enlightened.",
+  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
   "themes": [
     "ego",
     "restlessness",
@@ -77,12 +77,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside those, unto whom You give, receive everything. You are far away from some, and.",
-    "The closing movement leaves a return you can actually keep: all praise You, O Lord; at Your Door, the Gurmukhs are enlightened."
+    "It opens by naming the condition without ornament: all are Yours, and You belong to all. You are the wealth of all.",
+    "The middle movement widens the correction through those, unto whom You give, receive everything. You are far away from some, and You are close to others.",
+    "It closes with a return you can actually keep: at Your Door, the Gurmukhs are enlightened."
   ],
   "keyVerseIds": [
-    3435,
+    3436,
     3437,
     3438,
     3440
@@ -116,24 +116,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Ego is carried here from  toward all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
+      "coreClaim": "This shabad opens with all are Yours, and You belong to all. You are the wealth of all. It turns the heart toward at Your Door, the Gurmukhs are enlightened.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement deepens the correction by holding the mind inside those, unto whom You give, receive everything. You are far away from some, and.",
-      "practicalImplication": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
+      "turn": "The middle movement widens the correction through those, unto whom You give, receive everything. You are far away from some, and You are close to others.",
+      "practicalImplication": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.93,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.41,
-      "overall": 4.15
+      "clarity": 3.51,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.86,
+      "overall": 3.99
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": []
   }

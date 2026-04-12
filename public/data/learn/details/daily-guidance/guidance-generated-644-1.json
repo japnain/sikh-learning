@@ -10,7 +10,7 @@
       8834
     ],
     "shortMeaning": "This life is diminishing, day and night",
-    "lifeApplication": "Seeking becomes more truthful when this life is diminishing, day and night."
+    "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-seeking"
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "This life is diminishing, day and night",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the.",
+      "turn": "Keep returning to this turn: Nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints.",
       "practicalImplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
+      "faithfulness": 3.63,
       "clarity": 4.11,
-      "specificity": 4.71,
+      "specificity": 4.59,
       "emotionalHonesty": 3.36,
       "usefulness": 4.64,
       "beauty": 3.89,
-      "overall": 4.05
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

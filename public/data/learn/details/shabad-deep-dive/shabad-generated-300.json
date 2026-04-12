@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-300",
-  "title": "Maajh, Fifth Mehla:",
+  "title": "You Are My Father, And You",
   "subtitle": "Raag Maajh · Ang 103",
-  "summary": "Fear is carried here from maajh, Fifth Mehla: toward through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
-  "whyItMatters": "This shabad is useful when life feels afraid, guarded, dreading, because it keeps fear inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Fear steadies when through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
+  "summary": "This shabad opens with you are my Father, and You are my Mother. It turns the heart toward through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
+  "whyItMatters": "It matters when life feels afraid, guarded, and dreading because the shabad keeps fear inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
   "themes": [
     "fear",
     "anxiety",
@@ -126,12 +126,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: maajh, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside without You, there is no other; the entire Universe is the Arena of Your.",
-    "The closing movement leaves a return you can actually keep: through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield."
+    "It opens by naming the condition without ornament: you are my Father, and You are my Mother.",
+    "The middle movement widens the correction through you have created all beings and creatures.",
+    "It closes with a return you can actually keep: through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life."
   ],
   "keyVerseIds": [
-    4131,
+    4132,
     4134,
     4138,
     4143
@@ -166,20 +166,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Fear is carried here from maajh, Fifth Mehla: toward through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
+      "coreClaim": "This shabad opens with you are my Father, and You are my Mother. It turns the heart toward through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "The middle movement deepens the correction by holding the mind inside without You, there is no other; the entire Universe is the Arena of Your.",
-      "practicalImplication": "Fear steadies when through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
+      "turn": "The middle movement widens the correction through you have created all beings and creatures.",
+      "practicalImplication": "Keep returning to this turn: Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.89,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.86,
-      "overall": 3.91
+      "clarity": 2.67,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.48,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",

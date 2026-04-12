@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-819",
-  "title": "Sangat In Gurbani",
+  "title": "Dhadha: Where Are You Going, Wandering",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Sangat is carried here from  toward god has cut away the noose of my pain; O Nanak, He has merged.",
-  "whyItMatters": "This shabad is useful when life feels isolated, impressionable, needing-company, because it keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Sangat steadies when god has cut away the noose of my pain; O Nanak, He has merged.",
+  "summary": "This shabad opens with dHADHA: Where are you going, wandering and searching? Search instead within your own mind. It turns the heart toward o Nanak, He has merged me into Himself.",
+  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, He has merged me into Himself.",
   "themes": [
     "sangat",
     "seeking",
@@ -98,12 +98,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside you shall find peace, and abide in intuitive bliss; gazing upon the Blessed Vision.",
-    "The closing movement leaves a return you can actually keep: god has cut away the noose of my pain; O Nanak, He has merged."
+    "It opens by naming the condition without ornament: dHADHA: Where are you going, wandering and searching? Search instead within your own mind.",
+    "The middle movement widens the correction through one who has such a mound as this, dies and suffers the pain of reincarnation through the womb.",
+    "It closes with a return you can actually keep: o Nanak, He has merged me into Himself."
   ],
   "keyVerseIds": [
-    11179,
+    11180,
     11182,
     11186,
     11187
@@ -134,20 +134,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Sangat is carried here from  toward god has cut away the noose of my pain; O Nanak, He has merged.",
+      "coreClaim": "This shabad opens with dHADHA: Where are you going, wandering and searching? Search instead within your own mind. It turns the heart toward o Nanak, He has merged me into Himself.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement deepens the correction by holding the mind inside you shall find peace, and abide in intuitive bliss; gazing upon the Blessed Vision.",
-      "practicalImplication": "Sangat steadies when god has cut away the noose of my pain; O Nanak, He has merged.",
+      "turn": "The middle movement widens the correction through one who has such a mound as this, dies and suffers the pain of reincarnation through the womb.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, He has merged me into Himself.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.28,
-      "specificity": 4.78,
+      "clarity": 3.39,
+      "specificity": 4.6,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4,
-      "overall": 3.99
+      "usefulness": 3.38,
+      "beauty": 3.67,
+      "overall": 3.96
     },
     "strengths": [
       "specificity",

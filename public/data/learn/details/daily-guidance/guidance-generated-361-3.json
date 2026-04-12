@@ -10,8 +10,8 @@
       5606,
       5610
     ],
-    "shortMeaning": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "The swan of the soul takes flight, and asks which way to go",
+    "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-greed"
@@ -40,20 +40,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
+      "coreClaim": "The swan of the soul takes flight, and asks which way to go",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "Greed steadies when without the Guru, the world is drowning.",
+      "turn": "Keep returning to this turn: Without the Guru, the world is drowning.",
       "practicalImplication": "Ask what you are taking in that still leaves the heart poor. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.25,
+      "faithfulness": 4.11,
       "clarity": 4.11,
-      "specificity": 5,
+      "specificity": 4.87,
       "emotionalHonesty": 3.36,
       "usefulness": 4.04,
       "beauty": 4.05,
-      "overall": 4.15
+      "overall": 4.09
     },
     "strengths": [
       "specificity",

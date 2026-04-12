@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-703",
-  "title": "Gauree Gwaarayree, First Mehla:",
+  "title": "When The Insignia Of The True Shabad",
   "subtitle": "Raag Gauree · Ang 221",
-  "summary": "Attachment is carried here from gauree Gwaarayree, First Mehla: toward o Nanak, meditate on the Lord, each and every day.",
-  "whyItMatters": "This shabad is useful when life feels clingy, possessive, afraid-to-lose, because it keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Attachment steadies when o Nanak, meditate on the Lord, each and every day.",
+  "summary": "This shabad opens with when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King. It turns the heart toward o Nanak, meditate on the Lord, each and every day.",
+  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
   "themes": [
     "attachment",
     "doubt",
@@ -217,15 +217,15 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree Gwaarayree, First Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside the Fearless Lord is in the oceans, just as He is in the mountains.",
-    "The closing movement leaves a return you can actually keep: o Nanak, meditate on the Lord, each and every day."
+    "It opens by naming the condition without ornament: when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King.",
+    "The middle movement widens the correction through the Fearless Lord is in the oceans, just as He is in the mountains.",
+    "It closes with a return you can actually keep: o Nanak, meditate on the Lord, each and every day."
   ],
   "keyVerseIds": [
-    9471,
     9473,
     9477,
-    9486
+    9486,
+    9492
   ],
   "relatedGuidanceIds": [
     "guidance-generated-703-1",
@@ -256,20 +256,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Attachment is carried here from gauree Gwaarayree, First Mehla: toward o Nanak, meditate on the Lord, each and every day.",
+      "coreClaim": "This shabad opens with when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King. It turns the heart toward o Nanak, meditate on the Lord, each and every day.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement deepens the correction by holding the mind inside the Fearless Lord is in the oceans, just as He is in the mountains.",
-      "practicalImplication": "Attachment steadies when o Nanak, meditate on the Lord, each and every day.",
+      "turn": "The middle movement widens the correction through the Fearless Lord is in the oceans, just as He is in the mountains.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.4,
-      "specificity": 4.96,
+      "clarity": 2.23,
+      "specificity": 4.77,
       "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 4.02,
-      "overall": 4.07
+      "usefulness": 3.6,
+      "beauty": 3.37,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",

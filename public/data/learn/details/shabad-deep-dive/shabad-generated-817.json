@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-817",
-  "title": "Sangat In Gurbani",
+  "title": "Dadda: This Is Not Your True Place",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Sangat is carried here from  toward o Nanak, those humble beings do not waver or wander.",
-  "whyItMatters": "This shabad is useful when life feels isolated, impressionable, needing-company, because it keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Sangat steadies when o Nanak, those humble beings do not waver or wander.",
+  "summary": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
+  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
   "themes": [
     "sangat",
     "restlessness",
@@ -98,15 +98,15 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside but not one iota of this shall go there with you.",
-    "The closing movement leaves a return you can actually keep: o Nanak, those humble beings do not waver or wander."
+    "It opens by naming the condition without ornament: dADDA: This is not your true place.",
+    "The middle movement widens the correction through the value of that place beyond is known only to those.",
+    "It closes with a return you can actually keep: o Nanak, those humble beings do not waver or wander."
   ],
   "keyVerseIds": [
-    11167,
     11168,
     11169,
-    11174
+    11174,
+    11175
   ],
   "relatedGuidanceIds": [],
   "relatedTopicIds": [
@@ -134,20 +134,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Sangat is carried here from  toward o Nanak, those humble beings do not waver or wander.",
+      "coreClaim": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement deepens the correction by holding the mind inside but not one iota of this shall go there with you.",
-      "practicalImplication": "Sangat steadies when o Nanak, those humble beings do not waver or wander.",
+      "turn": "The middle movement widens the correction through the value of that place beyond is known only to those.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.09,
-      "overall": 4.1
+      "clarity": 3.57,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.82,
+      "overall": 3.99
     },
     "strengths": [
       "specificity",

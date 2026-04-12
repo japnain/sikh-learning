@@ -1,21 +1,25 @@
 {
   "id": "topic-exhaustion",
-  "title": "When the soul feels worn thin",
+  "title": "When the inner thread feels used past its strength",
   "shortTitle": "Exhaustion",
   "category": "most-needed",
-  "issueStatement": "You are still functioning, but the inner thread feels overused, brittle, and close to snapping.",
-  "centralInsight": "Gurbani treats exhaustion as more than low energy. It can be the fruit of wandering, over-carrying, and trying to finish the path without Sangat, patience, or Naam.",
-  "practicalReflection": "A tired soul often keeps adding movement. Guru keeps turning it back toward company, hearing, remembrance, and the right kind of rest.",
-  "actionPrompt": "Shrink the day to one faithful practice instead of ten frantic ones.",
+  "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand.",
+  "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless search for relief in the wrong places.",
+  "practicalReflection": "A worn soul often mistakes motion for survival. The Guru keeps turning it toward shelter, company, and a smaller faithful return.",
+  "actionPrompt": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
   "searchTerms": [
     "exhaustion",
     "burnout",
     "tired",
     "drained",
     "weary",
-    "exhausted",
+    "worn thin",
+    "spiritually tired",
+    "inner fatigue",
+    "frayed",
+    "need rest",
     "burnt out",
-    "worn out",
+    "burned out",
     "exhaustion in the ordinary day",
     "exhaustion daily",
     "today",
@@ -44,52 +48,57 @@
     "exhaustion return",
     "exhaustion after slipping",
     "exhaustion start again",
-    "building a truer practice of exhaustion",
+    "practicing rest that actually restores",
     "exhaustion steady practice",
-    "practice",
-    "habit",
-    "steady return",
-    "formation",
-    "exhaustion practice",
-    "exhaustion habit",
-    "exhaustion steady return",
-    "exhaustion formation"
+    "rest practice",
+    "restorative rhythm",
+    "recovering when tired",
+    "steady rest",
+    "burnout practice",
+    "exhaustion rest practice",
+    "exhaustion restorative rhythm",
+    "exhaustion recovering when tired",
+    "exhaustion steady rest",
+    "exhaustion burnout practice"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-generated-360",
+        "deepDiveId": "shabad-search-ends-in-saint-company",
         "verseIds": [
-          5589
+          3898,
+          3899,
+          3900
         ],
-        "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
-        "lifeApplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+        "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+      "explanation": "The exhausted search is named here, along with its limit. Peace arrives not through more roaming, but when mercy grants the right company and the body itself begins to cool."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-643",
+        "deepDiveId": "shabad-child-of-grace",
         "verseIds": [
-          8825,
-          8829
+          3762,
+          3763
         ],
-        "shortMeaning": "Wherever I look, there You are; I am totally convinced of this; the continents and the solar systems rest in the support of the",
-        "lifeApplication": "Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water; i am a helpless child-please cherish me",
+        "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges. Let the wider window set the tone before the old reflex does."
+      "explanation": "Exhaustion is often the place where the soul must stop performing strength. This line allows helplessness to be spoken and answered by care, not by shame."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-644",
+        "deepDiveId": "shabad-steadied-by-creator",
         "verseIds": [
-          8842,
-          8843
+          30988,
+          30989,
+          30994
         ],
-        "shortMeaning": "O Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill; nanak, Your slave, begs for this happiness: let me be the dust",
-        "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
+        "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani treats exhaustion as more than low energy. It can be the fruit of wandering, over-carrying, and trying to finish the path without Sangat, patience, or Naam. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "Weariness is corrected here by remembrance of the One already sustaining you. The point is not to manufacture energy, but to stop living as if you are uncared for."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -131,22 +140,22 @@
             "verseIds": [
               5589
             ],
-            "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
-            "lifeApplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+          "explanation": "Ordinary life is already being addressed here: to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-643",
             "verseIds": [
-              8825,
-              8829
+              8823,
+              8825
             ],
-            "shortMeaning": "Wherever I look, there You are; I am totally convinced of this; the continents and the solar systems rest in the support of the",
-            "lifeApplication": "Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "I am intimate with Him",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Choose one return that gives rest instead of one more noisy demand. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -155,10 +164,10 @@
               8842,
               8843
             ],
-            "shortMeaning": "O Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill; nanak, Your slave, begs for this happiness: let me be the dust",
-            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "O Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill this yearning of my mind; nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when o Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill; nanak, Your slave, begs for this happiness: let me be the dust."
+          "explanation": "This makes daily faithfulness concrete: o Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill this yearning of my mind; nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints."
         }
       ],
       "editorial": {
@@ -175,16 +184,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.35
+          "beauty": 4.17,
+          "overall": 4.24
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -219,25 +228,24 @@
           "source": {
             "deepDiveId": "shabad-generated-643",
             "verseIds": [
-              8825,
-              8829
+              8823,
+              8825
             ],
-            "shortMeaning": "Wherever I look, there You are; I am totally convinced of this; the continents and the solar systems rest in the support of the",
-            "lifeApplication": "Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "I am intimate with Him",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: wherever I look, there You are; I am totally convinced of this; the continents and the solar systems rest in the support of the."
+          "explanation": "Under strain, the line stays exact: i am intimate with Him."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-822",
             "verseIds": [
-              11201,
               11202
             ],
-            "shortMeaning": "I offer my body, mind and wealth to anyone who can unite; o Nanak, my doubts and fears have been dispelled, and the Messenger",
-            "lifeApplication": "Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "O Nanak, my doubts and fears have been dispelled, and the Messenger of Death does not see me any longer",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Choose one return that gives rest instead of one more noisy demand. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
@@ -246,9 +254,9 @@
               13142
             ],
             "shortMeaning": "Without devotional meditation, the body will be just ashes",
-            "lifeApplication": "Seeking steadies when o Nanak, chant the Naam, the treasure of excellence. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -265,16 +273,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.75,
           "specificity": 5,
-          "emotionalHonesty": 3.9,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.43
+          "beauty": 4.13,
+          "overall": 4.23
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -311,10 +319,10 @@
               8842,
               8843
             ],
-            "shortMeaning": "O Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill; nanak, Your slave, begs for this happiness: let me be the dust",
-            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "O Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill this yearning of my mind; nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: o Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill; nanak, Your slave, begs for this happiness: let me be the dust."
+          "explanation": "Return is still being offered here: o Inner-knower, Searcher of hearts, Primal Being, Architect of Destiny: please fulfill this yearning of my mind; nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints."
         },
         {
           "source": {
@@ -322,10 +330,10 @@
             "verseIds": [
               11201
             ],
-            "shortMeaning": "I offer my body, mind and wealth to anyone who can unite",
-            "lifeApplication": "Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "I offer my body, mind and wealth to anyone who can unite me with God",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Fear steadies when o Nanak, my doubts and fears have been dispelled, and the Messenger of Death. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Choose one return that gives rest instead of one more noisy demand. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
@@ -333,10 +341,10 @@
             "verseIds": [
               11
             ],
-            "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
-            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "His Command cannot be described",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -353,16 +361,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 4.96,
-          "emotionalHonesty": 3.9,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.2,
-          "beauty": 4.53,
-          "overall": 4.39
+          "beauty": 4.15,
+          "overall": 4.23
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
         "issues": []
       }
@@ -370,27 +378,29 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of exhaustion",
-      "issueStatement": "Weariness has made the heart suspicious of even good counsel. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-      "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
-      "actionPrompt": "Choose one return that gives rest instead of one more noisy demand. Repeat what you can actually keep.",
+      "title": "Practicing rest that actually restores",
+      "issueStatement": "Exhaustion does not usually heal through one dramatic pause. It eases when the soul stops feeding itself noise and starts returning to smaller forms of shelter on purpose.",
+      "centralInsight": "Gurbani makes rest concrete. Better company, gentler rhythm, and repeated remembrance teach the heart how to recover without pretending it is limitless.",
+      "practicalReflection": "A restorative life is built by what you repeat when you are already tired. The pattern either keeps draining you or quietly starts giving life back.",
+      "actionPrompt": "Choose one repeatable form of rest this week that brings you nearer to Naam, stillness, or truthful company, and keep it even on the crowded day.",
       "searchTerms": [
         "exhaustion",
         "burnout",
         "tired",
         "drained",
         "weary",
-        "building a truer practice of exhaustion",
+        "practicing rest that actually restores",
         "exhaustion steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "exhaustion practice",
-        "exhaustion habit",
-        "exhaustion steady return",
-        "exhaustion formation"
+        "rest practice",
+        "restorative rhythm",
+        "recovering when tired",
+        "steady rest",
+        "burnout practice",
+        "exhaustion rest practice",
+        "exhaustion restorative rhythm",
+        "exhaustion recovering when tired",
+        "exhaustion steady rest",
+        "exhaustion burnout practice"
       ],
       "excerpts": [
         {
@@ -400,9 +410,9 @@
               13142
             ],
             "shortMeaning": "Without devotional meditation, the body will be just ashes",
-            "lifeApplication": "Seeking steadies when o Nanak, chant the Naam, the treasure of excellence. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: without devotional meditation, the body will be just ashes."
+          "explanation": "The line is teaching repetition more than momentary inspiration: without devotional meditation, the body will be just ashes."
         },
         {
           "source": {
@@ -410,10 +420,10 @@
             "verseIds": [
               5589
             ],
-            "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
-            "lifeApplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Choose one return that gives rest instead of one more noisy demand. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
@@ -422,32 +432,32 @@
               11,
               15
             ],
-            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
-            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "no one is beyond His Command",
+            "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-exhaustion:practice",
         "evidence": {
-          "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "coreClaim": "Gurbani makes rest concrete. Better company, gentler rhythm, and repeated remembrance teach the heart how to recover without pretending it is limitless.",
           "emotionalState": "searching, hungry, unsettled",
-          "turn": "Weariness has made the heart suspicious of even good counsel. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-          "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Repeat what you can actually keep.",
+          "turn": "Exhaustion does not usually heal through one dramatic pause. It eases when the soul stops feeding itself noise and starts returning to smaller forms of shelter on purpose.",
+          "practicalImplication": "Choose one repeatable form of rest this week that brings you nearer to Naam, stillness, or truthful company, and keep it even on the crowded day.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.36,
-          "usefulness": 3.98,
-          "beauty": 4.53,
-          "overall": 4.25
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.2,
+          "beauty": 4.69,
+          "overall": 4.36
         },
         "strengths": [
           "specificity",
@@ -458,6 +468,9 @@
     }
   },
   "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-child-of-grace",
+    "shabad-steadied-by-creator",
     "shabad-generated-360",
     "shabad-generated-643",
     "shabad-generated-644",
@@ -487,28 +500,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:exhaustion",
     "evidence": {
-      "coreClaim": "Gurbani treats exhaustion as more than low energy. It can be the fruit of wandering, over-carrying, and trying to finish the path without Sangat, patience, or Naam.",
-      "emotionalState": "tired, drained, worn-down",
-      "turn": "You are still functioning, but the inner thread feels overused, brittle, and close to snapping.",
-      "practicalImplication": "Shrink the day to one faithful practice instead of ten frantic ones.",
+      "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless search for relief in the wrong places.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand.",
+      "practicalImplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.97,
-      "specificity": 4.96,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.82,
-      "beauty": 3.13,
-      "overall": 3.89
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 4,
+      "usefulness": 4.42,
+      "beauty": 4.53,
+      "overall": 4.45
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

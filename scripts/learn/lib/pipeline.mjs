@@ -50,7 +50,193 @@ const TOPIC_SCENARIO_SHABAD_LAYOUT = {
   practice: [4, 0, 5],
 }
 
+const GUIDANCE_COPY_OVERRIDES = {
+  "guidance-generated-461-2": {
+    title: "Service carries the seeker across",
+    summary: "Restlessness eases when devotion and service stop being abstractions and become the next faithful act.",
+    takeaway: "Union with the Divine is learned through the True Guru, and devotion joined to service becomes a real crossing.",
+    lifeApplication: "When the mind wants more motion, choose one act of devotion or service that returns you to the path you already know.",
+    source: {
+      shortMeaning: "Through the True Guru, devotion and service become the crossing into union.",
+      lifeApplication: "Let devotion become concrete before restlessness turns into one more search for novelty.",
+    },
+  },
+  "guidance-work-give-know-the-path-2": {
+    title: "Honest work makes the path visible",
+    summary: "Seva becomes credible in honest labor and open-handed giving, not in spiritual performance.",
+    takeaway: "The true path appears where a person works honestly, shares what they earn, and keeps pretense out of religion.",
+    lifeApplication: "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
+    source: {
+      shortMeaning: "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
+      lifeApplication: "Do one useful thing cleanly and quietly, then let the giving matter more than the appearance of being good.",
+    },
+  },
+  "guidance-generated-511-2": {
+    title: "Mercy lets the hidden sweetness be found",
+    summary: "Mercy is not forced out of the day. The heart tastes what was already near when the Merciful One opens it.",
+    takeaway: "When the Merciful One shows mercy, the hidden sweetness of the Divine is finally tasted within.",
+    lifeApplication: "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
+    source: {
+      shortMeaning: "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
+      lifeApplication: "Receive mercy before you analyze it, and let that reception change the next tone you bring into the day.",
+    },
+  },
+  "guidance-generated-179-2": {
+    title: "Serving the Guru makes the heart clean again",
+    summary: "Ego loses some of its glamour when service stops being display and becomes inner cleansing.",
+    takeaway: "Serving the True Guru lets the Lord abide within, and the mind and body begin to grow clean again.",
+    lifeApplication: "When the self wants to lead, choose one act of service that cleans the heart instead of enlarging the image.",
+    source: {
+      shortMeaning: "Serving the True Guru lets the Lord abide within, and the mind and body grow pure.",
+      lifeApplication: "Let service make you smaller and cleaner before urgency turns self-importance into the room's loudest voice.",
+    },
+  },
+  "guidance-generated-152-2": {
+    title: "Without holy company, attachment stays dusty",
+    summary: "Sangat is not decorative here. Without the right company, attachment keeps coating the heart.",
+    takeaway: "Without attunement to the holy company, attachment to Maya stays like dust; with love for Guru, the heart turns cleanly toward the Divine.",
+    lifeApplication: "Move closer to the company that helps the heart love well instead of simply agreeing with its habits.",
+    source: {
+      shortMeaning: "Without holy company, attachment stays like dust; with love for Guru, the heart turns toward the Divine.",
+      lifeApplication: "Choose one company today that makes remembrance easier and attachment less convincing.",
+    },
+  },
+  "guidance-generated-109-2": {
+    title: "Without the Beloved, the night stays anguished",
+    summary: "Doubt loses its swagger when the heart admits how badly it needs the One it keeps postponing.",
+    takeaway: "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
+    lifeApplication: "Before reopening every question, let one line tell the truth about your dependence and stay there a moment longer.",
+    source: {
+      shortMeaning: "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
+      lifeApplication: "Use the line before the question multiplies again, and let reverence quiet what panic was trying to organize.",
+    },
+  },
+  "guidance-conquer-the-mind-2": {
+    title: "Contentment makes discipline visible",
+    summary: "Discipline becomes credible when humility, meditation, and contentment begin shaping the body before pressure does.",
+    takeaway: "Contentment, humility, and meditation mark the disciplined life more truly than image or strain.",
+    lifeApplication: "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
+    source: {
+      shortMeaning: "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
+      lifeApplication: "Keep the next repetition plain enough that humility and contentment can remain inside it.",
+    },
+  },
+}
+
+const SHABAD_COPY_OVERRIDES = {
+  "shabad-generated-822": {
+    title: "Offering everything to the One who can unite you",
+    summary: "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
+    whyItMatters: "It matters when fear feels personal and total because the shabad turns the heart from private bargaining toward union, clarity, and release from dread.",
+    takeaway: "Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
+    structure: [
+      "It opens with total offering and a plain request for union with the Divine.",
+      "The middle movement keeps pressing past fear and doubt instead of negotiating with them.",
+      "It closes in freedom, where dread no longer gets to govern the soul.",
+    ],
+  },
+}
+
+const COLLECTION_COPY_OVERRIDES = {
+  "collection-tired-heart-to-rest": {
+    subtitle: "A slower path for the overused inner life",
+    description: "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
+  },
+  "collection-conduct-and-clean-speech": {
+    subtitle: "A path for cleaner speech and truer living",
+    description: "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
+  },
+  "collection-control-to-release": {
+    subtitle: "For the mind that grips too hard",
+    description: "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
+  },
+  "collection-ego-to-humility": {
+    subtitle: "A path out of self-importance",
+    description: "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
+  },
+  "collection-truthful-wealth": {
+    subtitle: "A path out of empty gain",
+    description: "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
+  },
+  "collection-restlessness-to-stillness": {
+    subtitle: "For minds that move faster than they settle",
+    description: "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
+  },
+  "collection-sangat-and-belonging": {
+    subtitle: "A return to company that helps the heart breathe",
+    description: "Study how holy company cools isolation and teaches the heart how to belong without performing.",
+  },
+  "collection-mercy-and-fearlessness": {
+    subtitle: "A path out of hardness and self-protection",
+    description: "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
+  },
+  "collection-service-and-purpose": {
+    subtitle: "A practical path toward meaningful living",
+    description: "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
+  },
+}
+
 const MODULE_CACHE = new Map()
+const ORDINAL_MEHLA_PATTERN = "(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)"
+const HEADING_ONLY_PATTERNS = [
+  new RegExp(`^\\s*(?:raag\\s+)?[a-z][a-z' -]+,\\s*${ORDINAL_MEHLA_PATTERN}\\s+mehla:?\\s*$`, "i"),
+  /^\s*(?:slok|salok|pauree|pauri|rahaau|rahau|rahao|chaupade|ashtpadee|ashtapadee|ghar\s+\d+):?\s*$/i,
+]
+const METADATA_PREFIX_PATTERNS = [
+  new RegExp(`^\\s*(?:raag\\s+)?[a-z][a-z' -]+,\\s*${ORDINAL_MEHLA_PATTERN}\\s+mehla:\\s*`, "i"),
+  /^\s*[^;:]*\b(?:mehla|mahala)\b[^;:]*:\s*/i,
+  /^\s*[^;:]*\b(?:vaar|var|shalok|shaloks|slok|salok|pauree|pauri|rahaau|rahau|rahao|chaupade|ashtpadee|ashtapadee|ghar)\b[^;:]*:\s*/i,
+  /^\s*(?:slok|salok|pauree|pauri|rahaau|rahau|rahao|chaupade|ashtpadee|ashtapadee|ghar\s+\d+):\s*/i,
+]
+const INCOMPLETE_ENDING_PATTERN = /\b(?:the|a|an|and|or|but|to|of|for|with|without|from|in|on|at|by|your|my|our|their|his|her|its|this|that|these|those|who|which|whose|are|is|was|were|be|been|being|am|do|does|did|have|has|had|will|would|can|could|should|may|might|must)\.?$/i
+const TITLE_TRAILING_STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "been",
+  "being",
+  "but",
+  "by",
+  "can",
+  "could",
+  "did",
+  "do",
+  "does",
+  "for",
+  "from",
+  "had",
+  "has",
+  "have",
+  "in",
+  "into",
+  "is",
+  "like",
+  "may",
+  "might",
+  "must",
+  "of",
+  "on",
+  "or",
+  "should",
+  "that",
+  "the",
+  "these",
+  "this",
+  "those",
+  "to",
+  "was",
+  "were",
+  "which",
+  "who",
+  "will",
+  "with",
+  "would",
+])
+const TITLE_BAD_OPENINGS = new Set(["like"])
 
 function titleCase(value) {
   return value
@@ -113,29 +299,150 @@ function lowerFirst(value) {
   return `${value[0].toLowerCase()}${value.slice(1)}`
 }
 
+function isMetadataOnlySegment(value) {
+  const cleaned = cleanSentence(value)
+  if (!cleaned) return true
+  const wordCount = normalizeText(cleaned).split(" ").filter(Boolean).length
+  const strippedPunctuation = cleaned.replace(/[,:;.!?'"-]/g, " ").trim()
+  const words = strippedPunctuation.split(/\s+/).filter(Boolean)
+  const titleLikeWords = words.filter(word => /^[A-Z][a-z'’/-]*$/.test(word)).length
+  return (
+    HEADING_ONLY_PATTERNS.some(pattern => pattern.test(cleaned))
+    || (/:\s*$/.test(cleaned) && wordCount <= 6 && words.length > 0 && titleLikeWords / words.length >= 0.6)
+    || (/\bmehla\b/i.test(cleaned) && wordCount <= 5)
+  )
+}
+
+function stripMetadataPrefix(value) {
+  let cleaned = cleanSentence(String(value ?? "").replace(/\|\|.*$/, ""))
+  for (const pattern of METADATA_PREFIX_PATTERNS) {
+    cleaned = cleaned.replace(pattern, "").trim()
+  }
+  return cleanSentence(cleaned.replace(/^[-–—]\s*/, ""))
+}
+
+function extractMeaningfulSegments(value) {
+  const raw = cleanSentence(String(value ?? "").replace(/\|\|.*$/, ""))
+  if (!raw) return []
+
+  return raw
+    .split(";")
+    .map(segment => stripMetadataPrefix(segment))
+    .filter(segment => segment && !isMetadataOnlySegment(segment))
+}
+
+function scoreMeaningfulSegment(value) {
+  const cleaned = cleanSentence(value)
+  const wordCount = normalizeText(cleaned).split(" ").filter(Boolean).length
+  return wordCount + (/[.!?]$/.test(cleaned) ? 2 : 0) + (INCOMPLETE_ENDING_PATTERN.test(cleaned) ? -4 : 2)
+}
+
+function pickBestMeaningfulSegment(value) {
+  const segments = extractMeaningfulSegments(value)
+  if (segments.length === 0) return ""
+  return [...segments].sort((left, right) => scoreMeaningfulSegment(right) - scoreMeaningfulSegment(left))[0]
+}
+
+function isMeaningfulExcerptText(value) {
+  const bestSegment = pickBestMeaningfulSegment(value)
+  return normalizeText(bestSegment).split(" ").filter(Boolean).length >= 3
+}
+
 function summarizeLine(line) {
-  return cleanSentence(line.translation.replace(/^\w+:\s*/, "").replace(/\|\|.*$/, ""))
+  return pickBestMeaningfulSegment(line.translation) || cleanSentence(line.translation.replace(/^\w+:\s*/, "").replace(/\|\|.*$/, ""))
 }
 
 function trimToSentence(value, wordLimit = 14) {
-  const tokens = cleanSentence(value).split(" ")
-  if (tokens.length <= wordLimit) return cleanSentence(value).replace(/[.]+$/, "")
-  return `${tokens.slice(0, wordLimit).join(" ").replace(/[.]+$/, "")}`
+  const cleaned = cleanSentence(value)
+  const tokens = cleaned.split(" ")
+  if (tokens.length <= wordLimit) return cleaned.replace(/[,:;.!?]+$/, "")
+  if (/[.!?]$/.test(cleaned) && tokens.length <= wordLimit + 6) {
+    return cleaned.replace(/[,:;.!?]+$/, "")
+  }
+
+  const trimmed = tokens.slice(0, wordLimit)
+  while (trimmed.length >= 3) {
+    const lastToken = normalizeText(trimmed.at(-1) ?? "").split(" ").filter(Boolean).at(-1) ?? ""
+    if (!TITLE_TRAILING_STOPWORDS.has(lastToken)) break
+    trimmed.pop()
+  }
+  return `${trimmed.join(" ").replace(/[,:;.!?]+$/, "")}`
+}
+
+function trimTitleWords(words, maxWords = 7) {
+  const trimmed = words.slice(0, Math.min(maxWords, words.length))
+  while (trimmed.length >= 3) {
+    const lastToken = normalizeText(trimmed.at(-1) ?? "").split(" ").filter(Boolean).at(-1) ?? ""
+    if (!TITLE_TRAILING_STOPWORDS.has(lastToken)) break
+    trimmed.pop()
+  }
+  return trimmed
+}
+
+function titleNeedsFallback(title) {
+  const normalizedTokens = normalizeText(title).split(" ").filter(Boolean)
+  if (normalizedTokens.length < 3) return true
+  const firstToken = normalizedTokens[0]
+  const lastToken = normalizedTokens.at(-1) ?? ""
+  return (
+    TITLE_BAD_OPENINGS.has(firstToken)
+    || TITLE_TRAILING_STOPWORDS.has(lastToken)
+    || isMetadataOnlySegment(title)
+  )
 }
 
 function buildTitleFromTranslation(text, fallback) {
-  const cleaned = cleanSentence(text)
-    .replace(/^(o\s+\w+,\s*)/i, "")
-    .replace(/^the\s+/i, "")
-    .replace(/^and\s+/i, "")
-    .replace(/^by\s+/i, "")
-    .replace(/^through\s+/i, "")
-    .replace(/[|]+.*$/, "")
-  const words = cleaned.split(" ").filter(Boolean)
-  if (words.length >= 3) {
-    return titleCase(words.slice(0, Math.min(7, words.length)).join(" ").replace(/[.]+$/, ""))
+  const candidates = [
+    pickBestMeaningfulSegment(text),
+    ...extractMeaningfulSegments(text),
+  ].filter(Boolean)
+
+  for (const candidate of candidates) {
+    const cleaned = cleanSentence(candidate)
+      .replace(/^(o\s+\w+,\s*)/i, "")
+      .replace(/^the\s+/i, "")
+      .replace(/^and\s+/i, "")
+      .replace(/^by\s+/i, "")
+      .replace(/^through\s+/i, "")
+      .replace(/[|]+.*$/, "")
+    const words = cleaned.split(" ").filter(Boolean)
+    const trimmedWords = trimTitleWords(words, 7)
+    if (trimmedWords.length < 3) continue
+    const title = titleCase(trimmedWords.join(" ").replace(/[,:;.!?]+$/, ""))
+    if (!titleNeedsFallback(title)) {
+      return title
+    }
   }
   return fallback
+}
+
+function sanitizePublicText(value) {
+  const cleaned = cleanSentence(String(value ?? ""))
+  if (!cleaned) return ""
+  const meaningful = pickBestMeaningfulSegment(cleaned)
+  if (meaningful) return cleanSentence(meaningful)
+  return cleanSentence(stripMetadataPrefix(cleaned))
+}
+
+function publicTextNeedsCleanup(value) {
+  const cleaned = cleanSentence(String(value ?? ""))
+  if (!cleaned) return true
+  const firstSegment = cleanSentence(cleaned.split(";")[0] ?? "")
+  const sanitized = sanitizePublicText(cleaned)
+  return (
+    !sanitized
+    || isMetadataOnlySegment(cleaned)
+    || (Boolean(firstSegment) && isMetadataOnlySegment(firstSegment))
+    || METADATA_PREFIX_PATTERNS.some(pattern => pattern.test(cleaned))
+  )
+}
+
+function joinNaturalList(values) {
+  const filtered = values.filter(Boolean)
+  if (filtered.length === 0) return ""
+  if (filtered.length === 1) return filtered[0]
+  if (filtered.length === 2) return `${filtered[0]} and ${filtered[1]}`
+  return `${filtered.slice(0, -1).join(", ")}, and ${filtered.at(-1)}`
 }
 
 async function ensureDir(dirPath) {
@@ -233,7 +540,9 @@ function getTopicFamily(key) {
 
 function classifyShabad(scriptureEntry) {
   const normalized = normalizeText(
-    scriptureEntry.lines.map(line => line.translation_en).join(" ")
+    scriptureEntry.lines
+      .flatMap(line => extractMeaningfulSegments(line.translation_en))
+      .join(" ")
   )
   const rankedFamilies = TOPIC_FAMILIES
     .map(family => ({
@@ -261,20 +570,21 @@ function classifyShabad(scriptureEntry) {
 
 function pickKeyLineIds(lines, primaryTheme) {
   const normalizedTheme = normalizeText(primaryTheme)
-  const scored = lines
-    .filter(line => line.verseId)
+  const usableLines = lines.filter(line => line.verseId && isMeaningfulExcerptText(line.translation))
+  const sourceLines = usableLines.length > 0 ? usableLines : lines.filter(line => line.verseId)
+  const scored = sourceLines
     .map((line, index) => ({
       line,
       index,
-      score: (normalizeText(line.translation).includes(normalizedTheme) ? 5 : 0)
+      score: (normalizeText(summarizeLine(line)).includes(normalizedTheme) ? 5 : 0)
         + (index === 0 ? 3 : 0)
-        + (index === lines.length - 1 ? 4 : 0)
+        + (index === sourceLines.length - 1 ? 4 : 0)
         + (stableHash(`${line.verseId}:${primaryTheme}`) % 7),
     }))
     .sort((left, right) => right.score - left.score)
 
   const verseIds = Array.from(new Set(scored.slice(0, Math.min(4, scored.length)).map(entry => entry.line.verseId)))
-  return verseIds.length > 0 ? verseIds.sort((left, right) => left - right) : lines.slice(0, 1).map(line => line.verseId)
+  return verseIds.length > 0 ? verseIds.sort((left, right) => left - right) : sourceLines.slice(0, 1).map(line => line.verseId)
 }
 
 function toLearnLines(scriptureEntry) {
@@ -290,13 +600,17 @@ function toLearnLines(scriptureEntry) {
 
 function buildGuidanceWindows(deepDive) {
   const lineIds = deepDive.lines.map(line => line.verseId).filter(Boolean)
-  const midpointId = lineIds[Math.floor(lineIds.length / 2)] ?? lineIds[0]
+  const meaningfulLineIds = deepDive.lines
+    .filter(line => line.verseId && isMeaningfulExcerptText(line.translation))
+    .map(line => line.verseId)
+  const usableLineIds = meaningfulLineIds.length > 0 ? meaningfulLineIds : lineIds
+  const midpointId = usableLineIds[Math.floor(usableLineIds.length / 2)] ?? usableLineIds[0]
   const candidates = [
     deepDive.keyVerseIds.slice(0, 1),
     deepDive.keyVerseIds.slice(0, Math.min(2, deepDive.keyVerseIds.length)),
     deepDive.keyVerseIds.length >= 2
       ? deepDive.keyVerseIds.slice(-2)
-      : [lineIds[lineIds.length - 1] ?? midpointId],
+      : [usableLineIds[usableLineIds.length - 1] ?? midpointId],
     [midpointId],
   ]
 
@@ -315,12 +629,23 @@ function buildGuidanceWindows(deepDive) {
 
 function summarizeVerseWindow(selectedLines) {
   const fragments = selectedLines
-    .map(line => trimToSentence(summarizeLine(line), 12))
+    .map(line => trimToSentence(summarizeLine(line), 14))
     .filter(Boolean)
 
   if (fragments.length === 0) return ""
-  if (fragments.length === 1) return fragments[0]
-  return `${fragments[0]}; ${lowerFirst(fragments[fragments.length - 1])}`
+  const ranked = [...fragments].sort((left, right) => scoreMeaningfulSegment(right) - scoreMeaningfulSegment(left))
+  if (ranked.length === 1) return ranked[0]
+
+  if (
+    scoreMeaningfulSegment(ranked[0]) >= 10
+    && scoreMeaningfulSegment(ranked[1]) >= 10
+    && !INCOMPLETE_ENDING_PATTERN.test(ranked[0])
+    && !INCOMPLETE_ENDING_PATTERN.test(ranked[1])
+  ) {
+    return `${ranked[0]}; ${lowerFirst(ranked[1])}`
+  }
+
+  return ranked[0]
 }
 
 function createRotation(theme, depthLevel, priority, balanceCategory, freshnessTier = "evergreen") {
@@ -360,10 +685,12 @@ function balanceCategoryForFamily(familyKey) {
 function createDeepDiveFromScripture(scriptureEntry, index) {
   const classification = classifyShabad(scriptureEntry)
   const lines = toLearnLines(scriptureEntry)
+  const meaningfulLines = lines.filter(line => isMeaningfulExcerptText(line.translation))
+  const narrativeLines = meaningfulLines.length > 0 ? meaningfulLines : lines
   const keyVerseIds = pickKeyLineIds(lines, classification.primary.key)
-  const leadLine = lines.find(line => line.verseId === keyVerseIds[0]) ?? lines[0]
-  const middleLine = lines[Math.floor(lines.length / 2)] ?? leadLine
-  const closingLine = lines[lines.length - 1] ?? leadLine
+  const leadLine = narrativeLines.find(line => line.verseId === keyVerseIds[0]) ?? narrativeLines[0]
+  const middleLine = narrativeLines[Math.floor(narrativeLines.length / 2)] ?? leadLine
+  const closingLine = narrativeLines[narrativeLines.length - 1] ?? leadLine
   const openingMeaning = trimToSentence(summarizeLine(leadLine), 14)
   const middleMeaning = trimToSentence(summarizeLine(middleLine), 14)
   const closingMeaning = trimToSentence(summarizeLine(closingLine), 14)
@@ -376,9 +703,9 @@ function createDeepDiveFromScripture(scriptureEntry, index) {
     id: `shabad-generated-${scriptureEntry.shabadId}`,
     title,
     subtitle: `${scriptureEntry.raag || "SGGS"} · Ang ${scriptureEntry.ang}`,
-    summary: `${classification.primary.shortTitle} is carried here from ${lowerFirst(openingMeaning)} toward ${lowerFirst(closingMeaning)}.`,
-    whyItMatters: `This shabad is useful when life feels ${classification.emotionalStates.join(", ")}, because it keeps ${classification.primary.shortTitle.toLowerCase()} inside remembrance, conduct, and the Creator's larger care instead of private mood.`,
-    takeaway: `${classification.primary.shortTitle} steadies when ${lowerFirst(closingMeaning)}.`,
+    summary: `This shabad opens with ${lowerFirst(openingMeaning)}. It turns the heart toward ${lowerFirst(closingMeaning)}.`,
+    whyItMatters: `It matters when life feels ${joinNaturalList(classification.emotionalStates)} because the shabad keeps ${classification.primary.shortTitle.toLowerCase()} inside remembrance, conduct, and the Creator's larger care instead of private momentum.`,
+    takeaway: `Keep returning to this turn: ${closingMeaning}.`,
     themes: classification.themes,
     emotionalStates: classification.emotionalStates,
     difficulty: inferDifficulty(lines),
@@ -396,9 +723,9 @@ function createDeepDiveFromScripture(scriptureEntry, index) {
     },
     lines,
     structure: [
-      `The opening movement names the pressure directly: ${lowerFirst(openingMeaning)}.`,
-      `The middle movement deepens the correction by holding the mind inside ${lowerFirst(middleMeaning)}.`,
-      `The closing movement leaves a return you can actually keep: ${lowerFirst(closingMeaning)}.`,
+      `It opens by naming the condition without ornament: ${lowerFirst(openingMeaning)}.`,
+      `The middle movement widens the correction through ${lowerFirst(middleMeaning)}.`,
+      `It closes with a return you can actually keep: ${lowerFirst(closingMeaning)}.`,
     ],
     keyVerseIds,
     relatedGuidanceIds: [],
@@ -414,10 +741,23 @@ function createDeepDiveFromScripture(scriptureEntry, index) {
   }
 }
 
-function createLineReference(deepDive, verseIds) {
+function selectReferenceLines(deepDive, verseIds) {
   const selectedLines = deepDive.lines.filter(line => verseIds.includes(line.verseId))
-  const shortMeaning = summarizeVerseWindow(selectedLines.length > 0 ? selectedLines : deepDive.lines.slice(0, 1))
-  const lifeApplication = `${deepDive.takeaway} Let the wider window set the tone before the old reflex does.`
+  const meaningfulSelectedLines = selectedLines.filter(line => isMeaningfulExcerptText(line.translation))
+  const meaningfulFallbackLines = deepDive.lines.filter(line => isMeaningfulExcerptText(line.translation))
+
+  if (meaningfulSelectedLines.length > 0) return meaningfulSelectedLines
+  if (meaningfulFallbackLines.length > 0) return meaningfulFallbackLines.slice(0, 1)
+  if (selectedLines.length > 0) return selectedLines
+  return deepDive.lines.slice(0, 1)
+}
+
+function createLineReference(deepDive, verseIds, options = {}) {
+  const referenceLines = selectReferenceLines(deepDive, verseIds)
+  const shortMeaning = summarizeVerseWindow(referenceLines)
+  const lifeApplication =
+    options.lifeApplication
+    ?? "Keep this line close enough to set the next faithful move before the old reflex retakes the room."
 
   return {
     deepDiveId: deepDive.id,
@@ -444,7 +784,7 @@ function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
       summary: `${family.shortTitle} is named plainly here before the mind has time to decorate it.`,
       takeaway: windowMeaning,
       lifeApplication: `${family.actionBase} Begin with the part of the day already in front of you.`,
-      sourceLife: `${family.shortTitle} becomes more truthful when ${lowerFirst(windowMeaning)}.`,
+      sourceLife: `${family.actionBase} Let the line meet the ordinary room before self-judgment starts arranging it.`,
     },
     {
       key: "pressure",
@@ -453,7 +793,7 @@ function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
       summary: `${family.shortTitle} is being answered in the middle of pressure, not after the day has calmed down.`,
       takeaway: windowMeaning,
       lifeApplication: `${family.actionBase} Use the line before the pressure chooses your tone.`,
-      sourceLife: `Let the wider line hold together what the mind wants to split apart.`,
+      sourceLife: `${family.actionBase} Use the line before urgency gets to rename fear as wisdom.`,
     },
     {
       key: "return",
@@ -462,7 +802,7 @@ function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
       summary: `The shabad does not leave ${family.shortTitle.toLowerCase()} at diagnosis. It turns toward return.`,
       takeaway: trimToSentence(summarizeLine(tailLine), 14),
       lifeApplication: `${family.actionBase} After the reaction, make the next return smaller and truer.`,
-      sourceLife: `Return begins when the later line is allowed to outlast the first rush of feeling.`,
+      sourceLife: `${family.actionBase} Let this line guide the first honest return after the reaction.`,
     },
   ]
   const variant = variants[slotIndex % variants.length]
@@ -526,36 +866,108 @@ function pickScenarioVerseIds(deepDive, scenarioKey, index) {
   return verseIds?.length ? verseIds : deepDive.keyVerseIds.slice(0, 1)
 }
 
-function createTopicExcerpt(deepDive, scenarioKey, index, explanationFactory) {
+function createTopicSourceLifeApplication(family, scenarioKey) {
+  switch (scenarioKey) {
+    case "daily":
+      return `${family.actionBase} Let the line meet the part of the day already in front of you.`
+    case "pressure":
+      return `${family.actionBase} Let the line decide the next tone before urgency does.`
+    case "repair":
+      return `${family.actionBase} Let the next return stay smaller and truer than the slip.`
+    case "practice":
+      return `${family.actionBase} Keep the line close enough to become a repeatable posture.`
+    default:
+      return `${family.actionBase} Let the line stay in charge of what comes next.`
+  }
+}
+
+function createTopicExcerpt(deepDive, family, scenarioKey, index, explanationFactory) {
   const verseIds = pickScenarioVerseIds(deepDive, scenarioKey, index)
-  const source = createLineReference(deepDive, verseIds)
+  const source = createLineReference(deepDive, verseIds, {
+    lifeApplication: createTopicSourceLifeApplication(family, scenarioKey),
+  })
   return {
     source,
     explanation: explanationFactory({ source, deepDive, index }),
   }
 }
 
+function createManualTopicExcerpt(spec, shabadById, family, scenarioKey, index, explanationFactory) {
+  const deepDive = shabadById.get(spec.deepDiveId)
+  if (!deepDive) {
+    throw new Error(`Unknown deep dive "${spec.deepDiveId}" in manual topic excerpt override`)
+  }
+
+  const verseIds = spec.verseIds?.length
+    ? spec.verseIds
+    : pickScenarioVerseIds(deepDive, scenarioKey, index)
+  const source = {
+    ...createLineReference(deepDive, verseIds, {
+      lifeApplication: createTopicSourceLifeApplication(family, scenarioKey),
+    }),
+    ...(spec.shortMeaning ? { shortMeaning: spec.shortMeaning } : {}),
+    ...(spec.lifeApplication ? { lifeApplication: spec.lifeApplication } : {}),
+  }
+
+  return {
+    source,
+    explanation: spec.explanation || explanationFactory({ source, deepDive, index }),
+  }
+}
+
+function buildTopicExcerpts({
+  family,
+  candidateShabads,
+  scenarioKey,
+  explanationFactory,
+  manualExcerpts,
+  shabadById,
+}) {
+  if (Array.isArray(manualExcerpts) && manualExcerpts.length > 0) {
+    return manualExcerpts.slice(0, 3).map((spec, index) => (
+      createManualTopicExcerpt(
+        spec,
+        shabadById,
+        family,
+        scenarioKey,
+        index,
+        explanationFactory[index % explanationFactory.length]
+      )
+    ))
+  }
+
+  return candidateShabads.slice(0, 3).map((deepDive, index) => (
+    createTopicExcerpt(
+      deepDive,
+      family,
+      scenarioKey,
+      index,
+      explanationFactory[index % explanationFactory.length]
+    )
+  ))
+}
+
 function getScenarioExplanationFactory(family, scenarioKey) {
   const factories = {
     daily: [
-      ({ source }) => `The ordinary day is not spiritually empty here: ${lowerFirst(source.shortMeaning)}.`,
-      ({ source }) => `The line lands in plain time rather than special conditions. ${source.lifeApplication}`,
-      ({ source }) => `Daily faithfulness becomes visible when ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `Ordinary life is already being addressed here: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `The teaching meets routine before the room becomes ideal. ${source.lifeApplication}`,
+      ({ source }) => `This makes daily faithfulness concrete: ${lowerFirst(source.shortMeaning)}.`,
     ],
     pressure: [
-      ({ source }) => `Pressure is named without surrendering the heart to it: ${lowerFirst(source.shortMeaning)}.`,
-      ({ source }) => `The line interrupts panic with a truer next movement. ${source.lifeApplication}`,
-      ({ source }) => `This excerpt is useful when urgency tries to become your theology.`,
+      ({ source }) => `Under strain, the line stays exact: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `The next faithful move is smaller than panic wants. ${source.lifeApplication}`,
+      () => `This line keeps urgency from becoming the only narrator in the room.`,
     ],
     repair: [
-      ({ source }) => `Return stays possible even after the slip: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `Return is still being offered here: ${lowerFirst(source.shortMeaning)}.`,
       ({ source }) => `The Guru does not leave repair at remorse alone. ${source.lifeApplication}`,
-      ({ source }) => `This excerpt keeps truth and return close enough to move together.`,
+      () => `Truth and return are kept close enough here to move together.`,
     ],
     practice: [
-      ({ source }) => `The line is teaching repetition, not merely inspiration: ${lowerFirst(source.shortMeaning)}.`,
-      ({ source }) => `Durable practice appears when the teaching can be kept on an ordinary week. ${source.lifeApplication}`,
-      ({ source }) => `This excerpt matters because it trains posture, not only agreement.`,
+      ({ source }) => `The line is teaching repetition more than momentary inspiration: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `Durable practice appears when the teaching can survive an ordinary week. ${source.lifeApplication}`,
+      () => `This excerpt matters because it trains posture, not only agreement.`,
     ],
   }
 
@@ -604,7 +1016,7 @@ function createGenericScenarioCopy(family, scenarioKey) {
       }
     case "practice":
       return {
-        title: `Building a truer practice of ${family.shortTitle.toLowerCase()}`,
+        title: `Learning a steadier way with ${family.shortTitle.toLowerCase()}`,
         issueStatement: `${family.issueBase} The deeper need is a form of return that can outlast novelty, urgency, and mood.`,
         centralInsight: `${family.insightBase} The teaching becomes durable when it is practiced repeatedly enough to change posture.`,
         practicalReflection: `Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.`,
@@ -627,7 +1039,7 @@ function buildScenarioShabadSets(candidateShabads) {
   )
 }
 
-function buildTopicScenario(family, scenarioKey, candidateShabads, override = null) {
+function buildTopicScenario(family, scenarioKey, candidateShabads, shabadById, override = null) {
   const scenarioCopy = {
     ...createGenericScenarioCopy(family, scenarioKey),
     ...(override ?? {}),
@@ -637,9 +1049,14 @@ function buildTopicScenario(family, scenarioKey, candidateShabads, override = nu
     `${family.key} ${term.toLowerCase()}`,
   ]))
   const explanationFactory = getScenarioExplanationFactory(family, scenarioKey)
-  const excerpts = candidateShabads.slice(0, 3).map((deepDive, index) => (
-    createTopicExcerpt(deepDive, scenarioKey, index, explanationFactory[index % explanationFactory.length])
-  ))
+  const excerpts = buildTopicExcerpts({
+    family,
+    candidateShabads,
+    scenarioKey,
+    explanationFactory,
+    manualExcerpts: override?.excerpts ?? null,
+    shabadById,
+  })
 
   return {
     key: scenarioKey,
@@ -662,29 +1079,34 @@ function buildTopicScenario(family, scenarioKey, candidateShabads, override = nu
   }
 }
 
+function getOverviewExplanationFactory(family, overviewCopy) {
+  return [
+    ({ source }) => `The theme is named plainly here: ${lowerFirst(source.shortMeaning)}.`,
+    ({ source }) => `The shabad widens the issue and gives it a truer direction. ${source.lifeApplication}`,
+    () => `${overviewCopy.centralInsight} The line is not a detached quote; it belongs to a fuller turn the whole shabad is making.`,
+  ]
+}
+
 function buildCanonicalTopicGuide({
   family,
   canonicalSeed,
   candidateShabads,
   scenarioShabadSets,
+  shabadById,
 }) {
   const goldSet = TOPIC_GOLD_SET[family.key] ?? null
   const overviewCopy = {
     ...(canonicalSeed ?? createGenericOverviewCopy(family)),
     ...(goldSet?.overview ?? {}),
   }
-  const overviewExcerpts = candidateShabads.slice(0, 3).map((deepDive, index) => (
-    createTopicExcerpt(
-      deepDive,
-      "daily",
-      index,
-      [
-        ({ source }) => `The theme is named without abstraction here: ${lowerFirst(source.shortMeaning)}.`,
-        ({ source }) => `The shabad widens the issue beyond mood alone. ${source.lifeApplication}`,
-        () => `${overviewCopy.centralInsight} The point is not to isolate advice from Gurbani, but to keep the line in charge of the page.`,
-      ][index]
-    )
-  ))
+  const overviewExcerpts = buildTopicExcerpts({
+    family,
+    candidateShabads,
+    scenarioKey: "overview",
+    explanationFactory: getOverviewExplanationFactory(family, overviewCopy),
+    manualExcerpts: goldSet?.overview?.excerpts ?? null,
+    shabadById,
+  })
 
   const scenarios = Object.fromEntries(
     TOPIC_SCENARIO_KEYS.map((scenarioKey) => ([
@@ -693,6 +1115,7 @@ function buildCanonicalTopicGuide({
         family,
         scenarioKey,
         scenarioShabadSets[scenarioKey],
+        shabadById,
         goldSet?.scenarios?.[scenarioKey] ?? null
       ),
     ]))
@@ -750,6 +1173,7 @@ function buildCanonicalTopicSeed(topicGuide) {
 }
 
 function buildCanonicalTopics(shabadDeepDives, legacyTopicGuides) {
+  const shabadById = new Map(shabadDeepDives.map(shabad => [shabad.id, shabad]))
   const canonicalSeedByTheme = new Map()
   for (const topicGuide of legacyTopicGuides) {
     const familyKey = topicGuide.id.replace(/^topic-/, "").split("-")[0]
@@ -777,6 +1201,7 @@ function buildCanonicalTopics(shabadDeepDives, legacyTopicGuides) {
       canonicalSeed: canonicalSeedByTheme.get(family.key) ?? null,
       candidateShabads,
       scenarioShabadSets,
+      shabadById,
     })
   })
 }
@@ -870,6 +1295,223 @@ function averageCrossLinks(dataset) {
     + dataset.collections.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length, 0)
 
   return crossLinks / totalItems
+}
+
+function buildShabadNarrativeCopy(shabad) {
+  const meaningfulLines = shabad.lines.filter(line => isMeaningfulExcerptText(line.translation))
+  const narrativeLines = meaningfulLines.length > 0 ? meaningfulLines : shabad.lines
+  const leadLine = narrativeLines.find(line => shabad.keyVerseIds.includes(line.verseId)) ?? narrativeLines[0]
+  const middleLine = narrativeLines[Math.floor(narrativeLines.length / 2)] ?? leadLine
+  const closingLine = narrativeLines[narrativeLines.length - 1] ?? leadLine
+  const openingMeaning = trimToSentence(summarizeLine(leadLine), 14)
+  const middleMeaning = trimToSentence(summarizeLine(middleLine), 14)
+  const closingMeaning = trimToSentence(summarizeLine(closingLine), 14)
+  const primaryFamily = getTopicFamily(shabad.themes[0] ?? "anxiety")
+
+  return {
+    title: buildTitleFromTranslation(leadLine?.translation ?? "", `${primaryFamily.shortTitle} In Gurbani`),
+    summary: `This shabad opens with ${lowerFirst(openingMeaning)}. It turns the heart toward ${lowerFirst(closingMeaning)}.`,
+    whyItMatters: `It matters when life feels ${joinNaturalList(shabad.emotionalStates)} because the shabad keeps ${primaryFamily.shortTitle.toLowerCase()} inside remembrance, conduct, and the Creator's larger care instead of private momentum.`,
+    takeaway: `Keep returning to this turn: ${closingMeaning}.`,
+    structure: [
+      `It opens by naming the condition without ornament: ${lowerFirst(openingMeaning)}.`,
+      `The middle movement widens the correction through ${lowerFirst(middleMeaning)}.`,
+      `It closes with a return you can actually keep: ${lowerFirst(closingMeaning)}.`,
+    ],
+  }
+}
+
+function normalizeLineReference(reference, deepDive, fallbackLifeApplication) {
+  const shortMeaning = publicTextNeedsCleanup(reference.shortMeaning)
+    ? summarizeVerseWindow(selectReferenceLines(deepDive, reference.verseIds))
+    : reference.shortMeaning
+  const shouldReplaceLifeApplication =
+    publicTextNeedsCleanup(reference.lifeApplication)
+    || /becomes more truthful when/i.test(reference.lifeApplication)
+    || /let the wider window set the tone/i.test(reference.lifeApplication)
+
+  return {
+    ...reference,
+    shortMeaning,
+    lifeApplication: shouldReplaceLifeApplication ? fallbackLifeApplication : reference.lifeApplication,
+  }
+}
+
+function normalizeGuidanceItem(guidance, shabadById) {
+  const deepDive = shabadById.get(guidance.source.deepDiveId)
+  if (!deepDive) return guidance
+
+  const referenceLines = selectReferenceLines(deepDive, guidance.source.verseIds)
+  const fallbackMeaning = summarizeVerseWindow(referenceLines)
+  const fallbackTitle = buildTitleFromTranslation(referenceLines[0]?.translation ?? "", guidance.title)
+
+  return {
+    ...guidance,
+    title: publicTextNeedsCleanup(guidance.title) ? fallbackTitle : guidance.title,
+    takeaway: publicTextNeedsCleanup(guidance.takeaway) ? fallbackMeaning : guidance.takeaway,
+    source: normalizeLineReference(guidance.source, deepDive, guidance.lifeApplication),
+  }
+}
+
+function normalizeExcerpt(excerpt, deepDive, family, scenarioKey, explanationFactory, index) {
+  const source = normalizeLineReference(
+    excerpt.source,
+    deepDive,
+    createTopicSourceLifeApplication(family, scenarioKey)
+  )
+  const needsExplanationRefresh =
+    publicTextNeedsCleanup(excerpt.explanation)
+    || excerpt.explanation.includes(excerpt.source.shortMeaning)
+    || excerpt.explanation.includes(excerpt.source.lifeApplication)
+
+  return {
+    source,
+    explanation: needsExplanationRefresh
+      ? explanationFactory[index % explanationFactory.length]({ source, deepDive, index })
+      : excerpt.explanation,
+  }
+}
+
+function normalizeTopicGuideItem(topic, shabadById) {
+  const family = getTopicFamily(topic.rotation.theme)
+  const overviewCopy = {
+    title: topic.title,
+    issueStatement: topic.issueStatement,
+    centralInsight: topic.centralInsight,
+    practicalReflection: topic.practicalReflection,
+    actionPrompt: topic.actionPrompt,
+    searchTerms: topic.searchTerms,
+  }
+  const overviewFactory = getOverviewExplanationFactory(family, overviewCopy)
+
+  const excerpts = topic.excerpts.map((excerpt, index) => {
+    const deepDive = shabadById.get(excerpt.source.deepDiveId)
+    return deepDive
+      ? normalizeExcerpt(excerpt, deepDive, family, "overview", overviewFactory, index)
+      : excerpt
+  })
+
+  const scenarios = Object.fromEntries(
+    topic.scenarioOrder.map((scenarioKey) => {
+      const scenario = topic.scenarios[scenarioKey]
+      const explanationFactory = getScenarioExplanationFactory(family, scenarioKey)
+      const normalizedExcerpts = scenario.excerpts.map((excerpt, index) => {
+        const deepDive = shabadById.get(excerpt.source.deepDiveId)
+        return deepDive
+          ? normalizeExcerpt(excerpt, deepDive, family, scenarioKey, explanationFactory, index)
+          : excerpt
+      })
+
+      return [
+        scenarioKey,
+        {
+          ...scenario,
+          excerpts: normalizedExcerpts,
+        },
+      ]
+    })
+  )
+
+  return {
+    ...topic,
+    excerpts,
+    scenarios,
+  }
+}
+
+function normalizeCollectionItem(collection, shabadById) {
+  const deepDive = shabadById.get(collection.heroSource.deepDiveId)
+  if (!deepDive) return collection
+  const family = getTopicFamily(collection.themes[0] ?? deepDive.themes?.[0] ?? "anxiety")
+
+  return {
+    ...collection,
+    heroSource: normalizeLineReference(collection.heroSource, deepDive, family.actionBase),
+  }
+}
+
+function applyGuidanceCopyOverrides(guidance) {
+  const override = GUIDANCE_COPY_OVERRIDES[guidance.id]
+  if (!override) return guidance
+
+  return {
+    ...guidance,
+    ...(override.title ? { title: override.title } : {}),
+    ...(override.summary ? { summary: override.summary } : {}),
+    ...(override.takeaway ? { takeaway: override.takeaway } : {}),
+    ...(override.lifeApplication ? { lifeApplication: override.lifeApplication } : {}),
+    source: {
+      ...guidance.source,
+      ...(override.source ?? {}),
+    },
+    editorial: {
+      ...(guidance.editorial ?? {}),
+      forcedLocked: true,
+    },
+  }
+}
+
+function applyCollectionCopyOverrides(collection) {
+  const override = COLLECTION_COPY_OVERRIDES[collection.id]
+  if (!override) return collection
+
+  return {
+    ...collection,
+    ...override,
+    editorial: {
+      ...(collection.editorial ?? {}),
+      forcedLocked: true,
+    },
+  }
+}
+
+function applyShabadCopyOverrides(shabad) {
+  const override = SHABAD_COPY_OVERRIDES[shabad.id]
+  if (!override) return shabad
+
+  return {
+    ...shabad,
+    ...override,
+    editorial: {
+      ...(shabad.editorial ?? {}),
+      forcedLocked: true,
+    },
+  }
+}
+
+function normalizePublishedCopy(dataset) {
+  dataset.shabadDeepDives = dataset.shabadDeepDives.map((shabad) => {
+    const refreshed = buildShabadNarrativeCopy(shabad)
+    return {
+      ...shabad,
+      title: publicTextNeedsCleanup(shabad.title) ? refreshed.title : shabad.title,
+      summary:
+        publicTextNeedsCleanup(shabad.summary) || /\bis carried here from\b/i.test(shabad.summary)
+          ? refreshed.summary
+          : shabad.summary,
+      whyItMatters:
+        /instead of private mood/i.test(shabad.whyItMatters)
+          ? refreshed.whyItMatters
+          : shabad.whyItMatters,
+      takeaway:
+        publicTextNeedsCleanup(shabad.takeaway) || /\bsteadies when\b/i.test(shabad.takeaway)
+          ? refreshed.takeaway
+          : shabad.takeaway,
+      structure:
+        shabad.structure.some(line => /opening movement names the pressure directly/i.test(line))
+          ? refreshed.structure
+          : shabad.structure,
+    }
+  }).map(applyShabadCopyOverrides)
+
+  const shabadById = new Map(dataset.shabadDeepDives.map(item => [item.id, item]))
+  dataset.dailyGuidance = dataset.dailyGuidance
+    .map(item => normalizeGuidanceItem(item, shabadById))
+    .map(applyGuidanceCopyOverrides)
+  dataset.topicGuides = dataset.topicGuides.map(item => normalizeTopicGuideItem(item, shabadById))
+  dataset.collections = dataset.collections
+    .map(item => normalizeCollectionItem(item, shabadById))
+    .map(applyCollectionCopyOverrides)
 }
 
 function buildSearchIndex(topicGuides) {
@@ -1267,6 +1909,7 @@ export async function generateDrafts() {
     collections: collections.slice(0, 100),
   }
 
+  normalizePublishedCopy(dataset)
   Object.assign(dataset, buildDatasetIndexes(dataset))
   wireRelationships(dataset)
   dataset.searchIndex = buildSearchIndex(dataset.topicGuides)
@@ -1372,6 +2015,12 @@ function collectDuplicateIds(items) {
   return Array.from(seen.entries()).filter(([, count]) => count > 1).map(([id]) => id)
 }
 
+function addPublicTextValidation(hardFailures, label, value) {
+  if (publicTextNeedsCleanup(value)) {
+    hardFailures.push(`${label} still contains structural heading text or unusable copy`)
+  }
+}
+
 export async function validateDrafts(drafts = null) {
   const dataset = drafts ?? await generateDrafts()
   const hardFailures = []
@@ -1397,6 +2046,9 @@ export async function validateDrafts(drafts = null) {
       hardFailures.push(`Duplicate shabad coverage found for shabad_id ${shabad.citation.shabad_id}`)
     }
     shabadIds.add(shabad.citation.shabad_id)
+    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} title`, shabad.title)
+    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} summary`, shabad.summary)
+    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} takeaway`, shabad.takeaway)
   }
 
   const guidanceKeys = new Set()
@@ -1406,6 +2058,9 @@ export async function validateDrafts(drafts = null) {
       hardFailures.push(`Duplicate daily guidance window detected for ${guidance.id}`)
     }
     guidanceKeys.add(key)
+    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} title`, guidance.title)
+    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} takeaway`, guidance.takeaway)
+    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} excerpt meaning`, guidance.source.shortMeaning)
   }
 
   const topicFamilies = new Set()
@@ -1437,9 +2092,17 @@ export async function validateDrafts(drafts = null) {
   }
 
   for (const topic of dataset.topicGuides) {
+    addPublicTextValidation(hardFailures, `Topic ${topic.id} title`, topic.title)
     const shabadCount = new Set(topic.excerpts.map(excerpt => excerpt.source.deepDiveId)).size
     if (topic.excerpts.length < 3 || shabadCount < 2) {
       hardFailures.push(`Topic ${topic.id} does not have at least 3 excerpts from 2 shabads`)
+    }
+    for (const [excerptIndex, excerpt] of topic.excerpts.entries()) {
+      addPublicTextValidation(
+        hardFailures,
+        `Topic ${topic.id} overview excerpt ${excerptIndex + 1} meaning`,
+        excerpt.source.shortMeaning
+      )
     }
 
     if (!topic.editorial) {
@@ -1473,6 +2136,14 @@ export async function validateDrafts(drafts = null) {
       const scenarioShabadCount = new Set(scenario.excerpts.map(excerpt => excerpt.source.deepDiveId)).size
       if (scenario.excerpts.length < 3 || scenarioShabadCount < 2) {
         hardFailures.push(`Scenario ${topic.id}#${scenarioKey} does not have at least 3 excerpts from 2 shabads`)
+      }
+      addPublicTextValidation(hardFailures, `Scenario ${topic.id}#${scenarioKey} title`, scenario.title)
+      for (const [excerptIndex, excerpt] of scenario.excerpts.entries()) {
+        addPublicTextValidation(
+          hardFailures,
+          `Scenario ${topic.id}#${scenarioKey} excerpt ${excerptIndex + 1} meaning`,
+          excerpt.source.shortMeaning
+        )
       }
 
       const firstExcerptKey = scenario.excerpts[0]
@@ -1542,6 +2213,8 @@ export async function validateDrafts(drafts = null) {
     if (!collection.heroSource?.deepDiveId) {
       hardFailures.push(`Collection ${collection.id} is missing a hero source`)
     }
+    addPublicTextValidation(hardFailures, `Collection ${collection.id} title`, collection.title)
+    addPublicTextValidation(hardFailures, `Collection ${collection.id} hero meaning`, collection.heroSource.shortMeaning)
     if (collection.items.length < 2 || collection.items.length > 7) {
       hardFailures.push(`Collection ${collection.id} has invalid length ${collection.items.length}`)
     }

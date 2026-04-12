@@ -2,7 +2,7 @@
   "id": "guidance-generated-1-3",
   "title": "It Is Written That You Shall Obey",
   "summary": "The shabad does not leave anger at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, it is written that you shall obey the Hukam of His Command,",
+  "takeaway": "O Nanak, it is written that you shall obey the Hukam of His Command",
   "lifeApplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
   "source": {
     "deepDiveId": "shabad-generated-1",
@@ -10,8 +10,8 @@
       8,
       10
     ],
-    "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -40,24 +40,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
+      "coreClaim": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,.",
+      "turn": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
       "practicalImplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.27,
-      "clarity": 3.93,
+      "faithfulness": 4.16,
+      "clarity": 3.81,
       "specificity": 5,
       "emotionalHonesty": 3.18,
       "usefulness": 4.26,
-      "beauty": 3.9,
-      "overall": 4.11
+      "beauty": 3.82,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

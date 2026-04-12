@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-818",
-  "title": "Loneliness In Gurbani",
+  "title": "When The Righteous Judge Of Dharma Begins",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Loneliness is carried here from  toward o Nanak, those who join the Saadh Sangat and meditate on the Lord are.",
-  "whyItMatters": "This shabad is useful when life feels alone, unseen, disconnected, because it keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Loneliness steadies when o Nanak, those who join the Saadh Sangat and meditate on the Lord are.",
+  "summary": "This shabad opens with when the Righteous Judge of Dharma begins to destroy someone, no one can place any obstacle in His Way. It turns the heart toward o Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
+  "whyItMatters": "It matters when life feels alone, unseen, and disconnected because the shabad keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
   "themes": [
     "loneliness",
     "restlessness",
@@ -56,12 +56,11 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside when the Righteous Judge of Dharma begins to destroy someone, no one can place.",
-    "The closing movement leaves a return you can actually keep: o Nanak, those who join the Saadh Sangat and meditate on the Lord are."
+    "It opens by naming the condition without ornament: when the Righteous Judge of Dharma begins to destroy someone, no one can place any obstacle in His Way.",
+    "The middle movement widens the correction through o Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
+    "It closes with a return you can actually keep: o Nanak, those who join the Saadh Sangat and meditate on the Lord are saved."
   ],
   "keyVerseIds": [
-    11176,
     11177,
     11178
   ],
@@ -91,25 +90,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Loneliness is carried here from  toward o Nanak, those who join the Saadh Sangat and meditate on the Lord are.",
+      "coreClaim": "This shabad opens with when the Righteous Judge of Dharma begins to destroy someone, no one can place any obstacle in His Way. It turns the heart toward o Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle movement deepens the correction by holding the mind inside when the Righteous Judge of Dharma begins to destroy someone, no one can place.",
-      "practicalImplication": "Loneliness steadies when o Nanak, those who join the Saadh Sangat and meditate on the Lord are.",
+      "turn": "The middle movement widens the correction through o Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, those who join the Saadh Sangat and meditate on the Lord are saved.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.31,
-      "specificity": 5,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.66,
-      "beauty": 3.99,
-      "overall": 4.08
+      "clarity": 1.47,
+      "specificity": 4.55,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.38,
+      "beauty": 3.08,
+      "overall": 3.53
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

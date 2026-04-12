@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-and-belonging",
   "title": "Sangat and Belonging",
-  "subtitle": "A return to the company that helps the heart breathe",
-  "description": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+  "subtitle": "A return to company that helps the heart breathe",
+  "description": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
   "durationLabel": "6-day journey",
   "themes": [
     "sangat",
@@ -57,24 +57,24 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+      "coreClaim": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A return to the company that helps the heart breathe",
+      "turn": "A return to company that helps the heart breathe",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
-      "clarity": 1.95,
-      "specificity": 4.05,
-      "emotionalHonesty": 3.36,
+      "faithfulness": 3.8,
+      "clarity": 2.55,
+      "specificity": 4.03,
+      "emotionalHonesty": 3.18,
       "usefulness": 3.38,
       "beauty": 4.37,
-      "overall": 3.52
+      "overall": 3.58
     },
     "strengths": [
       "beauty",

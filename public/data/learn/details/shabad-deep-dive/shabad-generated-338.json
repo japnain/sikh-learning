@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-338",
-  "title": "People Die Over And Over Again; They",
+  "title": "In All Colors And Forms, You",
   "subtitle": "Raag Maajh · Ang 120",
-  "summary": "Comparison is carried here from people die over and over again; they are re-born, and make their rounds on toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;.",
-  "whyItMatters": "This shabad is useful when life feels envious, unsettled, small, because it keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;.",
+  "summary": "This shabad opens with in all colors and forms, You are pervading. It turns the heart toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
+  "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
   "themes": [
     "comparison",
     "mercy",
@@ -224,14 +224,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: people die over and over again; they are re-born, and make their rounds on.",
-    "The middle movement deepens the correction by holding the mind inside those who subdue their egotism, come to know the three worlds.",
-    "The closing movement leaves a return you can actually keep: o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;."
+    "It opens by naming the condition without ornament: in all colors and forms, You are pervading.",
+    "The middle movement widens the correction through then, they die, never to die again. They are intuitively absorbed in the True One.",
+    "It closes with a return you can actually keep: o Nanak, those who are attuned to the Naam, reflect deeply on the Truth."
   ],
   "keyVerseIds": [
+    4875,
     4876,
     4885,
-    4889,
     4900
   ],
   "relatedGuidanceIds": [
@@ -263,27 +263,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Comparison is carried here from people die over and over again; they are re-born, and make their rounds on toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;.",
+      "coreClaim": "This shabad opens with in all colors and forms, You are pervading. It turns the heart toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle movement deepens the correction by holding the mind inside those who subdue their egotism, come to know the three worlds.",
-      "practicalImplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;.",
+      "turn": "The middle movement widens the correction through then, they die, never to die again. They are intuitively absorbed in the True One.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.56,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.22,
-      "beauty": 3.56,
-      "overall": 3.65
+      "clarity": 3.45,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.38,
+      "beauty": 3.82,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

@@ -2,9 +2,9 @@
   "id": "shabad-generated-231",
   "title": "He Is A Brave Warrior, Who Conquers",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "Ego is carried here from o Nanak, he is a brave warrior, who conquers and subdues his vicious inner toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
-  "whyItMatters": "This shabad is useful when life feels inflated, defensive, self-protective, because it keeps ego inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+  "summary": "This shabad opens with o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego. It turns the heart toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
   "themes": [
     "ego",
     "anger",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: o Nanak, he is a brave warrior, who conquers and subdues his vicious inner.",
-    "The middle movement deepens the correction by holding the mind inside those who love the Naam look beauteous at the Gate of Truth.",
-    "The closing movement leaves a return you can actually keep: o Nanak, without the Name, everything is painful, and happiness is forgotten."
+    "It opens by naming the condition without ornament: o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego.",
+    "The middle movement widens the correction through the self-willed manmukhs die in egotism-even their death is painfully ugly.",
+    "It closes with a return you can actually keep: o Nanak, without the Name, everything is painful, and happiness is forgotten."
   ],
   "keyVerseIds": [
     3458,
@@ -138,27 +138,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Ego is carried here from o Nanak, he is a brave warrior, who conquers and subdues his vicious inner toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "coreClaim": "This shabad opens with o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego. It turns the heart toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement deepens the correction by holding the mind inside those who love the Naam look beauteous at the Gate of Truth.",
-      "practicalImplication": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "turn": "The middle movement widens the correction through the self-willed manmukhs die in egotism-even their death is painfully ugly.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 3.73,
-      "overall": 3.82
+      "clarity": 2.47,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.76,
+      "beauty": 3.49,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

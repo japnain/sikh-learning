@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-65",
-  "title": "Siree Raag, First Mehla:",
+  "title": "As Metal Merges With Metal",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "Comparison is carried here from siree Raag, First Mehla: toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires.",
-  "whyItMatters": "This shabad is useful when life feels envious, unsettled, small, because it keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires.",
+  "summary": "This shabad opens with as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord. It turns the heart toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
+  "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
   "themes": [
     "comparison",
     "self-worth",
@@ -140,12 +140,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, First Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside by true actions, this human body is obtained, and the door within ourselves which.",
-    "The closing movement leaves a return you can actually keep: o Nanak, I am forever a sacrifice to the one who beholds, and inspires."
+    "It opens by naming the condition without ornament: as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord.",
+    "The middle movement widens the correction through the Gurmukhs train their minds to contemplate the Lord, the Supreme Soul.",
+    "It closes with a return you can actually keep: o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him."
   ],
   "keyVerseIds": [
-    758,
+    759,
     760,
     765,
     772
@@ -180,25 +180,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Comparison is carried here from siree Raag, First Mehla: toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires.",
+      "coreClaim": "This shabad opens with as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord. It turns the heart toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle movement deepens the correction by holding the mind inside by true actions, this human body is obtained, and the door within ourselves which.",
-      "practicalImplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires.",
+      "turn": "The middle movement widens the correction through the Gurmukhs train their minds to contemplate the Lord, the Supreme Soul.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.01,
-      "specificity": 4.96,
+      "clarity": 1.42,
+      "specificity": 4.75,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.44,
-      "beauty": 3.95,
-      "overall": 3.99
+      "usefulness": 3.6,
+      "beauty": 3.3,
+      "overall": 3.65
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }
