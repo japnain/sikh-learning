@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-337",
-  "title": "Maajh, Third Mehla:",
+  "title": "Those Who Meditate On The True One",
   "subtitle": "Raag Maajh · Ang 119",
-  "summary": "Self-Worth is carried here from maajh, Third Mehla: toward o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
-  "whyItMatters": "This shabad is useful when life feels unworthy, rejected, fragile, because it keeps self-worth inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+  "summary": "This shabad opens with those who meditate on the True One are attuned to Truth. It turns the heart toward o Nanak, the One Name is pervading deep within my mind.",
+  "whyItMatters": "It matters when life feels unworthy, rejected, and fragile because the shabad keeps self-worth inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, the One Name is pervading deep within my mind.",
   "themes": [
     "self-worth",
     "comparison",
@@ -224,15 +224,15 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: maajh, Third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside through the Shabad, I have burned my emotional attachment to Maya.",
-    "The closing movement leaves a return you can actually keep: o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,."
+    "It opens by naming the condition without ornament: those who meditate on the True One are attuned to Truth.",
+    "The middle movement widens the correction through i gaze upon the Truest of the True, and I praise Him. Through.",
+    "It closes with a return you can actually keep: o Nanak, the One Name is pervading deep within my mind."
   ],
   "keyVerseIds": [
-    4847,
     4852,
     4859,
-    4865
+    4865,
+    4871
   ],
   "relatedGuidanceIds": [
     "guidance-generated-337-1",
@@ -263,20 +263,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Self-Worth is carried here from maajh, Third Mehla: toward o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+      "coreClaim": "This shabad opens with those who meditate on the True One are attuned to Truth. It turns the heart toward o Nanak, the One Name is pervading deep within my mind.",
       "emotionalState": "unworthy, rejected, fragile",
-      "turn": "The middle movement deepens the correction by holding the mind inside through the Shabad, I have burned my emotional attachment to Maya.",
-      "practicalImplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+      "turn": "The middle movement widens the correction through i gaze upon the Truest of the True, and I praise Him. Through.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, the One Name is pervading deep within my mind.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.83,
-      "specificity": 5,
+      "clarity": 3.33,
+      "specificity": 4.96,
       "emotionalHonesty": 3.9,
-      "usefulness": 4.04,
-      "beauty": 3.81,
-      "overall": 4.04
+      "usefulness": 4.2,
+      "beauty": 3.91,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",

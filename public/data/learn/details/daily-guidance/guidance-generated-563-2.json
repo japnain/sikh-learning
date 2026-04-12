@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-563-2",
-  "title": "Whose Mother Is This? Whose Father Is",
+  "title": "Why Are You Screaming And Shouting, You",
   "summary": "Doubt is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Gauree, Fifth Mehla:; whose mother is this? Whose father is this?",
+  "takeaway": "Why are you screaming and shouting, you fool",
   "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-563",
     "verseIds": [
-      7957,
-      7958
+      7958,
+      7960
     ],
-    "shortMeaning": "Gauree, Fifth Mehla:; whose mother is this? Whose father is this?",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "Why are you screaming and shouting, you fool",
+    "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -40,20 +40,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Gauree, Fifth Mehla:; whose mother is this? Whose father is this?",
+      "coreClaim": "Why are you screaming and shouting, you fool",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "Doubt steadies when i am liberated, and my doubts have been dispelled.",
+      "turn": "Keep returning to this turn: I am liberated, and my doubts have been dispelled.",
       "practicalImplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.88,
-      "clarity": 3.87,
-      "specificity": 4.65,
+      "faithfulness": 3.65,
+      "clarity": 4.05,
+      "specificity": 4.43,
       "emotionalHonesty": 3.36,
       "usefulness": 4.42,
-      "beauty": 3.83,
-      "overall": 3.99
+      "beauty": 4.01,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",

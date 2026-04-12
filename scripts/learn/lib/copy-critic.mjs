@@ -50,7 +50,7 @@ function buildAssessment({
   ) {
     status = "draft"
   } else if (
-    lockedByDefault
+    (lockedByDefault || origin === "manual")
     && reviewed.scores.overall >= 3.8
     && reviewed.scores.faithfulness >= 3.7
     && reviewed.scores.clarity >= 3.2

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-151",
-  "title": "Siree Raag, Fifth Mehla, First House:",
+  "title": "Meeting With The Humble Beings, O Siblings",
   "subtitle": "Siree Raag · Ang 52",
-  "summary": "Anger is carried here from siree Raag, Fifth Mehla, First House: toward nanak lives by chanting and meditating on the One, who is pervading within and.",
-  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and.",
+  "summary": "This shabad opens with meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered. It turns the heart toward nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
+  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
   "themes": [
     "anger",
     "ego",
@@ -140,12 +140,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, Fifth Mehla, First House:.",
-    "The middle movement deepens the correction by holding the mind inside those who have the Treasure of the Naam within emancipate others as well as.",
-    "The closing movement leaves a return you can actually keep: nanak lives by chanting and meditating on the One, who is pervading within and."
+    "It opens by naming the condition without ornament: meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered.",
+    "The middle movement widens the correction through there is no other Giver as great as the Guru, who has given the gift of the soul.",
+    "It closes with a return you can actually keep: nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all."
   ],
   "keyVerseIds": [
-    2098,
+    2099,
     2100,
     2104,
     2108
@@ -180,25 +180,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anger is carried here from siree Raag, Fifth Mehla, First House: toward nanak lives by chanting and meditating on the One, who is pervading within and.",
+      "coreClaim": "This shabad opens with meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered. It turns the heart toward nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement deepens the correction by holding the mind inside those who have the Treasure of the Naam within emancipate others as well as.",
-      "practicalImplication": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and.",
+      "turn": "The middle movement widens the correction through there is no other Giver as great as the Guru, who has given the gift of the soul.",
+      "practicalImplication": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.57,
-      "specificity": 4.96,
-      "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 3.75,
-      "overall": 3.91
+      "clarity": 1.5,
+      "specificity": 4.77,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.6,
+      "beauty": 3.17,
+      "overall": 3.64
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

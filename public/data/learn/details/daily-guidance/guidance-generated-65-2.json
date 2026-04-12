@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-65-2",
-  "title": "Like The Poppies, They Are Dyed In",
+  "title": "Hold Comparison Under Pressure",
   "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
+  "takeaway": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
   "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-65",
     "verseIds": [
-      758,
+      759,
       760
     ],
-    "shortMeaning": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
+    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
+      "coreClaim": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires.",
+      "turn": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
       "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 3.28,
+      "faithfulness": 3.89,
+      "clarity": 1.05,
       "specificity": 5,
       "emotionalHonesty": 3.54,
       "usefulness": 4.86,
-      "beauty": 3.48,
-      "overall": 4.02
+      "beauty": 3.38,
+      "overall": 3.65
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

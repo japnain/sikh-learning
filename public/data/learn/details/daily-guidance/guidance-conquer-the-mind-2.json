@@ -1,17 +1,17 @@
 {
   "id": "guidance-conquer-the-mind-2",
-  "title": "See The Brotherhood Of All Mankind As",
-  "summary": "Discipline is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
-  "lifeApplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+  "title": "Contentment makes discipline visible",
+  "summary": "Discipline becomes credible when humility, meditation, and contentment begin shaping the body before pressure does.",
+  "takeaway": "Contentment, humility, and meditation mark the disciplined life more truly than image or strain.",
+  "lifeApplication": "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
   "source": {
     "deepDiveId": "shabad-conquer-the-mind",
     "verseIds": [
       290,
       292
     ],
-    "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
+    "lifeApplication": "Keep the next repetition plain enough that humility and contentment can remain inside it."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -35,29 +35,29 @@
     "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "approved",
-    "origin": "generated",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
+      "coreClaim": "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
       "emotionalState": "reactive, performing, scattered",
       "turn": "The hardest field is the inner field. Win there first.",
-      "practicalImplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+      "practicalImplication": "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 2.13,
-      "specificity": 4.98,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
-      "beauty": 3.01,
-      "overall": 3.65
+      "faithfulness": 4.02,
+      "clarity": 3.99,
+      "specificity": 4.59,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 3.8,
+      "overall": 3.94
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
     "issues": []
   }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-230-1",
-  "title": "Begin with Purpose",
+  "title": "It, The Gurmukh Is Honored And Approved",
   "summary": "Purpose is named plainly here before the mind has time to decorate it.",
-  "takeaway": "",
+  "takeaway": "through it, the Gurmukh is honored and approved",
   "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-generated-230",
     "verseIds": [
-      3451
+      3452
     ],
-    "shortMeaning": "",
-    "lifeApplication": "Purpose becomes more truthful when ."
+    "shortMeaning": "through it, the Gurmukh is honored and approved",
+    "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -39,27 +39,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "",
+      "coreClaim": "through it, the Gurmukh is honored and approved",
       "emotionalState": "directionless, numb, adrift",
-      "turn": "Purpose steadies when o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "turn": "Keep returning to this turn: O Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
       "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.62,
-      "clarity": 4.35,
-      "specificity": 4.4,
+      "faithfulness": 3.61,
+      "clarity": 4.11,
+      "specificity": 4.39,
       "emotionalHonesty": 3.36,
       "usefulness": 4.42,
-      "beauty": 4.05,
-      "overall": 3.99
+      "beauty": 3.89,
+      "overall": 3.93
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": [
-      "is missing explicit SGGS-grounded evidence"
-    ]
+    "issues": []
   }
 }

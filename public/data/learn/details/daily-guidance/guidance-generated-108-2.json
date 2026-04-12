@@ -2,16 +2,16 @@
   "id": "guidance-generated-108-2",
   "title": "Night And Day, One Who Is Attuned",
   "summary": "Anger is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Siree Raag, Third Mehla:; night and day, one who is attuned to the Name of the",
+  "takeaway": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
   "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-108",
     "verseIds": [
-      1429,
+      1430,
       1431
     ],
-    "shortMeaning": "Siree Raag, Third Mehla:; night and day, one who is attuned to the Name of the",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
+    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Siree Raag, Third Mehla:; night and day, one who is attuned to the Name of the",
+      "coreClaim": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the.",
+      "turn": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
       "practicalImplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.83,
-      "clarity": 3.6,
-      "specificity": 4.78,
+      "faithfulness": 3.84,
+      "clarity": 1.72,
+      "specificity": 4.74,
       "emotionalHonesty": 3.36,
       "usefulness": 4.26,
-      "beauty": 3.54,
-      "overall": 3.89
+      "beauty": 3.12,
+      "overall": 3.54
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

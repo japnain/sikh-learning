@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-229",
-  "title": "Anger In Gurbani",
+  "title": "Those Who Serve The True Guru Obtain",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "Anger is carried here from third Mehla: toward o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
-  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anger steadies when o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
+  "summary": "This shabad opens with those who serve the True Guru obtain the Name. Reflect on this and understand. It turns the heart toward o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
+  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
   "themes": [
     "anger",
     "discipline",
@@ -70,13 +70,13 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside eternal peace and joy abide in their minds; they abandon their cries and complaints.",
-    "The closing movement leaves a return you can actually keep: o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord."
+    "It opens by naming the condition without ornament: those who serve the True Guru obtain the Name. Reflect on this and understand.",
+    "The middle movement widens the correction through their identity consumes their identical identity, and their minds become pure by contemplating the Word of the Guru's Shabad.",
+    "It closes with a return you can actually keep: o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord."
   ],
   "keyVerseIds": [
-    3446,
     3447,
+    3448,
     3449,
     3450
   ],
@@ -109,20 +109,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anger is carried here from third Mehla: toward o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
+      "coreClaim": "This shabad opens with those who serve the True Guru obtain the Name. Reflect on this and understand. It turns the heart toward o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement deepens the correction by holding the mind inside eternal peace and joy abide in their minds; they abandon their cries and complaints.",
-      "practicalImplication": "Anger steadies when o Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
+      "turn": "The middle movement widens the correction through their identity consumes their identical identity, and their minds become pure by contemplating the Word of the Guru's Shabad.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
-      "specificity": 4.78,
+      "clarity": 2.97,
+      "specificity": 4.59,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.89,
-      "overall": 4.04
+      "usefulness": 3.38,
+      "beauty": 3.28,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",

@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-to-humility",
   "title": "From Ego to Humility",
-  "subtitle": "A study path for self-importance and reactivity",
-  "description": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+  "subtitle": "A path out of self-importance",
+  "description": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
   "durationLabel": "5-day journey",
   "themes": [
     "ego",
@@ -51,32 +51,30 @@
     "shabad-speak-what-brings-honor"
   ],
   "editorial": {
-    "status": "approved",
-    "origin": "legacy",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+      "coreClaim": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "A study path for self-importance and reactivity",
+      "turn": "A path out of self-importance",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.66,
-      "clarity": 2.55,
-      "specificity": 3.9,
+      "faithfulness": 3.76,
+      "clarity": 4.35,
+      "specificity": 4,
       "emotionalHonesty": 3.36,
       "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.5
+      "beauty": 4.53,
+      "overall": 3.88
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

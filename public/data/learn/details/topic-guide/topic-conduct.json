@@ -3,10 +3,10 @@
   "title": "When life and practice do not match",
   "shortTitle": "Conduct",
   "category": "practice",
-  "issueStatement": "Your declared values and your repeated habits no longer feel like the same life.",
-  "centralInsight": "Pure conduct in Gurbani is not image management. It is what happens when Naam, Sangat, labor, and speech start agreeing with one another.",
-  "practicalReflection": "Conduct is where admiration either becomes form or becomes obedience.",
-  "actionPrompt": "Choose one practice today that closes the gap between what you say matters and what you actually do.",
+  "issueStatement": "What you admire in theory is not yet visible in the habits that keep repeating when no one is watching.",
+  "centralInsight": "Pure conduct in Gurbani is not moral image. It is what appears when Naam, speech, labor, and hidden motive begin agreeing with each other.",
+  "practicalReflection": "The fracture hurts because the soul knows the difference between being moved by truth and being reshaped by it.",
+  "actionPrompt": "Choose one practice today that closes the gap between what you praise and what you permit in your ordinary life.",
   "searchTerms": [
     "conduct",
     "practice",
@@ -14,15 +14,21 @@
     "hypocrisy",
     "pure conduct",
     "integrity",
-    "conduct in the ordinary day",
+    "habits",
+    "alignment",
+    "practice and life",
+    "conduct in the unnoticed hours",
     "conduct daily",
-    "today",
-    "daily",
-    "ordinary day",
-    "routine",
-    "conduct today",
-    "conduct ordinary day",
-    "conduct routine",
+    "private life",
+    "unnoticed hours",
+    "daily conduct",
+    "hidden habits",
+    "ordinary integrity",
+    "conduct private life",
+    "conduct unnoticed hours",
+    "conduct daily conduct",
+    "conduct hidden habits",
+    "conduct ordinary integrity",
     "conduct when the day tightens",
     "conduct under pressure",
     "pressure",
@@ -42,50 +48,58 @@
     "conduct return",
     "conduct after slipping",
     "conduct start again",
-    "building a truer practice of conduct",
+    "training conduct until speech and life agree",
     "conduct steady practice",
-    "habit",
-    "steady return",
-    "formation",
     "conduct practice",
-    "conduct habit",
-    "conduct steady return",
-    "conduct formation"
+    "integrity habit",
+    "repeatable discipline",
+    "speech and life",
+    "steady conduct",
+    "conduct conduct practice",
+    "conduct integrity habit",
+    "conduct repeatable discipline",
+    "conduct speech and life",
+    "conduct steady conduct"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-generated-937",
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
         "verseIds": [
-          12112
+          11743,
+          11747,
+          11748
         ],
-        "shortMeaning": "The God-conscious being is the dust of all",
-        "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
+        "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: the God-conscious being is the dust of all."
+      "explanation": "The shabad names the theme directly. Conduct becomes pure when remembrance, speech, and daily life stop contradicting one another."
     },
     {
       "source": {
-        "deepDiveId": "shabad-hukam-inside-everything",
+        "deepDiveId": "shabad-work-give-know-the-path",
         "verseIds": [
-          11,
-          15
+          53369,
+          53371,
+          53372
         ],
-        "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
-        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
+        "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+      "explanation": "This line protects conduct from spiritual theatre. Right living is recognized in honest work and giving, not in the performance of seriousness."
     },
     {
       "source": {
-        "deepDiveId": "shabad-conquer-the-mind",
+        "deepDiveId": "shabad-selfless-service",
         "verseIds": [
-          292
+          12942,
+          12943,
+          12947
         ],
-        "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
-        "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "is to obey the Guru's Commands with all his mind; he is not to call attention to himself in any way",
+        "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line stay in charge of what comes next."
       },
-      "explanation": "Pure conduct in Gurbani is not image management. It is what happens when Naam, Sangat, labor, and speech start agreeing with one another. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "Conduct is tested most truthfully in obedience and motive. Service without reward exposes whether the life is actually being shaped by the Guru or merely decorated with language."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -99,26 +113,29 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Conduct in the ordinary day",
-      "issueStatement": "The language of devotion can get ahead of the life carrying it. The struggle keeps showing up in plain time, not only in dramatic moments.",
-      "centralInsight": "Guru measures religion by clean conduct, not impressive performance. Gurbani treats the ordinary day as a real place of return.",
-      "practicalReflection": "The daily shape of life exposes whether conduct is being remembered or postponed.",
-      "actionPrompt": "Ask whether your next action can bear the words your mouth is using. Keep the next response small enough to survive an ordinary day.",
+      "title": "Conduct in the unnoticed hours",
+      "issueStatement": "The split rarely begins in public. It begins in the small permissions you give yourself when no one is around to hear the words you admire.",
+      "centralInsight": "Gurbani measures truth in habits, not devotional vocabulary. The ordinary day shows whether remembrance has entered behavior or stayed at the level of preference.",
+      "practicalReflection": "What you do casually is already forming a way of life. Conduct becomes holy when the hidden hour is no longer exempt from the truth you praise aloud.",
+      "actionPrompt": "Choose one hidden action today that your spoken values would not be ashamed to stand beside.",
       "searchTerms": [
         "conduct",
         "practice",
         "lifestyle",
         "hypocrisy",
         "pure conduct",
-        "conduct in the ordinary day",
+        "conduct in the unnoticed hours",
         "conduct daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "conduct today",
-        "conduct ordinary day",
-        "conduct routine"
+        "private life",
+        "unnoticed hours",
+        "daily conduct",
+        "hidden habits",
+        "ordinary integrity",
+        "conduct private life",
+        "conduct unnoticed hours",
+        "conduct daily conduct",
+        "conduct hidden habits",
+        "conduct ordinary integrity"
       ],
       "excerpts": [
         {
@@ -128,9 +145,9 @@
               12112
             ],
             "shortMeaning": "The God-conscious being is the dust of all",
-            "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: the God-conscious being is the dust of all."
+          "explanation": "Ordinary life is already being addressed here: the God-conscious being is the dust of all."
         },
         {
           "source": {
@@ -139,10 +156,10 @@
               11,
               15
             ],
-            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
-            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "no one is beyond His Command",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Ask whether your next action can bear the words your mouth is using. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -150,32 +167,32 @@
             "verseIds": [
               292
             ],
-            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
-            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when see the brotherhood of all mankind as the highest order of Yogis;."
+          "explanation": "This makes daily faithfulness concrete: see the brotherhood of all mankind as the highest order of Yogis."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-conduct:daily",
         "evidence": {
-          "coreClaim": "Guru measures religion by clean conduct, not impressive performance. Gurbani treats the ordinary day as a real place of return.",
+          "coreClaim": "Gurbani measures truth in habits, not devotional vocabulary. The ordinary day shows whether remembrance has entered behavior or stayed at the level of preference.",
           "emotionalState": "hard, sharp, protective",
-          "turn": "The language of devotion can get ahead of the life carrying it. The struggle keeps showing up in plain time, not only in dramatic moments.",
-          "practicalImplication": "Ask whether your next action can bear the words your mouth is using. Keep the next response small enough to survive an ordinary day.",
+          "turn": "The split rarely begins in public. It begins in the small permissions you give yourself when no one is around to hear the words you admire.",
+          "practicalImplication": "Choose one hidden action today that your spoken values would not be ashamed to stand beside.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
-          "usefulness": 3.66,
-          "beauty": 4.21,
-          "overall": 4.19
+          "emotionalHonesty": 3.18,
+          "usefulness": 4.04,
+          "beauty": 4.37,
+          "overall": 4.24
         },
         "strengths": [
           "specificity",
@@ -217,10 +234,10 @@
               11,
               15
             ],
-            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
-            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "no one is beyond His Command",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: by His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command."
+          "explanation": "Under strain, the line stays exact: no one is beyond His Command."
         },
         {
           "source": {
@@ -229,10 +246,10 @@
               527,
               529
             ],
-            "shortMeaning": "Join the Saadh Sangat, the Company of the Holy; vibrate and meditate; you are squandering this life uselessly in the love of Maya",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "You are squandering this life uselessly in the love of Maya; vibrate and meditate on the Jewel of the Naam",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Ask whether your next action can bear the words your mouth is using. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
@@ -241,9 +258,9 @@
               12946
             ],
             "shortMeaning": "that humble servant's affairs are resolved",
-            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -260,12 +277,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.69,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.36,
           "usefulness": 4.48,
-          "beauty": 4.05,
-          "overall": 4.31
+          "beauty": 3.59,
+          "overall": 4.12
         },
         "strengths": [
           "specificity",
@@ -305,21 +322,21 @@
             "verseIds": [
               292
             ],
-            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
-            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: see the brotherhood of all mankind as the highest order of Yogis;."
+          "explanation": "Return is still being offered here: see the brotherhood of all mankind as the highest order of Yogis."
         },
         {
           "source": {
             "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
-              528
+              529
             ],
-            "shortMeaning": "Make every effort to cross over this terrifying world-ocean",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "You are squandering this life uselessly in the love of Maya",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Ask whether your next action can bear the words your mouth is using. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
@@ -327,10 +344,10 @@
             "verseIds": [
               20961
             ],
-            "shortMeaning": "Where does ego come from? How can it be removed?",
-            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Where does ego come from? How can it be removed",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -347,16 +364,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.75,
           "specificity": 4.96,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.2,
-          "beauty": 4.53,
-          "overall": 4.31
+          "beauty": 4.1,
+          "overall": 4.18
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
         "issues": []
       }
@@ -364,26 +381,29 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of conduct",
-      "issueStatement": "The language of devotion can get ahead of the life carrying it. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-      "centralInsight": "Guru measures religion by clean conduct, not impressive performance. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
-      "actionPrompt": "Ask whether your next action can bear the words your mouth is using. Repeat what you can actually keep.",
+      "title": "Training conduct until speech and life agree",
+      "issueStatement": "Integrity weakens when it depends on mood, audience, or bursts of seriousness. The deeper need is a form of conduct that remains true when the feeling is ordinary.",
+      "centralInsight": "Pure conduct grows by repetition. Honest labor, clean speech, and obedience to the Guru slowly bring the visible life under the same truth the mouth keeps naming.",
+      "practicalReflection": "Inconsistency is also a practice. If you repeat enough split living, it starts to feel normal; if you repeat enough truthful action, that begins to feel normal instead.",
+      "actionPrompt": "Keep one repeatable discipline this week that makes your private life more truthful than it was last week.",
       "searchTerms": [
         "conduct",
         "practice",
         "lifestyle",
         "hypocrisy",
         "pure conduct",
-        "building a truer practice of conduct",
+        "training conduct until speech and life agree",
         "conduct steady practice",
-        "habit",
-        "steady return",
-        "formation",
         "conduct practice",
-        "conduct habit",
-        "conduct steady return",
-        "conduct formation"
+        "integrity habit",
+        "repeatable discipline",
+        "speech and life",
+        "steady conduct",
+        "conduct conduct practice",
+        "conduct integrity habit",
+        "conduct repeatable discipline",
+        "conduct speech and life",
+        "conduct steady conduct"
       ],
       "excerpts": [
         {
@@ -393,9 +413,9 @@
               12946
             ],
             "shortMeaning": "that humble servant's affairs are resolved",
-            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: that humble servant's affairs are resolved."
+          "explanation": "The line is teaching repetition more than momentary inspiration: that humble servant's affairs are resolved."
         },
         {
           "source": {
@@ -404,9 +424,9 @@
               12112
             ],
             "shortMeaning": "The God-conscious being is the dust of all",
-            "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Ask whether your next action can bear the words your mouth is using. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
@@ -415,32 +435,32 @@
               20961,
               20963
             ],
-            "shortMeaning": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
-            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Ego is a chronic disease, but it contains its own cure as well; where does ego come from? How can it be removed",
+            "lifeApplication": "Ask whether your next action can bear the words your mouth is using. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-conduct:practice",
         "evidence": {
-          "coreClaim": "Guru measures religion by clean conduct, not impressive performance. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "coreClaim": "Pure conduct grows by repetition. Honest labor, clean speech, and obedience to the Guru slowly bring the visible life under the same truth the mouth keeps naming.",
           "emotionalState": "self-conscious, performing, eager-to-be-seen",
-          "turn": "The language of devotion can get ahead of the life carrying it. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-          "practicalImplication": "Ask whether your next action can bear the words your mouth is using. Repeat what you can actually keep.",
+          "turn": "Integrity weakens when it depends on mood, audience, or bursts of seriousness. The deeper need is a form of conduct that remains true when the feeling is ordinary.",
+          "practicalImplication": "Keep one repeatable discipline this week that makes your private life more truthful than it was last week.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 4.29,
           "specificity": 4.96,
-          "emotionalHonesty": 3.72,
+          "emotionalHonesty": 3.36,
           "usefulness": 3.44,
-          "beauty": 4.21,
-          "overall": 4.2
+          "beauty": 4.33,
+          "overall": 4.16
         },
         "strengths": [
           "specificity",
@@ -451,11 +471,13 @@
     }
   },
   "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-work-give-know-the-path",
+    "shabad-selfless-service",
     "shabad-generated-937",
     "shabad-hukam-inside-everything",
     "shabad-conquer-the-mind",
     "shabad-human-birth-is-chance",
-    "shabad-selfless-service",
     "shabad-ego-is-disease"
   ],
   "relatedTopicIds": [
@@ -478,28 +500,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:conduct",
     "evidence": {
-      "coreClaim": "Pure conduct in Gurbani is not image management. It is what happens when Naam, Sangat, labor, and speech start agreeing with one another.",
-      "emotionalState": "hard, sharp, protective",
-      "turn": "Your declared values and your repeated habits no longer feel like the same life.",
-      "practicalImplication": "Choose one practice today that closes the gap between what you say matters and what you actually do.",
+      "coreClaim": "Pure conduct in Gurbani is not moral image. It is what appears when Naam, speech, labor, and hidden motive begin agreeing with each other.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "What you admire in theory is not yet visible in the habits that keep repeating when no one is watching.",
+      "practicalImplication": "Choose one practice today that closes the gap between what you praise and what you permit in your ordinary life.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.15,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
+      "emotionalHonesty": 3,
       "usefulness": 4.42,
-      "beauty": 3.24,
-      "overall": 3.98
+      "beauty": 4.53,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": []
   }

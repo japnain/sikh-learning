@@ -1,8 +1,8 @@
 {
   "id": "collection-conduct-and-clean-speech",
   "title": "Conduct and Clean Speech",
-  "subtitle": "A sequence for aligning life, tongue, and practice",
-  "description": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+  "subtitle": "A path for cleaner speech and truer living",
+  "description": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
   "durationLabel": "5-step arc",
   "themes": [
     "speech",
@@ -64,31 +64,29 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+      "coreClaim": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "A sequence for aligning life, tongue, and practice",
+      "turn": "A path for cleaner speech and truer living",
       "practicalImplication": "Move through 7 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.86,
-      "clarity": 0.95,
-      "specificity": 4.09,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3,
       "usefulness": 3.38,
       "beauty": 4.05,
-      "overall": 3.29
+      "overall": 3.79
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

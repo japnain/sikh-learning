@@ -1,20 +1,22 @@
 {
   "id": "topic-sangat",
-  "title": "When you need company that changes you",
+  "title": "When the soul needs company strong enough to cool it",
   "shortTitle": "Sangat",
   "category": "practice",
-  "issueStatement": "You are trying to sustain a spiritual life in isolation, or staying near company that intensifies noise instead of remembrance.",
-  "centralInsight": "Sangat in Gurbani is not generic belonging. It is relational placement that redirects the mind toward Naam, humility, and steadiness.",
-  "practicalReflection": "Not every circle can cool the body. Some company makes the fire bigger. Guru tells you to notice the difference.",
-  "actionPrompt": "Move one step closer to living company that makes remembrance easier.",
+  "issueStatement": "Alone, the mind keeps recycling itself. In the wrong company, it becomes louder, sharper, and more forgetful of what it actually needs.",
+  "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate: truth becomes speakable, Naam feels near, and the mind stops feeding only itself.",
+  "practicalReflection": "Not every circle nourishes. Some company strengthens noise, ego, and drift; holy company makes return easier than self-invention.",
+  "actionPrompt": "Move one concrete step toward company that makes remembrance more natural and self-deception harder to keep.",
   "searchTerms": [
     "sangat",
     "community",
     "company",
     "belonging",
     "companionship",
-    "friendship",
-    "good company",
+    "holy company",
+    "right company",
+    "saint company",
+    "inner climate",
     "sangat in the ordinary day",
     "sangat daily",
     "today",
@@ -43,52 +45,57 @@
     "sangat return",
     "sangat after slipping",
     "sangat start again",
-    "building a truer practice of sangat",
+    "practicing closeness to the right company",
     "sangat steady practice",
-    "practice",
-    "habit",
-    "steady return",
-    "formation",
-    "sangat practice",
-    "sangat habit",
-    "sangat steady return",
-    "sangat formation"
+    "practice of sangat",
+    "holy company habit",
+    "regular sangat",
+    "inner atmosphere",
+    "sangat practice of sangat",
+    "sangat holy company habit",
+    "sangat regular sangat",
+    "sangat inner atmosphere"
   ],
   "excerpts": [
-    {
-      "source": {
-        "deepDiveId": "shabad-human-birth-is-chance",
-        "verseIds": [
-          524
-        ],
-        "shortMeaning": "This human body has been given to you",
-        "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
-      },
-      "explanation": "The theme is named without abstraction here: this human body has been given to you."
-    },
     {
       "source": {
         "deepDiveId": "shabad-child-of-grace",
         "verseIds": [
           3757,
-          3760
+          3760,
+          3762
         ],
-        "shortMeaning": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
-        "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+        "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+      "explanation": "The need for sangat is not hidden here. The seeker asks plainly for the path, joins the congregation, and stands before Guru with the honesty of a helpless child."
     },
     {
       "source": {
         "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
         "verseIds": [
+          921,
+          922,
           924,
           925
         ],
-        "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling",
-        "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; let the Words of the Guru abide within your mind",
+        "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line stay in charge of what comes next."
       },
-      "explanation": "Sangat in Gurbani is not generic belonging. It is relational placement that redirects the mind toward Naam, humility, and steadiness. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "Sangat is presented as medicine, not ornament. The inner fire cools where Guru's word abides, selfishness loosens, and peace stops being theoretical."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3898,
+          3899,
+          3900
+        ],
+        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+        "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line stay in charge of what comes next."
+      },
+      "explanation": "The search ends when holy company is finally met. The fruit is bodily and mental cooling, the kind of peace that can actually be lived in."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -131,9 +138,9 @@
               524
             ],
             "shortMeaning": "This human body has been given to you",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: this human body has been given to you."
+          "explanation": "Ordinary life is already being addressed here: this human body has been given to you."
         },
         {
           "source": {
@@ -142,10 +149,10 @@
               3757,
               3760
             ],
-            "shortMeaning": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
-            "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Move closer to one company that helps the heart tell the truth. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -154,10 +161,10 @@
               924,
               925
             ],
-            "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling",
-            "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling."
+          "explanation": "This makes daily faithfulness concrete: join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption."
         }
       ],
       "editorial": {
@@ -174,16 +181,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.54,
           "usefulness": 3.88,
-          "beauty": 4.53,
-          "overall": 4.27
+          "beauty": 3.98,
+          "overall": 4.13
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
         "issues": []
       }
@@ -221,10 +228,10 @@
               3757,
               3760
             ],
-            "shortMeaning": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
-            "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: if only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path."
+          "explanation": "Under strain, the line stays exact: joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint."
         },
         {
           "source": {
@@ -233,21 +240,21 @@
               1294,
               1296
             ],
-            "shortMeaning": "One who walks in harmony with the Guru's Will shall not suffer; those who are destined to have it, drink it in; their egotism",
-            "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who walks in harmony with the Guru's Will shall not suffer in pain",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Move closer to one company that helps the heart tell the truth. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
             "deepDiveId": "shabad-search-ends-in-saint-company",
             "verseIds": [
-              3895
+              3896
             ],
-            "shortMeaning": "They perform the inner cleansing practice with water and adopt the eighty-four",
-            "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "They chant and meditate, practicing austere self-discipline for years and years",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -264,12 +271,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.75,
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 4.26,
-          "beauty": 4.21,
-          "overall": 4.3
+          "beauty": 3.8,
+          "overall": 4.15
         },
         "strengths": [
           "specificity",
@@ -310,21 +317,21 @@
               924,
               925
             ],
-            "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling",
-            "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling."
+          "explanation": "Return is still being offered here: join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption."
         },
         {
           "source": {
             "deepDiveId": "shabad-sweet-speech-humble-walk",
             "verseIds": [
-              1290
+              1291
             ],
-            "shortMeaning": "Her speech is sweet, and her way of life is humble. She",
-            "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "she has infinite love for the Guru",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Move closer to one company that helps the heart tell the truth. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
@@ -332,10 +339,10 @@
             "verseIds": [
               11239
             ],
-            "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society",
-            "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -352,16 +359,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.38
+          "beauty": 4.11,
+          "overall": 4.26
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -369,100 +376,105 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of sangat",
-      "issueStatement": "The soul is being formed by company, whether that company is holy or not. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-      "centralInsight": "Guru treats Sangat as medicine, placement, and atmosphere for growth. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
-      "actionPrompt": "Move closer to one company that helps the heart tell the truth. Repeat what you can actually keep.",
+      "title": "Practicing closeness to the right company",
+      "issueStatement": "Sangat helps most when it becomes a pattern, not an occasional rescue. Otherwise the heart keeps reverting to its older atmosphere.",
+      "centralInsight": "The soul is always being formed by company. Gurbani asks you to return often enough that holy presence becomes a real influence instead of a rare interruption.",
+      "practicalReflection": "A practice of sangat is less about collecting uplifting moments and more about staying near speech, people, and places that keep the mind honest.",
+      "actionPrompt": "Choose one recurring form of holy company and keep it long enough for your inner climate to change.",
       "searchTerms": [
         "sangat",
         "community",
         "company",
         "belonging",
         "companionship",
-        "building a truer practice of sangat",
+        "practicing closeness to the right company",
         "sangat steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "sangat practice",
-        "sangat habit",
-        "sangat steady return",
-        "sangat formation"
+        "practice of sangat",
+        "holy company habit",
+        "regular sangat",
+        "inner atmosphere",
+        "sangat practice of sangat",
+        "sangat holy company habit",
+        "sangat regular sangat",
+        "sangat inner atmosphere"
       ],
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-search-ends-in-saint-company",
-            "verseIds": [
-              3895
-            ],
-            "shortMeaning": "They perform the inner cleansing practice with water and adopt the eighty-four",
-            "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
-          },
-          "explanation": "The line is teaching repetition, not merely inspiration: they perform the inner cleansing practice with water and adopt the eighty-four."
-        },
-        {
-          "source": {
             "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
-              524
+              524,
+              525,
+              527
             ],
-            "shortMeaning": "This human body has been given to you",
-            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          "explanation": "Human life is named as chance, and sangat is named as part of how that chance is used. Right company is not accessory here; it is part of the path itself."
         },
         {
           "source": {
-            "deepDiveId": "shabad-patience-ripens-into-honor",
+            "deepDiveId": "shabad-search-ends-in-saint-company",
             "verseIds": [
-              11239,
-              11241
+              3899,
+              3900
             ],
-            "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
-            "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "By His Mercy, I have met the Holy Saint; i have been blessed with patience and composure",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "This excerpt matters because it trains posture, not only agreement."
+          "explanation": "The practice becomes credible when its fruit is cooling and composure. Sangat is not only attendance; it is what slowly steadies the body and mind."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
+            "verseIds": [
+              37468,
+              37474,
+              37476
+            ],
+            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+            "lifeApplication": "Move closer to one company that helps the heart tell the truth. Keep the line close enough to become a repeatable posture."
+          },
+          "explanation": "Holy company trains nearness through humility and praise. To stay near the right people is to keep learning what kind of heart the Lord keeps close."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-sangat:practice",
         "evidence": {
-          "coreClaim": "Guru treats Sangat as medicine, placement, and atmosphere for growth. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-          "emotionalState": "wandering, exhausted, seeking",
-          "turn": "The soul is being formed by company, whether that company is holy or not. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-          "practicalImplication": "Move closer to one company that helps the heart tell the truth. Repeat what you can actually keep.",
+          "coreClaim": "The soul is always being formed by company. Gurbani asks you to return often enough that holy presence becomes a real influence instead of a rare interruption.",
+          "emotionalState": "directionless, numb, wasting-time",
+          "turn": "Sangat helps most when it becomes a pattern, not an occasional rescue. Otherwise the heart keeps reverting to its older atmosphere.",
+          "practicalImplication": "Choose one recurring form of holy company and keep it long enough for your inner climate to change.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.18,
-          "usefulness": 3.44,
-          "beauty": 4.37,
-          "overall": 4.14
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.6,
+          "beauty": 4.49,
+          "overall": 4.19
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
         "issues": []
       }
     }
   },
   "relatedShabadIds": [
-    "shabad-human-birth-is-chance",
     "shabad-child-of-grace",
     "shabad-extinguish-the-fire-of-doubt",
-    "shabad-sweet-speech-humble-walk",
     "shabad-search-ends-in-saint-company",
-    "shabad-patience-ripens-into-honor"
+    "shabad-human-birth-is-chance",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-patience-ripens-into-honor",
+    "shabad-lord-keeps-the-humble-close"
   ],
   "relatedTopicIds": [
     "topic-gratitude",
@@ -486,28 +498,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:sangat",
     "evidence": {
-      "coreClaim": "Sangat in Gurbani is not generic belonging. It is relational placement that redirects the mind toward Naam, humility, and steadiness.",
-      "emotionalState": "directionless, numb, wasting-time",
-      "turn": "You are trying to sustain a spiritual life in isolation, or staying near company that intensifies noise instead of remembrance.",
-      "practicalImplication": "Move one step closer to living company that makes remembrance easier.",
+      "coreClaim": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate: truth becomes speakable, Naam feels near, and the mind stops feeding only itself.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "Alone, the mind keeps recycling itself. In the wrong company, it becomes louder, sharper, and more forgetful of what it actually needs.",
+      "practicalImplication": "Move one concrete step toward company that makes remembrance more natural and self-deception harder to keep.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.33,
+      "clarity": 4.35,
       "specificity": 4.78,
-      "emotionalHonesty": 3.18,
+      "emotionalHonesty": 3.36,
       "usefulness": 3.22,
-      "beauty": 3.67,
-      "overall": 3.83
+      "beauty": 4.53,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-337-2",
-  "title": "Those Who Meditate On The True One",
+  "title": "The Word Of The Guru's Shabad",
   "summary": "Self-Worth is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
+  "takeaway": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
   "lifeApplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-generated-337",
     "verseIds": [
-      4847,
-      4852
+      4852,
+      4859
     ],
-    "shortMeaning": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
+    "lifeApplication": "Let dignity be received before it is defended. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
+      "coreClaim": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
       "emotionalState": "unworthy, rejected, fragile",
-      "turn": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+      "turn": "Keep returning to this turn: O Nanak, the One Name is pervading deep within my mind.",
       "practicalImplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.63,
-      "specificity": 4.51,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 3.82,
+      "clarity": 1.72,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.36,
       "usefulness": 4.8,
-      "beauty": 3.86,
-      "overall": 3.93
+      "beauty": 3.29,
+      "overall": 3.62
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

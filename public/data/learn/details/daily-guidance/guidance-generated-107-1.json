@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-107-1",
-  "title": "Siree Raag, Third Mehla:",
+  "title": "Whom Shall I Serve? What Shall I",
   "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Siree Raag, Third Mehla:",
+  "takeaway": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
   "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-generated-107",
     "verseIds": [
-      1410
+      1411
     ],
-    "shortMeaning": "Siree Raag, Third Mehla:",
-    "lifeApplication": "Anxiety becomes more truthful when siree Raag, Third Mehla:."
+    "shortMeaning": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
+    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -39,24 +39,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Siree Raag, Third Mehla:",
+      "coreClaim": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true.",
+      "turn": "Keep returning to this turn: O Nanak, I am a sacrifice to those who are found to be true in the True Court.",
       "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 4.29,
-      "specificity": 4.79,
+      "faithfulness": 3.73,
+      "clarity": 3.75,
+      "specificity": 4.69,
       "emotionalHonesty": 3.36,
       "usefulness": 4.26,
-      "beauty": 4.01,
-      "overall": 4.07
+      "beauty": 3.58,
+      "overall": 3.88
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": []
   }

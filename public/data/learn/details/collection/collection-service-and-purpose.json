@@ -1,8 +1,8 @@
 {
   "id": "collection-service-and-purpose",
   "title": "Service and Purpose",
-  "subtitle": "A practical path for meaningful living",
-  "description": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+  "subtitle": "A practical path toward meaningful living",
+  "description": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
   "durationLabel": "6-day journey",
   "themes": [
     "purpose",
@@ -57,31 +57,29 @@
   ],
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+      "coreClaim": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A practical path for meaningful living",
+      "turn": "A practical path toward meaningful living",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 2.95,
-      "specificity": 3.97,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3,
       "usefulness": 3.38,
       "beauty": 4.21,
-      "overall": 3.56
+      "overall": 3.8
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "clarity",
+      "beauty"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

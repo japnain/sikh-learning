@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-816",
-  "title": "Seva In Gurbani",
+  "title": "I Bow Down, And Fall",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Seva is carried here from  toward please protect me, and save me from wandering, God. Reach out and give Nanak.",
-  "whyItMatters": "This shabad is useful when life feels performing, transactional, dry, because it keeps seva inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Seva steadies when please protect me, and save me from wandering, God. Reach out and give Nanak.",
+  "summary": "This shabad opens with i bow down, and fall to the ground in humble adoration, countless times. It turns the heart toward please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
+  "whyItMatters": "It matters when life feels performing, transactional, and dry because the shabad keeps seva inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
   "themes": [
     "seva",
     "restlessness",
@@ -56,12 +56,11 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside i bow down, and fall to the ground in humble adoration, countless times, to.",
-    "The closing movement leaves a return you can actually keep: please protect me, and save me from wandering, God. Reach out and give Nanak."
+    "It opens by naming the condition without ornament: i bow down, and fall to the ground in humble adoration, countless times.",
+    "The middle movement widens the correction through please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
+    "It closes with a return you can actually keep: please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand."
   ],
   "keyVerseIds": [
-    11164,
     11165,
     11166
   ],
@@ -91,20 +90,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Seva is carried here from  toward please protect me, and save me from wandering, God. Reach out and give Nanak.",
+      "coreClaim": "This shabad opens with i bow down, and fall to the ground in humble adoration, countless times. It turns the heart toward please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "The middle movement deepens the correction by holding the mind inside i bow down, and fall to the ground in humble adoration, countless times, to.",
-      "practicalImplication": "Seva steadies when please protect me, and save me from wandering, God. Reach out and give Nanak.",
+      "turn": "The middle movement widens the correction through please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
+      "practicalImplication": "Keep returning to this turn: Please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.81,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.22,
-      "beauty": 3.98,
-      "overall": 4.05
+      "clarity": 3.15,
+      "specificity": 4.56,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.38,
+      "beauty": 3.37,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",

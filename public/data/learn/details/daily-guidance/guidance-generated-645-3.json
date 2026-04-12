@@ -2,7 +2,7 @@
   "id": "guidance-generated-645-3",
   "title": "Says Nanak, The Divine Light Has Dawned",
   "summary": "The shabad does not leave fear at diagnosis. It turns toward return.",
-  "takeaway": "Says Nanak, the Divine Light has dawned within my mind; I have obtained the",
+  "takeaway": "Says Nanak, the Divine Light has dawned within my mind",
   "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
   "source": {
     "deepDiveId": "shabad-generated-645",
@@ -10,8 +10,8 @@
       8852,
       8854
     ],
-    "shortMeaning": "The Saints have given me the Mantra of the Fearless Lord, and; says Nanak, the Divine Light has dawned within my mind; I have",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "The Saints have given me the Mantra of the Fearless Lord, and now I; says Nanak, the Divine Light has dawned within my mind",
+    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -40,20 +40,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Saints have given me the Mantra of the Fearless Lord, and; says Nanak, the Divine Light has dawned within my mind; I have",
+      "coreClaim": "The Saints have given me the Mantra of the Fearless Lord, and now I; says Nanak, the Divine Light has dawned within my mind",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Fear steadies when says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+      "turn": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
       "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.27,
-      "clarity": 3.81,
+      "faithfulness": 4.15,
+      "clarity": 3.93,
       "specificity": 5,
       "emotionalHonesty": 3.36,
       "usefulness": 4.64,
-      "beauty": 3.82,
-      "overall": 4.16
+      "beauty": 3.93,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",

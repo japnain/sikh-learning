@@ -1,8 +1,8 @@
 {
   "id": "collection-control-to-release",
   "title": "From Control to Release",
-  "subtitle": "A steadier arc for the over-gripping mind",
-  "description": "Start where fear tightens the hand, then move through Hukam, nearness, and grace until action becomes faithful without trying to become absolute.",
+  "subtitle": "For the mind that grips too hard",
+  "description": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
   "durationLabel": "4-step arc",
   "themes": [
     "control",
@@ -51,32 +51,30 @@
     "shabad-generated-942"
   ],
   "editorial": {
-    "status": "approved",
-    "origin": "legacy",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Start where fear tightens the hand, then move through Hukam, nearness, and grace until action becomes faithful without trying to become absolute.",
+      "coreClaim": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "A steadier arc for the over-gripping mind",
+      "turn": "For the mind that grips too hard",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
-      "clarity": 1.15,
-      "specificity": 4.32,
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 4.31,
       "emotionalHonesty": 3.36,
       "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.49
+      "beauty": 4.05,
+      "overall": 3.94
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

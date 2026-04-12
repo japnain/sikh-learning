@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-460",
-  "title": "Gauree, First Mehla:",
+  "title": "Those Who Speak The Unspoken, Drink",
   "subtitle": "Raag Gauree · Ang 154",
-  "summary": "Gratitude is carried here from gauree, First Mehla: toward o Nanak, they merge into the Lord, and their doubts are cast away.",
-  "whyItMatters": "This shabad is useful when life feels dull, entitled, forgetful, because it keeps gratitude inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Gratitude steadies when o Nanak, they merge into the Lord, and their doubts are cast away.",
+  "summary": "This shabad opens with those who speak the Unspoken, drink in the Nectar. It turns the heart toward o Nanak, they merge into the Lord, and their doubts are cast away.",
+  "whyItMatters": "It matters when life feels dull, entitled, and forgetful because the shabad keeps gratitude inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, they merge into the Lord, and their doubts are cast away.",
   "themes": [
     "gratitude",
     "mercy",
@@ -105,14 +105,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree, First Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside those whose hearts are filled with the Lord's essence are blessed and acclaimed, and.",
-    "The closing movement leaves a return you can actually keep: o Nanak, they merge into the Lord, and their doubts are cast away."
+    "It opens by naming the condition without ornament: those who speak the Unspoken, drink in the Nectar.",
+    "The middle movement widens the correction through those whose hearts are filled with the Lord's essence are blessed and acclaimed, and intuitively absorbed into the Lord.",
+    "It closes with a return you can actually keep: o Nanak, they merge into the Lord, and their doubts are cast away."
   ],
   "keyVerseIds": [
-    6404,
     6405,
     6406,
+    6412,
     6413
   ],
   "relatedGuidanceIds": [
@@ -145,20 +145,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Gratitude is carried here from gauree, First Mehla: toward o Nanak, they merge into the Lord, and their doubts are cast away.",
+      "coreClaim": "This shabad opens with those who speak the Unspoken, drink in the Nectar. It turns the heart toward o Nanak, they merge into the Lord, and their doubts are cast away.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "The middle movement deepens the correction by holding the mind inside those whose hearts are filled with the Lord's essence are blessed and acclaimed, and.",
-      "practicalImplication": "Gratitude steadies when o Nanak, they merge into the Lord, and their doubts are cast away.",
+      "turn": "The middle movement widens the correction through those whose hearts are filled with the Lord's essence are blessed and acclaimed, and intuitively absorbed into the Lord.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, they merge into the Lord, and their doubts are cast away.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.18,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.96,
-      "overall": 3.97
+      "clarity": 2.76,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.61,
+      "overall": 3.84
     },
     "strengths": [
       "specificity",

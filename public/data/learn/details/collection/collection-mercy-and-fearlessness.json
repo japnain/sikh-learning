@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-and-fearlessness",
   "title": "Mercy and Fearlessness",
-  "subtitle": "A study path out of hardness and self-protection",
-  "description": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+  "subtitle": "A path out of hardness and self-protection",
+  "description": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
   "durationLabel": "6-day journey",
   "themes": [
     "mercy",
@@ -57,31 +57,29 @@
   ],
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+      "coreClaim": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "A study path out of hardness and self-protection",
+      "turn": "A path out of hardness and self-protection",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.88,
-      "clarity": 2.35,
-      "specificity": 4.1,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 3.92,
+      "clarity": 4.35,
+      "specificity": 4.15,
+      "emotionalHonesty": 3.36,
       "usefulness": 3.38,
       "beauty": 4.21,
-      "overall": 3.55
+      "overall": 3.9
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "clarity",
+      "beauty"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

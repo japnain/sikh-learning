@@ -3,17 +3,19 @@
   "title": "When gratitude feels thin",
   "shortTitle": "Gratitude",
   "category": "practice",
-  "issueStatement": "You may know gratitude matters, but the heart feels dulled by entitlement, fatigue, or what is still missing.",
-  "centralInsight": "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation.",
-  "practicalReflection": "Gratitude becomes truer when it stops being a performance of positivity and becomes recognition of mercy.",
-  "actionPrompt": "Name one mercy beneath the surface event: guidance, restraint, sangat, forgiveness, or breath itself.",
+  "issueStatement": "The day may still contain mercy, but the heart has narrowed itself around what is missing, delayed, or undeservedly difficult.",
+  "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than asking for a performance of positivity.",
+  "practicalReflection": "Gratitude is not a bright mood pasted over pain. It is truthful recognition that you are still being carried, guided, and given more than you can manufacture for yourself.",
+  "actionPrompt": "Name one mercy beneath the surface event today, and stay with it long enough for entitlement to loosen.",
   "searchTerms": [
     "gratitude",
     "thankful",
     "thankfulness",
     "blessing",
     "gift",
-    "contentment",
+    "mercy",
+    "entitlement",
+    "what is missing",
     "gratitude in the ordinary day",
     "gratitude daily",
     "today",
@@ -42,7 +44,7 @@
     "gratitude return",
     "gratitude after slipping",
     "gratitude start again",
-    "building a truer practice of gratitude",
+    "learning a steadier way with gratitude",
     "gratitude steady practice",
     "practice",
     "habit",
@@ -58,12 +60,13 @@
       "source": {
         "deepDiveId": "shabad-suffering-as-medicine",
         "verseIds": [
-          21090
+          21090,
+          21091
         ],
-        "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
-        "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God; i can do nothing. Even if I try, nothing happens",
+        "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: suffering is the medicine, and pleasure the disease, because where there is."
+      "explanation": "The line makes gratitude possible even where life feels costly. Mercy is not reduced to pleasant circumstances; it is present in the healing the soul would otherwise refuse."
     },
     {
       "source": {
@@ -72,22 +75,22 @@
           60338,
           60340
         ],
-        "shortMeaning": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
-        "lifeApplication": "Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
+        "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+      "explanation": "Gratitude is carried back to Naam itself here. Thanksgiving becomes deeper than optimism when it is rooted in the One who keeps restoring the heart to remembrance."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-1",
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
         "verseIds": [
-          8,
-          10
+          499,
+          501
         ],
-        "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
+        "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "This verse keeps gratitude from becoming sentimental. The soul gives thanks by receiving what comes under Hukam and recognizing mercy before it fully understands the day."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -129,10 +132,10 @@
             "verseIds": [
               21090
             ],
-            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
-            "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: suffering is the medicine, and pleasure the disease, because where there is."
+          "explanation": "Ordinary life is already being addressed here: suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God."
         },
         {
           "source": {
@@ -141,10 +144,10 @@
               60338,
               60340
             ],
-            "shortMeaning": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
-            "lifeApplication": "Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Let one received thing become a place of praise instead of entitlement. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -153,10 +156,10 @@
               8,
               10
             ],
-            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of."
+          "explanation": "This makes daily faithfulness concrete: hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command."
         }
       ],
       "editorial": {
@@ -173,16 +176,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 5,
-          "emotionalHonesty": 3.18,
+          "emotionalHonesty": 3.36,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.32
+          "beauty": 4.17,
+          "overall": 4.21
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
         "issues": []
       }
@@ -220,10 +223,10 @@
               60338,
               60340
             ],
-            "shortMeaning": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
-            "lifeApplication": "Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: i have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and."
+          "explanation": "Under strain, the line stays exact: you took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord."
         },
         {
           "source": {
@@ -232,21 +235,21 @@
               740,
               742
             ],
-            "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself",
-            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into the True Lord; o Nanak, the True King absorbs us into Himself",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Let one received thing become a place of praise instead of entitlement. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-65",
             "verseIds": [
-              765
+              766
             ],
-            "shortMeaning": "By true actions, this human body is obtained, and the door within",
-            "lifeApplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Gurmukhs train their minds to contemplate the Lord, the Supreme Soul",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -263,12 +266,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.75,
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 4.8,
-          "beauty": 4.53,
-          "overall": 4.43
+          "beauty": 4.12,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
@@ -309,32 +312,32 @@
               8,
               10
             ],
-            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of",
-            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: hundreds of thousands of clever tricks, but not even one of them; o Nanak, it is written that you shall obey the Hukam of."
+          "explanation": "Return is still being offered here: hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-63",
             "verseIds": [
-              735
+              736
             ],
-            "shortMeaning": "\"We are adorned with intuitive ease, contentment and sweet words",
-            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "We meet with our Beloved, the Source of Joy, when we listen",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Let one received thing become a place of praise instead of entitlement. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-66",
             "verseIds": [
-              777
+              774
             ],
-            "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?",
-            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The life of the discarded bride is cursed. She is deceived by the love of duality",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -351,12 +354,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 4.96,
-          "emotionalHonesty": 3.54,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.94,
-          "beauty": 4.85,
-          "overall": 4.5
+          "beauty": 4.46,
+          "overall": 4.38
         },
         "strengths": [
           "specificity",
@@ -368,7 +371,7 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of gratitude",
+      "title": "Learning a steadier way with gratitude",
       "issueStatement": "The heart notices absence faster than gift. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
       "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
       "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
@@ -379,7 +382,7 @@
         "thankfulness",
         "blessing",
         "gift",
-        "building a truer practice of gratitude",
+        "learning a steadier way with gratitude",
         "gratitude steady practice",
         "practice",
         "habit",
@@ -395,12 +398,12 @@
           "source": {
             "deepDiveId": "shabad-generated-65",
             "verseIds": [
-              765
+              766
             ],
-            "shortMeaning": "By true actions, this human body is obtained, and the door within",
-            "lifeApplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Gurmukhs train their minds to contemplate the Lord, the Supreme Soul",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: by true actions, this human body is obtained, and the door within."
+          "explanation": "The line is teaching repetition more than momentary inspiration: the Gurmukhs train their minds to contemplate the Lord, the Supreme Soul."
         },
         {
           "source": {
@@ -408,20 +411,20 @@
             "verseIds": [
               21090
             ],
-            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
-            "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Let one received thing become a place of praise instead of entitlement. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-66",
             "verseIds": [
-              777,
-              778
+              774,
+              777
             ],
-            "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
-            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The life of the discarded bride is cursed. She is deceived by the love of duality; o soul-bride, without your Husband Lord, what good are your decorations",
+            "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
@@ -440,16 +443,16 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.81,
           "specificity": 4.78,
-          "emotionalHonesty": 3.18,
+          "emotionalHonesty": 3.36,
           "usefulness": 3.98,
-          "beauty": 4.53,
-          "overall": 4.22
+          "beauty": 4.17,
+          "overall": 4.12
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
         "issues": []
       }
@@ -458,6 +461,7 @@
   "relatedShabadIds": [
     "shabad-suffering-as-medicine",
     "shabad-gratitude-restores-naam",
+    "shabad-what-pleases-you-comes-to-pass",
     "shabad-generated-1",
     "shabad-generated-63",
     "shabad-generated-65",
@@ -485,28 +489,28 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:gratitude",
     "evidence": {
-      "coreClaim": "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation.",
+      "coreClaim": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than asking for a performance of positivity.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "You may know gratitude matters, but the heart feels dulled by entitlement, fatigue, or what is still missing.",
-      "practicalImplication": "Name one mercy beneath the surface event: guidance, restraint, sangat, forgiveness, or breath itself.",
+      "turn": "The day may still contain mercy, but the heart has narrowed itself around what is missing, delayed, or undeservedly difficult.",
+      "practicalImplication": "Name one mercy beneath the surface event today, and stay with it long enough for entitlement to loosen.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.63,
-      "specificity": 4.78,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.6,
-      "beauty": 3.73,
-      "overall": 3.96
+      "usefulness": 4.04,
+      "beauty": 4.69,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

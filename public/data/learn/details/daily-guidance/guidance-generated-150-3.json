@@ -7,11 +7,11 @@
   "source": {
     "deepDiveId": "shabad-generated-150",
     "verseIds": [
-      2089,
+      2092,
       2097
     ],
-    "shortMeaning": "Like a foolish child, I have made mistakes. O Lord, You are; meeting with the Guru, Nanak has recognized the Supreme Lord God",
-    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+    "shortMeaning": "Meeting with the Guru, Nanak has recognized the Supreme Lord God; you are my Strength. I know that You are mine",
+    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let this line guide the first honest return after the reaction."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -40,24 +40,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Like a foolish child, I have made mistakes. O Lord, You are; meeting with the Guru, Nanak has recognized the Supreme Lord God",
+      "coreClaim": "Meeting with the Guru, Nanak has recognized the Supreme Lord God; you are my Strength. I know that You are mine",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "Hukam steadies when meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+      "turn": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
       "practicalImplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.27,
+      "faithfulness": 4.12,
       "clarity": 3.87,
-      "specificity": 5,
+      "specificity": 4.88,
       "emotionalHonesty": 3.18,
       "usefulness": 5,
       "beauty": 3.89,
-      "overall": 4.21
+      "overall": 4.15
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

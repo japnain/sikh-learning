@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-821",
-  "title": "Anger In Gurbani",
+  "title": "Nanna: One Who Conquers His Own Soul",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "Anger is carried here from  toward understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such.",
-  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anger steadies when understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such.",
+  "summary": "This shabad opens with nANNA: One who conquers his own soul, wins the battle of life. It turns the heart toward understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such is his pre-ordained destiny.",
+  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such is his pre-ordained destiny.",
   "themes": [
     "anger",
     "ego",
@@ -98,13 +98,13 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: .",
-    "The middle movement deepens the correction by holding the mind inside he conquers his mind, and meets the Lord; he is dressed in robes of.",
-    "The closing movement leaves a return you can actually keep: understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such."
+    "It opens by naming the condition without ornament: nANNA: One who conquers his own soul, wins the battle of life.",
+    "The middle movement widens the correction through the One Lord is his Anchor and Support.",
+    "It closes with a return you can actually keep: understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such is his pre-ordained destiny."
   ],
   "keyVerseIds": [
-    11191,
     11192,
+    11193,
     11195,
     11199
   ],
@@ -134,20 +134,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anger is carried here from  toward understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such.",
+      "coreClaim": "This shabad opens with nANNA: One who conquers his own soul, wins the battle of life. It turns the heart toward understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such is his pre-ordained destiny.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement deepens the correction by holding the mind inside he conquers his mind, and meets the Lord; he is dressed in robes of.",
-      "practicalImplication": "Anger steadies when understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such.",
+      "turn": "The middle movement widens the correction through the One Lord is his Anchor and Support.",
+      "practicalImplication": "Keep returning to this turn: Understanding the Hukam of the Lord's Command, he attains everlasting peace. O Nanak, such is his pre-ordained destiny.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.75,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.88,
-      "overall": 4.04
+      "clarity": 2.85,
+      "specificity": 4.57,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.38,
+      "beauty": 3.18,
+      "overall": 3.78
     },
     "strengths": [
       "specificity",

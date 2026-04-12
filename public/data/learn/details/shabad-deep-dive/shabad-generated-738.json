@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-738",
-  "title": "The Guru's Word, I Meditate On The",
+  "title": "The Guru's Word, I Have Attained",
   "subtitle": "Raag Gauree · Ang 239",
-  "summary": "Patience is carried here from through the Guru's Word, I meditate on the Name toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
-  "whyItMatters": "This shabad is useful when life feels impatient, tense, agitated, because it keeps patience inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Patience steadies when o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+  "summary": "This shabad opens with through the Guru's Word, I have attained the supreme status. It turns the heart toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+  "whyItMatters": "It matters when life feels impatient, tense, and agitated because the shabad keeps patience inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, meeting with the Guru, I have found the Supreme Lord God.",
   "themes": [
     "patience",
     "doubt",
@@ -168,14 +168,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: through the Guru's Word, I meditate on the Name.",
-    "The middle movement deepens the correction by holding the mind inside through the Guru's Word, my doubts have been removed.",
-    "The closing movement leaves a return you can actually keep: o Nanak, meeting with the Guru, I have found the Supreme Lord God."
+    "It opens by naming the condition without ornament: through the Guru's Word, I have attained the supreme status.",
+    "The middle movement widens the correction through through the Guru's Word, I see God everywhere.",
+    "It closes with a return you can actually keep: o Nanak, meeting with the Guru, I have found the Supreme Lord God."
   ],
   "keyVerseIds": [
+    10415,
     10417,
     10420,
-    10429,
     10432
   ],
   "relatedGuidanceIds": [
@@ -206,20 +206,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Patience is carried here from through the Guru's Word, I meditate on the Name toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+      "coreClaim": "This shabad opens with through the Guru's Word, I have attained the supreme status. It turns the heart toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "The middle movement deepens the correction by holding the mind inside through the Guru's Word, my doubts have been removed.",
-      "practicalImplication": "Patience steadies when o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+      "turn": "The middle movement widens the correction through through the Guru's Word, I see God everywhere.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, meeting with the Guru, I have found the Supreme Lord God.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.35,
-      "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.62,
-      "overall": 3.8
+      "clarity": 2.81,
+      "specificity": 4.56,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.38,
+      "beauty": 3.45,
+      "overall": 3.79
     },
     "strengths": [
       "specificity",

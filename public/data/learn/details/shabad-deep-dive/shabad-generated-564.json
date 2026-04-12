@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-564",
-  "title": "Gauree, Fifth Mehla:",
+  "title": "Those Who Seem To Be Great",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "Attachment is carried here from gauree, Fifth Mehla: toward without the Lord's meditation, there is no salvation.",
-  "whyItMatters": "This shabad is useful when life feels clingy, possessive, afraid-to-lose, because it keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Attachment steadies when without the Lord's meditation, there is no salvation.",
+  "summary": "This shabad opens with those who seem to be great and powerful. It turns the heart toward without the Lord's meditation, there is no salvation.",
+  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: without the Lord's meditation, there is no salvation.",
   "themes": [
     "attachment",
     "doubt",
@@ -98,12 +98,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree, Fifth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside they alone are great, who are lovingly attached to the Lord.",
-    "The closing movement leaves a return you can actually keep: without the Lord's meditation, there is no salvation."
+    "It opens by naming the condition without ornament: those who seem to be great and powerful.",
+    "The middle movement widens the correction through the landlord fights over his land each day.",
+    "It closes with a return you can actually keep: without the Lord's meditation, there is no salvation."
   ],
   "keyVerseIds": [
-    7968,
+    7969,
     7972,
     7974,
     7976
@@ -137,20 +137,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Attachment is carried here from gauree, Fifth Mehla: toward without the Lord's meditation, there is no salvation.",
+      "coreClaim": "This shabad opens with those who seem to be great and powerful. It turns the heart toward without the Lord's meditation, there is no salvation.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement deepens the correction by holding the mind inside they alone are great, who are lovingly attached to the Lord.",
-      "practicalImplication": "Attachment steadies when without the Lord's meditation, there is no salvation.",
+      "turn": "The middle movement widens the correction through the landlord fights over his land each day.",
+      "practicalImplication": "Keep returning to this turn: without the Lord's meditation, there is no salvation.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.82,
-      "specificity": 4.78,
+      "clarity": 3.75,
+      "specificity": 4.6,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 4.12,
-      "overall": 4.09
+      "usefulness": 3.38,
+      "beauty": 3.91,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",

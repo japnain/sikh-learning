@@ -1,8 +1,8 @@
 {
   "id": "guidance-child-of-grace-2",
-  "title": "Joining The Sat Sangat, The True Congregation,",
+  "title": "Joining The Sat Sangat, The True Congregation",
   "summary": "Loneliness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
+  "takeaway": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
   "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-child-of-grace",
@@ -10,8 +10,8 @@
       3757,
       3760
     ],
-    "shortMeaning": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+    "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
+      "coreClaim": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
       "emotionalState": "alone, yearning, dependent",
       "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
       "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 1.99,
-      "specificity": 4.87,
+      "faithfulness": 3.94,
+      "clarity": 1.51,
+      "specificity": 4.88,
       "emotionalHonesty": 3.54,
       "usefulness": 4.64,
-      "beauty": 3.06,
-      "overall": 3.7
+      "beauty": 2.93,
+      "overall": 3.61
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

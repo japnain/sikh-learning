@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-232",
-  "title": "Anger In Gurbani",
+  "title": "Perfect Guru Has Implanted The Name",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "Anger is carried here from third Mehla: toward servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
-  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anger steadies when servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+  "summary": "This shabad opens with the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within. It turns the heart toward servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
+  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
   "themes": [
     "anger",
     "ego",
@@ -84,14 +84,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside conquering my ego, I am lovingly focused on the One Lord; the Naam has.",
-    "The closing movement leaves a return you can actually keep: servant Nanak chants the Naam, and so he lives. Without the Name, he would."
+    "It opens by naming the condition without ornament: the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within.",
+    "The middle movement widens the correction through following the Guru's Teachings, I cannot be touched by the Messenger of Death. I am absorbed in the True Name.",
+    "It closes with a return you can actually keep: servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant."
   ],
   "keyVerseIds": [
-    3466,
     3467,
     3468,
+    3469,
     3472
   ],
   "relatedGuidanceIds": [
@@ -123,20 +123,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anger is carried here from third Mehla: toward servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+      "coreClaim": "This shabad opens with the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within. It turns the heart toward servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement deepens the correction by holding the mind inside conquering my ego, I am lovingly focused on the One Lord; the Naam has.",
-      "practicalImplication": "Anger steadies when servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+      "turn": "The middle movement widens the correction through following the Guru's Teachings, I cannot be touched by the Messenger of Death. I am absorbed in the True Name.",
+      "practicalImplication": "Keep returning to this turn: Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.87,
-      "specificity": 4.78,
+      "clarity": 2.73,
+      "specificity": 4.57,
       "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 4.03,
-      "overall": 4.14
+      "usefulness": 3.76,
+      "beauty": 3.1,
+      "overall": 3.82
     },
     "strengths": [
       "specificity",

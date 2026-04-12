@@ -1,8 +1,8 @@
 {
   "id": "collection-tired-heart-to-rest",
   "title": "From a Tired Heart to Rest",
-  "subtitle": "A slower study path for the overused inner life",
-  "description": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+  "subtitle": "A slower path for the overused inner life",
+  "description": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
   "durationLabel": "4-step arc",
   "themes": [
     "exhaustion",
@@ -61,32 +61,30 @@
     "shabad-generated-360"
   ],
   "editorial": {
-    "status": "approved",
-    "origin": "legacy",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+      "coreClaim": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A slower study path for the overused inner life",
+      "turn": "A slower path for the overused inner life",
       "practicalImplication": "Move through 7 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 0.15,
-      "specificity": 4.23,
+      "faithfulness": 3.96,
+      "clarity": 4.35,
+      "specificity": 4.18,
       "emotionalHonesty": 3.18,
       "usefulness": 3.38,
       "beauty": 4.21,
-      "overall": 3.27
+      "overall": 3.88
     },
     "strengths": [
-      "specificity",
+      "clarity",
       "beauty"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

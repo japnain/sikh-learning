@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-108",
-  "title": "Siree Raag, Third Mehla:",
+  "title": "If We Keep Contemplating About The Time",
   "subtitle": "Siree Raag · Ang 35",
-  "summary": "Anger is carried here from siree Raag, Third Mehla: toward o Nanak, merging with the Shabad through the Name, one is immersed in the.",
-  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the.",
+  "summary": "This shabad opens with if we keep contemplating about the time as to when to remember the Lord. It turns the heart toward o Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
+  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
   "themes": [
     "anger",
     "sangat",
@@ -168,12 +168,12 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: siree Raag, Third Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside the Word of the Guru's Shabad is Ambrosial Nectar; drinking it in, thirst is.",
-    "The closing movement leaves a return you can actually keep: o Nanak, merging with the Shabad through the Name, one is immersed in the."
+    "It opens by naming the condition without ornament: if we keep contemplating about the time as to when to remember the Lord.",
+    "The middle movement widens the correction through this true mind is attuned to Truth, and it remains permeated with the True One.",
+    "It closes with a return you can actually keep: o Nanak, merging with the Shabad through the Name, one is immersed in the Name."
   ],
   "keyVerseIds": [
-    1429,
+    1430,
     1431,
     1445,
     1447
@@ -207,20 +207,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Anger is carried here from siree Raag, Third Mehla: toward o Nanak, merging with the Shabad through the Name, one is immersed in the.",
+      "coreClaim": "This shabad opens with if we keep contemplating about the time as to when to remember the Lord. It turns the heart toward o Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement deepens the correction by holding the mind inside the Word of the Guru's Shabad is Ambrosial Nectar; drinking it in, thirst is.",
-      "practicalImplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the.",
+      "turn": "The middle movement widens the correction through this true mind is attuned to Truth, and it remains permeated with the True One.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.86,
-      "specificity": 4.96,
+      "clarity": 2.36,
+      "specificity": 4.74,
       "emotionalHonesty": 4,
-      "usefulness": 3.82,
-      "beauty": 3.81,
-      "overall": 4.02
+      "usefulness": 3.98,
+      "beauty": 3.64,
+      "overall": 3.91
     },
     "strengths": [
       "specificity",

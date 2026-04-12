@@ -1,104 +1,57 @@
 {
-  "generatedAt": "2026-04-12T04:59:36.814Z",
+  "generatedAt": "2026-04-12T06:59:17.918Z",
   "counts": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
     "topicGuides": 28,
     "topicScenarios": 112,
     "collections": 100,
-    "crossLinks": 3420,
+    "crossLinks": 3449,
     "readyForLaunch": true
   },
-  "averageCrossLinksPerItem": 5.9,
+  "averageCrossLinksPerItem": 5.95,
   "editorial": {
     "voiceVersion": "sggs-editorial-v1",
     "statuses": {
       "draft": 0,
-      "approved": 454,
-      "locked": 126
+      "approved": 421,
+      "locked": 159
     },
     "draftCount": 0,
     "lowScoringItems": [
       {
-        "id": "collection-tired-heart-to-rest",
-        "kind": "collection",
+        "id": "guidance-generated-512-2",
+        "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.27,
+        "overall": 3.53,
         "issues": [
           "runs too long at the sentence level"
         ]
       },
       {
-        "id": "collection-conduct-and-clean-speech",
-        "kind": "collection",
+        "id": "shabad-generated-818",
+        "kind": "shabad-deep-dive",
         "status": "approved",
-        "overall": 3.29,
+        "overall": 3.53,
         "issues": [
           "runs too long at the sentence level"
         ]
       },
       {
-        "id": "collection-control-to-release",
-        "kind": "collection",
+        "id": "guidance-generated-108-2",
+        "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.49,
+        "overall": 3.54,
         "issues": [
           "runs too long at the sentence level"
         ]
       },
       {
-        "id": "collection-ego-to-humility",
-        "kind": "collection",
+        "id": "guidance-generated-151-2",
+        "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.5,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
-      },
-      {
-        "id": "collection-truthful-wealth",
-        "kind": "collection",
-        "status": "approved",
-        "overall": 3.5,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
-      },
-      {
-        "id": "collection-restlessness-to-stillness",
-        "kind": "collection",
-        "status": "approved",
-        "overall": 3.51,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
-      },
-      {
-        "id": "collection-sangat-and-belonging",
-        "kind": "collection",
-        "status": "approved",
-        "overall": 3.52,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
-      },
-      {
-        "id": "collection-mercy-and-fearlessness",
-        "kind": "collection",
-        "status": "locked",
         "overall": 3.55,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
-      },
-      {
-        "id": "collection-service-and-purpose",
-        "kind": "collection",
-        "status": "locked",
-        "overall": 3.56,
-        "issues": [
-          "runs too long at the sentence level"
-        ]
+        "issues": []
       },
       {
         "id": "collection-speech-and-self-restraint",
@@ -110,18 +63,70 @@
         ]
       },
       {
-        "id": "guidance-generated-462-2",
+        "id": "collection-restlessness-to-stillness",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.57,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "guidance-search-ends-in-saint-company-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.61,
+        "overall": 3.58,
         "issues": []
       },
       {
-        "id": "guidance-work-give-know-the-path-2",
+        "id": "guidance-generated-231-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.58,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-sangat-and-belonging",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.58,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "guidance-generated-228-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.59,
+        "issues": []
+      },
+      {
+        "id": "guidance-child-of-grace-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.61,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "guidance-generated-153-2",
         "kind": "daily-guidance",
         "status": "approved",
         "overall": 3.62,
         "issues": []
+      },
+      {
+        "id": "guidance-generated-337-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.62,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
       },
       {
         "id": "collection-doubt-to-clarity",
@@ -133,22 +138,31 @@
         ]
       },
       {
-        "id": "guidance-search-ends-in-saint-company-2",
+        "id": "guidance-generated-64-2",
         "kind": "daily-guidance",
         "status": "approved",
         "overall": 3.63,
         "issues": []
       },
       {
-        "id": "guidance-conquer-the-mind-2",
+        "id": "guidance-generated-152-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.65,
+        "overall": 3.64,
         "issues": []
       },
       {
-        "id": "shabad-generated-338",
+        "id": "shabad-generated-151",
         "kind": "shabad-deep-dive",
+        "status": "approved",
+        "overall": 3.64,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "guidance-generated-65-2",
+        "kind": "daily-guidance",
         "status": "approved",
         "overall": 3.65,
         "issues": [
@@ -156,17 +170,10 @@
         ]
       },
       {
-        "id": "guidance-generated-179-2",
-        "kind": "daily-guidance",
-        "status": "approved",
-        "overall": 3.67,
-        "issues": []
-      },
-      {
-        "id": "shabad-generated-64",
+        "id": "shabad-generated-65",
         "kind": "shabad-deep-dive",
         "status": "approved",
-        "overall": 3.67,
+        "overall": 3.65,
         "issues": [
           "runs too long at the sentence level"
         ]
@@ -175,10 +182,31 @@
         "id": "shabad-generated-153",
         "kind": "shabad-deep-dive",
         "status": "approved",
-        "overall": 3.67,
+        "overall": 3.65,
         "issues": [
           "runs too long at the sentence level"
         ]
+      },
+      {
+        "id": "guidance-generated-736-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.66,
+        "issues": []
+      },
+      {
+        "id": "guidance-generated-232-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.67,
+        "issues": []
+      },
+      {
+        "id": "guidance-suffering-as-medicine-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.68,
+        "issues": []
       },
       {
         "id": "collection-sangat-bundle",
@@ -188,38 +216,10 @@
         "issues": []
       },
       {
-        "id": "collection-fear-to-trust",
-        "kind": "collection",
-        "status": "locked",
-        "overall": 3.69,
-        "issues": []
-      },
-      {
-        "id": "collection-purpose-bundle",
-        "kind": "collection",
-        "status": "approved",
-        "overall": 3.69,
-        "issues": []
-      },
-      {
-        "id": "guidance-child-of-grace-2",
+        "id": "guidance-generated-509-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.7,
-        "issues": []
-      },
-      {
-        "id": "guidance-generated-231-2",
-        "kind": "daily-guidance",
-        "status": "approved",
-        "overall": 3.7,
-        "issues": []
-      },
-      {
-        "id": "collection-gratitude-and-contentment",
-        "kind": "collection",
-        "status": "approved",
-        "overall": 3.7,
+        "overall": 3.69,
         "issues": []
       }
     ],
@@ -229,61 +229,61 @@
     {
       "field": "heroBody",
       "label": "Hero body",
-      "value": "Search fear, anger, ego, loneliness, doubt, speech, patience, greed, purpose, mercy, seva, or hukam. NaamRas routes you into approved guidance, full-shabad study, and connected journeys.",
+      "value": "Search the ache plainly. NaamRas brings one reviewed guide to the center, opens the full shabad beneath it, and keeps the connected journeys close enough to follow without losing the thread.",
       "issues": [],
       "scores": {
         "faithfulness": 4.23,
         "clarity": 4.35,
-        "specificity": 4.8,
-        "emotionalHonesty": 3.54,
-        "usefulness": 3.44,
-        "beauty": 4.21,
-        "overall": 4.11
+        "specificity": 4.61,
+        "emotionalHonesty": 3,
+        "usefulness": 3.98,
+        "beauty": 4.05,
+        "overall": 4.06
       }
     },
     {
       "field": "heroSearchHint",
       "label": "Hero search hint",
-      "value": "Search stays canonical: it brings you to an approved guide first, then keeps the wider shabad close.",
+      "value": "Search brings one reviewed guide to the front first. The full shabad and related return paths stay tied to it, so the archive can deepen without splitting into duplicates.",
       "issues": [],
       "scores": {
-        "faithfulness": 4.11,
+        "faithfulness": 4.21,
         "clarity": 4.35,
-        "specificity": 4.33,
-        "emotionalHonesty": 3,
-        "usefulness": 3.38,
-        "beauty": 4.05,
-        "overall": 3.89
+        "specificity": 4.6,
+        "emotionalHonesty": 3.18,
+        "usefulness": 3.98,
+        "beauty": 4.21,
+        "overall": 4.1
       }
     },
     {
       "field": "proofBody",
       "label": "Proof body",
-      "value": "These counts are live. NaamRas shows the actual depth of the archive instead of pretending the work is already complete.",
+      "value": "These counts stay live. Only reviewed work is counted, and anything repetitive, unresolved, or structurally weak stays out.",
       "issues": [],
       "scores": {
-        "faithfulness": 4.13,
+        "faithfulness": 4.15,
         "clarity": 4.35,
-        "specificity": 4.35,
-        "emotionalHonesty": 3.18,
-        "usefulness": 3.76,
+        "specificity": 4.36,
+        "emotionalHonesty": 3,
+        "usefulness": 3,
         "beauty": 4.05,
-        "overall": 3.99
+        "overall": 3.85
       }
     },
     {
       "field": "proofFooter",
       "label": "Proof footer",
-      "value": "The archive now distinguishes between canonical topic pages and scenario paths. Cross-links keep each layer answering the others without repeating the same page in new clothes.",
+      "value": "The archive grows under constraint. Canonical guides hold the center, scenario paths open the exact doorway, and cross-links deepen the library without cloning the same insight under new names.",
       "issues": [],
       "scores": {
-        "faithfulness": 4.22,
+        "faithfulness": 4.23,
         "clarity": 4.35,
-        "specificity": 4.43,
+        "specificity": 4.44,
         "emotionalHonesty": 3,
-        "usefulness": 3,
+        "usefulness": 3.38,
         "beauty": 4.05,
-        "overall": 3.88
+        "overall": 3.94
       }
     },
     {
@@ -304,31 +304,31 @@
     {
       "field": "compactTopicBody",
       "label": "Topic compact body",
-      "value": "The question most worth opening today, drawn into a real canonical guide.",
+      "value": "One reviewed guide holds the question in the center, with the matching scenario and full shabad kept beside it.",
       "issues": [],
       "scores": {
-        "faithfulness": 3.94,
-        "clarity": 4.35,
-        "specificity": 4.52,
+        "faithfulness": 4,
+        "clarity": 4.15,
+        "specificity": 4.4,
         "emotionalHonesty": 3,
-        "usefulness": 3.44,
+        "usefulness": 3.22,
         "beauty": 4.05,
-        "overall": 3.89
+        "overall": 3.82
       }
     },
     {
       "field": "detailBody",
       "label": "Detail body",
-      "value": "Only one full detail surface stays open at a time so the archive feels deliberate instead of endless.",
+      "value": "One full detail surface stays open at a time, so the line, the guide, and the next faithful return can remain together.",
       "issues": [],
       "scores": {
-        "faithfulness": 4.25,
-        "clarity": 4.35,
-        "specificity": 4.63,
-        "emotionalHonesty": 3,
-        "usefulness": 3.22,
-        "beauty": 4.05,
-        "overall": 3.95
+        "faithfulness": 4.26,
+        "clarity": 3.55,
+        "specificity": 5,
+        "emotionalHonesty": 3.18,
+        "usefulness": 4.04,
+        "beauty": 4.21,
+        "overall": 4.06
       }
     },
     {
@@ -349,16 +349,16 @@
     {
       "field": "shabadsIntroBody",
       "label": "Shabads intro body",
-      "value": "Filter by theme, Guru, raag, depth, and what you have already kept close until the next full reading feels chosen with care. Stay with the whole shabad long enough for context to correct the line you first came for.",
+      "value": "Filter by theme, Guru, raag, depth, and what you have already kept close until the next full reading feels chosen with care. Stay with the whole shabad long enough for context to correct the single line you first came for.",
       "issues": [],
       "scores": {
         "faithfulness": 4.21,
-        "clarity": 4.05,
+        "clarity": 3.95,
         "specificity": 4.78,
         "emotionalHonesty": 3.18,
         "usefulness": 3.82,
         "beauty": 4.21,
-        "overall": 4.06
+        "overall": 4.04
       }
     },
     {
@@ -380,30 +380,30 @@
   "surfaceCollisions": [],
   "hardFailures": [],
   "warnings": [
-    "Editorial review: collection collection-tired-heart-to-rest scored 3.27",
-    "Editorial review: collection collection-conduct-and-clean-speech scored 3.29",
-    "Editorial review: collection collection-control-to-release scored 3.49",
-    "Editorial review: collection collection-ego-to-humility scored 3.50",
-    "Editorial review: collection collection-truthful-wealth scored 3.50",
-    "Editorial review: collection collection-restlessness-to-stillness scored 3.51",
-    "Editorial review: collection collection-sangat-and-belonging scored 3.52",
-    "Editorial review: collection collection-mercy-and-fearlessness scored 3.55",
-    "Editorial review: collection collection-service-and-purpose scored 3.56",
+    "Editorial review: daily-guidance guidance-generated-512-2 scored 3.53",
+    "Editorial review: shabad-deep-dive shabad-generated-818 scored 3.53",
+    "Editorial review: daily-guidance guidance-generated-108-2 scored 3.54",
+    "Editorial review: daily-guidance guidance-generated-151-2 scored 3.55",
     "Editorial review: collection collection-speech-and-self-restraint scored 3.56",
-    "Editorial review: daily-guidance guidance-generated-462-2 scored 3.61",
-    "Editorial review: daily-guidance guidance-work-give-know-the-path-2 scored 3.62",
+    "Editorial review: collection collection-restlessness-to-stillness scored 3.57",
+    "Editorial review: daily-guidance guidance-search-ends-in-saint-company-2 scored 3.58",
+    "Editorial review: daily-guidance guidance-generated-231-2 scored 3.58",
+    "Editorial review: collection collection-sangat-and-belonging scored 3.58",
+    "Editorial review: daily-guidance guidance-generated-228-2 scored 3.59",
+    "Editorial review: daily-guidance guidance-child-of-grace-2 scored 3.61",
+    "Editorial review: daily-guidance guidance-generated-153-2 scored 3.62",
+    "Editorial review: daily-guidance guidance-generated-337-2 scored 3.62",
     "Editorial review: collection collection-doubt-to-clarity scored 3.62",
-    "Editorial review: daily-guidance guidance-search-ends-in-saint-company-2 scored 3.63",
-    "Editorial review: daily-guidance guidance-conquer-the-mind-2 scored 3.65",
-    "Editorial review: shabad-deep-dive shabad-generated-338 scored 3.65",
-    "Editorial review: daily-guidance guidance-generated-179-2 scored 3.67",
-    "Editorial review: shabad-deep-dive shabad-generated-64 scored 3.67",
-    "Editorial review: shabad-deep-dive shabad-generated-153 scored 3.67",
+    "Editorial review: daily-guidance guidance-generated-64-2 scored 3.63",
+    "Editorial review: daily-guidance guidance-generated-152-2 scored 3.64",
+    "Editorial review: shabad-deep-dive shabad-generated-151 scored 3.64",
+    "Editorial review: daily-guidance guidance-generated-65-2 scored 3.65",
+    "Editorial review: shabad-deep-dive shabad-generated-65 scored 3.65",
+    "Editorial review: shabad-deep-dive shabad-generated-153 scored 3.65",
+    "Editorial review: daily-guidance guidance-generated-736-2 scored 3.66",
+    "Editorial review: daily-guidance guidance-generated-232-2 scored 3.67",
+    "Editorial review: daily-guidance guidance-suffering-as-medicine-2 scored 3.68",
     "Editorial review: collection collection-sangat-bundle scored 3.68",
-    "Editorial review: collection collection-fear-to-trust scored 3.69",
-    "Editorial review: collection collection-purpose-bundle scored 3.69",
-    "Editorial review: daily-guidance guidance-child-of-grace-2 scored 3.70",
-    "Editorial review: daily-guidance guidance-generated-231-2 scored 3.70",
-    "Editorial review: collection collection-gratitude-and-contentment scored 3.70"
+    "Editorial review: daily-guidance guidance-generated-509-2 scored 3.69"
   ]
 }

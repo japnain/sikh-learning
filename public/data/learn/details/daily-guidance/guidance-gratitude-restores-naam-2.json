@@ -2,7 +2,7 @@
   "id": "guidance-gratitude-restores-naam-2",
   "title": "You Took Pity On Me, And Blessed",
   "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
+  "takeaway": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
   "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
   "source": {
     "deepDiveId": "shabad-gratitude-restores-naam",
@@ -10,8 +10,8 @@
       60338,
       60340
     ],
-    "shortMeaning": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
-    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+    "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
+    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before urgency gets to rename fear as wisdom."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -40,25 +40,27 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
+      "coreClaim": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
       "emotionalState": "thankful, softened, humbled",
       "turn": "Real gratitude does not inflate the self. It softens it.",
       "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 2.51,
-      "specificity": 4.82,
+      "faithfulness": 4.09,
+      "clarity": 1.45,
+      "specificity": 4.83,
       "emotionalHonesty": 3.18,
       "usefulness": 4.8,
-      "beauty": 3.85,
-      "overall": 3.89
+      "beauty": 3.57,
+      "overall": 3.7
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [
+      "runs too long at the sentence level"
+    ]
   }
 }

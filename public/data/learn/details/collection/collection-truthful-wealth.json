@@ -1,8 +1,8 @@
 {
   "id": "collection-truthful-wealth",
   "title": "Truthful Wealth",
-  "subtitle": "A disciplined path out of empty gain",
-  "description": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+  "subtitle": "A path out of empty gain",
+  "description": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
   "durationLabel": "6-day journey",
   "themes": [
     "purpose",
@@ -56,32 +56,30 @@
     "shabad-conquer-the-mind"
   ],
   "editorial": {
-    "status": "approved",
-    "origin": "legacy",
+    "status": "locked",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+      "coreClaim": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "A disciplined path out of empty gain",
+      "turn": "A path out of empty gain",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 1.75,
-      "specificity": 4.07,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 3.79,
+      "clarity": 4.35,
+      "specificity": 4.02,
+      "emotionalHonesty": 3,
       "usefulness": 3.38,
       "beauty": 4.53,
-      "overall": 3.5
+      "overall": 3.84
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

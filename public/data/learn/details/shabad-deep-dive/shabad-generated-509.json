@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-509",
-  "title": "Gauree Poorbee, Fourth Mehla:",
+  "title": "This Mind Does Not Hold Still, Even",
   "subtitle": "Raag Gauree · Ang 170",
-  "summary": "Restlessness is carried here from gauree Poorbee, Fourth Mehla: toward for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is.",
-  "whyItMatters": "This shabad is useful when life feels scattered, unsettled, wandering, because it keeps restlessness inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Restlessness steadies when for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is.",
+  "summary": "This shabad opens with this mind does not hold still, even for an instant. Distracted by all sorts. It turns the heart toward for my failings and mistakes, O Guru, grant me Your Grace.",
+  "whyItMatters": "It matters when life feels scattered, unsettled, and wandering because the shabad keeps restlessness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
   "themes": [
     "restlessness",
     "comparison",
@@ -105,14 +105,14 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: gauree Poorbee, Fourth Mehla:.",
-    "The middle movement deepens the correction by holding the mind inside he has been so generous and kind to me; He has carried me across.",
-    "The closing movement leaves a return you can actually keep: for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is."
+    "It opens by naming the condition without ornament: this mind does not hold still, even for an instant. Distracted by all sorts.",
+    "The middle movement widens the correction through he has carried me across the treacherous and terrifying world-ocean.",
+    "It closes with a return you can actually keep: for my failings and mistakes, O Guru, grant me Your Grace."
   ],
   "keyVerseIds": [
-    7106,
     7107,
     7112,
+    7114,
     7115
   ],
   "relatedGuidanceIds": [
@@ -144,20 +144,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Restlessness is carried here from gauree Poorbee, Fourth Mehla: toward for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is.",
+      "coreClaim": "This shabad opens with this mind does not hold still, even for an instant. Distracted by all sorts. It turns the heart toward for my failings and mistakes, O Guru, grant me Your Grace.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle movement deepens the correction by holding the mind inside he has been so generous and kind to me; He has carried me across.",
-      "practicalImplication": "Restlessness steadies when for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is.",
+      "turn": "The middle movement widens the correction through he has carried me across the treacherous and terrifying world-ocean.",
+      "practicalImplication": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.89,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.22,
-      "beauty": 3.87,
-      "overall": 3.9
+      "clarity": 3.27,
+      "specificity": 4.6,
+      "emotionalHonesty": 4,
+      "usefulness": 3.38,
+      "beauty": 3.57,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",

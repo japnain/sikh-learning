@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-938",
-  "title": "God-conscious Being Centers His Hopes On The",
+  "title": "God-conscious Being Centers His Hopes",
   "subtitle": "Raag Gauree · Ang 273",
-  "summary": "Attachment is carried here from the God-conscious being centers his hopes on the One alone toward o Nanak, through the God-conscious being, the whole world meditates on God.",
-  "whyItMatters": "This shabad is useful when life feels clingy, possessive, afraid-to-lose, because it keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Attachment steadies when o Nanak, through the God-conscious being, the whole world meditates on God.",
+  "summary": "This shabad opens with the God-conscious being centers his hopes on the One alone. It turns the heart toward o Nanak, through the God-conscious being, the whole world meditates on God.",
+  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: O Nanak, through the God-conscious being, the whole world meditates on God.",
   "themes": [
     "attachment",
     "discipline",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: the God-conscious being centers his hopes on the One alone.",
-    "The middle movement deepens the correction by holding the mind inside the God-conscious being holds his wandering mind under control.",
-    "The closing movement leaves a return you can actually keep: o Nanak, through the God-conscious being, the whole world meditates on God."
+    "It opens by naming the condition without ornament: the God-conscious being centers his hopes on the One alone.",
+    "The middle movement widens the correction through the God-conscious being holds his wandering mind under control.",
+    "It closes with a return you can actually keep: o Nanak, through the God-conscious being, the whole world meditates on God."
   ],
   "keyVerseIds": [
     12122,
@@ -141,27 +141,25 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Attachment is carried here from the God-conscious being centers his hopes on the One alone toward o Nanak, through the God-conscious being, the whole world meditates on God.",
+      "coreClaim": "This shabad opens with the God-conscious being centers his hopes on the One alone. It turns the heart toward o Nanak, through the God-conscious being, the whole world meditates on God.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement deepens the correction by holding the mind inside the God-conscious being holds his wandering mind under control.",
-      "practicalImplication": "Attachment steadies when o Nanak, through the God-conscious being, the whole world meditates on God.",
+      "turn": "The middle movement widens the correction through the God-conscious being holds his wandering mind under control.",
+      "practicalImplication": "Keep returning to this turn: O Nanak, through the God-conscious being, the whole world meditates on God.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.1,
-      "specificity": 4.78,
+      "clarity": 2.76,
+      "specificity": 4.59,
       "emotionalHonesty": 4,
-      "usefulness": 3.22,
-      "beauty": 3.54,
-      "overall": 3.75
+      "usefulness": 3.38,
+      "beauty": 3.49,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": []
   }
 }

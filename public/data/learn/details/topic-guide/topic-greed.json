@@ -1,12 +1,12 @@
 {
   "id": "topic-greed",
-  "title": "When wanting keeps disguising itself as need",
+  "title": "When desire keeps calling itself wisdom",
   "shortTitle": "Greed",
   "category": "inner-work",
-  "issueStatement": "The appetite has learned spiritual language, practical language, and survival language, but the heart is still left poor after feeding it.",
-  "centralInsight": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist.",
-  "practicalReflection": "Greed is not only excess. It is the confusion that keeps acquisition feeling urgent while contentment keeps being postponed.",
-  "actionPrompt": "Ask what you are chasing for relief, status, or safety that still leaves the heart hungry once it is in your hands.",
+  "issueStatement": "The appetite always has a reason ready: security, beauty, relief, prudence, reward. But after each new reason is obeyed, the heart is still unsettled.",
+  "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open.",
+  "practicalReflection": "Greed is not only having too much. It is the inability to believe that enough can exist while the Giver is still near.",
+  "actionPrompt": "Before the next grasping move, ask what you are afraid will happen if you stop taking more than this moment actually needs.",
   "searchTerms": [
     "greed",
     "craving",
@@ -17,6 +17,8 @@
     "never enough",
     "grasping",
     "false wealth",
+    "enough",
+    "true wealth",
     "greed in ordinary decisions",
     "greed daily",
     "spending",
@@ -51,54 +53,61 @@
     "greed confess",
     "greed release",
     "greed undo harm",
-    "practicing enoughness",
+    "training desire to live inside enough",
     "greed steady practice",
     "contentment",
-    "enough",
     "restraint",
     "habit",
     "practice",
+    "enoughness",
     "greed contentment",
     "greed enough",
     "greed restraint",
     "greed habit",
-    "greed practice"
+    "greed practice",
+    "greed true wealth",
+    "greed enoughness"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-speak-what-brings-honor",
         "verseIds": [
-          634
+          634,
+          639,
+          641
         ],
-        "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "how can the Naam, the Name of the Lord, find its dwelling in the heart; falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+      "explanation": "The shabad is blunt on purpose: greed is not styled as ambition or refinement. It is named as corruption that fills life with appetite while leaving no room for Naam to dwell."
     },
     {
       "source": {
         "deepDiveId": "shabad-buy-what-goes-with-you",
         "verseIds": [
           934,
-          937
+          937,
+          938,
+          946
         ],
-        "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
-        "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; those who do not have the Assets of Truth-how can they find peace",
+        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+      "explanation": "Here greed is corrected by a better economy. The question is not how much you can gather, but what can actually accompany you and make the soul rich."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-338",
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
         "verseIds": [
-          4889,
-          4900
+          37473,
+          37474,
+          37476
         ],
-        "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
-        "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "The line contrasts begging for riches with praising the Lord and being kept close in humility. Greed shrinks when nearness becomes more desirable than accumulation."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -140,36 +149,39 @@
           "source": {
             "deepDiveId": "shabad-speak-what-brings-honor",
             "verseIds": [
-              634
+              634,
+              639
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; the pleasures of gold and silver, the pleasures of women, the pleasure",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+          "explanation": "The ordinary day is where greed usually hides best, so the shabad names it without softness. Daily appetite is exposed through speech, habit, and the small dishonesties that make craving look respectable."
         },
         {
           "source": {
-            "deepDiveId": "shabad-buy-what-goes-with-you",
+            "deepDiveId": "shabad-work-give-know-the-path",
             "verseIds": [
-              934,
-              937
+              53369,
+              53371,
+              53372
             ],
-            "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
-            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+          "explanation": "The cure is practical, not theatrical. Honest work and open-handed giving retrain desire by reminding the heart that life is for right earning and sharing, not private accumulation."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-338",
+            "deepDiveId": "shabad-patience-ripens-into-honor",
             "verseIds": [
-              4889,
-              4900
+              11241,
+              11242,
+              11244
             ],
-            "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
-            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Lord, Har, Har, is their wealth, and they trade in His Name; those who have the true wealth are the true bankers",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when they do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on."
+          "explanation": "This line slows the appetite down. Greed loses force when the soul begins recognizing Naam as wealth and patience as honor rather than treating delay as deprivation."
         }
       ],
       "editorial": {
@@ -188,10 +200,10 @@
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 4.96,
-          "emotionalHonesty": 3,
+          "emotionalHonesty": 3.36,
           "usefulness": 3.44,
           "beauty": 4.37,
-          "overall": 4.12
+          "overall": 4.17
         },
         "strengths": [
           "specificity",
@@ -234,33 +246,36 @@
               934,
               937
             ],
-            "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
-            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; buy that object which will go along with you",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord."
+          "explanation": "Pressure keeps inventing urgent purchases for the soul. Gurbani answers by asking what kind of gain still matters after fear has spent itself and the moment has passed."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-361",
+            "deepDiveId": "shabad-human-birth-is-chance",
             "verseIds": [
-              5606,
-              5610
+              524,
+              525,
+              527
             ],
-            "shortMeaning": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
-            "lifeApplication": "Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+          "explanation": "Scarcity narrows the horizon to the next immediate need. This shabad widens it again by reminding you what human life is for, so fear does not get to define wisdom on its own."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-511",
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
             "verseIds": [
-              7132
+              499,
+              501,
+              503
             ],
-            "shortMeaning": "Those whose hearts are pleased with the Guru's Teachings - the Lord's",
-            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "The line breaks the trance of panic by returning the heart to Hukam. Trust does not erase provision; it stops fear from calling greed responsible."
         }
       ],
       "editorial": {
@@ -279,14 +294,14 @@
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 4.78,
-          "emotionalHonesty": 3.72,
+          "emotionalHonesty": 3.9,
           "usefulness": 3.22,
-          "beauty": 4.85,
+          "beauty": 4.69,
           "overall": 4.24
         },
         "strengths": [
-          "beauty",
-          "specificity"
+          "specificity",
+          "beauty"
         ],
         "issues": []
       }
@@ -321,37 +336,40 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-338",
+            "deepDiveId": "shabad-speak-what-brings-honor",
             "verseIds": [
-              4889,
-              4900
+              634,
+              641
             ],
-            "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
-            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "how can the Naam, the Name of the Lord, find its dwelling in the heart; falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: they do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on."
+          "explanation": "Repair starts with clean naming. The shabad refuses euphemism, which is exactly what the heart needs after greed has already tried to baptize itself as necessity."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-361",
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
             "verseIds": [
-              5602
+              499,
+              503
             ],
-            "shortMeaning": "eighth, he becomes angry, and his body is consumed",
-            "lifeApplication": "Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive; you Yourself separate them from Yourself, and You Yourself reunite with them again",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+          "explanation": "Release becomes possible when the soul remembers it was never the final owner. What was grasped can be returned because it was first received under Hukam."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-823",
+            "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
             "verseIds": [
-              11203
+              11743,
+              11747,
+              11748
             ],
-            "shortMeaning": "",
-            "lifeApplication": "Greed steadies when o Nanak, the Lord Himself cherishes us; He is our Mother and Father. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Greed leaves residue in conduct, not only in the original act. This line keeps repair practical by tying inward cleansing to the way you now speak, carry yourself, and move forward."
         }
       ],
       "editorial": {
@@ -361,7 +379,7 @@
         "templateKey": "topic-greed:repair",
         "evidence": {
           "coreClaim": "Repair begins when greed is named without euphemism. The Guru turns you back toward truthful earning, honest release, and inner poverty before God.",
-          "emotionalState": "envious, unsettled, small",
+          "emotionalState": "reactive, hungry, resentful",
           "turn": "You already let greed set the terms, and now the mind wants to defend the choice rather than confess the hunger beneath it.",
           "practicalImplication": "Admit where grasping overruled truth, undo one part of the harm if you can, and practice one concrete act of release today.",
           "bannedOverreach": []
@@ -372,8 +390,8 @@
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.38
+          "beauty": 4.69,
+          "overall": 4.4
         },
         "strengths": [
           "specificity",
@@ -385,64 +403,74 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Practicing enoughness",
-      "issueStatement": "Greed weakens slowly, not only through one dramatic renunciation but through a hundred quieter retrainings of desire.",
-      "centralInsight": "Contentment is not passivity. It is disciplined agreement with what is enough, repeated until craving loses its authority.",
-      "practicalReflection": "The heart needs practice in sufficiency because the world rehearses lack all day long.",
-      "actionPrompt": "Pick one area where excess has become normal and spend a week practicing restraint there without performing it for anyone.",
+      "title": "Training desire to live inside enough",
+      "issueStatement": "Greed does not usually break through one dramatic renunciation. It weakens when the appetite is retrained in small, repeated acts of enoughness.",
+      "centralInsight": "Contentment in Gurbani is not passivity. It is disciplined agreement with the Giver, repeated until craving stops sounding like your truest voice.",
+      "practicalReflection": "Enough has to be practiced because the world catechizes shortage all day long. Desire learns from repetition too.",
+      "actionPrompt": "Choose one appetite that usually asks for more and practice stopping while gratitude is still possible.",
       "searchTerms": [
         "greed",
         "craving",
         "consumption",
         "more",
         "materialism",
-        "practicing enoughness",
+        "training desire to live inside enough",
         "greed steady practice",
         "contentment",
         "enough",
         "restraint",
         "habit",
         "practice",
+        "true wealth",
+        "enoughness",
         "greed contentment",
         "greed enough",
         "greed restraint",
         "greed habit",
-        "greed practice"
+        "greed practice",
+        "greed true wealth",
+        "greed enoughness"
       ],
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-511",
+            "deepDiveId": "shabad-buy-what-goes-with-you",
             "verseIds": [
-              7132
+              934,
+              937,
+              946
             ],
-            "shortMeaning": "Those whose hearts are pleased with the Guru's Teachings - the Lord's",
-            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; those who chant the Name of the Lord earn great profits",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: those whose hearts are pleased with the Guru's Teachings - the Lord's."
+          "explanation": "Practice begins by choosing durable profit over instant appetite. The line keeps asking what kind of treasure still matters after the moment of acquisition has passed."
         },
         {
           "source": {
-            "deepDiveId": "shabad-speak-what-brings-honor",
+            "deepDiveId": "shabad-patience-ripens-into-honor",
             "verseIds": [
-              634
+              11241,
+              11242,
+              11243,
+              11244
             ],
-            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The Lord, Har, Har, is their wealth, and they trade in His Name; those who have the true wealth are the true bankers",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+          "explanation": "True wealth is named here as the Lord's Name itself. Enoughness grows when the heart is trained to hear honor and abundance in Naam rather than in surplus."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-823",
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
             "verseIds": [
-              11203,
-              11207
+              37474,
+              37476,
+              37477
             ],
-            "shortMeaning": "He shall obtain salvation, and his intellect shall be enlightened; he will",
-            "lifeApplication": "Greed steadies when o Nanak, the Lord Himself cherishes us; He is our Mother and Father. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
+            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "This excerpt matters because it trains posture, not only agreement."
+          "explanation": "Desire becomes gentler when nearness matters more than possession. The humble servant is kept close, cherished, and held; that is a different kind of wealth altogether."
         }
       ],
       "editorial": {
@@ -451,10 +479,10 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-greed:practice",
         "evidence": {
-          "coreClaim": "Contentment is not passivity. It is disciplined agreement with what is enough, repeated until craving loses its authority.",
-          "emotionalState": "unworthy, guarded, hard-on-self",
-          "turn": "Greed weakens slowly, not only through one dramatic renunciation but through a hundred quieter retrainings of desire.",
-          "practicalImplication": "Pick one area where excess has become normal and spend a week practicing restraint there without performing it for anyone.",
+          "coreClaim": "Contentment in Gurbani is not passivity. It is disciplined agreement with the Giver, repeated until craving stops sounding like your truest voice.",
+          "emotionalState": "distracted, ambitious, grasping",
+          "turn": "Greed does not usually break through one dramatic renunciation. It weakens when the appetite is retrained in small, repeated acts of enoughness.",
+          "practicalImplication": "Choose one appetite that usually asks for more and practice stopping while gratitude is still possible.",
           "bannedOverreach": []
         },
         "scores": {
@@ -462,9 +490,9 @@
           "clarity": 4.35,
           "specificity": 4.78,
           "emotionalHonesty": 3.36,
-          "usefulness": 3.22,
-          "beauty": 4.21,
-          "overall": 4.09
+          "usefulness": 4.36,
+          "beauty": 4.37,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
@@ -477,10 +505,12 @@
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
     "shabad-buy-what-goes-with-you",
-    "shabad-generated-338",
-    "shabad-generated-361",
-    "shabad-generated-511",
-    "shabad-generated-823"
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-work-give-know-the-path",
+    "shabad-patience-ripens-into-honor",
+    "shabad-human-birth-is-chance",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-ambrosial-speech-pure-conduct"
   ],
   "relatedTopicIds": [
     "topic-attachment",
@@ -508,20 +538,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:greed",
     "evidence": {
-      "coreClaim": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist.",
+      "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "The appetite has learned spiritual language, practical language, and survival language, but the heart is still left poor after feeding it.",
-      "practicalImplication": "Ask what you are chasing for relief, status, or safety that still leaves the heart hungry once it is in your hands.",
+      "turn": "The appetite always has a reason ready: security, beauty, relief, prudence, reward. But after each new reason is obeyed, the heart is still unsettled.",
+      "practicalImplication": "Before the next grasping move, ask what you are afraid will happen if you stop taking more than this moment actually needs.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.27,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.22,
-      "beauty": 3.33,
-      "overall": 3.82
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.21,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",

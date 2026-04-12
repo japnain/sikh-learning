@@ -1,16 +1,16 @@
 {
   "id": "guidance-speak-what-brings-honor-1",
-  "title": "Greed Is A Dog; Falsehood Is A",
+  "title": "Falsehood Is A Filthy Street-sweeper. Cheating",
   "summary": "Speech is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+  "takeaway": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
   "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       634
     ],
-    "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
-    "lifeApplication": "Speech becomes more truthful when greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+    "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -39,20 +39,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+      "coreClaim": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
       "emotionalState": "reactive, hungry, resentful",
       "turn": "Guard the tongue, and the heart begins to clear.",
       "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 3.75,
-      "specificity": 4.92,
+      "faithfulness": 4,
+      "clarity": 3.81,
+      "specificity": 4.94,
       "emotionalHonesty": 3.36,
       "usefulness": 4.64,
-      "beauty": 3.58,
-      "overall": 4.03
+      "beauty": 3.64,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",

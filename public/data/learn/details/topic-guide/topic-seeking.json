@@ -1,12 +1,12 @@
 {
   "id": "topic-seeking",
-  "title": "When searching starts keeping you unsettled",
+  "title": "When searching cannot settle into dwelling",
   "shortTitle": "Seeking",
   "category": "inner-work",
-  "issueStatement": "You keep reaching for a new explanation, practice, or environment, but the heart is still not learning how to stay and receive.",
-  "centralInsight": "Gurbani honors sincere seeking, but it does not leave the seeker wandering forever. Search has to ripen into instruction, company, and lived return.",
-  "practicalReflection": "The danger is not desire for truth. The danger is making motion itself feel spiritual while the mind keeps avoiding surrender.",
-  "actionPrompt": "For one day, stop adding new spiritual input and stay faithfully with one guide, one shabad, and one act of sangat.",
+  "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given.",
+  "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling.",
+  "practicalReflection": "The danger is not longing. It is mistaking motion for sincerity.",
+  "actionPrompt": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
   "searchTerms": [
     "seeking",
     "searching",
@@ -18,15 +18,18 @@
     "unsettled seeker",
     "can't land",
     "seeking truth",
-    "seeking in the ordinary day",
+    "seeking without scattering the day",
     "seeking daily",
-    "today",
-    "daily",
-    "ordinary day",
-    "routine",
-    "seeking today",
-    "seeking ordinary day",
-    "seeking routine",
+    "daily seeking",
+    "scattered seeker",
+    "novelty",
+    "stay with one line",
+    "ordinary search",
+    "seeking daily seeking",
+    "seeking scattered seeker",
+    "seeking novelty",
+    "seeking stay with one line",
+    "seeking ordinary search",
     "seeking when the day tightens",
     "seeking under pressure",
     "pressure",
@@ -46,52 +49,58 @@
     "seeking return",
     "seeking after slipping",
     "seeking start again",
-    "building a truer practice of seeking",
+    "training the seeker to stay",
     "seeking steady practice",
-    "practice",
-    "habit",
-    "steady return",
-    "formation",
     "seeking practice",
-    "seeking habit",
-    "seeking steady return",
-    "seeking formation"
+    "dwelling",
+    "stable longing",
+    "habit of wandering",
+    "seek and stay",
+    "seeking seeking practice",
+    "seeking dwelling",
+    "seeking stable longing",
+    "seeking habit of wandering",
+    "seeking seek and stay"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-generated-108",
+        "deepDiveId": "shabad-search-ends-in-saint-company",
         "verseIds": [
-          1429
+          3898,
+          3899,
+          3900
         ],
-        "shortMeaning": "Siree Raag, Third Mehla:",
-        "lifeApplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
+        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
       },
-      "explanation": "The theme is named without abstraction here: siree Raag, Third Mehla:."
+      "explanation": "Seeking ends differently here than the mind expects. The search cools when the soul finally lands in the right company instead of in one more restless loop."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-109",
+        "deepDiveId": "shabad-child-of-grace",
         "verseIds": [
-          1448,
-          1460
+          3757,
+          3760,
+          3762
         ],
-        "shortMeaning": "Siree Raag, Third Mehla:; without Him, I cannot survive even for an instant, and my life-night",
-        "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
       },
-      "explanation": "The shabad widens the issue beyond mood alone. Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+      "explanation": "The seeker asks like a child, not like a collector of spiritual options. That smaller posture is already part of how wandering starts to end."
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-153",
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
         "verseIds": [
-          2138,
-          2146
+          918,
+          921,
+          922
         ],
-        "shortMeaning": "I am a sacrifice to the True Guru, who has bestowed the; nanak seeks the Sanctuary of the Guru, who does not die, or",
-        "lifeApplication": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and. Let the wider window set the tone before the old reflex does."
+        "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries; let the Words of the Guru abide within your mind",
+        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
       },
-      "explanation": "Gurbani honors sincere seeking, but it does not leave the seeker wandering forever. Search has to ripen into instruction, company, and lived return. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
+      "explanation": "The search ripens when Guru's word is allowed to live within instead of remaining one more idea to inspect from a distance."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -105,50 +114,53 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Seeking in the ordinary day",
-      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The struggle keeps showing up in plain time, not only in dramatic moments.",
-      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. Gurbani treats the ordinary day as a real place of return.",
-      "practicalReflection": "The daily shape of life exposes whether seeking is being remembered or postponed.",
-      "actionPrompt": "Let one line keep you in place longer than the next new input. Keep the next response small enough to survive an ordinary day.",
+      "title": "Seeking without scattering the day",
+      "issueStatement": "The hunger for truth is real, but it keeps turning the ordinary day into one more place to browse, compare, and move on before anything can settle into the heart.",
+      "centralInsight": "Gurbani teaches search that can stand still long enough to receive. Daily seeking becomes holy when novelty stops being mistaken for depth.",
+      "practicalReflection": "The ordinary day reveals whether you want transformation or only fresh stimulation. One line kept faithfully can teach more than ten new inputs skimmed restlessly.",
+      "actionPrompt": "Stay with one line past the point where the mind wants something newer, and let the day be taught by that staying.",
       "searchTerms": [
         "seeking",
         "searching",
         "wandering",
         "spiritually lost",
         "can't settle",
-        "seeking in the ordinary day",
+        "seeking without scattering the day",
         "seeking daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "seeking today",
-        "seeking ordinary day",
-        "seeking routine"
+        "daily seeking",
+        "scattered seeker",
+        "novelty",
+        "stay with one line",
+        "ordinary search",
+        "seeking daily seeking",
+        "seeking scattered seeker",
+        "seeking novelty",
+        "seeking stay with one line",
+        "seeking ordinary search"
       ],
       "excerpts": [
         {
           "source": {
             "deepDiveId": "shabad-generated-108",
             "verseIds": [
-              1429
+              1430
             ],
-            "shortMeaning": "Siree Raag, Third Mehla:",
-            "lifeApplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "If we keep contemplating about the time as to when to remember the Lord",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The ordinary day is not spiritually empty here: siree Raag, Third Mehla:."
+          "explanation": "Ordinary life is already being addressed here: if we keep contemplating about the time as to when to remember the Lord."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-109",
             "verseIds": [
-              1448,
+              1449,
               1460
             ],
-            "shortMeaning": "Siree Raag, Third Mehla:; without Him, I cannot survive even for an instant, and my life-night",
-            "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "The line lands in plain time rather than special conditions. Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+          "explanation": "The teaching meets routine before the room becomes ideal. Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
         },
         {
           "source": {
@@ -157,32 +169,32 @@
               2138,
               2146
             ],
-            "shortMeaning": "I am a sacrifice to the True Guru, who has bestowed the; nanak seeks the Sanctuary of the Guru, who does not die, or",
-            "lifeApplication": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
           },
-          "explanation": "Daily faithfulness becomes visible when i am a sacrifice to the True Guru, who has bestowed the; nanak seeks the Sanctuary of the Guru, who does not die, or."
+          "explanation": "This makes daily faithfulness concrete: nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:daily",
         "evidence": {
-          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. Gurbani treats the ordinary day as a real place of return.",
+          "coreClaim": "Gurbani teaches search that can stand still long enough to receive. Daily seeking becomes holy when novelty stops being mistaken for depth.",
           "emotionalState": "reactive, heated, sharp",
-          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. The struggle keeps showing up in plain time, not only in dramatic moments.",
-          "practicalImplication": "Let one line keep you in place longer than the next new input. Keep the next response small enough to survive an ordinary day.",
+          "turn": "The hunger for truth is real, but it keeps turning the ordinary day into one more place to browse, compare, and move on before anything can settle into the heart.",
+          "practicalImplication": "Stay with one line past the point where the mind wants something newer, and let the day be taught by that staying.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.18,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.26,
-          "beauty": 4.21,
-          "overall": 4.25
+          "beauty": 4.37,
+          "overall": 4.36
         },
         "strengths": [
           "specificity",
@@ -221,36 +233,36 @@
           "source": {
             "deepDiveId": "shabad-generated-109",
             "verseIds": [
-              1448,
+              1449,
               1460
             ],
-            "shortMeaning": "Siree Raag, Third Mehla:; without Him, I cannot survive even for an instant, and my life-night",
-            "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
           },
-          "explanation": "Pressure is named without surrendering the heart to it: siree Raag, Third Mehla:; without Him, I cannot survive even for an instant, and my life-night."
+          "explanation": "Under strain, the line stays exact: those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-359",
             "verseIds": [
-              5557,
-              5559
+              5559,
+              5567
             ],
-            "shortMeaning": "Without their Husband Lord, they find no comfort. I have searched and; bestow Your Mercy, God, and save me! No one else can bestow",
-            "lifeApplication": "Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "He is the Patron of the poor, the Merciful, Luminous Lord, the Redeemer of sinners; bestow Your Mercy, God, and save me! No one else can bestow Your Mercy",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
           },
-          "explanation": "The line interrupts panic with a truer next movement. Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+          "explanation": "The next faithful move is smaller than panic wants. Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-461",
             "verseIds": [
-              6423
+              6424
             ],
-            "shortMeaning": "But without the Guru, they do not understand their true significance",
-            "lifeApplication": "Restlessness steadies when nanak's mind is imbued with the Lotus Feet of the Lord. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The treasure of liberation is obtained through devotional worship of the Lord",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
           },
-          "explanation": "This excerpt is useful when urgency tries to become your theology."
+          "explanation": "This line keeps urgency from becoming the only narrator in the room."
         }
       ],
       "editorial": {
@@ -267,12 +279,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.69,
           "specificity": 5,
           "emotionalHonesty": 3.54,
           "usefulness": 4.64,
-          "beauty": 4.21,
-          "overall": 4.36
+          "beauty": 3.61,
+          "overall": 4.17
         },
         "strengths": [
           "specificity",
@@ -313,10 +325,10 @@
               2138,
               2146
             ],
-            "shortMeaning": "I am a sacrifice to the True Guru, who has bestowed the; nanak seeks the Sanctuary of the Guru, who does not die, or",
-            "lifeApplication": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "Return stays possible even after the slip: i am a sacrifice to the True Guru, who has bestowed the; nanak seeks the Sanctuary of the Guru, who does not die, or."
+          "explanation": "Return is still being offered here: nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name."
         },
         {
           "source": {
@@ -324,10 +336,10 @@
             "verseIds": [
               5570
             ],
-            "shortMeaning": "He dwells deep within the mind and body. O Nanak, He cannot",
-            "lifeApplication": "Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "He dwells deep within the mind and body. O Nanak, He cannot be measured",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+          "explanation": "The Guru does not leave repair at remorse alone. Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
         },
         {
           "source": {
@@ -336,9 +348,9 @@
               8834
             ],
             "shortMeaning": "This life is diminishing, day and night",
-            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
           },
-          "explanation": "This excerpt keeps truth and return close enough to move together."
+          "explanation": "Truth and return are kept close enough here to move together."
         }
       ],
       "editorial": {
@@ -355,12 +367,12 @@
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 3.75,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.54,
           "usefulness": 4.8,
-          "beauty": 4.69,
-          "overall": 4.43
+          "beauty": 4.07,
+          "overall": 4.27
         },
         "strengths": [
           "specificity",
@@ -372,50 +384,52 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a truer practice of seeking",
-      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
-      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
-      "actionPrompt": "Let one line keep you in place longer than the next new input. Repeat what you can actually keep.",
+      "title": "Training the seeker to stay",
+      "issueStatement": "Search becomes thin when it never matures into rhythm. The heart keeps restarting instead of dwelling, so each new beginning feels sincere but nothing grows roots.",
+      "centralInsight": "The Guru steadies the seeker by joining longing to practice. Sangat, one guide, and repeated return slowly turn hunger into habitation.",
+      "practicalReflection": "A stable seeking life is built by what you stop chasing. Depth appears where the soul learns to remain long enough to be corrected.",
+      "actionPrompt": "Choose one place of return this week and keep coming back there until the habit of wandering begins to weaken.",
       "searchTerms": [
         "seeking",
         "searching",
         "wandering",
         "spiritually lost",
         "can't settle",
-        "building a truer practice of seeking",
+        "training the seeker to stay",
         "seeking steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
         "seeking practice",
-        "seeking habit",
-        "seeking steady return",
-        "seeking formation"
+        "dwelling",
+        "stable longing",
+        "habit of wandering",
+        "seek and stay",
+        "seeking seeking practice",
+        "seeking dwelling",
+        "seeking stable longing",
+        "seeking habit of wandering",
+        "seeking seek and stay"
       ],
       "excerpts": [
         {
           "source": {
             "deepDiveId": "shabad-generated-461",
             "verseIds": [
-              6423
+              6424
             ],
-            "shortMeaning": "But without the Guru, they do not understand their true significance",
-            "lifeApplication": "Restlessness steadies when nanak's mind is imbued with the Lotus Feet of the Lord. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "The treasure of liberation is obtained through devotional worship of the Lord",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "The line is teaching repetition, not merely inspiration: but without the Guru, they do not understand their true significance."
+          "explanation": "The line is teaching repetition more than momentary inspiration: the treasure of liberation is obtained through devotional worship of the Lord."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-108",
             "verseIds": [
-              1429
+              1430
             ],
-            "shortMeaning": "Siree Raag, Third Mehla:",
-            "lifeApplication": "Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "If we keep contemplating about the time as to when to remember the Lord",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
           },
-          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Anger steadies when o Nanak, merging with the Shabad through the Name, one is immersed in the. Let the wider window set the tone before the old reflex does."
+          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
         },
         {
           "source": {
@@ -424,32 +438,32 @@
               8834,
               8835
             ],
-            "shortMeaning": "This life is diminishing, day and night; meeting with the Guru, your affairs shall be resolved",
-            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+            "shortMeaning": "Meeting with the Guru, your affairs shall be resolved",
+            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
           },
           "explanation": "This excerpt matters because it trains posture, not only agreement."
         }
       ],
       "editorial": {
-        "status": "approved",
-        "origin": "generated",
+        "status": "locked",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:practice",
         "evidence": {
-          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "coreClaim": "The Guru steadies the seeker by joining longing to practice. Sangat, one guide, and repeated return slowly turn hunger into habitation.",
           "emotionalState": "scattered, unsettled, wandering",
-          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
-          "practicalImplication": "Let one line keep you in place longer than the next new input. Repeat what you can actually keep.",
+          "turn": "Search becomes thin when it never matures into rhythm. The heart keeps restarting instead of dwelling, so each new beginning feels sincere but nothing grows roots.",
+          "practicalImplication": "Choose one place of return this week and keep coming back there until the habit of wandering begins to weaken.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 5,
-          "emotionalHonesty": 3.54,
-          "usefulness": 4.04,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.98,
           "beauty": 4.21,
-          "overall": 4.27
+          "overall": 4.2
         },
         "strengths": [
           "specificity",
@@ -460,6 +474,9 @@
     }
   },
   "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-child-of-grace",
+    "shabad-extinguish-the-fire-of-doubt",
     "shabad-generated-108",
     "shabad-generated-109",
     "shabad-generated-153",
@@ -488,25 +505,25 @@
     "balanceCategory": "reflection"
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:seeking",
     "evidence": {
-      "coreClaim": "Gurbani honors sincere seeking, but it does not leave the seeker wandering forever. Search has to ripen into instruction, company, and lived return.",
-      "emotionalState": "reactive, heated, sharp",
-      "turn": "You keep reaching for a new explanation, practice, or environment, but the heart is still not learning how to stay and receive.",
-      "practicalImplication": "For one day, stop adding new spiritual input and stay faithfully with one guide, one shabad, and one act of sangat.",
+      "coreClaim": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given.",
+      "practicalImplication": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.09,
+      "clarity": 4.35,
       "specificity": 4.96,
-      "emotionalHonesty": 3.9,
+      "emotionalHonesty": 4,
       "usefulness": 3.82,
-      "beauty": 3.69,
-      "overall": 4.02
+      "beauty": 4.21,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",

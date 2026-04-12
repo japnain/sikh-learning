@@ -2,9 +2,9 @@
   "id": "shabad-generated-645",
   "title": "Save Me, O My Father God",
   "subtitle": "Raag Gauree · Ang 205",
-  "summary": "Fear is carried here from save me, O My Father God toward says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
-  "whyItMatters": "This shabad is useful when life feels afraid, guarded, dreading, because it keeps fear inside remembrance, conduct, and the Creator's larger care instead of private mood.",
-  "takeaway": "Fear steadies when says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+  "summary": "This shabad opens with save me, O My Father God. It turns the heart toward says Nanak, the Divine Light has dawned within my mind.",
+  "whyItMatters": "It matters when life feels afraid, guarded, and dreading because the shabad keeps fear inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+  "takeaway": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
   "themes": [
     "fear",
     "sangat",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "The opening movement names the pressure directly: save me, O My Father God.",
-    "The middle movement deepens the correction by holding the mind inside trying all sorts of things, I have grown weary, but still, they will not.",
-    "The closing movement leaves a return you can actually keep: says Nanak, the Divine Light has dawned within my mind; I have obtained the."
+    "It opens by naming the condition without ornament: save me, O My Father God.",
+    "The middle movement widens the correction through but I have heard that they can be rooted out, in the Saadh Sangat.",
+    "It closes with a return you can actually keep: says Nanak, the Divine Light has dawned within my mind."
   ],
   "keyVerseIds": [
     8845,
@@ -152,20 +152,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "Fear is carried here from save me, O My Father God toward says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+      "coreClaim": "This shabad opens with save me, O My Father God. It turns the heart toward says Nanak, the Divine Light has dawned within my mind.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "The middle movement deepens the correction by holding the mind inside trying all sorts of things, I have grown weary, but still, they will not.",
-      "practicalImplication": "Fear steadies when says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+      "turn": "The middle movement widens the correction through but I have heard that they can be rooted out, in the Saadh Sangat.",
+      "practicalImplication": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.63,
-      "specificity": 4.96,
+      "clarity": 3.78,
+      "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 3.44,
-      "beauty": 3.82,
-      "overall": 3.93
+      "usefulness": 3.6,
+      "beauty": 4,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",

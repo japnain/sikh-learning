@@ -1,16 +1,16 @@
 {
   "id": "guidance-what-pleases-you-comes-to-pass-1",
-  "title": "Whatever Pleases You Comes To Pass. As",
+  "title": "Whatever Pleases You Comes To Pass",
   "summary": "Hukam is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Whatever pleases You comes to pass. As You give, so do we",
+  "takeaway": "Whatever pleases You comes to pass. As You give, so do we receive",
   "lifeApplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
       499
     ],
-    "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we",
-    "lifeApplication": "Hukam becomes more truthful when whatever pleases You comes to pass. As You give, so do we."
+    "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive",
+    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let the line meet the ordinary room before self-judgment starts arranging it."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -39,24 +39,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Whatever pleases You comes to pass. As You give, so do we",
+      "coreClaim": "Whatever pleases You comes to pass. As You give, so do we receive",
       "emotionalState": "controlling, unsettled, lonely",
       "turn": "Receive the day as given, then answer it with Naam.",
       "practicalImplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
+      "faithfulness": 4.04,
       "clarity": 3.87,
-      "specificity": 4.53,
+      "specificity": 4.61,
       "emotionalHonesty": 3.36,
       "usefulness": 4.58,
-      "beauty": 3.66,
-      "overall": 3.99
+      "beauty": 3.82,
+      "overall": 4.05
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
     "issues": []
   }
