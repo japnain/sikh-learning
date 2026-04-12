@@ -1,6 +1,7 @@
 import { expect, test } from "vitest"
 import {
   filterShabadDeepDives,
+  getLearnSavedItems,
   getLearnInventorySummary,
   getTodayLearnSurface,
   resolveTopicGuide,
@@ -24,6 +25,13 @@ test("resolves modern search synonyms to canonical approved topic guides", () =>
   expect(resolveTopicGuide("resentment").topic?.id).toBe("topic-forgiveness")
   expect(resolveTopicGuide("micromanaging").topic?.id).toBe("topic-control")
   expect(resolveTopicGuide("burnt out").topic?.id).toBe("topic-exhaustion")
+})
+
+test("returns a no-match result so the UI can fall back to today's spotlight topic", () => {
+  const resolution = resolveTopicGuide("tomato")
+
+  expect(resolution.topic).toBeNull()
+  expect(resolution.matchedBy).toBe("no-match")
 })
 
 test("builds a today surface with no empty slots and a stable continue-learning card", () => {
@@ -65,6 +73,23 @@ test("filters shabads by theme and saved state", () => {
   )
 
   expect(filtered.map(item => item.id)).toEqual(["shabad-selfless-service"])
+})
+
+test("reorders shabads to favor deep study when the depth preference is deep", () => {
+  const filtered = filterShabadDeepDives(
+    {},
+    {
+      ...baseLearnState,
+      depthPreference: "deep",
+    }
+  )
+
+  expect(filtered[0]?.id).toBe("shabad-detached-and-steady")
+  expect(filtered[0]?.difficulty).toBe("deep")
+})
+
+test("ignores saved learn ids that no longer exist in the content library", () => {
+  expect(getLearnSavedItems(["nonexistent-id"])).toEqual([])
 })
 
 test("reports the current inventory as below paid-launch readiness", () => {

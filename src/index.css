@@ -108,7 +108,52 @@
     bottom: calc(var(--safe-area-bottom) + 0.75rem);
     width: min(28rem, calc(100% - var(--safe-area-left) - var(--safe-area-right) - 1.5rem));
     transform: translateX(-50%);
+    isolation: isolate;
     padding-bottom: calc(0.5rem + (var(--safe-area-bottom) * 0.15));
+  }
+
+  .app-nav-stack::before {
+    content: '';
+    position: absolute;
+    inset: -0.5rem 0.2rem -0.2rem;
+    z-index: -1;
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.52), transparent 48%),
+      linear-gradient(180deg, rgba(255, 248, 241, 0.76), rgba(246, 236, 220, 0.68));
+    box-shadow:
+      0 20px 48px rgba(77, 53, 22, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(32px) saturate(1.42) brightness(1.03);
+    -webkit-backdrop-filter: blur(32px) saturate(1.42) brightness(1.03);
+    pointer-events: none;
+  }
+
+  .dark .app-nav-stack::before {
+    background:
+      radial-gradient(circle at 50% -10%, rgba(255, 235, 190, 0.12), transparent 46%),
+      linear-gradient(180deg, rgba(34, 26, 53, 0.8), rgba(18, 12, 33, 0.74));
+    box-shadow:
+      0 24px 52px rgba(0, 0, 0, 0.44),
+      inset 0 1px 0 rgba(255, 232, 190, 0.08);
+  }
+
+  .app-nav-stack::after {
+    content: '';
+    position: absolute;
+    inset: -0.1rem 1.2rem auto;
+    height: 1.3rem;
+    z-index: -1;
+    border-radius: 999px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0));
+    opacity: 0.75;
+    filter: blur(8px);
+    pointer-events: none;
+  }
+
+  .dark .app-nav-stack::after {
+    background: radial-gradient(circle at center, rgba(255, 221, 161, 0.3), rgba(255, 221, 161, 0));
+    opacity: 0.62;
   }
 
   .app-nav-stack-rails {
@@ -122,6 +167,39 @@
   .app-nav {
     position: relative;
     width: 100%;
+    overflow: hidden;
+  }
+
+  .app-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 249, 238, 0.2) 38%, rgba(240, 225, 201, 0.16) 100%);
+    pointer-events: none;
+  }
+
+  .dark .app-nav::before {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 240, 214, 0.03) 35%, rgba(8, 6, 18, 0.16) 100%);
+  }
+
+  .app-nav::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(30px - 1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.58),
+      inset 0 -1px 0 rgba(181, 129, 55, 0.18);
+    pointer-events: none;
+  }
+
+  .dark .app-nav::after {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 231, 183, 0.14),
+      inset 0 -1px 0 rgba(255, 215, 145, 0.08);
   }
 }
 

@@ -290,7 +290,7 @@ export function resolveLineReference(reference: LearnLineReference): LearnResolv
 export function resolveTopicGuide(query: string): {
   topic: TopicGuide | null
   query: string
-  matchedBy: "exact" | "synonym" | "closest" | "empty"
+  matchedBy: "exact" | "synonym" | "closest" | "empty" | "no-match"
 } {
   const normalized = normalizeQuery(query)
   if (!normalized) {
@@ -308,7 +308,7 @@ export function resolveTopicGuide(query: string): {
 
   const best = scored[0]
   if (!best || best.score <= 0) {
-    return { topic: TOPIC_GUIDES[0] ?? null, query: normalized, matchedBy: "closest" }
+    return { topic: null, query: normalized, matchedBy: "no-match" }
   }
 
   return {
@@ -485,8 +485,7 @@ export function filterShabadDeepDives(
     getRecentViewsForKinds(learnState.viewedItems, ["shabad-deep-dive"], toLocalDayStamp(new Date()), 365)
       .map(view => view.itemId)
   )
-
-  return SHABAD_DEEP_DIVES.filter(item => {
+  const filteredItems = SHABAD_DEEP_DIVES.filter(item => {
     if (filters.theme && !item.themes.includes(filters.theme)) return false
     if (filters.guru && item.citation.guru !== filters.guru) return false
     if (filters.raag && item.citation.raag !== filters.raag) return false
@@ -496,6 +495,23 @@ export function filterShabadDeepDives(
     if (filters.completedOnly && !viewedIds.has(item.id)) return false
     return true
   })
+
+  if (learnState.depthPreference === "balanced") {
+    return filteredItems
+  }
+
+  const depthOrder =
+    learnState.depthPreference === "gentle"
+      ? { beginner: 0, growing: 1, deep: 2 }
+      : { deep: 0, growing: 1, beginner: 2 }
+
+  return filteredItems
+    .map((item, index) => ({ item, index }))
+    .sort((left, right) => {
+      const priorityDiff = depthOrder[left.item.difficulty] - depthOrder[right.item.difficulty]
+      return priorityDiff || left.index - right.index
+    })
+    .map(({ item }) => item)
 }
 
 export function resolveLearnItem(
@@ -516,6 +532,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
 
       if (kind === "daily-guidance") {
         const item = DAILY_GUIDANCE_BY_ID[itemId]
+        if (!item) return null
         return {
           id: item.id,
           kind,
@@ -528,6 +545,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
 
       if (kind === "topic-guide") {
         const item = TOPIC_GUIDE_BY_ID[itemId]
+        if (!item) return null
         return {
           id: item.id,
           kind,
@@ -540,6 +558,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
 
       if (kind === "shabad-deep-dive") {
         const item = SHABAD_DEEP_DIVE_BY_ID[itemId]
+        if (!item) return null
         return {
           id: item.id,
           kind,
@@ -551,6 +570,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
       }
 
       const item = COLLECTION_BY_ID[itemId]
+      if (!item) return null
       return {
         id: item.id,
         kind,

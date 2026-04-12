@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import DisclosureSection from '../components/DisclosureSection'
 import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
@@ -123,12 +124,24 @@ export default function More() {
       </section>
 
       <div className="mb-5">
-        <SoundscapeControls context="study" variant="full" />
+        <SoundscapeControls
+          context="study"
+          variant="full"
+          storageKey="more-soundscapes"
+          defaultExpanded={false}
+        />
       </div>
 
-      <section className="section-shell-quiet p-4 mb-5" aria-labelledby="more-reader-defaults-title" data-testid="more-reader-defaults">
-        <p id="more-reader-defaults-title" className="eyebrow mb-4">{moreCopy.readerDefaults}</p>
-        <div className="space-y-3">
+      <DisclosureSection
+        storageKey="more-reader-defaults"
+        title={moreCopy.readerDefaults}
+        summary={`${moreCopy.scriptLayoutDescription} ${moreCopy.readingSupportDescription}`}
+        defaultOpen={false}
+        className="section-shell-quiet p-4 mb-5"
+        bodyClassName="mt-4 space-y-3"
+        sectionId="more-reader-defaults"
+        testId="more-reader-defaults"
+      >
         <SettingsBlock
           title={moreCopy.scriptLayoutTitle}
           description={moreCopy.scriptLayoutDescription}
@@ -317,12 +330,18 @@ export default function More() {
             })}
           </div>
         </SettingsBlock>
-        </div>
-      </section>
+      </DisclosureSection>
 
-      <section className="section-shell p-4 mb-5" aria-labelledby="more-profile-language-title" data-testid="more-profile-language">
-        <p id="more-profile-language-title" className="eyebrow mb-4">{moreCopy.profileLanguage}</p>
-        <div className="space-y-3">
+      <DisclosureSection
+        storageKey="more-profile-language"
+        title={moreCopy.profileLanguage}
+        summary={`${moreCopy.appLanguageDescription} ${moreCopy.learningProfileDescription}`}
+        defaultOpen={false}
+        className="section-shell p-4 mb-5"
+        bodyClassName="mt-4 space-y-3"
+        sectionId="more-profile-language"
+        testId="more-profile-language"
+      >
         <SettingsBlock
           title={moreCopy.appLanguageTitle}
           description={moreCopy.appLanguageDescription}
@@ -420,8 +439,7 @@ export default function More() {
           {moreCopy.reopenOnHome}
         </button>
         </SettingsBlock>
-        </div>
-      </section>
+      </DisclosureSection>
 
       <section className="section-shell-quiet p-4 mb-5" aria-labelledby="more-grow-title" data-testid="more-grow">
         <p id="more-grow-title" className="eyebrow mb-3">{moreCopy.grow}</p>

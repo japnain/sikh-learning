@@ -100,6 +100,7 @@ test('reopening onboarding from more keeps the saved profile selections', async 
 
   render(<App />)
 
+  fireEvent.click(await screen.findByRole('button', { name: /profile & app language/i }))
   fireEvent.click(await screen.findByRole('button', { name: /re-open first setup on home/i }))
 
   await waitFor(() => {
