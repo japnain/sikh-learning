@@ -1,16 +1,7 @@
-import { useEffect, useMemo, useRef, type ReactElement } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { useLearnRailStore } from '../store/learnRail'
+import { useEffect, useRef, type ReactElement } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
-import {
-  buildLearnTabPath,
-  getLearnActiveTab,
-  getLearnDetailRail,
-  getLearnDetailRailByKey,
-  LEARN_SUBSECTION_RAILS,
-  LEARN_SURFACE_RAIL,
-} from '../utils/learnRails'
 
 type NavGlyphProps = {
   active: boolean
@@ -76,55 +67,10 @@ function MoreGlyph({ active }: NavGlyphProps) {
   )
 }
 
-function RailChip({
-  label,
-  active,
-  onClick,
-  testId,
-}: {
-  label: string
-  active: boolean
-  onClick: () => void
-  testId?: string
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      data-testid={testId}
-      className={`shrink-0 rounded-full border px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 ${
-        active
-          ? 'border-gold/30 bg-white/92 text-saffron shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_10px_22px_rgba(224,154,70,0.18)] dark:border-gold/20 dark:bg-dark-surface/92 dark:text-gold-light dark:shadow-[inset_0_1px_0_rgba(255,214,153,0.12),0_12px_26px_rgba(0,0,0,0.3)]'
-          : 'border-white/45 bg-parchment-card/72 text-ink/58 hover:text-ink/82 dark:border-gold/10 dark:bg-dark-card/80 dark:text-dark-text/58 dark:hover:text-dark-text/84'
-      }`}
-      aria-pressed={active}
-      data-ai-nav-chip={testId ?? label.toLowerCase().replace(/\s+/g, '-')}
-    >
-      {label}
-    </button>
-  )
-}
-
 export default function NavBar() {
-  const location = useLocation()
-  const navigate = useNavigate()
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
-  const activeSectionId = useLearnRailStore(s => s.activeSectionId)
-  const activeDetailSectionId = useLearnRailStore(s => s.activeDetailSectionId)
-  const visibleDetailRailKey = useLearnRailStore(s => s.visibleDetailRailKey)
-  const resetLearnRail = useLearnRailStore(s => s.reset)
   const stackRef = useRef<HTMLDivElement | null>(null)
-
-  const isLearnRoute = location.pathname === '/learn'
-  const learnTab = useMemo(() => getLearnActiveTab(location.search), [location.search])
-  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search])
-  const learnDetail = searchParams.get('detail')
-  const subsectionRail = LEARN_SUBSECTION_RAILS[learnTab]
-  const detailRail = useMemo(() => {
-    const publishedRail = getLearnDetailRailByKey(visibleDetailRailKey)
-    return publishedRail.length > 0 ? publishedRail : getLearnDetailRail(learnTab, learnDetail)
-  }, [learnDetail, learnTab, visibleDetailRailKey])
 
   const tabs: Array<{
     id: string
@@ -202,12 +148,6 @@ export default function NavBar() {
   ]
 
   useEffect(() => {
-    if (!isLearnRoute) {
-      resetLearnRail()
-    }
-  }, [isLearnRoute, resetLearnRail])
-
-  useEffect(() => {
     const element = stackRef.current
     if (!element) return
 
@@ -224,73 +164,12 @@ export default function NavBar() {
       observer.disconnect()
       window.removeEventListener('resize', updateHeight)
     }
-  }, [detailRail.length, isLearnRoute, learnTab, subsectionRail.length])
-
-  function scrollToAnchor(targetId: string) {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  }, [])
 
   return (
     <div className="app-nav-stack z-50" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
-      {isLearnRoute ? (
-        <div className="app-nav-stack-rails" data-ai-surface="learn-nav-stack">
-          <div
-            className="app-nav-rail"
-            aria-label="Learn surfaces"
-            data-testid="learn-surface-rail"
-            data-ai-surface="learn-surface-rail"
-          >
-            {LEARN_SURFACE_RAIL.map(rail => (
-              <RailChip
-                key={rail.id}
-                label={rail.label}
-                active={learnTab === rail.id}
-                onClick={() => navigate(buildLearnTabPath(rail.id))}
-                testId={`learn-surface-${rail.id}`}
-              />
-            ))}
-          </div>
-
-          <div
-            className="app-nav-rail"
-            aria-label="Learn subsections"
-            data-testid="learn-subsection-rail"
-            data-ai-surface="learn-subsection-rail"
-          >
-            {subsectionRail.map(chip => (
-              <RailChip
-                key={chip.id}
-                label={chip.label}
-                active={activeSectionId === chip.targetId}
-                onClick={() => scrollToAnchor(chip.targetId)}
-                testId={chip.id}
-              />
-            ))}
-          </div>
-
-          {detailRail.length > 0 ? (
-            <div
-              className="app-nav-rail"
-              aria-label="Learn detail subsections"
-              data-testid="learn-detail-rail"
-              data-ai-surface="learn-detail-rail"
-            >
-              {detailRail.map(chip => (
-                <RailChip
-                  key={chip.id}
-                  label={chip.label}
-                  active={activeDetailSectionId === chip.targetId}
-                  onClick={() => scrollToAnchor(chip.targetId)}
-                  testId={chip.id}
-                />
-              ))}
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
       <nav
-        className="app-nav flex items-center rounded-[30px] border border-white/55 bg-parchment-card/88 px-2 py-2 shadow-[0_18px_38px_rgba(77,53,22,0.14)] backdrop-blur-xl transition-colors duration-300 dark:border-gold/10 dark:bg-dark-card/88 dark:shadow-[0_22px_44px_rgba(0,0,0,0.45)]"
+        className="app-nav flex items-center rounded-[30px] border border-white/42 bg-parchment-card/28 px-2 py-2 shadow-[0_20px_42px_rgba(77,53,22,0.18)] backdrop-blur-[30px] transition-colors duration-300 dark:border-gold/12 dark:bg-dark-panel/24 dark:shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
         aria-label="Primary navigation"
         data-testid="primary-nav"
         data-ai-surface="primary-nav"
@@ -311,7 +190,7 @@ export default function NavBar() {
                 className={`relative flex w-full min-w-0 flex-col items-center justify-center gap-1.5 rounded-[22px] px-1.5 py-2.5 transition-all duration-300 ${
                   isActive
                     ? `${tab.accent.activeText}`
-                    : 'text-ink/40 dark:text-dark-text/38 hover:text-ink/66 dark:hover:text-dark-text/66'
+                    : 'text-ink/52 dark:text-dark-text/58 hover:text-ink/74 dark:hover:text-dark-text/78'
                 }`}
               >
                 <span
@@ -325,12 +204,12 @@ export default function NavBar() {
                   className={`relative flex h-10 w-10 items-center justify-center rounded-[18px] transition-all duration-300 ${
                     isActive
                       ? `${tab.accent.badge} scale-[1.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]`
-                      : 'bg-transparent group-hover:bg-black/[0.04] dark:group-hover:bg-white/[0.04]'
+                      : 'border border-black/[0.04] bg-white/[0.18] group-hover:bg-white/[0.26] dark:border-white/[0.04] dark:bg-white/[0.06] dark:group-hover:bg-white/[0.09]'
                   }`}
                 >
                   <tab.Glyph active={isActive} />
                 </span>
-                <span className={`relative truncate font-sans text-[10px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-76'}`}>
+                <span className={`relative truncate font-sans text-[10px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-90'}`}>
                   {tab.label}
                 </span>
                 {isActive ? (

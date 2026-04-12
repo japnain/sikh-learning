@@ -1,6 +1,9 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { vi } from 'vitest'
 import Home from './Home'
+import * as banidb from '../api/banidb'
+import * as hukamnamaHook from '../hooks/useHukamnama'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
@@ -24,6 +27,11 @@ function todayStamp() {
   const now = new Date()
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
 }
+
+afterEach(() => {
+  vi.useRealTimers()
+  vi.restoreAllMocks()
+})
 
 beforeEach(() => {
   localStorage.clear()
@@ -166,6 +174,18 @@ test('shows direct ang targets before broader search results on home', async () 
   expect(screen.getByRole('button', { name: /Open DG Ang 12/i })).toBeInTheDocument()
 })
 
+test('shows an inline error when Gurbani home search fails', async () => {
+  vi.spyOn(banidb, 'fetchSearch').mockRejectedValue(new Error('offline'))
+
+  renderHome()
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'tomato' } })
+
+  await waitFor(() => {
+    expect(screen.getByTestId('home-smart-search-error')).toBeInTheDocument()
+  })
+  expect(screen.queryByText(/No in-app or Gurbani matches found yet/i)).not.toBeInTheDocument()
+})
+
 test('shows today\'s pick after load', async () => {
   renderHome()
   await waitFor(() => {
@@ -209,6 +229,19 @@ test('shows today’s hukamnama action', async () => {
   await waitFor(() => {
     expect(screen.getAllByRole('button', { name: /open today’s hukamnama/i }).length).toBeGreaterThan(0)
   })
+})
+
+test('shows inline fallback copy when hukamnama fails on home', () => {
+  vi.spyOn(hukamnamaHook, 'useHukamnama').mockReturnValue({
+    data: null,
+    loading: false,
+    error: 'offline',
+  })
+
+  renderHome()
+
+  expect(screen.getByTestId('home-hukamnama-error')).toBeInTheDocument()
+  expect(screen.getByText(/Couldn't load today's hukamnama right now/i)).toBeInTheDocument()
 })
 
 test('hides preview meanings when meaning language is off', async () => {
@@ -279,4 +312,24 @@ test('shows adjustable STTM length detail for supported Nitnem banis', () => {
   expect(screen.getAllByRole('button', { name: /Rehras Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByRole('button', { name: /Benati Chaupai Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
   expect(screen.queryByText(/BaniDB|STTM|API/i)).not.toBeInTheDocument()
+})
+
+test('requires a second tap before resetting Nitnem selections', () => {
+  useNitemStore.setState({
+    completedDate: todayStamp(),
+    completedIds: [],
+    selectedIds: ['japji-sahib'],
+  })
+
+  renderHome()
+
+  fireEvent.click(screen.getByRole('button', { name: /customize/i }))
+  fireEvent.click(screen.getByTestId('home-nitnem-reset'))
+
+  expect(screen.getByRole('button', { name: /tap again to reset/i })).toBeInTheDocument()
+  expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib'])
+
+  fireEvent.click(screen.getByRole('button', { name: /tap again to reset/i }))
+
+  expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
 })

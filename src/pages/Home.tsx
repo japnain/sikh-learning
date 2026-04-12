@@ -28,7 +28,7 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
+import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, NITNEM_TIME_ORDER, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import type { StudiedEntry, UiLocale } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
@@ -151,11 +151,9 @@ const HOME_MESSAGES: Record<UiLocale, {
   },
 }
 
-const NITNEM_TIME_ORDER: Record<NitnemRouteOption['time'], number> = {
-  Morning: 0,
-  Evening: 1,
-  Night: 2,
-}
+const PROGRESS_BANIS = BANIS.filter(b =>
+  ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id)
+)
 
 export default function Home() {
   const location = useLocation()
@@ -185,7 +183,8 @@ export default function Home() {
   const toggleDailyAction = useDailyFlowStore(s => s.toggleAction)
   const isDailyActionDone = useDailyFlowStore(s => s.isCompleted)
   const completedActionIds = useDailyFlowStore(s => s.completedActionIds)
-  const { getProgress } = useReadingProgressStore()
+  const getProgress = useReadingProgressStore(state => state.getProgress)
+  const readingProgress = useReadingProgressStore(state => state.progress)
   const vocab = useVocabStore(s => s.vocab)
   const { masteredSymbols, completedLessons, journeys, activeJourneyId } = useLearningStore()
   const {
@@ -206,8 +205,11 @@ export default function Home() {
   const [homeSearchQuery, setHomeSearchQuery] = useState('')
   const [homeSearchResults, setHomeSearchResults] = useState<SearchResult[]>([])
   const [homeSearching, setHomeSearching] = useState(false)
+  const [homeSearchError, setHomeSearchError] = useState(false)
+  const [confirmingNitnemReset, setConfirmingNitnemReset] = useState(false)
   const todaysPathRef = useRef<HTMLElement | null>(null)
   const homeSearchDebounceRef = useRef<number | null>(null)
+  const nitnemResetConfirmRef = useRef<number | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
 
@@ -233,8 +235,20 @@ export default function Home() {
       if (homeSearchDebounceRef.current !== null) {
         window.clearTimeout(homeSearchDebounceRef.current)
       }
+      if (nitnemResetConfirmRef.current !== null) {
+        window.clearTimeout(nitnemResetConfirmRef.current)
+      }
     }
   }, [])
+
+  useEffect(() => {
+    if (nitnemEditing) return
+    if (nitnemResetConfirmRef.current !== null) {
+      window.clearTimeout(nitnemResetConfirmRef.current)
+      nitnemResetConfirmRef.current = null
+    }
+    setConfirmingNitnemReset(false)
+  }, [nitnemEditing])
 
   useEffect(() => {
     const state = (location.state as {
@@ -272,7 +286,7 @@ export default function Home() {
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
-  const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
+  const { data: hukamnama, loading: hukamnamaLoading, error: hukamnamaError } = useHukamnama()
 
   const selectedNitnemOptions = useMemo(() => {
     return selectedIds
@@ -308,26 +322,29 @@ export default function Home() {
     () => vocab.filter(entry => new Date(entry.review?.dueAt ?? entry.savedAt).getTime() <= now),
     [now, vocab]
   )
-  const savedWords = vocab.filter(entry => (entry.kind ?? 'word') === 'word').length
-  const savedPhrases = vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length
-
-  const PROGRESS_BANIS = BANIS.filter(b =>
-    ['japji-sahib', 'sukhmani-sahib', 'anand-sahib', 'rehras-sahib', 'jaap-sahib'].includes(b.id)
+  const { savedWords, savedPhrases } = useMemo(() => ({
+    savedWords: vocab.filter(entry => (entry.kind ?? 'word') === 'word').length,
+    savedPhrases: vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length,
+  }), [vocab])
+  const progressItems = useMemo(
+    () => PROGRESS_BANIS
+      .map(b => ({ ...b, ...getProgress(b.id) }))
+      .filter(p => p.done > 0),
+    [getProgress, readingProgress]
   )
-  const progressItems = PROGRESS_BANIS
-    .map(b => ({ ...b, ...getProgress(b.id) }))
-    .filter(p => p.done > 0)
-
-  const recentlyStudied = [...studied]
-    .sort((a: StudiedEntry, b: StudiedEntry) =>
-      new Date(b.swipedAt).getTime() - new Date(a.swipedAt).getTime()
-    )
-    .slice(0, 5)
-    .map((s: StudiedEntry) => {
-      const entry = getEntryById(s.id)
-      return entry ? { ...entry, swipedAt: s.swipedAt } : null
-    })
-    .filter((e): e is NonNullable<typeof e> => e !== null)
+  const recentlyStudied = useMemo(
+    () => [...studied]
+      .sort((a: StudiedEntry, b: StudiedEntry) =>
+        new Date(b.swipedAt).getTime() - new Date(a.swipedAt).getTime()
+      )
+      .slice(0, 5)
+      .map((s: StudiedEntry) => {
+        const entry = getEntryById(s.id)
+        return entry ? { ...entry, swipedAt: s.swipedAt } : null
+      })
+      .filter((entry): entry is NonNullable<typeof entry> => entry !== null),
+    [getEntryById, studied]
+  )
 
   const sessionTarget = parseSession(currentSession?.scriptureId)
   const showLearnHero = learningLevel === 'beginner' && !currentSession
@@ -517,28 +534,68 @@ export default function Home() {
 
   useEffect(() => {
     const trimmed = homeSearchQuery.trim()
+    let cancelled = false
+
     if (homeSearchDebounceRef.current !== null) {
       window.clearTimeout(homeSearchDebounceRef.current)
+      homeSearchDebounceRef.current = null
     }
 
     if (trimmed.length < 2) {
       setHomeSearchResults([])
+      setHomeSearchError(false)
       setHomeSearching(false)
       return
     }
 
+    setHomeSearchError(false)
     setHomeSearching(true)
     homeSearchDebounceRef.current = window.setTimeout(async () => {
       try {
         const results = await fetchSearch(trimmed, 8, 'all')
+        if (cancelled) return
         setHomeSearchResults(results)
+        setHomeSearchError(false)
       } catch {
+        if (cancelled) return
         setHomeSearchResults([])
+        setHomeSearchError(true)
       } finally {
-        setHomeSearching(false)
+        if (!cancelled) {
+          setHomeSearching(false)
+        }
       }
     }, 260)
+
+    return () => {
+      cancelled = true
+      if (homeSearchDebounceRef.current !== null) {
+        window.clearTimeout(homeSearchDebounceRef.current)
+        homeSearchDebounceRef.current = null
+      }
+    }
   }, [homeSearchQuery])
+
+  const handleNitnemReset = () => {
+    if (confirmingNitnemReset) {
+      if (nitnemResetConfirmRef.current !== null) {
+        window.clearTimeout(nitnemResetConfirmRef.current)
+        nitnemResetConfirmRef.current = null
+      }
+      setConfirmingNitnemReset(false)
+      resetSelections()
+      return
+    }
+
+    setConfirmingNitnemReset(true)
+    if (nitnemResetConfirmRef.current !== null) {
+      window.clearTimeout(nitnemResetConfirmRef.current)
+    }
+    nitnemResetConfirmRef.current = window.setTimeout(() => {
+      nitnemResetConfirmRef.current = null
+      setConfirmingNitnemReset(false)
+    }, 3000)
+  }
 
   const handleShareProgress = async () => {
     const text = [
@@ -608,7 +665,7 @@ export default function Home() {
           <span className="eyebrow">{editorial?.home.heroEyebrow ?? heroPrimary.eyebrow}</span>
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
-        <h2 id="home-hero-title" className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[12ch]">
+        <h2 id="home-hero-title" className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[20ch]">
           {editorial?.home.heroTitle ?? heroPrimary.title}
         </h2>
         <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[34ch]">
@@ -634,7 +691,7 @@ export default function Home() {
         ) : hukamnama ? (
           <div className="section-shell-quiet mt-5 p-4">
             <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-            <p className="font-sans text-[11px] text-ink/50 dark:text-dark-text/50 mb-2">
+            <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
               {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
               {hukamnama.entry.scripture} · Ang {hukamnama.ang}
             </p>
@@ -649,6 +706,13 @@ export default function Home() {
                 {hukamnamaMeaningPreview}
               </p>
             )}
+          </div>
+        ) : hukamnamaError ? (
+          <div className="section-shell-quiet mt-5 p-4" data-testid="home-hukamnama-error">
+            <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+            <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+              Couldn't load today's hukamnama right now. You can still continue into Read.
+            </p>
           </div>
         ) : null}
 
@@ -750,10 +814,10 @@ export default function Home() {
           {homeAngTargets.length > 0 ? (
             <div className="space-y-2" data-testid="home-smart-search-ang-results">
               <div className="flex items-center justify-between gap-3 px-1">
-                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60">
                   Direct ang
                 </p>
-                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                <p className="font-sans text-[11px] text-ink/60 dark:text-dark-text/60">
                   Open the page without running a word search
                 </p>
               </div>
@@ -779,10 +843,10 @@ export default function Home() {
           {homeAppMatches.length > 0 ? (
             <div className="space-y-2" data-testid="home-smart-search-app-results">
               <div className="flex items-center justify-between gap-3 px-1">
-                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60">
                   In the app
                 </p>
-                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                <p className="font-sans text-[11px] text-ink/60 dark:text-dark-text/60">
                   Exact destinations first
                 </p>
               </div>
@@ -807,18 +871,24 @@ export default function Home() {
           ) : null}
 
           {homeSearching ? (
-            <p className="px-1 font-sans text-xs text-ink/42 dark:text-dark-text/42">
+            <p className="px-1 font-sans text-xs text-ink/60 dark:text-dark-text/60">
               Searching Gurbani results...
+            </p>
+          ) : null}
+
+          {homeSearchError ? (
+            <p className="px-1 font-sans text-xs text-ink/65 dark:text-dark-text/65" data-testid="home-smart-search-error">
+              Couldn't search right now. Try again.
             </p>
           ) : null}
 
           {!homeSearching && groupedHomeSearchResults.length > 0 ? (
             <div className="space-y-2" data-testid="home-smart-search-gurbani-results">
               <div className="flex items-center justify-between gap-3 px-1">
-                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
+                <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60">
                   Gurbani search
                 </p>
-                <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45">
+                <p className="font-sans text-[11px] text-ink/60 dark:text-dark-text/60">
                   Broader matches after direct paths
                 </p>
               </div>
@@ -831,8 +901,8 @@ export default function Home() {
                   data-ai-result-kind="gurbani-search"
                 >
                   <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">{result.gurmukhi}</p>
-                  <p className="mt-0.5 font-sans text-xs text-ink/50 dark:text-dark-text/50">{result.transliteration}</p>
-                  <p className="mt-0.5 font-sans text-xs text-ink/42 dark:text-dark-text/42">{result.translation_en}</p>
+                  <p className="mt-0.5 font-sans text-xs text-ink/65 dark:text-dark-text/65">{result.transliteration}</p>
+                  <p className="mt-0.5 font-sans text-xs text-ink/60 dark:text-dark-text/60">{result.translation_en}</p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {result.sourceName ? <span className="chip-pill">{result.sourceName}</span> : null}
                     {typeof result.pageNo === 'number' && result.pageNo > 0 ? <span className="chip-pill">{`Ang ${result.pageNo}`}</span> : null}
@@ -843,8 +913,8 @@ export default function Home() {
             </div>
           ) : null}
 
-          {homeSearchQuery.trim().length >= 2 && !homeSearching && homeAppMatches.length === 0 && homeAngTargets.length === 0 && groupedHomeSearchResults.length === 0 ? (
-            <p className="px-1 font-sans text-xs text-ink/42 dark:text-dark-text/42">
+          {homeSearchQuery.trim().length >= 2 && !homeSearching && !homeSearchError && homeAppMatches.length === 0 && homeAngTargets.length === 0 && groupedHomeSearchResults.length === 0 ? (
+            <p className="px-1 font-sans text-xs text-ink/60 dark:text-dark-text/60">
               No in-app or Gurbani matches found yet.
             </p>
           ) : null}
@@ -880,7 +950,7 @@ export default function Home() {
         <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-4">
           <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${(completedDailyCount / 3) * 100}%` }} />
         </div>
-        <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-2">
+        <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-2">
           {completedDailyCount} / 3 {homeCopy.coreActionsDone}
         </p>
         <div
@@ -921,7 +991,7 @@ export default function Home() {
           {nextStep.actionLabel}
         </button>
 
-        <div className="grid grid-cols-1 gap-3 mt-4">
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             onClick={openReadAction}
             className="section-shell-quiet p-4 text-left active:scale-[0.99] transition-transform duration-150"
@@ -1053,10 +1123,10 @@ export default function Home() {
                             onClick={() => navigate(buildNitnemStudyPath(option))}
                             className="flex-1 text-left"
                           >
-                            <p className={`font-sans text-sm ${done ? 'text-ink/40 dark:text-dark-text/40 line-through' : 'text-ink dark:text-dark-text'}`}>
+                            <p className={`font-sans text-sm ${done ? 'text-ink/50 dark:text-dark-text/50 line-through' : 'text-ink dark:text-dark-text'}`}>
                               {option.name}
                             </p>
-                            <p className="font-sans text-[11px] text-ink/45 dark:text-dark-text/45 mt-1">
+                            <p className="font-sans text-[11px] text-ink/60 dark:text-dark-text/60 mt-1">
                               {getNitnemOptionDetail(option)}
                             </p>
                           </button>
@@ -1079,10 +1149,11 @@ export default function Home() {
                   </div>
                   <button
                     type="button"
-                    onClick={resetSelections}
+                    onClick={handleNitnemReset}
                     className="font-sans text-xs text-gold dark:text-gold-light underline underline-offset-2"
+                    data-testid="home-nitnem-reset"
                   >
-                    Reset
+                    {confirmingNitnemReset ? 'Tap again to reset' : 'Reset'}
                   </button>
                 </div>
 
@@ -1155,18 +1226,18 @@ export default function Home() {
             {homeCopy.openSaved} <IconArrowRight size={14} />
           </button>
         </div>
-        <div className="grid grid-cols-3 gap-2 mt-4">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedWords}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.words}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{homeCopy.words}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedPhrases}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.phrases}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{homeCopy.phrases}</p>
           </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{progressItems.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{homeCopy.inProgress}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{homeCopy.inProgress}</p>
           </div>
         </div>
       </section>
@@ -1191,7 +1262,7 @@ export default function Home() {
                   >
                     <div className="flex justify-between gap-3">
                       <p className="font-sans text-sm text-ink dark:text-dark-text">{p.name}</p>
-                      <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45">{p.pct}%</p>
+                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60">{p.pct}%</p>
                     </div>
                     <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
                       <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${p.pct}%` }} />
@@ -1242,7 +1313,7 @@ export default function Home() {
                   {recentlyStudied.map(entry => (
                     <button
                       key={entry.id}
-                      className="flex-shrink-0 w-52 section-shell px-4 py-4 text-left"
+                      className="w-44 flex-shrink-0 section-shell px-4 py-4 text-left sm:w-52"
                       onClick={() => {
                         const parts = entry.id.split('-')
                         if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)

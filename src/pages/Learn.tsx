@@ -1,4 +1,4 @@
-import { startTransition, useDeferredValue, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
+import { startTransition, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   COLLECTION_BY_ID,
@@ -24,10 +24,9 @@ import {
   IconArrowRight,
   IconBookmark,
   IconBookmarkFilled,
-  IconChevronDown,
-  IconChevronUp,
   IconSearch,
 } from "../components/icons"
+import DisclosureSection from "../components/DisclosureSection"
 import { toLocalDayStamp } from "../utils/learnDates"
 import {
   filterShabadDeepDives,
@@ -39,10 +38,12 @@ import {
   resolveTopicGuide,
 } from "../utils/learnExperience"
 import {
+  buildLearnTabPath,
   getLearnDetailRailByKey,
   getLearnDetailRailKey,
   getLearnRouteScrollTargetId,
   LEARN_SUBSECTION_RAILS,
+  LEARN_SURFACE_RAIL,
 } from "../utils/learnRails"
 import { getEditorialCopy } from "../content/editorialCopy"
 
@@ -51,6 +52,10 @@ const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: st
   { id: "balanced", label: "Balanced", detail: "Mix approachable reading with deeper study." },
   { id: "deep", label: "Deep", detail: "Favor denser study and slower reflection." },
 ]
+
+const SHABAD_GURUS = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.guru)))
+const SHABAD_RAAGS = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.raag)))
+const SHABAD_THEMES = Array.from(new Set(SHABAD_DEEP_DIVES.flatMap(item => item.themes)))
 
 function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<LearnTab, { title: string; body: string }> {
   return {
@@ -75,64 +80,6 @@ function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<Lea
 
 function isTab(value: string | null): value is LearnTab {
   return value === "today" || value === "topics" || value === "shabads" || value === "saved"
-}
-
-function CollapsibleSection({
-  eyebrow,
-  title,
-  summary,
-  children,
-  defaultOpen = true,
-  className = "section-shell-quiet mt-5 p-4",
-  bodyClassName = "mt-4",
-  badge,
-  titleClassName = "font-sans text-base font-semibold text-ink dark:text-dark-text",
-  sectionId,
-  testId,
-}: {
-  eyebrow: string
-  title: string
-  summary?: string
-  children: ReactNode
-  defaultOpen?: boolean
-  className?: string
-  bodyClassName?: string
-  badge?: string
-  titleClassName?: string
-  sectionId?: string
-  testId?: string
-}) {
-  const [open, setOpen] = useState(defaultOpen)
-  const headingId = sectionId ? `${sectionId}-title` : undefined
-  const panelId = sectionId ? `${sectionId}-panel` : undefined
-
-  return (
-    <section className={className} aria-labelledby={headingId} data-testid={testId}>
-      <button
-        type="button"
-        onClick={() => setOpen(current => !current)}
-        aria-expanded={open}
-        aria-controls={panelId}
-        className="flex w-full items-start justify-between gap-4 text-left"
-      >
-        <div className="min-w-0 flex-1">
-          <p className="eyebrow">{eyebrow}</p>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
-            <p id={headingId} className={titleClassName}>{title}</p>
-            {badge ? <span className="chip-pill">{badge}</span> : null}
-          </div>
-          {summary ? (
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/68">{summary}</p>
-          ) : null}
-        </div>
-        <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand/10 bg-white/60 text-ink/55 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-surface/72 dark:text-dark-text/55">
-          {open ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}
-        </span>
-      </button>
-
-      {open ? <div id={panelId} className={bodyClassName}>{children}</div> : null}
-    </section>
-  )
 }
 
 function SaveButton({
@@ -179,6 +126,62 @@ function SectionHeader({
       {body ? (
         <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">{body}</p>
       ) : null}
+    </div>
+  )
+}
+
+function InlineRailChip({
+  label,
+  active,
+  onClick,
+  testId,
+}: {
+  label: string
+  active: boolean
+  onClick: () => void
+  testId?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      data-testid={testId}
+      className={`shrink-0 rounded-full border px-4 py-2.5 font-sans text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 ${
+        active
+          ? "border-gold/30 bg-white/92 text-saffron shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_10px_22px_rgba(224,154,70,0.12)] dark:border-gold/20 dark:bg-dark-surface/92 dark:text-gold-light dark:shadow-[inset_0_1px_0_rgba(255,214,153,0.12),0_12px_26px_rgba(0,0,0,0.25)]"
+          : "border-sand/15 bg-white/72 text-ink/72 hover:text-ink/86 dark:border-dark-text/12 dark:bg-dark-card/82 dark:text-dark-text/74 dark:hover:text-dark-text/88"
+      }`}
+      aria-pressed={active}
+    >
+      {label}
+    </button>
+  )
+}
+
+function InlineRail({
+  chips,
+  activeTargetId,
+  onSelect,
+  testId,
+  className = "mt-5 flex gap-2 overflow-x-auto pb-1",
+}: {
+  chips: Array<{ id: string; label: string; targetId?: string }>
+  activeTargetId?: string | null
+  onSelect: (chipId: string) => void
+  testId: string
+  className?: string
+}) {
+  return (
+    <div className={className} data-testid={testId}>
+      {chips.map(chip => (
+        <InlineRailChip
+          key={chip.id}
+          label={chip.label}
+          active={activeTargetId === (chip.targetId ?? chip.id)}
+          onClick={() => onSelect(chip.id)}
+          testId={chip.id}
+        />
+      ))}
     </div>
   )
 }
@@ -237,7 +240,7 @@ function InventoryMetric({
 }) {
   return (
     <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/42 dark:text-dark-text/42">
+      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/60 dark:text-dark-text/60">
         {label}
       </p>
       <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{value}</p>
@@ -254,7 +257,7 @@ function CollectionMetric({
 }) {
   return (
     <div className="section-shell-quiet rounded-[22px] px-4 py-4">
-      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/42 dark:text-dark-text/42">
+      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/60 dark:text-dark-text/60">
         {label}
       </p>
       <p className="mt-2 font-display text-[1.65rem] leading-none text-ink dark:text-dark-text">{value}</p>
@@ -841,20 +844,38 @@ export default function Learn() {
   const editorial = getEditorialCopy(locale) ?? getEditorialCopy("en")
   const now = useCurrentTime()
   const dayStamp = toLocalDayStamp(new Date(now))
-  const learnState = useLearningStore(state => state.learnState)
+  const viewedItems = useLearningStore(state => state.learnState.viewedItems)
+  const savedItemIds = useLearningStore(state => state.learnState.savedItemIds)
+  const recentTopicIds = useLearningStore(state => state.learnState.recentTopicIds)
+  const activeCollectionId = useLearningStore(state => state.learnState.activeCollectionId)
+  const depthPreference = useLearningStore(state => state.learnState.depthPreference)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
   const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const setActiveLearnCollection = useLearningStore(state => state.setActiveLearnCollection)
   const setLearnDepthPreference = useLearningStore(state => state.setLearnDepthPreference)
   const setActiveSectionId = useLearnRailStore(state => state.setActiveSectionId)
   const setActiveDetailSectionId = useLearnRailStore(state => state.setActiveDetailSectionId)
-  const setVisibleDetailRailKey = useLearnRailStore(state => state.setVisibleDetailRailKey)
+  const activeSectionId = useLearnRailStore(state => state.activeSectionId)
+  const activeDetailSectionId = useLearnRailStore(state => state.activeDetailSectionId)
 
   const activeTab = isTab(searchParams.get("tab")) ? (searchParams.get("tab") as LearnTab) : "today"
   const pageCopy = getPageCopy(editorial)[activeTab]
   const deferredQuery = useDeferredValue(searchParams.get("query") ?? "")
-  const todaySurface = getTodayLearnSurface(dayStamp, learnState)
-  const queryResolution = resolveTopicGuide(deferredQuery)
+  const learnStateSnapshot = useMemo(
+    () => ({
+      viewedItems,
+      savedItemIds,
+      recentTopicIds,
+      activeCollectionId,
+      depthPreference,
+    }),
+    [activeCollectionId, depthPreference, recentTopicIds, savedItemIds, viewedItems]
+  )
+  const todaySurface = useMemo(
+    () => getTodayLearnSurface(dayStamp, learnStateSnapshot),
+    [dayStamp, learnStateSnapshot]
+  )
+  const queryResolution = useMemo(() => resolveTopicGuide(deferredQuery), [deferredQuery])
 
   const selectedTopic =
     TOPIC_GUIDE_BY_ID[searchParams.get("topic") ?? ""]
@@ -865,7 +886,7 @@ export default function Learn() {
     ?? todaySurface.featuredShabad.item
   const selectedCollection =
     COLLECTION_BY_ID[searchParams.get("collection") ?? ""]
-    ?? (learnState.activeCollectionId ? COLLECTION_BY_ID[learnState.activeCollectionId] : null)
+    ?? (activeCollectionId ? COLLECTION_BY_ID[activeCollectionId] : null)
     ?? todaySurface.exploreCollections[0]
 
   const shabadThemeFilter = searchParams.get("theme") ?? ""
@@ -876,17 +897,30 @@ export default function Learn() {
   const shabadSavedOnly = searchParams.get("savedOnly") === "1"
   const shabadCompletedOnly = searchParams.get("completedOnly") === "1"
 
-  const filteredShabads = filterShabadDeepDives(
-    {
-      theme: shabadThemeFilter || undefined,
-      guru: shabadGuruFilter || undefined,
-      raag: shabadRaagFilter || undefined,
-      difficulty: shabadDifficultyFilter || undefined,
-      lengthBand: shabadLengthFilter || undefined,
-      savedOnly: shabadSavedOnly,
-      completedOnly: shabadCompletedOnly,
-    },
-    learnState
+  const filteredShabads = useMemo(
+    () => filterShabadDeepDives(
+      {
+        theme: shabadThemeFilter || undefined,
+        guru: shabadGuruFilter || undefined,
+        raag: shabadRaagFilter || undefined,
+        difficulty: shabadDifficultyFilter || undefined,
+        lengthBand: shabadLengthFilter || undefined,
+        savedOnly: shabadSavedOnly,
+        completedOnly: shabadCompletedOnly,
+      },
+      learnStateSnapshot
+    ),
+    [
+      dayStamp,
+      learnStateSnapshot,
+      shabadCompletedOnly,
+      shabadDifficultyFilter,
+      shabadGuruFilter,
+      shabadLengthFilter,
+      shabadRaagFilter,
+      shabadSavedOnly,
+      shabadThemeFilter,
+    ]
   )
 
   const selectedShabad =
@@ -894,21 +928,29 @@ export default function Learn() {
       ? filteredShabads.find(item => item.id === requestedShabad.id) ?? filteredShabads[0] ?? null
       : requestedShabad
 
-  const savedItems = getLearnSavedItems(learnState.savedItemIds)
-  const viewedIds = new Set(learnState.viewedItems.map(item => item.itemId))
+  const savedItems = useMemo(() => getLearnSavedItems(savedItemIds), [savedItemIds])
+  const viewedIds = useMemo(() => new Set(viewedItems.map(item => item.itemId)), [viewedItems])
   const continueLearning = todaySurface.continueLearning
-  const gurus = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.guru)))
-  const raags = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.raag)))
-  const shabadThemes = Array.from(new Set(SHABAD_DEEP_DIVES.flatMap(item => item.themes)))
   const activeDetail = searchParams.get("detail")
   const activeTopicParam = searchParams.get("topic")
   const activeShabadParam = searchParams.get("shabad")
   const activeCollectionParam = searchParams.get("collection")
-  const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === learnState.depthPreference) ?? DEPTH_OPTIONS[1]
+  const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === depthPreference) ?? DEPTH_OPTIONS[1]
+  const hasActiveShabadFilters = Boolean(
+    shabadThemeFilter
+    || shabadGuruFilter
+    || shabadRaagFilter
+    || shabadDifficultyFilter
+    || shabadLengthFilter
+    || shabadSavedOnly
+    || shabadCompletedOnly
+  )
   const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const activeDetailRailKey =
-    activeTab === "shabads" && selectedShabad
+    activeTab === "topics"
+      ? "topics-topic"
+      : activeTab === "shabads" && selectedShabad
       ? "shabads-shabad"
       : getLearnDetailRailKey(activeTab, activeDetail)
   const activeDetailRail = getLearnDetailRailByKey(activeDetailRailKey)
@@ -926,6 +968,8 @@ export default function Learn() {
     activeShabadParam ?? "",
     activeCollectionParam ?? "",
   ].join("|")
+  const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
+  const showInlineDetailRail = activeDetailRail.length > 0
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
@@ -939,6 +983,21 @@ export default function Learn() {
     startTransition(() => {
       setSearchParams(next)
     })
+  }
+
+  function scrollToAnchor(targetId: string) {
+    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  function navigateToLearnSurface(tab: LearnTab) {
+    navigate(buildLearnTabPath(tab))
+  }
+
+  function handleDetailRailSelect(chipId: string) {
+    const target = activeDetailRail.find(item => item.id === chipId)
+    if (target) {
+      scrollToAnchor(target.targetId)
+    }
   }
 
   function focusArchiveSearch() {
@@ -1118,10 +1177,6 @@ export default function Learn() {
   }, [recordLearnItemView, selectedCollection])
 
   useLayoutEffect(() => {
-    setVisibleDetailRailKey(activeDetailRailKey)
-  }, [activeDetailRailKey, setVisibleDetailRailKey])
-
-  useLayoutEffect(() => {
     if (lastRouteScrollKeyRef.current === routeScrollKey) return
     lastRouteScrollKeyRef.current = routeScrollKey
 
@@ -1223,7 +1278,7 @@ export default function Learn() {
         </p>
 
         <label className="section-shell mt-5 flex items-center gap-3 rounded-[26px] px-4 py-3">
-          <IconSearch size={18} className="text-ink/45 dark:text-dark-text/45" />
+          <IconSearch size={18} className="text-ink/60 dark:text-dark-text/60" />
           <input
             ref={topicSearchInputRef}
             id="learn-archive-search"
@@ -1248,17 +1303,33 @@ export default function Learn() {
         </p>
       </section>
 
-      <CollapsibleSection
+      <InlineRail
+        chips={LEARN_SURFACE_RAIL.map(rail => ({
+          id: `learn-surface-${rail.id}`,
+          label: rail.label,
+          targetId: rail.id,
+        }))}
+        activeTargetId={activeTab}
+        onSelect={chipId => navigateToLearnSurface(chipId.replace("learn-surface-", "") as LearnTab)}
+        testId="learn-surface-rail"
+      />
+
+      <DisclosureSection
+        storageKey="learn-archive-public"
         eyebrow={editorial?.learn.proofEyebrow ?? "Inventory"}
         title={editorial?.learn.proofTitle ?? "The library is growing in public."}
-        summary={editorial?.learn.proofBody ?? inventorySummary}
+        summary="Open to inspect the live archive counts and cross-link depth."
         badge="Live"
+        defaultOpen={false}
         className="section-shell mt-5 p-5"
         bodyClassName="mt-5"
         titleClassName="font-display text-[2rem] leading-none text-ink dark:text-dark-text"
         sectionId="learn-inventory"
         testId="learn-inventory"
       >
+        <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+          {editorial?.learn.proofBody ?? inventorySummary}
+        </p>
         <div className="grid gap-3 sm:grid-cols-2">
           <InventoryMetric
             label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
@@ -1281,28 +1352,33 @@ export default function Learn() {
             value={todaySurface.inventory.crossLinks}
           />
         </div>
-        <p className="mt-4 font-sans text-xs leading-5 text-ink/52 dark:text-dark-text/52">
+        <p className="mt-4 font-sans text-xs leading-5 text-ink/65 dark:text-dark-text/65">
           {editorial?.learn.proofFooter}
         </p>
-      </CollapsibleSection>
+      </DisclosureSection>
 
-      <CollapsibleSection
+      <DisclosureSection
+        storageKey="learn-reading-depth"
         eyebrow="Reading Depth"
         title={activeDepthOption.label}
-        summary={activeDepthOption.detail}
+        summary="Open to change whether shabads surface more accessible guidance or denser study first."
         badge="Current"
+        defaultOpen={false}
         sectionId="learn-reading-depth"
         testId="learn-reading-depth"
       >
+        <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+          {activeDepthOption.detail}
+        </p>
         <div className="grid gap-3 md:grid-cols-3">
           {DEPTH_OPTIONS.map(option => (
             <button
               key={option.id}
               type="button"
               onClick={() => setLearnDepthPreference(option.id)}
-              aria-pressed={learnState.depthPreference === option.id}
+              aria-pressed={depthPreference === option.id}
               className={`rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
-                learnState.depthPreference === option.id
+                depthPreference === option.id
                   ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
                   : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:!bg-dark-surface"
               }`}
@@ -1312,7 +1388,21 @@ export default function Learn() {
             </button>
           ))}
         </div>
-      </CollapsibleSection>
+      </DisclosureSection>
+
+      {showInlineSubsectionRail ? (
+        <InlineRail
+          chips={activeSubsectionRail}
+          activeTargetId={activeSectionId}
+          onSelect={chipId => {
+            const target = activeSubsectionRail.find(item => item.id === chipId)
+            if (target) {
+              scrollToAnchor(target.targetId)
+            }
+          }}
+          testId="learn-subsection-rail"
+        />
+      ) : null}
 
       {activeTab === "today" && (
         <>
@@ -1435,6 +1525,15 @@ export default function Learn() {
 
           {activeDetail === "guidance" ? (
             <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
+              {showInlineDetailRail ? (
+                <InlineRail
+                  chips={activeDetailRail}
+                  activeTargetId={activeDetailSectionId}
+                  onSelect={handleDetailRailSelect}
+                  testId="learn-detail-rail"
+                  className="mb-4 flex gap-2 overflow-x-auto pb-1"
+                />
+              ) : null}
               <DailyGuidanceDetail
                 guidanceTitle={todaySurface.dailyGuidance.item.title}
                 summary={todaySurface.dailyGuidance.item.summary}
@@ -1442,7 +1541,7 @@ export default function Learn() {
                 lifeApplication={todaySurface.dailyGuidance.item.lifeApplication}
                 excerpt={resolveLineReference(todaySurface.dailyGuidance.item.source)}
                 shabad={resolveLineReference(todaySurface.dailyGuidance.item.source).deepDive}
-                saved={learnState.savedItemIds.includes(todaySurface.dailyGuidance.item.id)}
+                saved={savedItemIds.includes(todaySurface.dailyGuidance.item.id)}
                 onToggleSave={() => toggleSavedLearnItem(todaySurface.dailyGuidance.item.id)}
                 onOpenShabad={() => openTodayShabad(todaySurface.dailyGuidance.item.relatedShabadIds[0] ?? todaySurface.featuredShabad.item.id)}
               />
@@ -1451,9 +1550,18 @@ export default function Learn() {
 
           {activeDetail === "topic" ? (
             <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
+              {showInlineDetailRail ? (
+                <InlineRail
+                  chips={activeDetailRail}
+                  activeTargetId={activeDetailSectionId}
+                  onSelect={handleDetailRailSelect}
+                  testId="learn-detail-rail"
+                  className="mb-4 flex gap-2 overflow-x-auto pb-1"
+                />
+              ) : null}
               <TopicGuideDetail
                 topic={selectedTopic}
-                saved={learnState.savedItemIds.includes(selectedTopic.id)}
+                saved={savedItemIds.includes(selectedTopic.id)}
                 onToggleSave={() => toggleSavedLearnItem(selectedTopic.id)}
                 onOpenShabad={openTodayShabad}
               />
@@ -1462,9 +1570,18 @@ export default function Learn() {
 
           {activeDetail === "shabad" && selectedShabad ? (
             <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
+              {showInlineDetailRail ? (
+                <InlineRail
+                  chips={activeDetailRail}
+                  activeTargetId={activeDetailSectionId}
+                  onSelect={handleDetailRailSelect}
+                  testId="learn-detail-rail"
+                  className="mb-4 flex gap-2 overflow-x-auto pb-1"
+                />
+              ) : null}
               <ShabadDetail
                 shabad={selectedShabad}
-                saved={learnState.savedItemIds.includes(selectedShabad.id)}
+                saved={savedItemIds.includes(selectedShabad.id)}
                 onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
               />
             </div>
@@ -1472,6 +1589,15 @@ export default function Learn() {
 
           {activeDetail === "collection" && selectedCollection ? (
             <div className="mt-5" id="learn-today-detail" data-learn-anchor data-learn-section-anchor="true">
+              {showInlineDetailRail ? (
+                <InlineRail
+                  chips={activeDetailRail}
+                  activeTargetId={activeDetailSectionId}
+                  onSelect={handleDetailRailSelect}
+                  testId="learn-detail-rail"
+                  className="mb-4 flex gap-2 overflow-x-auto pb-1"
+                />
+              ) : null}
               <CollectionDetail collection={selectedCollection} onOpenItem={openCollectionItem} />
             </div>
           ) : null}
@@ -1487,7 +1613,7 @@ export default function Learn() {
               body={editorial?.learn.topicsIntroBody ?? "Search modern struggles and land on canonical Gurbani-based topic pages, not improvised interpretation."}
             />
             <label className="section-shell-quiet flex items-center gap-3 rounded-[24px] px-4 py-3">
-              <IconSearch size={18} className="text-ink/45 dark:text-dark-text/45" />
+              <IconSearch size={18} className="text-ink/60 dark:text-dark-text/60" />
               <input
                 ref={topicSearchInputRef}
                 id="learn-topic-search"
@@ -1510,6 +1636,8 @@ export default function Learn() {
               <p className="mt-3 font-sans text-sm text-ink/72 dark:text-dark-text/74">
                 {queryResolution.matchedBy === "synonym"
                   ? `Showing the canonical approved guide for “${deferredQuery}”.`
+                  : queryResolution.matchedBy === "no-match"
+                    ? "No matching topic found - showing today's spotlight."
                   : queryResolution.matchedBy === "closest"
                     ? `No exact approved page matched “${deferredQuery}”, so the nearest approved guide is shown.`
                     : `Approved guide matched “${deferredQuery}”.`}
@@ -1534,9 +1662,18 @@ export default function Learn() {
           </section>
 
           <div className="mt-5" id="learn-topics-current-guide" data-learn-anchor data-learn-section-anchor="true">
+            {showInlineDetailRail ? (
+              <InlineRail
+                chips={activeDetailRail}
+                activeTargetId={activeDetailSectionId}
+                onSelect={handleDetailRailSelect}
+                testId="learn-detail-rail"
+                className="mb-4 flex gap-2 overflow-x-auto pb-1"
+              />
+            ) : null}
             <TopicGuideDetail
               topic={selectedTopic}
-              saved={learnState.savedItemIds.includes(selectedTopic.id)}
+              saved={savedItemIds.includes(selectedTopic.id)}
               onToggleSave={() => toggleSavedLearnItem(selectedTopic.id)}
               onOpenShabad={shabadId => openShabad(shabadId, "shabads")}
             />
@@ -1551,6 +1688,14 @@ export default function Learn() {
                 onClick={() => openTopic(topic.id, "topics")}
               />
             ))}
+            {queryResolution.matchedBy === "no-match" ? (
+              <div className="section-shell-quiet rounded-[28px] p-5">
+                <p className="eyebrow">No matching topic yet</p>
+                <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+                  No approved topic guide matched the current search. The spotlight and full topic library are still available below.
+                </p>
+              </div>
+            ) : null}
           </section>
         </>
       )}
@@ -1572,7 +1717,7 @@ export default function Learn() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All themes</option>
-                {shabadThemes.map(theme => (
+                {SHABAD_THEMES.map(theme => (
                   <option key={theme} value={theme}>{theme}</option>
                 ))}
               </select>
@@ -1584,7 +1729,7 @@ export default function Learn() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All Gurus</option>
-                {gurus.map(guru => (
+                {SHABAD_GURUS.map(guru => (
                   <option key={guru} value={guru}>{guru}</option>
                 ))}
               </select>
@@ -1596,7 +1741,7 @@ export default function Learn() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All raags</option>
-                {raags.map(raag => (
+                {SHABAD_RAAGS.map(raag => (
                   <option key={raag} value={raag}>{raag}</option>
                 ))}
               </select>
@@ -1642,14 +1787,41 @@ export default function Learn() {
               >
                 Viewed only
               </button>
+              {hasActiveShabadFilters ? (
+                <button
+                  type="button"
+                  onClick={() => setParams({
+                    tab: "shabads",
+                    theme: null,
+                    guru: null,
+                    raag: null,
+                    difficulty: null,
+                    length: null,
+                    savedOnly: null,
+                    completedOnly: null,
+                  })}
+                  className="rounded-full px-4 py-2 font-sans text-xs font-semibold text-gold dark:text-gold-light underline underline-offset-2"
+                >
+                  Clear all filters
+                </button>
+              ) : null}
             </div>
           </section>
 
           {selectedShabad ? (
             <div className="mt-5" id="learn-shabads-current" data-learn-anchor data-learn-section-anchor="true">
+              {showInlineDetailRail ? (
+                <InlineRail
+                  chips={activeDetailRail}
+                  activeTargetId={activeDetailSectionId}
+                  onSelect={handleDetailRailSelect}
+                  testId="learn-detail-rail"
+                  className="mb-4 flex gap-2 overflow-x-auto pb-1"
+                />
+              ) : null}
               <ShabadDetail
                 shabad={selectedShabad}
-                saved={learnState.savedItemIds.includes(selectedShabad.id)}
+                saved={savedItemIds.includes(selectedShabad.id)}
                 onToggleSave={() => toggleSavedLearnItem(selectedShabad.id)}
               />
             </div>
@@ -1660,9 +1832,9 @@ export default function Learn() {
               <ShabadCard
                 key={shabad.id}
                 shabad={shabad}
-                active={selectedShabad.id === shabad.id}
+                active={selectedShabad?.id === shabad.id}
                 completed={viewedIds.has(shabad.id)}
-                saved={learnState.savedItemIds.includes(shabad.id)}
+                saved={savedItemIds.includes(shabad.id)}
                 onOpen={() => openShabad(shabad.id, "shabads", { preserveFilters: true })}
                 onToggleSave={() => toggleSavedLearnItem(shabad.id)}
               />

@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { FocusContext, UiLocale } from '../types'
 import { IconChevronDown, IconChevronUp, IconMusic, IconPause, IconPlay } from './icons'
+import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import {
   FOCUS_PRESETS,
   SOUND_LIBRARY_TARGETS,
@@ -272,11 +272,15 @@ function EnergyDots({ energy }: { energy: 1 | 2 | 3 }) {
 interface SoundscapeControlsProps {
   context: FocusContext
   variant?: 'compact' | 'full'
+  storageKey?: string | null
+  defaultExpanded?: boolean
 }
 
 export default function SoundscapeControls({
   context,
   variant = 'compact',
+  storageKey = null,
+  defaultExpanded = variant === 'full',
 }: SoundscapeControlsProps) {
   const locale = useLocaleStore(state => state.locale)
   const copy = SOUNDSCAPE_COPY[locale]
@@ -291,7 +295,7 @@ export default function SoundscapeControls({
   const setVolume = useMusicStore(state => state.setVolume)
   const stopPlayback = useMusicStore(state => state.stopPlayback)
   const toggleSound = useMusicStore(state => state.toggleSound)
-  const [isExpanded, setIsExpanded] = useState(variant === 'full')
+  const [isExpanded, setIsExpanded] = usePersistentDisclosure(storageKey, defaultExpanded)
 
   const visibleSounds = SOUNDS.filter(sound => sound.recommendedContexts.includes(context))
   const selectedSound = SOUNDS.find(sound => sound.id === selectedSoundId) ?? null

@@ -37,7 +37,7 @@ const NITNEM_TIME_BY_BANI_ID: Record<NitnemBaseBaniId, NitnemRouteOption['time']
   'kirtan-sohila': 'Night',
 }
 
-const NITNEM_TIME_ORDER: Record<NitnemRouteOption['time'], number> = {
+export const NITNEM_TIME_ORDER: Record<NitnemRouteOption['time'], number> = {
   Morning: 0,
   Evening: 1,
   Night: 2,

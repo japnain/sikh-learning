@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import Learn from "./Learn"
 import NavBar from "../components/NavBar"
+import { UI_DISCLOSURE_STORAGE_KEY } from "../hooks/usePersistentDisclosure"
 import { useLearningStore } from "../store/learning"
 import { useLearnRailStore } from "../store/learnRail"
 import { getTodayLearnSurface } from "../utils/learnExperience"
@@ -31,6 +32,7 @@ beforeEach(() => {
   vi.useFakeTimers()
   vi.setSystemTime(new Date("2026-04-11T09:00:00.000Z"))
   window.scrollTo = vi.fn()
+  window.localStorage.removeItem(UI_DISCLOSURE_STORAGE_KEY)
   useLearnRailStore.getState().reset()
 
   useLearningStore.setState({
@@ -97,6 +99,8 @@ test("shows live inventory proof instead of fixed launch claims", () => {
 
   renderLearnRoute()
 
+  fireEvent.click(screen.getByRole("button", { name: /The library is growing in public\./i }))
+
   expect(screen.getByText(/Daily guidance entries/i)).toBeInTheDocument()
   expect(screen.getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
   expect(screen.getByText(/^Cross-links$/i)).toBeInTheDocument()
@@ -104,16 +108,31 @@ test("shows live inventory proof instead of fixed launch claims", () => {
   expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
 })
 
-test("learn controls can collapse without losing the current summary", () => {
+test("learn disclosure sections start collapsed and reveal their controls on demand", () => {
   renderLearnRoute()
 
-  fireEvent.click(screen.getByRole("button", { name: /Reading Depth Balanced Current/i }))
+  const inventoryButton = screen.getByRole("button", { name: /The library is growing in public\./i })
+  const depthButton = screen.getByRole("button", { name: /Reading Depth Balanced Current/i })
 
+  expect(inventoryButton).toHaveAttribute("aria-expanded", "false")
+  expect(depthButton).toHaveAttribute("aria-expanded", "false")
+  expect(screen.queryByText(/Daily guidance entries/i)).not.toBeInTheDocument()
   expect(screen.queryByRole("button", { name: /Gentle/i })).not.toBeInTheDocument()
-  expect(screen.getByRole("button", { name: /Reading Depth Balanced Current/i })).toBeInTheDocument()
 
-  fireEvent.click(screen.getByRole("button", { name: /Reading Depth Balanced Current/i }))
+  fireEvent.click(depthButton)
 
+  expect(depthButton).toHaveAttribute("aria-expanded", "true")
+  expect(screen.getByRole("button", { name: /Gentle/i })).toBeInTheDocument()
+})
+
+test("learn disclosure state persists across remounts", () => {
+  window.localStorage.setItem(UI_DISCLOSURE_STORAGE_KEY, JSON.stringify({
+    "learn-reading-depth": true,
+  }))
+
+  renderLearnRoute()
+
+  expect(screen.getByRole("button", { name: /Reading Depth Balanced Current/i })).toHaveAttribute("aria-expanded", "true")
   expect(screen.getByRole("button", { name: /Gentle/i })).toBeInTheDocument()
 })
 
@@ -184,19 +203,26 @@ test("opening a featured collection shows grouped editorial landing sections", (
   expect(screen.getByText(/^Full Shabad Study$/i)).toBeInTheDocument()
 })
 
-test("choosing a topic chip clears a stale search fallback message", () => {
+test("choosing a topic chip clears a stale no-match message", () => {
   renderLearnRoute("/learn?tab=topics")
 
   fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
     target: { value: "tomato" },
   })
-  expect(screen.getByText(/nearest approved guide/i)).toBeInTheDocument()
+  expect(screen.getByText(/No matching topic found/i)).toBeInTheDocument()
 
   fireEvent.click(screen.getByRole("button", { name: /^Anger$/i }))
 
-  expect(screen.queryByText(/nearest approved guide/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/No matching topic found/i)).not.toBeInTheDocument()
   expect(screen.getByLabelText(/Search topic guides/i)).toHaveValue("")
   expect(screen.getAllByText(/When anger takes over/i).length).toBeGreaterThan(0)
+})
+
+test("shabads tab shows an empty state instead of crashing when filters remove every deep dive", () => {
+  renderLearnRoute("/learn?tab=shabads&theme=does-not-exist")
+
+  expect(screen.getByRole("button", { name: /Clear all filters/i })).toBeInTheDocument()
+  expect(screen.getByText(/No deep dives match the current filters/i)).toBeInTheDocument()
 })
 
 test("studying a shabad from a topic guide moves into the shabads surface", () => {
