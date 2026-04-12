@@ -57,6 +57,15 @@ type LocaleCopy = {
     transliteration: string
     learningLevel: string
     englishSource: string
+    authTitle: string
+    authBody: string
+    authGuest: string
+    authGoogle: string
+    authGithub: string
+    authApple: string
+    authChecking: string
+    authConnected: string
+    authConnectedBody: string
     openReader: string
     openWithMeaning: string
     startToday: string
@@ -223,6 +232,15 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       transliteration: 'Transliteration',
       learningLevel: 'Learning level',
       englishSource: 'English source',
+      authTitle: 'Start as guest or sync from day one.',
+      authBody: 'Guest reading stays open. Google, GitHub, or Apple adds backup and cross-device sync before your first session settles in.',
+      authGuest: 'Continue as Guest',
+      authGoogle: 'Continue with Google',
+      authGithub: 'Continue with GitHub',
+      authApple: 'Continue with Apple',
+      authChecking: 'Checking sign-in options…',
+      authConnected: 'Cloud connected',
+      authConnectedBody: 'You are already signed in. Finish setup and open NaamRas with sync ready.',
       openReader: 'Open my reader',
       openWithMeaning: 'Open with meaning',
       startToday: 'Start today’s path',
@@ -387,6 +405,15 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       transliteration: 'ਲਿਪਾਂਤਰ',
       learningLevel: 'ਸਿੱਖਣ ਦਾ ਪੱਧਰ',
       englishSource: 'ਅੰਗਰੇਜ਼ੀ ਸਰੋਤ',
+      authTitle: 'Guest ਵਜੋਂ ਸ਼ੁਰੂ ਕਰੋ ਜਾਂ ਪਹਿਲੇ ਦਿਨ ਤੋਂ sync ਨਾਲ ਜੁੜੋ।',
+      authBody: 'Guest ਪੜ੍ਹਾਈ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ। Google, GitHub ਜਾਂ Apple ਪਹਿਲੇ ਹੀ ਦਿਨ backup ਅਤੇ cross-device sync ਜੋੜਦੇ ਹਨ।',
+      authGuest: 'Guest ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ',
+      authGoogle: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+      authGithub: 'GitHub ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+      authApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+      authChecking: 'Sign-in ਚੋਣਾਂ ਵੇਖੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…',
+      authConnected: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
+      authConnectedBody: 'ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ sign in ਹੋ। ਸੈੱਟਅੱਪ ਪੂਰਾ ਕਰੋ ਅਤੇ sync ਨਾਲ NaamRas ਖੋਲ੍ਹੋ।',
       openReader: 'ਮੇਰਾ ਪਾਠਕ ਖੋਲ੍ਹੋ',
       openWithMeaning: 'ਅਰਥ ਨਾਲ ਖੋਲ੍ਹੋ',
       startToday: 'ਅੱਜ ਦਾ ਰਸਤਾ ਸ਼ੁਰੂ ਕਰੋ',
@@ -551,6 +578,15 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       transliteration: 'लिप्यंतरण',
       learningLevel: 'सीखने का स्तर',
       englishSource: 'अंग्रेज़ी स्रोत',
+      authTitle: 'Guest के रूप में शुरू करें या पहले दिन से sync जोड़ें।',
+      authBody: 'Guest reading खुली रहती है। Google, GitHub या Apple पहले ही दिन backup और cross-device sync जोड़ते हैं।',
+      authGuest: 'Guest के रूप में जारी रखें',
+      authGoogle: 'Google के साथ जारी रखें',
+      authGithub: 'GitHub के साथ जारी रखें',
+      authApple: 'Apple के साथ जारी रखें',
+      authChecking: 'Sign-in विकल्प देखे जा रहे हैं…',
+      authConnected: 'क्लाउड जुड़ा हुआ',
+      authConnectedBody: 'आप पहले से sign in हैं। सेटअप पूरा करें और sync के साथ NaamRas खोलें।',
       openReader: 'मेरा रीडर खोलें',
       openWithMeaning: 'अर्थ के साथ खोलें',
       startToday: 'आज का मार्ग शुरू करें',
