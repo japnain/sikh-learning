@@ -24,6 +24,7 @@ import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
+import DisclosureSection from '../components/DisclosureSection'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -858,12 +859,18 @@ export default function Study() {
       )}
 
       {showEntryOutline && (
-        <section className="section-shell-quiet p-4 mb-4">
-          <p className="eyebrow">{studyExperienceCopy.entryOutlineEyebrow}</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-            {studyExperienceCopy.entryOutlineBody}
-          </p>
-          <div className="mt-4 grid gap-2">
+        <DisclosureSection
+          storageKey="study-entry-outline"
+          title={studyExperienceCopy.entryOutlineEyebrow}
+          summary={studyExperienceCopy.entryOutlineBody}
+          defaultOpen={false}
+          className="section-shell-quiet p-4 mb-4"
+          bodyClassName="mt-4"
+          titleClassName="eyebrow"
+          sectionId="study-entry-outline"
+          testId="study-entry-outline"
+        >
+          <div className="grid gap-2">
             {entryOutline.map(item => (
               <button
                 key={item.sectionId}
@@ -886,7 +893,7 @@ export default function Study() {
               </button>
             ))}
           </div>
-        </section>
+        </DisclosureSection>
       )}
 
       <div className="mb-4">
