@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { useState } from 'react'
-import { expect, test, vi } from 'vitest'
+import { beforeEach, expect, test, vi } from 'vitest'
 import type {
   EnglishSource,
   LearningGoal,
@@ -9,9 +9,24 @@ import type {
   OnboardingAudience,
   ScriptMode,
 } from '../types'
+import { useCloudSyncStore } from '../store/cloudSync'
 import OnboardingSheet from './OnboardingSheet'
 
-function Harness({ presentation = 'first-run' as const }: { presentation?: 'first-run' | 'overlay' }) {
+const { signInWithProviderMock } = vi.hoisted(() => ({
+  signInWithProviderMock: vi.fn(),
+}))
+
+vi.mock('../insforge/runtime', () => ({
+  signInWithProvider: signInWithProviderMock,
+}))
+
+function Harness({
+  presentation = 'first-run' as const,
+  onComplete = vi.fn(),
+}: {
+  presentation?: 'first-run' | 'overlay'
+  onComplete?: () => void | Promise<void>
+}) {
   const [scriptMode, setScriptMode] = useState<ScriptMode>('gurmukhi')
   const [showTransliteration, setShowTransliteration] = useState(false)
   const [meaningLanguage, setMeaningLanguage] = useState<MeaningLanguage>('en')
@@ -19,7 +34,6 @@ function Harness({ presentation = 'first-run' as const }: { presentation?: 'firs
   const [learningLevel, setLearningLevel] = useState<LearningLevel>('beginner')
   const [audience, setAudience] = useState<OnboardingAudience>('adult')
   const [learningGoal, setLearningGoal] = useState<LearningGoal>('read')
-  const onComplete = vi.fn()
 
   return (
     <>
@@ -57,6 +71,11 @@ function Harness({ presentation = 'first-run' as const }: { presentation?: 'firs
     </>
   )
 }
+
+beforeEach(() => {
+  signInWithProviderMock.mockReset()
+  useCloudSyncStore.getState().reset()
+})
 
 test('guided flow applies a supportive preset and keeps fine tuning available', () => {
   render(<Harness />)
@@ -110,4 +129,34 @@ test('overlay onboarding still locks document scrolling and restores it on unmou
   expect(document.body.style.overflow).toBe('')
   expect(document.body.style.overscrollBehavior).toBe('')
   expect(document.documentElement.style.overflow).toBe('')
+})
+
+test('preview step offers guest plus configured sign-in providers', async () => {
+  const onComplete = vi.fn()
+
+  useCloudSyncStore.setState({
+    configured: true,
+    status: 'signed-out',
+    currentUser: null,
+    availableProviders: ['google', 'github'],
+    lastSyncedAt: null,
+    lastError: null,
+    syncQueued: false,
+  })
+
+  render(<Harness onComplete={onComplete} />)
+
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+
+  expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /continue with google/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /continue with github/i })).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: /continue with google/i }))
+
+  await waitFor(() => {
+    expect(onComplete).toHaveBeenCalledTimes(1)
+    expect(signInWithProviderMock).toHaveBeenCalledWith('google')
+  })
 })

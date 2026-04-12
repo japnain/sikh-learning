@@ -1,11 +1,18 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { vi } from 'vitest'
 import App from './App'
+import { useCloudSyncStore } from './store/cloudSync'
 import { useLanguageStore } from './store/language'
 import { useOnboardingStore } from './store/onboarding'
+
+vi.mock('./hooks/useInsforgeBootstrap', () => ({
+  useInsforgeBootstrap: () => undefined,
+}))
 
 beforeEach(() => {
   window.history.replaceState({}, '', '/')
   sessionStorage.setItem('splash-shown', '1')
+  useCloudSyncStore.getState().reset()
   useLanguageStore.setState({
     scriptMode: 'gurmukhi',
     showTransliteration: false,
@@ -43,7 +50,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
 
   fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /open my reader/i }))
+  fireEvent.click(screen.getByRole('button', { name: /continue as guest/i }))
 
   await waitFor(() => {
     expect(useOnboardingStore.getState().hasCompletedOnboarding).toBe(true)
@@ -76,7 +83,7 @@ test('habit onboarding completion returns home and highlights today’s path', a
 
   fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /start today.?s path/i }))
+  fireEvent.click(screen.getByRole('button', { name: /continue as guest/i }))
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')

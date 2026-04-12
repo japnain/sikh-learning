@@ -20,9 +20,12 @@ import {
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
+import { signInWithProvider } from '../insforge/runtime'
+import { useCloudSyncStore } from '../store/cloudSync'
 
 type OnboardingStep = 'setup' | 'preview'
 type ReadingPresetId = 'quiet' | 'guided' | 'deep'
+type OnboardingProvider = 'google' | 'github' | 'apple'
 
 interface Props {
   presentation: OnboardingPresentationMode
@@ -67,6 +70,14 @@ const GOAL_TO_RECOMMENDED_PRESET: Record<LearningGoal, ReadingPresetId> = {
   read: 'quiet',
   understand: 'guided',
   habit: 'guided',
+}
+
+const ONBOARDING_PROVIDER_ORDER: OnboardingProvider[] = ['google', 'github', 'apple']
+
+const ONBOARDING_PROVIDER_LABELS: Record<OnboardingProvider, keyof ReturnType<typeof getUiCopy>['onboarding']> = {
+  google: 'authGoogle',
+  github: 'authGithub',
+  apple: 'authApple',
 }
 
 function getPreferredMeaningLanguage(locale: UiLocale): Exclude<MeaningLanguage, 'none'> {
@@ -243,6 +254,27 @@ function MiniChoice({
   )
 }
 
+function ProviderChoice({
+  label,
+  onClick,
+  disabled,
+}: {
+  label: string
+  onClick: () => void
+  disabled?: boolean
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className="rounded-[20px] border border-sand/15 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-white/10"
+    >
+      {label}
+    </button>
+  )
+}
+
 function StepIndicator({
   currentStep,
   locale,
@@ -306,6 +338,13 @@ export default function OnboardingSheet({
   const [showFineTune, setShowFineTune] = useState(false)
 
   const copy = getUiCopy(locale)
+  const {
+    configured,
+    status: cloudStatus,
+    currentUser,
+    availableProviders,
+    lastError,
+  } = useCloudSyncStore()
   const editorial = getEditorialCopy(locale)
   const englishSourceLabels = getEnglishSourceLabels(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
@@ -332,6 +371,13 @@ export default function OnboardingSheet({
     () => getRouteSummary(learningGoal, copy.onboarding),
     [copy.onboarding, learningGoal]
   )
+  const supportedProviders = useMemo(
+    () => ONBOARDING_PROVIDER_ORDER.filter(provider => availableProviders.includes(provider)),
+    [availableProviders]
+  )
+  const isCloudBusy = cloudStatus === 'booting' || cloudStatus === 'authenticating' || cloudStatus === 'syncing'
+  const isProviderLoading = configured && !currentUser && supportedProviders.length === 0 && isCloudBusy
+  const connectedLabel = currentUser?.email ?? currentUser?.name ?? null
 
   useEffect(() => {
     if (presentation !== 'overlay') return
@@ -374,6 +420,13 @@ export default function OnboardingSheet({
 
   function handlePresetSelection(preset: ReadingPresetId) {
     applyPreset(preset, locale, setMeaningLanguage, setShowTransliteration)
+  }
+
+  async function handleProviderSignIn(provider: OnboardingProvider) {
+    if (isCompleting || isCloudBusy) return
+
+    await onComplete()
+    await signInWithProvider(provider)
   }
 
   function renderSetupStep() {
@@ -703,14 +756,78 @@ export default function OnboardingSheet({
             <p className="mb-3 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
               {routeSummary}
             </p>
-            <button
-              type="button"
-              onClick={() => void onComplete()}
-              disabled={isCompleting}
-              className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {getPrimaryActionLabel(learningGoal, copy.onboarding)}
-            </button>
+            <div className="overflow-hidden rounded-[26px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.18),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,235,220,0.92))] p-4 dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.16),transparent_38%),linear-gradient(180deg,rgba(34,31,26,0.96),rgba(28,25,21,0.98))]">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
+                  </p>
+                  <p className="mt-2 text-sm leading-5 text-ink/68 dark:text-dark-text/68">
+                    {currentUser
+                      ? copy.onboarding.authConnectedBody
+                      : isProviderLoading
+                        ? copy.onboarding.authChecking
+                        : copy.onboarding.authBody}
+                  </p>
+                </div>
+                <span className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                  currentUser
+                    ? 'bg-[#dfead8] text-[#3c6a3f] dark:bg-[#203224] dark:text-[#9fd8a3]'
+                    : 'bg-gold/12 text-gold-dark dark:bg-gold/12 dark:text-gold-light'
+                }`}>
+                  {currentUser ? copy.onboarding.ready : copy.onboarding.recommended}
+                </span>
+              </div>
+
+              {connectedLabel && (
+                <p className="mt-3 rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/62 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/62">
+                  {connectedLabel}
+                </p>
+              )}
+
+              {lastError && !currentUser && (
+                <p className="mt-3 rounded-[18px] border border-[#b4553d]/20 bg-[#b4553d]/8 px-3 py-2 text-xs leading-5 text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
+                  {lastError}
+                </p>
+              )}
+
+              <div className="mt-4 space-y-3">
+                {currentUser ? (
+                  <button
+                    type="button"
+                    onClick={() => void onComplete()}
+                    disabled={isCompleting}
+                    className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {getPrimaryActionLabel(learningGoal, copy.onboarding)}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => void onComplete()}
+                      disabled={isCompleting || isCloudBusy}
+                      className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {copy.onboarding.authGuest}
+                    </button>
+
+                    {supportedProviders.length > 0 && (
+                      <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
+                        {supportedProviders.map(provider => (
+                          <ProviderChoice
+                            key={provider}
+                            label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
+                            disabled={isCompleting || isCloudBusy}
+                            onClick={() => void handleProviderSignIn(provider)}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
           </>
         )}
       </div>

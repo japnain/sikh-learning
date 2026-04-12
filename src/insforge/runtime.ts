@@ -217,7 +217,10 @@ export async function bootstrapCloudSync() {
   return bootstrapPromise
 }
 
-export async function signInWithProvider(provider: 'google' | 'apple' | 'github') {
+export async function signInWithProvider(
+  provider: 'google' | 'apple' | 'github',
+  redirectTo?: string
+) {
   const client = getNaamrasInsforgeClient()
   const syncStore = useCloudSyncStore.getState()
 
@@ -231,7 +234,7 @@ export async function signInWithProvider(provider: 'google' | 'apple' | 'github'
 
   const { error } = await client.auth.signInWithOAuth({
     provider,
-    redirectTo: typeof window !== 'undefined' ? window.location.href : undefined,
+    redirectTo: redirectTo ?? (typeof window !== 'undefined' ? window.location.href : undefined),
   })
 
   if (error) {
