@@ -32,6 +32,15 @@ test("renders the learn hub with the today-first archive structure", () => {
   expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
 })
 
+test("learn hub card links render as block-level cards for stable mobile painting", () => {
+  renderLearnRoute()
+
+  expect(screen.getByRole("link", { name: /Continue collection: From Shame to Welcome/i })).toHaveClass("block")
+  expect(screen.getByRole("link", { name: /Today's Guidance/i })).toHaveClass("block")
+  expect(screen.getByRole("link", { name: /^Loneliness$/i })).toHaveClass("block")
+  expect(screen.getByRole("link", { name: /5-step arc From Shame to Welcome/i })).toHaveClass("block")
+})
+
 test("shows live inventory proof instead of fixed launch claims", () => {
   const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
 
