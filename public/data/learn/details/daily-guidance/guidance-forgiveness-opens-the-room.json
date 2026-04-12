@@ -15,9 +15,7 @@
     "lifeApplication": "Release does not only change mood; it changes the space you move through."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-opens-lasting-peace",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4.21,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.42,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.7,
-      "beauty": 3.9,
-      "overall": 3.77
+      "usefulness": 3.76,
+      "beauty": 4.05,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

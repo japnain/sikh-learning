@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-forgiveness"
+      "id": "topic-forgiveness",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -33,7 +34,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-greed"
+      "id": "topic-greed",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -46,7 +48,8 @@
   ],
   "relatedTopicIds": [
     "topic-forgiveness",
-    "topic-greed"
+    "topic-greed",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
@@ -68,16 +71,16 @@
     },
     "scores": {
       "faithfulness": 4.06,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.27,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.57
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.85
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

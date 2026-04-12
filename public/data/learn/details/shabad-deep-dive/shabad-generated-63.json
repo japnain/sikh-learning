@@ -155,9 +155,7 @@
     "guidance-generated-63-2"
   ],
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedCollectionIds": [
     "collection-gratitude-and-contentment",
@@ -189,19 +187,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.61,
+      "clarity": 3.76,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 3.5,
-      "overall": 3.65
+      "usefulness": 3.22,
+      "beauty": 4.09,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

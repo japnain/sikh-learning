@@ -51,7 +51,7 @@
   "relatedTopicIds": [
     "topic-shame",
     "topic-self-worth",
-    "topic-forgiveness"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-opens-lasting-peace",
@@ -60,7 +60,7 @@
     "shabad-generated-150"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -73,12 +73,12 @@
     },
     "scores": {
       "faithfulness": 3.86,
-      "clarity": 3.52,
+      "clarity": 4.05,
       "specificity": 4.09,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.8
     },
     "strengths": [
       "beauty",

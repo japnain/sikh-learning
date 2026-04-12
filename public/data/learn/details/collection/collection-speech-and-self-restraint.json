@@ -48,8 +48,7 @@
   "relatedTopicIds": [
     "topic-speech",
     "topic-forgiveness",
-    "topic-anger",
-    "topic-greed"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -58,7 +57,7 @@
     "shabad-buy-what-goes-with-you"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -71,16 +70,16 @@
     },
     "scores": {
       "faithfulness": 3.73,
-      "clarity": 2.15,
+      "clarity": 2.95,
       "specificity": 3.97,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.26
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.56
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": [
       "runs too long at the sentence level"

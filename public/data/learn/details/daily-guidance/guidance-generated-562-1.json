@@ -13,9 +13,7 @@
     "lifeApplication": "Patience becomes more truthful when this human body is so difficult to obtain; it is only obtained."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-generated-562"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.82,
-      "clarity": 2.7,
+      "clarity": 3.93,
       "specificity": 4.23,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.27,
-      "beauty": 3.19,
-      "overall": 3.47
+      "usefulness": 4.36,
+      "beauty": 3.86,
+      "overall": 3.92
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

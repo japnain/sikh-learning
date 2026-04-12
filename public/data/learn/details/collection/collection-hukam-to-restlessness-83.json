@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-hukam"
+      "id": "topic-hukam",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-restlessness"
+      "id": "topic-restlessness",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-hukam",
-    "topic-restlessness"
+    "topic-restlessness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -67,16 +70,16 @@
     },
     "scores": {
       "faithfulness": 4.03,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.24,
       "emotionalHonesty": 3.72,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.75
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

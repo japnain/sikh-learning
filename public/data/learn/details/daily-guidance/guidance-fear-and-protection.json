@@ -14,9 +14,7 @@
     "lifeApplication": "Answer fear with remembrance before strategy."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.87,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.64,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.66,
-      "beauty": 4.06,
-      "overall": 3.76
+      "usefulness": 3.66,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

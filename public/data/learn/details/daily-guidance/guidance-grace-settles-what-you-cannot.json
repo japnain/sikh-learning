@@ -15,9 +15,7 @@
     "lifeApplication": "You can stop pretending that everything must be forced open."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-opens-lasting-peace",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4.09,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.49,
       "emotionalHonesty": 3,
-      "usefulness": 2.57,
-      "beauty": 3.9,
-      "overall": 3.7
+      "usefulness": 3.6,
+      "beauty": 4.05,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

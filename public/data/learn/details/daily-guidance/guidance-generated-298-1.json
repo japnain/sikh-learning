@@ -13,9 +13,7 @@
     "lifeApplication": "Mercy becomes more truthful when those hands which write the Praises of the Lord are good."
   },
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedShabadIds": [
     "shabad-generated-298"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 2.82,
+      "clarity": 3.99,
       "specificity": 4.9,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 3.63,
-      "overall": 3.76
+      "usefulness": 4.64,
+      "beauty": 4.26,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

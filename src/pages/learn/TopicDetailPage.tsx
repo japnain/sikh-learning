@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Link, useParams, useSearchParams } from "react-router-dom"
+import { Link, Navigate, useParams, useSearchParams } from "react-router-dom"
 import { IconArrowRight } from "../../components/icons"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import useLearnDetail from "../../hooks/useLearnDetail"
@@ -38,14 +38,43 @@ export default function TopicDetailPage() {
   }, [recordLearnItemView, topic])
 
   if (catalogLoading || topicLoading) return <MissingTopicDetail />
-  if (catalogError || topicError || !catalog || !topic) return <MissingTopicDetail />
+  if (catalogError || topicError || !catalog) return <MissingTopicDetail />
+
+  const aliasTarget = topicId ? catalog.searchIndex.legacyTopicAliases[topicId] : null
+  if (!topic && aliasTarget) {
+    return (
+      <Navigate
+        to={buildLearnDetailPath("topic-guide", aliasTarget.topicId, searchParams.get("from") ?? undefined, aliasTarget.scenarioKey ?? null)}
+        replace
+      />
+    )
+  }
+
+  if (!topic) return <MissingTopicDetail />
 
   const from = searchParams.get("from") ?? "topics"
+  const scenarioParam = searchParams.get("scenario")
+  const hasScenarioParam = Boolean(
+    scenarioParam
+    && Object.prototype.hasOwnProperty.call(topic.scenarios ?? {}, scenarioParam)
+  )
+  const activeScenarioKey = hasScenarioParam
+    ? scenarioParam as keyof typeof topic.scenarios
+    : topic.defaultScenarioKey ?? "overview"
+  const activeScenario = activeScenarioKey === "overview"
+    ? null
+    : topic.scenarios?.[activeScenarioKey] ?? null
+  const activeTitle = activeScenario?.title ?? topic.title
+  const activeIssueStatement = activeScenario?.issueStatement ?? topic.issueStatement
+  const activeInsight = activeScenario?.centralInsight ?? topic.centralInsight
+  const activeReflection = activeScenario?.practicalReflection ?? topic.practicalReflection
+  const activeAction = activeScenario?.actionPrompt ?? topic.actionPrompt
+  const activeExcerpts = activeScenario?.excerpts ?? topic.excerpts
 
   return (
     <LearnDetailShell
-      title={topic.title}
-      body={topic.issueStatement}
+      title={activeTitle}
+      body={activeIssueStatement}
       itemId={topic.id}
       itemKind="topic-guide"
       rail={LEARN_DETAIL_RAILS["topics-topic"]}
@@ -55,11 +84,46 @@ export default function TopicDetailPage() {
     >
       <section
         className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        id="learn-detail-topic-scenarios"
+        data-ai-anchor="topic-scenarios"
+      >
+        <p className="eyebrow">Scenario Views</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Link
+            to={buildLearnDetailPath("topic-guide", topic.id, from)}
+            aria-current={activeScenarioKey === "overview" ? "page" : undefined}
+            className={`rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
+              activeScenarioKey === "overview"
+                ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
+                : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
+            }`}
+          >
+            Overview
+          </Link>
+          {topic.scenarioOrder.map((scenarioKey) => (
+            <Link
+              key={scenarioKey}
+              to={buildLearnDetailPath("topic-guide", topic.id, from, scenarioKey)}
+              aria-current={activeScenarioKey === scenarioKey ? "page" : undefined}
+              className={`rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
+                activeScenarioKey === scenarioKey
+                  ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
+                  : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
+              }`}
+            >
+              {topic.scenarios[scenarioKey].label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-topic-insight"
         data-ai-anchor="topic-insight"
       >
         <p className="eyebrow">Central Insight</p>
-        <p className="mt-2 font-sans text-base leading-7 text-ink dark:text-dark-text">{topic.centralInsight}</p>
+        <p className="mt-2 font-sans text-base leading-7 text-ink dark:text-dark-text">{activeInsight}</p>
       </section>
 
       <section
@@ -67,7 +131,7 @@ export default function TopicDetailPage() {
         id="learn-detail-topic-excerpts"
         data-ai-anchor="topic-excerpts"
       >
-        {topic.excerpts.map(excerpt => {
+        {activeExcerpts.map(excerpt => {
           const resolved = resolveLineReference(catalog, excerpt.source)
 
           return (
@@ -105,7 +169,7 @@ export default function TopicDetailPage() {
           data-ai-anchor="topic-reflection"
         >
           <p className="eyebrow">Reflection</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{topic.practicalReflection}</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{activeReflection}</p>
         </section>
         <section
           className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
@@ -113,7 +177,7 @@ export default function TopicDetailPage() {
           data-ai-anchor="topic-action"
         >
           <p className="eyebrow">Action</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{topic.actionPrompt}</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{activeAction}</p>
         </section>
       </div>
     </LearnDetailShell>

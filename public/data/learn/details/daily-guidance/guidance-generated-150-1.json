@@ -13,9 +13,7 @@
     "lifeApplication": "Hukam becomes more truthful when siree Raag, Fifth Mehla, Seventh House:."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-generated-150"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.81,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.4,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 3.58,
-      "overall": 3.69
+      "usefulness": 4.58,
+      "beauty": 3.93,
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

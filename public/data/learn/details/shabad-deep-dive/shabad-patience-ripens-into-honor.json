@@ -115,9 +115,7 @@
     "guidance-patience-ripens-into-honor-1"
   ],
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedCollectionIds": [
     "collection-restlessness-to-stillness",
@@ -149,16 +147,16 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.57,
-      "beauty": 4.38,
-      "overall": 3.98
+      "usefulness": 3.6,
+      "beauty": 4.53,
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

@@ -8,6 +8,8 @@ import type {
   TopicGuide,
 } from "../types"
 
+type LegacyTopicGuide = Omit<TopicGuide, "defaultScenarioKey" | "scenarioOrder" | "scenarios">
+
 function citation(
   shabadId: number,
   ang: number,
@@ -684,7 +686,7 @@ export const PHASE_THREE_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   },
 ]
 
-export const PHASE_THREE_TOPIC_GUIDES: TopicGuide[] = [
+export const PHASE_THREE_TOPIC_GUIDES: LegacyTopicGuide[] = [
   {
     id: "topic-control",
     title: "When you are gripping too hard",

@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-mercy"
+      "id": "topic-mercy",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-forgiveness"
+      "id": "topic-forgiveness",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-mercy",
-    "topic-forgiveness"
+    "topic-forgiveness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
@@ -67,12 +70,12 @@
     },
     "scores": {
       "faithfulness": 3.99,
-      "clarity": 3.65,
+      "clarity": 4.15,
       "specificity": 4.21,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.38,
-      "overall": 3.69
+      "usefulness": 3.38,
+      "beauty": 4.53,
+      "overall": 3.94
     },
     "strengths": [
       "beauty",

@@ -15,9 +15,7 @@
     "lifeApplication": "Let obedience go deeper than mood management."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-sweet-speech-humble-walk",
@@ -39,7 +37,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.37,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.22,
-      "beauty": 4.06,
-      "overall": 3.68
+      "usefulness": 3.22,
+      "beauty": 4.21,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

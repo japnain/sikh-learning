@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-gratitude"
+      "id": "topic-gratitude",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-gratitude"
+    "topic-gratitude",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-suffering-as-medicine",
@@ -60,16 +62,16 @@
     },
     "scores": {
       "faithfulness": 4.03,
-      "clarity": 3.4,
+      "clarity": 3.95,
       "specificity": 4.24,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

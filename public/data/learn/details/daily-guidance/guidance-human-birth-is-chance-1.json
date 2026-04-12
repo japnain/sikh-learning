@@ -13,9 +13,7 @@
     "lifeApplication": "Purpose becomes more truthful when this human body has been given to you."
   },
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 4.11,
-      "clarity": 3.18,
+      "clarity": 4.05,
       "specificity": 4.87,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 3.42,
-      "overall": 3.78
+      "usefulness": 4.42,
+      "beauty": 3.85,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

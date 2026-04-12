@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anxiety"
+      "id": "topic-anxiety",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-anxiety"
+    "topic-anxiety",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -60,16 +62,16 @@
     },
     "scores": {
       "faithfulness": 4.08,
-      "clarity": 2.77,
+      "clarity": 3.45,
       "specificity": 4.3,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.55
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

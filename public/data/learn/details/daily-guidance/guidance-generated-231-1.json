@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when o Nanak, he is a brave warrior, who conquers and subdues his."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-231"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.78,
-      "clarity": 2.7,
+      "clarity": 3.99,
       "specificity": 4.38,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.06,
-      "overall": 3.47
+      "usefulness": 4.2,
+      "beauty": 3.77,
+      "overall": 3.93
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.72,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 3.23,
-      "overall": 3.57
+      "usefulness": 4.42,
+      "beauty": 3.82,
+      "overall": 3.98
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

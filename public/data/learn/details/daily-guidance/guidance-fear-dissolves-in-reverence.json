@@ -15,9 +15,7 @@
     "lifeApplication": "Let devotion shape your emotional reflexes."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
@@ -52,12 +50,12 @@
     },
     "scores": {
       "faithfulness": 3.85,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.8,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.23,
-      "beauty": 3.9,
-      "overall": 3.81
+      "usefulness": 4.26,
+      "beauty": 4.05,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",

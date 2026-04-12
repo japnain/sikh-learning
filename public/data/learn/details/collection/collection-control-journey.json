@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-control"
+      "id": "topic-control",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-control",
-    "topic-sangat"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-generated-3",
@@ -62,16 +63,16 @@
     },
     "scores": {
       "faithfulness": 4.03,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.24,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.52
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.79
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-seeking"
+      "id": "topic-seeking",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-seeking"
+    "topic-seeking",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-generated-108",
@@ -51,16 +53,16 @@
     },
     "scores": {
       "faithfulness": 3.93,
-      "clarity": 2.77,
+      "clarity": 3.45,
       "specificity": 4.16,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.44
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.72
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

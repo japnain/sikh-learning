@@ -15,9 +15,7 @@
     "lifeApplication": "Move from circling to obedience."
   },
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
@@ -39,7 +37,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4.1,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.32,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.73
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

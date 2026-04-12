@@ -143,9 +143,7 @@
     "guidance-child-of-grace-3"
   ],
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedCollectionIds": [
     "collection-sangat-and-belonging",
@@ -177,12 +175,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.22,
-      "beauty": 4.14,
-      "overall": 3.81
+      "usefulness": 3.22,
+      "beauty": 4.37,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",

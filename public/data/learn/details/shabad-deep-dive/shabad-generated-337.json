@@ -238,7 +238,9 @@
     "guidance-generated-337-1",
     "guidance-generated-337-2"
   ],
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedCollectionIds": [
     "collection-self-worth-journey",
     "collection-self-worth-bundle",
@@ -269,19 +271,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.22,
+      "clarity": 2.83,
       "specificity": 5,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.01,
-      "beauty": 3.02,
-      "overall": 3.52
+      "usefulness": 4.04,
+      "beauty": 3.81,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

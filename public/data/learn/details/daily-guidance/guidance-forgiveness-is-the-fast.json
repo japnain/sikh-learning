@@ -15,9 +15,7 @@
     "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.84,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.61,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 3.9,
-      "overall": 3.8
+      "usefulness": 4.42,
+      "beauty": 4.05,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": []
   }

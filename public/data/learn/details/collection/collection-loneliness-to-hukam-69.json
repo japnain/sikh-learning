@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-loneliness"
+      "id": "topic-loneliness",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -33,7 +34,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-hukam"
+      "id": "topic-hukam",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -46,7 +48,8 @@
   ],
   "relatedTopicIds": [
     "topic-loneliness",
-    "topic-hukam"
+    "topic-hukam",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-child-of-grace",
@@ -68,12 +71,12 @@
     },
     "scores": {
       "faithfulness": 3.99,
-      "clarity": 3.65,
+      "clarity": 4.15,
       "specificity": 4.21,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.67
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.92
     },
     "strengths": [
       "beauty",

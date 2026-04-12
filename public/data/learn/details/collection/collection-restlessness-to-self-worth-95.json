@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-restlessness"
+      "id": "topic-restlessness",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -33,7 +34,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-self-worth"
+      "id": "topic-self-worth",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -46,7 +48,8 @@
   ],
   "relatedTopicIds": [
     "topic-restlessness",
-    "topic-self-worth"
+    "topic-self-worth",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -68,16 +71,16 @@
     },
     "scores": {
       "faithfulness": 4.04,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.25,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.65
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.92
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

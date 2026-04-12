@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when gauree, Fifth Mehla:."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-736"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.79,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.38,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.82,
-      "overall": 3.75
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

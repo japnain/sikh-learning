@@ -14,9 +14,7 @@
     "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-patience-ripens-into-honor",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.92,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.69,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 4.06,
-      "overall": 3.83
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

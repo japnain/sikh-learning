@@ -13,9 +13,7 @@
     "lifeApplication": "Patience becomes more truthful when the mind's wanderings cease, when one comes to dwell in the Society."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-patience-ripens-into-honor"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 4.02,
-      "clarity": 2.58,
+      "clarity": 3.81,
       "specificity": 4.42,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.27,
-      "beauty": 3.1,
-      "overall": 3.51
+      "usefulness": 4.36,
+      "beauty": 3.77,
+      "overall": 3.96
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

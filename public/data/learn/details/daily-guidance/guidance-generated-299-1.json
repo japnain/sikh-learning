@@ -13,9 +13,7 @@
     "lifeApplication": "Attachment becomes more truthful when hearing it again and again, I am elevated to the supreme heights."
   },
   "relatedTopicIds": [
-    "topic-attachment",
-    "topic-attachment-daily",
-    "topic-attachment-pressure"
+    "topic-attachment"
   ],
   "relatedShabadIds": [
     "shabad-generated-299"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.86,
-      "clarity": 2.7,
+      "clarity": 4.11,
       "specificity": 4.27,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.92,
-      "beauty": 3.04,
-      "overall": 3.44
+      "usefulness": 3.98,
+      "beauty": 3.83,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

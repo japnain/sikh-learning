@@ -13,9 +13,7 @@
     "lifeApplication": "Loneliness becomes more truthful when if only I could have the good fortune to meet some friendly."
   },
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-child-of-grace"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.92,
-      "clarity": 2.58,
+      "clarity": 3.81,
       "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.8,
-      "beauty": 2.93,
-      "overall": 3.66
+      "usefulness": 4.86,
+      "beauty": 3.6,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

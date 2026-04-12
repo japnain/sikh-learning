@@ -13,9 +13,7 @@
     "lifeApplication": "Forgiveness becomes more truthful when to practice forgiveness is the true fast, good conduct and contentment."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.84,
-      "clarity": 2.82,
+      "clarity": 3.87,
       "specificity": 4.43,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.12,
-      "overall": 3.49
+      "usefulness": 4.2,
+      "beauty": 3.67,
+      "overall": 3.89
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

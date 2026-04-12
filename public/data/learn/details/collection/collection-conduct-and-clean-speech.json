@@ -54,7 +54,7 @@
     "topic-conduct",
     "topic-softness",
     "topic-honesty",
-    "topic-speech"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-ambrosial-speech-pure-conduct",
@@ -76,12 +76,12 @@
     },
     "scores": {
       "faithfulness": 3.86,
-      "clarity": 0,
+      "clarity": 0.95,
       "specificity": 4.09,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 2.97
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.29
     },
     "strengths": [
       "specificity",

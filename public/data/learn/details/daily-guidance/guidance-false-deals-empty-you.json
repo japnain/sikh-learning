@@ -15,9 +15,7 @@
     "lifeApplication": "Integrity is part of spiritual survival, not optional polish."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.76,
       "emotionalHonesty": 3,
-      "usefulness": 3.01,
-      "beauty": 3.9,
-      "overall": 3.79
+      "usefulness": 4.04,
+      "beauty": 4.05,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

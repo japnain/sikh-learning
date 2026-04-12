@@ -7,6 +7,7 @@ import type {
   LearnItemView,
   LearnLineReference,
   ShabadDeepDive,
+  TopicScenarioKey,
   TopicGuide,
   UserLearningState,
 } from "../types"
@@ -289,15 +290,21 @@ export function resolveTopicGuide(learnCatalog: LearnCatalogData, query: string)
   topic: TopicGuide | null
   query: string
   matchedBy: "exact" | "synonym" | "closest" | "empty" | "no-match"
+  scenarioKey: Exclude<TopicScenarioKey, "overview"> | null
 } {
   const normalized = normalizeQuery(query)
   if (!normalized) {
-    return { topic: learnCatalog.topicGuides[0] ?? null, query: normalized, matchedBy: "empty" }
+    return { topic: learnCatalog.topicGuides[0] ?? null, query: normalized, matchedBy: "empty", scenarioKey: null }
   }
 
   const synonymMatch = learnCatalog.searchIndex.synonyms[normalized]
   if (synonymMatch) {
-    return { topic: learnCatalog.topicGuideById[synonymMatch] ?? null, query: normalized, matchedBy: "synonym" }
+    return {
+      topic: learnCatalog.topicGuideById[synonymMatch.topicId] ?? null,
+      query: normalized,
+      matchedBy: "synonym",
+      scenarioKey: synonymMatch.scenarioKey ?? null,
+    }
   }
 
   const scored = learnCatalog.topicGuides
@@ -306,13 +313,14 @@ export function resolveTopicGuide(learnCatalog: LearnCatalogData, query: string)
 
   const best = scored[0]
   if (!best || best.score <= 0) {
-    return { topic: null, query: normalized, matchedBy: "no-match" }
+    return { topic: null, query: normalized, matchedBy: "no-match", scenarioKey: null }
   }
 
   return {
     topic: best.topic,
     query: normalized,
     matchedBy: best.score >= 96 ? "exact" : "closest",
+    scenarioKey: null,
   }
 }
 
@@ -320,6 +328,7 @@ export function getLearnInventorySummary(learnCatalog: LearnCatalogData) {
   const dailyGuidance = learnCatalog.dailyGuidance.length
   const shabadDeepDives = learnCatalog.shabadDeepDives.length
   const topicGuides = learnCatalog.topicGuides.length
+  const topicScenarios = learnCatalog.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0)
   const collections = learnCatalog.collections.length
   const crossLinks =
     learnCatalog.dailyGuidance.reduce(
@@ -337,6 +346,14 @@ export function getLearnInventorySummary(learnCatalog: LearnCatalogData) {
         count + item.relatedShabadIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length,
       0
     )
+    + learnCatalog.topicGuides.reduce(
+      (count, item) =>
+        count + item.scenarioOrder.reduce(
+          (scenarioCount, scenarioKey) => scenarioCount + item.scenarios[scenarioKey].excerpts.length + 1,
+          0
+        ),
+      0
+    )
     + learnCatalog.collections.reduce(
       (count, item) =>
         count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length,
@@ -347,15 +364,17 @@ export function getLearnInventorySummary(learnCatalog: LearnCatalogData) {
     dailyGuidance,
     shabadDeepDives,
     topicGuides,
+    topicScenarios,
     collections,
     crossLinks,
     readyForLaunch:
       dailyGuidance >= LEARN_CONTENT_TARGETS.dailyGuidance
       && shabadDeepDives >= LEARN_CONTENT_TARGETS.shabadDeepDives
       && topicGuides >= LEARN_CONTENT_TARGETS.topicGuides
+      && topicScenarios >= LEARN_CONTENT_TARGETS.topicScenarios
       && collections >= LEARN_CONTENT_TARGETS.collections
       && crossLinks >= LEARN_CONTENT_TARGETS.crossLinks
-      && crossLinks / Math.max(1, dailyGuidance + shabadDeepDives + topicGuides + collections)
+      && crossLinks / Math.max(1, dailyGuidance + shabadDeepDives + topicGuides + topicScenarios + collections)
         >= LEARN_CONTENT_TARGETS.averageCrossLinksPerItem,
   }
 }
@@ -368,8 +387,10 @@ export function getTodayLearnSurface(
   const dailyGuidance = getRotationSelection(learnCatalog.dailyGuidance, "daily_guidance", dayStamp, [])
   const featuredShabad = getRotationSelection(learnCatalog.shabadDeepDives, "featured_shabad", dayStamp, [])
   const topicSpotlight = getRotationSelection(learnCatalog.topicGuides, "topic_spotlight", dayStamp, [])
-
-  const themeRail = getThemeRail(learnCatalog, dayStamp, learnState)
+  const themeRail = getThemeRail(learnCatalog, dayStamp, learnState, {
+    excludedTopicIds: new Set([topicSpotlight.item.id]),
+    excludedThemes: new Set([topicSpotlight.item.rotation.theme]),
+  })
   const exploreCollections = getExploreCollections(learnCatalog, dayStamp, learnState)
   const featuredCollections = exploreCollections.slice(0, 3)
   const continueLearning = getContinueLearningCard(learnCatalog, learnState, featuredCollections)
@@ -430,12 +451,19 @@ function getContinueLearningCard(
 function getThemeRail(
   learnCatalog: LearnCatalogData,
   dayStamp: string,
-  learnState: UserLearningState
+  learnState: UserLearningState,
+  options?: {
+    excludedTopicIds?: Set<string>
+    excludedThemes?: Set<string>
+  }
 ): TopicGuide[] {
   const savedThemes = new Set(getSavedThemes(learnCatalog, learnState.savedItemIds))
   const recentTopicIds = new Set(learnState.recentTopicIds)
+  const excludedTopicIds = options?.excludedTopicIds ?? new Set<string>()
+  const excludedThemes = options?.excludedThemes ?? new Set<string>()
 
   return [...learnCatalog.topicGuides]
+    .filter(topic => !excludedTopicIds.has(topic.id) && !excludedThemes.has(topic.rotation.theme))
     .sort((left, right) => {
       const leftScore =
         (recentTopicIds.has(left.id) ? 18 : 0)

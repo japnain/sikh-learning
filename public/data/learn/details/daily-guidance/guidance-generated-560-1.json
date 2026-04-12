@@ -13,9 +13,7 @@
     "lifeApplication": "Loneliness becomes more truthful when gauree, Fifth Mehla:."
   },
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-generated-560"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 3.66,
+      "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.8,
-      "beauty": 3.74,
-      "overall": 3.95
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.26
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

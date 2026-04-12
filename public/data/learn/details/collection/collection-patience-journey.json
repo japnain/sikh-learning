@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-patience"
+      "id": "topic-patience",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -41,7 +42,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-patience"
+    "topic-patience",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -61,12 +63,12 @@
     },
     "scores": {
       "faithfulness": 4.05,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.26,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",

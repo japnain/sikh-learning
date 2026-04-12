@@ -13,9 +13,7 @@
     "lifeApplication": "Purpose becomes more truthful when ."
   },
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedShabadIds": [
     "shabad-generated-230"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.62,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.4,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.36,
-      "beauty": 3.9,
-      "overall": 3.74
+      "usefulness": 4.42,
+      "beauty": 4.05,
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "clarity"
+      "usefulness",
+      "specificity"
     ],
     "issues": [
       "is missing explicit SGGS-grounded evidence"

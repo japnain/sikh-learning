@@ -13,7 +13,9 @@
     "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting; one who chants the Praises of the Lord is the greatest of",
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close"
   ],
@@ -46,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.07,
-      "clarity": 0.2,
+      "clarity": 2.48,
       "specificity": 4.77,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.71,
-      "beauty": 2.24,
-      "overall": 3.13
+      "usefulness": 4.8,
+      "beauty": 3.47,
+      "overall": 3.82
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

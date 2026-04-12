@@ -9,72 +9,474 @@
   "actionPrompt": "Refuse one convenient compromise today, even if nobody else would have noticed it.",
   "searchTerms": [
     "honesty",
-    "honest living",
     "integrity",
-    "crooked",
+    "truthfulness",
     "compromise",
-    "truthfulness"
+    "crooked",
+    "honest living",
+    "honesty in the ordinary day",
+    "honesty daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "honesty today",
+    "honesty ordinary day",
+    "honesty routine",
+    "honesty when the day tightens",
+    "honesty under pressure",
+    "pressure",
+    "stress",
+    "under strain",
+    "cornered",
+    "honesty pressure",
+    "honesty stress",
+    "honesty under strain",
+    "honesty cornered",
+    "honesty after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "honesty repair",
+    "honesty return",
+    "honesty after slipping",
+    "honesty start again",
+    "building a truer practice of honesty",
+    "honesty steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "honesty practice",
+    "honesty habit",
+    "honesty steady return",
+    "honesty formation"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-buy-what-goes-with-you",
+        "deepDiveId": "shabad-work-give-know-the-path",
         "verseIds": [
-          934,
-          939,
-          946
+          53369
         ],
-        "shortMeaning": "Buy what goes with you; false deals deform the whole person, while truthful gain becomes fearlessness.",
-        "lifeApplication": "Integrity is an investment, not an accessory."
+        "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he",
+        "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru turns ethics into a question of what actually lasts."
+      "explanation": "The theme is named without abstraction here: one who calls himself a guru or a spiritual teacher, while he."
     },
     {
       "source": {
-        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "deepDiveId": "shabad-hukam-inside-everything",
         "verseIds": [
-          11742,
-          11743,
-          11744,
-          11745
+          11,
+          15
         ],
-        "shortMeaning": "The best religion is tied to pure conduct and the removal of inner dirt.",
-        "lifeApplication": "Right conduct is not separate from devotion."
+        "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This keeps conduct from becoming secularized self-improvement."
+      "explanation": "The shabad widens the issue beyond mood alone. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-patience-ripens-into-honor",
+        "deepDiveId": "shabad-conquer-the-mind",
         "verseIds": [
-          11241,
-          11242
+          292
         ],
-        "shortMeaning": "The true banker is the one trading in Naam as wealth.",
-        "lifeApplication": "Honesty begins with choosing the right economy."
+        "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+        "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "What you count as wealth will shape what you permit yourself to do."
+      "explanation": "Gurbani treats truthful living as trade, conduct, and alignment. False gain does not only stain the action; it fractures the person carrying it. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
-  "relatedShabadIds": [
-    "shabad-buy-what-goes-with-you",
-    "shabad-ambrosial-speech-pure-conduct",
-    "shabad-patience-ripens-into-honor"
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
   ],
-  "relatedTopicIds": [],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Honesty in the ordinary day",
+      "issueStatement": "Compromise starts looking efficient when truth feels costly. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether honesty is being remembered or postponed.",
+      "actionPrompt": "Say one thing today in a way that keeps truth and kindness together. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "honesty",
+        "integrity",
+        "truthfulness",
+        "compromise",
+        "crooked",
+        "honesty in the ordinary day",
+        "honesty daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "honesty today",
+        "honesty ordinary day",
+        "honesty routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-work-give-know-the-path",
+            "verseIds": [
+              53369
+            ],
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he",
+            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: one who calls himself a guru or a spiritual teacher, while he."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11,
+              15
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              292
+            ],
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when see the brotherhood of all mankind as the highest order of Yogis;."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-honesty:daily",
+        "evidence": {
+          "coreClaim": "Guru keeps truth tied to conduct, speech, and inner alignment. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "pretending, unclear, performing",
+          "turn": "Compromise starts looking efficient when truth feels costly. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Say one thing today in a way that keeps truth and kindness together. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.88,
+          "beauty": 4.37,
+          "overall": 4.24
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Honesty when the day tightens",
+      "issueStatement": "Compromise starts looking efficient when truth feels costly. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Say one thing today in a way that keeps truth and kindness together. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "honesty",
+        "integrity",
+        "truthfulness",
+        "compromise",
+        "crooked",
+        "honesty when the day tightens",
+        "honesty under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "honesty pressure",
+        "honesty stress",
+        "honesty under strain",
+        "honesty cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11,
+              15
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: by His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              527,
+              529
+            ],
+            "shortMeaning": "Join the Saadh Sangat, the Company of the Holy; vibrate and meditate; you are squandering this life uselessly in the love of Maya",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12946
+            ],
+            "shortMeaning": "that humble servant's affairs are resolved",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-honesty:pressure",
+        "evidence": {
+          "coreClaim": "Guru keeps truth tied to conduct, speech, and inner alignment. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "restless, controlling, uncertain",
+          "turn": "Compromise starts looking efficient when truth feels costly. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Say one thing today in a way that keeps truth and kindness together. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.48,
+          "beauty": 4.21,
+          "overall": 4.34
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Honesty after the slip",
+      "issueStatement": "Compromise starts looking efficient when truth feels costly. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Say one thing today in a way that keeps truth and kindness together. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "honesty",
+        "integrity",
+        "truthfulness",
+        "compromise",
+        "crooked",
+        "honesty after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "honesty repair",
+        "honesty return",
+        "honesty after slipping",
+        "honesty start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              292
+            ],
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: see the brotherhood of all mankind as the highest order of Yogis;."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              528
+            ],
+            "shortMeaning": "Make every effort to cross over this terrifying world-ocean",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-honesty:repair",
+        "evidence": {
+          "coreClaim": "Guru keeps truth tied to conduct, speech, and inner alignment. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "reactive, performing, scattered",
+          "turn": "Compromise starts looking efficient when truth feels costly. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Say one thing today in a way that keeps truth and kindness together. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.64,
+          "beauty": 4.53,
+          "overall": 4.38
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of honesty",
+      "issueStatement": "Compromise starts looking efficient when truth feels costly. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Say one thing today in a way that keeps truth and kindness together. Repeat what you can actually keep.",
+      "searchTerms": [
+        "honesty",
+        "integrity",
+        "truthfulness",
+        "compromise",
+        "crooked",
+        "building a truer practice of honesty",
+        "honesty steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "honesty practice",
+        "honesty habit",
+        "honesty steady return",
+        "honesty formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12946
+            ],
+            "shortMeaning": "that humble servant's affairs are resolved",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: that humble servant's affairs are resolved."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-work-give-know-the-path",
+            "verseIds": [
+              53369
+            ],
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he",
+            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961,
+              20963
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-honesty:practice",
+        "evidence": {
+          "coreClaim": "Guru keeps truth tied to conduct, speech, and inner alignment. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "self-conscious, performing, eager-to-be-seen",
+          "turn": "Compromise starts looking efficient when truth feels costly. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Say one thing today in a way that keeps truth and kindness together. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.66,
+          "beauty": 4.37,
+          "overall": 4.24
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
+  "relatedShabadIds": [
+    "shabad-work-give-know-the-path",
+    "shabad-hukam-inside-everything",
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service",
+    "shabad-ego-is-disease"
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-discipline"
+  ],
   "relatedCollectionIds": [
     "collection-conduct-and-clean-speech"
   ],
   "rotation": {
     "theme": "honesty",
     "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 8,
-    "balanceCategory": "discipline",
-    "freshnessTier": "evergreen",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
   },
   "editorial": {
     "status": "locked",
@@ -83,23 +485,23 @@
     "templateKey": "topic:honesty",
     "evidence": {
       "coreClaim": "Gurbani treats truthful living as trade, conduct, and alignment. False gain does not only stain the action; it fractures the person carrying it.",
-      "emotionalState": "distracted, ambitious, grasping",
+      "emotionalState": "pretending, unclear, performing",
       "turn": "You know what clean living requires, but compromise keeps disguising itself as necessity or sophistication.",
       "practicalImplication": "Refuse one convenient compromise today, even if nobody else would have noticed it.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.15,
       "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 4.22,
-      "overall": 4.05
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 3.57,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

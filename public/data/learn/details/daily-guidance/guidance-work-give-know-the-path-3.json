@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-work-give-know-the-path"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.67,
       "emotionalHonesty": 3,
-      "usefulness": 3.01,
-      "beauty": 3.74,
-      "overall": 3.65
+      "usefulness": 4.04,
+      "beauty": 4.09,
+      "overall": 3.97
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

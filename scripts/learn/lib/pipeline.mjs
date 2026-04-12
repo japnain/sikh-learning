@@ -4,10 +4,12 @@ import path from "node:path"
 import vm from "node:vm"
 import ts from "typescript"
 import { fileURLToPath } from "node:url"
-import { TOPIC_FAMILIES, TOPIC_LENSES } from "./topic-taxonomy.mjs"
+import { TOPIC_FAMILIES } from "./topic-taxonomy.mjs"
 import { applyEditorialReview } from "./copy-critic.mjs"
 import { createHuggingFaceAdapter } from "./huggingface-adapter.mjs"
-import { PLACEHOLDER_PATTERNS } from "./style-guide.mjs"
+import { PLACEHOLDER_PATTERNS, collectStyleIssues } from "./style-guide.mjs"
+import { TOPIC_GOLD_SET } from "./topic-gold-set.mjs"
+import { scoreEditorialCopy } from "./editorial-rubric.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -17,6 +19,7 @@ const CACHE_DIR = path.join(PROJECT_ROOT, "scripts/learn/.cache")
 const DRAFTS_PATH = path.join(CACHE_DIR, "learn-drafts.json")
 const CORPUS_PATH = path.join(CACHE_DIR, "sggs-corpus.json")
 const VALIDATION_PATH = path.join(CACHE_DIR, "learn-validation.json")
+const TOPIC_UNIQUENESS_PATH = path.join(CACHE_DIR, "topic-uniqueness.json")
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public/data/learn")
 
 const KIND_LABELS = {
@@ -31,6 +34,21 @@ const LENGTH_BANDS = [
   { key: "medium", max: 16 },
   { key: "long", max: Number.POSITIVE_INFINITY },
 ]
+
+const TOPIC_SCENARIO_KEYS = ["daily", "pressure", "repair", "practice"]
+const TOPIC_SCENARIO_ORDER = [...TOPIC_SCENARIO_KEYS]
+const TOPIC_SCENARIO_LABELS = {
+  daily: "Daily",
+  pressure: "Under Pressure",
+  repair: "After the Slip",
+  practice: "Steady Practice",
+}
+const TOPIC_SCENARIO_SHABAD_LAYOUT = {
+  daily: [0, 1, 2],
+  pressure: [1, 3, 4],
+  repair: [2, 3, 5],
+  practice: [4, 0, 5],
+}
 
 const MODULE_CACHE = new Map()
 
@@ -477,52 +495,340 @@ function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
   }
 }
 
-function buildTopicGuide(family, lens, candidateShabads, existingIds) {
-  const explanationPatterns = [
-    (excerpt) => `The line names the pressure without melodrama: ${lowerFirst(excerpt.source.shortMeaning)}.`,
-    (excerpt) => `The turn is practical here. ${excerpt.source.lifeApplication}`,
-    () => `${lens.insight(family)} This keeps the guide attached to Gurbani rather than floating into advice.`,
-  ]
-  const excerpts = candidateShabads.slice(0, 3).map((deepDive, index) => {
-    const verseIds = deepDive.keyVerseIds.slice(index % Math.max(1, deepDive.keyVerseIds.length), (index % Math.max(1, deepDive.keyVerseIds.length)) + 1)
-    const selectedVerseIds = verseIds.length > 0 ? verseIds : deepDive.keyVerseIds.slice(0, 1)
-    const source = createLineReference(deepDive, selectedVerseIds)
-    return {
-      source,
-      explanation: explanationPatterns[index % explanationPatterns.length]({ source }),
-    }
-  })
+function dedupeSearchTerms(values) {
+  const seen = new Set()
+  const deduped = []
+  for (const value of values) {
+    const normalized = normalizeText(value)
+    if (!normalized || seen.has(normalized)) continue
+    seen.add(normalized)
+    deduped.push(value)
+  }
+  return deduped
+}
 
-  const id = existingIds.has(`topic-${family.key}`) && lens.key === "daily"
-    ? `topic-${family.key}-daily`
-    : `topic-${family.key}-${lens.key}`
+function extendCandidateShabads(primaryCandidates, fallbackPool, count = 6) {
+  const merged = []
+  const seen = new Set()
+  for (const candidate of [...primaryCandidates, ...fallbackPool]) {
+    if (!candidate || seen.has(candidate.id)) continue
+    seen.add(candidate.id)
+    merged.push(candidate)
+    if (merged.length >= count) break
+  }
+  return merged
+}
+
+function pickScenarioVerseIds(deepDive, scenarioKey, index) {
+  const windows = buildGuidanceWindows(deepDive)
+  const scenarioOffset = TOPIC_SCENARIO_ORDER.indexOf(scenarioKey)
+  const verseIds = windows[(index + Math.max(0, scenarioOffset)) % windows.length]
+  return verseIds?.length ? verseIds : deepDive.keyVerseIds.slice(0, 1)
+}
+
+function createTopicExcerpt(deepDive, scenarioKey, index, explanationFactory) {
+  const verseIds = pickScenarioVerseIds(deepDive, scenarioKey, index)
+  const source = createLineReference(deepDive, verseIds)
+  return {
+    source,
+    explanation: explanationFactory({ source, deepDive, index }),
+  }
+}
+
+function getScenarioExplanationFactory(family, scenarioKey) {
+  const factories = {
+    daily: [
+      ({ source }) => `The ordinary day is not spiritually empty here: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `The line lands in plain time rather than special conditions. ${source.lifeApplication}`,
+      ({ source }) => `Daily faithfulness becomes visible when ${lowerFirst(source.shortMeaning)}.`,
+    ],
+    pressure: [
+      ({ source }) => `Pressure is named without surrendering the heart to it: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `The line interrupts panic with a truer next movement. ${source.lifeApplication}`,
+      ({ source }) => `This excerpt is useful when urgency tries to become your theology.`,
+    ],
+    repair: [
+      ({ source }) => `Return stays possible even after the slip: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `The Guru does not leave repair at remorse alone. ${source.lifeApplication}`,
+      ({ source }) => `This excerpt keeps truth and return close enough to move together.`,
+    ],
+    practice: [
+      ({ source }) => `The line is teaching repetition, not merely inspiration: ${lowerFirst(source.shortMeaning)}.`,
+      ({ source }) => `Durable practice appears when the teaching can be kept on an ordinary week. ${source.lifeApplication}`,
+      ({ source }) => `This excerpt matters because it trains posture, not only agreement.`,
+    ],
+  }
+
+  return factories[scenarioKey].map(factory => (context) => factory(context))
+}
+
+function createGenericOverviewCopy(family) {
+  return {
+    title: `When ${family.titleBase}`,
+    issueStatement: family.issueBase,
+    centralInsight: family.insightBase,
+    practicalReflection: `${family.insightBase} ${family.actionBase}`.trim(),
+    actionPrompt: family.actionBase,
+    searchTerms: family.searchTerms,
+  }
+}
+
+function createGenericScenarioCopy(family, scenarioKey) {
+  switch (scenarioKey) {
+    case "daily":
+      return {
+        title: `${family.shortTitle} in the ordinary day`,
+        issueStatement: `${family.issueBase} The struggle keeps showing up in plain time, not only in dramatic moments.`,
+        centralInsight: `${family.insightBase} Gurbani treats the ordinary day as a real place of return.`,
+        practicalReflection: `The daily shape of life exposes whether ${family.shortTitle.toLowerCase()} is being remembered or postponed.`,
+        actionPrompt: `${family.actionBase} Keep the next response small enough to survive an ordinary day.`,
+        searchTerms: ["today", "daily", "ordinary day", "routine"],
+      }
+    case "pressure":
+      return {
+        title: `${family.shortTitle} when the day tightens`,
+        issueStatement: `${family.issueBase} Pressure exposes what the mind reaches for first when it feels cornered.`,
+        centralInsight: `${family.insightBase} Under strain, the line must interrupt panic before panic defines the moment.`,
+        practicalReflection: `Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.`,
+        actionPrompt: `${family.actionBase} Use one line before the pressure chooses your tone.`,
+        searchTerms: ["pressure", "stress", "under strain", "cornered"],
+      }
+    case "repair":
+      return {
+        title: `${family.shortTitle} after the slip`,
+        issueStatement: `${family.issueBase} The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.`,
+        centralInsight: `${family.insightBase} Gurbani keeps repair close to humility, remembrance, and return instead of theatre.`,
+        practicalReflection: `Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.`,
+        actionPrompt: `${family.actionBase} Choose the next truthful return instead of rehearsing the failure.`,
+        searchTerms: ["repair", "return", "after slipping", "start again"],
+      }
+    case "practice":
+      return {
+        title: `Building a truer practice of ${family.shortTitle.toLowerCase()}`,
+        issueStatement: `${family.issueBase} The deeper need is a form of return that can outlast novelty, urgency, and mood.`,
+        centralInsight: `${family.insightBase} The teaching becomes durable when it is practiced repeatedly enough to change posture.`,
+        practicalReflection: `Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.`,
+        actionPrompt: `${family.actionBase} Repeat what you can actually keep.`,
+        searchTerms: ["practice", "habit", "steady return", "formation"],
+      }
+      default:
+        return createGenericOverviewCopy(family)
+  }
+}
+
+function buildScenarioShabadSets(candidateShabads) {
+  return Object.fromEntries(
+    TOPIC_SCENARIO_KEYS.map((scenarioKey) => ([
+      scenarioKey,
+      TOPIC_SCENARIO_SHABAD_LAYOUT[scenarioKey]
+        .map(index => candidateShabads[index])
+        .filter(Boolean),
+    ]))
+  )
+}
+
+function buildTopicScenario(family, scenarioKey, candidateShabads, override = null) {
+  const scenarioCopy = {
+    ...createGenericScenarioCopy(family, scenarioKey),
+    ...(override ?? {}),
+  }
+  const combinedScenarioTerms = (scenarioCopy.searchTerms ?? []).flatMap(term => ([
+    `${family.shortTitle.toLowerCase()} ${term.toLowerCase()}`,
+    `${family.key} ${term.toLowerCase()}`,
+  ]))
+  const explanationFactory = getScenarioExplanationFactory(family, scenarioKey)
+  const excerpts = candidateShabads.slice(0, 3).map((deepDive, index) => (
+    createTopicExcerpt(deepDive, scenarioKey, index, explanationFactory[index % explanationFactory.length])
+  ))
 
   return {
-    id,
-    title: lens.title(family),
-    shortTitle: `${family.shortTitle} · ${titleCase(lens.key)}`,
-    category: family.category,
-    issueStatement: lens.issue(family),
-    centralInsight: lens.insight(family),
-    practicalReflection: `${candidateShabads[0]?.takeaway ?? family.insightBase} ${family.actionBase}`.trim(),
-    actionPrompt: lens.action(family),
-    searchTerms: Array.from(new Set([
+    key: scenarioKey,
+    label: TOPIC_SCENARIO_LABELS[scenarioKey],
+    title: scenarioCopy.title,
+    issueStatement: scenarioCopy.issueStatement,
+    centralInsight: scenarioCopy.centralInsight,
+    practicalReflection: scenarioCopy.practicalReflection,
+    actionPrompt: scenarioCopy.actionPrompt,
+    searchTerms: dedupeSearchTerms([
       ...family.searchTerms,
-      ...lens.extraSearchTerms,
       family.shortTitle.toLowerCase(),
-    ])),
+      scenarioCopy.title.toLowerCase(),
+      `${family.shortTitle.toLowerCase()} ${TOPIC_SCENARIO_LABELS[scenarioKey].toLowerCase()}`,
+      ...(scenarioCopy.searchTerms ?? []),
+      ...combinedScenarioTerms,
+    ]),
     excerpts,
-    relatedShabadIds: candidateShabads.slice(0, 3).map(item => item.id),
+    editorial: override ? { forcedLocked: true } : null,
+  }
+}
+
+function buildCanonicalTopicGuide({
+  family,
+  canonicalSeed,
+  candidateShabads,
+  scenarioShabadSets,
+}) {
+  const goldSet = TOPIC_GOLD_SET[family.key] ?? null
+  const overviewCopy = {
+    ...(canonicalSeed ?? createGenericOverviewCopy(family)),
+    ...(goldSet?.overview ?? {}),
+  }
+  const overviewExcerpts = candidateShabads.slice(0, 3).map((deepDive, index) => (
+    createTopicExcerpt(
+      deepDive,
+      "daily",
+      index,
+      [
+        ({ source }) => `The theme is named without abstraction here: ${lowerFirst(source.shortMeaning)}.`,
+        ({ source }) => `The shabad widens the issue beyond mood alone. ${source.lifeApplication}`,
+        () => `${overviewCopy.centralInsight} The point is not to isolate advice from Gurbani, but to keep the line in charge of the page.`,
+      ][index]
+    )
+  ))
+
+  const scenarios = Object.fromEntries(
+    TOPIC_SCENARIO_KEYS.map((scenarioKey) => ([
+      scenarioKey,
+      buildTopicScenario(
+        family,
+        scenarioKey,
+        scenarioShabadSets[scenarioKey],
+        goldSet?.scenarios?.[scenarioKey] ?? null
+      ),
+    ]))
+  )
+
+  const relatedShabadIds = Array.from(new Set([
+    ...overviewExcerpts.map(excerpt => excerpt.source.deepDiveId),
+    ...TOPIC_SCENARIO_KEYS.flatMap(scenarioKey =>
+      scenarios[scenarioKey].excerpts.map(excerpt => excerpt.source.deepDiveId)
+    ),
+  ]))
+
+  return {
+    id: `topic-${family.key}`,
+    title: overviewCopy.title,
+    shortTitle: family.shortTitle,
+    category: family.category,
+    issueStatement: overviewCopy.issueStatement,
+    centralInsight: overviewCopy.centralInsight,
+    practicalReflection: overviewCopy.practicalReflection,
+    actionPrompt: overviewCopy.actionPrompt,
+    searchTerms: dedupeSearchTerms([
+      ...family.searchTerms,
+      family.shortTitle.toLowerCase(),
+      ...(overviewCopy.searchTerms ?? []),
+      ...TOPIC_SCENARIO_KEYS.flatMap(scenarioKey => scenarios[scenarioKey].searchTerms),
+    ]),
+    excerpts: overviewExcerpts,
+    defaultScenarioKey: "overview",
+    scenarioOrder: [...TOPIC_SCENARIO_ORDER],
+    scenarios,
+    relatedShabadIds,
     relatedTopicIds: [],
     relatedCollectionIds: [],
     rotation: createRotation(
       family.key,
-      lens.key === "practice" ? "growing" : "beginner",
-      6 + (stableHash(`${family.key}:${lens.key}`) % 4),
+      family.category === "practice" ? "growing" : "beginner",
+      7 + (stableHash(`${family.key}:overview`) % 4),
       balanceCategoryForFamily(family.key)
     ),
-    editorial: null,
+    editorial: goldSet?.overview ? { forcedLocked: true } : null,
   }
+}
+
+function buildCanonicalTopicSeed(topicGuide) {
+  if (!topicGuide) return null
+  return {
+    title: topicGuide.title,
+    issueStatement: topicGuide.issueStatement,
+    centralInsight: topicGuide.centralInsight,
+    practicalReflection: topicGuide.practicalReflection,
+    actionPrompt: topicGuide.actionPrompt,
+    searchTerms: topicGuide.searchTerms,
+  }
+}
+
+function buildCanonicalTopics(shabadDeepDives, legacyTopicGuides) {
+  const canonicalSeedByTheme = new Map()
+  for (const topicGuide of legacyTopicGuides) {
+    const familyKey = topicGuide.id.replace(/^topic-/, "").split("-")[0]
+    if (!canonicalSeedByTheme.has(familyKey) || topicGuide.id === `topic-${familyKey}`) {
+      canonicalSeedByTheme.set(familyKey, buildCanonicalTopicSeed(topicGuide))
+    }
+  }
+
+  const themeShabads = new Map()
+  for (const shabad of shabadDeepDives) {
+    for (const theme of shabad.themes) {
+      const list = themeShabads.get(theme) ?? []
+      list.push(shabad)
+      themeShabads.set(theme, list)
+    }
+  }
+
+  return TOPIC_FAMILIES.map((family) => {
+    const primaryCandidates = themeShabads.get(family.key) ?? []
+    const candidateShabads = extendCandidateShabads(primaryCandidates, shabadDeepDives, 6)
+    const scenarioShabadSets = buildScenarioShabadSets(candidateShabads)
+
+    return buildCanonicalTopicGuide({
+      family,
+      canonicalSeed: canonicalSeedByTheme.get(family.key) ?? null,
+      candidateShabads,
+      scenarioShabadSets,
+    })
+  })
+}
+
+async function buildTopicUniquenessRegistry(topicGuides, huggingFaceAdapter) {
+  const entries = []
+
+  for (const topic of topicGuides) {
+    entries.push({
+      key: `${topic.id}#overview`,
+      topicId: topic.id,
+      scenarioKey: "overview",
+      titleFingerprint: normalizeText(topic.title),
+      coreClaimFingerprint: normalizeText(topic.centralInsight),
+      actionFingerprint: normalizeText(topic.actionPrompt),
+      excerptFingerprint: topic.excerpts.map(excerpt => `${excerpt.source.deepDiveId}:${excerpt.source.verseIds.join(",")}`).join("|"),
+      text: [topic.title, topic.issueStatement, topic.centralInsight, topic.practicalReflection, topic.actionPrompt]
+        .filter(Boolean)
+        .join(" "),
+    })
+
+    for (const scenarioKey of TOPIC_SCENARIO_KEYS) {
+      const scenario = topic.scenarios[scenarioKey]
+      entries.push({
+        key: `${topic.id}#${scenarioKey}`,
+        topicId: topic.id,
+        scenarioKey,
+        titleFingerprint: normalizeText(scenario.title),
+        coreClaimFingerprint: normalizeText(scenario.centralInsight),
+        actionFingerprint: normalizeText(scenario.actionPrompt),
+        excerptFingerprint: scenario.excerpts.map(excerpt => `${excerpt.source.deepDiveId}:${excerpt.source.verseIds.join(",")}`).join("|"),
+        text: [scenario.title, scenario.issueStatement, scenario.centralInsight, scenario.practicalReflection, scenario.actionPrompt]
+          .filter(Boolean)
+          .join(" "),
+      })
+    }
+  }
+
+  const embeddings = huggingFaceAdapter.enabled
+    ? await huggingFaceAdapter.embed(entries.map(entry => entry.text))
+    : null
+
+  const registry = {
+    generatedAt: new Date().toISOString(),
+    entries: entries.map((entry, index) => ({
+      ...entry,
+      embedding: Array.isArray(embeddings?.[index]) ? embeddings[index] : null,
+    })),
+  }
+
+  await writeJson(TOPIC_UNIQUENESS_PATH, registry)
+  return registry
 }
 
 function buildCollection({ id, title, subtitle, description, heroSource, themes, items }) {
@@ -546,6 +852,7 @@ function averageCrossLinks(dataset) {
     dataset.dailyGuidance.length
     + dataset.shabadDeepDives.length
     + dataset.topicGuides.length
+    + dataset.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0)
     + dataset.collections.length
   if (totalItems === 0) return 0
 
@@ -553,6 +860,13 @@ function averageCrossLinks(dataset) {
     dataset.dailyGuidance.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.relatedCollectionIds.length, 0)
     + dataset.shabadDeepDives.reduce((count, item) => count + item.relatedGuidanceIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
     + dataset.topicGuides.reduce((count, item) => count + item.relatedShabadIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
+    + dataset.topicGuides.reduce(
+      (count, item) => count + item.scenarioOrder.reduce(
+        (scenarioCount, scenarioKey) => scenarioCount + item.scenarios[scenarioKey].excerpts.length + 1,
+        0
+      ),
+      0
+    )
     + dataset.collections.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length, 0)
 
   return crossLinks / totalItems
@@ -560,16 +874,45 @@ function averageCrossLinks(dataset) {
 
 function buildSearchIndex(topicGuides) {
   const synonyms = {}
+  const legacyTopicAliases = {}
+
   for (const topic of topicGuides) {
-    for (const term of topic.searchTerms) {
+    const family = TOPIC_FAMILIES.find(entry => entry.key === topic.rotation.theme)
+    const scenarioTerms = new Set(
+      topic.scenarioOrder.flatMap(scenarioKey => topic.scenarios[scenarioKey].searchTerms.map(term => normalizeText(term)))
+    )
+
+    for (const term of [
+      topic.title,
+      topic.shortTitle,
+      ...(family?.searchTerms ?? []),
+      ...topic.searchTerms.filter(term => !scenarioTerms.has(normalizeText(term))),
+    ]) {
       const normalized = normalizeText(term)
       if (!normalized || synonyms[normalized]) continue
-      synonyms[normalized] = topic.id
+      synonyms[normalized] = { topicId: topic.id }
+    }
+  }
+
+  for (const topic of topicGuides) {
+    legacyTopicAliases[topic.id] = { topicId: topic.id }
+
+    for (const scenarioKey of topic.scenarioOrder) {
+      const scenario = topic.scenarios[scenarioKey]
+      const legacyId = `${topic.id}-${scenarioKey}`
+      legacyTopicAliases[legacyId] = { topicId: topic.id, scenarioKey }
+
+      for (const term of scenario.searchTerms) {
+        const normalized = normalizeText(term)
+        if (!normalized || synonyms[normalized]) continue
+        synonyms[normalized] = { topicId: topic.id, scenarioKey }
+      }
     }
   }
 
   return {
     synonyms,
+    legacyTopicAliases,
     topics: topicGuides.map(topic => ({
       id: topic.id,
       title: topic.title,
@@ -582,10 +925,7 @@ function buildSearchIndex(topicGuides) {
 function wireRelationships(dataset) {
   const topicsByTheme = new Map()
   for (const topic of dataset.topicGuides) {
-    const key = topic.id.split("-")[1] ?? "anxiety"
-    const list = topicsByTheme.get(key) ?? []
-    list.push(topic.id)
-    topicsByTheme.set(key, list)
+    topicsByTheme.set(topic.rotation.theme, topic.id)
   }
 
   const collectionsByTheme = new Map()
@@ -599,14 +939,16 @@ function wireRelationships(dataset) {
 
   for (const shabad of dataset.shabadDeepDives) {
     const primaryTheme = shabad.themes[0] ?? "anxiety"
-    shabad.relatedTopicIds = (topicsByTheme.get(primaryTheme) ?? []).slice(0, 3)
+    const topicId = topicsByTheme.get(primaryTheme)
+    shabad.relatedTopicIds = topicId ? [topicId] : []
     shabad.relatedCollectionIds = (collectionsByTheme.get(primaryTheme) ?? []).slice(0, 3)
   }
 
   for (const guidance of dataset.dailyGuidance) {
     const sourceShabad = dataset.shabadDeepDivesById[guidance.relatedShabadIds[0]]
     const primaryTheme = sourceShabad?.themes[0] ?? guidance.rotation.theme
-    guidance.relatedTopicIds = (topicsByTheme.get(primaryTheme) ?? []).slice(0, 3)
+    const topicId = topicsByTheme.get(primaryTheme)
+    guidance.relatedTopicIds = topicId ? [topicId] : []
     guidance.relatedCollectionIds = (collectionsByTheme.get(primaryTheme) ?? []).slice(0, 2)
   }
 
@@ -622,18 +964,16 @@ function wireRelationships(dataset) {
     shabad.relatedGuidanceIds = (guidanceByShabad.get(shabad.id) ?? []).slice(0, 4)
   }
 
-  const siblingTopicsByFamily = new Map()
+  const topicsByCategory = new Map()
   for (const topic of dataset.topicGuides) {
-    const parts = topic.id.split("-")
-    const familyKey = parts[1] ?? "anxiety"
-    const list = siblingTopicsByFamily.get(familyKey) ?? []
+    const list = topicsByCategory.get(topic.category) ?? []
     list.push(topic.id)
-    siblingTopicsByFamily.set(familyKey, list)
+    topicsByCategory.set(topic.category, list)
   }
 
   for (const topic of dataset.topicGuides) {
-    const familyKey = topic.id.split("-")[1] ?? "anxiety"
-    topic.relatedTopicIds = (siblingTopicsByFamily.get(familyKey) ?? [])
+    const familyKey = topic.rotation.theme
+    topic.relatedTopicIds = (topicsByCategory.get(topic.category) ?? [])
       .filter(candidate => candidate !== topic.id)
       .slice(0, 2)
     topic.relatedCollectionIds = (collectionsByTheme.get(familyKey) ?? []).slice(0, 3)
@@ -665,6 +1005,82 @@ function buildDatasetIndexes(dataset) {
     topicGuidesById: Object.fromEntries(dataset.topicGuides.map(item => [item.id, item])),
     collectionsById: Object.fromEntries(dataset.collections.map(item => [item.id, item])),
   }
+}
+
+function buildLearnCatalogSnapshot(dataset) {
+  const indexes = buildDatasetIndexes(dataset)
+  return {
+    manifest: {
+      inventory: {
+        dailyGuidance: dataset.dailyGuidance.length,
+        shabadDeepDives: dataset.shabadDeepDives.length,
+        topicGuides: dataset.topicGuides.length,
+        topicScenarios: dataset.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0),
+        collections: dataset.collections.length,
+        crossLinks: 0,
+        readyForLaunch: false,
+      },
+      filters: {
+        shabadThemes: [],
+        shabadGurus: [],
+        shabadRaags: [],
+      },
+    },
+    searchIndex: dataset.searchIndex,
+    dailyGuidance: dataset.dailyGuidance,
+    shabadDeepDives: dataset.shabadDeepDives,
+    topicGuides: dataset.topicGuides,
+    collections: dataset.collections,
+    dailyGuidanceById: indexes.dailyGuidanceById,
+    shabadDeepDiveById: indexes.shabadDeepDivesById,
+    topicGuideById: indexes.topicGuidesById,
+    collectionById: indexes.collectionsById,
+  }
+}
+
+function enumerateDayStamps(startDateString, days) {
+  const startDate = new Date(`${startDateString}T00:00:00.000Z`)
+  return Array.from({ length: days }, (_, index) => {
+    const cursor = new Date(startDate)
+    cursor.setUTCDate(startDate.getUTCDate() + index)
+    return cursor.toISOString().slice(0, 10)
+  })
+}
+
+function buildSurfaceCollisionSamples(dataset) {
+  const { getTodayLearnSurface } = loadTsModule(path.join(PROJECT_ROOT, "src/utils/learnExperience.ts"))
+  const catalog = buildLearnCatalogSnapshot(dataset)
+  const learnState = {
+    viewedItems: [],
+    savedItemIds: [],
+    recentTopicIds: [],
+    activeCollectionId: null,
+    depthPreference: "balanced",
+  }
+
+  return enumerateDayStamps("2026-04-01", 35).flatMap((dayStamp) => {
+    const surface = getTodayLearnSurface(catalog, dayStamp, learnState)
+    const railThemes = surface.themeRail.map(topic => topic.rotation.theme)
+    const duplicateRailThemes = Array.from(
+      new Set(railThemes.filter((theme, index) => railThemes.indexOf(theme) !== index))
+    )
+    const spotlightTheme = surface.topicSpotlight.item.rotation.theme
+    const spotlightCollision = railThemes.includes(spotlightTheme)
+
+    if (duplicateRailThemes.length === 0 && !spotlightCollision) {
+      return []
+    }
+
+    return [{
+      dayStamp,
+      railTopicIds: surface.themeRail.map(topic => topic.id),
+      railThemes,
+      duplicateRailThemes,
+      spotlightTopicId: surface.topicSpotlight.item.id,
+      spotlightTheme,
+      spotlightCollision,
+    }]
+  })
 }
 
 export async function syncSggsCorpus({
@@ -745,7 +1161,6 @@ export async function generateDrafts() {
     if (dailyGuidance.length >= 240) break
   }
 
-  const existingTopicIds = new Set(legacy.topicGuides.map(item => item.id))
   const themeShabads = new Map()
   for (const shabad of shabadDeepDives) {
     for (const theme of shabad.themes) {
@@ -755,22 +1170,7 @@ export async function generateDrafts() {
     }
   }
 
-  const generatedTopics = []
-  for (const family of TOPIC_FAMILIES) {
-    const candidates = (themeShabads.get(family.key) ?? shabadDeepDives)
-      .slice(0, 6)
-    if (candidates.length < 2) continue
-    for (const lens of TOPIC_LENSES) {
-      if (legacy.topicGuides.length + generatedTopics.length >= 100) break
-      const topic = buildTopicGuide(family, lens, candidates, existingTopicIds)
-      if (!existingTopicIds.has(topic.id) && !generatedTopics.some(item => item.id === topic.id)) {
-        generatedTopics.push(topic)
-      }
-    }
-  }
-
-  const topicGuides = [...legacy.topicGuides, ...generatedTopics].slice(0, 100)
-  const topicGuidesById = Object.fromEntries(topicGuides.map(item => [item.id, item]))
+  const topicGuides = buildCanonicalTopics(shabadDeepDives, legacy.topicGuides)
 
   const guidanceByTheme = new Map()
   for (const item of dailyGuidance) {
@@ -800,7 +1200,7 @@ export async function generateDrafts() {
       themes: [theme, ...(shabads[1]?.themes ?? []).slice(0, 1)],
       items: [
         { kind: "daily-guidance", id: guidance[0].id },
-        { kind: "topic-guide", id: topic.id },
+        { kind: "topic-guide", id: topic.id, scenarioKey: "daily" },
         { kind: "shabad-deep-dive", id: shabads[0].id },
         { kind: "daily-guidance", id: guidance[1]?.id ?? guidance[0].id },
         { kind: "shabad-deep-dive", id: shabads[1].id },
@@ -816,7 +1216,7 @@ export async function generateDrafts() {
       themes: [theme],
       items: [
         { kind: "daily-guidance", id: guidance[0].id },
-        { kind: "topic-guide", id: topic.id },
+        { kind: "topic-guide", id: topic.id, scenarioKey: "practice" },
         { kind: "shabad-deep-dive", id: shabads[0].id },
       ],
     }))
@@ -849,9 +1249,9 @@ export async function generateDrafts() {
       themes: [leftFamily.key, rightFamily.key],
       items: [
         { kind: "daily-guidance", id: leftGuidance.id },
-        { kind: "topic-guide", id: leftTopic.id },
+        { kind: "topic-guide", id: leftTopic.id, scenarioKey: "pressure" },
         { kind: "shabad-deep-dive", id: leftShabad.id },
-        { kind: "topic-guide", id: rightTopic.id },
+        { kind: "topic-guide", id: rightTopic.id, scenarioKey: "repair" },
         { kind: "daily-guidance", id: rightGuidance.id },
         { kind: "shabad-deep-dive", id: rightShabad.id },
       ],
@@ -870,6 +1270,7 @@ export async function generateDrafts() {
   Object.assign(dataset, buildDatasetIndexes(dataset))
   wireRelationships(dataset)
   dataset.searchIndex = buildSearchIndex(dataset.topicGuides)
+  dataset.topicUniquenessRegistry = await buildTopicUniquenessRegistry(dataset.topicGuides, huggingFaceAdapter)
   dataset.generation = {
     huggingFaceAdapterEnabled: huggingFaceAdapter.enabled,
   }
@@ -877,6 +1278,90 @@ export async function generateDrafts() {
 
   await writeJson(DRAFTS_PATH, dataset)
   return dataset
+}
+
+function tokenSetSimilarity(left, right) {
+  const leftTokens = new Set(normalizeText(left).split(" ").filter(Boolean))
+  const rightTokens = new Set(normalizeText(right).split(" ").filter(Boolean))
+  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
+  const union = new Set([...leftTokens, ...rightTokens]).size
+  return union === 0 ? 0 : overlap / union
+}
+
+function cosineSimilarity(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right) || left.length === 0 || right.length === 0) {
+    return null
+  }
+
+  let dot = 0
+  let leftMagnitude = 0
+  let rightMagnitude = 0
+
+  for (let index = 0; index < Math.min(left.length, right.length); index += 1) {
+    dot += left[index] * right[index]
+    leftMagnitude += left[index] * left[index]
+    rightMagnitude += right[index] * right[index]
+  }
+
+  if (leftMagnitude === 0 || rightMagnitude === 0) return null
+  return dot / (Math.sqrt(leftMagnitude) * Math.sqrt(rightMagnitude))
+}
+
+function stemToken(token) {
+  return token.replace(/(ing|edly|edly|edly|ed|es|s)$/i, "")
+}
+
+function actionPromptSimilarity(left, right) {
+  const leftTokens = new Set(normalizeText(left).split(" ").filter(token => token.length > 2).map(stemToken))
+  const rightTokens = new Set(normalizeText(right).split(" ").filter(token => token.length > 2).map(stemToken))
+  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
+  const union = new Set([...leftTokens, ...rightTokens]).size
+  return union === 0 ? 0 : overlap / union
+}
+
+function getUniquenessEntry(registry, topicId, scenarioKey = "overview") {
+  return registry?.entries?.find(entry => entry.topicId === topicId && entry.scenarioKey === scenarioKey) ?? null
+}
+
+function validateLearnShellCopy() {
+  const editorialModule = loadTsModule(path.join(PROJECT_ROOT, "src/content/editorialCopy.ts"))
+  const editorialCopy = editorialModule.getEditorialCopy("en")
+  const fields = [
+    ["heroBody", "Hero body", editorialCopy.learn.heroBody],
+    ["heroSearchHint", "Hero search hint", editorialCopy.learn.heroSearchHint],
+    ["proofBody", "Proof body", editorialCopy.learn.proofBody],
+    ["proofFooter", "Proof footer", editorialCopy.learn.proofFooter],
+    ["compactGuidanceBody", "Guidance compact body", editorialCopy.learn.compactGuidanceBody],
+    ["compactTopicBody", "Topic compact body", editorialCopy.learn.compactTopicBody],
+    ["detailBody", "Detail body", editorialCopy.learn.detailBody],
+    ["topicsIntroBody", "Topics intro body", editorialCopy.learn.topicsIntroBody],
+    ["shabadsIntroBody", "Shabads intro body", editorialCopy.learn.shabadsIntroBody],
+    ["savedIntroBody", "Saved intro body", editorialCopy.learn.savedIntroBody],
+  ]
+
+  return fields.map(([field, label, value]) => {
+    const reviewed = scoreEditorialCopy({
+      textBlocks: [value],
+      evidence: {
+        coreClaim: label,
+        emotionalState: "return",
+        turn: value,
+        practicalImplication: value,
+        bannedOverreach: [],
+      },
+    })
+
+    return {
+      field,
+      label,
+      value,
+      issues: collectStyleIssues({
+        text: value,
+        includeShellWarnings: true,
+      }),
+      scores: reviewed.scores,
+    }
+  })
 }
 
 function collectDuplicateIds(items) {
@@ -891,6 +1376,7 @@ export async function validateDrafts(drafts = null) {
   const dataset = drafts ?? await generateDrafts()
   const hardFailures = []
   const warnings = []
+  const topicUniquenessRegistry = dataset.topicUniquenessRegistry ?? await readJson(TOPIC_UNIQUENESS_PATH)
 
   const duplicateIds = {
     dailyGuidance: collectDuplicateIds(dataset.dailyGuidance),
@@ -922,6 +1408,14 @@ export async function validateDrafts(drafts = null) {
     guidanceKeys.add(key)
   }
 
+  const topicFamilies = new Set()
+  for (const topic of dataset.topicGuides) {
+    if (topicFamilies.has(topic.rotation.theme)) {
+      hardFailures.push(`Multiple canonical topics found for family ${topic.rotation.theme}`)
+    }
+    topicFamilies.add(topic.rotation.theme)
+  }
+
   const indexes = buildDatasetIndexes(dataset)
   for (const guidance of dataset.dailyGuidance) {
     if (!indexes.shabadDeepDivesById[guidance.source.deepDiveId]) {
@@ -947,6 +1441,101 @@ export async function validateDrafts(drafts = null) {
     if (topic.excerpts.length < 3 || shabadCount < 2) {
       hardFailures.push(`Topic ${topic.id} does not have at least 3 excerpts from 2 shabads`)
     }
+
+    if (!topic.editorial) {
+      hardFailures.push(`Topic ${topic.id} is missing editorial review`)
+    } else {
+      if (topic.editorial.status === "draft") {
+        hardFailures.push(`Canonical topic ${topic.id} is still in draft status`)
+      }
+      if (topic.editorial.issues.length > 0) {
+        hardFailures.push(`Canonical topic ${topic.id} still has editorial issues: ${topic.editorial.issues.join(", ")}`)
+      }
+      if (
+        topic.editorial.scores.overall < 3.75
+        || topic.editorial.scores.faithfulness < 3.7
+        || topic.editorial.scores.clarity < 2.9
+        || topic.editorial.scores.usefulness < 3
+        || topic.editorial.scores.beauty < 3.1
+      ) {
+        hardFailures.push(`Canonical topic ${topic.id} did not clear editorial thresholds`)
+      }
+    }
+
+    const firstScenarioExcerpts = new Set()
+    for (const scenarioKey of topic.scenarioOrder) {
+      const scenario = topic.scenarios[scenarioKey]
+      if (!scenario) {
+        hardFailures.push(`Topic ${topic.id} is missing scenario ${scenarioKey}`)
+        continue
+      }
+
+      const scenarioShabadCount = new Set(scenario.excerpts.map(excerpt => excerpt.source.deepDiveId)).size
+      if (scenario.excerpts.length < 3 || scenarioShabadCount < 2) {
+        hardFailures.push(`Scenario ${topic.id}#${scenarioKey} does not have at least 3 excerpts from 2 shabads`)
+      }
+
+      const firstExcerptKey = scenario.excerpts[0]
+        ? `${scenario.excerpts[0].source.deepDiveId}:${scenario.excerpts[0].source.verseIds.join(",")}`
+        : null
+      if (firstExcerptKey) {
+        if (firstScenarioExcerpts.has(firstExcerptKey)) {
+          hardFailures.push(`Sibling scenarios in ${topic.id} reuse the same first excerpt`)
+        }
+        firstScenarioExcerpts.add(firstExcerptKey)
+      }
+
+      if (!scenario.editorial) {
+        hardFailures.push(`Scenario ${topic.id}#${scenarioKey} is missing editorial review`)
+      } else {
+        if (scenario.editorial.status === "draft") {
+          hardFailures.push(`Scenario ${topic.id}#${scenarioKey} is still in draft status`)
+        }
+        if (scenario.editorial.issues.length > 0) {
+          hardFailures.push(`Scenario ${topic.id}#${scenarioKey} still has editorial issues: ${scenario.editorial.issues.join(", ")}`)
+        }
+        if (
+          scenario.editorial.scores.overall < 3.75
+          || scenario.editorial.scores.faithfulness < 3.7
+          || scenario.editorial.scores.clarity < 2.9
+          || scenario.editorial.scores.usefulness < 3
+          || scenario.editorial.scores.beauty < 3.1
+        ) {
+          hardFailures.push(`Scenario ${topic.id}#${scenarioKey} did not clear editorial thresholds`)
+        }
+      }
+    }
+
+    for (let index = 0; index < topic.scenarioOrder.length; index += 1) {
+      for (let compareIndex = index + 1; compareIndex < topic.scenarioOrder.length; compareIndex += 1) {
+        const leftKey = topic.scenarioOrder[index]
+        const rightKey = topic.scenarioOrder[compareIndex]
+        const leftScenario = topic.scenarios[leftKey]
+        const rightScenario = topic.scenarios[rightKey]
+        if (!leftScenario || !rightScenario) continue
+
+        const leftShabads = new Set(leftScenario.excerpts.map(excerpt => excerpt.source.deepDiveId))
+        const rightShabads = new Set(rightScenario.excerpts.map(excerpt => excerpt.source.deepDiveId))
+        const sharedShabads = Array.from(leftShabads).filter(shabadId => rightShabads.has(shabadId))
+        if (sharedShabads.length > 1) {
+          hardFailures.push(`Sibling scenarios ${topic.id}#${leftKey} and ${topic.id}#${rightKey} share more than one shabad source`)
+        }
+
+        const leftEntry = getUniquenessEntry(topicUniquenessRegistry, topic.id, leftKey)
+        const rightEntry = getUniquenessEntry(topicUniquenessRegistry, topic.id, rightKey)
+        const semanticSimilarity =
+          cosineSimilarity(leftEntry?.embedding, rightEntry?.embedding)
+          ?? tokenSetSimilarity(leftEntry?.text ?? "", rightEntry?.text ?? "")
+        if (semanticSimilarity >= 0.78) {
+          hardFailures.push(`Sibling scenarios ${topic.id}#${leftKey} and ${topic.id}#${rightKey} are too semantically similar (${semanticSimilarity.toFixed(2)})`)
+        }
+
+        const promptSimilarity = actionPromptSimilarity(leftScenario.actionPrompt, rightScenario.actionPrompt)
+        if (promptSimilarity >= 0.7) {
+          hardFailures.push(`Sibling scenarios ${topic.id}#${leftKey} and ${topic.id}#${rightKey} have overlapping action prompts (${promptSimilarity.toFixed(2)})`)
+        }
+      }
+    }
   }
 
   for (const collection of dataset.collections) {
@@ -963,6 +1552,9 @@ export async function validateDrafts(drafts = null) {
       if (item.kind === "topic-guide" && !indexes.topicGuidesById[item.id]) {
         hardFailures.push(`Collection ${collection.id} has missing topic step ${item.id}`)
       }
+      if (item.kind === "topic-guide" && item.scenarioKey && !indexes.topicGuidesById[item.id]?.scenarios?.[item.scenarioKey]) {
+        hardFailures.push(`Collection ${collection.id} references missing scenario ${item.id}#${item.scenarioKey}`)
+      }
       if (item.kind === "shabad-deep-dive" && !indexes.shabadDeepDivesById[item.id]) {
         hardFailures.push(`Collection ${collection.id} has missing shabad step ${item.id}`)
       }
@@ -978,17 +1570,53 @@ export async function validateDrafts(drafts = null) {
     }
   }
 
-  const synonymTargets = new Map()
-  for (const [synonym, topicId] of Object.entries(dataset.searchIndex.synonyms)) {
-    const existing = synonymTargets.get(synonym)
-    if (existing && existing !== topicId) {
-      hardFailures.push(`Synonym conflict for ${synonym}: ${existing} vs ${topicId}`)
+  for (const [synonym, target] of Object.entries(dataset.searchIndex.synonyms)) {
+    if (!indexes.topicGuidesById[target.topicId]) {
+      hardFailures.push(`Synonym ${synonym} points to missing topic ${target.topicId}`)
     }
-    synonymTargets.set(synonym, topicId)
+    if (target.scenarioKey && !indexes.topicGuidesById[target.topicId]?.scenarios?.[target.scenarioKey]) {
+      hardFailures.push(`Synonym ${synonym} points to missing scenario ${target.topicId}#${target.scenarioKey}`)
+    }
+  }
+
+  for (const [legacyId, target] of Object.entries(dataset.searchIndex.legacyTopicAliases)) {
+    if (!indexes.topicGuidesById[target.topicId]) {
+      hardFailures.push(`Legacy topic alias ${legacyId} points to missing topic ${target.topicId}`)
+    }
+    if (target.scenarioKey && !indexes.topicGuidesById[target.topicId]?.scenarios?.[target.scenarioKey]) {
+      hardFailures.push(`Legacy topic alias ${legacyId} points to missing scenario ${target.topicId}#${target.scenarioKey}`)
+    }
+  }
+
+  const shellCopyAudit = validateLearnShellCopy()
+  for (const field of shellCopyAudit) {
+    if (
+      field.issues.length > 0
+      || field.scores.overall < 3.35
+      || field.scores.clarity < 3.1
+      || field.scores.usefulness < 2.9
+      || field.scores.beauty < 3
+    ) {
+      hardFailures.push(`Learn shell copy field ${field.field} did not clear editorial thresholds`)
+    }
+  }
+
+  const surfaceCollisions = buildSurfaceCollisionSamples(dataset)
+  for (const collision of surfaceCollisions) {
+    if (collision.duplicateRailThemes.length > 0) {
+      hardFailures.push(
+        `Theme rail surfaced duplicate families on ${collision.dayStamp}: ${collision.duplicateRailThemes.join(", ")}`
+      )
+    }
+    if (collision.spotlightCollision) {
+      hardFailures.push(
+        `Topic spotlight collides with the Today rail on ${collision.dayStamp}: ${collision.spotlightTheme}`
+      )
+    }
   }
 
   if (dataset.editorialReview?.draftCount > 0) {
-    warnings.push(`Editorial review left ${dataset.editorialReview.draftCount} items in draft status for future revision`)
+    hardFailures.push(`Editorial review left ${dataset.editorialReview.draftCount} public items in draft status`)
   }
 
   warnings.push(...(dataset.editorialReview?.duplicateWarnings ?? []))
@@ -1002,11 +1630,19 @@ export async function validateDrafts(drafts = null) {
     dailyGuidance: dataset.dailyGuidance.length,
     shabadDeepDives: dataset.shabadDeepDives.length,
     topicGuides: dataset.topicGuides.length,
+    topicScenarios: dataset.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0),
     collections: dataset.collections.length,
     crossLinks:
       dataset.dailyGuidance.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.relatedCollectionIds.length, 0)
       + dataset.shabadDeepDives.reduce((count, item) => count + item.relatedGuidanceIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
       + dataset.topicGuides.reduce((count, item) => count + item.relatedShabadIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
+      + dataset.topicGuides.reduce(
+        (count, item) => count + item.scenarioOrder.reduce(
+          (scenarioCount, scenarioKey) => scenarioCount + item.scenarios[scenarioKey].excerpts.length + 1,
+          0
+        ),
+        0
+      )
       + dataset.collections.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length, 0),
     readyForLaunch: false,
   }
@@ -1016,7 +1652,8 @@ export async function validateDrafts(drafts = null) {
     hardFailures.length === 0
     && inventory.dailyGuidance >= 240
     && inventory.shabadDeepDives >= 100
-    && inventory.topicGuides >= 100
+    && inventory.topicGuides >= 28
+    && inventory.topicScenarios >= 112
     && inventory.collections >= 100
     && inventory.crossLinks >= 500
     && averageLinks >= 5
@@ -1036,6 +1673,8 @@ export async function validateDrafts(drafts = null) {
       lowScoringItems: dataset.editorialReview?.lowScoringItems ?? [],
       duplicateWarnings: dataset.editorialReview?.duplicateWarnings ?? [],
     },
+    shellCopy: shellCopyAudit,
+    surfaceCollisions,
     hardFailures,
     warnings,
   }
@@ -1062,7 +1701,8 @@ export async function publishLearnArchive() {
     targets: {
       dailyGuidance: 240,
       shabadDeepDives: 100,
-      topicGuides: 100,
+      topicGuides: 28,
+      topicScenarios: 112,
       collections: 100,
       crossLinks: 500,
       averageCrossLinksPerItem: 5,
@@ -1088,6 +1728,8 @@ export async function publishLearnArchive() {
     validationReportPath: "/data/learn/validation-report.json",
   }
 
+  await fs.rm(PUBLIC_DIR, { recursive: true, force: true })
+  await ensureDir(PUBLIC_DIR)
   await writeJson(path.join(PUBLIC_DIR, "manifest.json"), manifest)
   await writeJson(path.join(PUBLIC_DIR, "search-index.json"), drafts.searchIndex)
   await writeJson(path.join(PUBLIC_DIR, "validation-report.json"), validation)

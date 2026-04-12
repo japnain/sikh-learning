@@ -1,18 +1,20 @@
 {
   "version": "2026-04-11",
-  "generatedAt": "2026-04-12T03:50:23.978Z",
+  "generatedAt": "2026-04-12T04:59:32.113Z",
   "inventory": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
-    "topicGuides": 100,
+    "topicGuides": 28,
+    "topicScenarios": 112,
     "collections": 100,
-    "crossLinks": 3921,
+    "crossLinks": 3420,
     "readyForLaunch": true
   },
   "targets": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
-    "topicGuides": 100,
+    "topicGuides": 28,
+    "topicScenarios": 112,
     "collections": 100,
     "crossLinks": 500,
     "averageCrossLinksPerItem": 5

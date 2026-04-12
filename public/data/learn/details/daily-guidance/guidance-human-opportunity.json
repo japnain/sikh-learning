@@ -14,9 +14,7 @@
     "lifeApplication": "Let one part of the day answer that opportunity directly."
   },
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 4.2,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.95,
       "emotionalHonesty": 3,
-      "usefulness": 3.36,
-      "beauty": 3.82,
-      "overall": 3.89
+      "usefulness": 4.42,
+      "beauty": 4.05,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

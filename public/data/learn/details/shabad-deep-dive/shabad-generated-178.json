@@ -183,9 +183,7 @@
     "guidance-generated-178-2"
   ],
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedCollectionIds": [
     "collection-restlessness-to-stillness",
@@ -217,19 +215,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.42,
+      "clarity": 3.78,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 3.22,
-      "overall": 3.58
+      "usefulness": 3.22,
+      "beauty": 3.97,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

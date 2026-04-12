@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-sangat"
+      "id": "topic-sangat",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-sangat",
-    "topic-loneliness"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance",
@@ -61,16 +62,16 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.4,
+      "clarity": 3.95,
       "specificity": 4.23,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.53
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.79
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

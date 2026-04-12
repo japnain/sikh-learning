@@ -170,9 +170,7 @@
     "guidance-generated-361-3"
   ],
   "relatedTopicIds": [
-    "topic-greed",
-    "topic-greed-daily",
-    "topic-greed-pressure"
+    "topic-greed"
   ],
   "relatedCollectionIds": [
     "collection-speech-and-self-restraint",
@@ -204,19 +202,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.37,
+      "clarity": 3.6,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 3.38,
-      "overall": 3.61
+      "usefulness": 3.22,
+      "beauty": 4.01,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

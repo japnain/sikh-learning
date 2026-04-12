@@ -13,9 +13,7 @@
     "lifeApplication": "Doubt becomes more truthful when the fire of doubt is not extinguished, even by wandering through foreign."
   },
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.94,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.88,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 3.22,
-      "overall": 3.67
+      "usefulness": 4.64,
+      "beauty": 3.81,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

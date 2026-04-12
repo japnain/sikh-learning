@@ -13,9 +13,7 @@
     "lifeApplication": "Anxiety becomes more truthful when siree Raag, Third Mehla:."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-generated-107"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.84,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.79,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.23,
-      "beauty": 3.74,
-      "overall": 3.78
+      "usefulness": 4.26,
+      "beauty": 4.01,
+      "overall": 4.07
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-mercy"
+      "id": "topic-mercy",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-mercy"
+    "topic-mercy",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
@@ -51,16 +53,16 @@
     },
     "scores": {
       "faithfulness": 3.93,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.16,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.8
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

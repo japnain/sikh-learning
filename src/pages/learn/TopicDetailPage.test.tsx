@@ -39,3 +39,19 @@ test("topic detail back button falls back to the topics hub on direct entry", as
     expect(screen.getByTestId("location-display")).toHaveTextContent("/learn?tab=topics")
   })
 })
+
+test("topic detail opens the requested scenario on the canonical topic page", async () => {
+  renderLearnRoute("/learn/topics/topic-mercy?from=topics&scenario=pressure")
+
+  expect(await screen.findByRole("heading", { level: 1, name: /Mercy when the day tightens/i })).toBeInTheDocument()
+  expect(screen.getByRole("link", { name: /Under Pressure/i })).toHaveAttribute("aria-current", "page")
+  expect(screen.getByText(/Under pressure, mercy is not sentimental relief/i)).toBeInTheDocument()
+})
+
+test("legacy flat topic ids redirect to the canonical topic route with the matching scenario", async () => {
+  renderLearnRoute("/learn/topics/topic-mercy-pressure?from=topics")
+
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-mercy?from=topics&scenario=pressure")
+  })
+})

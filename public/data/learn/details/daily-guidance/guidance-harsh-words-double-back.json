@@ -14,9 +14,7 @@
     "lifeApplication": "Do not confuse emotional discharge with strength."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -38,7 +36,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.3,
       "emotionalHonesty": 3,
-      "usefulness": 2.22,
-      "beauty": 4.06,
-      "overall": 3.6
+      "usefulness": 3.22,
+      "beauty": 4.21,
+      "overall": 3.84
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

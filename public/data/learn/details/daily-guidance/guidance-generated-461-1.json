@@ -13,9 +13,7 @@
     "lifeApplication": "Restlessness becomes more truthful when gauree, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-generated-461"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.82,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.41,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.82,
-      "overall": 3.73
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

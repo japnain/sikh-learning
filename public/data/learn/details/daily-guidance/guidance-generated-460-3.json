@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedShabadIds": [
     "shabad-generated-460"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.27,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.71,
-      "beauty": 3.55,
-      "overall": 3.82
+      "usefulness": 4.8,
+      "beauty": 4.18,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

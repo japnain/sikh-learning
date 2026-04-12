@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-forgiveness"
+      "id": "topic-forgiveness",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -41,7 +42,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-forgiveness"
+    "topic-forgiveness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
@@ -61,12 +63,12 @@
     },
     "scores": {
       "faithfulness": 4.03,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.24,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.81
     },
     "strengths": [
       "specificity",

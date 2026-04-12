@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-doubt"
+      "id": "topic-doubt",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -33,7 +34,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-speech"
+      "id": "topic-speech",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -46,7 +48,8 @@
   ],
   "relatedTopicIds": [
     "topic-doubt",
-    "topic-speech"
+    "topic-speech",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
@@ -68,16 +71,16 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.77,
+      "clarity": 4.25,
       "specificity": 4.23,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.38,
-      "overall": 3.72
+      "usefulness": 3.38,
+      "beauty": 4.53,
+      "overall": 3.96
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "clarity"
     ],
     "issues": []
   }

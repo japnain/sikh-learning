@@ -2,7 +2,7 @@
   "id": "topic-softness",
   "title": "When harshness has become your default",
   "shortTitle": "Softness",
-  "category": "practice",
+  "category": "inner-work",
   "issueStatement": "Your inner and outer tone has become sharper than you want to admit.",
   "centralInsight": "Gurbani does not ask for politeness theatre. It asks for speech softened by praise, humility, and regard for the one in front of you.",
   "practicalReflection": "Softness is not weakness. It is disciplined refusal to let the tongue become an outlet for ego or contempt.",
@@ -13,63 +13,468 @@
     "harsh",
     "tenderness",
     "cutting words",
-    "hard-hearted"
+    "hard-hearted",
+    "softness in the ordinary day",
+    "softness daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "softness today",
+    "softness ordinary day",
+    "softness routine",
+    "softness when the day tightens",
+    "softness under pressure",
+    "pressure",
+    "stress",
+    "under strain",
+    "cornered",
+    "softness pressure",
+    "softness stress",
+    "softness under strain",
+    "softness cornered",
+    "softness after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "softness repair",
+    "softness return",
+    "softness after slipping",
+    "softness start again",
+    "building a truer practice of softness",
+    "softness steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "softness practice",
+    "softness habit",
+    "softness steady return",
+    "softness formation"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "deepDiveId": "shabad-generated-937",
         "verseIds": [
-          11748,
-          11749
+          12112
         ],
-        "shortMeaning": "The better speech is the speech carrying praise.",
-        "lifeApplication": "What the tongue feeds on decides what tone it produces."
+        "shortMeaning": "The God-conscious being is the dust of all",
+        "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru redirects the source of speech before correcting the style of speech."
+      "explanation": "The theme is named without abstraction here: the God-conscious being is the dust of all."
     },
     {
       "source": {
-        "deepDiveId": "shabad-speak-what-brings-honor",
+        "deepDiveId": "shabad-hukam-inside-everything",
         "verseIds": [
-          642,
-          643
+          11,
+          15
         ],
-        "shortMeaning": "Speech that brings honor is accepted; harsh words return grief.",
-        "lifeApplication": "Reaction is not the same thing as truthfulness."
+        "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Softness is named as moral seriousness, not softness for its own sake."
+      "explanation": "The shabad widens the issue beyond mood alone. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "deepDiveId": "shabad-conquer-the-mind",
         "verseIds": [
-          1288,
-          1290
+          292
         ],
-        "shortMeaning": "Sweet speech becomes believable when it grows from humility and saint company.",
-        "lifeApplication": "Tone is strongest when posture has already bowed."
+        "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+        "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This keeps softness from becoming performance or strategy."
+      "explanation": "Gurbani does not ask for politeness theatre. It asks for speech softened by praise, humility, and regard for the one in front of you. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
-  "relatedShabadIds": [
-    "shabad-ambrosial-speech-pure-conduct",
-    "shabad-speak-what-brings-honor",
-    "shabad-sweet-speech-humble-walk"
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
   ],
-  "relatedTopicIds": [],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Softness in the ordinary day",
+      "issueStatement": "The heart hardens because harshness feels safer than tenderness. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether softness is being remembered or postponed.",
+      "actionPrompt": "Practice one soft answer that still keeps truth intact. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "softness",
+        "gentle",
+        "harsh",
+        "tenderness",
+        "cutting words",
+        "softness in the ordinary day",
+        "softness daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "softness today",
+        "softness ordinary day",
+        "softness routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-937",
+            "verseIds": [
+              12112
+            ],
+            "shortMeaning": "The God-conscious being is the dust of all",
+            "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: the God-conscious being is the dust of all."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11,
+              15
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              292
+            ],
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when see the brotherhood of all mankind as the highest order of Yogis;."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-softness:daily",
+        "evidence": {
+          "coreClaim": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "hard, sharp, protective",
+          "turn": "The heart hardens because harshness feels safer than tenderness. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Practice one soft answer that still keeps truth intact. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.9,
+          "usefulness": 4.04,
+          "beauty": 4.53,
+          "overall": 4.37
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Softness when the day tightens",
+      "issueStatement": "The heart hardens because harshness feels safer than tenderness. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Practice one soft answer that still keeps truth intact. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "softness",
+        "gentle",
+        "harsh",
+        "tenderness",
+        "cutting words",
+        "softness when the day tightens",
+        "softness under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "softness pressure",
+        "softness stress",
+        "softness under strain",
+        "softness cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11,
+              15
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: by His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              527,
+              529
+            ],
+            "shortMeaning": "Join the Saadh Sangat, the Company of the Holy; vibrate and meditate; you are squandering this life uselessly in the love of Maya",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12946
+            ],
+            "shortMeaning": "that humble servant's affairs are resolved",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-softness:pressure",
+        "evidence": {
+          "coreClaim": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "restless, controlling, uncertain",
+          "turn": "The heart hardens because harshness feels safer than tenderness. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Practice one soft answer that still keeps truth intact. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.42,
+          "beauty": 4.37,
+          "overall": 4.38
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Softness after the slip",
+      "issueStatement": "The heart hardens because harshness feels safer than tenderness. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Practice one soft answer that still keeps truth intact. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "softness",
+        "gentle",
+        "harsh",
+        "tenderness",
+        "cutting words",
+        "softness after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "softness repair",
+        "softness return",
+        "softness after slipping",
+        "softness start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              292
+            ],
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: see the brotherhood of all mankind as the highest order of Yogis;."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              528
+            ],
+            "shortMeaning": "Make every effort to cross over this terrifying world-ocean",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-softness:repair",
+        "evidence": {
+          "coreClaim": "Guru makes clean speech and gentle conduct signs of depth, not weakness. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "reactive, performing, scattered",
+          "turn": "The heart hardens because harshness feels safer than tenderness. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Practice one soft answer that still keeps truth intact. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.58,
+          "beauty": 4.69,
+          "overall": 4.45
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of softness",
+      "issueStatement": "The heart hardens because harshness feels safer than tenderness. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Practice one soft answer that still keeps truth intact. Repeat what you can actually keep.",
+      "searchTerms": [
+        "softness",
+        "gentle",
+        "harsh",
+        "tenderness",
+        "cutting words",
+        "building a truer practice of softness",
+        "softness steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "softness practice",
+        "softness habit",
+        "softness steady return",
+        "softness formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12946
+            ],
+            "shortMeaning": "that humble servant's affairs are resolved",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: that humble servant's affairs are resolved."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-937",
+            "verseIds": [
+              12112
+            ],
+            "shortMeaning": "The God-conscious being is the dust of all",
+            "lifeApplication": "Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Softness steadies when o Nanak, the God-conscious being is absorbed in God's meditation. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961,
+              20963
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-softness:practice",
+        "evidence": {
+          "coreClaim": "Guru makes clean speech and gentle conduct signs of depth, not weakness. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "self-conscious, performing, eager-to-be-seen",
+          "turn": "The heart hardens because harshness feels safer than tenderness. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Practice one soft answer that still keeps truth intact. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.9,
+          "usefulness": 3.6,
+          "beauty": 4.53,
+          "overall": 4.27
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    }
+  },
+  "relatedShabadIds": [
+    "shabad-generated-937",
+    "shabad-hukam-inside-everything",
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service",
+    "shabad-ego-is-disease"
+  ],
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-ego"
+  ],
   "relatedCollectionIds": [],
   "rotation": {
     "theme": "softness",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 7,
-    "balanceCategory": "challenge",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
   },
   "editorial": {
     "status": "locked",
@@ -78,19 +483,19 @@
     "templateKey": "topic:softness",
     "evidence": {
       "coreClaim": "Gurbani does not ask for politeness theatre. It asks for speech softened by praise, humility, and regard for the one in front of you.",
-      "emotionalState": "performing, harsh, scattered",
+      "emotionalState": "hard, sharp, protective",
       "turn": "Your inner and outer tone has become sharper than you want to admit.",
       "practicalImplication": "Lower the sharpness in one conversation today without lowering the truth.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.21,
       "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 2.66,
-      "beauty": 4.22,
-      "overall": 3.94
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.66,
+      "beauty": 3.57,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",

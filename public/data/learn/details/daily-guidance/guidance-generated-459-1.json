@@ -13,9 +13,7 @@
     "lifeApplication": "Mercy becomes more truthful when gauree, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedShabadIds": [
     "shabad-generated-459"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.79,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.74,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 4.14,
-      "overall": 3.91
+      "usefulness": 4.64,
+      "beauty": 4.37,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": []
   }

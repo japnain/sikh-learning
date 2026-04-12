@@ -23,6 +23,8 @@ import {
   PHASE_THREE_TOPIC_GUIDES,
 } from "./learnContentPhase3"
 
+type LegacyTopicGuide = Omit<TopicGuide, "defaultScenarioKey" | "scenarioOrder" | "scenarios">
+
 function citation(
   shabadId: number,
   ang: number,
@@ -77,10 +79,12 @@ function ref(
 
 export const LEARN_CONTENT_TARGETS = {
   dailyGuidance: 240,
-  shabadDeepDives: 60,
-  topicGuides: 72,
-  collections: 24,
+  shabadDeepDives: 100,
+  topicGuides: 28,
+  topicScenarios: 112,
+  collections: 100,
   crossLinks: 500,
+  averageCrossLinksPerItem: 5,
 } as const
 
 export const LEARN_SEARCH_SYNONYMS: Record<string, string> = {
@@ -1420,7 +1424,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
   ...PHASE_THREE_DAILY_GUIDANCE_ENTRIES,
 ]
 
-export const TOPIC_GUIDES: TopicGuide[] = [
+export const TOPIC_GUIDES: LegacyTopicGuide[] = [
   {
     id: "topic-anxiety",
     title: "When the mind is anxious",
@@ -2029,7 +2033,7 @@ export const DAILY_GUIDANCE_BY_ID = Object.fromEntries(
 
 export const TOPIC_GUIDE_BY_ID = Object.fromEntries(
   TOPIC_GUIDES.map(item => [item.id, item] as const)
-) satisfies Record<string, TopicGuide>
+) satisfies Record<string, LegacyTopicGuide>
 
 export const COLLECTION_BY_ID = Object.fromEntries(
   COLLECTIONS.map(item => [item.id, item] as const)

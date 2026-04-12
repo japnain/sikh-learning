@@ -14,9 +14,7 @@
     "lifeApplication": "Return is possible because grace precedes your recovery."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
@@ -38,7 +36,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.54,
       "emotionalHonesty": 3,
-      "usefulness": 2.44,
-      "beauty": 4.06,
-      "overall": 3.68
+      "usefulness": 3.44,
+      "beauty": 4.21,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

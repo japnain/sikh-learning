@@ -13,9 +13,7 @@
     "lifeApplication": "Attachment becomes more truthful when holy Saadhus: rest and peace are in the Sanctuary of the Lord."
   },
   "relatedTopicIds": [
-    "topic-attachment",
-    "topic-attachment-daily",
-    "topic-attachment-pressure"
+    "topic-attachment"
   ],
   "relatedShabadIds": [
     "shabad-detached-and-steady"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.94,
-      "clarity": 2.7,
+      "clarity": 4.11,
       "specificity": 4.34,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.92,
-      "beauty": 3.04,
-      "overall": 3.44
+      "usefulness": 3.98,
+      "beauty": 3.83,
+      "overall": 3.93
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

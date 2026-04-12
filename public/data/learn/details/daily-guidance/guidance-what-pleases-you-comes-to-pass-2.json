@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.07,
-      "clarity": 1.26,
+      "clarity": 3.33,
       "specificity": 4.82,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.06,
-      "beauty": 2.19,
-      "overall": 3.37
+      "usefulness": 5,
+      "beauty": 3.42,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

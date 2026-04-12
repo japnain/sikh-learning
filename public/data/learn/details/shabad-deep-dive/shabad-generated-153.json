@@ -187,20 +187,19 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 0,
+      "clarity": 1.52,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 2.49,
-      "overall": 3.11
+      "usefulness": 3.22,
+      "beauty": 3.72,
+      "overall": 3.67
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
     "issues": [
-      "runs too long at the sentence level",
-      "repeats phrasing too closely"
+      "runs too long at the sentence level"
     ]
   }
 }

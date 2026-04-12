@@ -13,9 +13,7 @@
     "lifeApplication": "Restlessness becomes more truthful when i have searched and searched, seeking the Blessed Vision of His Darshan."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.56,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.06,
-      "overall": 3.54
+      "usefulness": 4.2,
+      "beauty": 3.65,
+      "overall": 3.96
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

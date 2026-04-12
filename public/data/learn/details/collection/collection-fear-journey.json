@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-fear"
+      "id": "topic-fear",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-fear",
-    "topic-restlessness"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
@@ -62,16 +63,16 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.23,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.5
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.78
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

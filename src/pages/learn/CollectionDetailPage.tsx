@@ -66,12 +66,13 @@ function getStepCopy(
   if (item.kind === "topic-guide") {
     const topic = learnCatalog.topicGuideById[item.id]
     if (!topic) return null
+    const scenario = item.scenarioKey ? topic.scenarios[item.scenarioKey] : null
 
     return {
       kind: item.kind,
-      title: topic.title,
-      description: topic.centralInsight,
-      eyebrow: "Topic guide",
+      title: scenario?.title ?? topic.title,
+      description: scenario?.centralInsight ?? topic.centralInsight,
+      eyebrow: scenario ? `Topic · ${scenario.label}` : "Topic guide",
     }
   }
 
@@ -158,7 +159,12 @@ export default function CollectionDetailPage() {
             </div>
             {nextUnviewedItem ? (
               <Link
-                to={buildLearnDetailPath(nextUnviewedItem.kind, nextUnviewedItem.id, `collection-${collection.id}`)}
+                to={buildLearnDetailPath(
+                  nextUnviewedItem.kind,
+                  nextUnviewedItem.id,
+                  `collection-${collection.id}`,
+                  nextUnviewedItem.kind === "topic-guide" ? nextUnviewedItem.scenarioKey ?? null : null
+                )}
                 aria-label={`Continue this journey with step ${nextUnviewedIndex + 1}: ${nextUnviewedStepCopy?.title ?? collection.title}`}
                 className="mt-4 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light touch-manipulation"
               >
@@ -224,7 +230,12 @@ export default function CollectionDetailPage() {
                     <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">{stepCopy.description}</p>
                   </div>
                   <Link
-                    to={buildLearnDetailPath(item.kind, item.id, `collection-${collection.id}`)}
+                    to={buildLearnDetailPath(
+                      item.kind,
+                      item.id,
+                      `collection-${collection.id}`,
+                      item.kind === "topic-guide" ? item.scenarioKey ?? null : null
+                    )}
                     aria-label={`Open step ${index + 1}: ${stepCopy.title}`}
                     className="inline-flex min-h-[40px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light touch-manipulation"
                   >

@@ -11,22 +11,71 @@
     "control",
     "controlling",
     "micromanaging",
-    "can't let go",
     "outcomes",
-    "fix everything"
+    "can't let go",
+    "fix everything",
+    "control in the ordinary day",
+    "control daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "control today",
+    "control ordinary day",
+    "control routine",
+    "control when the day tightens",
+    "control under pressure",
+    "pressure",
+    "stress",
+    "under strain",
+    "cornered",
+    "control pressure",
+    "control stress",
+    "control under strain",
+    "control cornered",
+    "control after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "control repair",
+    "control return",
+    "control after slipping",
+    "control start again",
+    "building a truer practice of control",
+    "control steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "control practice",
+    "control habit",
+    "control steady return",
+    "control formation"
   ],
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "deepDiveId": "shabad-generated-3",
         "verseIds": [
-          499,
-          512
+          17
         ],
-        "shortMeaning": "What pleases the Divine comes to pass; everything that happens is already within that doing.",
-        "lifeApplication": "Act, but stop imagining that authorship belongs to the anxious self."
+        "shortMeaning": "Some sing of His Power-who has that Power?",
+        "lifeApplication": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The shabad does not erase action; it reorders the doer."
+      "explanation": "The theme is named without abstraction here: some sing of His Power-who has that Power?."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-942",
+        "verseIds": [
+          12163,
+          12164
+        ],
+        "shortMeaning": "The God-conscious being lives forever, and does not die; the God-conscious being is the Giver of the way of liberation of",
+        "lifeApplication": "Sangat steadies when o Nanak, the God-conscious being is the Lord of all. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The shabad widens the issue beyond mood alone. Sangat steadies when o Nanak, the God-conscious being is the Lord of all. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
@@ -35,30 +84,388 @@
           15,
           16
         ],
-        "shortMeaning": "Nothing stands outside Hukam, and understanding that loosens ego.",
-        "lifeApplication": "Control weakens when the mind stops demanding a reality beyond Hukam."
+        "shortMeaning": "Everyone is subject to His Command; no one is beyond His Command; o Nanak, one who understands His Command, does not speak in ego",
+        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The correction is metaphysical before it becomes emotional."
-    },
-    {
-      "source": {
-        "deepDiveId": "shabad-lord-keeps-the-humble-close",
-        "verseIds": [
-          37476,
-          37477
-        ],
-        "shortMeaning": "Nearness and care are already present for the one who stops living by rank and force.",
-        "lifeApplication": "Release grows where belonging becomes more convincing than pressure."
-      },
-      "explanation": "Control softens when nearness becomes credible."
+      "explanation": "Gurbani loosens control by relocating authorship. Responsibility remains, but total authorship is taken out of your hands and returned to Hukam, mercy, and nearness. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
-  "relatedShabadIds": [
-    "shabad-what-pleases-you-comes-to-pass",
-    "shabad-hukam-inside-everything",
-    "shabad-lord-keeps-the-humble-close"
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
   ],
-  "relatedTopicIds": [],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Control in the ordinary day",
+      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether control is being remembered or postponed.",
+      "actionPrompt": "Release one demand that peace must wait for total control. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "control",
+        "controlling",
+        "micromanaging",
+        "outcomes",
+        "can't let go",
+        "control in the ordinary day",
+        "control daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "control today",
+        "control ordinary day",
+        "control routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-3",
+            "verseIds": [
+              17
+            ],
+            "shortMeaning": "Some sing of His Power-who has that Power?",
+            "lifeApplication": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: some sing of His Power-who has that Power?."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-942",
+            "verseIds": [
+              12163,
+              12164
+            ],
+            "shortMeaning": "The God-conscious being lives forever, and does not die; the God-conscious being is the Giver of the way of liberation of",
+            "lifeApplication": "Sangat steadies when o Nanak, the God-conscious being is the Lord of all. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Sangat steadies when o Nanak, the God-conscious being is the Lord of all. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              15,
+              16
+            ],
+            "shortMeaning": "Everyone is subject to His Command; no one is beyond His Command; o Nanak, one who understands His Command, does not speak in ego",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when everyone is subject to His Command; no one is beyond His Command; o Nanak, one who understands His Command, does not speak in ego."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-control:daily",
+        "evidence": {
+          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "gripping, controlling, tense",
+          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Release one demand that peace must wait for total control. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.42,
+          "beauty": 4.21,
+          "overall": 4.3
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Control when the day tightens",
+      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Release one demand that peace must wait for total control. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "control",
+        "controlling",
+        "micromanaging",
+        "outcomes",
+        "can't let go",
+        "control when the day tightens",
+        "control under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "control pressure",
+        "control stress",
+        "control under strain",
+        "control cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-942",
+            "verseIds": [
+              12163,
+              12164
+            ],
+            "shortMeaning": "The God-conscious being lives forever, and does not die; the God-conscious being is the Giver of the way of liberation of",
+            "lifeApplication": "Sangat steadies when o Nanak, the God-conscious being is the Lord of all. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: the God-conscious being lives forever, and does not die; the God-conscious being is the Giver of the way of liberation of."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              292
+            ],
+            "shortMeaning": "See the brotherhood of all mankind as the highest order of Yogis;",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              528
+            ],
+            "shortMeaning": "Make every effort to cross over this terrifying world-ocean",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-control:pressure",
+        "evidence": {
+          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "isolated, impressionable, needing-company",
+          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Release one demand that peace must wait for total control. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.29,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.8,
+          "beauty": 4.01,
+          "overall": 4.35
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Control after the slip",
+      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Release one demand that peace must wait for total control. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "control",
+        "controlling",
+        "micromanaging",
+        "outcomes",
+        "can't let go",
+        "control after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "control repair",
+        "control return",
+        "control after slipping",
+        "control start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              15,
+              16
+            ],
+            "shortMeaning": "Everyone is subject to His Command; no one is beyond His Command; o Nanak, one who understands His Command, does not speak in ego",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: everyone is subject to His Command; no one is beyond His Command; o Nanak, one who understands His Command, does not speak in ego."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-conquer-the-mind",
+            "verseIds": [
+              290
+            ],
+            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
+            "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12943
+            ],
+            "shortMeaning": "He is not to call attention to himself in any way",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-control:repair",
+        "evidence": {
+          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "restless, controlling, uncertain",
+          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Release one demand that peace must wait for total control. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.94,
+          "beauty": 4.53,
+          "overall": 4.45
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of control",
+      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Release one demand that peace must wait for total control. Repeat what you can actually keep.",
+      "searchTerms": [
+        "control",
+        "controlling",
+        "micromanaging",
+        "outcomes",
+        "can't let go",
+        "building a truer practice of control",
+        "control steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "control practice",
+        "control habit",
+        "control steady return",
+        "control formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-human-birth-is-chance",
+            "verseIds": [
+              528
+            ],
+            "shortMeaning": "Make every effort to cross over this terrifying world-ocean",
+            "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: make every effort to cross over this terrifying world-ocean."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-3",
+            "verseIds": [
+              17
+            ],
+            "shortMeaning": "Some sing of His Power-who has that Power?",
+            "lifeApplication": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12943,
+              12947
+            ],
+            "shortMeaning": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward,",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-control:practice",
+        "evidence": {
+          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "directionless, numb, wasting-time",
+          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Release one demand that peace must wait for total control. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.98,
+          "beauty": 4.37,
+          "overall": 4.23
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
+  "relatedShabadIds": [
+    "shabad-generated-3",
+    "shabad-generated-942",
+    "shabad-hukam-inside-everything",
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service"
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anger"
+  ],
   "relatedCollectionIds": [
     "collection-control-to-release",
     "collection-control-journey",
@@ -66,14 +473,14 @@
   ],
   "rotation": {
     "theme": "control",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 8,
-    "balanceCategory": "reflection",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
   },
   "editorial": {
     "status": "locked",
@@ -82,23 +489,23 @@
     "templateKey": "topic:control",
     "evidence": {
       "coreClaim": "Gurbani loosens control by relocating authorship. Responsibility remains, but total authorship is taken out of your hands and returned to Hukam, mercy, and nearness.",
-      "emotionalState": "controlling, unsettled, lonely",
+      "emotionalState": "gripping, controlling, tense",
       "turn": "You keep tightening around outcomes, people, or timing because letting go feels like negligence.",
       "practicalImplication": "Name the result you are trying to secure today. Offer one faithful action, then release the fantasy of total control.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.15,
       "specificity": 5,
-      "emotionalHonesty": 3,
-      "usefulness": 3.36,
-      "beauty": 4.38,
-      "overall": 4.05
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 3.73,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

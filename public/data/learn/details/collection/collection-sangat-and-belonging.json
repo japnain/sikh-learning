@@ -46,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-sangat",
-    "topic-loneliness"
+    "topic-loneliness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -68,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 3.82,
-      "clarity": 0.9,
+      "clarity": 1.95,
       "specificity": 4.05,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.19
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.52
     },
     "strengths": [
       "beauty",

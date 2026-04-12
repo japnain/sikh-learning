@@ -1,4 +1,4 @@
-import type { LearnContentKind, LearnTab } from '../types'
+import type { LearnContentKind, LearnTab, TopicScenarioKey } from '../types'
 
 export interface LearnRailChip {
   id: string
@@ -58,6 +58,7 @@ export const LEARN_DETAIL_RAILS = {
     { id: 'today-collection-shabads', label: 'Shabads', targetId: 'learn-detail-collection-shabads' },
   ],
   'topics-topic': [
+    { id: 'topics-topic-scenarios', label: 'Scenarios', targetId: 'learn-detail-topic-scenarios' },
     { id: 'topics-topic-insight', label: 'Insight', targetId: 'learn-detail-topic-insight' },
     { id: 'topics-topic-excerpts', label: 'Excerpts', targetId: 'learn-detail-topic-excerpts' },
     { id: 'topics-topic-reflection', label: 'Reflection', targetId: 'learn-detail-topic-reflection' },
@@ -127,7 +128,12 @@ export function buildLearnTabPath(tab: LearnTab): string {
   return tab === 'today' ? '/learn' : `/learn?tab=${tab}`
 }
 
-export function buildLearnDetailPath(kind: LearnContentKind, id: string, from?: string): string {
+export function buildLearnDetailPath(
+  kind: LearnContentKind,
+  id: string,
+  from?: string,
+  scenarioKey?: Exclude<TopicScenarioKey, 'overview'> | null
+): string {
   const basePath =
     kind === 'topic-guide'
       ? `/learn/topics/${id}`
@@ -137,5 +143,14 @@ export function buildLearnDetailPath(kind: LearnContentKind, id: string, from?: 
       ? `/learn/guidance/${id}`
       : `/learn/collections/${id}`
 
-  return from ? `${basePath}?from=${encodeURIComponent(from)}` : basePath
+  const params = new URLSearchParams()
+  if (from) {
+    params.set('from', from)
+  }
+  if (kind === 'topic-guide' && scenarioKey) {
+    params.set('scenario', scenarioKey)
+  }
+
+  const query = params.toString()
+  return query ? `${basePath}?${query}` : basePath
 }

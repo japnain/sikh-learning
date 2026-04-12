@@ -40,7 +40,7 @@ export type EditorialCopy = {
     proofTitle: string
     proofBody: string
     proofFooter: string
-    inventoryLabels: Record<"dailyGuidance" | "shabadDeepDives" | "topicGuides" | "collections" | "crossLinks", string>
+    inventoryLabels: Record<"dailyGuidance" | "shabadDeepDives" | "topicGuides" | "topicScenarios" | "collections" | "crossLinks", string>
     compactGuidanceBody: string
     compactShabadBody: string
     compactTopicBody: string
@@ -139,11 +139,12 @@ const ENGLISH_EDITORIAL_COPY: EditorialCopy = {
     proofEyebrow: "Archive in public",
     proofTitle: "The library is growing in public.",
     proofBody: "These counts are live. NaamRas shows the actual depth of the archive instead of pretending the work is already complete.",
-    proofFooter: "Depth is more than volume. Cross-links keep guidance, topic work, and full shabad study answering each other.",
+    proofFooter: "The archive now distinguishes between canonical topic pages and scenario paths. Cross-links keep each layer answering the others without repeating the same page in new clothes.",
     inventoryLabels: {
       dailyGuidance: "Daily guidance entries",
       shabadDeepDives: "Full shabad deep dives",
-      topicGuides: "Topical answer pages",
+      topicGuides: "Canonical topic guides",
+      topicScenarios: "Scenario views",
       collections: "Curated collections",
       crossLinks: "Cross-links",
     },
@@ -155,10 +156,10 @@ const ENGLISH_EDITORIAL_COPY: EditorialCopy = {
     detailHeading: "Open Detail",
     detailBody: "Only one full detail surface stays open at a time so the archive feels deliberate instead of endless.",
     topicsIntroTitle: "Search the approved guide.",
-    topicsIntroBody: "Bring the question plainly. NaamRas answers with the approved guide first and keeps the full shabad within reach.",
+    topicsIntroBody: "Bring the question plainly. NaamRas opens one canonical guide first, then lets you move into the exact scenario without scattering the archive into lookalike pages.",
     topicsSearchPlaceholder: "Search stress, doubt, speech, purpose…",
     shabadsIntroTitle: "Study the full context.",
-    shabadsIntroBody: "Filter by theme, Guru, raag, depth, and what you have already kept close so the next long reading is chosen, not stumbled into.",
+    shabadsIntroBody: "Filter by theme, Guru, raag, depth, and what you have already kept close until the next full reading feels chosen with care. Stay with the whole shabad long enough for context to correct the line you first came for.",
     savedIntroTitle: "Keep what is still working on you.",
     savedIntroBody: "Saved pieces keep their shape, so a line, a guide, and a full shabad stay distinct when you return.",
   },

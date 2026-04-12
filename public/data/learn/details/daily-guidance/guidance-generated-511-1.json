@@ -13,9 +13,7 @@
     "lifeApplication": "Mercy becomes more truthful when gauree Poorbee, Fourth Mehla:."
   },
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedShabadIds": [
     "shabad-generated-511"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.71,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.66,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 4.06,
-      "overall": 3.85
+      "usefulness": 4.64,
+      "beauty": 4.33,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": []
   }

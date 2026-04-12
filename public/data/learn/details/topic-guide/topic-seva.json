@@ -1,66 +1,488 @@
 {
   "id": "topic-seva",
-  "title": "When you want your life to become seva",
+  "title": "When service has to be rescued from performance",
   "shortTitle": "Seva",
   "category": "practice",
-  "issueStatement": "You want your life to be useful, but service can easily harden into spiritual performance or burnout.",
-  "centralInsight": "Guru joins seva with humility, obedience, hiddenness, and remembrance. Seva is not just effort. It is a spiritual way of being.",
-  "practicalReflection": "Useful work without inner alignment can harden the self; nishkaam seva softens and reorders it.",
-  "actionPrompt": "Choose one act of service today that is faithful, sustainable, and not secretly hungry for praise.",
+  "issueStatement": "The work may still be happening, but the heart has started bargaining for identity, recognition, or emotional reward in return.",
+  "centralInsight": "Gurbani binds seva to humility, truthful labor, and offering. Service becomes holy when it stops feeding the self that performs it.",
+  "practicalReflection": "Seva is not merely doing good things. It is learning to serve without secretly turning the service back toward self-advertisement.",
+  "actionPrompt": "Ask where your service is still asking to be seen, thanked, or emotionally repaid, and loosen your grip there first.",
   "searchTerms": [
     "seva",
     "service",
-    "serve",
-    "help others",
-    "volunteer"
+    "serving",
+    "volunteering",
+    "offering",
+    "hidden service",
+    "humility",
+    "service in the work already in front of you",
+    "seva daily",
+    "ordinary work",
+    "daily service",
+    "small acts",
+    "care work",
+    "seva ordinary work",
+    "seva daily service",
+    "seva small acts",
+    "seva care work",
+    "service when urgency steals tenderness",
+    "seva under pressure",
+    "busy service",
+    "urgency",
+    "pressure",
+    "impatience",
+    "helping",
+    "seva busy service",
+    "seva urgency",
+    "seva pressure",
+    "seva impatience",
+    "seva helping",
+    "returning when service became self-serving",
+    "seva after the slip",
+    "motive",
+    "resentment",
+    "ego in service",
+    "repair",
+    "hidden act",
+    "seva motive",
+    "seva resentment",
+    "seva ego in service",
+    "seva repair",
+    "seva hidden act",
+    "training the heart for real seva",
+    "seva steady practice",
+    "practice of service",
+    "hidden seva",
+    "recurring service",
+    "credit",
+    "training",
+    "seva practice of service",
+    "seva hidden seva",
+    "seva recurring service",
+    "seva credit",
+    "seva training"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-selfless-service",
         "verseIds": [
-          12943,
-          12947,
-          12948
+          12943
         ],
-        "shortMeaning": "Hiddenness and reward-free service define true seva.",
-        "lifeApplication": "Seva is not self-display with religious vocabulary."
+        "shortMeaning": "He is not to call attention to himself in any way",
+        "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This is the clearest direct line in the catalog on nishkaam seva."
+      "explanation": "The theme is named without abstraction here: he is not to call attention to himself in any way."
     },
     {
       "source": {
         "deepDiveId": "shabad-work-give-know-the-path",
         "verseIds": [
-          53371,
-          53372
+          53369,
+          53371
         ],
-        "shortMeaning": "Honest work and giving are part of the path itself.",
-        "lifeApplication": "Seva is not separate from how you earn and share."
+        "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+        "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru Nanak gives seva concrete ethical shape."
+      "explanation": "The shabad widens the issue beyond mood alone. The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-human-birth-is-chance",
+        "deepDiveId": "shabad-generated-64",
         "verseIds": [
-          524,
-          527
+          749,
+          754
         ],
-        "shortMeaning": "Human life is an opportunity for meeting and holy company.",
-        "lifeApplication": "Seva makes sense when life is understood as purposeful gift."
+        "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+        "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Purpose and seva strengthen each other in this framing."
+      "explanation": "Gurbani binds seva to humility, truthful labor, and offering. Service becomes holy when it stops feeding the self that performs it. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Service in the work already in front of you",
+      "issueStatement": "You may be waiting for obviously spiritual work while overlooking the ordinary labor, care, and attention that could already become service.",
+      "centralInsight": "The Guru does not separate seva from daily work so quickly. Fidelity in the ordinary can also be offering.",
+      "practicalReflection": "The day is full of chances to serve without announcement. The difficulty is that they often look small and unremarkable.",
+      "actionPrompt": "Turn one necessary task today into service by doing it cleanly, quietly, and without inward complaint.",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "service in the work already in front of you",
+        "seva daily",
+        "ordinary work",
+        "daily service",
+        "small acts",
+        "care work",
+        "seva ordinary work",
+        "seva daily service",
+        "seva small acts",
+        "seva care work"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12943
+            ],
+            "shortMeaning": "He is not to call attention to himself in any way",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: he is not to call attention to himself in any way."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-work-give-know-the-path",
+            "verseIds": [
+              53369,
+              53371
+            ],
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-64",
+            "verseIds": [
+              749,
+              754
+            ],
+            "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+            "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when how can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-seva:daily",
+        "evidence": {
+          "coreClaim": "The Guru does not separate seva from daily work so quickly. Fidelity in the ordinary can also be offering.",
+          "emotionalState": "self-conscious, performing, eager-to-be-seen",
+          "turn": "You may be waiting for obviously spiritual work while overlooking the ordinary labor, care, and attention that could already become service.",
+          "practicalImplication": "Turn one necessary task today into service by doing it cleanly, quietly, and without inward complaint.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 3.66,
+          "beauty": 4.37,
+          "overall": 4.27
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Service when urgency steals tenderness",
+      "issueStatement": "Under pressure, service can become efficient but loveless, dutiful but impatient, helpful but spiritually empty.",
+      "centralInsight": "Gurbani refuses to let urgency become an excuse for losing humility. True service keeps its center even when the pace rises.",
+      "practicalReflection": "Pressure reveals whether you were serving the person, the task, or your own idea of usefulness.",
+      "actionPrompt": "In the next demanding moment, do the needed work without letting haste strip away gentleness.",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "service when urgency steals tenderness",
+        "seva under pressure",
+        "busy service",
+        "urgency",
+        "pressure",
+        "impatience",
+        "helping",
+        "seva busy service",
+        "seva urgency",
+        "seva pressure",
+        "seva impatience",
+        "seva helping"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-work-give-know-the-path",
+            "verseIds": [
+              53369,
+              53371
+            ],
+            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+            "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: one who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-228",
+            "verseIds": [
+              3444,
+              3445
+            ],
+            "shortMeaning": "In the love of duality, they try to teach the world, but; they lose their lives uselessly; they die, only to be re-born, over",
+            "lifeApplication": "Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-360",
+            "verseIds": [
+              5591
+            ],
+            "shortMeaning": "Shalok, First Mehla:",
+            "lifeApplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-seva:pressure",
+        "evidence": {
+          "coreClaim": "Gurbani refuses to let urgency become an excuse for losing humility. True service keeps its center even when the pace rises.",
+          "emotionalState": "pretending, unclear, performing",
+          "turn": "Under pressure, service can become efficient but loveless, dutiful but impatient, helpful but spiritually empty.",
+          "practicalImplication": "In the next demanding moment, do the needed work without letting haste strip away gentleness.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.6,
+          "beauty": 4.21,
+          "overall": 4.14
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Returning when service became self-serving",
+      "issueStatement": "You can feel that the work drifted toward ego, resentment, or control, but the mind would rather blame the people around you than face that drift.",
+      "centralInsight": "Repair in seva begins with motive, not image. The Guru brings the heart back to offering before it redesigns the appearance of service.",
+      "practicalReflection": "It is possible to keep serving outwardly while the inward act has already soured. Honest repair addresses that inward souring directly.",
+      "actionPrompt": "Confess where service became about self, then do one hidden act of care that earns you nothing back.",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "returning when service became self-serving",
+        "seva after the slip",
+        "motive",
+        "resentment",
+        "ego in service",
+        "repair",
+        "hidden act",
+        "seva motive",
+        "seva resentment",
+        "seva ego in service",
+        "seva repair",
+        "seva hidden act"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-64",
+            "verseIds": [
+              749,
+              754
+            ],
+            "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+            "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: how can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-228",
+            "verseIds": [
+              3443
+            ],
+            "shortMeaning": "They do not recognize God within themselves-they are so foolish and ignorant!",
+            "lifeApplication": "Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-512",
+            "verseIds": [
+              7137
+            ],
+            "shortMeaning": "Gauree Poorbee, Fourth Mehla:",
+            "lifeApplication": "Ego steadies when servant Nanak's honor and respect is the Guru; he has sold his head to. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-seva:repair",
+        "evidence": {
+          "coreClaim": "Repair in seva begins with motive, not image. The Guru brings the heart back to offering before it redesigns the appearance of service.",
+          "emotionalState": "inflated, defensive, self-protective",
+          "turn": "You can feel that the work drifted toward ego, resentment, or control, but the mind would rather blame the people around you than face that drift.",
+          "practicalImplication": "Confess where service became about self, then do one hidden act of care that earns you nothing back.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.72,
+          "usefulness": 3.22,
+          "beauty": 4.53,
+          "overall": 4.19
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Training the heart for real seva",
+      "issueStatement": "A single generous act is easier than becoming a person whose habits, timing, and ego are actually shaped by service.",
+      "centralInsight": "Seva becomes durable when humility is practiced repeatedly enough that service no longer needs applause to continue.",
+      "practicalReflection": "To train in seva is to let the self lose some of its appetite for credit while the hands stay available.",
+      "actionPrompt": "Commit to one recurring act of service that stays mostly unseen and let its hiddenness become part of the training.",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "training the heart for real seva",
+        "seva steady practice",
+        "practice of service",
+        "hidden seva",
+        "recurring service",
+        "credit",
+        "training",
+        "seva practice of service",
+        "seva hidden seva",
+        "seva recurring service",
+        "seva credit",
+        "seva training"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-360",
+            "verseIds": [
+              5591
+            ],
+            "shortMeaning": "Shalok, First Mehla:",
+            "lifeApplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: shalok, First Mehla:."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-selfless-service",
+            "verseIds": [
+              12943
+            ],
+            "shortMeaning": "He is not to call attention to himself in any way",
+            "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-512",
+            "verseIds": [
+              7137,
+              7138
+            ],
+            "shortMeaning": "Gauree Poorbee, Fourth Mehla:; for the sake of the Lord, Har, Har, I have sold my",
+            "lifeApplication": "Ego steadies when servant Nanak's honor and respect is the Guru; he has sold his head to. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-seva:practice",
+        "evidence": {
+          "coreClaim": "Seva becomes durable when humility is practiced repeatedly enough that service no longer needs applause to continue.",
+          "emotionalState": "tired, drained, worn-down",
+          "turn": "A single generous act is easier than becoming a person whose habits, timing, and ego are actually shaped by service.",
+          "practicalImplication": "Commit to one recurring act of service that stays mostly unseen and let its hiddenness become part of the training.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.18,
+          "usefulness": 3.6,
+          "beauty": 4.05,
+          "overall": 4.09
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-selfless-service",
     "shabad-work-give-know-the-path",
-    "shabad-human-birth-is-chance"
+    "shabad-generated-64",
+    "shabad-generated-228",
+    "shabad-generated-360",
+    "shabad-generated-512"
   ],
   "relatedTopicIds": [
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-gratitude",
+    "topic-discipline"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -70,43 +492,39 @@
   "rotation": {
     "theme": "seva",
     "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 8,
-    "balanceCategory": "seva",
-    "freshnessTier": "evergreen",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:seva",
     "evidence": {
-      "coreClaim": "Guru joins seva with humility, obedience, hiddenness, and remembrance. Seva is not just effort. It is a spiritual way of being.",
+      "coreClaim": "Gurbani binds seva to humility, truthful labor, and offering. Service becomes holy when it stops feeding the self that performs it.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "You want your life to be useful, but service can easily harden into spiritual performance or burnout.",
-      "practicalImplication": "Choose one act of service today that is faithful, sustainable, and not secretly hungry for praise.",
+      "turn": "The work may still be happening, but the heart has started bargaining for identity, recognition, or emotional reward in return.",
+      "practicalImplication": "Ask where your service is still asking to be seen, thanked, or emotionally repaid, and loosen your grip there first.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.42,
-      "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 2.86,
-      "beauty": 3.72,
-      "overall": 3.88
+      "clarity": 3.27,
+      "specificity": 4.6,
+      "emotionalHonesty": 4,
+      "usefulness": 3,
+      "beauty": 3.77,
+      "overall": 3.9
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "leans on template-heavy phrasing",
-      "repeats phrasing too closely",
-      "sounds interchangeable with other generated entries"
-    ]
+    "issues": []
   }
 }

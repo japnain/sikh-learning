@@ -84,9 +84,7 @@
     "guidance-conquer-the-mind-2"
   ],
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -118,12 +116,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3.72,
-      "usefulness": 2,
-      "beauty": 3.9,
-      "overall": 3.82
+      "usefulness": 3,
+      "beauty": 4.05,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",

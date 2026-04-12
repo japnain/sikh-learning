@@ -13,9 +13,7 @@
     "lifeApplication": "Anxiety becomes more truthful when meditate, meditate, meditate in remembrance of Him, and find peace."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-remembrance-brings-peace"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.88,
-      "clarity": 2.94,
+      "clarity": 3.99,
       "specificity": 4.82,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.23,
-      "beauty": 3.2,
-      "overall": 3.6
+      "usefulness": 4.26,
+      "beauty": 3.75,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

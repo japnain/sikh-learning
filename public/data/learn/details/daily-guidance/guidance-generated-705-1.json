@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when acting in egotism, peace is not obtained."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-705"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 3.3,
+      "clarity": 4.11,
       "specificity": 4.35,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.46,
-      "overall": 3.61
+      "usefulness": 4.2,
+      "beauty": 3.85,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

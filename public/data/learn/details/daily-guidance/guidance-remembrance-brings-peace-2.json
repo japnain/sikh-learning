@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-remembrance-brings-peace"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 1.3,
+      "clarity": 3.06,
       "specificity": 4.73,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 2.41,
-      "overall": 3.24
+      "usefulness": 4.42,
+      "beauty": 3.36,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

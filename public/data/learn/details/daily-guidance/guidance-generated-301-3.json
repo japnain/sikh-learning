@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-generated-301"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.33,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 3.36,
-      "beauty": 3.42,
-      "overall": 3.7
+      "usefulness": 4.42,
+      "beauty": 4.05,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

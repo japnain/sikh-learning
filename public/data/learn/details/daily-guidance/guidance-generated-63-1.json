@@ -13,9 +13,7 @@
     "lifeApplication": "Gratitude becomes more truthful when siree Raag, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedShabadIds": [
     "shabad-generated-63"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.35,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 4.06,
-      "overall": 3.78
+      "usefulness": 4.58,
+      "beauty": 4.33,
+      "overall": 4.08
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

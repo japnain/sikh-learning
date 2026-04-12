@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-child-of-grace"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.93,
-      "clarity": 0,
+      "clarity": 1.99,
       "specificity": 4.87,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 1.99,
-      "overall": 3.08
+      "usefulness": 4.64,
+      "beauty": 3.06,
+      "overall": 3.7
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -13,9 +13,7 @@
     "lifeApplication": "Restlessness becomes more truthful when gauree Poorbee, Fourth Mehla:."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-generated-509"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.66,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.26,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.74,
-      "overall": 3.64
+      "usefulness": 4.2,
+      "beauty": 4.01,
+      "overall": 3.93
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

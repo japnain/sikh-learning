@@ -22,7 +22,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-fear"
+      "id": "topic-fear",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -30,7 +31,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-fear"
+    "topic-fear",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
@@ -50,16 +52,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.18,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.55
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.82
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

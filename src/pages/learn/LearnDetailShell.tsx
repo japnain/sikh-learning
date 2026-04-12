@@ -89,7 +89,7 @@ function getBackContext(
 }
 
 function getCollectionStepContext(
-  collectionById: Record<string, { id: string; title: string; items: Array<{ kind: Exclude<LearnContentKind, "collection">; id: string }> }>,
+  collectionById: Record<string, { id: string; title: string; items: Array<{ kind: Exclude<LearnContentKind, "collection">; id: string; scenarioKey?: "daily" | "pressure" | "repair" | "practice" }> }>,
   from: string,
   itemKind: LearnContentKind,
   itemId: string
@@ -111,8 +111,12 @@ function getCollectionStepContext(
     title: collection.title,
     position: index + 1,
     total: collection.items.length,
-    previousPath: previousItem ? buildLearnDetailPath(previousItem.kind, previousItem.id, from) : null,
-    nextPath: nextItem ? buildLearnDetailPath(nextItem.kind, nextItem.id, from) : null,
+    previousPath: previousItem
+      ? buildLearnDetailPath(previousItem.kind, previousItem.id, from, previousItem.kind === "topic-guide" ? previousItem.scenarioKey ?? null : null)
+      : null,
+    nextPath: nextItem
+      ? buildLearnDetailPath(nextItem.kind, nextItem.id, from, nextItem.kind === "topic-guide" ? nextItem.scenarioKey ?? null : null)
+      : null,
   }
 }
 

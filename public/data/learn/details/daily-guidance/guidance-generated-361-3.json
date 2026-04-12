@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-greed",
-    "topic-greed-daily",
-    "topic-greed-pressure"
+    "topic-greed"
   ],
   "relatedShabadIds": [
     "shabad-generated-361"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.25,
-      "clarity": 3.3,
+      "clarity": 4.11,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 3.66,
-      "overall": 3.81
+      "usefulness": 4.04,
+      "beauty": 4.05,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

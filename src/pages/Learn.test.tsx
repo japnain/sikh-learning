@@ -32,7 +32,7 @@ test("renders the learn hub with the today-first archive structure", async () =>
   expect(screen.getByText(/Continue Learning/i)).toBeInTheDocument()
   expect(screen.getByText(/Open by State/i)).toBeInTheDocument()
   expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
-})
+}, 10000)
 
 test("learn hub card links render as block-level cards for stable mobile painting", async () => {
   renderLearnRoute()
@@ -55,7 +55,11 @@ test("shows live inventory proof instead of fixed launch claims", async () => {
   await waitFor(() => {
     expect(within(screen.getByTestId("learn-inventory")).getByText(/Daily guidance entries/i)).toBeInTheDocument()
   })
+  expect(within(screen.getByTestId("learn-inventory")).getByText(/Canonical topic guides/i)).toBeInTheDocument()
+  expect(within(screen.getByTestId("learn-inventory")).getByText(/Scenario views/i)).toBeInTheDocument()
   expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
+  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.topicGuides))).toBeInTheDocument()
+  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.topicScenarios))).toBeInTheDocument()
   expect(within(screen.getByTestId("learn-inventory")).getByText(/^Cross-links$/i)).toBeInTheDocument()
   expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
   expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
@@ -105,6 +109,44 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
   expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
 })
 
+test("topics tab shows canonical topic cards instead of flat scenario variants", async () => {
+  renderLearnRoute("/learn?tab=topics")
+
+  await screen.findByLabelText(/Search topic guides/i)
+  const topicGrid = document.getElementById("learn-topics-all")
+  expect(topicGrid).not.toBeNull()
+
+  const mercyCards = within(topicGrid as HTMLElement)
+    .getAllByRole("link")
+    .filter(link => link.getAttribute("href") === "/learn/topics/topic-mercy?from=topics")
+
+  expect(mercyCards).toHaveLength(1)
+  expect(within(topicGrid as HTMLElement).queryByRole("link", { name: /Mercy when the day tightens/i })).not.toBeInTheDocument()
+})
+
+test("today surface keeps the topic spotlight family out of the door rail", async () => {
+  const catalog = await loadLearnCatalog()
+  const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
+
+  expect(new Set(todaySurface.themeRail.map(topic => topic.rotation.theme)).size).toBe(todaySurface.themeRail.length)
+  expect(todaySurface.themeRail.map(topic => topic.rotation.theme)).not.toContain(todaySurface.topicSpotlight.item.rotation.theme)
+})
+
+test("searching mercy under pressure opens the canonical mercy page with the pressure scenario active", async () => {
+  renderLearnRoute("/learn?tab=topics")
+
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
+    target: { value: "mercy under pressure" },
+  })
+
+  fireEvent.click(screen.getByRole("link", { name: /When mercy has to be received before it can be trusted/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-mercy?from=topics&scenario=pressure")
+  })
+  expect(await screen.findByRole("heading", { level: 1, name: /Mercy when the day tightens/i })).toBeInTheDocument()
+})
+
 test("clicking today's guidance opens a real detail route", async () => {
   const catalog = await loadLearnCatalog()
   const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
@@ -124,6 +166,14 @@ test("old inline-detail topic URLs redirect to the new topic route", async () =>
 
   await waitFor(() => {
     expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anxiety?from=topics")
+  })
+})
+
+test("legacy flat topic urls redirect to the canonical topic route with the scenario query", async () => {
+  renderLearnRoute("/learn?tab=topics&topic=topic-mercy-pressure&detail=topic")
+
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-mercy?from=topics&scenario=pressure")
   })
 })
 

@@ -13,9 +13,7 @@
     "lifeApplication": "Anger becomes more truthful when siree Raag, Fifth Mehla, First House:."
   },
   "relatedTopicIds": [
-    "topic-anger",
-    "topic-anger-daily",
-    "topic-anger-pressure"
+    "topic-anger"
   ],
   "relatedShabadIds": [
     "shabad-generated-151"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.81,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.58,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.01,
-      "beauty": 3.58,
-      "overall": 3.67
+      "usefulness": 4.04,
+      "beauty": 3.93,
+      "overall": 3.99
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

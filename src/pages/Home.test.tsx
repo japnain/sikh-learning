@@ -132,7 +132,7 @@ test('routes the compact learn quick link into learn', async () => {
     <MemoryRouter initialEntries={['/']}>
       <Routes>
         <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/learn" element={<LocationSpy />} />
+        <Route path="/learn/*" element={<LocationSpy />} />
       </Routes>
     </MemoryRouter>
   )
@@ -149,7 +149,7 @@ test('shows in-app matches first on home smart search and routes into learn deta
     <MemoryRouter initialEntries={['/']}>
       <Routes>
         <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/learn" element={<LocationSpy />} />
+        <Route path="/learn/*" element={<LocationSpy />} />
       </Routes>
     </MemoryRouter>
   )
@@ -163,7 +163,7 @@ test('shows in-app matches first on home smart search and routes into learn deta
   fireEvent.click(firstResult)
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/learn?tab=topics&topic=topic-anxiety&detail=topic')
+    expect(screen.getByTestId('location').textContent).toContain('/learn/topics/topic-anxiety')
   })
 })
 

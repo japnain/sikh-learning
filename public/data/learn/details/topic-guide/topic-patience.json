@@ -2,7 +2,7 @@
   "id": "topic-patience",
   "title": "When you are tired of waiting",
   "shortTitle": "Patience",
-  "category": "practice",
+  "category": "inner-work",
   "issueStatement": "You are obeying only while outcomes feel fast, visible, or emotionally rewarding.",
   "centralInsight": "Patience in Gurbani is not limp delay. It is what settles into the body after mercy, saint company, and remembrance cool the inner rush.",
   "practicalReflection": "Impatience says, 'If this mattered, it would already be changing.' Gurbani asks instead whether the mind has become more teachable while it waits.",
@@ -10,58 +10,463 @@
   "searchTerms": [
     "patience",
     "waiting",
+    "delay",
     "impatient",
     "hurry",
     "agitated",
-    "slow progress"
+    "slow progress",
+    "patience in the ordinary day",
+    "patience daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "patience today",
+    "patience ordinary day",
+    "patience routine",
+    "patience when the day tightens",
+    "patience under pressure",
+    "pressure",
+    "stress",
+    "under strain",
+    "cornered",
+    "patience pressure",
+    "patience stress",
+    "patience under strain",
+    "patience cornered",
+    "patience after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "patience repair",
+    "patience return",
+    "patience after slipping",
+    "patience start again",
+    "building a truer practice of patience",
+    "patience steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "patience practice",
+    "patience habit",
+    "patience steady return",
+    "patience formation"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-search-ends-in-saint-company",
         "verseIds": [
-          3899,
-          3900
+          3890
         ],
-        "shortMeaning": "Mercy and saint company cool the body into patience and composure.",
-        "lifeApplication": "Do not imagine patience is always self-generated."
+        "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+        "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The shabad ties patience to receiving help, not heroic isolation."
+      "explanation": "The theme is named without abstraction here: i have searched and searched, seeking the Blessed Vision of His Darshan."
     },
     {
       "source": {
-        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "deepDiveId": "shabad-patience-ripens-into-honor",
         "verseIds": [
-          9600,
-          9605,
-          9612
+          11239,
+          11241
         ],
-        "shortMeaning": "Forgiveness, reverence, and fearlessness are part of the same spiritual musculature.",
-        "lifeApplication": "Patience grows where retaliation and panic begin to loosen."
+        "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+        "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Patience is stronger when bitterness has been reduced."
+      "explanation": "The shabad widens the issue beyond mood alone. Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-conquer-the-mind",
+        "deepDiveId": "shabad-generated-63",
         "verseIds": [
-          290,
-          292
+          740,
+          742
         ],
-        "shortMeaning": "Contentment and inner conquest matter more than outer performance.",
-        "lifeApplication": "A patient life is often an interior victory before it looks like an exterior one."
+        "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself",
+        "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru links patience with the deeper work of mastering the inner field."
+      "explanation": "Patience in Gurbani is not limp delay. It is what settles into the body after mercy, saint company, and remembrance cool the inner rush. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Patience in the ordinary day",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether patience is being remembered or postponed.",
+      "actionPrompt": "Wait by listening instead of simmering. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "patience in the ordinary day",
+        "patience daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "patience today",
+        "patience ordinary day",
+        "patience routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-search-ends-in-saint-company",
+            "verseIds": [
+              3890
+            ],
+            "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+            "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: i have searched and searched, seeking the Blessed Vision of His Darshan."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-patience-ripens-into-honor",
+            "verseIds": [
+              11239,
+              11241
+            ],
+            "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+            "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-63",
+            "verseIds": [
+              740,
+              742
+            ],
+            "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself",
+            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-patience:daily",
+        "evidence": {
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "wandering, exhausted, seeking",
+          "turn": "Delay has started feeding resentment instead of ripening trust. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Wait by listening instead of simmering. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.18,
+          "usefulness": 4.2,
+          "beauty": 4.69,
+          "overall": 4.31
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Patience when the day tightens",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Wait by listening instead of simmering. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "patience when the day tightens",
+        "patience under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "patience pressure",
+        "patience stress",
+        "patience under strain",
+        "patience cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-patience-ripens-into-honor",
+            "verseIds": [
+              11239,
+              11241
+            ],
+            "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+            "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: the mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-562",
+            "verseIds": [
+              7951,
+              7956
+            ],
+            "shortMeaning": "Eating, drinking, playing, laughing and showing off; the Name alone is contained within my heart",
+            "lifeApplication": "Patience steadies when the Name alone is contained within my heart. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Patience steadies when the Name alone is contained within my heart. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-644",
+            "verseIds": [
+              8838
+            ],
+            "shortMeaning": "This world is engrossed in corruption and cynicism. Only those who know",
+            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-patience:pressure",
+        "evidence": {
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "restless, impatient, seeking",
+          "turn": "Delay has started feeding resentment instead of ripening trust. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Wait by listening instead of simmering. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.8,
+          "beauty": 4.21,
+          "overall": 4.38
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Patience after the slip",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Wait by listening instead of simmering. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "patience after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "patience repair",
+        "patience return",
+        "patience after slipping",
+        "patience start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-63",
+            "verseIds": [
+              740,
+              742
+            ],
+            "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself",
+            "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: meeting the True One, Truth wells up. The truthful are absorbed into; o Nanak, the True King absorbs us into Himself."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-562",
+            "verseIds": [
+              7951
+            ],
+            "shortMeaning": "Eating, drinking, playing, laughing and showing off",
+            "lifeApplication": "Patience steadies when the Name alone is contained within my heart. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Patience steadies when the Name alone is contained within my heart. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-738",
+            "verseIds": [
+              10417
+            ],
+            "shortMeaning": "Through the Guru's Word, I meditate on the Name",
+            "lifeApplication": "Patience steadies when o Nanak, meeting with the Guru, I have found the Supreme Lord God. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-patience:repair",
+        "evidence": {
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "dull, entitled, forgetful",
+          "turn": "Delay has started feeding resentment instead of ripening trust. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Wait by listening instead of simmering. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.72,
+          "beauty": 4.69,
+          "overall": 4.41
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of patience",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Wait by listening instead of simmering. Repeat what you can actually keep.",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "building a truer practice of patience",
+        "patience steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "patience practice",
+        "patience habit",
+        "patience steady return",
+        "patience formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-644",
+            "verseIds": [
+              8838
+            ],
+            "shortMeaning": "This world is engrossed in corruption and cynicism. Only those who know",
+            "lifeApplication": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: this world is engrossed in corruption and cynicism. Only those who know."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-search-ends-in-saint-company",
+            "verseIds": [
+              3890
+            ],
+            "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+            "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-738",
+            "verseIds": [
+              10417,
+              10420
+            ],
+            "shortMeaning": "Through the Guru's Word, I meditate on the Name; by Guru's Grace, my speech is like nectar",
+            "lifeApplication": "Patience steadies when o Nanak, meeting with the Guru, I have found the Supreme Lord God. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-patience:practice",
+        "evidence": {
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "searching, hungry, unsettled",
+          "turn": "Delay has started feeding resentment instead of ripening trust. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Wait by listening instead of simmering. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.6,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.76,
+          "beauty": 4.37,
+          "overall": 4.17
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
-    "shabad-forgiveness-becomes-fearless",
-    "shabad-conquer-the-mind"
+    "shabad-patience-ripens-into-honor",
+    "shabad-generated-63",
+    "shabad-generated-562",
+    "shabad-generated-644",
+    "shabad-generated-738"
   ],
   "relatedTopicIds": [
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-attachment",
+    "topic-ego"
   ],
   "relatedCollectionIds": [
     "collection-restlessness-to-stillness",
@@ -70,14 +475,14 @@
   ],
   "rotation": {
     "theme": "patience",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 7,
-    "balanceCategory": "discipline",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
   },
   "editorial": {
     "status": "locked",
@@ -93,12 +498,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.09,
       "specificity": 4.96,
-      "emotionalHonesty": 3.36,
-      "usefulness": 2.79,
-      "beauty": 4.06,
-      "overall": 3.96
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.82,
+      "beauty": 3.53,
+      "overall": 3.94
     },
     "strengths": [
       "specificity",

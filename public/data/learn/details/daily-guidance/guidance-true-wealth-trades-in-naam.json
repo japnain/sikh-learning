@@ -14,9 +14,7 @@
     "lifeApplication": "Let the day be measured by what deepens the heart, not by what decorates it."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-patience-ripens-into-honor",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.73,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.66,
-      "beauty": 3.9,
-      "overall": 3.77
+      "usefulness": 3.66,
+      "beauty": 4.05,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

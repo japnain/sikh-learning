@@ -1,68 +1,476 @@
 {
   "id": "topic-forgiveness",
-  "title": "When bitterness refuses to leave",
+  "title": "When bitterness has to be released before it hardens into identity",
   "shortTitle": "Forgiveness",
   "category": "inner-work",
-  "issueStatement": "The mind keeps returning to hurt, rehearsing offense as if guarding it will protect you.",
-  "centralInsight": "Forgiveness in Gurbani is not sentimental forgetfulness. It is a disciplined relinquishing of bitterness so fear, pride, and self-protection stop ruling the body.",
-  "practicalReflection": "The heart becomes harder than the wound when resentment is treated as identity.",
-  "actionPrompt": "Name the grievance without decorating it. Then ask what holding it is making you become.",
+  "issueStatement": "The wound is real, but the mind has started building a home inside replay, accusation, and the desire to remain justified forever.",
+  "centralInsight": "Gurbani links forgiveness to freedom, fearlessness, and return. Releasing bitterness is not denial of harm; it is refusal to let harm keep governing the soul.",
+  "practicalReflection": "Forgiveness does not erase truth. It interrupts the bond between injury and identity.",
+  "actionPrompt": "Notice the sentence about the wound that you rehearse most often, and ask whether repeating it is healing you or preserving the injury.",
   "searchTerms": [
     "forgiveness",
     "forgive",
     "resentment",
     "bitterness",
-    "offense",
-    "hard heart"
+    "grudge",
+    "release",
+    "fearlessness",
+    "forgiveness in the repeating memory",
+    "forgiveness daily",
+    "replay",
+    "daily resentment",
+    "rehearsed hurt",
+    "memory",
+    "forgiveness replay",
+    "forgiveness daily resentment",
+    "forgiveness rehearsed hurt",
+    "forgiveness memory",
+    "forgiveness when you feel freshly provoked",
+    "forgiveness under pressure",
+    "fresh offense",
+    "provoked",
+    "retaliation",
+    "under pressure",
+    "forgiveness fresh offense",
+    "forgiveness provoked",
+    "forgiveness retaliation",
+    "returning after bitterness has already ruled",
+    "forgiveness after the slip",
+    "after bitterness",
+    "repair",
+    "bondage",
+    "return",
+    "forgiveness after bitterness",
+    "forgiveness repair",
+    "forgiveness grudge",
+    "forgiveness bondage",
+    "forgiveness return",
+    "practicing release before resentment matures",
+    "forgiveness steady practice",
+    "practice release",
+    "forgiving life",
+    "interrupt resentment",
+    "early release",
+    "forgiveness practice release",
+    "forgiveness forgiving life",
+    "forgiveness interrupt resentment",
+    "forgiveness early release"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-forgiveness-becomes-fearless",
         "verseIds": [
-          9600,
-          9603,
-          9612
+          9600
         ],
-        "shortMeaning": "Forgiveness, reverence, and fearlessness belong to the same path.",
-        "lifeApplication": "Release can become courage, not passivity."
+        "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
+        "lifeApplication": "Forgive deeply enough that fear loses its throne. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This keeps forgiveness from being mistaken for weakness."
+      "explanation": "The theme is named without abstraction here: to practice forgiveness is the true fast, good conduct and contentment."
     },
     {
       "source": {
-        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
         "verseIds": [
-          1290,
-          1293,
-          1294
+          27259,
+          27260
         ],
-        "shortMeaning": "Soft speech and inward peace are linked to humility and Guru's will.",
-        "lifeApplication": "Forgiveness is easier where posture has already lowered."
+        "shortMeaning": "He blessed me with forgiveness; i have found lasting peace and bliss",
+        "lifeApplication": "Forgiveness is not the end of the path; it is what makes peace inhabitable. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Speech, humility, and forgiveness braid together here."
+      "explanation": "The shabad widens the issue beyond mood alone. Forgiveness is not the end of the path; it is what makes peace inhabitable. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "deepDiveId": "shabad-generated-301",
         "verseIds": [
-          501,
-          503
+          4151,
+          4154
         ],
-        "shortMeaning": "Mercy and reunion are still available where the self expects permanent fracture.",
-        "lifeApplication": "Forgiveness begins more readily when grace is remembered."
+        "shortMeaning": "The seekers, the Siddhas, those beings of miraculous spiritual powers, and the; when my Lord and Master blessed me with His Mercy, O Nanak,",
+        "lifeApplication": "Forgiveness steadies when when my Lord and Master blessed me with His Mercy, O Nanak, then His. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Grace keeps forgiveness from becoming self-manufactured moralism."
+      "explanation": "Gurbani links forgiveness to freedom, fearlessness, and return. Releasing bitterness is not denial of harm; it is refusal to let harm keep governing the soul. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Forgiveness in the repeating memory",
+      "issueStatement": "Most days the hurt returns not as drama but as a rehearsed sentence, a tightened body, or a way of re-reading ordinary events through the old injury.",
+      "centralInsight": "The Guru teaches forgiveness in the daily replay itself. Freedom begins where the memory stops being fed as faithfully as the wound once was.",
+      "practicalReflection": "Daily bitterness is often quiet, disciplined, and familiar. It can look like realism while steadily narrowing the heart.",
+      "actionPrompt": "When the familiar replay starts today, interrupt it with one line of prayer before the whole old script can finish.",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "forgiveness in the repeating memory",
+        "forgiveness daily",
+        "replay",
+        "daily resentment",
+        "rehearsed hurt",
+        "memory",
+        "forgiveness replay",
+        "forgiveness daily resentment",
+        "forgiveness rehearsed hurt",
+        "forgiveness memory"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-forgiveness-becomes-fearless",
+            "verseIds": [
+              9600
+            ],
+            "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
+            "lifeApplication": "Forgive deeply enough that fear loses its throne. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: to practice forgiveness is the true fast, good conduct and contentment."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+            "verseIds": [
+              27259,
+              27260
+            ],
+            "shortMeaning": "He blessed me with forgiveness; i have found lasting peace and bliss",
+            "lifeApplication": "Forgiveness is not the end of the path; it is what makes peace inhabitable. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Forgiveness is not the end of the path; it is what makes peace inhabitable. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-301",
+            "verseIds": [
+              4151,
+              4154
+            ],
+            "shortMeaning": "The seekers, the Siddhas, those beings of miraculous spiritual powers, and the; when my Lord and Master blessed me with His Mercy, O Nanak,",
+            "lifeApplication": "Forgiveness steadies when when my Lord and Master blessed me with His Mercy, O Nanak, then His. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when the seekers, the Siddhas, those beings of miraculous spiritual powers, and the; when my Lord and Master blessed me with His Mercy, O Nanak,."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-forgiveness:daily",
+        "evidence": {
+          "coreClaim": "The Guru teaches forgiveness in the daily replay itself. Freedom begins where the memory stops being fed as faithfully as the wound once was.",
+          "emotionalState": "afraid, bitter, guarded",
+          "turn": "Most days the hurt returns not as drama but as a rehearsed sentence, a tightened body, or a way of re-reading ordinary events through the old injury.",
+          "practicalImplication": "When the familiar replay starts today, interrupt it with one line of prayer before the whole old script can finish.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.1,
+          "beauty": 4.53,
+          "overall": 4.3
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Forgiveness when you feel freshly provoked",
+      "issueStatement": "Pressure and fresh offense make it feel naive to soften. The mind wants immediate retaliation, or at least the right to stay inwardly armed.",
+      "centralInsight": "Under pressure, forgiveness is not passivity. It is the refusal to let a new spark light the whole stored fire again.",
+      "practicalReflection": "Pressure makes old injuries recruit new moments. Gurbani keeps the present from being swallowed by that old flame.",
+      "actionPrompt": "Before responding to the fresh offense, ask whether your next move belongs to truth or to accumulated grievance.",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "forgiveness when you feel freshly provoked",
+        "forgiveness under pressure",
+        "fresh offense",
+        "provoked",
+        "retaliation",
+        "under pressure",
+        "forgiveness fresh offense",
+        "forgiveness provoked",
+        "forgiveness retaliation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+            "verseIds": [
+              27259,
+              27260
+            ],
+            "shortMeaning": "He blessed me with forgiveness; i have found lasting peace and bliss",
+            "lifeApplication": "Forgiveness is not the end of the path; it is what makes peace inhabitable. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: he blessed me with forgiveness; i have found lasting peace and bliss."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-511",
+            "verseIds": [
+              7131,
+              7136
+            ],
+            "shortMeaning": "The Lord, the Supreme Lord God, is Inaccessible and Unfathomable. Those who; servant Nanak is the slave of the Guru; in the Sangat, the",
+            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-818",
+            "verseIds": [
+              11177
+            ],
+            "shortMeaning": "When the Righteous Judge of Dharma begins to destroy someone, no one",
+            "lifeApplication": "Loneliness steadies when o Nanak, those who join the Saadh Sangat and meditate on the Lord are. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-forgiveness:pressure",
+        "evidence": {
+          "coreClaim": "Under pressure, forgiveness is not passivity. It is the refusal to let a new spark light the whole stored fire again.",
+          "emotionalState": "ashamed, heavy, bitter",
+          "turn": "Pressure and fresh offense make it feel naive to soften. The mind wants immediate retaliation, or at least the right to stay inwardly armed.",
+          "practicalImplication": "Before responding to the fresh offense, ask whether your next move belongs to truth or to accumulated grievance.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.44,
+          "beauty": 4.37,
+          "overall": 4.2
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Returning after bitterness has already ruled",
+      "issueStatement": "You already fed the resentment, replayed the injury, or spoke from the wound, and now you are left with both the original hurt and what bitterness has added to it.",
+      "centralInsight": "Repair begins when bitterness is confessed as bondage, not protected as discernment. The Guru opens return after the heart has hardened.",
+      "practicalReflection": "Forgiveness after the fact often starts with grieving what resentment has done to you, not only what others did first.",
+      "actionPrompt": "Tell the truth about how the grudge is shaping you now, then release one ritual of resentment you have been preserving.",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "returning after bitterness has already ruled",
+        "forgiveness after the slip",
+        "after bitterness",
+        "repair",
+        "bondage",
+        "return",
+        "forgiveness after bitterness",
+        "forgiveness repair",
+        "forgiveness grudge",
+        "forgiveness bondage",
+        "forgiveness return"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-301",
+            "verseIds": [
+              4151,
+              4154
+            ],
+            "shortMeaning": "The seekers, the Siddhas, those beings of miraculous spiritual powers, and the; when my Lord and Master blessed me with His Mercy, O Nanak,",
+            "lifeApplication": "Forgiveness steadies when when my Lord and Master blessed me with His Mercy, O Nanak, then His. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: the seekers, the Siddhas, those beings of miraculous spiritual powers, and the; when my Lord and Master blessed me with His Mercy, O Nanak,."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-511",
+            "verseIds": [
+              7132
+            ],
+            "shortMeaning": "Those whose hearts are pleased with the Guru's Teachings - the Lord's",
+            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1048",
+            "verseIds": [
+              13151
+            ],
+            "shortMeaning": "The minds and bodies of His devotees are infused with His Love",
+            "lifeApplication": "Mercy steadies when o Nanak, He is contained among all. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-forgiveness:repair",
+        "evidence": {
+          "coreClaim": "Repair begins when bitterness is confessed as bondage, not protected as discernment. The Guru opens return after the heart has hardened.",
+          "emotionalState": "resentful, hurt, stuck",
+          "turn": "You already fed the resentment, replayed the injury, or spoke from the wound, and now you are left with both the original hurt and what bitterness has added to it.",
+          "practicalImplication": "Tell the truth about how the grudge is shaping you now, then release one ritual of resentment you have been preserving.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.6,
+          "beauty": 4.53,
+          "overall": 4.22
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Practicing release before resentment matures",
+      "issueStatement": "Forgiveness usually fails long before the major moment. It fails in the small permissions given to replay, suspicion, and cherished grievance.",
+      "centralInsight": "The heart learns forgiveness through repeated release. The Guru trains you to loosen early, before the wound becomes architecture.",
+      "practicalReflection": "A forgiving life is not forgetful. It is disciplined about what it continues to feed.",
+      "actionPrompt": "Choose one resentment pattern to interrupt early this week and practice release there before it becomes your familiar shelter.",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "practicing release before resentment matures",
+        "forgiveness steady practice",
+        "practice release",
+        "forgiving life",
+        "interrupt resentment",
+        "early release",
+        "forgiveness practice release",
+        "forgiveness forgiving life",
+        "forgiveness interrupt resentment",
+        "forgiveness early release"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-818",
+            "verseIds": [
+              11177
+            ],
+            "shortMeaning": "When the Righteous Judge of Dharma begins to destroy someone, no one",
+            "lifeApplication": "Loneliness steadies when o Nanak, those who join the Saadh Sangat and meditate on the Lord are. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: when the Righteous Judge of Dharma begins to destroy someone, no one."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-forgiveness-becomes-fearless",
+            "verseIds": [
+              9600
+            ],
+            "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
+            "lifeApplication": "Forgive deeply enough that fear loses its throne. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Forgive deeply enough that fear loses its throne. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1048",
+            "verseIds": [
+              13151,
+              13152
+            ],
+            "shortMeaning": "The minds and bodies of His devotees are infused with His Love; rare is the one who obtains their company",
+            "lifeApplication": "Mercy steadies when o Nanak, He is contained among all. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-forgiveness:practice",
+        "evidence": {
+          "coreClaim": "The heart learns forgiveness through repeated release. The Guru trains you to loosen early, before the wound becomes architecture.",
+          "emotionalState": "alone, unseen, disconnected",
+          "turn": "Forgiveness usually fails long before the major moment. It fails in the small permissions given to replay, suspicion, and cherished grievance.",
+          "practicalImplication": "Choose one resentment pattern to interrupt early this week and practice release there before it becomes your familiar shelter.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.58,
+          "beauty": 4.05,
+          "overall": 4.29
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
-    "shabad-sweet-speech-humble-walk",
-    "shabad-what-pleases-you-comes-to-pass"
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-generated-301",
+    "shabad-generated-511",
+    "shabad-generated-818",
+    "shabad-generated-1048"
   ],
   "relatedTopicIds": [
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-attachment",
+    "topic-ego"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -71,35 +479,35 @@
   ],
   "rotation": {
     "theme": "forgiveness",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 7,
-    "balanceCategory": "comfort",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
   },
   "editorial": {
-    "status": "draft",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:forgiveness",
     "evidence": {
-      "coreClaim": "Forgiveness in Gurbani is not sentimental forgetfulness. It is a disciplined relinquishing of bitterness so fear, pride, and self-protection stop ruling the body.",
+      "coreClaim": "Gurbani links forgiveness to freedom, fearlessness, and return. Releasing bitterness is not denial of harm; it is refusal to let harm keep governing the soul.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "The mind keeps returning to hurt, rehearsing offense as if guarding it will protect you.",
-      "practicalImplication": "Name the grievance without decorating it. Then ask what holding it is making you become.",
+      "turn": "The wound is real, but the mind has started building a home inside replay, accusation, and the desire to remain justified forever.",
+      "practicalImplication": "Notice the sentence about the wound that you rehearse most often, and ask whether repeating it is healing you or preserving the injury.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
+      "clarity": 3.15,
       "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 2.35,
-      "beauty": 3.98,
-      "overall": 3.86
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.38,
+      "beauty": 3.47,
+      "overall": 3.82
     },
     "strengths": [
       "specificity",

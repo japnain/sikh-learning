@@ -15,9 +15,7 @@
     "lifeApplication": "Do not confuse spiritual activity with inward arrival."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.54,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 4.06,
-      "overall": 3.77
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

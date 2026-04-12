@@ -1,190 +1,4103 @@
 {
   "synonyms": {
-    "anxiety": "topic-anxiety",
-    "stress": "topic-anxiety",
-    "overthinking": "topic-anxiety",
-    "worry": "topic-anxiety",
-    "panic": "topic-anxiety",
-    "fear": "topic-anxiety",
-    "restless": "topic-anxiety",
-    "anger": "topic-anger",
-    "frustration": "topic-anger",
-    "reactive": "topic-anger",
-    "rage": "topic-anger",
-    "irritation": "topic-anger",
-    "offended": "topic-anger",
-    "ego": "topic-ego",
-    "haumai": "topic-ego",
-    "pride": "topic-ego",
-    "self importance": "topic-ego",
-    "defensive": "topic-ego",
-    "loneliness": "topic-loneliness",
-    "alone": "topic-loneliness",
-    "isolated": "topic-loneliness",
-    "unseen": "topic-loneliness",
-    "disconnected": "topic-loneliness",
-    "discipline": "topic-discipline",
-    "consistency": "topic-discipline",
-    "habit": "topic-discipline",
-    "focus": "topic-discipline",
-    "motivation": "topic-discipline",
-    "gratitude": "topic-gratitude",
-    "thankful": "topic-gratitude",
-    "contentment": "topic-gratitude",
-    "blessing": "topic-gratitude",
-    "purpose": "topic-purpose",
-    "meaning": "topic-purpose",
-    "calling": "topic-purpose",
-    "direction": "topic-purpose",
-    "why am i here": "topic-purpose",
-    "comparison": "topic-comparison",
-    "jealousy": "topic-comparison",
-    "envy": "topic-comparison",
-    "insecurity": "topic-comparison",
-    "validation": "topic-comparison",
-    "attachment": "topic-attachment",
-    "clingy": "topic-attachment",
-    "possessive": "topic-attachment",
-    "can t let go": "topic-attachment",
-    "fixated": "topic-attachment",
-    "seva": "topic-seva",
-    "service": "topic-seva",
-    "serve": "topic-seva",
-    "help others": "topic-seva",
-    "volunteer": "topic-seva",
-    "hukam": "topic-hukam",
-    "control": "topic-hukam",
-    "surrender": "topic-hukam",
-    "acceptance": "topic-hukam",
-    "why is this happening": "topic-hukam",
-    "doubt": "topic-doubt",
-    "second guessing": "topic-doubt",
-    "confusion": "topic-doubt",
-    "uncertain": "topic-doubt",
-    "skeptical": "topic-doubt",
-    "faith feels thin": "topic-doubt",
-    "speech": "topic-speech",
-    "gossip": "topic-speech",
-    "tongue": "topic-speech",
-    "sharp words": "topic-speech",
-    "slander": "topic-speech",
-    "respect": "topic-speech",
-    "patience": "topic-patience",
-    "waiting": "topic-patience",
-    "impatient": "topic-patience",
-    "hurry": "topic-patience",
-    "agitated": "topic-patience",
-    "slow progress": "topic-patience",
-    "mercy": "topic-mercy",
-    "grace": "topic-mercy",
-    "compassion": "topic-mercy",
-    "undeserving": "topic-mercy",
-    "accepted": "topic-mercy",
-    "reunited": "topic-mercy",
-    "greed": "topic-greed",
-    "craving": "topic-greed",
-    "more": "topic-greed",
-    "money": "topic-greed",
-    "status": "topic-greed",
-    "consumption": "topic-greed",
-    "can t settle": "topic-restlessness",
-    "unsettled": "topic-restlessness",
-    "always searching": "topic-restlessness",
-    "wandering": "topic-restlessness",
-    "spiritually exhausted": "topic-restlessness",
-    "forgiveness": "topic-forgiveness",
-    "forgive": "topic-forgiveness",
-    "resentment": "topic-forgiveness",
-    "bitterness": "topic-forgiveness",
-    "offense": "topic-forgiveness",
-    "hard heart": "topic-forgiveness",
-    "sangat": "topic-sangat",
-    "community": "topic-sangat",
-    "company": "topic-sangat",
-    "belonging": "topic-sangat",
-    "friendship": "topic-sangat",
-    "good company": "topic-sangat",
-    "controlling": "topic-control",
-    "micromanaging": "topic-control",
-    "outcomes": "topic-control",
-    "fix everything": "topic-control",
-    "shame": "topic-shame",
-    "guilty": "topic-shame",
-    "unworthy": "topic-shame",
-    "dirty": "topic-shame",
-    "self loathing": "topic-shame",
-    "regret": "topic-shame",
-    "afraid": "topic-fear",
-    "scared": "topic-fear",
-    "dread": "topic-fear",
-    "insecure": "topic-fear",
-    "honesty": "topic-honesty",
-    "honest living": "topic-honesty",
-    "integrity": "topic-honesty",
-    "crooked": "topic-honesty",
-    "compromise": "topic-honesty",
-    "truthfulness": "topic-honesty",
-    "searching": "topic-seeking",
-    "seeking": "topic-seeking",
-    "spiritually lost": "topic-seeking",
-    "looking everywhere": "topic-seeking",
-    "worthless": "topic-self-worth",
-    "not enough": "topic-self-worth",
-    "unwanted": "topic-self-worth",
-    "rejected": "topic-self-worth",
-    "low self worth": "topic-self-worth",
-    "softness": "topic-softness",
-    "gentle": "topic-softness",
-    "harsh": "topic-softness",
-    "tenderness": "topic-softness",
-    "cutting words": "topic-softness",
-    "hard hearted": "topic-softness",
-    "exhausted": "topic-exhaustion",
-    "burnt out": "topic-exhaustion",
-    "tired": "topic-exhaustion",
-    "drained": "topic-exhaustion",
-    "weary": "topic-exhaustion",
-    "worn out": "topic-exhaustion",
-    "conduct": "topic-conduct",
-    "lifestyle": "topic-conduct",
-    "practice": "topic-conduct",
-    "hypocrisy": "topic-conduct",
-    "pure conduct": "topic-conduct",
-    "spiraling": "topic-anxiety-daily",
-    "today": "topic-anxiety-daily",
-    "daily": "topic-anxiety-daily",
-    "ordinary day": "topic-anxiety-daily",
-    "pressure": "topic-anxiety-pressure",
-    "under strain": "topic-anxiety-pressure",
-    "repair": "topic-anxiety-repair",
-    "return": "topic-anxiety-repair",
-    "after slipping": "topic-anxiety-repair",
-    "steady return": "topic-anxiety-practice",
-    "measuring": "topic-comparison-daily",
-    "abandoned": "topic-loneliness-daily",
-    "aimless": "topic-purpose-daily",
-    "clinging": "topic-attachment-daily",
-    "grip": "topic-attachment-daily",
-    "letting go": "topic-attachment-daily",
-    "vanity": "topic-ego-daily",
-    "thankfulness": "topic-gratitude-daily",
-    "gift": "topic-gratitude-daily",
-    "self control": "topic-discipline-daily",
-    "follow through": "topic-discipline-daily",
-    "serving": "topic-seva-daily",
-    "volunteering": "topic-seva-daily",
-    "offering": "topic-seva-daily",
-    "command": "topic-hukam-daily",
-    "what is": "topic-hukam-daily",
-    "reality": "topic-hukam-daily",
-    "words": "topic-speech-daily",
-    "talking": "topic-speech-daily",
-    "delay": "topic-patience-daily",
-    "kindness": "topic-mercy-daily",
-    "grudge": "topic-forgiveness-daily",
-    "materialism": "topic-greed-daily",
-    "restlessness": "topic-restlessness-daily",
-    "scattered": "topic-restlessness-daily"
+    "when the mind is anxious": {
+      "topicId": "topic-anxiety"
+    },
+    "anxiety": {
+      "topicId": "topic-anxiety"
+    },
+    "stress": {
+      "topicId": "topic-anxiety"
+    },
+    "overthinking": {
+      "topicId": "topic-anxiety"
+    },
+    "worry": {
+      "topicId": "topic-anxiety"
+    },
+    "panic": {
+      "topicId": "topic-anxiety"
+    },
+    "spiraling": {
+      "topicId": "topic-anxiety"
+    },
+    "fear": {
+      "topicId": "topic-anxiety"
+    },
+    "restless": {
+      "topicId": "topic-anxiety"
+    },
+    "when anger takes over": {
+      "topicId": "topic-anger"
+    },
+    "anger": {
+      "topicId": "topic-anger"
+    },
+    "frustration": {
+      "topicId": "topic-anger"
+    },
+    "rage": {
+      "topicId": "topic-anger"
+    },
+    "irritation": {
+      "topicId": "topic-anger"
+    },
+    "reactive": {
+      "topicId": "topic-anger"
+    },
+    "offended": {
+      "topicId": "topic-anger"
+    },
+    "when comparison keeps shrinking the heart": {
+      "topicId": "topic-comparison"
+    },
+    "comparison": {
+      "topicId": "topic-comparison"
+    },
+    "jealousy": {
+      "topicId": "topic-comparison"
+    },
+    "envy": {
+      "topicId": "topic-comparison"
+    },
+    "insecurity": {
+      "topicId": "topic-comparison"
+    },
+    "measuring": {
+      "topicId": "topic-comparison"
+    },
+    "validation": {
+      "topicId": "topic-comparison"
+    },
+    "when loneliness settles in": {
+      "topicId": "topic-loneliness"
+    },
+    "loneliness": {
+      "topicId": "topic-loneliness"
+    },
+    "alone": {
+      "topicId": "topic-loneliness"
+    },
+    "isolated": {
+      "topicId": "topic-loneliness"
+    },
+    "disconnected": {
+      "topicId": "topic-loneliness"
+    },
+    "abandoned": {
+      "topicId": "topic-loneliness"
+    },
+    "unseen": {
+      "topicId": "topic-loneliness"
+    },
+    "when you are asking what this life is for": {
+      "topicId": "topic-purpose"
+    },
+    "purpose": {
+      "topicId": "topic-purpose"
+    },
+    "meaning": {
+      "topicId": "topic-purpose"
+    },
+    "direction": {
+      "topicId": "topic-purpose"
+    },
+    "calling": {
+      "topicId": "topic-purpose"
+    },
+    "aimless": {
+      "topicId": "topic-purpose"
+    },
+    "why am i here": {
+      "topicId": "topic-purpose"
+    },
+    "when attachment keeps binding the mind": {
+      "topicId": "topic-attachment"
+    },
+    "attachment": {
+      "topicId": "topic-attachment"
+    },
+    "clinging": {
+      "topicId": "topic-attachment"
+    },
+    "possessive": {
+      "topicId": "topic-attachment"
+    },
+    "grip": {
+      "topicId": "topic-attachment"
+    },
+    "letting go": {
+      "topicId": "topic-attachment"
+    },
+    "clingy": {
+      "topicId": "topic-attachment"
+    },
+    "can t let go": {
+      "topicId": "topic-attachment"
+    },
+    "fixated": {
+      "topicId": "topic-attachment"
+    },
+    "when the self keeps asking to be the center": {
+      "topicId": "topic-ego"
+    },
+    "ego": {
+      "topicId": "topic-ego"
+    },
+    "haumai": {
+      "topicId": "topic-ego"
+    },
+    "pride": {
+      "topicId": "topic-ego"
+    },
+    "self importance": {
+      "topicId": "topic-ego"
+    },
+    "vanity": {
+      "topicId": "topic-ego"
+    },
+    "image": {
+      "topicId": "topic-ego"
+    },
+    "when gratitude feels thin": {
+      "topicId": "topic-gratitude"
+    },
+    "gratitude": {
+      "topicId": "topic-gratitude"
+    },
+    "thankful": {
+      "topicId": "topic-gratitude"
+    },
+    "thankfulness": {
+      "topicId": "topic-gratitude"
+    },
+    "blessing": {
+      "topicId": "topic-gratitude"
+    },
+    "gift": {
+      "topicId": "topic-gratitude"
+    },
+    "contentment": {
+      "topicId": "topic-gratitude"
+    },
+    "when discipline has to become deeper than mood": {
+      "topicId": "topic-discipline"
+    },
+    "discipline": {
+      "topicId": "topic-discipline"
+    },
+    "consistency": {
+      "topicId": "topic-discipline"
+    },
+    "habit": {
+      "topicId": "topic-discipline"
+    },
+    "self control": {
+      "topicId": "topic-discipline"
+    },
+    "follow through": {
+      "topicId": "topic-discipline"
+    },
+    "steady practice": {
+      "topicId": "topic-discipline"
+    },
+    "when service has to be rescued from performance": {
+      "topicId": "topic-seva"
+    },
+    "seva": {
+      "topicId": "topic-seva"
+    },
+    "service": {
+      "topicId": "topic-seva"
+    },
+    "serving": {
+      "topicId": "topic-seva"
+    },
+    "volunteering": {
+      "topicId": "topic-seva"
+    },
+    "offering": {
+      "topicId": "topic-seva"
+    },
+    "hidden service": {
+      "topicId": "topic-seva"
+    },
+    "humility": {
+      "topicId": "topic-seva"
+    },
+    "when you need to return to hukam": {
+      "topicId": "topic-hukam"
+    },
+    "hukam": {
+      "topicId": "topic-hukam"
+    },
+    "acceptance": {
+      "topicId": "topic-hukam"
+    },
+    "command": {
+      "topicId": "topic-hukam"
+    },
+    "what is": {
+      "topicId": "topic-hukam"
+    },
+    "reality": {
+      "topicId": "topic-hukam"
+    },
+    "control": {
+      "topicId": "topic-hukam"
+    },
+    "surrender": {
+      "topicId": "topic-hukam"
+    },
+    "why is this happening": {
+      "topicId": "topic-hukam"
+    },
+    "when doubt keeps burning beneath the surface": {
+      "topicId": "topic-doubt"
+    },
+    "doubt": {
+      "topicId": "topic-doubt"
+    },
+    "confusion": {
+      "topicId": "topic-doubt"
+    },
+    "uncertain": {
+      "topicId": "topic-doubt"
+    },
+    "second guessing": {
+      "topicId": "topic-doubt"
+    },
+    "skeptical": {
+      "topicId": "topic-doubt"
+    },
+    "faith feels thin": {
+      "topicId": "topic-doubt"
+    },
+    "when the tongue gets ahead of the soul": {
+      "topicId": "topic-speech"
+    },
+    "speech": {
+      "topicId": "topic-speech"
+    },
+    "gossip": {
+      "topicId": "topic-speech"
+    },
+    "slander": {
+      "topicId": "topic-speech"
+    },
+    "tongue": {
+      "topicId": "topic-speech"
+    },
+    "words": {
+      "topicId": "topic-speech"
+    },
+    "talking": {
+      "topicId": "topic-speech"
+    },
+    "sharp words": {
+      "topicId": "topic-speech"
+    },
+    "respect": {
+      "topicId": "topic-speech"
+    },
+    "when you are tired of waiting": {
+      "topicId": "topic-patience"
+    },
+    "patience": {
+      "topicId": "topic-patience"
+    },
+    "waiting": {
+      "topicId": "topic-patience"
+    },
+    "delay": {
+      "topicId": "topic-patience"
+    },
+    "impatient": {
+      "topicId": "topic-patience"
+    },
+    "hurry": {
+      "topicId": "topic-patience"
+    },
+    "agitated": {
+      "topicId": "topic-patience"
+    },
+    "slow progress": {
+      "topicId": "topic-patience"
+    },
+    "when mercy has to be received before it can be trusted": {
+      "topicId": "topic-mercy"
+    },
+    "mercy": {
+      "topicId": "topic-mercy"
+    },
+    "grace": {
+      "topicId": "topic-mercy"
+    },
+    "compassion": {
+      "topicId": "topic-mercy"
+    },
+    "kindness": {
+      "topicId": "topic-mercy"
+    },
+    "undeserving": {
+      "topicId": "topic-mercy"
+    },
+    "harsh on self": {
+      "topicId": "topic-mercy"
+    },
+    "accepted": {
+      "topicId": "topic-mercy"
+    },
+    "when bitterness has to be released before it hardens into identity": {
+      "topicId": "topic-forgiveness"
+    },
+    "forgiveness": {
+      "topicId": "topic-forgiveness"
+    },
+    "forgive": {
+      "topicId": "topic-forgiveness"
+    },
+    "resentment": {
+      "topicId": "topic-forgiveness"
+    },
+    "bitterness": {
+      "topicId": "topic-forgiveness"
+    },
+    "grudge": {
+      "topicId": "topic-forgiveness"
+    },
+    "release": {
+      "topicId": "topic-forgiveness"
+    },
+    "fearlessness": {
+      "topicId": "topic-forgiveness"
+    },
+    "when wanting keeps disguising itself as need": {
+      "topicId": "topic-greed"
+    },
+    "greed": {
+      "topicId": "topic-greed"
+    },
+    "craving": {
+      "topicId": "topic-greed"
+    },
+    "consumption": {
+      "topicId": "topic-greed"
+    },
+    "more": {
+      "topicId": "topic-greed"
+    },
+    "materialism": {
+      "topicId": "topic-greed"
+    },
+    "wanting": {
+      "topicId": "topic-greed"
+    },
+    "never enough": {
+      "topicId": "topic-greed"
+    },
+    "grasping": {
+      "topicId": "topic-greed"
+    },
+    "false wealth": {
+      "topicId": "topic-greed"
+    },
+    "when you keep searching but do not settle": {
+      "topicId": "topic-restlessness"
+    },
+    "restlessness": {
+      "topicId": "topic-restlessness"
+    },
+    "unsettled": {
+      "topicId": "topic-restlessness"
+    },
+    "wandering": {
+      "topicId": "topic-restlessness"
+    },
+    "scattered": {
+      "topicId": "topic-restlessness"
+    },
+    "can t settle": {
+      "topicId": "topic-restlessness"
+    },
+    "always searching": {
+      "topicId": "topic-restlessness"
+    },
+    "spiritually exhausted": {
+      "topicId": "topic-restlessness"
+    },
+    "when you need company that changes you": {
+      "topicId": "topic-sangat"
+    },
+    "sangat": {
+      "topicId": "topic-sangat"
+    },
+    "community": {
+      "topicId": "topic-sangat"
+    },
+    "company": {
+      "topicId": "topic-sangat"
+    },
+    "belonging": {
+      "topicId": "topic-sangat"
+    },
+    "companionship": {
+      "topicId": "topic-sangat"
+    },
+    "friendship": {
+      "topicId": "topic-sangat"
+    },
+    "good company": {
+      "topicId": "topic-sangat"
+    },
+    "when you are gripping too hard": {
+      "topicId": "topic-control"
+    },
+    "controlling": {
+      "topicId": "topic-control"
+    },
+    "micromanaging": {
+      "topicId": "topic-control"
+    },
+    "outcomes": {
+      "topicId": "topic-control"
+    },
+    "fix everything": {
+      "topicId": "topic-control"
+    },
+    "when shame keeps talking": {
+      "topicId": "topic-shame"
+    },
+    "shame": {
+      "topicId": "topic-shame"
+    },
+    "guilt": {
+      "topicId": "topic-shame"
+    },
+    "unworthy": {
+      "topicId": "topic-shame"
+    },
+    "regret": {
+      "topicId": "topic-shame"
+    },
+    "self loathing": {
+      "topicId": "topic-shame"
+    },
+    "guilty": {
+      "topicId": "topic-shame"
+    },
+    "dirty": {
+      "topicId": "topic-shame"
+    },
+    "when fear keeps writing the script": {
+      "topicId": "topic-fear"
+    },
+    "afraid": {
+      "topicId": "topic-fear"
+    },
+    "dread": {
+      "topicId": "topic-fear"
+    },
+    "scared": {
+      "topicId": "topic-fear"
+    },
+    "insecure": {
+      "topicId": "topic-fear"
+    },
+    "when you need to live cleanly": {
+      "topicId": "topic-honesty"
+    },
+    "honesty": {
+      "topicId": "topic-honesty"
+    },
+    "integrity": {
+      "topicId": "topic-honesty"
+    },
+    "truthfulness": {
+      "topicId": "topic-honesty"
+    },
+    "compromise": {
+      "topicId": "topic-honesty"
+    },
+    "crooked": {
+      "topicId": "topic-honesty"
+    },
+    "honest living": {
+      "topicId": "topic-honesty"
+    },
+    "when searching starts keeping you unsettled": {
+      "topicId": "topic-seeking"
+    },
+    "seeking": {
+      "topicId": "topic-seeking"
+    },
+    "searching": {
+      "topicId": "topic-seeking"
+    },
+    "spiritually lost": {
+      "topicId": "topic-seeking"
+    },
+    "restless searching": {
+      "topicId": "topic-seeking"
+    },
+    "spiritual wandering": {
+      "topicId": "topic-seeking"
+    },
+    "unsettled seeker": {
+      "topicId": "topic-seeking"
+    },
+    "can t land": {
+      "topicId": "topic-seeking"
+    },
+    "seeking truth": {
+      "topicId": "topic-seeking"
+    },
+    "when worth keeps feeling borrowed": {
+      "topicId": "topic-self-worth"
+    },
+    "self worth": {
+      "topicId": "topic-self-worth"
+    },
+    "not enough": {
+      "topicId": "topic-self-worth"
+    },
+    "worthless": {
+      "topicId": "topic-self-worth"
+    },
+    "unwanted": {
+      "topicId": "topic-self-worth"
+    },
+    "rejected": {
+      "topicId": "topic-self-worth"
+    },
+    "when harshness has become your default": {
+      "topicId": "topic-softness"
+    },
+    "softness": {
+      "topicId": "topic-softness"
+    },
+    "gentle": {
+      "topicId": "topic-softness"
+    },
+    "harsh": {
+      "topicId": "topic-softness"
+    },
+    "tenderness": {
+      "topicId": "topic-softness"
+    },
+    "cutting words": {
+      "topicId": "topic-softness"
+    },
+    "hard hearted": {
+      "topicId": "topic-softness"
+    },
+    "when the soul feels worn thin": {
+      "topicId": "topic-exhaustion"
+    },
+    "exhaustion": {
+      "topicId": "topic-exhaustion"
+    },
+    "burnout": {
+      "topicId": "topic-exhaustion"
+    },
+    "tired": {
+      "topicId": "topic-exhaustion"
+    },
+    "drained": {
+      "topicId": "topic-exhaustion"
+    },
+    "weary": {
+      "topicId": "topic-exhaustion"
+    },
+    "exhausted": {
+      "topicId": "topic-exhaustion"
+    },
+    "burnt out": {
+      "topicId": "topic-exhaustion"
+    },
+    "worn out": {
+      "topicId": "topic-exhaustion"
+    },
+    "when life and practice do not match": {
+      "topicId": "topic-conduct"
+    },
+    "conduct": {
+      "topicId": "topic-conduct"
+    },
+    "practice": {
+      "topicId": "topic-conduct"
+    },
+    "lifestyle": {
+      "topicId": "topic-conduct"
+    },
+    "hypocrisy": {
+      "topicId": "topic-conduct"
+    },
+    "pure conduct": {
+      "topicId": "topic-conduct"
+    },
+    "anxiety in the ordinary day": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "anxiety daily": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "today": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "daily": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "ordinary day": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "routine": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "anxiety today": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "anxiety ordinary day": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "anxiety routine": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "anxiety when the day tightens": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety under pressure": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "pressure": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "under strain": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "cornered": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety pressure": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety stress": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety under strain": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety cornered": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "anxiety after the slip": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "repair": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "return": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "after slipping": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "start again": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "anxiety repair": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "anxiety return": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "anxiety after slipping": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "anxiety start again": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of anxiety": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anxiety steady practice": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "steady return": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "formation": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anxiety practice": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anxiety habit": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anxiety steady return": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anxiety formation": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "anger in the ordinary day": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "anger daily": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "anger today": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "anger ordinary day": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "anger routine": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "anger when the day tightens": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger under pressure": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger pressure": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger stress": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger under strain": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger cornered": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "anger after the slip": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "anger repair": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "anger return": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "anger after slipping": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "anger start again": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of anger": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "anger steady practice": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "anger practice": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "anger habit": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "anger steady return": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "anger formation": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "comparison in the ordinary day": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "comparison daily": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "comparison today": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "comparison ordinary day": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "comparison routine": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "comparison when the day tightens": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison under pressure": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison pressure": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison stress": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison under strain": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison cornered": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "comparison after the slip": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "comparison repair": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "comparison return": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "comparison after slipping": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "comparison start again": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "training the heart away from comparison": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison steady practice": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison habit": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "envy practice": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "measuring yourself": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "receiving your portion": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison comparison habit": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison envy practice": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison measuring yourself": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "comparison receiving your portion": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "loneliness in the ordinary day": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "loneliness daily": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "loneliness today": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "loneliness ordinary day": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "loneliness routine": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "loneliness when the day tightens": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness under pressure": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness pressure": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness stress": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness under strain": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness cornered": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "loneliness after the slip": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "loneliness repair": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "loneliness return": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "loneliness after slipping": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "loneliness start again": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of loneliness": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "loneliness steady practice": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "loneliness practice": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "loneliness habit": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "loneliness steady return": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "loneliness formation": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "purpose in the ordinary assignment": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose daily": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "ordinary purpose": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "calling in daily life": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "meaning in duty": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "assignment": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose ordinary purpose": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose calling in daily life": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose meaning in duty": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose assignment": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "purpose when the day tightens": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose under pressure": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose pressure": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose stress": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose under strain": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose cornered": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "purpose after the slip": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "purpose repair": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "purpose return": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "purpose after slipping": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "purpose start again": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "building a life that keeps its purpose": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose steady practice": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose practice": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "meaningful rhythm": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "keep the thread": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purposeful life": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose purpose practice": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose meaningful rhythm": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose keep the thread": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "purpose purposeful life": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "attachment in the ordinary day": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "attachment daily": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "attachment today": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "attachment ordinary day": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "attachment routine": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "attachment when the day tightens": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment under pressure": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment pressure": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment stress": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment under strain": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment cornered": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "attachment after the slip": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "attachment repair": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "attachment return": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "attachment after slipping": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "attachment start again": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of attachment": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "attachment steady practice": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "attachment practice": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "attachment habit": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "attachment steady return": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "attachment formation": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "ego in ordinary interactions": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego daily": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ordinary interactions": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "being seen": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "defensive": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "daily ego": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego ordinary interactions": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego being seen": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego defensive": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego daily ego": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "ego when you feel cornered": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "ego under pressure": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "under pressure": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "reactive pride": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "ego cornered": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "ego reactive pride": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "returning after pride has spoken": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego after the slip": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "after pride": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "apology": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "self justification": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "come back": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego after pride": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego repair": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego apology": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego self justification": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "ego come back": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "practicing a smaller self": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego steady practice": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "smaller self": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "recognition": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "hidden goodness": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego humility": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego smaller self": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego practice": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego recognition": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "ego hidden goodness": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "gratitude in the ordinary day": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "gratitude daily": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "gratitude today": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "gratitude ordinary day": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "gratitude routine": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "gratitude when the day tightens": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude under pressure": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude pressure": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude stress": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude under strain": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude cornered": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "gratitude after the slip": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "gratitude repair": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "gratitude return": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "gratitude after slipping": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "gratitude start again": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of gratitude": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "gratitude steady practice": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "gratitude practice": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "gratitude habit": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "gratitude steady return": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "gratitude formation": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "discipline in the ordinary rhythm": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline daily": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "ordinary rhythm": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "daily habit": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline routine": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline ordinary rhythm": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline consistency": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline daily habit": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "discipline when life gets compressed": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "discipline under pressure": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "all or nothing": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "compressed day": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "discipline stress": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "discipline all or nothing": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "discipline compressed day": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "restarting after the pattern broke": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline after the slip": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "restart": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "broken streak": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "after lapse": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline restart": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline broken streak": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline repair": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline start again": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "discipline after lapse": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "building discipline that lasts": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline steady practice": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "lasting discipline": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "durable practice": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "repetition": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "form": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "boredom": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline lasting discipline": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline durable practice": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline repetition": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline form": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "discipline boredom": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "service in the work already in front of you": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "seva daily": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "ordinary work": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "daily service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "small acts": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "care work": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "seva ordinary work": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "seva daily service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "seva small acts": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "seva care work": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "service when urgency steals tenderness": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva under pressure": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "busy service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "urgency": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "impatience": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "helping": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva busy service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva urgency": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva pressure": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva impatience": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "seva helping": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "returning when service became self serving": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva after the slip": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "motive": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "ego in service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "hidden act": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva motive": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva resentment": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva ego in service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva repair": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "seva hidden act": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "training the heart for real seva": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva steady practice": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "practice of service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "hidden seva": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "recurring service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "credit": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "training": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva practice of service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva hidden seva": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva recurring service": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva credit": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "seva training": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "hukam in the ordinary day": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "hukam daily": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "hukam today": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "hukam ordinary day": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "hukam routine": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "hukam when the day tightens": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam under pressure": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam pressure": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam stress": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam under strain": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam cornered": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "hukam after the slip": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "hukam repair": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "hukam return": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "hukam after slipping": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "hukam start again": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of hukam": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "hukam steady practice": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "hukam practice": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "hukam habit": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "hukam steady return": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "hukam formation": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "doubt in the ordinary day": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "doubt daily": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "doubt today": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "doubt ordinary day": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "doubt routine": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "doubt when the day tightens": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt under pressure": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt pressure": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt stress": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt under strain": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt cornered": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "doubt after the slip": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "doubt repair": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "doubt return": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "doubt after slipping": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "doubt start again": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of doubt": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "doubt steady practice": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "doubt practice": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "doubt habit": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "doubt steady return": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "doubt formation": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "speech in the ordinary day": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "speech daily": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "speech today": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "speech ordinary day": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "speech routine": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "speech when the day tightens": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech under pressure": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech pressure": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech stress": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech under strain": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech cornered": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "speech after the slip": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "speech repair": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "speech return": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "speech after slipping": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "speech start again": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of speech": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "speech steady practice": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "speech practice": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "speech habit": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "speech steady return": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "speech formation": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "patience in the ordinary day": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "patience daily": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "patience today": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "patience ordinary day": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "patience routine": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "patience when the day tightens": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience under pressure": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience pressure": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience stress": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience under strain": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience cornered": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "patience after the slip": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "patience repair": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "patience return": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "patience after slipping": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "patience start again": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of patience": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "patience steady practice": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "patience practice": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "patience habit": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "patience steady return": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "patience formation": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "mercy in the ordinary day": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy daily": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "daily mercy": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "ordinary time": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy ordinary day": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy daily mercy": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy routine": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy ordinary time": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "mercy when the day tightens": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy under pressure": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy stress": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy pressure": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy under strain": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy panic": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy cornered": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "mercy after the slip": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "failure": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "mercy after slipping": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "mercy repair": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "mercy failure": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "mercy shame": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "mercy come back": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "learning a merciful way to live": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "mercy steady practice": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "merciful life": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "inner voice": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "mercy habit": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "mercy merciful life": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "mercy inner voice": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "forgiveness in the repeating memory": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness daily": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "replay": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "daily resentment": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "rehearsed hurt": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "memory": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness replay": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness daily resentment": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness rehearsed hurt": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness memory": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "forgiveness when you feel freshly provoked": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "forgiveness under pressure": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "fresh offense": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "provoked": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "retaliation": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "forgiveness fresh offense": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "forgiveness provoked": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "forgiveness retaliation": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "returning after bitterness has already ruled": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness after the slip": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "after bitterness": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "bondage": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness after bitterness": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness repair": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness grudge": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness bondage": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "forgiveness return": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "practicing release before resentment matures": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiveness steady practice": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "practice release": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiving life": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "interrupt resentment": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "early release": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiveness practice release": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiveness forgiving life": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiveness interrupt resentment": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "forgiveness early release": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "greed in ordinary decisions": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed daily": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "spending": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "buying": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "impulse": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "ordinary decisions": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed spending": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed buying": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed more": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed impulse": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed ordinary decisions": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "greed when fear starts talking": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "greed under pressure": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "scarcity": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "hoarding": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "security": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "greed scarcity": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "greed hoarding": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "greed fear": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "greed security": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "returning after grasping too hard": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed after the slip": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "after greed": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "confess": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "undo harm": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed after greed": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed repair": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed confess": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed release": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "greed undo harm": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "practicing enoughness": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed steady practice": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "enough": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "restraint": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed contentment": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed enough": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed restraint": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed habit": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "greed practice": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "restlessness in the ordinary day": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "restlessness daily": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "restlessness today": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "restlessness ordinary day": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "restlessness routine": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "restlessness when the day tightens": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness under pressure": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness pressure": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness stress": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness under strain": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness cornered": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "restlessness after the slip": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "restlessness repair": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "restlessness return": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "restlessness after slipping": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "restlessness start again": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of restlessness": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "restlessness steady practice": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "restlessness practice": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "restlessness habit": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "restlessness steady return": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "restlessness formation": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "sangat in the ordinary day": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "sangat daily": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "sangat today": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "sangat ordinary day": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "sangat routine": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "sangat when the day tightens": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat under pressure": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat pressure": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat stress": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat under strain": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat cornered": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "sangat after the slip": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "sangat repair": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "sangat return": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "sangat after slipping": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "sangat start again": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of sangat": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "sangat steady practice": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "sangat practice": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "sangat habit": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "sangat steady return": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "sangat formation": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "control in the ordinary day": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "control daily": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "control today": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "control ordinary day": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "control routine": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "control when the day tightens": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control under pressure": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control pressure": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control stress": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control under strain": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control cornered": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "control after the slip": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "control repair": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "control return": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "control after slipping": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "control start again": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of control": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "control steady practice": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "control practice": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "control habit": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "control steady return": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "control formation": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "shame in the ordinary day": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "shame daily": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "shame today": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "shame ordinary day": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "shame routine": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "shame when the day tightens": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame under pressure": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame pressure": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame stress": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame under strain": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame cornered": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "shame after the slip": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "shame repair": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "shame return": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "shame after slipping": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "shame start again": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of shame": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "shame steady practice": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "shame practice": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "shame habit": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "shame steady return": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "shame formation": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "fear in the ordinary day": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "fear daily": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "fear today": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "fear ordinary day": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "fear routine": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "fear when the day tightens": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear under pressure": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear pressure": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear stress": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear under strain": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear cornered": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "fear after the slip": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "fear repair": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "fear return": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "fear after slipping": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "fear start again": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of fear": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "fear steady practice": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "fear practice": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "fear habit": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "fear steady return": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "fear formation": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "honesty in the ordinary day": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "honesty daily": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "honesty today": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "honesty ordinary day": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "honesty routine": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "honesty when the day tightens": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty under pressure": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty pressure": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty stress": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty under strain": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty cornered": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "honesty after the slip": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "honesty repair": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "honesty return": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "honesty after slipping": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "honesty start again": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of honesty": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "honesty steady practice": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "honesty practice": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "honesty habit": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "honesty steady return": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "honesty formation": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "seeking in the ordinary day": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "seeking daily": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "seeking today": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "seeking ordinary day": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "seeking routine": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "seeking when the day tightens": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking under pressure": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking pressure": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking stress": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking under strain": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking cornered": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "seeking after the slip": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "seeking repair": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "seeking return": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "seeking after slipping": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "seeking start again": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of seeking": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "seeking steady practice": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "seeking practice": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "seeking habit": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "seeking steady return": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "seeking formation": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "self worth in the ordinary day": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "self worth daily": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "self worth today": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "self worth ordinary day": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "self worth routine": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "self worth when the day tightens": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth under pressure": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth pressure": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth stress": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth under strain": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth cornered": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "self worth after the slip": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "self worth repair": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "self worth return": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "self worth after slipping": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "self worth start again": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of self worth": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "self worth steady practice": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "self worth practice": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "self worth habit": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "self worth steady return": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "self worth formation": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "softness in the ordinary day": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "softness daily": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "softness today": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "softness ordinary day": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "softness routine": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "softness when the day tightens": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness under pressure": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness pressure": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness stress": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness under strain": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness cornered": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "softness after the slip": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "softness repair": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "softness return": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "softness after slipping": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "softness start again": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of softness": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "softness steady practice": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "softness practice": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "softness habit": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "softness steady return": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "softness formation": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "exhaustion in the ordinary day": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "exhaustion daily": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "exhaustion today": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "exhaustion ordinary day": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "exhaustion routine": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "exhaustion when the day tightens": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion under pressure": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion pressure": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion stress": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion under strain": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion cornered": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "exhaustion after the slip": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "exhaustion repair": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "exhaustion return": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "exhaustion after slipping": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "exhaustion start again": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of exhaustion": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "exhaustion steady practice": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "exhaustion practice": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "exhaustion habit": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "exhaustion steady return": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "exhaustion formation": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "conduct in the ordinary day": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "conduct daily": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "conduct today": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "conduct ordinary day": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "conduct routine": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "conduct when the day tightens": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct under pressure": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct pressure": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct stress": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct under strain": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct cornered": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "conduct after the slip": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "conduct repair": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "conduct return": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "conduct after slipping": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "conduct start again": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "building a truer practice of conduct": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    },
+    "conduct steady practice": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    },
+    "conduct practice": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    },
+    "conduct habit": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    },
+    "conduct steady return": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    },
+    "conduct formation": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    }
+  },
+  "legacyTopicAliases": {
+    "topic-anxiety": {
+      "topicId": "topic-anxiety"
+    },
+    "topic-anxiety-daily": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "daily"
+    },
+    "topic-anxiety-pressure": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "pressure"
+    },
+    "topic-anxiety-repair": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "repair"
+    },
+    "topic-anxiety-practice": {
+      "topicId": "topic-anxiety",
+      "scenarioKey": "practice"
+    },
+    "topic-anger": {
+      "topicId": "topic-anger"
+    },
+    "topic-anger-daily": {
+      "topicId": "topic-anger",
+      "scenarioKey": "daily"
+    },
+    "topic-anger-pressure": {
+      "topicId": "topic-anger",
+      "scenarioKey": "pressure"
+    },
+    "topic-anger-repair": {
+      "topicId": "topic-anger",
+      "scenarioKey": "repair"
+    },
+    "topic-anger-practice": {
+      "topicId": "topic-anger",
+      "scenarioKey": "practice"
+    },
+    "topic-comparison": {
+      "topicId": "topic-comparison"
+    },
+    "topic-comparison-daily": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "daily"
+    },
+    "topic-comparison-pressure": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "pressure"
+    },
+    "topic-comparison-repair": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "repair"
+    },
+    "topic-comparison-practice": {
+      "topicId": "topic-comparison",
+      "scenarioKey": "practice"
+    },
+    "topic-loneliness": {
+      "topicId": "topic-loneliness"
+    },
+    "topic-loneliness-daily": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "daily"
+    },
+    "topic-loneliness-pressure": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "pressure"
+    },
+    "topic-loneliness-repair": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "repair"
+    },
+    "topic-loneliness-practice": {
+      "topicId": "topic-loneliness",
+      "scenarioKey": "practice"
+    },
+    "topic-purpose": {
+      "topicId": "topic-purpose"
+    },
+    "topic-purpose-daily": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "daily"
+    },
+    "topic-purpose-pressure": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "pressure"
+    },
+    "topic-purpose-repair": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "repair"
+    },
+    "topic-purpose-practice": {
+      "topicId": "topic-purpose",
+      "scenarioKey": "practice"
+    },
+    "topic-attachment": {
+      "topicId": "topic-attachment"
+    },
+    "topic-attachment-daily": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "daily"
+    },
+    "topic-attachment-pressure": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "pressure"
+    },
+    "topic-attachment-repair": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
+    "topic-attachment-practice": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "practice"
+    },
+    "topic-ego": {
+      "topicId": "topic-ego"
+    },
+    "topic-ego-daily": {
+      "topicId": "topic-ego",
+      "scenarioKey": "daily"
+    },
+    "topic-ego-pressure": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
+    "topic-ego-repair": {
+      "topicId": "topic-ego",
+      "scenarioKey": "repair"
+    },
+    "topic-ego-practice": {
+      "topicId": "topic-ego",
+      "scenarioKey": "practice"
+    },
+    "topic-gratitude": {
+      "topicId": "topic-gratitude"
+    },
+    "topic-gratitude-daily": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "daily"
+    },
+    "topic-gratitude-pressure": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "pressure"
+    },
+    "topic-gratitude-repair": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "repair"
+    },
+    "topic-gratitude-practice": {
+      "topicId": "topic-gratitude",
+      "scenarioKey": "practice"
+    },
+    "topic-discipline": {
+      "topicId": "topic-discipline"
+    },
+    "topic-discipline-daily": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "topic-discipline-pressure": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "pressure"
+    },
+    "topic-discipline-repair": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "topic-discipline-practice": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "practice"
+    },
+    "topic-seva": {
+      "topicId": "topic-seva"
+    },
+    "topic-seva-daily": {
+      "topicId": "topic-seva",
+      "scenarioKey": "daily"
+    },
+    "topic-seva-pressure": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
+    "topic-seva-repair": {
+      "topicId": "topic-seva",
+      "scenarioKey": "repair"
+    },
+    "topic-seva-practice": {
+      "topicId": "topic-seva",
+      "scenarioKey": "practice"
+    },
+    "topic-hukam": {
+      "topicId": "topic-hukam"
+    },
+    "topic-hukam-daily": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "daily"
+    },
+    "topic-hukam-pressure": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "pressure"
+    },
+    "topic-hukam-repair": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "repair"
+    },
+    "topic-hukam-practice": {
+      "topicId": "topic-hukam",
+      "scenarioKey": "practice"
+    },
+    "topic-doubt": {
+      "topicId": "topic-doubt"
+    },
+    "topic-doubt-daily": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "daily"
+    },
+    "topic-doubt-pressure": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "pressure"
+    },
+    "topic-doubt-repair": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "repair"
+    },
+    "topic-doubt-practice": {
+      "topicId": "topic-doubt",
+      "scenarioKey": "practice"
+    },
+    "topic-speech": {
+      "topicId": "topic-speech"
+    },
+    "topic-speech-daily": {
+      "topicId": "topic-speech",
+      "scenarioKey": "daily"
+    },
+    "topic-speech-pressure": {
+      "topicId": "topic-speech",
+      "scenarioKey": "pressure"
+    },
+    "topic-speech-repair": {
+      "topicId": "topic-speech",
+      "scenarioKey": "repair"
+    },
+    "topic-speech-practice": {
+      "topicId": "topic-speech",
+      "scenarioKey": "practice"
+    },
+    "topic-patience": {
+      "topicId": "topic-patience"
+    },
+    "topic-patience-daily": {
+      "topicId": "topic-patience",
+      "scenarioKey": "daily"
+    },
+    "topic-patience-pressure": {
+      "topicId": "topic-patience",
+      "scenarioKey": "pressure"
+    },
+    "topic-patience-repair": {
+      "topicId": "topic-patience",
+      "scenarioKey": "repair"
+    },
+    "topic-patience-practice": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
+    "topic-mercy": {
+      "topicId": "topic-mercy"
+    },
+    "topic-mercy-daily": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "topic-mercy-pressure": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
+    "topic-mercy-repair": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "topic-mercy-practice": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "practice"
+    },
+    "topic-forgiveness": {
+      "topicId": "topic-forgiveness"
+    },
+    "topic-forgiveness-daily": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "daily"
+    },
+    "topic-forgiveness-pressure": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "pressure"
+    },
+    "topic-forgiveness-repair": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "topic-forgiveness-practice": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "practice"
+    },
+    "topic-greed": {
+      "topicId": "topic-greed"
+    },
+    "topic-greed-daily": {
+      "topicId": "topic-greed",
+      "scenarioKey": "daily"
+    },
+    "topic-greed-pressure": {
+      "topicId": "topic-greed",
+      "scenarioKey": "pressure"
+    },
+    "topic-greed-repair": {
+      "topicId": "topic-greed",
+      "scenarioKey": "repair"
+    },
+    "topic-greed-practice": {
+      "topicId": "topic-greed",
+      "scenarioKey": "practice"
+    },
+    "topic-restlessness": {
+      "topicId": "topic-restlessness"
+    },
+    "topic-restlessness-daily": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "daily"
+    },
+    "topic-restlessness-pressure": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "pressure"
+    },
+    "topic-restlessness-repair": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "repair"
+    },
+    "topic-restlessness-practice": {
+      "topicId": "topic-restlessness",
+      "scenarioKey": "practice"
+    },
+    "topic-sangat": {
+      "topicId": "topic-sangat"
+    },
+    "topic-sangat-daily": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "daily"
+    },
+    "topic-sangat-pressure": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "pressure"
+    },
+    "topic-sangat-repair": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "repair"
+    },
+    "topic-sangat-practice": {
+      "topicId": "topic-sangat",
+      "scenarioKey": "practice"
+    },
+    "topic-control": {
+      "topicId": "topic-control"
+    },
+    "topic-control-daily": {
+      "topicId": "topic-control",
+      "scenarioKey": "daily"
+    },
+    "topic-control-pressure": {
+      "topicId": "topic-control",
+      "scenarioKey": "pressure"
+    },
+    "topic-control-repair": {
+      "topicId": "topic-control",
+      "scenarioKey": "repair"
+    },
+    "topic-control-practice": {
+      "topicId": "topic-control",
+      "scenarioKey": "practice"
+    },
+    "topic-shame": {
+      "topicId": "topic-shame"
+    },
+    "topic-shame-daily": {
+      "topicId": "topic-shame",
+      "scenarioKey": "daily"
+    },
+    "topic-shame-pressure": {
+      "topicId": "topic-shame",
+      "scenarioKey": "pressure"
+    },
+    "topic-shame-repair": {
+      "topicId": "topic-shame",
+      "scenarioKey": "repair"
+    },
+    "topic-shame-practice": {
+      "topicId": "topic-shame",
+      "scenarioKey": "practice"
+    },
+    "topic-fear": {
+      "topicId": "topic-fear"
+    },
+    "topic-fear-daily": {
+      "topicId": "topic-fear",
+      "scenarioKey": "daily"
+    },
+    "topic-fear-pressure": {
+      "topicId": "topic-fear",
+      "scenarioKey": "pressure"
+    },
+    "topic-fear-repair": {
+      "topicId": "topic-fear",
+      "scenarioKey": "repair"
+    },
+    "topic-fear-practice": {
+      "topicId": "topic-fear",
+      "scenarioKey": "practice"
+    },
+    "topic-honesty": {
+      "topicId": "topic-honesty"
+    },
+    "topic-honesty-daily": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "daily"
+    },
+    "topic-honesty-pressure": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "pressure"
+    },
+    "topic-honesty-repair": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "repair"
+    },
+    "topic-honesty-practice": {
+      "topicId": "topic-honesty",
+      "scenarioKey": "practice"
+    },
+    "topic-seeking": {
+      "topicId": "topic-seeking"
+    },
+    "topic-seeking-daily": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "daily"
+    },
+    "topic-seeking-pressure": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "pressure"
+    },
+    "topic-seeking-repair": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "repair"
+    },
+    "topic-seeking-practice": {
+      "topicId": "topic-seeking",
+      "scenarioKey": "practice"
+    },
+    "topic-self-worth": {
+      "topicId": "topic-self-worth"
+    },
+    "topic-self-worth-daily": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "daily"
+    },
+    "topic-self-worth-pressure": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "pressure"
+    },
+    "topic-self-worth-repair": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "repair"
+    },
+    "topic-self-worth-practice": {
+      "topicId": "topic-self-worth",
+      "scenarioKey": "practice"
+    },
+    "topic-softness": {
+      "topicId": "topic-softness"
+    },
+    "topic-softness-daily": {
+      "topicId": "topic-softness",
+      "scenarioKey": "daily"
+    },
+    "topic-softness-pressure": {
+      "topicId": "topic-softness",
+      "scenarioKey": "pressure"
+    },
+    "topic-softness-repair": {
+      "topicId": "topic-softness",
+      "scenarioKey": "repair"
+    },
+    "topic-softness-practice": {
+      "topicId": "topic-softness",
+      "scenarioKey": "practice"
+    },
+    "topic-exhaustion": {
+      "topicId": "topic-exhaustion"
+    },
+    "topic-exhaustion-daily": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "daily"
+    },
+    "topic-exhaustion-pressure": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "pressure"
+    },
+    "topic-exhaustion-repair": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "repair"
+    },
+    "topic-exhaustion-practice": {
+      "topicId": "topic-exhaustion",
+      "scenarioKey": "practice"
+    },
+    "topic-conduct": {
+      "topicId": "topic-conduct"
+    },
+    "topic-conduct-daily": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "daily"
+    },
+    "topic-conduct-pressure": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "pressure"
+    },
+    "topic-conduct-repair": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "repair"
+    },
+    "topic-conduct-practice": {
+      "topicId": "topic-conduct",
+      "scenarioKey": "practice"
+    }
   },
   "topics": [
     {
@@ -197,8 +4110,46 @@
         "overthinking",
         "worry",
         "panic",
+        "spiraling",
         "fear",
-        "restless"
+        "restless",
+        "anxiety in the ordinary day",
+        "anxiety daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "anxiety today",
+        "anxiety ordinary day",
+        "anxiety routine",
+        "anxiety when the day tightens",
+        "anxiety under pressure",
+        "pressure",
+        "under strain",
+        "cornered",
+        "anxiety pressure",
+        "anxiety stress",
+        "anxiety under strain",
+        "anxiety cornered",
+        "anxiety after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "anxiety repair",
+        "anxiety return",
+        "anxiety after slipping",
+        "anxiety start again",
+        "building a truer practice of anxiety",
+        "anxiety steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "anxiety practice",
+        "anxiety habit",
+        "anxiety steady return",
+        "anxiety formation"
       ]
     },
     {
@@ -208,69 +4159,48 @@
       "searchTerms": [
         "anger",
         "frustration",
-        "reactive",
         "rage",
         "irritation",
-        "offended"
-      ]
-    },
-    {
-      "id": "topic-ego",
-      "title": "When ego insists on the center",
-      "shortTitle": "Ego",
-      "searchTerms": [
-        "ego",
-        "haumai",
-        "pride",
-        "self-importance",
-        "defensive"
-      ]
-    },
-    {
-      "id": "topic-loneliness",
-      "title": "When loneliness settles in",
-      "shortTitle": "Loneliness",
-      "searchTerms": [
-        "loneliness",
-        "alone",
-        "isolated",
-        "unseen",
-        "disconnected"
-      ]
-    },
-    {
-      "id": "topic-discipline",
-      "title": "When discipline matters more than mood",
-      "shortTitle": "Discipline",
-      "searchTerms": [
-        "discipline",
-        "consistency",
+        "reactive",
+        "offended",
+        "anger in the ordinary day",
+        "anger daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "anger today",
+        "anger ordinary day",
+        "anger routine",
+        "anger when the day tightens",
+        "anger under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "anger pressure",
+        "anger stress",
+        "anger under strain",
+        "anger cornered",
+        "anger after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "anger repair",
+        "anger return",
+        "anger after slipping",
+        "anger start again",
+        "building a truer practice of anger",
+        "anger steady practice",
+        "practice",
         "habit",
-        "focus",
-        "motivation"
-      ]
-    },
-    {
-      "id": "topic-gratitude",
-      "title": "When gratitude feels thin",
-      "shortTitle": "Gratitude",
-      "searchTerms": [
-        "gratitude",
-        "thankful",
-        "contentment",
-        "blessing"
-      ]
-    },
-    {
-      "id": "topic-purpose",
-      "title": "When you are asking what this life is for",
-      "shortTitle": "Purpose",
-      "searchTerms": [
-        "purpose",
-        "meaning",
-        "calling",
-        "direction",
-        "why am i here"
+        "steady return",
+        "formation",
+        "anger practice",
+        "anger habit",
+        "anger steady return",
+        "anger formation"
       ]
     },
     {
@@ -282,7 +4212,149 @@
         "jealousy",
         "envy",
         "insecurity",
-        "validation"
+        "measuring",
+        "validation",
+        "comparison in the ordinary day",
+        "comparison daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "comparison today",
+        "comparison ordinary day",
+        "comparison routine",
+        "comparison when the day tightens",
+        "comparison under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "comparison pressure",
+        "comparison stress",
+        "comparison under strain",
+        "comparison cornered",
+        "comparison after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "comparison repair",
+        "comparison return",
+        "comparison after slipping",
+        "comparison start again",
+        "training the heart away from comparison",
+        "comparison steady practice",
+        "comparison habit",
+        "envy practice",
+        "measuring yourself",
+        "receiving your portion",
+        "comparison comparison habit",
+        "comparison envy practice",
+        "comparison measuring yourself",
+        "comparison receiving your portion"
+      ]
+    },
+    {
+      "id": "topic-loneliness",
+      "title": "When loneliness settles in",
+      "shortTitle": "Loneliness",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "disconnected",
+        "abandoned",
+        "unseen",
+        "loneliness in the ordinary day",
+        "loneliness daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "loneliness today",
+        "loneliness ordinary day",
+        "loneliness routine",
+        "loneliness when the day tightens",
+        "loneliness under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "loneliness pressure",
+        "loneliness stress",
+        "loneliness under strain",
+        "loneliness cornered",
+        "loneliness after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "loneliness repair",
+        "loneliness return",
+        "loneliness after slipping",
+        "loneliness start again",
+        "building a truer practice of loneliness",
+        "loneliness steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "loneliness practice",
+        "loneliness habit",
+        "loneliness steady return",
+        "loneliness formation"
+      ]
+    },
+    {
+      "id": "topic-purpose",
+      "title": "When you are asking what this life is for",
+      "shortTitle": "Purpose",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "direction",
+        "calling",
+        "aimless",
+        "why am i here",
+        "purpose in the ordinary assignment",
+        "purpose daily",
+        "ordinary purpose",
+        "calling in daily life",
+        "meaning in duty",
+        "assignment",
+        "purpose ordinary purpose",
+        "purpose calling in daily life",
+        "purpose meaning in duty",
+        "purpose assignment",
+        "purpose when the day tightens",
+        "purpose under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "purpose pressure",
+        "purpose stress",
+        "purpose under strain",
+        "purpose cornered",
+        "purpose after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "purpose repair",
+        "purpose return",
+        "purpose after slipping",
+        "purpose start again",
+        "building a life that keeps its purpose",
+        "purpose steady practice",
+        "purpose practice",
+        "meaningful rhythm",
+        "keep the thread",
+        "purposeful life",
+        "purpose purpose practice",
+        "purpose meaningful rhythm",
+        "purpose keep the thread",
+        "purpose purposeful life"
       ]
     },
     {
@@ -291,22 +4363,271 @@
       "shortTitle": "Attachment",
       "searchTerms": [
         "attachment",
-        "clingy",
+        "clinging",
         "possessive",
+        "grip",
+        "letting go",
+        "clingy",
         "can't let go",
-        "fixated"
+        "fixated",
+        "attachment in the ordinary day",
+        "attachment daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "attachment today",
+        "attachment ordinary day",
+        "attachment routine",
+        "attachment when the day tightens",
+        "attachment under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "attachment pressure",
+        "attachment stress",
+        "attachment under strain",
+        "attachment cornered",
+        "attachment after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "attachment repair",
+        "attachment return",
+        "attachment after slipping",
+        "attachment start again",
+        "building a truer practice of attachment",
+        "attachment steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "attachment practice",
+        "attachment habit",
+        "attachment steady return",
+        "attachment formation"
+      ]
+    },
+    {
+      "id": "topic-ego",
+      "title": "When the self keeps asking to be the center",
+      "shortTitle": "Ego",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "defensive",
+        "image",
+        "ego in ordinary interactions",
+        "ego daily",
+        "ordinary interactions",
+        "being seen",
+        "daily ego",
+        "ego ordinary interactions",
+        "ego being seen",
+        "ego defensive",
+        "ego daily ego",
+        "ego when you feel cornered",
+        "ego under pressure",
+        "under pressure",
+        "cornered",
+        "reactive pride",
+        "ego cornered",
+        "ego reactive pride",
+        "returning after pride has spoken",
+        "ego after the slip",
+        "after pride",
+        "repair",
+        "apology",
+        "self-justification",
+        "come back",
+        "ego after pride",
+        "ego repair",
+        "ego apology",
+        "ego self-justification",
+        "ego come back",
+        "practicing a smaller self",
+        "ego steady practice",
+        "humility",
+        "smaller self",
+        "practice",
+        "recognition",
+        "hidden goodness",
+        "ego humility",
+        "ego smaller self",
+        "ego practice",
+        "ego recognition",
+        "ego hidden goodness"
+      ]
+    },
+    {
+      "id": "topic-gratitude",
+      "title": "When gratitude feels thin",
+      "shortTitle": "Gratitude",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "thankfulness",
+        "blessing",
+        "gift",
+        "contentment",
+        "gratitude in the ordinary day",
+        "gratitude daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "gratitude today",
+        "gratitude ordinary day",
+        "gratitude routine",
+        "gratitude when the day tightens",
+        "gratitude under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "gratitude pressure",
+        "gratitude stress",
+        "gratitude under strain",
+        "gratitude cornered",
+        "gratitude after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "gratitude repair",
+        "gratitude return",
+        "gratitude after slipping",
+        "gratitude start again",
+        "building a truer practice of gratitude",
+        "gratitude steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "gratitude practice",
+        "gratitude habit",
+        "gratitude steady return",
+        "gratitude formation"
+      ]
+    },
+    {
+      "id": "topic-discipline",
+      "title": "When discipline has to become deeper than mood",
+      "shortTitle": "Discipline",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "self-control",
+        "follow through",
+        "steady practice",
+        "discipline in the ordinary rhythm",
+        "discipline daily",
+        "routine",
+        "ordinary rhythm",
+        "daily habit",
+        "discipline routine",
+        "discipline ordinary rhythm",
+        "discipline consistency",
+        "discipline daily habit",
+        "discipline when life gets compressed",
+        "discipline under pressure",
+        "stress",
+        "under pressure",
+        "all or nothing",
+        "compressed day",
+        "discipline stress",
+        "discipline all or nothing",
+        "discipline compressed day",
+        "restarting after the pattern broke",
+        "discipline after the slip",
+        "restart",
+        "broken streak",
+        "repair",
+        "start again",
+        "after lapse",
+        "discipline restart",
+        "discipline broken streak",
+        "discipline repair",
+        "discipline start again",
+        "discipline after lapse",
+        "building discipline that lasts",
+        "discipline steady practice",
+        "lasting discipline",
+        "durable practice",
+        "repetition",
+        "form",
+        "boredom",
+        "discipline lasting discipline",
+        "discipline durable practice",
+        "discipline repetition",
+        "discipline form",
+        "discipline boredom"
       ]
     },
     {
       "id": "topic-seva",
-      "title": "When you want your life to become seva",
+      "title": "When service has to be rescued from performance",
       "shortTitle": "Seva",
       "searchTerms": [
         "seva",
         "service",
-        "serve",
-        "help others",
-        "volunteer"
+        "serving",
+        "volunteering",
+        "offering",
+        "hidden service",
+        "humility",
+        "service in the work already in front of you",
+        "seva daily",
+        "ordinary work",
+        "daily service",
+        "small acts",
+        "care work",
+        "seva ordinary work",
+        "seva daily service",
+        "seva small acts",
+        "seva care work",
+        "service when urgency steals tenderness",
+        "seva under pressure",
+        "busy service",
+        "urgency",
+        "pressure",
+        "impatience",
+        "helping",
+        "seva busy service",
+        "seva urgency",
+        "seva pressure",
+        "seva impatience",
+        "seva helping",
+        "returning when service became self-serving",
+        "seva after the slip",
+        "motive",
+        "resentment",
+        "ego in service",
+        "repair",
+        "hidden act",
+        "seva motive",
+        "seva resentment",
+        "seva ego in service",
+        "seva repair",
+        "seva hidden act",
+        "training the heart for real seva",
+        "seva steady practice",
+        "practice of service",
+        "hidden seva",
+        "recurring service",
+        "credit",
+        "training",
+        "seva practice of service",
+        "seva hidden seva",
+        "seva recurring service",
+        "seva credit",
+        "seva training"
       ]
     },
     {
@@ -315,10 +4636,51 @@
       "shortTitle": "Hukam",
       "searchTerms": [
         "hukam",
+        "acceptance",
+        "command",
+        "what is",
+        "reality",
         "control",
         "surrender",
-        "acceptance",
-        "why is this happening"
+        "why is this happening",
+        "hukam in the ordinary day",
+        "hukam daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "hukam today",
+        "hukam ordinary day",
+        "hukam routine",
+        "hukam when the day tightens",
+        "hukam under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "hukam pressure",
+        "hukam stress",
+        "hukam under strain",
+        "hukam cornered",
+        "hukam after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "hukam repair",
+        "hukam return",
+        "hukam after slipping",
+        "hukam start again",
+        "building a truer practice of hukam",
+        "hukam steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "hukam practice",
+        "hukam habit",
+        "hukam steady return",
+        "hukam formation"
       ]
     },
     {
@@ -327,11 +4689,49 @@
       "shortTitle": "Doubt",
       "searchTerms": [
         "doubt",
-        "second guessing",
         "confusion",
         "uncertain",
+        "second guessing",
         "skeptical",
-        "faith feels thin"
+        "faith feels thin",
+        "doubt in the ordinary day",
+        "doubt daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "doubt today",
+        "doubt ordinary day",
+        "doubt routine",
+        "doubt when the day tightens",
+        "doubt under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "doubt pressure",
+        "doubt stress",
+        "doubt under strain",
+        "doubt cornered",
+        "doubt after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "doubt repair",
+        "doubt return",
+        "doubt after slipping",
+        "doubt start again",
+        "building a truer practice of doubt",
+        "doubt steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "doubt practice",
+        "doubt habit",
+        "doubt steady return",
+        "doubt formation"
       ]
     },
     {
@@ -341,10 +4741,50 @@
       "searchTerms": [
         "speech",
         "gossip",
-        "tongue",
-        "sharp words",
         "slander",
-        "respect"
+        "tongue",
+        "words",
+        "talking",
+        "sharp words",
+        "respect",
+        "speech in the ordinary day",
+        "speech daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "speech today",
+        "speech ordinary day",
+        "speech routine",
+        "speech when the day tightens",
+        "speech under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "speech pressure",
+        "speech stress",
+        "speech under strain",
+        "speech cornered",
+        "speech after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "speech repair",
+        "speech return",
+        "speech after slipping",
+        "speech start again",
+        "building a truer practice of speech",
+        "speech steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "speech practice",
+        "speech habit",
+        "speech steady return",
+        "speech formation"
       ]
     },
     {
@@ -354,36 +4794,222 @@
       "searchTerms": [
         "patience",
         "waiting",
+        "delay",
         "impatient",
         "hurry",
         "agitated",
-        "slow progress"
+        "slow progress",
+        "patience in the ordinary day",
+        "patience daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "patience today",
+        "patience ordinary day",
+        "patience routine",
+        "patience when the day tightens",
+        "patience under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "patience pressure",
+        "patience stress",
+        "patience under strain",
+        "patience cornered",
+        "patience after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "patience repair",
+        "patience return",
+        "patience after slipping",
+        "patience start again",
+        "building a truer practice of patience",
+        "patience steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "patience practice",
+        "patience habit",
+        "patience steady return",
+        "patience formation"
       ]
     },
     {
       "id": "topic-mercy",
-      "title": "When you need to remember mercy",
+      "title": "When mercy has to be received before it can be trusted",
       "shortTitle": "Mercy",
       "searchTerms": [
         "mercy",
         "grace",
         "compassion",
+        "kindness",
+        "gift",
         "undeserving",
+        "harsh on self",
         "accepted",
-        "reunited"
+        "mercy in the ordinary day",
+        "mercy daily",
+        "ordinary day",
+        "daily mercy",
+        "routine",
+        "ordinary time",
+        "mercy ordinary day",
+        "mercy daily mercy",
+        "mercy routine",
+        "mercy ordinary time",
+        "mercy when the day tightens",
+        "mercy under pressure",
+        "stress",
+        "pressure",
+        "under strain",
+        "panic",
+        "cornered",
+        "mercy stress",
+        "mercy pressure",
+        "mercy under strain",
+        "mercy panic",
+        "mercy cornered",
+        "mercy after the slip",
+        "after slipping",
+        "repair",
+        "failure",
+        "shame",
+        "come back",
+        "mercy after slipping",
+        "mercy repair",
+        "mercy failure",
+        "mercy shame",
+        "mercy come back",
+        "learning a merciful way to live",
+        "mercy steady practice",
+        "habit",
+        "steady practice",
+        "merciful life",
+        "inner voice",
+        "mercy habit",
+        "mercy merciful life",
+        "mercy inner voice"
+      ]
+    },
+    {
+      "id": "topic-forgiveness",
+      "title": "When bitterness has to be released before it hardens into identity",
+      "shortTitle": "Forgiveness",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "release",
+        "fearlessness",
+        "forgiveness in the repeating memory",
+        "forgiveness daily",
+        "replay",
+        "daily resentment",
+        "rehearsed hurt",
+        "memory",
+        "forgiveness replay",
+        "forgiveness daily resentment",
+        "forgiveness rehearsed hurt",
+        "forgiveness memory",
+        "forgiveness when you feel freshly provoked",
+        "forgiveness under pressure",
+        "fresh offense",
+        "provoked",
+        "retaliation",
+        "under pressure",
+        "forgiveness fresh offense",
+        "forgiveness provoked",
+        "forgiveness retaliation",
+        "returning after bitterness has already ruled",
+        "forgiveness after the slip",
+        "after bitterness",
+        "repair",
+        "bondage",
+        "return",
+        "forgiveness after bitterness",
+        "forgiveness repair",
+        "forgiveness grudge",
+        "forgiveness bondage",
+        "forgiveness return",
+        "practicing release before resentment matures",
+        "forgiveness steady practice",
+        "practice release",
+        "forgiving life",
+        "interrupt resentment",
+        "early release",
+        "forgiveness practice release",
+        "forgiveness forgiving life",
+        "forgiveness interrupt resentment",
+        "forgiveness early release"
       ]
     },
     {
       "id": "topic-greed",
-      "title": "When wanting keeps multiplying",
+      "title": "When wanting keeps disguising itself as need",
       "shortTitle": "Greed",
       "searchTerms": [
         "greed",
         "craving",
+        "consumption",
         "more",
-        "money",
-        "status",
-        "consumption"
+        "materialism",
+        "wanting",
+        "never enough",
+        "grasping",
+        "false wealth",
+        "greed in ordinary decisions",
+        "greed daily",
+        "spending",
+        "buying",
+        "impulse",
+        "ordinary decisions",
+        "greed spending",
+        "greed buying",
+        "greed more",
+        "greed impulse",
+        "greed ordinary decisions",
+        "greed when fear starts talking",
+        "greed under pressure",
+        "scarcity",
+        "hoarding",
+        "fear",
+        "security",
+        "under pressure",
+        "greed scarcity",
+        "greed hoarding",
+        "greed fear",
+        "greed security",
+        "returning after grasping too hard",
+        "greed after the slip",
+        "after greed",
+        "repair",
+        "confess",
+        "release",
+        "undo harm",
+        "greed after greed",
+        "greed repair",
+        "greed confess",
+        "greed release",
+        "greed undo harm",
+        "practicing enoughness",
+        "greed steady practice",
+        "contentment",
+        "enough",
+        "restraint",
+        "habit",
+        "practice",
+        "greed contentment",
+        "greed enough",
+        "greed restraint",
+        "greed habit",
+        "greed practice"
       ]
     },
     {
@@ -391,25 +5017,52 @@
       "title": "When you keep searching but do not settle",
       "shortTitle": "Restlessness",
       "searchTerms": [
-        "restless",
-        "can't settle",
+        "restlessness",
         "unsettled",
-        "always searching",
         "wandering",
-        "spiritually exhausted"
-      ]
-    },
-    {
-      "id": "topic-forgiveness",
-      "title": "When bitterness refuses to leave",
-      "shortTitle": "Forgiveness",
-      "searchTerms": [
-        "forgiveness",
-        "forgive",
-        "resentment",
-        "bitterness",
-        "offense",
-        "hard heart"
+        "scattered",
+        "can't settle",
+        "restless",
+        "always searching",
+        "spiritually exhausted",
+        "restlessness in the ordinary day",
+        "restlessness daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "restlessness today",
+        "restlessness ordinary day",
+        "restlessness routine",
+        "restlessness when the day tightens",
+        "restlessness under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "restlessness pressure",
+        "restlessness stress",
+        "restlessness under strain",
+        "restlessness cornered",
+        "restlessness after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "restlessness repair",
+        "restlessness return",
+        "restlessness after slipping",
+        "restlessness start again",
+        "building a truer practice of restlessness",
+        "restlessness steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "restlessness practice",
+        "restlessness habit",
+        "restlessness steady return",
+        "restlessness formation"
       ]
     },
     {
@@ -421,8 +5074,47 @@
         "community",
         "company",
         "belonging",
+        "companionship",
         "friendship",
-        "good company"
+        "good company",
+        "sangat in the ordinary day",
+        "sangat daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "sangat today",
+        "sangat ordinary day",
+        "sangat routine",
+        "sangat when the day tightens",
+        "sangat under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "sangat pressure",
+        "sangat stress",
+        "sangat under strain",
+        "sangat cornered",
+        "sangat after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "sangat repair",
+        "sangat return",
+        "sangat after slipping",
+        "sangat start again",
+        "building a truer practice of sangat",
+        "sangat steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "sangat practice",
+        "sangat habit",
+        "sangat steady return",
+        "sangat formation"
       ]
     },
     {
@@ -433,9 +5125,47 @@
         "control",
         "controlling",
         "micromanaging",
-        "can't let go",
         "outcomes",
-        "fix everything"
+        "can't let go",
+        "fix everything",
+        "control in the ordinary day",
+        "control daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "control today",
+        "control ordinary day",
+        "control routine",
+        "control when the day tightens",
+        "control under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "control pressure",
+        "control stress",
+        "control under strain",
+        "control cornered",
+        "control after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "control repair",
+        "control return",
+        "control after slipping",
+        "control start again",
+        "building a truer practice of control",
+        "control steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "control practice",
+        "control habit",
+        "control steady return",
+        "control formation"
       ]
     },
     {
@@ -444,11 +5174,50 @@
       "shortTitle": "Shame",
       "searchTerms": [
         "shame",
-        "guilty",
+        "guilt",
         "unworthy",
-        "dirty",
+        "regret",
         "self-loathing",
-        "regret"
+        "guilty",
+        "dirty",
+        "shame in the ordinary day",
+        "shame daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "shame today",
+        "shame ordinary day",
+        "shame routine",
+        "shame when the day tightens",
+        "shame under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "shame pressure",
+        "shame stress",
+        "shame under strain",
+        "shame cornered",
+        "shame after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "shame repair",
+        "shame return",
+        "shame after slipping",
+        "shame start again",
+        "building a truer practice of shame",
+        "shame steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "shame practice",
+        "shame habit",
+        "shame steady return",
+        "shame formation"
       ]
     },
     {
@@ -458,10 +5227,49 @@
       "searchTerms": [
         "fear",
         "afraid",
-        "scared",
         "dread",
+        "scared",
+        "insecurity",
         "panic",
-        "insecure"
+        "insecure",
+        "fear in the ordinary day",
+        "fear daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "fear today",
+        "fear ordinary day",
+        "fear routine",
+        "fear when the day tightens",
+        "fear under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "fear pressure",
+        "fear stress",
+        "fear under strain",
+        "fear cornered",
+        "fear after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "fear repair",
+        "fear return",
+        "fear after slipping",
+        "fear start again",
+        "building a truer practice of fear",
+        "fear steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "fear practice",
+        "fear habit",
+        "fear steady return",
+        "fear formation"
       ]
     },
     {
@@ -470,37 +5278,154 @@
       "shortTitle": "Honesty",
       "searchTerms": [
         "honesty",
-        "honest living",
         "integrity",
-        "crooked",
+        "truthfulness",
         "compromise",
-        "truthfulness"
+        "crooked",
+        "honest living",
+        "honesty in the ordinary day",
+        "honesty daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "honesty today",
+        "honesty ordinary day",
+        "honesty routine",
+        "honesty when the day tightens",
+        "honesty under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "honesty pressure",
+        "honesty stress",
+        "honesty under strain",
+        "honesty cornered",
+        "honesty after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "honesty repair",
+        "honesty return",
+        "honesty after slipping",
+        "honesty start again",
+        "building a truer practice of honesty",
+        "honesty steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "honesty practice",
+        "honesty habit",
+        "honesty steady return",
+        "honesty formation"
       ]
     },
     {
       "id": "topic-seeking",
-      "title": "When searching becomes a habit",
+      "title": "When searching starts keeping you unsettled",
       "shortTitle": "Seeking",
       "searchTerms": [
+        "seeking",
         "searching",
         "wandering",
-        "seeking",
-        "can't settle",
         "spiritually lost",
-        "looking everywhere"
+        "can't settle",
+        "restless searching",
+        "spiritual wandering",
+        "unsettled seeker",
+        "can't land",
+        "seeking truth",
+        "seeking in the ordinary day",
+        "seeking daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "seeking today",
+        "seeking ordinary day",
+        "seeking routine",
+        "seeking when the day tightens",
+        "seeking under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "seeking pressure",
+        "seeking stress",
+        "seeking under strain",
+        "seeking cornered",
+        "seeking after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "seeking repair",
+        "seeking return",
+        "seeking after slipping",
+        "seeking start again",
+        "building a truer practice of seeking",
+        "seeking steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "seeking practice",
+        "seeking habit",
+        "seeking steady return",
+        "seeking formation"
       ]
     },
     {
       "id": "topic-self-worth",
-      "title": "When you feel small or unwanted",
-      "shortTitle": "Self Worth",
+      "title": "When worth keeps feeling borrowed",
+      "shortTitle": "Self-Worth",
       "searchTerms": [
-        "worthless",
+        "self-worth",
         "not enough",
+        "worthless",
         "unwanted",
-        "unseen",
         "rejected",
-        "low self worth"
+        "self-worth in the ordinary day",
+        "self-worth daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "self-worth today",
+        "self-worth ordinary day",
+        "self-worth routine",
+        "self-worth when the day tightens",
+        "self-worth under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "self-worth pressure",
+        "self-worth stress",
+        "self-worth under strain",
+        "self-worth cornered",
+        "self-worth after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "self-worth repair",
+        "self-worth return",
+        "self-worth after slipping",
+        "self-worth start again",
+        "building a truer practice of self-worth",
+        "self-worth steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "self-worth practice",
+        "self-worth habit",
+        "self-worth steady return",
+        "self-worth formation"
       ]
     },
     {
@@ -513,7 +5438,45 @@
         "harsh",
         "tenderness",
         "cutting words",
-        "hard-hearted"
+        "hard-hearted",
+        "softness in the ordinary day",
+        "softness daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "softness today",
+        "softness ordinary day",
+        "softness routine",
+        "softness when the day tightens",
+        "softness under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "softness pressure",
+        "softness stress",
+        "softness under strain",
+        "softness cornered",
+        "softness after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "softness repair",
+        "softness return",
+        "softness after slipping",
+        "softness start again",
+        "building a truer practice of softness",
+        "softness steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "softness practice",
+        "softness habit",
+        "softness steady return",
+        "softness formation"
       ]
     },
     {
@@ -521,12 +5484,52 @@
       "title": "When the soul feels worn thin",
       "shortTitle": "Exhaustion",
       "searchTerms": [
-        "exhausted",
-        "burnt out",
+        "exhaustion",
+        "burnout",
         "tired",
         "drained",
         "weary",
-        "worn out"
+        "exhausted",
+        "burnt out",
+        "worn out",
+        "exhaustion in the ordinary day",
+        "exhaustion daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "exhaustion today",
+        "exhaustion ordinary day",
+        "exhaustion routine",
+        "exhaustion when the day tightens",
+        "exhaustion under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "exhaustion pressure",
+        "exhaustion stress",
+        "exhaustion under strain",
+        "exhaustion cornered",
+        "exhaustion after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "exhaustion repair",
+        "exhaustion return",
+        "exhaustion after slipping",
+        "exhaustion start again",
+        "building a truer practice of exhaustion",
+        "exhaustion steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "exhaustion practice",
+        "exhaustion habit",
+        "exhaustion steady return",
+        "exhaustion formation"
       ]
     },
     {
@@ -535,1097 +5538,48 @@
       "shortTitle": "Conduct",
       "searchTerms": [
         "conduct",
+        "practice",
         "lifestyle",
-        "practice",
         "hypocrisy",
+        "pure conduct",
         "integrity",
-        "pure conduct"
-      ]
-    },
-    {
-      "id": "topic-anxiety-daily",
-      "title": "When the mind is anxious in the day as it is",
-      "shortTitle": "Anxiety · Daily",
-      "searchTerms": [
-        "anxiety",
-        "stress",
-        "overthinking",
-        "worry",
-        "panic",
-        "spiraling",
+        "conduct in the ordinary day",
+        "conduct daily",
         "today",
         "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-anxiety-pressure",
-      "title": "When the mind is anxious under pressure",
-      "shortTitle": "Anxiety · Pressure",
-      "searchTerms": [
-        "anxiety",
-        "stress",
-        "overthinking",
-        "worry",
-        "panic",
-        "spiraling",
-        "pressure",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-anxiety-repair",
-      "title": "When the mind is anxious after the mind has slipped",
-      "shortTitle": "Anxiety · Repair",
-      "searchTerms": [
-        "anxiety",
-        "stress",
-        "overthinking",
-        "worry",
-        "panic",
-        "spiraling",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-anxiety-practice",
-      "title": "When the mind is anxious as a steady practice",
-      "shortTitle": "Anxiety · Practice",
-      "searchTerms": [
-        "anxiety",
-        "stress",
-        "overthinking",
-        "worry",
-        "panic",
-        "spiraling",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-anger-daily",
-      "title": "When anger rises quickly in the day as it is",
-      "shortTitle": "Anger · Daily",
-      "searchTerms": [
-        "anger",
-        "frustration",
-        "rage",
-        "irritation",
-        "reactive",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-anger-pressure",
-      "title": "When anger rises quickly under pressure",
-      "shortTitle": "Anger · Pressure",
-      "searchTerms": [
-        "anger",
-        "frustration",
-        "rage",
-        "irritation",
-        "reactive",
+        "ordinary day",
+        "routine",
+        "conduct today",
+        "conduct ordinary day",
+        "conduct routine",
+        "conduct when the day tightens",
+        "conduct under pressure",
         "pressure",
         "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-anger-repair",
-      "title": "When anger rises quickly after the mind has slipped",
-      "shortTitle": "Anger · Repair",
-      "searchTerms": [
-        "anger",
-        "frustration",
-        "rage",
-        "irritation",
-        "reactive",
+        "under strain",
+        "cornered",
+        "conduct pressure",
+        "conduct stress",
+        "conduct under strain",
+        "conduct cornered",
+        "conduct after the slip",
         "repair",
         "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-anger-practice",
-      "title": "When anger rises quickly as a steady practice",
-      "shortTitle": "Anger · Practice",
-      "searchTerms": [
-        "anger",
-        "frustration",
-        "rage",
-        "irritation",
-        "reactive",
-        "practice",
+        "after slipping",
+        "start again",
+        "conduct repair",
+        "conduct return",
+        "conduct after slipping",
+        "conduct start again",
+        "building a truer practice of conduct",
+        "conduct steady practice",
         "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-comparison-daily",
-      "title": "When comparison keeps stealing steadiness in the day as it is",
-      "shortTitle": "Comparison · Daily",
-      "searchTerms": [
-        "comparison",
-        "jealousy",
-        "envy",
-        "insecurity",
-        "measuring",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-comparison-pressure",
-      "title": "When comparison keeps stealing steadiness under pressure",
-      "shortTitle": "Comparison · Pressure",
-      "searchTerms": [
-        "comparison",
-        "jealousy",
-        "envy",
-        "insecurity",
-        "measuring",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-comparison-repair",
-      "title": "When comparison keeps stealing steadiness after the mind has slipped",
-      "shortTitle": "Comparison · Repair",
-      "searchTerms": [
-        "comparison",
-        "jealousy",
-        "envy",
-        "insecurity",
-        "measuring",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-comparison-practice",
-      "title": "When comparison keeps stealing steadiness as a steady practice",
-      "shortTitle": "Comparison · Practice",
-      "searchTerms": [
-        "comparison",
-        "jealousy",
-        "envy",
-        "insecurity",
-        "measuring",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-loneliness-daily",
-      "title": "When loneliness closes the room in in the day as it is",
-      "shortTitle": "Loneliness · Daily",
-      "searchTerms": [
-        "loneliness",
-        "alone",
-        "isolated",
-        "disconnected",
-        "abandoned",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-loneliness-pressure",
-      "title": "When loneliness closes the room in under pressure",
-      "shortTitle": "Loneliness · Pressure",
-      "searchTerms": [
-        "loneliness",
-        "alone",
-        "isolated",
-        "disconnected",
-        "abandoned",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-loneliness-repair",
-      "title": "When loneliness closes the room in after the mind has slipped",
-      "shortTitle": "Loneliness · Repair",
-      "searchTerms": [
-        "loneliness",
-        "alone",
-        "isolated",
-        "disconnected",
-        "abandoned",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-loneliness-practice",
-      "title": "When loneliness closes the room in as a steady practice",
-      "shortTitle": "Loneliness · Practice",
-      "searchTerms": [
-        "loneliness",
-        "alone",
-        "isolated",
-        "disconnected",
-        "abandoned",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-purpose-daily",
-      "title": "When life starts feeling aimless in the day as it is",
-      "shortTitle": "Purpose · Daily",
-      "searchTerms": [
-        "purpose",
-        "meaning",
-        "direction",
-        "calling",
-        "aimless",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-purpose-pressure",
-      "title": "When life starts feeling aimless under pressure",
-      "shortTitle": "Purpose · Pressure",
-      "searchTerms": [
-        "purpose",
-        "meaning",
-        "direction",
-        "calling",
-        "aimless",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-purpose-repair",
-      "title": "When life starts feeling aimless after the mind has slipped",
-      "shortTitle": "Purpose · Repair",
-      "searchTerms": [
-        "purpose",
-        "meaning",
-        "direction",
-        "calling",
-        "aimless",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-purpose-practice",
-      "title": "When life starts feeling aimless as a steady practice",
-      "shortTitle": "Purpose · Practice",
-      "searchTerms": [
-        "purpose",
-        "meaning",
-        "direction",
-        "calling",
-        "aimless",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-attachment-daily",
-      "title": "When attachment keeps tightening the grip in the day as it is",
-      "shortTitle": "Attachment · Daily",
-      "searchTerms": [
-        "attachment",
-        "clinging",
-        "possessive",
-        "grip",
-        "letting go",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-attachment-pressure",
-      "title": "When attachment keeps tightening the grip under pressure",
-      "shortTitle": "Attachment · Pressure",
-      "searchTerms": [
-        "attachment",
-        "clinging",
-        "possessive",
-        "grip",
-        "letting go",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-attachment-repair",
-      "title": "When attachment keeps tightening the grip after the mind has slipped",
-      "shortTitle": "Attachment · Repair",
-      "searchTerms": [
-        "attachment",
-        "clinging",
-        "possessive",
-        "grip",
-        "letting go",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-attachment-practice",
-      "title": "When attachment keeps tightening the grip as a steady practice",
-      "shortTitle": "Attachment · Practice",
-      "searchTerms": [
-        "attachment",
-        "clinging",
-        "possessive",
-        "grip",
-        "letting go",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-ego-daily",
-      "title": "When ego keeps making the self too large in the day as it is",
-      "shortTitle": "Ego · Daily",
-      "searchTerms": [
-        "ego",
-        "haumai",
-        "pride",
-        "self-importance",
-        "vanity",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-ego-pressure",
-      "title": "When ego keeps making the self too large under pressure",
-      "shortTitle": "Ego · Pressure",
-      "searchTerms": [
-        "ego",
-        "haumai",
-        "pride",
-        "self-importance",
-        "vanity",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-ego-repair",
-      "title": "When ego keeps making the self too large after the mind has slipped",
-      "shortTitle": "Ego · Repair",
-      "searchTerms": [
-        "ego",
-        "haumai",
-        "pride",
-        "self-importance",
-        "vanity",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-ego-practice",
-      "title": "When ego keeps making the self too large as a steady practice",
-      "shortTitle": "Ego · Practice",
-      "searchTerms": [
-        "ego",
-        "haumai",
-        "pride",
-        "self-importance",
-        "vanity",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-gratitude-daily",
-      "title": "When gratitude feels distant in the day as it is",
-      "shortTitle": "Gratitude · Daily",
-      "searchTerms": [
-        "gratitude",
-        "thankful",
-        "thankfulness",
-        "blessing",
-        "gift",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-gratitude-pressure",
-      "title": "When gratitude feels distant under pressure",
-      "shortTitle": "Gratitude · Pressure",
-      "searchTerms": [
-        "gratitude",
-        "thankful",
-        "thankfulness",
-        "blessing",
-        "gift",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-gratitude-repair",
-      "title": "When gratitude feels distant after the mind has slipped",
-      "shortTitle": "Gratitude · Repair",
-      "searchTerms": [
-        "gratitude",
-        "thankful",
-        "thankfulness",
-        "blessing",
-        "gift",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-gratitude-practice",
-      "title": "When gratitude feels distant as a steady practice",
-      "shortTitle": "Gratitude · Practice",
-      "searchTerms": [
-        "gratitude",
-        "thankful",
-        "thankfulness",
-        "blessing",
-        "gift",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-discipline-daily",
-      "title": "When discipline keeps thinning out in the day as it is",
-      "shortTitle": "Discipline · Daily",
-      "searchTerms": [
-        "discipline",
-        "consistency",
-        "habit",
-        "self-control",
-        "follow through",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-discipline-pressure",
-      "title": "When discipline keeps thinning out under pressure",
-      "shortTitle": "Discipline · Pressure",
-      "searchTerms": [
-        "discipline",
-        "consistency",
-        "habit",
-        "self-control",
-        "follow through",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-discipline-repair",
-      "title": "When discipline keeps thinning out after the mind has slipped",
-      "shortTitle": "Discipline · Repair",
-      "searchTerms": [
-        "discipline",
-        "consistency",
-        "habit",
-        "self-control",
-        "follow through",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-discipline-practice",
-      "title": "When discipline keeps thinning out as a steady practice",
-      "shortTitle": "Discipline · Practice",
-      "searchTerms": [
-        "discipline",
-        "consistency",
-        "habit",
-        "self-control",
-        "follow through",
-        "practice",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-seva-daily",
-      "title": "When service needs its center back in the day as it is",
-      "shortTitle": "Seva · Daily",
-      "searchTerms": [
-        "seva",
-        "service",
-        "serving",
-        "volunteering",
-        "offering",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-seva-pressure",
-      "title": "When service needs its center back under pressure",
-      "shortTitle": "Seva · Pressure",
-      "searchTerms": [
-        "seva",
-        "service",
-        "serving",
-        "volunteering",
-        "offering",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-seva-repair",
-      "title": "When service needs its center back after the mind has slipped",
-      "shortTitle": "Seva · Repair",
-      "searchTerms": [
-        "seva",
-        "service",
-        "serving",
-        "volunteering",
-        "offering",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-seva-practice",
-      "title": "When service needs its center back as a steady practice",
-      "shortTitle": "Seva · Practice",
-      "searchTerms": [
-        "seva",
-        "service",
-        "serving",
-        "volunteering",
-        "offering",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-hukam-daily",
-      "title": "When resistance keeps arguing with Hukam in the day as it is",
-      "shortTitle": "Hukam · Daily",
-      "searchTerms": [
-        "hukam",
-        "acceptance",
-        "command",
-        "what is",
-        "reality",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-hukam-pressure",
-      "title": "When resistance keeps arguing with Hukam under pressure",
-      "shortTitle": "Hukam · Pressure",
-      "searchTerms": [
-        "hukam",
-        "acceptance",
-        "command",
-        "what is",
-        "reality",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-hukam-repair",
-      "title": "When resistance keeps arguing with Hukam after the mind has slipped",
-      "shortTitle": "Hukam · Repair",
-      "searchTerms": [
-        "hukam",
-        "acceptance",
-        "command",
-        "what is",
-        "reality",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-hukam-practice",
-      "title": "When resistance keeps arguing with Hukam as a steady practice",
-      "shortTitle": "Hukam · Practice",
-      "searchTerms": [
-        "hukam",
-        "acceptance",
-        "command",
-        "what is",
-        "reality",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-doubt-daily",
-      "title": "When doubt keeps fogging the path in the day as it is",
-      "shortTitle": "Doubt · Daily",
-      "searchTerms": [
-        "doubt",
-        "confusion",
-        "uncertain",
-        "second guessing",
-        "skeptical",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-doubt-pressure",
-      "title": "When doubt keeps fogging the path under pressure",
-      "shortTitle": "Doubt · Pressure",
-      "searchTerms": [
-        "doubt",
-        "confusion",
-        "uncertain",
-        "second guessing",
-        "skeptical",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-doubt-repair",
-      "title": "When doubt keeps fogging the path after the mind has slipped",
-      "shortTitle": "Doubt · Repair",
-      "searchTerms": [
-        "doubt",
-        "confusion",
-        "uncertain",
-        "second guessing",
-        "skeptical",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-doubt-practice",
-      "title": "When doubt keeps fogging the path as a steady practice",
-      "shortTitle": "Doubt · Practice",
-      "searchTerms": [
-        "doubt",
-        "confusion",
-        "uncertain",
-        "second guessing",
-        "skeptical",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-speech-daily",
-      "title": "When speech keeps outrunning wisdom in the day as it is",
-      "shortTitle": "Speech · Daily",
-      "searchTerms": [
-        "speech",
-        "gossip",
-        "slander",
-        "tongue",
-        "words",
-        "talking",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-speech-pressure",
-      "title": "When speech keeps outrunning wisdom under pressure",
-      "shortTitle": "Speech · Pressure",
-      "searchTerms": [
-        "speech",
-        "gossip",
-        "slander",
-        "tongue",
-        "words",
-        "talking",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-speech-repair",
-      "title": "When speech keeps outrunning wisdom after the mind has slipped",
-      "shortTitle": "Speech · Repair",
-      "searchTerms": [
-        "speech",
-        "gossip",
-        "slander",
-        "tongue",
-        "words",
-        "talking",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-speech-practice",
-      "title": "When speech keeps outrunning wisdom as a steady practice",
-      "shortTitle": "Speech · Practice",
-      "searchTerms": [
-        "speech",
-        "gossip",
-        "slander",
-        "tongue",
-        "words",
-        "talking",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-patience-daily",
-      "title": "When waiting keeps turning bitter in the day as it is",
-      "shortTitle": "Patience · Daily",
-      "searchTerms": [
-        "patience",
-        "waiting",
-        "delay",
-        "impatient",
-        "hurry",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-patience-pressure",
-      "title": "When waiting keeps turning bitter under pressure",
-      "shortTitle": "Patience · Pressure",
-      "searchTerms": [
-        "patience",
-        "waiting",
-        "delay",
-        "impatient",
-        "hurry",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-patience-repair",
-      "title": "When waiting keeps turning bitter after the mind has slipped",
-      "shortTitle": "Patience · Repair",
-      "searchTerms": [
-        "patience",
-        "waiting",
-        "delay",
-        "impatient",
-        "hurry",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-patience-practice",
-      "title": "When waiting keeps turning bitter as a steady practice",
-      "shortTitle": "Patience · Practice",
-      "searchTerms": [
-        "patience",
-        "waiting",
-        "delay",
-        "impatient",
-        "hurry",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-mercy-daily",
-      "title": "When mercy feels hard to receive in the day as it is",
-      "shortTitle": "Mercy · Daily",
-      "searchTerms": [
-        "mercy",
-        "grace",
-        "compassion",
-        "kindness",
-        "gift",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-mercy-pressure",
-      "title": "When mercy feels hard to receive under pressure",
-      "shortTitle": "Mercy · Pressure",
-      "searchTerms": [
-        "mercy",
-        "grace",
-        "compassion",
-        "kindness",
-        "gift",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-mercy-repair",
-      "title": "When mercy feels hard to receive after the mind has slipped",
-      "shortTitle": "Mercy · Repair",
-      "searchTerms": [
-        "mercy",
-        "grace",
-        "compassion",
-        "kindness",
-        "gift",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-mercy-practice",
-      "title": "When mercy feels hard to receive as a steady practice",
-      "shortTitle": "Mercy · Practice",
-      "searchTerms": [
-        "mercy",
-        "grace",
-        "compassion",
-        "kindness",
-        "gift",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-forgiveness-daily",
-      "title": "When forgiveness keeps feeling costly in the day as it is",
-      "shortTitle": "Forgiveness · Daily",
-      "searchTerms": [
-        "forgiveness",
-        "forgive",
-        "resentment",
-        "bitterness",
-        "grudge",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-forgiveness-pressure",
-      "title": "When forgiveness keeps feeling costly under pressure",
-      "shortTitle": "Forgiveness · Pressure",
-      "searchTerms": [
-        "forgiveness",
-        "forgive",
-        "resentment",
-        "bitterness",
-        "grudge",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-forgiveness-repair",
-      "title": "When forgiveness keeps feeling costly after the mind has slipped",
-      "shortTitle": "Forgiveness · Repair",
-      "searchTerms": [
-        "forgiveness",
-        "forgive",
-        "resentment",
-        "bitterness",
-        "grudge",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-forgiveness-practice",
-      "title": "When forgiveness keeps feeling costly as a steady practice",
-      "shortTitle": "Forgiveness · Practice",
-      "searchTerms": [
-        "forgiveness",
-        "forgive",
-        "resentment",
-        "bitterness",
-        "grudge",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-greed-daily",
-      "title": "When greed keeps calling itself need in the day as it is",
-      "shortTitle": "Greed · Daily",
-      "searchTerms": [
-        "greed",
-        "craving",
-        "consumption",
-        "more",
-        "materialism",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-greed-pressure",
-      "title": "When greed keeps calling itself need under pressure",
-      "shortTitle": "Greed · Pressure",
-      "searchTerms": [
-        "greed",
-        "craving",
-        "consumption",
-        "more",
-        "materialism",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-greed-repair",
-      "title": "When greed keeps calling itself need after the mind has slipped",
-      "shortTitle": "Greed · Repair",
-      "searchTerms": [
-        "greed",
-        "craving",
-        "consumption",
-        "more",
-        "materialism",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-greed-practice",
-      "title": "When greed keeps calling itself need as a steady practice",
-      "shortTitle": "Greed · Practice",
-      "searchTerms": [
-        "greed",
-        "craving",
-        "consumption",
-        "more",
-        "materialism",
-        "practice",
-        "habit",
-        "steady return"
-      ]
-    },
-    {
-      "id": "topic-restlessness-daily",
-      "title": "When restlessness keeps scattering the heart in the day as it is",
-      "shortTitle": "Restlessness · Daily",
-      "searchTerms": [
-        "restlessness",
-        "unsettled",
-        "wandering",
-        "scattered",
-        "can't settle",
-        "today",
-        "daily",
-        "ordinary day"
-      ]
-    },
-    {
-      "id": "topic-restlessness-pressure",
-      "title": "When restlessness keeps scattering the heart under pressure",
-      "shortTitle": "Restlessness · Pressure",
-      "searchTerms": [
-        "restlessness",
-        "unsettled",
-        "wandering",
-        "scattered",
-        "can't settle",
-        "pressure",
-        "stress",
-        "under strain"
-      ]
-    },
-    {
-      "id": "topic-restlessness-repair",
-      "title": "When restlessness keeps scattering the heart after the mind has slipped",
-      "shortTitle": "Restlessness · Repair",
-      "searchTerms": [
-        "restlessness",
-        "unsettled",
-        "wandering",
-        "scattered",
-        "can't settle",
-        "repair",
-        "return",
-        "after slipping"
-      ]
-    },
-    {
-      "id": "topic-restlessness-practice",
-      "title": "When restlessness keeps scattering the heart as a steady practice",
-      "shortTitle": "Restlessness · Practice",
-      "searchTerms": [
-        "restlessness",
-        "unsettled",
-        "wandering",
-        "scattered",
-        "can't settle",
-        "practice",
-        "habit",
-        "steady return"
+        "steady return",
+        "formation",
+        "conduct practice",
+        "conduct habit",
+        "conduct steady return",
+        "conduct formation"
       ]
     }
   ]

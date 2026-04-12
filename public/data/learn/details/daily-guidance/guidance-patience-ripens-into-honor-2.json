@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-patience-ripens-into-honor"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.1,
-      "clarity": 0.63,
+      "clarity": 2.61,
       "specificity": 4.86,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.71,
-      "beauty": 2.25,
-      "overall": 3.25
+      "usefulness": 4.8,
+      "beauty": 3.32,
+      "overall": 3.87
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

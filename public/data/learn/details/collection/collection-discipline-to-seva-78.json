@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-discipline"
+      "id": "topic-discipline",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-seva"
+      "id": "topic-seva",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -44,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-discipline",
-    "topic-seva"
+    "topic-seva",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
@@ -66,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 4.07,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.28,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.56
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",

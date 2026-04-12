@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-comparison",
-    "topic-comparison-daily",
-    "topic-comparison-pressure"
+    "topic-comparison"
   ],
   "relatedShabadIds": [
     "shabad-generated-566"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.25,
-      "clarity": 3.42,
+      "clarity": 4.23,
       "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 3.74,
-      "overall": 3.95
+      "usefulness": 4.64,
+      "beauty": 4.13,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-generated-461"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.26,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 3.23,
-      "overall": 3.69
+      "usefulness": 4.42,
+      "beauty": 3.86,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -14,9 +14,7 @@
     "lifeApplication": "Do not separate devotion from the ethics of work and giving."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-work-give-know-the-path"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.93,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.51,
       "emotionalHonesty": 3,
-      "usefulness": 2.79,
-      "beauty": 4.06,
-      "overall": 3.72
+      "usefulness": 3.82,
+      "beauty": 4.21,
+      "overall": 3.97
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

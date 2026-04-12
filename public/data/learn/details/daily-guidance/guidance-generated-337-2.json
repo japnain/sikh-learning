@@ -13,7 +13,9 @@
     "shortMeaning": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-generated-337"
   ],
@@ -46,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.73,
-      "clarity": 2.34,
+      "clarity": 3.63,
       "specificity": 4.51,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.71,
-      "beauty": 3.15,
-      "overall": 3.47
+      "usefulness": 4.8,
+      "beauty": 3.86,
+      "overall": 3.93
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

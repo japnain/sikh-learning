@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 0.81,
+      "clarity": 2.62,
       "specificity": 4.76,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 2.41,
-      "overall": 3.23
+      "usefulness": 4.42,
+      "beauty": 3.36,
+      "overall": 3.81
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

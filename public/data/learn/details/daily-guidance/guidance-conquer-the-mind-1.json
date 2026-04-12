@@ -13,9 +13,7 @@
     "lifeApplication": "Discipline becomes more truthful when make contentment your ear-rings, humility your begging bowl, and meditation the ashes."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 2.58,
+      "clarity": 3.75,
       "specificity": 4.56,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.79,
-      "beauty": 2.96,
-      "overall": 3.43
+      "usefulness": 3.82,
+      "beauty": 3.59,
+      "overall": 3.86
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

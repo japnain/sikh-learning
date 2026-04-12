@@ -13,7 +13,9 @@
     "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
     "lifeApplication": "You do not need status to be held close."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close",
     "shabad-child-of-grace"
@@ -34,7 +36,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -47,12 +49,12 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.38,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.22,
-      "beauty": 4.46,
-      "overall": 3.73
+      "usefulness": 3.22,
+      "beauty": 4.69,
+      "overall": 4
     },
     "strengths": [
       "beauty",

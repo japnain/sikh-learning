@@ -10,6 +10,7 @@ function tokenSetSimilarity(left, right) {
 }
 
 function getOrigin(kind, item, legacyIds) {
+  if (item?.editorial?.forcedLocked) return "manual"
   return legacyIds[kind].has(item.id) ? "legacy" : "generated"
 }
 
@@ -19,6 +20,7 @@ function buildAssessment({
   evidence,
   templateKey,
   origin,
+  lockedByDefault = false,
 }) {
   const textBlocks =
     kind === "daily-guidance"
@@ -47,6 +49,15 @@ function buildAssessment({
     || (requiresActionThreshold && reviewed.scores.usefulness < 2.5)
   ) {
     status = "draft"
+  } else if (
+    lockedByDefault
+    && reviewed.scores.overall >= 3.8
+    && reviewed.scores.faithfulness >= 3.7
+    && reviewed.scores.clarity >= 3.2
+    && reviewed.scores.usefulness >= 3.1
+    && reviewed.scores.beauty >= 3.1
+  ) {
+    status = "locked"
   } else if (origin === "legacy" && reviewed.scores.overall >= 3.55 && reviewed.scores.faithfulness >= 3.7) {
     status = "locked"
   }
@@ -95,6 +106,18 @@ function buildTopicEvidence(item, dataset) {
   }
 }
 
+function buildTopicScenarioEvidence(topic, scenarioKey, dataset) {
+  const scenario = topic.scenarios[scenarioKey]
+  const relatedShabad = dataset.shabadDeepDivesById[scenario.excerpts[0]?.source.deepDiveId]
+  return {
+    coreClaim: scenario.centralInsight,
+    emotionalState: relatedShabad?.emotionalStates?.join(", ") || topic.category,
+    turn: scenario.issueStatement,
+    practicalImplication: scenario.actionPrompt,
+    bannedOverreach: [],
+  }
+}
+
 function buildCollectionEvidence(item, dataset) {
   const heroShabad = dataset.shabadDeepDivesById[item.heroSource.deepDiveId]
   return {
@@ -121,6 +144,18 @@ function registerSimilarityIssue(left, right, record, duplicateWarnings) {
 
 function reviewSimilarity(dataset) {
   const duplicateWarnings = []
+  const topicScenarioItems = dataset.topicGuides.flatMap(topic =>
+    topic.scenarioOrder.map((scenarioKey) => ({
+      id: `${topic.id}#${scenarioKey}`,
+      topicId: topic.id,
+      editorial: topic.scenarios[scenarioKey].editorial,
+      title: topic.scenarios[scenarioKey].title,
+      issueStatement: topic.scenarios[scenarioKey].issueStatement,
+      centralInsight: topic.scenarios[scenarioKey].centralInsight,
+      practicalReflection: topic.scenarios[scenarioKey].practicalReflection,
+      actionPrompt: topic.scenarios[scenarioKey].actionPrompt,
+    }))
+  )
   const buckets = [
     {
       label: "daily guidance similarity",
@@ -132,9 +167,16 @@ function reviewSimilarity(dataset) {
     {
       label: "topic guide similarity",
       items: dataset.topicGuides,
-      group: item => item.id.split("-").slice(0, 2).join("-"),
+      group: item => item.rotation.theme,
       text: item => `${item.title} ${item.issueStatement} ${item.centralInsight} ${item.practicalReflection}`,
       threshold: 0.94,
+    },
+    {
+      label: "topic scenario similarity",
+      items: topicScenarioItems,
+      group: item => item.topicId,
+      text: item => `${item.title} ${item.issueStatement} ${item.centralInsight} ${item.practicalReflection} ${item.actionPrompt}`,
+      threshold: 0.88,
     },
     {
       label: "collection similarity",
@@ -197,7 +239,23 @@ export function applyEditorialReview(dataset, legacySeed) {
       evidence: buildTopicEvidence(item, dataset),
       templateKey: item.id.split("-").slice(0, 3).join(":"),
       origin: getOrigin("topic-guide", item, legacyIds),
+      lockedByDefault: item.editorial?.forcedLocked === true,
     })
+
+    for (const scenarioKey of item.scenarioOrder) {
+      const scenario = item.scenarios[scenarioKey]
+      scenario.editorial = buildAssessment({
+        kind: "topic-guide",
+        item: {
+          ...scenario,
+          excerpts: scenario.excerpts,
+        },
+        evidence: buildTopicScenarioEvidence(item, scenarioKey, dataset),
+        templateKey: `${item.id}:${scenarioKey}`,
+        origin: scenario.editorial?.forcedLocked === true ? "manual" : "generated",
+        lockedByDefault: scenario.editorial?.forcedLocked === true,
+      })
+    }
   }
 
   for (const item of dataset.collections) {
@@ -215,6 +273,13 @@ export function applyEditorialReview(dataset, legacySeed) {
     ...dataset.dailyGuidance.map(item => ({ id: item.id, kind: "daily-guidance", editorial: item.editorial })),
     ...dataset.shabadDeepDives.map(item => ({ id: item.id, kind: "shabad-deep-dive", editorial: item.editorial })),
     ...dataset.topicGuides.map(item => ({ id: item.id, kind: "topic-guide", editorial: item.editorial })),
+    ...dataset.topicGuides.flatMap(item =>
+      item.scenarioOrder.map((scenarioKey) => ({
+        id: `${item.id}#${scenarioKey}`,
+        kind: "topic-guide",
+        editorial: item.scenarios[scenarioKey].editorial,
+      }))
+    ),
     ...dataset.collections.map(item => ({ id: item.id, kind: "collection", editorial: item.editorial })),
   ]
 

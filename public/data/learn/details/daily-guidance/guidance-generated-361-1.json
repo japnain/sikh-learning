@@ -13,9 +13,7 @@
     "lifeApplication": "Greed becomes more truthful when first, the baby loves mother's milk;."
   },
   "relatedTopicIds": [
-    "topic-greed",
-    "topic-greed-daily",
-    "topic-greed-pressure"
+    "topic-greed"
   ],
   "relatedShabadIds": [
     "shabad-generated-361"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 3.3,
+      "clarity": 4.11,
       "specificity": 4.48,
       "emotionalHonesty": 3.72,
-      "usefulness": 2.79,
-      "beauty": 3.5,
-      "overall": 3.64
+      "usefulness": 3.82,
+      "beauty": 3.89,
+      "overall": 3.98
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

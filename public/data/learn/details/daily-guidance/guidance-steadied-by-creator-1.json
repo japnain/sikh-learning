@@ -13,9 +13,7 @@
     "lifeApplication": "Anxiety becomes more truthful when merciful, the Lord Master is Merciful."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.92,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.87,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.23,
-      "beauty": 3.57,
-      "overall": 3.75
+      "usefulness": 4.26,
+      "beauty": 3.92,
+      "overall": 4.07
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

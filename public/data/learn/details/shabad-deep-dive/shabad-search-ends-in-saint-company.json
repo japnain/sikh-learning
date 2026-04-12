@@ -144,9 +144,7 @@
     "guidance-search-ends-in-saint-company-2"
   ],
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedCollectionIds": [
     "collection-restlessness-to-stillness",
@@ -178,12 +176,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.22,
-      "beauty": 4.06,
-      "overall": 3.82
+      "usefulness": 3.22,
+      "beauty": 4.21,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",

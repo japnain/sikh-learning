@@ -13,9 +13,7 @@
     "lifeApplication": "Gratitude becomes more truthful when gauree, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedShabadIds": [
     "shabad-generated-460"
@@ -49,15 +47,15 @@
     },
     "scores": {
       "faithfulness": 3.59,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.19,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 4.14,
-      "overall": 3.74
+      "usefulness": 4.58,
+      "beauty": 4.37,
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "beauty"
     ],
     "issues": []

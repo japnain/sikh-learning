@@ -1,76 +1,486 @@
 {
   "id": "topic-self-worth",
-  "title": "When you feel small or unwanted",
-  "shortTitle": "Self Worth",
+  "title": "When worth keeps feeling borrowed",
+  "shortTitle": "Self-Worth",
   "category": "most-needed",
-  "issueStatement": "You keep reading your worth through approval, performance, or whatever most recently went wrong.",
-  "centralInsight": "Gurbani gives dignity by relation, not vanity: the servant held close, the child cherished, the heart inhabited by Naam.",
-  "practicalReflection": "Self-worth collapses when it is tied to comparison. Guru roots it instead in nearness, grace, and truthful belonging.",
-  "actionPrompt": "When you feel reduced today, repeat one line that names you in relation to the Divine rather than to the crowd.",
+  "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success.",
+  "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One.",
+  "practicalReflection": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Let dignity be received before it is defended.",
+  "actionPrompt": "Let dignity be received before it is defended.",
   "searchTerms": [
-    "worthless",
+    "self-worth",
     "not enough",
+    "worthless",
     "unwanted",
-    "unseen",
     "rejected",
-    "low self worth"
+    "self-worth in the ordinary day",
+    "self-worth daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "self-worth today",
+    "self-worth ordinary day",
+    "self-worth routine",
+    "self-worth when the day tightens",
+    "self-worth under pressure",
+    "pressure",
+    "stress",
+    "under strain",
+    "cornered",
+    "self-worth pressure",
+    "self-worth stress",
+    "self-worth under strain",
+    "self-worth cornered",
+    "self-worth after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "self-worth repair",
+    "self-worth return",
+    "self-worth after slipping",
+    "self-worth start again",
+    "building a truer practice of self-worth",
+    "self-worth steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "self-worth practice",
+    "self-worth habit",
+    "self-worth steady return",
+    "self-worth formation"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-lord-keeps-the-humble-close",
         "verseIds": [
-          37476,
-          37477
+          37468
         ],
-        "shortMeaning": "The humble servant is held close, and the child is cherished.",
-        "lifeApplication": "Dignity here comes from nearness, not performance."
+        "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+        "lifeApplication": "Nearness is received in humility, not built out of status. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The shabad refuses the market logic of worth."
+      "explanation": "The theme is named without abstraction here: the True Guru, the Great Giver, is the Great, Primal Being; meeting."
     },
     {
       "source": {
-        "deepDiveId": "shabad-child-of-grace",
+        "deepDiveId": "shabad-generated-65",
         "verseIds": [
-          3761,
-          3762,
-          3763
+          758,
+          760
         ],
-        "shortMeaning": "The Guru is protector, mother, and father to the helpless child.",
-        "lifeApplication": "Need does not cancel worth; it reveals where care is meant to be received."
+        "shortMeaning": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
+        "lifeApplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This turns dependence into a doorway rather than a defect."
+      "explanation": "The shabad widens the issue beyond mood alone. Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-honor-women",
+        "deepDiveId": "shabad-generated-337",
         "verseIds": [
-          21287,
-          21289
+          4859,
+          4865
         ],
-        "shortMeaning": "What Guru honors cannot be spoken of as disposable or lesser.",
-        "lifeApplication": "Gurbani revises contempt at the level of value itself."
+        "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in",
+        "lifeApplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Honor in Gurbani is not sentimental; it is theological."
+      "explanation": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Self-Worth in the ordinary day",
+      "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether self-worth is being remembered or postponed.",
+      "actionPrompt": "Let dignity be received before it is defended. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "self-worth",
+        "not enough",
+        "worthless",
+        "unwanted",
+        "rejected",
+        "self-worth in the ordinary day",
+        "self-worth daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "self-worth today",
+        "self-worth ordinary day",
+        "self-worth routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
+            "verseIds": [
+              37468
+            ],
+            "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+            "lifeApplication": "Nearness is received in humility, not built out of status. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: the True Guru, the Great Giver, is the Great, Primal Being; meeting."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-65",
+            "verseIds": [
+              758,
+              760
+            ],
+            "shortMeaning": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
+            "lifeApplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-337",
+            "verseIds": [
+              4859,
+              4865
+            ],
+            "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in",
+            "lifeApplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-self-worth:daily",
+        "evidence": {
+          "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "small, unwanted, afraid",
+          "turn": "The mind keeps outsourcing dignity to response, approval, and success. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Let dignity be received before it is defended. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.42,
+          "beauty": 4.53,
+          "overall": 4.35
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Self-Worth when the day tightens",
+      "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Let dignity be received before it is defended. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "self-worth",
+        "not enough",
+        "worthless",
+        "unwanted",
+        "rejected",
+        "self-worth when the day tightens",
+        "self-worth under pressure",
+        "pressure",
+        "stress",
+        "under strain",
+        "cornered",
+        "self-worth pressure",
+        "self-worth stress",
+        "self-worth under strain",
+        "self-worth cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-65",
+            "verseIds": [
+              758,
+              760
+            ],
+            "shortMeaning": "Siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of",
+            "lifeApplication": "Comparison steadies when o Nanak, I am forever a sacrifice to the one who beholds, and inspires. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: siree Raag, First Mehla:; like the poppies, they are dyed in the deep crimson color of."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-704",
+            "verseIds": [
+              9506,
+              9523
+            ],
+            "shortMeaning": "The deluded mind enters the house of Maya; o Nanak, the Gurmukh sings the Glorious Praises of the Lord",
+            "lifeApplication": "Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1046",
+            "verseIds": [
+              13132
+            ],
+            "shortMeaning": "By Guru's Grace, rare is the one who realizes this",
+            "lifeApplication": "Seva steadies when o Nanak, God's humble servants meditate on Him. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-self-worth:pressure",
+        "evidence": {
+          "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "envious, unsettled, small",
+          "turn": "The mind keeps outsourcing dignity to response, approval, and success. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Let dignity be received before it is defended. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.8,
+          "beauty": 4.53,
+          "overall": 4.43
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Self-Worth after the slip",
+      "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Let dignity be received before it is defended. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "self-worth",
+        "not enough",
+        "worthless",
+        "unwanted",
+        "rejected",
+        "self-worth after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "self-worth repair",
+        "self-worth return",
+        "self-worth after slipping",
+        "self-worth start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-337",
+            "verseIds": [
+              4859,
+              4865
+            ],
+            "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in",
+            "lifeApplication": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: through the Word of the Guru's Shabad, the Lord is seen within; we could read the account of the Lord, if He were in."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-704",
+            "verseIds": [
+              9510
+            ],
+            "shortMeaning": "in the anxious affairs of all these, people lose the game and",
+            "lifeApplication": "Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Ego steadies when o Nanak, the Gurmukh sings the Glorious Praises of the Lord. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-self-worth:repair",
+        "evidence": {
+          "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "unworthy, rejected, fragile",
+          "turn": "The mind keeps outsourcing dignity to response, approval, and success. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Let dignity be received before it is defended. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.94,
+          "beauty": 4.94,
+          "overall": 4.48
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of self-worth",
+      "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Let dignity be received before it is defended. Repeat what you can actually keep.",
+      "searchTerms": [
+        "self-worth",
+        "not enough",
+        "worthless",
+        "unwanted",
+        "rejected",
+        "building a truer practice of self-worth",
+        "self-worth steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "self-worth practice",
+        "self-worth habit",
+        "self-worth steady return",
+        "self-worth formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1046",
+            "verseIds": [
+              13132
+            ],
+            "shortMeaning": "By Guru's Grace, rare is the one who realizes this",
+            "lifeApplication": "Seva steadies when o Nanak, God's humble servants meditate on Him. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: by Guru's Grace, rare is the one who realizes this."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-lord-keeps-the-humble-close",
+            "verseIds": [
+              37468
+            ],
+            "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+            "lifeApplication": "Nearness is received in humility, not built out of status. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Nearness is received in humility, not built out of status. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11,
+              15
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-self-worth:practice",
+        "evidence": {
+          "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "performing, transactional, dry",
+          "turn": "The mind keeps outsourcing dignity to response, approval, and success. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Let dignity be received before it is defended. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.98,
+          "beauty": 4.69,
+          "overall": 4.27
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close",
-    "shabad-child-of-grace",
-    "shabad-honor-women"
+    "shabad-generated-65",
+    "shabad-generated-337",
+    "shabad-generated-704",
+    "shabad-generated-1046",
+    "shabad-hukam-inside-everything"
   ],
-  "relatedTopicIds": [],
-  "relatedCollectionIds": [],
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anger"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle",
+    "collection-restlessness-to-self-worth-95"
+  ],
   "rotation": {
     "theme": "self-worth",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 8,
-    "balanceCategory": "comfort",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
   },
   "editorial": {
     "status": "locked",
@@ -78,24 +488,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:self:worth",
     "evidence": {
-      "coreClaim": "Gurbani gives dignity by relation, not vanity: the servant held close, the child cherished, the heart inhabited by Naam.",
+      "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "You keep reading your worth through approval, performance, or whatever most recently went wrong.",
-      "practicalImplication": "When you feel reduced today, repeat one line that names you in relation to the Divine rather than to the crowd.",
+      "turn": "The mind keeps outsourcing dignity to response, approval, and success.",
+      "practicalImplication": "Let dignity be received before it is defended.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
-      "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.45,
-      "beauty": 4.62,
-      "overall": 4.16
+      "clarity": 3.63,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.98,
+      "beauty": 3.79,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": []
   }

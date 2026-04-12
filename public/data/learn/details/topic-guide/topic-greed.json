@@ -1,68 +1,490 @@
 {
   "id": "topic-greed",
-  "title": "When wanting keeps multiplying",
+  "title": "When wanting keeps disguising itself as need",
   "shortTitle": "Greed",
   "category": "inner-work",
-  "issueStatement": "You keep feeding appetite, but the appetite is not getting smaller.",
-  "centralInsight": "Gurbani names greed bluntly because greed colonizes speech, attention, and even spirituality if it is not exposed.",
-  "practicalReflection": "The issue is not possession alone. It is the kind of wanting that leaves no room for Naam to dwell.",
-  "actionPrompt": "Notice one appetite you keep obeying automatically. Practice one concrete refusal today.",
+  "issueStatement": "The appetite has learned spiritual language, practical language, and survival language, but the heart is still left poor after feeding it.",
+  "centralInsight": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist.",
+  "practicalReflection": "Greed is not only excess. It is the confusion that keeps acquisition feeling urgent while contentment keeps being postponed.",
+  "actionPrompt": "Ask what you are chasing for relief, status, or safety that still leaves the heart hungry once it is in your hands.",
   "searchTerms": [
     "greed",
     "craving",
+    "consumption",
     "more",
-    "money",
-    "status",
-    "consumption"
+    "materialism",
+    "wanting",
+    "never enough",
+    "grasping",
+    "false wealth",
+    "greed in ordinary decisions",
+    "greed daily",
+    "spending",
+    "buying",
+    "impulse",
+    "ordinary decisions",
+    "greed spending",
+    "greed buying",
+    "greed more",
+    "greed impulse",
+    "greed ordinary decisions",
+    "greed when fear starts talking",
+    "greed under pressure",
+    "scarcity",
+    "hoarding",
+    "fear",
+    "security",
+    "under pressure",
+    "greed scarcity",
+    "greed hoarding",
+    "greed fear",
+    "greed security",
+    "returning after grasping too hard",
+    "greed after the slip",
+    "after greed",
+    "repair",
+    "confess",
+    "release",
+    "undo harm",
+    "greed after greed",
+    "greed repair",
+    "greed confess",
+    "greed release",
+    "greed undo harm",
+    "practicing enoughness",
+    "greed steady practice",
+    "contentment",
+    "enough",
+    "restraint",
+    "habit",
+    "practice",
+    "greed contentment",
+    "greed enough",
+    "greed restraint",
+    "greed habit",
+    "greed practice"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-speak-what-brings-honor",
         "verseIds": [
-          634,
-          639,
-          641
+          634
         ],
-        "shortMeaning": "Greed degrades speech and crowds out the dwelling of Naam.",
-        "lifeApplication": "Do not treat appetite as a harmless private preference."
+        "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The diagnosis is severe because the damage is severe."
+      "explanation": "The theme is named without abstraction here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
     },
     {
       "source": {
         "deepDiveId": "shabad-buy-what-goes-with-you",
         "verseIds": [
-          933,
           934,
           937
         ],
-        "shortMeaning": "Wanting needs a new object: what can actually go with you.",
-        "lifeApplication": "Re-aim appetite instead of pretending you have none."
+        "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+        "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru redirects desire instead of merely shaming it."
+      "explanation": "The shabad widens the issue beyond mood alone. Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-detached-and-steady",
+        "deepDiveId": "shabad-generated-338",
         "verseIds": [
-          9414,
-          9416
+          4889,
+          4900
         ],
-        "shortMeaning": "Freedom can be seen where greed and praise lose their binding power.",
-        "lifeApplication": "Steadiness becomes visible when appetite stops dictating identity."
+        "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
+        "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This excerpt shows the other side of greed: real freedom."
+      "explanation": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Greed in ordinary decisions",
+      "issueStatement": "Greed rarely arrives announcing itself. It shows up in quick choices, small upgrades, and the quiet assumption that more will steady you.",
+      "centralInsight": "The Guru makes daily desire visible by asking what your decisions are training you to worship.",
+      "practicalReflection": "Ordinary wanting shapes the soul long before crisis does. Daily choices reveal whether contentment is being practiced or deferred.",
+      "actionPrompt": "Before the next purchase, scroll, or grasping impulse, ask whether it will actually nourish you or only extend the craving.",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "greed in ordinary decisions",
+        "greed daily",
+        "spending",
+        "buying",
+        "impulse",
+        "ordinary decisions",
+        "greed spending",
+        "greed buying",
+        "greed more",
+        "greed impulse",
+        "greed ordinary decisions"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-speak-what-brings-honor",
+            "verseIds": [
+              634
+            ],
+            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-buy-what-goes-with-you",
+            "verseIds": [
+              934,
+              937
+            ],
+            "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-338",
+            "verseIds": [
+              4889,
+              4900
+            ],
+            "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
+            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when they do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-greed:daily",
+        "evidence": {
+          "coreClaim": "The Guru makes daily desire visible by asking what your decisions are training you to worship.",
+          "emotionalState": "reactive, hungry, resentful",
+          "turn": "Greed rarely arrives announcing itself. It shows up in quick choices, small upgrades, and the quiet assumption that more will steady you.",
+          "practicalImplication": "Before the next purchase, scroll, or grasping impulse, ask whether it will actually nourish you or only extend the craving.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3,
+          "usefulness": 3.44,
+          "beauty": 4.37,
+          "overall": 4.12
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Greed when fear starts talking",
+      "issueStatement": "Under pressure, accumulation can feel like wisdom. Fear tells you that keeping more, taking more, or hoarding more is just prudence.",
+      "centralInsight": "Gurbani separates provision from panic. Pressure does not justify letting fear rename greed as responsibility.",
+      "practicalReflection": "The anxious mind wants visible surplus. The Guru keeps returning the question to trust, truthful work, and what can actually accompany you.",
+      "actionPrompt": "When fear says take extra, pause long enough to ask whether you are being guided by care or by scarcity posing as care.",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "greed when fear starts talking",
+        "greed under pressure",
+        "scarcity",
+        "hoarding",
+        "fear",
+        "security",
+        "under pressure",
+        "greed scarcity",
+        "greed hoarding",
+        "greed fear",
+        "greed security"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-buy-what-goes-with-you",
+            "verseIds": [
+              934,
+              937
+            ],
+            "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+            "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-361",
+            "verseIds": [
+              5606,
+              5610
+            ],
+            "shortMeaning": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
+            "lifeApplication": "Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-511",
+            "verseIds": [
+              7132
+            ],
+            "shortMeaning": "Those whose hearts are pleased with the Guru's Teachings - the Lord's",
+            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-greed:pressure",
+        "evidence": {
+          "coreClaim": "Gurbani separates provision from panic. Pressure does not justify letting fear rename greed as responsibility.",
+          "emotionalState": "distracted, ambitious, grasping",
+          "turn": "Under pressure, accumulation can feel like wisdom. Fear tells you that keeping more, taking more, or hoarding more is just prudence.",
+          "practicalImplication": "When fear says take extra, pause long enough to ask whether you are being guided by care or by scarcity posing as care.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.72,
+          "usefulness": 3.22,
+          "beauty": 4.85,
+          "overall": 4.24
+        },
+        "strengths": [
+          "beauty",
+          "specificity"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Returning after grasping too hard",
+      "issueStatement": "You already let greed set the terms, and now the mind wants to defend the choice rather than confess the hunger beneath it.",
+      "centralInsight": "Repair begins when greed is named without euphemism. The Guru turns you back toward truthful earning, honest release, and inner poverty before God.",
+      "practicalReflection": "What was taken or clung to matters, but so does the desire beneath it. Return is not complete until the heart relearns sufficiency.",
+      "actionPrompt": "Admit where grasping overruled truth, undo one part of the harm if you can, and practice one concrete act of release today.",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "returning after grasping too hard",
+        "greed after the slip",
+        "after greed",
+        "repair",
+        "confess",
+        "release",
+        "undo harm",
+        "greed after greed",
+        "greed repair",
+        "greed confess",
+        "greed release",
+        "greed undo harm"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-338",
+            "verseIds": [
+              4889,
+              4900
+            ],
+            "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
+            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: they do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-361",
+            "verseIds": [
+              5602
+            ],
+            "shortMeaning": "eighth, he becomes angry, and his body is consumed",
+            "lifeApplication": "Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Greed steadies when without the Guru, the world is drowning. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-823",
+            "verseIds": [
+              11203
+            ],
+            "shortMeaning": "",
+            "lifeApplication": "Greed steadies when o Nanak, the Lord Himself cherishes us; He is our Mother and Father. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-greed:repair",
+        "evidence": {
+          "coreClaim": "Repair begins when greed is named without euphemism. The Guru turns you back toward truthful earning, honest release, and inner poverty before God.",
+          "emotionalState": "envious, unsettled, small",
+          "turn": "You already let greed set the terms, and now the mind wants to defend the choice rather than confess the hunger beneath it.",
+          "practicalImplication": "Admit where grasping overruled truth, undo one part of the harm if you can, and practice one concrete act of release today.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.42,
+          "beauty": 4.53,
+          "overall": 4.38
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Practicing enoughness",
+      "issueStatement": "Greed weakens slowly, not only through one dramatic renunciation but through a hundred quieter retrainings of desire.",
+      "centralInsight": "Contentment is not passivity. It is disciplined agreement with what is enough, repeated until craving loses its authority.",
+      "practicalReflection": "The heart needs practice in sufficiency because the world rehearses lack all day long.",
+      "actionPrompt": "Pick one area where excess has become normal and spend a week practicing restraint there without performing it for anyone.",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "practicing enoughness",
+        "greed steady practice",
+        "contentment",
+        "enough",
+        "restraint",
+        "habit",
+        "practice",
+        "greed contentment",
+        "greed enough",
+        "greed restraint",
+        "greed habit",
+        "greed practice"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-511",
+            "verseIds": [
+              7132
+            ],
+            "shortMeaning": "Those whose hearts are pleased with the Guru's Teachings - the Lord's",
+            "lifeApplication": "Mercy steadies when servant Nanak is the slave of the Guru; in the Sangat, the Holy Congregation,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: those whose hearts are pleased with the Guru's Teachings - the Lord's."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-speak-what-brings-honor",
+            "verseIds": [
+              634
+            ],
+            "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+            "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-823",
+            "verseIds": [
+              11203,
+              11207
+            ],
+            "shortMeaning": "He shall obtain salvation, and his intellect shall be enlightened; he will",
+            "lifeApplication": "Greed steadies when o Nanak, the Lord Himself cherishes us; He is our Mother and Father. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-greed:practice",
+        "evidence": {
+          "coreClaim": "Contentment is not passivity. It is disciplined agreement with what is enough, repeated until craving loses its authority.",
+          "emotionalState": "unworthy, guarded, hard-on-self",
+          "turn": "Greed weakens slowly, not only through one dramatic renunciation but through a hundred quieter retrainings of desire.",
+          "practicalImplication": "Pick one area where excess has become normal and spend a week practicing restraint there without performing it for anyone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.22,
+          "beauty": 4.21,
+          "overall": 4.09
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
     "shabad-buy-what-goes-with-you",
-    "shabad-detached-and-steady"
+    "shabad-generated-338",
+    "shabad-generated-361",
+    "shabad-generated-511",
+    "shabad-generated-823"
   ],
   "relatedTopicIds": [
-    "topic-greed-daily",
-    "topic-greed-pressure"
+    "topic-attachment",
+    "topic-ego"
   ],
   "relatedCollectionIds": [
     "collection-speech-and-self-restraint",
@@ -71,35 +493,35 @@
   ],
   "rotation": {
     "theme": "greed",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 8,
-    "balanceCategory": "challenge",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:greed",
     "evidence": {
-      "coreClaim": "Gurbani names greed bluntly because greed colonizes speech, attention, and even spirituality if it is not exposed.",
+      "coreClaim": "Gurbani exposes greed by asking what truly remains. False wealth multiplies grasping; true wealth travels with the soul and loosens the fist.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "You keep feeding appetite, but the appetite is not getting smaller.",
-      "practicalImplication": "Notice one appetite you keep obeying automatically. Practice one concrete refusal today.",
+      "turn": "The appetite has learned spiritual language, practical language, and survival language, but the heart is still left poor after feeding it.",
+      "practicalImplication": "Ask what you are chasing for relief, status, or safety that still leaves the heart hungry once it is in your hands.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
-      "specificity": 5,
-      "emotionalHonesty": 3,
-      "usefulness": 3.36,
-      "beauty": 3.9,
-      "overall": 3.97
+      "clarity": 3.27,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.22,
+      "beauty": 3.33,
+      "overall": 3.82
     },
     "strengths": [
       "specificity",

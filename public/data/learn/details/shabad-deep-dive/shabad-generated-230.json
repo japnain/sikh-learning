@@ -93,9 +93,7 @@
     "guidance-generated-230-3"
   ],
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -127,19 +125,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.58,
+      "clarity": 3.75,
       "specificity": 4.96,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.44,
-      "beauty": 3.27,
-      "overall": 3.67
+      "usefulness": 3.44,
+      "beauty": 3.9,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

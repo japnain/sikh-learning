@@ -183,9 +183,7 @@
     "guidance-generated-107-2"
   ],
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedCollectionIds": [
     "collection-fear-to-trust",
@@ -217,19 +215,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.22,
+      "clarity": 3.13,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 3.06,
-      "overall": 3.39
+      "usefulness": 3.22,
+      "beauty": 4.05,
+      "overall": 3.98
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -15,9 +15,7 @@
     "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
   },
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-child-of-grace"
@@ -38,7 +36,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.7,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.29,
       "emotionalHonesty": 3,
-      "usefulness": 2.44,
-      "beauty": 3.9,
-      "overall": 3.55
+      "usefulness": 3.44,
+      "beauty": 4.05,
+      "overall": 3.79
     },
     "strengths": [
-      "specificity",
-      "clarity"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

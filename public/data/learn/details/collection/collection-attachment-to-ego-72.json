@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-attachment"
+      "id": "topic-attachment",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-ego"
+      "id": "topic-ego",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-attachment",
-    "topic-ego"
+    "topic-ego",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-detached-and-steady",
@@ -67,16 +70,16 @@
     },
     "scores": {
       "faithfulness": 4.08,
-      "clarity": 3.52,
+      "clarity": 4.05,
       "specificity": 4.29,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.66
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.91
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

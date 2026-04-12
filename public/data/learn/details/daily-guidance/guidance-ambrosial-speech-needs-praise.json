@@ -14,9 +14,7 @@
     "lifeApplication": "Train the tongue by training the heart's attention."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-ambrosial-speech-pure-conduct",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.54,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.01,
-      "beauty": 4.06,
-      "overall": 3.74
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 3.99
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

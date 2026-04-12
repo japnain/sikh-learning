@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-sangat"
+      "id": "topic-sangat",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-control"
+      "id": "topic-control",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -44,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-sangat",
-    "topic-control"
+    "topic-control",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance",
@@ -66,16 +69,16 @@
     },
     "scores": {
       "faithfulness": 3.99,
-      "clarity": 3.77,
+      "clarity": 4.25,
       "specificity": 4.21,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.61
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.86
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when where does ego come from? How can it be removed?."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 2.94,
+      "clarity": 3.93,
       "specificity": 4.35,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.19,
-      "overall": 3.51
+      "usefulness": 4.2,
+      "beauty": 3.7,
+      "overall": 3.9
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

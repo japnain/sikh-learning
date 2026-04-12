@@ -157,9 +157,7 @@
     "guidance-speak-what-brings-honor-1"
   ],
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedCollectionIds": [
     "collection-speech-and-self-restraint",
@@ -191,12 +189,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.79,
-      "beauty": 4.06,
-      "overall": 3.99
+      "usefulness": 3.82,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",

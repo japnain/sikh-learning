@@ -30,6 +30,15 @@ test("resolves modern search synonyms to canonical approved topic guides", async
   expect(resolveTopicGuide(catalog, "burnt out").topic?.id).toBe("topic-exhaustion")
 })
 
+test("resolves scenario language to a canonical topic plus the matching scenario", async () => {
+  const catalog = await loadLearnCatalog()
+  const resolution = resolveTopicGuide(catalog, "mercy under pressure")
+
+  expect(resolution.topic?.id).toBe("topic-mercy")
+  expect(resolution.scenarioKey).toBe("pressure")
+  expect(resolution.matchedBy).toBe("synonym")
+})
+
 test("returns a no-match result so the UI can fall back to today's spotlight topic", async () => {
   const catalog = await loadLearnCatalog()
   const resolution = resolveTopicGuide(catalog, "tomato")
@@ -49,6 +58,8 @@ test("builds a today surface with no empty slots and a stable continue-learning 
   expect(surface.themeRail).toHaveLength(4)
   expect(surface.featuredCollections).toHaveLength(3)
   expect(surface.exploreCollections.length).toBeGreaterThan(0)
+  expect(new Set(surface.themeRail.map(topic => topic.rotation.theme)).size).toBe(surface.themeRail.length)
+  expect(surface.themeRail.map(topic => topic.rotation.theme)).not.toContain(surface.topicSpotlight.item.rotation.theme)
 })
 
 test("changes the featured shabad on a three-day cadence", async () => {
@@ -110,7 +121,8 @@ test("reports the current inventory as above launch readiness", async () => {
 
   expect(summary.dailyGuidance).toBeGreaterThanOrEqual(240)
   expect(summary.shabadDeepDives).toBeGreaterThanOrEqual(100)
-  expect(summary.topicGuides).toBeGreaterThanOrEqual(100)
+  expect(summary.topicGuides).toBeGreaterThanOrEqual(28)
+  expect(summary.topicScenarios).toBeGreaterThanOrEqual(112)
   expect(summary.collections).toBeGreaterThanOrEqual(100)
   expect(summary.crossLinks).toBeGreaterThanOrEqual(500)
   expect(summary.readyForLaunch).toBe(true)
