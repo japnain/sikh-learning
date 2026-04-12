@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { BANIS } from '../data/banis'
+import { queueActivityEvent } from './activityEvents'
 
 interface ReadingProgressState {
   progress: Record<string, number[]> // baniId → array of completed angs
@@ -20,16 +21,25 @@ export const useReadingProgressStore = create<ReadingProgressState>()(
         )
         if (matching.length === 0) return
 
+        let recorded = false
         set(state => {
           const updated = { ...state.progress }
           for (const bani of matching) {
             const existing = updated[bani.id] ?? []
             if (!existing.includes(ang)) {
               updated[bani.id] = [...existing, ang]
+              recorded = true
             }
           }
           return { progress: updated }
         })
+        if (recorded) {
+          queueActivityEvent('reader.ang-recorded', {
+            source,
+            ang,
+            baniIds: matching.map(bani => bani.id),
+          })
+        }
       },
 
       getProgress: (baniId) => {

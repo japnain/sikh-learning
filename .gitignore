@@ -30,3 +30,18 @@ output/
 cache.dat
 .git-broken-*/
 scripts/learn/.cache/
+
+# InsForge & AI agent skills
+.insforge
+.agent
+.agents
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+.trae
+.windsurf

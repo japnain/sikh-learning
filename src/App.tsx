@@ -5,6 +5,7 @@ import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
 import SplashScreen from './components/SplashScreen'
 import { useDisplayMode } from './hooks/useDisplayMode'
+import { useInsforgeBootstrap } from './hooks/useInsforgeBootstrap'
 import { useNitemOfflineCache } from './hooks/useNitemOfflineCache'
 import { useLanguageStore } from './store/language'
 import { useLocaleStore } from './store/locale'
@@ -121,6 +122,7 @@ function AppShell() {
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
 
   useNitemOfflineCache()
+  useInsforgeBootstrap()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)

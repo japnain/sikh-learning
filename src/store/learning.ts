@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { THEME_PATH_BY_ID } from '../data/themePaths'
+import { queueActivityEvent } from './activityEvents'
 import type {
   DailyLesson,
   GuidedJourneyProgress,
@@ -364,10 +365,18 @@ export const useLearningStore = create<LearningState>()(
       })),
       recordPracticeSession: () => {
         const today = toLocalDayStamp(new Date())
-        set(state => ({
-          ...getNextStreakFields(state, today),
-          totalPracticeSessions: state.totalPracticeSessions + 1,
-        }))
+        set(state => {
+          const next = getNextStreakFields(state, today)
+          queueActivityEvent('learn.practice-recorded', {
+            practicedOn: today,
+            streak: next.practiceStreak,
+            longestStreak: next.longestStreak,
+          })
+          return {
+            ...next,
+            totalPracticeSessions: state.totalPracticeSessions + 1,
+          }
+        })
       },
       recordStreakDay: (dateStamp) => set(state => getNextStreakFields(state, dateStamp)),
       earnMilestone: (id) => set(state => {
@@ -527,46 +536,54 @@ export const useLearningStore = create<LearningState>()(
           },
         },
       })),
-      completeModule: (programId, moduleId, reviewIds = []) => set(state => {
-        const current = state.programProgress[programId]
-        const nextCompletedModuleIds = current.completedModuleIds.includes(moduleId)
-          ? current.completedModuleIds
-          : [...current.completedModuleIds, moduleId]
-        const completedLessons = state.completedLessons.includes(moduleId)
-          ? state.completedLessons
-          : [...state.completedLessons, moduleId]
-        const queuedReviewModuleIds = Array.from(new Set([...reviewIds, ...state.queuedReviewModuleIds]))
-        const dailyLesson = state.dailyLesson?.steps.some(step => step.moduleId === moduleId)
-          ? {
-            ...state.dailyLesson,
-            completedStepIds: state.dailyLesson.completedStepIds.includes(moduleId)
-              ? state.dailyLesson.completedStepIds
-              : [
-                ...state.dailyLesson.completedStepIds,
-                ...state.dailyLesson.steps
-                  .filter(step => step.moduleId === moduleId)
-                  .map(step => step.id)
-                  .filter(stepId => !state.dailyLesson?.completedStepIds.includes(stepId)),
-              ],
-          }
-          : state.dailyLesson
+      completeModule: (programId, moduleId, reviewIds = []) => {
+        const occurredAt = new Date().toISOString()
+        set(state => {
+          const current = state.programProgress[programId]
+          const nextCompletedModuleIds = current.completedModuleIds.includes(moduleId)
+            ? current.completedModuleIds
+            : [...current.completedModuleIds, moduleId]
+          const completedLessons = state.completedLessons.includes(moduleId)
+            ? state.completedLessons
+            : [...state.completedLessons, moduleId]
+          const queuedReviewModuleIds = Array.from(new Set([...reviewIds, ...state.queuedReviewModuleIds]))
+          const dailyLesson = state.dailyLesson?.steps.some(step => step.moduleId === moduleId)
+            ? {
+              ...state.dailyLesson,
+              completedStepIds: state.dailyLesson.completedStepIds.includes(moduleId)
+                ? state.dailyLesson.completedStepIds
+                : [
+                  ...state.dailyLesson.completedStepIds,
+                  ...state.dailyLesson.steps
+                    .filter(step => step.moduleId === moduleId)
+                    .map(step => step.id)
+                    .filter(stepId => !state.dailyLesson?.completedStepIds.includes(stepId)),
+                ],
+            }
+            : state.dailyLesson
 
-        return {
-          completedLessons,
-          queuedReviewModuleIds,
-          dailyLesson,
-          activeProgramId: programId,
-          programProgress: {
-            ...state.programProgress,
-            [programId]: {
-              ...current,
-              currentModuleId: current.currentModuleId === moduleId ? null : current.currentModuleId,
-              completedModuleIds: nextCompletedModuleIds,
-              lastActivityAt: new Date().toISOString(),
+          return {
+            completedLessons,
+            queuedReviewModuleIds,
+            dailyLesson,
+            activeProgramId: programId,
+            programProgress: {
+              ...state.programProgress,
+              [programId]: {
+                ...current,
+                currentModuleId: current.currentModuleId === moduleId ? null : current.currentModuleId,
+                completedModuleIds: nextCompletedModuleIds,
+                lastActivityAt: occurredAt,
+              },
             },
-          },
-        }
-      }),
+          }
+        })
+        queueActivityEvent('learn.module.completed', {
+          programId,
+          moduleId,
+          reviewIds,
+        }, occurredAt)
+      },
       queueReviewModules: (moduleIds) => set(state => ({
         queuedReviewModuleIds: Array.from(new Set([...moduleIds, ...state.queuedReviewModuleIds])),
       })),
@@ -577,18 +594,25 @@ export const useLearningStore = create<LearningState>()(
         placementResult: result,
         activeProgramId: result?.programId ?? state.activeProgramId,
       })),
-      recordLearnActivity: (activity) => set(state => ({
-        activeProgramId: activity.programId,
-        lastLearnActivity: activity,
-        programProgress: {
-          ...state.programProgress,
-          [activity.programId]: {
-            ...state.programProgress[activity.programId],
-            currentModuleId: activity.moduleId,
-            lastActivityAt: activity.visitedAt,
+      recordLearnActivity: (activity) => {
+        set(state => ({
+          activeProgramId: activity.programId,
+          lastLearnActivity: activity,
+          programProgress: {
+            ...state.programProgress,
+            [activity.programId]: {
+              ...state.programProgress[activity.programId],
+              currentModuleId: activity.moduleId,
+              lastActivityAt: activity.visitedAt,
+            },
           },
-        },
-      })),
+        }))
+        queueActivityEvent('learn.activity.recorded', {
+          context: activity.context,
+          programId: activity.programId,
+          moduleId: activity.moduleId,
+        }, activity.visitedAt)
+      },
       markGrammarNoteSeen: (noteId) => set(state => ({
         grammarNotesSeen: state.grammarNotesSeen.includes(noteId)
           ? state.grammarNotesSeen
@@ -634,45 +658,58 @@ export const useLearningStore = create<LearningState>()(
             : state.completedThemePathIds,
         }
       }),
-      recordLearnItemView: (itemId, kind) => set(state => {
+      recordLearnItemView: (itemId, kind) => {
         const viewedAt = new Date().toISOString()
-        const nextViewedItems = [
-          { itemId, kind, viewedAt },
-          ...state.learnState.viewedItems.filter(item => item.itemId !== itemId),
-        ].slice(0, 80)
+        set(state => {
+          const nextViewedItems = [
+            { itemId, kind, viewedAt },
+            ...state.learnState.viewedItems.filter(item => item.itemId !== itemId),
+          ].slice(0, 80)
 
-        const nextRecentTopicIds = kind === 'topic-guide'
-          ? [itemId, ...state.learnState.recentTopicIds.filter(topicId => topicId !== itemId)].slice(0, 12)
-          : state.learnState.recentTopicIds
+          const nextRecentTopicIds = kind === 'topic-guide'
+            ? [itemId, ...state.learnState.recentTopicIds.filter(topicId => topicId !== itemId)].slice(0, 12)
+            : state.learnState.recentTopicIds
 
-        return {
+          return {
+            learnState: {
+              ...state.learnState,
+              viewedItems: nextViewedItems,
+              recentTopicIds: nextRecentTopicIds,
+            },
+          }
+        })
+        queueActivityEvent('learn.item.viewed', { itemId, kind }, viewedAt)
+      },
+      toggleSavedLearnItem: (itemId) => {
+        const occurredAt = new Date().toISOString()
+        const wasSaved = get().learnState.savedItemIds.includes(itemId)
+        set(state => ({
           learnState: {
             ...state.learnState,
-            viewedItems: nextViewedItems,
-            recentTopicIds: nextRecentTopicIds,
+            savedItemIds: wasSaved
+              ? state.learnState.savedItemIds.filter(current => current !== itemId)
+              : [itemId, ...state.learnState.savedItemIds],
           },
-        }
-      }),
-      toggleSavedLearnItem: (itemId) => set(state => ({
-        learnState: {
-          ...state.learnState,
-          savedItemIds: state.learnState.savedItemIds.includes(itemId)
-            ? state.learnState.savedItemIds.filter(current => current !== itemId)
-            : [itemId, ...state.learnState.savedItemIds],
-        },
-      })),
+        }))
+        queueActivityEvent(wasSaved ? 'saved-item.learn.removed' : 'saved-item.learn.added', {
+          itemId,
+        }, occurredAt)
+      },
       setActiveLearnCollection: (collectionId) => set(state => ({
         learnState: {
           ...state.learnState,
           activeCollectionId: collectionId,
         },
       })),
-      setLearnDepthPreference: (depthPreference) => set(state => ({
-        learnState: {
-          ...state.learnState,
-          depthPreference,
-        },
-      })),
+      setLearnDepthPreference: (depthPreference) => {
+        set(state => ({
+          learnState: {
+            ...state.learnState,
+            depthPreference,
+          },
+        }))
+        queueActivityEvent('learn.depth-preference.updated', { depthPreference })
+      },
     }),
     {
       name: 'sikh-learning-state',

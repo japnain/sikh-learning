@@ -106,6 +106,7 @@ function getStudyEntryLineCount(entry: ScriptureEntry): number {
 const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   shareCopied: string
   shareOpened: string
+  shareUnavailable: string
   bookmarkSaved: string
   bookmarkExists: string
   favoriteAdded: string
@@ -123,6 +124,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   en: {
     shareCopied: 'Copied to clipboard for sharing.',
     shareOpened: 'Share sheet opened.',
+    shareUnavailable: 'Unable to open the share sheet. Copied to clipboard instead.',
     bookmarkSaved: 'Bookmark saved.',
     bookmarkExists: 'This passage is already bookmarked.',
     favoriteAdded: 'Added to favorites.',
@@ -140,6 +142,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   pa: {
     shareCopied: 'ਸਾਂਝਾ ਕਰਨ ਲਈ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ।',
     shareOpened: 'ਸ਼ੇਅਰ ਸ਼ੀਟ ਖੁਲ੍ਹ ਗਈ ਹੈ।',
+    shareUnavailable: 'ਸ਼ੇਅਰ ਸ਼ੀਟ ਨਹੀਂ ਖੁੱਲੀ। ਇਸ ਦੀ ਥਾਂ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਕੀਤਾ ਗਿਆ ਹੈ।',
     bookmarkSaved: 'ਬੁੱਕਮਾਰਕ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।',
     bookmarkExists: 'ਇਹ ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।',
     favoriteAdded: 'ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜਿਆ ਗਿਆ ਹੈ।',
@@ -157,6 +160,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
   hi: {
     shareCopied: 'शेयर करने के लिए क्लिपबोर्ड में कॉपी हो गया।',
     shareOpened: 'शेयर शीट खुल गई है।',
+    shareUnavailable: 'शेयर शीट नहीं खुली। इसकी जगह क्लिपबोर्ड में कॉपी किया गया है।',
     bookmarkSaved: 'बुकमार्क सेव हो गया।',
     bookmarkExists: 'यह अंश पहले से बुकमार्क किया हुआ है।',
     favoriteAdded: 'पसंदीदा में जोड़ दिया गया।',
@@ -409,6 +413,36 @@ export default function Study() {
     }
   }, [])
 
+  const copyText = async (text: string) => {
+    if (!navigator.clipboard?.writeText) {
+      throw new Error('Clipboard is not available.')
+    }
+
+    await navigator.clipboard.writeText(text)
+  }
+
+  const shareTextWithFallback = async (text: string) => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ text })
+        announceAction(studyExperienceCopy.shareOpened)
+        return
+      } catch {
+        try {
+          await copyText(text)
+          announceAction(studyExperienceCopy.shareUnavailable)
+          return
+        } catch {
+          announceAction(studyExperienceCopy.shareCopied)
+          return
+        }
+      }
+    }
+
+    await copyText(text)
+    announceAction(studyExperienceCopy.shareCopied)
+  }
+
   useEffect(() => {
     if (shouldTrackProgress && currentAng) {
       recordAng(currentSource, currentAng)
@@ -454,17 +488,7 @@ export default function Study() {
       baniName ? `— ${baniName} · Ang ${currentEntry.ang}` : `— ${currentEntry.scripture} · Ang ${currentEntry.ang}`,
       editorial?.brand.attribution ?? 'via NaamRas',
     ].filter(Boolean).join('\n')
-    if (navigator.share) {
-      try {
-        await navigator.share({ text })
-        announceAction(studyExperienceCopy.shareOpened)
-      } catch {
-        /* user dismissed */
-      }
-    } else {
-      await navigator.clipboard.writeText(text)
-      announceAction(studyExperienceCopy.shareCopied)
-    }
+    await shareTextWithFallback(text)
   }
 
   const shabadIds = useMemo(
@@ -529,23 +553,13 @@ export default function Study() {
   ].filter(Boolean).join('\n')
 
   const handleCopyLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
-    await navigator.clipboard.writeText(buildLineText(entry, line))
+    await copyText(buildLineText(entry, line))
     announceAction(studyExperienceCopy.lineCopied)
   }
 
   const handleShareLine = async (line: ScriptureLine, entry: ScriptureEntry) => {
     const text = buildLineText(entry, line)
-    if (navigator.share) {
-      try {
-        await navigator.share({ text })
-        announceAction(studyExperienceCopy.shareOpened)
-      } catch {
-        /* user dismissed */
-      }
-    } else {
-      await navigator.clipboard.writeText(text)
-      announceAction(studyExperienceCopy.shareCopied)
-    }
+    await shareTextWithFallback(text)
   }
 
   const handleBookmarkLine = (line: ScriptureLine, entry: ScriptureEntry) => {

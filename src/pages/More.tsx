@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CloudSyncPanel from '../components/CloudSyncPanel'
 import DisclosureSection from '../components/DisclosureSection'
 import SoundscapeControls from '../components/SoundscapeControls'
 import { useLanguageStore } from '../store/language'
@@ -131,6 +132,8 @@ export default function More() {
           defaultExpanded={false}
         />
       </div>
+
+      <CloudSyncPanel />
 
       <DisclosureSection
         storageKey="more-reader-defaults"
