@@ -1,4 +1,4 @@
-import type { LearnTab } from '../types'
+import type { LearnContentKind, LearnTab } from '../types'
 
 export interface LearnRailChip {
   id: string
@@ -19,16 +19,13 @@ export const LEARN_SUBSECTION_RAILS: Record<LearnTab, LearnRailChip[]> = {
     { id: 'today-surface', label: 'Today', targetId: 'learn-today-surface' },
     { id: 'today-doors', label: 'Doors', targetId: 'learn-today-doors' },
     { id: 'today-paths', label: 'Paths', targetId: 'learn-today-paths' },
-    { id: 'today-detail', label: 'Detail', targetId: 'learn-today-detail' },
   ],
   topics: [
     { id: 'topics-search', label: 'Search', targetId: 'learn-topics-search' },
-    { id: 'topics-current-guide', label: 'Current Guide', targetId: 'learn-topics-current-guide' },
     { id: 'topics-all-topics', label: 'All Topics', targetId: 'learn-topics-all' },
   ],
   shabads: [
     { id: 'shabads-filters', label: 'Filters', targetId: 'learn-shabads-filters' },
-    { id: 'shabads-current', label: 'Current Shabad', targetId: 'learn-shabads-current' },
     { id: 'shabads-all', label: 'All Shabads', targetId: 'learn-shabads-all' },
   ],
   saved: [
@@ -115,36 +112,30 @@ export function getLearnDetailRailByKey(key: LearnDetailRailKey | null): LearnRa
 
 export function getLearnRouteScrollTargetId({
   tab,
-  detail,
-  hasTopicParam,
-  hasShabadParam,
-  hasCollectionParam,
 }: {
   tab: LearnTab
-  detail: string | null
-  hasTopicParam: boolean
-  hasShabadParam: boolean
-  hasCollectionParam: boolean
+  detail?: string | null
+  hasTopicParam?: boolean
+  hasShabadParam?: boolean
+  hasCollectionParam?: boolean
 }): string | null {
-  if (tab === 'today') {
-    if (detail === 'guidance') return 'learn-today-detail'
-    if (detail === 'topic' && hasTopicParam) return 'learn-today-detail'
-    if (detail === 'shabad' && hasShabadParam) return 'learn-today-detail'
-    if (detail === 'collection' && hasCollectionParam) return 'learn-today-detail'
-    return null
-  }
-
-  if (tab === 'topics' && detail === 'topic' && hasTopicParam) {
-    return 'learn-topics-current-guide'
-  }
-
-  if (tab === 'shabads' && detail === 'shabad' && hasShabadParam) {
-    return 'learn-shabads-current'
-  }
-
+  void tab
   return null
 }
 
 export function buildLearnTabPath(tab: LearnTab): string {
   return tab === 'today' ? '/learn' : `/learn?tab=${tab}`
+}
+
+export function buildLearnDetailPath(kind: LearnContentKind, id: string, from?: string): string {
+  const basePath =
+    kind === 'topic-guide'
+      ? `/learn/topics/${id}`
+      : kind === 'shabad-deep-dive'
+      ? `/learn/shabads/${id}`
+      : kind === 'daily-guidance'
+      ? `/learn/guidance/${id}`
+      : `/learn/collections/${id}`
+
+  return from ? `${basePath}?from=${encodeURIComponent(from)}` : basePath
 }

@@ -207,7 +207,7 @@ function AppShell() {
                 <Route path="/library" element={<LibraryPage />} />
                 <Route path="/banis" element={<BanisPage />} />
                 <Route path="/more" element={<MorePage />} />
-                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/learn/*" element={<LearnPage />} />
                 <Route path="/vocab" element={<VocabPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>

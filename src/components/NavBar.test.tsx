@@ -31,6 +31,16 @@ test('keeps the Learn route limited to the shared product nav', () => {
   expect(screen.queryByTestId('learn-detail-rail')).not.toBeInTheDocument()
 })
 
+test('keeps the Learn nav tab active on nested learn routes', () => {
+  render(
+    <MemoryRouter initialEntries={['/learn/topics/topic-anxiety']}>
+      <NavBar />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByTestId('nav-tab-learn')).toHaveAttribute('aria-current', 'page')
+})
+
 test('does not render learn rails outside the learn route', () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
