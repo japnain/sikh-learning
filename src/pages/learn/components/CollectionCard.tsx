@@ -25,7 +25,7 @@ export default function CollectionCard({
       aria-current={active ? "page" : undefined}
       aria-labelledby={`${metaId} ${titleId}`}
       aria-describedby={progressText ? `${progressId} ${subtitleId} ${bodyId}` : `${subtitleId} ${bodyId}`}
-      className={`w-[17.5rem] shrink-0 snap-start rounded-[30px] border px-4 py-4 text-left transition-all duration-300 ${
+      className={`block w-[17.5rem] shrink-0 snap-start rounded-[30px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
           : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"

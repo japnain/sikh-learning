@@ -174,7 +174,7 @@ export default function LearnHub() {
   const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
-  const continueCardClass = "section-shell-quiet relative isolate w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
+  const continueCardClass = "section-shell-quiet relative isolate block w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
