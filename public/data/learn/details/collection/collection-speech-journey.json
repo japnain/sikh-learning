@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-speech"
+      "id": "topic-speech",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-speech"
+    "topic-speech",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -60,12 +62,12 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.52,
+      "clarity": 4.05,
       "specificity": 4.23,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.38,
-      "overall": 3.62
+      "usefulness": 3.38,
+      "beauty": 4.53,
+      "overall": 3.88
     },
     "strengths": [
       "beauty",

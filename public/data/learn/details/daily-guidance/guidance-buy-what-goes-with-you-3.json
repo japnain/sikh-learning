@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.05,
-      "clarity": 2.46,
+      "clarity": 3.87,
       "specificity": 4.6,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.79,
-      "beauty": 2.91,
-      "overall": 3.4
+      "usefulness": 3.82,
+      "beauty": 3.7,
+      "overall": 3.89
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

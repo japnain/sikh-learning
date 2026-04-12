@@ -14,9 +14,7 @@
     "lifeApplication": "Restraint is sometimes the most truthful form of speech."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 4.02,
-      "clarity": 3.78,
+      "clarity": 4.25,
       "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.86,
-      "beauty": 3.8,
-      "overall": 3.76
+      "usefulness": 3.92,
+      "beauty": 3.97,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": [
       "leans on template-heavy phrasing",

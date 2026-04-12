@@ -47,7 +47,7 @@
   "relatedTopicIds": [
     "topic-purpose",
     "topic-seva",
-    "topic-discipline"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance",
@@ -56,7 +56,7 @@
     "shabad-buy-what-goes-with-you"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -69,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 3.73,
-      "clarity": 2.15,
+      "clarity": 2.95,
       "specificity": 3.97,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.26
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.56
     },
     "strengths": [
       "beauty",

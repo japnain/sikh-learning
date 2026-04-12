@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when it all worked out-I was saved, and the egotism within my heart."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-64"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.64,
-      "clarity": 2.52,
+      "clarity": 3.7,
       "specificity": 4.24,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.14,
-      "beauty": 2.95,
-      "overall": 3.4
+      "usefulness": 4.2,
+      "beauty": 3.58,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
-      "emotionalHonesty"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

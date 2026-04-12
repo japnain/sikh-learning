@@ -13,7 +13,9 @@
     "shortMeaning": "The life that keeps reaching for riches is not the same life that learns nearness.",
     "lifeApplication": "The deepest correction may be relational, not performative."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close",
     "shabad-conquer-the-mind"
@@ -47,12 +49,12 @@
     },
     "scores": {
       "faithfulness": 4.05,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.8,
       "emotionalHonesty": 3,
-      "usefulness": 2.66,
-      "beauty": 4.38,
-      "overall": 3.82
+      "usefulness": 3.66,
+      "beauty": 4.53,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",

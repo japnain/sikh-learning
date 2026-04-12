@@ -13,9 +13,7 @@
     "lifeApplication": "Anger becomes more truthful when third Mehla:."
   },
   "relatedTopicIds": [
-    "topic-anger",
-    "topic-anger-daily",
-    "topic-anger-pressure"
+    "topic-anger"
   ],
   "relatedShabadIds": [
     "shabad-generated-232"
@@ -49,12 +47,12 @@
     },
     "scores": {
       "faithfulness": 3.6,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.38,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.01,
-      "beauty": 3.9,
-      "overall": 3.71
+      "usefulness": 4.04,
+      "beauty": 4.05,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",

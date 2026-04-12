@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-704"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.88,
-      "clarity": 1.84,
+      "clarity": 3.63,
       "specificity": 4.65,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 2.65,
-      "overall": 3.38
+      "usefulness": 4.42,
+      "beauty": 3.64,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

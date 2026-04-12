@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-generated-301"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.93,
-      "clarity": 2.34,
+      "clarity": 3.81,
       "specificity": 4.7,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 2.77,
-      "overall": 3.43
+      "usefulness": 4.42,
+      "beauty": 3.6,
+      "overall": 3.94
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

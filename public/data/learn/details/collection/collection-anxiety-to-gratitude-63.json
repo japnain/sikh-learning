@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anxiety"
+      "id": "topic-anxiety",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-gratitude"
+      "id": "topic-gratitude",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-anxiety",
-    "topic-gratitude"
+    "topic-gratitude",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -66,16 +69,16 @@
     },
     "scores": {
       "faithfulness": 4.06,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.27,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.64
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.9
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

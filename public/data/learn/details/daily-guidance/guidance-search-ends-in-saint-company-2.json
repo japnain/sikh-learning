@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.05,
-      "clarity": 0.08,
+      "clarity": 2.18,
       "specificity": 4.8,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 1.93,
-      "overall": 2.99
+      "usefulness": 4.04,
+      "beauty": 3.04,
+      "overall": 3.63
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

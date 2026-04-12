@@ -13,9 +13,7 @@
     "lifeApplication": "Comparison becomes more truthful when gauree, Fifth Mehla:."
   },
   "relatedTopicIds": [
-    "topic-comparison",
-    "topic-comparison-daily",
-    "topic-comparison-pressure"
+    "topic-comparison"
   ],
   "relatedShabadIds": [
     "shabad-generated-566"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.73,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 3.82,
-      "overall": 3.88
+      "usefulness": 4.42,
+      "beauty": 4.05,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

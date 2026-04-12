@@ -14,9 +14,7 @@
     "lifeApplication": "Let your outer work be held by inner remembrance."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-selfless-service"
@@ -37,7 +35,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "approved",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.68,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.28,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.44,
-      "beauty": 3.82,
-      "overall": 3.57
+      "usefulness": 3.44,
+      "beauty": 4.05,
+      "overall": 3.84
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

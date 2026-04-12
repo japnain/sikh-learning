@@ -128,7 +128,9 @@
     "guidance-nearness-is-bigger-than-status",
     "guidance-lord-keeps-the-humble-close-1"
   ],
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedCollectionIds": [
     "collection-self-worth-journey",
     "collection-self-worth-bundle",
@@ -159,19 +161,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.42,
+      "clarity": 4.29,
       "specificity": 4.6,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.79
+      "usefulness": 3.38,
+      "beauty": 4.65,
+      "overall": 4.14
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "beauty",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

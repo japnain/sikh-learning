@@ -15,9 +15,7 @@
     "lifeApplication": "Let Shabad reveal you, not only soothe you."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-becomes-fearless",
@@ -39,7 +37,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "approved",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.66,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 3.9,
       "emotionalHonesty": 3.36,
-      "usefulness": 2,
-      "beauty": 3.9,
-      "overall": 3.47
+      "usefulness": 3,
+      "beauty": 4.05,
+      "overall": 3.71
     },
     "strengths": [
       "clarity",
-      "specificity"
+      "beauty"
     ],
     "issues": []
   }

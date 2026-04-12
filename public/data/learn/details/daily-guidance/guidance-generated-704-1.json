@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when gauree Gwaarayree, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-704"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.76,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.35,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.74,
-      "overall": 3.7
+      "usefulness": 4.2,
+      "beauty": 4.01,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

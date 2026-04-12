@@ -42,7 +42,7 @@
   ],
   "relatedTopicIds": [
     "topic-control",
-    "topic-hukam"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -64,16 +64,16 @@
     },
     "scores": {
       "faithfulness": 4.1,
-      "clarity": 0,
+      "clarity": 1.15,
       "specificity": 4.32,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.14
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.49
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": [
       "runs too long at the sentence level"

@@ -107,9 +107,7 @@
     "guidance-detached-and-steady-2"
   ],
   "relatedTopicIds": [
-    "topic-attachment",
-    "topic-attachment-daily",
-    "topic-attachment-pressure"
+    "topic-attachment"
   ],
   "relatedCollectionIds": [
     "collection-gratitude-and-contentment",
@@ -141,12 +139,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.44,
-      "beauty": 4.22,
-      "overall": 3.91
+      "usefulness": 3.44,
+      "beauty": 4.37,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",

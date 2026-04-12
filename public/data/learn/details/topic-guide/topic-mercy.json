@@ -1,67 +1,481 @@
 {
   "id": "topic-mercy",
-  "title": "When you need to remember mercy",
+  "title": "When mercy has to be received before it can be trusted",
   "shortTitle": "Mercy",
-  "category": "inner-work",
-  "issueStatement": "You are trying to sustain the path through force alone, or reading your failures as final.",
-  "centralInsight": "Grace is not the opposite of discipline. It is the atmosphere that keeps discipline from turning cruel, performative, or despairing.",
-  "practicalReflection": "Mercy reintroduces the Divine as giver, revealer, and the One who reunites what has wandered.",
-  "actionPrompt": "Instead of proving yourself today, ask where mercy has already met you and what that should make possible next.",
+  "category": "most-needed",
+  "issueStatement": "You are still reading the day through debt, performance, or self-punishment, so kindness feels suspicious instead of sustaining.",
+  "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible.",
+  "practicalReflection": "Mercy changes the posture first. The heart stops negotiating for worthiness long enough to receive what the Guru is already giving.",
+  "actionPrompt": "Before auditing yourself again, name one way grace has already met you today and answer from that place.",
   "searchTerms": [
     "mercy",
     "grace",
     "compassion",
+    "kindness",
+    "gift",
     "undeserving",
+    "harsh on self",
     "accepted",
-    "reunited"
+    "mercy in the ordinary day",
+    "mercy daily",
+    "ordinary day",
+    "daily mercy",
+    "routine",
+    "ordinary time",
+    "mercy ordinary day",
+    "mercy daily mercy",
+    "mercy routine",
+    "mercy ordinary time",
+    "mercy when the day tightens",
+    "mercy under pressure",
+    "stress",
+    "pressure",
+    "under strain",
+    "panic",
+    "cornered",
+    "mercy stress",
+    "mercy pressure",
+    "mercy under strain",
+    "mercy panic",
+    "mercy cornered",
+    "mercy after the slip",
+    "after slipping",
+    "repair",
+    "failure",
+    "shame",
+    "come back",
+    "mercy after slipping",
+    "mercy repair",
+    "mercy failure",
+    "mercy shame",
+    "mercy come back",
+    "learning a merciful way to live",
+    "mercy steady practice",
+    "habit",
+    "steady practice",
+    "merciful life",
+    "inner voice",
+    "mercy habit",
+    "mercy merciful life",
+    "mercy inner voice"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
         "verseIds": [
-          499,
-          501,
-          503
+          499
         ],
-        "shortMeaning": "The One who gives also reunites what has been separated.",
-        "lifeApplication": "Mercy is not abstract kindness; it reorders a life."
+        "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we",
+        "lifeApplication": "Receive the day as given, then answer it with Naam. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "This shabad makes mercy structurally important, not sentimental."
+      "explanation": "The theme is named without abstraction here: whatever pleases You comes to pass. As You give, so do we."
     },
     {
       "source": {
-        "deepDiveId": "shabad-gratitude-restores-naam",
+        "deepDiveId": "shabad-generated-66",
         "verseIds": [
-          60338,
-          60340
+          777,
+          778
         ],
-        "shortMeaning": "Mercy is easier to receive when entitlement breaks and gratitude wakes up.",
-        "lifeApplication": "Let gratitude become one way of staying inside grace."
+        "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+        "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Gratitude protects mercy from becoming vague language."
+      "explanation": "The shabad widens the issue beyond mood alone. Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "deepDiveId": "shabad-generated-298",
         "verseIds": [
-          9600,
-          9615
+          4116,
+          4117
         ],
-        "shortMeaning": "Mercy creates both forgiveness and a new kind of stability in the one who receives it.",
-        "lifeApplication": "Grace makes room for courage."
+        "shortMeaning": "please bless me with Your Mercy, and save this sinking stone; god has become merciful to Nanak; God is pleasing to Nanak's mind",
+        "lifeApplication": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Mercy is one path into fearlessness."
+      "explanation": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Mercy in the ordinary day",
+      "issueStatement": "By afternoon the day feels procedural, and mercy starts sounding like a word meant for larger crises or holier people.",
+      "centralInsight": "Gurbani does not wait for dramatic collapse before speaking of grace. Mercy belongs in errands, interruptions, and the plain shape of the day.",
+      "practicalReflection": "Ordinary time is where harshness usually becomes invisible. Receiving mercy there keeps the soul from hardening by habit.",
+      "actionPrompt": "Take one recurring part of the day and meet it with one line of gratitude before you meet it with critique.",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "mercy in the ordinary day",
+        "mercy daily",
+        "ordinary day",
+        "daily mercy",
+        "routine",
+        "ordinary time",
+        "mercy ordinary day",
+        "mercy daily mercy",
+        "mercy routine",
+        "mercy ordinary time"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+            "verseIds": [
+              499
+            ],
+            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we",
+            "lifeApplication": "Receive the day as given, then answer it with Naam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: whatever pleases You comes to pass. As You give, so do we."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-66",
+            "verseIds": [
+              777,
+              778
+            ],
+            "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-298",
+            "verseIds": [
+              4116,
+              4117
+            ],
+            "shortMeaning": "please bless me with Your Mercy, and save this sinking stone; god has become merciful to Nanak; God is pleasing to Nanak's mind",
+            "lifeApplication": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when please bless me with Your Mercy, and save this sinking stone; god has become merciful to Nanak; God is pleasing to Nanak's mind."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-mercy:daily",
+        "evidence": {
+          "coreClaim": "Gurbani does not wait for dramatic collapse before speaking of grace. Mercy belongs in errands, interruptions, and the plain shape of the day.",
+          "emotionalState": "controlling, unsettled, lonely",
+          "turn": "By afternoon the day feels procedural, and mercy starts sounding like a word meant for larger crises or holier people.",
+          "practicalImplication": "Take one recurring part of the day and meet it with one line of gratitude before you meet it with critique.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.18,
+          "usefulness": 3.88,
+          "beauty": 4.21,
+          "overall": 4.19
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Mercy when the day tightens",
+      "issueStatement": "When pressure rises, the first instinct is to drive harder, narrow the heart, and treat tenderness as a luxury you cannot afford.",
+      "centralInsight": "Under pressure, mercy is not sentimental relief. It is the interruption that keeps urgency from becoming spiritual brutality.",
+      "practicalReflection": "Pressure reveals what rules you. If the mind reaches first for force, Gurbani re-teaches it to reach for the Giver.",
+      "actionPrompt": "Before solving the pressure, slow down enough to receive one line as shelter and let that line decide the next tone.",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "mercy when the day tightens",
+        "mercy under pressure",
+        "stress",
+        "pressure",
+        "under strain",
+        "panic",
+        "cornered",
+        "mercy stress",
+        "mercy pressure",
+        "mercy under strain",
+        "mercy panic",
+        "mercy cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-66",
+            "verseIds": [
+              777,
+              778
+            ],
+            "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: o soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-338",
+            "verseIds": [
+              4889,
+              4900
+            ],
+            "shortMeaning": "They do not focus their consciousness on Maya again; o Nanak, those who are attuned to the Naam, reflect deeply on",
+            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-359",
+            "verseIds": [
+              5570
+            ],
+            "shortMeaning": "He dwells deep within the mind and body. O Nanak, He cannot",
+            "lifeApplication": "Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-mercy:pressure",
+        "evidence": {
+          "coreClaim": "Under pressure, mercy is not sentimental relief. It is the interruption that keeps urgency from becoming spiritual brutality.",
+          "emotionalState": "dull, entitled, forgetful",
+          "turn": "When pressure rises, the first instinct is to drive harder, narrow the heart, and treat tenderness as a luxury you cannot afford.",
+          "practicalImplication": "Before solving the pressure, slow down enough to receive one line as shelter and let that line decide the next tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.64,
+          "beauty": 4.69,
+          "overall": 4.43
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Mercy after the slip",
+      "issueStatement": "The mistake has already happened, and now shame wants to turn the aftermath into proof that return is no longer honest.",
+      "centralInsight": "Gurbani keeps mercy close to return. Repair begins when failure stops being theatre for the ego and becomes a doorway back to truth.",
+      "practicalReflection": "The mind often calls punishment sincerity. The Guru teaches a stricter honesty: admit the break, then come back without delay.",
+      "actionPrompt": "Name the slip without ornament, ask for mercy without bargaining, and make the next faithful act smaller than your shame wants.",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "mercy after the slip",
+        "after slipping",
+        "repair",
+        "failure",
+        "shame",
+        "come back",
+        "mercy after slipping",
+        "mercy repair",
+        "mercy failure",
+        "mercy shame",
+        "mercy come back"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-298",
+            "verseIds": [
+              4116,
+              4117
+            ],
+            "shortMeaning": "please bless me with Your Mercy, and save this sinking stone; god has become merciful to Nanak; God is pleasing to Nanak's mind",
+            "lifeApplication": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: please bless me with Your Mercy, and save this sinking stone; god has become merciful to Nanak; God is pleasing to Nanak's mind."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-338",
+            "verseIds": [
+              4887
+            ],
+            "shortMeaning": "Those who subdue their egotism, come to know the three worlds",
+            "lifeApplication": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-459",
+            "verseIds": [
+              6385
+            ],
+            "shortMeaning": "Gauree, First Mehla:",
+            "lifeApplication": "Mercy steadies when nanak abides in the Sanctuary of Your devotees. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-mercy:repair",
+        "evidence": {
+          "coreClaim": "Gurbani keeps mercy close to return. Repair begins when failure stops being theatre for the ego and becomes a doorway back to truth.",
+          "emotionalState": "unworthy, guarded, hard-on-self",
+          "turn": "The mistake has already happened, and now shame wants to turn the aftermath into proof that return is no longer honest.",
+          "practicalImplication": "Name the slip without ornament, ask for mercy without bargaining, and make the next faithful act smaller than your shame wants.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.6,
+          "beauty": 4.53,
+          "overall": 4.22
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Learning a merciful way to live",
+      "issueStatement": "You can understand grace in flashes and still default to a punishing inner voice the rest of the week.",
+      "centralInsight": "Mercy becomes durable when it is practiced as posture, not only admired as doctrine. The Guru trains the heart to live received, not merely relieved.",
+      "practicalReflection": "A merciful life is not vague softness. It is disciplined refusal to build identity out of accusation and scarcity.",
+      "actionPrompt": "Choose one daily moment where you usually tighten against yourself and rehearse a truer, gentler response there for a week.",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "learning a merciful way to live",
+        "mercy steady practice",
+        "habit",
+        "steady practice",
+        "merciful life",
+        "inner voice",
+        "mercy habit",
+        "mercy merciful life",
+        "mercy inner voice"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-359",
+            "verseIds": [
+              5570
+            ],
+            "shortMeaning": "He dwells deep within the mind and body. O Nanak, He cannot",
+            "lifeApplication": "Mercy steadies when that day shall bring every joy, O Lord, when I take to the Feet. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: he dwells deep within the mind and body. O Nanak, He cannot."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+            "verseIds": [
+              499
+            ],
+            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we",
+            "lifeApplication": "Receive the day as given, then answer it with Naam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Receive the day as given, then answer it with Naam. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-459",
+            "verseIds": [
+              6385,
+              6388
+            ],
+            "shortMeaning": "Gauree, First Mehla:; whatever pleases Him shall come to pass",
+            "lifeApplication": "Mercy steadies when nanak abides in the Sanctuary of Your devotees. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-mercy:practice",
+        "evidence": {
+          "coreClaim": "Mercy becomes durable when it is practiced as posture, not only admired as doctrine. The Guru trains the heart to live received, not merely relieved.",
+          "emotionalState": "unworthy, guarded, hard-on-self",
+          "turn": "You can understand grace in flashes and still default to a punishing inner voice the rest of the week.",
+          "practicalImplication": "Choose one daily moment where you usually tighten against yourself and rehearse a truer, gentler response there for a week.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.9,
+          "usefulness": 3.6,
+          "beauty": 4.37,
+          "overall": 4.25
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
-    "shabad-gratitude-restores-naam",
-    "shabad-forgiveness-becomes-fearless"
+    "shabad-generated-66",
+    "shabad-generated-298",
+    "shabad-generated-338",
+    "shabad-generated-359",
+    "shabad-generated-459"
   ],
   "relatedTopicIds": [
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-anxiety",
+    "topic-anger"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -71,38 +485,38 @@
   "rotation": {
     "theme": "mercy",
     "depthLevel": "beginner",
-    "cooldownWindowDays": 21,
-    "priority": 7,
-    "balanceCategory": "comfort",
-    "freshnessTier": "evergreen",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:mercy",
     "evidence": {
-      "coreClaim": "Grace is not the opposite of discipline. It is the atmosphere that keeps discipline from turning cruel, performative, or despairing.",
+      "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "You are trying to sustain the path through force alone, or reading your failures as final.",
-      "practicalImplication": "Instead of proving yourself today, ask where mercy has already met you and what that should make possible next.",
+      "turn": "You are still reading the day through debt, performance, or self-punishment, so kindness feels suspicious instead of sustaining.",
+      "practicalImplication": "Before auditing yourself again, name one way grace has already met you today and answer from that place.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.39,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 4.06,
-      "overall": 4
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.64,
+      "beauty": 4.05,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

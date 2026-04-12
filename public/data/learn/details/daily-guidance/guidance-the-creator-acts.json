@@ -33,7 +33,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "approved",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -46,15 +46,15 @@
     },
     "scores": {
       "faithfulness": 3.67,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.09,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.22,
-      "beauty": 4.06,
-      "overall": 3.53
+      "usefulness": 3.22,
+      "beauty": 4.21,
+      "overall": 3.77
     },
     "strengths": [
-      "specificity",
+      "clarity",
       "beauty"
     ],
     "issues": []

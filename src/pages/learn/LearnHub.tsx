@@ -8,7 +8,7 @@ import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
 import { useLearnRailStore } from "../../store/learnRail"
 import { useLocaleStore } from "../../store/locale"
-import type { LearnDepthPreference, LearnTab } from "../../types"
+import type { LearnDepthPreference, LearnTab, TopicScenarioKey } from "../../types"
 import { toLocalDayStamp } from "../../utils/learnDates"
 import {
   filterShabadDeepDives,
@@ -124,6 +124,7 @@ export default function LearnHub() {
             topic: null,
             query: deferredQuery,
             matchedBy: deferredQuery ? "no-match" : "empty",
+            scenarioKey: null,
           }
     ),
     [catalog, deferredQuery]
@@ -132,6 +133,11 @@ export default function LearnHub() {
     ? catalog.topicGuideById[searchParams.get("topic") ?? ""]
     ?? (deferredQuery ? queryResolution.topic : null)
     : null
+  const selectedScenarioKey = (
+    searchParams.get("scenario")
+    ?? queryResolution.scenarioKey
+    ?? null
+  ) as Exclude<TopicScenarioKey, "overview"> | null
   const selectedCollection = catalog && todaySurface
     ? catalog.collectionById[searchParams.get("collection") ?? ""]
       ?? (activeCollectionId ? catalog.collectionById[activeCollectionId] : null)
@@ -191,7 +197,7 @@ export default function LearnHub() {
     || shabadCompletedOnly
   )
   const inventorySummary = todaySurface
-    ? `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
+    ? `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, ${todaySurface.inventory.topicGuides} canonical topics, ${todaySurface.inventory.topicScenarios} scenario views, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
     : ""
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
@@ -405,6 +411,10 @@ export default function LearnHub() {
           <InventoryMetric
             label={editorial?.learn.inventoryLabels.topicGuides ?? "Topical answer pages"}
             value={todaySurface.inventory.topicGuides}
+          />
+          <InventoryMetric
+            label={editorial?.learn.inventoryLabels.topicScenarios ?? "Scenario views"}
+            value={todaySurface.inventory.topicScenarios}
           />
           <InventoryMetric
             label={editorial?.learn.inventoryLabels.collections ?? "Curated collections"}
@@ -632,7 +642,7 @@ export default function LearnHub() {
             {deferredQuery ? (
               <p className="mt-3 font-sans text-sm text-ink/72 dark:text-dark-text/74">
                 {queryResolution.matchedBy === "synonym"
-                  ? `Showing the canonical approved guide for “${deferredQuery}”.`
+                  ? `Showing the canonical approved guide for “${deferredQuery}”${selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}`
                   : queryResolution.matchedBy === "no-match"
                     ? "No matching topic found - showing today's spotlight."
                     : queryResolution.matchedBy === "closest"
@@ -644,7 +654,12 @@ export default function LearnHub() {
               {catalog.topicGuides.map(topic => (
                 <Link
                   key={topic.id}
-                  to={buildLearnDetailPath("topic-guide", topic.id, "topics")}
+                  to={buildLearnDetailPath(
+                    "topic-guide",
+                    topic.id,
+                    "topics",
+                    topic.id === selectedTopic?.id ? selectedScenarioKey : null
+                  )}
                   className={`shrink-0 rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
                     selectedTopic?.id === topic.id
                       ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
@@ -664,7 +679,12 @@ export default function LearnHub() {
                 topic={topic}
                 active={selectedTopic?.id === topic.id}
                 viewed={viewedIds.has(topic.id)}
-                to={buildLearnDetailPath("topic-guide", topic.id, "topics")}
+                to={buildLearnDetailPath(
+                  "topic-guide",
+                  topic.id,
+                  "topics",
+                  topic.id === selectedTopic?.id ? selectedScenarioKey : null
+                )}
               />
             ))}
             {queryResolution.matchedBy === "no-match" ? (

@@ -67,9 +67,7 @@
   ],
   "relatedGuidanceIds": [],
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedCollectionIds": [
     "collection-sangat-and-belonging",
@@ -101,19 +99,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.83,
+      "clarity": 3.31,
       "specificity": 5,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.66,
-      "beauty": 3.24,
-      "overall": 3.59
+      "usefulness": 3.66,
+      "beauty": 3.99,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

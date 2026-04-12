@@ -136,12 +136,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.6,
       "emotionalHonesty": 3,
-      "usefulness": 2,
-      "beauty": 3.74,
-      "overall": 3.65
+      "usefulness": 3,
+      "beauty": 4.01,
+      "overall": 3.93
     },
     "strengths": [
       "specificity",

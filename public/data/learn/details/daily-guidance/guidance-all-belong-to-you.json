@@ -15,9 +15,7 @@
     "lifeApplication": "Belonging is ontological before it becomes emotional."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.8,
-      "clarity": 3.66,
+      "clarity": 4.35,
       "specificity": 4.57,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.01,
-      "beauty": 3.9,
-      "overall": 3.7
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

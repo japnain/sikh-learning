@@ -183,9 +183,7 @@
     "guidance-generated-109-2"
   ],
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedCollectionIds": [
     "collection-doubt-to-clarity",
@@ -217,19 +215,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.22,
+      "clarity": 3.63,
       "specificity": 4.96,
       "emotionalHonesty": 4,
-      "usefulness": 2.44,
-      "beauty": 3.07,
-      "overall": 3.6
+      "usefulness": 3.44,
+      "beauty": 3.86,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

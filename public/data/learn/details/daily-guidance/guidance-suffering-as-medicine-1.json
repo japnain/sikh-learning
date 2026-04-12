@@ -45,19 +45,17 @@
     },
     "scores": {
       "faithfulness": 3.83,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 4.78,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.23,
-      "beauty": 3.04,
-      "overall": 3.52
+      "usefulness": 4.26,
+      "beauty": 3.67,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

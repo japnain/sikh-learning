@@ -14,9 +14,7 @@
     "lifeApplication": "Listening can become the first form of obedience."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-patience-ripens-into-honor",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.76,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.66,
-      "beauty": 3.98,
-      "overall": 3.75
+      "usefulness": 3.66,
+      "beauty": 4.21,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

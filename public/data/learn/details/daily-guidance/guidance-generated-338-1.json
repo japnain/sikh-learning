@@ -13,9 +13,7 @@
     "lifeApplication": "Comparison becomes more truthful when people die over and over again; they are re-born, and make their."
   },
   "relatedTopicIds": [
-    "topic-comparison",
-    "topic-comparison-daily",
-    "topic-comparison-pressure"
+    "topic-comparison"
   ],
   "relatedShabadIds": [
     "shabad-generated-338"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.82,
-      "clarity": 2.52,
+      "clarity": 3.76,
       "specificity": 4.59,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 2.97,
-      "overall": 3.5
+      "usefulness": 4.42,
+      "beauty": 3.64,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

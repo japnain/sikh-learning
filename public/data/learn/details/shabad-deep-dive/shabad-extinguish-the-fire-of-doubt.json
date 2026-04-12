@@ -158,9 +158,7 @@
     "guidance-extinguish-the-fire-of-doubt-1"
   ],
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedCollectionIds": [
     "collection-doubt-to-clarity",
@@ -192,12 +190,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.7,
-      "beauty": 3.82,
-      "overall": 3.81
+      "usefulness": 3.76,
+      "beauty": 4.05,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",

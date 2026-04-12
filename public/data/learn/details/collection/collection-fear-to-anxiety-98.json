@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-fear"
+      "id": "topic-fear",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anxiety"
+      "id": "topic-anxiety",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -44,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-fear",
-    "topic-anxiety"
+    "topic-anxiety",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
@@ -66,16 +69,16 @@
     },
     "scores": {
       "faithfulness": 4.06,
-      "clarity": 2.9,
+      "clarity": 3.55,
       "specificity": 4.27,
       "emotionalHonesty": 3.72,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.61
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.88
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

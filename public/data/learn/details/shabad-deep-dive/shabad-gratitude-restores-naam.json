@@ -85,9 +85,7 @@
     "guidance-gratitude-restores-naam-2"
   ],
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedCollectionIds": [
     "collection-gratitude-and-contentment",
@@ -119,16 +117,16 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.6,
       "emotionalHonesty": 3,
-      "usefulness": 2,
-      "beauty": 4.54,
-      "overall": 3.77
+      "usefulness": 3,
+      "beauty": 4.81,
+      "overall": 4.05
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

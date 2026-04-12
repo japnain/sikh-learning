@@ -9,8 +9,8 @@ import {
   collectStyleIssues,
   countKeywordOverlap,
   countPatternMatches,
-  detectRepeatedNgrams,
   lexicalVariety,
+  meaningfulRepeatedNgrams,
   normalizeEditorialText,
   splitSentences,
   toTokens,
@@ -65,7 +65,7 @@ export function scoreEditorialCopy({
   ])).filter(token => token.length >= 4)
 
   const sentenceLength = averageSentenceLength(combined)
-  const repeatedNgrams = detectRepeatedNgrams(combined).length
+  const repeatedNgrams = meaningfulRepeatedNgrams(combined).length
   const evidenceOverlap = evidenceKeywords.length === 0
     ? 0
     : countKeywordOverlap(combined, evidenceKeywords) / evidenceKeywords.length
@@ -96,10 +96,10 @@ export function scoreEditorialCopy({
     - placeholderCount * 1.4
   )
   const clarity = clampScore(
-    3.9
-    - Math.max(0, sentenceLength - 18) / 4
-    - repeatedNgrams * 0.12
-    - weakPatternCount * 0.12
+    4.35
+    - Math.max(0, sentenceLength - 18) / 5
+    - repeatedNgrams * 0.06
+    - weakPatternCount * 0.1
   )
   const specificity = clampScore(
     2.2
@@ -113,17 +113,17 @@ export function scoreEditorialCopy({
     - hardBannedCount * 1.1
   )
   const usefulness = clampScore(
-    2
-    + Math.min(1.4, actionSignalCount * 0.35)
+    3
+    + Math.min(1.5, actionSignalCount * 0.38)
     + Math.min(1.1, concreteSignalCount * 0.22)
-    - weakPatternCount * 0.15
+    - weakPatternCount * 0.12
   )
   const beauty = clampScore(
-    3.1
+    3.25
     + Math.min(0.9, beautySignalCount * 0.16)
     + Math.min(0.8, lexicalScore * 1.3)
-    - repeatedNgrams * 0.08
-    - weakPatternCount * 0.1
+    - repeatedNgrams * 0.04
+    - weakPatternCount * 0.08
   )
 
   const scores = {

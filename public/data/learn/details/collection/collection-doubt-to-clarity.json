@@ -46,8 +46,7 @@
   ],
   "relatedTopicIds": [
     "topic-doubt",
-    "topic-hukam",
-    "topic-sangat"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
@@ -56,7 +55,7 @@
     "shabad-generated-63"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -69,16 +68,16 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 1.65,
+      "clarity": 2.55,
       "specificity": 4.13,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.31
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.62
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": [
       "runs too long at the sentence level"

@@ -239,9 +239,7 @@
     "guidance-generated-338-2"
   ],
   "relatedTopicIds": [
-    "topic-comparison",
-    "topic-comparison-daily",
-    "topic-comparison-pressure"
+    "topic-comparison"
   ],
   "relatedCollectionIds": [
     "collection-ego-to-humility",
@@ -273,20 +271,19 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 0,
+      "clarity": 1.56,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 2.25,
-      "overall": 3.07
+      "usefulness": 3.22,
+      "beauty": 3.56,
+      "overall": 3.65
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
     "issues": [
-      "runs too long at the sentence level",
-      "repeats phrasing too closely"
+      "runs too long at the sentence level"
     ]
   }
 }

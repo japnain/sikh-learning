@@ -13,9 +13,7 @@
     "lifeApplication": "Restlessness becomes more truthful when you slander, and then praise others; you indulge in lies and gossip."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-generated-462"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.78,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.37,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.2,
-      "overall": 3.46
+      "usefulness": 4.2,
+      "beauty": 3.79,
+      "overall": 3.87
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

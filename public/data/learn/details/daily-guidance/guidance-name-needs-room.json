@@ -15,9 +15,7 @@
     "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.9,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.23,
-      "beauty": 3.9,
-      "overall": 3.86
+      "usefulness": 4.26,
+      "beauty": 4.05,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

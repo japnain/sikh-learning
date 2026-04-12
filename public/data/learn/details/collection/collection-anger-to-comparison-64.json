@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anger"
+      "id": "topic-anger",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-comparison"
+      "id": "topic-comparison",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -44,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-anger",
-    "topic-comparison"
+    "topic-comparison",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",
@@ -66,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.23,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.59
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.86
     },
     "strengths": [
       "specificity",

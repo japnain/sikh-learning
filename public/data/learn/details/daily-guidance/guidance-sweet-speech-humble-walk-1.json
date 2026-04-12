@@ -13,9 +13,7 @@
     "lifeApplication": "Speech becomes more truthful when remain united with the Society of the Saints; chant the Name of."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-sweet-speech-humble-walk"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 2.7,
+      "clarity": 3.93,
       "specificity": 4.92,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 2.99,
-      "overall": 3.65
+      "usefulness": 4.64,
+      "beauty": 3.66,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

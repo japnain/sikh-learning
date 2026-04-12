@@ -13,55 +13,463 @@
     "overthinking",
     "worry",
     "panic",
+    "spiraling",
     "fear",
-    "restless"
+    "restless",
+    "anxiety in the ordinary day",
+    "anxiety daily",
+    "today",
+    "daily",
+    "ordinary day",
+    "routine",
+    "anxiety today",
+    "anxiety ordinary day",
+    "anxiety routine",
+    "anxiety when the day tightens",
+    "anxiety under pressure",
+    "pressure",
+    "under strain",
+    "cornered",
+    "anxiety pressure",
+    "anxiety stress",
+    "anxiety under strain",
+    "anxiety cornered",
+    "anxiety after the slip",
+    "repair",
+    "return",
+    "after slipping",
+    "start again",
+    "anxiety repair",
+    "anxiety return",
+    "anxiety after slipping",
+    "anxiety start again",
+    "building a truer practice of anxiety",
+    "anxiety steady practice",
+    "practice",
+    "habit",
+    "steady return",
+    "formation",
+    "anxiety practice",
+    "anxiety habit",
+    "anxiety steady return",
+    "anxiety formation"
   ],
   "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          11
+        ],
+        "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
+        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The theme is named without abstraction here: by His Command, bodies are created; His Command cannot be described."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21090,
+          21091
+        ],
+        "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+        "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The shabad widens the issue beyond mood alone. Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+    },
     {
       "source": {
         "deepDiveId": "shabad-steadied-by-creator",
         "verseIds": [
           30988,
-          30989
+          30994
         ],
-        "shortMeaning": "The Creator who made you remains your support.",
-        "lifeApplication": "Fear loses some of its authority when creation and care are remembered together."
+        "shortMeaning": "Why do you waver, O mortal being? The Creator Lord Himself shall; why do you waver, O mortal being? The Lord who needs no",
+        "lifeApplication": "The answer to fear is not bravado. It is remembrance of the One already holding you. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "The line does not argue your fear away. It interrupts fear's claim to total control."
-    },
-    {
-      "source": {
-        "deepDiveId": "shabad-hukam-inside-everything",
-        "verseIds": [
-          15,
-          16
-        ],
-        "shortMeaning": "Everything stands inside Hukam, and understanding that loosens ego.",
-        "lifeApplication": "The mind relaxes when it stops demanding a reality outside Hukam."
-      },
-      "explanation": "Anxiety often wants certainty outside Hukam. Guru turns the mind back toward trust inside it."
-    },
-    {
-      "source": {
-        "deepDiveId": "shabad-remembrance-brings-peace",
-        "verseIds": [
-          11502,
-          11503
-        ],
-        "shortMeaning": "Repeated remembrance steadies the body and mind.",
-        "lifeApplication": "Return is the practice; peace grows through repetition."
-      },
-      "explanation": "This is practical medicine for spiraling thought. The repetition is part of the guidance."
+      "explanation": "Guru does not ask you to pretend fear is unreal. Guru asks you to remember whose care you already stand inside. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Anxiety in the ordinary day",
+      "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The struggle keeps showing up in plain time, not only in dramatic moments.",
+      "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Gurbani treats the ordinary day as a real place of return.",
+      "practicalReflection": "The daily shape of life exposes whether anxiety is being remembered or postponed.",
+      "actionPrompt": "Read one line aloud before trying to solve the whole future. Keep the next response small enough to survive an ordinary day.",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "anxiety in the ordinary day",
+        "anxiety daily",
+        "today",
+        "daily",
+        "ordinary day",
+        "routine",
+        "anxiety today",
+        "anxiety ordinary day",
+        "anxiety routine"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: by His Command, bodies are created; His Command cannot be described."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-suffering-as-medicine",
+            "verseIds": [
+              21090,
+              21091
+            ],
+            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+            "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-steadied-by-creator",
+            "verseIds": [
+              30988,
+              30994
+            ],
+            "shortMeaning": "Why do you waver, O mortal being? The Creator Lord Himself shall; why do you waver, O mortal being? The Lord who needs no",
+            "lifeApplication": "The answer to fear is not bravado. It is remembrance of the One already holding you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when why do you waver, O mortal being? The Creator Lord Himself shall; why do you waver, O mortal being? The Lord who needs no."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-anxiety:daily",
+        "evidence": {
+          "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Gurbani treats the ordinary day as a real place of return.",
+          "emotionalState": "restless, controlling, uncertain",
+          "turn": "The mind keeps rehearsing danger before the future has even arrived. The struggle keeps showing up in plain time, not only in dramatic moments.",
+          "practicalImplication": "Read one line aloud before trying to solve the whole future. Keep the next response small enough to survive an ordinary day.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.05,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.48,
+          "beauty": 4.17,
+          "overall": 4.29
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Anxiety when the day tightens",
+      "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. Pressure exposes what the mind reaches for first when it feels cornered.",
+      "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Under strain, the line must interrupt panic before panic defines the moment.",
+      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
+      "actionPrompt": "Read one line aloud before trying to solve the whole future. Use one line before the pressure chooses your tone.",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "anxiety when the day tightens",
+        "anxiety under pressure",
+        "pressure",
+        "under strain",
+        "cornered",
+        "anxiety pressure",
+        "anxiety stress",
+        "anxiety under strain",
+        "anxiety cornered"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-suffering-as-medicine",
+            "verseIds": [
+              21090,
+              21091
+            ],
+            "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+            "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-remembrance-brings-peace",
+            "verseIds": [
+              11503,
+              11511
+            ],
+            "shortMeaning": "Worry and anguish shall be dispelled from your body; save me along with them!",
+            "lifeApplication": "Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-66",
+            "verseIds": [
+              782
+            ],
+            "shortMeaning": "Some are very knowledgeable, but if they do not know the Guru,",
+            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-anxiety:pressure",
+        "evidence": {
+          "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Under strain, the line must interrupt panic before panic defines the moment.",
+          "emotionalState": "hurting, resentful, confused",
+          "turn": "The mind keeps rehearsing danger before the future has even arrived. Pressure exposes what the mind reaches for first when it feels cornered.",
+          "practicalImplication": "Read one line aloud before trying to solve the whole future. Use one line before the pressure chooses your tone.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.9,
+          "usefulness": 4.42,
+          "beauty": 4.37,
+          "overall": 4.41
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Anxiety after the slip",
+      "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+      "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
+      "actionPrompt": "Read one line aloud before trying to solve the whole future. Choose the next truthful return instead of rehearsing the failure.",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "anxiety after the slip",
+        "repair",
+        "return",
+        "after slipping",
+        "start again",
+        "anxiety repair",
+        "anxiety return",
+        "anxiety after slipping",
+        "anxiety start again"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-steadied-by-creator",
+            "verseIds": [
+              30988,
+              30994
+            ],
+            "shortMeaning": "Why do you waver, O mortal being? The Creator Lord Himself shall; why do you waver, O mortal being? The Lord who needs no",
+            "lifeApplication": "The answer to fear is not bravado. It is remembrance of the One already holding you. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: why do you waver, O mortal being? The Creator Lord Himself shall; why do you waver, O mortal being? The Lord who needs no."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-remembrance-brings-peace",
+            "verseIds": [
+              11506
+            ],
+            "shortMeaning": "The Vedas, the Puraanas and the Simritees, the purest of utterances,",
+            "lifeApplication": "Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Steady remembrance calms what scattered thinking cannot. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-107",
+            "verseIds": [
+              1410
+            ],
+            "shortMeaning": "Siree Raag, Third Mehla:",
+            "lifeApplication": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-anxiety:repair",
+        "evidence": {
+          "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "emotionalState": "afraid, shaken, alone",
+          "turn": "The mind keeps rehearsing danger before the future has even arrived. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
+          "practicalImplication": "Read one line aloud before trying to solve the whole future. Choose the next truthful return instead of rehearsing the failure.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.05,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 5,
+          "beauty": 4.65,
+          "overall": 4.46
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Building a truer practice of anxiety",
+      "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+      "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+      "practicalReflection": "Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.",
+      "actionPrompt": "Read one line aloud before trying to solve the whole future. Repeat what you can actually keep.",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "building a truer practice of anxiety",
+        "anxiety steady practice",
+        "practice",
+        "habit",
+        "steady return",
+        "formation",
+        "anxiety practice",
+        "anxiety habit",
+        "anxiety steady return",
+        "anxiety formation"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-66",
+            "verseIds": [
+              782
+            ],
+            "shortMeaning": "Some are very knowledgeable, but if they do not know the Guru,",
+            "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: some are very knowledgeable, but if they do not know the Guru,."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-hukam-inside-everything",
+            "verseIds": [
+              11
+            ],
+            "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
+            "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-107",
+            "verseIds": [
+              1410,
+              1415
+            ],
+            "shortMeaning": "Siree Raag, Third Mehla:; o my mind, remain awake and aware night and day, and think",
+            "lifeApplication": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "approved",
+        "origin": "generated",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-anxiety:practice",
+        "evidence": {
+          "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The teaching becomes durable when it is practiced repeatedly enough to change posture.",
+          "emotionalState": "dull, entitled, forgetful",
+          "turn": "The mind keeps rehearsing danger before the future has even arrived. The deeper need is a form of return that can outlast novelty, urgency, and mood.",
+          "practicalImplication": "Read one line aloud before trying to solve the whole future. Repeat what you can actually keep.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.04,
+          "beauty": 4.37,
+          "overall": 4.32
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
-    "shabad-steadied-by-creator",
     "shabad-hukam-inside-everything",
-    "shabad-remembrance-brings-peace"
+    "shabad-suffering-as-medicine",
+    "shabad-steadied-by-creator",
+    "shabad-remembrance-brings-peace",
+    "shabad-generated-66",
+    "shabad-generated-107"
   ],
   "relatedTopicIds": [
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anger",
+    "topic-comparison"
   ],
   "relatedCollectionIds": [
     "collection-fear-to-trust",
@@ -71,13 +479,13 @@
   "rotation": {
     "theme": "anxiety",
     "depthLevel": "beginner",
-    "cooldownWindowDays": 21,
-    "priority": 10,
-    "balanceCategory": "comfort",
-    "freshnessTier": "evergreen",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
   },
   "editorial": {
     "status": "locked",
@@ -86,23 +494,23 @@
     "templateKey": "topic:anxiety",
     "evidence": {
       "coreClaim": "Guru does not ask you to pretend fear is unreal. Guru asks you to remember whose care you already stand inside.",
-      "emotionalState": "afraid, shaken, alone",
+      "emotionalState": "restless, controlling, uncertain",
       "turn": "The mind keeps rehearsing danger, trying to secure the future before it arrives.",
       "practicalImplication": "Read one line aloud three times before you try to solve everything. Let remembrance come before planning.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 3.27,
       "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.36,
-      "beauty": 4.06,
-      "overall": 4.11
+      "usefulness": 4.42,
+      "beauty": 3.47,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

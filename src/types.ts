@@ -460,6 +460,7 @@ export type LearnDepthPreference = 'gentle' | 'balanced' | 'deep'
 export type LearnContentKind = 'daily-guidance' | 'shabad-deep-dive' | 'topic-guide' | 'collection'
 export type LearnDifficulty = 'beginner' | 'growing' | 'deep'
 export type LearnFreshnessTier = 'fresh' | 'evergreen' | 'reserve'
+export type TopicScenarioKey = 'overview' | 'daily' | 'pressure' | 'repair' | 'practice'
 export type LearnBalanceCategory =
   | 'comfort'
   | 'challenge'
@@ -526,7 +527,7 @@ export interface LearnEditorialScores {
 
 export interface LearnEditorialAssessment {
   status: LearnEditorialStatus
-  origin: 'legacy' | 'generated'
+  origin: 'legacy' | 'generated' | 'manual'
   voiceVersion: string
   templateKey: string
   evidence: LearnEditorialEvidence
@@ -577,6 +578,19 @@ export interface TopicGuideExcerpt {
   explanation: string
 }
 
+export interface TopicScenario {
+  key: Exclude<TopicScenarioKey, 'overview'>
+  label: string
+  title: string
+  issueStatement: string
+  centralInsight: string
+  practicalReflection: string
+  actionPrompt: string
+  searchTerms: string[]
+  excerpts: TopicGuideExcerpt[]
+  editorial?: LearnEditorialAssessment
+}
+
 export interface TopicGuide {
   id: string
   title: string
@@ -588,6 +602,9 @@ export interface TopicGuide {
   actionPrompt: string
   searchTerms: string[]
   excerpts: TopicGuideExcerpt[]
+  defaultScenarioKey: TopicScenarioKey
+  scenarioOrder: Array<Exclude<TopicScenarioKey, 'overview'>>
+  scenarios: Record<Exclude<TopicScenarioKey, 'overview'>, TopicScenario>
   relatedShabadIds: string[]
   relatedTopicIds: string[]
   relatedCollectionIds: string[]
@@ -598,6 +615,7 @@ export interface TopicGuide {
 export interface CollectionItemReference {
   kind: Exclude<LearnContentKind, 'collection'>
   id: string
+  scenarioKey?: Exclude<TopicScenarioKey, 'overview'>
 }
 
 export interface Collection {
@@ -635,10 +653,16 @@ export interface LearnTopicSearchEntry {
   searchTerms: string[]
 }
 
+export interface LearnTopicSearchTarget {
+  topicId: string
+  scenarioKey?: Exclude<TopicScenarioKey, 'overview'>
+}
+
 export interface LearnInventorySummary {
   dailyGuidance: number
   shabadDeepDives: number
   topicGuides: number
+  topicScenarios: number
   collections: number
   crossLinks: number
   readyForLaunch: boolean
@@ -648,13 +672,15 @@ export interface LearnContentTargets {
   dailyGuidance: number
   shabadDeepDives: number
   topicGuides: number
+  topicScenarios: number
   collections: number
   crossLinks: number
   averageCrossLinksPerItem: number
 }
 
 export interface LearnSearchIndex {
-  synonyms: Record<string, string>
+  synonyms: Record<string, LearnTopicSearchTarget>
+  legacyTopicAliases: Record<string, LearnTopicSearchTarget>
   topics: LearnTopicSearchEntry[]
 }
 

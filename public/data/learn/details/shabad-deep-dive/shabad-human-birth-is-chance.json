@@ -129,9 +129,7 @@
     "guidance-human-birth-is-chance-2"
   ],
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -163,12 +161,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.66,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3,
-      "usefulness": 2,
-      "beauty": 3.74,
-      "overall": 3.65
+      "usefulness": 3,
+      "beauty": 4.05,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",

@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-comparison"
+      "id": "topic-comparison",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-loneliness"
+      "id": "topic-loneliness",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -44,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-comparison",
-    "topic-loneliness"
+    "topic-loneliness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
@@ -66,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 3.27,
+      "clarity": 3.85,
       "specificity": 4.19,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.38,
-      "overall": 3.6
+      "usefulness": 3.38,
+      "beauty": 4.53,
+      "overall": 3.86
     },
     "strengths": [
       "beauty",

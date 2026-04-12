@@ -13,9 +13,7 @@
     "lifeApplication": "Forgiveness becomes more truthful when he blessed me with forgiveness."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-opens-lasting-peace"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.84,
-      "clarity": 3.54,
+      "clarity": 4.29,
       "specificity": 4.43,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.66,
-      "overall": 3.68
+      "usefulness": 4.2,
+      "beauty": 4.01,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

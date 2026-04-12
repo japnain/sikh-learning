@@ -13,9 +13,7 @@
     "lifeApplication": "Return your attention from other people to the state of your own mind."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 4.21,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 3.9,
-      "overall": 3.92
+      "usefulness": 4.04,
+      "beauty": 4.05,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

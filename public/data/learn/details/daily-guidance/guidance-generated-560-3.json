@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-loneliness",
-    "topic-loneliness-daily",
-    "topic-loneliness-pressure"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-generated-560"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.24,
-      "clarity": 3.3,
+      "clarity": 4.11,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.8,
-      "beauty": 3.66,
-      "overall": 3.93
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

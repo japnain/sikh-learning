@@ -13,9 +13,7 @@
     "lifeApplication": "Speech becomes more truthful when greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 2.58,
+      "clarity": 3.75,
       "specificity": 4.92,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.58,
-      "beauty": 2.95,
-      "overall": 3.6
+      "usefulness": 4.64,
+      "beauty": 3.58,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

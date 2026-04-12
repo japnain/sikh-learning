@@ -239,9 +239,7 @@
     "guidance-generated-179-2"
   ],
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedCollectionIds": [
     "collection-ego-to-humility",
@@ -273,19 +271,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 0.9,
+      "clarity": 3.21,
       "specificity": 4.75,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 2.04,
-      "overall": 3.19
+      "usefulness": 3.22,
+      "beauty": 3.43,
+      "overall": 3.89
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

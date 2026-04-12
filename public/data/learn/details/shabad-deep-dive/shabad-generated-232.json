@@ -99,9 +99,7 @@
     "guidance-generated-232-2"
   ],
   "relatedTopicIds": [
-    "topic-anger",
-    "topic-anger-daily",
-    "topic-anger-pressure"
+    "topic-anger"
   ],
   "relatedCollectionIds": [
     "collection-ego-to-humility",
@@ -133,19 +131,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.46,
+      "clarity": 3.87,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.57,
-      "beauty": 3.24,
-      "overall": 3.66
+      "usefulness": 3.6,
+      "beauty": 4.03,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

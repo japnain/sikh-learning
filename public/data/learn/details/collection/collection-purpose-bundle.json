@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-purpose"
+      "id": "topic-purpose",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -31,7 +32,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-purpose"
+    "topic-purpose",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance",
@@ -51,16 +53,16 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 2.77,
+      "clarity": 3.45,
       "specificity": 4.17,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.42
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.69
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

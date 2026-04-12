@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-self-worth"
+      "id": "topic-self-worth",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -41,7 +42,7 @@
   ],
   "relatedTopicIds": [
     "topic-self-worth",
-    "topic-comparison"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close",
@@ -63,12 +64,12 @@
     },
     "scores": {
       "faithfulness": 4.05,
-      "clarity": 2.65,
+      "clarity": 3.35,
       "specificity": 4.26,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.46
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.74
     },
     "strengths": [
       "specificity",

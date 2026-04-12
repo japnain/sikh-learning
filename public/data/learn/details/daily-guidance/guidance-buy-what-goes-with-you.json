@@ -15,9 +15,7 @@
     "lifeApplication": "Let praise, truth, and Naam become real assets."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you",
@@ -39,7 +37,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4.29,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.86,
       "emotionalHonesty": 3,
-      "usefulness": 2.44,
-      "beauty": 3.9,
-      "overall": 3.79
+      "usefulness": 3.44,
+      "beauty": 4.05,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

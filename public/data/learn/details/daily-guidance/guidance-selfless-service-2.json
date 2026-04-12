@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-selfless-service"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.92,
-      "clarity": 0.93,
+      "clarity": 2.74,
       "specificity": 4.68,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.36,
-      "beauty": 2.49,
-      "overall": 3.26
+      "usefulness": 4.42,
+      "beauty": 3.44,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

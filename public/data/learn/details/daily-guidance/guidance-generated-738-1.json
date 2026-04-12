@@ -13,9 +13,7 @@
     "lifeApplication": "Patience becomes more truthful when through the Guru's Word, I meditate on the Name."
   },
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedShabadIds": [
     "shabad-generated-738"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.7,
-      "clarity": 2.94,
+      "clarity": 3.99,
       "specificity": 4.12,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.27,
-      "beauty": 3.39,
-      "overall": 3.49
+      "usefulness": 4.36,
+      "beauty": 3.94,
+      "overall": 3.89
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

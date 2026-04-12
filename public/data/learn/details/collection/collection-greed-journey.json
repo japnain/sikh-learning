@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-greed"
+      "id": "topic-greed",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -42,7 +43,7 @@
   ],
   "relatedTopicIds": [
     "topic-greed",
-    "topic-discipline"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-speak-what-brings-honor",
@@ -64,12 +65,12 @@
     },
     "scores": {
       "faithfulness": 4.07,
-      "clarity": 2.9,
+      "clarity": 3.55,
       "specificity": 4.28,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.48
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.76
     },
     "strengths": [
       "specificity",

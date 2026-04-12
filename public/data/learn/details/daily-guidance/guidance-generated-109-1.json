@@ -13,9 +13,7 @@
     "lifeApplication": "Doubt becomes more truthful when siree Raag, Third Mehla:."
   },
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedShabadIds": [
     "shabad-generated-109"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.64,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.6,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 3.9,
-      "overall": 3.8
+      "usefulness": 4.64,
+      "beauty": 4.17,
+      "overall": 4.1
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

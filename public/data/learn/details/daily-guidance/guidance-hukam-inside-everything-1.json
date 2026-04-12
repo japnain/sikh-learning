@@ -13,9 +13,7 @@
     "lifeApplication": "Hukam becomes more truthful when by His Command, bodies are created; His Command cannot be described."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.81,
-      "clarity": 2.82,
+      "clarity": 3.87,
       "specificity": 4.4,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 3.13,
-      "overall": 3.53
+      "usefulness": 4.58,
+      "beauty": 3.68,
+      "overall": 3.94
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

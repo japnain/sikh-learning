@@ -46,7 +46,8 @@
   ],
   "relatedTopicIds": [
     "topic-mercy",
-    "topic-forgiveness"
+    "topic-forgiveness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass",
@@ -55,7 +56,7 @@
     "shabad-forgiveness-opens-lasting-peace"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -68,16 +69,16 @@
     },
     "scores": {
       "faithfulness": 3.88,
-      "clarity": 1.4,
+      "clarity": 2.35,
       "specificity": 4.1,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.23
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.55
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": [
       "runs too long at the sentence level"

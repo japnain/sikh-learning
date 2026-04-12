@@ -13,9 +13,7 @@
     "lifeApplication": "Seva becomes more truthful when he is not to call attention to himself in any way."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-selfless-service"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.79,
-      "clarity": 2.82,
+      "clarity": 3.93,
       "specificity": 4.38,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.14,
-      "beauty": 3.3,
-      "overall": 3.58
+      "usefulness": 4.2,
+      "beauty": 3.89,
+      "overall": 3.99
     },
     "strengths": [
       "specificity",
-      "emotionalHonesty"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

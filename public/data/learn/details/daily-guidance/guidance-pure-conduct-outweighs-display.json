@@ -16,9 +16,7 @@
     "lifeApplication": "Do not let ritual substitute for transformation."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-ambrosial-speech-pure-conduct",
@@ -53,16 +51,16 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.35,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.57,
-      "beauty": 3.82,
-      "overall": 3.64
+      "usefulness": 3.6,
+      "beauty": 4.05,
+      "overall": 3.92
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

@@ -1,64 +1,479 @@
 {
   "id": "topic-ego",
-  "title": "When ego insists on the center",
+  "title": "When the self keeps asking to be the center",
   "shortTitle": "Ego",
-  "category": "most-needed",
-  "issueStatement": "Everything loops back to the self: my image, my hurt, my control, my place.",
-  "centralInsight": "Gurbani does not treat ego as personality. It treats ego as disease, bondage, and distortion.",
-  "practicalReflection": "The goal is not self-erasure. It is truthful self-placement inside Hukam and Guru's Shabad.",
-  "actionPrompt": "Notice one sentence in your head today that begins and ends with the self. Lay it beside the shabad honestly.",
+  "category": "inner-work",
+  "issueStatement": "The room may look calm, but inwardly everything is being measured by injury, credit, image, or control.",
+  "centralInsight": "Gurbani names haumai as distortion, not personality. The cure is not self-hatred but truthful smallness before the One.",
+  "practicalReflection": "Ego does not only boast. It narrates, protects, compares, resents, and makes every moment answer to the self.",
+  "actionPrompt": "Notice where the self is asking to be confirmed, defended, or admired, and refuse to feed that demand immediately.",
   "searchTerms": [
     "ego",
     "haumai",
     "pride",
     "self-importance",
-    "defensive"
+    "vanity",
+    "defensive",
+    "image",
+    "ego in ordinary interactions",
+    "ego daily",
+    "ordinary interactions",
+    "being seen",
+    "daily ego",
+    "ego ordinary interactions",
+    "ego being seen",
+    "ego defensive",
+    "ego daily ego",
+    "ego when you feel cornered",
+    "ego under pressure",
+    "under pressure",
+    "cornered",
+    "reactive pride",
+    "ego cornered",
+    "ego reactive pride",
+    "returning after pride has spoken",
+    "ego after the slip",
+    "after pride",
+    "repair",
+    "apology",
+    "self-justification",
+    "come back",
+    "ego after pride",
+    "ego repair",
+    "ego apology",
+    "ego self-justification",
+    "ego come back",
+    "practicing a smaller self",
+    "ego steady practice",
+    "humility",
+    "smaller self",
+    "practice",
+    "recognition",
+    "hidden goodness",
+    "ego humility",
+    "ego smaller self",
+    "ego practice",
+    "ego recognition",
+    "ego hidden goodness"
   ],
   "excerpts": [
     {
       "source": {
         "deepDiveId": "shabad-ego-is-disease",
         "verseIds": [
-          20959,
-          20963
+          20961
         ],
-        "shortMeaning": "Ego shapes action and becomes chronic illness.",
-        "lifeApplication": "Seeing ego clearly is part of grace, not failure."
+        "shortMeaning": "Where does ego come from? How can it be removed?",
+        "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Guru Angad is exact: ego is not a small flaw on top of an otherwise neutral self."
+      "explanation": "The theme is named without abstraction here: where does ego come from? How can it be removed?."
     },
     {
       "source": {
-        "deepDiveId": "shabad-hukam-inside-everything",
+        "deepDiveId": "shabad-generated-1",
         "verseIds": [
-          16
+          3,
+          7
         ],
-        "shortMeaning": "Understanding Hukam loosens ego's speech.",
-        "lifeApplication": "The self becomes quieter when reality is no longer centered around it."
+        "shortMeaning": "True In The Primal Beginning. True Throughout The Ages; the hunger of the hungry is not appeased, even by piling up",
+        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Hukam is not abstract theology here. It is a direct solvent for haumai."
+      "explanation": "The shabad widens the issue beyond mood alone. Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
     },
     {
       "source": {
-        "deepDiveId": "shabad-gratitude-restores-naam",
+        "deepDiveId": "shabad-generated-64",
         "verseIds": [
-          60338,
-          60339
+          749,
+          754
         ],
-        "shortMeaning": "Real gratitude lowers the self before mercy.",
-        "lifeApplication": "Mercy becomes visible when self-importance thins out."
+        "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+        "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
       },
-      "explanation": "Humility here is not performative modesty. It is truthful dependence."
+      "explanation": "Gurbani names haumai as distortion, not personality. The cure is not self-hatred but truthful smallness before the One. The point is not to isolate advice from Gurbani, but to keep the line in charge of the page."
     }
   ],
+  "defaultScenarioKey": "overview",
+  "scenarioOrder": [
+    "daily",
+    "pressure",
+    "repair",
+    "practice"
+  ],
+  "scenarios": {
+    "daily": {
+      "key": "daily",
+      "label": "Daily",
+      "title": "Ego in ordinary interactions",
+      "issueStatement": "Most ego is not loud. It appears in the tiny insistences, interpretations, and quiet resentments that fill an ordinary day.",
+      "centralInsight": "The Guru brings ego into view by exposing how even casual interactions become self-referential when remembrance is thin.",
+      "practicalReflection": "If the day is full of inner commentary about being seen rightly, thanked properly, or treated specially, the self has taken too much space.",
+      "actionPrompt": "In one ordinary interaction today, choose listening over self-assertion and let the moment remain unedited by pride.",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "ego in ordinary interactions",
+        "ego daily",
+        "ordinary interactions",
+        "being seen",
+        "defensive",
+        "daily ego",
+        "ego ordinary interactions",
+        "ego being seen",
+        "ego defensive",
+        "ego daily ego"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The ordinary day is not spiritually empty here: where does ego come from? How can it be removed?."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1",
+            "verseIds": [
+              3,
+              7
+            ],
+            "shortMeaning": "True In The Primal Beginning. True Throughout The Ages; the hunger of the hungry is not appeased, even by piling up",
+            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line lands in plain time rather than special conditions. Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-64",
+            "verseIds": [
+              749,
+              754
+            ],
+            "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+            "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Daily faithfulness becomes visible when how can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-ego:daily",
+        "evidence": {
+          "coreClaim": "The Guru brings ego into view by exposing how even casual interactions become self-referential when remembrance is thin.",
+          "emotionalState": "defensive, offended, self-important",
+          "turn": "Most ego is not loud. It appears in the tiny insistences, interpretations, and quiet resentments that fill an ordinary day.",
+          "practicalImplication": "In one ordinary interaction today, choose listening over self-assertion and let the moment remain unedited by pride.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 5,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.8,
+          "beauty": 4.37,
+          "overall": 4.38
+        },
+        "strengths": [
+          "specificity",
+          "usefulness"
+        ],
+        "issues": []
+      }
+    },
+    "pressure": {
+      "key": "pressure",
+      "label": "Under Pressure",
+      "title": "Ego when you feel cornered",
+      "issueStatement": "Pressure makes ego feel righteous. The self becomes convinced that sharpness, self-protection, and control are simply what the moment requires.",
+      "centralInsight": "Under strain, humility is not weakness. It is what prevents pressure from turning panic into identity.",
+      "practicalReflection": "The pressured ego wants to secure itself first and reflect later. Gurbani reverses that order.",
+      "actionPrompt": "When you feel cornered, delay the defensive sentence long enough to ask what humility would sound like here.",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "ego when you feel cornered",
+        "ego under pressure",
+        "under pressure",
+        "cornered",
+        "defensive",
+        "reactive pride",
+        "ego cornered",
+        "ego defensive",
+        "ego reactive pride"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-1",
+            "verseIds": [
+              3,
+              7
+            ],
+            "shortMeaning": "True In The Primal Beginning. True Throughout The Ages; the hunger of the hungry is not appeased, even by piling up",
+            "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Pressure is named without surrendering the heart to it: true In The Primal Beginning. True Throughout The Ages; the hunger of the hungry is not appeased, even by piling up."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-107",
+            "verseIds": [
+              1420,
+              1425
+            ],
+            "shortMeaning": "The Immaculate Lord and Master is found. He is True; He is; god Himself is everything; those who are in their ego cannot even",
+            "lifeApplication": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line interrupts panic with a truer next movement. Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-151",
+            "verseIds": [
+              2105
+            ],
+            "shortMeaning": "Those who have the Treasure of the Naam within emancipate others as",
+            "lifeApplication": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt is useful when urgency tries to become your theology."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-ego:pressure",
+        "evidence": {
+          "coreClaim": "Under strain, humility is not weakness. It is what prevents pressure from turning panic into identity.",
+          "emotionalState": "reactive, heated, sharp",
+          "turn": "Pressure makes ego feel righteous. The self becomes convinced that sharpness, self-protection, and control are simply what the moment requires.",
+          "practicalImplication": "When you feel cornered, delay the defensive sentence long enough to ask what humility would sound like here.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.29,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.22,
+          "beauty": 4.01,
+          "overall": 4.08
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "repair": {
+      "key": "repair",
+      "label": "After the Slip",
+      "title": "Returning after pride has spoken",
+      "issueStatement": "The ego has already taken over the mouth, the posture, or the story, and now it wants to call self-justification honesty.",
+      "centralInsight": "Repair begins when pride is interrupted before it becomes identity. Gurbani teaches confession without self-dramatization.",
+      "practicalReflection": "You do not return from ego by crafting a better image of humility. You return by releasing the need to manage the image at all.",
+      "actionPrompt": "Name the pride plainly, apologize without self-defense where needed, and let one consequence stand without argument.",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "returning after pride has spoken",
+        "ego after the slip",
+        "after pride",
+        "repair",
+        "apology",
+        "self-justification",
+        "come back",
+        "ego after pride",
+        "ego repair",
+        "ego apology",
+        "ego self-justification",
+        "ego come back"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-64",
+            "verseIds": [
+              749,
+              754
+            ],
+            "shortMeaning": "How can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done",
+            "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Return stays possible even after the slip: how can we describe Him with words? There is no end to; whatever pleases Him comes to pass; nothing else can be done."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-107",
+            "verseIds": [
+              1419
+            ],
+            "shortMeaning": "Doubt runs far away from the bodies of those, whose minds remain",
+            "lifeApplication": "Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The Guru does not leave repair at remorse alone. Anxiety steadies when o Nanak, I am a sacrifice to those who are found to be true. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-179",
+            "verseIds": [
+              2791
+            ],
+            "shortMeaning": "Serving the True Guru, the Lord abides within the mind, and no",
+            "lifeApplication": "Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt keeps truth and return close enough to move together."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-ego:repair",
+        "evidence": {
+          "coreClaim": "Repair begins when pride is interrupted before it becomes identity. Gurbani teaches confession without self-dramatization.",
+          "emotionalState": "inflated, defensive, self-protective",
+          "turn": "The ego has already taken over the mouth, the posture, or the story, and now it wants to call self-justification honesty.",
+          "practicalImplication": "Name the pride plainly, apologize without self-defense where needed, and let one consequence stand without argument.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.98,
+          "beauty": 4.37,
+          "overall": 4.23
+        },
+        "strengths": [
+          "specificity",
+          "faithfulness"
+        ],
+        "issues": []
+      }
+    },
+    "practice": {
+      "key": "practice",
+      "label": "Steady Practice",
+      "title": "Practicing a smaller self",
+      "issueStatement": "Even after insight arrives, the ego keeps rebuilding itself through habit, especially in the places where competence or hurt feel most personal.",
+      "centralInsight": "Humility becomes stable through practice: repeated acts that return credit, soften speech, and keep the self from narrating everything back to itself.",
+      "practicalReflection": "The self shrinks healthily when service, praise, and truth are given more room than self-display.",
+      "actionPrompt": "Choose one place where you usually reach for recognition and practice hidden goodness there until the hunger weakens.",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "practicing a smaller self",
+        "ego steady practice",
+        "humility",
+        "smaller self",
+        "practice",
+        "recognition",
+        "hidden goodness",
+        "ego humility",
+        "ego smaller self",
+        "ego practice",
+        "ego recognition",
+        "ego hidden goodness"
+      ],
+      "excerpts": [
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-151",
+            "verseIds": [
+              2105
+            ],
+            "shortMeaning": "Those who have the Treasure of the Naam within emancipate others as",
+            "lifeApplication": "Anger steadies when nanak lives by chanting and meditating on the One, who is pervading within and. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "The line is teaching repetition, not merely inspiration: those who have the Treasure of the Naam within emancipate others as."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-ego-is-disease",
+            "verseIds": [
+              20961
+            ],
+            "shortMeaning": "Where does ego come from? How can it be removed?",
+            "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "Durable practice appears when the teaching can be kept on an ordinary week. The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+        },
+        {
+          "source": {
+            "deepDiveId": "shabad-generated-179",
+            "verseIds": [
+              2791,
+              2798
+            ],
+            "shortMeaning": "Serving the True Guru, the Lord abides within the mind, and no; they see the Truth, and they speak the Truth; their bodies and",
+            "lifeApplication": "Ego steadies when o Nanak, the devotees are happy and peaceful forever. They are absorbed in the. Let the wider window set the tone before the old reflex does."
+          },
+          "explanation": "This excerpt matters because it trains posture, not only agreement."
+        }
+      ],
+      "editorial": {
+        "status": "locked",
+        "origin": "manual",
+        "voiceVersion": "sggs-editorial-v1",
+        "templateKey": "topic-ego:practice",
+        "evidence": {
+          "coreClaim": "Humility becomes stable through practice: repeated acts that return credit, soften speech, and keep the self from narrating everything back to itself.",
+          "emotionalState": "reactive, heated, sharp",
+          "turn": "Even after insight arrives, the ego keeps rebuilding itself through habit, especially in the places where competence or hurt feel most personal.",
+          "practicalImplication": "Choose one place where you usually reach for recognition and practice hidden goodness there until the hunger weakens.",
+          "bannedOverreach": []
+        },
+        "scores": {
+          "faithfulness": 4.4,
+          "clarity": 4.35,
+          "specificity": 4.78,
+          "emotionalHonesty": 3,
+          "usefulness": 3.98,
+          "beauty": 4.53,
+          "overall": 4.2
+        },
+        "strengths": [
+          "specificity",
+          "beauty"
+        ],
+        "issues": []
+      }
+    }
+  },
   "relatedShabadIds": [
     "shabad-ego-is-disease",
-    "shabad-hukam-inside-everything",
-    "shabad-gratitude-restores-naam"
+    "shabad-generated-1",
+    "shabad-generated-64",
+    "shabad-generated-107",
+    "shabad-generated-151",
+    "shabad-generated-179"
   ],
   "relatedTopicIds": [
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-attachment",
+    "topic-patience"
   ],
   "relatedCollectionIds": [
     "collection-ego-to-humility",
@@ -67,35 +482,35 @@
   ],
   "rotation": {
     "theme": "ego",
-    "depthLevel": "growing",
-    "cooldownWindowDays": 21,
-    "priority": 9,
-    "balanceCategory": "challenge",
-    "freshnessTier": "evergreen",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
     "seasonality": [
       "evergreen"
-    ]
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:ego",
     "evidence": {
-      "coreClaim": "Gurbani does not treat ego as personality. It treats ego as disease, bondage, and distortion.",
+      "coreClaim": "Gurbani names haumai as distortion, not personality. The cure is not self-hatred but truthful smallness before the One.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "Everything loops back to the self: my image, my hurt, my control, my place.",
-      "practicalImplication": "Notice one sentence in your head today that begins and ends with the self. Lay it beside the shabad honestly.",
+      "turn": "The room may look calm, but inwardly everything is being measured by injury, credit, image, or control.",
+      "practicalImplication": "Notice where the self is asking to be confirmed, defended, or admired, and refuse to feed that demand immediately.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
-      "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.01,
-      "beauty": 4.14,
-      "overall": 3.97
+      "clarity": 3.39,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.76,
+      "beauty": 3.71,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",

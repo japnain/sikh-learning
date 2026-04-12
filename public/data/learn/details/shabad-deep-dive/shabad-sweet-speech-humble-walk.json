@@ -158,9 +158,7 @@
     "guidance-sweet-speech-humble-walk-1"
   ],
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedCollectionIds": [
     "collection-speech-and-self-restraint",
@@ -192,12 +190,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.22,
-      "beauty": 3.82,
-      "overall": 3.77
+      "usefulness": 3.22,
+      "beauty": 4.05,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",

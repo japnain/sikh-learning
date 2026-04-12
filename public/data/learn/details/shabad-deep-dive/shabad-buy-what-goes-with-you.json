@@ -158,9 +158,7 @@
     "guidance-buy-what-goes-with-you-1"
   ],
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -192,16 +190,16 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3.18,
-      "usefulness": 2,
-      "beauty": 4.38,
-      "overall": 3.81
+      "usefulness": 3,
+      "beauty": 4.53,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

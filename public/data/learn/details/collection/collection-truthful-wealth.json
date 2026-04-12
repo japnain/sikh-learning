@@ -47,7 +47,7 @@
   "relatedTopicIds": [
     "topic-greed",
     "topic-purpose",
-    "topic-discipline"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you",
@@ -69,12 +69,12 @@
     },
     "scores": {
       "faithfulness": 3.84,
-      "clarity": 0.65,
+      "clarity": 1.75,
       "specificity": 4.07,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.38,
-      "overall": 3.15
+      "usefulness": 3.38,
+      "beauty": 4.53,
+      "overall": 3.5
     },
     "strengths": [
       "beauty",

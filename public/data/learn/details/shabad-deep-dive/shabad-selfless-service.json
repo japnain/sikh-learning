@@ -121,9 +121,7 @@
     "guidance-selfless-service-2"
   ],
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -155,12 +153,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.57,
-      "beauty": 3.9,
-      "overall": 3.96
+      "usefulness": 3.6,
+      "beauty": 4.05,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",

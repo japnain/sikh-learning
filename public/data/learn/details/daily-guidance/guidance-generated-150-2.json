@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-generated-150"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 1.48,
+      "clarity": 3.05,
       "specificity": 4.77,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.06,
-      "beauty": 2.78,
-      "overall": 3.47
+      "usefulness": 5,
+      "beauty": 3.61,
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

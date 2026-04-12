@@ -13,9 +13,7 @@
     "lifeApplication": "Seva becomes more truthful when one who calls himself a guru or a spiritual teacher, while he."
   },
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedShabadIds": [
     "shabad-work-give-know-the-path"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.78,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 4.38,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.14,
-      "beauty": 3.26,
-      "overall": 3.47
+      "usefulness": 4.2,
+      "beauty": 3.89,
+      "overall": 3.9
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

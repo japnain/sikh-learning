@@ -85,9 +85,7 @@
     "guidance-generated-228-2"
   ],
   "relatedTopicIds": [
-    "topic-attachment",
-    "topic-attachment-daily",
-    "topic-attachment-pressure"
+    "topic-attachment"
   ],
   "relatedCollectionIds": [
     "collection-gratitude-and-contentment",
@@ -119,19 +117,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.18,
+      "clarity": 2.92,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 3.04,
-      "overall": 3.38
+      "usefulness": 3.22,
+      "beauty": 3.91,
+      "overall": 3.92
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

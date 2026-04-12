@@ -13,9 +13,7 @@
     "lifeApplication": "Hukam becomes more truthful when whatever pleases You comes to pass. As You give, so do we."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-what-pleases-you-comes-to-pass"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 4.53,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 3.03,
-      "overall": 3.55
+      "usefulness": 4.58,
+      "beauty": 3.66,
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

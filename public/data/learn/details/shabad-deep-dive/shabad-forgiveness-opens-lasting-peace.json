@@ -130,9 +130,7 @@
     "guidance-forgiveness-opens-lasting-peace-1"
   ],
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -164,12 +162,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3.18,
-      "usefulness": 2,
-      "beauty": 4.06,
-      "overall": 3.76
+      "usefulness": 3,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
       "specificity",

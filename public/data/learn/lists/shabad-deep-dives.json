@@ -93,9 +93,7 @@
       "guidance-hukam-inside-everything-2"
     ],
     "relatedTopicIds": [
-      "topic-hukam",
-      "topic-hukam-daily",
-      "topic-hukam-pressure"
+      "topic-hukam"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -127,12 +125,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.96,
         "emotionalHonesty": 3.36,
-        "usefulness": 3.14,
-        "beauty": 3.9,
-        "overall": 3.99
+        "usefulness": 4.2,
+        "beauty": 4.05,
+        "overall": 4.24
       },
       "strengths": [
         "specificity",
@@ -227,9 +225,7 @@
       "guidance-conquer-the-mind-2"
     ],
     "relatedTopicIds": [
-      "topic-discipline",
-      "topic-discipline-daily",
-      "topic-discipline-pressure"
+      "topic-discipline"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -261,12 +257,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.72,
-        "usefulness": 2,
-        "beauty": 3.9,
-        "overall": 3.82
+        "usefulness": 3,
+        "beauty": 4.05,
+        "overall": 4.06
       },
       "strengths": [
         "specificity",
@@ -406,9 +402,7 @@
       "guidance-human-birth-is-chance-2"
     ],
     "relatedTopicIds": [
-      "topic-purpose",
-      "topic-purpose-daily",
-      "topic-purpose-pressure"
+      "topic-purpose"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -440,12 +434,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.66,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3,
-        "usefulness": 2,
-        "beauty": 3.74,
-        "overall": 3.65
+        "usefulness": 3,
+        "beauty": 4.05,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
@@ -577,9 +571,7 @@
       "guidance-selfless-service-2"
     ],
     "relatedTopicIds": [
-      "topic-seva",
-      "topic-seva-daily",
-      "topic-seva-pressure"
+      "topic-seva"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -611,12 +603,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.57,
-        "beauty": 3.9,
-        "overall": 3.96
+        "usefulness": 3.6,
+        "beauty": 4.05,
+        "overall": 4.2
       },
       "strengths": [
         "specificity",
@@ -734,9 +726,7 @@
       "guidance-ego-is-disease-3"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -768,12 +758,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.54,
-        "usefulness": 2.22,
-        "beauty": 3.9,
-        "overall": 3.85
+        "usefulness": 3.22,
+        "beauty": 4.05,
+        "overall": 4.09
       },
       "strengths": [
         "specificity",
@@ -920,12 +910,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.66,
+        "clarity": 4.29,
         "specificity": 4.6,
         "emotionalHonesty": 3,
-        "usefulness": 2,
-        "beauty": 3.74,
-        "overall": 3.65
+        "usefulness": 3,
+        "beauty": 4.01,
+        "overall": 3.93
       },
       "strengths": [
         "specificity",
@@ -1070,9 +1060,7 @@
       "guidance-steadied-by-creator-2"
     ],
     "relatedTopicIds": [
-      "topic-anxiety",
-      "topic-anxiety-daily",
-      "topic-anxiety-pressure"
+      "topic-anxiety"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -1104,16 +1092,16 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.54,
-        "usefulness": 2.57,
-        "beauty": 4.38,
-        "overall": 3.98
+        "usefulness": 3.6,
+        "beauty": 4.53,
+        "overall": 4.22
       },
       "strengths": [
         "specificity",
-        "faithfulness"
+        "beauty"
       ],
       "issues": []
     }
@@ -1205,9 +1193,7 @@
       "guidance-gratitude-restores-naam-2"
     ],
     "relatedTopicIds": [
-      "topic-gratitude",
-      "topic-gratitude-daily",
-      "topic-gratitude-pressure"
+      "topic-gratitude"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -1239,16 +1225,16 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.66,
+        "clarity": 4.29,
         "specificity": 4.6,
         "emotionalHonesty": 3,
-        "usefulness": 2,
-        "beauty": 4.54,
-        "overall": 3.77
+        "usefulness": 3,
+        "beauty": 4.81,
+        "overall": 4.05
       },
       "strengths": [
-        "specificity",
-        "beauty"
+        "beauty",
+        "specificity"
       ],
       "issues": []
     }
@@ -1398,9 +1384,7 @@
       "guidance-child-of-grace-3"
     ],
     "relatedTopicIds": [
-      "topic-loneliness",
-      "topic-loneliness-daily",
-      "topic-loneliness-pressure"
+      "topic-loneliness"
     ],
     "relatedCollectionIds": [
       "collection-sangat-and-belonging",
@@ -1432,12 +1416,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.78,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.22,
-        "beauty": 4.14,
-        "overall": 3.81
+        "usefulness": 3.22,
+        "beauty": 4.37,
+        "overall": 4.08
       },
       "strengths": [
         "specificity",
@@ -1575,9 +1559,7 @@
       "guidance-remembrance-brings-peace-2"
     ],
     "relatedTopicIds": [
-      "topic-anxiety",
-      "topic-anxiety-daily",
-      "topic-anxiety-pressure"
+      "topic-anxiety"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -1609,12 +1591,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.18,
-        "usefulness": 2,
-        "beauty": 4.06,
-        "overall": 3.76
+        "usefulness": 3,
+        "beauty": 4.21,
+        "overall": 4
       },
       "strengths": [
         "specificity",
@@ -1764,12 +1746,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.66,
+        "clarity": 4.29,
         "specificity": 4.6,
         "emotionalHonesty": 3.36,
-        "usefulness": 2,
-        "beauty": 4.06,
-        "overall": 3.75
+        "usefulness": 3,
+        "beauty": 4.33,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
@@ -1894,9 +1876,7 @@
       "guidance-work-give-know-the-path-3"
     ],
     "relatedTopicIds": [
-      "topic-seva",
-      "topic-seva-daily",
-      "topic-seva-pressure"
+      "topic-seva"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -1928,12 +1908,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3,
-        "usefulness": 2.22,
-        "beauty": 4.06,
-        "overall": 3.79
+        "usefulness": 3.22,
+        "beauty": 4.21,
+        "overall": 4.03
       },
       "strengths": [
         "specificity",
@@ -2051,9 +2031,7 @@
       "guidance-detached-and-steady-2"
     ],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -2085,12 +2063,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.96,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.44,
-        "beauty": 4.22,
-        "overall": 3.91
+        "usefulness": 3.44,
+        "beauty": 4.37,
+        "overall": 4.14
       },
       "strengths": [
         "specificity",
@@ -2286,9 +2264,7 @@
       "guidance-what-pleases-you-comes-to-pass-1"
     ],
     "relatedTopicIds": [
-      "topic-hukam",
-      "topic-hukam-daily",
-      "topic-hukam-pressure"
+      "topic-hukam"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -2320,12 +2296,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.57,
-        "beauty": 4.22,
-        "overall": 3.9
+        "usefulness": 3.6,
+        "beauty": 4.37,
+        "overall": 4.14
       },
       "strengths": [
         "specificity",
@@ -2493,9 +2469,7 @@
       "guidance-speak-what-brings-honor-1"
     ],
     "relatedTopicIds": [
-      "topic-speech",
-      "topic-speech-daily",
-      "topic-speech-pressure"
+      "topic-speech"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -2527,12 +2501,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.96,
         "emotionalHonesty": 3.54,
-        "usefulness": 2.79,
-        "beauty": 4.06,
-        "overall": 3.99
+        "usefulness": 3.82,
+        "beauty": 4.21,
+        "overall": 4.23
       },
       "strengths": [
         "specificity",
@@ -2701,9 +2675,7 @@
       "guidance-extinguish-the-fire-of-doubt-1"
     ],
     "relatedTopicIds": [
-      "topic-doubt",
-      "topic-doubt-daily",
-      "topic-doubt-pressure"
+      "topic-doubt"
     ],
     "relatedCollectionIds": [
       "collection-doubt-to-clarity",
@@ -2735,12 +2707,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.78,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.7,
-        "beauty": 3.82,
-        "overall": 3.81
+        "usefulness": 3.76,
+        "beauty": 4.05,
+        "overall": 4.09
       },
       "strengths": [
         "specificity",
@@ -2909,9 +2881,7 @@
       "guidance-buy-what-goes-with-you-1"
     ],
     "relatedTopicIds": [
-      "topic-discipline",
-      "topic-discipline-daily",
-      "topic-discipline-pressure"
+      "topic-discipline"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -2943,16 +2913,16 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.18,
-        "usefulness": 2,
-        "beauty": 4.38,
-        "overall": 3.81
+        "usefulness": 3,
+        "beauty": 4.53,
+        "overall": 4.05
       },
       "strengths": [
         "specificity",
-        "faithfulness"
+        "beauty"
       ],
       "issues": []
     }
@@ -3117,9 +3087,7 @@
       "guidance-sweet-speech-humble-walk-1"
     ],
     "relatedTopicIds": [
-      "topic-speech",
-      "topic-speech-daily",
-      "topic-speech-pressure"
+      "topic-speech"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -3151,12 +3119,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.78,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.22,
-        "beauty": 3.82,
-        "overall": 3.77
+        "usefulness": 3.22,
+        "beauty": 4.05,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
@@ -3311,9 +3279,7 @@
       "guidance-search-ends-in-saint-company-2"
     ],
     "relatedTopicIds": [
-      "topic-restlessness",
-      "topic-restlessness-daily",
-      "topic-restlessness-pressure"
+      "topic-restlessness"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -3345,12 +3311,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.18,
-        "usefulness": 2.22,
-        "beauty": 4.06,
-        "overall": 3.82
+        "usefulness": 3.22,
+        "beauty": 4.21,
+        "overall": 4.06
       },
       "strengths": [
         "specificity",
@@ -3603,9 +3569,7 @@
       "guidance-forgiveness-becomes-fearless-1"
     ],
     "relatedTopicIds": [
-      "topic-forgiveness",
-      "topic-forgiveness-daily",
-      "topic-forgiveness-pressure"
+      "topic-forgiveness"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -3637,12 +3601,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.54,
-        "usefulness": 2.22,
-        "beauty": 3.9,
-        "overall": 3.85
+        "usefulness": 3.22,
+        "beauty": 4.05,
+        "overall": 4.09
       },
       "strengths": [
         "specificity",
@@ -3768,9 +3732,7 @@
       "guidance-patience-ripens-into-honor-1"
     ],
     "relatedTopicIds": [
-      "topic-patience",
-      "topic-patience-daily",
-      "topic-patience-pressure"
+      "topic-patience"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -3802,16 +3764,16 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.78,
         "emotionalHonesty": 3.54,
-        "usefulness": 2.57,
-        "beauty": 4.38,
-        "overall": 3.98
+        "usefulness": 3.6,
+        "beauty": 4.53,
+        "overall": 4.22
       },
       "strengths": [
         "specificity",
-        "faithfulness"
+        "beauty"
       ],
       "issues": []
     }
@@ -3941,9 +3903,7 @@
       "guidance-ambrosial-speech-pure-conduct-1"
     ],
     "relatedTopicIds": [
-      "topic-speech",
-      "topic-speech-daily",
-      "topic-speech-pressure"
+      "topic-speech"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -3975,12 +3935,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.78,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.18,
-        "usefulness": 2,
-        "beauty": 3.98,
-        "overall": 3.73
+        "usefulness": 3,
+        "beauty": 4.21,
+        "overall": 4
       },
       "strengths": [
         "specificity",
@@ -4119,7 +4079,9 @@
       "guidance-nearness-is-bigger-than-status",
       "guidance-lord-keeps-the-humble-close-1"
     ],
-    "relatedTopicIds": [],
+    "relatedTopicIds": [
+      "topic-self-worth"
+    ],
     "relatedCollectionIds": [
       "collection-self-worth-journey",
       "collection-self-worth-bundle",
@@ -4150,20 +4112,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.42,
+        "clarity": 4.29,
         "specificity": 4.6,
         "emotionalHonesty": 3.36,
-        "usefulness": 2.35,
-        "beauty": 4.22,
-        "overall": 3.79
+        "usefulness": 3.38,
+        "beauty": 4.65,
+        "overall": 4.14
       },
       "strengths": [
-        "specificity",
-        "faithfulness"
+        "beauty",
+        "specificity"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -4298,9 +4258,7 @@
       "guidance-forgiveness-opens-lasting-peace-1"
     ],
     "relatedTopicIds": [
-      "topic-forgiveness",
-      "topic-forgiveness-daily",
-      "topic-forgiveness-pressure"
+      "topic-forgiveness"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -4332,12 +4290,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.9,
+        "clarity": 4.35,
         "specificity": 4.6,
         "emotionalHonesty": 3.18,
-        "usefulness": 2,
-        "beauty": 4.06,
-        "overall": 3.76
+        "usefulness": 3,
+        "beauty": 4.21,
+        "overall": 4
       },
       "strengths": [
         "specificity",
@@ -4469,9 +4427,7 @@
       "guidance-generated-1-3"
     ],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -4503,20 +4459,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.62,
+        "clarity": 3.45,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.58,
-        "overall": 3.38
+        "usefulness": 3.22,
+        "beauty": 3.65,
+        "overall": 3.97
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -4701,20 +4655,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.34,
+        "clarity": 3.69,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.12,
-        "overall": 3.55
+        "usefulness": 3.22,
+        "beauty": 3.87,
+        "overall": 4.02
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -4874,9 +4826,7 @@
       "guidance-generated-63-2"
     ],
     "relatedTopicIds": [
-      "topic-gratitude",
-      "topic-gratitude-daily",
-      "topic-gratitude-pressure"
+      "topic-gratitude"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -4908,20 +4858,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.61,
+        "clarity": 3.76,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.5,
-        "overall": 3.65
+        "usefulness": 3.22,
+        "beauty": 4.09,
+        "overall": 4.06
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -5081,9 +5029,7 @@
       "guidance-generated-64-2"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -5115,20 +5061,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0,
+        "clarity": 1.37,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 2.11,
-        "overall": 3.13
+        "usefulness": 3.44,
+        "beauty": 3.34,
+        "overall": 3.67
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -5290,9 +5235,7 @@
       "guidance-generated-65-3"
     ],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -5324,20 +5267,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.22,
+        "clarity": 3.01,
         "specificity": 4.96,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.44,
-        "beauty": 3.04,
-        "overall": 3.43
+        "usefulness": 3.44,
+        "beauty": 3.95,
+        "overall": 3.99
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -5519,9 +5460,7 @@
       "guidance-generated-66-3"
     ],
     "relatedTopicIds": [
-      "topic-gratitude",
-      "topic-gratitude-daily",
-      "topic-gratitude-pressure"
+      "topic-gratitude"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -5553,20 +5492,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.33,
+        "clarity": 2.47,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 2.36,
-        "overall": 3.14
+        "usefulness": 3.22,
+        "beauty": 3.51,
+        "overall": 3.78
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -5754,9 +5691,7 @@
       "guidance-generated-107-2"
     ],
     "relatedTopicIds": [
-      "topic-anxiety",
-      "topic-anxiety-daily",
-      "topic-anxiety-pressure"
+      "topic-anxiety"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -5788,20 +5723,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.22,
+        "clarity": 3.13,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.06,
-        "overall": 3.39
+        "usefulness": 3.22,
+        "beauty": 4.05,
+        "overall": 3.98
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -5989,9 +5922,7 @@
       "guidance-generated-108-2"
     ],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -6023,20 +5954,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.18,
+        "clarity": 2.86,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.79,
-        "beauty": 2.98,
-        "overall": 3.49
+        "usefulness": 3.82,
+        "beauty": 3.81,
+        "overall": 4.02
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -6224,9 +6153,7 @@
       "guidance-generated-109-2"
     ],
     "relatedTopicIds": [
-      "topic-doubt",
-      "topic-doubt-daily",
-      "topic-doubt-pressure"
+      "topic-doubt"
     ],
     "relatedCollectionIds": [
       "collection-doubt-to-clarity",
@@ -6258,20 +6185,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.22,
+        "clarity": 3.63,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 3.07,
-        "overall": 3.6
+        "usefulness": 3.44,
+        "beauty": 3.86,
+        "overall": 4.08
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -6404,9 +6329,7 @@
       "guidance-generated-150-3"
     ],
     "relatedTopicIds": [
-      "topic-hukam",
-      "topic-hukam-daily",
-      "topic-hukam-pressure"
+      "topic-hukam"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -6438,20 +6361,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.27,
+        "clarity": 3.63,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.14,
-        "overall": 3.55
+        "usefulness": 3.22,
+        "beauty": 3.89,
+        "overall": 4.01
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -6612,9 +6533,7 @@
       "guidance-generated-151-3"
     ],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -6646,20 +6565,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.73,
+        "clarity": 2.57,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 2.84,
-        "overall": 3.35
+        "usefulness": 3.44,
+        "beauty": 3.75,
+        "overall": 3.91
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -6879,20 +6796,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.1,
+        "clarity": 3.69,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.93,
-        "overall": 3.5
+        "usefulness": 3.22,
+        "beauty": 3.84,
+        "overall": 4.03
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -7084,20 +6999,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0,
+        "clarity": 1.52,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 2.49,
-        "overall": 3.11
+        "usefulness": 3.22,
+        "beauty": 3.72,
+        "overall": 3.67
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -7286,9 +7200,7 @@
       "guidance-generated-178-2"
     ],
     "relatedTopicIds": [
-      "topic-restlessness",
-      "topic-restlessness-daily",
-      "topic-restlessness-pressure"
+      "topic-restlessness"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -7320,20 +7232,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.42,
+        "clarity": 3.78,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.22,
-        "overall": 3.58
+        "usefulness": 3.22,
+        "beauty": 3.97,
+        "overall": 4.05
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -7577,9 +7487,7 @@
       "guidance-generated-179-2"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -7611,20 +7519,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.9,
+        "clarity": 3.21,
         "specificity": 4.75,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.04,
-        "overall": 3.19
+        "usefulness": 3.22,
+        "beauty": 3.43,
+        "overall": 3.89
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -7743,9 +7649,7 @@
       "guidance-generated-226-3"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -7777,20 +7681,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.58,
+        "clarity": 3.99,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.47,
-        "overall": 3.66
+        "usefulness": 3.22,
+        "beauty": 4.26,
+        "overall": 4.14
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -7887,9 +7789,7 @@
       "guidance-generated-227-2"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -7921,20 +7821,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.7,
+        "clarity": 3.93,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.74,
-        "overall": 3.72
+        "usefulness": 3.22,
+        "beauty": 4.41,
+        "overall": 4.15
       },
       "strengths": [
         "specificity",
-        "faithfulness"
+        "beauty"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -8024,9 +7922,7 @@
       "guidance-generated-228-2"
     ],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -8058,20 +7954,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.18,
+        "clarity": 2.92,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.04,
-        "overall": 3.38
+        "usefulness": 3.22,
+        "beauty": 3.91,
+        "overall": 3.92
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -8161,9 +8055,7 @@
       "guidance-generated-229-2"
     ],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -8195,20 +8087,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.46,
+        "clarity": 3.69,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.22,
-        "overall": 3.6
+        "usefulness": 3.22,
+        "beauty": 3.89,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -8306,9 +8196,7 @@
       "guidance-generated-230-3"
     ],
     "relatedTopicIds": [
-      "topic-purpose",
-      "topic-purpose-daily",
-      "topic-purpose-pressure"
+      "topic-purpose"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -8340,20 +8228,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.58,
+        "clarity": 3.75,
         "specificity": 4.96,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.44,
-        "beauty": 3.27,
-        "overall": 3.67
+        "usefulness": 3.44,
+        "beauty": 3.9,
+        "overall": 4.09
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -8472,9 +8358,7 @@
       "guidance-generated-231-3"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -8506,20 +8390,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0,
+        "clarity": 2,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.57,
-        "beauty": 2.5,
-        "overall": 3.18
+        "usefulness": 3.6,
+        "beauty": 3.73,
+        "overall": 3.82
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -8624,9 +8507,7 @@
       "guidance-generated-232-2"
     ],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -8658,20 +8539,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.46,
+        "clarity": 3.87,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.57,
-        "beauty": 3.24,
-        "overall": 3.66
+        "usefulness": 3.6,
+        "beauty": 4.03,
+        "overall": 4.14
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -8817,9 +8696,7 @@
       "guidance-generated-298-2"
     ],
     "relatedTopicIds": [
-      "topic-mercy",
-      "topic-mercy-daily",
-      "topic-mercy-pressure"
+      "topic-mercy"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -8851,20 +8728,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.68,
+        "clarity": 2.73,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 2.8,
-        "overall": 3.33
+        "usefulness": 3.44,
+        "beauty": 3.91,
+        "overall": 3.96
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -9010,9 +8885,7 @@
       "guidance-generated-299-2"
     ],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -9044,20 +8917,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0,
+        "clarity": 2.01,
         "specificity": 5,
         "emotionalHonesty": 4,
-        "usefulness": 2.66,
-        "beauty": 2.31,
-        "overall": 3.2
+        "usefulness": 3.66,
+        "beauty": 3.66,
+        "overall": 3.85
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -9237,20 +9109,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.22,
+        "clarity": 2.89,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.03,
-        "overall": 3.39
+        "usefulness": 3.22,
+        "beauty": 3.86,
+        "overall": 3.91
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -9383,9 +9253,7 @@
       "guidance-generated-301-3"
     ],
     "relatedTopicIds": [
-      "topic-forgiveness",
-      "topic-forgiveness-daily",
-      "topic-forgiveness-pressure"
+      "topic-forgiveness"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -9417,20 +9285,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.46,
+        "clarity": 3.05,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.27,
-        "overall": 3.44
+        "usefulness": 3.22,
+        "beauty": 4.06,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -9673,7 +9539,9 @@
       "guidance-generated-337-1",
       "guidance-generated-337-2"
     ],
-    "relatedTopicIds": [],
+    "relatedTopicIds": [
+      "topic-self-worth"
+    ],
     "relatedCollectionIds": [
       "collection-self-worth-journey",
       "collection-self-worth-bundle",
@@ -9704,20 +9572,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.22,
+        "clarity": 2.83,
         "specificity": 5,
         "emotionalHonesty": 3.9,
-        "usefulness": 3.01,
-        "beauty": 3.02,
-        "overall": 3.52
+        "usefulness": 4.04,
+        "beauty": 3.81,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -9961,9 +9827,7 @@
       "guidance-generated-338-2"
     ],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -9995,20 +9859,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0,
+        "clarity": 1.56,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 2.25,
-        "overall": 3.07
+        "usefulness": 3.22,
+        "beauty": 3.56,
+        "overall": 3.65
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -10330,9 +10193,7 @@
       "guidance-generated-359-2"
     ],
     "relatedTopicIds": [
-      "topic-mercy",
-      "topic-mercy-daily",
-      "topic-mercy-pressure"
+      "topic-mercy"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -10364,20 +10225,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.48,
+        "clarity": 3.29,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.79,
-        "beauty": 3.02,
-        "overall": 3.54
+        "usefulness": 3.82,
+        "beauty": 4.01,
+        "overall": 4.11
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -10500,20 +10359,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.9,
+        "clarity": 3.21,
         "specificity": 4.94,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 2.04,
-        "overall": 3.25
+        "usefulness": 3.44,
+        "beauty": 3.43,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -10688,9 +10545,7 @@
       "guidance-generated-361-3"
     ],
     "relatedTopicIds": [
-      "topic-greed",
-      "topic-greed-daily",
-      "topic-greed-pressure"
+      "topic-greed"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -10722,20 +10577,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.37,
+        "clarity": 3.6,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.38,
-        "overall": 3.61
+        "usefulness": 3.22,
+        "beauty": 4.01,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -10923,9 +10776,7 @@
       "guidance-generated-459-2"
     ],
     "relatedTopicIds": [
-      "topic-mercy",
-      "topic-mercy-daily",
-      "topic-mercy-pressure"
+      "topic-mercy"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -10957,20 +10808,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.02,
+        "clarity": 4.14,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.82,
-        "overall": 3.78
+        "usefulness": 3.22,
+        "beauty": 4.41,
+        "overall": 4.18
       },
       "strengths": [
         "specificity",
-        "faithfulness"
+        "beauty"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -11096,9 +10945,7 @@
       "guidance-generated-460-3"
     ],
     "relatedTopicIds": [
-      "topic-gratitude",
-      "topic-gratitude-daily",
-      "topic-gratitude-pressure"
+      "topic-gratitude"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -11130,20 +10977,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.67,
+        "clarity": 3.18,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.21,
-        "overall": 3.48
+        "usefulness": 3.22,
+        "beauty": 3.96,
+        "overall": 3.97
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -11332,9 +11177,7 @@
       "guidance-generated-461-3"
     ],
     "relatedTopicIds": [
-      "topic-restlessness",
-      "topic-restlessness-daily",
-      "topic-restlessness-pressure"
+      "topic-restlessness"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -11366,20 +11209,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.08,
+        "clarity": 3.47,
         "specificity": 4.96,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.44,
-        "beauty": 3.3,
-        "overall": 3.6
+        "usefulness": 3.44,
+        "beauty": 4.01,
+        "overall": 4.07
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -11602,9 +11443,7 @@
       "guidance-generated-462-2"
     ],
     "relatedTopicIds": [
-      "topic-restlessness",
-      "topic-restlessness-daily",
-      "topic-restlessness-pressure"
+      "topic-restlessness"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -11636,20 +11475,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.26,
+        "clarity": 3.15,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.57,
-        "beauty": 2.49,
-        "overall": 3.35
+        "usefulness": 3.6,
+        "beauty": 3.6,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -11774,9 +11611,7 @@
       "guidance-generated-509-2"
     ],
     "relatedTopicIds": [
-      "topic-restlessness",
-      "topic-restlessness-daily",
-      "topic-restlessness-pressure"
+      "topic-restlessness"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -11808,20 +11643,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.22,
+        "clarity": 2.89,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.04,
-        "overall": 3.37
+        "usefulness": 3.22,
+        "beauty": 3.87,
+        "overall": 3.9
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -11954,9 +11787,7 @@
       "guidance-generated-510-3"
     ],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -11988,20 +11819,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.22,
+        "clarity": 3.87,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.57,
-        "beauty": 3,
-        "overall": 3.57
+        "usefulness": 3.6,
+        "beauty": 3.95,
+        "overall": 4.12
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -12127,9 +11956,7 @@
       "guidance-generated-511-3"
     ],
     "relatedTopicIds": [
-      "topic-mercy",
-      "topic-mercy-daily",
-      "topic-mercy-pressure"
+      "topic-mercy"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -12161,20 +11988,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.09,
+        "clarity": 3.03,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.17,
-        "overall": 3.39
+        "usefulness": 3.22,
+        "beauty": 4.16,
+        "overall": 3.98
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -12313,9 +12138,7 @@
       "guidance-generated-512-2"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -12347,20 +12170,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.89,
+        "clarity": 2.72,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.91,
-        "overall": 3.32
+        "usefulness": 3.22,
+        "beauty": 3.82,
+        "overall": 3.88
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -12493,9 +12314,7 @@
       "guidance-generated-560-3"
     ],
     "relatedTopicIds": [
-      "topic-loneliness",
-      "topic-loneliness-daily",
-      "topic-loneliness-pressure"
+      "topic-loneliness"
     ],
     "relatedCollectionIds": [
       "collection-sangat-and-belonging",
@@ -12527,20 +12346,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.18,
+        "clarity": 4.11,
         "specificity": 5,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.66,
-        "beauty": 3.74,
-        "overall": 3.87
+        "usefulness": 3.66,
+        "beauty": 4.21,
+        "overall": 4.23
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -12673,9 +12490,7 @@
       "guidance-generated-561-3"
     ],
     "relatedTopicIds": [
-      "topic-seva",
-      "topic-seva-daily",
-      "topic-seva-pressure"
+      "topic-seva"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -12707,20 +12522,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.86,
+        "clarity": 3.92,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.58,
-        "overall": 3.72
+        "usefulness": 3.22,
+        "beauty": 4.13,
+        "overall": 4.11
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -12852,9 +12665,7 @@
       "guidance-generated-562-2"
     ],
     "relatedTopicIds": [
-      "topic-patience",
-      "topic-patience-daily",
-      "topic-patience-pressure"
+      "topic-patience"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -12886,20 +12697,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.82,
+        "clarity": 2.78,
         "specificity": 5,
         "emotionalHonesty": 4,
-        "usefulness": 3.01,
-        "beauty": 2.7,
-        "overall": 3.43
+        "usefulness": 4.04,
+        "beauty": 3.73,
+        "overall": 4.03
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13031,9 +12840,7 @@
       "guidance-generated-563-2"
     ],
     "relatedTopicIds": [
-      "topic-doubt",
-      "topic-doubt-daily",
-      "topic-doubt-pressure"
+      "topic-doubt"
     ],
     "relatedCollectionIds": [
       "collection-doubt-to-clarity",
@@ -13065,20 +12872,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.94,
+        "clarity": 4.11,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.57,
-        "overall": 3.73
+        "usefulness": 3.22,
+        "beauty": 4.2,
+        "overall": 4.15
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13196,9 +13001,7 @@
       "guidance-generated-564-2"
     ],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -13230,20 +13033,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.73,
+        "clarity": 3.82,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.57,
-        "overall": 3.7
+        "usefulness": 3.22,
+        "beauty": 4.12,
+        "overall": 4.09
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13376,9 +13177,7 @@
       "guidance-generated-565-3"
     ],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -13410,20 +13209,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.06,
+        "clarity": 4.11,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.65,
-        "overall": 3.74
+        "usefulness": 3.22,
+        "beauty": 4.2,
+        "overall": 4.13
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13556,9 +13353,7 @@
       "guidance-generated-566-3"
     ],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -13590,20 +13385,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.3,
+        "clarity": 4.23,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.82,
-        "overall": 3.8
+        "usefulness": 3.22,
+        "beauty": 4.29,
+        "overall": 4.16
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13788,20 +13581,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.1,
+        "clarity": 3.69,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.95,
-        "overall": 3.51
+        "usefulness": 3.22,
+        "beauty": 3.86,
+        "overall": 4.03
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -13965,20 +13756,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.33,
+        "clarity": 2.53,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.32,
-        "overall": 3.15
+        "usefulness": 3.22,
+        "beauty": 3.51,
+        "overall": 3.81
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -14142,20 +13931,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.32,
+        "clarity": 3.26,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.57,
-        "beauty": 2.75,
-        "overall": 3.4
+        "usefulness": 3.6,
+        "beauty": 3.82,
+        "overall": 4
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -14320,20 +14107,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.73,
+        "clarity": 2.63,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 2.87,
-        "overall": 3.35
+        "usefulness": 3.44,
+        "beauty": 3.82,
+        "overall": 3.93
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -14570,9 +14355,7 @@
       "guidance-generated-703-2"
     ],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -14604,20 +14387,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2,
+        "clarity": 3.4,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 3.31,
-        "overall": 3.61
+        "usefulness": 3.44,
+        "beauty": 4.02,
+        "overall": 4.07
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -14861,9 +14642,7 @@
       "guidance-generated-704-2"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -14895,20 +14674,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.96,
+        "clarity": 3.31,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.46,
-        "overall": 3.56
+        "usefulness": 3.22,
+        "beauty": 4.13,
+        "overall": 4.02
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -15209,9 +14986,7 @@
       "guidance-generated-705-3"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -15243,20 +15018,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.79,
+        "clarity": 3.22,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.2,
-        "overall": 3.5
+        "usefulness": 3.22,
+        "beauty": 3.91,
+        "overall": 3.97
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -15557,9 +15330,7 @@
       "guidance-generated-736-3"
     ],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -15591,20 +15362,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.96,
+        "clarity": 3.47,
         "specificity": 4.96,
         "emotionalHonesty": 4,
-        "usefulness": 2.44,
-        "beauty": 3.19,
-        "overall": 3.58
+        "usefulness": 3.44,
+        "beauty": 3.98,
+        "overall": 4.08
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -15824,20 +15593,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.39,
+        "clarity": 2.96,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.04,
-        "overall": 3.4
+        "usefulness": 3.22,
+        "beauty": 3.83,
+        "overall": 3.9
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16024,9 +15791,7 @@
       "guidance-generated-738-1"
     ],
     "relatedTopicIds": [
-      "topic-patience",
-      "topic-patience-daily",
-      "topic-patience-pressure"
+      "topic-patience"
     ],
     "relatedCollectionIds": [
       "collection-restlessness-to-stillness",
@@ -16058,20 +15823,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.25,
+        "clarity": 2.35,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.55,
-        "overall": 3.17
+        "usefulness": 3.22,
+        "beauty": 3.62,
+        "overall": 3.8
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16256,9 +16019,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-anxiety",
-      "topic-anxiety-daily",
-      "topic-anxiety-pressure"
+      "topic-anxiety"
     ],
     "relatedCollectionIds": [
       "collection-fear-to-trust",
@@ -16290,20 +16051,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.18,
+        "clarity": 4.11,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.74,
-        "overall": 3.79
+        "usefulness": 3.22,
+        "beauty": 4.21,
+        "overall": 4.15
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16443,20 +16202,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 3.18,
+        "clarity": 4.05,
         "specificity": 4.96,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.44,
-        "beauty": 3.74,
-        "overall": 3.83
+        "usefulness": 3.44,
+        "beauty": 4.17,
+        "overall": 4.18
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16528,9 +16285,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-seva",
-      "topic-seva-daily",
-      "topic-seva-pressure"
+      "topic-seva"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -16562,20 +16317,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.46,
+        "clarity": 3.81,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.23,
-        "overall": 3.59
+        "usefulness": 3.22,
+        "beauty": 3.98,
+        "overall": 4.05
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16722,20 +16475,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.9,
+        "clarity": 3.9,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.58,
-        "overall": 3.72
+        "usefulness": 3.22,
+        "beauty": 4.09,
+        "overall": 4.1
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -16807,9 +16558,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-loneliness",
-      "topic-loneliness-daily",
-      "topic-loneliness-pressure"
+      "topic-loneliness"
     ],
     "relatedCollectionIds": [
       "collection-sangat-and-belonging",
@@ -16841,20 +16590,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.83,
+        "clarity": 3.31,
         "specificity": 5,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.66,
-        "beauty": 3.24,
-        "overall": 3.59
+        "usefulness": 3.66,
+        "beauty": 3.99,
+        "overall": 4.08
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17001,20 +16748,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.79,
+        "clarity": 3.28,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.25,
-        "overall": 3.51
+        "usefulness": 3.22,
+        "beauty": 4,
+        "overall": 3.99
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17086,9 +16831,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-speech",
-      "topic-speech-daily",
-      "topic-speech-pressure"
+      "topic-speech"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -17120,20 +16863,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.04,
+        "clarity": 3.32,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.48,
-        "overall": 3.58
+        "usefulness": 3.22,
+        "beauty": 4.11,
+        "overall": 4.01
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17248,9 +16989,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-anger",
-      "topic-anger-daily",
-      "topic-anger-pressure"
+      "topic-anger"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -17282,20 +17021,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.34,
+        "clarity": 3.75,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.09,
-        "overall": 3.56
+        "usefulness": 3.22,
+        "beauty": 3.88,
+        "overall": 4.04
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17399,20 +17136,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.83,
+        "clarity": 3.25,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.23,
-        "overall": 3.51
+        "usefulness": 3.22,
+        "beauty": 3.94,
+        "overall": 3.98
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17527,9 +17262,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-greed",
-      "topic-greed-daily",
-      "topic-greed-pressure"
+      "topic-greed"
     ],
     "relatedCollectionIds": [
       "collection-speech-and-self-restraint",
@@ -17561,20 +17294,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.04,
+        "clarity": 3.44,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.32,
-        "overall": 3.55
+        "usefulness": 3.22,
+        "beauty": 4.03,
+        "overall": 4.02
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17724,20 +17455,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.01,
+        "clarity": 2.66,
         "specificity": 4.75,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 2.92,
-        "overall": 3.32
+        "usefulness": 3.22,
+        "beauty": 3.71,
+        "overall": 3.84
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -17859,9 +17588,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-attachment",
-      "topic-attachment-daily",
-      "topic-attachment-pressure"
+      "topic-attachment"
     ],
     "relatedCollectionIds": [
       "collection-gratitude-and-contentment",
@@ -17893,20 +17620,19 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.2,
+        "clarity": 2.1,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.63,
-        "overall": 3.17
+        "usefulness": 3.22,
+        "beauty": 3.54,
+        "overall": 3.75
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
       "issues": [
-        "runs too long at the sentence level",
-        "repeats phrasing too closely"
+        "runs too long at the sentence level"
       ]
     }
   },
@@ -18061,20 +17787,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.71,
+        "clarity": 3.09,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.16,
-        "overall": 3.48
+        "usefulness": 3.22,
+        "beauty": 3.83,
+        "overall": 3.94
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -18196,9 +17920,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-loneliness",
-      "topic-loneliness-daily",
-      "topic-loneliness-pressure"
+      "topic-loneliness"
     ],
     "relatedCollectionIds": [
       "collection-sangat-and-belonging",
@@ -18230,20 +17952,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.79,
+        "clarity": 3.16,
         "specificity": 5,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.66,
-        "beauty": 3.11,
-        "overall": 3.57
+        "usefulness": 3.66,
+        "beauty": 3.78,
+        "overall": 4.02
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -18365,9 +18085,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-ego",
-      "topic-ego-daily",
-      "topic-ego-pressure"
+      "topic-ego"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -18399,20 +18117,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.58,
+        "clarity": 3.05,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.31,
-        "overall": 3.48
+        "usefulness": 3.22,
+        "beauty": 4.02,
+        "overall": 3.96
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -18566,20 +18282,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 0.98,
+        "clarity": 2.67,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 2.87,
-        "overall": 3.33
+        "usefulness": 3.22,
+        "beauty": 3.7,
+        "overall": 3.86
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -18701,9 +18415,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-seva",
-      "topic-seva-daily",
-      "topic-seva-pressure"
+      "topic-seva"
     ],
     "relatedCollectionIds": [
       "collection-service-and-purpose",
@@ -18735,20 +18447,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 2.18,
+        "clarity": 3.6,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.04,
-        "overall": 3.52
+        "usefulness": 3.22,
+        "beauty": 3.83,
+        "overall": 4
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -18902,20 +18612,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.76,
+        "clarity": 3.22,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3.13,
-        "overall": 3.47
+        "usefulness": 3.22,
+        "beauty": 3.88,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -19037,9 +18745,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-mercy",
-      "topic-mercy-daily",
-      "topic-mercy-pressure"
+      "topic-mercy"
     ],
     "relatedCollectionIds": [
       "collection-mercy-and-fearlessness",
@@ -19071,20 +18777,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.35,
+        "clarity": 3.03,
         "specificity": 4.78,
         "emotionalHonesty": 4,
-        "usefulness": 2.22,
-        "beauty": 3.13,
-        "overall": 3.42
+        "usefulness": 3.22,
+        "beauty": 4,
+        "overall": 3.95
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   },
   {
@@ -19206,9 +18910,7 @@
     ],
     "relatedGuidanceIds": [],
     "relatedTopicIds": [
-      "topic-comparison",
-      "topic-comparison-daily",
-      "topic-comparison-pressure"
+      "topic-comparison"
     ],
     "relatedCollectionIds": [
       "collection-ego-to-humility",
@@ -19240,20 +18942,18 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 1.47,
+        "clarity": 3.09,
         "specificity": 4.78,
         "emotionalHonesty": 3.9,
-        "usefulness": 2.22,
-        "beauty": 3,
-        "overall": 3.41
+        "usefulness": 3.22,
+        "beauty": 3.83,
+        "overall": 3.92
       },
       "strengths": [
         "specificity",
         "faithfulness"
       ],
-      "issues": [
-        "repeats phrasing too closely"
-      ]
+      "issues": []
     }
   }
 ]

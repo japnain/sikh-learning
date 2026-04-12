@@ -13,9 +13,7 @@
     "lifeApplication": "Mercy becomes more truthful when maajh, Fifth Mehla: Day And Night:."
   },
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedShabadIds": [
     "shabad-generated-359"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.71,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.66,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.58,
-      "beauty": 3.9,
-      "overall": 3.79
+      "usefulness": 4.64,
+      "beauty": 4.25,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

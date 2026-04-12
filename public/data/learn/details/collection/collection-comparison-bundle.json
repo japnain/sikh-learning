@@ -22,7 +22,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-comparison"
+      "id": "topic-comparison",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -30,7 +31,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-comparison"
+    "topic-comparison",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
@@ -50,16 +52,16 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.17,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.5
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.77
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

@@ -22,7 +22,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anger"
+      "id": "topic-anger",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -30,7 +31,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-anger"
+    "topic-anger",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",
@@ -50,16 +52,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.18,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.81
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

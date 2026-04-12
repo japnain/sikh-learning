@@ -1,292 +1,409 @@
 {
-  "generatedAt": "2026-04-12T03:50:24.241Z",
+  "generatedAt": "2026-04-12T04:59:36.814Z",
   "counts": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
-    "topicGuides": 100,
+    "topicGuides": 28,
+    "topicScenarios": 112,
     "collections": 100,
-    "crossLinks": 3921,
+    "crossLinks": 3420,
     "readyForLaunch": true
   },
-  "averageCrossLinksPerItem": 7.26,
+  "averageCrossLinksPerItem": 5.9,
   "editorial": {
     "voiceVersion": "sggs-editorial-v1",
     "statuses": {
-      "draft": 29,
-      "approved": 430,
-      "locked": 81
+      "draft": 0,
+      "approved": 454,
+      "locked": 126
     },
-    "draftCount": 29,
+    "draftCount": 0,
     "lowScoringItems": [
       {
-        "id": "topic-greed-practice",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 2.87,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
-        ]
-      },
-      {
-        "id": "topic-ego-practice",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 2.94,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
-        ]
-      },
-      {
-        "id": "topic-greed-daily",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 2.94,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-comparison-practice",
-        "kind": "topic-guide",
+        "id": "collection-tired-heart-to-rest",
+        "kind": "collection",
         "status": "approved",
-        "overall": 2.95,
+        "overall": 3.27,
         "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
-        ]
-      },
-      {
-        "id": "topic-discipline-practice",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 2.95,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
-        ]
-      },
-      {
-        "id": "topic-purpose-daily",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 2.97,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-purpose-practice",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 2.97,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
+          "runs too long at the sentence level"
         ]
       },
       {
         "id": "collection-conduct-and-clean-speech",
         "kind": "collection",
         "status": "approved",
-        "overall": 2.97,
+        "overall": 3.29,
         "issues": [
           "runs too long at the sentence level"
         ]
       },
       {
-        "id": "guidance-work-give-know-the-path-2",
-        "kind": "daily-guidance",
+        "id": "collection-control-to-release",
+        "kind": "collection",
         "status": "approved",
-        "overall": 2.98,
+        "overall": 3.49,
         "issues": [
-          "repeats phrasing too closely"
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-ego-to-humility",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.5,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-truthful-wealth",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.5,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-restlessness-to-stillness",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.51,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-sangat-and-belonging",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.52,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-mercy-and-fearlessness",
+        "kind": "collection",
+        "status": "locked",
+        "overall": 3.55,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-service-and-purpose",
+        "kind": "collection",
+        "status": "locked",
+        "overall": 3.56,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "collection-speech-and-self-restraint",
+        "kind": "collection",
+        "status": "locked",
+        "overall": 3.56,
+        "issues": [
+          "runs too long at the sentence level"
         ]
       },
       {
         "id": "guidance-generated-462-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 2.98,
+        "overall": 3.61,
+        "issues": []
+      },
+      {
+        "id": "guidance-work-give-know-the-path-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.62,
+        "issues": []
+      },
+      {
+        "id": "collection-doubt-to-clarity",
+        "kind": "collection",
+        "status": "locked",
+        "overall": 3.62,
         "issues": [
-          "repeats phrasing too closely"
+          "runs too long at the sentence level"
         ]
       },
       {
         "id": "guidance-search-ends-in-saint-company-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 2.99,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-greed-pressure",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 2.99,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "guidance-generated-643-2",
-        "kind": "daily-guidance",
-        "status": "approved",
-        "overall": 3,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-ego-daily",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 3,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-seva-practice",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 3,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
-        ]
+        "overall": 3.63,
+        "issues": []
       },
       {
         "id": "guidance-conquer-the-mind-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.01,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
+        "overall": 3.65,
+        "issues": []
       },
       {
-        "id": "guidance-generated-231-2",
-        "kind": "daily-guidance",
+        "id": "shabad-generated-338",
+        "kind": "shabad-deep-dive",
         "status": "approved",
-        "overall": 3.01,
+        "overall": 3.65,
         "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-comparison-daily",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 3.01,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "guidance-detached-and-steady-2",
-        "kind": "daily-guidance",
-        "status": "approved",
-        "overall": 3.02,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-anxiety-pressure",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 3.02,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-purpose-pressure",
-        "kind": "topic-guide",
-        "status": "approved",
-        "overall": 3.02,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
-      },
-      {
-        "id": "topic-forgiveness-practice",
-        "kind": "topic-guide",
-        "status": "draft",
-        "overall": 3.02,
-        "issues": [
-          "leans on template-heavy phrasing",
-          "repeats phrasing too closely",
-          "sounds interchangeable with other generated entries"
+          "runs too long at the sentence level"
         ]
       },
       {
         "id": "guidance-generated-179-2",
         "kind": "daily-guidance",
         "status": "approved",
-        "overall": 3.03,
+        "overall": 3.67,
+        "issues": []
+      },
+      {
+        "id": "shabad-generated-64",
+        "kind": "shabad-deep-dive",
+        "status": "approved",
+        "overall": 3.67,
         "issues": [
-          "repeats phrasing too closely"
+          "runs too long at the sentence level"
         ]
       },
       {
-        "id": "topic-ego-pressure",
-        "kind": "topic-guide",
+        "id": "shabad-generated-153",
+        "kind": "shabad-deep-dive",
         "status": "approved",
-        "overall": 3.03,
+        "overall": 3.67,
         "issues": [
-          "repeats phrasing too closely"
+          "runs too long at the sentence level"
         ]
       },
       {
-        "id": "topic-comparison-pressure",
-        "kind": "topic-guide",
+        "id": "collection-sangat-bundle",
+        "kind": "collection",
         "status": "approved",
-        "overall": 3.04,
-        "issues": [
-          "repeats phrasing too closely"
-        ]
+        "overall": 3.68,
+        "issues": []
+      },
+      {
+        "id": "collection-fear-to-trust",
+        "kind": "collection",
+        "status": "locked",
+        "overall": 3.69,
+        "issues": []
+      },
+      {
+        "id": "collection-purpose-bundle",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.69,
+        "issues": []
+      },
+      {
+        "id": "guidance-child-of-grace-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.7,
+        "issues": []
+      },
+      {
+        "id": "guidance-generated-231-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.7,
+        "issues": []
+      },
+      {
+        "id": "collection-gratitude-and-contentment",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 3.7,
+        "issues": []
       }
     ],
     "duplicateWarnings": []
   },
+  "shellCopy": [
+    {
+      "field": "heroBody",
+      "label": "Hero body",
+      "value": "Search fear, anger, ego, loneliness, doubt, speech, patience, greed, purpose, mercy, seva, or hukam. NaamRas routes you into approved guidance, full-shabad study, and connected journeys.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.23,
+        "clarity": 4.35,
+        "specificity": 4.8,
+        "emotionalHonesty": 3.54,
+        "usefulness": 3.44,
+        "beauty": 4.21,
+        "overall": 4.11
+      }
+    },
+    {
+      "field": "heroSearchHint",
+      "label": "Hero search hint",
+      "value": "Search stays canonical: it brings you to an approved guide first, then keeps the wider shabad close.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.11,
+        "clarity": 4.35,
+        "specificity": 4.33,
+        "emotionalHonesty": 3,
+        "usefulness": 3.38,
+        "beauty": 4.05,
+        "overall": 3.89
+      }
+    },
+    {
+      "field": "proofBody",
+      "label": "Proof body",
+      "value": "These counts are live. NaamRas shows the actual depth of the archive instead of pretending the work is already complete.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.13,
+        "clarity": 4.35,
+        "specificity": 4.35,
+        "emotionalHonesty": 3.18,
+        "usefulness": 3.76,
+        "beauty": 4.05,
+        "overall": 3.99
+      }
+    },
+    {
+      "field": "proofFooter",
+      "label": "Proof footer",
+      "value": "The archive now distinguishes between canonical topic pages and scenario paths. Cross-links keep each layer answering the others without repeating the same page in new clothes.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.22,
+        "clarity": 4.35,
+        "specificity": 4.43,
+        "emotionalHonesty": 3,
+        "usefulness": 3,
+        "beauty": 4.05,
+        "overall": 3.88
+      }
+    },
+    {
+      "field": "compactGuidanceBody",
+      "label": "Guidance compact body",
+      "value": "A short doorway into the day, anchored in a real line and written for return rather than skimming.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 3.97,
+        "clarity": 4.35,
+        "specificity": 4.55,
+        "emotionalHonesty": 3.18,
+        "usefulness": 3.82,
+        "beauty": 4.21,
+        "overall": 4.01
+      }
+    },
+    {
+      "field": "compactTopicBody",
+      "label": "Topic compact body",
+      "value": "The question most worth opening today, drawn into a real canonical guide.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 3.94,
+        "clarity": 4.35,
+        "specificity": 4.52,
+        "emotionalHonesty": 3,
+        "usefulness": 3.44,
+        "beauty": 4.05,
+        "overall": 3.89
+      }
+    },
+    {
+      "field": "detailBody",
+      "label": "Detail body",
+      "value": "Only one full detail surface stays open at a time so the archive feels deliberate instead of endless.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.25,
+        "clarity": 4.35,
+        "specificity": 4.63,
+        "emotionalHonesty": 3,
+        "usefulness": 3.22,
+        "beauty": 4.05,
+        "overall": 3.95
+      }
+    },
+    {
+      "field": "topicsIntroBody",
+      "label": "Topics intro body",
+      "value": "Bring the question plainly. NaamRas opens one canonical guide first, then lets you move into the exact scenario without scattering the archive into lookalike pages.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.13,
+        "clarity": 4.35,
+        "specificity": 4.52,
+        "emotionalHonesty": 3,
+        "usefulness": 3.98,
+        "beauty": 4.05,
+        "overall": 4.02
+      }
+    },
+    {
+      "field": "shabadsIntroBody",
+      "label": "Shabads intro body",
+      "value": "Filter by theme, Guru, raag, depth, and what you have already kept close until the next full reading feels chosen with care. Stay with the whole shabad long enough for context to correct the line you first came for.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.21,
+        "clarity": 4.05,
+        "specificity": 4.78,
+        "emotionalHonesty": 3.18,
+        "usefulness": 3.82,
+        "beauty": 4.21,
+        "overall": 4.06
+      }
+    },
+    {
+      "field": "savedIntroBody",
+      "label": "Saved intro body",
+      "value": "Saved pieces keep their shape, so a line, a guide, and a full shabad stay distinct when you return.",
+      "issues": [],
+      "scores": {
+        "faithfulness": 4.13,
+        "clarity": 4.15,
+        "specificity": 4.71,
+        "emotionalHonesty": 3.18,
+        "usefulness": 3.82,
+        "beauty": 4.21,
+        "overall": 4.04
+      }
+    }
+  ],
+  "surfaceCollisions": [],
   "hardFailures": [],
   "warnings": [
-    "Editorial review left 29 items in draft status for future revision",
-    "Editorial review: topic-guide topic-greed-practice scored 2.87",
-    "Editorial review: topic-guide topic-ego-practice scored 2.94",
-    "Editorial review: topic-guide topic-greed-daily scored 2.94",
-    "Editorial review: topic-guide topic-comparison-practice scored 2.95",
-    "Editorial review: topic-guide topic-discipline-practice scored 2.95",
-    "Editorial review: topic-guide topic-purpose-daily scored 2.97",
-    "Editorial review: topic-guide topic-purpose-practice scored 2.97",
-    "Editorial review: collection collection-conduct-and-clean-speech scored 2.97",
-    "Editorial review: daily-guidance guidance-work-give-know-the-path-2 scored 2.98",
-    "Editorial review: daily-guidance guidance-generated-462-2 scored 2.98",
-    "Editorial review: daily-guidance guidance-search-ends-in-saint-company-2 scored 2.99",
-    "Editorial review: topic-guide topic-greed-pressure scored 2.99",
-    "Editorial review: daily-guidance guidance-generated-643-2 scored 3.00",
-    "Editorial review: topic-guide topic-ego-daily scored 3.00",
-    "Editorial review: topic-guide topic-seva-practice scored 3.00",
-    "Editorial review: daily-guidance guidance-conquer-the-mind-2 scored 3.01",
-    "Editorial review: daily-guidance guidance-generated-231-2 scored 3.01",
-    "Editorial review: topic-guide topic-comparison-daily scored 3.01",
-    "Editorial review: daily-guidance guidance-detached-and-steady-2 scored 3.02",
-    "Editorial review: topic-guide topic-anxiety-pressure scored 3.02",
-    "Editorial review: topic-guide topic-purpose-pressure scored 3.02",
-    "Editorial review: topic-guide topic-forgiveness-practice scored 3.02",
-    "Editorial review: daily-guidance guidance-generated-179-2 scored 3.03",
-    "Editorial review: topic-guide topic-ego-pressure scored 3.03",
-    "Editorial review: topic-guide topic-comparison-pressure scored 3.04"
+    "Editorial review: collection collection-tired-heart-to-rest scored 3.27",
+    "Editorial review: collection collection-conduct-and-clean-speech scored 3.29",
+    "Editorial review: collection collection-control-to-release scored 3.49",
+    "Editorial review: collection collection-ego-to-humility scored 3.50",
+    "Editorial review: collection collection-truthful-wealth scored 3.50",
+    "Editorial review: collection collection-restlessness-to-stillness scored 3.51",
+    "Editorial review: collection collection-sangat-and-belonging scored 3.52",
+    "Editorial review: collection collection-mercy-and-fearlessness scored 3.55",
+    "Editorial review: collection collection-service-and-purpose scored 3.56",
+    "Editorial review: collection collection-speech-and-self-restraint scored 3.56",
+    "Editorial review: daily-guidance guidance-generated-462-2 scored 3.61",
+    "Editorial review: daily-guidance guidance-work-give-know-the-path-2 scored 3.62",
+    "Editorial review: collection collection-doubt-to-clarity scored 3.62",
+    "Editorial review: daily-guidance guidance-search-ends-in-saint-company-2 scored 3.63",
+    "Editorial review: daily-guidance guidance-conquer-the-mind-2 scored 3.65",
+    "Editorial review: shabad-deep-dive shabad-generated-338 scored 3.65",
+    "Editorial review: daily-guidance guidance-generated-179-2 scored 3.67",
+    "Editorial review: shabad-deep-dive shabad-generated-64 scored 3.67",
+    "Editorial review: shabad-deep-dive shabad-generated-153 scored 3.67",
+    "Editorial review: collection collection-sangat-bundle scored 3.68",
+    "Editorial review: collection collection-fear-to-trust scored 3.69",
+    "Editorial review: collection collection-purpose-bundle scored 3.69",
+    "Editorial review: daily-guidance guidance-child-of-grace-2 scored 3.70",
+    "Editorial review: daily-guidance guidance-generated-231-2 scored 3.70",
+    "Editorial review: collection collection-gratitude-and-contentment scored 3.70"
   ]
 }

@@ -242,9 +242,7 @@
     "guidance-forgiveness-becomes-fearless-1"
   ],
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -276,12 +274,12 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.22,
-      "beauty": 3.9,
-      "overall": 3.85
+      "usefulness": 3.22,
+      "beauty": 4.05,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",

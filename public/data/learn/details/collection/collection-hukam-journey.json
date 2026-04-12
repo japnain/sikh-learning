@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-hukam"
+      "id": "topic-hukam",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-hukam"
+    "topic-hukam",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -60,16 +62,16 @@
     },
     "scores": {
       "faithfulness": 4.04,
-      "clarity": 3.4,
+      "clarity": 3.95,
       "specificity": 4.25,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.57
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.83
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

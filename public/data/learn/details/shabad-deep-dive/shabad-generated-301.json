@@ -128,9 +128,7 @@
     "guidance-generated-301-3"
   ],
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -162,19 +160,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.46,
+      "clarity": 3.05,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 3.27,
-      "overall": 3.44
+      "usefulness": 3.22,
+      "beauty": 4.06,
+      "overall": 3.95
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

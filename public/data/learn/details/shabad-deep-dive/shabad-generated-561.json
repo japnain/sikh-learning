@@ -128,9 +128,7 @@
     "guidance-generated-561-3"
   ],
   "relatedTopicIds": [
-    "topic-seva",
-    "topic-seva-daily",
-    "topic-seva-pressure"
+    "topic-seva"
   ],
   "relatedCollectionIds": [
     "collection-service-and-purpose",
@@ -162,19 +160,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.86,
+      "clarity": 3.92,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 3.58,
-      "overall": 3.72
+      "usefulness": 3.22,
+      "beauty": 4.13,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

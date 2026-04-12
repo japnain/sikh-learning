@@ -128,9 +128,7 @@
     "guidance-generated-150-3"
   ],
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedCollectionIds": [
     "collection-fear-to-trust",
@@ -162,19 +160,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.27,
+      "clarity": 3.63,
       "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 2.22,
-      "beauty": 3.14,
-      "overall": 3.55
+      "usefulness": 3.22,
+      "beauty": 3.89,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

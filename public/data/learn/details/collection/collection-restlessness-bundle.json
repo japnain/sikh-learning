@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-restlessness"
+      "id": "topic-restlessness",
+      "scenarioKey": "practice"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-restlessness"
+    "topic-restlessness",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -52,16 +54,16 @@
     },
     "scores": {
       "faithfulness": 3.88,
-      "clarity": 3.52,
+      "clarity": 4.05,
       "specificity": 4.11,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.5
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.76
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

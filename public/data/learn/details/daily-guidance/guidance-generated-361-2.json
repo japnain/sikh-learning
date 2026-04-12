@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-greed",
-    "topic-greed-daily",
-    "topic-greed-pressure"
+    "topic-greed"
   ],
   "relatedShabadIds": [
     "shabad-generated-361"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 2.46,
+      "clarity": 3.69,
       "specificity": 4.94,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.23,
-      "beauty": 2.92,
-      "overall": 3.56
+      "usefulness": 4.26,
+      "beauty": 3.59,
+      "overall": 4
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

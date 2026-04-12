@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anxiety"
+      "id": "topic-anxiety",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-anger"
+      "id": "topic-anger",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-anxiety",
-    "topic-anger"
+    "topic-anger",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
@@ -67,16 +70,16 @@
     },
     "scores": {
       "faithfulness": 4.07,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.28,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.6
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.88
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }

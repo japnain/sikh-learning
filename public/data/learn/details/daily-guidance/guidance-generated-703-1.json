@@ -13,9 +13,7 @@
     "lifeApplication": "Attachment becomes more truthful when gauree Gwaarayree, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-attachment",
-    "topic-attachment-daily",
-    "topic-attachment-pressure"
+    "topic-attachment"
   ],
   "relatedShabadIds": [
     "shabad-generated-703"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.82,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.23,
       "emotionalHonesty": 3.54,
-      "usefulness": 2.92,
-      "beauty": 3.74,
-      "overall": 3.67
+      "usefulness": 3.98,
+      "beauty": 4.01,
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

@@ -12,7 +12,9 @@
     "shortMeaning": "Maajh, Third Mehla:",
     "lifeApplication": "Self-Worth becomes more truthful when maajh, Third Mehla:."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-generated-337"
   ],
@@ -45,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.65,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.25,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 3.98,
-      "overall": 3.74
+      "usefulness": 4.58,
+      "beauty": 4.21,
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
     "issues": []
   }

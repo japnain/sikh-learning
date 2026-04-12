@@ -136,7 +136,14 @@ export async function loadLearnDetail<K extends LearnContentKind>(
     return await detailPromises.get(key)! as LearnDetailMap[K]
   } catch (error) {
     detailPromises.delete(key)
-    if (error instanceof Error && /404/.test(error.message)) {
+    if (
+      error instanceof Error
+      && (
+        /404/.test(error.message)
+        || /ENOENT/.test(error.message)
+        || /no such file/i.test(error.message)
+      )
+    ) {
       return null
     }
     throw error

@@ -14,9 +14,7 @@
     "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
   },
   "relatedTopicIds": [
-    "topic-gratitude",
-    "topic-gratitude-daily",
-    "topic-gratitude-pressure"
+    "topic-gratitude"
   ],
   "relatedShabadIds": [
     "shabad-gratitude-restores-naam"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.36,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.57,
-      "beauty": 3.98,
-      "overall": 3.67
+      "usefulness": 3.6,
+      "beauty": 4.21,
+      "overall": 3.94
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

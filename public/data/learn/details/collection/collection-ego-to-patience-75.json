@@ -24,7 +24,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-ego"
+      "id": "topic-ego",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -32,7 +33,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-patience"
+      "id": "topic-patience",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -45,7 +47,8 @@
   ],
   "relatedTopicIds": [
     "topic-ego",
-    "topic-patience"
+    "topic-patience",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",
@@ -67,16 +70,16 @@
     },
     "scores": {
       "faithfulness": 4.06,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.27,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.62
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.88
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

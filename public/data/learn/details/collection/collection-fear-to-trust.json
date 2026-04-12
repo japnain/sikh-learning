@@ -41,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-anxiety",
-    "topic-hukam"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
@@ -50,7 +50,7 @@
     "shabad-suffering-as-medicine"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
@@ -63,12 +63,12 @@
     },
     "scores": {
       "faithfulness": 3.77,
-      "clarity": 2.65,
+      "clarity": 3.35,
       "specificity": 4,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 4.06,
-      "overall": 3.41
+      "usefulness": 3.38,
+      "beauty": 4.21,
+      "overall": 3.69
     },
     "strengths": [
       "beauty",

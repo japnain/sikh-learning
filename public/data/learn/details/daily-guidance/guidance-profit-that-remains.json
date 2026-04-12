@@ -15,9 +15,7 @@
     "lifeApplication": "Let your return on effort include clarity of soul."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 3.97,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.73,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.66,
-      "beauty": 4.06,
-      "overall": 3.8
+      "usefulness": 3.66,
+      "beauty": 4.21,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

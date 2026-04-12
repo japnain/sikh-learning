@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when serving the True Guru, the Lord abides within the mind, and no."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-179"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.78,
-      "clarity": 2.7,
+      "clarity": 3.87,
       "specificity": 4.37,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.01,
-      "overall": 3.46
+      "usefulness": 4.2,
+      "beauty": 3.64,
+      "overall": 3.89
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

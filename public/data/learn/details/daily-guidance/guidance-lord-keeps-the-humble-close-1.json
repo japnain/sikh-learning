@@ -12,7 +12,9 @@
     "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
     "lifeApplication": "Self-Worth becomes more truthful when the True Guru, the Great Giver, is the Great, Primal Being; meeting."
   },
-  "relatedTopicIds": [],
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close"
   ],
@@ -45,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.58,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.49,
-      "beauty": 3.16,
-      "overall": 3.59
+      "usefulness": 4.58,
+      "beauty": 3.75,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

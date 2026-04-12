@@ -347,7 +347,8 @@ export function getLearnTopicMatches(
   const normalized = normalizeTopicQuery(query)
   if (!normalized || normalized.length < 2 || !searchIndex) return []
 
-  const canonicalTopicId = searchIndex.synonyms[normalized] ?? null
+  const canonicalMatch = searchIndex.synonyms[normalized] ?? null
+  const canonicalTopicId = canonicalMatch?.topicId ?? null
 
   return searchIndex.topics
     .map(topic => {
@@ -374,8 +375,10 @@ export function getLearnTopicMatches(
     .map(({ topic, score }) => ({
       key: `learn-${topic.id}`,
       label: topic.title,
-      detail: 'Learn topic guide',
-      path: `/learn?tab=topics&topic=${topic.id}&detail=topic`,
+      detail: canonicalMatch?.scenarioKey && topic.id === canonicalTopicId
+        ? `Learn topic · ${canonicalMatch.scenarioKey}`
+        : 'Learn topic guide',
+      path: `/learn/topics/${topic.id}${topic.id === canonicalTopicId && canonicalMatch?.scenarioKey ? `?scenario=${canonicalMatch.scenarioKey}` : ""}`,
       score,
       kind: 'learn-topic' as const,
     }))

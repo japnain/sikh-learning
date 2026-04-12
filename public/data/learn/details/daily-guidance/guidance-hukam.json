@@ -14,9 +14,7 @@
     "lifeApplication": "Release the demand that peace must wait for total control."
   },
   "relatedTopicIds": [
-    "topic-hukam",
-    "topic-hukam-daily",
-    "topic-hukam-pressure"
+    "topic-hukam"
   ],
   "relatedShabadIds": [
     "shabad-hukam-inside-everything"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.79,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.38,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.49,
-      "beauty": 4.22,
-      "overall": 3.82
+      "usefulness": 4.58,
+      "beauty": 4.37,
+      "overall": 4.08
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "specificity"
     ],
     "issues": []
   }

@@ -23,7 +23,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-discipline"
+      "id": "topic-discipline",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -40,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-discipline",
-    "topic-purpose"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
@@ -61,12 +62,12 @@
     },
     "scores": {
       "faithfulness": 4.06,
-      "clarity": 3.02,
+      "clarity": 3.65,
       "specificity": 4.27,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.5
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.77
     },
     "strengths": [
       "specificity",

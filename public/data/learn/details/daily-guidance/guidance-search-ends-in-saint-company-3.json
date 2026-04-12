@@ -14,9 +14,7 @@
     "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
   },
   "relatedTopicIds": [
-    "topic-restlessness",
-    "topic-restlessness-daily",
-    "topic-restlessness-pressure"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 4.04,
-      "clarity": 2.7,
+      "clarity": 3.81,
       "specificity": 4.8,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.36,
-      "beauty": 3.39,
-      "overall": 3.62
+      "usefulness": 4.42,
+      "beauty": 3.98,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

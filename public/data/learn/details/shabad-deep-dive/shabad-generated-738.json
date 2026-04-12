@@ -182,9 +182,7 @@
     "guidance-generated-738-1"
   ],
   "relatedTopicIds": [
-    "topic-patience",
-    "topic-patience-daily",
-    "topic-patience-pressure"
+    "topic-patience"
   ],
   "relatedCollectionIds": [
     "collection-restlessness-to-stillness",
@@ -216,19 +214,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 0.25,
+      "clarity": 2.35,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 2.55,
-      "overall": 3.17
+      "usefulness": 3.22,
+      "beauty": 3.62,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

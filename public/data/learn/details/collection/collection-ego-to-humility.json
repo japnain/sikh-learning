@@ -42,7 +42,7 @@
   "relatedTopicIds": [
     "topic-ego",
     "topic-anger",
-    "topic-comparison"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",
@@ -64,16 +64,16 @@
     },
     "scores": {
       "faithfulness": 3.66,
-      "clarity": 1.65,
+      "clarity": 2.55,
       "specificity": 3.9,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.19
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.5
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": [
       "runs too long at the sentence level"

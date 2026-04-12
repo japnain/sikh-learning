@@ -82,6 +82,33 @@ export const SHELL_COPY_WARNING_PATTERNS = [
   /\bcomposed ritual\b/i,
 ]
 
+const REPETITION_STOP_WORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "are",
+  "as",
+  "at",
+  "be",
+  "before",
+  "for",
+  "from",
+  "in",
+  "into",
+  "is",
+  "it",
+  "of",
+  "on",
+  "or",
+  "that",
+  "the",
+  "to",
+  "under",
+  "when",
+  "with",
+  "your",
+])
+
 export function normalizeEditorialText(value) {
   return value
     .normalize("NFKD")
@@ -134,6 +161,15 @@ export function detectRepeatedNgrams(value, size = 3) {
   return Array.from(repeated)
 }
 
+export function meaningfulRepeatedNgrams(value, size = 4) {
+  return detectRepeatedNgrams(value, size).filter((ngram) => {
+    const meaningfulTokens = ngram
+      .split(" ")
+      .filter(token => token.length > 2 && !REPETITION_STOP_WORDS.has(token))
+    return new Set(meaningfulTokens).size >= 2
+  })
+}
+
 export function lexicalVariety(value) {
   const tokens = toTokens(value)
   if (tokens.length === 0) return 0
@@ -156,9 +192,6 @@ export function collectStyleIssues({
   }
   if (averageSentenceLength(text) > 24) {
     issues.push("runs too long at the sentence level")
-  }
-  if (detectRepeatedNgrams(text).length > 2) {
-    issues.push("repeats phrasing too closely")
   }
   if (includeShellWarnings && countPatternMatches(text, SHELL_COPY_WARNING_PATTERNS) > 0) {
     issues.push("slides toward brand language instead of direct guidance")

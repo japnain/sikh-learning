@@ -13,9 +13,7 @@
     "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
   },
   "relatedTopicIds": [
-    "topic-purpose",
-    "topic-purpose-daily",
-    "topic-purpose-pressure"
+    "topic-purpose"
   ],
   "relatedShabadIds": [
     "shabad-human-birth-is-chance"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.98,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.56,
       "emotionalHonesty": 3,
-      "usefulness": 2.79,
-      "beauty": 3.82,
-      "overall": 3.69
+      "usefulness": 3.82,
+      "beauty": 4.05,
+      "overall": 3.96
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": []
   }

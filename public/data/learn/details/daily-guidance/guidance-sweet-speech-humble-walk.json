@@ -14,9 +14,7 @@
     "lifeApplication": "Do not try to sound transformed while still standing on self-importance."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-sweet-speech-humble-walk",
@@ -51,16 +49,16 @@
     },
     "scores": {
       "faithfulness": 3.96,
-      "clarity": 3.78,
+      "clarity": 4.25,
       "specificity": 4.54,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.64,
-      "beauty": 3.96,
-      "overall": 3.7
+      "usefulness": 3.7,
+      "beauty": 4.13,
+      "overall": 3.96
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
     "issues": [
       "leans on template-heavy phrasing",

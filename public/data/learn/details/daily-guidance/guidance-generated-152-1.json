@@ -47,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.69,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.46,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.01,
-      "beauty": 3.9,
-      "overall": 3.73
+      "usefulness": 4.04,
+      "beauty": 4.17,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

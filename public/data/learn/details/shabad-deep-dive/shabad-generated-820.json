@@ -67,9 +67,7 @@
   ],
   "relatedGuidanceIds": [],
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedCollectionIds": [
     "collection-speech-and-self-restraint",
@@ -101,19 +99,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.04,
+      "clarity": 3.32,
       "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 2.22,
-      "beauty": 3.48,
-      "overall": 3.58
+      "usefulness": 3.22,
+      "beauty": 4.11,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

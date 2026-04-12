@@ -316,9 +316,7 @@
     "guidance-generated-359-2"
   ],
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedCollectionIds": [
     "collection-mercy-and-fearlessness",
@@ -350,19 +348,17 @@
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.48,
+      "clarity": 3.29,
       "specificity": 4.96,
       "emotionalHonesty": 4,
-      "usefulness": 2.79,
-      "beauty": 3.02,
-      "overall": 3.54
+      "usefulness": 3.82,
+      "beauty": 4.01,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

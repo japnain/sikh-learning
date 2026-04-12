@@ -15,9 +15,7 @@
     "lifeApplication": "Peace can be practiced aloud."
   },
   "relatedTopicIds": [
-    "topic-forgiveness",
-    "topic-forgiveness-daily",
-    "topic-forgiveness-pressure"
+    "topic-forgiveness"
   ],
   "relatedShabadIds": [
     "shabad-forgiveness-opens-lasting-peace",
@@ -52,16 +50,16 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.94,
       "emotionalHonesty": 3,
-      "usefulness": 2.88,
-      "beauty": 4.06,
-      "overall": 3.82
+      "usefulness": 3.88,
+      "beauty": 4.21,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
     "issues": []
   }

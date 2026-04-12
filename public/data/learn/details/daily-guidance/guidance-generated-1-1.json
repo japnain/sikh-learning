@@ -13,9 +13,7 @@
     "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
   },
   "relatedTopicIds": [
-    "topic-anger",
-    "topic-anger-daily",
-    "topic-anger-pressure"
+    "topic-anger"
   ],
   "relatedShabadIds": [
     "shabad-generated-1"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.73,
-      "clarity": 3.06,
+      "clarity": 3.99,
       "specificity": 4.51,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.01,
-      "beauty": 3.24,
-      "overall": 3.54
+      "usefulness": 4.04,
+      "beauty": 3.71,
+      "overall": 3.9
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

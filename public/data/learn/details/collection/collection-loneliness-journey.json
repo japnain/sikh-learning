@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-loneliness"
+      "id": "topic-loneliness",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -42,7 +43,7 @@
   ],
   "relatedTopicIds": [
     "topic-loneliness",
-    "topic-sangat"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-child-of-grace",
@@ -63,16 +64,16 @@
     },
     "scores": {
       "faithfulness": 4.01,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.23,
       "emotionalHonesty": 3,
-      "usefulness": 2.35,
-      "beauty": 4.22,
-      "overall": 3.54
+      "usefulness": 3.38,
+      "beauty": 4.37,
+      "overall": 3.81
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "specificity"
     ],
     "issues": []
   }

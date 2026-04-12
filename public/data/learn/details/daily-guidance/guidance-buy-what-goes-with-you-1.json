@@ -13,9 +13,7 @@
     "lifeApplication": "Discipline becomes more truthful when buy that object which will go along with you."
   },
   "relatedTopicIds": [
-    "topic-discipline",
-    "topic-discipline-daily",
-    "topic-discipline-pressure"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-buy-what-goes-with-you"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 4,
-      "clarity": 3.06,
+      "clarity": 3.99,
       "specificity": 4.58,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.79,
-      "beauty": 3.34,
-      "overall": 3.57
+      "usefulness": 3.82,
+      "beauty": 3.81,
+      "overall": 3.93
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -13,9 +13,7 @@
     "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
   },
   "relatedTopicIds": [
-    "topic-comparison",
-    "topic-comparison-daily",
-    "topic-comparison-pressure"
+    "topic-comparison"
   ],
   "relatedShabadIds": [
     "shabad-generated-65"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.86,
-      "clarity": 3.66,
+      "clarity": 4.29,
       "specificity": 4.63,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.36,
-      "beauty": 3.74,
-      "overall": 3.8
+      "usefulness": 4.42,
+      "beauty": 4.01,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": []
   }

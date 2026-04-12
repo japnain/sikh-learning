@@ -14,9 +14,7 @@
     "lifeApplication": "Move from self-justification toward teachability."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease"
@@ -37,7 +35,7 @@
     ]
   },
   "editorial": {
-    "status": "draft",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.3,
       "emotionalHonesty": 3.36,
-      "usefulness": 2.22,
-      "beauty": 3.82,
-      "overall": 3.6
+      "usefulness": 3.22,
+      "beauty": 4.05,
+      "overall": 3.87
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

@@ -14,9 +14,7 @@
     "lifeApplication": "Measure today's trade-offs by what they do to the soul, not only to convenience."
   },
   "relatedTopicIds": [
-    "topic-doubt",
-    "topic-doubt-daily",
-    "topic-doubt-pressure"
+    "topic-doubt"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
@@ -51,19 +49,17 @@
     },
     "scores": {
       "faithfulness": 3.95,
-      "clarity": 3.54,
+      "clarity": 4.29,
       "specificity": 4.71,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.01,
-      "beauty": 3.66,
-      "overall": 3.73
+      "usefulness": 4.04,
+      "beauty": 4.01,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

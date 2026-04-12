@@ -13,9 +13,7 @@
     "lifeApplication": "Ego becomes more truthful when ."
   },
   "relatedTopicIds": [
-    "topic-ego",
-    "topic-ego-daily",
-    "topic-ego-pressure"
+    "topic-ego"
   ],
   "relatedShabadIds": [
     "shabad-generated-227"
@@ -49,16 +47,16 @@
     },
     "scores": {
       "faithfulness": 3.64,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.24,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.14,
-      "beauty": 3.9,
-      "overall": 3.72
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "clarity"
+      "clarity",
+      "specificity"
     ],
     "issues": [
       "is missing explicit SGGS-grounded evidence"

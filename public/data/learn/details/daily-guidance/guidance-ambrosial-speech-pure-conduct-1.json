@@ -13,9 +13,7 @@
     "lifeApplication": "Speech becomes more truthful when of all religions, the best religion."
   },
   "relatedTopicIds": [
-    "topic-speech",
-    "topic-speech-daily",
-    "topic-speech-pressure"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-ambrosial-speech-pure-conduct"
@@ -49,19 +47,17 @@
     },
     "scores": {
       "faithfulness": 3.83,
-      "clarity": 3.42,
+      "clarity": 4.17,
       "specificity": 4.78,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.58,
-      "beauty": 3.58,
-      "overall": 3.77
+      "usefulness": 4.64,
+      "beauty": 3.93,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

@@ -14,9 +14,7 @@
     "lifeApplication": "Interrupt worry with repetition that re-roots the heart."
   },
   "relatedTopicIds": [
-    "topic-anxiety",
-    "topic-anxiety-daily",
-    "topic-anxiety-pressure"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-remembrance-brings-peace"
@@ -50,16 +48,16 @@
     },
     "scores": {
       "faithfulness": 3.9,
-      "clarity": 3.9,
+      "clarity": 4.35,
       "specificity": 4.3,
       "emotionalHonesty": 3,
-      "usefulness": 2.92,
-      "beauty": 4.06,
-      "overall": 3.7
+      "usefulness": 3.98,
+      "beauty": 4.21,
+      "overall": 3.95
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "clarity",
+      "specificity"
     ],
     "issues": []
   }

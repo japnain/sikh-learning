@@ -14,9 +14,7 @@
     "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
   },
   "relatedTopicIds": [
-    "topic-mercy",
-    "topic-mercy-daily",
-    "topic-mercy-pressure"
+    "topic-mercy"
   ],
   "relatedShabadIds": [
     "shabad-generated-459"
@@ -50,19 +48,17 @@
     },
     "scores": {
       "faithfulness": 3.94,
-      "clarity": 2.94,
+      "clarity": 3.93,
       "specificity": 4.7,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.36,
-      "beauty": 3.58,
-      "overall": 3.68
+      "usefulness": 4.42,
+      "beauty": 4.09,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "repeats phrasing too closely"
-    ]
+    "issues": []
   }
 }

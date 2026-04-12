@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-patience"
+      "id": "topic-patience",
+      "scenarioKey": "pressure"
     },
     {
       "kind": "shabad-deep-dive",
@@ -33,7 +34,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-mercy"
+      "id": "topic-mercy",
+      "scenarioKey": "repair"
     },
     {
       "kind": "daily-guidance",
@@ -46,7 +48,8 @@
   ],
   "relatedTopicIds": [
     "topic-patience",
-    "topic-mercy"
+    "topic-mercy",
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
@@ -68,16 +71,16 @@
     },
     "scores": {
       "faithfulness": 4.03,
-      "clarity": 3.77,
+      "clarity": 4.25,
       "specificity": 4.24,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 4.54,
-      "overall": 3.72
+      "usefulness": 3.38,
+      "beauty": 4.69,
+      "overall": 3.97
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "clarity"
     ],
     "issues": []
   }

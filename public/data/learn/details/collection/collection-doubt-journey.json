@@ -25,7 +25,8 @@
     },
     {
       "kind": "topic-guide",
-      "id": "topic-doubt"
+      "id": "topic-doubt",
+      "scenarioKey": "daily"
     },
     {
       "kind": "shabad-deep-dive",
@@ -42,7 +43,7 @@
   ],
   "relatedTopicIds": [
     "topic-doubt",
-    "topic-gratitude"
+    "t"
   ],
   "relatedShabadIds": [
     "shabad-extinguish-the-fire-of-doubt",
@@ -64,16 +65,16 @@
     },
     "scores": {
       "faithfulness": 4.04,
-      "clarity": 3.15,
+      "clarity": 3.75,
       "specificity": 4.25,
       "emotionalHonesty": 3.18,
-      "usefulness": 2.35,
-      "beauty": 3.9,
-      "overall": 3.53
+      "usefulness": 3.38,
+      "beauty": 4.05,
+      "overall": 3.8
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": []
   }
