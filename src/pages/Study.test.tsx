@@ -123,6 +123,30 @@ describe('Study bookmark button', () => {
 })
 
 describe('Study renders all shabads on an ang', () => {
+  it('keeps the on-this-ang outline collapsed by default until expanded', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /on this ang/i })).toBeInTheDocument()
+    })
+
+    const outlineButton = screen.getByRole('button', { name: /on this ang/i })
+    expect(outlineButton).toHaveAttribute('aria-expanded', 'false')
+    expect(document.getElementById('study-entry-outline-panel')).toBeNull()
+
+    fireEvent.click(outlineButton)
+
+    expect(outlineButton).toHaveAttribute('aria-expanded', 'true')
+    const outlinePanel = document.getElementById('study-entry-outline-panel')
+    expect(outlinePanel).not.toBeNull()
+    expect(within(outlinePanel as HTMLElement).getByText(/Shabad 1 of 2/i)).toBeInTheDocument()
+    expect(within(outlinePanel as HTMLElement).getByText(/Shabad 2 of 2/i)).toBeInTheDocument()
+  })
+
   it('renders multiple study cards for all shabads on a page', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>

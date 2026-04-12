@@ -83,7 +83,8 @@
   }
 
   .section-shell-quiet {
-    @apply rounded-[24px] bg-parchment-low dark:bg-dark-surface border border-sand/10 dark:border-dark-text/10 backdrop-blur-sm;
+    @apply rounded-[24px] bg-parchment-low dark:bg-dark-surface border border-sand/10 dark:border-dark-text/10;
+    isolation: isolate;
   }
 
   .hero-surface {

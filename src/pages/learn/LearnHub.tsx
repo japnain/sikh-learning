@@ -174,6 +174,7 @@ export default function LearnHub() {
   const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
+  const continueCardClass = "section-shell-quiet relative isolate w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
 
   function setParams(updates: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams)
@@ -434,7 +435,7 @@ export default function LearnHub() {
                   <Link
                     to={buildLearnDetailPath("collection", continueLearning.collection.id, "today")}
                     aria-label={`Continue collection: ${continueLearning.collection.title}`}
-                    className="section-shell-quiet w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
+                    className={continueCardClass}
                   >
                     <p className="eyebrow">{continueLearning.collection.durationLabel}</p>
                     <p className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">
@@ -453,7 +454,7 @@ export default function LearnHub() {
                   <Link
                     to={buildLearnDetailPath("topic-guide", continueLearning.topic.id, "today")}
                     aria-label={`Continue topic guide: ${continueLearning.topic.title}`}
-                    className="section-shell-quiet w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
+                    className={continueCardClass}
                   >
                     <p className="eyebrow">Topic guide</p>
                     <p className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">
