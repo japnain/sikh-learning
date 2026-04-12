@@ -1,0 +1,83 @@
+{
+  "id": "collection-ego-to-patience-75",
+  "title": "Ego to Patience",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "ego",
+    "patience"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963,
+      20964
+    ],
+    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+    "lifeApplication": "Move from self-justification toward teachability."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-ego-cure"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-ego"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-patience"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-after-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-patience"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-search-ends-in-saint-company",
+    "shabad-generated-1",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.06,
+      "clarity": 3.15,
+      "specificity": 4.27,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.62
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

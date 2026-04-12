@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-230-2",
+  "title": "The Word Of The Guru's Shabad, The",
+  "summary": "Purpose is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Through the Word of the Guru's Shabad, the Lord is found. The",
+  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-230",
+    "verseIds": [
+      3451,
+      3454
+    ],
+    "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is found. The",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-230"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Through the Word of the Guru's Shabad, the Lord is found. The",
+      "emotionalState": "directionless, numb, adrift",
+      "turn": "Purpose steadies when o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 2.58,
+      "specificity": 4.98,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.45,
+      "beauty": 2.93,
+      "overall": 3.53
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

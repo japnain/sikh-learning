@@ -6,6 +6,7 @@ import LearnHub from "./learn/LearnHub"
 import ShabadDetailPage from "./learn/ShabadDetailPage"
 import TopicDetailPage from "./learn/TopicDetailPage"
 import { useCurrentTime } from "../hooks/useCurrentTime"
+import useLearnCatalog from "../hooks/useLearnCatalog"
 import { useLearningStore } from "../store/learning"
 import { toLocalDayStamp } from "../utils/learnDates"
 import { getTodayLearnSurface } from "../utils/learnExperience"
@@ -15,12 +16,13 @@ function LearnIndexRoute() {
   const [searchParams] = useSearchParams()
   const now = useCurrentTime()
   const learnState = useLearningStore(state => state.learnState)
+  const { catalog, error, loading } = useLearnCatalog()
   const tabParam = searchParams.get("tab")
   const activeTab = isLearnTab(tabParam) ? tabParam : "today"
 
   const todaySurface = useMemo(
-    () => getTodayLearnSurface(toLocalDayStamp(new Date(now)), learnState),
-    [learnState, now]
+    () => (catalog ? getTodayLearnSurface(catalog, toLocalDayStamp(new Date(now)), learnState) : null),
+    [catalog, learnState, now]
   )
 
   const legacyRedirectPath = useMemo(() => {
@@ -42,11 +44,39 @@ function LearnIndexRoute() {
     }
 
     if (detail === "guidance") {
-      return buildLearnDetailPath("daily-guidance", todaySurface.dailyGuidance.item.id, "today")
+      return todaySurface
+        ? buildLearnDetailPath("daily-guidance", todaySurface.dailyGuidance.item.id, "today")
+        : null
     }
 
     return null
-  }, [activeTab, searchParams, todaySurface.dailyGuidance.item.id])
+  }, [activeTab, searchParams, todaySurface])
+
+  if (loading) {
+    return (
+      <div className="page-shell animate-fade-in" data-testid="page-learn-loading">
+        <div className="section-shell p-5">
+          <p className="eyebrow">Learn</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+            Loading the SGGS archive…
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !catalog) {
+    return (
+      <div className="page-shell animate-fade-in" data-testid="page-learn-error">
+        <div className="section-shell p-5">
+          <p className="eyebrow">Learn</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+            The Learn archive could not be loaded.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   if (legacyRedirectPath) {
     return <Navigate to={legacyRedirectPath} replace />

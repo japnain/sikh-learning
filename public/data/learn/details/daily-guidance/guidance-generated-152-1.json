@@ -1,0 +1,63 @@
+{
+  "id": "guidance-generated-152-1",
+  "title": "Siree Raag, Fifth Mehla:",
+  "summary": "Sangat is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Siree Raag, Fifth Mehla:",
+  "lifeApplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-152",
+    "verseIds": [
+      2113
+    ],
+    "shortMeaning": "Siree Raag, Fifth Mehla:",
+    "lifeApplication": "Sangat becomes more truthful when siree Raag, Fifth Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-152"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "seva"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, Fifth Mehla:",
+      "emotionalState": "isolated, impressionable, needing-company",
+      "turn": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours.",
+      "practicalImplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.69,
+      "clarity": 3.66,
+      "specificity": 4.46,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.01,
+      "beauty": 3.9,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

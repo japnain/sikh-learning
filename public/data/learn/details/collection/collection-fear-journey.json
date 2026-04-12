@@ -1,0 +1,78 @@
+{
+  "id": "collection-fear-journey",
+  "title": "From Fear to steadier practice",
+  "subtitle": "A deliberate path through fear",
+  "description": "Guru answers fear by restoring the presence, shelter, and command of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "fear",
+    "restlessness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-300",
+    "verseIds": [
+      4131
+    ],
+    "shortMeaning": "Maajh, Fifth Mehla:",
+    "lifeApplication": "Fear becomes more truthful when maajh, Fifth Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-300-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-fear"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-steadied-by-creator"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-300-2"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-178"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-fear",
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-steadied-by-creator",
+    "shabad-generated-178",
+    "shabad-search-ends-in-saint-company",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "A deliberate path through fear",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.02,
+      "specificity": 4.23,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

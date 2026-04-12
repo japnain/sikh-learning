@@ -1,0 +1,109 @@
+{
+  "id": "topic-restlessness-repair",
+  "title": "When restlessness keeps scattering the heart after the mind has slipped",
+  "shortTitle": "Restlessness · Repair",
+  "category": "most-needed",
+  "issueStatement": "Movement is increasing, but clarity is not. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+  "centralInsight": "Guru answers wandering with saint company, listening, and honest stillness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+  "practicalReflection": "The mind settles less by roaming and more by right company. Choose better placement before choosing more movement.",
+  "actionPrompt": "Choose better placement before choosing more movement. Choose the next truthful return instead of rehearsing the failure.",
+  "searchTerms": [
+    "restlessness",
+    "unsettled",
+    "wandering",
+    "scattered",
+    "can't settle",
+    "repair",
+    "return",
+    "after slipping"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3890
+        ],
+        "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+        "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: i have searched and searched, seeking the Blessed Vision of His Darshan."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-109",
+        "verseIds": [
+          1460
+        ],
+        "shortMeaning": "Without Him, I cannot survive even for an instant, and my life-night",
+        "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-153",
+        "verseIds": [
+          2138
+        ],
+        "shortMeaning": "I am a sacrifice to the True Guru, who has bestowed the",
+        "lifeApplication": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru answers wandering with saint company, listening, and honest stillness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-generated-109",
+    "shabad-generated-153"
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey",
+    "collection-restlessness-bundle"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:restlessness:repair",
+    "evidence": {
+      "coreClaim": "Guru answers wandering with saint company, listening, and honest stillness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "Movement is increasing, but clarity is not. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+      "practicalImplication": "Choose better placement before choosing more movement. Choose the next truthful return instead of rehearsing the failure.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.78,
+      "specificity": 4.96,
+      "emotionalHonesty": 4,
+      "usefulness": 3.14,
+      "beauty": 2.44,
+      "overall": 3.4
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

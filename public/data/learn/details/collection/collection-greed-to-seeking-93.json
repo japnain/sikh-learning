@@ -1,0 +1,84 @@
+{
+  "id": "collection-greed-to-seeking-93",
+  "title": "Greed to Seeking",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers seeking by showing where wandering ends and dwelling begins.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "greed",
+    "seeking"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      639,
+      640,
+      641
+    ],
+    "shortMeaning": "Unexamined appetite crowds out remembrance.",
+    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-name-needs-room"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seeking"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-wanderings-cease-in-sangat"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-108"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-generated-108",
+    "shabad-buy-what-goes-with-you",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers seeking by showing where wandering ends and dwelling begins.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 3.27,
+      "specificity": 4.28,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.56
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

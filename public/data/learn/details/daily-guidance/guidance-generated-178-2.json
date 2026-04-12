@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-178-2",
+  "title": "Immaculate Naam Itself, Ever-fresh, Comes To Abide",
+  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Siree Raag, Third Mehla:; the Immaculate Naam itself, ever-fresh, comes to abide within the mind",
+  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-178",
+    "verseIds": [
+      2767,
+      2771
+    ],
+    "shortMeaning": "Siree Raag, Third Mehla:; the Immaculate Naam itself, ever-fresh, comes to abide within the mind",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-178"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, Third Mehla:; the Immaculate Naam itself, ever-fresh, comes to abide within the mind",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when he Himself unites us in Union; Nanak is absorbed in the Shabad.",
+      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 2.22,
+      "specificity": 4.69,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 2.72,
+      "overall": 3.38
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

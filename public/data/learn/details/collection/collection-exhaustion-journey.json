@@ -1,0 +1,75 @@
+{
+  "id": "collection-exhaustion-journey",
+  "title": "From Exhaustion to steadier practice",
+  "subtitle": "A deliberate path through exhaustion",
+  "description": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "exhaustion",
+    "exhaustion"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-360",
+    "verseIds": [
+      5589
+    ],
+    "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
+    "lifeApplication": "Exhaustion becomes more truthful when vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-360-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-exhaustion"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-360"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-360-2"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-643"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-exhaustion"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-360",
+    "shabad-generated-643"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "tired, drained, worn-down",
+      "turn": "A deliberate path through exhaustion",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.15,
+      "specificity": 4.25,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.56
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

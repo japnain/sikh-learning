@@ -1,0 +1,67 @@
+{
+  "id": "guidance-heart-becomes-the-place",
+  "title": "The best place may be an inhabited heart.",
+  "summary": "Guru finishes the shabad by relocating holiness. The truest place is the heart where Naam actually lives.",
+  "takeaway": "Make the interior fit for what you say you seek.",
+  "lifeApplication": "Before chasing atmosphere, ask what you are doing to make the heart more inhabitable.",
+  "source": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11750,
+      11751
+    ],
+    "shortMeaning": "The holiest place is not merely external; it is the heart carrying Naam.",
+    "lifeApplication": "Inner architecture matters more than scene-setting."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "conduct",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The holiest place is not merely external; it is the heart carrying Naam.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "practicalImplication": "Before chasing atmosphere, ask what you are doing to make the heart more inhabitable.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.79,
+      "clarity": 3.78,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.44,
+      "beauty": 3.82,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

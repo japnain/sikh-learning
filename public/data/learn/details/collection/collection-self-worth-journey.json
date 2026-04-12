@@ -1,0 +1,79 @@
+{
+  "id": "collection-self-worth-journey",
+  "title": "From Self-Worth to steadier practice",
+  "subtitle": "A deliberate path through self-worth",
+  "description": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "self-worth",
+    "comparison"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-lord-keeps-the-humble-close",
+    "verseIds": [
+      37474,
+      37476
+    ],
+    "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
+    "lifeApplication": "You do not need status to be held close."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-held-close-not-abandoned"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-self-worth"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-lord-keeps-the-humble-close"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-like-a-child"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-65"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-self-worth",
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-generated-65",
+    "shabad-conquer-the-mind",
+    "shabad-detached-and-steady"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "A deliberate path through self-worth",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 2.65,
+      "specificity": 4.26,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.46
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

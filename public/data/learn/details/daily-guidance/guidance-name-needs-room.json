@@ -1,0 +1,68 @@
+{
+  "id": "guidance-name-needs-room",
+  "title": "If appetite fills the room, Naam cannot.",
+  "summary": "Guru's question is not whether pleasure exists, but whether endless appetite has left any inward space for remembrance.",
+  "takeaway": "What you feed all day eventually becomes what governs you.",
+  "lifeApplication": "Refuse one small indulgence today just to prove your heart is not fully owned by it.",
+  "source": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      639,
+      640,
+      641
+    ],
+    "shortMeaning": "Unexamined appetite crowds out remembrance.",
+    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-detached-and-steady"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Unexamined appetite crowds out remembrance.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "Guard the tongue, and the heart begins to clear.",
+      "practicalImplication": "Refuse one small indulgence today just to prove your heart is not fully owned by it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 3.9,
+      "specificity": 4.9,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.23,
+      "beauty": 3.9,
+      "overall": 3.86
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

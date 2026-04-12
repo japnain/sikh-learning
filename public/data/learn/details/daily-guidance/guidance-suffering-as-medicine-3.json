@@ -1,0 +1,64 @@
+{
+  "id": "guidance-suffering-as-medicine-3",
+  "title": "You Are The True Lord And Master;",
+  "summary": "The shabad does not leave anxiety at diagnosis. It turns toward return.",
+  "takeaway": "You are the True Lord and Master; Your Praise is so beautiful. One who",
+  "lifeApplication": "Read one line aloud before trying to solve the whole future. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-suffering-as-medicine",
+    "verseIds": [
+      21091,
+      21095
+    ],
+    "shortMeaning": "You are the Creator Lord; I can do nothing. Even if I; you are the True Lord and Master; Your Praise is so beautiful",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "You are the Creator Lord; I can do nothing. Even if I; you are the True Lord and Master; Your Praise is so beautiful",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 2.7,
+      "specificity": 4.98,
+      "emotionalHonesty": 3,
+      "usefulness": 3.8,
+      "beauty": 3.4,
+      "overall": 3.64
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

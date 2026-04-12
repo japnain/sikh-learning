@@ -1,0 +1,86 @@
+{
+  "id": "collection-mercy-and-fearlessness",
+  "title": "Mercy and Fearlessness",
+  "subtitle": "A study path out of hardness and self-protection",
+  "description": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "mercy",
+    "forgiveness",
+    "trust"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-forgiveness-becomes-fearless",
+    "verseIds": [
+      9600,
+      9612
+    ],
+    "shortMeaning": "Forgiveness and reverence mature into fearlessness.",
+    "lifeApplication": "Let mercy become stronger than your armor."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-forgiveness-is-the-fast"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-forgiveness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-becomes-fearless"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-forgiveness"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-generated-66",
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Move from grace into forgiveness, reverence, and the steadiness that no longer needs constant self-defense.",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "A study path out of hardness and self-protection",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.88,
+      "clarity": 1.4,
+      "specificity": 4.1,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.23
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

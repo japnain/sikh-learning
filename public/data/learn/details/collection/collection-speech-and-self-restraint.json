@@ -1,0 +1,89 @@
+{
+  "id": "collection-speech-and-self-restraint",
+  "title": "Speech and Self-Restraint",
+  "subtitle": "A corrective for contempt, sharpness, and display",
+  "description": "Study how greed, anger, tone, and humility shape what the mouth is actually serving.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "speech",
+    "anger",
+    "greed"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      637,
+      642,
+      643
+    ],
+    "shortMeaning": "Speech should carry honor, because harsh words return as grief.",
+    "lifeApplication": "Let the tongue answer to dignity before it answers to emotion."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-speak-for-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-speech"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-sweet-speech-humble-walk"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-sweet-speech-humble-walk"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-forgiveness"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-forgiveness",
+    "topic-anger",
+    "topic-greed"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-ego-is-disease",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Study how greed, anger, tone, and humility shape what the mouth is actually serving.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A corrective for contempt, sharpness, and display",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.73,
+      "clarity": 2.15,
+      "specificity": 3.97,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.26
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

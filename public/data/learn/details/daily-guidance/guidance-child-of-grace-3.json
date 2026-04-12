@@ -1,0 +1,68 @@
+{
+  "id": "guidance-child-of-grace-3",
+  "title": "Guru, The Perfect True Guru, Is My",
+  "summary": "The shabad does not leave loneliness at diagnosis. It turns toward return.",
+  "takeaway": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water",
+  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3762,
+      3763
+    ],
+    "shortMeaning": "I am a helpless child-please cherish me; the Guru, the Perfect True Guru, is my Mother and Father. Obtaining",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-loneliness-daily",
+    "topic-loneliness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "I am a helpless child-please cherish me; the Guru, the Perfect True Guru, is my Mother and Father. Obtaining",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.8,
+      "beauty": 3.2,
+      "overall": 3.7
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

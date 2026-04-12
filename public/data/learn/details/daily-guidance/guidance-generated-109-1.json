@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-109-1",
+  "title": "Siree Raag, Third Mehla:",
+  "summary": "Doubt is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Siree Raag, Third Mehla:",
+  "lifeApplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-109",
+    "verseIds": [
+      1448
+    ],
+    "shortMeaning": "Siree Raag, Third Mehla:",
+    "lifeApplication": "Doubt becomes more truthful when siree Raag, Third Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-109"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, Third Mehla:",
+      "emotionalState": "foggy, uncertain, hesitant",
+      "turn": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs.",
+      "practicalImplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.64,
+      "clarity": 3.66,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 3.9,
+      "overall": 3.8
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

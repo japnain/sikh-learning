@@ -1,0 +1,83 @@
+{
+  "id": "collection-seva-to-greed-81",
+  "title": "Seva to Greed",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "seva",
+    "greed"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12947,
+      12948
+    ],
+    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
+    "lifeApplication": "Serve without building a story about being the servant."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-selfless-service"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seva"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-selfless-service"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-name-needs-room"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-greed"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service",
+    "shabad-speak-what-brings-honor",
+    "shabad-work-give-know-the-path",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 3.15,
+      "specificity": 4.29,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

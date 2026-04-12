@@ -1,0 +1,110 @@
+{
+  "id": "topic-loneliness",
+  "title": "When loneliness settles in",
+  "shortTitle": "Loneliness",
+  "category": "most-needed",
+  "issueStatement": "The heart feels unheld, unseen, or left to carry too much alone.",
+  "centralInsight": "Guru turns loneliness toward sangat, Guru-care, and the Creator's nearness rather than toward self-enclosed despair.",
+  "practicalReflection": "Loneliness narrows the world. Gurbani widens it again by locating you in sangat, in prayer, and in the Lord's ongoing care.",
+  "actionPrompt": "Reach outward in one spiritually honest way today: sangat, message, prayer, or presence.",
+  "searchTerms": [
+    "loneliness",
+    "alone",
+    "isolated",
+    "unseen",
+    "disconnected"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-child-of-grace",
+        "verseIds": [
+          3760,
+          3762,
+          3763
+        ],
+        "shortMeaning": "Sangat and Guru-care are the place of belonging.",
+        "lifeApplication": "Need can become prayer instead of silent isolation."
+      },
+      "explanation": "This shabad does not shame dependence. It redirects it toward Guru."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-steadied-by-creator",
+        "verseIds": [
+          30985,
+          30991
+        ],
+        "shortMeaning": "The Merciful One is already present in every heart.",
+        "lifeApplication": "Aloneness is interrupted by nearness before circumstances change."
+      },
+      "explanation": "The line answers loneliness not with abstraction but with presence."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          527
+        ],
+        "shortMeaning": "Sangat and Naam are the practical way forward.",
+        "lifeApplication": "Belonging is cultivated in holy company, not only felt spontaneously."
+      },
+      "explanation": "Guru makes companionship a practice, not just a wish."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-steadied-by-creator",
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness-daily",
+    "topic-loneliness-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey",
+    "collection-loneliness-bundle"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:loneliness",
+    "evidence": {
+      "coreClaim": "Guru turns loneliness toward sangat, Guru-care, and the Creator's nearness rather than toward self-enclosed despair.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "The heart feels unheld, unseen, or left to carry too much alone.",
+      "practicalImplication": "Reach outward in one spiritually honest way today: sangat, message, prayer, or presence.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.51,
+      "beauty": 4.28,
+      "overall": 3.94
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

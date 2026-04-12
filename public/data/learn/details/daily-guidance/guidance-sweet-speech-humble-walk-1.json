@@ -1,0 +1,67 @@
+{
+  "id": "guidance-sweet-speech-humble-walk-1",
+  "title": "Remain United With The Society Of The",
+  "summary": "Speech is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Remain united with the Society of the Saints; chant the Name of",
+  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-sweet-speech-humble-walk",
+    "verseIds": [
+      1288
+    ],
+    "shortMeaning": "Remain united with the Society of the Saints; chant the Name of",
+    "lifeApplication": "Speech becomes more truthful when remain united with the Society of the Saints; chant the Name of."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Remain united with the Society of the Saints; chant the Name of",
+      "emotionalState": "sharp, performing, defensive",
+      "turn": "Soft speech becomes believable when the ego has begun to bow.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 2.7,
+      "specificity": 4.92,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 2.99,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

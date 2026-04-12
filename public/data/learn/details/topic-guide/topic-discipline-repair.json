@@ -1,0 +1,109 @@
+{
+  "id": "topic-discipline-repair",
+  "title": "When discipline keeps thinning out after the mind has slipped",
+  "shortTitle": "Discipline · Repair",
+  "category": "practice",
+  "issueStatement": "Good intention is present, but the pattern cannot hold. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+  "centralInsight": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+  "practicalReflection": "The hardest field is the inner field. Win there first. Make the next faithful repetition smaller and truer.",
+  "actionPrompt": "Make the next faithful repetition smaller and truer. Choose the next truthful return instead of rehearsing the failure.",
+  "searchTerms": [
+    "discipline",
+    "consistency",
+    "habit",
+    "self-control",
+    "follow through",
+    "repair",
+    "return",
+    "after slipping"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          290
+        ],
+        "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
+        "lifeApplication": "The hardest field is the inner field. Win there first. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: make contentment your ear-rings, humility your begging bowl, and meditation the ashes."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          525
+        ],
+        "shortMeaning": "This is your chance to meet the Lord of the Universe",
+        "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12948
+        ],
+        "shortMeaning": "shall attain his Lord and Master",
+        "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. Gurbani keeps repair close to remembrance, humility, and return instead of theatre. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service"
+  ],
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:discipline:repair",
+    "evidence": {
+      "coreClaim": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "Good intention is present, but the pattern cannot hold. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. Choose the next truthful return instead of rehearsing the failure.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.42,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.92,
+      "beauty": 2,
+      "overall": 3.15
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

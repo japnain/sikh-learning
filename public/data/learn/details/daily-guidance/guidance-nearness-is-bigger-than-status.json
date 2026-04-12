@@ -1,0 +1,63 @@
+{
+  "id": "guidance-nearness-is-bigger-than-status",
+  "title": "Status cannot do what nearness does.",
+  "summary": "The shabad contrasts desire-driven reaching with being held close. One is hungry display. The other is actual relation.",
+  "takeaway": "Aim for closeness, not rank.",
+  "lifeApplication": "Trade one status reflex today for one act of quiet remembrance.",
+  "source": {
+    "deepDiveId": "shabad-lord-keeps-the-humble-close",
+    "verseIds": [
+      37473,
+      37476
+    ],
+    "shortMeaning": "The life that keeps reaching for riches is not the same life that learns nearness.",
+    "lifeApplication": "The deepest correction may be relational, not performative."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-conquer-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The life that keeps reaching for riches is not the same life that learns nearness.",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "Nearness is received in humility, not built out of status.",
+      "practicalImplication": "Trade one status reflex today for one act of quiet remembrance.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 3.9,
+      "specificity": 4.8,
+      "emotionalHonesty": 3,
+      "usefulness": 2.66,
+      "beauty": 4.38,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

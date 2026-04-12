@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-301-1",
+  "title": "Maajh, Fifth Mehla:",
+  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Maajh, Fifth Mehla:",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-301",
+    "verseIds": [
+      4144
+    ],
+    "shortMeaning": "Maajh, Fifth Mehla:",
+    "lifeApplication": "Forgiveness becomes more truthful when maajh, Fifth Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-301"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Maajh, Fifth Mehla:",
+      "emotionalState": "resentful, hurt, stuck",
+      "turn": "Forgiveness steadies when when my Lord and Master blessed me with His Mercy, O Nanak, then His.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.7,
+      "clarity": 3.78,
+      "specificity": 4.3,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.82,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

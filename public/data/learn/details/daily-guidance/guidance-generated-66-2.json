@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-66-2",
+  "title": "In This World, You Shall Not Find",
+  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-66",
+    "verseIds": [
+      777,
+      778
+    ],
+    "shortMeaning": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-66"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "O soul-bride, without your Husband Lord, what good are your decorations?; in this world, you shall not find any shelter; in the world",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.94,
+      "clarity": 0.01,
+      "specificity": 4.71,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 2.34,
+      "overall": 3.08
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { Link, useParams, useSearchParams } from "react-router-dom"
-import { DAILY_GUIDANCE_BY_ID } from "../../data/learnContent"
+import useLearnCatalog from "../../hooks/useLearnCatalog"
+import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
 import { buildLearnDetailPath, LEARN_DETAIL_RAILS } from "../../utils/learnRails"
 import { resolveLineReference } from "../../utils/learnExperience"
@@ -26,7 +27,12 @@ function MissingGuidanceDetail() {
 export default function GuidanceDetailPage() {
   const { guidanceId } = useParams<{ guidanceId: string }>()
   const [searchParams] = useSearchParams()
-  const guidance = guidanceId ? DAILY_GUIDANCE_BY_ID[guidanceId] : null
+  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
+  const {
+    item: guidance,
+    error: guidanceError,
+    loading: guidanceLoading,
+  } = useLearnDetail("daily-guidance", guidanceId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
   useEffect(() => {
@@ -35,9 +41,10 @@ export default function GuidanceDetailPage() {
     }
   }, [guidance, recordLearnItemView])
 
-  if (!guidance) return <MissingGuidanceDetail />
+  if (catalogLoading || guidanceLoading) return <MissingGuidanceDetail />
+  if (catalogError || guidanceError || !catalog || !guidance) return <MissingGuidanceDetail />
 
-  const excerpt = resolveLineReference(guidance.source)
+  const excerpt = resolveLineReference(catalog, guidance.source)
   const from = searchParams.get("from") ?? "today"
 
   return (

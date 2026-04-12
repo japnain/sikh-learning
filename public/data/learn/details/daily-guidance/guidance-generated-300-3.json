@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-300-3",
+  "title": "The Perfect Guru, Congratulations Are Pouring In-nanak",
+  "summary": "The shabad does not leave fear at diagnosis. It turns toward return.",
+  "takeaway": "Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield",
+  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-300",
+    "verseIds": [
+      4138,
+      4143
+    ],
+    "shortMeaning": "You have created all beings and creatures; through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-300"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "You have created all beings and creatures; through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Fear steadies when through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
+      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.27,
+      "clarity": 2.58,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 3.14,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

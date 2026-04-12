@@ -1,0 +1,109 @@
+{
+  "id": "topic-speech",
+  "title": "When the tongue gets ahead of the soul",
+  "shortTitle": "Speech",
+  "category": "inner-work",
+  "issueStatement": "Your words are sharper than your conscience, or sweeter than your heart actually is.",
+  "centralInsight": "Guru does not treat speech as cosmetic. Speech reveals what the heart is feeding on and what it still loves too much.",
+  "practicalReflection": "The same mouth can protect dignity, wound people, advertise ego, or carry Naam. The question is not whether you speak, but what spirit your speech serves.",
+  "actionPrompt": "Choose one conversation today where you will lower the heat, refuse contempt, and speak in a way you can still respect tonight.",
+  "searchTerms": [
+    "speech",
+    "gossip",
+    "tongue",
+    "sharp words",
+    "slander",
+    "respect"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-speak-what-brings-honor",
+        "verseIds": [
+          637,
+          642,
+          643
+        ],
+        "shortMeaning": "Speech that carries honor is acceptable; harsh speech only returns grief.",
+        "lifeApplication": "Do not confuse release with righteousness."
+      },
+      "explanation": "Guru names speech as morally weighty, not incidental."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "verseIds": [
+          1288,
+          1290
+        ],
+        "shortMeaning": "Sweet speech is credible when it grows inside humility and saint company.",
+        "lifeApplication": "Tone matters most when it is backed by posture."
+      },
+      "explanation": "This keeps speech from becoming performance."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-honor-women",
+        "verseIds": [
+          21287,
+          21289
+        ],
+        "shortMeaning": "Where Guru speaks with honor, your language should not carry contempt.",
+        "lifeApplication": "Let reverence revise your instincts of speech."
+      },
+      "explanation": "Speech must also answer to Guru's social ethic."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-honor-women"
+  ],
+  "relatedTopicIds": [
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:speech",
+    "evidence": {
+      "coreClaim": "Guru does not treat speech as cosmetic. Speech reveals what the heart is feeding on and what it still loves too much.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "Your words are sharper than your conscience, or sweeter than your heart actually is.",
+      "practicalImplication": "Choose one conversation today where you will lower the heat, refuse contempt, and speak in a way you can still respect tonight.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.36,
+      "beauty": 3.9,
+      "overall": 4.03
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-buy-what-goes-with-you-2",
+  "title": "Take The Merchandise Of The Lord's Praises",
+  "summary": "Discipline is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+  "lifeApplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-buy-what-goes-with-you",
+    "verseIds": [
+      934,
+      937
+    ],
+    "shortMeaning": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Buy that object which will go along with you; take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "Invest in what crosses the threshold with you.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.1,
+      "clarity": 1.5,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.23,
+      "beauty": 2.32,
+      "overall": 3.31
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

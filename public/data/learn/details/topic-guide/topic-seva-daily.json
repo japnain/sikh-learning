@@ -1,0 +1,109 @@
+{
+  "id": "topic-seva-daily",
+  "title": "When service needs its center back in the day as it is",
+  "shortTitle": "Seva · Daily",
+  "category": "practice",
+  "issueStatement": "The work may still be happening, but the heart has started bargaining with it. The pressure is not abstract anymore; it is meeting the ordinary shape of the day.",
+  "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani refuses to treat the ordinary day as spiritually irrelevant.",
+  "practicalReflection": "Seva becomes transformative when the self stops trying to be seen through it. Do one hidden act of service that does not return to self-advertisement.",
+  "actionPrompt": "Do one hidden act of service that does not return to self-advertisement. Keep the response small enough to survive an ordinary day.",
+  "searchTerms": [
+    "seva",
+    "service",
+    "serving",
+    "volunteering",
+    "offering",
+    "today",
+    "daily",
+    "ordinary day"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12943
+        ],
+        "shortMeaning": "He is not to call attention to himself in any way",
+        "lifeApplication": "Seva becomes transformative when the self stops trying to be seen through it. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: he is not to call attention to himself in any way."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-work-give-know-the-path",
+        "verseIds": [
+          53371
+        ],
+        "shortMeaning": "One who works for what he eats, and gives some of what",
+        "lifeApplication": "The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. The path is not performed through appearance. It is walked through honest labor and giving. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-64",
+        "verseIds": [
+          749
+        ],
+        "shortMeaning": "How can we describe Him with words? There is no end to",
+        "lifeApplication": "Ego steadies when o Nanak, one who stocks this True Merchandise shall recognize and realize the Genuine. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani refuses to treat the ordinary day as spiritually irrelevant. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service",
+    "shabad-work-give-know-the-path",
+    "shabad-generated-64"
+  ],
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 6,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:seva:daily",
+    "evidence": {
+      "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani refuses to treat the ordinary day as spiritually irrelevant.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "The work may still be happening, but the heart has started bargaining with it. The pressure is not abstract anymore; it is meeting the ordinary shape of the day.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Keep the response small enough to survive an ordinary day.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.18,
+      "specificity": 4.96,
+      "emotionalHonesty": 4,
+      "usefulness": 2.79,
+      "beauty": 1.46,
+      "overall": 3.11
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

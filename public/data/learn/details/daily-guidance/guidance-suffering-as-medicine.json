@@ -1,0 +1,61 @@
+{
+  "id": "guidance-suffering-as-medicine",
+  "title": "Hard seasons can wake what comfort numbs",
+  "summary": "Guru is not praising pain for its own sake. Guru is exposing what comfort often hides.",
+  "takeaway": "A difficult day can still become a truthful day.",
+  "lifeApplication": "Instead of asking only how to escape the discomfort, ask what it is uncovering.",
+  "source": {
+    "deepDiveId": "shabad-suffering-as-medicine",
+    "verseIds": [
+      21090
+    ],
+    "shortMeaning": "Suffering can become medicine when it returns the mind to reality and remembrance.",
+    "lifeApplication": "Let pain open dependence instead of only resentment."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "reflection",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Suffering can become medicine when it returns the mind to reality and remembrance.",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "practicalImplication": "Instead of asking only how to escape the discomfort, ask what it is uncovering.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.9,
+      "specificity": 4,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2,
+      "beauty": 4.38,
+      "overall": 3.59
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

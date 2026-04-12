@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-642-2",
+  "title": "In Emotional Attachment To Maya, All The",
+  "summary": "Sangat is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Raag Gauree Poorbee, Fifth Mehla:; in emotional attachment to Maya, all the world is asleep. Tell me,",
+  "lifeApplication": "Move closer to one company that helps the heart tell the truth. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-642",
+    "verseIds": [
+      8808,
+      8813
+    ],
+    "shortMeaning": "Raag Gauree Poorbee, Fifth Mehla:; in emotional attachment to Maya, all the world is asleep. Tell me,",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-642"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "seva"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Raag Gauree Poorbee, Fifth Mehla:; in emotional attachment to Maya, all the world is asleep. Tell me,",
+      "emotionalState": "isolated, impressionable, needing-company",
+      "turn": "Sangat steadies when celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my.",
+      "practicalImplication": "Move closer to one company that helps the heart tell the truth. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.87,
+      "clarity": 2.1,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.23,
+      "beauty": 2.78,
+      "overall": 3.44
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

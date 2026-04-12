@@ -1,0 +1,63 @@
+{
+  "id": "guidance-suffering-as-medicine-1",
+  "title": "Suffering Is The Medicine, And Pleasure The",
+  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Suffering is the medicine, and pleasure the disease, because where there is",
+  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-suffering-as-medicine",
+    "verseIds": [
+      21090
+    ],
+    "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
+    "lifeApplication": "Anxiety becomes more truthful when suffering is the medicine, and pleasure the disease, because where there is."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Suffering is the medicine, and pleasure the disease, because where there is",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.83,
+      "clarity": 2.7,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.23,
+      "beauty": 3.04,
+      "overall": 3.52
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

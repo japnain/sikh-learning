@@ -504,6 +504,37 @@ export interface LearnLineReference {
   lifeApplication: string
 }
 
+export type LearnEditorialStatus = 'draft' | 'approved' | 'locked'
+
+export interface LearnEditorialEvidence {
+  coreClaim: string
+  emotionalState: string
+  turn: string
+  practicalImplication: string
+  bannedOverreach: string[]
+}
+
+export interface LearnEditorialScores {
+  faithfulness: number
+  clarity: number
+  specificity: number
+  emotionalHonesty: number
+  usefulness: number
+  beauty: number
+  overall: number
+}
+
+export interface LearnEditorialAssessment {
+  status: LearnEditorialStatus
+  origin: 'legacy' | 'generated'
+  voiceVersion: string
+  templateKey: string
+  evidence: LearnEditorialEvidence
+  scores: LearnEditorialScores
+  strengths: string[]
+  issues: string[]
+}
+
 export interface DailyGuidance {
   id: string
   title: string
@@ -515,6 +546,7 @@ export interface DailyGuidance {
   relatedShabadIds: string[]
   relatedCollectionIds: string[]
   rotation: RotationMetadata
+  editorial?: LearnEditorialAssessment
 }
 
 export interface ShabadDeepDive {
@@ -537,6 +569,7 @@ export interface ShabadDeepDive {
   relatedTopicIds: string[]
   relatedCollectionIds: string[]
   rotation: RotationMetadata
+  editorial?: LearnEditorialAssessment
 }
 
 export interface TopicGuideExcerpt {
@@ -559,6 +592,7 @@ export interface TopicGuide {
   relatedTopicIds: string[]
   relatedCollectionIds: string[]
   rotation: RotationMetadata
+  editorial?: LearnEditorialAssessment
 }
 
 export interface CollectionItemReference {
@@ -577,6 +611,7 @@ export interface Collection {
   items: CollectionItemReference[]
   relatedTopicIds: string[]
   relatedShabadIds: string[]
+  editorial?: LearnEditorialAssessment
 }
 
 export interface LearnItemView {
@@ -591,4 +626,89 @@ export interface UserLearningState {
   recentTopicIds: string[]
   activeCollectionId: string | null
   depthPreference: LearnDepthPreference
+}
+
+export interface LearnTopicSearchEntry {
+  id: string
+  title: string
+  shortTitle: string
+  searchTerms: string[]
+}
+
+export interface LearnInventorySummary {
+  dailyGuidance: number
+  shabadDeepDives: number
+  topicGuides: number
+  collections: number
+  crossLinks: number
+  readyForLaunch: boolean
+}
+
+export interface LearnContentTargets {
+  dailyGuidance: number
+  shabadDeepDives: number
+  topicGuides: number
+  collections: number
+  crossLinks: number
+  averageCrossLinksPerItem: number
+}
+
+export interface LearnSearchIndex {
+  synonyms: Record<string, string>
+  topics: LearnTopicSearchEntry[]
+}
+
+export interface LearnValidationReport {
+  generatedAt: string
+  counts: LearnInventorySummary
+  averageCrossLinksPerItem: number
+  editorial: {
+    voiceVersion: string
+    statuses: Record<LearnEditorialStatus, number>
+    draftCount: number
+    lowScoringItems: Array<{
+      id: string
+      kind: LearnContentKind
+      status: LearnEditorialStatus
+      overall: number
+      issues: string[]
+    }>
+    duplicateWarnings: string[]
+  }
+  hardFailures: string[]
+  warnings: string[]
+}
+
+export interface LearnManifest {
+  version: string
+  generatedAt: string
+  inventory: LearnInventorySummary
+  targets: LearnContentTargets
+  filters: {
+    shabadThemes: string[]
+    shabadGurus: string[]
+    shabadRaags: string[]
+  }
+  searchIndexPath: string
+  listPaths: {
+    dailyGuidance: string
+    shabadDeepDives: string
+    topicGuides: string
+    collections: string
+  }
+  detailPathTemplate: Record<LearnContentKind, string>
+  validationReportPath: string
+}
+
+export interface LearnCatalog {
+  manifest: LearnManifest
+  searchIndex: LearnSearchIndex
+  dailyGuidance: DailyGuidance[]
+  shabadDeepDives: ShabadDeepDive[]
+  topicGuides: TopicGuide[]
+  collections: Collection[]
+  dailyGuidanceById: Record<string, DailyGuidance>
+  shabadDeepDiveById: Record<string, ShabadDeepDive>
+  topicGuideById: Record<string, TopicGuide>
+  collectionById: Record<string, Collection>
 }

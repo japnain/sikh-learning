@@ -1,0 +1,63 @@
+{
+  "id": "guidance-held-close-not-abandoned",
+  "title": "Nearness is still available, even when you feel small.",
+  "summary": "The shabad names the humble servant as held close. Smallness is not the same thing as abandonment.",
+  "takeaway": "Do not read your current weakness as distance from care.",
+  "lifeApplication": "When insecurity rises, answer it with nearness instead of self-attack.",
+  "source": {
+    "deepDiveId": "shabad-lord-keeps-the-humble-close",
+    "verseIds": [
+      37474,
+      37476
+    ],
+    "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
+    "lifeApplication": "You do not need status to be held close."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Praise and nearness belong together in the life of the humble servant.",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "Nearness is received in humility, not built out of status.",
+      "practicalImplication": "When insecurity rises, answer it with nearness instead of self-attack.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 3.78,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.22,
+      "beauty": 4.46,
+      "overall": 3.73
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

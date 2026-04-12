@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-361-3",
+  "title": "Without The Guru, The World Is Drowning",
+  "summary": "The shabad does not leave greed at diagnosis. It turns toward return.",
+  "takeaway": "Without the Guru, the world is drowning",
+  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-361",
+    "verseIds": [
+      5606,
+      5610
+    ],
+    "shortMeaning": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-greed-daily",
+    "topic-greed-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-361"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The swan of the soul takes flight, and asks which way to; without the Guru, the world is drowning",
+      "emotionalState": "hungry, never-enough, driven",
+      "turn": "Greed steadies when without the Guru, the world is drowning.",
+      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.25,
+      "clarity": 3.3,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 3.66,
+      "overall": 3.81
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

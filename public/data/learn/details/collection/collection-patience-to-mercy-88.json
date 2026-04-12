@@ -1,0 +1,84 @@
+{
+  "id": "collection-patience-to-mercy-88",
+  "title": "Patience to Mercy",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "patience",
+    "mercy"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3899,
+      3900,
+      3901
+    ],
+    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
+    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-after-mercy"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-patience"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-mercy"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-patience-ripens-into-honor",
+    "shabad-generated-66"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.77,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.54,
+      "overall": 3.72
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

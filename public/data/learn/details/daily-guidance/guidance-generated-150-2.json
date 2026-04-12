@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-150-2",
+  "title": "Relying On Your Mercy, Dear Lord, I",
+  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Siree Raag, Fifth Mehla, Seventh House:; relying on Your Mercy, Dear Lord, I have cherished and loved you",
+  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-150",
+    "verseIds": [
+      2087,
+      2088
+    ],
+    "shortMeaning": "Siree Raag, Fifth Mehla, Seventh House:; relying on Your Mercy, Dear Lord, I have cherished and loved you",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-150"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, Fifth Mehla, Seventh House:; relying on Your Mercy, Dear Lord, I have cherished and loved you",
+      "emotionalState": "resisting, controlling, argumentative",
+      "turn": "Hukam steadies when meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 1.48,
+      "specificity": 4.77,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.06,
+      "beauty": 2.78,
+      "overall": 3.47
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

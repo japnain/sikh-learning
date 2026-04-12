@@ -1,0 +1,109 @@
+{
+  "id": "topic-doubt-pressure",
+  "title": "When doubt keeps fogging the path under pressure",
+  "shortTitle": "Doubt · Pressure",
+  "category": "most-needed",
+  "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. Pressure exposes what the mind reaches for when it feels cornered.",
+  "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+  "practicalReflection": "Stop circling and let Guru's word take residence. Return to one clear line before reopening every question at once.",
+  "actionPrompt": "Return to one clear line before reopening every question at once. Use the line before the pressure decides the tone.",
+  "searchTerms": [
+    "doubt",
+    "confusion",
+    "uncertain",
+    "second guessing",
+    "skeptical",
+    "pressure",
+    "stress",
+    "under strain"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+        "verseIds": [
+          918
+        ],
+        "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign",
+        "lifeApplication": "Stop circling and let Guru's word take residence. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: the fire of doubt is not extinguished, even by wandering through foreign."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-63",
+        "verseIds": [
+          734
+        ],
+        "shortMeaning": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
+        "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-109",
+        "verseIds": [
+          1461
+        ],
+        "shortMeaning": "Wandering in doubt, the spiritually blind come and go in reincarnation, over",
+        "lifeApplication": "Doubt steadies when they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. Pressure becomes revealing when the line is allowed to interrupt panic and performance. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-generated-63",
+    "shabad-generated-109"
+  ],
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey",
+    "collection-doubt-bundle"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:doubt:pressure",
+    "evidence": {
+      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "The mind keeps second-guessing what it once knew clearly enough to begin. Pressure exposes what the mind reaches for when it feels cornered.",
+      "practicalImplication": "Return to one clear line before reopening every question at once. Use the line before the pressure decides the tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.06,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.01,
+      "beauty": 1.39,
+      "overall": 3.05
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

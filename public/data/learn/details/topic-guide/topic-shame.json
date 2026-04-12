@@ -1,0 +1,104 @@
+{
+  "id": "topic-shame",
+  "title": "When shame keeps talking",
+  "shortTitle": "Shame",
+  "category": "most-needed",
+  "issueStatement": "You have turned one failure, one wound, or one pattern into the whole meaning of yourself.",
+  "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned.",
+  "practicalReflection": "Shame says withdraw until you deserve return. Gurbani keeps opening the door before your self-story is complete.",
+  "actionPrompt": "When shame starts narrating finality, answer it with one line of Bani and one act of return.",
+  "searchTerms": [
+    "shame",
+    "guilty",
+    "unworthy",
+    "dirty",
+    "self-loathing",
+    "regret"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+        "verseIds": [
+          27259,
+          27260
+        ],
+        "shortMeaning": "Forgiveness is followed immediately by lasting peace, not by probation.",
+        "lifeApplication": "Grace answers shame faster than shame expects."
+      },
+      "explanation": "The shabad refuses to let guilt become an identity system."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
+        "verseIds": [
+          37476,
+          37477
+        ],
+        "shortMeaning": "The humble servant is held close, and the child is cherished.",
+        "lifeApplication": "Smallness does not disqualify you from nearness."
+      },
+      "explanation": "This is not mere comfort language. It is theological placement."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "verseIds": [
+          9600,
+          9603,
+          9605
+        ],
+        "shortMeaning": "Forgiveness and real discipline belong together; the path is not emptied of moral seriousness.",
+        "lifeApplication": "Return does not remove form. It removes despair."
+      },
+      "explanation": "Guru joins mercy with conduct rather than choosing one against the other."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-forgiveness-becomes-fearless"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "shame",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:shame",
+    "evidence": {
+      "coreClaim": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned.",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "You have turned one failure, one wound, or one pattern into the whole meaning of yourself.",
+      "practicalImplication": "When shame starts narrating finality, answer it with one line of Bani and one act of return.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 3.01,
+      "beauty": 4.54,
+      "overall": 4.02
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

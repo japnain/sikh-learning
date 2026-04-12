@@ -1,0 +1,67 @@
+{
+  "id": "guidance-ambrosial-speech-pure-conduct-1",
+  "title": "Of All Religions, The Best Religion",
+  "summary": "Speech is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Of all religions, the best religion",
+  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11742
+    ],
+    "shortMeaning": "Of all religions, the best religion",
+    "lifeApplication": "Speech becomes more truthful when of all religions, the best religion."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Of all religions, the best religion",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.83,
+      "clarity": 3.42,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.58,
+      "beauty": 3.58,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

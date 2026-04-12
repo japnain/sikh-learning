@@ -1,0 +1,66 @@
+{
+  "id": "collection-anger-bundle",
+  "title": "Anger in one shorter sitting",
+  "subtitle": "A compact bundle for anger",
+  "description": "The mind reacts before truth and proportion have time to speak. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "anger"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-1",
+    "verseIds": [
+      3
+    ],
+    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
+    "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-1-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anger"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-speak-what-brings-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind reacts before truth and proportion have time to speak. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "A compact bundle for anger",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 3.02,
+      "specificity": 4.18,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

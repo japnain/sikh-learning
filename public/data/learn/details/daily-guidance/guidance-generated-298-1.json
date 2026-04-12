@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-298-1",
+  "title": "Those Hands Which Write The Praises Of",
+  "summary": "Mercy is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Those hands which write the Praises of the Lord are good",
+  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-298",
+    "verseIds": [
+      4110
+    ],
+    "shortMeaning": "Those hands which write the Praises of the Lord are good",
+    "lifeApplication": "Mercy becomes more truthful when those hands which write the Praises of the Lord are good."
+  },
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-mercy-daily",
+    "topic-mercy-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-298"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Those hands which write the Praises of the Lord are good",
+      "emotionalState": "unworthy, guarded, hard-on-self",
+      "turn": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind.",
+      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 2.82,
+      "specificity": 4.9,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 3.63,
+      "overall": 3.76
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

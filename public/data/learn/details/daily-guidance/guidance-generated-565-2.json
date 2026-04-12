@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-565-2",
+  "title": "Perfect Is The Path; Perfect Is The",
+  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Gauree, Fifth Mehla:; perfect is the path; perfect is the cleansing bath",
+  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-565",
+    "verseIds": [
+      7977,
+      7978
+    ],
+    "shortMeaning": "Gauree, Fifth Mehla:; perfect is the path; perfect is the cleansing bath",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-comparison-daily",
+    "topic-comparison-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-565"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, Fifth Mehla:; perfect is the path; perfect is the cleansing bath",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Comparison steadies when says Nanak, my True Guru is Perfect.",
+      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 2.82,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.8,
+      "beauty": 3.08,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

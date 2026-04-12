@@ -1,0 +1,87 @@
+{
+  "id": "collection-doubt-to-clarity",
+  "title": "From Doubt to Clarity",
+  "subtitle": "A path for minds that keep circling",
+  "description": "Work through inner fire, saint company, mercy, and the Guru-word until uncertainty loses its heat.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "doubt",
+    "hukam",
+    "sangat"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      922
+    ],
+    "shortMeaning": "Doubt is a fire, and Guru's word is meant to live where that fire burns.",
+    "lifeApplication": "Let clarity begin with inward obedience rather than more wandering."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-priceless-mind"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-becomes-fearless"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-hukam",
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-generated-63"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Work through inner fire, saint company, mercy, and the Guru-word until uncertainty loses its heat.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "A path for minds that keep circling",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 1.65,
+      "specificity": 4.13,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.31
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

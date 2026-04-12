@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-737-2",
+  "title": "Like The Crow's Beak, He Dwells In",
+  "summary": "Seeking is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "One who lives in meditative remembrance, even for an instant,; like the crow's beak, he dwells in manure",
+  "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-737",
+    "verseIds": [
+      10398,
+      10401
+    ],
+    "shortMeaning": "One who lives in meditative remembrance, even for an instant,; like the crow's beak, he dwells in manure",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-737"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "One who lives in meditative remembrance, even for an instant,; like the crow's beak, he dwells in manure",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Seeking steadies when says Nanak, the Guru has saved the world.",
+      "practicalImplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 1.11,
+      "specificity": 4.88,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 2.45,
+      "overall": 3.26
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

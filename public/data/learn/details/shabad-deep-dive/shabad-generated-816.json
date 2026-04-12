@@ -1,0 +1,119 @@
+{
+  "id": "shabad-generated-816",
+  "title": "Seva In Gurbani",
+  "subtitle": "Raag Gauree · Ang 256",
+  "summary": "Seva is carried here from  toward please protect me, and save me from wandering, God. Reach out and give Nanak.",
+  "whyItMatters": "This shabad is useful when life feels performing, transactional, dry, because it keeps seva inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Seva steadies when please protect me, and save me from wandering, God. Reach out and give Nanak.",
+  "themes": [
+    "seva",
+    "restlessness",
+    "seeking"
+  ],
+  "emotionalStates": [
+    "performing",
+    "transactional",
+    "dry"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 816,
+    "ang": 256,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      3
+    ],
+    "verse_ids": [
+      11164,
+      11165,
+      11166
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11164,
+      "gurmukhi": "ਸਲੋਕੁ ॥",
+      "transliteration": "salok ||",
+      "translation": "Shalok:"
+    },
+    {
+      "verseId": 11165,
+      "gurmukhi": "ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥",
+      "transliteration": "dda(n)ddaut ba(n)dhan anik baar sarab kalaa samarath ||",
+      "translation": "I bow down, and fall to the ground in humble adoration, countless times, to the All-powerful Lord, who possesses all powers."
+    },
+    {
+      "verseId": 11166,
+      "gurmukhi": "ਡੋਲਨ ਤੇ ਰਾਖਹੁ ਪ੍ਰਭੂ ਨਾਨਕ ਦੇ ਕਰਿ ਹਥ ॥੧॥",
+      "transliteration": "ddolan te raakhahu prabhoo naanak dhe kar hath ||1||",
+      "translation": "Please protect me, and save me from wandering, God. Reach out and give Nanak Your Hand. ||1||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: .",
+    "The middle movement deepens the correction by holding the mind inside i bow down, and fall to the ground in humble adoration, countless times, to.",
+    "The closing movement leaves a return you can actually keep: please protect me, and save me from wandering, God. Reach out and give Nanak."
+  ],
+  "keyVerseIds": [
+    11164,
+    11165,
+    11166
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Seva is carried here from  toward please protect me, and save me from wandering, God. Reach out and give Nanak.",
+      "emotionalState": "performing, transactional, dry",
+      "turn": "The middle movement deepens the correction by holding the mind inside i bow down, and fall to the ground in humble adoration, countless times, to.",
+      "practicalImplication": "Seva steadies when please protect me, and save me from wandering, God. Reach out and give Nanak.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.46,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.9,
+      "usefulness": 2.22,
+      "beauty": 3.23,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

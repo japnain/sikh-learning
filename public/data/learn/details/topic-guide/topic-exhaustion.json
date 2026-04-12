@@ -1,0 +1,107 @@
+{
+  "id": "topic-exhaustion",
+  "title": "When the soul feels worn thin",
+  "shortTitle": "Exhaustion",
+  "category": "most-needed",
+  "issueStatement": "You are still functioning, but the inner thread feels overused, brittle, and close to snapping.",
+  "centralInsight": "Gurbani treats exhaustion as more than low energy. It can be the fruit of wandering, over-carrying, and trying to finish the path without Sangat, patience, or Naam.",
+  "practicalReflection": "A tired soul often keeps adding movement. Guru keeps turning it back toward company, hearing, remembrance, and the right kind of rest.",
+  "actionPrompt": "Shrink the day to one faithful practice instead of ten frantic ones.",
+  "searchTerms": [
+    "exhausted",
+    "burnt out",
+    "tired",
+    "drained",
+    "weary",
+    "worn out"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3890,
+          3898,
+          3900
+        ],
+        "shortMeaning": "Search can exhaust the body until saint company and mercy cool it back down.",
+        "lifeApplication": "Exhaustion is sometimes the cost of trying to settle the soul alone."
+      },
+      "explanation": "The shabad names a tired form of searching that still does not land."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-patience-ripens-into-honor",
+        "verseIds": [
+          11239,
+          11243,
+          11244
+        ],
+        "shortMeaning": "Wandering ceases and patience becomes honorable where Naam is heard.",
+        "lifeApplication": "The exhausted life may need less self-pressure and more listening."
+      },
+      "explanation": "Guru pairs rest with hearing rather than with collapse."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-remembrance-brings-peace",
+        "verseIds": [
+          11502,
+          11503
+        ],
+        "shortMeaning": "Repeated remembrance is given as medicine for worry and bodily strain.",
+        "lifeApplication": "Exhaustion sometimes needs repetition more than innovation."
+      },
+      "explanation": "The line is practical: remembrance changes what the body is carrying."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-patience-ripens-into-honor",
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-tired-heart-to-rest",
+    "collection-exhaustion-journey",
+    "collection-exhaustion-journey"
+  ],
+  "rotation": {
+    "theme": "exhaustion",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:exhaustion",
+    "evidence": {
+      "coreClaim": "Gurbani treats exhaustion as more than low energy. It can be the fruit of wandering, over-carrying, and trying to finish the path without Sangat, patience, or Naam.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "You are still functioning, but the inner thread feels overused, brittle, and close to snapping.",
+      "practicalImplication": "Shrink the day to one faithful practice instead of ten frantic ones.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.79,
+      "beauty": 3.9,
+      "overall": 3.94
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

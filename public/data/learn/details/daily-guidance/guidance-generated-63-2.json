@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-63-2",
+  "title": "Go, And Ask The Happy Soul-brides, \"\"by",
+  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-63",
+    "verseIds": [
+      728,
+      734
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-63"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, First Mehla:; go, and ask the happy soul-brides, \"\"By what virtuous qualities do you",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, the True King absorbs us into Himself.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 1.66,
+      "specificity": 4.67,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 2.99,
+      "overall": 3.41
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

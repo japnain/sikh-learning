@@ -1,0 +1,83 @@
+{
+  "id": "collection-anxiety-to-anger-62",
+  "title": "Anxiety to Anger",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru turns the battle inward so reaction loses its claim to righteousness.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "anxiety",
+    "anger"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-steadied-by-creator",
+    "verseIds": [
+      30988,
+      30989
+    ],
+    "shortMeaning": "The Creator who formed you remains your support.",
+    "lifeApplication": "Answer fear with remembrance before strategy."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-fear-and-protection"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anxiety"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anger"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-1-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-ego-is-disease",
+    "shabad-suffering-as-medicine",
+    "shabad-speak-what-brings-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru turns the battle inward so reaction loses its claim to righteousness.",
+      "emotionalState": "afraid, shaken, alone",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 3.02,
+      "specificity": 4.28,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

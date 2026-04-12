@@ -1,0 +1,107 @@
+{
+  "id": "topic-gratitude",
+  "title": "When gratitude feels thin",
+  "shortTitle": "Gratitude",
+  "category": "practice",
+  "issueStatement": "You may know gratitude matters, but the heart feels dulled by entitlement, fatigue, or what is still missing.",
+  "centralInsight": "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation.",
+  "practicalReflection": "Gratitude becomes truer when it stops being a performance of positivity and becomes recognition of mercy.",
+  "actionPrompt": "Name one mercy beneath the surface event: guidance, restraint, sangat, forgiveness, or breath itself.",
+  "searchTerms": [
+    "gratitude",
+    "thankful",
+    "contentment",
+    "blessing"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60338,
+          60340,
+          60341
+        ],
+        "shortMeaning": "Mercy, Guru, and Naam are the deeper structure of gratitude.",
+        "lifeApplication": "Thankfulness here leads back into spiritual life, not only good feelings."
+      },
+      "explanation": "This shabad gives gratitude depth by rooting it in mercy."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21090,
+          21095
+        ],
+        "shortMeaning": "Pain can re-open praise where comfort forgets.",
+        "lifeApplication": "Gratitude sometimes grows after false securities are shaken."
+      },
+      "explanation": "Guru Nanak reframes comfort and difficulty without flattening either."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-detached-and-steady",
+        "verseIds": [
+          9416,
+          9417
+        ],
+        "shortMeaning": "Steadiness makes room for gratitude beyond circumstance.",
+        "lifeApplication": "A grateful heart is less ruled by praise, blame, pleasure, or pain."
+      },
+      "explanation": "Gratitude gets sturdier when the mind is less hooked by swings."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-gratitude-restores-naam",
+    "shabad-suffering-as-medicine",
+    "shabad-detached-and-steady"
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "gratitude",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:gratitude",
+    "evidence": {
+      "coreClaim": "Gurbani deepens gratitude by moving through unworthiness, mercy, and Naam instead of through self-congratulation.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "You may know gratitude matters, but the heart feels dulled by entitlement, fatigue, or what is still missing.",
+      "practicalImplication": "Name one mercy beneath the surface event: guidance, restraint, sangat, forgiveness, or breath itself.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.57,
+      "beauty": 4.06,
+      "overall": 3.93
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

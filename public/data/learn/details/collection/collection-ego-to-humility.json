@@ -1,0 +1,82 @@
+{
+  "id": "collection-ego-to-humility",
+  "title": "From Ego to Humility",
+  "subtitle": "A study path for self-importance and reactivity",
+  "description": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+  "durationLabel": "5-day journey",
+  "themes": [
+    "ego",
+    "anger",
+    "comparison"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963
+    ],
+    "shortMeaning": "Ego is a chronic disease, but it contains its own cure.",
+    "lifeApplication": "Let diagnosis become the beginning of mercy, not shame."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-ego-cure"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-ego"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anger"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-anger",
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-conquer-the-mind",
+    "shabad-generated-1",
+    "shabad-speak-what-brings-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Trace how haumai shows up, how it distorts the mind, and how Guru redirects it.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "A study path for self-importance and reactivity",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.66,
+      "clarity": 1.65,
+      "specificity": 3.9,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.19
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

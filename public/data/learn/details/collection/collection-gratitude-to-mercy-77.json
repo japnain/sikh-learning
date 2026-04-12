@@ -1,0 +1,83 @@
+{
+  "id": "collection-gratitude-to-mercy-77",
+  "title": "Gratitude to Mercy",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "gratitude",
+    "mercy"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338,
+      60340
+    ],
+    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
+    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-mercy"
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-gratitude-restores-naam",
+    "shabad-generated-66"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 3.9,
+      "specificity": 4.19,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.69
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

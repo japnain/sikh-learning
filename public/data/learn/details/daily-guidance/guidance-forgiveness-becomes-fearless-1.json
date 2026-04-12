@@ -1,0 +1,67 @@
+{
+  "id": "guidance-forgiveness-becomes-fearless-1",
+  "title": "To Practice Forgiveness Is The True Fast,",
+  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "To practice forgiveness is the true fast, good conduct and contentment",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-becomes-fearless",
+    "verseIds": [
+      9600
+    ],
+    "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
+    "lifeApplication": "Forgiveness becomes more truthful when to practice forgiveness is the true fast, good conduct and contentment."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-becomes-fearless"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "To practice forgiveness is the true fast, good conduct and contentment",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "Forgive deeply enough that fear loses its throne.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.84,
+      "clarity": 2.82,
+      "specificity": 4.43,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.12,
+      "overall": 3.49
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

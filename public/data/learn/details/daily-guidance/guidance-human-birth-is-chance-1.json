@@ -1,0 +1,67 @@
+{
+  "id": "guidance-human-birth-is-chance-1",
+  "title": "This Human Body Has Been Given To",
+  "summary": "Purpose is named plainly here before the mind has time to decorate it.",
+  "takeaway": "This human body has been given to you",
+  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524
+    ],
+    "shortMeaning": "This human body has been given to you",
+    "lifeApplication": "Purpose becomes more truthful when this human body has been given to you."
+  },
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "This human body has been given to you",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "Use this life for meeting, not merely for managing.",
+      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.11,
+      "clarity": 3.18,
+      "specificity": 4.87,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.36,
+      "beauty": 3.42,
+      "overall": 3.78
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

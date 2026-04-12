@@ -1,0 +1,67 @@
+{
+  "id": "guidance-mercy-gives-naam",
+  "title": "Naam lands where mercy opens the hand first.",
+  "summary": "Grace is not sentimental decoration. It is the condition that makes lasting remembrance possible.",
+  "takeaway": "Do not try to earn what must first be given.",
+  "lifeApplication": "When you feel spiritually behind, ask for mercy before you ask for intensity.",
+  "source": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      501,
+      503
+    ],
+    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
+    "lifeApplication": "Return is possible because grace precedes your recovery."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Mercy gives Naam and even reunites what has wandered.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "Receive the day as given, then answer it with Naam.",
+      "practicalImplication": "When you feel spiritually behind, ask for mercy before you ask for intensity.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 3.9,
+      "specificity": 4.54,
+      "emotionalHonesty": 3,
+      "usefulness": 2.44,
+      "beauty": 4.06,
+      "overall": 3.68
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

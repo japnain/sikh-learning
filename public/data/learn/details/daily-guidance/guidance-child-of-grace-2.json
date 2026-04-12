@@ -1,0 +1,68 @@
+{
+  "id": "guidance-child-of-grace-2",
+  "title": "Joining The Sat Sangat, The True Congregation,",
+  "summary": "Loneliness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
+  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3757,
+      3760
+    ],
+    "shortMeaning": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-loneliness-daily",
+    "topic-loneliness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "If only I could have the good fortune to meet some friendly; joining the Sat Sangat, the True Congregation, I ask about the Path",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 0,
+      "specificity": 4.87,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 1.99,
+      "overall": 3.08
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "topic-purpose-practice",
+  "title": "When life starts feeling aimless as a steady practice",
+  "shortTitle": "Purpose · Practice",
+  "category": "most-needed",
+  "issueStatement": "The day fills up, but the inner reason for being here feels thin. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+  "centralInsight": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. The line becomes durable when it is practiced, not merely admired.",
+  "practicalReflection": "Use this life for meeting, not merely for managing. Choose one act today that treats life as opportunity instead of drift.",
+  "actionPrompt": "Choose one act today that treats life as opportunity instead of drift. Repeat what you can actually keep.",
+  "searchTerms": [
+    "purpose",
+    "meaning",
+    "direction",
+    "calling",
+    "aimless",
+    "practice",
+    "habit",
+    "steady return"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          524
+        ],
+        "shortMeaning": "This human body has been given to you",
+        "lifeApplication": "Use this life for meeting, not merely for managing. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: this human body has been given to you."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-buy-what-goes-with-you",
+        "verseIds": [
+          937
+        ],
+        "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord",
+        "lifeApplication": "Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Invest in what crosses the threshold with you. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-3",
+        "verseIds": [
+          29
+        ],
+        "shortMeaning": "The Commander, by His Command, leads us to walk on the Path",
+        "lifeApplication": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. The line becomes durable when it is practiced, not merely admired. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-buy-what-goes-with-you",
+    "shabad-generated-3"
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth",
+    "collection-purpose-journey"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:purpose:practice",
+    "evidence": {
+      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. The line becomes durable when it is practiced, not merely admired.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "The day fills up, but the inner reason for being here feels thin. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Repeat what you can actually keep.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.86,
+      "beauty": 1.4,
+      "overall": 2.97
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "repeats phrasing too closely",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-stay-near-sangat",
+  "title": "Some fires go out only in better company.",
+  "summary": "Guru does not tell the doubting mind to solve itself alone. Guru sends it toward saint company and shared remembrance.",
+  "takeaway": "Isolation is not always depth.",
+  "lifeApplication": "Make one concrete move toward company that makes Naam easier, not noisier.",
+  "source": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      924,
+      925,
+      930
+    ],
+    "shortMeaning": "Saint company cools the body and changes the outcome of the crossing.",
+    "lifeApplication": "Let belonging become part of your discipline."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Saint company cools the body and changes the outcome of the crossing.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "Stop circling and let Guru's word take residence.",
+      "practicalImplication": "Make one concrete move toward company that makes Naam easier, not noisier.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.9,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.22,
+      "beauty": 3.9,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

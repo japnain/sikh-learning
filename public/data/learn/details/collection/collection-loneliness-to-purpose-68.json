@@ -1,0 +1,84 @@
+{
+  "id": "collection-loneliness-to-purpose-68",
+  "title": "Loneliness to Purpose",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru frames human life as opportunity for meeting, service, and naam rather than mere maintenance.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "loneliness",
+    "purpose"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3761,
+      3762,
+      3763
+    ],
+    "shortMeaning": "The Guru is named as protector, mother, and father.",
+    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-child"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-purpose"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-human-birth-is-chance",
+    "shabad-generated-152",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru frames human life as opportunity for meeting, service, and naam rather than mere maintenance.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.02,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.56
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "guidance-work-and-give",
+  "title": "Honest work belongs to the spiritual life",
+  "summary": "Guru cuts through posturing and gives a plain path: labor honestly and share.",
+  "takeaway": "Truth is lived in how you earn and how you open your hand.",
+  "lifeApplication": "Let one concrete act of generosity become part of your workday, not separate from it.",
+  "source": {
+    "deepDiveId": "shabad-work-give-know-the-path",
+    "verseIds": [
+      53371,
+      53372
+    ],
+    "shortMeaning": "The path is recognized in honest labor and generosity.",
+    "lifeApplication": "Do not separate devotion from the ethics of work and giving."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "seva",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The path is recognized in honest labor and generosity.",
+      "emotionalState": "pretending, unclear, performing",
+      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
+      "practicalImplication": "Let one concrete act of generosity become part of your workday, not separate from it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.9,
+      "specificity": 4.51,
+      "emotionalHonesty": 3,
+      "usefulness": 2.79,
+      "beauty": 4.06,
+      "overall": 3.72
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "id": "topic-softness",
+  "title": "When harshness has become your default",
+  "shortTitle": "Softness",
+  "category": "practice",
+  "issueStatement": "Your inner and outer tone has become sharper than you want to admit.",
+  "centralInsight": "Gurbani does not ask for politeness theatre. It asks for speech softened by praise, humility, and regard for the one in front of you.",
+  "practicalReflection": "Softness is not weakness. It is disciplined refusal to let the tongue become an outlet for ego or contempt.",
+  "actionPrompt": "Lower the sharpness in one conversation today without lowering the truth.",
+  "searchTerms": [
+    "softness",
+    "gentle",
+    "harsh",
+    "tenderness",
+    "cutting words",
+    "hard-hearted"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "verseIds": [
+          11748,
+          11749
+        ],
+        "shortMeaning": "The better speech is the speech carrying praise.",
+        "lifeApplication": "What the tongue feeds on decides what tone it produces."
+      },
+      "explanation": "Guru redirects the source of speech before correcting the style of speech."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-speak-what-brings-honor",
+        "verseIds": [
+          642,
+          643
+        ],
+        "shortMeaning": "Speech that brings honor is accepted; harsh words return grief.",
+        "lifeApplication": "Reaction is not the same thing as truthfulness."
+      },
+      "explanation": "Softness is named as moral seriousness, not softness for its own sake."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "verseIds": [
+          1288,
+          1290
+        ],
+        "shortMeaning": "Sweet speech becomes believable when it grows from humility and saint company.",
+        "lifeApplication": "Tone is strongest when posture has already bowed."
+      },
+      "explanation": "This keeps softness from becoming performance or strategy."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [],
+  "rotation": {
+    "theme": "softness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:softness",
+    "evidence": {
+      "coreClaim": "Gurbani does not ask for politeness theatre. It asks for speech softened by praise, humility, and regard for the one in front of you.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "Your inner and outer tone has become sharper than you want to admit.",
+      "practicalImplication": "Lower the sharpness in one conversation today without lowering the truth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.66,
+      "beauty": 4.22,
+      "overall": 3.94
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

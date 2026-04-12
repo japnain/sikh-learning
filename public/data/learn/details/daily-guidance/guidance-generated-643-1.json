@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-643-1",
+  "title": "Wherever I Look, There You Are; I",
+  "summary": "Exhaustion is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Wherever I look, there You are; I am totally convinced of this",
+  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-643",
+    "verseIds": [
+      8825
+    ],
+    "shortMeaning": "Wherever I look, there You are; I am totally convinced of this",
+    "lifeApplication": "Exhaustion becomes more truthful when wherever I look, there You are; I am totally convinced of this."
+  },
+  "relatedTopicIds": [
+    "topic-exhaustion"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-643"
+  ],
+  "relatedCollectionIds": [
+    "collection-tired-heart-to-rest",
+    "collection-exhaustion-journey"
+  ],
+  "rotation": {
+    "theme": "exhaustion",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Wherever I look, there You are; I am totally convinced of this",
+      "emotionalState": "tired, drained, worn-down",
+      "turn": "Exhaustion steadies when says Nanak, the Guru has dispelled my doubt; in this way, my essence merges.",
+      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.8,
+      "clarity": 2.7,
+      "specificity": 4.39,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 3.24,
+      "overall": 3.53
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

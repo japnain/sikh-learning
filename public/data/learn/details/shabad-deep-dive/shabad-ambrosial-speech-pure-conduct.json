@@ -1,0 +1,173 @@
+{
+  "id": "shabad-ambrosial-speech-pure-conduct",
+  "title": "Ambrosial Speech, Pure Conduct",
+  "subtitle": "Raag Gauree · Ang 266",
+  "summary": "Guru Arjan strips religion down to its living core: Naam, purified conduct, saint company, worthy effort, ambrosial speech, and a heart that becomes the true place.",
+  "whyItMatters": "It corrects spiritual performance, empty ritual, and language that sounds holy while conduct remains divided.",
+  "takeaway": "The best religion sounds like praise and looks like clean conduct.",
+  "themes": [
+    "speech",
+    "discipline",
+    "truth"
+  ],
+  "emotionalStates": [
+    "performing",
+    "harsh",
+    "scattered"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 8,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 897,
+    "ang": 266,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      10
+    ],
+    "verse_ids": [
+      11742,
+      11743,
+      11744,
+      11745,
+      11746,
+      11747,
+      11748,
+      11749,
+      11750,
+      11751
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11742,
+      "gurmukhi": "ਸਰਬ ਧਰਮ ਮਹਿ ਸ੍ਰੇਸਟ ਧਰਮੁ ॥",
+      "transliteration": "sarab dharam meh sresaT dharam ||",
+      "translation": "Of all religions, the best religion"
+    },
+    {
+      "verseId": 11743,
+      "gurmukhi": "ਹਰਿ ਕੋ ਨਾਮੁ ਜਪਿ ਨਿਰਮਲ ਕਰਮੁ ॥",
+      "transliteration": "har ko naam jap niramal karam ||",
+      "translation": "is to chant the Name of the Lord and maintain pure conduct."
+    },
+    {
+      "verseId": 11744,
+      "gurmukhi": "ਸਗਲ ਕ੍ਰਿਆ ਮਹਿ ਊਤਮ ਕਿਰਿਆ ॥",
+      "transliteration": "sagal kiraa meh uootam kiriaa ||",
+      "translation": "Of all religious rituals, the most sublime ritual"
+    },
+    {
+      "verseId": 11745,
+      "gurmukhi": "ਸਾਧਸੰਗਿ ਦੁਰਮਤਿ ਮਲੁ ਹਿਰਿਆ ॥",
+      "transliteration": "saadhasa(n)g dhuramat mal hiriaa ||",
+      "translation": "is to erase the filth of the dirty mind in the Company of the Holy."
+    },
+    {
+      "verseId": 11746,
+      "gurmukhi": "ਸਗਲ ਉਦਮ ਮਹਿ ਉਦਮੁ ਭਲਾ ॥",
+      "transliteration": "sagal udham meh udham bhalaa ||",
+      "translation": "Of all efforts, the best effort"
+    },
+    {
+      "verseId": 11747,
+      "gurmukhi": "ਹਰਿ ਕਾ ਨਾਮੁ ਜਪਹੁ ਜੀਅ ਸਦਾ ॥",
+      "transliteration": "har kaa naam japahu jeea sadhaa ||",
+      "translation": "is to chant the Name of the Lord in the heart, forever."
+    },
+    {
+      "verseId": 11748,
+      "gurmukhi": "ਸਗਲ ਬਾਨੀ ਮਹਿ ਅੰਮ੍ਰਿਤ ਬਾਨੀ ॥",
+      "transliteration": "sagal baanee meh a(n)mirat baanee ||",
+      "translation": "Of all speech, the most ambrosial speech"
+    },
+    {
+      "verseId": 11749,
+      "gurmukhi": "ਹਰਿ ਕੋ ਜਸੁ ਸੁਨਿ ਰਸਨ ਬਖਾਨੀ ॥",
+      "transliteration": "har ko jas sun rasan bakhaanee ||",
+      "translation": "is to hear the Lord's Praise and chant it with the tongue."
+    },
+    {
+      "verseId": 11750,
+      "gurmukhi": "ਸਗਲ ਥਾਨ ਤੇ ਓਹੁ ਊਤਮ ਥਾਨੁ ॥",
+      "transliteration": "sagal thaan te oh uootam thaan ||",
+      "translation": "Of all places, the most sublime place,"
+    },
+    {
+      "verseId": 11751,
+      "gurmukhi": "ਨਾਨਕ ਜਿਹ ਘਟਿ ਵਸੈ ਹਰਿ ਨਾਮੁ ॥੮॥੩॥",
+      "transliteration": "naanak jeh ghaT vasai har naam ||8||3||",
+      "translation": "O Nanak, is that heart in which the Name of the Lord abides. ||8||3||"
+    }
+  ],
+  "structure": [
+    "Ranks the path by what actually purifies rather than by outer identity.",
+    "Ties conduct, saint company, effort, and speech back to Naam.",
+    "Ends by saying the real holy place is the heart where Naam lives."
+  ],
+  "keyVerseIds": [
+    11742,
+    11743,
+    11745,
+    11748,
+    11750
+  ],
+  "relatedGuidanceIds": [
+    "guidance-pure-conduct-outweighs-display",
+    "guidance-ambrosial-speech-needs-praise",
+    "guidance-heart-becomes-the-place",
+    "guidance-ambrosial-speech-pure-conduct-1"
+  ],
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 30,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "Guru Arjan strips religion down to its living core: Naam, purified conduct, saint company, worthy effort, ambrosial speech, and a heart that becomes the true place.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "Ties conduct, saint company, effort, and speech back to Naam.",
+      "practicalImplication": "The best religion sounds like praise and looks like clean conduct.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2,
+      "beauty": 3.98,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

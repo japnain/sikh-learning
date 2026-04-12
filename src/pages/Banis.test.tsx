@@ -1,5 +1,5 @@
 import { beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
 import Study from './Study'
@@ -303,6 +303,8 @@ test('surfaces learn topic destinations ahead of broader read search results', a
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'stress' } })
 
   expect(await screen.findByText(/^In the app$/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /When the mind is anxious/i })).toBeInTheDocument()
-  expect(screen.getByText(/^Learn$/i)).toBeInTheDocument()
+  const inAppResults = screen.getByTestId('banis-search-app-results')
+  const [firstResult] = within(inAppResults).getAllByRole('button')
+  expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
+  expect(within(firstResult).getByText(/^Learn$/i)).toBeInTheDocument()
 })

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-human-birth-is-chance-2",
+  "title": "This Is Your Chance To Meet The",
+  "summary": "Purpose is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
+  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "This human body has been given to you; this is your chance to meet the Lord of the Universe",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "Use this life for meeting, not merely for managing.",
+      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.17,
+      "clarity": 1.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.45,
+      "beauty": 2.42,
+      "overall": 3.33
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

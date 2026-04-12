@@ -1,0 +1,165 @@
+{
+  "id": "shabad-generated-564",
+  "title": "Gauree, Fifth Mehla:",
+  "subtitle": "Raag Gauree · Ang 188",
+  "summary": "Attachment is carried here from gauree, Fifth Mehla: toward without the Lord's meditation, there is no salvation.",
+  "whyItMatters": "This shabad is useful when life feels clingy, possessive, afraid-to-lose, because it keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Attachment steadies when without the Lord's meditation, there is no salvation.",
+  "themes": [
+    "attachment",
+    "doubt",
+    "loneliness"
+  ],
+  "emotionalStates": [
+    "clingy",
+    "possessive",
+    "afraid-to-lose"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 6,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 564,
+    "ang": 188,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      9
+    ],
+    "verse_ids": [
+      7968,
+      7969,
+      7970,
+      7971,
+      7972,
+      7973,
+      7974,
+      7975,
+      7976
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 7968,
+      "gurmukhi": "ਗਉੜੀ ਮਹਲਾ ੫ ॥",
+      "transliteration": "gauRee mahalaa panjavaa ||",
+      "translation": "Gauree, Fifth Mehla:"
+    },
+    {
+      "verseId": 7969,
+      "gurmukhi": "ਵਡੇ ਵਡੇ ਜੋ ਦੀਸਹਿ ਲੋਗ ॥",
+      "transliteration": "vadde vadde jo dheeseh log ||",
+      "translation": "Those who seem to be great and powerful,"
+    },
+    {
+      "verseId": 7970,
+      "gurmukhi": "ਤਿਨ ਕਉ ਬਿਆਪੈ ਚਿੰਤਾ ਰੋਗ ॥੧॥",
+      "transliteration": "tin kau biaapai chi(n)taa rog ||1||",
+      "translation": "are afflicted by the disease of anxiety. ||1||"
+    },
+    {
+      "verseId": 7971,
+      "gurmukhi": "ਕਉਨ ਵਡਾ ਮਾਇਆ ਵਡਿਆਈ ॥",
+      "transliteration": "kaun vaddaa maiaa vaddiaaiee ||",
+      "translation": "Who is great by the greatness of Maya?"
+    },
+    {
+      "verseId": 7972,
+      "gurmukhi": "ਸੋ ਵਡਾ ਜਿਨਿ ਰਾਮ ਲਿਵ ਲਾਈ ॥੧॥ ਰਹਾਉ ॥",
+      "transliteration": "so vaddaa jin raam liv laiee ||1|| rahaau ||",
+      "translation": "They alone are great, who are lovingly attached to the Lord. ||1||Pause||"
+    },
+    {
+      "verseId": 7973,
+      "gurmukhi": "ਭੂਮੀਆ ਭੂਮਿ ਊਪਰਿ ਨਿਤ ਲੁਝੈ ॥",
+      "transliteration": "bhoomeeaa bhoom uoopar nit lujhai ||",
+      "translation": "The landlord fights over his land each day."
+    },
+    {
+      "verseId": 7974,
+      "gurmukhi": "ਛੋਡਿ ਚਲੈ ਤ੍ਰਿਸਨਾ ਨਹੀ ਬੁਝੈ ॥੨॥",
+      "transliteration": "chhodd chalai tirasanaa nahee bujhai ||2||",
+      "translation": "He shall have to leave it in the end, and yet his desire is still not satisfied. ||2||"
+    },
+    {
+      "verseId": 7975,
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਇਹੁ ਤਤੁ ਬੀਚਾਰਾ ॥",
+      "transliteration": "kahu naanak ih tat beechaaraa ||",
+      "translation": "Says Nanak, this is the essence of Truth:"
+    },
+    {
+      "verseId": 7976,
+      "gurmukhi": "ਬਿਨੁ ਹਰਿ ਭਜਨ ਨਾਹੀ ਛੁਟਕਾਰਾ ॥੩॥੪੪॥੧੧੩॥",
+      "transliteration": "bin har bhajan naahee chhuTakaaraa ||3||44||113||",
+      "translation": "without the Lord's meditation, there is no salvation. ||3||44||113||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: gauree, Fifth Mehla:.",
+    "The middle movement deepens the correction by holding the mind inside they alone are great, who are lovingly attached to the Lord.",
+    "The closing movement leaves a return you can actually keep: without the Lord's meditation, there is no salvation."
+  ],
+  "keyVerseIds": [
+    7968,
+    7972,
+    7974,
+    7976
+  ],
+  "relatedGuidanceIds": [
+    "guidance-generated-564-1",
+    "guidance-generated-564-2"
+  ],
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey",
+    "collection-attachment-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Attachment is carried here from gauree, Fifth Mehla: toward without the Lord's meditation, there is no salvation.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "The middle movement deepens the correction by holding the mind inside they alone are great, who are lovingly attached to the Lord.",
+      "practicalImplication": "Attachment steadies when without the Lord's meditation, there is no salvation.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.73,
+      "specificity": 4.78,
+      "emotionalHonesty": 4,
+      "usefulness": 2.22,
+      "beauty": 3.57,
+      "overall": 3.7
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

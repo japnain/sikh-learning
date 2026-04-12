@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-644-2",
+  "title": "Meeting With The Guru, Your Affairs Shall",
+  "summary": "Seeking is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "This life is diminishing, day and night; meeting with the Guru, your affairs shall be resolved",
+  "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-644",
+    "verseIds": [
+      8834,
+      8835
+    ],
+    "shortMeaning": "This life is diminishing, day and night; meeting with the Guru, your affairs shall be resolved",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-644"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "This life is diminishing, day and night; meeting with the Guru, your affairs shall be resolved",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the.",
+      "practicalImplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 1.91,
+      "specificity": 4.88,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 2.71,
+      "overall": 3.42
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

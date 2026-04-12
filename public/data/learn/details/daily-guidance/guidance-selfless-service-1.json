@@ -1,0 +1,67 @@
+{
+  "id": "guidance-selfless-service-1",
+  "title": "He Is Not To Call Attention To",
+  "summary": "Seva is named plainly here before the mind has time to decorate it.",
+  "takeaway": "He is not to call attention to himself in any way",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12943
+    ],
+    "shortMeaning": "He is not to call attention to himself in any way",
+    "lifeApplication": "Seva becomes more truthful when he is not to call attention to himself in any way."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "He is not to call attention to himself in any way",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.79,
+      "clarity": 2.82,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.14,
+      "beauty": 3.3,
+      "overall": 3.58
+    },
+    "strengths": [
+      "specificity",
+      "emotionalHonesty"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

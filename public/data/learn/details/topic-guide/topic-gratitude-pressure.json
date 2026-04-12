@@ -1,0 +1,109 @@
+{
+  "id": "topic-gratitude-pressure",
+  "title": "When gratitude feels distant under pressure",
+  "shortTitle": "Gratitude · Pressure",
+  "category": "practice",
+  "issueStatement": "The heart notices absence faster than gift. Pressure exposes what the mind reaches for when it feels cornered.",
+  "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+  "practicalReflection": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let one received thing become a place of praise instead of entitlement.",
+  "actionPrompt": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure decides the tone.",
+  "searchTerms": [
+    "gratitude",
+    "thankful",
+    "thankfulness",
+    "blessing",
+    "gift",
+    "pressure",
+    "stress",
+    "under strain"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21090
+        ],
+        "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
+        "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: suffering is the medicine, and pleasure the disease, because where there is."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60340
+        ],
+        "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and",
+        "lifeApplication": "Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-1",
+        "verseIds": [
+          8
+        ],
+        "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them",
+        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru keeps gratitude close to remembrance, contentment, and restored vision. Pressure becomes revealing when the line is allowed to interrupt panic and performance. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam",
+    "shabad-generated-1"
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:gratitude:pressure",
+    "evidence": {
+      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "The heart notices absence faster than gift. Pressure exposes what the mind reaches for when it feels cornered.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure decides the tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.18,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.36,
+      "beauty": 1.62,
+      "overall": 3.15
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

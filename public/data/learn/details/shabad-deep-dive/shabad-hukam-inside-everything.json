@@ -1,0 +1,142 @@
+{
+  "id": "shabad-hukam-inside-everything",
+  "title": "Hukam Inside Everything",
+  "subtitle": "Japji Sahib, Pauri 2",
+  "summary": "This pauri reframes life from control to command. Everything is already moving inside Hukam.",
+  "whyItMatters": "It is a grounding shabad for anxiety, resistance, and the illusion that peace comes from managing every outcome.",
+  "takeaway": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
+  "themes": [
+    "hukam",
+    "anxiety",
+    "surrender"
+  ],
+  "emotionalStates": [
+    "restless",
+    "controlling",
+    "uncertain"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 7,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 2,
+    "ang": 1,
+    "guru": "Guru Nanak Dev Ji",
+    "raag": "Jap",
+    "line_range": [
+      1,
+      6
+    ],
+    "verse_ids": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11,
+      "gurmukhi": "ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ ਹੁਕਮੁ ਨ ਕਹਿਆ ਜਾਈ ॥",
+      "transliteration": "hukamee hovan aakaar hukam na kahiaa jaiee ||",
+      "translation": "By His Command, bodies are created; His Command cannot be described."
+    },
+    {
+      "verseId": 12,
+      "gurmukhi": "ਹੁਕਮੀ ਹੋਵਨਿ ਜੀਅ ਹੁਕਮਿ ਮਿਲੈ ਵਡਿਆਈ ॥",
+      "transliteration": "hukamee hovan jeea hukam milai vaddiaaiee ||",
+      "translation": "By His Command, souls come into being; by His Command, glory and greatness are obtained."
+    },
+    {
+      "verseId": 13,
+      "gurmukhi": "ਹੁਕਮੀ ਉਤਮੁ ਨੀਚੁ ਹੁਕਮਿ ਲਿਖਿ ਦੁਖ ਸੁਖ ਪਾਈਅਹਿ ॥",
+      "transliteration": "hukamee utam neech hukam likh dhukh sukh paie'eeh ||",
+      "translation": "By His Command, some are high and some are low; by His Written Command, pain and pleasure are obtained."
+    },
+    {
+      "verseId": 14,
+      "gurmukhi": "ਇਕਨਾ ਹੁਕਮੀ ਬਖਸੀਸ ਇਕਿ ਹੁਕਮੀ ਸਦਾ ਭਵਾਈਅਹਿ ॥",
+      "transliteration": "eikanaa hukamee bakhasees ik hukamee sadhaa bhavaie'eeh ||",
+      "translation": "Some, by His Command, are blessed and forgiven; others, by His Command, wander aimlessly forever."
+    },
+    {
+      "verseId": 15,
+      "gurmukhi": "ਹੁਕਮੈ ਅੰਦਰਿ ਸਭੁ ਕੋ ਬਾਹਰਿ ਹੁਕਮ ਨ ਕੋਇ ॥",
+      "transliteration": "hukamai a(n)dhar sabh ko baahar hukam na koi ||",
+      "translation": "Everyone is subject to His Command; no one is beyond His Command."
+    },
+    {
+      "verseId": 16,
+      "gurmukhi": "ਨਾਨਕ ਹੁਕਮੈ ਜੇ ਬੁਝੈ ਤ ਹਉਮੈ ਕਹੈ ਨ ਕੋਇ ॥੨॥",
+      "transliteration": "naanak hukamai je bujhai ta haumai kahai na koi ||2||",
+      "translation": "O Nanak, one who understands His Command, does not speak in ego. ||2||"
+    }
+  ],
+  "structure": [
+    "Names Hukam as the frame around existence, not one force among many.",
+    "Shows that pleasure, pain, status, and movement all unfold within that same reality.",
+    "Closes by linking true understanding of Hukam with the softening of ego."
+  ],
+  "keyVerseIds": [
+    11,
+    15,
+    16
+  ],
+  "relatedGuidanceIds": [
+    "guidance-hukam",
+    "guidance-hukam-inside-everything-1",
+    "guidance-hukam-inside-everything-2"
+  ],
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity",
+    "collection-control-to-release"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 30,
+    "priority": 9,
+    "balanceCategory": "hukam",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "This pauri reframes life from control to command. Everything is already moving inside Hukam.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "Shows that pleasure, pain, status, and movement all unfold within that same reality.",
+      "practicalImplication": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.9,
+      "overall": 3.99
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

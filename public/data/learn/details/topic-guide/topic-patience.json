@@ -1,0 +1,109 @@
+{
+  "id": "topic-patience",
+  "title": "When you are tired of waiting",
+  "shortTitle": "Patience",
+  "category": "practice",
+  "issueStatement": "You are obeying only while outcomes feel fast, visible, or emotionally rewarding.",
+  "centralInsight": "Patience in Gurbani is not limp delay. It is what settles into the body after mercy, saint company, and remembrance cool the inner rush.",
+  "practicalReflection": "Impatience says, 'If this mattered, it would already be changing.' Gurbani asks instead whether the mind has become more teachable while it waits.",
+  "actionPrompt": "Stay with one faithful practice for seven days without using your mood as the measure of its worth.",
+  "searchTerms": [
+    "patience",
+    "waiting",
+    "impatient",
+    "hurry",
+    "agitated",
+    "slow progress"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3899,
+          3900
+        ],
+        "shortMeaning": "Mercy and saint company cool the body into patience and composure.",
+        "lifeApplication": "Do not imagine patience is always self-generated."
+      },
+      "explanation": "The shabad ties patience to receiving help, not heroic isolation."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "verseIds": [
+          9600,
+          9605,
+          9612
+        ],
+        "shortMeaning": "Forgiveness, reverence, and fearlessness are part of the same spiritual musculature.",
+        "lifeApplication": "Patience grows where retaliation and panic begin to loosen."
+      },
+      "explanation": "Patience is stronger when bitterness has been reduced."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          290,
+          292
+        ],
+        "shortMeaning": "Contentment and inner conquest matter more than outer performance.",
+        "lifeApplication": "A patient life is often an interior victory before it looks like an exterior one."
+      },
+      "explanation": "Guru links patience with the deeper work of mastering the inner field."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-conquer-the-mind"
+  ],
+  "relatedTopicIds": [
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest",
+    "collection-patience-journey"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:patience",
+    "evidence": {
+      "coreClaim": "Patience in Gurbani is not limp delay. It is what settles into the body after mercy, saint company, and remembrance cool the inner rush.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "You are obeying only while outcomes feel fast, visible, or emotionally rewarding.",
+      "practicalImplication": "Stay with one faithful practice for seven days without using your mood as the measure of its worth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.79,
+      "beauty": 4.06,
+      "overall": 3.96
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

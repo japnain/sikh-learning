@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-705-2",
+  "title": "All Who Love Duality Are Ruined",
+  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Acting in egotism, peace is not obtained; all who love duality are ruined",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-705",
+    "verseIds": [
+      9525,
+      9527
+    ],
+    "shortMeaning": "Acting in egotism, peace is not obtained; all who love duality are ruined",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-705"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Acting in egotism, peace is not obtained; all who love duality are ruined",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Ego steadies when nanak, the lowly, says embrace love for the Lord.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.88,
+      "clarity": 2.58,
+      "specificity": 4.65,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.36,
+      "beauty": 2.95,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

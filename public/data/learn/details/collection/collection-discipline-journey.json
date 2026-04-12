@@ -1,0 +1,77 @@
+{
+  "id": "collection-discipline-journey",
+  "title": "From Discipline to steadier practice",
+  "subtitle": "A deliberate path through discipline",
+  "description": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "discipline",
+    "purpose"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      292
+    ],
+    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
+    "lifeApplication": "Return your attention from other people to the state of your own mind."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mind-mastery"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-discipline"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-obey-and-remember"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-purpose"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "A deliberate path through discipline",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.06,
+      "clarity": 3.02,
+      "specificity": 4.27,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

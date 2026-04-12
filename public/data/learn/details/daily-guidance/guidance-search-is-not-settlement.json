@@ -1,0 +1,68 @@
+{
+  "id": "guidance-search-is-not-settlement",
+  "title": "Movement is not the same as settlement.",
+  "summary": "It is possible to keep searching sincerely and still avoid the stillness where truth would actually meet you.",
+  "takeaway": "Restlessness can masquerade as devotion.",
+  "lifeApplication": "Pause one extra search today and stay long enough with what you already know.",
+  "source": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890,
+      3895,
+      3898
+    ],
+    "shortMeaning": "Searching and ritual are not identical with peace.",
+    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-conquer-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Searching and ritual are not identical with peace.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "The mind settles less by roaming and more by right company.",
+      "practicalImplication": "Pause one extra search today and stay long enough with what you already know.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.9,
+      "specificity": 4.54,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 4.06,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

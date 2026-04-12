@@ -1,0 +1,63 @@
+{
+  "id": "guidance-lord-keeps-the-humble-close-1",
+  "title": "True Guru, The Great Giver, Is The",
+  "summary": "Self-Worth is named plainly here before the mind has time to decorate it.",
+  "takeaway": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+  "lifeApplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-lord-keeps-the-humble-close",
+    "verseIds": [
+      37468
+    ],
+    "shortMeaning": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+    "lifeApplication": "Self-Worth becomes more truthful when the True Guru, the Great Giver, is the Great, Primal Being; meeting."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-lord-keeps-the-humble-close"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The True Guru, the Great Giver, is the Great, Primal Being; meeting",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "Nearness is received in humility, not built out of status.",
+      "practicalImplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 2.7,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 3.16,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

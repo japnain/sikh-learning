@@ -1,0 +1,67 @@
+{
+  "id": "guidance-harsh-words-double-back",
+  "title": "Harsh words do not finish outside you.",
+  "summary": "The harm of sharp speech does not stop at the other person. It also deepens the coarseness of the one speaking.",
+  "takeaway": "Contempt always leaves residue in the speaker.",
+  "lifeApplication": "Before replying in irritation, ask what kind of interior this sentence is building inside you.",
+  "source": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      643,
+      644
+    ],
+    "shortMeaning": "Harsh words return as grief, not mastery.",
+    "lifeApplication": "Do not confuse emotional discharge with strength."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-ego-is-disease"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Harsh words return as grief, not mastery.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "Guard the tongue, and the heart begins to clear.",
+      "practicalImplication": "Before replying in irritation, ask what kind of interior this sentence is building inside you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.9,
+      "specificity": 4.3,
+      "emotionalHonesty": 3,
+      "usefulness": 2.22,
+      "beauty": 4.06,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

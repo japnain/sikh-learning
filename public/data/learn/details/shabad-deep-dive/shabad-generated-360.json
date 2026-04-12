@@ -1,0 +1,136 @@
+{
+  "id": "shabad-generated-360",
+  "title": "Vaar In Maajh, And Shaloks Of The",
+  "subtitle": "Raag Maajh · Ang 137",
+  "summary": "Exhaustion is carried here from vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+  "whyItMatters": "This shabad is useful when life feels tired, drained, worn-down, because it keeps exhaustion inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+  "themes": [
+    "exhaustion",
+    "comparison",
+    "seva"
+  ],
+  "emotionalStates": [
+    "tired",
+    "drained",
+    "worn-down"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 360,
+    "ang": 137,
+    "guru": "Guru Nanak Dev Ji",
+    "raag": "Raag Maajh",
+    "line_range": [
+      1,
+      5
+    ],
+    "verse_ids": [
+      5589,
+      5590,
+      5591,
+      5592,
+      5593
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 5589,
+      "gurmukhi": "ਵਾਰ ਮਾਝ ਕੀ ਤਥਾ ਸਲੋਕ ਮਹਲਾ ੧  ਮਲਕ ਮੁਰੀਦ ਤਥਾ ਚੰਦ੍ਰਹੜਾ ਸੋਹੀਆ ਕੀ ਧੁਨੀ ਗਾਵਣੀ ॥",
+      "transliteration": "vaar maajh kee tathaa salok mahalaa pehilaa  malak mureedh tathaa cha(n)dhrahaRaa soheeaa kee dhunee gaavanee ||",
+      "translation": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\""
+    },
+    {
+      "verseId": 5590,
+      "gurmukhi": "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥",
+      "transliteration": "ikOankaar sat naam karataa purakh gur prasaadh ||",
+      "translation": "One Universal Creator God. Truth Is The Name. Creative Being Personified. By Guru's Grace:"
+    },
+    {
+      "verseId": 5591,
+      "gurmukhi": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+      "transliteration": "salok mahalaa pehilaa ||",
+      "translation": "Shalok, First Mehla:"
+    },
+    {
+      "verseId": 5592,
+      "gurmukhi": "ਗੁਰੁ ਦਾਤਾ ਗੁਰੁ ਹਿਵੈ ਘਰੁ ਗੁਰੁ ਦੀਪਕੁ ਤਿਹ ਲੋਇ ॥",
+      "transliteration": "gur dhaataa gur hivai ghar gur dheepak teh loi ||",
+      "translation": "The Guru is the Giver; the Guru is the House of ice. The Guru is the Light of the three worlds."
+    },
+    {
+      "verseId": 5593,
+      "gurmukhi": "ਅਮਰ ਪਦਾਰਥੁ ਨਾਨਕਾ ਮਨਿ ਮਾਨਿਐ ਸੁਖੁ ਹੋਇ ॥੧॥",
+      "transliteration": "amar padhaarath naanakaa man maaniaai sukh hoi ||1||",
+      "translation": "O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace. ||1||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The.",
+    "The middle movement deepens the correction by holding the mind inside shalok, First Mehla:.",
+    "The closing movement leaves a return you can actually keep: o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you."
+  ],
+  "keyVerseIds": [
+    5589,
+    5590,
+    5592,
+    5593
+  ],
+  "relatedGuidanceIds": [
+    "guidance-generated-360-1",
+    "guidance-generated-360-2",
+    "guidance-generated-360-3"
+  ],
+  "relatedTopicIds": [
+    "topic-exhaustion"
+  ],
+  "relatedCollectionIds": [
+    "collection-tired-heart-to-rest",
+    "collection-exhaustion-journey",
+    "collection-exhaustion-journey"
+  ],
+  "rotation": {
+    "theme": "exhaustion",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Exhaustion is carried here from vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung To The toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+      "emotionalState": "tired, drained, worn-down",
+      "turn": "The middle movement deepens the correction by holding the mind inside shalok, First Mehla:.",
+      "practicalImplication": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.9,
+      "specificity": 4.94,
+      "emotionalHonesty": 4,
+      "usefulness": 2.44,
+      "beauty": 2.04,
+      "overall": 3.25
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

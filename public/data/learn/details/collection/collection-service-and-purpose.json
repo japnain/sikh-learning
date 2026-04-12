@@ -1,0 +1,87 @@
+{
+  "id": "collection-service-and-purpose",
+  "title": "Service and Purpose",
+  "subtitle": "A practical path for meaningful living",
+  "description": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "purpose",
+    "seva",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "This human body has been given to you. This is your chance to meet the Divine.",
+    "lifeApplication": "Let purpose begin with Guru's framing of life."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seva"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-selfless-service"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-work-give-know-the-path"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-seva",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service",
+    "shabad-work-give-know-the-path",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Return to why this life was given and how seva, sangat, work, and Naam clarify purpose.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A practical path for meaningful living",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.73,
+      "clarity": 2.15,
+      "specificity": 3.97,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.26
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

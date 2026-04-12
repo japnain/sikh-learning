@@ -1,0 +1,68 @@
+{
+  "id": "guidance-conquer-the-mind-2",
+  "title": "See The Brotherhood Of All Mankind As",
+  "summary": "Discipline is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
+  "lifeApplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      290,
+      292
+    ],
+    "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes; see the brotherhood of all mankind as the highest order of Yogis;",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "The hardest field is the inner field. Win there first.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.06,
+      "clarity": 0.02,
+      "specificity": 4.98,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.23,
+      "beauty": 1.9,
+      "overall": 3.01
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "collection-truthful-wealth",
+  "title": "Truthful Wealth",
+  "subtitle": "A disciplined path out of empty gain",
+  "description": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "purpose",
+    "discipline",
+    "greed"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-buy-what-goes-with-you",
+    "verseIds": [
+      934,
+      937
+    ],
+    "shortMeaning": "Carry what will remain with you when the visible inventory is gone.",
+    "lifeApplication": "Let your accounts become spiritual, not merely impressive."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-buy-what-goes-with-you"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-buy-what-goes-with-you"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-profit-that-remains"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-work-give-know-the-path"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-purpose",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you",
+    "shabad-work-give-know-the-path",
+    "shabad-human-birth-is-chance",
+    "shabad-conquer-the-mind"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Return to the assets that travel, the work that lasts, and the profit that leaves the mind clearer rather than more burdened.",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "A disciplined path out of empty gain",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.84,
+      "clarity": 0.65,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.15
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

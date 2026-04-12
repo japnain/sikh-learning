@@ -1,0 +1,67 @@
+{
+  "id": "guidance-wanderings-cease-in-sangat",
+  "title": "Wandering slows where true company begins.",
+  "summary": "The pauree does not flatter the restless mind. It says the wandering starts easing when you actually dwell in saint company.",
+  "takeaway": "Do not confuse more movement with more progress.",
+  "lifeApplication": "Choose one faithful company today instead of ten new inputs.",
+  "source": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239,
+      11240
+    ],
+    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-patience-ripens-into-honor",
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "Patience becomes luminous when it begins listening for Naam.",
+      "practicalImplication": "Choose one faithful company today instead of ten new inputs.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 3.9,
+      "specificity": 4.69,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 4.06,
+      "overall": 3.83
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

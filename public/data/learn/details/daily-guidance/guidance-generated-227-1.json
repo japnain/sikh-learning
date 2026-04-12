@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-227-1",
+  "title": "Begin with Ego",
+  "summary": "Ego is named plainly here before the mind has time to decorate it.",
+  "takeaway": "",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-227",
+    "verseIds": [
+      3435
+    ],
+    "shortMeaning": "",
+    "lifeApplication": "Ego becomes more truthful when ."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-227"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.64,
+      "clarity": 3.9,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.14,
+      "beauty": 3.9,
+      "overall": 3.72
+    },
+    "strengths": [
+      "specificity",
+      "clarity"
+    ],
+    "issues": [
+      "is missing explicit SGGS-grounded evidence"
+    ]
+  }
+}

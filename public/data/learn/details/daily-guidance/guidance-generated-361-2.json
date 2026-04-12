@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-361-2",
+  "title": "Fifth, He Runs After Food And Drink;",
+  "summary": "Greed is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "First, the baby loves mother's milk;; fifth, he runs after food and drink;",
+  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-361",
+    "verseIds": [
+      5595,
+      5599
+    ],
+    "shortMeaning": "First, the baby loves mother's milk;; fifth, he runs after food and drink;",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-greed-daily",
+    "topic-greed-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-361"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "First, the baby loves mother's milk;; fifth, he runs after food and drink;",
+      "emotionalState": "hungry, never-enough, driven",
+      "turn": "Greed steadies when without the Guru, the world is drowning.",
+      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 2.46,
+      "specificity": 4.94,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.23,
+      "beauty": 2.92,
+      "overall": 3.56
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

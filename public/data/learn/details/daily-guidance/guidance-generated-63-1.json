@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-63-1",
+  "title": "Siree Raag, First Mehla:",
+  "summary": "Gratitude is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Siree Raag, First Mehla:",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-63",
+    "verseIds": [
+      728
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:",
+    "lifeApplication": "Gratitude becomes more truthful when siree Raag, First Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-63"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, First Mehla:",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, the True King absorbs us into Himself.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.66,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 4.06,
+      "overall": 3.78
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

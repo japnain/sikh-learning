@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-561-1",
+  "title": "Gauree, Fifth Mehla:",
+  "summary": "Seva is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Gauree, Fifth Mehla:",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-561",
+    "verseIds": [
+      7935
+    ],
+    "shortMeaning": "Gauree, Fifth Mehla:",
+    "lifeApplication": "Seva becomes more truthful when gauree, Fifth Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-561"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, Fifth Mehla:",
+      "emotionalState": "performing, transactional, dry",
+      "turn": "Seva steadies when who has shown me the Perfect, Supreme Lord God.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 3.78,
+      "specificity": 4.44,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.98,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

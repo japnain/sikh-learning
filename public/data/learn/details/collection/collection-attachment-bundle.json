@@ -1,0 +1,67 @@
+{
+  "id": "collection-attachment-bundle",
+  "title": "Attachment in one shorter sitting",
+  "subtitle": "A compact bundle for attachment",
+  "description": "The mind keeps clinging to what it cannot finally keep. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "attachment"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9416,
+      9417
+    ],
+    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+    "lifeApplication": "Let feedback inform you without governing your worth."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-praise-and-blame"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-attachment"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind keeps clinging to what it cannot finally keep. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "A compact bundle for attachment",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.15,
+      "specificity": 4.16,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.49
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

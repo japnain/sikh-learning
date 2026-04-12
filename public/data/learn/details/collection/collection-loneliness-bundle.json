@@ -1,0 +1,68 @@
+{
+  "id": "collection-loneliness-bundle",
+  "title": "Loneliness in one shorter sitting",
+  "subtitle": "A compact bundle for loneliness",
+  "description": "The heart feels unaccompanied even when people are nearby. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "loneliness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3761,
+      3762,
+      3763
+    ],
+    "shortMeaning": "The Guru is named as protector, mother, and father.",
+    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-child"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The heart feels unaccompanied even when people are nearby. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "A compact bundle for loneliness",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.27,
+      "specificity": 4.17,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.52
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

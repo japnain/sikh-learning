@@ -1,0 +1,109 @@
+{
+  "id": "topic-mercy-repair",
+  "title": "When mercy feels hard to receive after the mind has slipped",
+  "shortTitle": "Mercy · Repair",
+  "category": "most-needed",
+  "issueStatement": "The heart keeps assuming kindness must first be earned. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+  "centralInsight": "Guru keeps mercy close to gift, nearness, and return. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+  "practicalReflection": "Receive the day as given, then answer it with Naam. Receive one line as mercy before turning it into a performance review.",
+  "actionPrompt": "Receive one line as mercy before turning it into a performance review. Choose the next truthful return instead of rehearsing the failure.",
+  "searchTerms": [
+    "mercy",
+    "grace",
+    "compassion",
+    "kindness",
+    "gift",
+    "repair",
+    "return",
+    "after slipping"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "verseIds": [
+          499
+        ],
+        "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we",
+        "lifeApplication": "Receive the day as given, then answer it with Naam. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: whatever pleases You comes to pass. As You give, so do we."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-66",
+        "verseIds": [
+          778
+        ],
+        "shortMeaning": "In this world, you shall not find any shelter; in the world",
+        "lifeApplication": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-298",
+        "verseIds": [
+          4116
+        ],
+        "shortMeaning": "please bless me with Your Mercy, and save this sinking stone",
+        "lifeApplication": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru keeps mercy close to gift, nearness, and return. Gurbani keeps repair close to remembrance, humility, and return instead of theatre. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-generated-66",
+    "shabad-generated-298"
+  ],
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-mercy-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey",
+    "collection-mercy-bundle"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:mercy:repair",
+    "evidence": {
+      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "The heart keeps assuming kindness must first be earned. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Choose the next truthful return instead of rehearsing the failure.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.42,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.93,
+      "beauty": 2.43,
+      "overall": 3.43
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

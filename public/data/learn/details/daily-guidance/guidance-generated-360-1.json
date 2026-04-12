@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-360-1",
+  "title": "Vaar In Maajh, And Shaloks Of The",
+  "summary": "Exhaustion is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
+  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-360",
+    "verseIds": [
+      5589
+    ],
+    "shortMeaning": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
+    "lifeApplication": "Exhaustion becomes more truthful when vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung."
+  },
+  "relatedTopicIds": [
+    "topic-exhaustion"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-360"
+  ],
+  "relatedCollectionIds": [
+    "collection-tired-heart-to-rest",
+    "collection-exhaustion-journey"
+  ],
+  "rotation": {
+    "theme": "exhaustion",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Vaar In Maajh, And Shaloks Of The First Mehla: To Be Sung",
+      "emotionalState": "tired, drained, worn-down",
+      "turn": "Exhaustion steadies when o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you.",
+      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.87,
+      "clarity": 2.7,
+      "specificity": 4.45,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 3.22,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

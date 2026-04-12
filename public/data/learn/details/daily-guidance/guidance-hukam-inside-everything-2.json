@@ -1,0 +1,68 @@
+{
+  "id": "guidance-hukam-inside-everything-2",
+  "title": "Everyone Is Subject To His Command; No",
+  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "By His Command, bodies are created; His Command cannot be described; everyone is subject to His Command; no one is beyond His Command",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
+      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 0.25,
+      "specificity": 4.62,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.06,
+      "beauty": 2.08,
+      "overall": 3.12
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

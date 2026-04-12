@@ -1,0 +1,83 @@
+{
+  "id": "collection-speech-to-patience-86",
+  "title": "Speech to Patience",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru makes speech answer to praise, restraint, and truthfulness. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "speech",
+    "patience"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      637,
+      642
+    ],
+    "shortMeaning": "Speak what carries honor, not just what releases heat.",
+    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-speak-for-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-speech"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-patience"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-after-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-patience"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-search-ends-in-saint-company",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru makes speech answer to praise, restraint, and truthfulness. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.77,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.54,
+      "overall": 3.72
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

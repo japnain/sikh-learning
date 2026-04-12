@@ -1,0 +1,68 @@
+{
+  "id": "guidance-buy-what-goes-with-you-3",
+  "title": "Those Who Chant The Name Of The",
+  "summary": "The shabad does not leave discipline at diagnosis. It turns toward return.",
+  "takeaway": "Those who chant the Name of the Lord earn great profits; the Fearless Lord",
+  "lifeApplication": "Make the next faithful repetition smaller and truer. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-buy-what-goes-with-you",
+    "verseIds": [
+      945,
+      946
+    ],
+    "shortMeaning": "Those who are imbued with the love of the Name of the; those who chant the Name of the Lord earn great profits; the",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Those who are imbued with the love of the Name of the; those who chant the Name of the Lord earn great profits; the",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "Invest in what crosses the threshold with you.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 2.46,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.79,
+      "beauty": 2.91,
+      "overall": 3.4
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

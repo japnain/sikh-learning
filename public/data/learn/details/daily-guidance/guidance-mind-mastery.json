@@ -1,0 +1,65 @@
+{
+  "id": "guidance-mind-mastery",
+  "title": "Win the inner field first",
+  "summary": "Guru does not tell you to dominate others. Guru tells you where the real contest lives.",
+  "takeaway": "If the mind is conquered, the rest stops feeling like war.",
+  "lifeApplication": "When comparison or anger rises, bring the battle back from the room to the mind.",
+  "source": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      292
+    ],
+    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
+    "lifeApplication": "Return your attention from other people to the state of your own mind."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Conquering the mind matters more than conquering the world around you.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "The hardest field is the inner field. Win there first.",
+      "practicalImplication": "When comparison or anger rises, bring the battle back from the room to the mind.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.21,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 3.9,
+      "overall": 3.92
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

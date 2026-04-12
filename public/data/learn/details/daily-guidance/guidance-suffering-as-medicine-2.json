@@ -1,0 +1,64 @@
+{
+  "id": "guidance-suffering-as-medicine-2",
+  "title": "You Are The Creator Lord; I Can",
+  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-suffering-as-medicine",
+    "verseIds": [
+      21090,
+      21091
+    ],
+    "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Suffering is the medicine, and pleasure the disease, because where there is; you are the Creator Lord; I can do nothing. Even if I",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.88,
+      "clarity": 1.26,
+      "specificity": 4.65,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 2.01,
+      "overall": 3.14
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

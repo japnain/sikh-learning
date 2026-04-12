@@ -1,0 +1,67 @@
+{
+  "id": "collection-hukam-bundle",
+  "title": "Hukam in one shorter sitting",
+  "subtitle": "A compact bundle for hukam",
+  "description": "The mind wants reality to arrive on self-approved terms. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "hukam"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "Everything stands inside Hukam, not outside it.",
+    "lifeApplication": "Release the demand that peace must wait for total control."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-hukam"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind wants reality to arrive on self-approved terms. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "A compact bundle for hukam",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.15,
+      "specificity": 4.17,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "collection-sangat-journey",
+  "title": "From Sangat to steadier practice",
+  "subtitle": "A deliberate path through sangat",
+  "description": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "sangat",
+    "loneliness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      527
+    ],
+    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
+    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-sangat-and-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-sangat"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-stay-near-sangat"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-sangat",
+    "topic-loneliness"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-child-of-grace",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A deliberate path through sangat",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.4,
+      "specificity": 4.23,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.53
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

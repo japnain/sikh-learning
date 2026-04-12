@@ -1,0 +1,109 @@
+{
+  "id": "topic-anger-repair",
+  "title": "When anger rises quickly after the mind has slipped",
+  "shortTitle": "Anger · Repair",
+  "category": "most-needed",
+  "issueStatement": "The mind reacts before truth and proportion have time to speak. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+  "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+  "practicalReflection": "The cure begins when ego is seen as illness rather than identity. Slow the tongue before you defend the self-image behind it.",
+  "actionPrompt": "Slow the tongue before you defend the self-image behind it. Choose the next truthful return instead of rehearsing the failure.",
+  "searchTerms": [
+    "anger",
+    "frustration",
+    "rage",
+    "irritation",
+    "reactive",
+    "repair",
+    "return",
+    "after slipping"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-ego-is-disease",
+        "verseIds": [
+          20961
+        ],
+        "shortMeaning": "Where does ego come from? How can it be removed?",
+        "lifeApplication": "The cure begins when ego is seen as illness rather than identity. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: where does ego come from? How can it be removed?."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-speak-what-brings-honor",
+        "verseIds": [
+          637
+        ],
+        "shortMeaning": "O Baba, speak only that which will bring you honor",
+        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-1",
+        "verseIds": [
+          8
+        ],
+        "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them",
+        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru turns the battle inward so reaction loses its claim to righteousness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-speak-what-brings-honor",
+    "shabad-generated-1"
+  ],
+  "relatedTopicIds": [
+    "topic-anger",
+    "topic-anger-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "anger",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 6,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:anger:repair",
+    "evidence": {
+      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "The mind reacts before truth and proportion have time to speak. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Choose the next truthful return instead of rehearsing the failure.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.18,
+      "specificity": 5,
+      "emotionalHonesty": 4,
+      "usefulness": 3.36,
+      "beauty": 1.84,
+      "overall": 3.26
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

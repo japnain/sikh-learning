@@ -1,0 +1,59 @@
+{
+  "id": "guidance-honor-what-guru-honors",
+  "title": "Do not speak with contempt where Guru speaks with honor",
+  "summary": "This is a corrective for inherited disrespect and casual dismissal.",
+  "takeaway": "Guru's language should shape your social instincts too.",
+  "lifeApplication": "Examine one attitude you carry that Gurbani would ask you to unlearn.",
+  "source": {
+    "deepDiveId": "shabad-honor-women",
+    "verseIds": [
+      21287,
+      21289
+    ],
+    "shortMeaning": "Guru Nanak directly rejects contempt toward women.",
+    "lifeApplication": "Let reverence revise the way you speak about people."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-honor-women"
+  ],
+  "relatedCollectionIds": [],
+  "rotation": {
+    "theme": "equality",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 5,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Guru Nanak directly rejects contempt toward women.",
+      "emotionalState": "dismissive, proud, habit-bound",
+      "turn": "What Guru honors cannot be spoken of with contempt.",
+      "practicalImplication": "Examine one attitude you carry that Gurbani would ask you to unlearn.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 3.9,
+      "specificity": 4.38,
+      "emotionalHonesty": 3,
+      "usefulness": 2.22,
+      "beauty": 3.9,
+      "overall": 3.61
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

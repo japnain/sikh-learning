@@ -1,0 +1,86 @@
+{
+  "id": "collection-sangat-and-belonging",
+  "title": "Sangat and Belonging",
+  "subtitle": "A return to the company that helps the heart breathe",
+  "description": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "sangat",
+    "loneliness",
+    "grace"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3899,
+      3900
+    ],
+    "shortMeaning": "Saint company arrives as mercy and changes the whole climate of the seeker.",
+    "lifeApplication": "Belonging can be one form of rescue."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-stay-near-sangat"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-sangat"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-one-pointed-naam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-sangat",
+    "topic-loneliness"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-child-of-grace",
+    "shabad-human-birth-is-chance",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Study how saint company heals isolation, cools the body, and reorients the mind toward Naam and purpose.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A return to the company that helps the heart breathe",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.82,
+      "clarity": 0.9,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.19
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

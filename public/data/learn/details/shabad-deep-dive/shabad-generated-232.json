@@ -1,0 +1,151 @@
+{
+  "id": "shabad-generated-232",
+  "title": "Anger In Gurbani",
+  "subtitle": "Siree Raag · Ang 86",
+  "summary": "Anger is carried here from third Mehla: toward servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+  "whyItMatters": "This shabad is useful when life feels reactive, heated, sharp, because it keeps anger inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Anger steadies when servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+  "themes": [
+    "anger",
+    "ego",
+    "gratitude"
+  ],
+  "emotionalStates": [
+    "reactive",
+    "heated",
+    "sharp"
+  ],
+  "difficulty": "deep",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 232,
+    "ang": 86,
+    "guru": "Guru Amar Daas Ji",
+    "raag": "Siree Raag",
+    "line_range": [
+      1,
+      7
+    ],
+    "verse_ids": [
+      3466,
+      3467,
+      3468,
+      3469,
+      3470,
+      3471,
+      3472
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 3466,
+      "gurmukhi": "ਮਃ ੩ ॥",
+      "transliteration": "mahalaa teejaa ||",
+      "translation": "Third Mehla:"
+    },
+    {
+      "verseId": 3467,
+      "gurmukhi": "ਗੁਰਿ ਪੂਰੈ ਹਰਿ ਨਾਮੁ ਦਿੜਾਇਆ ਤਿਨਿ ਵਿਚਹੁ ਭਰਮੁ ਚੁਕਾਇਆ ॥",
+      "transliteration": "gur poorai har naam dhiRaiaa tin vichahu bharam chukaiaa ||",
+      "translation": "The Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within."
+    },
+    {
+      "verseId": 3468,
+      "gurmukhi": "ਰਾਮ ਨਾਮੁ ਹਰਿ ਕੀਰਤਿ ਗਾਈ ਕਰਿ ਚਾਨਣੁ ਮਗੁ ਦਿਖਾਇਆ ॥",
+      "transliteration": "raam naam har keerat gaiee kar chaanan mag dhikhaiaa ||",
+      "translation": "I sing the Lord's Name and the Kirtan of the Lord's Praises; the Divine Light shines, and now I see the Way."
+    },
+    {
+      "verseId": 3469,
+      "gurmukhi": "ਹਉਮੈ ਮਾਰਿ ਏਕ ਲਿਵ ਲਾਗੀ ਅੰਤਰਿ ਨਾਮੁ ਵਸਾਇਆ ॥",
+      "transliteration": "haumai maar ek liv laagee a(n)tar naam vasaiaa ||",
+      "translation": "Conquering my ego, I am lovingly focused on the One Lord; the Naam has come to dwell within me."
+    },
+    {
+      "verseId": 3470,
+      "gurmukhi": "ਗੁਰਮਤੀ ਜਮੁ ਜੋਹਿ ਨ ਸਾਕੈ ਸਾਚੈ ਨਾਮਿ ਸਮਾਇਆ ॥",
+      "transliteration": "gurmatee jam joh na saakai saachai naam samaiaa ||",
+      "translation": "Following the Guru's Teachings, I cannot be touched by the Messenger of Death. I am absorbed in the True Name."
+    },
+    {
+      "verseId": 3471,
+      "gurmukhi": "ਸਭੁ ਆਪੇ ਆਪਿ ਵਰਤੈ ਕਰਤਾ ਜੋ ਭਾਵੈ ਸੋ ਨਾਇ ਲਾਇਆ ॥",
+      "transliteration": "sabh aape aap varatai karataa jo bhaavai so nai laiaa ||",
+      "translation": "The Creator Himself is All-pervading everywhere; He links those with whom He is pleased to His Name."
+    },
+    {
+      "verseId": 3472,
+      "gurmukhi": "ਜਨ ਨਾਨਕੁ ਨਾਮੁ ਲਏ ਤਾ ਜੀਵੈ ਬਿਨੁ ਨਾਵੈ ਖਿਨੁ ਮਰਿ ਜਾਇਆ ॥੨॥",
+      "transliteration": "jan naanak naam le taa jeevai bin naavai khin mar jaiaa ||2||",
+      "translation": "Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant. ||2||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: third Mehla:.",
+    "The middle movement deepens the correction by holding the mind inside conquering my ego, I am lovingly focused on the One Lord; the Naam has.",
+    "The closing movement leaves a return you can actually keep: servant Nanak chants the Naam, and so he lives. Without the Name, he would."
+  ],
+  "keyVerseIds": [
+    3466,
+    3467,
+    3468,
+    3472
+  ],
+  "relatedGuidanceIds": [
+    "guidance-generated-232-1",
+    "guidance-generated-232-2"
+  ],
+  "relatedTopicIds": [
+    "topic-anger",
+    "topic-anger-daily",
+    "topic-anger-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "anger",
+    "depthLevel": "deep",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Anger is carried here from third Mehla: toward servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "The middle movement deepens the correction by holding the mind inside conquering my ego, I am lovingly focused on the One Lord; the Naam has.",
+      "practicalImplication": "Anger steadies when servant Nanak chants the Naam, and so he lives. Without the Name, he would.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.46,
+      "specificity": 4.78,
+      "emotionalHonesty": 4,
+      "usefulness": 2.57,
+      "beauty": 3.24,
+      "overall": 3.66
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

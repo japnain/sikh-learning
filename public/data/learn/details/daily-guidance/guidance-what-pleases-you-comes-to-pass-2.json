@@ -1,0 +1,68 @@
+{
+  "id": "guidance-what-pleases-you-comes-to-pass-2",
+  "title": "Those Who Are Blessed With Your Mercy",
+  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Whatever pleases You comes to pass. As You give, so do we; those who are blessed with Your Mercy obtain the Jewel of the",
+  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      499,
+      501
+    ],
+    "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we; those who are blessed with Your Mercy obtain the Jewel of the",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Whatever pleases You comes to pass. As You give, so do we; those who are blessed with Your Mercy obtain the Jewel of the",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "Receive the day as given, then answer it with Naam.",
+      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 1.26,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.06,
+      "beauty": 2.19,
+      "overall": 3.37
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

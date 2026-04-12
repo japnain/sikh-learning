@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-562-2",
+  "title": "Those Who Do Not Meditate On The",
+  "summary": "Patience is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "This human body is so difficult to obtain; it is only obtained; those who do not meditate on the Naam, the Name of the",
+  "lifeApplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-562",
+    "verseIds": [
+      7947,
+      7948
+    ],
+    "shortMeaning": "This human body is so difficult to obtain; it is only obtained; those who do not meditate on the Naam, the Name of the",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-562"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "This human body is so difficult to obtain; it is only obtained; those who do not meditate on the Naam, the Name of the",
+      "emotionalState": "impatient, tense, agitated",
+      "turn": "Patience steadies when the Name alone is contained within my heart.",
+      "practicalImplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 0.39,
+      "specificity": 4.73,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 2.15,
+      "overall": 3.12
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

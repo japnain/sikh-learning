@@ -1,0 +1,77 @@
+{
+  "id": "collection-forgiveness-journey",
+  "title": "From Forgiveness to steadier practice",
+  "subtitle": "A deliberate path through forgiveness",
+  "description": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "forgiveness",
+    "forgiveness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-forgiveness-becomes-fearless",
+    "verseIds": [
+      9600,
+      9603,
+      9605
+    ],
+    "shortMeaning": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
+    "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-forgiveness-is-the-fast"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-forgiveness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-becomes-fearless"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-fear-dissolves-in-reverence"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-opens-lasting-peace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-forgiveness"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "A deliberate path through forgiveness",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.02,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

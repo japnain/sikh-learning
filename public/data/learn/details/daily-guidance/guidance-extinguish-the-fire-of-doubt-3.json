@@ -1,0 +1,68 @@
+{
+  "id": "guidance-extinguish-the-fire-of-doubt-3",
+  "title": "Give Up Your Selfishness, And You Shall",
+  "summary": "The shabad does not leave doubt at diagnosis. It turns toward return.",
+  "takeaway": "Give up your selfishness, and you shall find peace; like water mingling with water,",
+  "lifeApplication": "Return to one clear line before reopening every question at once. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      924,
+      925
+    ],
+    "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Join the Sat Sangat, the True Congregation, and find the Lord. The; give up your selfishness, and you shall find peace; like water mingling",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "Stop circling and let Guru's word take residence.",
+      "practicalImplication": "Return to one clear line before reopening every question at once. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.45,
+      "beauty": 3.23,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

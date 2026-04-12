@@ -1,0 +1,66 @@
+{
+  "id": "collection-fear-bundle",
+  "title": "Fear in one shorter sitting",
+  "subtitle": "A compact bundle for fear",
+  "description": "The mind starts organizing itself around threat instead of truth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "fear"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-300",
+    "verseIds": [
+      4131
+    ],
+    "shortMeaning": "Maajh, Fifth Mehla:",
+    "lifeApplication": "Fear becomes more truthful when maajh, Fifth Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-300-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-fear"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-steadied-by-creator"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-steadied-by-creator",
+    "shabad-generated-178"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind starts organizing itself around threat instead of truth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "A compact bundle for fear",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 3.15,
+      "specificity": 4.18,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

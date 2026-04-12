@@ -1,0 +1,67 @@
+{
+  "id": "guidance-ego-is-disease-1",
+  "title": "Where Does Ego Come From? How Can",
+  "summary": "Ego is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Where does ego come from? How can it be removed?",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20961
+    ],
+    "shortMeaning": "Where does ego come from? How can it be removed?",
+    "lifeApplication": "Ego becomes more truthful when where does ego come from? How can it be removed?."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Where does ego come from? How can it be removed?",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "The cure begins when ego is seen as illness rather than identity.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 2.94,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.14,
+      "beauty": 3.19,
+      "overall": 3.51
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

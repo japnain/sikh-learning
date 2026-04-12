@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-462-1",
+  "title": "You Slander, And Then Praise Others; You",
+  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "You slander, and then praise others; you indulge in lies and gossip",
+  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-462",
+    "verseIds": [
+      6440
+    ],
+    "shortMeaning": "You slander, and then praise others; you indulge in lies and gossip",
+    "lifeApplication": "Restlessness becomes more truthful when you slander, and then praise others; you indulge in lies and gossip."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-462"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "You slander, and then praise others; you indulge in lies and gossip",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when this soul and body all are His. He Himself kills, and brings back to.",
+      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.78,
+      "clarity": 2.7,
+      "specificity": 4.37,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.2,
+      "overall": 3.46
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

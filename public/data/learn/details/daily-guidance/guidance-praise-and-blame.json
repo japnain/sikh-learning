@@ -1,0 +1,66 @@
+{
+  "id": "guidance-praise-and-blame",
+  "title": "Praise and blame do not need to run your day",
+  "summary": "Steadiness grows when the mind stops needing approval and fearing dismissal.",
+  "takeaway": "Inner stability is stronger than public reaction.",
+  "lifeApplication": "Notice where today's mood is still being outsourced to other people's opinions.",
+  "source": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9416,
+      9417
+    ],
+    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+    "lifeApplication": "Let feedback inform you without governing your worth."
+  },
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "deep",
+    "cooldownWindowDays": 45,
+    "priority": 6,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
+      "practicalImplication": "Notice where today's mood is still being outsourced to other people's opinions.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.9,
+      "specificity": 4.48,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.79,
+      "beauty": 4.06,
+      "overall": 3.79
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

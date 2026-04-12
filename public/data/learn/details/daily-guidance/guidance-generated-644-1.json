@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-644-1",
+  "title": "This Life Is Diminishing, Day And Night",
+  "summary": "Seeking is named plainly here before the mind has time to decorate it.",
+  "takeaway": "This life is diminishing, day and night",
+  "lifeApplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-644",
+    "verseIds": [
+      8834
+    ],
+    "shortMeaning": "This life is diminishing, day and night",
+    "lifeApplication": "Seeking becomes more truthful when this life is diminishing, day and night."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-644"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "This life is diminishing, day and night",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Seeking steadies when nanak, Your slave, begs for this happiness: let me be the dust of the.",
+      "practicalImplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.3,
+      "specificity": 4.71,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.58,
+      "beauty": 3.5,
+      "overall": 3.71
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

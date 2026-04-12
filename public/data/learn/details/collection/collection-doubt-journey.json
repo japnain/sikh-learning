@@ -1,0 +1,80 @@
+{
+  "id": "collection-doubt-journey",
+  "title": "From Doubt to steadier practice",
+  "subtitle": "A deliberate path through doubt",
+  "description": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "doubt",
+    "gratitude"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      921,
+      922
+    ],
+    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
+    "lifeApplication": "Move from circling to obedience."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-priceless-mind"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-63"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-generated-63",
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "A deliberate path through doubt",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.15,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.53
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

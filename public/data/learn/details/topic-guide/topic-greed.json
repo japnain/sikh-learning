@@ -1,0 +1,110 @@
+{
+  "id": "topic-greed",
+  "title": "When wanting keeps multiplying",
+  "shortTitle": "Greed",
+  "category": "inner-work",
+  "issueStatement": "You keep feeding appetite, but the appetite is not getting smaller.",
+  "centralInsight": "Gurbani names greed bluntly because greed colonizes speech, attention, and even spirituality if it is not exposed.",
+  "practicalReflection": "The issue is not possession alone. It is the kind of wanting that leaves no room for Naam to dwell.",
+  "actionPrompt": "Notice one appetite you keep obeying automatically. Practice one concrete refusal today.",
+  "searchTerms": [
+    "greed",
+    "craving",
+    "more",
+    "money",
+    "status",
+    "consumption"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-speak-what-brings-honor",
+        "verseIds": [
+          634,
+          639,
+          641
+        ],
+        "shortMeaning": "Greed degrades speech and crowds out the dwelling of Naam.",
+        "lifeApplication": "Do not treat appetite as a harmless private preference."
+      },
+      "explanation": "The diagnosis is severe because the damage is severe."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-buy-what-goes-with-you",
+        "verseIds": [
+          933,
+          934,
+          937
+        ],
+        "shortMeaning": "Wanting needs a new object: what can actually go with you.",
+        "lifeApplication": "Re-aim appetite instead of pretending you have none."
+      },
+      "explanation": "Guru redirects desire instead of merely shaming it."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-detached-and-steady",
+        "verseIds": [
+          9414,
+          9416
+        ],
+        "shortMeaning": "Freedom can be seen where greed and praise lose their binding power.",
+        "lifeApplication": "Steadiness becomes visible when appetite stops dictating identity."
+      },
+      "explanation": "This excerpt shows the other side of greed: real freedom."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-buy-what-goes-with-you",
+    "shabad-detached-and-steady"
+  ],
+  "relatedTopicIds": [
+    "topic-greed-daily",
+    "topic-greed-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-truthful-wealth",
+    "collection-greed-journey"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:greed",
+    "evidence": {
+      "coreClaim": "Gurbani names greed bluntly because greed colonizes speech, attention, and even spirituality if it is not exposed.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "You keep feeding appetite, but the appetite is not getting smaller.",
+      "practicalImplication": "Notice one appetite you keep obeying automatically. Practice one concrete refusal today.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 3.36,
+      "beauty": 3.9,
+      "overall": 3.97
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-738-1",
+  "title": "The Guru's Word, I Meditate On The",
+  "summary": "Patience is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Through the Guru's Word, I meditate on the Name",
+  "lifeApplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-738",
+    "verseIds": [
+      10417
+    ],
+    "shortMeaning": "Through the Guru's Word, I meditate on the Name",
+    "lifeApplication": "Patience becomes more truthful when through the Guru's Word, I meditate on the Name."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-738"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Through the Guru's Word, I meditate on the Name",
+      "emotionalState": "impatient, tense, agitated",
+      "turn": "Patience steadies when o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+      "practicalImplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.7,
+      "clarity": 2.94,
+      "specificity": 4.12,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.27,
+      "beauty": 3.39,
+      "overall": 3.49
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

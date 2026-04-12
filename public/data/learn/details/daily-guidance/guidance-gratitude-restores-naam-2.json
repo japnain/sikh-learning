@@ -1,0 +1,68 @@
+{
+  "id": "guidance-gratitude-restores-naam-2",
+  "title": "You Took Pity On Me, And Blessed",
+  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338,
+      60340
+    ],
+    "shortMeaning": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-gratitude-restores-naam"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "I have not appreciated what You have done for me, Lord; only; you took pity on me, and blessed me with Your Mercy, and",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "Real gratitude does not inflate the self. It softens it.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 0.01,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 2.5,
+      "overall": 3.15
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

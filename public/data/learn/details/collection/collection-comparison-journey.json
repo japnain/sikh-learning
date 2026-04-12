@@ -1,0 +1,77 @@
+{
+  "id": "collection-comparison-journey",
+  "title": "From Comparison to steadier practice",
+  "subtitle": "A deliberate path through comparison",
+  "description": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "comparison",
+    "attachment"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-65",
+    "verseIds": [
+      758
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:",
+    "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-65-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-comparison"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-65-2"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-detached-and-steady",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "A deliberate path through comparison",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.02,
+      "specificity": 4.23,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

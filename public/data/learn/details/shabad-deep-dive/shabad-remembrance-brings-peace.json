@@ -1,0 +1,177 @@
+{
+  "id": "shabad-remembrance-brings-peace",
+  "title": "Remember and Find Peace",
+  "subtitle": "Raag Gauree",
+  "summary": "The repeated verb is the point: remember, remember, remember. Peace is not treated as mood but as the fruit of anchored remembrance.",
+  "whyItMatters": "It is direct and accessible for users dealing with anxious loops, noise, and spiritual drift.",
+  "takeaway": "Steady remembrance calms what scattered thinking cannot.",
+  "themes": [
+    "anxiety",
+    "naam",
+    "discipline"
+  ],
+  "emotionalStates": [
+    "overthinking",
+    "restless",
+    "drifting"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 8,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 872,
+    "ang": 262,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      11
+    ],
+    "verse_ids": [
+      11501,
+      11502,
+      11503,
+      11504,
+      11505,
+      11506,
+      11507,
+      11508,
+      11509,
+      11510,
+      11511
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11501,
+      "gurmukhi": "ਅਸਟਪਦੀ ॥",
+      "transliteration": "asaTapadhee ||",
+      "translation": "Ashtapadee:"
+    },
+    {
+      "verseId": 11502,
+      "gurmukhi": "ਸਿਮਰਉ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖੁ ਪਾਵਉ ॥",
+      "transliteration": "simarau simar simar sukh paavau ||",
+      "translation": "Meditate, meditate, meditate in remembrance of Him, and find peace."
+    },
+    {
+      "verseId": 11503,
+      "gurmukhi": "ਕਲਿ ਕਲੇਸ ਤਨ ਮਾਹਿ ਮਿਟਾਵਉ ॥",
+      "transliteration": "kal kales tan maeh miTaavau ||",
+      "translation": "Worry and anguish shall be dispelled from your body."
+    },
+    {
+      "verseId": 11504,
+      "gurmukhi": "ਸਿਮਰਉ ਜਾਸੁ ਬਿਸੁੰਭਰ ਏਕੈ ॥",
+      "transliteration": "simarau jaas bisu(n)bhar ekai ||",
+      "translation": "Remember in praise the One who pervades the whole Universe."
+    },
+    {
+      "verseId": 11505,
+      "gurmukhi": "ਨਾਮੁ ਜਪਤ ਅਗਨਤ ਅਨੇਕੈ ॥",
+      "transliteration": "naam japat aganat anekai ||",
+      "translation": "His Name is chanted by countless people, in so many ways."
+    },
+    {
+      "verseId": 11506,
+      "gurmukhi": "ਬੇਦ ਪੁਰਾਨ ਸਿੰਮ੍ਰਿਤਿ ਸੁਧਾਖੵਰ ॥",
+      "transliteration": "bedh puraan si(n)mirat sudhaakhayer ||",
+      "translation": "The Vedas, the Puraanas and the Simritees, the purest of utterances,"
+    },
+    {
+      "verseId": 11507,
+      "gurmukhi": "ਕੀਨੇ ਰਾਮ ਨਾਮ ਇਕ ਆਖੵਰ ॥",
+      "transliteration": "keene raam naam ik aakhayer ||",
+      "translation": "were created from the One Word of the Name of the Lord."
+    },
+    {
+      "verseId": 11508,
+      "gurmukhi": "ਕਿਨਕਾ ਏਕ ਜਿਸੁ ਜੀਅ ਬਸਾਵੈ ॥",
+      "transliteration": "kinakaa ek jis jeea basaavai ||",
+      "translation": "That one, in whose soul the One Lord dwells"
+    },
+    {
+      "verseId": 11509,
+      "gurmukhi": "ਤਾ ਕੀ ਮਹਿਮਾ ਗਨੀ ਨ ਆਵੈ ॥",
+      "transliteration": "taa kee mahimaa ganee na aavai ||",
+      "translation": "the praises of his glory cannot be recounted."
+    },
+    {
+      "verseId": 11510,
+      "gurmukhi": "ਕਾਂਖੀ ਏਕੈ ਦਰਸ ਤੁਹਾਰੋ ॥",
+      "transliteration": "kaa(n)khee ekai dharas tuhaaro ||",
+      "translation": "Those who yearn only for the blessing of Your Darshan"
+    },
+    {
+      "verseId": 11511,
+      "gurmukhi": "ਨਾਨਕ ਉਨ ਸੰਗਿ ਮੋਹਿ ਉਧਾਰੋ ॥੧॥",
+      "transliteration": "naanak un sa(n)g moh udhaaro ||1||",
+      "translation": "Nanak: save me along with them! ||1||"
+    }
+  ],
+  "structure": [
+    "Repeats remembrance as a practice, not a mood.",
+    "Connects remembrance with bodily easing of anguish.",
+    "Ends by locating rescue alongside those already living in remembrance."
+  ],
+  "keyVerseIds": [
+    11502,
+    11503,
+    11511
+  ],
+  "relatedGuidanceIds": [
+    "guidance-remember-and-find-peace",
+    "guidance-remembrance-brings-peace-1",
+    "guidance-remembrance-brings-peace-2"
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anxiety-daily",
+    "topic-anxiety-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey",
+    "collection-anxiety-bundle"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 30,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "The repeated verb is the point: remember, remember, remember. Peace is not treated as mood but as the fruit of anchored remembrance.",
+      "emotionalState": "overthinking, restless, drifting",
+      "turn": "Connects remembrance with bodily easing of anguish.",
+      "practicalImplication": "Steady remembrance calms what scattered thinking cannot.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2,
+      "beauty": 4.06,
+      "overall": 3.76
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "collection-gratitude-to-discipline-76",
+  "title": "Gratitude to Discipline",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "gratitude",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338,
+      60340
+    ],
+    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
+    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-discipline"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mind-mastery"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-conquer-the-mind",
+    "shabad-gratitude-restores-naam",
+    "shabad-human-birth-is-chance"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.52,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

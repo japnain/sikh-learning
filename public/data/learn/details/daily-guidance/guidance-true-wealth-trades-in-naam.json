@@ -1,0 +1,67 @@
+{
+  "id": "guidance-true-wealth-trades-in-naam",
+  "title": "Trade in what keeps the heart solvent.",
+  "summary": "The shabad calls Naam the real capital. What looks valuable may still leave the inner life bankrupt.",
+  "takeaway": "Carry wealth that can survive departure.",
+  "lifeApplication": "Ask what you are investing in today that will still matter when display disappears.",
+  "source": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11241,
+      11242
+    ],
+    "shortMeaning": "True wealth is not abstract virtue but Naam treated as actual capital.",
+    "lifeApplication": "Let the day be measured by what deepens the heart, not by what decorates it."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-patience-ripens-into-honor",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "truth",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "True wealth is not abstract virtue but Naam treated as actual capital.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "Patience becomes luminous when it begins listening for Naam.",
+      "practicalImplication": "Ask what you are investing in today that will still matter when display disappears.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 3.9,
+      "specificity": 4.73,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.66,
+      "beauty": 3.9,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

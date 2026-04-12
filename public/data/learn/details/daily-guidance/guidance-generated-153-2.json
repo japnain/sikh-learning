@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-153-2",
+  "title": "O Siblings Of Destiny, Service To The",
+  "summary": "Seeking is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "O Saints, O Siblings of Destiny, listen: release comes only through the; o Siblings of Destiny, service to the True Guru alone is True",
+  "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-153",
+    "verseIds": [
+      2133,
+      2136
+    ],
+    "shortMeaning": "O Saints, O Siblings of Destiny, listen: release comes only through the; o Siblings of Destiny, service to the True Guru alone is True",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-153"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "O Saints, O Siblings of Destiny, listen: release comes only through the; o Siblings of Destiny, service to the True Guru alone is True",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and.",
+      "practicalImplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 0.19,
+      "specificity": 4.89,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 2.29,
+      "overall": 3.11
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

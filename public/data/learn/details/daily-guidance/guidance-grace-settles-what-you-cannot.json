@@ -1,0 +1,68 @@
+{
+  "id": "guidance-grace-settles-what-you-cannot",
+  "title": "Grace may settle what effort keeps failing to move.",
+  "summary": "The line admits that what peace finally comes from is grace recognized, not force extended indefinitely.",
+  "takeaway": "Work faithfully, but do not worship strain.",
+  "lifeApplication": "Name one place where effort has become hardening, then ask for grace there without embarrassment.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27263,
+      27266,
+      27267
+    ],
+    "shortMeaning": "Grace, Naam, and destiny are bound together more tightly than control admits.",
+    "lifeApplication": "You can stop pretending that everything must be forced open."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "grace",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Grace, Naam, and destiny are bound together more tightly than control admits.",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Name one place where effort has become hardening, then ask for grace there without embarrassment.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.09,
+      "clarity": 3.9,
+      "specificity": 4.49,
+      "emotionalHonesty": 3,
+      "usefulness": 2.57,
+      "beauty": 3.9,
+      "overall": 3.7
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

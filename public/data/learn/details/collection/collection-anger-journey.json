@@ -1,0 +1,77 @@
+{
+  "id": "collection-anger-journey",
+  "title": "From Anger to steadier practice",
+  "subtitle": "A deliberate path through anger",
+  "description": "Guru turns the battle inward so reaction loses its claim to righteousness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "anger",
+    "speech"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-1",
+    "verseIds": [
+      3
+    ],
+    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
+    "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-1-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anger"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-1-2"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-anger",
+    "topic-speech"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "A deliberate path through anger",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.15,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.53
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

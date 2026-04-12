@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-361-1",
+  "title": "First, The Baby Loves Mother's Milk;",
+  "summary": "Greed is named plainly here before the mind has time to decorate it.",
+  "takeaway": "First, the baby loves mother's milk;",
+  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-361",
+    "verseIds": [
+      5595
+    ],
+    "shortMeaning": "First, the baby loves mother's milk;",
+    "lifeApplication": "Greed becomes more truthful when first, the baby loves mother's milk;."
+  },
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-greed-daily",
+    "topic-greed-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-361"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "First, the baby loves mother's milk;",
+      "emotionalState": "hungry, never-enough, driven",
+      "turn": "Greed steadies when without the Guru, the world is drowning.",
+      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.3,
+      "specificity": 4.48,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.79,
+      "beauty": 3.5,
+      "overall": 3.64
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

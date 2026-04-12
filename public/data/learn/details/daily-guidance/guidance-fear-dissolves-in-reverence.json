@@ -1,0 +1,68 @@
+{
+  "id": "guidance-fear-dissolves-in-reverence",
+  "title": "Reverence can do what self-protection cannot.",
+  "summary": "The shabad says fearlessness grows where the self is steeped in reverence, not where it keeps hardening itself.",
+  "takeaway": "Become ruled by the right fear and the smaller fears begin to loosen.",
+  "lifeApplication": "When you feel defensive today, choose reverence over self-armor in one small act.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-becomes-fearless",
+    "verseIds": [
+      9611,
+      9612,
+      9613
+    ],
+    "shortMeaning": "Service and reverence turn into fearlessness over time.",
+    "lifeApplication": "Let devotion shape your emotional reflexes."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Service and reverence turn into fearlessness over time.",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "Forgive deeply enough that fear loses its throne.",
+      "practicalImplication": "When you feel defensive today, choose reverence over self-armor in one small act.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 3.9,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.23,
+      "beauty": 3.9,
+      "overall": 3.81
+    },
+    "strengths": [
+      "specificity",
+      "clarity"
+    ],
+    "issues": []
+  }
+}

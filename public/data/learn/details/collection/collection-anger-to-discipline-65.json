@@ -1,0 +1,82 @@
+{
+  "id": "collection-anger-to-discipline-65",
+  "title": "Anger to Discipline",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "anger",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-1",
+    "verseIds": [
+      3
+    ],
+    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
+    "lifeApplication": "Anger becomes more truthful when true In The Primal Beginning. True Throughout The Ages."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-1-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anger"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-discipline"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mind-mastery"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-anger",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-conquer-the-mind",
+    "shabad-speak-what-brings-honor",
+    "shabad-human-birth-is-chance"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 3.27,
+      "specificity": 4.26,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.58
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

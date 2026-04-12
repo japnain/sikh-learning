@@ -1,0 +1,68 @@
+{
+  "id": "guidance-work-give-know-the-path-3",
+  "title": "He Knows The Path",
+  "summary": "The shabad does not leave seva at diagnosis. It turns toward return.",
+  "takeaway": "O Nanak, he knows the Path",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-work-give-know-the-path",
+    "verseIds": [
+      53371,
+      53372
+    ],
+    "shortMeaning": "One who works for what he eats, and gives some of what; o Nanak, he knows the Path",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "One who works for what he eats, and gives some of what; o Nanak, he knows the Path",
+      "emotionalState": "pretending, unclear, performing",
+      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.42,
+      "specificity": 4.67,
+      "emotionalHonesty": 3,
+      "usefulness": 3.01,
+      "beauty": 3.74,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

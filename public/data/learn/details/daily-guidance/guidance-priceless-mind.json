@@ -1,0 +1,69 @@
+{
+  "id": "guidance-priceless-mind",
+  "title": "Do not trade a priceless mind for a shell.",
+  "summary": "The mind is called a jewel here, yet it can still be squandered on what is passing and cheap.",
+  "takeaway": "Value the inner life at the price Guru gives it.",
+  "lifeApplication": "Notice one bargain you keep making that leaves your mind smaller than it was before.",
+  "source": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      923,
+      928
+    ],
+    "shortMeaning": "The mind is priceless, but it can still be sold beneath its worth.",
+    "lifeApplication": "Measure today's trade-offs by what they do to the soul, not only to convenience."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The mind is priceless, but it can still be sold beneath its worth.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "Stop circling and let Guru's word take residence.",
+      "practicalImplication": "Notice one bargain you keep making that leaves your mind smaller than it was before.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.54,
+      "specificity": 4.71,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 3.66,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

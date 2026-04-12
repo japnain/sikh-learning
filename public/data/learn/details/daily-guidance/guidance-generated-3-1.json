@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-3-1",
+  "title": "Some Sing Of His Power-who Has That",
+  "summary": "Control is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Some sing of His Power-who has that Power?",
+  "lifeApplication": "Release one demand that peace must wait for total control. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-3",
+    "verseIds": [
+      17
+    ],
+    "shortMeaning": "Some sing of His Power-who has that Power?",
+    "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+  },
+  "relatedTopicIds": [
+    "topic-control"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-3"
+  ],
+  "relatedCollectionIds": [
+    "collection-control-to-release",
+    "collection-control-journey"
+  ],
+  "rotation": {
+    "theme": "control",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Some sing of His Power-who has that Power?",
+      "emotionalState": "gripping, controlling, tense",
+      "turn": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled.",
+      "practicalImplication": "Release one demand that peace must wait for total control. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.79,
+      "clarity": 3.06,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 3.31,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

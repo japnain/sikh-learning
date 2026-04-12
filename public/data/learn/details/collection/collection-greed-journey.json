@@ -1,0 +1,80 @@
+{
+  "id": "collection-greed-journey",
+  "title": "From Greed to steadier practice",
+  "subtitle": "A deliberate path through greed",
+  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "greed",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      639,
+      640,
+      641
+    ],
+    "shortMeaning": "Unexamined appetite crowds out remembrance.",
+    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-name-needs-room"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-false-deals-empty-you"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-buy-what-goes-with-you"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-buy-what-goes-with-you",
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A deliberate path through greed",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 2.9,
+      "specificity": 4.28,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.48
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

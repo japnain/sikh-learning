@@ -1,0 +1,109 @@
+{
+  "id": "topic-loneliness-pressure",
+  "title": "When loneliness closes the room in under pressure",
+  "shortTitle": "Loneliness · Pressure",
+  "category": "most-needed",
+  "issueStatement": "The heart feels unaccompanied even when people are nearby. Pressure exposes what the mind reaches for when it feels cornered.",
+  "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+  "practicalReflection": "Neediness is not rejected here. It is brought honestly into the Guru's care. Name the companionship the line is restoring before the mind insists it is alone.",
+  "actionPrompt": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure decides the tone.",
+  "searchTerms": [
+    "loneliness",
+    "alone",
+    "isolated",
+    "disconnected",
+    "abandoned",
+    "pressure",
+    "stress",
+    "under strain"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-child-of-grace",
+        "verseIds": [
+          3757
+        ],
+        "shortMeaning": "If only I could have the good fortune to meet some friendly",
+        "lifeApplication": "Neediness is not rejected here. It is brought honestly into the Guru's care. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: if only I could have the good fortune to meet some friendly."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-152",
+        "verseIds": [
+          2117
+        ],
+        "shortMeaning": "Without being attuned to the Saadh Sangat, the Company of the Holy,",
+        "lifeApplication": "Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Sangat steadies when may I never forget You, Lord. This soul, body and breath are Yours. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-227",
+        "verseIds": [
+          3438
+        ],
+        "shortMeaning": "Those, unto whom You give, receive everything. You are far away from",
+        "lifeApplication": "Ego steadies when all praise You, O Lord; at Your Door, the Gurmukhs are enlightened. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Pressure becomes revealing when the line is allowed to interrupt panic and performance. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-generated-152",
+    "shabad-generated-227"
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-loneliness-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey",
+    "collection-loneliness-bundle"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:loneliness:pressure",
+    "evidence": {
+      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Pressure becomes revealing when the line is allowed to interrupt panic and performance.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "The heart feels unaccompanied even when people are nearby. Pressure exposes what the mind reaches for when it feels cornered.",
+      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure decides the tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.23,
+      "beauty": 1.53,
+      "overall": 3.12
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

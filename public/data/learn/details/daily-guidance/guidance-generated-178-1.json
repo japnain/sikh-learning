@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-178-1",
+  "title": "Siree Raag, Third Mehla:",
+  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Siree Raag, Third Mehla:",
+  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-178",
+    "verseIds": [
+      2767
+    ],
+    "shortMeaning": "Siree Raag, Third Mehla:",
+    "lifeApplication": "Restlessness becomes more truthful when siree Raag, Third Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-178"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Siree Raag, Third Mehla:",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when he Himself unites us in Union; Nanak is absorbed in the Shabad.",
+      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.66,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.74,
+      "overall": 3.68
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

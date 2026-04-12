@@ -1,0 +1,68 @@
+{
+  "id": "guidance-search-ends-in-saint-company-3",
+  "title": "My Mind And Body Have Been Cooled",
+  "summary": "The shabad does not leave restlessness at diagnosis. It turns toward return.",
+  "takeaway": "My mind and body have been cooled and soothed; I have been blessed with",
+  "lifeApplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3899,
+      3900
+    ],
+    "shortMeaning": "By His Mercy, I have met the Holy Saint; my mind and body have been cooled and soothed; I have been",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "By His Mercy, I have met the Holy Saint; my mind and body have been cooled and soothed; I have been",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "The mind settles less by roaming and more by right company.",
+      "practicalImplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 2.7,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.39,
+      "overall": 3.62
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

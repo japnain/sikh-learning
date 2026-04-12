@@ -1,19 +1,8 @@
-import {
-  COLLECTIONS,
-  COLLECTION_BY_ID,
-  DAILY_GUIDANCE_BY_ID,
-  DAILY_GUIDANCE_ENTRIES,
-  getLearnItemKind,
-  LEARN_CONTENT_TARGETS,
-  LEARN_SEARCH_SYNONYMS,
-  SHABAD_DEEP_DIVES,
-  SHABAD_DEEP_DIVE_BY_ID,
-  TOPIC_GUIDES,
-  TOPIC_GUIDE_BY_ID,
-} from "../data/learnContent"
+import { LEARN_CONTENT_TARGETS } from "../data/learnTargets"
 import type {
   Collection,
   DailyGuidance,
+  LearnCatalog,
   LearnContentKind,
   LearnItemView,
   LearnLineReference,
@@ -84,6 +73,20 @@ const SLOT_CONFIG: Record<RotationSlot, { cadenceDays: number; cooldownDays: num
 
 const ROTATION_START_STAMP = "2026-01-01"
 
+type LearnCatalogData = Pick<
+  LearnCatalog,
+  | "collections"
+  | "collectionById"
+  | "dailyGuidance"
+  | "dailyGuidanceById"
+  | "manifest"
+  | "searchIndex"
+  | "shabadDeepDiveById"
+  | "shabadDeepDives"
+  | "topicGuideById"
+  | "topicGuides"
+>
+
 function stableHash(input: string): number {
   let hash = 0
   for (let index = 0; index < input.length; index += 1) {
@@ -96,9 +99,9 @@ function normalizeQuery(value: string): string {
   return value.trim().toLowerCase().replace(/\s+/g, " ")
 }
 
-function getSavedThemes(savedItemIds: string[]): string[] {
+function getSavedThemes(learnCatalog: LearnCatalogData, savedItemIds: string[]): string[] {
   return savedItemIds
-    .map(resolveLearnItem)
+    .map(itemId => resolveLearnItem(learnCatalog, itemId))
     .filter(
       (
         item
@@ -220,7 +223,7 @@ function getRotationSelection<T extends RotatingItem>(
   const config = SLOT_CONFIG[slot]
   const targetDate = parseLocalDayStamp(dayStamp)
   const cursor = parseLocalDayStamp(ROTATION_START_STAMP)
-  const selections: Array<{ item: T; dayStamp: string }> = []
+  const selections: Array<{ selection: RotationSelection<T>; dayStamp: string }> = []
 
   while (cursor <= targetDate) {
     const currentStamp = toLocalDayStamp(cursor)
@@ -229,7 +232,7 @@ function getRotationSelection<T extends RotatingItem>(
         const diff = dayDiffLocal(selection.dayStamp, currentStamp)
         return diff > 0 && diff <= config.cooldownDays
       })
-      .map(selection => selection.item)
+      .map(selection => selection.selection.item)
 
     const shouldRotate =
       slot !== "featured_shabad"
@@ -238,7 +241,7 @@ function getRotationSelection<T extends RotatingItem>(
 
     if (shouldRotate) {
       const selection = selectItemForPeriod(items, slot, currentStamp, priorItems, savedThemes)
-      selections.push({ item: selection.item, dayStamp: currentStamp })
+      selections.push({ selection, dayStamp: currentStamp })
     }
 
     cursor.setDate(cursor.getDate() + 1)
@@ -248,15 +251,7 @@ function getRotationSelection<T extends RotatingItem>(
   if (!todaySelection) {
     throw new Error(`No selection built for ${slot}`)
   }
-
-  const priorItems = selections
-    .filter(selection => {
-      const diff = dayDiffLocal(selection.dayStamp, dayStamp)
-      return diff > 0 && diff <= config.cooldownDays
-    })
-    .map(selection => selection.item)
-
-  return selectItemForPeriod(items, slot, dayStamp, priorItems, savedThemes)
+  return todaySelection.selection
 }
 
 function scoreTopic(topic: TopicGuide, query: string): number {
@@ -275,8 +270,11 @@ function scoreTopic(topic: TopicGuide, query: string): number {
   }, 0)
 }
 
-export function resolveLineReference(reference: LearnLineReference): LearnResolvedExcerpt {
-  const deepDive = SHABAD_DEEP_DIVE_BY_ID[reference.deepDiveId]
+export function resolveLineReference(
+  learnCatalog: LearnCatalogData,
+  reference: LearnLineReference
+): LearnResolvedExcerpt {
+  const deepDive = learnCatalog.shabadDeepDiveById[reference.deepDiveId]
   const lines = deepDive.lines.filter(line => reference.verseIds.includes(line.verseId))
 
   return {
@@ -287,22 +285,22 @@ export function resolveLineReference(reference: LearnLineReference): LearnResolv
   }
 }
 
-export function resolveTopicGuide(query: string): {
+export function resolveTopicGuide(learnCatalog: LearnCatalogData, query: string): {
   topic: TopicGuide | null
   query: string
   matchedBy: "exact" | "synonym" | "closest" | "empty" | "no-match"
 } {
   const normalized = normalizeQuery(query)
   if (!normalized) {
-    return { topic: TOPIC_GUIDES[0] ?? null, query: normalized, matchedBy: "empty" }
+    return { topic: learnCatalog.topicGuides[0] ?? null, query: normalized, matchedBy: "empty" }
   }
 
-  const synonymMatch = LEARN_SEARCH_SYNONYMS[normalized]
+  const synonymMatch = learnCatalog.searchIndex.synonyms[normalized]
   if (synonymMatch) {
-    return { topic: TOPIC_GUIDE_BY_ID[synonymMatch] ?? null, query: normalized, matchedBy: "synonym" }
+    return { topic: learnCatalog.topicGuideById[synonymMatch] ?? null, query: normalized, matchedBy: "synonym" }
   }
 
-  const scored = TOPIC_GUIDES
+  const scored = learnCatalog.topicGuides
     .map(topic => ({ topic, score: scoreTopic(topic, normalized) }))
     .sort((left, right) => right.score - left.score)
 
@@ -318,28 +316,28 @@ export function resolveTopicGuide(query: string): {
   }
 }
 
-export function getLearnInventorySummary() {
-  const dailyGuidance = DAILY_GUIDANCE_ENTRIES.length
-  const shabadDeepDives = SHABAD_DEEP_DIVES.length
-  const topicGuides = TOPIC_GUIDES.length
-  const collections = COLLECTIONS.length
+export function getLearnInventorySummary(learnCatalog: LearnCatalogData) {
+  const dailyGuidance = learnCatalog.dailyGuidance.length
+  const shabadDeepDives = learnCatalog.shabadDeepDives.length
+  const topicGuides = learnCatalog.topicGuides.length
+  const collections = learnCatalog.collections.length
   const crossLinks =
-    DAILY_GUIDANCE_ENTRIES.reduce(
+    learnCatalog.dailyGuidance.reduce(
       (count, item) =>
         count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.relatedCollectionIds.length,
       0
     )
-    + SHABAD_DEEP_DIVES.reduce(
+    + learnCatalog.shabadDeepDives.reduce(
       (count, item) =>
         count + item.relatedGuidanceIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length,
       0
     )
-    + TOPIC_GUIDES.reduce(
+    + learnCatalog.topicGuides.reduce(
       (count, item) =>
         count + item.relatedShabadIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length,
       0
     )
-    + COLLECTIONS.reduce(
+    + learnCatalog.collections.reduce(
       (count, item) =>
         count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length,
       0
@@ -356,19 +354,25 @@ export function getLearnInventorySummary() {
       && shabadDeepDives >= LEARN_CONTENT_TARGETS.shabadDeepDives
       && topicGuides >= LEARN_CONTENT_TARGETS.topicGuides
       && collections >= LEARN_CONTENT_TARGETS.collections
-      && crossLinks >= LEARN_CONTENT_TARGETS.crossLinks,
+      && crossLinks >= LEARN_CONTENT_TARGETS.crossLinks
+      && crossLinks / Math.max(1, dailyGuidance + shabadDeepDives + topicGuides + collections)
+        >= LEARN_CONTENT_TARGETS.averageCrossLinksPerItem,
   }
 }
 
-export function getTodayLearnSurface(dayStamp: string, learnState: UserLearningState): TodayLearnSurface {
-  const dailyGuidance = getRotationSelection(DAILY_GUIDANCE_ENTRIES, "daily_guidance", dayStamp, [])
-  const featuredShabad = getRotationSelection(SHABAD_DEEP_DIVES, "featured_shabad", dayStamp, [])
-  const topicSpotlight = getRotationSelection(TOPIC_GUIDES, "topic_spotlight", dayStamp, [])
+export function getTodayLearnSurface(
+  learnCatalog: LearnCatalogData,
+  dayStamp: string,
+  learnState: UserLearningState
+): TodayLearnSurface {
+  const dailyGuidance = getRotationSelection(learnCatalog.dailyGuidance, "daily_guidance", dayStamp, [])
+  const featuredShabad = getRotationSelection(learnCatalog.shabadDeepDives, "featured_shabad", dayStamp, [])
+  const topicSpotlight = getRotationSelection(learnCatalog.topicGuides, "topic_spotlight", dayStamp, [])
 
-  const themeRail = getThemeRail(dayStamp, learnState)
-  const exploreCollections = getExploreCollections(dayStamp, learnState)
+  const themeRail = getThemeRail(learnCatalog, dayStamp, learnState)
+  const exploreCollections = getExploreCollections(learnCatalog, dayStamp, learnState)
   const featuredCollections = exploreCollections.slice(0, 3)
-  const continueLearning = getContinueLearningCard(learnState, featuredCollections)
+  const continueLearning = getContinueLearningCard(learnCatalog, learnState, featuredCollections)
 
   return {
     dayStamp,
@@ -379,16 +383,17 @@ export function getTodayLearnSurface(dayStamp: string, learnState: UserLearningS
     themeRail,
     featuredCollections,
     exploreCollections,
-    inventory: getLearnInventorySummary(),
+    inventory: getLearnInventorySummary(learnCatalog),
   }
 }
 
 function getContinueLearningCard(
+  learnCatalog: LearnCatalogData,
   learnState: UserLearningState,
   featuredCollections: Collection[]
 ): ContinueLearningCard {
-  if (learnState.activeCollectionId && COLLECTION_BY_ID[learnState.activeCollectionId]) {
-    const collection = COLLECTION_BY_ID[learnState.activeCollectionId]
+  if (learnState.activeCollectionId && learnCatalog.collectionById[learnState.activeCollectionId]) {
+    const collection = learnCatalog.collectionById[learnState.activeCollectionId]
     return {
       kind: "collection",
       title: collection.title,
@@ -398,8 +403,8 @@ function getContinueLearningCard(
   }
 
   const mostRecentTopicId = learnState.recentTopicIds[0]
-  if (mostRecentTopicId && TOPIC_GUIDE_BY_ID[mostRecentTopicId]) {
-    const topic = TOPIC_GUIDE_BY_ID[mostRecentTopicId]
+  if (mostRecentTopicId && learnCatalog.topicGuideById[mostRecentTopicId]) {
+    const topic = learnCatalog.topicGuideById[mostRecentTopicId]
     return {
       kind: "topic",
       title: topic.title,
@@ -411,8 +416,8 @@ function getContinueLearningCard(
   const collection =
     featuredCollections[0]
     ?? (learnState.depthPreference === "deep"
-      ? COLLECTION_BY_ID["collection-gratitude-and-contentment"]
-      : COLLECTION_BY_ID["collection-fear-to-trust"])
+      ? learnCatalog.collectionById["collection-gratitude-and-contentment"]
+      : learnCatalog.collectionById["collection-fear-to-trust"])
 
   return {
     kind: "collection",
@@ -422,11 +427,15 @@ function getContinueLearningCard(
   }
 }
 
-function getThemeRail(dayStamp: string, learnState: UserLearningState): TopicGuide[] {
-  const savedThemes = new Set(getSavedThemes(learnState.savedItemIds))
+function getThemeRail(
+  learnCatalog: LearnCatalogData,
+  dayStamp: string,
+  learnState: UserLearningState
+): TopicGuide[] {
+  const savedThemes = new Set(getSavedThemes(learnCatalog, learnState.savedItemIds))
   const recentTopicIds = new Set(learnState.recentTopicIds)
 
-  return [...TOPIC_GUIDES]
+  return [...learnCatalog.topicGuides]
     .sort((left, right) => {
       const leftScore =
         (recentTopicIds.has(left.id) ? 18 : 0)
@@ -446,11 +455,15 @@ function getThemeRail(dayStamp: string, learnState: UserLearningState): TopicGui
     .slice(0, 4)
 }
 
-function getExploreCollections(dayStamp: string, learnState: UserLearningState): Collection[] {
-  const savedThemes = new Set(getSavedThemes(learnState.savedItemIds))
+function getExploreCollections(
+  learnCatalog: LearnCatalogData,
+  dayStamp: string,
+  learnState: UserLearningState
+): Collection[] {
+  const savedThemes = new Set(getSavedThemes(learnCatalog, learnState.savedItemIds))
   const recentTopicIds = new Set(learnState.recentTopicIds)
 
-  return [...COLLECTIONS].sort((left, right) => {
+  return [...learnCatalog.collections].sort((left, right) => {
     const leftScore =
       left.themes.filter(theme => savedThemes.has(theme)).length * 8
       + left.relatedTopicIds.filter(topicId => recentTopicIds.has(topicId)).length * 10
@@ -465,10 +478,11 @@ function getExploreCollections(dayStamp: string, learnState: UserLearningState):
       + (stableHash(`${dayStamp}:collection:${right.id}`) % 19)
 
     return rightScore - leftScore || left.title.localeCompare(right.title)
-  })
+  }).slice(0, 6)
 }
 
 export function filterShabadDeepDives(
+  learnCatalog: LearnCatalogData,
   filters: {
     theme?: string
     guru?: string
@@ -485,7 +499,7 @@ export function filterShabadDeepDives(
     getRecentViewsForKinds(learnState.viewedItems, ["shabad-deep-dive"], toLocalDayStamp(new Date()), 365)
       .map(view => view.itemId)
   )
-  const filteredItems = SHABAD_DEEP_DIVES.filter(item => {
+  const filteredItems = learnCatalog.shabadDeepDives.filter(item => {
     if (filters.theme && !item.themes.includes(filters.theme)) return false
     if (filters.guru && item.citation.guru !== filters.guru) return false
     if (filters.raag && item.citation.raag !== filters.raag) return false
@@ -514,24 +528,33 @@ export function filterShabadDeepDives(
     .map(({ item }) => item)
 }
 
-export function resolveLearnItem(
-  itemId: string
-): DailyGuidance | ShabadDeepDive | TopicGuide | Collection | null {
-  if (itemId in DAILY_GUIDANCE_BY_ID) return DAILY_GUIDANCE_BY_ID[itemId]
-  if (itemId in SHABAD_DEEP_DIVE_BY_ID) return SHABAD_DEEP_DIVE_BY_ID[itemId]
-  if (itemId in TOPIC_GUIDE_BY_ID) return TOPIC_GUIDE_BY_ID[itemId]
-  if (itemId in COLLECTION_BY_ID) return COLLECTION_BY_ID[itemId]
+export function getLearnItemKind(learnCatalog: LearnCatalogData, itemId: string): LearnContentKind | null {
+  if (itemId in learnCatalog.dailyGuidanceById) return "daily-guidance"
+  if (itemId in learnCatalog.shabadDeepDiveById) return "shabad-deep-dive"
+  if (itemId in learnCatalog.topicGuideById) return "topic-guide"
+  if (itemId in learnCatalog.collectionById) return "collection"
   return null
 }
 
-export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
+export function resolveLearnItem(
+  learnCatalog: LearnCatalogData,
+  itemId: string
+): DailyGuidance | ShabadDeepDive | TopicGuide | Collection | null {
+  if (itemId in learnCatalog.dailyGuidanceById) return learnCatalog.dailyGuidanceById[itemId]
+  if (itemId in learnCatalog.shabadDeepDiveById) return learnCatalog.shabadDeepDiveById[itemId]
+  if (itemId in learnCatalog.topicGuideById) return learnCatalog.topicGuideById[itemId]
+  if (itemId in learnCatalog.collectionById) return learnCatalog.collectionById[itemId]
+  return null
+}
+
+export function getLearnSavedItems(learnCatalog: LearnCatalogData, savedItemIds: string[]): LearnSavedItem[] {
   return savedItemIds
     .map(itemId => {
-      const kind = getLearnItemKind(itemId)
+      const kind = getLearnItemKind(learnCatalog, itemId)
       if (!kind) return null
 
       if (kind === "daily-guidance") {
-        const item = DAILY_GUIDANCE_BY_ID[itemId]
+        const item = learnCatalog.dailyGuidanceById[itemId]
         if (!item) return null
         return {
           id: item.id,
@@ -544,7 +567,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
       }
 
       if (kind === "topic-guide") {
-        const item = TOPIC_GUIDE_BY_ID[itemId]
+        const item = learnCatalog.topicGuideById[itemId]
         if (!item) return null
         return {
           id: item.id,
@@ -557,7 +580,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
       }
 
       if (kind === "shabad-deep-dive") {
-        const item = SHABAD_DEEP_DIVE_BY_ID[itemId]
+        const item = learnCatalog.shabadDeepDiveById[itemId]
         if (!item) return null
         return {
           id: item.id,
@@ -569,7 +592,7 @@ export function getLearnSavedItems(savedItemIds: string[]): LearnSavedItem[] {
         } satisfies LearnSavedItem
       }
 
-      const item = COLLECTION_BY_ID[itemId]
+      const item = learnCatalog.collectionById[itemId]
       if (!item) return null
       return {
         id: item.id,

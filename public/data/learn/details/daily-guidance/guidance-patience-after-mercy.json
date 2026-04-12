@@ -1,0 +1,68 @@
+{
+  "id": "guidance-patience-after-mercy",
+  "title": "Patience often arrives after mercy, not before it.",
+  "summary": "The cooled body in this shabad is not self-manufactured. It appears after saint company is given in grace.",
+  "takeaway": "Grace can create the interior climate where patience becomes possible.",
+  "lifeApplication": "When patience feels impossible, ask whether you need mercy and better company before more effort.",
+  "source": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3899,
+      3900,
+      3901
+    ],
+    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
+    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Mercy, saint company, and patience are arranged together here.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "The mind settles less by roaming and more by right company.",
+      "practicalImplication": "When patience feels impossible, ask whether you need mercy and better company before more effort.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 3.9,
+      "specificity": 4.51,
+      "emotionalHonesty": 3,
+      "usefulness": 2.44,
+      "beauty": 4.06,
+      "overall": 3.67
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

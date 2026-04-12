@@ -1,0 +1,77 @@
+{
+  "id": "collection-patience-journey",
+  "title": "From Patience to steadier practice",
+  "subtitle": "A deliberate path through patience",
+  "description": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "patience",
+    "patience"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3899,
+      3900,
+      3901
+    ],
+    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
+    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-after-mercy"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-patience"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-listens-longer"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-patience-ripens-into-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-patience"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A deliberate path through patience",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 3.15,
+      "specificity": 4.26,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

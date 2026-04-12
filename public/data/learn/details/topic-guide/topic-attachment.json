@@ -1,0 +1,107 @@
+{
+  "id": "topic-attachment",
+  "title": "When attachment keeps binding the mind",
+  "shortTitle": "Attachment",
+  "category": "inner-work",
+  "issueStatement": "The heart feels dragged around by approval, comfort, possession, or a version of life you do not want to lose.",
+  "centralInsight": "Attachment is not only affection. In Gurbani it is the mind becoming bound to what cannot hold the weight you place on it.",
+  "practicalReflection": "Attachment is revealed by the force of your reactions: what you cannot imagine losing without collapse often owns more of you than you realize.",
+  "actionPrompt": "Name the thing whose fluctuation keeps deciding your inner state. Bring that honestly into prayer.",
+  "searchTerms": [
+    "attachment",
+    "clingy",
+    "possessive",
+    "can't let go",
+    "fixated"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21090,
+          21091
+        ],
+        "shortMeaning": "Pleasure can become the very place where desire for God thins out.",
+        "lifeApplication": "Attachment often hides inside the comfort you least want disturbed."
+      },
+      "explanation": "Guru Nanak links attachment to the sedating power of unchecked comfort."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-detached-and-steady",
+        "verseIds": [
+          9414,
+          9416
+        ],
+        "shortMeaning": "Greed, attachment, praise, and blame lose their grip in steadiness.",
+        "lifeApplication": "Freedom is pictured as not being constantly touched by these hooks."
+      },
+      "explanation": "This shabad describes what the unhooked heart looks like."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60338,
+          60341
+        ],
+        "shortMeaning": "Mercy and Naam loosen the heart's dependence on lesser securities.",
+        "lifeApplication": "Attachment weakens when life is received as gift, not possession."
+      },
+      "explanation": "The movement from mercy to Naam offers a healthier center of trust."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-detached-and-steady",
+    "shabad-gratitude-restores-naam"
+  ],
+  "relatedTopicIds": [
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey",
+    "collection-attachment-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "deep",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:attachment",
+    "evidence": {
+      "coreClaim": "Attachment is not only affection. In Gurbani it is the mind becoming bound to what cannot hold the weight you place on it.",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "The heart feels dragged around by approval, comfort, possession, or a version of life you do not want to lose.",
+      "practicalImplication": "Name the thing whose fluctuation keeps deciding your inner state. Bring that honestly into prayer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.92,
+      "beauty": 4.06,
+      "overall": 3.95
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

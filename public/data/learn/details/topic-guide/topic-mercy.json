@@ -1,0 +1,109 @@
+{
+  "id": "topic-mercy",
+  "title": "When you need to remember mercy",
+  "shortTitle": "Mercy",
+  "category": "inner-work",
+  "issueStatement": "You are trying to sustain the path through force alone, or reading your failures as final.",
+  "centralInsight": "Grace is not the opposite of discipline. It is the atmosphere that keeps discipline from turning cruel, performative, or despairing.",
+  "practicalReflection": "Mercy reintroduces the Divine as giver, revealer, and the One who reunites what has wandered.",
+  "actionPrompt": "Instead of proving yourself today, ask where mercy has already met you and what that should make possible next.",
+  "searchTerms": [
+    "mercy",
+    "grace",
+    "compassion",
+    "undeserving",
+    "accepted",
+    "reunited"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "verseIds": [
+          499,
+          501,
+          503
+        ],
+        "shortMeaning": "The One who gives also reunites what has been separated.",
+        "lifeApplication": "Mercy is not abstract kindness; it reorders a life."
+      },
+      "explanation": "This shabad makes mercy structurally important, not sentimental."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60338,
+          60340
+        ],
+        "shortMeaning": "Mercy is easier to receive when entitlement breaks and gratitude wakes up.",
+        "lifeApplication": "Let gratitude become one way of staying inside grace."
+      },
+      "explanation": "Gratitude protects mercy from becoming vague language."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "verseIds": [
+          9600,
+          9615
+        ],
+        "shortMeaning": "Mercy creates both forgiveness and a new kind of stability in the one who receives it.",
+        "lifeApplication": "Grace makes room for courage."
+      },
+      "explanation": "Mercy is one path into fearlessness."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-gratitude-restores-naam",
+    "shabad-forgiveness-becomes-fearless"
+  ],
+  "relatedTopicIds": [
+    "topic-mercy-daily",
+    "topic-mercy-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey",
+    "collection-mercy-bundle"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:mercy",
+    "evidence": {
+      "coreClaim": "Grace is not the opposite of discipline. It is the atmosphere that keeps discipline from turning cruel, performative, or despairing.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "You are trying to sustain the path through force alone, or reading your failures as final.",
+      "practicalImplication": "Instead of proving yourself today, ask where mercy has already met you and what that should make possible next.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 4.06,
+      "overall": 4
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

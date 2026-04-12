@@ -1,0 +1,94 @@
+{
+  "id": "collection-conduct-and-clean-speech",
+  "title": "Conduct and Clean Speech",
+  "subtitle": "A sequence for aligning life, tongue, and practice",
+  "description": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+  "durationLabel": "5-step arc",
+  "themes": [
+    "speech",
+    "conduct",
+    "honesty"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11742,
+      11743,
+      11748,
+      11749
+    ],
+    "shortMeaning": "The best religion appears as pure conduct and speech trained by praise.",
+    "lifeApplication": "Let the tongue and the life answer to the same center."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-pure-conduct-outweighs-display"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-ambrosial-speech-needs-praise"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-conduct"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-softness"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-honesty"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ambrosial-speech-pure-conduct"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-conduct",
+    "topic-softness",
+    "topic-honesty",
+    "topic-speech"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-generated-937"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "This path keeps speech and conduct together so the archive does not let good words drift too far from the life carrying them.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "A sequence for aligning life, tongue, and practice",
+      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.86,
+      "clarity": 0,
+      "specificity": 4.09,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 2.97
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-search-ends-in-saint-company-2",
+  "title": "They Perform The Inner Cleansing Practice With",
+  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "I have searched and searched, seeking the Blessed Vision of His Darshan; they perform the inner cleansing practice with water and adopt the eighty-four",
+  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890,
+      3895
+    ],
+    "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan; they perform the inner cleansing practice with water and adopt the eighty-four",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "I have searched and searched, seeking the Blessed Vision of His Darshan; they perform the inner cleansing practice with water and adopt the eighty-four",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "The mind settles less by roaming and more by right company.",
+      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.05,
+      "clarity": 0.08,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 1.93,
+      "overall": 2.99
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

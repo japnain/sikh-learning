@@ -1,0 +1,106 @@
+{
+  "id": "topic-honesty",
+  "title": "When you need to live cleanly",
+  "shortTitle": "Honesty",
+  "category": "practice",
+  "issueStatement": "You know what clean living requires, but compromise keeps disguising itself as necessity or sophistication.",
+  "centralInsight": "Gurbani treats truthful living as trade, conduct, and alignment. False gain does not only stain the action; it fractures the person carrying it.",
+  "practicalReflection": "Dishonesty is not only lying. It is any deal that leaves the mind more divided than before.",
+  "actionPrompt": "Refuse one convenient compromise today, even if nobody else would have noticed it.",
+  "searchTerms": [
+    "honesty",
+    "honest living",
+    "integrity",
+    "crooked",
+    "compromise",
+    "truthfulness"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-buy-what-goes-with-you",
+        "verseIds": [
+          934,
+          939,
+          946
+        ],
+        "shortMeaning": "Buy what goes with you; false deals deform the whole person, while truthful gain becomes fearlessness.",
+        "lifeApplication": "Integrity is an investment, not an accessory."
+      },
+      "explanation": "Guru turns ethics into a question of what actually lasts."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "verseIds": [
+          11742,
+          11743,
+          11744,
+          11745
+        ],
+        "shortMeaning": "The best religion is tied to pure conduct and the removal of inner dirt.",
+        "lifeApplication": "Right conduct is not separate from devotion."
+      },
+      "explanation": "This keeps conduct from becoming secularized self-improvement."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-patience-ripens-into-honor",
+        "verseIds": [
+          11241,
+          11242
+        ],
+        "shortMeaning": "The true banker is the one trading in Naam as wealth.",
+        "lifeApplication": "Honesty begins with choosing the right economy."
+      },
+      "explanation": "What you count as wealth will shape what you permit yourself to do."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you",
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "honesty",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:honesty",
+    "evidence": {
+      "coreClaim": "Gurbani treats truthful living as trade, conduct, and alignment. False gain does not only stain the action; it fractures the person carrying it.",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "You know what clean living requires, but compromise keeps disguising itself as necessity or sophistication.",
+      "practicalImplication": "Refuse one convenient compromise today, even if nobody else would have noticed it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 4.22,
+      "overall": 4.05
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

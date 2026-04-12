@@ -1,7 +1,7 @@
 import type { SearchResult } from '../api/banidb'
 import { READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani } from '../data/banis'
-import { TOPIC_GUIDES } from '../data/learnContent'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
+import type { LearnSearchIndex } from '../types'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
@@ -340,17 +340,36 @@ function getReadRouteMatches(query: string, searchSource: SearchSource): AppSear
   return matches
 }
 
-function getLearnTopicMatches(query: string): AppSearchMatch[] {
+export function getLearnTopicMatches(
+  query: string,
+  searchIndex: LearnSearchIndex | null
+): AppSearchMatch[] {
   const normalized = normalizeTopicQuery(query)
-  if (!normalized || normalized.length < 2) return []
+  if (!normalized || normalized.length < 2 || !searchIndex) return []
 
-  return TOPIC_GUIDES
-    .map(topic => ({
-      topic,
-      score: scoreTopicMatch(topic.title, topic.shortTitle, topic.searchTerms, normalized),
-    }))
-    .filter(item => item.score >= 48)
-    .sort((left, right) => right.score - left.score || left.topic.title.localeCompare(right.topic.title))
+  const canonicalTopicId = searchIndex.synonyms[normalized] ?? null
+
+  return searchIndex.topics
+    .map(topic => {
+      const baseScore = scoreTopicMatch(topic.title, topic.shortTitle, topic.searchTerms, normalized)
+      let score = baseScore
+
+      if (canonicalTopicId) {
+        if (topic.id === canonicalTopicId) {
+          score = Math.max(score, 220)
+        } else if (topic.id.startsWith(`${canonicalTopicId}-`)) {
+          score += 12
+        }
+      }
+
+      return { topic, score }
+    })
+    .filter(item => item.score >= (canonicalTopicId ? 24 : 48))
+    .sort((left, right) =>
+      right.score - left.score
+      || Number(right.topic.id === canonicalTopicId) - Number(left.topic.id === canonicalTopicId)
+      || left.topic.title.localeCompare(right.topic.title)
+    )
     .slice(0, 4)
     .map(({ topic, score }) => ({
       key: `learn-${topic.id}`,
@@ -362,11 +381,15 @@ function getLearnTopicMatches(query: string): AppSearchMatch[] {
     }))
 }
 
-export function getAppSearchMatches(query: string, searchSource: SearchSource = 'all'): AppSearchMatch[] {
+export function getAppSearchMatches(
+  query: string,
+  searchSource: SearchSource = 'all',
+  searchIndex: LearnSearchIndex | null = null
+): AppSearchMatch[] {
   if (query.trim().length < 2) return []
 
   return [
-    ...getLearnTopicMatches(query),
+    ...getLearnTopicMatches(query, searchIndex),
     ...getReadRouteMatches(query, searchSource),
   ]
     .sort((left, right) => right.score - left.score || left.label.length - right.label.length || left.label.localeCompare(right.label))

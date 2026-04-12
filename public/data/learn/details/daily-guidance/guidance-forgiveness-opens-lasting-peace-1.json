@@ -1,0 +1,67 @@
+{
+  "id": "guidance-forgiveness-opens-lasting-peace-1",
+  "title": "He Blessed Me With Forgiveness",
+  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "He blessed me with forgiveness",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27259
+    ],
+    "shortMeaning": "He blessed me with forgiveness",
+    "lifeApplication": "Forgiveness becomes more truthful when he blessed me with forgiveness."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "He blessed me with forgiveness",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.84,
+      "clarity": 3.54,
+      "specificity": 4.43,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.66,
+      "overall": 3.68
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

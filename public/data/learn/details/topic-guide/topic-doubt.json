@@ -1,0 +1,109 @@
+{
+  "id": "topic-doubt",
+  "title": "When doubt keeps burning beneath the surface",
+  "shortTitle": "Doubt",
+  "category": "most-needed",
+  "issueStatement": "You keep circling the same question, but the circling itself is starting to scorch the mind.",
+  "centralInsight": "Gurbani treats doubt as an inner fire. It is not cooled by more wandering, but by Guru's word, saint company, and the death of self-insistence.",
+  "practicalReflection": "Doubt often disguises itself as sophistication. Guru asks whether it is actually producing truth, peace, or obedience.",
+  "actionPrompt": "Name the question you keep rehearsing. Then name one instruction you already know but have not yet lived.",
+  "searchTerms": [
+    "doubt",
+    "second guessing",
+    "confusion",
+    "uncertain",
+    "skeptical",
+    "faith feels thin"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+        "verseIds": [
+          918,
+          922
+        ],
+        "shortMeaning": "Doubt burns inwardly, and Guru's word is given to address that interior fire.",
+        "lifeApplication": "Let instruction move in where rumination has been living."
+      },
+      "explanation": "This guide begins with diagnosis rather than vague reassurance."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3898,
+          3899,
+          3900
+        ],
+        "shortMeaning": "Endless searching is not the same thing as peace; mercy and saint company cool the body.",
+        "lifeApplication": "Sometimes the next step is not more searching, but better placement."
+      },
+      "explanation": "These lines keep doubt from becoming a lifestyle."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "verseIds": [
+          499,
+          501
+        ],
+        "shortMeaning": "Mercy and Divine authorship are part of the answer to doubt, not separate from it.",
+        "lifeApplication": "The question softens when you remember who is still holding the moment."
+      },
+      "explanation": "Hukam and mercy stabilize the questioning mind."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-search-ends-in-saint-company",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "relatedTopicIds": [
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey",
+    "collection-doubt-bundle"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:doubt",
+    "evidence": {
+      "coreClaim": "Gurbani treats doubt as an inner fire. It is not cooled by more wandering, but by Guru's word, saint company, and the death of self-insistence.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "You keep circling the same question, but the circling itself is starting to scorch the mind.",
+      "practicalImplication": "Name the question you keep rehearsing. Then name one instruction you already know but have not yet lived.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.92,
+      "beauty": 4.22,
+      "overall": 4
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

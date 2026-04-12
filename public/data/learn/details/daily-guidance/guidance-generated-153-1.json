@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-153-1",
+  "title": "O Siblings Of Destiny, Listen: Release Comes",
+  "summary": "Seeking is named plainly here before the mind has time to decorate it.",
+  "takeaway": "O Saints, O Siblings of Destiny, listen: release comes only through the",
+  "lifeApplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-153",
+    "verseIds": [
+      2133
+    ],
+    "shortMeaning": "O Saints, O Siblings of Destiny, listen: release comes only through the",
+    "lifeApplication": "Seeking becomes more truthful when o Saints, O Siblings of Destiny, listen: release comes only through the."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-153"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "O Saints, O Siblings of Destiny, listen: release comes only through the",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Seeking steadies when nanak seeks the Sanctuary of the Guru, who does not die, or come and.",
+      "practicalImplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.85,
+      "clarity": 2.7,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.58,
+      "beauty": 3.23,
+      "overall": 3.61
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

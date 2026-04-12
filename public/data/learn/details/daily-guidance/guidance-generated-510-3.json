@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-510-3",
+  "title": "Servant Nanak Takes The Sustenance And Support",
+  "summary": "The shabad does not leave comparison at diagnosis. It turns toward return.",
+  "takeaway": "Servant Nanak takes the Sustenance and Support of the Naam. In the Name of",
+  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-510",
+    "verseIds": [
+      7122,
+      7126
+    ],
+    "shortMeaning": "The more they walk away, the deeper it sticks into them, and; servant Nanak takes the Sustenance and Support of the Naam. In the",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-comparison-daily",
+    "topic-comparison-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-510"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The more they walk away, the deeper it sticks into them, and; servant Nanak takes the Sustenance and Support of the Naam. In the",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Comparison steadies when servant Nanak takes the Sustenance and Support of the Naam. In the Name of.",
+      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.28,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 3.21,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "guidance-ambrosial-speech-needs-praise",
+  "title": "Better speech starts by changing what the tongue loves.",
+  "summary": "Ambrosial speech here is not polished phrasing. It is speech trained by hearing and carrying praise.",
+  "takeaway": "A soft tongue still needs a holy subject.",
+  "lifeApplication": "Let one conversation today carry more reverence than reaction.",
+  "source": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11748,
+      11749
+    ],
+    "shortMeaning": "Speech becomes ambrosial when it is fed by praise rather than appetite or contempt.",
+    "lifeApplication": "Train the tongue by training the heart's attention."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-speak-what-brings-honor"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Speech becomes ambrosial when it is fed by praise rather than appetite or contempt.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "practicalImplication": "Let one conversation today carry more reverence than reaction.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.9,
+      "specificity": 4.54,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.01,
+      "beauty": 4.06,
+      "overall": 3.74
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

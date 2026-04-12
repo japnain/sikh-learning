@@ -1,0 +1,82 @@
+{
+  "id": "collection-discipline-to-forgiveness-79",
+  "title": "Discipline to Forgiveness",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "discipline",
+    "forgiveness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      292
+    ],
+    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
+    "lifeApplication": "Return your attention from other people to the state of your own mind."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mind-mastery"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-discipline"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-forgiveness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-forgiveness-is-the-fast"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-becomes-fearless"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-forgiveness"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-human-birth-is-chance",
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.15,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

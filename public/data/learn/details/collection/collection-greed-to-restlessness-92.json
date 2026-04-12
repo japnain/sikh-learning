@@ -1,0 +1,84 @@
+{
+  "id": "collection-greed-to-restlessness-92",
+  "title": "Greed to Restlessness",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "greed",
+    "restlessness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      639,
+      640,
+      641
+    ],
+    "shortMeaning": "Unexamined appetite crowds out remembrance.",
+    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-name-needs-room"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-greed",
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-search-ends-in-saint-company",
+    "shabad-buy-what-goes-with-you",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.06,
+      "clarity": 3.4,
+      "specificity": 4.27,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.63
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}
