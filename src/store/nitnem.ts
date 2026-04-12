@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 import { BANIS } from '../data/banis'
 import { toLocalDayStamp } from '../utils/learnDates'
 import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
+import { queueActivityEvent } from './activityEvents'
 
 export interface NitnemRouteOption {
   id: string
@@ -248,6 +249,7 @@ export const useNitemStore = create<NitemState>()(
         const base = s.completedDate === today ? s.completedIds : []
         if (!base.includes(id)) {
           set({ completedDate: today, completedIds: [...base, id] })
+          queueActivityEvent('nitnem.completed', { id, completedDate: today })
         }
       },
 
@@ -256,6 +258,7 @@ export const useNitemStore = create<NitemState>()(
         const s = get()
         const base = s.completedDate === today ? s.completedIds : []
         set({ completedDate: today, completedIds: base.filter(x => x !== id) })
+        queueActivityEvent('nitnem.uncompleted', { id, completedDate: today })
       },
 
       isComplete: (id) => {

@@ -109,6 +109,20 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
   expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
 })
 
+test("topic search keeps the literal query in both inputs and the url", async () => {
+  renderLearnRoute("/learn?tab=topics")
+
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
+    target: { value: "anxiety" },
+  })
+
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn?tab=topics&query=anxiety")
+    expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toHaveValue("anxiety")
+    expect(screen.getByRole("searchbox", { name: /Search topic guides/i })).toHaveValue("anxiety")
+  })
+})
+
 test("topics tab shows canonical topic cards instead of flat scenario variants", async () => {
   renderLearnRoute("/learn?tab=topics")
 

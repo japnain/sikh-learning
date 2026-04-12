@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { queueActivityEvent } from './activityEvents'
 
 export interface FavoriteItem {
   id: string
@@ -24,20 +25,40 @@ export const useFavoritesStore = create<FavoritesState>()(
       favorites: [],
       addFavorite: (item) => {
         if (get().isFavorite(item.source, item.ang, item.shabadId)) return
+        const favorite = {
+          ...item,
+          id: `favorite-${Date.now()}`,
+          savedAt: new Date().toISOString(),
+        }
         set(state => ({
           favorites: [
             ...state.favorites,
-            {
-              ...item,
-              id: `favorite-${Date.now()}`,
-              savedAt: new Date().toISOString(),
-            },
+            favorite,
           ],
         }))
+        queueActivityEvent('saved-item.favorite.added', {
+          favoriteId: favorite.id,
+          source: favorite.source,
+          ang: favorite.ang,
+          shabadId: favorite.shabadId ?? null,
+          type: favorite.type,
+        }, favorite.savedAt)
       },
-      removeFavorite: (id) => set(state => ({
-        favorites: state.favorites.filter(item => item.id !== id),
-      })),
+      removeFavorite: (id) => {
+        const favorite = get().favorites.find(item => item.id === id)
+        set(state => ({
+          favorites: state.favorites.filter(item => item.id !== id),
+        }))
+        if (favorite) {
+          queueActivityEvent('saved-item.favorite.removed', {
+            favoriteId: favorite.id,
+            source: favorite.source,
+            ang: favorite.ang,
+            shabadId: favorite.shabadId ?? null,
+            type: favorite.type,
+          })
+        }
+      },
       isFavorite: (source, ang, shabadId) => get().favorites.some(item =>
         item.source === source
         && item.ang === ang

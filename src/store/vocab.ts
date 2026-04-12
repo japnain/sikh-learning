@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { VocabContext, VocabEntry, VocabKind, VocabReviewState } from '../types'
+import { queueActivityEvent } from './activityEvents'
 
 type ReviewRating = 'again' | 'good' | 'easy'
 
@@ -68,29 +69,63 @@ export const useVocabStore = create<VocabState>()(
   persist(
     (set, get) => ({
       vocab: [],
-      addWord: (entry) => set(state => ({
-        vocab: state.vocab.some(v => v.word === entry.word && (v.kind ?? 'word') === (entry.kind ?? 'word'))
-          ? state.vocab
-          : [...state.vocab, {
-            ...entry,
-            kind: entry.kind ?? 'word',
-            context: entry.context ?? {
-              scripture: entry.scripture,
-              sourceId: entry.sourceId,
-            },
-            review: createInitialReviewState(new Date(entry.savedAt)),
-          }],
-      })),
-      removeWord: (word, kind = 'word') => set(state => ({
-        vocab: state.vocab.filter(v => !(v.word === word && (v.kind ?? 'word') === kind)),
-      })),
-      reviewWord: (word, rating, kind = 'word') => set(state => ({
-        vocab: state.vocab.map(entry => (
-          entry.word === word && (entry.kind ?? 'word') === kind
-            ? { ...entry, review: getNextReviewState(entry.review, rating) }
-            : entry
-        )),
-      })),
+      addWord: (entry) => {
+        const existing = get().vocab.some(v => v.word === entry.word && (v.kind ?? 'word') === (entry.kind ?? 'word'))
+        if (existing) return
+
+        const vocabEntry: VocabEntry = {
+          ...entry,
+          kind: entry.kind ?? 'word',
+          context: entry.context ?? {
+            scripture: entry.scripture,
+            sourceId: entry.sourceId,
+          },
+          review: createInitialReviewState(new Date(entry.savedAt)),
+        }
+
+        set(state => ({
+          vocab: [...state.vocab, vocabEntry],
+        }))
+        queueActivityEvent('vocab.entry.added', {
+          word: vocabEntry.word,
+          kind: vocabEntry.kind,
+          sourceId: vocabEntry.sourceId,
+        }, vocabEntry.savedAt)
+      },
+      removeWord: (word, kind = 'word') => {
+        const removed = get().vocab.find(entry => entry.word === word && (entry.kind ?? 'word') === kind)
+        set(state => ({
+          vocab: state.vocab.filter(v => !(v.word === word && (v.kind ?? 'word') === kind)),
+        }))
+        if (removed) {
+          queueActivityEvent('vocab.entry.removed', {
+            word: removed.word,
+            kind: removed.kind ?? 'word',
+            sourceId: removed.sourceId,
+          })
+        }
+      },
+      reviewWord: (word, rating, kind = 'word') => {
+        const occurredAt = new Date().toISOString()
+        let updated = false
+        set(state => ({
+          vocab: state.vocab.map(entry => {
+            if (entry.word !== word || (entry.kind ?? 'word') !== kind) {
+              return entry
+            }
+
+            updated = true
+            return { ...entry, review: getNextReviewState(entry.review, rating) }
+          }),
+        }))
+        if (updated) {
+          queueActivityEvent('vocab.entry.reviewed', {
+            word,
+            kind,
+            rating,
+          }, occurredAt)
+        }
+      },
       getDueWords: (at = new Date()) => get().vocab.filter(entry => {
         const dueAt = entry.review?.dueAt ?? entry.savedAt
         return new Date(dueAt).getTime() <= at.getTime()

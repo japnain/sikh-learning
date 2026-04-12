@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
+import { queueActivityEvent } from './activityEvents'
 
 interface Session {
   scriptureId: string
@@ -48,11 +49,22 @@ export const useProgressStore = create<ProgressState>()(
 
       clearSession: () => set({ currentSession: null }),
 
-      recordSwipeToday: () => set(state => {
-        const today = todayLocal()
-        const updated = getUpdatedStreak({ streak: state.streak, lastStudied: state.lastStudied }, today)
-        return updated
-      }),
+      recordSwipeToday: () => {
+        const occurredAt = new Date().toISOString()
+        let nextStreak = 0
+        let nextLastStudied: string | null = null
+        set(state => {
+          const today = todayLocal()
+          const updated = getUpdatedStreak({ streak: state.streak, lastStudied: state.lastStudied }, today)
+          nextStreak = updated.streak
+          nextLastStudied = updated.lastStudied
+          return updated
+        })
+        queueActivityEvent('study.swipe-recorded', {
+          streak: nextStreak,
+          lastStudied: nextLastStudied,
+        }, occurredAt)
+      },
     }),
     { name: 'sikh-progress' }
   )

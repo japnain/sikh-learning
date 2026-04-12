@@ -18,6 +18,16 @@ function LocationSpy() {
 
 beforeEach(() => {
   localStorage.clear()
+  Object.defineProperty(window.navigator, 'share', {
+    configurable: true,
+    value: undefined,
+  })
+  Object.defineProperty(window.navigator, 'clipboard', {
+    configurable: true,
+    value: {
+      writeText: vi.fn().mockResolvedValue(undefined),
+    },
+  })
   useScriptureCacheStore.getState().clearAll()
   useVocabStore.setState({ vocab: [] })
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
@@ -105,6 +115,35 @@ describe('Study bookmark button', () => {
     fireEvent.click(screen.getByLabelText(/add favorite/i))
 
     expect(screen.getByText(/added to favorites/i)).toBeInTheDocument()
+  })
+
+  test('share falls back to clipboard with visible feedback when native share fails', async () => {
+    const share = vi.fn().mockRejectedValue(new Error('dismissed'))
+    const writeText = vi.fn().mockResolvedValue(undefined)
+
+    Object.defineProperty(window.navigator, 'share', {
+      configurable: true,
+      value: share,
+    })
+    Object.defineProperty(window.navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    })
+
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => expect(screen.getByLabelText(/^share$/i)).toBeInTheDocument())
+    fireEvent.click(screen.getByLabelText(/^share$/i))
+
+    await waitFor(() => {
+      expect(share).toHaveBeenCalled()
+      expect(writeText).toHaveBeenCalled()
+      expect(screen.getByText(/copied to clipboard instead/i)).toBeInTheDocument()
+    })
   })
 
   test('shows learn return context when opened from Learn', async () => {

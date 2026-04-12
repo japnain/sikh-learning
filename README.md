@@ -44,6 +44,7 @@ npm run dev
 ```bash
 npm run build
 npx vitest run
+npm run insforge:smoke
 ```
 
 ## Data

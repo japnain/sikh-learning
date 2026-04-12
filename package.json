@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "insforge:smoke": "node ./scripts/insforge/smoke-test.mjs",
     "learn:sync-sggs-corpus": "node ./scripts/learn/sync-sggs-corpus.mjs",
     "learn:generate-drafts": "node ./scripts/learn/generate-drafts.mjs",
     "learn:validate": "node ./scripts/learn/validate.mjs",
@@ -16,6 +17,7 @@
     "learn:check-bundle-guard": "node ./scripts/learn/check-bundle-guard.mjs"
   },
   "dependencies": {
+    "@insforge/sdk": "^1.2.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.1",
