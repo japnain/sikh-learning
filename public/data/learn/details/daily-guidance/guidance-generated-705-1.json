@@ -1,0 +1,67 @@
+{
+  "id": "guidance-generated-705-1",
+  "title": "Acting In Egotism, Peace Is Not Obtained",
+  "summary": "Ego is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Acting in egotism, peace is not obtained",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-705",
+    "verseIds": [
+      9525
+    ],
+    "shortMeaning": "Acting in egotism, peace is not obtained",
+    "lifeApplication": "Ego becomes more truthful when acting in egotism, peace is not obtained."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-705"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Acting in egotism, peace is not obtained",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Ego steadies when nanak, the lowly, says embrace love for the Lord.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.3,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.14,
+      "beauty": 3.46,
+      "overall": 3.61
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

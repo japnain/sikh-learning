@@ -1,0 +1,67 @@
+{
+  "id": "collection-purpose-bundle",
+  "title": "Purpose in one shorter sitting",
+  "subtitle": "A compact bundle for purpose",
+  "description": "The day fills up, but the inner reason for being here feels thin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "purpose"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
+    "lifeApplication": "Let one part of the day answer that opportunity directly."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-purpose"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The day fills up, but the inner reason for being here feels thin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A compact bundle for purpose",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 2.77,
+      "specificity": 4.17,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.42
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

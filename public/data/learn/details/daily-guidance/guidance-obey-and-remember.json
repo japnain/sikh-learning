@@ -1,0 +1,66 @@
+{
+  "id": "guidance-obey-and-remember",
+  "title": "Obedience and remembrance belong together",
+  "summary": "This is not service as activity only. It is inward obedience and inward Naam.",
+  "takeaway": "Alignment matters more than motion.",
+  "lifeApplication": "Ask whether your effort today is actually aligned with Guru's direction or merely energetic.",
+  "source": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12942,
+      12944
+    ],
+    "shortMeaning": "The Guru's servant is shaped by obedience and remembrance together.",
+    "lifeApplication": "Let your outer work be held by inner remembrance."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The Guru's servant is shaped by obedience and remembrance together.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "practicalImplication": "Ask whether your effort today is actually aligned with Guru's direction or merely energetic.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.68,
+      "clarity": 3.78,
+      "specificity": 4.28,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.44,
+      "beauty": 3.82,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

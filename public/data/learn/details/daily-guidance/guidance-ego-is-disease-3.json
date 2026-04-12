@@ -1,0 +1,68 @@
+{
+  "id": "guidance-ego-is-disease-3",
+  "title": "If The Lord Grants His Grace, One",
+  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
+  "takeaway": "If the Lord grants His Grace, one acts according to the Teachings of the",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963,
+      20964
+    ],
+    "shortMeaning": "Ego is a chronic disease, but it contains its own cure as; if the Lord grants His Grace, one acts according to the Teachings",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Ego is a chronic disease, but it contains its own cure as; if the Lord grants His Grace, one acts according to the Teachings",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "The cure begins when ego is seen as illness rather than identity.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 2.7,
+      "specificity": 4.72,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.23,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

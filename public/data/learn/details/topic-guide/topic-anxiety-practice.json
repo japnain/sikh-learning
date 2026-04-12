@@ -1,0 +1,112 @@
+{
+  "id": "topic-anxiety-practice",
+  "title": "When the mind is anxious as a steady practice",
+  "shortTitle": "Anxiety · Practice",
+  "category": "most-needed",
+  "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+  "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The line becomes durable when it is practiced, not merely admired.",
+  "practicalReflection": "Peace begins when the mind stops arguing with what already stands inside Hukam. Read one line aloud before trying to solve the whole future.",
+  "actionPrompt": "Read one line aloud before trying to solve the whole future. Repeat what you can actually keep.",
+  "searchTerms": [
+    "anxiety",
+    "stress",
+    "overthinking",
+    "worry",
+    "panic",
+    "spiraling",
+    "practice",
+    "habit",
+    "steady return"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          11
+        ],
+        "shortMeaning": "By His Command, bodies are created; His Command cannot be described",
+        "lifeApplication": "Peace begins when the mind stops arguing with what already stands inside Hukam. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: by His Command, bodies are created; His Command cannot be described."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21091
+        ],
+        "shortMeaning": "You are the Creator Lord; I can do nothing. Even if I",
+        "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-steadied-by-creator",
+        "verseIds": [
+          30994
+        ],
+        "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no",
+        "lifeApplication": "The answer to fear is not bravado. It is remembrance of the One already holding you. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The line becomes durable when it is practiced, not merely admired. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-suffering-as-medicine",
+    "shabad-steadied-by-creator"
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anxiety-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey",
+    "collection-anxiety-bundle"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:anxiety:practice",
+    "evidence": {
+      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The line becomes durable when it is practiced, not merely admired.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "The mind keeps rehearsing danger before the future has even arrived. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. Repeat what you can actually keep.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.86,
+      "beauty": 1.5,
+      "overall": 3.06
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "repeats phrasing too closely",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

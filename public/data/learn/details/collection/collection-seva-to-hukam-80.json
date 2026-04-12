@@ -1,0 +1,83 @@
+{
+  "id": "collection-seva-to-hukam-80",
+  "title": "Seva to Hukam",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "seva",
+    "hukam"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12947,
+      12948
+    ],
+    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
+    "lifeApplication": "Serve without building a story about being the servant."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-selfless-service"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seva"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-selfless-service"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-hukam"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service",
+    "shabad-hukam-inside-everything",
+    "shabad-work-give-know-the-path",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.65,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

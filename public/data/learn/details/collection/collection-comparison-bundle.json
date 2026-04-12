@@ -1,0 +1,66 @@
+{
+  "id": "collection-comparison-bundle",
+  "title": "Comparison in one shorter sitting",
+  "subtitle": "A compact bundle for comparison",
+  "description": "The mind keeps measuring worth and direction against other people. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "comparison"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-65",
+    "verseIds": [
+      758
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:",
+    "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-65-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-comparison"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-detached-and-steady"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind keeps measuring worth and direction against other people. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "A compact bundle for comparison",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.15,
+      "specificity": 4.17,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

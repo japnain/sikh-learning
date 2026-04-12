@@ -1,0 +1,67 @@
+{
+  "id": "guidance-patience-ripens-into-honor-1",
+  "title": "Dhadha: The Mind's Wanderings Cease, When One",
+  "summary": "Patience is named plainly here before the mind has time to decorate it.",
+  "takeaway": "The mind's wanderings cease, when one comes to dwell in the Society",
+  "lifeApplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239
+    ],
+    "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society",
+    "lifeApplication": "Patience becomes more truthful when the mind's wanderings cease, when one comes to dwell in the Society."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-patience-ripens-into-honor"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The mind's wanderings cease, when one comes to dwell in the Society",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "Patience becomes luminous when it begins listening for Naam.",
+      "practicalImplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.02,
+      "clarity": 2.58,
+      "specificity": 4.42,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.27,
+      "beauty": 3.1,
+      "overall": 3.51
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

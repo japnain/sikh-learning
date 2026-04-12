@@ -1,0 +1,68 @@
+{
+  "id": "guidance-ego-is-disease-2",
+  "title": "Ego Is A Chronic Disease, But It",
+  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20961,
+      20963
+    ],
+    "shortMeaning": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Where does ego come from? How can it be removed?; ego is a chronic disease, but it contains its own cure as",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "The cure begins when ego is seen as illness rather than identity.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 1.5,
+      "specificity": 4.67,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.36,
+      "beauty": 2.16,
+      "overall": 3.23
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

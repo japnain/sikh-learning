@@ -1,0 +1,64 @@
+{
+  "id": "guidance-generated-337-2",
+  "title": "Those Who Meditate On The True One",
+  "summary": "Self-Worth is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
+  "lifeApplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-337",
+    "verseIds": [
+      4847,
+      4852
+    ],
+    "shortMeaning": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-generated-337"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Maajh, Third Mehla:; those who meditate on the True One are attuned to Truth; they",
+      "emotionalState": "unworthy, rejected, fragile",
+      "turn": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+      "practicalImplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.73,
+      "clarity": 2.34,
+      "specificity": 4.51,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 3.15,
+      "overall": 3.47
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

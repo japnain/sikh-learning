@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-736-3",
+  "title": "He Alone Is The Lord's Servant, O",
+  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
+  "takeaway": "He alone is the Lord's servant, O Nanak, who is so blessed",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-736",
+    "verseIds": [
+      10374,
+      10394
+    ],
+    "shortMeaning": "To know the way, through the Guru, is equal to millions of; he alone is the Lord's servant, O Nanak, who is so blessed",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-736"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "To know the way, through the Guru, is equal to millions of; he alone is the Lord's servant, O Nanak, who is so blessed",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Ego steadies when he alone is the Lord's servant, O Nanak, who is so blessed.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.25,
+      "clarity": 2.58,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.11,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import { COLLECTION_BY_ID } from "../../data/learnContent"
+import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
 import type { LearnContentKind, LearnTab } from "../../types"
 import { buildLearnDetailPath, buildLearnTabPath, type LearnRailChip } from "../../utils/learnRails"
@@ -33,6 +33,7 @@ type CollectionStepContext = {
 }
 
 function getBackContext(
+  collectionById: Record<string, { id: string; title: string }>,
   from: string | null,
   defaultFrom: string,
   fallbackLabel: string,
@@ -42,7 +43,7 @@ function getBackContext(
 
   if (resolvedFrom.startsWith("collection-")) {
     const collectionId = resolvedFrom.slice("collection-".length)
-    const collection = COLLECTION_BY_ID[collectionId]
+    const collection = collectionById[collectionId]
     return {
       label: collection ? `Back to ${collection.title}` : "Back to Collection",
       fallbackPath: collection ? buildLearnDetailPath("collection", collection.id) : buildLearnTabPath("today"),
@@ -88,6 +89,7 @@ function getBackContext(
 }
 
 function getCollectionStepContext(
+  collectionById: Record<string, { id: string; title: string; items: Array<{ kind: Exclude<LearnContentKind, "collection">; id: string }> }>,
   from: string,
   itemKind: LearnContentKind,
   itemId: string
@@ -95,7 +97,7 @@ function getCollectionStepContext(
   if (!from.startsWith("collection-") || itemKind === "collection") return null
 
   const collectionId = from.slice("collection-".length)
-  const collection = COLLECTION_BY_ID[collectionId]
+  const collection = collectionById[collectionId]
   if (!collection) return null
 
   const index = collection.items.findIndex(item => item.kind === itemKind && item.id === itemId)
@@ -128,6 +130,7 @@ export default function LearnDetailShell({
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
+  const { catalog } = useLearnCatalog()
   const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const savedItemIds = useLearningStore(state => state.learnState.savedItemIds)
   const viewedItems = useLearningStore(state => state.learnState.viewedItems)
@@ -135,10 +138,11 @@ export default function LearnDetailShell({
 
   const saved = savedItemIds.includes(itemId)
   const viewed = viewedItems.some(item => item.itemId === itemId)
-  const backContext = getBackContext(searchParams.get("from"), defaultFrom, sectionLabel, sectionTab)
+  const collectionById = catalog?.collectionById ?? {}
+  const backContext = getBackContext(collectionById, searchParams.get("from"), defaultFrom, sectionLabel, sectionTab)
   const collectionStepContext = useMemo(
-    () => getCollectionStepContext(backContext.resolvedFrom, itemKind, itemId),
-    [backContext.resolvedFrom, itemId, itemKind]
+    () => getCollectionStepContext(collectionById, backContext.resolvedFrom, itemKind, itemId),
+    [backContext.resolvedFrom, collectionById, itemId, itemKind]
   )
 
   useEffect(() => {

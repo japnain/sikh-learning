@@ -1,0 +1,68 @@
+{
+  "id": "guidance-buy-what-goes-with-you",
+  "title": "Carry something that survives departure.",
+  "summary": "Much of life is spent curating what cannot accompany you. Guru asks for a different kind of asset.",
+  "takeaway": "Build a life whose profit is portable.",
+  "lifeApplication": "Ask whether today's effort is increasing what lasts or merely polishing what will be left behind.",
+  "source": {
+    "deepDiveId": "shabad-buy-what-goes-with-you",
+    "verseIds": [
+      933,
+      934,
+      937
+    ],
+    "shortMeaning": "Take with you the merchandise that actually crosses the threshold.",
+    "lifeApplication": "Let praise, truth, and Naam become real assets."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you",
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Take with you the merchandise that actually crosses the threshold.",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "Invest in what crosses the threshold with you.",
+      "practicalImplication": "Ask whether today's effort is increasing what lasts or merely polishing what will be left behind.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.29,
+      "clarity": 3.9,
+      "specificity": 4.86,
+      "emotionalHonesty": 3,
+      "usefulness": 2.44,
+      "beauty": 3.9,
+      "overall": 3.79
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

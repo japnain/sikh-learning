@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Local scratch artifacts
+.playwright-cli/
+output/
+cache.dat
+.git-broken-*/
+scripts/learn/.cache/

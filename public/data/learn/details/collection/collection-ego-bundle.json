@@ -1,0 +1,67 @@
+{
+  "id": "collection-ego-bundle",
+  "title": "Ego in one shorter sitting",
+  "subtitle": "A compact bundle for ego",
+  "description": "The self keeps pushing itself to the center of the room. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "ego"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963,
+      20964
+    ],
+    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+    "lifeApplication": "Move from self-justification toward teachability."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-ego-cure"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-ego"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-generated-1"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The self keeps pushing itself to the center of the room. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "A compact bundle for ego",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.02,
+      "specificity": 4.13,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.46
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

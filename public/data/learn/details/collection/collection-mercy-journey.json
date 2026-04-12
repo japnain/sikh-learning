@@ -1,0 +1,79 @@
+{
+  "id": "collection-mercy-journey",
+  "title": "From Mercy to steadier practice",
+  "subtitle": "A deliberate path through mercy",
+  "description": "Guru keeps mercy close to gift, nearness, and return. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "mercy",
+    "gratitude"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      501,
+      503
+    ],
+    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
+    "lifeApplication": "Return is possible because grace precedes your recovery."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-all-belong-to-you"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-66"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-generated-66",
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "A deliberate path through mercy",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.52,
+      "specificity": 4.23,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.62
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

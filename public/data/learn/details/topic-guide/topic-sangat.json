@@ -1,0 +1,105 @@
+{
+  "id": "topic-sangat",
+  "title": "When you need company that changes you",
+  "shortTitle": "Sangat",
+  "category": "practice",
+  "issueStatement": "You are trying to sustain a spiritual life in isolation, or staying near company that intensifies noise instead of remembrance.",
+  "centralInsight": "Sangat in Gurbani is not generic belonging. It is relational placement that redirects the mind toward Naam, humility, and steadiness.",
+  "practicalReflection": "Not every circle can cool the body. Some company makes the fire bigger. Guru tells you to notice the difference.",
+  "actionPrompt": "Move one step closer to living company that makes remembrance easier.",
+  "searchTerms": [
+    "sangat",
+    "community",
+    "company",
+    "belonging",
+    "friendship",
+    "good company"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          525,
+          527
+        ],
+        "shortMeaning": "Human life is the chance, and saint company is part of how that chance is used well.",
+        "lifeApplication": "Do not separate purpose from the company that trains it."
+      },
+      "explanation": "This keeps sangat tied to the actual work of life."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+        "verseIds": [
+          924,
+          930
+        ],
+        "shortMeaning": "Sat Sangat is not accessory; it changes what becomes possible in the crossing.",
+        "lifeApplication": "Right company can alter the whole emotional forecast."
+      },
+      "explanation": "These lines make company practical, not merely idealistic."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3899,
+          3900
+        ],
+        "shortMeaning": "Mercy places the seeker near the saint, and the whole body cools.",
+        "lifeApplication": "Some relief comes not from explanation, but from placement."
+      },
+      "explanation": "Sangat is presented as gift and remedy together."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:sangat",
+    "evidence": {
+      "coreClaim": "Sangat in Gurbani is not generic belonging. It is relational placement that redirects the mind toward Naam, humility, and steadiness.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "You are trying to sustain a spiritual life in isolation, or staying near company that intensifies noise instead of remembrance.",
+      "practicalImplication": "Move one step closer to living company that makes remembrance easier.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.22,
+      "beauty": 4.06,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

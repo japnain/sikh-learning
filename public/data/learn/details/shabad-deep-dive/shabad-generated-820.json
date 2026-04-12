@@ -1,0 +1,119 @@
+{
+  "id": "shabad-generated-820",
+  "title": "Speech In Gurbani",
+  "subtitle": "Raag Gauree · Ang 256",
+  "summary": "Speech is carried here from  toward - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,.",
+  "whyItMatters": "This shabad is useful when life feels sharp, loose-tongued, careless, because it keeps speech inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Speech steadies when - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,.",
+  "themes": [
+    "speech",
+    "sangat",
+    "anxiety"
+  ],
+  "emotionalStates": [
+    "sharp",
+    "loose-tongued",
+    "careless"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 820,
+    "ang": 256,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      3
+    ],
+    "verse_ids": [
+      11188,
+      11189,
+      11190
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11188,
+      "gurmukhi": "ਸਲੋਕੁ ॥",
+      "transliteration": "salok ||",
+      "translation": "Shalok:"
+    },
+    {
+      "verseId": 11189,
+      "gurmukhi": "ਜਹ ਸਾਧੂ ਗੋਬਿਦ ਭਜਨੁ ਕੀਰਤਨੁ ਨਾਨਕ ਨੀਤ ॥",
+      "transliteration": "jeh saadhoo gobidh bhajan keeratan naanak neet ||",
+      "translation": "Where the Holy people constantly vibrate the Kirtan of the Praises of the Lord of the Universe, O Nanak"
+    },
+    {
+      "verseId": 11190,
+      "gurmukhi": "ਣਾ ਹਉ ਣਾ ਤੂੰ ਣਹ ਛੁਟਹਿ ਨਿਕਟਿ ਨ ਜਾਈਅਹੁ ਦੂਤ ॥੧॥",
+      "transliteration": "naa hau naa too(n) neh chhuTeh nikaT na jaieeahu dhoot ||1||",
+      "translation": "- the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death, or else neither you nor I shall escape!\"\"||1||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: .",
+    "The middle movement deepens the correction by holding the mind inside where the Holy people constantly vibrate the Kirtan of the Praises of the Lord.",
+    "The closing movement leaves a return you can actually keep: - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,."
+  ],
+  "keyVerseIds": [
+    11188,
+    11189,
+    11190
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Speech is carried here from  toward - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,.",
+      "emotionalState": "sharp, loose-tongued, careless",
+      "turn": "The middle movement deepens the correction by holding the mind inside where the Holy people constantly vibrate the Kirtan of the Praises of the Lord.",
+      "practicalImplication": "Speech steadies when - the Righteous Judge says, \"\"Do not approach that place, O Messenger of Death,.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.04,
+      "specificity": 4.78,
+      "emotionalHonesty": 4,
+      "usefulness": 2.22,
+      "beauty": 3.48,
+      "overall": 3.58
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

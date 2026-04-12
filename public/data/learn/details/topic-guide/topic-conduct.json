@@ -1,0 +1,107 @@
+{
+  "id": "topic-conduct",
+  "title": "When life and practice do not match",
+  "shortTitle": "Conduct",
+  "category": "practice",
+  "issueStatement": "Your declared values and your repeated habits no longer feel like the same life.",
+  "centralInsight": "Pure conduct in Gurbani is not image management. It is what happens when Naam, Sangat, labor, and speech start agreeing with one another.",
+  "practicalReflection": "Conduct is where admiration either becomes form or becomes obedience.",
+  "actionPrompt": "Choose one practice today that closes the gap between what you say matters and what you actually do.",
+  "searchTerms": [
+    "conduct",
+    "lifestyle",
+    "practice",
+    "hypocrisy",
+    "integrity",
+    "pure conduct"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "verseIds": [
+          11742,
+          11743,
+          11744,
+          11745
+        ],
+        "shortMeaning": "The better religion is recognized by purified conduct and the removal of inner filth.",
+        "lifeApplication": "Practice becomes real when it starts changing behavior."
+      },
+      "explanation": "Guru defines the standard instead of leaving it to self-branding."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12943,
+          12944,
+          12947
+        ],
+        "shortMeaning": "Do not advertise yourself; keep Naam in the heart and serve without reward-hunger.",
+        "lifeApplication": "Conduct is often revealed by what you still want to be seen for."
+      },
+      "explanation": "Seva becomes one test of whether values are embodied or staged."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-buy-what-goes-with-you",
+        "verseIds": [
+          934,
+          937,
+          939
+        ],
+        "shortMeaning": "Choose what lasts, carry praise, and refuse false deals that corrode the self.",
+        "lifeApplication": "Conduct is also economic: what are you really buying with your life?"
+      },
+      "explanation": "This keeps conduct tied to consequence, not aesthetics."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-selfless-service",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "conduct",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:conduct",
+    "evidence": {
+      "coreClaim": "Pure conduct in Gurbani is not image management. It is what happens when Naam, Sangat, labor, and speech start agreeing with one another.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "Your declared values and your repeated habits no longer feel like the same life.",
+      "practicalImplication": "Choose one practice today that closes the gap between what you say matters and what you actually do.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 3.36,
+      "beauty": 3.9,
+      "overall": 3.97
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

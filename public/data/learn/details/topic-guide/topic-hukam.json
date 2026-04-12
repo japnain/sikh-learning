@@ -1,0 +1,108 @@
+{
+  "id": "topic-hukam",
+  "title": "When you need to return to Hukam",
+  "shortTitle": "Hukam",
+  "category": "inner-work",
+  "issueStatement": "The mind is pushing hard against reality, trying to secure itself through control, explanation, or resistance.",
+  "centralInsight": "Hukam is not fatalism. It is the truthful frame within which the self becomes quieter and more teachable.",
+  "practicalReflection": "Hukam does not erase action. It purifies the spirit in which action happens.",
+  "actionPrompt": "Name where you are acting faithfully and where you are merely fighting what already is.",
+  "searchTerms": [
+    "hukam",
+    "control",
+    "surrender",
+    "acceptance",
+    "why is this happening"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          11,
+          15,
+          16
+        ],
+        "shortMeaning": "Everything stands inside Hukam, and understanding that quiets ego.",
+        "lifeApplication": "The shift is not passivity. It is re-entering reality as it is."
+      },
+      "explanation": "This is the core Hukam text in the current catalog."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21091,
+          21096
+        ],
+        "shortMeaning": "The Creator acts beyond the self's imagined authorship.",
+        "lifeApplication": "Hukam softens the belief that everything rests on your own force."
+      },
+      "explanation": "These lines help Hukam feel lived, not theoretical."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-steadied-by-creator",
+        "verseIds": [
+          30988,
+          30990
+        ],
+        "shortMeaning": "The Creator who made the world also tends it.",
+        "lifeApplication": "Trust in Hukam becomes easier when care is remembered alongside command."
+      },
+      "explanation": "The world is not merely governed; it is also cared for."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-suffering-as-medicine",
+    "shabad-steadied-by-creator"
+  ],
+  "relatedTopicIds": [
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity",
+    "collection-control-to-release"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "hukam",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:hukam",
+    "evidence": {
+      "coreClaim": "Hukam is not fatalism. It is the truthful frame within which the self becomes quieter and more teachable.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "The mind is pushing hard against reality, trying to secure itself through control, explanation, or resistance.",
+      "practicalImplication": "Name where you are acting faithfully and where you are merely fighting what already is.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.7,
+      "beauty": 4.62,
+      "overall": 3.96
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

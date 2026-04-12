@@ -1,0 +1,110 @@
+{
+  "id": "topic-speech-repair",
+  "title": "When speech keeps outrunning wisdom after the mind has slipped",
+  "shortTitle": "Speech · Repair",
+  "category": "practice",
+  "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+  "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+  "practicalReflection": "Guard the tongue, and the heart begins to clear. Refuse one unnecessary sharp word before it leaves the mouth.",
+  "actionPrompt": "Refuse one unnecessary sharp word before it leaves the mouth. Choose the next truthful return instead of rehearsing the failure.",
+  "searchTerms": [
+    "speech",
+    "gossip",
+    "slander",
+    "tongue",
+    "words",
+    "talking",
+    "repair",
+    "return",
+    "after slipping"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-speak-what-brings-honor",
+        "verseIds": [
+          634
+        ],
+        "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating",
+        "lifeApplication": "Guard the tongue, and the heart begins to clear. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "verseIds": [
+          1290
+        ],
+        "shortMeaning": "Her speech is sweet, and her way of life is humble. She",
+        "lifeApplication": "Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Soft speech becomes believable when the ego has begun to bow. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+        "verseIds": [
+          11745
+        ],
+        "shortMeaning": "is to erase the filth of the dirty mind in the Company",
+        "lifeApplication": "The best religion sounds like praise and looks like clean conduct. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru makes speech answer to praise, restraint, and truthfulness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-ambrosial-speech-pure-conduct"
+  ],
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:speech:repair",
+    "evidence": {
+      "coreClaim": "Guru makes speech answer to praise, restraint, and truthfulness. Gurbani keeps repair close to remembrance, humility, and return instead of theatre.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "Words arrive before the heart has been cleaned enough to carry them well. The problem now is not only temptation or pain, but what to do after the slip has already happened.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Choose the next truthful return instead of rehearsing the failure.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.66,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.93,
+      "beauty": 2.34,
+      "overall": 3.45
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

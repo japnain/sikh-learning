@@ -1,0 +1,292 @@
+{
+  "generatedAt": "2026-04-12T03:50:24.241Z",
+  "counts": {
+    "dailyGuidance": 240,
+    "shabadDeepDives": 100,
+    "topicGuides": 100,
+    "collections": 100,
+    "crossLinks": 3921,
+    "readyForLaunch": true
+  },
+  "averageCrossLinksPerItem": 7.26,
+  "editorial": {
+    "voiceVersion": "sggs-editorial-v1",
+    "statuses": {
+      "draft": 29,
+      "approved": 430,
+      "locked": 81
+    },
+    "draftCount": 29,
+    "lowScoringItems": [
+      {
+        "id": "topic-greed-practice",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 2.87,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "topic-ego-practice",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 2.94,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "topic-greed-daily",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 2.94,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-comparison-practice",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 2.95,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "topic-discipline-practice",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 2.95,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "topic-purpose-daily",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 2.97,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-purpose-practice",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 2.97,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "collection-conduct-and-clean-speech",
+        "kind": "collection",
+        "status": "approved",
+        "overall": 2.97,
+        "issues": [
+          "runs too long at the sentence level"
+        ]
+      },
+      {
+        "id": "guidance-work-give-know-the-path-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 2.98,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "guidance-generated-462-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 2.98,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "guidance-search-ends-in-saint-company-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 2.99,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-greed-pressure",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 2.99,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "guidance-generated-643-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-ego-daily",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-seva-practice",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 3,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "guidance-conquer-the-mind-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.01,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "guidance-generated-231-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.01,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-comparison-daily",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3.01,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "guidance-detached-and-steady-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.02,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-anxiety-pressure",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3.02,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-purpose-pressure",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3.02,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-forgiveness-practice",
+        "kind": "topic-guide",
+        "status": "draft",
+        "overall": 3.02,
+        "issues": [
+          "leans on template-heavy phrasing",
+          "repeats phrasing too closely",
+          "sounds interchangeable with other generated entries"
+        ]
+      },
+      {
+        "id": "guidance-generated-179-2",
+        "kind": "daily-guidance",
+        "status": "approved",
+        "overall": 3.03,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-ego-pressure",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3.03,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      },
+      {
+        "id": "topic-comparison-pressure",
+        "kind": "topic-guide",
+        "status": "approved",
+        "overall": 3.04,
+        "issues": [
+          "repeats phrasing too closely"
+        ]
+      }
+    ],
+    "duplicateWarnings": []
+  },
+  "hardFailures": [],
+  "warnings": [
+    "Editorial review left 29 items in draft status for future revision",
+    "Editorial review: topic-guide topic-greed-practice scored 2.87",
+    "Editorial review: topic-guide topic-ego-practice scored 2.94",
+    "Editorial review: topic-guide topic-greed-daily scored 2.94",
+    "Editorial review: topic-guide topic-comparison-practice scored 2.95",
+    "Editorial review: topic-guide topic-discipline-practice scored 2.95",
+    "Editorial review: topic-guide topic-purpose-daily scored 2.97",
+    "Editorial review: topic-guide topic-purpose-practice scored 2.97",
+    "Editorial review: collection collection-conduct-and-clean-speech scored 2.97",
+    "Editorial review: daily-guidance guidance-work-give-know-the-path-2 scored 2.98",
+    "Editorial review: daily-guidance guidance-generated-462-2 scored 2.98",
+    "Editorial review: daily-guidance guidance-search-ends-in-saint-company-2 scored 2.99",
+    "Editorial review: topic-guide topic-greed-pressure scored 2.99",
+    "Editorial review: daily-guidance guidance-generated-643-2 scored 3.00",
+    "Editorial review: topic-guide topic-ego-daily scored 3.00",
+    "Editorial review: topic-guide topic-seva-practice scored 3.00",
+    "Editorial review: daily-guidance guidance-conquer-the-mind-2 scored 3.01",
+    "Editorial review: daily-guidance guidance-generated-231-2 scored 3.01",
+    "Editorial review: topic-guide topic-comparison-daily scored 3.01",
+    "Editorial review: daily-guidance guidance-detached-and-steady-2 scored 3.02",
+    "Editorial review: topic-guide topic-anxiety-pressure scored 3.02",
+    "Editorial review: topic-guide topic-purpose-pressure scored 3.02",
+    "Editorial review: topic-guide topic-forgiveness-practice scored 3.02",
+    "Editorial review: daily-guidance guidance-generated-179-2 scored 3.03",
+    "Editorial review: topic-guide topic-ego-pressure scored 3.03",
+    "Editorial review: topic-guide topic-comparison-pressure scored 3.04"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "topic-ego",
+  "title": "When ego insists on the center",
+  "shortTitle": "Ego",
+  "category": "most-needed",
+  "issueStatement": "Everything loops back to the self: my image, my hurt, my control, my place.",
+  "centralInsight": "Gurbani does not treat ego as personality. It treats ego as disease, bondage, and distortion.",
+  "practicalReflection": "The goal is not self-erasure. It is truthful self-placement inside Hukam and Guru's Shabad.",
+  "actionPrompt": "Notice one sentence in your head today that begins and ends with the self. Lay it beside the shabad honestly.",
+  "searchTerms": [
+    "ego",
+    "haumai",
+    "pride",
+    "self-importance",
+    "defensive"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-ego-is-disease",
+        "verseIds": [
+          20959,
+          20963
+        ],
+        "shortMeaning": "Ego shapes action and becomes chronic illness.",
+        "lifeApplication": "Seeing ego clearly is part of grace, not failure."
+      },
+      "explanation": "Guru Angad is exact: ego is not a small flaw on top of an otherwise neutral self."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          16
+        ],
+        "shortMeaning": "Understanding Hukam loosens ego's speech.",
+        "lifeApplication": "The self becomes quieter when reality is no longer centered around it."
+      },
+      "explanation": "Hukam is not abstract theology here. It is a direct solvent for haumai."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60338,
+          60339
+        ],
+        "shortMeaning": "Real gratitude lowers the self before mercy.",
+        "lifeApplication": "Mercy becomes visible when self-importance thins out."
+      },
+      "explanation": "Humility here is not performative modesty. It is truthful dependence."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-hukam-inside-everything",
+    "shabad-gratitude-restores-naam"
+  ],
+  "relatedTopicIds": [
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey",
+    "collection-ego-bundle"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 9,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:ego",
+    "evidence": {
+      "coreClaim": "Gurbani does not treat ego as personality. It treats ego as disease, bondage, and distortion.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "Everything loops back to the self: my image, my hurt, my control, my place.",
+      "practicalImplication": "Notice one sentence in your head today that begins and ends with the self. Lay it beside the shabad honestly.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.01,
+      "beauty": 4.14,
+      "overall": 3.97
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

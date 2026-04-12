@@ -1,0 +1,67 @@
+{
+  "id": "guidance-buy-what-goes-with-you-1",
+  "title": "Buy That Object Which Will Go Along",
+  "summary": "Discipline is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Buy that object which will go along with you",
+  "lifeApplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-buy-what-goes-with-you",
+    "verseIds": [
+      934
+    ],
+    "shortMeaning": "Buy that object which will go along with you",
+    "lifeApplication": "Discipline becomes more truthful when buy that object which will go along with you."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-buy-what-goes-with-you"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Buy that object which will go along with you",
+      "emotionalState": "distracted, ambitious, grasping",
+      "turn": "Invest in what crosses the threshold with you.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 3.06,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.79,
+      "beauty": 3.34,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

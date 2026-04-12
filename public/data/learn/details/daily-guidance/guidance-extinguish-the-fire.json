@@ -1,0 +1,68 @@
+{
+  "id": "guidance-extinguish-the-fire",
+  "title": "Doubt is not sophistication if it is scorching you.",
+  "summary": "A mind can rehearse questions so long that the questions begin to feel like identity. Guru names that state as inner fire.",
+  "takeaway": "Not every unresolved thought deserves lifelong tenancy.",
+  "lifeApplication": "Write down the question you keep circling, then write the instruction you already know and keep delaying.",
+  "source": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      921,
+      922
+    ],
+    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
+    "lifeApplication": "Move from circling to obedience."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "The fire is inside, and the Guru-word is meant to address the inside first.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "Stop circling and let Guru's word take residence.",
+      "practicalImplication": "Write down the question you keep circling, then write the instruction you already know and keep delaying.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.1,
+      "clarity": 3.9,
+      "specificity": 4.32,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

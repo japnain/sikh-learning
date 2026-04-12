@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-3-2",
+  "title": "Some Sing That He Watches Over Us,",
+  "summary": "Control is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Some sing of His Power-who has that Power?; some sing that He watches over us, face to face, ever-present",
+  "lifeApplication": "Release one demand that peace must wait for total control. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-3",
+    "verseIds": [
+      17,
+      24
+    ],
+    "shortMeaning": "Some sing of His Power-who has that Power?; some sing that He watches over us, face to face, ever-present",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-control"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-3"
+  ],
+  "relatedCollectionIds": [
+    "collection-control-to-release",
+    "collection-control-journey"
+  ],
+  "rotation": {
+    "theme": "control",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Some sing of His Power-who has that Power?; some sing that He watches over us, face to face, ever-present",
+      "emotionalState": "gripping, controlling, tense",
+      "turn": "Control steadies when o Nanak, He blossoms forth, Carefree and Untroubled.",
+      "practicalImplication": "Release one demand that peace must wait for total control. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 0.87,
+      "specificity": 4.68,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 2.25,
+      "overall": 3.18
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

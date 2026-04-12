@@ -1,0 +1,157 @@
+{
+  "id": "shabad-ego-is-disease",
+  "title": "Ego Is the Disease and the Clue",
+  "subtitle": "Raag Aasaa",
+  "summary": "Guru Angad maps ego honestly: where it arises, what it does, and how grace turns the same diagnosis into a cure.",
+  "whyItMatters": "It is a precise shabad for anger, defensiveness, comparison, and the feeling that every conflict is happening outside the self.",
+  "takeaway": "The cure begins when ego is seen as illness rather than identity.",
+  "themes": [
+    "ego",
+    "anger",
+    "self-awareness"
+  ],
+  "emotionalStates": [
+    "defensive",
+    "offended",
+    "self-important"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 7,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 1706,
+    "ang": 466,
+    "guru": "Guru Angad Dev Ji",
+    "raag": "Raag Aasaa",
+    "line_range": [
+      1,
+      8
+    ],
+    "verse_ids": [
+      20958,
+      20959,
+      20960,
+      20961,
+      20962,
+      20963,
+      20964,
+      20965
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 20958,
+      "gurmukhi": "ਮਹਲਾ ੨ ॥",
+      "transliteration": "mahalaa doojaa ||",
+      "translation": "Second Mehla:"
+    },
+    {
+      "verseId": 20959,
+      "gurmukhi": "ਹਉਮੈ ਏਹਾ ਜਾਤਿ ਹੈ ਹਉਮੈ ਕਰਮ ਕਮਾਹਿ ॥",
+      "transliteration": "haumai ehaa jaat hai haumai karam kamaeh ||",
+      "translation": "This is the nature of ego, that people perform their actions in ego."
+    },
+    {
+      "verseId": 20960,
+      "gurmukhi": "ਹਉਮੈ ਏਈ ਬੰਧਨਾ ਫਿਰਿ ਫਿਰਿ ਜੋਨੀ ਪਾਹਿ ॥",
+      "transliteration": "haumai eiee ba(n)dhanaa fir fir jonee paeh ||",
+      "translation": "This is the bondage of ego, that time and time again, they are reborn."
+    },
+    {
+      "verseId": 20961,
+      "gurmukhi": "ਹਉਮੈ ਕਿਥਹੁ ਊਪਜੈ ਕਿਤੁ ਸੰਜਮਿ ਇਹ ਜਾਇ ॥",
+      "transliteration": "haumai kithahu uoopajai kit sa(n)jam ieh jai ||",
+      "translation": "Where does ego come from? How can it be removed?"
+    },
+    {
+      "verseId": 20962,
+      "gurmukhi": "ਹਉਮੈ ਏਹੋ ਹੁਕਮੁ ਹੈ ਪਇਐ ਕਿਰਤਿ ਫਿਰਾਹਿ ॥",
+      "transliteration": "haumai eho hukam hai piaai kirat firaeh ||",
+      "translation": "This ego exists by the Lord's Order; people wander according to their past actions."
+    },
+    {
+      "verseId": 20963,
+      "gurmukhi": "ਹਉਮੈ ਦੀਰਘ ਰੋਗੁ ਹੈ ਦਾਰੂ ਭੀ ਇਸੁ ਮਾਹਿ ॥",
+      "transliteration": "haumai dheeragh rog hai dhaaroo bhee is maeh ||",
+      "translation": "Ego is a chronic disease, but it contains its own cure as well."
+    },
+    {
+      "verseId": 20964,
+      "gurmukhi": "ਕਿਰਪਾ ਕਰੇ ਜੇ ਆਪਣੀ ਤਾ ਗੁਰ ਕਾ ਸਬਦੁ ਕਮਾਹਿ ॥",
+      "transliteration": "kirapaa kare je aapanee taa gur kaa sabadh kamaeh ||",
+      "translation": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad."
+    },
+    {
+      "verseId": 20965,
+      "gurmukhi": "ਨਾਨਕੁ ਕਹੈ ਸੁਣਹੁ ਜਨਹੁ ਇਤੁ ਸੰਜਮਿ ਦੁਖ ਜਾਹਿ ॥੨॥",
+      "transliteration": "naanak kahai sunahu janahu it sa(n)jam dhukh jaeh ||2||",
+      "translation": "Nanak says, listen, people: in this way, troubles depart. ||2||"
+    }
+  ],
+  "structure": [
+    "Describes ego as a pattern shaping action and rebirth.",
+    "Asks directly how ego is removed rather than merely condemned.",
+    "Answers with grace and the lived discipline of Guru's Shabad."
+  ],
+  "keyVerseIds": [
+    20961,
+    20963,
+    20964
+  ],
+  "relatedGuidanceIds": [
+    "guidance-ego-cure",
+    "guidance-ego-is-disease-1",
+    "guidance-ego-is-disease-2",
+    "guidance-ego-is-disease-3"
+  ],
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey",
+    "collection-ego-bundle"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 30,
+    "priority": 9,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "Guru Angad maps ego honestly: where it arises, what it does, and how grace turns the same diagnosis into a cure.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "Asks directly how ego is removed rather than merely condemned.",
+      "practicalImplication": "The cure begins when ego is seen as illness rather than identity.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.22,
+      "beauty": 3.9,
+      "overall": 3.85
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

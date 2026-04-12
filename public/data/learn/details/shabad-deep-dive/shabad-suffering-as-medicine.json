@@ -1,0 +1,152 @@
+{
+  "id": "shabad-suffering-as-medicine",
+  "title": "When Suffering Becomes Medicine",
+  "subtitle": "Raag Aasaa",
+  "summary": "Guru Nanak does not glorify pain. He exposes how comfort can sedate remembrance while suffering can reopen dependence on the Creator.",
+  "whyItMatters": "This shabad reframes hard seasons without trivializing them and helps a user move from resentment toward reverent honesty.",
+  "takeaway": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+  "themes": [
+    "reflection",
+    "anxiety",
+    "gratitude"
+  ],
+  "emotionalStates": [
+    "hurting",
+    "resentful",
+    "confused"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 8,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 1721,
+    "ang": 469,
+    "guru": "Guru Nanak Dev Ji",
+    "raag": "Raag Aasaa",
+    "line_range": [
+      1,
+      8
+    ],
+    "verse_ids": [
+      21089,
+      21090,
+      21091,
+      21092,
+      21093,
+      21094,
+      21095,
+      21096
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 21089,
+      "gurmukhi": "ਸਲੋਕੁ ਮਃ ੧ ॥",
+      "transliteration": "salok mahalaa pehilaa ||",
+      "translation": "Shalok, First Mehla:"
+    },
+    {
+      "verseId": 21090,
+      "gurmukhi": "ਦੁਖੁ ਦਾਰੂ ਸੁਖੁ ਰੋਗੁ ਭਇਆ ਜਾ ਸੁਖੁ ਤਾਮਿ ਨ ਹੋਈ ॥",
+      "transliteration": "dhukh dhaaroo sukh rog bhiaa jaa sukh taam na hoiee ||",
+      "translation": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God."
+    },
+    {
+      "verseId": 21091,
+      "gurmukhi": "ਤੂੰ ਕਰਤਾ ਕਰਣਾ ਮੈ ਨਾਹੀ ਜਾ ਹਉ ਕਰੀ ਨ ਹੋਈ ॥੧॥",
+      "transliteration": "too(n) karataa karanaa mai naahee jaa hau karee na hoiee ||1||",
+      "translation": "You are the Creator Lord; I can do nothing. Even if I try, nothing happens. ||1||"
+    },
+    {
+      "verseId": 21092,
+      "gurmukhi": "ਬਲਿਹਾਰੀ ਕੁਦਰਤਿ ਵਸਿਆ ॥",
+      "transliteration": "balihaaree kudharat vasiaa ||",
+      "translation": "I am a sacrifice to Your almighty creative power which is pervading everywhere."
+    },
+    {
+      "verseId": 21093,
+      "gurmukhi": "ਤੇਰਾ ਅੰਤੁ ਨ ਜਾਈ ਲਖਿਆ ॥੧॥ ਰਹਾਉ ॥",
+      "transliteration": "teraa a(n)t na jaiee lakhiaa ||1|| rahaau ||",
+      "translation": "Your limits cannot be known. ||1||Pause||"
+    },
+    {
+      "verseId": 21094,
+      "gurmukhi": "ਜਾਤਿ ਮਹਿ ਜੋਤਿ ਜੋਤਿ ਮਹਿ ਜਾਤਾ ਅਕਲ ਕਲਾ ਭਰਪੂਰਿ ਰਹਿਆ ॥",
+      "transliteration": "jaat meh jot jot meh jaataa akal kalaa bharapoor rahiaa ||",
+      "translation": "Your Light is in Your creatures, and Your creatures are in Your Light; Your almighty power is pervading everywhere."
+    },
+    {
+      "verseId": 21095,
+      "gurmukhi": "ਤੂੰ ਸਚਾ ਸਾਹਿਬੁ ਸਿਫਤਿ ਸੁਆਲਿੑਉ ਜਿਨਿ ਕੀਤੀ ਸੋ ਪਾਰਿ ਪਇਆ ॥",
+      "transliteration": "too(n) sachaa saahib sifat suaali(h)au jin keetee so paar piaa ||",
+      "translation": "You are the True Lord and Master; Your Praise is so beautiful. One who sings it, is carried across."
+    },
+    {
+      "verseId": 21096,
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਕਰਤੇ ਕੀਆ ਬਾਤਾ ਜੋ ਕਿਛੁ ਕਰਣਾ ਸੁ ਕਰਿ ਰਹਿਆ ॥੨॥",
+      "transliteration": "kahu naanak karate keeaa baataa jo kichh karanaa su kar rahiaa ||2||",
+      "translation": "Nanak speaks the stories of the Creator Lord; whatever He is to do, He does. ||2||"
+    }
+  ],
+  "structure": [
+    "Begins with the startling inversion of pain and pleasure.",
+    "Moves quickly into dependence on the Creator, not self-management.",
+    "Ends in awe at the Creator's all-pervading presence and action."
+  ],
+  "keyVerseIds": [
+    21090,
+    21091,
+    21095
+  ],
+  "relatedGuidanceIds": [
+    "guidance-suffering-as-medicine",
+    "guidance-the-creator-acts",
+    "guidance-suffering-as-medicine-1",
+    "guidance-suffering-as-medicine-2"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "reflection",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 30,
+    "priority": 9,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "Guru Nanak does not glorify pain. He exposes how comfort can sedate remembrance while suffering can reopen dependence on the Creator.",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "Moves quickly into dependence on the Creator, not self-management.",
+      "practicalImplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.66,
+      "specificity": 4.6,
+      "emotionalHonesty": 3,
+      "usefulness": 2,
+      "beauty": 3.74,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

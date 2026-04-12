@@ -1,0 +1,68 @@
+{
+  "id": "collection-greed-bundle",
+  "title": "Greed in one shorter sitting",
+  "subtitle": "A compact bundle for greed",
+  "description": "The appetite keeps expanding faster than contentment can breathe. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "greed"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      639,
+      640,
+      641
+    ],
+    "shortMeaning": "Unexamined appetite crowds out remembrance.",
+    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-name-needs-room"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-greed"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-greed"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-buy-what-goes-with-you"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The appetite keeps expanding faster than contentment can breathe. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A compact bundle for greed",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.27,
+      "specificity": 4.16,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.48
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

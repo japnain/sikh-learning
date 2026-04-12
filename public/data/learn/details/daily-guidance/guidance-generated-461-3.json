@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-461-3",
+  "title": "Nanak's Mind Is Imbued With The Lotus",
+  "summary": "The shabad does not leave restlessness at diagnosis. It turns toward return.",
+  "takeaway": "Nanak's mind is imbued with the Lotus Feet of the Lord",
+  "lifeApplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-461",
+    "verseIds": [
+      6419,
+      6432
+    ],
+    "shortMeaning": "Through devotional worship of the Lord, and service to the Guru, one; nanak's mind is imbued with the Lotus Feet of the Lord",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-461"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Through devotional worship of the Lord, and service to the Guru, one; nanak's mind is imbued with the Lotus Feet of the Lord",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when nanak's mind is imbued with the Lotus Feet of the Lord.",
+      "practicalImplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.26,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.23,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

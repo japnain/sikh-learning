@@ -1,0 +1,134 @@
+{
+  "id": "shabad-conquer-the-mind",
+  "title": "Conquer the Mind, Not the Room",
+  "subtitle": "Japji Sahib, Pauri 28",
+  "summary": "Guru Nanak redirects the spiritual struggle inward. Self-mastery matters more than external identity markers.",
+  "whyItMatters": "It speaks directly to scattered ambition, comparison, anger, and the urge to perform spirituality instead of being transformed by it.",
+  "takeaway": "The hardest field is the inner field. Win there first.",
+  "themes": [
+    "discipline",
+    "mind",
+    "comparison"
+  ],
+  "emotionalStates": [
+    "reactive",
+    "performing",
+    "scattered"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 7,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 28,
+    "ang": 6,
+    "guru": "Guru Nanak Dev Ji",
+    "raag": "Jap",
+    "line_range": [
+      1,
+      5
+    ],
+    "verse_ids": [
+      290,
+      291,
+      292,
+      293,
+      294
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 290,
+      "gurmukhi": "ਮੁੰਦਾ ਸੰਤੋਖੁ ਸਰਮੁ ਪਤੁ ਝੋਲੀ ਧਿਆਨ ਕੀ ਕਰਹਿ ਬਿਭੂਤਿ ॥",
+      "transliteration": "mu(n)dhaa sa(n)tokh saram pat jholee dhiaan kee kareh bibhoot ||",
+      "translation": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body."
+    },
+    {
+      "verseId": 291,
+      "gurmukhi": "ਖਿੰਥਾ ਕਾਲੁ ਕੁਆਰੀ ਕਾਇਆ ਜੁਗਤਿ ਡੰਡਾ ਪਰਤੀਤਿ ॥",
+      "transliteration": "khi(n)thaa kaal kuaaree kaiaa jugat dda(n)ddaa parateet ||",
+      "translation": "Let the remembrance of death be the patched coat you wear, let the purity of virginity be your way in the world, and let faith in the Lord be your walking stick."
+    },
+    {
+      "verseId": 292,
+      "gurmukhi": "ਆਈ ਪੰਥੀ ਸਗਲ ਜਮਾਤੀ ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ ॥",
+      "transliteration": "aaiee pa(n)thee sagal jamaatee man jeetai jag jeet ||",
+      "translation": "See the brotherhood of all mankind as the highest order of Yogis; conquer your own mind, and conquer the world."
+    },
+    {
+      "verseId": 293,
+      "gurmukhi": "ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥",
+      "transliteration": "aadhes tisai aadhes ||",
+      "translation": "I bow to Him, I humbly bow."
+    },
+    {
+      "verseId": 294,
+      "gurmukhi": "ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੨੮॥",
+      "transliteration": "aadh aneel anaadh anaahat jug jug eko ves ||28||",
+      "translation": "The Primal One, the Pure Light, without beginning, without end. Throughout all the ages, He is One and the Same. ||28||"
+    }
+  ],
+  "structure": [
+    "Replaces outer religious symbols with inner virtues.",
+    "Moves from symbolic discipline toward the direct challenge of mastering the mind.",
+    "Closes in bowing, reminding the seeker that self-mastery is still grace-dependent."
+  ],
+  "keyVerseIds": [
+    290,
+    292
+  ],
+  "relatedGuidanceIds": [
+    "guidance-mind-mastery",
+    "guidance-conquer-the-mind-1",
+    "guidance-conquer-the-mind-2"
+  ],
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 30,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "Guru Nanak redirects the spiritual struggle inward. Self-mastery matters more than external identity markers.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "Moves from symbolic discipline toward the direct challenge of mastering the mind.",
+      "practicalImplication": "The hardest field is the inner field. Win there first.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2,
+      "beauty": 3.9,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

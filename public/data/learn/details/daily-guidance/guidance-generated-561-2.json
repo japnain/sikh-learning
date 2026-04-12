@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-561-2",
+  "title": "- Nothing Of The World Can Touch",
+  "summary": "Seva is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Gauree, Fifth Mehla:; - nothing of the world can touch them at all",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-561",
+    "verseIds": [
+      7935,
+      7939
+    ],
+    "shortMeaning": "Gauree, Fifth Mehla:; - nothing of the world can touch them at all",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-561"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, Fifth Mehla:; - nothing of the world can touch them at all",
+      "emotionalState": "performing, transactional, dry",
+      "turn": "Seva steadies when who has shown me the Perfect, Supreme Lord God.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 2.7,
+      "specificity": 4.72,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.26,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

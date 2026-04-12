@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-461-1",
+  "title": "Gauree, First Mehla:",
+  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Gauree, First Mehla:",
+  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-461",
+    "verseIds": [
+      6414
+    ],
+    "shortMeaning": "Gauree, First Mehla:",
+    "lifeApplication": "Restlessness becomes more truthful when gauree, First Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-461"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, First Mehla:",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when nanak's mind is imbued with the Lotus Feet of the Lord.",
+      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.82,
+      "clarity": 3.78,
+      "specificity": 4.41,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.82,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

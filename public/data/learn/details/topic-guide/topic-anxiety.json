@@ -1,0 +1,109 @@
+{
+  "id": "topic-anxiety",
+  "title": "When the mind is anxious",
+  "shortTitle": "Anxiety",
+  "category": "most-needed",
+  "issueStatement": "The mind keeps rehearsing danger, trying to secure the future before it arrives.",
+  "centralInsight": "Guru does not ask you to pretend fear is unreal. Guru asks you to remember whose care you already stand inside.",
+  "practicalReflection": "Anxiety narrows attention to imagined futures. Gurbani widens it back toward Hukam, remembrance, and the Creator's care.",
+  "actionPrompt": "Read one line aloud three times before you try to solve everything. Let remembrance come before planning.",
+  "searchTerms": [
+    "anxiety",
+    "stress",
+    "overthinking",
+    "worry",
+    "panic",
+    "fear",
+    "restless"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-steadied-by-creator",
+        "verseIds": [
+          30988,
+          30989
+        ],
+        "shortMeaning": "The Creator who made you remains your support.",
+        "lifeApplication": "Fear loses some of its authority when creation and care are remembered together."
+      },
+      "explanation": "The line does not argue your fear away. It interrupts fear's claim to total control."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          15,
+          16
+        ],
+        "shortMeaning": "Everything stands inside Hukam, and understanding that loosens ego.",
+        "lifeApplication": "The mind relaxes when it stops demanding a reality outside Hukam."
+      },
+      "explanation": "Anxiety often wants certainty outside Hukam. Guru turns the mind back toward trust inside it."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-remembrance-brings-peace",
+        "verseIds": [
+          11502,
+          11503
+        ],
+        "shortMeaning": "Repeated remembrance steadies the body and mind.",
+        "lifeApplication": "Return is the practice; peace grows through repetition."
+      },
+      "explanation": "This is practical medicine for spiraling thought. The repetition is part of the guidance."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-steadied-by-creator",
+    "shabad-hukam-inside-everything",
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety-daily",
+    "topic-anxiety-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey",
+    "collection-anxiety-bundle"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 10,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:anxiety",
+    "evidence": {
+      "coreClaim": "Guru does not ask you to pretend fear is unreal. Guru asks you to remember whose care you already stand inside.",
+      "emotionalState": "afraid, shaken, alone",
+      "turn": "The mind keeps rehearsing danger, trying to secure the future before it arrives.",
+      "practicalImplication": "Read one line aloud three times before you try to solve everything. Let remembrance come before planning.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.36,
+      "beauty": 4.06,
+      "overall": 4.11
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

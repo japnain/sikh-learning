@@ -1,0 +1,68 @@
+{
+  "id": "guidance-detached-and-steady-2",
+  "title": "Greed, Emotional Attachment To Maya, Possessiveness, The",
+  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord; greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and",
+  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9412,
+      9414
+    ],
+    "shortMeaning": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord; greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord; greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
+      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.99,
+      "clarity": 0.2,
+      "specificity": 4.75,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 2,
+      "overall": 3.02
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

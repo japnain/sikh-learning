@@ -1,0 +1,68 @@
+{
+  "id": "guidance-ambrosial-speech-pure-conduct-2",
+  "title": "Is To Chant The Name Of The",
+  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Of all religions, the best religion; is to chant the Name of the Lord and maintain pure conduct",
+  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11742,
+      11743
+    ],
+    "shortMeaning": "Of all religions, the best religion; is to chant the Name of the Lord and maintain pure conduct",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Of all religions, the best religion; is to chant the Name of the Lord and maintain pure conduct",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.02,
+      "clarity": 1.6,
+      "specificity": 4.95,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 2.5,
+      "overall": 3.38
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

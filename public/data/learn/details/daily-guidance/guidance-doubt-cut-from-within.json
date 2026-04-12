@@ -1,0 +1,68 @@
+{
+  "id": "guidance-doubt-cut-from-within",
+  "title": "Peace is not decorative when doubt has been cut out from within.",
+  "summary": "Guru links inward peace to an actual inner removal, not to external atmosphere alone.",
+  "takeaway": "Real calm is carved, not staged.",
+  "lifeApplication": "When you crave surface calm, ask what deeper confusion still needs truth instead.",
+  "source": {
+    "deepDiveId": "shabad-sweet-speech-humble-walk",
+    "verseIds": [
+      1293,
+      1294,
+      1295
+    ],
+    "shortMeaning": "Doubt is removed from within as one walks in Guru's will.",
+    "lifeApplication": "Let obedience go deeper than mood management."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-sweet-speech-humble-walk",
+    "shabad-extinguish-the-fire-of-doubt"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Doubt is removed from within as one walks in Guru's will.",
+      "emotionalState": "sharp, performing, defensive",
+      "turn": "Soft speech becomes believable when the ego has begun to bow.",
+      "practicalImplication": "When you crave surface calm, ask what deeper confusion still needs truth instead.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 3.9,
+      "specificity": 4.37,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.22,
+      "beauty": 4.06,
+      "overall": 3.68
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

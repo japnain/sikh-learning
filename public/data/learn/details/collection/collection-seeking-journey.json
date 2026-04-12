@@ -1,0 +1,79 @@
+{
+  "id": "collection-seeking-journey",
+  "title": "From Seeking to steadier practice",
+  "subtitle": "A deliberate path through seeking",
+  "description": "Guru answers seeking by showing where wandering ends and dwelling begins. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "seeking",
+    "doubt"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239,
+      11240
+    ],
+    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-wanderings-cease-in-sangat"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seeking"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-108"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-153-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-109"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seeking",
+    "topic-doubt"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-108",
+    "shabad-generated-109",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-generated-63"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "A deliberate path through seeking",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.27,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

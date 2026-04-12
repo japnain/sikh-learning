@@ -16,6 +16,7 @@ import { BANIS } from '../data/banis'
 import { GUIDED_JOURNEYS } from '../data/guidedJourneys'
 import { useHukamnama } from '../hooks/useHukamnama'
 import { useAng } from '../hooks/useAng'
+import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import useDailyLesson from '../hooks/useDailyLesson'
 import { useDailyFlowStore } from '../store/dailyFlow'
@@ -38,7 +39,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
-import { getAngTargets, getAppSearchMatches, groupSearchResults } from '../utils/appSearch'
+import { getAngTargets, groupSearchResults } from '../utils/appSearch'
 import { getEditorialCopy } from '../content/editorialCopy'
 
 const TODAYS_PATH_HIGHLIGHT_CLASSES = [
@@ -519,10 +520,7 @@ export default function Home() {
     }
     return getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
   }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
-  const homeAppMatches = useMemo(
-    () => homeSearchQuery.trim().length >= 2 ? getAppSearchMatches(homeSearchQuery, 'all').slice(0, 6) : [],
-    [homeSearchQuery]
-  )
+  const homeAppMatches = useAppSearchMatches(homeSearchQuery, 'all').slice(0, 6)
   const homeAngTargets = useMemo(
     () => getAngTargets(homeSearchQuery, 'all'),
     [homeSearchQuery]

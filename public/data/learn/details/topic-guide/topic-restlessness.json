@@ -1,0 +1,110 @@
+{
+  "id": "topic-restlessness",
+  "title": "When you keep searching but do not settle",
+  "shortTitle": "Restlessness",
+  "category": "most-needed",
+  "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing.",
+  "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness where truth would actually meet you.",
+  "practicalReflection": "Guru does not flatter spiritual roaming. Guru asks whether the heart has cooled, become patient, and come under word and company.",
+  "actionPrompt": "Pause one more search. Return to one line, one practice, one sangat, and stay.",
+  "searchTerms": [
+    "restless",
+    "can't settle",
+    "unsettled",
+    "always searching",
+    "wandering",
+    "spiritually exhausted"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3890,
+          3895,
+          3898
+        ],
+        "shortMeaning": "Movement and ritual can keep multiplying while peace does not.",
+        "lifeApplication": "Restlessness sometimes survives by calling itself sincerity."
+      },
+      "explanation": "This is the clearest anti-restlessness text in the archive."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+        "verseIds": [
+          918,
+          921,
+          924
+        ],
+        "shortMeaning": "Circling and wandering do not cool the fire; word and company do.",
+        "lifeApplication": "Restlessness often needs direction more than novelty."
+      },
+      "explanation": "Restlessness and doubt often feed one another."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          292,
+          293
+        ],
+        "shortMeaning": "The real conquest is inward, and it ends in bowing.",
+        "lifeApplication": "Do not let restless motion masquerade as inner victory."
+      },
+      "explanation": "The cure is not lethargy, but redirected battle."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-conquer-the-mind"
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey",
+    "collection-restlessness-bundle"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:restlessness",
+    "evidence": {
+      "coreClaim": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness where truth would actually meet you.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing.",
+      "practicalImplication": "Pause one more search. Return to one line, one practice, one sangat, and stay.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.14,
+      "beauty": 4.22,
+      "overall": 4.06
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

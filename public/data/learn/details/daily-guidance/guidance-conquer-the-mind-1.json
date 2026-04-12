@@ -1,0 +1,67 @@
+{
+  "id": "guidance-conquer-the-mind-1",
+  "title": "Make Contentment Your Ear-rings, Humility Your Begging",
+  "summary": "Discipline is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
+  "lifeApplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      290
+    ],
+    "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
+    "lifeApplication": "Discipline becomes more truthful when make contentment your ear-rings, humility your begging bowl, and meditation the ashes."
+  },
+  "relatedTopicIds": [
+    "topic-discipline",
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "The hardest field is the inner field. Win there first.",
+      "practicalImplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 2.58,
+      "specificity": 4.56,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.79,
+      "beauty": 2.96,
+      "overall": 3.43
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "collection-hukam-journey",
+  "title": "From Hukam to steadier practice",
+  "subtitle": "A deliberate path through hukam",
+  "description": "Guru reframes peace as understanding the command already holding everything. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "hukam",
+    "hukam"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "Everything stands inside Hukam, not outside it.",
+    "lifeApplication": "Release the demand that peace must wait for total control."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-the-creator-acts"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-hukam"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "A deliberate path through hukam",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.4,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "collection-comparison-to-seva-67",
+  "title": "Comparison to Seva",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins service to humility, honest labor, and offering rather than display.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "comparison",
+    "seva"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-65",
+    "verseIds": [
+      758
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:",
+    "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-65-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-comparison"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seva"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-selfless-service"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-selfless-service"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-seva"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-selfless-service",
+    "shabad-detached-and-steady",
+    "shabad-work-give-know-the-path"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins service to humility, honest labor, and offering rather than display.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.27,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.58
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

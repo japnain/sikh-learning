@@ -1,0 +1,69 @@
+{
+  "id": "guidance-generated-338-2",
+  "title": "People Die Over And Over Again; They",
+  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "People die over and over again; they are re-born, and make their; people die over and over again; they are re-born, and lose their",
+  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-338",
+    "verseIds": [
+      4876,
+      4885
+    ],
+    "shortMeaning": "People die over and over again; they are re-born, and make their; people die over and over again; they are re-born, and lose their",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-comparison-daily",
+    "topic-comparison-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-338"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "People die over and over again; they are re-born, and make their; people die over and over again; they are re-born, and lose their",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Comparison steadies when o Nanak, those who are attuned to the Naam, reflect deeply on the Truth;.",
+      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.84,
+      "clarity": 0.41,
+      "specificity": 4.9,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.8,
+      "beauty": 2.46,
+      "overall": 3.23
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "runs too long at the sentence level",
+      "repeats phrasing too closely"
+    ]
+  }
+}

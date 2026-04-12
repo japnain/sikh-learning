@@ -1,0 +1,111 @@
+{
+  "id": "topic-gratitude-practice",
+  "title": "When gratitude feels distant as a steady practice",
+  "shortTitle": "Gratitude · Practice",
+  "category": "practice",
+  "issueStatement": "The heart notices absence faster than gift. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+  "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. The line becomes durable when it is practiced, not merely admired.",
+  "practicalReflection": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let one received thing become a place of praise instead of entitlement.",
+  "actionPrompt": "Let one received thing become a place of praise instead of entitlement. Repeat what you can actually keep.",
+  "searchTerms": [
+    "gratitude",
+    "thankful",
+    "thankfulness",
+    "blessing",
+    "gift",
+    "practice",
+    "habit",
+    "steady return"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-suffering-as-medicine",
+        "verseIds": [
+          21090
+        ],
+        "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is",
+        "lifeApplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: suffering is the medicine, and pleasure the disease, because where there is."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-gratitude-restores-naam",
+        "verseIds": [
+          60340
+        ],
+        "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and",
+        "lifeApplication": "Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Real gratitude does not inflate the self. It softens it. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-1",
+        "verseIds": [
+          8
+        ],
+        "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them",
+        "lifeApplication": "Anger steadies when o Nanak, it is written that you shall obey the Hukam of His Command,. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru keeps gratitude close to remembrance, contentment, and restored vision. The line becomes durable when it is practiced, not merely admired. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam",
+    "shabad-generated-1"
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 6,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:gratitude:practice",
+    "evidence": {
+      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. The line becomes durable when it is practiced, not merely admired.",
+      "emotionalState": "hurting, resentful, confused",
+      "turn": "The heart notices absence faster than gift. The deeper need is not inspiration alone, but a repeatable way to keep returning.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Repeat what you can actually keep.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 0.3,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.77,
+      "beauty": 2.04,
+      "overall": 3.09
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "repeats phrasing too closely",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

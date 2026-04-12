@@ -1,0 +1,67 @@
+{
+  "id": "collection-seva-bundle",
+  "title": "Seva in one shorter sitting",
+  "subtitle": "A compact bundle for seva",
+  "description": "The work may still be happening, but the heart has started bargaining with it. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "seva"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12947,
+      12948
+    ],
+    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
+    "lifeApplication": "Serve without building a story about being the servant."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-selfless-service"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seva"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-selfless-service"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seva"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service",
+    "shabad-work-give-know-the-path"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The work may still be happening, but the heart has started bargaining with it. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "A compact bundle for seva",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 2.65,
+      "specificity": 4.17,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.51
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

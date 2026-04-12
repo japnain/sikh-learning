@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-300-2",
+  "title": "You Are My Protector Everywhere; Why Should",
+  "summary": "Fear is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Maajh, Fifth Mehla:; you are my Protector everywhere; why should I feel any fear or",
+  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-300",
+    "verseIds": [
+      4131,
+      4134
+    ],
+    "shortMeaning": "Maajh, Fifth Mehla:; you are my Protector everywhere; why should I feel any fear or",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-300"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Maajh, Fifth Mehla:; you are my Protector everywhere; why should I feel any fear or",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Fear steadies when through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield.",
+      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.69,
+      "clarity": 2.09,
+      "specificity": 4.65,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.58,
+      "beauty": 2.78,
+      "overall": 3.39
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

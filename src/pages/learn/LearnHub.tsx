@@ -1,15 +1,10 @@
 import { startTransition, useDeferredValue, useEffect, useMemo, useRef } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import {
-  COLLECTION_BY_ID,
-  SHABAD_DEEP_DIVES,
-  TOPIC_GUIDES,
-  TOPIC_GUIDE_BY_ID,
-} from "../../data/learnContent"
 import { getEditorialCopy } from "../../content/editorialCopy"
 import DisclosureSection from "../../components/DisclosureSection"
 import { IconArrowRight, IconSearch } from "../../components/icons"
 import { useCurrentTime } from "../../hooks/useCurrentTime"
+import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
 import { useLearnRailStore } from "../../store/learnRail"
 import { useLocaleStore } from "../../store/locale"
@@ -45,9 +40,6 @@ const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: st
   { id: "deep", label: "Deep", detail: "Favor denser study and slower reflection." },
 ]
 
-const SHABAD_GURUS = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.guru)))
-const SHABAD_RAAGS = Array.from(new Set(SHABAD_DEEP_DIVES.map(item => item.citation.raag)))
-const SHABAD_THEMES = Array.from(new Set(SHABAD_DEEP_DIVES.flatMap(item => item.themes)))
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
 function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<LearnTab, { title: string; body: string }> {
@@ -71,8 +63,12 @@ function getPageCopy(editorial: ReturnType<typeof getEditorialCopy>): Record<Lea
   }
 }
 
-function getCollectionProgressText(collectionId: string, itemIds: Set<string>) {
-  const collection = COLLECTION_BY_ID[collectionId]
+function getCollectionProgressText(
+  collectionById: Record<string, { items: Array<{ id: string }> }>,
+  collectionId: string,
+  itemIds: Set<string>
+) {
+  const collection = collectionById[collectionId]
   if (!collection) return ""
 
   const completed = collection.items.filter(item => itemIds.has(item.id)).length
@@ -84,6 +80,7 @@ export default function LearnHub() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const topicSearchInputRef = useRef<HTMLInputElement | null>(null)
+  const { catalog, error, loading } = useLearnCatalog()
   const locale = useLocaleStore(state => state.locale)
   const editorial = getEditorialCopy(locale) ?? getEditorialCopy("en")
   const now = useCurrentTime()
@@ -102,6 +99,9 @@ export default function LearnHub() {
   const activeTab: LearnTab = isLearnTab(tabParam) ? tabParam : "today"
   const pageCopy = getPageCopy(editorial)[activeTab]
   const deferredQuery = useDeferredValue(searchParams.get("query") ?? "")
+  const shabadThemes = catalog?.manifest.filters.shabadThemes ?? []
+  const shabadGurus = catalog?.manifest.filters.shabadGurus ?? []
+  const shabadRaags = catalog?.manifest.filters.shabadRaags ?? []
   const learnStateSnapshot = useMemo(
     () => ({
       viewedItems,
@@ -113,20 +113,33 @@ export default function LearnHub() {
     [activeCollectionId, depthPreference, recentTopicIds, savedItemIds, viewedItems]
   )
   const todaySurface = useMemo(
-    () => getTodayLearnSurface(dayStamp, learnStateSnapshot),
-    [dayStamp, learnStateSnapshot]
+    () => (catalog ? getTodayLearnSurface(catalog, dayStamp, learnStateSnapshot) : null),
+    [catalog, dayStamp, learnStateSnapshot]
   )
-  const queryResolution = useMemo(() => resolveTopicGuide(deferredQuery), [deferredQuery])
-  const selectedTopic =
-    TOPIC_GUIDE_BY_ID[searchParams.get("topic") ?? ""]
+  const queryResolution = useMemo(
+    () => (
+      catalog
+        ? resolveTopicGuide(catalog, deferredQuery)
+        : {
+            topic: null,
+            query: deferredQuery,
+            matchedBy: deferredQuery ? "no-match" : "empty",
+          }
+    ),
+    [catalog, deferredQuery]
+  )
+  const selectedTopic = catalog
+    ? catalog.topicGuideById[searchParams.get("topic") ?? ""]
     ?? (deferredQuery ? queryResolution.topic : null)
-  const selectedCollection =
-    COLLECTION_BY_ID[searchParams.get("collection") ?? ""]
-    ?? (activeCollectionId ? COLLECTION_BY_ID[activeCollectionId] : null)
-    ?? todaySurface.exploreCollections[0]
+    : null
+  const selectedCollection = catalog && todaySurface
+    ? catalog.collectionById[searchParams.get("collection") ?? ""]
+      ?? (activeCollectionId ? catalog.collectionById[activeCollectionId] : null)
+      ?? todaySurface.exploreCollections[0]
+    : null
   const viewedIds = useMemo(() => new Set(viewedItems.map(item => item.itemId)), [viewedItems])
-  const savedItems = useMemo(() => getLearnSavedItems(savedItemIds), [savedItemIds])
-  const continueLearning = todaySurface.continueLearning
+  const savedItems = useMemo(() => (catalog ? getLearnSavedItems(catalog, savedItemIds) : []), [catalog, savedItemIds])
+  const continueLearning = todaySurface?.continueLearning ?? null
 
   const shabadThemeFilter = searchParams.get("theme") ?? ""
   const shabadGuruFilter = searchParams.get("guru") ?? ""
@@ -137,19 +150,25 @@ export default function LearnHub() {
   const shabadCompletedOnly = searchParams.get("completedOnly") === "1"
 
   const filteredShabads = useMemo(
-    () => filterShabadDeepDives(
-      {
-        theme: shabadThemeFilter || undefined,
-        guru: shabadGuruFilter || undefined,
-        raag: shabadRaagFilter || undefined,
-        difficulty: shabadDifficultyFilter || undefined,
-        lengthBand: shabadLengthFilter || undefined,
-        savedOnly: shabadSavedOnly,
-        completedOnly: shabadCompletedOnly,
-      },
-      learnStateSnapshot
+    () => (
+      catalog
+        ? filterShabadDeepDives(
+            catalog,
+            {
+              theme: shabadThemeFilter || undefined,
+              guru: shabadGuruFilter || undefined,
+              raag: shabadRaagFilter || undefined,
+              difficulty: shabadDifficultyFilter || undefined,
+              lengthBand: shabadLengthFilter || undefined,
+              savedOnly: shabadSavedOnly,
+              completedOnly: shabadCompletedOnly,
+            },
+            learnStateSnapshot
+          )
+        : []
     ),
     [
+      catalog,
       learnStateSnapshot,
       shabadCompletedOnly,
       shabadDifficultyFilter,
@@ -171,7 +190,9 @@ export default function LearnHub() {
     || shabadSavedOnly
     || shabadCompletedOnly
   )
-  const inventorySummary = `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
+  const inventorySummary = todaySurface
+    ? `${todaySurface.inventory.dailyGuidance} guidance entries, ${todaySurface.inventory.shabadDeepDives} deep dives, and ${todaySurface.inventory.crossLinks} live cross-links are visible right now.`
+    : ""
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
   const continueCardClass = "section-shell-quiet relative isolate block w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
@@ -272,6 +293,32 @@ export default function LearnHub() {
       { replace: true, state: null }
     )
   }, [location.pathname, location.search, location.state, navigate])
+
+  if (loading) {
+    return (
+      <div className="page-shell animate-fade-in" data-testid="page-learn-loading">
+        <div className="section-shell p-5">
+          <p className="eyebrow">Learn</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+            Loading the SGGS archive…
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !catalog || !todaySurface || !continueLearning) {
+    return (
+      <div className="page-shell animate-fade-in" data-testid="page-learn-error">
+        <div className="section-shell p-5">
+          <p className="eyebrow">Learn</p>
+          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+            The Learn archive could not be loaded.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="page-shell animate-fade-in" data-testid="page-learn" data-page="learn">
@@ -536,7 +583,7 @@ export default function LearnHub() {
                       key={collection.id}
                       collection={collection}
                       active={selectedCollection?.id === collection.id}
-                      progressText={getCollectionProgressText(collection.id, viewedIds)}
+                      progressText={getCollectionProgressText(catalog.collectionById, collection.id, viewedIds)}
                       to={buildLearnDetailPath("collection", collection.id, "today")}
                     />
                   ))}
@@ -594,7 +641,7 @@ export default function LearnHub() {
               </p>
             ) : null}
             <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
-              {TOPIC_GUIDES.map(topic => (
+              {catalog.topicGuides.map(topic => (
                 <Link
                   key={topic.id}
                   to={buildLearnDetailPath("topic-guide", topic.id, "topics")}
@@ -611,7 +658,7 @@ export default function LearnHub() {
           </section>
 
           <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
-            {TOPIC_GUIDES.map(topic => (
+            {catalog.topicGuides.map(topic => (
               <TopicCard
                 key={topic.id}
                 topic={topic}
@@ -649,7 +696,7 @@ export default function LearnHub() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All themes</option>
-                {SHABAD_THEMES.map(theme => (
+                {shabadThemes.map(theme => (
                   <option key={theme} value={theme}>{theme}</option>
                 ))}
               </select>
@@ -661,7 +708,7 @@ export default function LearnHub() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All Gurus</option>
-                {SHABAD_GURUS.map(guru => (
+                {shabadGurus.map(guru => (
                   <option key={guru} value={guru}>{guru}</option>
                 ))}
               </select>
@@ -673,7 +720,7 @@ export default function LearnHub() {
                 className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All raags</option>
-                {SHABAD_RAAGS.map(raag => (
+                {shabadRaags.map(raag => (
                   <option key={raag} value={raag}>{raag}</option>
                 ))}
               </select>

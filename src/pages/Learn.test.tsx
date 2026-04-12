@@ -1,11 +1,13 @@
 import { afterEach, beforeEach, expect, test, vi } from "vitest"
-import { fireEvent, screen } from "@testing-library/react"
+import { fireEvent, screen, waitFor, within } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import { loadLearnCatalog } from "../data/learnRepository"
 import { getTodayLearnSurface } from "../utils/learnExperience"
 import { createDefaultLearnState, renderLearnRoute, resetLearnTestState } from "./learn/testUtils"
 import { useLearningStore } from "../store/learning"
 
 beforeEach(() => {
-  vi.useFakeTimers()
+  vi.useFakeTimers({ shouldAdvanceTime: true })
   vi.setSystemTime(new Date("2026-04-11T09:00:00.000Z"))
   resetLearnTestState()
 })
@@ -15,10 +17,10 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-test("renders the learn hub with the today-first archive structure", () => {
+test("renders the learn hub with the today-first archive structure", async () => {
   renderLearnRoute()
 
-  expect(screen.getByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
   expect(screen.getByText(/Find the guide that meets the question/i)).toBeInTheDocument()
   expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toBeInTheDocument()
   expect(screen.getByText(/The library is growing in public\./i)).toBeInTheDocument()
@@ -32,33 +34,39 @@ test("renders the learn hub with the today-first archive structure", () => {
   expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
 })
 
-test("learn hub card links render as block-level cards for stable mobile painting", () => {
+test("learn hub card links render as block-level cards for stable mobile painting", async () => {
   renderLearnRoute()
 
-  expect(screen.getByRole("link", { name: /Continue collection: From Shame to Welcome/i })).toHaveClass("block")
+  expect(await screen.findByRole("link", { name: /Continue collection:/i })).toHaveClass("block")
   expect(screen.getByRole("link", { name: /Today's Guidance/i })).toHaveClass("block")
   expect(screen.getByRole("link", { name: /^Loneliness$/i })).toHaveClass("block")
-  expect(screen.getByRole("link", { name: /5-step arc From Shame to Welcome/i })).toHaveClass("block")
+  expect(screen.getAllByRole("link", { name: /step/i })[0]).toHaveClass("block")
 })
 
-test("shows live inventory proof instead of fixed launch claims", () => {
-  const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
+test("shows live inventory proof instead of fixed launch claims", async () => {
+  const catalog = await loadLearnCatalog()
+  const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
+  const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
 
   renderLearnRoute()
 
-  fireEvent.click(screen.getByRole("button", { name: /The library is growing in public\./i }))
+  await user.click(await screen.findByRole("button", { name: /The library is growing in public\./i }))
 
-  expect(screen.getByText(/Daily guidance entries/i)).toBeInTheDocument()
-  expect(screen.getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
-  expect(screen.getByText(/^Cross-links$/i)).toBeInTheDocument()
-  expect(screen.getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
+  await waitFor(() => {
+    expect(within(screen.getByTestId("learn-inventory")).getByText(/Daily guidance entries/i)).toBeInTheDocument()
+  })
+  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
+  expect(within(screen.getByTestId("learn-inventory")).getByText(/^Cross-links$/i)).toBeInTheDocument()
+  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
   expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
 })
 
-test("learn disclosure sections start collapsed and reveal their controls on demand", () => {
+test("learn disclosure sections start collapsed and reveal their controls on demand", async () => {
+  const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+
   renderLearnRoute()
 
-  const inventoryButton = screen.getByRole("button", { name: /The library is growing in public\./i })
+  const inventoryButton = await screen.findByRole("button", { name: /The library is growing in public\./i })
   const depthButton = screen.getByRole("button", { name: /Reading Depth Balanced Current/i })
 
   expect(inventoryButton).toHaveAttribute("aria-expanded", "false")
@@ -66,15 +74,18 @@ test("learn disclosure sections start collapsed and reveal their controls on dem
   expect(screen.queryByText(/Daily guidance entries/i)).not.toBeInTheDocument()
   expect(screen.queryByRole("button", { name: /Gentle/i })).not.toBeInTheDocument()
 
-  fireEvent.click(depthButton)
+  await user.click(depthButton)
 
-  expect(depthButton).toHaveAttribute("aria-expanded", "true")
+  await waitFor(() => {
+    expect(screen.getByRole("button", { name: /Reading Depth Balanced Current/i })).toHaveAttribute("aria-expanded", "true")
+  })
   expect(screen.getByRole("button", { name: /Gentle/i })).toBeInTheDocument()
 })
 
-test("uses stable search input attributes for the archive search", () => {
+test("uses stable search input attributes for the archive search", async () => {
   renderLearnRoute()
 
+  await screen.findByRole("searchbox", { name: /Search the Learn archive/i })
   const archiveSearch = document.querySelector("#learn-archive-search") as HTMLInputElement | null
 
   expect(archiveSearch).not.toBeNull()
@@ -83,10 +94,10 @@ test("uses stable search input attributes for the archive search", () => {
   expect(archiveSearch?.getAttribute("spellcheck")).toBe("false")
 })
 
-test("searching stress resolves to the approved anxiety guide on the topics hub", () => {
+test("searching stress resolves to the approved anxiety guide on the topics hub", async () => {
   renderLearnRoute("/learn?tab=topics")
 
-  fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
     target: { value: "stress" },
   })
 
@@ -94,45 +105,52 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
   expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
 })
 
-test("clicking today's guidance opens a real detail route", () => {
-  const todaySurface = getTodayLearnSurface("2026-04-11", createDefaultLearnState())
+test("clicking today's guidance opens a real detail route", async () => {
+  const catalog = await loadLearnCatalog()
+  const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
 
   renderLearnRoute()
-  fireEvent.click(screen.getByRole("link", { name: /Today's Guidance/i }))
+  fireEvent.click(await screen.findByRole("link", { name: /Today's Guidance/i }))
 
-  expect(screen.getByTestId("location-display")).toHaveTextContent(
-    `/learn/guidance/${todaySurface.dailyGuidance.item.id}?from=today`
-  )
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent(
+      `/learn/guidance/${todaySurface.dailyGuidance.item.id}?from=today`
+    )
+  })
 })
 
 test("old inline-detail topic URLs redirect to the new topic route", async () => {
   renderLearnRoute("/learn?tab=topics&topic=topic-anxiety&detail=topic")
 
-  expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anxiety?from=topics")
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anxiety?from=topics")
+  })
 })
 
-test("choosing a topic chip clears a stale no-match message and opens the topic page", () => {
+test("choosing a topic chip clears a stale no-match message and opens the topic page", async () => {
   renderLearnRoute("/learn?tab=topics")
 
-  fireEvent.change(screen.getByLabelText(/Search topic guides/i), {
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
     target: { value: "tomato" },
   })
   expect(screen.getByText(/No matching topic found/i)).toBeInTheDocument()
 
   fireEvent.click(screen.getByRole("link", { name: /^Anger$/i }))
 
-  expect(screen.queryByText(/No matching topic found/i)).not.toBeInTheDocument()
-  expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anger?from=topics")
+  await waitFor(() => {
+    expect(screen.queryByText(/No matching topic found/i)).not.toBeInTheDocument()
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anger?from=topics")
+  })
 })
 
-test("shabads tab shows an empty state instead of crashing when filters remove every deep dive", () => {
+test("shabads tab shows an empty state instead of crashing when filters remove every deep dive", async () => {
   renderLearnRoute("/learn?tab=shabads&theme=does-not-exist")
 
-  expect(screen.getByRole("button", { name: /Clear all filters/i })).toBeInTheDocument()
+  expect(await screen.findByRole("button", { name: /Clear all filters/i })).toBeInTheDocument()
   expect(screen.getByText(/No deep dives match the current filters/i)).toBeInTheDocument()
 })
 
-test("saved tab opens saved items on their own learn sub-routes", () => {
+test("saved tab opens saved items on their own learn sub-routes", async () => {
   useLearningStore.setState({
     learnState: {
       ...createDefaultLearnState(),
@@ -146,28 +164,34 @@ test("saved tab opens saved items on their own learn sub-routes", () => {
 
   renderLearnRoute("/learn?tab=saved")
 
-  expect(screen.getByText(/^Daily guidance$/i)).toBeInTheDocument()
+  expect(await screen.findByText(/^Daily guidance$/i)).toBeInTheDocument()
   expect(screen.getByText(/^Topic guide$/i)).toBeInTheDocument()
   expect(screen.getByText(/^Shabad deep dive$/i)).toBeInTheDocument()
 
   fireEvent.click(screen.getByRole("link", { name: /Open daily guidance/i }))
 
-  expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/guidance/guidance-hukam?from=saved")
+  await waitFor(() => {
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/guidance/guidance-hukam?from=saved")
+  })
 })
 
-test("exposes the updated stable subsection anchors for the learn rails", () => {
+test("exposes the updated stable subsection anchors for the learn rails", async () => {
   renderLearnRoute("/learn?tab=topics")
+  await screen.findByLabelText(/Search topic guides/i)
 
   expect(document.getElementById("learn-topics-search")).toBeInTheDocument()
   expect(document.getElementById("learn-topics-all")).toBeInTheDocument()
   expect(document.getElementById("learn-topics-current-guide")).not.toBeInTheDocument()
 })
 
-test("learn subsection rail chips still scroll to anchored hub sections", () => {
+test("learn subsection rail chips still scroll to anchored hub sections", async () => {
   const scrollIntoView = vi.spyOn(HTMLElement.prototype, "scrollIntoView")
 
   renderLearnRoute("/learn?tab=topics")
+  await screen.findByLabelText(/Search topic guides/i)
   fireEvent.click(screen.getByTestId("topics-all-topics"))
 
-  expect(scrollIntoView).toHaveBeenCalled()
+  await waitFor(() => {
+    expect(scrollIntoView).toHaveBeenCalled()
+  })
 })

@@ -1,0 +1,83 @@
+{
+  "id": "collection-hukam-to-restlessness-83",
+  "title": "Hukam to Restlessness",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "hukam",
+    "restlessness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "Everything stands inside Hukam, not outside it.",
+    "lifeApplication": "Release the demand that peace must wait for total control."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-search-ends-in-saint-company",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.9,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.75
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

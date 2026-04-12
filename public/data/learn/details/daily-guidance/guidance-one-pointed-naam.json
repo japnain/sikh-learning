@@ -1,0 +1,68 @@
+{
+  "id": "guidance-one-pointed-naam",
+  "title": "A scattered soul does not become whole by accident.",
+  "summary": "One-pointedness is named directly because divided attention rarely matures into peace.",
+  "takeaway": "Wholeness usually begins by narrowing what the heart obeys.",
+  "lifeApplication": "Give one practice your full mind today, even if only for a few minutes.",
+  "source": {
+    "deepDiveId": "shabad-sweet-speech-humble-walk",
+    "verseIds": [
+      1287,
+      1288,
+      1297
+    ],
+    "shortMeaning": "One-pointed Naam, saint company, and steady remembrance belong to the same path.",
+    "lifeApplication": "Make focus an act of love, not mere discipline."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-sweet-speech-humble-walk",
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "One-pointed Naam, saint company, and steady remembrance belong to the same path.",
+      "emotionalState": "sharp, performing, defensive",
+      "turn": "Soft speech becomes believable when the ego has begun to bow.",
+      "practicalImplication": "Give one practice your full mind today, even if only for a few minutes.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.9,
+      "specificity": 4.84,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.23,
+      "beauty": 4.06,
+      "overall": 3.88
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

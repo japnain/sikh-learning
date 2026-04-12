@@ -1,0 +1,153 @@
+{
+  "id": "shabad-generated-815",
+  "title": "Seeking In Gurbani",
+  "subtitle": "Raag Gauree · Ang 256",
+  "summary": "Seeking is carried here from  toward - O Nanak, his mind is cooled and soothed.",
+  "whyItMatters": "This shabad is useful when life feels searching, hungry, unsettled, because it keeps seeking inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Seeking steadies when - O Nanak, his mind is cooled and soothed.",
+  "themes": [
+    "seeking",
+    "comparison",
+    "sangat"
+  ],
+  "emotionalStates": [
+    "searching",
+    "hungry",
+    "unsettled"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 815,
+    "ang": 256,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      8
+    ],
+    "verse_ids": [
+      11156,
+      11157,
+      11158,
+      11159,
+      11160,
+      11161,
+      11162,
+      11163
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11156,
+      "gurmukhi": "ਪਉੜੀ ॥",
+      "transliteration": "pauRee ||",
+      "translation": "Pauree:"
+    },
+    {
+      "verseId": 11157,
+      "gurmukhi": "ਠਠਾ ਮਨੂਆ ਠਾਹਹਿ ਨਾਹੀ ॥ ਜੋ ਸਗਲ ਤਿਆਗਿ ਏਕਹਿ ਲਪਟਾਹੀ ॥",
+      "transliteration": "ThaThaa manooaa Thaaheh naahee || jo sagal tiaag ekeh lapaTaahee ||",
+      "translation": "T'HAT'HA: Those who have abandoned all else, and who cling to the One Lord alone, do not make trouble for anyone's mind."
+    },
+    {
+      "verseId": 11158,
+      "gurmukhi": "ਠਹਕਿ ਠਹਕਿ ਮਾਇਆ ਸੰਗਿ ਮੂਏ ॥",
+      "transliteration": "Thahak Thahak maiaa sa(n)g mooe ||",
+      "translation": "Those who are totally absorbed and preoccupied with Maya are dead;"
+    },
+    {
+      "verseId": 11159,
+      "gurmukhi": "ਉਆ ਕੈ ਕੁਸਲ ਨ ਕਤਹੂ ਹੂਏ ॥",
+      "transliteration": "auaa kai kusal na katahoo hooe ||",
+      "translation": "they do not find happiness anywhere."
+    },
+    {
+      "verseId": 11160,
+      "gurmukhi": "ਠਾਂਢਿ ਪਰੀ ਸੰਤਹ ਸੰਗਿ ਬਸਿਆ ॥",
+      "transliteration": "Thaa(n)dd paree sa(n)teh sa(n)g basiaa ||",
+      "translation": "One who dwells in the Society of the Saints finds a great peace;"
+    },
+    {
+      "verseId": 11161,
+      "gurmukhi": "ਅੰਮ੍ਰਿਤ ਨਾਮੁ ਤਹਾ ਜੀਅ ਰਸਿਆ ॥",
+      "transliteration": "a(n)mirat naam tahaa jeea rasiaa ||",
+      "translation": "the Ambrosial Nectar of the Naam becomes sweet to his soul."
+    },
+    {
+      "verseId": 11162,
+      "gurmukhi": "ਠਾਕੁਰ ਅਪੁਨੇ ਜੋ ਜਨੁ ਭਾਇਆ ॥",
+      "transliteration": "Thaakur apune jo jan bhaiaa ||",
+      "translation": "That humble being, who is pleasing to his Lord and Master"
+    },
+    {
+      "verseId": 11163,
+      "gurmukhi": "ਨਾਨਕ ਉਆ ਕਾ ਮਨੁ ਸੀਤਲਾਇਆ ॥੨੮॥",
+      "transliteration": "naanak uaa kaa man seetalaiaa ||28||",
+      "translation": "- O Nanak, his mind is cooled and soothed. ||28||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: .",
+    "The middle movement deepens the correction by holding the mind inside one who dwells in the Society of the Saints finds a great peace;.",
+    "The closing movement leaves a return you can actually keep: - O Nanak, his mind is cooled and soothed."
+  ],
+  "keyVerseIds": [
+    11156,
+    11157,
+    11160,
+    11163
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle",
+    "collection-greed-to-seeking-93"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Seeking is carried here from  toward - O Nanak, his mind is cooled and soothed.",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "The middle movement deepens the correction by holding the mind inside one who dwells in the Society of the Saints finds a great peace;.",
+      "practicalImplication": "Seeking steadies when - O Nanak, his mind is cooled and soothed.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.18,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.9,
+      "usefulness": 2.44,
+      "beauty": 3.74,
+      "overall": 3.83
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

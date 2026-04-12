@@ -11,6 +11,7 @@ import {
   type AmritKeertanShabad,
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
+import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { useRecentSearchStore } from '../store/recentSearch'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { SearchMode } from '../types'
@@ -24,7 +25,6 @@ import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDo
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
   getAngTargets,
-  getAppSearchMatches,
   getAvailableSearchMeta,
   groupSearchResults,
   SEARCH_SOURCE_LABELS,
@@ -527,14 +527,10 @@ export default function Banis() {
     [searchMode, searchQuery, searchSource]
   )
 
-  const appSearchMatches = useMemo(() => {
-    const trimmedQuery = searchQuery.trim()
-    if (searchMode === 'ang' || trimmedQuery.length < SEARCH_MODE_META[searchMode].minLength) {
-      return []
-    }
-
-    return getAppSearchMatches(trimmedQuery, searchSource)
-  }, [searchMode, searchQuery, searchSource])
+  const appSearchMatches = useAppSearchMatches(
+    searchMode === 'ang' ? '' : searchQuery.trim(),
+    searchSource
+  )
 
   return (
     <div

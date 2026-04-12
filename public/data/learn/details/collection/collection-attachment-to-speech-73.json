@@ -1,0 +1,83 @@
+{
+  "id": "collection-attachment-to-speech-73",
+  "title": "Attachment to Speech",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru teaches love without possession and steadiness without denial. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "attachment",
+    "speech"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9416,
+      9417
+    ],
+    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+    "lifeApplication": "Let feedback inform you without governing your worth."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-praise-and-blame"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-attachment"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-speech"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-speak-for-honor"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-speech"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady",
+    "shabad-speak-what-brings-honor",
+    "shabad-generated-152",
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru teaches love without possession and steadiness without denial. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.9,
+      "specificity": 4.26,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.72
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

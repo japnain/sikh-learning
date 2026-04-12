@@ -1,0 +1,83 @@
+{
+  "id": "collection-mercy-to-forgiveness-89",
+  "title": "Mercy to Forgiveness",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "mercy",
+    "forgiveness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      501,
+      503
+    ],
+    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
+    "lifeApplication": "Return is possible because grace precedes your recovery."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-forgiveness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-forgiveness-is-the-fast"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-becomes-fearless"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-forgiveness"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-generated-66",
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.99,
+      "clarity": 3.65,
+      "specificity": 4.21,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.69
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

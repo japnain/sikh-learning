@@ -1,0 +1,67 @@
+{
+  "id": "guidance-detached-and-steady-1",
+  "title": "Holy Saadhus: Rest And Peace Are In",
+  "summary": "Attachment is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
+  "lifeApplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9412
+    ],
+    "shortMeaning": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
+    "lifeApplication": "Attachment becomes more truthful when holy Saadhus: rest and peace are in the Sanctuary of the Lord."
+  },
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
+      "practicalImplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.94,
+      "clarity": 2.7,
+      "specificity": 4.34,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.92,
+      "beauty": 3.04,
+      "overall": 3.44
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-566-3",
+  "title": "Touches The Feet Of The Holy",
+  "summary": "The shabad does not leave comparison at diagnosis. It turns toward return.",
+  "takeaway": "touches the feet of the Holy",
+  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-566",
+    "verseIds": [
+      7993,
+      7998
+    ],
+    "shortMeaning": "In the Society of the Saints, egotism is shed,; touches the feet of the Holy",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-comparison-daily",
+    "topic-comparison-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-566"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "In the Society of the Saints, egotism is shed,; touches the feet of the Holy",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Comparison steadies when touches the feet of the Holy.",
+      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.25,
+      "clarity": 3.42,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 3.74,
+      "overall": 3.95
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

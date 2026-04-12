@@ -1,0 +1,68 @@
+{
+  "id": "collection-doubt-bundle",
+  "title": "Doubt in one shorter sitting",
+  "subtitle": "A compact bundle for doubt",
+  "description": "The mind keeps second-guessing what it once knew clearly enough to begin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "doubt"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      921,
+      922
+    ],
+    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
+    "lifeApplication": "Move from circling to obedience."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-doubt"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-generated-63"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The mind keeps second-guessing what it once knew clearly enough to begin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "A compact bundle for doubt",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 2.77,
+      "specificity": 4.2,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.48
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

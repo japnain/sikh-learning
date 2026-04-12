@@ -1,0 +1,107 @@
+{
+  "id": "topic-seeking",
+  "title": "When searching becomes a habit",
+  "shortTitle": "Seeking",
+  "category": "inner-work",
+  "issueStatement": "You keep moving between practices, explanations, and moods, but still feel unlanded.",
+  "centralInsight": "Search has a place, but Gurbani warns that wandering can become an identity. Search must eventually hand itself over to company, instruction, and lived return.",
+  "practicalReflection": "The point is not to collect more spiritual scenery. The point is to let the mind settle where Guru actually teaches.",
+  "actionPrompt": "Stop adding new inputs for one day. Stay with one guide, one shabad, and one faithful act of company.",
+  "searchTerms": [
+    "searching",
+    "wandering",
+    "seeking",
+    "can't settle",
+    "spiritually lost",
+    "looking everywhere"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3890,
+          3891,
+          3898
+        ],
+        "shortMeaning": "Search and travel can multiply, but peace only lands where better company cools the body.",
+        "lifeApplication": "Wandering is not automatically depth."
+      },
+      "explanation": "The shabad distinguishes motion from arrival."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+        "verseIds": [
+          918,
+          920,
+          924
+        ],
+        "shortMeaning": "Doubt is not extinguished by roaming but by Guru's instruction and Sangat.",
+        "lifeApplication": "Search must stop feeding the fire it says it wants to solve."
+      },
+      "explanation": "Seeking becomes medicine only when it submits."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-patience-ripens-into-honor",
+        "verseIds": [
+          11239,
+          11240
+        ],
+        "shortMeaning": "Wandering ends in saint company, and the mind brightens through mercy there.",
+        "lifeApplication": "Often the next step is placement, not novelty."
+      },
+      "explanation": "The path settles by dwelling somewhere true."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle",
+    "collection-greed-to-seeking-93"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:seeking",
+    "evidence": {
+      "coreClaim": "Search has a place, but Gurbani warns that wandering can become an identity. Search must eventually hand itself over to company, instruction, and lived return.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "You keep moving between practices, explanations, and moods, but still feel unlanded.",
+      "practicalImplication": "Stop adding new inputs for one day. Stay with one guide, one shabad, and one faithful act of company.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.79,
+      "beauty": 3.98,
+      "overall": 3.98
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

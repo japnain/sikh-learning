@@ -1,12 +1,8 @@
 import { useEffect, useMemo } from "react"
 import { Link, useParams } from "react-router-dom"
-import {
-  COLLECTION_BY_ID,
-  DAILY_GUIDANCE_BY_ID,
-  SHABAD_DEEP_DIVE_BY_ID,
-  TOPIC_GUIDE_BY_ID,
-} from "../../data/learnContent"
 import { IconArrowRight } from "../../components/icons"
+import useLearnCatalog from "../../hooks/useLearnCatalog"
+import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
 import type { CollectionItemReference, LearnContentKind } from "../../types"
 import { resolveLineReference } from "../../utils/learnExperience"
@@ -46,14 +42,17 @@ function MissingCollectionDetail() {
   )
 }
 
-function getStepCopy(item: CollectionItemReference): {
+function getStepCopy(
+  learnCatalog: NonNullable<ReturnType<typeof useLearnCatalog>["catalog"]>,
+  item: CollectionItemReference
+): {
   kind: LearnContentKind
   title: string
   description: string
   eyebrow: string
 } | null {
   if (item.kind === "daily-guidance") {
-    const guidance = DAILY_GUIDANCE_BY_ID[item.id]
+    const guidance = learnCatalog.dailyGuidanceById[item.id]
     if (!guidance) return null
 
     return {
@@ -65,7 +64,7 @@ function getStepCopy(item: CollectionItemReference): {
   }
 
   if (item.kind === "topic-guide") {
-    const topic = TOPIC_GUIDE_BY_ID[item.id]
+    const topic = learnCatalog.topicGuideById[item.id]
     if (!topic) return null
 
     return {
@@ -76,7 +75,7 @@ function getStepCopy(item: CollectionItemReference): {
     }
   }
 
-  const shabad = SHABAD_DEEP_DIVE_BY_ID[item.id]
+  const shabad = learnCatalog.shabadDeepDiveById[item.id]
   if (!shabad) return null
 
   return {
@@ -89,10 +88,12 @@ function getStepCopy(item: CollectionItemReference): {
 
 export default function CollectionDetailPage() {
   const { collectionId } = useParams<{ collectionId: string }>()
-  const collection = collectionId ? COLLECTION_BY_ID[collectionId] : null
+  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
+  const { item: collection, error: collectionError, loading: collectionLoading } = useLearnDetail("collection", collectionId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
   const setActiveLearnCollection = useLearningStore(state => state.setActiveLearnCollection)
   const viewedItems = useLearningStore(state => state.learnState.viewedItems)
+  const viewedIds = useMemo(() => new Set(viewedItems.map(item => item.itemId)), [viewedItems])
 
   useEffect(() => {
     if (collection) {
@@ -101,16 +102,16 @@ export default function CollectionDetailPage() {
     }
   }, [collection, recordLearnItemView, setActiveLearnCollection])
 
-  if (!collection) return <MissingCollectionDetail />
+  if (catalogLoading || collectionLoading) return <MissingCollectionDetail />
+  if (catalogError || collectionError || !catalog || !collection) return <MissingCollectionDetail />
 
-  const heroExcerpt = resolveLineReference(collection.heroSource)
-  const viewedIds = useMemo(() => new Set(viewedItems.map(item => item.itemId)), [viewedItems])
+  const heroExcerpt = resolveLineReference(catalog, collection.heroSource)
   const completedCount = collection.items.filter(item => viewedIds.has(item.id)).length
   const nextUnviewedItem = collection.items.find(item => !viewedIds.has(item.id)) ?? collection.items[collection.items.length - 1] ?? null
   const nextUnviewedIndex = nextUnviewedItem
     ? collection.items.findIndex(item => item.kind === nextUnviewedItem.kind && item.id === nextUnviewedItem.id)
     : -1
-  const nextUnviewedStepCopy = nextUnviewedItem ? getStepCopy(nextUnviewedItem) : null
+  const nextUnviewedStepCopy = nextUnviewedItem ? getStepCopy(catalog, nextUnviewedItem) : null
 
   const firstGuidanceId = collection.items.find(item => item.kind === "daily-guidance")?.id
   const firstTopicId = collection.items.find(item => item.kind === "topic-guide")?.id
@@ -187,7 +188,7 @@ export default function CollectionDetailPage() {
         <p className="eyebrow">Journey Steps</p>
         <div className="mt-4 space-y-3">
           {collection.items.map((item, index) => {
-            const stepCopy = getStepCopy(item)
+            const stepCopy = getStepCopy(catalog, item)
             if (!stepCopy) return null
 
             const sectionId =

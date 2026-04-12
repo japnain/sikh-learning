@@ -1,0 +1,67 @@
+{
+  "id": "collection-seeking-bundle",
+  "title": "Seeking in one shorter sitting",
+  "subtitle": "A compact bundle for seeking",
+  "description": "The hunger is real, but it keeps feeding on novelty instead of depth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "seeking"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239,
+      11240
+    ],
+    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-wanderings-cease-in-sangat"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seeking"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-108"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-108",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The hunger is real, but it keeps feeding on novelty instead of depth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "A compact bundle for seeking",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 2.77,
+      "specificity": 4.16,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.44
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

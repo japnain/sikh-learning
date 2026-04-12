@@ -1,0 +1,67 @@
+{
+  "id": "collection-mercy-bundle",
+  "title": "Mercy in one shorter sitting",
+  "subtitle": "A compact bundle for mercy",
+  "description": "The heart keeps assuming kindness must first be earned. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "mercy"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      501,
+      503
+    ],
+    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
+    "lifeApplication": "Return is possible because grace precedes your recovery."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mercy-gives-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-what-pleases-you-comes-to-pass"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-mercy"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-generated-66"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The heart keeps assuming kindness must first be earned. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "A compact bundle for mercy",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.27,
+      "specificity": 4.16,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

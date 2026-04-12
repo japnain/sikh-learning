@@ -1,0 +1,68 @@
+{
+  "id": "guidance-sweet-speech-humble-walk-2",
+  "title": "Her Speech Is Sweet, And Her Way",
+  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
+  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-sweet-speech-humble-walk",
+    "verseIds": [
+      1288,
+      1290
+    ],
+    "shortMeaning": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Remain united with the Society of the Saints; chant the Name of; her speech is sweet, and her way of life is humble. She",
+      "emotionalState": "sharp, performing, defensive",
+      "turn": "Soft speech becomes believable when the ego has begun to bow.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 1.26,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.58,
+      "beauty": 1.96,
+      "overall": 3.28
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "collection-gratitude-journey",
+  "title": "From Gratitude to steadier practice",
+  "subtitle": "A deliberate path through gratitude",
+  "description": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "gratitude",
+    "gratitude"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338,
+      60340
+    ],
+    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
+    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude-restores-naam-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-gratitude-restores-naam"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "A deliberate path through gratitude",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.4,
+      "specificity": 4.24,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

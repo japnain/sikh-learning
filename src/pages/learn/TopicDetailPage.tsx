@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { Link, useParams, useSearchParams } from "react-router-dom"
-import { TOPIC_GUIDE_BY_ID } from "../../data/learnContent"
 import { IconArrowRight } from "../../components/icons"
+import useLearnCatalog from "../../hooks/useLearnCatalog"
+import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
 import { resolveLineReference } from "../../utils/learnExperience"
 import { buildLearnDetailPath, LEARN_DETAIL_RAILS } from "../../utils/learnRails"
@@ -26,7 +27,8 @@ function MissingTopicDetail() {
 export default function TopicDetailPage() {
   const { topicId } = useParams<{ topicId: string }>()
   const [searchParams] = useSearchParams()
-  const topic = topicId ? TOPIC_GUIDE_BY_ID[topicId] : null
+  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
+  const { item: topic, error: topicError, loading: topicLoading } = useLearnDetail("topic-guide", topicId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
   useEffect(() => {
@@ -35,7 +37,8 @@ export default function TopicDetailPage() {
     }
   }, [recordLearnItemView, topic])
 
-  if (!topic) return <MissingTopicDetail />
+  if (catalogLoading || topicLoading) return <MissingTopicDetail />
+  if (catalogError || topicError || !catalog || !topic) return <MissingTopicDetail />
 
   const from = searchParams.get("from") ?? "topics"
 
@@ -65,7 +68,7 @@ export default function TopicDetailPage() {
         data-ai-anchor="topic-excerpts"
       >
         {topic.excerpts.map(excerpt => {
-          const resolved = resolveLineReference(excerpt.source)
+          const resolved = resolveLineReference(catalog, excerpt.source)
 
           return (
             <div key={`${resolved.deepDive.id}:${excerpt.source.verseIds.join("-")}`} className="section-shell-quiet p-4">

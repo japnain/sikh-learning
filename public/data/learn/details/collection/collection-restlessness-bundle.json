@@ -1,0 +1,68 @@
+{
+  "id": "collection-restlessness-bundle",
+  "title": "Restlessness in one shorter sitting",
+  "subtitle": "A compact bundle for restlessness",
+  "description": "Movement is increasing, but clarity is not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "restlessness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890,
+      3895,
+      3898
+    ],
+    "shortMeaning": "Searching and ritual are not identical with peace.",
+    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-generated-109"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "Movement is increasing, but clarity is not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A compact bundle for restlessness",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.88,
+      "clarity": 3.52,
+      "specificity": 4.11,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.5
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

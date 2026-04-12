@@ -1,0 +1,68 @@
+{
+  "id": "guidance-extinguish-the-fire-of-doubt-2",
+  "title": "Become Gurmukh, And Extinguish The Fire Within",
+  "summary": "Doubt is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "The fire of doubt is not extinguished, even by wandering through foreign; o mind, become Gurmukh, and extinguish the fire within",
+  "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      921
+    ],
+    "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign; o mind, become Gurmukh, and extinguish the fire within",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-doubt-daily",
+    "topic-doubt-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The fire of doubt is not extinguished, even by wandering through foreign; o mind, become Gurmukh, and extinguish the fire within",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "Stop circling and let Guru's word take residence.",
+      "practicalImplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 0.81,
+      "specificity": 4.76,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.36,
+      "beauty": 2.41,
+      "overall": 3.23
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

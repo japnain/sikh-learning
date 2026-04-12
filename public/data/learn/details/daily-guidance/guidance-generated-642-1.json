@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-642-1",
+  "title": "Raag Gauree Poorbee, Fifth Mehla:",
+  "summary": "Sangat is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Raag Gauree Poorbee, Fifth Mehla:",
+  "lifeApplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-642",
+    "verseIds": [
+      8808
+    ],
+    "shortMeaning": "Raag Gauree Poorbee, Fifth Mehla:",
+    "lifeApplication": "Sangat becomes more truthful when raag Gauree Poorbee, Fifth Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-642"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "seva"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Raag Gauree Poorbee, Fifth Mehla:",
+      "emotionalState": "isolated, impressionable, needing-company",
+      "turn": "Sangat steadies when celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my.",
+      "practicalImplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.76,
+      "clarity": 3.54,
+      "specificity": 4.53,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.01,
+      "beauty": 3.82,
+      "overall": 3.73
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

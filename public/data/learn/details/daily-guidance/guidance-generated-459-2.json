@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-459-2",
+  "title": "Whatever Pleases Him Shall Come To Pass",
+  "summary": "Mercy is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Gauree, First Mehla:; whatever pleases Him shall come to pass",
+  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-459",
+    "verseIds": [
+      6385,
+      6388
+    ],
+    "shortMeaning": "Gauree, First Mehla:; whatever pleases Him shall come to pass",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-mercy-daily",
+    "topic-mercy-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-459"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, First Mehla:; whatever pleases Him shall come to pass",
+      "emotionalState": "unworthy, guarded, hard-on-self",
+      "turn": "Mercy steadies when nanak abides in the Sanctuary of Your devotees.",
+      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.94,
+      "clarity": 2.94,
+      "specificity": 4.7,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.36,
+      "beauty": 3.58,
+      "overall": 3.68
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

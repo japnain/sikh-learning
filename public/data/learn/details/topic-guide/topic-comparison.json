@@ -1,0 +1,107 @@
+{
+  "id": "topic-comparison",
+  "title": "When comparison keeps shrinking the heart",
+  "shortTitle": "Comparison",
+  "category": "most-needed",
+  "issueStatement": "Other people's success, beauty, attention, or place becomes the measure of your own worth.",
+  "centralInsight": "Comparison thrives where the mind is unconquered, ego is unexamined, and praise or blame still decide identity.",
+  "practicalReflection": "Guru does not simply say stop comparing. Guru shows the deeper conditions that make comparison persuasive.",
+  "actionPrompt": "When comparison begins, bring the gaze back from another person's lane to the condition of your own mind.",
+  "searchTerms": [
+    "comparison",
+    "jealousy",
+    "envy",
+    "insecurity",
+    "validation"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          290,
+          292
+        ],
+        "shortMeaning": "Contentment and inner conquest oppose comparison's hunger.",
+        "lifeApplication": "The mind looking outward for ranking has not yet settled inwardly."
+      },
+      "explanation": "Contentment is not passive here. It is active protection against endless ranking."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-ego-is-disease",
+        "verseIds": [
+          20959,
+          20963
+        ],
+        "shortMeaning": "Ego drives action and distorts value.",
+        "lifeApplication": "Comparison is often ego asking to be reassured."
+      },
+      "explanation": "The disease language helps comparison feel less noble and more diagnosable."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-detached-and-steady",
+        "verseIds": [
+          9416,
+          9417
+        ],
+        "shortMeaning": "Praise and blame no longer determine steadiness.",
+        "lifeApplication": "Comparison weakens when approval and status lose some power."
+      },
+      "explanation": "Guru Tegh Bahadur gives a picture of freedom from social hooks."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-ego-is-disease",
+    "shabad-detached-and-steady"
+  ],
+  "relatedTopicIds": [
+    "topic-comparison-daily",
+    "topic-comparison-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey",
+    "collection-comparison-bundle"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:comparison",
+    "evidence": {
+      "coreClaim": "Comparison thrives where the mind is unconquered, ego is unexamined, and praise or blame still decide identity.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "Other people's success, beauty, attention, or place becomes the measure of your own worth.",
+      "practicalImplication": "When comparison begins, bring the gaze back from another person's lane to the condition of your own mind.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.79,
+      "beauty": 3.98,
+      "overall": 3.96
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "topic-fear",
+  "title": "When fear keeps writing the script",
+  "shortTitle": "Fear",
+  "category": "most-needed",
+  "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against.",
+  "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment.",
+  "practicalReflection": "Fear wants guarantees before obedience. Gurbani keeps turning the mind toward the One who remains present before the guarantees arrive.",
+  "actionPrompt": "When fear rises, read one line aloud before you plan your defense.",
+  "searchTerms": [
+    "fear",
+    "afraid",
+    "scared",
+    "dread",
+    "panic",
+    "insecure"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          15,
+          16
+        ],
+        "shortMeaning": "Everything stands within Hukam, and real understanding loosens ego-driven alarm.",
+        "lifeApplication": "Fear cannot rule as absolutely when reality is wider than the frightened self."
+      },
+      "explanation": "The correction begins by changing the frame, not merely the feeling."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "verseIds": [
+          9611,
+          9612,
+          9613
+        ],
+        "shortMeaning": "Service, reverence, and disciplined devotion are the soil in which fearlessness grows.",
+        "lifeApplication": "Fearlessness is cultivated, not performed."
+      },
+      "explanation": "Guru gives a path, not a slogan."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
+        "verseIds": [
+          37476,
+          37477
+        ],
+        "shortMeaning": "Nearness and cherished belonging counter the loneliness that fear feeds on.",
+        "lifeApplication": "The answer to fear is often relational before it is explanatory."
+      },
+      "explanation": "Heldness changes the nervous system of the path."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-lord-keeps-the-humble-close"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle",
+    "collection-mercy-to-fear-90"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:fear",
+    "evidence": {
+      "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against.",
+      "practicalImplication": "When fear rises, read one line aloud before you plan your defense.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.23,
+      "beauty": 4.22,
+      "overall": 4.08
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

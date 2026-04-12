@@ -1,0 +1,79 @@
+{
+  "id": "collection-gratitude-and-contentment",
+  "title": "Gratitude and Contentment",
+  "subtitle": "A slower path out of grasping",
+  "description": "Study how mercy, steadiness, and truthful perspective loosen attachment and deepen gratitude.",
+  "durationLabel": "5-day journey",
+  "themes": [
+    "gratitude",
+    "attachment",
+    "reflection"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338
+    ],
+    "shortMeaning": "I have not appreciated what You have done for me.",
+    "lifeApplication": "Let gratitude begin in honest recognition, not polished language."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-attachment"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-gratitude-restores-naam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-gratitude-restores-naam",
+    "shabad-detached-and-steady",
+    "shabad-suffering-as-medicine",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Study how mercy, steadiness, and truthful perspective loosen attachment and deepen gratitude.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "A slower path out of grasping",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.66,
+      "clarity": 3.15,
+      "specificity": 3.9,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.43
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

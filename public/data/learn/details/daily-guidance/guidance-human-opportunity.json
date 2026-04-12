@@ -1,0 +1,66 @@
+{
+  "id": "guidance-human-opportunity",
+  "title": "This life is more than a schedule",
+  "summary": "Human birth is framed as an opening for meeting, sangat, and Naam.",
+  "takeaway": "Do not let busyness bury the point of being here.",
+  "lifeApplication": "Choose one practice today that treats life as an opportunity for meeting rather than maintenance.",
+  "source": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
+    "lifeApplication": "Let one part of the day answer that opportunity directly."
+  },
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 9,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Human birth is given as the chance to meet the Divine.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "Use this life for meeting, not merely for managing.",
+      "practicalImplication": "Choose one practice today that treats life as an opportunity for meeting rather than maintenance.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.2,
+      "clarity": 3.78,
+      "specificity": 4.95,
+      "emotionalHonesty": 3,
+      "usefulness": 3.36,
+      "beauty": 3.82,
+      "overall": 3.89
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

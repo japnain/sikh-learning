@@ -1,0 +1,68 @@
+{
+  "id": "guidance-forgiveness-opens-the-room",
+  "title": "Forgiveness can change the whole room you live inside.",
+  "summary": "The shabad does not treat forgiveness as a small emotional adjustment. It opens directly into peace and inhabitable space.",
+  "takeaway": "Forgiveness is one way grace rearranges the atmosphere.",
+  "lifeApplication": "Notice what bitterness is making unlivable, then bring that exact knot into Bani.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27259,
+      27260,
+      27261
+    ],
+    "shortMeaning": "Forgiveness moves swiftly into peace that fills the room.",
+    "lifeApplication": "Release does not only change mood; it changes the space you move through."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-forgiveness-becomes-fearless"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Forgiveness moves swiftly into peace that fills the room.",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Notice what bitterness is making unlivable, then bring that exact knot into Bani.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.21,
+      "clarity": 3.9,
+      "specificity": 4.42,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.7,
+      "beauty": 3.9,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

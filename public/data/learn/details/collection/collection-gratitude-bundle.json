@@ -1,0 +1,67 @@
+{
+  "id": "collection-gratitude-bundle",
+  "title": "Gratitude in one shorter sitting",
+  "subtitle": "A compact bundle for gratitude",
+  "description": "The heart notices absence faster than gift. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "gratitude"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-gratitude-restores-naam",
+    "verseIds": [
+      60338,
+      60340
+    ],
+    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
+    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-suffering-as-medicine",
+    "shabad-gratitude-restores-naam"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "The heart notices absence faster than gift. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "A compact bundle for gratitude",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.52,
+      "specificity": 4.16,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

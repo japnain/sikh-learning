@@ -1,0 +1,67 @@
+{
+  "id": "guidance-search-ends-in-saint-company-1",
+  "title": "I Have Searched And Searched, Seeking The",
+  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890
+    ],
+    "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+    "lifeApplication": "Restlessness becomes more truthful when i have searched and searched, seeking the Blessed Vision of His Darshan."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "The mind settles less by roaming and more by right company.",
+      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 2.7,
+      "specificity": 4.56,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.14,
+      "beauty": 3.06,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

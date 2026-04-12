@@ -1,0 +1,111 @@
+{
+  "id": "topic-purpose",
+  "title": "When you are asking what this life is for",
+  "shortTitle": "Purpose",
+  "category": "most-needed",
+  "issueStatement": "Life feels busy but unclear, full but underdirected.",
+  "centralInsight": "Guru frames purpose around meeting, sangat, Naam, and seva rather than around self-invention alone.",
+  "practicalReflection": "Purpose gets clearer when the question shifts from what will make me feel impressive to what brings me nearer to truth and service.",
+  "actionPrompt": "Let one decision today answer the question: does this move me toward meeting, service, or only self-expansion?",
+  "searchTerms": [
+    "purpose",
+    "meaning",
+    "calling",
+    "direction",
+    "why am i here"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          524,
+          525,
+          527
+        ],
+        "shortMeaning": "Human life is given as the chance to meet through sangat and Naam.",
+        "lifeApplication": "Purpose begins with what this life is for in Guru's framing, not only in yours."
+      },
+      "explanation": "Guru Arjan makes the orientation clear from the opening lines."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12947,
+          12948
+        ],
+        "shortMeaning": "Seva is not accessory to the path; it is one way of union.",
+        "lifeApplication": "Purpose matures when it opens outward in selfless service."
+      },
+      "explanation": "Nishkaam seva is a spiritual answer, not just an ethical one."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          11,
+          16
+        ],
+        "shortMeaning": "Purpose grows clearer inside Hukam and softer ego.",
+        "lifeApplication": "Direction is easier to hear when control loosens."
+      },
+      "explanation": "Purpose is not only found through intensity; it is also received through surrender."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service",
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedTopicIds": [
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth",
+    "collection-purpose-journey"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:purpose",
+    "evidence": {
+      "coreClaim": "Guru frames purpose around meeting, sangat, Naam, and seva rather than around self-invention alone.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "Life feels busy but unclear, full but underdirected.",
+      "practicalImplication": "Let one decision today answer the question: does this move me toward meeting, service, or only self-expansion?",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 2.86,
+      "beauty": 4.12,
+      "overall": 3.91
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

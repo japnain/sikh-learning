@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-150-3",
+  "title": "Meeting With The Guru, Nanak Has Recognized",
+  "summary": "The shabad does not leave hukam at diagnosis. It turns toward return.",
+  "takeaway": "Meeting with the Guru, Nanak has recognized the Supreme Lord God",
+  "lifeApplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-150",
+    "verseIds": [
+      2089,
+      2097
+    ],
+    "shortMeaning": "Like a foolish child, I have made mistakes. O Lord, You are; meeting with the Guru, Nanak has recognized the Supreme Lord God",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-150"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "hukam"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Like a foolish child, I have made mistakes. O Lord, You are; meeting with the Guru, Nanak has recognized the Supreme Lord God",
+      "emotionalState": "resisting, controlling, argumentative",
+      "turn": "Hukam steadies when meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+      "practicalImplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.27,
+      "clarity": 2.82,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.06,
+      "beauty": 3.34,
+      "overall": 3.83
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

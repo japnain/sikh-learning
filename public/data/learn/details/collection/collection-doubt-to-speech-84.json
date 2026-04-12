@@ -1,0 +1,84 @@
+{
+  "id": "collection-doubt-to-speech-84",
+  "title": "Doubt to Speech",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "doubt",
+    "speech"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
+    "verseIds": [
+      918,
+      921,
+      922
+    ],
+    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
+    "lifeApplication": "Move from circling to obedience."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-speech"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-speak-for-honor"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-doubt",
+    "topic-speech"
+  ],
+  "relatedShabadIds": [
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-speak-what-brings-honor",
+    "shabad-generated-63",
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+      "emotionalState": "confused, restless, skeptical",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.77,
+      "specificity": 4.23,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.72
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

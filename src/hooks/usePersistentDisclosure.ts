@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const UI_DISCLOSURE_STORAGE_KEY = "naamras-ui-disclosure"
 
@@ -53,8 +53,13 @@ function getDisclosureValue(storageKey: string | null, defaultOpen: boolean) {
 
 export function usePersistentDisclosure(storageKey: string | null, defaultOpen = false) {
   const [open, setOpen] = useState(() => getDisclosureValue(storageKey, defaultOpen))
+  const hasMountedRef = useRef(false)
 
   useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true
+      return
+    }
     setOpen(getDisclosureValue(storageKey, defaultOpen))
   }, [defaultOpen, storageKey])
 

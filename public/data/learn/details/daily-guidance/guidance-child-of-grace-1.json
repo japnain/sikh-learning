@@ -1,0 +1,67 @@
+{
+  "id": "guidance-child-of-grace-1",
+  "title": "If Only I Could Have The Good",
+  "summary": "Loneliness is named plainly here before the mind has time to decorate it.",
+  "takeaway": "If only I could have the good fortune to meet some friendly",
+  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3757
+    ],
+    "shortMeaning": "If only I could have the good fortune to meet some friendly",
+    "lifeApplication": "Loneliness becomes more truthful when if only I could have the good fortune to meet some friendly."
+  },
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-loneliness-daily",
+    "topic-loneliness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "If only I could have the good fortune to meet some friendly",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 2.58,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.8,
+      "beauty": 2.93,
+      "overall": 3.66
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "topic-seva",
+  "title": "When you want your life to become seva",
+  "shortTitle": "Seva",
+  "category": "practice",
+  "issueStatement": "You want your life to be useful, but service can easily harden into spiritual performance or burnout.",
+  "centralInsight": "Guru joins seva with humility, obedience, hiddenness, and remembrance. Seva is not just effort. It is a spiritual way of being.",
+  "practicalReflection": "Useful work without inner alignment can harden the self; nishkaam seva softens and reorders it.",
+  "actionPrompt": "Choose one act of service today that is faithful, sustainable, and not secretly hungry for praise.",
+  "searchTerms": [
+    "seva",
+    "service",
+    "serve",
+    "help others",
+    "volunteer"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12943,
+          12947,
+          12948
+        ],
+        "shortMeaning": "Hiddenness and reward-free service define true seva.",
+        "lifeApplication": "Seva is not self-display with religious vocabulary."
+      },
+      "explanation": "This is the clearest direct line in the catalog on nishkaam seva."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-work-give-know-the-path",
+        "verseIds": [
+          53371,
+          53372
+        ],
+        "shortMeaning": "Honest work and giving are part of the path itself.",
+        "lifeApplication": "Seva is not separate from how you earn and share."
+      },
+      "explanation": "Guru Nanak gives seva concrete ethical shape."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          524,
+          527
+        ],
+        "shortMeaning": "Human life is an opportunity for meeting and holy company.",
+        "lifeApplication": "Seva makes sense when life is understood as purposeful gift."
+      },
+      "explanation": "Purpose and seva strengthen each other in this framing."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service",
+    "shabad-work-give-know-the-path",
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedTopicIds": [
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "seva",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:seva",
+    "evidence": {
+      "coreClaim": "Guru joins seva with humility, obedience, hiddenness, and remembrance. Seva is not just effort. It is a spiritual way of being.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "You want your life to be useful, but service can easily harden into spiritual performance or burnout.",
+      "practicalImplication": "Choose one act of service today that is faithful, sustainable, and not secretly hungry for praise.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.42,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.86,
+      "beauty": 3.72,
+      "overall": 3.88
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "leans on template-heavy phrasing",
+      "repeats phrasing too closely",
+      "sounds interchangeable with other generated entries"
+    ]
+  }
+}

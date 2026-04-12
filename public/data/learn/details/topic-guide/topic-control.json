@@ -1,0 +1,105 @@
+{
+  "id": "topic-control",
+  "title": "When you are gripping too hard",
+  "shortTitle": "Control",
+  "category": "most-needed",
+  "issueStatement": "You keep tightening around outcomes, people, or timing because letting go feels like negligence.",
+  "centralInsight": "Gurbani loosens control by relocating authorship. Responsibility remains, but total authorship is taken out of your hands and returned to Hukam, mercy, and nearness.",
+  "practicalReflection": "Control often disguises itself as maturity. The real question is whether remembrance survives while you are acting.",
+  "actionPrompt": "Name the result you are trying to secure today. Offer one faithful action, then release the fantasy of total control.",
+  "searchTerms": [
+    "control",
+    "controlling",
+    "micromanaging",
+    "can't let go",
+    "outcomes",
+    "fix everything"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "verseIds": [
+          499,
+          512
+        ],
+        "shortMeaning": "What pleases the Divine comes to pass; everything that happens is already within that doing.",
+        "lifeApplication": "Act, but stop imagining that authorship belongs to the anxious self."
+      },
+      "explanation": "The shabad does not erase action; it reorders the doer."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-hukam-inside-everything",
+        "verseIds": [
+          15,
+          16
+        ],
+        "shortMeaning": "Nothing stands outside Hukam, and understanding that loosens ego.",
+        "lifeApplication": "Control weakens when the mind stops demanding a reality beyond Hukam."
+      },
+      "explanation": "The correction is metaphysical before it becomes emotional."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
+        "verseIds": [
+          37476,
+          37477
+        ],
+        "shortMeaning": "Nearness and care are already present for the one who stops living by rank and force.",
+        "lifeApplication": "Release grows where belonging becomes more convincing than pressure."
+      },
+      "explanation": "Control softens when nearness becomes credible."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-hukam-inside-everything",
+    "shabad-lord-keeps-the-humble-close"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [
+    "collection-control-to-release",
+    "collection-control-journey",
+    "collection-control-bundle"
+  ],
+  "rotation": {
+    "theme": "control",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "reflection",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:control",
+    "evidence": {
+      "coreClaim": "Gurbani loosens control by relocating authorship. Responsibility remains, but total authorship is taken out of your hands and returned to Hukam, mercy, and nearness.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "You keep tightening around outcomes, people, or timing because letting go feels like negligence.",
+      "practicalImplication": "Name the result you are trying to secure today. Offer one faithful action, then release the fantasy of total control.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 3.36,
+      "beauty": 4.38,
+      "overall": 4.05
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

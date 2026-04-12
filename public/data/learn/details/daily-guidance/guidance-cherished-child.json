@@ -1,0 +1,67 @@
+{
+  "id": "guidance-cherished-child",
+  "title": "Bring your need like a child",
+  "summary": "Need does not disqualify you from the path. It becomes part of the prayer.",
+  "takeaway": "You do not have to become self-sufficient before seeking Guru.",
+  "lifeApplication": "Pray with plain need today instead of polished language.",
+  "source": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3761,
+      3762,
+      3763
+    ],
+    "shortMeaning": "The Guru is named as protector, mother, and father.",
+    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+  },
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-loneliness-daily",
+    "topic-loneliness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "The Guru is named as protector, mother, and father.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+      "practicalImplication": "Pray with plain need today instead of polished language.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.7,
+      "clarity": 3.9,
+      "specificity": 4.29,
+      "emotionalHonesty": 3,
+      "usefulness": 2.44,
+      "beauty": 3.9,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "clarity"
+    ],
+    "issues": []
+  }
+}

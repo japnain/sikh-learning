@@ -1,0 +1,76 @@
+{
+  "id": "collection-anxiety-journey",
+  "title": "From Anxiety to steadier practice",
+  "subtitle": "A deliberate path through anxiety",
+  "description": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "anxiety",
+    "reflection"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-steadied-by-creator",
+    "verseIds": [
+      30988,
+      30989
+    ],
+    "shortMeaning": "The Creator who formed you remains your support.",
+    "lifeApplication": "Answer fear with remembrance before strategy."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-fear-and-protection"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-anxiety"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-remember-and-find-peace"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-anxiety"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-suffering-as-medicine"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "afraid, shaken, alone",
+      "turn": "A deliberate path through anxiety",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 2.77,
+      "specificity": 4.3,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

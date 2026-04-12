@@ -1,0 +1,78 @@
+{
+  "id": "collection-control-journey",
+  "title": "From Control to steadier practice",
+  "subtitle": "A deliberate path through control",
+  "description": "Guru interrupts control by restoring the difference between response and authorship. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "control",
+    "sangat"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-3",
+    "verseIds": [
+      17
+    ],
+    "shortMeaning": "Some sing of His Power-who has that Power?",
+    "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-3-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-control"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-3"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-3-2"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-942"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-control",
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-3",
+    "shabad-generated-942",
+    "shabad-human-birth-is-chance",
+    "shabad-child-of-grace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "gripping, controlling, tense",
+      "turn": "A deliberate path through control",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.27,
+      "specificity": 4.24,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.52
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "collection-hukam-to-doubt-82",
+  "title": "Hukam to Doubt",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "hukam",
+    "doubt"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "Everything stands inside Hukam, not outside it.",
+    "lifeApplication": "Release the demand that peace must wait for total control."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-doubt"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-generated-63"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.65,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.66
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

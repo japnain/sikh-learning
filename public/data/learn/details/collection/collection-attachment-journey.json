@@ -1,0 +1,79 @@
+{
+  "id": "collection-attachment-journey",
+  "title": "From Attachment to steadier practice",
+  "subtitle": "A deliberate path through attachment",
+  "description": "Guru teaches love without possession and steadiness without denial. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "attachment",
+    "sangat"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-detached-and-steady",
+    "verseIds": [
+      9416,
+      9417
+    ],
+    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+    "lifeApplication": "Let feedback inform you without governing your worth."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-praise-and-blame"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-attachment"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-detached-and-steady-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-152"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-detached-and-steady",
+    "shabad-generated-152",
+    "shabad-human-birth-is-chance",
+    "shabad-child-of-grace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru teaches love without possession and steadiness without denial. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "hooked, needy, easily-shaken",
+      "turn": "A deliberate path through attachment",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 3.52,
+      "specificity": 4.29,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.58
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

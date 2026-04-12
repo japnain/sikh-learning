@@ -1,0 +1,88 @@
+{
+  "id": "collection-restlessness-to-stillness",
+  "title": "From Restlessness to Stillness",
+  "subtitle": "For minds that keep moving faster than they settle",
+  "description": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+  "durationLabel": "6-day journey",
+  "themes": [
+    "restlessness",
+    "patience",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3898,
+      3899,
+      3900
+    ],
+    "shortMeaning": "Endless motion does not guarantee peace; mercy and saint company can.",
+    "lifeApplication": "Stay where the body begins to cool."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-patience"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-after-mercy"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-remembrance-brings-peace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-patience",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-remembrance-brings-peace",
+    "shabad-generated-109",
+    "shabad-patience-ripens-into-honor"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Trace how searching, doubt, and impatience lose momentum when Guru redirects the seeker into steadier company and practice.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "For minds that keep moving faster than they settle",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 0.65,
+      "specificity": 4.14,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.17
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

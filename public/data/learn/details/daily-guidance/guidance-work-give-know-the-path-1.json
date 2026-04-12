@@ -1,0 +1,67 @@
+{
+  "id": "guidance-work-give-know-the-path-1",
+  "title": "One Who Calls Himself A Guru Or",
+  "summary": "Seva is named plainly here before the mind has time to decorate it.",
+  "takeaway": "One who calls himself a guru or a spiritual teacher, while he",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-work-give-know-the-path",
+    "verseIds": [
+      53369
+    ],
+    "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he",
+    "lifeApplication": "Seva becomes more truthful when one who calls himself a guru or a spiritual teacher, while he."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "One who calls himself a guru or a spiritual teacher, while he",
+      "emotionalState": "pretending, unclear, performing",
+      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.78,
+      "clarity": 2.7,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.14,
+      "beauty": 3.26,
+      "overall": 3.47
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

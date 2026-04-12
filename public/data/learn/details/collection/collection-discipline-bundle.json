@@ -1,0 +1,66 @@
+{
+  "id": "collection-discipline-bundle",
+  "title": "Discipline in one shorter sitting",
+  "subtitle": "A compact bundle for discipline",
+  "description": "Good intention is present, but the pattern cannot hold. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "durationLabel": "3-step bundle",
+  "themes": [
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-conquer-the-mind",
+    "verseIds": [
+      292
+    ],
+    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
+    "lifeApplication": "Return your attention from other people to the state of your own mind."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-mind-mastery"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-discipline"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:bundle",
+    "evidence": {
+      "coreClaim": "Good intention is present, but the pattern cannot hold. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "A compact bundle for discipline",
+      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.27,
+      "specificity": 4.16,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.48
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

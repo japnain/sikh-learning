@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-509-2",
+  "title": "This Mind Does Not Hold Still, Even",
+  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Gauree Poorbee, Fourth Mehla:; this mind does not hold still, even for an instant. Distracted by",
+  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-509",
+    "verseIds": [
+      7106,
+      7107
+    ],
+    "shortMeaning": "Gauree Poorbee, Fourth Mehla:; this mind does not hold still, even for an instant. Distracted by",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-restlessness-daily",
+    "topic-restlessness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-509"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Gauree Poorbee, Fourth Mehla:; this mind does not hold still, even for an instant. Distracted by",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Restlessness steadies when for my failings and mistakes, O Guru, grant me Your Grace; servant Nanak is.",
+      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.87,
+      "clarity": 2.22,
+      "specificity": 4.64,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.01,
+      "beauty": 2.75,
+      "overall": 3.39
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

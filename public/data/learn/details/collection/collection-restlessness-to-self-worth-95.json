@@ -1,0 +1,84 @@
+{
+  "id": "collection-restlessness-to-self-worth-95",
+  "title": "Restlessness to Self-Worth",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "restlessness",
+    "self-worth"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890,
+      3895,
+      3898
+    ],
+    "shortMeaning": "Searching and ritual are not identical with peace.",
+    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-self-worth"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-held-close-not-abandoned"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-lord-keeps-the-humble-close"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-self-worth"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-generated-109",
+    "shabad-generated-65"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.27,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.65
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

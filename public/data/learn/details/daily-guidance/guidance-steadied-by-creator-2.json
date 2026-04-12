@@ -1,0 +1,68 @@
+{
+  "id": "guidance-steadied-by-creator-2",
+  "title": "Why Do You Waver, O Mortal Being?",
+  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Merciful, the Lord Master is Merciful; why do you waver, O mortal being? The Creator Lord Himself shall",
+  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-steadied-by-creator",
+    "verseIds": [
+      30985,
+      30988
+    ],
+    "shortMeaning": "Merciful, the Lord Master is Merciful; why do you waver, O mortal being? The Creator Lord Himself shall",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anxiety-daily",
+    "topic-anxiety-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-steadied-by-creator"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Merciful, the Lord Master is Merciful; why do you waver, O mortal being? The Creator Lord Himself shall",
+      "emotionalState": "afraid, shaken, alone",
+      "turn": "The answer to fear is not bravado. It is remembrance of the One already holding you.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.96,
+      "clarity": 1.98,
+      "specificity": 4.72,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 2.49,
+      "overall": 3.35
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "guidance-generated-645-2",
+  "title": "Trying All Sorts Of Things, I Have",
+  "summary": "Fear is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Save me, O My Father God; trying all sorts of things, I have grown weary, but still, they",
+  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-645",
+    "verseIds": [
+      8845,
+      8849
+    ],
+    "shortMeaning": "Save me, O My Father God; trying all sorts of things, I have grown weary, but still, they",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-645"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Save me, O My Father God; trying all sorts of things, I have grown weary, but still, they",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Fear steadies when says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.79,
+      "clarity": 1.35,
+      "specificity": 4.74,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.58,
+      "beauty": 2.53,
+      "overall": 3.31
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

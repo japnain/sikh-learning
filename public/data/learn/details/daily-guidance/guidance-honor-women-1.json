@@ -1,0 +1,60 @@
+{
+  "id": "guidance-honor-women-1",
+  "title": "From Woman, Man Is Born; Within Woman,",
+  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
+  "takeaway": "From woman, man is born; within woman, man is conceived; to woman",
+  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-honor-women",
+    "verseIds": [
+      21284
+    ],
+    "shortMeaning": "From woman, man is born; within woman, man is conceived; to woman",
+    "lifeApplication": "Anxiety becomes more truthful when from woman, man is born; within woman, man is conceived; to woman."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-honor-women"
+  ],
+  "relatedCollectionIds": [],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "From woman, man is born; within woman, man is conceived; to woman",
+      "emotionalState": "dismissive, proud, habit-bound",
+      "turn": "What Guru honors cannot be spoken of with contempt.",
+      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 2.82,
+      "specificity": 4.84,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.23,
+      "beauty": 3.08,
+      "overall": 3.57
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

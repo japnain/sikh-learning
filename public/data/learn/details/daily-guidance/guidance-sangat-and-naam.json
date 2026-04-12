@@ -1,0 +1,65 @@
+{
+  "id": "guidance-sangat-and-naam",
+  "title": "You were not meant to carry the path alone",
+  "summary": "This shabad moves immediately from opportunity to sangat and Naam.",
+  "takeaway": "Direction gets sturdier in holy company.",
+  "lifeApplication": "Reach for a place, person, or practice that reorients you toward sangat today.",
+  "source": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      527
+    ],
+    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
+    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+  },
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Sangat and Naam are not extras; they are the practical path.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "Use this life for meeting, not merely for managing.",
+      "practicalImplication": "Reach for a place, person, or practice that reorients you toward sangat today.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.98,
+      "clarity": 3.78,
+      "specificity": 4.56,
+      "emotionalHonesty": 3,
+      "usefulness": 2.79,
+      "beauty": 3.82,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

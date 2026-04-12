@@ -1,0 +1,61 @@
+{
+  "id": "guidance-generated-337-1",
+  "title": "Maajh, Third Mehla:",
+  "summary": "Self-Worth is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Maajh, Third Mehla:",
+  "lifeApplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-337",
+    "verseIds": [
+      4847
+    ],
+    "shortMeaning": "Maajh, Third Mehla:",
+    "lifeApplication": "Self-Worth becomes more truthful when maajh, Third Mehla:."
+  },
+  "relatedTopicIds": [],
+  "relatedShabadIds": [
+    "shabad-generated-337"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Maajh, Third Mehla:",
+      "emotionalState": "unworthy, rejected, fragile",
+      "turn": "Self-Worth steadies when o Nanak, the One Name is pervading deep within my mind; by Guru's Grace,.",
+      "practicalImplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.65,
+      "clarity": 3.78,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.49,
+      "beauty": 3.98,
+      "overall": 3.74
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "shabad-gratitude-restores-naam",
+  "title": "Gratitude That Returns to Naam",
+  "subtitle": "Mundhaavanee Fifth Mehl",
+  "summary": "This short shalok is a mature form of gratitude. It does not begin in self-congratulation but in humility, mercy, and the gift of Naam.",
+  "whyItMatters": "It helps gratitude move past positivity into truthful dependence on grace.",
+  "takeaway": "Real gratitude does not inflate the self. It softens it.",
+  "themes": [
+    "gratitude",
+    "humility",
+    "naam"
+  ],
+  "emotionalStates": [
+    "thankful",
+    "softened",
+    "humbled"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 5539,
+    "ang": 1429,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Mundhaavanee Fifth Mehl",
+    "line_range": [
+      1,
+      5
+    ],
+    "verse_ids": [
+      60337,
+      60338,
+      60339,
+      60340,
+      60341
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 60337,
+      "gurmukhi": "ਸਲੋਕ ਮਹਲਾ ੫ ॥",
+      "transliteration": "salok mahalaa panjavaa ||",
+      "translation": "Shalok, Fifth Mehla:"
+    },
+    {
+      "verseId": 60338,
+      "gurmukhi": "ਤੇਰਾ ਕੀਤਾ ਜਾਤੋ ਨਾਹੀ ਮੈਨੋ ਜੋਗੁ ਕੀਤੋਈ ॥",
+      "transliteration": "teraa keetaa jaato naahee maino jog keetoiee ||",
+      "translation": "I have not appreciated what You have done for me, Lord; only You can make me worthy."
+    },
+    {
+      "verseId": 60339,
+      "gurmukhi": "ਮੈ ਨਿਰਗੁਣਿਆਰੇ ਕੋ ਗੁਣੁ ਨਾਹੀ ਆਪੇ ਤਰਸੁ ਪਇਓਈ ॥",
+      "transliteration": "mai niraguniaare ko gun naahee aape taras pioiee ||",
+      "translation": "I am unworthy - I have no worth or virtues at all. You have taken pity on me."
+    },
+    {
+      "verseId": 60340,
+      "gurmukhi": "ਤਰਸੁ ਪਇਆ ਮਿਹਰਾਮਤਿ ਹੋਈ ਸਤਿਗੁਰੁ ਸਜਣੁ ਮਿਲਿਆ ॥",
+      "transliteration": "taras piaa miharaamat hoiee satigur sajan miliaa ||",
+      "translation": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend."
+    },
+    {
+      "verseId": 60341,
+      "gurmukhi": "ਨਾਨਕ ਨਾਮੁ ਮਿਲੈ ਤਾਂ ਜੀਵਾਂ ਤਨੁ ਮਨੁ ਥੀਵੈ ਹਰਿਆ ॥੧॥",
+      "transliteration": "naanak naam milai taa(n) jeevaa(n) tan man theevai hariaa ||1||",
+      "translation": "O Nanak, if I am blessed with the Naam, I live, and my body and mind blossom forth. ||1||"
+    }
+  ],
+  "structure": [
+    "Begins by admitting that the Lord's care has not been properly appreciated.",
+    "Moves through unworthiness and mercy rather than self-esteem.",
+    "Ends by locating life itself in the gift of Naam."
+  ],
+  "keyVerseIds": [
+    60338,
+    60340,
+    60341
+  ],
+  "relatedGuidanceIds": [
+    "guidance-gratitude",
+    "guidance-gratitude-restores-naam-1",
+    "guidance-gratitude-restores-naam-2"
+  ],
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 30,
+    "priority": 8,
+    "balanceCategory": "gratitude",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "This short shalok is a mature form of gratitude. It does not begin in self-congratulation but in humility, mercy, and the gift of Naam.",
+      "emotionalState": "thankful, softened, humbled",
+      "turn": "Moves through unworthiness and mercy rather than self-esteem.",
+      "practicalImplication": "Real gratitude does not inflate the self. It softens it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.66,
+      "specificity": 4.6,
+      "emotionalHonesty": 3,
+      "usefulness": 2,
+      "beauty": 4.54,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

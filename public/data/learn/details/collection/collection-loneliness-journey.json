@@ -1,0 +1,79 @@
+{
+  "id": "collection-loneliness-journey",
+  "title": "From Loneliness to steadier practice",
+  "subtitle": "A deliberate path through loneliness",
+  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "loneliness",
+    "sangat"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3761,
+      3762,
+      3763
+    ],
+    "shortMeaning": "The Guru is named as protector, mother, and father.",
+    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-child"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-child-of-grace-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-152"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-generated-152",
+    "shabad-human-birth-is-chance"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "A deliberate path through loneliness",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.15,
+      "specificity": 4.23,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.54
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

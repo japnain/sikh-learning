@@ -1,0 +1,68 @@
+{
+  "id": "guidance-selfless-service-2",
+  "title": "One Who Performs Selfless Service, Without Thought",
+  "summary": "Seva is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward,",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12943,
+      12947
+    ],
+    "shortMeaning": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward,",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward,",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.92,
+      "clarity": 0.93,
+      "specificity": 4.68,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.36,
+      "beauty": 2.49,
+      "overall": 3.26
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

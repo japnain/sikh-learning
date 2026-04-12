@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-298-2",
+  "title": "Your Sins Will Be Cut Out; Your",
+  "summary": "Mercy is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Those hands which write the Praises of the Lord are good; your sins will be cut out; your mind will be immaculate and",
+  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-298",
+    "verseIds": [
+      4110,
+      4114
+    ],
+    "shortMeaning": "Those hands which write the Praises of the Lord are good; your sins will be cut out; your mind will be immaculate and",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-mercy",
+    "topic-mercy-daily",
+    "topic-mercy-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-298"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Those hands which write the Praises of the Lord are good; your sins will be cut out; your mind will be immaculate and",
+      "emotionalState": "unworthy, guarded, hard-on-self",
+      "turn": "Mercy steadies when god has become merciful to Nanak; God is pleasing to Nanak's mind.",
+      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.99,
+      "clarity": 0.25,
+      "specificity": 4.75,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.36,
+      "beauty": 2.56,
+      "overall": 3.17
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

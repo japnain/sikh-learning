@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { SHABAD_DEEP_DIVE_BY_ID } from "../../data/learnContent"
+import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
 import { LEARN_DETAIL_RAILS } from "../../utils/learnRails"
 import LearnDetailShell from "./LearnDetailShell"
@@ -23,7 +23,7 @@ function MissingShabadDetail() {
 
 export default function ShabadDetailPage() {
   const { shabadId } = useParams<{ shabadId: string }>()
-  const shabad = shabadId ? SHABAD_DEEP_DIVE_BY_ID[shabadId] : null
+  const { item: shabad, error, loading } = useLearnDetail("shabad-deep-dive", shabadId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
   useEffect(() => {
@@ -32,7 +32,8 @@ export default function ShabadDetailPage() {
     }
   }, [recordLearnItemView, shabad])
 
-  if (!shabad) return <MissingShabadDetail />
+  if (loading) return <MissingShabadDetail />
+  if (error || !shabad) return <MissingShabadDetail />
 
   return (
     <LearnDetailShell

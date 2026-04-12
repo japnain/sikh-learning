@@ -1,0 +1,68 @@
+{
+  "id": "guidance-forgiveness-opens-lasting-peace-3",
+  "title": "Nanak Has Meditated On The Naam, The",
+  "summary": "The shabad does not leave forgiveness at diagnosis. It turns toward return.",
+  "takeaway": "Nanak has meditated on the Naam, the Name of the Lord",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27264,
+      27266
+    ],
+    "shortMeaning": "Sing the Word of the Guru's Bani, O Siblings of Destiny; nanak has meditated on the Naam, the Name of the Lord",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Sing the Word of the Guru's Bani, O Siblings of Destiny; nanak has meditated on the Naam, the Name of the Lord",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 2.82,
+      "specificity": 4.83,
+      "emotionalHonesty": 3,
+      "usefulness": 3.36,
+      "beauty": 3.33,
+      "overall": 3.62
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

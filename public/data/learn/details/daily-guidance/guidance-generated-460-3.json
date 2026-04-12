@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-460-3",
+  "title": "They Merge Into The Lord, And Their",
+  "summary": "The shabad does not leave gratitude at diagnosis. It turns toward return.",
+  "takeaway": "O Nanak, they merge into the Lord, and their doubts are cast away",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-460",
+    "verseIds": [
+      6406,
+      6413
+    ],
+    "shortMeaning": "Other fears are forgotten, and they are absorbed into the Naam, the; o Nanak, they merge into the Lord, and their doubts are cast",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-460"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Other fears are forgotten, and they are absorbed into the Naam, the; o Nanak, they merge into the Lord, and their doubts are cast",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, they merge into the Lord, and their doubts are cast away.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.27,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.71,
+      "beauty": 3.55,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

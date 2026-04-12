@@ -1,0 +1,92 @@
+{
+  "id": "collection-tired-heart-to-rest",
+  "title": "From a Tired Heart to Rest",
+  "subtitle": "A slower study path for the overused inner life",
+  "description": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+  "durationLabel": "4-step arc",
+  "themes": [
+    "exhaustion",
+    "patience",
+    "rest"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3898,
+      3899,
+      3900
+    ],
+    "shortMeaning": "Search ends in mercy and saint company; the body cools where the right company is found.",
+    "lifeApplication": "Rest arrives less by escape than by better placement."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-wanderings-cease-in-sangat"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-patience-listens-longer"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seeking"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-exhaustion"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-patience-ripens-into-honor"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-remembrance-brings-peace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seeking",
+    "topic-exhaustion",
+    "topic-patience"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-patience-ripens-into-honor",
+    "shabad-remembrance-brings-peace",
+    "shabad-generated-360"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Begin where the soul is worn thin, then move into company, patient listening, and remembrance that actually eases what the body has been carrying.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A slower study path for the overused inner life",
+      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 0,
+      "specificity": 4.23,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.08
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [
+      "runs too long at the sentence level"
+    ]
+  }
+}

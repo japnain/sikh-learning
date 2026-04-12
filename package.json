@@ -7,7 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "learn:sync-sggs-corpus": "node ./scripts/learn/sync-sggs-corpus.mjs",
+    "learn:generate-drafts": "node ./scripts/learn/generate-drafts.mjs",
+    "learn:validate": "node ./scripts/learn/validate.mjs",
+    "learn:publish": "node ./scripts/learn/publish.mjs",
+    "learn:audit": "node ./scripts/learn/audit-editorial.mjs",
+    "learn:check-bundle-guard": "node ./scripts/learn/check-bundle-guard.mjs"
   },
   "dependencies": {
     "react": "^19.2.4",

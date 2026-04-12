@@ -1,0 +1,66 @@
+{
+  "id": "guidance-ego-cure",
+  "title": "Call ego what it is: illness",
+  "summary": "The point is not self-hatred. The point is honest diagnosis.",
+  "takeaway": "What is named clearly can stop ruling secretly.",
+  "lifeApplication": "When you feel offended, ask what wound to the ego you are defending.",
+  "source": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963,
+      20964
+    ],
+    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+    "lifeApplication": "Move from self-justification toward teachability."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 9,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "The cure begins when ego is seen as illness rather than identity.",
+      "practicalImplication": "When you feel offended, ask what wound to the ego you are defending.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.78,
+      "specificity": 4.3,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.22,
+      "beauty": 3.82,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

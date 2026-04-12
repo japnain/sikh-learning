@@ -1,0 +1,66 @@
+{
+  "id": "guidance-remember-and-find-peace",
+  "title": "Keep returning until remembrance holds you",
+  "summary": "The shabad is repetitive on purpose. Peace is cultivated by returning again.",
+  "takeaway": "Remembrance is a rhythm, not a one-time correction.",
+  "lifeApplication": "Choose one short simran phrase and return to it instead of feeding the same anxious loop.",
+  "source": {
+    "deepDiveId": "shabad-remembrance-brings-peace",
+    "verseIds": [
+      11502,
+      11503
+    ],
+    "shortMeaning": "Peace comes through repeated remembrance, not through endless mental churn.",
+    "lifeApplication": "Interrupt worry with repetition that re-roots the heart."
+  },
+  "relatedTopicIds": [
+    "topic-anxiety",
+    "topic-anxiety-daily",
+    "topic-anxiety-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "anxiety",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 9,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Peace comes through repeated remembrance, not through endless mental churn.",
+      "emotionalState": "overthinking, restless, drifting",
+      "turn": "Steady remembrance calms what scattered thinking cannot.",
+      "practicalImplication": "Choose one short simran phrase and return to it instead of feeding the same anxious loop.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 3.9,
+      "specificity": 4.3,
+      "emotionalHonesty": 3,
+      "usefulness": 2.92,
+      "beauty": 4.06,
+      "overall": 3.7
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

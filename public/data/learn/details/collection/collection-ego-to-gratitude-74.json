@@ -1,0 +1,83 @@
+{
+  "id": "collection-ego-to-gratitude-74",
+  "title": "Ego to Gratitude",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "ego",
+    "gratitude"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-ego-is-disease",
+    "verseIds": [
+      20963,
+      20964
+    ],
+    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+    "lifeApplication": "Move from self-justification toward teachability."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-ego-cure"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-ego"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-ego-is-disease"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-gratitude"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-gratitude"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-suffering-as-medicine"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-suffering-as-medicine",
+    "shabad-generated-1",
+    "shabad-gratitude-restores-naam"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.4,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.62
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

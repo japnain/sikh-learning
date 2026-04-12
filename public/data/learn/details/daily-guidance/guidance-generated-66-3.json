@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-66-3",
+  "title": "Blessed Is That Fortunate Bride, Who Is",
+  "summary": "The shabad does not leave gratitude at diagnosis. It turns toward return.",
+  "takeaway": "O Nanak, blessed is that fortunate bride, who is in love with her Husband",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-66",
+    "verseIds": [
+      779,
+      790
+    ],
+    "shortMeaning": "The True Lord Himself knows all; He makes no mistakes. He is; o Nanak, blessed is that fortunate bride, who is in love with",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-66"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The True Lord Himself knows all; He makes no mistakes. He is; o Nanak, blessed is that fortunate bride, who is in love with",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, blessed is that fortunate bride, who is in love with her Husband.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.27,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 3.71,
+      "beauty": 3.58,
+      "overall": 3.77
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

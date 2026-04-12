@@ -1,0 +1,109 @@
+{
+  "id": "topic-patience-daily",
+  "title": "When waiting keeps turning bitter in the day as it is",
+  "shortTitle": "Patience · Daily",
+  "category": "inner-work",
+  "issueStatement": "Delay has started feeding resentment instead of ripening trust. The pressure is not abstract anymore; it is meeting the ordinary shape of the day.",
+  "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani refuses to treat the ordinary day as spiritually irrelevant.",
+  "practicalReflection": "The mind settles less by roaming and more by right company. Wait by listening instead of simmering.",
+  "actionPrompt": "Wait by listening instead of simmering. Keep the response small enough to survive an ordinary day.",
+  "searchTerms": [
+    "patience",
+    "waiting",
+    "delay",
+    "impatient",
+    "hurry",
+    "today",
+    "daily",
+    "ordinary day"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-search-ends-in-saint-company",
+        "verseIds": [
+          3890
+        ],
+        "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+        "lifeApplication": "The mind settles less by roaming and more by right company. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The line names the pressure without melodrama: i have searched and searched, seeking the Blessed Vision of His Darshan."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-patience-ripens-into-honor",
+        "verseIds": [
+          11241
+        ],
+        "shortMeaning": "Those who have the true wealth are the true bankers",
+        "lifeApplication": "Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "The turn is practical here. Patience becomes luminous when it begins listening for Naam. Let the wider window set the tone before the old reflex does."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-generated-63",
+        "verseIds": [
+          740
+        ],
+        "shortMeaning": "Meeting the True One, Truth wells up. The truthful are absorbed into",
+        "lifeApplication": "Gratitude steadies when o Nanak, the True King absorbs us into Himself. Let the wider window set the tone before the old reflex does."
+      },
+      "explanation": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani refuses to treat the ordinary day as spiritually irrelevant. This keeps the guide attached to Gurbani rather than floating into advice."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-patience-ripens-into-honor",
+    "shabad-generated-63"
+  ],
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest",
+    "collection-patience-journey"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 6,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:patience:daily",
+    "evidence": {
+      "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani refuses to treat the ordinary day as spiritually irrelevant.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "Delay has started feeding resentment instead of ripening trust. The pressure is not abstract anymore; it is meeting the ordinary shape of the day.",
+      "practicalImplication": "Wait by listening instead of simmering. Keep the response small enough to survive an ordinary day.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 1.02,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.92,
+      "beauty": 2.06,
+      "overall": 3.25
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

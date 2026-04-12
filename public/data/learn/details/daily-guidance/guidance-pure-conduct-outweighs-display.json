@@ -1,0 +1,69 @@
+{
+  "id": "guidance-pure-conduct-outweighs-display",
+  "title": "Pure conduct outranks spiritual display.",
+  "summary": "Guru does not leave the religious life undefined. The better religion is the one that purifies action, not the one that performs itself most loudly.",
+  "takeaway": "What you do with the heart matters more than what you advertise about it.",
+  "lifeApplication": "Choose the cleaner action over the more impressive one.",
+  "source": {
+    "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
+    "verseIds": [
+      11742,
+      11743,
+      11744,
+      11745
+    ],
+    "shortMeaning": "The best path is tied to Naam, conduct, and the removal of inner filth through company.",
+    "lifeApplication": "Do not let ritual substitute for transformation."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-ambrosial-speech-pure-conduct",
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "conduct",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:4-line-window",
+    "evidence": {
+      "coreClaim": "The best path is tied to Naam, conduct, and the removal of inner filth through company.",
+      "emotionalState": "performing, harsh, scattered",
+      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "practicalImplication": "Choose the cleaner action over the more impressive one.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.95,
+      "clarity": 3.78,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.57,
+      "beauty": 3.82,
+      "overall": 3.64
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

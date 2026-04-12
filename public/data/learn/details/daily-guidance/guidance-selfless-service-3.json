@@ -1,0 +1,68 @@
+{
+  "id": "guidance-selfless-service-3",
+  "title": "Shall Attain His Lord And Master",
+  "summary": "The shabad does not leave seva at diagnosis. It turns toward return.",
+  "takeaway": "shall attain his Lord and Master",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12947,
+      12948
+    ],
+    "shortMeaning": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "One who performs selfless service, without thought of reward,; shall attain his Lord and Master",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.93,
+      "clarity": 3.42,
+      "specificity": 4.7,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.01,
+      "beauty": 3.74,
+      "overall": 3.72
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "collection-comparison-to-loneliness-66",
+  "title": "Comparison to Loneliness",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins belonging to remembrance, sangat, and the nearness of the one.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "comparison",
+    "loneliness"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-65",
+    "verseIds": [
+      758
+    ],
+    "shortMeaning": "Siree Raag, First Mehla:",
+    "lifeApplication": "Comparison becomes more truthful when siree Raag, First Mehla:."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-65-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-comparison"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-conquer-the-mind"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-child"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-comparison",
+    "topic-loneliness"
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-child-of-grace",
+    "shabad-detached-and-steady",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins belonging to remembrance, sangat, and the nearness of the one.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.97,
+      "clarity": 3.27,
+      "specificity": 4.19,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.6
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

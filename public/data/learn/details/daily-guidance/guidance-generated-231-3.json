@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-231-3",
+  "title": "Without The Name, Everything Is Painful, And",
+  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
+  "takeaway": "O Nanak, without the Name, everything is painful, and happiness is forgotten",
+  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "source": {
+    "deepDiveId": "shabad-generated-231",
+    "verseIds": [
+      3462,
+      3465
+    ],
+    "shortMeaning": "The self-willed manmukhs die in egotism-even their death is painfully ugly; o Nanak, without the Name, everything is painful, and happiness is forgotten",
+    "lifeApplication": "Return begins when the later line is allowed to outlast the first rush of feeling."
+  },
+  "relatedTopicIds": [
+    "topic-ego",
+    "topic-ego-daily",
+    "topic-ego-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-231"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The self-willed manmukhs die in egotism-even their death is painfully ugly; o Nanak, without the Name, everything is painful, and happiness is forgotten",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Ego steadies when o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.28,
+      "clarity": 2.7,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.24,
+      "overall": 3.69
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "collection-sangat-to-control-96",
+  "title": "Sangat to Control",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "sangat",
+    "control"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      527
+    ],
+    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
+    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-sangat-and-naam"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-sangat"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-control"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-3-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-3"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-sangat",
+    "topic-control"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-generated-3",
+    "shabad-child-of-grace",
+    "shabad-generated-942"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.99,
+      "clarity": 3.77,
+      "specificity": 4.21,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.61
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

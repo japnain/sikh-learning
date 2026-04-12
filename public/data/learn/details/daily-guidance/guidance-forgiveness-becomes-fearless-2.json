@@ -1,0 +1,68 @@
+{
+  "id": "guidance-forgiveness-becomes-fearless-2",
+  "title": "What Fear Does The Yogi Have?",
+  "summary": "Forgiveness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "To practice forgiveness is the true fast, good conduct and contentment; what fear does the Yogi have?",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-becomes-fearless",
+    "verseIds": [
+      9600,
+      9603
+    ],
+    "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment; what fear does the Yogi have?",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-becomes-fearless"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "To practice forgiveness is the true fast, good conduct and contentment; what fear does the Yogi have?",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "Forgive deeply enough that fear loses its throne.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 2.1,
+      "specificity": 4.77,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.36,
+      "beauty": 2.66,
+      "overall": 3.44
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

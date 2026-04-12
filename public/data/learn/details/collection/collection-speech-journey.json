@@ -1,0 +1,76 @@
+{
+  "id": "collection-speech-journey",
+  "title": "From Speech to steadier practice",
+  "subtitle": "A deliberate path through speech",
+  "description": "Guru makes speech answer to praise, restraint, and truthfulness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "speech",
+    "speech"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      637,
+      642
+    ],
+    "shortMeaning": "Speak what carries honor, not just what releases heat.",
+    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-speak-for-honor"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-speech"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-speak-what-brings-honor"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-harsh-words-double-back"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-sweet-speech-humble-walk"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-speech"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor",
+    "shabad-sweet-speech-humble-walk"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru makes speech answer to praise, restraint, and truthfulness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "A deliberate path through speech",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.52,
+      "specificity": 4.23,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.38,
+      "overall": 3.62
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

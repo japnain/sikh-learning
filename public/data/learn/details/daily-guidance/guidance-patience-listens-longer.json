@@ -1,0 +1,67 @@
+{
+  "id": "guidance-patience-listens-longer",
+  "title": "Patience may start as a listening discipline.",
+  "summary": "Guru ties patience and honor to hearing Naam. The point is not passive delay, but a heart that has stopped interrupting the medicine.",
+  "takeaway": "Wait by listening, not by simmering.",
+  "lifeApplication": "Before reacting to delay, make space to hear one line all the way through.",
+  "source": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11243,
+      11244
+    ],
+    "shortMeaning": "Patience and honor grow where the ear starts taking in Naam.",
+    "lifeApplication": "Listening can become the first form of obedience."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-patience-ripens-into-honor",
+    "shabad-search-ends-in-saint-company"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Patience and honor grow where the ear starts taking in Naam.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "Patience becomes luminous when it begins listening for Naam.",
+      "practicalImplication": "Before reacting to delay, make space to hear one line all the way through.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 3.78,
+      "specificity": 4.76,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.66,
+      "beauty": 3.98,
+      "overall": 3.75
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

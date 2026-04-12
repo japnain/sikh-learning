@@ -1,0 +1,171 @@
+{
+  "id": "shabad-selfless-service",
+  "title": "Selfless Service Opens the Door",
+  "subtitle": "Raag Gauree",
+  "summary": "This shabad ties humility, obedience, Naam, and nishkaam seva together as one spiritual posture.",
+  "whyItMatters": "It is a corrective for performance, spiritual branding, and service that secretly seeks recognition.",
+  "takeaway": "Seva becomes transformative when the self stops trying to be seen through it.",
+  "themes": [
+    "seva",
+    "humility",
+    "discipline"
+  ],
+  "emotionalStates": [
+    "self-conscious",
+    "performing",
+    "eager-to-be-seen"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 8,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 1026,
+    "ang": 286,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      10
+    ],
+    "verse_ids": [
+      12941,
+      12942,
+      12943,
+      12944,
+      12945,
+      12946,
+      12947,
+      12948,
+      12949,
+      12950
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 12941,
+      "gurmukhi": "ਗੁਰ ਕੈ ਗ੍ਰਿਹਿ ਸੇਵਕੁ ਜੋ ਰਹੈ ॥",
+      "transliteration": "gur kai gireh sevak jo rahai ||",
+      "translation": "That selfless servant, who lives in the Guru's household,"
+    },
+    {
+      "verseId": 12942,
+      "gurmukhi": "ਗੁਰ ਕੀ ਆਗਿਆ ਮਨ ਮਹਿ ਸਹੈ ॥",
+      "transliteration": "gur kee aagiaa man meh sahai ||",
+      "translation": "is to obey the Guru's Commands with all his mind."
+    },
+    {
+      "verseId": 12943,
+      "gurmukhi": "ਆਪਸ ਕਉ ਕਰਿ ਕਛੁ ਨ ਜਨਾਵੈ ॥",
+      "transliteration": "aapas kau kar kachh na janaavai ||",
+      "translation": "He is not to call attention to himself in any way."
+    },
+    {
+      "verseId": 12944,
+      "gurmukhi": "ਹਰਿ ਹਰਿ ਨਾਮੁ ਰਿਦੈ ਸਦ ਧਿਆਵੈ ॥",
+      "transliteration": "har har naam ridhai sadh dhiaavai ||",
+      "translation": "He is to meditate constantly within his heart on the Name of the Lord."
+    },
+    {
+      "verseId": 12945,
+      "gurmukhi": "ਮਨੁ ਬੇਚੈ ਸਤਿਗੁਰ ਕੈ ਪਾਸਿ ॥",
+      "transliteration": "man bechai satigur kai paas ||",
+      "translation": "One who sells his mind to the True Guru"
+    },
+    {
+      "verseId": 12946,
+      "gurmukhi": "ਤਿਸੁ ਸੇਵਕ ਕੇ ਕਾਰਜ ਰਾਸਿ ॥",
+      "transliteration": "tis sevak ke kaaraj raas ||",
+      "translation": "that humble servant's affairs are resolved."
+    },
+    {
+      "verseId": 12947,
+      "gurmukhi": "ਸੇਵਾ ਕਰਤ ਹੋਇ ਨਿਹਕਾਮੀ ॥",
+      "transliteration": "sevaa karat hoi nihakaamee ||",
+      "translation": "One who performs selfless service, without thought of reward,"
+    },
+    {
+      "verseId": 12948,
+      "gurmukhi": "ਤਿਸ ਕਉ ਹੋਤ ਪਰਾਪਤਿ ਸੁਆਮੀ ॥",
+      "transliteration": "tis kau hot paraapat suaamee ||",
+      "translation": "shall attain his Lord and Master."
+    },
+    {
+      "verseId": 12949,
+      "gurmukhi": "ਅਪੁਨੀ ਕ੍ਰਿਪਾ ਜਿਸੁ ਆਪਿ ਕਰੇਇ ॥",
+      "transliteration": "apunee kirapaa jis aap karei ||",
+      "translation": "One whom the Lord Himself blesses with His Grace"
+    },
+    {
+      "verseId": 12950,
+      "gurmukhi": "ਨਾਨਕ ਸੋ ਸੇਵਕੁ ਗੁਰ ਕੀ ਮਤਿ ਲੇਇ ॥੪॥੫॥",
+      "transliteration": "naanak so sevak gur kee mat lei ||4||5||",
+      "translation": "O Nanak, is the selfless servant who lives the Guru's wisdom. ||4||5||"
+    }
+  ],
+  "structure": [
+    "Defines the true servant by obedience, inward remembrance, and hiddenness.",
+    "Moves from surrendering the mind to the Guru toward nishkaam seva.",
+    "Ends by placing the whole path inside grace, not technique."
+  ],
+  "keyVerseIds": [
+    12943,
+    12947,
+    12948
+  ],
+  "relatedGuidanceIds": [
+    "guidance-selfless-service",
+    "guidance-obey-and-remember",
+    "guidance-selfless-service-1",
+    "guidance-selfless-service-2"
+  ],
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 30,
+    "priority": 9,
+    "balanceCategory": "seva",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:legacy",
+    "evidence": {
+      "coreClaim": "This shabad ties humility, obedience, Naam, and nishkaam seva together as one spiritual posture.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Moves from surrendering the mind to the Guru toward nishkaam seva.",
+      "practicalImplication": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.9,
+      "usefulness": 2.57,
+      "beauty": 3.9,
+      "overall": 3.96
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

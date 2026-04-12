@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-645-1",
+  "title": "Save Me, O My Father God",
+  "summary": "Fear is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Save me, O My Father God",
+  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-645",
+    "verseIds": [
+      8845
+    ],
+    "shortMeaning": "Save me, O My Father God",
+    "lifeApplication": "Fear becomes more truthful when save me, O My Father God."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-645"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Save me, O My Father God",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Fear steadies when says Nanak, the Divine Light has dawned within my mind; I have obtained the.",
+      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.63,
+      "clarity": 3.42,
+      "specificity": 4.41,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.01,
+      "beauty": 3.58,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

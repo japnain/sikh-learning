@@ -1,0 +1,66 @@
+{
+  "id": "guidance-selfless-service",
+  "title": "Let seva loosen the need to be seen",
+  "summary": "Service changes when it is no longer used to secure visibility, approval, or identity.",
+  "takeaway": "The deepest service is often the least self-announcing.",
+  "lifeApplication": "Choose one act of help today that does not need witness, credit, or acknowledgement to feel worthwhile.",
+  "source": {
+    "deepDiveId": "shabad-selfless-service",
+    "verseIds": [
+      12947,
+      12948
+    ],
+    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
+    "lifeApplication": "Serve without building a story about being the servant."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-selfless-service"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "priority": 9,
+    "balanceCategory": "seva",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Selfless service becomes a way of union, not a way of building a self-image.",
+      "emotionalState": "self-conscious, performing, eager-to-be-seen",
+      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "practicalImplication": "Choose one act of help today that does not need witness, credit, or acknowledgement to feel worthwhile.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 3.78,
+      "specificity": 4.84,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.01,
+      "beauty": 3.82,
+      "overall": 3.9
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

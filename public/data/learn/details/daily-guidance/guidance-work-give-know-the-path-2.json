@@ -1,0 +1,68 @@
+{
+  "id": "guidance-work-give-know-the-path-2",
+  "title": "One Who Works For What He Eats,",
+  "summary": "Seva is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-work-give-know-the-path",
+    "verseIds": [
+      53369,
+      53371
+    ],
+    "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-seva",
+    "topic-seva-daily",
+    "topic-seva-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-work-give-know-the-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "One who calls himself a guru or a spiritual teacher, while he; one who works for what he eats, and gives some of what",
+      "emotionalState": "pretending, unclear, performing",
+      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
+      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.9,
+      "clarity": 0,
+      "specificity": 4.67,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 2.18,
+      "overall": 2.98
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

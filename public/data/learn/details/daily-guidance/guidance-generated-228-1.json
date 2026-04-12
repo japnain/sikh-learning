@@ -1,0 +1,65 @@
+{
+  "id": "guidance-generated-228-1",
+  "title": "Shalok, Third Mehla:",
+  "summary": "Attachment is named plainly here before the mind has time to decorate it.",
+  "takeaway": "Shalok, Third Mehla:",
+  "lifeApplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+  "source": {
+    "deepDiveId": "shabad-generated-228",
+    "verseIds": [
+      3441
+    ],
+    "shortMeaning": "Shalok, Third Mehla:",
+    "lifeApplication": "Attachment becomes more truthful when shalok, Third Mehla:."
+  },
+  "relatedTopicIds": [
+    "topic-attachment",
+    "topic-attachment-daily",
+    "topic-attachment-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-228"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Shalok, Third Mehla:",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Attachment steadies when they lose their lives uselessly; they die, only to be re-born, over and over.",
+      "practicalImplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.68,
+      "clarity": 3.78,
+      "specificity": 4.1,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.92,
+      "beauty": 3.82,
+      "overall": 3.64
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-forgiveness-opens-lasting-peace-2",
+  "title": "I Have Found Lasting Peace And Bliss",
+  "summary": "Forgiveness is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "He blessed me with forgiveness; i have found lasting peace and bliss",
+  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27259,
+      27260
+    ],
+    "shortMeaning": "He blessed me with forgiveness; i have found lasting peace and bliss",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "He blessed me with forgiveness; i have found lasting peace and bliss",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 2.7,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.36,
+      "beauty": 3.1,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

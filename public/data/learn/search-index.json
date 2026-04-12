@@ -1,0 +1,1632 @@
+{
+  "synonyms": {
+    "anxiety": "topic-anxiety",
+    "stress": "topic-anxiety",
+    "overthinking": "topic-anxiety",
+    "worry": "topic-anxiety",
+    "panic": "topic-anxiety",
+    "fear": "topic-anxiety",
+    "restless": "topic-anxiety",
+    "anger": "topic-anger",
+    "frustration": "topic-anger",
+    "reactive": "topic-anger",
+    "rage": "topic-anger",
+    "irritation": "topic-anger",
+    "offended": "topic-anger",
+    "ego": "topic-ego",
+    "haumai": "topic-ego",
+    "pride": "topic-ego",
+    "self importance": "topic-ego",
+    "defensive": "topic-ego",
+    "loneliness": "topic-loneliness",
+    "alone": "topic-loneliness",
+    "isolated": "topic-loneliness",
+    "unseen": "topic-loneliness",
+    "disconnected": "topic-loneliness",
+    "discipline": "topic-discipline",
+    "consistency": "topic-discipline",
+    "habit": "topic-discipline",
+    "focus": "topic-discipline",
+    "motivation": "topic-discipline",
+    "gratitude": "topic-gratitude",
+    "thankful": "topic-gratitude",
+    "contentment": "topic-gratitude",
+    "blessing": "topic-gratitude",
+    "purpose": "topic-purpose",
+    "meaning": "topic-purpose",
+    "calling": "topic-purpose",
+    "direction": "topic-purpose",
+    "why am i here": "topic-purpose",
+    "comparison": "topic-comparison",
+    "jealousy": "topic-comparison",
+    "envy": "topic-comparison",
+    "insecurity": "topic-comparison",
+    "validation": "topic-comparison",
+    "attachment": "topic-attachment",
+    "clingy": "topic-attachment",
+    "possessive": "topic-attachment",
+    "can t let go": "topic-attachment",
+    "fixated": "topic-attachment",
+    "seva": "topic-seva",
+    "service": "topic-seva",
+    "serve": "topic-seva",
+    "help others": "topic-seva",
+    "volunteer": "topic-seva",
+    "hukam": "topic-hukam",
+    "control": "topic-hukam",
+    "surrender": "topic-hukam",
+    "acceptance": "topic-hukam",
+    "why is this happening": "topic-hukam",
+    "doubt": "topic-doubt",
+    "second guessing": "topic-doubt",
+    "confusion": "topic-doubt",
+    "uncertain": "topic-doubt",
+    "skeptical": "topic-doubt",
+    "faith feels thin": "topic-doubt",
+    "speech": "topic-speech",
+    "gossip": "topic-speech",
+    "tongue": "topic-speech",
+    "sharp words": "topic-speech",
+    "slander": "topic-speech",
+    "respect": "topic-speech",
+    "patience": "topic-patience",
+    "waiting": "topic-patience",
+    "impatient": "topic-patience",
+    "hurry": "topic-patience",
+    "agitated": "topic-patience",
+    "slow progress": "topic-patience",
+    "mercy": "topic-mercy",
+    "grace": "topic-mercy",
+    "compassion": "topic-mercy",
+    "undeserving": "topic-mercy",
+    "accepted": "topic-mercy",
+    "reunited": "topic-mercy",
+    "greed": "topic-greed",
+    "craving": "topic-greed",
+    "more": "topic-greed",
+    "money": "topic-greed",
+    "status": "topic-greed",
+    "consumption": "topic-greed",
+    "can t settle": "topic-restlessness",
+    "unsettled": "topic-restlessness",
+    "always searching": "topic-restlessness",
+    "wandering": "topic-restlessness",
+    "spiritually exhausted": "topic-restlessness",
+    "forgiveness": "topic-forgiveness",
+    "forgive": "topic-forgiveness",
+    "resentment": "topic-forgiveness",
+    "bitterness": "topic-forgiveness",
+    "offense": "topic-forgiveness",
+    "hard heart": "topic-forgiveness",
+    "sangat": "topic-sangat",
+    "community": "topic-sangat",
+    "company": "topic-sangat",
+    "belonging": "topic-sangat",
+    "friendship": "topic-sangat",
+    "good company": "topic-sangat",
+    "controlling": "topic-control",
+    "micromanaging": "topic-control",
+    "outcomes": "topic-control",
+    "fix everything": "topic-control",
+    "shame": "topic-shame",
+    "guilty": "topic-shame",
+    "unworthy": "topic-shame",
+    "dirty": "topic-shame",
+    "self loathing": "topic-shame",
+    "regret": "topic-shame",
+    "afraid": "topic-fear",
+    "scared": "topic-fear",
+    "dread": "topic-fear",
+    "insecure": "topic-fear",
+    "honesty": "topic-honesty",
+    "honest living": "topic-honesty",
+    "integrity": "topic-honesty",
+    "crooked": "topic-honesty",
+    "compromise": "topic-honesty",
+    "truthfulness": "topic-honesty",
+    "searching": "topic-seeking",
+    "seeking": "topic-seeking",
+    "spiritually lost": "topic-seeking",
+    "looking everywhere": "topic-seeking",
+    "worthless": "topic-self-worth",
+    "not enough": "topic-self-worth",
+    "unwanted": "topic-self-worth",
+    "rejected": "topic-self-worth",
+    "low self worth": "topic-self-worth",
+    "softness": "topic-softness",
+    "gentle": "topic-softness",
+    "harsh": "topic-softness",
+    "tenderness": "topic-softness",
+    "cutting words": "topic-softness",
+    "hard hearted": "topic-softness",
+    "exhausted": "topic-exhaustion",
+    "burnt out": "topic-exhaustion",
+    "tired": "topic-exhaustion",
+    "drained": "topic-exhaustion",
+    "weary": "topic-exhaustion",
+    "worn out": "topic-exhaustion",
+    "conduct": "topic-conduct",
+    "lifestyle": "topic-conduct",
+    "practice": "topic-conduct",
+    "hypocrisy": "topic-conduct",
+    "pure conduct": "topic-conduct",
+    "spiraling": "topic-anxiety-daily",
+    "today": "topic-anxiety-daily",
+    "daily": "topic-anxiety-daily",
+    "ordinary day": "topic-anxiety-daily",
+    "pressure": "topic-anxiety-pressure",
+    "under strain": "topic-anxiety-pressure",
+    "repair": "topic-anxiety-repair",
+    "return": "topic-anxiety-repair",
+    "after slipping": "topic-anxiety-repair",
+    "steady return": "topic-anxiety-practice",
+    "measuring": "topic-comparison-daily",
+    "abandoned": "topic-loneliness-daily",
+    "aimless": "topic-purpose-daily",
+    "clinging": "topic-attachment-daily",
+    "grip": "topic-attachment-daily",
+    "letting go": "topic-attachment-daily",
+    "vanity": "topic-ego-daily",
+    "thankfulness": "topic-gratitude-daily",
+    "gift": "topic-gratitude-daily",
+    "self control": "topic-discipline-daily",
+    "follow through": "topic-discipline-daily",
+    "serving": "topic-seva-daily",
+    "volunteering": "topic-seva-daily",
+    "offering": "topic-seva-daily",
+    "command": "topic-hukam-daily",
+    "what is": "topic-hukam-daily",
+    "reality": "topic-hukam-daily",
+    "words": "topic-speech-daily",
+    "talking": "topic-speech-daily",
+    "delay": "topic-patience-daily",
+    "kindness": "topic-mercy-daily",
+    "grudge": "topic-forgiveness-daily",
+    "materialism": "topic-greed-daily",
+    "restlessness": "topic-restlessness-daily",
+    "scattered": "topic-restlessness-daily"
+  },
+  "topics": [
+    {
+      "id": "topic-anxiety",
+      "title": "When the mind is anxious",
+      "shortTitle": "Anxiety",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "fear",
+        "restless"
+      ]
+    },
+    {
+      "id": "topic-anger",
+      "title": "When anger takes over",
+      "shortTitle": "Anger",
+      "searchTerms": [
+        "anger",
+        "frustration",
+        "reactive",
+        "rage",
+        "irritation",
+        "offended"
+      ]
+    },
+    {
+      "id": "topic-ego",
+      "title": "When ego insists on the center",
+      "shortTitle": "Ego",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "defensive"
+      ]
+    },
+    {
+      "id": "topic-loneliness",
+      "title": "When loneliness settles in",
+      "shortTitle": "Loneliness",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "unseen",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "topic-discipline",
+      "title": "When discipline matters more than mood",
+      "shortTitle": "Discipline",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "focus",
+        "motivation"
+      ]
+    },
+    {
+      "id": "topic-gratitude",
+      "title": "When gratitude feels thin",
+      "shortTitle": "Gratitude",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "contentment",
+        "blessing"
+      ]
+    },
+    {
+      "id": "topic-purpose",
+      "title": "When you are asking what this life is for",
+      "shortTitle": "Purpose",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "calling",
+        "direction",
+        "why am i here"
+      ]
+    },
+    {
+      "id": "topic-comparison",
+      "title": "When comparison keeps shrinking the heart",
+      "shortTitle": "Comparison",
+      "searchTerms": [
+        "comparison",
+        "jealousy",
+        "envy",
+        "insecurity",
+        "validation"
+      ]
+    },
+    {
+      "id": "topic-attachment",
+      "title": "When attachment keeps binding the mind",
+      "shortTitle": "Attachment",
+      "searchTerms": [
+        "attachment",
+        "clingy",
+        "possessive",
+        "can't let go",
+        "fixated"
+      ]
+    },
+    {
+      "id": "topic-seva",
+      "title": "When you want your life to become seva",
+      "shortTitle": "Seva",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serve",
+        "help others",
+        "volunteer"
+      ]
+    },
+    {
+      "id": "topic-hukam",
+      "title": "When you need to return to Hukam",
+      "shortTitle": "Hukam",
+      "searchTerms": [
+        "hukam",
+        "control",
+        "surrender",
+        "acceptance",
+        "why is this happening"
+      ]
+    },
+    {
+      "id": "topic-doubt",
+      "title": "When doubt keeps burning beneath the surface",
+      "shortTitle": "Doubt",
+      "searchTerms": [
+        "doubt",
+        "second guessing",
+        "confusion",
+        "uncertain",
+        "skeptical",
+        "faith feels thin"
+      ]
+    },
+    {
+      "id": "topic-speech",
+      "title": "When the tongue gets ahead of the soul",
+      "shortTitle": "Speech",
+      "searchTerms": [
+        "speech",
+        "gossip",
+        "tongue",
+        "sharp words",
+        "slander",
+        "respect"
+      ]
+    },
+    {
+      "id": "topic-patience",
+      "title": "When you are tired of waiting",
+      "shortTitle": "Patience",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "impatient",
+        "hurry",
+        "agitated",
+        "slow progress"
+      ]
+    },
+    {
+      "id": "topic-mercy",
+      "title": "When you need to remember mercy",
+      "shortTitle": "Mercy",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "undeserving",
+        "accepted",
+        "reunited"
+      ]
+    },
+    {
+      "id": "topic-greed",
+      "title": "When wanting keeps multiplying",
+      "shortTitle": "Greed",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "more",
+        "money",
+        "status",
+        "consumption"
+      ]
+    },
+    {
+      "id": "topic-restlessness",
+      "title": "When you keep searching but do not settle",
+      "shortTitle": "Restlessness",
+      "searchTerms": [
+        "restless",
+        "can't settle",
+        "unsettled",
+        "always searching",
+        "wandering",
+        "spiritually exhausted"
+      ]
+    },
+    {
+      "id": "topic-forgiveness",
+      "title": "When bitterness refuses to leave",
+      "shortTitle": "Forgiveness",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "offense",
+        "hard heart"
+      ]
+    },
+    {
+      "id": "topic-sangat",
+      "title": "When you need company that changes you",
+      "shortTitle": "Sangat",
+      "searchTerms": [
+        "sangat",
+        "community",
+        "company",
+        "belonging",
+        "friendship",
+        "good company"
+      ]
+    },
+    {
+      "id": "topic-control",
+      "title": "When you are gripping too hard",
+      "shortTitle": "Control",
+      "searchTerms": [
+        "control",
+        "controlling",
+        "micromanaging",
+        "can't let go",
+        "outcomes",
+        "fix everything"
+      ]
+    },
+    {
+      "id": "topic-shame",
+      "title": "When shame keeps talking",
+      "shortTitle": "Shame",
+      "searchTerms": [
+        "shame",
+        "guilty",
+        "unworthy",
+        "dirty",
+        "self-loathing",
+        "regret"
+      ]
+    },
+    {
+      "id": "topic-fear",
+      "title": "When fear keeps writing the script",
+      "shortTitle": "Fear",
+      "searchTerms": [
+        "fear",
+        "afraid",
+        "scared",
+        "dread",
+        "panic",
+        "insecure"
+      ]
+    },
+    {
+      "id": "topic-honesty",
+      "title": "When you need to live cleanly",
+      "shortTitle": "Honesty",
+      "searchTerms": [
+        "honesty",
+        "honest living",
+        "integrity",
+        "crooked",
+        "compromise",
+        "truthfulness"
+      ]
+    },
+    {
+      "id": "topic-seeking",
+      "title": "When searching becomes a habit",
+      "shortTitle": "Seeking",
+      "searchTerms": [
+        "searching",
+        "wandering",
+        "seeking",
+        "can't settle",
+        "spiritually lost",
+        "looking everywhere"
+      ]
+    },
+    {
+      "id": "topic-self-worth",
+      "title": "When you feel small or unwanted",
+      "shortTitle": "Self Worth",
+      "searchTerms": [
+        "worthless",
+        "not enough",
+        "unwanted",
+        "unseen",
+        "rejected",
+        "low self worth"
+      ]
+    },
+    {
+      "id": "topic-softness",
+      "title": "When harshness has become your default",
+      "shortTitle": "Softness",
+      "searchTerms": [
+        "softness",
+        "gentle",
+        "harsh",
+        "tenderness",
+        "cutting words",
+        "hard-hearted"
+      ]
+    },
+    {
+      "id": "topic-exhaustion",
+      "title": "When the soul feels worn thin",
+      "shortTitle": "Exhaustion",
+      "searchTerms": [
+        "exhausted",
+        "burnt out",
+        "tired",
+        "drained",
+        "weary",
+        "worn out"
+      ]
+    },
+    {
+      "id": "topic-conduct",
+      "title": "When life and practice do not match",
+      "shortTitle": "Conduct",
+      "searchTerms": [
+        "conduct",
+        "lifestyle",
+        "practice",
+        "hypocrisy",
+        "integrity",
+        "pure conduct"
+      ]
+    },
+    {
+      "id": "topic-anxiety-daily",
+      "title": "When the mind is anxious in the day as it is",
+      "shortTitle": "Anxiety · Daily",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-anxiety-pressure",
+      "title": "When the mind is anxious under pressure",
+      "shortTitle": "Anxiety · Pressure",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "pressure",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-anxiety-repair",
+      "title": "When the mind is anxious after the mind has slipped",
+      "shortTitle": "Anxiety · Repair",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-anxiety-practice",
+      "title": "When the mind is anxious as a steady practice",
+      "shortTitle": "Anxiety · Practice",
+      "searchTerms": [
+        "anxiety",
+        "stress",
+        "overthinking",
+        "worry",
+        "panic",
+        "spiraling",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-anger-daily",
+      "title": "When anger rises quickly in the day as it is",
+      "shortTitle": "Anger · Daily",
+      "searchTerms": [
+        "anger",
+        "frustration",
+        "rage",
+        "irritation",
+        "reactive",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-anger-pressure",
+      "title": "When anger rises quickly under pressure",
+      "shortTitle": "Anger · Pressure",
+      "searchTerms": [
+        "anger",
+        "frustration",
+        "rage",
+        "irritation",
+        "reactive",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-anger-repair",
+      "title": "When anger rises quickly after the mind has slipped",
+      "shortTitle": "Anger · Repair",
+      "searchTerms": [
+        "anger",
+        "frustration",
+        "rage",
+        "irritation",
+        "reactive",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-anger-practice",
+      "title": "When anger rises quickly as a steady practice",
+      "shortTitle": "Anger · Practice",
+      "searchTerms": [
+        "anger",
+        "frustration",
+        "rage",
+        "irritation",
+        "reactive",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-comparison-daily",
+      "title": "When comparison keeps stealing steadiness in the day as it is",
+      "shortTitle": "Comparison · Daily",
+      "searchTerms": [
+        "comparison",
+        "jealousy",
+        "envy",
+        "insecurity",
+        "measuring",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-comparison-pressure",
+      "title": "When comparison keeps stealing steadiness under pressure",
+      "shortTitle": "Comparison · Pressure",
+      "searchTerms": [
+        "comparison",
+        "jealousy",
+        "envy",
+        "insecurity",
+        "measuring",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-comparison-repair",
+      "title": "When comparison keeps stealing steadiness after the mind has slipped",
+      "shortTitle": "Comparison · Repair",
+      "searchTerms": [
+        "comparison",
+        "jealousy",
+        "envy",
+        "insecurity",
+        "measuring",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-comparison-practice",
+      "title": "When comparison keeps stealing steadiness as a steady practice",
+      "shortTitle": "Comparison · Practice",
+      "searchTerms": [
+        "comparison",
+        "jealousy",
+        "envy",
+        "insecurity",
+        "measuring",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-loneliness-daily",
+      "title": "When loneliness closes the room in in the day as it is",
+      "shortTitle": "Loneliness · Daily",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "disconnected",
+        "abandoned",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-loneliness-pressure",
+      "title": "When loneliness closes the room in under pressure",
+      "shortTitle": "Loneliness · Pressure",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "disconnected",
+        "abandoned",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-loneliness-repair",
+      "title": "When loneliness closes the room in after the mind has slipped",
+      "shortTitle": "Loneliness · Repair",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "disconnected",
+        "abandoned",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-loneliness-practice",
+      "title": "When loneliness closes the room in as a steady practice",
+      "shortTitle": "Loneliness · Practice",
+      "searchTerms": [
+        "loneliness",
+        "alone",
+        "isolated",
+        "disconnected",
+        "abandoned",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-purpose-daily",
+      "title": "When life starts feeling aimless in the day as it is",
+      "shortTitle": "Purpose · Daily",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "direction",
+        "calling",
+        "aimless",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-purpose-pressure",
+      "title": "When life starts feeling aimless under pressure",
+      "shortTitle": "Purpose · Pressure",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "direction",
+        "calling",
+        "aimless",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-purpose-repair",
+      "title": "When life starts feeling aimless after the mind has slipped",
+      "shortTitle": "Purpose · Repair",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "direction",
+        "calling",
+        "aimless",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-purpose-practice",
+      "title": "When life starts feeling aimless as a steady practice",
+      "shortTitle": "Purpose · Practice",
+      "searchTerms": [
+        "purpose",
+        "meaning",
+        "direction",
+        "calling",
+        "aimless",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-attachment-daily",
+      "title": "When attachment keeps tightening the grip in the day as it is",
+      "shortTitle": "Attachment · Daily",
+      "searchTerms": [
+        "attachment",
+        "clinging",
+        "possessive",
+        "grip",
+        "letting go",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-attachment-pressure",
+      "title": "When attachment keeps tightening the grip under pressure",
+      "shortTitle": "Attachment · Pressure",
+      "searchTerms": [
+        "attachment",
+        "clinging",
+        "possessive",
+        "grip",
+        "letting go",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-attachment-repair",
+      "title": "When attachment keeps tightening the grip after the mind has slipped",
+      "shortTitle": "Attachment · Repair",
+      "searchTerms": [
+        "attachment",
+        "clinging",
+        "possessive",
+        "grip",
+        "letting go",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-attachment-practice",
+      "title": "When attachment keeps tightening the grip as a steady practice",
+      "shortTitle": "Attachment · Practice",
+      "searchTerms": [
+        "attachment",
+        "clinging",
+        "possessive",
+        "grip",
+        "letting go",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-ego-daily",
+      "title": "When ego keeps making the self too large in the day as it is",
+      "shortTitle": "Ego · Daily",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-ego-pressure",
+      "title": "When ego keeps making the self too large under pressure",
+      "shortTitle": "Ego · Pressure",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-ego-repair",
+      "title": "When ego keeps making the self too large after the mind has slipped",
+      "shortTitle": "Ego · Repair",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-ego-practice",
+      "title": "When ego keeps making the self too large as a steady practice",
+      "shortTitle": "Ego · Practice",
+      "searchTerms": [
+        "ego",
+        "haumai",
+        "pride",
+        "self-importance",
+        "vanity",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-gratitude-daily",
+      "title": "When gratitude feels distant in the day as it is",
+      "shortTitle": "Gratitude · Daily",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "thankfulness",
+        "blessing",
+        "gift",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-gratitude-pressure",
+      "title": "When gratitude feels distant under pressure",
+      "shortTitle": "Gratitude · Pressure",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "thankfulness",
+        "blessing",
+        "gift",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-gratitude-repair",
+      "title": "When gratitude feels distant after the mind has slipped",
+      "shortTitle": "Gratitude · Repair",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "thankfulness",
+        "blessing",
+        "gift",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-gratitude-practice",
+      "title": "When gratitude feels distant as a steady practice",
+      "shortTitle": "Gratitude · Practice",
+      "searchTerms": [
+        "gratitude",
+        "thankful",
+        "thankfulness",
+        "blessing",
+        "gift",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-discipline-daily",
+      "title": "When discipline keeps thinning out in the day as it is",
+      "shortTitle": "Discipline · Daily",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "self-control",
+        "follow through",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-discipline-pressure",
+      "title": "When discipline keeps thinning out under pressure",
+      "shortTitle": "Discipline · Pressure",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "self-control",
+        "follow through",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-discipline-repair",
+      "title": "When discipline keeps thinning out after the mind has slipped",
+      "shortTitle": "Discipline · Repair",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "self-control",
+        "follow through",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-discipline-practice",
+      "title": "When discipline keeps thinning out as a steady practice",
+      "shortTitle": "Discipline · Practice",
+      "searchTerms": [
+        "discipline",
+        "consistency",
+        "habit",
+        "self-control",
+        "follow through",
+        "practice",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-seva-daily",
+      "title": "When service needs its center back in the day as it is",
+      "shortTitle": "Seva · Daily",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-seva-pressure",
+      "title": "When service needs its center back under pressure",
+      "shortTitle": "Seva · Pressure",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-seva-repair",
+      "title": "When service needs its center back after the mind has slipped",
+      "shortTitle": "Seva · Repair",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-seva-practice",
+      "title": "When service needs its center back as a steady practice",
+      "shortTitle": "Seva · Practice",
+      "searchTerms": [
+        "seva",
+        "service",
+        "serving",
+        "volunteering",
+        "offering",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-hukam-daily",
+      "title": "When resistance keeps arguing with Hukam in the day as it is",
+      "shortTitle": "Hukam · Daily",
+      "searchTerms": [
+        "hukam",
+        "acceptance",
+        "command",
+        "what is",
+        "reality",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-hukam-pressure",
+      "title": "When resistance keeps arguing with Hukam under pressure",
+      "shortTitle": "Hukam · Pressure",
+      "searchTerms": [
+        "hukam",
+        "acceptance",
+        "command",
+        "what is",
+        "reality",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-hukam-repair",
+      "title": "When resistance keeps arguing with Hukam after the mind has slipped",
+      "shortTitle": "Hukam · Repair",
+      "searchTerms": [
+        "hukam",
+        "acceptance",
+        "command",
+        "what is",
+        "reality",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-hukam-practice",
+      "title": "When resistance keeps arguing with Hukam as a steady practice",
+      "shortTitle": "Hukam · Practice",
+      "searchTerms": [
+        "hukam",
+        "acceptance",
+        "command",
+        "what is",
+        "reality",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-doubt-daily",
+      "title": "When doubt keeps fogging the path in the day as it is",
+      "shortTitle": "Doubt · Daily",
+      "searchTerms": [
+        "doubt",
+        "confusion",
+        "uncertain",
+        "second guessing",
+        "skeptical",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-doubt-pressure",
+      "title": "When doubt keeps fogging the path under pressure",
+      "shortTitle": "Doubt · Pressure",
+      "searchTerms": [
+        "doubt",
+        "confusion",
+        "uncertain",
+        "second guessing",
+        "skeptical",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-doubt-repair",
+      "title": "When doubt keeps fogging the path after the mind has slipped",
+      "shortTitle": "Doubt · Repair",
+      "searchTerms": [
+        "doubt",
+        "confusion",
+        "uncertain",
+        "second guessing",
+        "skeptical",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-doubt-practice",
+      "title": "When doubt keeps fogging the path as a steady practice",
+      "shortTitle": "Doubt · Practice",
+      "searchTerms": [
+        "doubt",
+        "confusion",
+        "uncertain",
+        "second guessing",
+        "skeptical",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-speech-daily",
+      "title": "When speech keeps outrunning wisdom in the day as it is",
+      "shortTitle": "Speech · Daily",
+      "searchTerms": [
+        "speech",
+        "gossip",
+        "slander",
+        "tongue",
+        "words",
+        "talking",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-speech-pressure",
+      "title": "When speech keeps outrunning wisdom under pressure",
+      "shortTitle": "Speech · Pressure",
+      "searchTerms": [
+        "speech",
+        "gossip",
+        "slander",
+        "tongue",
+        "words",
+        "talking",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-speech-repair",
+      "title": "When speech keeps outrunning wisdom after the mind has slipped",
+      "shortTitle": "Speech · Repair",
+      "searchTerms": [
+        "speech",
+        "gossip",
+        "slander",
+        "tongue",
+        "words",
+        "talking",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-speech-practice",
+      "title": "When speech keeps outrunning wisdom as a steady practice",
+      "shortTitle": "Speech · Practice",
+      "searchTerms": [
+        "speech",
+        "gossip",
+        "slander",
+        "tongue",
+        "words",
+        "talking",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-patience-daily",
+      "title": "When waiting keeps turning bitter in the day as it is",
+      "shortTitle": "Patience · Daily",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-patience-pressure",
+      "title": "When waiting keeps turning bitter under pressure",
+      "shortTitle": "Patience · Pressure",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-patience-repair",
+      "title": "When waiting keeps turning bitter after the mind has slipped",
+      "shortTitle": "Patience · Repair",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-patience-practice",
+      "title": "When waiting keeps turning bitter as a steady practice",
+      "shortTitle": "Patience · Practice",
+      "searchTerms": [
+        "patience",
+        "waiting",
+        "delay",
+        "impatient",
+        "hurry",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-mercy-daily",
+      "title": "When mercy feels hard to receive in the day as it is",
+      "shortTitle": "Mercy · Daily",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-mercy-pressure",
+      "title": "When mercy feels hard to receive under pressure",
+      "shortTitle": "Mercy · Pressure",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-mercy-repair",
+      "title": "When mercy feels hard to receive after the mind has slipped",
+      "shortTitle": "Mercy · Repair",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-mercy-practice",
+      "title": "When mercy feels hard to receive as a steady practice",
+      "shortTitle": "Mercy · Practice",
+      "searchTerms": [
+        "mercy",
+        "grace",
+        "compassion",
+        "kindness",
+        "gift",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-forgiveness-daily",
+      "title": "When forgiveness keeps feeling costly in the day as it is",
+      "shortTitle": "Forgiveness · Daily",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-forgiveness-pressure",
+      "title": "When forgiveness keeps feeling costly under pressure",
+      "shortTitle": "Forgiveness · Pressure",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-forgiveness-repair",
+      "title": "When forgiveness keeps feeling costly after the mind has slipped",
+      "shortTitle": "Forgiveness · Repair",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-forgiveness-practice",
+      "title": "When forgiveness keeps feeling costly as a steady practice",
+      "shortTitle": "Forgiveness · Practice",
+      "searchTerms": [
+        "forgiveness",
+        "forgive",
+        "resentment",
+        "bitterness",
+        "grudge",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-greed-daily",
+      "title": "When greed keeps calling itself need in the day as it is",
+      "shortTitle": "Greed · Daily",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-greed-pressure",
+      "title": "When greed keeps calling itself need under pressure",
+      "shortTitle": "Greed · Pressure",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-greed-repair",
+      "title": "When greed keeps calling itself need after the mind has slipped",
+      "shortTitle": "Greed · Repair",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-greed-practice",
+      "title": "When greed keeps calling itself need as a steady practice",
+      "shortTitle": "Greed · Practice",
+      "searchTerms": [
+        "greed",
+        "craving",
+        "consumption",
+        "more",
+        "materialism",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    },
+    {
+      "id": "topic-restlessness-daily",
+      "title": "When restlessness keeps scattering the heart in the day as it is",
+      "shortTitle": "Restlessness · Daily",
+      "searchTerms": [
+        "restlessness",
+        "unsettled",
+        "wandering",
+        "scattered",
+        "can't settle",
+        "today",
+        "daily",
+        "ordinary day"
+      ]
+    },
+    {
+      "id": "topic-restlessness-pressure",
+      "title": "When restlessness keeps scattering the heart under pressure",
+      "shortTitle": "Restlessness · Pressure",
+      "searchTerms": [
+        "restlessness",
+        "unsettled",
+        "wandering",
+        "scattered",
+        "can't settle",
+        "pressure",
+        "stress",
+        "under strain"
+      ]
+    },
+    {
+      "id": "topic-restlessness-repair",
+      "title": "When restlessness keeps scattering the heart after the mind has slipped",
+      "shortTitle": "Restlessness · Repair",
+      "searchTerms": [
+        "restlessness",
+        "unsettled",
+        "wandering",
+        "scattered",
+        "can't settle",
+        "repair",
+        "return",
+        "after slipping"
+      ]
+    },
+    {
+      "id": "topic-restlessness-practice",
+      "title": "When restlessness keeps scattering the heart as a steady practice",
+      "shortTitle": "Restlessness · Practice",
+      "searchTerms": [
+        "restlessness",
+        "unsettled",
+        "wandering",
+        "scattered",
+        "can't settle",
+        "practice",
+        "habit",
+        "steady return"
+      ]
+    }
+  ]
+}

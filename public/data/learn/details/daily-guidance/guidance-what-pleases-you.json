@@ -1,0 +1,67 @@
+{
+  "id": "guidance-what-pleases-you",
+  "title": "Receive what pleases the Divine before you interpret it.",
+  "summary": "Not every hard arrival means abandonment. Start by remembering that what comes is not outside Divine pleasure or seeing.",
+  "takeaway": "Reception comes before reaction.",
+  "lifeApplication": "When the next interruption arrives, pause long enough to stop framing yourself as the sole author.",
+  "source": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      498,
+      499
+    ],
+    "shortMeaning": "What comes is still coming inside Divine authorship and permission.",
+    "lifeApplication": "Begin with surrender instead of instant self-narration."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 9,
+    "balanceCategory": "hukam",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "What comes is still coming inside Divine authorship and permission.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "Receive the day as given, then answer it with Naam.",
+      "practicalImplication": "When the next interruption arrives, pause long enough to stop framing yourself as the sole author.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.02,
+      "clarity": 3.78,
+      "specificity": 4.59,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.79,
+      "beauty": 3.98,
+      "overall": 3.75
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

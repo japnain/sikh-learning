@@ -1,0 +1,68 @@
+{
+  "id": "guidance-generated-460-2",
+  "title": "Those Who Speak The Unspoken, Drink In",
+  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Gauree, First Mehla:; those who speak the Unspoken, drink in the Nectar",
+  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-generated-460",
+    "verseIds": [
+      6404,
+      6405
+    ],
+    "shortMeaning": "Gauree, First Mehla:; those who speak the Unspoken, drink in the Nectar",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude",
+    "topic-gratitude-daily",
+    "topic-gratitude-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-460"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "gratitude",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Gauree, First Mehla:; those who speak the Unspoken, drink in the Nectar",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Gratitude steadies when o Nanak, they merge into the Lord, and their doubts are cast away.",
+      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.73,
+      "clarity": 2.7,
+      "specificity": 4.51,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.71,
+      "beauty": 3.38,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

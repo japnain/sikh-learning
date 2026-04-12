@@ -1,0 +1,68 @@
+{
+  "id": "guidance-sing-bani-into-peace",
+  "title": "Do not only analyze peace. Sing your way into it.",
+  "summary": "The shabad answers peace not with abstraction but with Bani sung, grace received, and Naam remembered.",
+  "takeaway": "Sometimes peace enters through voiced devotion before it enters through insight.",
+  "lifeApplication": "Use your actual voice with one line today instead of keeping everything in mental commentary.",
+  "source": {
+    "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
+    "verseIds": [
+      27263,
+      27264,
+      27265
+    ],
+    "shortMeaning": "Grace and Guru Bani create a peace that is both rewarding and sustaining.",
+    "lifeApplication": "Peace can be practiced aloud."
+  },
+  "relatedTopicIds": [
+    "topic-forgiveness",
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-remembrance-brings-peace"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "Grace and Guru Bani create a peace that is both rewarding and sustaining.",
+      "emotionalState": "ashamed, heavy, bitter",
+      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "practicalImplication": "Use your actual voice with one line today instead of keeping everything in mental commentary.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4,
+      "clarity": 3.9,
+      "specificity": 4.94,
+      "emotionalHonesty": 3,
+      "usefulness": 2.88,
+      "beauty": 4.06,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

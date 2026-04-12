@@ -1,0 +1,110 @@
+{
+  "id": "topic-forgiveness",
+  "title": "When bitterness refuses to leave",
+  "shortTitle": "Forgiveness",
+  "category": "inner-work",
+  "issueStatement": "The mind keeps returning to hurt, rehearsing offense as if guarding it will protect you.",
+  "centralInsight": "Forgiveness in Gurbani is not sentimental forgetfulness. It is a disciplined relinquishing of bitterness so fear, pride, and self-protection stop ruling the body.",
+  "practicalReflection": "The heart becomes harder than the wound when resentment is treated as identity.",
+  "actionPrompt": "Name the grievance without decorating it. Then ask what holding it is making you become.",
+  "searchTerms": [
+    "forgiveness",
+    "forgive",
+    "resentment",
+    "bitterness",
+    "offense",
+    "hard heart"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-forgiveness-becomes-fearless",
+        "verseIds": [
+          9600,
+          9603,
+          9612
+        ],
+        "shortMeaning": "Forgiveness, reverence, and fearlessness belong to the same path.",
+        "lifeApplication": "Release can become courage, not passivity."
+      },
+      "explanation": "This keeps forgiveness from being mistaken for weakness."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-sweet-speech-humble-walk",
+        "verseIds": [
+          1290,
+          1293,
+          1294
+        ],
+        "shortMeaning": "Soft speech and inward peace are linked to humility and Guru's will.",
+        "lifeApplication": "Forgiveness is easier where posture has already lowered."
+      },
+      "explanation": "Speech, humility, and forgiveness braid together here."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+        "verseIds": [
+          501,
+          503
+        ],
+        "shortMeaning": "Mercy and reunion are still available where the self expects permanent fracture.",
+        "lifeApplication": "Forgiveness begins more readily when grace is remembered."
+      },
+      "explanation": "Grace keeps forgiveness from becoming self-manufactured moralism."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-becomes-fearless",
+    "shabad-sweet-speech-humble-walk",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "relatedTopicIds": [
+    "topic-forgiveness-daily",
+    "topic-forgiveness-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-shame-to-welcome",
+    "collection-forgiveness-journey"
+  ],
+  "rotation": {
+    "theme": "forgiveness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:forgiveness",
+    "evidence": {
+      "coreClaim": "Forgiveness in Gurbani is not sentimental forgetfulness. It is a disciplined relinquishing of bitterness so fear, pride, and self-protection stop ruling the body.",
+      "emotionalState": "afraid, bitter, guarded",
+      "turn": "The mind keeps returning to hurt, rehearsing offense as if guarding it will protect you.",
+      "practicalImplication": "Name the grievance without decorating it. Then ask what holding it is making you become.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 4.6,
+      "emotionalHonesty": 3.72,
+      "usefulness": 2.35,
+      "beauty": 3.98,
+      "overall": 3.86
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "guidance-all-belong-to-you",
+  "title": "The room is not outside the One.",
+  "summary": "Loneliness and control both shrink when you remember that all beings already stand inside Divine life.",
+  "takeaway": "Nothing in the room is abandoned to itself.",
+  "lifeApplication": "In one hard conversation today, quietly remember that everyone in it already belongs to the same Source.",
+  "source": {
+    "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
+    "verseIds": [
+      504,
+      505,
+      506
+    ],
+    "shortMeaning": "All beings already live within the One.",
+    "lifeApplication": "Belonging is ontological before it becomes emotional."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-pleases-you-comes-to-pass",
+    "shabad-steadied-by-creator"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 7,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:3-line-window",
+    "evidence": {
+      "coreClaim": "All beings already live within the One.",
+      "emotionalState": "controlling, unsettled, lonely",
+      "turn": "Receive the day as given, then answer it with Naam.",
+      "practicalImplication": "In one hard conversation today, quietly remember that everyone in it already belongs to the same Source.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.8,
+      "clarity": 3.66,
+      "specificity": 4.57,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.01,
+      "beauty": 3.9,
+      "overall": 3.7
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

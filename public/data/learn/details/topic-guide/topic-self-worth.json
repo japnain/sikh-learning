@@ -1,0 +1,102 @@
+{
+  "id": "topic-self-worth",
+  "title": "When you feel small or unwanted",
+  "shortTitle": "Self Worth",
+  "category": "most-needed",
+  "issueStatement": "You keep reading your worth through approval, performance, or whatever most recently went wrong.",
+  "centralInsight": "Gurbani gives dignity by relation, not vanity: the servant held close, the child cherished, the heart inhabited by Naam.",
+  "practicalReflection": "Self-worth collapses when it is tied to comparison. Guru roots it instead in nearness, grace, and truthful belonging.",
+  "actionPrompt": "When you feel reduced today, repeat one line that names you in relation to the Divine rather than to the crowd.",
+  "searchTerms": [
+    "worthless",
+    "not enough",
+    "unwanted",
+    "unseen",
+    "rejected",
+    "low self worth"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-lord-keeps-the-humble-close",
+        "verseIds": [
+          37476,
+          37477
+        ],
+        "shortMeaning": "The humble servant is held close, and the child is cherished.",
+        "lifeApplication": "Dignity here comes from nearness, not performance."
+      },
+      "explanation": "The shabad refuses the market logic of worth."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-child-of-grace",
+        "verseIds": [
+          3761,
+          3762,
+          3763
+        ],
+        "shortMeaning": "The Guru is protector, mother, and father to the helpless child.",
+        "lifeApplication": "Need does not cancel worth; it reveals where care is meant to be received."
+      },
+      "explanation": "This turns dependence into a doorway rather than a defect."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-honor-women",
+        "verseIds": [
+          21287,
+          21289
+        ],
+        "shortMeaning": "What Guru honors cannot be spoken of as disposable or lesser.",
+        "lifeApplication": "Gurbani revises contempt at the level of value itself."
+      },
+      "explanation": "Honor in Gurbani is not sentimental; it is theological."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-child-of-grace",
+    "shabad-honor-women"
+  ],
+  "relatedTopicIds": [],
+  "relatedCollectionIds": [],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "comfort",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:self:worth",
+    "evidence": {
+      "coreClaim": "Gurbani gives dignity by relation, not vanity: the servant held close, the child cherished, the heart inhabited by Naam.",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "You keep reading your worth through approval, performance, or whatever most recently went wrong.",
+      "practicalImplication": "When you feel reduced today, repeat one line that names you in relation to the Divine rather than to the crowd.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.78,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.45,
+      "beauty": 4.62,
+      "overall": 4.16
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

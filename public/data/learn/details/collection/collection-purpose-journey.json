@@ -1,0 +1,78 @@
+{
+  "id": "collection-purpose-journey",
+  "title": "From Purpose to steadier practice",
+  "subtitle": "A deliberate path through purpose",
+  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "durationLabel": "5-step journey",
+  "themes": [
+    "purpose",
+    "discipline"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
+    "lifeApplication": "Let one part of the day answer that opportunity directly."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-buy-what-goes-with-you"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-buy-what-goes-with-you"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-discipline"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-buy-what-goes-with-you",
+    "shabad-conquer-the-mind"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A deliberate path through purpose",
+      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.08,
+      "clarity": 2.77,
+      "specificity": 4.29,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.47
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

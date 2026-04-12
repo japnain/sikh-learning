@@ -1,0 +1,84 @@
+{
+  "id": "collection-loneliness-to-hukam-69",
+  "title": "Loneliness to Hukam",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "loneliness",
+    "hukam"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-child-of-grace",
+    "verseIds": [
+      3761,
+      3762,
+      3763
+    ],
+    "shortMeaning": "The Guru is named as protector, mother, and father.",
+    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-child"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-loneliness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-hukam"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-hukam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-hukam-inside-everything"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-loneliness",
+    "topic-hukam"
+  ],
+  "relatedShabadIds": [
+    "shabad-child-of-grace",
+    "shabad-hukam-inside-everything",
+    "shabad-generated-152",
+    "shabad-what-pleases-you-comes-to-pass"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+      "emotionalState": "alone, yearning, dependent",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.99,
+      "clarity": 3.65,
+      "specificity": 4.21,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.67
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

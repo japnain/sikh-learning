@@ -1,0 +1,84 @@
+{
+  "id": "collection-restlessness-to-sangat-94",
+  "title": "Restlessness to Sangat",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "restlessness",
+    "sangat"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-search-ends-in-saint-company",
+    "verseIds": [
+      3890,
+      3895,
+      3898
+    ],
+    "shortMeaning": "Searching and ritual are not identical with peace.",
+    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-search-is-not-settlement"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-restlessness"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-search-ends-in-saint-company"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-sangat"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-sangat-and-naam"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-restlessness",
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-search-ends-in-saint-company",
+    "shabad-human-birth-is-chance",
+    "shabad-generated-109",
+    "shabad-child-of-grace"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+      "emotionalState": "wandering, exhausted, seeking",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.01,
+      "clarity": 3.9,
+      "specificity": 4.23,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.71
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

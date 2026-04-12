@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
@@ -157,7 +157,10 @@ test('shows in-app matches first on home smart search and routes into learn deta
   fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
 
   expect(await screen.findByText(/In the app/i)).toBeInTheDocument()
-  fireEvent.click(screen.getByRole('button', { name: /When the mind is anxious/i }))
+  const inAppResults = screen.getByTestId('home-smart-search-app-results')
+  const [firstResult] = within(inAppResults).getAllByRole('button')
+  expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
+  fireEvent.click(firstResult)
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toContain('/learn?tab=topics&topic=topic-anxiety&detail=topic')

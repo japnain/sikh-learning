@@ -1,0 +1,83 @@
+{
+  "id": "collection-seeking-to-self-worth-99",
+  "title": "Seeking to Self-Worth",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru answers seeking by showing where wandering ends and dwelling begins. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "seeking",
+    "self-worth"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239,
+      11240
+    ],
+    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-wanderings-cease-in-sangat"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-seeking"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-108"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-self-worth"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-held-close-not-abandoned"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-lord-keeps-the-humble-close"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-seeking",
+    "topic-self-worth"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-108",
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-generated-109",
+    "shabad-generated-65"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.04,
+      "clarity": 3.15,
+      "specificity": 4.25,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 4.06,
+      "overall": 3.59
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

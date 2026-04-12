@@ -1,0 +1,89 @@
+{
+  "id": "collection-shame-to-welcome",
+  "title": "From Shame to Welcome",
+  "subtitle": "A return path for the self that wants to hide",
+  "description": "This journey is for the voice that keeps saying you are disqualified. It answers that voice with forgiveness, nearness, and the language of being cherished.",
+  "durationLabel": "5-step arc",
+  "themes": [
+    "shame",
+    "forgiveness",
+    "belonging"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-lord-keeps-the-humble-close",
+    "verseIds": [
+      37476,
+      37477
+    ],
+    "shortMeaning": "The humble servant is held close, and the child is cherished.",
+    "lifeApplication": "Welcome begins where nearness becomes more believable than shame."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-forgiveness-opens-the-room"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-cherished-like-a-child"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-shame"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-self-worth"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-forgiveness-opens-lasting-peace"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-lord-keeps-the-humble-close"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-child-of-grace"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-shame",
+    "topic-self-worth",
+    "topic-forgiveness"
+  ],
+  "relatedShabadIds": [
+    "shabad-forgiveness-opens-lasting-peace",
+    "shabad-lord-keeps-the-humble-close",
+    "shabad-child-of-grace",
+    "shabad-generated-150"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "This journey is for the voice that keeps saying you are disqualified. It answers that voice with forgiveness, nearness, and the language of being cherished.",
+      "emotionalState": "small, unwanted, afraid",
+      "turn": "A return path for the self that wants to hide",
+      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.86,
+      "clarity": 3.52,
+      "specificity": 4.09,
+      "emotionalHonesty": 3,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.54
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": []
+  }
+}

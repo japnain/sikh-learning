@@ -1,0 +1,107 @@
+{
+  "id": "topic-discipline",
+  "title": "When discipline matters more than mood",
+  "shortTitle": "Discipline",
+  "category": "practice",
+  "issueStatement": "You know what matters, but drift, distraction, and emotional weather keep deciding the day.",
+  "centralInsight": "Guru's path is not built on mood. It is built on chosen practice, obedience, remembrance, and inner conquest.",
+  "practicalReflection": "Discipline in Gurbani is not harsh self-management. It is the willingness to live by what is true before it feels easy.",
+  "actionPrompt": "Choose the smallest faithful next practice and do it before you renegotiate with yourself.",
+  "searchTerms": [
+    "discipline",
+    "consistency",
+    "habit",
+    "focus",
+    "motivation"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          290,
+          292
+        ],
+        "shortMeaning": "Contentment and inner conquest define the real path.",
+        "lifeApplication": "Outer identity cannot replace inner discipline."
+      },
+      "explanation": "Guru Nanak redefines discipline as an interior ordering of life."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-human-birth-is-chance",
+        "verseIds": [
+          528,
+          529
+        ],
+        "shortMeaning": "Effort matters because life can be wasted.",
+        "lifeApplication": "Discipline is compassion toward the chance this life holds."
+      },
+      "explanation": "The warning against waste is not panic. It is urgency with spiritual purpose."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12942,
+          12944
+        ],
+        "shortMeaning": "Obedience and remembrance anchor practice.",
+        "lifeApplication": "Discipline without remembrance becomes dry willpower."
+      },
+      "explanation": "The Guru's Commands and Naam are held together here."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-conquer-the-mind",
+    "shabad-human-birth-is-chance",
+    "shabad-selfless-service"
+  ],
+  "relatedTopicIds": [
+    "topic-discipline-daily",
+    "topic-discipline-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-restlessness-to-stillness",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "discipline",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:discipline",
+    "evidence": {
+      "coreClaim": "Guru's path is not built on mood. It is built on chosen practice, obedience, remembrance, and inner conquest.",
+      "emotionalState": "reactive, performing, scattered",
+      "turn": "You know what matters, but drift, distraction, and emotional weather keep deciding the day.",
+      "practicalImplication": "Choose the smallest faithful next practice and do it before you renegotiate with yourself.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.9,
+      "specificity": 4.96,
+      "emotionalHonesty": 3,
+      "usefulness": 3.14,
+      "beauty": 4.06,
+      "overall": 3.96
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

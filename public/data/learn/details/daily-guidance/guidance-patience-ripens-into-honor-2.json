@@ -1,0 +1,68 @@
+{
+  "id": "guidance-patience-ripens-into-honor-2",
+  "title": "Those Who Have The True Wealth Are",
+  "summary": "Patience is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+  "lifeApplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-patience-ripens-into-honor",
+    "verseIds": [
+      11239,
+      11241
+    ],
+    "shortMeaning": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-patience",
+    "topic-patience-daily",
+    "topic-patience-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-patience-ripens-into-honor"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-tired-heart-to-rest"
+  ],
+  "rotation": {
+    "theme": "patience",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The mind's wanderings cease, when one comes to dwell in the Society; those who have the true wealth are the true bankers",
+      "emotionalState": "restless, impatient, seeking",
+      "turn": "Patience becomes luminous when it begins listening for Naam.",
+      "practicalImplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.1,
+      "clarity": 0.63,
+      "specificity": 4.86,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.71,
+      "beauty": 2.25,
+      "overall": 3.25
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

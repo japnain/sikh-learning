@@ -1,4 +1,7 @@
 import '@testing-library/jest-dom'
+import fs from 'node:fs'
+import path from 'node:path'
+import { configureLearnRepositoryLoader, resetLearnRepositoryCache } from './data/learnRepository'
 import { server } from './test/msw-server'
 
 const storage = new Map<string, string>()
@@ -208,9 +211,29 @@ Object.defineProperty(globalThis, 'ResizeObserver', {
   value: MockResizeObserver,
 })
 
+const PROJECT_ROOT = process.cwd()
+
+configureLearnRepositoryLoader(async (resourcePath) => {
+  const normalizedPath = resourcePath.startsWith('/')
+    ? resourcePath.slice(1)
+    : resourcePath
+  const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/learn\//, 'data/learn/'))
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+})
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterEach(() => {
   server.resetHandlers()
   localStorage.clear()
+  vi.clearAllTimers()
+  vi.useRealTimers()
+  resetLearnRepositoryCache()
+  configureLearnRepositoryLoader(async (resourcePath) => {
+    const normalizedPath = resourcePath.startsWith('/')
+      ? resourcePath.slice(1)
+      : resourcePath
+    const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/learn\//, 'data/learn/'))
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+  })
 })
 afterAll(() => server.close())

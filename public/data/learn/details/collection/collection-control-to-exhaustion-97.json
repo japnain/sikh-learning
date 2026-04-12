@@ -1,0 +1,82 @@
+{
+  "id": "collection-control-to-exhaustion-97",
+  "title": "Control to Exhaustion",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru interrupts control by restoring the difference between response and authorship. This bridge then carries into guru answers exhaustion with rest in naam, truthful wealth, and better placement.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "control",
+    "exhaustion"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-generated-3",
+    "verseIds": [
+      17
+    ],
+    "shortMeaning": "Some sing of His Power-who has that Power?",
+    "lifeApplication": "Control becomes more truthful when some sing of His Power-who has that Power?."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-3-1"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-control"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-3"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-exhaustion"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-generated-360-1"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-generated-360"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-control",
+    "topic-exhaustion"
+  ],
+  "relatedShabadIds": [
+    "shabad-generated-3",
+    "shabad-generated-360",
+    "shabad-generated-942",
+    "shabad-generated-643"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. This bridge then carries into guru answers exhaustion with rest in naam, truthful wealth, and better placement.",
+      "emotionalState": "gripping, controlling, tense",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.03,
+      "clarity": 3.52,
+      "specificity": 4.24,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 4.22,
+      "overall": 3.63
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

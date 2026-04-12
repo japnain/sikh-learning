@@ -1,0 +1,66 @@
+{
+  "id": "guidance-hukam",
+  "title": "Begin within Hukam",
+  "summary": "The day does not need to come under your control before it can be met truthfully.",
+  "takeaway": "You can meet what arrives without pretending you authored it.",
+  "lifeApplication": "Before reacting, name one thing already here that you need to stop resisting.",
+  "source": {
+    "deepDiveId": "shabad-hukam-inside-everything",
+    "verseIds": [
+      11,
+      15
+    ],
+    "shortMeaning": "Everything stands inside Hukam, not outside it.",
+    "lifeApplication": "Release the demand that peace must wait for total control."
+  },
+  "relatedTopicIds": [
+    "topic-hukam",
+    "topic-hukam-daily",
+    "topic-hukam-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-hukam-inside-everything"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-doubt-to-clarity"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "priority": 10,
+    "balanceCategory": "hukam",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "locked",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Everything stands inside Hukam, not outside it.",
+      "emotionalState": "restless, controlling, uncertain",
+      "turn": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
+      "practicalImplication": "Before reacting, name one thing already here that you need to stop resisting.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 3.79,
+      "clarity": 3.9,
+      "specificity": 4.38,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.49,
+      "beauty": 4.22,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": []
+  }
+}

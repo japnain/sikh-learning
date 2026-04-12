@@ -1,0 +1,108 @@
+{
+  "id": "topic-anger",
+  "title": "When anger takes over",
+  "shortTitle": "Anger",
+  "category": "most-needed",
+  "issueStatement": "Anger feels immediate and justified, but it often rides on hurt pride, attachment, and the refusal to let the mind be taught.",
+  "centralInsight": "Guru addresses anger by going underneath it: ego, self-display, and the unconquered mind.",
+  "practicalReflection": "The question is not only what provoked you. The question is what inside you was ruling the moment before the reaction came.",
+  "actionPrompt": "Before sending, saying, or escalating something, ask: what am I protecting here besides truth?",
+  "searchTerms": [
+    "anger",
+    "frustration",
+    "reactive",
+    "rage",
+    "irritation",
+    "offended"
+  ],
+  "excerpts": [
+    {
+      "source": {
+        "deepDiveId": "shabad-ego-is-disease",
+        "verseIds": [
+          20961,
+          20963,
+          20964
+        ],
+        "shortMeaning": "Ego is the disease; Guru's Shabad becomes the cure through grace.",
+        "lifeApplication": "Anger often survives by convincing you it is pure clarity rather than wounded ego."
+      },
+      "explanation": "Guru Angad shifts the question from the target of anger to the condition of the self carrying it."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-conquer-the-mind",
+        "verseIds": [
+          292
+        ],
+        "shortMeaning": "The real victory is inner victory.",
+        "lifeApplication": "What feels like domination of the moment is often failure to govern the mind."
+      },
+      "explanation": "This line resets the field of conflict. The unconquered mind makes every room harder."
+    },
+    {
+      "source": {
+        "deepDiveId": "shabad-selfless-service",
+        "verseIds": [
+          12943,
+          12944
+        ],
+        "shortMeaning": "Do not call attention to yourself; keep Naam in the heart.",
+        "lifeApplication": "The self that demands notice is often the same self that flares in anger."
+      },
+      "explanation": "Humility and remembrance are direct medicine for reactivity."
+    }
+  ],
+  "relatedShabadIds": [
+    "shabad-ego-is-disease",
+    "shabad-conquer-the-mind",
+    "shabad-selfless-service"
+  ],
+  "relatedTopicIds": [
+    "topic-anger-daily",
+    "topic-anger-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "anger",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 21,
+    "priority": 8,
+    "balanceCategory": "challenge",
+    "freshnessTier": "evergreen",
+    "seasonality": [
+      "evergreen"
+    ]
+  },
+  "editorial": {
+    "status": "draft",
+    "origin": "legacy",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "topic:anger",
+    "evidence": {
+      "coreClaim": "Guru addresses anger by going underneath it: ego, self-display, and the unconquered mind.",
+      "emotionalState": "defensive, offended, self-important",
+      "turn": "Anger feels immediate and justified, but it often rides on hurt pride, attachment, and the refusal to let the mind be taught.",
+      "practicalImplication": "Before sending, saying, or escalating something, ask: what am I protecting here besides truth?",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 3.66,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 2.22,
+      "beauty": 3.9,
+      "overall": 3.82
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "collection-purpose-to-doubt-71",
+  "title": "Purpose to Doubt",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "purpose",
+    "doubt"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
+    "lifeApplication": "Let one part of the day answer that opportunity directly."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-doubt"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-extinguish-the-fire"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-extinguish-the-fire-of-doubt"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-doubt"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-extinguish-the-fire-of-doubt",
+    "shabad-buy-what-goes-with-you",
+    "shabad-generated-63"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.07,
+      "clarity": 3.02,
+      "specificity": 4.28,
+      "emotionalHonesty": 3.36,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.55
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

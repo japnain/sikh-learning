@@ -1,0 +1,68 @@
+{
+  "id": "guidance-speak-what-brings-honor-2",
+  "title": "Speak Only That Which Will Bring You",
+  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
+  "takeaway": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
+  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "source": {
+    "deepDiveId": "shabad-speak-what-brings-honor",
+    "verseIds": [
+      634,
+      637
+    ],
+    "shortMeaning": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
+    "lifeApplication": "Let the wider line hold together what the mind wants to split apart."
+  },
+  "relatedTopicIds": [
+    "topic-speech",
+    "topic-speech-daily",
+    "topic-speech-pressure"
+  ],
+  "relatedShabadIds": [
+    "shabad-speak-what-brings-honor"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-conduct-and-clean-speech"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Greed is a dog; falsehood is a filthy street-sweeper. Cheating is eating; o Baba, speak only that which will bring you honor",
+      "emotionalState": "reactive, hungry, resentful",
+      "turn": "Guard the tongue, and the heart begins to clear.",
+      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.09,
+      "clarity": 1.38,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.58,
+      "beauty": 2.13,
+      "overall": 3.31
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

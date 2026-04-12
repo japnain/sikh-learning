@@ -1,0 +1,160 @@
+{
+  "id": "shabad-generated-817",
+  "title": "Sangat In Gurbani",
+  "subtitle": "Raag Gauree · Ang 256",
+  "summary": "Sangat is carried here from  toward o Nanak, those humble beings do not waver or wander.",
+  "whyItMatters": "This shabad is useful when life feels isolated, impressionable, needing-company, because it keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Sangat steadies when o Nanak, those humble beings do not waver or wander.",
+  "themes": [
+    "sangat",
+    "restlessness",
+    "shame"
+  ],
+  "emotionalStates": [
+    "isolated",
+    "impressionable",
+    "needing-company"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 6,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 817,
+    "ang": 256,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      9
+    ],
+    "verse_ids": [
+      11167,
+      11168,
+      11169,
+      11170,
+      11171,
+      11172,
+      11173,
+      11174,
+      11175
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 11167,
+      "gurmukhi": "ਪਉੜੀ ॥",
+      "transliteration": "pauRee ||",
+      "translation": "Pauree:"
+    },
+    {
+      "verseId": 11168,
+      "gurmukhi": "ਡਡਾ ਡੇਰਾ ਇਹੁ ਨਹੀ ਜਹ ਡੇਰਾ ਤਹ ਜਾਨੁ ॥",
+      "transliteration": "ddaddaa dderaa ih nahee jeh dderaa teh jaan ||",
+      "translation": "DADDA: This is not your true place; you must know where that place really is."
+    },
+    {
+      "verseId": 11169,
+      "gurmukhi": "ਉਆ ਡੇਰਾ ਕਾ ਸੰਜਮੋ ਗੁਰ ਕੈ ਸਬਦਿ ਪਛਾਨੁ ॥",
+      "transliteration": "auaa dderaa kaa sa(n)jamo gur kai sabadh pachhaan ||",
+      "translation": "You shall come to realize the way to that place, through the Word of the Guru's Shabad."
+    },
+    {
+      "verseId": 11170,
+      "gurmukhi": "ਇਆ ਡੇਰਾ ਕਉ ਸ੍ਰਮੁ ਕਰਿ ਘਾਲੈ ॥",
+      "transliteration": "eiaa dderaa kau sram kar ghaalai ||",
+      "translation": "This place, here, is established by hard work,"
+    },
+    {
+      "verseId": 11171,
+      "gurmukhi": "ਜਾ ਕਾ ਤਸੂ ਨਹੀ ਸੰਗਿ ਚਾਲੈ ॥",
+      "transliteration": "jaa kaa tasoo nahee sa(n)g chaalai ||",
+      "translation": "but not one iota of this shall go there with you."
+    },
+    {
+      "verseId": 11172,
+      "gurmukhi": "ਉਆ ਡੇਰਾ ਕੀ ਸੋ ਮਿਤਿ ਜਾਨੈ ॥",
+      "transliteration": "auaa dderaa kee so mit jaanai ||",
+      "translation": "The value of that place beyond is known only to those,"
+    },
+    {
+      "verseId": 11173,
+      "gurmukhi": "ਜਾ ਕਉ ਦ੍ਰਿਸਟਿ ਪੂਰਨ ਭਗਵਾਨੈ ॥",
+      "transliteration": "jaa kau dhirasaT pooran bhagavaanai ||",
+      "translation": "upon whom the Perfect Lord God casts His Glance of Grace."
+    },
+    {
+      "verseId": 11174,
+      "gurmukhi": "ਡੇਰਾ ਨਿਹਚਲੁ ਸਚੁ ਸਾਧਸੰਗ ਪਾਇਆ ॥",
+      "transliteration": "dderaa nihachal sach saadhasa(n)g paiaa ||",
+      "translation": "That permanent and true place is obtained in the Saadh Sangat, the Company of the Holy;"
+    },
+    {
+      "verseId": 11175,
+      "gurmukhi": "ਨਾਨਕ ਤੇ ਜਨ ਨਹ ਡੋਲਾਇਆ ॥੨੯॥",
+      "transliteration": "naanak te jan neh ddolaiaa ||29||",
+      "translation": "O Nanak, those humble beings do not waver or wander. ||29||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: .",
+    "The middle movement deepens the correction by holding the mind inside but not one iota of this shall go there with you.",
+    "The closing movement leaves a return you can actually keep: o Nanak, those humble beings do not waver or wander."
+  ],
+  "keyVerseIds": [
+    11167,
+    11168,
+    11169,
+    11174
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-sangat"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 6,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "seva"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Sangat is carried here from  toward o Nanak, those humble beings do not waver or wander.",
+      "emotionalState": "isolated, impressionable, needing-company",
+      "turn": "The middle movement deepens the correction by holding the mind inside but not one iota of this shall go there with you.",
+      "practicalImplication": "Sangat steadies when o Nanak, those humble beings do not waver or wander.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.9,
+      "specificity": 4.78,
+      "emotionalHonesty": 4,
+      "usefulness": 2.22,
+      "beauty": 3.58,
+      "overall": 3.72
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}

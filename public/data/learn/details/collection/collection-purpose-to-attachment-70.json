@@ -1,0 +1,83 @@
+{
+  "id": "collection-purpose-to-attachment-70",
+  "title": "Purpose to Attachment",
+  "subtitle": "A cross-linked bridge between two recurring pressures",
+  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru teaches love without possession and steadiness without denial.",
+  "durationLabel": "6-step journey",
+  "themes": [
+    "purpose",
+    "attachment"
+  ],
+  "heroSource": {
+    "deepDiveId": "shabad-human-birth-is-chance",
+    "verseIds": [
+      524,
+      525
+    ],
+    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
+    "lifeApplication": "Let one part of the day answer that opportunity directly."
+  },
+  "items": [
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-human-opportunity"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-purpose"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-human-birth-is-chance"
+    },
+    {
+      "kind": "topic-guide",
+      "id": "topic-attachment"
+    },
+    {
+      "kind": "daily-guidance",
+      "id": "guidance-praise-and-blame"
+    },
+    {
+      "kind": "shabad-deep-dive",
+      "id": "shabad-detached-and-steady"
+    }
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-human-birth-is-chance",
+    "shabad-detached-and-steady",
+    "shabad-buy-what-goes-with-you",
+    "shabad-generated-152"
+  ],
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "collection:journey",
+    "evidence": {
+      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru teaches love without possession and steadiness without denial.",
+      "emotionalState": "directionless, numb, wasting-time",
+      "turn": "A cross-linked bridge between two recurring pressures",
+      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.1,
+      "clarity": 3.4,
+      "specificity": 4.31,
+      "emotionalHonesty": 3.18,
+      "usefulness": 2.35,
+      "beauty": 3.9,
+      "overall": 3.6
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": []
+  }
+}

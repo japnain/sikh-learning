@@ -1,0 +1,145 @@
+{
+  "id": "shabad-generated-230",
+  "title": "Purpose In Gurbani",
+  "subtitle": "Siree Raag · Ang 86",
+  "summary": "Purpose is carried here from  toward o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+  "whyItMatters": "This shabad is useful when life feels directionless, numb, adrift, because it keeps purpose inside remembrance, conduct, and the Creator's larger care instead of private mood.",
+  "takeaway": "Purpose steadies when o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+  "themes": [
+    "purpose",
+    "ego",
+    "anger"
+  ],
+  "emotionalStates": [
+    "directionless",
+    "numb",
+    "adrift"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 230,
+    "ang": 86,
+    "guru": "Guru Amar Daas Ji",
+    "raag": "Siree Raag",
+    "line_range": [
+      1,
+      6
+    ],
+    "verse_ids": [
+      3451,
+      3452,
+      3453,
+      3454,
+      3455,
+      3456
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 3451,
+      "gurmukhi": "ਪਉੜੀ ॥",
+      "transliteration": "pauRee ||",
+      "translation": "Pauree:"
+    },
+    {
+      "verseId": 3452,
+      "gurmukhi": "ਹਰਿ ਕੀ ਸੇਵਾ ਸਫਲ ਹੈ ਗੁਰਮੁਖਿ ਪਾਵੈ ਥਾਇ ॥",
+      "transliteration": "har kee sevaa safal hai gurmukh paavai thai ||",
+      "translation": "Service to the Lord is fruitful; through it, the Gurmukh is honored and approved."
+    },
+    {
+      "verseId": 3453,
+      "gurmukhi": "ਜਿਸੁ ਹਰਿ ਭਾਵੈ ਤਿਸੁ ਗੁਰੁ ਮਿਲੈ ਸੋ ਹਰਿ ਨਾਮੁ ਧਿਆਇ ॥",
+      "transliteration": "jis har bhaavai tis gur milai so har naam dhiaai ||",
+      "translation": "That person, with whom the Lord is pleased, meets with the Guru, and meditates on the Name of the Lord."
+    },
+    {
+      "verseId": 3454,
+      "gurmukhi": "ਗੁਰ ਸਬਦੀ ਹਰਿ ਪਾਈਐ ਹਰਿ ਪਾਰਿ ਲਘਾਇ ॥",
+      "transliteration": "gur sabadhee har paieeaai har paar laghai ||",
+      "translation": "Through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across."
+    },
+    {
+      "verseId": 3455,
+      "gurmukhi": "ਮਨਹਠਿ ਕਿਨੈ ਨ ਪਾਇਓ ਪੁਛਹੁ ਵੇਦਾ ਜਾਇ ॥",
+      "transliteration": "manahaTh kinai na paio puchhahu vedhaa jai ||",
+      "translation": "Through stubborn-mindedness, none have found Him; go and consult the Vedas on this."
+    },
+    {
+      "verseId": 3456,
+      "gurmukhi": "ਨਾਨਕ ਹਰਿ ਕੀ ਸੇਵਾ ਸੋ ਕਰੇ ਜਿਸੁ ਲਏ ਹਰਿ ਲਾਇ ॥੧੦॥",
+      "transliteration": "naanak har kee sevaa so kare jis le har lai ||10||",
+      "translation": "O Nanak, he alone serves the Lord, whom the Lord attaches to Himself. ||10||"
+    }
+  ],
+  "structure": [
+    "The opening movement names the pressure directly: .",
+    "The middle movement deepens the correction by holding the mind inside through the Word of the Guru's Shabad, the Lord is found. The Lord carries.",
+    "The closing movement leaves a return you can actually keep: o Nanak, he alone serves the Lord, whom the Lord attaches to Himself."
+  ],
+  "keyVerseIds": [
+    3451,
+    3454,
+    3455,
+    3456
+  ],
+  "relatedGuidanceIds": [
+    "guidance-generated-230-1",
+    "guidance-generated-230-2",
+    "guidance-generated-230-3"
+  ],
+  "relatedTopicIds": [
+    "topic-purpose",
+    "topic-purpose-daily",
+    "topic-purpose-pressure"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth",
+    "collection-purpose-journey"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "Purpose is carried here from  toward o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "emotionalState": "directionless, numb, adrift",
+      "turn": "The middle movement deepens the correction by holding the mind inside through the Word of the Guru's Shabad, the Lord is found. The Lord carries.",
+      "practicalImplication": "Purpose steadies when o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 2.58,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.9,
+      "usefulness": 2.44,
+      "beauty": 3.27,
+      "overall": 3.67
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [
+      "repeats phrasing too closely"
+    ]
+  }
+}
