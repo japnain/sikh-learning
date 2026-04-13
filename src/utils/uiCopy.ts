@@ -75,7 +75,8 @@ type LocaleCopy = {
   }
   home: {
     promise: string
-    greeting: string
+    greetingPrimary: string
+    greetingSecondary: string
     todaysHukamnama: string
     searchPlaceholder: string
     todaysPath: string
@@ -250,7 +251,8 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     home: {
       promise: 'Read Gurbani daily. Understand it better. Grow into it steadily.',
-      greeting: 'SatShriAkaal',
+      greetingPrimary: 'Gur Bar Akaal',
+      greetingSecondary: 'Sri Bhagauti Ji Sahai',
       todaysHukamnama: 'Today’s Hukamnama',
       searchPlaceholder: 'Search Gurbani, first letters, transliteration, or meaning',
       todaysPath: 'Today’s Path',
@@ -423,7 +425,8 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     home: {
       promise: 'ਰੋਜ਼ ਗੁਰਬਾਣੀ ਪੜ੍ਹੋ। ਵਧੇਰੇ ਸਮਝੋ। ਹੌਲੇ ਹੌਲੇ ਅੱਗੇ ਵਧੋ।',
-      greeting: 'ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ',
+      greetingPrimary: 'Gur Bar Akaal',
+      greetingSecondary: 'Sri Bhagauti Ji Sahai',
       todaysHukamnama: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ',
       searchPlaceholder: 'ਗੁਰਬਾਣੀ, ਪਹਿਲੇ ਅੱਖਰ, ਲਿਪਾਂਤਰ ਜਾਂ ਅਰਥ ਖੋਜੋ',
       todaysPath: 'ਅੱਜ ਦਾ ਰਸਤਾ',
@@ -596,7 +599,8 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     home: {
       promise: 'रोज़ गुरबाणी पढ़ें। बेहतर समझें। धीरे धीरे आगे बढ़ें।',
-      greeting: 'सत श्री अकाल',
+      greetingPrimary: 'Gur Bar Akaal',
+      greetingSecondary: 'Sri Bhagauti Ji Sahai',
       todaysHukamnama: 'आज का हुकमनामा',
       searchPlaceholder: 'गुरबाणी, पहले अक्षर, लिप्यंतरण या अर्थ खोजें',
       todaysPath: 'आज का मार्ग',

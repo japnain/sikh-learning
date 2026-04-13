@@ -650,7 +650,10 @@ export default function Home() {
           {formatUiDate(locale)}
         </p>
         <h1 className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text mt-2">
-          {copy.home.greeting}
+          <span className="block">{copy.home.greetingPrimary}</span>
+          <span className="mt-2 block font-sans text-[0.85rem] font-medium uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+            {copy.home.greetingSecondary}
+          </span>
         </h1>
       </div>
 
