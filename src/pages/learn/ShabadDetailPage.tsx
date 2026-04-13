@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import SurfaceStateCard from "../../components/SurfaceStateCard"
 import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
 import { LEARN_DETAIL_RAILS } from "../../utils/learnRails"
@@ -8,22 +9,49 @@ import CitationLine from "./components/CitationLine"
 
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
-function MissingShabadDetail() {
+function MissingShabadDetail({
+  state,
+  errorCode = null,
+}: {
+  state: 'loading' | 'empty' | 'degraded'
+  errorCode?: string | null
+}) {
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn-detail-missing">
-      <div className="section-shell p-5">
-        <p className="eyebrow">Shabad not found</p>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-          This shabad deep dive is not available.
-        </p>
-      </div>
-    </div>
+    <SurfaceStateCard
+      surface="learn-shabad-detail"
+      state={state}
+      eyebrow="Shabads"
+      title={state === 'loading' ? 'Preparing this shabad.' : state === 'degraded' ? 'This shabad needs another pass.' : 'This shabad is not available right now.'}
+      body={state === 'loading'
+        ? 'The shabad deep dive is loading into place.'
+        : state === 'degraded'
+          ? 'The shabad deep dive did not settle this time. Reload and try again, or return to Shabads.'
+          : 'The requested shabad deep dive could not be found in the current Learn archive.'}
+      testId="page-learn-detail-missing"
+      page="learn-detail"
+      errorCode={errorCode}
+      actions={state === 'loading'
+        ? []
+        : [
+            {
+              label: state === 'degraded' ? 'Reload Shabad' : 'Back to Shabads',
+              onClick: () => {
+                if (state === 'degraded') {
+                  window.location.reload()
+                  return
+                }
+                window.location.assign('/learn?tab=shabads')
+              },
+              aiAction: state === 'degraded' ? 'reload-shabad-detail' : 'back-to-shabads',
+            },
+          ]}
+    />
   )
 }
 
 export default function ShabadDetailPage() {
   const { shabadId } = useParams<{ shabadId: string }>()
-  const { item: shabad, error, loading } = useLearnDetail("shabad-deep-dive", shabadId)
+  const { item: shabad, error, status } = useLearnDetail("shabad-deep-dive", shabadId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
   useEffect(() => {
@@ -32,8 +60,9 @@ export default function ShabadDetailPage() {
     }
   }, [recordLearnItemView, shabad])
 
-  if (loading) return <MissingShabadDetail />
-  if (error || !shabad) return <MissingShabadDetail />
+  if (status === 'loading') return <MissingShabadDetail state="loading" />
+  if (status === 'degraded' || error) return <MissingShabadDetail state="degraded" errorCode={error ?? 'unavailable'} />
+  if (!shabad) return <MissingShabadDetail state="empty" />
 
   return (
     <LearnDetailShell

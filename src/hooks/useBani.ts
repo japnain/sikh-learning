@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import type { ScriptureEntry, SundarGutkaLength } from '../types'
+import { resolveAsyncIssue } from '../qa/async'
+import type { AsyncIssue, AsyncStatus, ScriptureEntry, SundarGutkaLength } from '../types'
 import { fetchBani } from '../api/banidb'
 
 type BaniRequestState = {
@@ -7,7 +8,7 @@ type BaniRequestState = {
   entries: ScriptureEntry[]
   availableLengths: SundarGutkaLength[]
   resolvedLength: SundarGutkaLength | null
-  error: string | null
+  issue: AsyncIssue | null
 }
 
 export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | null) {
@@ -27,7 +28,7 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
           entries: data.entries,
           availableLengths: data.availableLengths,
           resolvedLength: data.resolvedLength,
-          error: null,
+          issue: null,
         })
       })
       .catch(error => {
@@ -37,18 +38,29 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
           entries: [],
           availableLengths: [],
           resolvedLength: null,
-          error: String(error),
+          issue: resolveAsyncIssue(error),
         })
       })
 
     return () => { cancelled = true }
   }, [baniDbId, currentState, requestKey, sgLength])
 
+  const issue = currentState?.issue ?? null
+  const status: AsyncStatus = requestKey === null
+    ? 'empty'
+    : issue
+      ? 'degraded'
+      : currentState
+        ? (currentState.entries.length === 0 ? 'empty' : 'ready')
+        : 'loading'
+
   return {
     entries: currentState?.entries ?? [],
     availableLengths: currentState?.availableLengths ?? [],
     resolvedLength: currentState?.resolvedLength ?? null,
-    loading: requestKey !== null && currentState === null,
-    error: currentState?.error ?? null,
+    status,
+    issue,
+    loading: status === 'loading',
+    error: issue?.code ?? null,
   }
 }

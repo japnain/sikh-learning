@@ -1,5 +1,6 @@
 import { startTransition, useDeferredValue, useEffect, useMemo, useRef } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import SurfaceStateCard from "../../components/SurfaceStateCard"
 import { getEditorialCopy } from "../../content/editorialCopy"
 import DisclosureSection from "../../components/DisclosureSection"
 import { IconArrowRight, IconSearch } from "../../components/icons"
@@ -302,32 +303,54 @@ export default function LearnHub() {
 
   if (loading) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-learn-loading">
-        <div className="section-shell p-5">
-          <p className="eyebrow">Learn</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-            Loading the SGGS archive…
-          </p>
-        </div>
-      </div>
+      <SurfaceStateCard
+        surface="learn-hub"
+        state="loading"
+        eyebrow="Learn"
+        title="Preparing the SGGS archive."
+        body="Daily guidance, topic pages, and saved study paths are loading into place."
+        testId="page-learn-loading"
+        page="learn"
+      />
     )
   }
 
   if (error || !catalog || !todaySurface || !continueLearning) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-learn-error">
-        <div className="section-shell p-5">
-          <p className="eyebrow">Learn</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-            The Learn archive could not be loaded.
-          </p>
-        </div>
-      </div>
+      <SurfaceStateCard
+        surface="learn-hub"
+        state="degraded"
+        eyebrow="Learn"
+        title="Learn is regrouping."
+        body="The archive did not settle this time. Reload and try again, or keep moving through the rest of the app."
+        testId="page-learn-error"
+        page="learn"
+        errorCode={error ?? 'unavailable'}
+        actions={[
+          {
+            label: 'Reload Learn',
+            onClick: () => window.location.reload(),
+            aiAction: 'reload-learn',
+          },
+          {
+            label: 'Go Home',
+            onClick: () => window.location.assign('/'),
+            aiAction: 'go-home',
+            emphasis: 'secondary',
+          },
+        ]}
+      />
     )
   }
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn" data-page="learn">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="page-learn"
+      data-page="learn"
+      data-ai-surface="learn-hub"
+      data-ai-state="ready"
+    >
       <div className="mb-6">
         <p className="eyebrow">{editorial?.learn.eyebrow ?? "Learn"}</p>
         <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">{pageCopy.title}</h1>
@@ -364,6 +387,7 @@ export default function LearnHub() {
             placeholder={editorial?.learn.heroSearchPlaceholder ?? "Search the archive by question, feeling, or theme…"}
             className="min-w-0 flex-1 bg-transparent font-sans text-sm text-ink outline-none placeholder:text-ink/40 dark:text-dark-text dark:placeholder:text-dark-text/40"
             data-testid="learn-archive-search"
+            data-ai-action="learn-archive-search"
           />
         </label>
         <p className="mt-3 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/62">

@@ -151,7 +151,7 @@ export default function Library() {
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-library" data-page="library">
+    <div className="page-shell animate-fade-in" data-testid="page-library" data-page="library" data-ai-surface="library" data-ai-state="ready">
       <div className="mb-5">
         <p className="eyebrow">{libraryCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">{libraryCopy.title}</h1>

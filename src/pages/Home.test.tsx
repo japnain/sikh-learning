@@ -297,6 +297,8 @@ test('shows today’s hukamnama action', async () => {
 test('shows inline fallback copy when hukamnama fails on home', () => {
   vi.spyOn(hukamnamaHook, 'useHukamnama').mockReturnValue({
     data: null,
+    status: 'degraded',
+    issue: { code: 'offline' },
     loading: false,
     error: 'offline',
   })

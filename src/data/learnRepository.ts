@@ -9,6 +9,7 @@ import type {
   ShabadDeepDive,
   TopicGuide,
 } from "../types"
+import { withQaControl } from "../qa/runtime"
 
 type LearnJsonLoader = <T>(path: string) => Promise<T>
 
@@ -68,10 +69,12 @@ export async function loadLearnSearchIndex() {
 
 export async function loadLearnCatalog() {
   if (!catalogPromise) {
-    catalogPromise = Promise.all([
-      loadLearnManifest(),
-      loadLearnSearchIndex(),
-    ]).then(async ([manifest, searchIndex]) => {
+    catalogPromise = withQaControl('learn-catalog', async () => {
+      const [manifest, searchIndex] = await Promise.all([
+        loadLearnManifest(),
+        loadLearnSearchIndex(),
+      ])
+
       const [dailyGuidance, shabadDeepDives, topicGuides, collections] = await Promise.all([
         jsonLoader<DailyGuidance[]>(manifest.listPaths.dailyGuidance),
         jsonLoader<ShabadDeepDive[]>(manifest.listPaths.shabadDeepDives),
@@ -112,7 +115,7 @@ export async function loadLearnDetail<K extends LearnContentKind>(
 ): Promise<LearnDetailMap[K] | null> {
   const key = `${kind}:${id}`
   if (!detailPromises.has(key)) {
-    const promise = (async () => {
+    const promise = withQaControl('learn-detail', async () => {
       const catalog = await loadLearnCatalog()
 
       if (kind === "daily-guidance" && catalog.dailyGuidanceById[id]) {
@@ -127,7 +130,9 @@ export async function loadLearnDetail<K extends LearnContentKind>(
 
       const detailPath = buildDetailPath(catalog.manifest, kind, id)
       return jsonLoader<LearnDetailMap[K]>(detailPath)
-    })()
+    }, {
+      emptyValue: null,
+    })
 
     detailPromises.set(key, promise as Promise<DailyGuidance | ShabadDeepDive | TopicGuide | Collection>)
   }

@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom"
+import SurfaceStateCard from "../../components/SurfaceStateCard"
 import { IconArrowRight } from "../../components/icons"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import useLearnDetail from "../../hooks/useLearnDetail"
@@ -11,24 +12,51 @@ import CitationLine from "./components/CitationLine"
 
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
-function MissingTopicDetail() {
+function MissingTopicDetail({
+  state,
+  errorCode = null,
+}: {
+  state: 'loading' | 'empty' | 'degraded'
+  errorCode?: string | null
+}) {
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn-detail-missing">
-      <div className="section-shell p-5">
-        <p className="eyebrow">Topic not found</p>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-          This topic guide is not available.
-        </p>
-      </div>
-    </div>
+    <SurfaceStateCard
+      surface="learn-topic-detail"
+      state={state}
+      eyebrow="Topics"
+      title={state === 'loading' ? 'Preparing this topic.' : state === 'degraded' ? 'This topic needs another pass.' : 'This topic is not available right now.'}
+      body={state === 'loading'
+        ? 'The topic guide is loading into place.'
+        : state === 'degraded'
+          ? 'The topic guide did not settle this time. Reload and try again, or return to Topics.'
+          : 'The requested topic guide could not be found in the current Learn archive.'}
+      testId="page-learn-detail-missing"
+      page="learn-detail"
+      errorCode={errorCode}
+      actions={state === 'loading'
+        ? []
+        : [
+            {
+              label: state === 'degraded' ? 'Reload Topic' : 'Back to Topics',
+              onClick: () => {
+                if (state === 'degraded') {
+                  window.location.reload()
+                  return
+                }
+                window.location.assign('/learn?tab=topics')
+              },
+              aiAction: state === 'degraded' ? 'reload-topic-detail' : 'back-to-topics',
+            },
+          ]}
+    />
   )
 }
 
 export default function TopicDetailPage() {
   const { topicId } = useParams<{ topicId: string }>()
   const [searchParams] = useSearchParams()
-  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
-  const { item: topic, error: topicError, loading: topicLoading } = useLearnDetail("topic-guide", topicId)
+  const { catalog, error: catalogError, status: catalogStatus } = useLearnCatalog()
+  const { item: topic, error: topicError, status: topicStatus } = useLearnDetail("topic-guide", topicId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
   useEffect(() => {
@@ -37,8 +65,10 @@ export default function TopicDetailPage() {
     }
   }, [recordLearnItemView, topic])
 
-  if (catalogLoading || topicLoading) return <MissingTopicDetail />
-  if (catalogError || topicError || !catalog) return <MissingTopicDetail />
+  if (catalogStatus === 'loading' || topicStatus === 'loading') return <MissingTopicDetail state="loading" />
+  if (catalogStatus === 'degraded' || topicStatus === 'degraded' || catalogError || topicError || !catalog) {
+    return <MissingTopicDetail state="degraded" errorCode={catalogError ?? topicError ?? 'unavailable'} />
+  }
 
   const aliasTarget = topicId ? catalog.searchIndex.legacyTopicAliases[topicId] : null
   if (!topic && aliasTarget) {
@@ -50,7 +80,7 @@ export default function TopicDetailPage() {
     )
   }
 
-  if (!topic) return <MissingTopicDetail />
+  if (!topic) return <MissingTopicDetail state="empty" />
 
   const from = searchParams.get("from") ?? "topics"
   const scenarioParam = searchParams.get("scenario")

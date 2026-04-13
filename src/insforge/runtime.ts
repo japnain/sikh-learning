@@ -4,6 +4,7 @@ import { getNaamrasInsforgeConfig } from './config'
 import { loadRemoteSnapshotFromRepositories } from './repositories'
 import { applyRemoteSnapshot, exportLocalSnapshot } from './snapshot'
 import type { CloudUserSummary, MergeLocalStateResult } from './types'
+import { withQaControl } from '../qa/runtime'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useCloudSyncStore } from '../store/cloudSync'
@@ -25,6 +26,24 @@ let currentUserId: string | null = null
 let applyingRemoteSnapshot = false
 let cleanupSubscriptions: Array<() => void> = []
 let onlineListenerBound = false
+
+type CloudSyncFailureKind = 'bootstrap' | 'sync' | 'auth' | 'account'
+
+function getCloudSyncFailureMessage(kind: CloudSyncFailureKind) {
+  if (kind === 'bootstrap') {
+    return 'Cloud sync is unavailable right now. Local reading still works on this device.'
+  }
+
+  if (kind === 'auth') {
+    return 'Sign-in could not start right now. You can keep reading locally and try again in a moment.'
+  }
+
+  if (kind === 'account') {
+    return 'Cloud account changes could not be completed right now. Try again in a moment.'
+  }
+
+  return 'Cloud sync is taking longer than usual. Local changes are still safe on this device.'
+}
 
 function toCloudUserSummary(user: UserSchema): CloudUserSummary {
   return {
@@ -90,6 +109,8 @@ async function refreshCloudState() {
   const syncStore = useCloudSyncStore.getState()
   const client = getNaamrasInsforgeClient()
 
+  await withQaControl('insforge-bootstrap', async () => undefined)
+
   syncStore.setConfigured(config.enabled)
   if (!config.enabled || !client) {
     syncStore.setStatus('idle')
@@ -110,7 +131,7 @@ async function refreshCloudState() {
 
   if (authConfigResult.error && !userResult.data?.user) {
     syncStore.setStatus('error')
-    syncStore.setLastError(authConfigResult.error.message)
+    syncStore.setLastError(getCloudSyncFailureMessage('bootstrap'))
   }
 
   const user = userResult.data?.user ?? null
@@ -119,7 +140,7 @@ async function refreshCloudState() {
 
   if (userResult.error) {
     syncStore.setStatus('error')
-    syncStore.setLastError(userResult.error.message)
+    syncStore.setLastError(getCloudSyncFailureMessage('bootstrap'))
     return
   }
 
@@ -151,16 +172,57 @@ export async function syncNow(reason = 'manual') {
   syncStore.setStatus('syncing')
   syncStore.setLastError(null)
 
-  const snapshot = exportLocalSnapshot()
-  const functionResponse = await client.functions.invoke<MergeLocalStateResult>(config.mergeFunctionSlug, {
-    body: {
-      reason,
-      snapshot,
-    },
-  })
+  try {
+    const snapshot = exportLocalSnapshot()
+    const functionResponse = await withQaControl('cloud-sync', async () => client.functions.invoke<MergeLocalStateResult>(config.mergeFunctionSlug, {
+      body: {
+        reason,
+        snapshot,
+      },
+    }))
 
-  if (functionResponse.error) {
-    const remoteSnapshot = await loadRemoteSnapshotFromRepositories(client)
+    if (functionResponse.error) {
+      const remoteSnapshot = await loadRemoteSnapshotFromRepositories(client)
+      if (remoteSnapshot) {
+        applyingRemoteSnapshot = true
+        try {
+          applyRemoteSnapshot(remoteSnapshot)
+        } finally {
+          applyingRemoteSnapshot = false
+        }
+        syncStore.setStatus('ready')
+        syncStore.setLastSyncedAt(new Date().toISOString())
+        syncStore.setLastError(getCloudSyncFailureMessage('sync'))
+        return { ok: false, fallbackLoaded: true }
+      }
+
+      syncStore.setStatus('error')
+      syncStore.setLastError(getCloudSyncFailureMessage('sync'))
+      syncStore.setSyncQueued(true)
+      return { ok: false, error: functionResponse.error }
+    }
+
+    const result = functionResponse.data
+
+    applyingRemoteSnapshot = true
+    try {
+      applyRemoteSnapshot(result?.snapshot ?? null)
+    } finally {
+      applyingRemoteSnapshot = false
+    }
+
+    if (result?.acknowledgedEventIds?.length) {
+      useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
+    }
+
+    syncStore.setStatus('ready')
+    syncStore.setLastSyncedAt(result?.mergedAt ?? new Date().toISOString())
+    syncStore.setLastError(null)
+    syncStore.setSyncQueued(false)
+
+    return { ok: true }
+  } catch (error) {
+    const remoteSnapshot = await loadRemoteSnapshotFromRepositories(client).catch(() => null)
     if (remoteSnapshot) {
       applyingRemoteSnapshot = true
       try {
@@ -170,35 +232,15 @@ export async function syncNow(reason = 'manual') {
       }
       syncStore.setStatus('ready')
       syncStore.setLastSyncedAt(new Date().toISOString())
-      syncStore.setLastError(functionResponse.error.message)
+      syncStore.setLastError(getCloudSyncFailureMessage('sync'))
       return { ok: false, fallbackLoaded: true }
     }
 
     syncStore.setStatus('error')
-    syncStore.setLastError(functionResponse.error.message)
+    syncStore.setLastError(getCloudSyncFailureMessage('sync'))
     syncStore.setSyncQueued(true)
-    return { ok: false, error: functionResponse.error }
+    return { ok: false, error }
   }
-
-  const result = functionResponse.data
-
-  applyingRemoteSnapshot = true
-  try {
-    applyRemoteSnapshot(result?.snapshot ?? null)
-  } finally {
-    applyingRemoteSnapshot = false
-  }
-
-  if (result?.acknowledgedEventIds?.length) {
-    useActivityEventsStore.getState().acknowledgeEvents(result.acknowledgedEventIds)
-  }
-
-  syncStore.setStatus('ready')
-  syncStore.setLastSyncedAt(result?.mergedAt ?? new Date().toISOString())
-  syncStore.setLastError(null)
-  syncStore.setSyncQueued(false)
-
-  return { ok: true }
 }
 
 export async function bootstrapCloudSync() {
@@ -213,7 +255,12 @@ export async function bootstrapCloudSync() {
     if (currentUserId) {
       await syncNow('app-start')
     }
-  })()
+  })().catch(() => {
+    const syncStore = useCloudSyncStore.getState()
+    syncStore.setStatus('error')
+    syncStore.setLastError(getCloudSyncFailureMessage('bootstrap'))
+    bootstrapPromise = null
+  })
 
   return bootstrapPromise
 }
@@ -233,14 +280,20 @@ export async function signInWithProvider(
   syncStore.setStatus('authenticating')
   syncStore.setLastError(null)
 
-  const { error } = await client.auth.signInWithOAuth({
-    provider,
-    redirectTo: redirectTo ?? (typeof window !== 'undefined' ? window.location.href : undefined),
-  })
+  let error: unknown = null
+  try {
+    const result = await withQaControl('cloud-sync', async () => client.auth.signInWithOAuth({
+      provider,
+      redirectTo: redirectTo ?? (typeof window !== 'undefined' ? window.location.href : undefined),
+    }))
+    error = result.error
+  } catch (signInError) {
+    error = signInError
+  }
 
   if (error) {
     syncStore.setStatus('signed-out')
-    syncStore.setLastError(error.message)
+    syncStore.setLastError(getCloudSyncFailureMessage('auth'))
     return { ok: false, error }
   }
 
@@ -253,11 +306,17 @@ export async function signOutOfCloud() {
 
   if (!client) return { ok: false }
 
-  const { error } = await client.auth.signOut()
+  let error: unknown = null
+  try {
+    const result = await withQaControl('cloud-sync', async () => client.auth.signOut())
+    error = result.error
+  } catch (signOutError) {
+    error = signOutError
+  }
 
   if (error) {
     syncStore.setStatus('error')
-    syncStore.setLastError(error.message)
+    syncStore.setLastError(getCloudSyncFailureMessage('account'))
     return { ok: false, error }
   }
 

@@ -176,7 +176,14 @@ export default function LearnDetailShell({
   }
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn-detail" data-page="learn-detail">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="page-learn-detail"
+      data-page="learn-detail"
+      data-ai-surface="learn-detail-shell"
+      data-ai-state="ready"
+      data-ai-flow={sectionTab}
+    >
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="eyebrow flex flex-wrap items-center gap-2">

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import { resolveAsyncIssue } from '../qa/async'
 import { fetchHukamnama, type HukamnamaResult } from '../api/banidb'
+import type { AsyncIssue, AsyncStatus } from '../types'
 
 type HukamnamaRequestState = {
   key: string
   data: HukamnamaResult | null
-  error: string | null
+  issue: AsyncIssue | null
 }
 
 export function useHukamnama(date?: string | null, enabled: boolean = true) {
@@ -22,7 +24,7 @@ export function useHukamnama(date?: string | null, enabled: boolean = true) {
         setState({
           key: requestKey,
           data,
-          error: null,
+          issue: null,
         })
       })
       .catch(error => {
@@ -30,7 +32,7 @@ export function useHukamnama(date?: string | null, enabled: boolean = true) {
         setState({
           key: requestKey,
           data: null,
-          error: String(error),
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -39,9 +41,20 @@ export function useHukamnama(date?: string | null, enabled: boolean = true) {
     }
   }, [currentState, date, enabled, requestKey])
 
+  const issue = currentState?.issue ?? null
+  const status: AsyncStatus = requestKey === null
+    ? 'empty'
+    : issue
+      ? 'degraded'
+      : currentState?.data
+        ? 'ready'
+        : 'loading'
+
   return {
     data: currentState?.data ?? null,
-    loading: requestKey !== null && currentState === null,
-    error: currentState?.error ?? null,
+    status,
+    issue,
+    loading: status === 'loading',
+    error: issue?.code ?? null,
   }
 }

@@ -163,7 +163,7 @@ export default function Vocab() {
 
   if (vocab.length === 0) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab">
+      <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab" data-ai-surface="vocab" data-ai-state="empty">
         <div className="flex items-center gap-3 mb-6">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">
             &#8592; {copy.back}
@@ -193,7 +193,7 @@ export default function Vocab() {
   }
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab">
+    <div className="page-shell animate-fade-in" data-testid="page-vocab" data-page="vocab" data-ai-surface="vocab" data-ai-state="ready">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px]">

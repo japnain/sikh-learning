@@ -13,7 +13,8 @@ test('renders children when no error', () => {
 test('renders fallback UI when child throws', () => {
   const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
   render(<ErrorBoundary><ThrowError /></ErrorBoundary>)
-  expect(screen.getByText('Something went wrong')).toBeInTheDocument()
+  expect(screen.getByText('NaamRas hit a temporary problem')).toBeInTheDocument()
+  expect(screen.getByTestId('page-app-error')).toHaveAttribute('data-ai-state', 'degraded')
   spy.mockRestore()
 })
 
@@ -22,6 +23,6 @@ test('try again button resets error state', () => {
   render(<ErrorBoundary><ThrowError /></ErrorBoundary>)
   fireEvent.click(screen.getByText('Try again'))
   // After reset, boundary re-renders children — will throw again and show fallback
-  expect(screen.getByText('Something went wrong')).toBeInTheDocument()
+  expect(screen.getByText('NaamRas hit a temporary problem')).toBeInTheDocument()
   spy.mockRestore()
 })

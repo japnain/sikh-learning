@@ -99,7 +99,7 @@ export default function More() {
   const uiLocaleLabels = getUiLocaleLabels(locale)
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more">
+    <div className="page-shell animate-fade-in" data-testid="page-more" data-page="more" data-ai-surface="more" data-ai-state="ready">
       <div className="mb-5">
         <p className="eyebrow">{moreCopy.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink dark:text-dark-text leading-none mt-2">

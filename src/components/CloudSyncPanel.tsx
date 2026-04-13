@@ -136,6 +136,8 @@ const PROVIDER_META = {
   },
 } as const
 
+type CloudSyncSurfaceState = 'loading' | 'ready' | 'empty' | 'degraded'
+
 function formatSyncTimestamp(value: string | null, locale: string) {
   if (!value) return null
 
@@ -222,6 +224,49 @@ function getStatusView({
   }
 }
 
+function getCloudSyncSurfaceState({
+  configured,
+  status,
+  currentUser,
+  lastError,
+  offline,
+}: {
+  configured: boolean
+  status: string
+  currentUser: { id: string } | null
+  lastError: string | null
+  offline: boolean
+}): CloudSyncSurfaceState {
+  if (status === 'booting' || status === 'authenticating' || status === 'syncing') {
+    return 'loading'
+  }
+
+  if (offline || lastError || status === 'error') {
+    return 'degraded'
+  }
+
+  if (!configured || !currentUser) {
+    return 'empty'
+  }
+
+  return 'ready'
+}
+
+function getCloudSyncErrorCode({
+  status,
+  currentUser,
+  lastError,
+  offline,
+}: {
+  status: string
+  currentUser: { id: string } | null
+  lastError: string | null
+  offline: boolean
+}) {
+  if (!(offline || lastError || status === 'error')) return null
+  return currentUser ? 'cloud-sync' : 'insforge-bootstrap'
+}
+
 export default function CloudSyncPanel() {
   const locale = useLocaleStore(state => state.locale)
   const copy = CLOUD_COPY[locale]
@@ -253,10 +298,30 @@ export default function CloudSyncPanel() {
     lastError,
     copy,
   })
+  const panelState = getCloudSyncSurfaceState({
+    configured,
+    status,
+    currentUser,
+    lastError,
+    offline: isOffline,
+  })
+  const panelError = getCloudSyncErrorCode({
+    status,
+    currentUser,
+    lastError,
+    offline: isOffline,
+  })
 
   return (
-    <section className="section-shell mb-5 overflow-hidden" aria-labelledby="more-cloud-sync-title" data-testid="more-cloud-sync">
-      <div className="relative px-5 pt-5 pb-4">
+    <section
+      className="section-shell mb-5 overflow-hidden"
+      aria-labelledby="more-cloud-sync-title"
+      data-testid="more-cloud-sync"
+      data-ai-surface="cloud-sync-panel"
+      data-ai-state={panelState}
+      data-ai-error={panelError ?? undefined}
+    >
+      <div className="relative px-5 pt-5 pb-4" data-ai-anchor="cloud-sync-summary">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.18),transparent_72%)] dark:bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.12),transparent_72%)]" />
         <div className="relative">
           <div className="flex items-start justify-between gap-3">
@@ -269,23 +334,26 @@ export default function CloudSyncPanel() {
                 {copy.body}
               </p>
             </div>
-            <span className={`shrink-0 rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusView.className}`}>
+            <span
+              className={`shrink-0 rounded-full px-3 py-1.5 font-sans text-[11px] font-semibold tracking-[0.12em] ${statusView.className}`}
+              data-ai-anchor="cloud-sync-status"
+            >
               {statusView.label}
             </span>
           </div>
 
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="section-shell-quiet rounded-[22px] px-3 py-3">
+          <div className="mt-4 grid grid-cols-3 gap-2" data-ai-surface="cloud-sync-metrics" data-ai-state={panelState}>
+            <div className="section-shell-quiet rounded-[22px] px-3 py-3" data-ai-anchor="cloud-sync-pending">
               <p className="eyebrow">{copy.pendingChanges}</p>
               <p className="mt-2 font-display text-[1.7rem] leading-none text-ink dark:text-dark-text">{pendingEventsCount}</p>
             </div>
-            <div className="section-shell-quiet rounded-[22px] px-3 py-3">
+            <div className="section-shell-quiet rounded-[22px] px-3 py-3" data-ai-anchor="cloud-sync-mode">
               <p className="eyebrow">{copy.syncMode}</p>
               <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
                 {currentUser ? copy.cloudMode : copy.guestMode}
               </p>
             </div>
-            <div className="section-shell-quiet rounded-[22px] px-3 py-3">
+            <div className="section-shell-quiet rounded-[22px] px-3 py-3" data-ai-anchor="cloud-sync-last-synced">
               <p className="eyebrow">{copy.lastSynced}</p>
               <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
                 {formattedLastSynced ?? copy.waiting}
@@ -293,7 +361,7 @@ export default function CloudSyncPanel() {
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2" data-ai-anchor="cloud-sync-features">
             <span className="chip-pill">{copy.featureGuest}</span>
             <span className="chip-pill">{copy.featureLibrary}</span>
             <span className="chip-pill">{copy.featureMerge}</span>
@@ -303,11 +371,16 @@ export default function CloudSyncPanel() {
 
       <div className="px-5 pb-5">
         {!configured ? (
-          <div className="hero-surface px-4 py-4">
+          <div className="hero-surface px-4 py-4" data-ai-surface="cloud-sync-local-only" data-ai-state="empty">
             <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.notConfigured}</p>
           </div>
         ) : (
-          <div className="section-shell-quiet relative overflow-hidden px-4 py-4">
+          <div
+            className="section-shell-quiet relative overflow-hidden px-4 py-4"
+            data-ai-surface="cloud-sync-account"
+            data-ai-state={panelState}
+            data-ai-error={panelError ?? undefined}
+          >
             <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/55 to-transparent dark:from-white/5 dark:to-transparent" />
             <div className="relative">
               {currentUser ? (
@@ -330,7 +403,7 @@ export default function CloudSyncPanel() {
               )}
 
               <p className="eyebrow mt-4">{copy.providers}</p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
+              <div className="mt-4 grid grid-cols-2 gap-2" data-ai-surface="cloud-sync-providers" data-ai-state={supportedProviders.length === 0 ? 'empty' : 'ready'}>
                 {(['google', 'apple', 'github'] as const).map(providerId => {
                   const provider = PROVIDER_META[providerId]
                   const enabled = supportedProviders.includes(providerId)
@@ -343,6 +416,7 @@ export default function CloudSyncPanel() {
                         ? 'border-gold/20 bg-white/85 dark:border-gold/15 dark:bg-dark-card/80'
                         : 'border-sand/10 bg-parchment-low/85 dark:border-dark-text/10 dark:bg-dark-surface/80'
                     }`}
+                    data-ai-anchor={`cloud-provider-${providerId}`}
                   >
                     <p className="eyebrow">{provider.name}</p>
                     <p className={`mt-2 font-sans text-sm font-semibold ${
@@ -361,7 +435,7 @@ export default function CloudSyncPanel() {
                 <p className="mt-4 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.providersHint}</p>
               ) : null}
 
-              <div className="mt-4 space-y-2" aria-live="polite">
+              <div className="mt-4 space-y-2" aria-live="polite" data-ai-anchor="cloud-sync-notices">
                 {isOffline ? (
                   <p className="font-sans text-xs text-saffron dark:text-saffron-light">{copy.offline}</p>
                 ) : null}
@@ -388,6 +462,7 @@ export default function CloudSyncPanel() {
                           type="button"
                           onClick={() => { void signInWithProvider(providerId) }}
                           disabled={isBusy}
+                          data-ai-action={`cloud-sign-in-${providerId}`}
                           className={`w-full rounded-2xl px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
                             index === 0
                               ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
@@ -405,6 +480,7 @@ export default function CloudSyncPanel() {
                       type="button"
                       onClick={() => { void syncNow('manual') }}
                       disabled={isBusy}
+                      data-ai-action="cloud-sync-now"
                       className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-sm font-semibold text-white disabled:opacity-45"
                     >
                       {copy.syncNow}
@@ -413,6 +489,7 @@ export default function CloudSyncPanel() {
                       type="button"
                       onClick={() => { void signOutOfCloud() }}
                       disabled={isBusy}
+                      data-ai-action="cloud-sign-out"
                       className="w-full rounded-2xl border border-sand/15 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink disabled:opacity-45 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
                     >
                       {copy.signOut}

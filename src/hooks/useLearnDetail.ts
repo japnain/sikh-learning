@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
+import { resolveAsyncIssue } from "../qa/async"
 import { loadLearnDetail } from "../data/learnRepository"
 import type {
+  AsyncIssue,
+  AsyncStatus,
   Collection,
   DailyGuidance,
   LearnContentKind,
@@ -18,8 +21,8 @@ type LearnDetailByKind = {
 
 type LearnDetailState<T extends LearnDetail> = {
   item: T | null
-  loading: boolean
-  error: Error | null
+  status: AsyncStatus
+  issue: AsyncIssue | null
 }
 
 export default function useLearnDetail<K extends LearnContentKind>(
@@ -28,16 +31,16 @@ export default function useLearnDetail<K extends LearnContentKind>(
 ) {
   const [state, setState] = useState<LearnDetailState<LearnDetailByKind[K]>>({
     item: null,
-    loading: Boolean(id),
-    error: null,
+    status: id ? 'loading' : 'empty',
+    issue: null,
   })
 
   useEffect(() => {
     if (!id) {
       setState({
         item: null,
-        loading: false,
-        error: null,
+        status: 'empty',
+        issue: null,
       })
       return
     }
@@ -46,8 +49,8 @@ export default function useLearnDetail<K extends LearnContentKind>(
 
     setState(current => ({
       item: current.item,
-      loading: true,
-      error: null,
+      status: 'loading',
+      issue: null,
     }))
 
     loadLearnDetail(kind, id)
@@ -55,16 +58,16 @@ export default function useLearnDetail<K extends LearnContentKind>(
         if (cancelled) return
         setState({
           item: item as LearnDetailByKind[K] | null,
-          loading: false,
-          error: null,
+          status: item ? 'ready' : 'empty',
+          issue: null,
         })
       })
       .catch(error => {
         if (cancelled) return
         setState({
           item: null,
-          loading: false,
-          error: error instanceof Error ? error : new Error("Failed to load the Learn item."),
+          status: 'degraded',
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -73,5 +76,9 @@ export default function useLearnDetail<K extends LearnContentKind>(
     }
   }, [id, kind])
 
-  return state
+  return {
+    ...state,
+    loading: state.status === 'loading',
+    error: state.issue?.code ?? null,
+  }
 }

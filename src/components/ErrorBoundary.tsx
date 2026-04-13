@@ -10,9 +10,39 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="p-8 text-center mt-20">
-          <p className="text-ink font-medium mb-2">Something went wrong</p>
-          <button onClick={() => this.setState({ hasError: false })} className="text-saffron text-sm">Try again</button>
+        <div
+          className="page-shell animate-fade-in"
+          data-testid="page-app-error"
+          data-page="app-error"
+          data-ai-surface="app-error-boundary"
+          data-ai-state="degraded"
+          data-ai-error="unavailable"
+        >
+          <section className="section-shell p-5 border border-gold/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(250,240,222,0.88))] dark:border-gold/10 dark:bg-[linear-gradient(180deg,rgba(34,27,45,0.96),rgba(24,19,34,0.94))]">
+            <p className="eyebrow">NaamRas</p>
+            <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">This view needs a clean reset.</p>
+            <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/72">
+              Your reading state is still on this device. Reload the view or jump back home and continue from there.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => this.setState({ hasError: false })}
+                className="rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
+                data-ai-action="retry-app-view"
+              >
+                Try again
+              </button>
+              <button
+                type="button"
+                onClick={() => window.location.assign('/')}
+                className="rounded-full border border-sand/16 bg-white/78 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+                data-ai-action="go-home"
+              >
+                Go home
+              </button>
+            </div>
+          </section>
         </div>
       )
     }

@@ -64,7 +64,12 @@ export default function WordPopover({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center pb-20 bg-ink/20 dark:bg-black/40 popover-overlay" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center pb-20 bg-ink/20 dark:bg-black/40 popover-overlay"
+      onClick={onClose}
+      data-ai-surface="word-popover"
+      data-ai-state="ready"
+    >
       <div
         className="ornate-top bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-gold/10 rounded-t-2xl w-full max-w-md mb-0 shadow-gold-strong animate-slide-up transition-colors duration-300 max-h-[80vh] overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
@@ -99,7 +104,12 @@ export default function WordPopover({
             </section>
           ) : null}
 
-          <section className="mt-5 rounded-[24px] border border-sand/15 dark:border-gold/10 bg-parchment-low/80 dark:bg-dark-surface/70 px-4 py-4">
+          <section
+            className="mt-5 rounded-[24px] border border-sand/15 dark:border-gold/10 bg-parchment-low/80 dark:bg-dark-surface/70 px-4 py-4"
+            data-ai-surface="mahankosh-popover"
+            data-ai-state={loading ? 'loading' : error ? 'degraded' : visibleEntries.length === 0 && normalizedWord ? 'empty' : 'ready'}
+            data-ai-error={error ?? undefined}
+          >
             <div className="flex items-center justify-between gap-3 mb-3">
               <div>
                 <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
@@ -115,6 +125,7 @@ export default function WordPopover({
                   target="_blank"
                   rel="noreferrer"
                   className="shrink-0 inline-flex min-h-[36px] items-center gap-1 rounded-full border border-sand/15 dark:border-gold/10 px-3 text-xs font-sans font-medium text-ink/70 dark:text-dark-text/70 transition-colors duration-300 hover:text-saffron dark:hover:text-saffron-light"
+                  data-ai-action="open-full-mahankosh"
                 >
                   Full entry
                   <IconArrowRight size={14} />
@@ -130,7 +141,7 @@ export default function WordPopover({
 
             {!loading && error && (
               <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">
-                {error}
+                Mahankosh is taking longer than usual. You can keep reading and return to this word again.
               </p>
             )}
 
@@ -198,12 +209,14 @@ export default function WordPopover({
                 ? 'bg-gold/20 text-gold dark:text-gold-light'
                 : 'bg-gradient-to-r from-saffron to-saffron-light text-white'
             }`}
+            data-ai-action="save-word"
           >
             {isSaved ? <><IconCheck size={16} /> Saved</> : 'Save Word'}
           </button>
           <button
             onClick={onClose}
             className="flex-1 py-3 rounded-full bg-parchment-low dark:bg-dark-surface text-ink/60 dark:text-dark-text/60 font-sans font-semibold text-sm min-h-[44px] active:scale-95 transition-all duration-300"
+            data-ai-action="close-word-popover"
           >
             Close
           </button>
