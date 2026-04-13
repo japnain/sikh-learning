@@ -3,10 +3,17 @@ import { MemoryRouter } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useProgressStore } from '../store/progress'
+import { useLearningStore } from '../store/learning'
 
 describe('Library bookmarks section', () => {
   beforeEach(() => {
     useBookmarksStore.setState({ bookmarks: [] })
+    useLearningStore.setState(state => ({
+      learnState: {
+        ...state.learnState,
+        savedItemIds: [],
+      },
+    }))
   })
 
   test('bookmarks section hidden when no bookmarks', () => {
@@ -47,6 +54,24 @@ describe('Library bookmarks section', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
     fireEvent.click(screen.getByLabelText('Remove bookmark'))
     expect(useBookmarksStore.getState().bookmarks).toHaveLength(0)
+  })
+
+  test('learn saved items appear in the saved shelf and can be removed', async () => {
+    useLearningStore.setState(state => ({
+      learnState: {
+        ...state.learnState,
+        savedItemIds: ['topic-anxiety'],
+      },
+    }))
+
+    render(<MemoryRouter><Library /></MemoryRouter>)
+
+    expect(await screen.findByText('Learn Saves')).toBeInTheDocument()
+    expect(await screen.findByText('When the mind is anxious')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByLabelText('Remove saved Learn item'))
+
+    expect(useLearningStore.getState().learnState.savedItemIds).toEqual([])
   })
 })
 

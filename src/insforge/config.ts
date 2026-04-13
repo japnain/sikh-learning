@@ -3,6 +3,8 @@ export interface NaamrasInsforgeConfig {
   baseUrl: string | null
   anonKey?: string
   functionsUrl?: string
+  audioBucket?: string
+  audioPrefix?: string
   mergeFunctionSlug: string
   studyFunctionSlug: string
   studyEnabled: boolean
@@ -26,6 +28,8 @@ export function getNaamrasInsforgeConfig(): NaamrasInsforgeConfig {
     baseUrl,
     anonKey: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_ANON_KEY),
     functionsUrl: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_FUNCTIONS_URL),
+    audioBucket: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_BUCKET) ?? 'soundscrape',
+    audioPrefix: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_PREFIX) ?? 'ambient',
     mergeFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_MERGE_FUNCTION) ?? 'merge-local-state',
     studyFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_STUDY_FUNCTION) ?? 'generate-study-response',
     studyEnabled,

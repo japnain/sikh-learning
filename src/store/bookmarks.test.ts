@@ -1,6 +1,7 @@
 import { useBookmarksStore } from './bookmarks'
 
 beforeEach(() => {
+  window.localStorage.clear()
   useBookmarksStore.setState({ bookmarks: [] })
 })
 
@@ -63,4 +64,24 @@ test('supports verse-level bookmarks without colliding with ang bookmarks', () =
   expect(useBookmarksStore.getState().bookmarks).toHaveLength(2)
   expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
   expect(useBookmarksStore.getState().hasBookmark('G', 1, 100)).toBe(true)
+})
+
+test('hydrateCachedBookmarks restores bookmarks from the legacy persisted shape', () => {
+  window.localStorage.setItem('sikh-bookmarks', JSON.stringify({
+    state: {
+      bookmarks: [{
+        id: 'bookmark-legacy',
+        type: 'bani',
+        title: 'Japji Sahib',
+        source: 'G',
+        ang: 1,
+        savedAt: new Date().toISOString(),
+      }],
+    },
+  }))
+
+  useBookmarksStore.getState().hydrateCachedBookmarks()
+
+  expect(useBookmarksStore.getState().bookmarks).toHaveLength(1)
+  expect(useBookmarksStore.getState().bookmarks[0].id).toBe('bookmark-legacy')
 })

@@ -12,6 +12,7 @@ import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../stor
 import { useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
 import { getNaamrasDeviceId } from './device'
+import { buildBookmarkNaturalKey, buildFavoriteNaturalKey, buildSavedLearnNaturalKey } from './savedItemKeys'
 import type {
   CloudBookmarkPayload,
   CloudFavoritePayload,
@@ -32,20 +33,6 @@ function createMetadata(id: string, clientUpdatedAt: string, deletedAt: string |
     clientUpdatedAt,
     deletedAt,
   }
-}
-
-function buildBookmarkNaturalKey(payload: CloudBookmarkPayload) {
-  return payload.verseId
-    ? `bookmark:${payload.source}:${payload.ang}:verse:${payload.verseId}`
-    : `bookmark:${payload.source}:${payload.ang}:shabad:${payload.shabadId ?? 'ang'}`
-}
-
-function buildFavoriteNaturalKey(payload: CloudFavoritePayload) {
-  return `favorite:${payload.source}:${payload.ang}:shabad:${payload.shabadId ?? 'ang'}`
-}
-
-function buildSavedLearnNaturalKey(itemId: string) {
-  return `learn:${itemId}`
 }
 
 function normalizeVocabWord(value: string) {
@@ -276,7 +263,7 @@ function applySavedItems(savedItems: CloudSavedItemRecord[] | undefined) {
     .filter(record => record.kind === 'learn-item' && !record.deletedAt)
     .map(record => (record.payload as CloudSavedLearnItemPayload).itemId)
 
-  useBookmarksStore.setState({ bookmarks })
+  useBookmarksStore.getState().replaceBookmarks(bookmarks)
   useFavoritesStore.setState({ favorites })
   useLearningStore.setState(state => ({
     learnState: {

@@ -165,6 +165,7 @@ type LocaleCopy = {
     sourceBrowsingBody: string
     savedSnapshot: string
     returnKeep: string
+    learnSaves: string
     bookmarks: string
     favorites: string
     phrases: string
@@ -341,6 +342,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'Open scripture by ang or page when you need it.',
       savedSnapshot: 'Saved Snapshot',
       returnKeep: 'Return to what you want to keep.',
+      learnSaves: 'Learn Saves',
       bookmarks: 'Bookmarks',
       favorites: 'Favorites',
       phrases: 'Phrases',
@@ -515,6 +517,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'ਜਦੋਂ ਲੋੜ ਹੋਵੇ ਤਾਂ ਅੰਗ ਜਾਂ ਸਫ਼ੇ ਰਾਹੀਂ ਗ੍ਰੰਥ ਖੋਲ੍ਹੋ।',
       savedSnapshot: 'ਸੰਭਾਲਿਆ ਦਰਸ਼ਨ',
       returnKeep: 'ਜੋ ਤੁਸੀਂ ਸੰਭਾਲਣਾ ਚਾਹੁੰਦੇ ਹੋ ਉਸ ਵੱਲ ਮੁੜੋ।',
+      learnSaves: 'Learn ਸੰਭਾਲਿਆ',
       bookmarks: 'ਬੁੱਕਮਾਰਕ',
       favorites: 'ਮਨਪਸੰਦ',
       phrases: 'ਵਾਕ',
@@ -689,6 +692,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'ज़रूरत पड़ने पर अंग या पृष्ठ से ग्रंथ खोलें।',
       savedSnapshot: 'सहेजा हुआ दृश्य',
       returnKeep: 'जिसे आप संभालकर रखना चाहते हैं, उसकी ओर लौटें।',
+      learnSaves: 'Learn सहेजा',
       bookmarks: 'बुकमार्क',
       favorites: 'पसंदीदा',
       phrases: 'वाक्यांश',
