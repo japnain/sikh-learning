@@ -1,17 +1,17 @@
 {
   "id": "guidance-speak-what-brings-honor-2",
-  "title": "Speak Only That Which Will Bring You",
-  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "title": "Choose the word that can bear honor",
+  "summary": "This meets a mouth ready to wound, posture, or bargain. The line asks for words that can survive truth.",
+  "takeaway": "Speak only what can bear honor.",
+  "lifeApplication": "Before the sharp reply leaves, rest the tongue against the teeth for one breath. Speak only what you would be willing to hear repeated in the Guru's presence.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       634,
       637
     ],
-    "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Speech carries your honor long before reputation does.",
+    "lifeApplication": "Before replying sharply, speak only what you could repeat before the Guru."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; o Baba, speak only that which will bring you honor",
+      "coreClaim": "Speech carries your honor long before reputation does.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Guard the tongue, and the heart begins to clear.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "turn": "Keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the sharp reply leaves, rest the tongue against the teeth for one breath. Speak only what you would be willing to hear repeated in the Guru's presence.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
-      "clarity": 3.21,
+      "faithfulness": 4.19,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 3.22,
-      "overall": 3.91
+      "emotionalHonesty": 3,
+      "usefulness": 4.1,
+      "beauty": 4.37,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

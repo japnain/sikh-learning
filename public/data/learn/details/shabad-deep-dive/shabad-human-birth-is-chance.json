@@ -1,10 +1,10 @@
 {
   "id": "shabad-human-birth-is-chance",
-  "title": "This Human Life Is a Chance",
+  "title": "Human birth is a chance, not an ornament",
   "subtitle": "So Purakh",
-  "summary": "This shabad is a wake-up call. Human life is not framed as prestige but as opportunity for union, sangat, and Naam.",
-  "whyItMatters": "It gives strong direction when life feels aimless, unfocused, or swallowed by distraction.",
-  "takeaway": "Use this life for meeting, not merely for managing.",
+  "summary": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
+  "whyItMatters": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response.",
+  "takeaway": "Treat this life as a meeting, not an endless postponement.",
   "themes": [
     "purpose",
     "discipline",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "Names human birth as opportunity, not entitlement.",
-    "Points immediately toward sangat and Naam as the path of use.",
-    "Ends in humility and surrender rather than self-improvement pride."
+    "It opens by calling human life a given chance rather than a private possession.",
+    "The middle refuses distraction and delay by making the purpose of life explicit.",
+    "It ends by pressing the seeker toward remembrance and company that answer the chance well."
   ],
   "keyVerseIds": [
     524,
@@ -153,25 +153,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This shabad is a wake-up call. Human life is not framed as prestige but as opportunity for union, sangat, and Naam.",
+      "coreClaim": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Points immediately toward sangat and Naam as the path of use.",
-      "practicalImplication": "Use this life for meeting, not merely for managing.",
+      "turn": "The middle refuses distraction and delay by making the purpose of life explicit.",
+      "practicalImplication": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response. Treat this life as a meeting, not an endless postponement.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
-      "emotionalHonesty": 3,
-      "usefulness": 3,
-      "beauty": 4.05,
-      "overall": 3.95
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.44,
+      "beauty": 4.36,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

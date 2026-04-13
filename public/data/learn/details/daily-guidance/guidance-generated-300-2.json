@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-300-2",
-  "title": "Why Should I Feel Any Fear",
-  "summary": "Fear is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "You are my Father, and You are my Mother; why should I feel any fear or anxiety",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+  "title": "Let protection become felt, not recited",
+  "summary": "This meets fear that still talks about God from a distance. The line makes protection intimate: Father, Mother, and shelter everywhere.",
+  "takeaway": "Make protection personal enough to steady you.",
+  "lifeApplication": "When fear rises, do not speak to God like an idea. Put a hand on the sternum and let the words become personal enough to steady you.",
   "source": {
     "deepDiveId": "shabad-generated-300",
     "verseIds": [
       4132,
       4134
     ],
-    "shortMeaning": "You are my Father, and You are my Mother; why should I feel any fear or anxiety",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Fear softens when protection becomes personal and felt.",
+    "lifeApplication": "When fear rises, make protection personal enough to steady you."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "You are my Father, and You are my Mother; why should I feel any fear or anxiety",
+      "coreClaim": "Fear softens when protection becomes personal and felt.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+      "turn": "Fear thins when shelter becomes personal again.",
+      "practicalImplication": "When fear rises, do not speak to God like an idea. Put a hand on the sternum and let the words become personal enough to steady you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.52,
-      "clarity": 3.28,
-      "specificity": 4.49,
+      "faithfulness": 4.2,
+      "clarity": 4.23,
+      "specificity": 4.77,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.44,
-      "overall": 3.76
+      "usefulness": 3.82,
+      "beauty": 4.29,
+      "overall": 4.12
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

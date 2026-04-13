@@ -1,17 +1,17 @@
 {
   "id": "guidance-sweet-speech-humble-walk-2",
-  "title": "Her Speech Is Sweet, And Her Way",
-  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "title": "Sweet speech is a path, not polish",
+  "summary": "This meets the temptation to make speech beautiful while the life stays proud. The line joins sweetness, humility, peace, and union in one path.",
+  "takeaway": "Make the tone match the way you walk.",
+  "lifeApplication": "Before speaking gently just to seem refined, lower your pace and let the body become humble too. Make the tone match the way you are moving.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
       1288,
       1290
     ],
-    "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Sweet speech is believable only when the life around it is humble.",
+    "lifeApplication": "Before using a gentle tone, let the body become humble too."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
+      "coreClaim": "Sweet speech is believable only when the life around it is humble.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Soft speech becomes believable when the ego has begun to bow.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "turn": "When remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "Before speaking gently just to seem refined, lower your pace and let the body become humble too. Make the tone match the way you are moving.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 2.97,
-      "specificity": 4.93,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 2.91,
-      "overall": 3.83
+      "faithfulness": 4.11,
+      "clarity": 4.11,
+      "specificity": 4.87,
+      "emotionalHonesty": 3,
+      "usefulness": 4.04,
+      "beauty": 3.89,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

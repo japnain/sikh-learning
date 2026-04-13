@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-645-2",
-  "title": "Trying All Sorts Of Things, I",
-  "summary": "Fear is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Trying all sorts of things, I have grown weary, but still, they will not leave me alone",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+  "title": "Stop exhausting yourself before prayer",
+  "summary": "This meets the worn-out mind still testing one more solution. The line turns fatigue into an honest cry to the Father.",
+  "takeaway": "Pray before another round of self-rescue.",
+  "lifeApplication": "When you catch yourself researching, fixing, and rehearsing past capacity, put the phone down and let the shoulders drop. Ask for help before another failing tactic.",
   "source": {
     "deepDiveId": "shabad-generated-645",
     "verseIds": [
       8845,
       8849
     ],
-    "shortMeaning": "Trying all sorts of things, I have grown weary, but still, they will not leave me alone",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Exhaustion becomes prayer when self-rescue finally runs out.",
+    "lifeApplication": "When you are spent, ask for help before starting another rescue attempt."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Trying all sorts of things, I have grown weary, but still, they will not leave me alone",
+      "coreClaim": "Exhaustion becomes prayer when self-rescue finally runs out.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Use the line before the pressure chooses your tone.",
+      "turn": "Call for shelter before fear becomes your only voice.",
+      "practicalImplication": "When you catch yourself researching, fixing, and rehearsing past capacity, put the phone down and let the shoulders drop. Ask for help before another failing tactic.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.77,
-      "clarity": 3.16,
-      "specificity": 4.72,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.4,
-      "overall": 3.86
+      "faithfulness": 4,
+      "clarity": 4.35,
+      "specificity": 4.76,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.23
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

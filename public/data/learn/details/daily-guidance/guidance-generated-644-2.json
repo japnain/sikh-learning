@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-644-2",
-  "title": "Meeting With The Guru, Your Affairs Shall",
-  "summary": "Seeking is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Meeting with the Guru, your affairs shall be resolved",
-  "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+  "title": "Bring the shrinking day to the Guru",
+  "summary": "This meets the day already passing while the important thing is still delayed. The line puts urgency beside hope: the Guru can still settle what matters.",
+  "takeaway": "Take the unresolved thing first.",
+  "lifeApplication": "Before another day disappears into errands and reaction, stop at the doorway and remember how little of life is guaranteed. Take the unresolved thing to the Guru first.",
   "source": {
     "deepDiveId": "shabad-generated-644",
     "verseIds": [
       8834,
       8835
     ],
-    "shortMeaning": "Meeting with the Guru, your affairs shall be resolved",
-    "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The shrinking day needs the Guru more than another postponement.",
+    "lifeApplication": "Before another day disappears, take the unresolved thing to the Guru first."
   },
   "relatedTopicIds": [
     "topic-seeking"
@@ -24,7 +24,7 @@
     "collection-seeking-bundle"
   ],
   "rotation": {
-    "theme": "seeking",
+    "theme": "purpose",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Meeting with the Guru, your affairs shall be resolved",
+      "coreClaim": "The shrinking day needs the Guru more than another postponement.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "Keep returning to this turn: Nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints.",
-      "practicalImplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+      "turn": "Choose the remaining day for the profit of Naam.",
+      "practicalImplication": "Before another day disappears into errands and reaction, stop at the doorway and remember how little of life is guaranteed. Take the unresolved thing to the Guru first.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.69,
-      "clarity": 4.05,
-      "specificity": 4.64,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 3.83,
-      "overall": 3.97
+      "faithfulness": 4.09,
+      "clarity": 4.29,
+      "specificity": 4.85,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.04,
+      "beauty": 4.01,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

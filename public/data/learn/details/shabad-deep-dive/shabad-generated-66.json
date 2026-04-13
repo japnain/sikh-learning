@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-66",
-  "title": "Life Of The Discarded Bride Is Cursed",
+  "title": "Duality makes decoration hollow",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "This shabad opens with the life of the discarded bride is cursed. She is deceived by the love of duality. It turns the heart toward o Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
-  "whyItMatters": "It matters when life feels dull, entitled, and forgetful because the shabad keeps gratitude inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
+  "summary": "The shabad opens by calling the life deceived by duality cursed and unstable like a wall of sand. It moves through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
+  "whyItMatters": "This is for the person still trying to fix inner separation with outer polish. Held honestly, it exposes display without love and turns the heart back toward the Beloved.",
+  "takeaway": "Without the Beloved and the Shabad, surface beauty stays false.",
   "themes": [
     "gratitude",
     "mercy",
@@ -161,9 +161,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the life of the discarded bride is cursed. She is deceived by the love of duality.",
-    "The middle movement widens the correction through some are very knowledgeable, but if they do not know the Guru, then what is the use of their lives.",
-    "It closes with a return you can actually keep: o Nanak, blessed is that fortunate bride, who is in love with her Husband Lord."
+    "It opens by naming duality as a deception that slowly collapses the whole life.",
+    "The middle mocks outward decoration and shelter when the heart is still false within.",
+    "It ends by saying real beauty begins only where the Shabad pierces and love for the Beloved is alive."
   ],
   "keyVerseIds": [
     774,
@@ -201,25 +201,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the life of the discarded bride is cursed. She is deceived by the love of duality. It turns the heart toward o Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
+      "coreClaim": "The shabad opens by calling the life deceived by duality cursed and unstable like a wall of sand. It moves through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "The middle movement widens the correction through some are very knowledgeable, but if they do not know the Guru, then what is the use of their lives.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
+      "turn": "The middle mocks outward decoration and shelter when the heart is still false within.",
+      "practicalImplication": "This is for the person still trying to fix inner separation with outer polish. Held honestly, it exposes display without love and turns the heart back toward the Beloved. Without the Beloved and the Shabad, surface beauty stays false.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.87,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.34,
-      "overall": 3.79
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.43,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

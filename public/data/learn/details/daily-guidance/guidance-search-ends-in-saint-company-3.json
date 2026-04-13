@@ -1,17 +1,17 @@
 {
   "id": "guidance-search-ends-in-saint-company-3",
-  "title": "I Have Been Blessed With Patience",
-  "summary": "The shabad does not leave restlessness at diagnosis. It turns toward return.",
-  "takeaway": "I have been blessed with patience and composure",
-  "lifeApplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+  "title": "Let holy company cool the body",
+  "summary": "This meets restlessness that has already become physical heat. The line says saintly company cools mind and body together.",
+  "takeaway": "Go where your body can calm down.",
+  "lifeApplication": "When agitation is already in the skin, stop trying to think your way out. Go sit where patient people remember God until your breathing changes.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
       3899,
       3900
     ],
-    "shortMeaning": "By His Mercy, I have met the Holy Saint; i have been blessed with patience and composure",
-    "lifeApplication": "Choose better placement before choosing more movement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Holy company cools the body before the mind can settle.",
+    "lifeApplication": "When agitation reaches the body, sit where patient people remember God."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "By His Mercy, I have met the Holy Saint; i have been blessed with patience and composure",
+      "coreClaim": "Holy company cools the body before the mind can settle.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "The mind settles less by roaming and more by right company.",
-      "practicalImplication": "Choose better placement before choosing more movement. After the reaction, make the next return smaller and truer.",
+      "turn": "Bring your searching to saintly company and let it cool there.",
+      "practicalImplication": "When agitation is already in the skin, stop trying to think your way out. Go sit where patient people remember God until your breathing changes.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.05,
+      "faithfulness": 4.18,
+      "clarity": 4.35,
       "specificity": 4.75,
-      "emotionalHonesty": 3,
-      "usefulness": 4.42,
-      "beauty": 4.17,
-      "overall": 4.06
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.37,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

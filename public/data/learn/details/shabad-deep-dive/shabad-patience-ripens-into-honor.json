@@ -1,10 +1,10 @@
 {
   "id": "shabad-patience-ripens-into-honor",
-  "title": "Patience Ripens Into Honor",
+  "title": "True bankers trade in Naam",
   "subtitle": "Raag Gauree · Ang 257",
-  "summary": "This pauree joins saint company, true wealth, listening, patience, and honor into one chain. Restlessness ends when the heart starts hearing Naam as its real capital.",
-  "whyItMatters": "It gives direction to the person who is tired of roaming, impatient for results, or hungry for recognition without inward steadiness.",
-  "takeaway": "Patience becomes luminous when it begins listening for Naam.",
+  "summary": "The pauree opens by saying the mind's wandering stops in the company of saints. It then names the true bankers as those whose wealth is the Name and whose patience, honor, and glory ripen from listening well.",
+  "whyItMatters": "This is for the person chasing quick gains, visible results, or restless proof. Held consistently, it redefines wealth, slows the heart, and lets patience become a real form of honor.",
+  "takeaway": "Trade in Naam, and let patience ripen into honor.",
   "themes": [
     "patience",
     "sangat",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "Begins by saying that wandering ends in saint company, not in more roaming.",
-    "Turns the language of wealth toward Naam and truthful capital.",
-    "Ends by joining patience, honor, and glory to the act of listening."
+    "It opens by placing the wandering mind inside saintly company until it begins to settle.",
+    "The middle redefines wealth as the Lord's Name rather than worldly holdings.",
+    "It ends with patience, glory, and greatness growing in the heart that keeps listening."
   ],
   "keyVerseIds": [
     11239,
@@ -139,10 +139,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This pauree joins saint company, true wealth, listening, patience, and honor into one chain. Restlessness ends when the heart starts hearing Naam as its real capital.",
+      "coreClaim": "The pauree opens by saying the mind's wandering stops in the company of saints. It then names the true bankers as those whose wealth is the Name and whose patience, honor, and glory ripen from listening well.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Turns the language of wealth toward Naam and truthful capital.",
-      "practicalImplication": "Patience becomes luminous when it begins listening for Naam.",
+      "turn": "The middle redefines wealth as the Lord's Name rather than worldly holdings.",
+      "practicalImplication": "This is for the person chasing quick gains, visible results, or restless proof. Held consistently, it redefines wealth, slows the heart, and lets patience become a real form of honor. Trade in Naam, and let patience ripen into honor.",
       "bannedOverreach": []
     },
     "scores": {
@@ -151,13 +151,14 @@
       "specificity": 4.78,
       "emotionalHonesty": 3.54,
       "usefulness": 3.6,
-      "beauty": 4.53,
-      "overall": 4.22
+      "beauty": 4.37,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

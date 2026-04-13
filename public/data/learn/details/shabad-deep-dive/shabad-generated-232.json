@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-232",
-  "title": "Perfect Guru Has Implanted The Name",
+  "title": "Naam planted within clears the inner fog",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "This shabad opens with the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within. It turns the heart toward servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
-  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
+  "summary": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It moves through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
+  "whyItMatters": "This is for the person trapped in inner fog, repeated uncertainty, or spiritual confusion. Held steadily, it shows that doubt thins when Naam is planted deeply enough to become direction.",
+  "takeaway": "When Naam is planted within, doubt loses its house.",
   "themes": [
     "anger",
     "ego",
@@ -84,9 +84,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within.",
-    "The middle movement widens the correction through following the Guru's Teachings, I cannot be touched by the Messenger of Death. I am absorbed in the True Name.",
-    "It closes with a return you can actually keep: servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant."
+    "It opens with the Guru placing Naam inside and scattering doubt.",
+    "The middle turns praise into illumination and one-pointed focus through the defeat of ego.",
+    "It ends by making Naam the condition of real life rather than a devotional extra."
   ],
   "keyVerseIds": [
     3467,
@@ -123,25 +123,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within. It turns the heart toward servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
+      "coreClaim": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It moves through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement widens the correction through following the Guru's Teachings, I cannot be touched by the Messenger of Death. I am absorbed in the True Name.",
-      "practicalImplication": "Keep returning to this turn: Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
+      "turn": "The middle turns praise into illumination and one-pointed focus through the defeat of ego.",
+      "practicalImplication": "This is for the person trapped in inner fog, repeated uncertainty, or spiritual confusion. Held steadily, it shows that doubt thins when Naam is planted deeply enough to become direction. When Naam is planted within, doubt loses its house.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.73,
-      "specificity": 4.57,
-      "emotionalHonesty": 4,
-      "usefulness": 3.76,
-      "beauty": 3.1,
-      "overall": 3.82
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.6,
+      "beauty": 4.33,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

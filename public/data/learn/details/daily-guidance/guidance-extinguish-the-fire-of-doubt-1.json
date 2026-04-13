@@ -1,16 +1,16 @@
 {
   "id": "guidance-extinguish-the-fire-of-doubt-1",
-  "title": "Fire Of Doubt Is Not Extinguished, Even",
-  "summary": "Doubt is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries",
-  "lifeApplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+  "title": "Roaming will not put doubt out",
+  "summary": "This meets the hope that a new setting or method will finally quiet the mind. The line says doubt travels well.",
+  "takeaway": "Name the fire before running again.",
+  "lifeApplication": "When the urge to escape feels spiritual, stop before booking, scrolling, or seeking elsewhere. Stay long enough for the real fire to be named.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       918
     ],
-    "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Distance and novelty cannot do what the Guru must do.",
+    "lifeApplication": "When escape feels spiritual, stay long enough for the real fire to be named."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries",
+      "coreClaim": "Distance and novelty cannot do what the Guru must do.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "When the urge to escape feels spiritual, stop before booking, scrolling, or seeking elsewhere. Stay long enough for the real fire to be named.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 3.58,
-      "specificity": 4.91,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.68,
-      "overall": 4.04
+      "faithfulness": 4.11,
+      "clarity": 4.35,
+      "specificity": 4.87,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.3
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

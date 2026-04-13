@@ -1,10 +1,10 @@
 {
   "id": "shabad-remembrance-brings-peace",
-  "title": "Remember and Find Peace",
+  "title": "Remembrance settles the body",
   "subtitle": "Raag Gauree",
-  "summary": "The repeated verb is the point: remember, remember, remember. Peace is not treated as mood but as the fruit of anchored remembrance.",
-  "whyItMatters": "It is direct and accessible for users dealing with anxious loops, noise, and spiritual drift.",
-  "takeaway": "Steady remembrance calms what scattered thinking cannot.",
+  "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
+  "whyItMatters": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language.",
+  "takeaway": "Carry remembrance into the body before worry settles there.",
   "themes": [
     "anxiety",
     "naam",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "Repeats remembrance as a practice, not a mood.",
-    "Connects remembrance with bodily easing of anguish.",
-    "Ends by locating rescue alongside those already living in remembrance."
+    "It opens by linking repeated remembrance directly to peace and the easing of anguish in the body.",
+    "The middle magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
+    "It ends with longing for the company of those whose hearts want only His Darshan."
   ],
   "keyVerseIds": [
     11502,
@@ -151,25 +151,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The repeated verb is the point: remember, remember, remember. Peace is not treated as mood but as the fruit of anchored remembrance.",
+      "coreClaim": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "Connects remembrance with bodily easing of anguish.",
-      "practicalImplication": "Steady remembrance calms what scattered thinking cannot.",
+      "turn": "The middle magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
+      "practicalImplication": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language. Carry remembrance into the body before worry settles there.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
-      "specificity": 4.6,
+      "clarity": 4.23,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3,
-      "beauty": 4.21,
-      "overall": 4
+      "usefulness": 4.64,
+      "beauty": 4.23,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

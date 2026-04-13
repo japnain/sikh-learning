@@ -1,10 +1,10 @@
 {
   "id": "shabad-search-ends-in-saint-company",
-  "title": "Search Ends in Saint Company",
+  "title": "Roaming ends where saintly company cools the heart",
   "subtitle": "Raag Maajh · Ang 98",
-  "summary": "Search, ritual, travel, and effort keep multiplying, yet peace arrives only when mercy brings saint company and the inner climate cools.",
-  "whyItMatters": "It confronts spiritual exhaustion and the habit of searching everywhere except the place where Guru actually settles the mind.",
-  "takeaway": "The mind settles less by roaming and more by right company.",
+  "summary": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy sends the holy saint, and then the mind and body finally cool.",
+  "whyItMatters": "This is for the person trapped in spiritual roaming, method-switching, and never-arriving effort. Held honestly, it says peace is not found by multiplying techniques but by mercy and true company.",
+  "takeaway": "Bring your searching to saintly company and let it cool there.",
   "themes": [
     "restlessness",
     "patience",
@@ -126,9 +126,9 @@
     }
   ],
   "structure": [
-    "Begins with honest searching and the ache of not yet finding union.",
-    "Systematically dismisses ritual accumulation and restless movement as sources of peace.",
-    "Resolves in mercy, saint company, patience, and the Divine dwelling within."
+    "It opens with a sincere search that still cannot bring the Lord near.",
+    "The middle exhausts religious systems and bodily disciplines until their inability to give peace is obvious.",
+    "It ends in mercy, saintly company, and the Lord dwelling within a cooled heart."
   ],
   "keyVerseIds": [
     3890,
@@ -168,25 +168,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Search, ritual, travel, and effort keep multiplying, yet peace arrives only when mercy brings saint company and the inner climate cools.",
+      "coreClaim": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy sends the holy saint, and then the mind and body finally cool.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "Systematically dismisses ritual accumulation and restless movement as sources of peace.",
-      "practicalImplication": "The mind settles less by roaming and more by right company.",
+      "turn": "The middle exhausts religious systems and bodily disciplines until their inability to give peace is obvious.",
+      "practicalImplication": "This is for the person trapped in spiritual roaming, method-switching, and never-arriving effort. Held honestly, it says peace is not found by multiplying techniques but by mercy and true company. Bring your searching to saintly company and let it cool there.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 4.78,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.22,
-      "beauty": 4.21,
-      "overall": 4.06
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.98,
+      "beauty": 4.53,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

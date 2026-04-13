@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-460-2",
-  "title": "Other Fears Are Forgotten, And They",
-  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Other fears are forgotten, and they are absorbed into the Naam, the Name of the Lord; those who speak the Unspoken, drink in the Nectar",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "title": "Let Naam swallow the smaller fears",
+  "summary": "This meets a mind crowded by lesser alarms. The line says those absorbed in Naam forget the secondary fears instead of negotiating with each one.",
+  "takeaway": "Sink into Naam until lesser fears fade.",
+  "lifeApplication": "When the mind starts listing threats, do not chase each one down the branch. Return to Naam until the smaller fears lose the right to govern your breath.",
   "source": {
     "deepDiveId": "shabad-generated-460",
     "verseIds": [
       6405,
       6406
     ],
-    "shortMeaning": "Other fears are forgotten, and they are absorbed into the Naam, the Name of the Lord; those who speak the Unspoken, drink in the Nectar",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Absorption in Naam makes the lesser fears fall away.",
+    "lifeApplication": "When smaller fears multiply, return to Naam until they lose force."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -24,7 +24,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "fear",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Other fears are forgotten, and they are absorbed into the Naam, the Name of the Lord; those who speak the Unspoken, drink in the Nectar",
+      "coreClaim": "Absorption in Naam makes the lesser fears fall away.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, they merge into the Lord, and their doubts are cast away.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "turn": "Taste Naam deeply enough that lesser fears stop governing you.",
+      "practicalImplication": "When the mind starts listing threats, do not chase each one down the branch. Return to Naam until the smaller fears lose the right to govern your breath.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.86,
-      "clarity": 2.16,
-      "specificity": 4.63,
+      "faithfulness": 4,
+      "clarity": 4.35,
+      "specificity": 4.94,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.8,
-      "beauty": 3.48,
-      "overall": 3.73
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.19
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

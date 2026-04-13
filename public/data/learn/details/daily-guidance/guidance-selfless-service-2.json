@@ -1,17 +1,17 @@
 {
   "id": "guidance-selfless-service-2",
-  "title": "One Who Performs Selfless Service, Without Thought",
-  "summary": "Seva is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+  "title": "Do the work without pricing it",
+  "summary": "This meets the inner ledger still counting recognition and return. The line says selfless service dies when reward becomes part of the motive.",
+  "takeaway": "Drop the bargain from the offering.",
+  "lifeApplication": "When you feel yourself waiting to be thanked, blessed, or noticed, drop the bargain from the act. Finish the work before the ego invoices it.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12943,
       12947
     ],
-    "shortMeaning": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Reward-seeking empties service before the work is even done.",
+    "lifeApplication": "When you start waiting for reward, finish the work before the ego invoices it."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "He is not to call attention to himself in any way; one who performs selfless service, without thought of reward",
+      "coreClaim": "Reward-seeking empties service before the work is even done.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Use the line before the pressure chooses your tone.",
+      "turn": "Service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "When you feel yourself waiting to be thanked, blessed, or noticed, drop the bargain from the act. Finish the work before the ego invoices it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 2.74,
-      "specificity": 4.68,
+      "faithfulness": 4.02,
+      "clarity": 4.29,
+      "specificity": 4.59,
       "emotionalHonesty": 3.72,
-      "usefulness": 4.42,
-      "beauty": 3.44,
-      "overall": 3.83
+      "usefulness": 4.94,
+      "beauty": 4.17,
+      "overall": 4.26
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

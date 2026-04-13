@@ -1,10 +1,10 @@
 {
   "id": "shabad-speak-what-brings-honor",
-  "title": "Speak What Brings Honor",
+  "title": "Do not let speech carry filth",
   "subtitle": "Siree Raag · Ang 15",
-  "summary": "Guru Nanak names greed, slander, indulgence, and harsh speech without euphemism, then redirects the tongue toward dignity.",
-  "whyItMatters": "It is a direct corrective for reactive speech, contempt, performative self-importance, and appetites that crowd out Naam.",
-  "takeaway": "Guard the tongue, and the heart begins to clear.",
+  "summary": "The shabad opens by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
+  "whyItMatters": "This is for the person whose hurt, sharpness, or cleverness keeps leaking out through the mouth. Held honestly, it makes speech answerable to honor, not impulse.",
+  "takeaway": "Keep only the speech that can stand at God's Door.",
   "themes": [
     "speech",
     "greed",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "Begins with uncompromising diagnosis: greed, slander, anger, and self-praise deform the speaker.",
-    "Turns the question toward speech itself, naming honorable speech as spiritually consequential.",
-    "Ends by showing that real dignity comes from a heart permeated by the Divine, not self-decoration."
+    "It opens by making moral corruption sound disgusting enough to stop glamorizing it.",
+    "The middle asks which words bring honor and exposes how bodily pleasures crowd out Naam.",
+    "It ends by approving only the speech pleasing to Him and warning that harsh words return as grief."
   ],
   "keyVerseIds": [
     634,
@@ -181,25 +181,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Nanak names greed, slander, indulgence, and harsh speech without euphemism, then redirects the tongue toward dignity.",
+      "coreClaim": "The shabad opens by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Turns the question toward speech itself, naming honorable speech as spiritually consequential.",
-      "practicalImplication": "Guard the tongue, and the heart begins to clear.",
+      "turn": "The middle asks which words bring honor and exposes how bodily pleasures crowd out Naam.",
+      "practicalImplication": "This is for the person whose hurt, sharpness, or cleverness keeps leaking out through the mouth. Held honestly, it makes speech answerable to honor, not impulse. Keep only the speech that can stand at God's Door.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 4.96,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.82,
-      "beauty": 4.21,
-      "overall": 4.23
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.44,
+      "beauty": 4.37,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

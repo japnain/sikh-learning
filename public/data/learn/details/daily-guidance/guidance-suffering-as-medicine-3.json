@@ -1,17 +1,17 @@
 {
   "id": "guidance-suffering-as-medicine-3",
-  "title": "Your Praise Is So Beautiful. One",
-  "summary": "The shabad does not leave anxiety at diagnosis. It turns toward return.",
-  "takeaway": "Your Praise is so beautiful. One who sings it, is carried across",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. After the reaction, make the next return smaller and truer.",
+  "title": "Let praise carry what effort cannot",
+  "summary": "This meets the point where strain has already proved insufficient. The line turns the heart from effort to praise as a real crossing.",
+  "takeaway": "Sing before trying to force it again.",
+  "lifeApplication": "When the body is tired and the problem still stands, sing or recite before trying again. Let praise soften the place where control has already failed.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
       21091,
       21095
     ],
-    "shortMeaning": "Your Praise is so beautiful. One who sings it, is carried across; i can do nothing. Even if I try, nothing happens",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Praise carries what effort cannot drag across alone.",
+    "lifeApplication": "When effort has failed, sing before trying to force the crossing again."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -22,7 +22,7 @@
     "collection-anxiety-journey"
   ],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "softness",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -38,25 +38,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Your Praise is so beautiful. One who sings it, is carried across; i can do nothing. Even if I try, nothing happens",
+      "coreClaim": "Praise carries what effort cannot drag across alone.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. After the reaction, make the next return smaller and truer.",
+      "turn": "Let pain reveal what comfort keeps covering.",
+      "practicalImplication": "When the body is tired and the problem still stands, sing or recite before trying again. Let praise soften the place where control has already failed.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.85,
-      "clarity": 3.87,
-      "specificity": 4.98,
-      "emotionalHonesty": 3,
-      "usefulness": 4.86,
-      "beauty": 4.05,
-      "overall": 4.08
+      "faithfulness": 4.07,
+      "clarity": 4.35,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

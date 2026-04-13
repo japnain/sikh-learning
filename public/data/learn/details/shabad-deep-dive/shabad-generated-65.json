@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-65",
-  "title": "As Metal Merges With Metal",
+  "title": "Praise melts what comparison hardens",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "This shabad opens with as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord. It turns the heart toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
-  "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
+  "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
+  "whyItMatters": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming.",
+  "takeaway": "Let praise, saintly company, and true action soften the self into homecoming.",
   "themes": [
     "comparison",
     "self-worth",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord.",
-    "The middle movement widens the correction through the Gurmukhs train their minds to contemplate the Lord, the Supreme Soul.",
-    "It closes with a return you can actually keep: o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him."
+    "It opens by picturing praise as fusion instead of performance.",
+    "The middle turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
+    "It ends in homecoming, where other hopes are abandoned and the One is beheld."
   ],
   "keyVerseIds": [
     759,
@@ -180,27 +180,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with as metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord. It turns the heart toward o Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
+      "coreClaim": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle movement widens the correction through the Gurmukhs train their minds to contemplate the Lord, the Supreme Soul.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
+      "turn": "The middle turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
+      "practicalImplication": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming. Let praise, saintly company, and true action soften the self into homecoming.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.42,
-      "specificity": 4.75,
-      "emotionalHonesty": 3.9,
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
       "usefulness": 3.6,
-      "beauty": 3.3,
-      "overall": 3.65
+      "beauty": 4.33,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

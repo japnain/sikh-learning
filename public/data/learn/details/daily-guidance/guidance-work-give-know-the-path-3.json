@@ -1,17 +1,17 @@
 {
   "id": "guidance-work-give-know-the-path-3",
-  "title": "He Knows The Path",
-  "summary": "The shabad does not leave seva at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, he knows the Path",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+  "title": "Earn honestly and let some leave your hand",
+  "summary": "This meets the split between livelihood and devotion. The line refuses the split: honest work and sharing are part of the path itself.",
+  "takeaway": "Keep earning and giving in one sentence.",
+  "lifeApplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
       53371,
       53372
     ],
-    "shortMeaning": "One who works for what he eats, and gives some of what he has",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The path is known in honest earning and open-handed giving.",
+    "lifeApplication": "When money hardens into accumulation, interrupt it with one deliberate gift."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who works for what he eats, and gives some of what he has",
+      "coreClaim": "The path is known in honest earning and open-handed giving.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+      "turn": "Honest labor and sharing reveal the path better than costume.",
+      "practicalImplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.86,
-      "clarity": 4.29,
-      "specificity": 4.63,
+      "faithfulness": 4.02,
+      "clarity": 4.35,
+      "specificity": 4.59,
       "emotionalHonesty": 3,
-      "usefulness": 4.04,
-      "beauty": 4.17,
-      "overall": 3.98
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-510-3",
-  "title": "Servant Nanak Takes The Sustenance And Support",
-  "summary": "The shabad does not leave comparison at diagnosis. It turns toward return.",
-  "takeaway": "Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+  "title": "Turn back before distance hardens into pain",
+  "summary": "This meets the stubborn drift that keeps making pain bite deeper. The line warns that distance worsens the wound, then turns back to Naam as support.",
+  "takeaway": "Stop sooner and return before distance hardens.",
+  "lifeApplication": "The moment you know you are drifting, stop, sit, breathe once, and return to Naam. Let support arrive before distance hardens into another wound.",
   "source": {
     "deepDiveId": "shabad-generated-510",
     "verseIds": [
       7122,
       7126
     ],
-    "shortMeaning": "Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace; the more they walk away, the deeper it sticks into them, and the more",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Distance deepens pain; Naam becomes the support for return.",
+    "lifeApplication": "When you know you are drifting, stop and return to Naam before the wound deepens."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "restlessness",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace; the more they walk away, the deeper it sticks into them, and the more",
+      "coreClaim": "Distance deepens pain; Naam becomes the support for return.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. After the reaction, make the next return smaller and truer.",
+      "turn": "Take the overheated self back from distance until Naam becomes support.",
+      "practicalImplication": "The moment you know you are drifting, stop, sit, breathe once, and return to Naam. Let support arrive before distance hardens into another wound.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
-      "clarity": 3.69,
-      "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.66,
-      "overall": 4.13
+      "faithfulness": 4,
+      "clarity": 4.29,
+      "specificity": 4.58,
+      "emotionalHonesty": 3,
+      "usefulness": 4.94,
+      "beauty": 4.33,
+      "overall": 4.17
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

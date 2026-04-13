@@ -1,10 +1,10 @@
 {
   "id": "shabad-what-pleases-you-comes-to-pass",
-  "title": "What Pleases You Comes to Pass",
+  "title": "Receiving under Hukam",
   "subtitle": "So Purakh · Ang 11",
-  "summary": "This shabad loosens panic by relocating authorship. What arrives is not outside Divine seeing, giving, or mercy.",
-  "whyItMatters": "It steadies the mind when outcomes feel personal, unfair, or impossible to control.",
-  "takeaway": "Receive the day as given, then answer it with Naam.",
+  "summary": "The shabad opens by placing all becoming, giving, and receiving in the Lord's pleasure. It widens through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
+  "whyItMatters": "This is for the person fighting outcomes they did not choose or trying to carry reality by force. Held steadily, it teaches a cleaner receiving under Hukam and loosens the fist of resistance.",
+  "takeaway": "Learn to receive under the Lord's pleasure rather than argue with it.",
   "themes": [
     "hukam",
     "mercy",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "Begins by placing all arrival inside Divine pleasure and giving.",
-    "Expands from the individual to all beings, showing that nothing stands outside the One.",
-    "Closes by pairing mercy with understanding, service, and the revealing work of the Guru."
+    "It opens by aligning what happens with what pleases the Lord.",
+    "The middle shows that even loss, reunion, play, and service remain within His doing.",
+    "It ends with the Creator as the only true doer and revelation coming through the Gurmukh."
   ],
   "keyVerseIds": [
     499,
@@ -209,25 +209,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This shabad loosens panic by relocating authorship. What arrives is not outside Divine seeing, giving, or mercy.",
+      "coreClaim": "The shabad opens by placing all becoming, giving, and receiving in the Lord's pleasure. It widens through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Expands from the individual to all beings, showing that nothing stands outside the One.",
-      "practicalImplication": "Receive the day as given, then answer it with Naam.",
+      "turn": "The middle shows that even loss, reunion, play, and service remain within His doing.",
+      "practicalImplication": "This is for the person fighting outcomes they did not choose or trying to carry reality by force. Held steadily, it teaches a cleaner receiving under Hukam and loosens the fist of resistance. Learn to receive under the Lord's pleasure rather than argue with it.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.6,
-      "beauty": 4.37,
-      "overall": 4.14
+      "clarity": 4.23,
+      "specificity": 4.6,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.29,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

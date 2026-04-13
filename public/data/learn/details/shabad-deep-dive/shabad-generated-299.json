@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-299",
-  "title": "Word Of Your Bani, Lord, Is Ambrosial",
+  "title": "The Lord's Bani cools what is burning",
   "subtitle": "Raag Maajh · Ang 103",
-  "summary": "This shabad opens with the Word of Your Bani, Lord, is Ambrosial Nectar. It turns the heart toward as Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
-  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: As Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
+  "summary": "The shabad opens by calling the Lord's Bani ambrosial nectar. It moves through repeated hearing, the inner burning extinguished, and the mind cooled in the Guru's presence.",
+  "whyItMatters": "This is for the person whose chest feels hot with grief, agitation, or inner noise. Return to this shabad before reaching for more noise, and Bani stops sounding decorative and starts acting like medicine.",
+  "takeaway": "Read the Bani again until the inner heat cools.",
   "themes": [
     "attachment",
     "comparison",
@@ -126,9 +126,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the Word of Your Bani, Lord, is Ambrosial Nectar.",
-    "The middle movement widens the correction through the Creator has showered His Kindness.",
-    "It closes with a return you can actually keep: as Gurmukh, Nanak meditates on the One who fulfills the desires of the mind."
+    "It opens with Bani as nectar, not ornament.",
+    "The middle lets repeated hearing work on the heart instead of merely informing the mind.",
+    "It ends with inner burning extinguished and the mind cooled in the Guru's presence."
   ],
   "keyVerseIds": [
     4119,
@@ -165,25 +165,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the Word of Your Bani, Lord, is Ambrosial Nectar. It turns the heart toward as Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
+      "coreClaim": "The shabad opens by calling the Lord's Bani ambrosial nectar. It moves through repeated hearing, the inner burning extinguished, and the mind cooled in the Guru's presence.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement widens the correction through the Creator has showered His Kindness.",
-      "practicalImplication": "Keep returning to this turn: As Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
+      "turn": "The middle lets repeated hearing work on the heart instead of merely informing the mind.",
+      "practicalImplication": "This is for the person whose chest feels hot with grief, agitation, or inner noise. Return to this shabad before reaching for more noise, and Bani stops sounding decorative and starts acting like medicine. Read the Bani again until the inner heat cools.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.05,
+      "clarity": 3.81,
       "specificity": 4.96,
-      "emotionalHonesty": 4,
-      "usefulness": 3.82,
-      "beauty": 3.65,
-      "overall": 4.02
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.94,
+      "beauty": 3.96,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

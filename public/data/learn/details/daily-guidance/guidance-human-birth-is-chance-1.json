@@ -1,16 +1,16 @@
 {
   "id": "guidance-human-birth-is-chance-1",
-  "title": "This Human Body Has Been Given",
-  "summary": "Purpose is named plainly here before the mind has time to decorate it.",
-  "takeaway": "This human body has been given to you",
-  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+  "title": "Do not waste a body built for meeting",
+  "summary": "This meets a life in danger of being spent entirely on upkeep. The line begins with the body as gift, which means it already carries responsibility.",
+  "takeaway": "Answer the gift with one act of meeting.",
+  "lifeApplication": "Before losing the whole day to maintenance, remember the body was given for more than surviving. Answer the gift with one act of meeting.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
       524
     ],
-    "shortMeaning": "This human body has been given to you",
-    "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "This body is a given chance, not a permanent possession.",
+    "lifeApplication": "Before maintenance swallows the day, answer the gift with one act of meeting."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "This human body has been given to you",
+      "coreClaim": "This body is a given chance, not a permanent possession.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Use this life for meeting, not merely for managing.",
-      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+      "turn": "Treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "Before losing the whole day to maintenance, remember the body was given for more than surviving. Answer the gift with one act of meeting.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
+      "faithfulness": 4.13,
       "clarity": 4.05,
-      "specificity": 4.87,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.1,
       "beauty": 3.85,
-      "overall": 4.14
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

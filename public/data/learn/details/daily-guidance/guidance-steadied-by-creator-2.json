@@ -1,17 +1,17 @@
 {
   "id": "guidance-steadied-by-creator-2",
-  "title": "Why Do You Waver, O Mortal",
-  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "title": "Stop wavering where mercy already holds you",
+  "summary": "This meets the body leaning toward the worst outcome. The line answers wavering with the Creator's mercy and protection.",
+  "takeaway": "Let mercy interrupt the wobble.",
+  "lifeApplication": "When fear starts arranging tomorrow, feel both feet on the floor and unclench the stomach. Let mercy speak before another imagined disaster does.",
   "source": {
     "deepDiveId": "shabad-steadied-by-creator",
     "verseIds": [
       30985,
       30988
     ],
-    "shortMeaning": "Why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Mercy steadies the mind before the danger has changed.",
+    "lifeApplication": "When you start wavering, let mercy speak before the disaster story grows."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Why do you waver, O mortal being? The Creator Lord Himself shall protect you",
+      "coreClaim": "Mercy steadies the mind before the danger has changed.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "The answer to fear is not bravado. It is remembrance of the One already holding you.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "turn": "The Creator's mercy is steadier than your wavering.",
+      "practicalImplication": "When fear starts arranging tomorrow, feel both feet on the floor and unclench the stomach. Let mercy speak before another imagined disaster does.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 3.69,
-      "specificity": 4.7,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.55,
-      "overall": 3.92
+      "faithfulness": 4.18,
+      "clarity": 4.35,
+      "specificity": 4.93,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

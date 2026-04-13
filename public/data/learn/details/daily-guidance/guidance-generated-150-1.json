@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-150-1",
-  "title": "Relying On Your Mercy, Dear Lord, I",
-  "summary": "Hukam is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Relying on Your Mercy, Dear Lord, I have cherished and loved you",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+  "title": "Cherish the Lord by relying on mercy",
+  "summary": "This meets the soul that still wants closeness without dependence. The line makes love sound childlike again: it rests on mercy first.",
+  "takeaway": "Lean on mercy before trying harder.",
+  "lifeApplication": "When shame or effort makes devotion feel heavy, stop trying to earn warmth. Ask for mercy and let affection come from there.",
   "source": {
     "deepDiveId": "shabad-generated-150",
     "verseIds": [
       2088
     ],
-    "shortMeaning": "Relying on Your Mercy, Dear Lord, I have cherished and loved you",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Love ripens where the heart leans on mercy instead of merit.",
+    "lifeApplication": "When devotion feels heavy, ask for mercy before trying harder."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -23,7 +23,7 @@
     "collection-doubt-to-clarity"
   ],
   "rotation": {
-    "theme": "hukam",
+    "theme": "mercy",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Relying on Your Mercy, Dear Lord, I have cherished and loved you",
+      "coreClaim": "Love ripens where the heart leans on mercy instead of merit.",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+      "turn": "Bring the truth about failure into the Lord's mercy.",
+      "practicalImplication": "When shame or effort makes devotion feel heavy, stop trying to earn warmth. Ask for mercy and let affection come from there.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.78,
-      "clarity": 3.81,
-      "specificity": 4.37,
+      "faithfulness": 4.06,
+      "clarity": 4.35,
+      "specificity": 4.45,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.81,
-      "overall": 3.93
+      "usefulness": 4.72,
+      "beauty": 4.21,
+      "overall": 4.18
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

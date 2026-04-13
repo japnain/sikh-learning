@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-736",
-  "title": "Great And Powerful People Of The World",
+  "title": "The powerful cannot do your inner work",
   "subtitle": "Raag Gauree · Ang 238",
-  "summary": "This shabad opens with the great and powerful people of the world. It turns the heart toward he alone is the Lord's servant, O Nanak, who is so blessed.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: He alone is the Lord's servant, O Nanak, who is so blessed.",
+  "summary": "The shabad opens by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
+  "whyItMatters": "This is for the person drawn to influence, status, and impressive company as if they could save the heart. Held firmly, it redirects admiration away from power and toward devotion, humility, and labor for the Lord.",
+  "takeaway": "Seek the humble servant, not the world's impressive names.",
   "themes": [
     "ego",
     "comparison",
@@ -280,9 +280,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the great and powerful people of the world.",
-    "The middle movement widens the correction through o my mind, immerse yourself in the Love of the Lord.",
-    "It closes with a return you can actually keep: he alone is the Lord's servant, O Nanak, who is so blessed."
+    "It opens with a blunt claim: only union with the Lord steadies and saves.",
+    "The middle dismisses worldly greatness and exalts the saving force of humble company and the Guru's way.",
+    "It ends by calling the mind to work for the Lord instead of for rank, hunger, or image."
   ],
   "keyVerseIds": [
     10367,
@@ -320,25 +320,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the great and powerful people of the world. It turns the heart toward he alone is the Lord's servant, O Nanak, who is so blessed.",
+      "coreClaim": "The shabad opens by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through o my mind, immerse yourself in the Love of the Lord.",
-      "practicalImplication": "Keep returning to this turn: He alone is the Lord's servant, O Nanak, who is so blessed.",
+      "turn": "The middle dismisses worldly greatness and exalts the saving force of humble company and the Guru's way.",
+      "practicalImplication": "This is for the person drawn to influence, status, and impressive company as if they could save the heart. Held firmly, it redirects admiration away from power and toward devotion, humility, and labor for the Lord. Seek the humble servant, not the world's impressive names.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.2,
+      "clarity": 4.35,
       "specificity": 4.78,
-      "emotionalHonesty": 4,
+      "emotionalHonesty": 3.36,
       "usefulness": 3.6,
-      "beauty": 3.72,
-      "overall": 4
+      "beauty": 4.21,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

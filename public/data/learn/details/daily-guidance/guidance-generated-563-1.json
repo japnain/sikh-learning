@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-563-1",
-  "title": "Whose Mother Is This? Whose Father",
-  "summary": "Doubt is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Whose mother is this? Whose father is this",
-  "lifeApplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+  "title": "Ownership fails at the first question",
+  "summary": "This meets the possessive cry of mine. The line uses simple questions to expose how quickly ownership collapses.",
+  "takeaway": "Let the question loosen the fist.",
+  "lifeApplication": "When the mind tightens around person, role, or relationship, ask whose it finally is. Let the question loosen the fist before sorrow hardens into possession.",
   "source": {
     "deepDiveId": "shabad-generated-563",
     "verseIds": [
       7958
     ],
-    "shortMeaning": "Whose mother is this? Whose father is this",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The first questions of grief already loosen the claim of ownership.",
+    "lifeApplication": "When you tighten around what is yours, ask whose it finally is."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -23,7 +23,7 @@
     "collection-doubt-journey"
   ],
   "rotation": {
-    "theme": "doubt",
+    "theme": "attachment",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Whose mother is this? Whose father is this",
+      "coreClaim": "The first questions of grief already loosen the claim of ownership.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "Keep returning to this turn: I am liberated, and my doubts have been dispelled.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+      "turn": "Let grief answer to Hukam instead of ownership.",
+      "practicalImplication": "When the mind tightens around person, role, or relationship, ask whose it finally is. Let the question loosen the fist before sorrow hardens into possession.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.05,
-      "specificity": 4.71,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.99,
-      "overall": 4.08
+      "faithfulness": 4.17,
+      "clarity": 4.17,
+      "specificity": 4.92,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 3.93,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

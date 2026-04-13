@@ -1,16 +1,16 @@
 {
   "id": "guidance-selfless-service-1",
-  "title": "He Is Not To Call Attention",
-  "summary": "Seva is named plainly here before the mind has time to decorate it.",
-  "takeaway": "He is not to call attention to himself in any way",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "title": "Serve without making yourself the headline",
+  "summary": "This meets the part of service still wanting witness, credit, or moral glow. The line is sharp: clean service does not advertise itself.",
+  "takeaway": "Make hiddenness part of the offering.",
+  "lifeApplication": "Before posting, explaining, or subtly displaying the good you did, let the act stay unadvertised. Make hiddenness part of the offering.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12943
     ],
-    "shortMeaning": "He is not to call attention to himself in any way",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Service becomes pure when the self stops asking to be noticed.",
+    "lifeApplication": "Before displaying the good you did, let the act stay hidden."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "He is not to call attention to himself in any way",
+      "coreClaim": "Service becomes pure when the self stops asking to be noticed.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "turn": "Service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "Before posting, explaining, or subtly displaying the good you did, let the act stay unadvertised. Make hiddenness part of the offering.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
-      "clarity": 3.93,
-      "specificity": 4.38,
-      "emotionalHonesty": 3.9,
-      "usefulness": 4.2,
-      "beauty": 3.9,
-      "overall": 3.99
+      "faithfulness": 4.22,
+      "clarity": 4.17,
+      "specificity": 4.61,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.98,
+      "beauty": 3.93,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-642",
-  "title": "Is There Any Saint, Who Can Bestow",
+  "title": "The key is handed to the Guru",
   "subtitle": "Raag Gauree · Ang 204",
-  "summary": "This shabad opens with is there any Saint, who can bestow such celestial peace, and show me the Way to Him. It turns the heart toward celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light.",
-  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light.",
+  "summary": "The shabad opens with an honest plea for the saint who can show the way to the Lord. It moves through ego's curtain, Maya's sleep, and the hidden substance within, then lands in the Guru holding the key.",
+  "whyItMatters": "This is for the person who knows effort alone is not getting them home. Held patiently, it changes spiritual frustration into a truer dependence on the Guru and the company of the holy.",
+  "takeaway": "Ask for the guidance that can lead you through ego's curtain.",
   "themes": [
     "sangat",
     "ego",
@@ -133,9 +133,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: is there any Saint, who can bestow such celestial peace, and show me the Way to Him.",
-    "The middle movement widens the correction through that substance is in the unapproachable place.",
-    "It closes with a return you can actually keep: celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light."
+    "It opens with a direct request for the saint who can show the way.",
+    "The middle explains why the Lord feels hidden: ego, Maya, and the misery of the five keep the house sealed.",
+    "It ends by placing the key with the Guru and joy with the company of the holy."
   ],
   "keyVerseIds": [
     8811,
@@ -172,25 +172,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with is there any Saint, who can bestow such celestial peace, and show me the Way to Him. It turns the heart toward celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light.",
+      "coreClaim": "The shabad opens with an honest plea for the saint who can show the way to the Lord. It moves through ego's curtain, Maya's sleep, and the hidden substance within, then lands in the Guru holding the key.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement widens the correction through that substance is in the unapproachable place.",
-      "practicalImplication": "Keep returning to this turn: celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light.",
+      "turn": "The middle explains why the Lord feels hidden: ego, Maya, and the misery of the five keep the house sealed.",
+      "practicalImplication": "This is for the person who knows effort alone is not getting them home. Held patiently, it changes spiritual frustration into a truer dependence on the Guru and the company of the holy. Ask for the guidance that can lead you through ego's curtain.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.79,
-      "specificity": 4.57,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.14,
-      "overall": 3.78
+      "clarity": 3.93,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.6,
+      "beauty": 3.83,
+      "overall": 4
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-patience-ripens-into-honor-1",
-  "title": "Dhadha: The Mind's Wanderings Cease, When One",
-  "summary": "Patience is named plainly here before the mind has time to decorate it.",
-  "takeaway": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints",
-  "lifeApplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+  "title": "Let saintly company end the mind's pacing",
+  "summary": "This meets impatience as mental wandering. The line says composure grows by dwelling among those who already carry it.",
+  "takeaway": "Stay near patient people a moment longer.",
+  "lifeApplication": "When the mind is pacing ahead, slow your body and stay near patient people a little longer than you want to. Let company retrain urgency.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
       11239
     ],
-    "shortMeaning": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints",
-    "lifeApplication": "Wait by listening instead of simmering. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Patience begins when the mind stops roaming and stays in good company.",
+    "lifeApplication": "When impatience starts pacing, stay near patient people a little longer."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints",
+      "coreClaim": "Patience begins when the mind stops roaming and stays in good company.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Patience becomes luminous when it begins listening for Naam.",
-      "practicalImplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "practicalImplication": "When the mind is pacing ahead, slow your body and stay near patient people a little longer than you want to. Let company retrain urgency.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 3.64,
-      "specificity": 4.45,
+      "faithfulness": 4.06,
+      "clarity": 4.23,
+      "specificity": 4.81,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.36,
-      "beauty": 3.63,
-      "overall": 3.93
+      "usefulness": 4.42,
+      "beauty": 3.97,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

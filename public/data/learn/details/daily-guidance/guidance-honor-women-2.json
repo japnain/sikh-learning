@@ -1,17 +1,17 @@
 {
   "id": "guidance-honor-women-2",
-  "title": "So Why Call Her Bad? From Her",
-  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "So why call her bad? From her, kings are born",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "title": "Do not insult the source of life",
+  "summary": "This meets speech or culture that belittles women while depending on them. The line is a public rebuke of contempt.",
+  "takeaway": "Refuse contempt disguised as culture.",
+  "lifeApplication": "When a degrading joke, comment, or tone enters the room, do not soften it with silence. Straighten the body and refuse language that insults the source of life.",
   "source": {
     "deepDiveId": "shabad-honor-women",
     "verseIds": [
       21284,
       21287
     ],
-    "shortMeaning": "So why call her bad? From her, kings are born",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The line rebukes contempt by naming woman as the source of life.",
+    "lifeApplication": "When contempt enters the room, refuse language that insults the source of life."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -19,7 +19,7 @@
   ],
   "relatedCollectionIds": [],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "conduct",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -35,25 +35,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "So why call her bad? From her, kings are born",
+      "coreClaim": "The line rebukes contempt by naming woman as the source of life.",
       "emotionalState": "dismissive, proud, habit-bound",
-      "turn": "What Guru honors cannot be spoken of with contempt.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "turn": "Refuse to despise the one through whom human life comes.",
+      "practicalImplication": "When a degrading joke, comment, or tone enters the room, do not soften it with silence. Straighten the body and refuse language that insults the source of life.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
-      "clarity": 3.93,
-      "specificity": 4.56,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.75,
-      "overall": 3.92
+      "faithfulness": 4.04,
+      "clarity": 4.29,
+      "specificity": 4.98,
+      "emotionalHonesty": 3,
+      "usefulness": 4.26,
+      "beauty": 4.01,
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

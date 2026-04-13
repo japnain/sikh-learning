@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-738",
-  "title": "The Guru's Word, I Have Attained",
+  "title": "The Guru's word raises the soul into real stature",
   "subtitle": "Raag Gauree · Ang 239",
-  "summary": "This shabad opens with through the Guru's Word, I have attained the supreme status. It turns the heart toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
-  "whyItMatters": "It matters when life feels impatient, tense, and agitated because the shabad keeps patience inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+  "summary": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
+  "whyItMatters": "This is for the person chasing improvement, image, or spiritual status without steady submission to the Guru's word. Held honestly, it turns attainment from display into inward settlement.",
+  "takeaway": "Let the Guru's word define attainment.",
   "themes": [
     "patience",
     "doubt",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: through the Guru's Word, I have attained the supreme status.",
-    "The middle movement widens the correction through through the Guru's Word, I see God everywhere.",
-    "It closes with a return you can actually keep: o Nanak, meeting with the Guru, I have found the Supreme Lord God."
+    "It opens by naming the highest state as something received through the Guru's word.",
+    "The middle contrasts outer striving with the inward changes the Guru actually works.",
+    "It ends by locating fulfillment in meeting the Supreme Lord through the Guru."
   ],
   "keyVerseIds": [
     10415,
@@ -206,25 +206,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with through the Guru's Word, I have attained the supreme status. It turns the heart toward o Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+      "coreClaim": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "The middle movement widens the correction through through the Guru's Word, I see God everywhere.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, meeting with the Guru, I have found the Supreme Lord God.",
+      "turn": "The middle contrasts outer striving with the inward changes the Guru actually works.",
+      "practicalImplication": "This is for the person chasing improvement, image, or spiritual status without steady submission to the Guru's word. Held honestly, it turns attainment from display into inward settlement. Let the Guru's word define attainment.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.81,
-      "specificity": 4.56,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.45,
-      "overall": 3.79
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.6,
+      "beauty": 4.62,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }
