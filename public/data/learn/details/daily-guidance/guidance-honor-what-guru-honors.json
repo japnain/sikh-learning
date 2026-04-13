@@ -1,17 +1,17 @@
 {
   "id": "guidance-honor-what-guru-honors",
-  "title": "Do not speak with contempt where Guru speaks with honor",
-  "summary": "This is a corrective for inherited disrespect and casual dismissal.",
-  "takeaway": "Guru's language should shape your social instincts too.",
-  "lifeApplication": "Examine one attitude you carry that Gurbani would ask you to unlearn.",
+  "title": "Do not insult the doorway through which you came",
+  "summary": "This meets contempt while it is still pretending to be casual speech. The line strips off that disguise by naming woman as the doorway through which life itself arrives.",
+  "takeaway": "Cheapening women is cheapening life's doorway.",
+  "lifeApplication": "Before repeating a joke, shrug, or judgment that cheapens women, stop with the tongue and remember how every life entered the room.",
   "source": {
     "deepDiveId": "shabad-honor-women",
     "verseIds": [
       21287,
       21289
     ],
-    "shortMeaning": "Guru Nanak directly rejects contempt toward women.",
-    "lifeApplication": "Let reverence revise the way you speak about people."
+    "shortMeaning": "The line rebukes contempt by naming woman as life's doorway.",
+    "lifeApplication": "Before contempt reaches the tongue, remember which bodies carried life here."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -35,25 +35,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Guru Nanak directly rejects contempt toward women.",
+      "coreClaim": "The line rebukes contempt by naming woman as life's doorway.",
       "emotionalState": "dismissive, proud, habit-bound",
-      "turn": "What Guru honors cannot be spoken of with contempt.",
-      "practicalImplication": "Examine one attitude you carry that Gurbani would ask you to unlearn.",
+      "turn": "Refuse to despise the one through whom human life comes.",
+      "practicalImplication": "Before repeating a joke, shrug, or judgment that cheapens women, stop with the tongue and remember how every life entered the room.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 4.35,
-      "specificity": 4.38,
-      "emotionalHonesty": 3,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 3.85
+      "faithfulness": 4.04,
+      "clarity": 4.23,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.04,
+      "beauty": 3.97,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

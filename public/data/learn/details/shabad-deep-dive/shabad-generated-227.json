@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-227",
-  "title": "All Are Yours, And You Belong",
+  "title": "All belong to the One who belongs to all",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "This shabad opens with all are Yours, and You belong to all. You are the wealth of all. It turns the heart toward at Your Door, the Gurmukhs are enlightened.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
+  "summary": "The shabad begins by overturning private ownership: all are Yours, and You belong to all. It widens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
+  "whyItMatters": "This is for the person shrinking worth into possession, status, or exclusivity. Held honestly, it changes the emotional climate from scarcity to shared dependence and from ego to belonging.",
+  "takeaway": "Belonging is received from the One who holds everyone.",
   "themes": [
     "ego",
     "restlessness",
@@ -77,9 +77,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: all are Yours, and You belong to all. You are the wealth of all.",
-    "The middle movement widens the correction through those, unto whom You give, receive everything. You are far away from some, and You are close to others.",
-    "It closes with a return you can actually keep: at Your Door, the Gurmukhs are enlightened."
+    "It opens by taking ownership language and breaking it open into universal belonging.",
+    "The middle shows every life begging, praying, and receiving from the same Source.",
+    "It ends by revealing how little ground ego had to stand on without the Lord."
   ],
   "keyVerseIds": [
     3436,
@@ -116,25 +116,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with all are Yours, and You belong to all. You are the wealth of all. It turns the heart toward at Your Door, the Gurmukhs are enlightened.",
+      "coreClaim": "The shabad begins by overturning private ownership: all are Yours, and You belong to all. It widens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through those, unto whom You give, receive everything. You are far away from some, and You are close to others.",
-      "practicalImplication": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
+      "turn": "The middle shows every life begging, praying, and receiving from the same Source.",
+      "practicalImplication": "This is for the person shrinking worth into possession, status, or exclusivity. Held honestly, it changes the emotional climate from scarcity to shared dependence and from ego to belonging. Belonging is received from the One who holds everyone.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.51,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.86,
-      "overall": 3.99
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3,
+      "usefulness": 3.98,
+      "beauty": 4.69,
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

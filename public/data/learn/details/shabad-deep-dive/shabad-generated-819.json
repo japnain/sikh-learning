@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-819",
-  "title": "Dhadha: Where Are You Going, Wandering",
+  "title": "Stop roaming where the One is already near",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "This shabad opens with dHADHA: Where are you going, wandering and searching? Search instead within your own mind. It turns the heart toward o Nanak, He has merged me into Himself.",
-  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, He has merged me into Himself.",
+  "summary": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
+  "whyItMatters": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest.",
+  "takeaway": "Search inwardly and let Sangat tear down the proud mound.",
   "themes": [
     "sangat",
     "seeking",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: dHADHA: Where are you going, wandering and searching? Search instead within your own mind.",
-    "The middle movement widens the correction through one who has such a mound as this, dies and suffers the pain of reincarnation through the womb.",
-    "It closes with a return you can actually keep: o Nanak, He has merged me into Himself."
+    "It opens by confronting wandering instead of admiring it.",
+    "The middle turns the seeker toward inner search and the company of the holy.",
+    "It ends by linking peace and delight to the breaking of egotistical pride."
   ],
   "keyVerseIds": [
     11180,
@@ -134,25 +134,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with dHADHA: Where are you going, wandering and searching? Search instead within your own mind. It turns the heart toward o Nanak, He has merged me into Himself.",
+      "coreClaim": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement widens the correction through one who has such a mound as this, dies and suffers the pain of reincarnation through the womb.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, He has merged me into Himself.",
+      "turn": "The middle turns the seeker toward inner search and the company of the holy.",
+      "practicalImplication": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest. Search inwardly and let Sangat tear down the proud mound.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.39,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.67,
-      "overall": 3.96
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

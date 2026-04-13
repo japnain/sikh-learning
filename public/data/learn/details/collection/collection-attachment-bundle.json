@@ -1,8 +1,8 @@
 {
   "id": "collection-attachment-bundle",
   "title": "Attachment in one shorter sitting",
-  "subtitle": "A compact bundle for attachment",
-  "description": "The mind keeps clinging to what it cannot finally keep. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when attachment is already close",
+  "description": "A quick reset for the hour when grasping has already entered the chest. It reorders love, loss, and refuge before clinging speaks.",
   "durationLabel": "3-step bundle",
   "themes": [
     "attachment"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind keeps clinging to what it cannot finally keep. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A quick reset for the hour when grasping has already entered the chest. It reorders love, loss, and refuge before clinging speaks.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "A compact bundle for attachment",
+      "turn": "A shorter sitting for when attachment is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 3.75,
-      "specificity": 4.16,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.76
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

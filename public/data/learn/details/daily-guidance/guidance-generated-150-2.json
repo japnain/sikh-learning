@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-150-2",
-  "title": "Hold Hukam Under Pressure",
-  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Like a foolish child, I have made mistakes. O Lord, You are my Father and Mother; relying on Your Mercy, Dear Lord, I have cherished and loved you",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "title": "Be a child honest about your mistakes",
+  "summary": "This meets the ashamed heart that wants mercy without honesty. The line brings both together: love the Lord, admit the mistake, and stay under the care of Father and Mother.",
+  "takeaway": "Confess the mistake inside mercy.",
+  "lifeApplication": "After the misstep, speak to God as a child, not as a defendant writing a case. Let trust tell the truth before self-protection starts performing.",
   "source": {
     "deepDiveId": "shabad-generated-150",
     "verseIds": [
       2088,
       2089
     ],
-    "shortMeaning": "Like a foolish child, I have made mistakes. O Lord, You are my Father and Mother; relying on Your Mercy, Dear Lord, I have cherished and loved you",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Mercy makes room for honest error and deeper childlike trust.",
+    "lifeApplication": "After the mistake, stay in the Father's care long enough to tell the truth."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -24,7 +24,7 @@
     "collection-doubt-to-clarity"
   ],
   "rotation": {
-    "theme": "hukam",
+    "theme": "trust",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Like a foolish child, I have made mistakes. O Lord, You are my Father and Mother; relying on Your Mercy, Dear Lord, I have cherished and loved you",
+      "coreClaim": "Mercy makes room for honest error and deeper childlike trust.",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "turn": "Bring the truth about failure into the Lord's mercy.",
+      "practicalImplication": "After the misstep, speak to God as a child, not as a defendant writing a case. Let trust tell the truth before self-protection starts performing.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 2.91,
-      "specificity": 4.69,
-      "emotionalHonesty": 3.36,
-      "usefulness": 5,
-      "beauty": 3.2,
-      "overall": 3.86
+      "faithfulness": 4.18,
+      "clarity": 4.35,
+      "specificity": 4.75,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.53,
+      "overall": 4.2
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

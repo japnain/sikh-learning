@@ -1,9 +1,9 @@
 {
   "id": "guidance-forgiveness-is-the-fast",
-  "title": "Forgiveness is a stronger fast than self-display.",
-  "summary": "Guru replaces external austerity with interior virtue and says the stronger practice is forgiveness joined to conduct and contentment.",
-  "takeaway": "The harder fast may be the one nobody applauds.",
-  "lifeApplication": "Practice one hidden renunciation today: release retaliation, self-justification, or the need to be seen doing good.",
+  "title": "Fast from retaliation",
+  "summary": "This meets the wound at the moment it wants another sentence, another defense, another moral advantage. The line calls forgiveness the real fast because it changes conduct before it changes feelings.",
+  "takeaway": "Forgiveness is a discipline, not a mood.",
+  "lifeApplication": "When resentment asks to be fed, keep the fast by withholding the rehearsed reply. Let one full breath and one full act of restraint answer first.",
   "source": {
     "deepDiveId": "shabad-forgiveness-becomes-fearless",
     "verseIds": [
@@ -11,8 +11,8 @@
       9603,
       9605
     ],
-    "shortMeaning": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
-    "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
+    "shortMeaning": "Forgiveness is a discipline that changes conduct.",
+    "lifeApplication": "When resentment rises, answer first with restraint instead of retaliation."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
+      "coreClaim": "Forgiveness is a discipline that changes conduct.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "Forgive deeply enough that fear loses its throne.",
-      "practicalImplication": "Practice one hidden renunciation today: release retaliation, self-justification, or the need to be seen doing good.",
+      "turn": "Forgiveness, conduct, and contentment free the heart from fear.",
+      "practicalImplication": "When resentment asks to be fed, keep the fast by withholding the rehearsed reply. Let one full breath and one full act of restraint answer first.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 4.35,
-      "specificity": 4.61,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 4.05,
-      "overall": 4.05
+      "faithfulness": 4.05,
+      "clarity": 4.29,
+      "specificity": 4.99,
+      "emotionalHonesty": 3,
+      "usefulness": 5,
+      "beauty": 4.17,
+      "overall": 4.23
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

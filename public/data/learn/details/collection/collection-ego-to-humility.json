@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-to-humility",
   "title": "From Ego to Humility",
-  "subtitle": "A path out of self-importance",
-  "description": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
+  "subtitle": "For the self that keeps sneaking back to center",
+  "description": "Stay with these readings until ego is exposed, lowered, and made useful through humility.",
   "durationLabel": "5-day journey",
   "themes": [
     "ego",
@@ -14,8 +14,8 @@
     "verseIds": [
       20963
     ],
-    "shortMeaning": "Ego is a chronic disease, but it contains its own cure.",
-    "lifeApplication": "Let diagnosis become the beginning of mercy, not shame."
+    "shortMeaning": "The line catches ego before it can rename itself sincerity.",
+    "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
   },
   "items": [
     {
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
+      "coreClaim": "Stay with these readings until ego is exposed, lowered, and made useful through humility.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "A path out of self-importance",
+      "turn": "For the self that keeps sneaking back to center",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
+      "faithfulness": 3.88,
       "clarity": 4.35,
-      "specificity": 4,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.88
+      "specificity": 4.1,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 4
     },
     "strengths": [
-      "beauty",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-178",
-  "title": "Immaculate Naam Itself, Ever-fresh, Comes To Abide",
+  "title": "Fresh Naam enters the mind",
   "subtitle": "Siree Raag · Ang 69",
-  "summary": "This shabad opens with the Immaculate Naam itself, ever-fresh, comes to abide within the mind. It turns the heart toward nanak is absorbed in the Shabad.",
-  "whyItMatters": "It matters when life feels scattered, unsettled, and wandering because the shabad keeps restlessness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak is absorbed in the Shabad.",
+  "summary": "The shabad begins by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
+  "whyItMatters": "This is for the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within.",
+  "takeaway": "Stay still long enough for fresh Naam to settle.",
   "themes": [
     "restlessness",
     "fear",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the Immaculate Naam itself, ever-fresh, comes to abide within the mind.",
-    "The middle movement widens the correction through through 8.4 million lifetimes, they wander over and over again.",
-    "It closes with a return you can actually keep: nanak is absorbed in the Shabad."
+    "It opens with the True Guru breaking the old cycle of pain and return.",
+    "The middle gives understanding through the Shabad instead of through restless striving.",
+    "It ends with Naam arriving as something ever-fresh inside the mind itself."
   ],
   "keyVerseIds": [
     2771,
@@ -207,25 +207,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the Immaculate Naam itself, ever-fresh, comes to abide within the mind. It turns the heart toward nanak is absorbed in the Shabad.",
+      "coreClaim": "The shabad begins by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle movement widens the correction through through 8.4 million lifetimes, they wander over and over again.",
-      "practicalImplication": "Keep returning to this turn: Nanak is absorbed in the Shabad.",
+      "turn": "The middle gives understanding through the Shabad instead of through restless striving.",
+      "practicalImplication": "This is for the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within. Stay still long enough for fresh Naam to settle.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.87,
-      "overall": 4.02
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.36,
+      "beauty": 4.15,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

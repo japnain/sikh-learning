@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-231-2",
-  "title": "Praising The Naam, The Name",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Be brave enough to kill the inner tyrant",
+  "summary": "This meets the urge to look brave while arrogance still runs the house. The line says the real warrior subdues inner ego and redeems life through praise.",
+  "takeaway": "Fight the ego, not the room.",
+  "lifeApplication": "Before proving your strength to someone else, notice what inside still needs conquest. Use praise as the weapon before you use your voice.",
   "source": {
     "deepDiveId": "shabad-generated-231",
     "verseIds": [
       3458,
       3459
     ],
-    "shortMeaning": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Real courage subdues inner ego and lets praise redeem life.",
+    "lifeApplication": "When conflict sharpens you, aim first at the inner tyrant."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego; praising the Naam, the Name of the Lord, the Gurmukhs redeem their lives",
+      "coreClaim": "Real courage subdues inner ego and lets praise redeem life.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "Measure courage by how deeply ego is subdued.",
+      "practicalImplication": "Before proving your strength to someone else, notice what inside still needs conquest. Use praise as the weapon before you use your voice.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.91,
-      "clarity": 1.75,
-      "specificity": 4.68,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.11,
-      "overall": 3.58
+      "faithfulness": 4.16,
+      "clarity": 4.29,
+      "specificity": 4.73,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
+      "beauty": 4.17,
+      "overall": 4.07
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,9 +1,9 @@
 {
   "id": "guidance-name-needs-room",
-  "title": "If appetite fills the room, Naam cannot.",
-  "summary": "Guru's question is not whether pleasure exists, but whether endless appetite has left any inward space for remembrance.",
-  "takeaway": "What you feed all day eventually becomes what governs you.",
-  "lifeApplication": "Refuse one small indulgence today just to prove your heart is not fully owned by it.",
+  "title": "Make room for the Name by wanting less",
+  "summary": "This meets a life so crowded by appetite that the inner room stays noisy. The line asks what kind of gain still leaves space for Naam to live inside the heart.",
+  "takeaway": "Do not let appetite crowd out the Name.",
+  "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
@@ -11,8 +11,8 @@
       640,
       641
     ],
-    "shortMeaning": "Unexamined appetite crowds out remembrance.",
-    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+    "shortMeaning": "The Name needs an uncluttered heart, not one crammed with gain.",
+    "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Unexamined appetite crowds out remembrance.",
+      "coreClaim": "The Name needs an uncluttered heart, not one crammed with gain.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Guard the tongue, and the heart begins to clear.",
-      "practicalImplication": "Refuse one small indulgence today just to prove your heart is not fully owned by it.",
+      "turn": "Keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the next grasping move, ask what can actually travel with the soul.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
+      "faithfulness": 3.92,
       "clarity": 4.35,
-      "specificity": 4.9,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
+      "specificity": 4.51,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
       "beauty": 4.05,
-      "overall": 4.1
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

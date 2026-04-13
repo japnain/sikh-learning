@@ -1,9 +1,9 @@
 {
   "id": "guidance-doubt-cut-from-within",
-  "title": "Peace is not decorative when doubt has been cut out from within.",
-  "summary": "Guru links inward peace to an actual inner removal, not to external atmosphere alone.",
-  "takeaway": "Real calm is carved, not staged.",
-  "lifeApplication": "When you crave surface calm, ask what deeper confusion still needs truth instead.",
+  "title": "Return before reopening every question",
+  "summary": "This meets the mind that keeps reopening what was already clear enough to obey. The line cuts doubt from the inside by returning you to lived remembrance.",
+  "takeaway": "Stay with the line until doubt loses its room.",
+  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
@@ -11,8 +11,8 @@
       1294,
       1295
     ],
-    "shortMeaning": "Doubt is removed from within as one walks in Guru's will.",
-    "lifeApplication": "Let obedience go deeper than mood management."
+    "shortMeaning": "Doubt weakens when lived remembrance outruns inner argument.",
+    "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Doubt is removed from within as one walks in Guru's will.",
+      "coreClaim": "Doubt weakens when lived remembrance outruns inner argument.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Soft speech becomes believable when the ego has begun to bow.",
-      "practicalImplication": "When you crave surface calm, ask what deeper confusion still needs truth instead.",
+      "turn": "When remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
+      "faithfulness": 4.08,
       "clarity": 4.35,
-      "specificity": 4.37,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.22,
-      "beauty": 4.21,
-      "overall": 3.92
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

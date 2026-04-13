@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-bundle",
-  "title": "Sangat in one shorter sitting",
-  "subtitle": "A compact bundle for sangat",
-  "description": "The soul is being formed by company, whether that company is holy or not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "title": "Sangat, when you need it now",
+  "subtitle": "For when you need better company before better thinking",
+  "description": "A shorter sitting that gets the heart back into sangat before private weather takes over.",
   "durationLabel": "3-step bundle",
   "themes": [
     "sangat"
@@ -12,8 +12,8 @@
     "verseIds": [
       527
     ],
-    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
-    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+    "shortMeaning": "Holy company does for the heart what private effort cannot.",
+    "lifeApplication": "When you start wandering alone, move toward the company that steadies you."
   },
   "items": [
     {
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The soul is being formed by company, whether that company is holy or not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A shorter sitting that gets the heart back into sangat before private weather takes over.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A compact bundle for sangat",
+      "turn": "For when you need better company before better thinking",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.35,
-      "specificity": 4.17,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.68
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

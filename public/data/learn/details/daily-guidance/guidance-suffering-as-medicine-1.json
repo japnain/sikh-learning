@@ -1,16 +1,16 @@
 {
   "id": "guidance-suffering-as-medicine-1",
-  "title": "Suffering Is The Medicine, And Pleasure",
-  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "title": "Let pain teach what comfort keeps hiding",
+  "summary": "This meets the instinct to call pleasure blessing and pain failure. The line reverses that instinct by saying suffering can reopen desire for God.",
+  "takeaway": "Let pain expose what comfort keeps blurring.",
+  "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
       21090
     ],
-    "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Pain becomes medicine when it uncovers what comfort hides.",
+    "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -21,7 +21,7 @@
     "collection-anxiety-journey"
   ],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "attachment",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -37,25 +37,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God",
+      "coreClaim": "Pain becomes medicine when it uncovers what comfort hides.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "turn": "Let pain reveal what comfort keeps covering.",
+      "practicalImplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.85,
-      "clarity": 3.11,
-      "specificity": 4.8,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 3.37,
-      "overall": 3.8
+      "faithfulness": 4.19,
+      "clarity": 4.35,
+      "specificity": 4.94,
+      "emotionalHonesty": 3,
+      "usefulness": 4.04,
+      "beauty": 4.05,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

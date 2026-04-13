@@ -78,10 +78,10 @@
           12947,
           12950
         ],
-        "shortMeaning": "O Nanak, is the selfless servant who lives the Guru's wisdom; is to obey the Guru's Commands with all his mind",
-        "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line stay in charge of what comes next."
+        "shortMeaning": "Seva becomes trustworthy when it stays under the Guru's guidance.",
+        "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
       },
-      "explanation": "The shabad makes seva unmistakably inward as well as outward: obey the Guru, stop calling attention to yourself, serve without reward, and let the wisdom become your way of life."
+      "explanation": "The verse clears seva of self-advertisement by placing it back under the Guru's guidance."
     },
     {
       "source": {
@@ -91,10 +91,10 @@
           53371,
           53372
         ],
-        "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-        "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line stay in charge of what comes next."
+        "shortMeaning": "Service is purified when it is given back to obedience.",
+        "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
       },
-      "explanation": "Service is separated from spiritual theatre here. Honest work and giving are treated as the recognisable path, not the performance of holiness."
+      "explanation": "Gurbani does not let service become a private performance here. The line gives the work back to obedience."
     },
     {
       "source": {
@@ -104,10 +104,10 @@
           11745,
           11747
         ],
-        "shortMeaning": "is to erase the filth of the dirty mind in the Company of the Holy; is to chant the Name of the Lord and maintain pure conduct",
-        "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line stay in charge of what comes next."
+        "shortMeaning": "Holy company keeps service from collapsing back into self-concern.",
+        "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
       },
-      "explanation": "Seva has to be carried by clean conduct and inward remembrance, or it eventually becomes ego in service-clothing. This line keeps the heart of the work honest."
+      "explanation": "The line widens seva by placing it in holy company, where the self has fewer places to hide."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -121,11 +121,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Service in the work already in front of you",
-      "issueStatement": "You may be waiting for obviously spiritual work while overlooking the ordinary labor, care, and attention that could already become service.",
-      "centralInsight": "The Guru does not separate seva from daily work so quickly. Fidelity in the ordinary can also be offering.",
-      "practicalReflection": "The day is full of chances to serve without announcement. The difficulty is that they often look small and unremarkable.",
-      "actionPrompt": "Turn one necessary task today into service by doing it cleanly, quietly, and without inward complaint.",
+      "title": "When service needs its center back before the day gets away from you",
+      "issueStatement": "The work may still be happening, but the heart has started bargaining with it. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+      "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. The Guru addresses errands, delays, and common rooms as real sites of practice.",
+      "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
+      "actionPrompt": "Before the day gathers more speed, do one needed thing today without carrying it back into self-advertisement.",
       "searchTerms": [
         "seva",
         "service",
@@ -150,10 +150,10 @@
             "verseIds": [
               12943
             ],
-            "shortMeaning": "He is not to call attention to himself in any way",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by steadier return.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "Ordinary life is already being addressed here: he is not to call attention to himself in any way."
+          "explanation": "In the ordinary day, the verse turns seva toward steadier return instead of self-enclosure."
         },
         {
           "source": {
@@ -162,10 +162,10 @@
               53369,
               53371
             ],
-            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "The teaching meets routine before the room becomes ideal. Do one hidden act of service that does not return to self-advertisement. Let the line meet the part of the day already in front of you."
+          "explanation": "The daily moment changes here because seva is not left alone with itself."
         },
         {
           "source": {
@@ -174,48 +174,49 @@
               749,
               754
             ],
-            "shortMeaning": "How can we describe Him with words? There is no end to the descriptions of Him",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "Seva is checked here by steadier return.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "This makes daily faithfulness concrete: how can we describe Him with words? There is no end to the descriptions of Him."
+          "explanation": "This keeps the day from shrinking around seva; the heart is returned to steadier return."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seva:daily",
         "evidence": {
-          "coreClaim": "The Guru does not separate seva from daily work so quickly. Fidelity in the ordinary can also be offering.",
+          "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. The Guru addresses errands, delays, and common rooms as real sites of practice.",
           "emotionalState": "self-conscious, performing, eager-to-be-seen",
-          "turn": "You may be waiting for obviously spiritual work while overlooking the ordinary labor, care, and attention that could already become service.",
-          "practicalImplication": "Turn one necessary task today into service by doing it cleanly, quietly, and without inward complaint.",
+          "turn": "The work may still be happening, but the heart has started bargaining with it. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+          "practicalImplication": "Before the day gathers more speed, do one needed thing today without carrying it back into self-advertisement.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.23,
+          "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.72,
-          "usefulness": 3.66,
-          "beauty": 4.45,
-          "overall": 4.26
+          "emotionalHonesty": 4,
+          "usefulness": 4.26,
+          "beauty": 4.21,
+          "overall": 4.37
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Service when urgency steals tenderness",
-      "issueStatement": "Under pressure, service can become efficient but loveless, dutiful but impatient, helpful but spiritually empty.",
-      "centralInsight": "Gurbani refuses to let urgency become an excuse for losing humility. True service keeps its center even when the pace rises.",
-      "practicalReflection": "Pressure reveals whether you were serving the person, the task, or your own idea of usefulness.",
-      "actionPrompt": "In the next demanding moment, do the needed work without letting haste strip away gentleness.",
+      "title": "When service needs its center back and the room gets tight",
+      "issueStatement": "The work may still be happening, but the heart has started bargaining with it. Under strain, the body starts choosing before discernment has properly arrived.",
+      "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. The line has to interrupt panic before panic becomes posture.",
+      "practicalReflection": "Pressure makes hidden loyalties visible. If seva reaches first for force, the line has to reach first for truth.",
+      "actionPrompt": "At the first embodied sign of pressure, do one needed thing today without carrying it back into self-advertisement.",
       "searchTerms": [
         "seva",
         "service",
@@ -243,10 +244,10 @@
               53369,
               53371
             ],
-            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Seva is not left to rule the strained moment.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "Under strain, the line stays exact: one who calls himself a guru or a spiritual teacher, while he goes around."
+          "explanation": "Under pressure, the verse steadies seva by returning the heart to the Guru's guidance."
         },
         {
           "source": {
@@ -255,10 +256,10 @@
               3444,
               3445
             ],
-            "shortMeaning": "In the love of duality, they try to teach the world, but they do not understand meditative contemplation; they die, only to be re-born, over and over again",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Seva is not left to rule the strained moment.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "The next faithful move is smaller than panic wants. Do one hidden act of service that does not return to self-advertisement. Let the line decide the next tone before urgency does."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -266,48 +267,49 @@
             "verseIds": [
               5592
             ],
-            "shortMeaning": "the Guru is the House of ice. The Guru is the Light of the three worlds",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through the Guru's guidance.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "This line keeps urgency from becoming the only narrator in the room."
+          "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seva:pressure",
         "evidence": {
-          "coreClaim": "Gurbani refuses to let urgency become an excuse for losing humility. True service keeps its center even when the pace rises.",
+          "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. The line has to interrupt panic before panic becomes posture.",
           "emotionalState": "pretending, unclear, performing",
-          "turn": "Under pressure, service can become efficient but loveless, dutiful but impatient, helpful but spiritually empty.",
-          "practicalImplication": "In the next demanding moment, do the needed work without letting haste strip away gentleness.",
+          "turn": "The work may still be happening, but the heart has started bargaining with it. Under strain, the body starts choosing before discernment has properly arrived.",
+          "practicalImplication": "At the first embodied sign of pressure, do one needed thing today without carrying it back into self-advertisement.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.18,
-          "usefulness": 3.6,
-          "beauty": 4.37,
-          "overall": 4.14
+          "clarity": 4.23,
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.04,
+          "beauty": 4.29,
+          "overall": 4.27
         },
         "strengths": [
           "specificity",
           "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Returning when service became self-serving",
-      "issueStatement": "You can feel that the work drifted toward ego, resentment, or control, but the mind would rather blame the people around you than face that drift.",
-      "centralInsight": "Repair in seva begins with motive, not image. The Guru brings the heart back to offering before it redesigns the appearance of service.",
-      "practicalReflection": "It is possible to keep serving outwardly while the inward act has already soured. Honest repair addresses that inward souring directly.",
-      "actionPrompt": "Confess where service became about self, then do one hidden act of care that earns you nothing back.",
+      "title": "When service needs its center back after the slip",
+      "issueStatement": "The work may still be happening, but the heart has started bargaining with it. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
+      "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
+      "actionPrompt": "Before the excuse or self-punishment starts, do one needed thing today without carrying it back into self-advertisement.",
       "searchTerms": [
         "seva",
         "service",
@@ -335,10 +337,10 @@
               749,
               754
             ],
-            "shortMeaning": "How can we describe Him with words? There is no end to the descriptions of Him",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "Return is still being offered here: how can we describe Him with words? There is no end to the descriptions of Him."
+          "explanation": "After the slip, the verse keeps return possible through steadier return."
         },
         {
           "source": {
@@ -346,10 +348,10 @@
             "verseIds": [
               3444
             ],
-            "shortMeaning": "In the love of duality, they try to teach the world, but they do not understand meditative contemplation",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Seva is not allowed to become identity here.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Do one hidden act of service that does not return to self-advertisement. Let the next return stay smaller and truer than the slip."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -357,48 +359,49 @@
             "verseIds": [
               7138
             ],
-            "shortMeaning": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Seva is not allowed to become identity here.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "Truth and return are kept close enough here to move together."
+          "explanation": "Repair stays honest here because seva is answered without theatre."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seva:repair",
         "evidence": {
-          "coreClaim": "Repair in seva begins with motive, not image. The Guru brings the heart back to offering before it redesigns the appearance of service.",
+          "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
           "emotionalState": "inflated, defensive, self-protective",
-          "turn": "You can feel that the work drifted toward ego, resentment, or control, but the mind would rather blame the people around you than face that drift.",
-          "practicalImplication": "Confess where service became about self, then do one hidden act of care that earns you nothing back.",
+          "turn": "The work may still be happening, but the heart has started bargaining with it. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "Before the excuse or self-punishment starts, do one needed thing today without carrying it back into self-advertisement.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.23,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.9,
-          "usefulness": 3.22,
-          "beauty": 4.45,
-          "overall": 4.19
+          "clarity": 4.29,
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.26,
+          "beauty": 4.17,
+          "overall": 4.32
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Making service steady enough to shape you",
-      "issueStatement": "Helping once is easier than becoming a person whose time, habits, and ego are quietly rearranged by service.",
-      "centralInsight": "Gurbani makes seva durable by tying it to hiddenness, obedience, and remembrance. Real service keeps going when there is no applause to feed it.",
-      "practicalReflection": "The question is not whether you can be generous on a good day. It is whether your hands stay available when the work is repetitive, inconvenient, or unseen.",
-      "actionPrompt": "Choose one recurring act of care you will keep without announcing it, and let consistency, not visibility, become the offering.",
+      "title": "When seva needs a rule you can keep",
+      "issueStatement": "The work may still be happening, but the heart has started bargaining with it. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
+      "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani trains posture through kept repetition, not spiritual weather.",
+      "practicalReflection": "Repeated return is what changes pace. Without a kept cue, seva will keep reclaiming the room on strong days and weak ones alike.",
+      "actionPrompt": "For the next seven days at the same cue, do one needed thing today without carrying it back into self-advertisement.",
       "searchTerms": [
         "seva",
         "service",
@@ -431,10 +434,10 @@
               12947,
               12950
             ],
-            "shortMeaning": "O Nanak, is the selfless servant who lives the Guru's wisdom; one who sells his mind to the True Guru",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives seva a keepable form through the Guru's guidance.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "The form of lasting seva is explicit here: the mind is handed to the Guru, service is rendered without reward, and the whole thing is finally held inside grace rather than self-congratulation."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         },
         {
           "source": {
@@ -444,10 +447,10 @@
               1290,
               1296
             ],
-            "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Seva is trained through repeated return to Naam and praise.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "Service training is not only in the hands. Sweet speech, humble conduct, and the erosion of ego show whether care has actually entered the heart."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -457,38 +460,39 @@
               11747,
               11750
             ],
-            "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
-            "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Seva is trained through repeated return to Naam and praise.",
+            "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
           },
-          "explanation": "A durable seva life is carried by pure conduct and continuous remembrance, not occasional usefulness. The heart becomes a true place of service when Naam is allowed to live there."
+          "explanation": "As practice, the verse keeps returning seva to Naam and praise."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seva:practice",
         "evidence": {
-          "coreClaim": "Gurbani makes seva durable by tying it to hiddenness, obedience, and remembrance. Real service keeps going when there is no applause to feed it.",
+          "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani trains posture through kept repetition, not spiritual weather.",
           "emotionalState": "self-conscious, performing, eager-to-be-seen",
-          "turn": "Helping once is easier than becoming a person whose time, habits, and ego are quietly rearranged by service.",
-          "practicalImplication": "Choose one recurring act of care you will keep without announcing it, and let consistency, not visibility, become the offering.",
+          "turn": "The work may still be happening, but the heart has started bargaining with it. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
+          "practicalImplication": "For the next seven days at the same cue, do one needed thing today without carrying it back into self-advertisement.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 4,
-          "usefulness": 3.98,
-          "beauty": 4.69,
-          "overall": 4.37
+          "specificity": 5,
+          "emotionalHonesty": 3.9,
+          "usefulness": 4.26,
+          "beauty": 4.37,
+          "overall": 4.38
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -524,7 +528,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:seva",
     "evidence": {
@@ -538,15 +542,16 @@
       "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 4,
-      "usefulness": 4.04,
+      "emotionalHonesty": 3.9,
+      "usefulness": 4.42,
       "beauty": 4.21,
-      "overall": 4.34
+      "overall": 4.38
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-509",
-  "title": "This Mind Does Not Hold Still, Even",
+  "title": "Restlessness reveals what the heart still loves",
   "subtitle": "Raag Gauree · Ang 170",
-  "summary": "This shabad opens with this mind does not hold still, even for an instant. Distracted by all sorts. It turns the heart toward for my failings and mistakes, O Guru, grant me Your Grace.",
-  "whyItMatters": "It matters when life feels scattered, unsettled, and wandering because the shabad keeps restlessness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
+  "summary": "The shabad begins with a mind that will not stay still for an instant. It turns through the Guru's gift of Naam and quiet, then exposes false aims in hearts lacking love for the Lord.",
+  "whyItMatters": "This is for the person mistaking movement for aliveness. Held honestly, it shows restlessness as a love problem before it is merely an attention problem.",
+  "takeaway": "Love for the Lord gathers what distraction keeps scattering.",
   "themes": [
     "restlessness",
     "comparison",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: this mind does not hold still, even for an instant. Distracted by all sorts.",
-    "The middle movement widens the correction through he has carried me across the treacherous and terrifying world-ocean.",
-    "It closes with a return you can actually keep: for my failings and mistakes, O Guru, grant me Your Grace."
+    "It opens with the mind wandering in ten directions and unable to settle.",
+    "The middle receives Naam and quiet from the Guru instead of trying to manufacture calm.",
+    "It ends by exposing false goals as the fruit of a heart still lacking love for the Lord."
   ],
   "keyVerseIds": [
     7107,
@@ -144,25 +144,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with this mind does not hold still, even for an instant. Distracted by all sorts. It turns the heart toward for my failings and mistakes, O Guru, grant me Your Grace.",
+      "coreClaim": "The shabad begins with a mind that will not stay still for an instant. It turns through the Guru's gift of Naam and quiet, then exposes false aims in hearts lacking love for the Lord.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle movement widens the correction through he has carried me across the treacherous and terrifying world-ocean.",
-      "practicalImplication": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
+      "turn": "The middle receives Naam and quiet from the Guru instead of trying to manufacture calm.",
+      "practicalImplication": "This is for the person mistaking movement for aliveness. Held honestly, it shows restlessness as a love problem before it is merely an attention problem. Love for the Lord gathers what distraction keeps scattering.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.27,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.57,
-      "overall": 3.92
+      "clarity": 4.23,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.82,
+      "beauty": 4.44,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

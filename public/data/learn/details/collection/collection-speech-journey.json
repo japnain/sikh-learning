@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-journey",
   "title": "From Speech to steadier practice",
-  "subtitle": "A deliberate path through speech",
-  "description": "Guru makes speech answer to praise, restraint, and truthfulness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when speech keeps steering the day",
+  "description": "Follow speech back to the heart that formed it. These readings put the tongue under praise, restraint, and truth before damage hardens.",
   "durationLabel": "5-step journey",
   "themes": [
     "speech",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru makes speech answer to praise, restraint, and truthfulness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow speech back to the heart that formed it. These readings put the tongue under praise, restraint, and truth before damage hardens.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A deliberate path through speech",
+      "turn": "For when speech keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 4.05,
-      "specificity": 4.23,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.88
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.04
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-361-1",
-  "title": "First, The Baby Loves Mother's Milk",
-  "summary": "Greed is named plainly here before the mind has time to decorate it.",
-  "takeaway": "First, the baby loves mother's milk",
-  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Begin with the part of the day already in front of you.",
+  "title": "Notice how appetite grows",
+  "summary": "This meets the excuse that craving is harmless because it feels natural. The line begins at the first attachment and starts tracing how appetite learns to rule.",
+  "takeaway": "Catch craving while it is still small.",
+  "lifeApplication": "Before indulging the next impulse, ask what this wanting first felt like in the body: milk, comfort, attention, relief. Name the pattern early enough to interrupt it.",
   "source": {
     "deepDiveId": "shabad-generated-361",
     "verseIds": [
       5595
     ],
-    "shortMeaning": "First, the baby loves mother's milk",
-    "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Greed becomes clearer when its early growth is honestly named.",
+    "lifeApplication": "When craving rises, trace it back early enough to keep it from maturing."
   },
   "relatedTopicIds": [
     "topic-greed"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "First, the baby loves mother's milk",
+      "coreClaim": "Greed becomes clearer when its early growth is honestly named.",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "Keep returning to this turn: Without the Guru, the world is drowning.",
-      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. Begin with the part of the day already in front of you.",
+      "turn": "Greed becomes easier to face when its growth is named.",
+      "practicalImplication": "Before indulging the next impulse, ask what this wanting first felt like in the body: milk, comfort, attention, relief. Name the pattern early enough to interrupt it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.11,
-      "specificity": 4.35,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.82,
-      "beauty": 3.89,
-      "overall": 3.92
+      "faithfulness": 4.26,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.8,
+      "beauty": 4.05,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

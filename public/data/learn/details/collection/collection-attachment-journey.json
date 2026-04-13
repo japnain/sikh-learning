@@ -1,8 +1,8 @@
 {
   "id": "collection-attachment-journey",
   "title": "From Attachment to steadier practice",
-  "subtitle": "A deliberate path through attachment",
-  "description": "Guru teaches love without possession and steadiness without denial. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when attachment keeps steering the day",
+  "description": "Follow desire to the point where love starts acting like ownership. These readings loosen the grip without hardening the heart.",
   "durationLabel": "5-step journey",
   "themes": [
     "attachment",
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru teaches love without possession and steadiness without denial. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow desire to the point where love starts acting like ownership. These readings loosen the grip without hardening the heart.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "A deliberate path through attachment",
+      "turn": "For when attachment keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 4.05,
-      "specificity": 4.29,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.94,
+      "clarity": 4.35,
+      "specificity": 4.16,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.84
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

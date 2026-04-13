@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-151-1",
-  "title": "Meeting With The Humble Beings, O Siblings",
-  "summary": "Anger is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+  "title": "Go where death loses its swagger",
+  "summary": "This meets the inflamed self that keeps fighting alone. The line says humble company breaks the fear hiding underneath the heat.",
+  "takeaway": "Move toward company that weakens pride.",
+  "lifeApplication": "Before the next reply, raised voice, or hard stare, leave the doorway and sit near the quieter person in the room. Let humble company lower the body before anger calls itself courage.",
   "source": {
     "deepDiveId": "shabad-generated-151",
     "verseIds": [
       2099
     ],
-    "shortMeaning": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Humble company lowers fear and brings the heart under grace.",
+    "lifeApplication": "When the body prepares to fight, move toward the humble before speaking."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -23,7 +23,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered",
+      "coreClaim": "Humble company lowers fear and brings the heart under grace.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+      "turn": "Move toward the humble until fear loses its command.",
+      "practicalImplication": "Before the next reply, raised voice, or hard stare, leave the doorway and sit near the quieter person in the room. Let humble company lower the body before anger calls itself courage.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.65,
-      "clarity": 3.58,
-      "specificity": 4.43,
+      "faithfulness": 4.28,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.43,
-      "overall": 3.77
+      "usefulness": 4.48,
+      "beauty": 4.37,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

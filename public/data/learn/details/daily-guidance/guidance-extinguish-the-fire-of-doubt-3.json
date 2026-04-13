@@ -1,17 +1,17 @@
 {
   "id": "guidance-extinguish-the-fire-of-doubt-3",
-  "title": "Give Up Your Selfishness, And You Shall",
-  "summary": "The shabad does not leave doubt at diagnosis. It turns toward return.",
-  "takeaway": "like water mingling with water, you shall merge in absorption",
-  "lifeApplication": "Return to one clear line before reopening every question at once. After the reaction, make the next return smaller and truer.",
+  "title": "Drop the private case",
+  "summary": "This meets the mind that wants peace without giving up its self-importance. The line says doubt clears when selfishness loosens inside true company.",
+  "takeaway": "Lay down selfishness and rejoin peace.",
+  "lifeApplication": "Before reopening the argument in your head, sit down among the truthful and stop defending the old position. Let one honest word dissolve the case you keep building.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       924,
       925
     ],
-    "shortMeaning": "Join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "True company loosens selfishness, and peace returns without inner bargaining.",
+    "lifeApplication": "Before another inner argument, move toward company that can tell you the truth."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Join the Sat Sangat, the True Congregation, and find the Lord. The Gurmukh embraces love for the Lord; like water mingling with water, you shall merge in absorption",
+      "coreClaim": "True company loosens selfishness, and peace returns without inner bargaining.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. After the reaction, make the next return smaller and truer.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before reopening the argument in your head, sit down among the truthful and stop defending the old position. Let one honest word dissolve the case you keep building.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 3.93,
-      "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.48,
-      "beauty": 3.93,
-      "overall": 4.1
+      "faithfulness": 4.21,
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.53,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

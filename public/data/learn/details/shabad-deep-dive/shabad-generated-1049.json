@@ -144,22 +144,23 @@
       "coreClaim": "This shabad opens with god, the Forgiving Lord, is kind to the poor. It turns the heart toward nanak has entered Your Sanctuary, O Supreme Lord God.",
       "emotionalState": "envious, unsettled, small",
       "turn": "The middle movement widens the correction through the Support of the breath of life of His devotees.",
-      "practicalImplication": "Keep returning to this turn: Nanak has entered Your Sanctuary, O Supreme Lord God.",
+      "practicalImplication": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: Nanak has entered Your Sanctuary, O Supreme Lord God.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 3.63,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.79,
-      "overall": 3.97
+      "usefulness": 3.98,
+      "beauty": 4.11,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

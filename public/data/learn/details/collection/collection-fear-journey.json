@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-journey",
   "title": "From Fear to steadier practice",
-  "subtitle": "A deliberate path through fear",
-  "description": "Guru answers fear by restoring the presence, shelter, and command of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when fear keeps steering the day",
+  "description": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
   "durationLabel": "5-step journey",
   "themes": [
     "fear",
@@ -13,8 +13,8 @@
     "verseIds": [
       4132
     ],
-    "shortMeaning": "You are my Father, and You are my Mother",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
+    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
   },
   "items": [
     {
@@ -55,25 +55,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "A deliberate path through fear",
+      "turn": "For when fear keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 3.65,
-      "specificity": 4.23,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.78
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-645-3",
-  "title": "Says Nanak, The Divine Light Has Dawned",
-  "summary": "The shabad does not leave fear at diagnosis. It turns toward return.",
-  "takeaway": "Says Nanak, the Divine Light has dawned within my mind",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+  "title": "Stand where fear cannot rule",
+  "summary": "This meets the mind starting to organize itself around threat instead of truth. The line calls for shelter before fear becomes the only voice in the room.",
+  "takeaway": "Reverence gives the heart another center besides fear.",
+  "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you.",
   "source": {
     "deepDiveId": "shabad-generated-645",
     "verseIds": [
       8852,
       8854
     ],
-    "shortMeaning": "The Saints have given me the Mantra of the Fearless Lord, and now I; says Nanak, the Divine Light has dawned within my mind",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Reverence gives the heart another center besides fear.",
+    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Saints have given me the Mantra of the Fearless Lord, and now I; says Nanak, the Divine Light has dawned within my mind",
+      "coreClaim": "Reverence gives the heart another center besides fear.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+      "turn": "Call for shelter before fear becomes your only voice.",
+      "practicalImplication": "When fear starts ruling the body, stand still long enough to remember what holds you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.15,
-      "clarity": 3.93,
-      "specificity": 5,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.93,
-      "overall": 4.17
+      "faithfulness": 4.24,
+      "clarity": 4.05,
+      "specificity": 4.81,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.82,
+      "beauty": 4.17,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

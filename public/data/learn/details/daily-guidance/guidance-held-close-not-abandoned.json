@@ -1,17 +1,17 @@
 {
   "id": "guidance-held-close-not-abandoned",
-  "title": "Nearness is still available, even when you feel small.",
-  "summary": "The shabad names the humble servant as held close. Smallness is not the same thing as abandonment.",
-  "takeaway": "Do not read your current weakness as distance from care.",
-  "lifeApplication": "When insecurity rises, answer it with nearness instead of self-attack.",
+  "title": "Held close in the hidden hour",
+  "summary": "This meets the hour when distance feels more believable than care. The line answers by naming a closeness the Lord Himself keeps.",
+  "takeaway": "Believe the clasp before the silence.",
+  "lifeApplication": "When rejection or silence starts narrating your worth, put a hand on the chest and repeat the line until closeness sounds truer than absence.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
       37474,
       37476
     ],
-    "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
-    "lifeApplication": "You do not need status to be held close."
+    "shortMeaning": "The Lord keeps the humble servant near, against His own heart.",
+    "lifeApplication": "When silence starts sounding final, repeat the line until closeness feels truer than absence."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Praise and nearness belong together in the life of the humble servant.",
+      "coreClaim": "The Lord keeps the humble servant near, against His own heart.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Nearness is received in humility, not built out of status.",
-      "practicalImplication": "When insecurity rises, answer it with nearness instead of self-attack.",
+      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "When rejection or silence starts narrating your worth, put a hand on the chest and repeat the line until closeness sounds truer than absence.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
+      "faithfulness": 4.12,
       "clarity": 4.35,
-      "specificity": 4.38,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.22,
-      "beauty": 4.69,
-      "overall": 4
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.88,
+      "beauty": 4.37,
+      "overall": 4.15
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

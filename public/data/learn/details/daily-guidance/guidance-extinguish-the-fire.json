@@ -1,9 +1,9 @@
 {
   "id": "guidance-extinguish-the-fire",
-  "title": "Doubt is not sophistication if it is scorching you.",
-  "summary": "A mind can rehearse questions so long that the questions begin to feel like identity. Guru names that state as inner fire.",
-  "takeaway": "Not every unresolved thought deserves lifelong tenancy.",
-  "lifeApplication": "Write down the question you keep circling, then write the instruction you already know and keep delaying.",
+  "title": "Wandering will not quench this fire",
+  "summary": "This meets the restless search for clarity through more movement, more content, and more distance. The line says doubt is not burned out by travel but by the Guru's word within.",
+  "takeaway": "Movement does not cure inward doubt.",
+  "lifeApplication": "Before opening another tab, book, or plan, sit still with one clear line until the inner heat drops.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
@@ -11,8 +11,8 @@
       921,
       922
     ],
-    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-    "lifeApplication": "Move from circling to obedience."
+    "shortMeaning": "Doubt is quenched inwardly, not by more wandering.",
+    "lifeApplication": "Sit still with one clear line before you go searching again."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "The fire is inside, and the Guru-word is meant to address the inside first.",
+      "coreClaim": "Doubt is quenched inwardly, not by more wandering.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Write down the question you keep circling, then write the instruction you already know and keep delaying.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before opening another tab, book, or plan, sit still with one clear line until the inner heat drops.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
+      "faithfulness": 4.14,
       "clarity": 4.35,
-      "specificity": 4.32,
+      "specificity": 4.89,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
+      "usefulness": 4.04,
       "beauty": 4.05,
-      "overall": 3.97
+      "overall": 4.17
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-selfless-service-3",
-  "title": "Shall Attain His Lord And Master",
-  "summary": "The shabad does not leave seva at diagnosis. It turns toward return.",
-  "takeaway": "shall attain his Lord and Master",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+  "title": "Serve without auditioning for reward",
+  "summary": "This meets the subtle bargain hiding inside good work. The line says service becomes true when reward is not the secret reason.",
+  "takeaway": "Serve until reward stops leading you.",
+  "lifeApplication": "Before volunteering, helping, or posting about it, ask what part of you wants to be seen. Do the quieter version and keep the heart with the Guru.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12947,
       12948
     ],
-    "shortMeaning": "One who performs selfless service, without thought of reward",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Selfless service reaches the Lord when reward is no longer the motive.",
+    "lifeApplication": "Before doing good visibly, choose the form of service that leaves less of you on display."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who performs selfless service, without thought of reward",
+      "coreClaim": "Selfless service reaches the Lord when reward is no longer the motive.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+      "turn": "Service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "Before volunteering, helping, or posting about it, ask what part of you wants to be seen. Do the quieter version and keep the heart with the Guru.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.86,
-      "clarity": 4.17,
-      "specificity": 4.63,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 4.09,
-      "overall": 4.01
+      "faithfulness": 4.26,
+      "clarity": 4.35,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.82,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

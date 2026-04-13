@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-bundle",
   "title": "Ego in one shorter sitting",
-  "subtitle": "A compact bundle for ego",
-  "description": "The self keeps pushing itself to the center of the room. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when ego is already close",
+  "description": "A short correction for the hour when the self is filling the room. It lowers the center of gravity before ego starts naming reality.",
   "durationLabel": "3-step bundle",
   "themes": [
     "ego"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The self keeps pushing itself to the center of the room. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short correction for the hour when the self is filling the room. It lowers the center of gravity before ego starts naming reality.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "A compact bundle for ego",
+      "turn": "A shorter sitting for when ego is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 3.65,
-      "specificity": 4.13,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.73
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

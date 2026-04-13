@@ -1,8 +1,8 @@
 {
   "id": "collection-discipline-to-forgiveness-79",
-  "title": "Discipline to Forgiveness",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+  "title": "When discipline learns to release",
+  "subtitle": "When discipline has gone hard around the wound",
+  "description": "These readings break the hard link between obedience and punishment before pain starts calling itself principle.",
   "durationLabel": "6-step journey",
   "themes": [
     "discipline",
@@ -13,8 +13,8 @@
     "verseIds": [
       292
     ],
-    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
-    "lifeApplication": "Return your attention from other people to the state of your own mind."
+    "shortMeaning": "Discipline rots when pain becomes its law; forgiveness keeps it clean.",
+    "lifeApplication": "When your rule gets hard, let one act of forgiveness interrupt it."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+      "coreClaim": "These readings break the hard link between obedience and punishment before pain starts calling itself principle.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When discipline has gone hard around the wound",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.75,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.85
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-forgiveness-becomes-fearless-1",
-  "title": "To Practice Forgiveness Is The True Fast",
-  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "To practice forgiveness is the true fast, good conduct and contentment",
-  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "title": "Practice forgiveness until fear loosens",
+  "summary": "This meets resentment disguised as strength. The line makes forgiveness a discipline of conduct and contentment, not a soft feeling.",
+  "takeaway": "Forgive until fear loses ground.",
+  "lifeApplication": "When the wound starts speaking again, notice the jaw and stomach before the story hardens. Release one rehearsed sentence and let the body stop preparing for battle.",
   "source": {
     "deepDiveId": "shabad-forgiveness-becomes-fearless",
     "verseIds": [
       9600
     ],
-    "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
-    "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Forgiveness, conduct, and contentment form the fast that frees the heart.",
+    "lifeApplication": "When resentment rises, drop one sentence you keep feeding and stay with the breath."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "To practice forgiveness is the true fast, good conduct and contentment",
+      "coreClaim": "Forgiveness, conduct, and contentment form the fast that frees the heart.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "Forgive deeply enough that fear loses its throne.",
-      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "turn": "Forgiveness, conduct, and contentment free the heart from fear.",
+      "practicalImplication": "When the wound starts speaking again, notice the jaw and stomach before the story hardens. Release one rehearsed sentence and let the body stop preparing for battle.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 3.87,
-      "specificity": 4.43,
+      "faithfulness": 4.26,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.67,
-      "overall": 3.89
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

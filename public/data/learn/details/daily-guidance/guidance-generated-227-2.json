@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-227-2",
-  "title": "Everyone Begs From You, And All Offer",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "All are Yours, and You belong to all. You are the wealth of all; everyone begs from You, and all offer prayers to You each day",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Receive the belonging you did not manufacture",
+  "summary": "This meets the self that keeps trying to secure belonging through position or force. The line says belonging is received from the One who already holds everyone.",
+  "takeaway": "Belonging is received, not manufactured.",
+  "lifeApplication": "Before defending your place in the room, remember who already holds you there.",
   "source": {
     "deepDiveId": "shabad-generated-227",
     "verseIds": [
       3436,
       3437
     ],
-    "shortMeaning": "All are Yours, and You belong to all. You are the wealth of all; everyone begs from You, and all offer prayers to You each day",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Belonging is received from the One who already holds everyone.",
+    "lifeApplication": "Before defending your place, remember who already holds you there."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "All are Yours, and You belong to all. You are the wealth of all; everyone begs from You, and all offer prayers to You each day",
+      "coreClaim": "Belonging is received from the One who already holds everyone.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "Belonging is received from the One who holds everyone.",
+      "practicalImplication": "Before defending your place in the room, remember who already holds you there.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 3.03,
-      "specificity": 4.62,
+      "faithfulness": 4.4,
+      "clarity": 3.99,
+      "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 2.94,
-      "overall": 3.74
+      "usefulness": 4.2,
+      "beauty": 4.13,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

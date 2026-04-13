@@ -1,9 +1,9 @@
 {
   "id": "guidance-stay-near-sangat",
-  "title": "Some fires go out only in better company.",
-  "summary": "Guru does not tell the doubting mind to solve itself alone. Guru sends it toward saint company and shared remembrance.",
-  "takeaway": "Isolation is not always depth.",
-  "lifeApplication": "Make one concrete move toward company that makes Naam easier, not noisier.",
+  "title": "Go where selfishness can soften",
+  "summary": "This meets the day when private effort has turned stale and self-absorbed. The line says peace returns by joining true company, dropping selfishness, and letting the heart be carried with others.",
+  "takeaway": "Go where selfishness can soften.",
+  "lifeApplication": "When you start brooding alone, physically move toward sangat: the gurdwara, the call, the elder, the friend who makes truth easier. Do not let private weather make the next decision.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
@@ -11,8 +11,8 @@
       925,
       930
     ],
-    "shortMeaning": "Saint company cools the body and changes the outcome of the crossing.",
-    "lifeApplication": "Let belonging become part of your discipline."
+    "shortMeaning": "True company softens selfishness and lets the heart merge into peace.",
+    "lifeApplication": "When private weather thickens, move toward the company that makes truth easier."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Saint company cools the body and changes the outcome of the crossing.",
+      "coreClaim": "True company softens selfishness and lets the heart merge into peace.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Make one concrete move toward company that makes Naam easier, not noisier.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "When you start brooding alone, physically move toward sangat: the gurdwara, the call, the elder, the friend who makes truth easier. Do not let private weather make the next decision.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 4.35,
-      "specificity": 4.35,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 3.89
+      "faithfulness": 4.06,
+      "clarity": 4.23,
+      "specificity": 4.81,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.29,
+      "overall": 4.15
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

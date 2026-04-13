@@ -1,8 +1,8 @@
 {
   "id": "collection-seeking-to-self-worth-99",
-  "title": "Seeking to Self-Worth",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers seeking by showing where wandering ends and dwelling begins. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+  "title": "When seeking is really a wound of worth",
+  "subtitle": "When searching is trying to prove you are enough",
+  "description": "These readings separate honest seeking from the ache to justify yourself, then return the heart to given dignity.",
   "durationLabel": "6-step journey",
   "themes": [
     "seeking",
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+      "coreClaim": "These readings separate honest seeking from the ache to justify yourself, then return the heart to given dignity.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When searching is trying to prove you are enough",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.75,
-      "specificity": 4.25,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.85
+      "overall": 4.04
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

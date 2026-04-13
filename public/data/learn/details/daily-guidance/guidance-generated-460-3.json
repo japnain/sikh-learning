@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-460-3",
-  "title": "They Merge Into The Lord, And Their",
-  "summary": "The shabad does not leave gratitude at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, they merge into the Lord, and their doubts are cast away",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+  "title": "Let the filled heart leave doubt behind",
+  "summary": "This meets the mind that keeps reopening uncertainty. The line says wholeness comes when the heart is filled with the Lord day and night, and doubt falls away there.",
+  "takeaway": "Keep the heart full enough for doubt to fall away.",
+  "lifeApplication": "When uncertainty returns at night, at the sink, or before the message, stay with remembrance until the heart feels full again. Do not restart the argument while the line is still doing its work.",
   "source": {
     "deepDiveId": "shabad-generated-460",
     "verseIds": [
       6412,
       6413
     ],
-    "shortMeaning": "Those whose hearts are filled with the Lord, day and night, are perfect; o Nanak, they merge into the Lord, and their doubts are cast away",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "A heart filled with the Lord is made whole, and doubt falls away.",
+    "lifeApplication": "When uncertainty returns, keep the line in the body instead of restarting the argument."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -24,7 +24,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "doubt",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Those whose hearts are filled with the Lord, day and night, are perfect; o Nanak, they merge into the Lord, and their doubts are cast away",
+      "coreClaim": "A heart filled with the Lord is made whole, and doubt falls away.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, they merge into the Lord, and their doubts are cast away.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+      "turn": "Taste Naam deeply enough that lesser fears stop governing you.",
+      "practicalImplication": "When uncertainty returns at night, at the sink, or before the message, stay with remembrance until the heart feels full again. Do not restart the argument while the line is still doing its work.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 3.81,
-      "specificity": 4.92,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.8,
-      "beauty": 4.17,
-      "overall": 4.2
+      "faithfulness": 4.03,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 5,
+      "beauty": 4.13,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-fear-and-protection",
-  "title": "Fear does not get the last word",
-  "summary": "Guru meets wavering by reminding you whose care has carried you from the start.",
-  "takeaway": "The One who made you has not stepped back from you.",
-  "lifeApplication": "When fear spikes, repeat the line before you plan the entire future.",
+  "title": "Stand inside the care already holding you",
+  "summary": "This meets the body leaning toward the worst outcome. The line answers fear with the Creator's mercy and protection, steadier than your wavering.",
+  "takeaway": "Mercy is steadier than the mind's alarm.",
+  "lifeApplication": "When fear starts ruling the body, stand still, breathe once, and name the care already holding you before you plan the next defense.",
   "source": {
     "deepDiveId": "shabad-steadied-by-creator",
     "verseIds": [
       30988,
       30989
     ],
-    "shortMeaning": "The Creator who formed you remains your support.",
-    "lifeApplication": "Answer fear with remembrance before strategy."
+    "shortMeaning": "The Creator's mercy holds more firmly than fear's predictions.",
+    "lifeApplication": "When fear grips the body, name the care already holding you."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Creator who formed you remains your support.",
+      "coreClaim": "The Creator's mercy holds more firmly than fear's predictions.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "The answer to fear is not bravado. It is remembrance of the One already holding you.",
-      "practicalImplication": "When fear spikes, repeat the line before you plan the entire future.",
+      "turn": "The Creator's mercy is steadier than your wavering.",
+      "practicalImplication": "When fear starts ruling the body, stand still, breathe once, and name the care already holding you before you plan the next defense.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.87,
-      "clarity": 4.35,
-      "specificity": 4.64,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.66,
-      "beauty": 4.21,
-      "overall": 4
+      "faithfulness": 4.4,
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 5,
+      "beauty": 4.41,
+      "overall": 4.45
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-361",
-  "title": "First, The Baby Loves Mother's Milk",
+  "title": "Appetite grows in stages unless it is taught otherwise",
   "subtitle": "Raag Maajh · Ang 137",
-  "summary": "This shabad opens with first, the baby loves mother's milk. It turns the heart toward without the Guru, the world is drowning.",
-  "whyItMatters": "It matters when life feels hungry, never-enough, and driven because the shabad keeps greed inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Without the Guru, the world is drowning.",
+  "summary": "The shabad begins by tracing desire through the stages of life: milk, family, play, food, sexuality, wealth. It shows how attachment matures into a governing pattern unless the soul is reoriented.",
+  "whyItMatters": "This is for the person who treats craving as natural simply because it has been familiar for a long time. Held honestly, it gives appetite a history and makes early truthfulness possible.",
+  "takeaway": "Greed becomes easier to face when its growth is named.",
   "themes": [
     "greed",
     "attachment",
@@ -154,9 +154,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: first, the baby loves mother's milk.",
-    "The middle movement widens the correction through ninth, he turns grey, and his breathing becomes labored.",
-    "It closes with a return you can actually keep: without the Guru, the world is drowning."
+    "It opens by watching love and appetite grow in recognizable stages from the beginning of life.",
+    "The middle shows desire thickening into habit, possession, and a governing pattern.",
+    "It ends by revealing how lost the soul becomes when the Guru is absent from that growth."
   ],
   "keyVerseIds": [
     5595,
@@ -194,25 +194,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with first, the baby loves mother's milk. It turns the heart toward without the Guru, the world is drowning.",
+      "coreClaim": "The shabad begins by tracing desire through the stages of life: milk, family, play, food, sexuality, wealth. It shows how attachment matures into a governing pattern unless the soul is reoriented.",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "The middle movement widens the correction through ninth, he turns grey, and his breathing becomes labored.",
-      "practicalImplication": "Keep returning to this turn: Without the Guru, the world is drowning.",
+      "turn": "The middle shows desire thickening into habit, possession, and a governing pattern.",
+      "practicalImplication": "This is for the person who treats craving as natural simply because it has been familiar for a long time. Held honestly, it gives appetite a history and makes early truthfulness possible. Greed becomes easier to face when its growth is named.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.81,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.97,
-      "overall": 4.05
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3,
+      "usefulness": 3.82,
+      "beauty": 4.53,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

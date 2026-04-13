@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-clarity",
   "title": "From Doubt to Clarity",
-  "subtitle": "A path for minds that keep circling",
-  "description": "Work through inner fire, saint company, mercy, and the Guru-word until uncertainty loses its heat.",
+  "subtitle": "For the mind that keeps reopening what was already clear",
+  "description": "Stay near the Guru's word, holy company, and practiced obedience until the fog stops sounding authoritative.",
   "durationLabel": "6-day journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       918,
       922
     ],
-    "shortMeaning": "Doubt is a fire, and Guru's word is meant to live where that fire burns.",
-    "lifeApplication": "Let clarity begin with inward obedience rather than more wandering."
+    "shortMeaning": "Clarity returns through company, obedience, and one kept word.",
+    "lifeApplication": "When the fog reopens, return to one clear line before another explanation."
   },
   "items": [
     {
@@ -60,27 +60,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Work through inner fire, saint company, mercy, and the Guru-word until uncertainty loses its heat.",
+      "coreClaim": "Stay near the Guru's word, holy company, and practiced obedience until the fog stops sounding authoritative.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "A path for minds that keep circling",
+      "turn": "For the mind that keeps reopening what was already clear",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 2.55,
-      "specificity": 4.13,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.62
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 4.04
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

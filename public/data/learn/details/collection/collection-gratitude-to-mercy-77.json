@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-to-mercy-77",
-  "title": "Gratitude to Mercy",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+  "title": "When gratitude deepens into mercy",
+  "subtitle": "When gratitude deepens into dependence",
+  "description": "These readings deepen gratitude past manners until every gift starts being received as unearned mercy.",
   "durationLabel": "6-step journey",
   "themes": [
     "gratitude",
@@ -14,8 +14,8 @@
       60338,
       60340
     ],
-    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
-    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+    "shortMeaning": "Gratitude deepens when gift is received as mercy, not merit.",
+    "lifeApplication": "When thankfulness feels thin, remember what you did not earn."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+      "coreClaim": "These readings deepen gratitude past manners until every gift starts being received as unearned mercy.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When gratitude deepens into dependence",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 4.35,
-      "specificity": 4.19,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.94
+      "faithfulness": 3.84,
+      "clarity": 4.29,
+      "specificity": 4.07,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.33,
+      "overall": 3.99
     },
     "strengths": [
-      "beauty",
-      "clarity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

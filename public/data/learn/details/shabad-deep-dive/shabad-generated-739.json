@@ -207,22 +207,23 @@
       "coreClaim": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
       "emotionalState": "restless, uncertain, fearful",
       "turn": "The middle movement widens the correction through from the Guru, I have learned the Way of the One Lord.",
-      "practicalImplication": "Keep returning to this turn: says Nanak, my Guru is All-powerful.",
+      "practicalImplication": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: says Nanak, my Guru is All-powerful.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 3.69,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.87,
-      "overall": 4.02
+      "usefulness": 3.98,
+      "beauty": 4.03,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

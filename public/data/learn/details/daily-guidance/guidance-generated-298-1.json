@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-298-1",
-  "title": "Those Hands Which Write The Praises",
-  "summary": "Mercy is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Those hands which write the Praises of the Lord are good",
-  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+  "title": "Make the hands good by what they serve",
+  "summary": "This meets the ordinary use of hands that leaves no trace of praise. The line says hands become good when they help the Lord's praise take form.",
+  "takeaway": "Put praise into the hands.",
+  "lifeApplication": "Before you type, send, build, or sign, ask what your hands are serving. Let one action today leave the Lord's praise more visible, not less.",
   "source": {
     "deepDiveId": "shabad-generated-298",
     "verseIds": [
       4110
     ],
-    "shortMeaning": "Those hands which write the Praises of the Lord are good",
-    "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Hands become good when they help praise take form in the world.",
+    "lifeApplication": "Before the next task, ask whether your hands are serving praise or vanity."
   },
   "relatedTopicIds": [
     "topic-mercy"
@@ -23,7 +23,7 @@
     "collection-mercy-journey"
   ],
   "rotation": {
-    "theme": "mercy",
+    "theme": "conduct",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Those hands which write the Praises of the Lord are good",
+      "coreClaim": "Hands become good when they help praise take form in the world.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Keep returning to this turn: God is pleasing to Nanak's mind.",
-      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+      "turn": "Let speech, sight, hands, and feet become honorable through praise.",
+      "practicalImplication": "Before you type, send, build, or sign, ask what your hands are serving. Let one action today leave the Lord's praise more visible, not less.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 3.99,
-      "specificity": 4.9,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 4.27,
-      "overall": 4.19
+      "faithfulness": 4.07,
+      "clarity": 4.11,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -42,14 +42,14 @@
     "evidence": {
       "coreClaim": "Holy company cools the body before the mind can settle.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "Bring your searching to saintly company and let it cool there.",
+      "turn": "Bring your searching to holy company and let it cool there.",
       "practicalImplication": "When agitation is already in the skin, stop trying to think your way out. Go sit where patient people remember God until your breathing changes.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.18,
+      "faithfulness": 4.17,
       "clarity": 4.35,
-      "specificity": 4.75,
+      "specificity": 4.74,
       "emotionalHonesty": 3.36,
       "usefulness": 4.2,
       "beauty": 4.37,

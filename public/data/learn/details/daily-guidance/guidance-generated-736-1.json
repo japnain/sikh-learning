@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-736-1",
-  "title": "Great And Powerful People Of The World",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The great and powerful people of the world",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Stop borrowing greatness from the world",
+  "summary": "This meets the reflex to stand near power and hope it will steady you. The line says the world's important people cannot save you; humble company can.",
+  "takeaway": "Seek the humble, not the impressive.",
+  "lifeApplication": "Before chasing the loudest room or biggest name, ask who actually leaves your heart cleaner. Walk toward the quieter servant instead.",
   "source": {
     "deepDiveId": "shabad-generated-736",
     "verseIds": [
       10367
     ],
-    "shortMeaning": "The great and powerful people of the world",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Worldly stature cannot save; humble company can lift the heart quickly.",
+    "lifeApplication": "When status pulls you, choose the company that deepens remembrance instead."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -23,7 +23,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "comparison",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The great and powerful people of the world",
+      "coreClaim": "Worldly stature cannot save; humble company can lift the heart quickly.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: He alone is the Lord's servant, O Nanak, who is so blessed.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Seek the humble servant, not the world's impressive names.",
+      "practicalImplication": "Before chasing the loudest room or biggest name, ask who actually leaves your heart cleaner. Walk toward the quieter servant instead.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.71,
-      "clarity": 4.05,
-      "specificity": 4.3,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.78,
-      "overall": 3.91
+      "faithfulness": 4.33,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.8,
+      "beauty": 4.37,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

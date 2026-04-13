@@ -144,22 +144,23 @@
       "coreClaim": "This shabad opens with o friends, O Saints, make this your work. It turns the heart toward o Nanak, chant the Naam, the treasure of excellence.",
       "emotionalState": "searching, hungry, unsettled",
       "turn": "The middle movement widens the correction through without devotional meditation, the body will be just ashes.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, chant the Naam, the treasure of excellence.",
+      "practicalImplication": "It matters when life feels searching, hungry, and unsettled because the shabad keeps seeking inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, chant the Naam, the treasure of excellence.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 3.63,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
+      "usefulness": 3.98,
       "beauty": 3.82,
-      "overall": 3.97
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

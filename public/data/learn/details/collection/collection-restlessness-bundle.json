@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-bundle",
   "title": "Restlessness in one shorter sitting",
-  "subtitle": "A compact bundle for restlessness",
-  "description": "Movement is increasing, but clarity is not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when restlessness is already close",
+  "description": "A short return for the hour when movement keeps impersonating clarity. It slows the body until truth can catch up.",
   "durationLabel": "3-step bundle",
   "themes": [
     "restlessness"
@@ -46,25 +46,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "Movement is increasing, but clarity is not. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when movement keeps impersonating clarity. It slows the body until truth can catch up.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A compact bundle for restlessness",
+      "turn": "A shorter sitting for when restlessness is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.88,
-      "clarity": 4.05,
-      "specificity": 4.11,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.76
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.03
     },
     "strengths": [
-      "specificity",
-      "clarity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

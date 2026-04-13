@@ -1,17 +1,17 @@
 {
   "id": "guidance-child-of-grace-2",
-  "title": "Joining The Sat Sangat, The True Congregation",
-  "summary": "Loneliness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+  "title": "Ask the path inside holy company",
+  "summary": "This meets the lonely ache that keeps asking in private circles. The line says the way becomes clearer where the Beloved already dwells: among the true congregation.",
+  "takeaway": "Take the question into sangat.",
+  "lifeApplication": "When the mind starts pacing alone for answers, send the message, enter the darbar, or sit near the one who remembers well. Do not keep searching as though the path only appears in isolation.",
   "source": {
     "deepDiveId": "shabad-child-of-grace",
     "verseIds": [
       3757,
       3760
     ],
-    "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-    "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The path is shown where saintly company gathers around the Lord.",
+    "lifeApplication": "When longing feels lost, move toward the congregation where the Lord is remembered."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -24,7 +24,7 @@
     "collection-loneliness-journey"
   ],
   "rotation": {
-    "theme": "loneliness",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
+      "coreClaim": "The path is shown where saintly company gathers around the Lord.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
-      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+      "turn": "Longing ripens when saintly company shows the way.",
+      "practicalImplication": "When the mind starts pacing alone for answers, send the message, enter the darbar, or sit near the one who remembers well. Do not keep searching as though the path only appears in isolation.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 1.51,
-      "specificity": 4.88,
+      "faithfulness": 4.2,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 2.93,
-      "overall": 3.61
+      "usefulness": 3.88,
+      "beauty": 4.21,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

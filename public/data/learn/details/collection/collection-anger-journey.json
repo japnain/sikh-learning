@@ -1,8 +1,8 @@
 {
   "id": "collection-anger-journey",
   "title": "From Anger to steadier practice",
-  "subtitle": "A deliberate path through anger",
-  "description": "Guru turns the battle inward so reaction loses its claim to righteousness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when anger keeps steering the day",
+  "description": "Follow heat from the mouth back to the wound beneath it, then stay long enough for force to give way to steadier truth.",
   "durationLabel": "5-step journey",
   "themes": [
     "anger",
@@ -13,8 +13,8 @@
     "verseIds": [
       3
     ],
-    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Anger is met at the mouth and turned back toward steadiness.",
+    "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
   },
   "items": [
     {
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow heat from the mouth back to the wound beneath it, then stay long enough for force to give way to steadier truth.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "A deliberate path through anger",
+      "turn": "For when anger keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.75,
-      "specificity": 4.25,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.8
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

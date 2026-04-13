@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-937",
-  "title": "God-conscious Being Is The Dust Of All",
+  "title": "Let humility become the strength that does no harm",
   "subtitle": "Raag Gauree · Ang 272",
-  "summary": "This shabad opens with the God-conscious being is the dust of all. It turns the heart toward o Nanak, the God-conscious being is absorbed in God's meditation.",
-  "whyItMatters": "It matters when life feels hard, sharp, and protective because the shabad keeps softness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, the God-conscious being is absorbed in God's meditation.",
+  "summary": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
+  "whyItMatters": "This is for the person who has started confusing hardness with spiritual seriousness. Stay with it when you are sharp; it retrains strength as kindness strong enough to bless whatever it touches.",
+  "takeaway": "Call humble the one from whom no harm comes.",
   "themes": [
     "softness",
     "conduct",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the God-conscious being is the dust of all.",
-    "The middle movement widens the correction through nectar rains down from the glance of the God-conscious being.",
-    "It closes with a return you can actually keep: o Nanak, the God-conscious being is absorbed in God's meditation."
+    "It opens with radical lowliness rather than spiritual self-importance.",
+    "The middle names kindness, impartiality, and harmlessness as marks of God-consciousness.",
+    "It ends by showing that such presence nourishes others like falling nectar."
   ],
   "keyVerseIds": [
     12112,
@@ -137,25 +137,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the God-conscious being is the dust of all. It turns the heart toward o Nanak, the God-conscious being is absorbed in God's meditation.",
+      "coreClaim": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
       "emotionalState": "hard, sharp, protective",
-      "turn": "The middle movement widens the correction through nectar rains down from the glance of the God-conscious being.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, the God-conscious being is absorbed in God's meditation.",
+      "turn": "The middle names kindness, impartiality, and harmlessness as marks of God-consciousness.",
+      "practicalImplication": "This is for the person who has started confusing hardness with spiritual seriousness. Stay with it when you are sharp; it retrains strength as kindness strong enough to bless whatever it touches. Call humble the one from whom no harm comes.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.23,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.68,
-      "overall": 3.89
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-338-1",
-  "title": "In All Colors And Forms, You",
-  "summary": "Comparison is named plainly here before the mind has time to decorate it.",
-  "takeaway": "In all colors and forms, You are pervading",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+  "title": "Stop measuring inside a filled world",
+  "summary": "This meets comparison when scarcity has entered the eyes. The line interrupts it by naming the Divine already pervading every color and form.",
+  "takeaway": "Do not compete inside a filled world.",
+  "lifeApplication": "When someone else's beauty, success, or ease unsettles you, lift the gaze out of the comparison frame. Let pervasiveness replace scarcity before envy hardens.",
   "source": {
     "deepDiveId": "shabad-generated-338",
     "verseIds": [
       4875
     ],
-    "shortMeaning": "In all colors and forms, You are pervading",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Divine already fills every form the mind keeps comparing.",
+    "lifeApplication": "When comparison starts, widen the gaze until scarcity loses its grip."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "In all colors and forms, You are pervading",
+      "coreClaim": "The Divine already fills every form the mind keeps comparing.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+      "turn": "Comparison weakens when the world is seen as already filled.",
+      "practicalImplication": "When someone else's beauty, success, or ease unsettles you, lift the gaze out of the comparison frame. Let pervasiveness replace scarcity before envy hardens.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.61,
-      "clarity": 4.05,
-      "specificity": 4.39,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.83,
-      "overall": 3.94
+      "faithfulness": 4.26,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.01,
+      "overall": 4.26
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

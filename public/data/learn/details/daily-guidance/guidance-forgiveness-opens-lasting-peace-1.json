@@ -1,16 +1,16 @@
 {
   "id": "guidance-forgiveness-opens-lasting-peace-1",
-  "title": "He Blessed Me With Forgiveness",
-  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "He blessed me with forgiveness",
-  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "title": "Do not waste the peace forgiveness brings",
+  "summary": "This meets the quiet after pardon, when peace has returned but devotion has not yet answered it. The line treats forgiveness as the beginning of worship, not the end of crisis.",
+  "takeaway": "Answer forgiveness with worship.",
+  "lifeApplication": "After peace returns, sing or read Bani before filling the room with ordinary noise again.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
       27259
     ],
-    "shortMeaning": "He blessed me with forgiveness",
-    "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Forgiveness asks to be answered with devotion.",
+    "lifeApplication": "After peace returns, answer it with Bani before ordinary noise takes over."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "He blessed me with forgiveness",
+      "coreClaim": "Forgiveness asks to be answered with devotion.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
-      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "After peace returns, sing or read Bani before filling the room with ordinary noise again.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 4.29,
-      "specificity": 4.43,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 4.01,
-      "overall": 4
+      "faithfulness": 3.9,
+      "clarity": 4.35,
+      "specificity": 4.67,
+      "emotionalHonesty": 3,
+      "usefulness": 4.42,
+      "beauty": 4.37,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

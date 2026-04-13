@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-to-doubt-82",
-  "title": "Hukam to Doubt",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+  "title": "When acceptance slips back into doubt",
+  "subtitle": "When acceptance starts slipping back into questioning",
+  "description": "Return to what has already been given before acceptance slips back into the old habit of cross-examination.",
   "durationLabel": "6-step journey",
   "themes": [
     "hukam",
@@ -14,8 +14,8 @@
       11,
       15
     ],
-    "shortMeaning": "Everything stands inside Hukam, not outside it.",
-    "lifeApplication": "Release the demand that peace must wait for total control."
+    "shortMeaning": "What is received in peace can be reopened by doubt in a minute.",
+    "lifeApplication": "When you start questioning again, first receive what has already been given."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+      "coreClaim": "Return to what has already been given before acceptance slips back into the old habit of cross-examination.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When acceptance starts slipping back into questioning",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 4.15,
-      "specificity": 4.24,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.91
+      "faithfulness": 3.82,
+      "clarity": 4.29,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.17,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

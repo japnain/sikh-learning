@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-151",
-  "title": "Meeting With The Humble Beings, O Siblings",
+  "title": "Humble company ends the fight underneath the fight",
   "subtitle": "Siree Raag · Ang 52",
-  "summary": "This shabad opens with meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered. It turns the heart toward nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
-  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
+  "summary": "The shabad opens by saying that meeting the humble defeats the messenger of death. It deepens through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
+  "whyItMatters": "This is for the person whose heat, fear, or defensiveness keeps masquerading as strength. Keep this shabad close when you want to fight alone, and it will remind you that the company you enter is already shaping your courage.",
+  "takeaway": "Move toward the humble until fear loses its command.",
   "themes": [
     "anger",
     "ego",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered.",
-    "The middle movement widens the correction through there is no other Giver as great as the Guru, who has given the gift of the soul.",
-    "It closes with a return you can actually keep: nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all."
+    "It opens by giving humble company a strength stronger than death's intimidation.",
+    "The middle lets the Lord dwell within until entanglement begins to unravel.",
+    "It ends in gratitude for the Guru whose grace turns into ambrosial Naam."
   ],
   "keyVerseIds": [
     2099,
@@ -180,27 +180,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered. It turns the heart toward nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
+      "coreClaim": "The shabad opens by saying that meeting the humble defeats the messenger of death. It deepens through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement widens the correction through there is no other Giver as great as the Guru, who has given the gift of the soul.",
-      "practicalImplication": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
+      "turn": "The middle lets the Lord dwell within until entanglement begins to unravel.",
+      "practicalImplication": "This is for the person whose heat, fear, or defensiveness keeps masquerading as strength. Keep this shabad close when you want to fight alone, and it will remind you that the company you enter is already shaping your courage. Move toward the humble until fear loses its command.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.5,
-      "specificity": 4.77,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.6,
-      "beauty": 3.17,
-      "overall": 3.64
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

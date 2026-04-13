@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-705-1",
-  "title": "Acting In Egotism, Peace Is Not Obtained",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Acting in egotism, peace is not obtained",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Ego cannot deliver the peace it promises",
+  "summary": "This meets the self-willed life that still expects peace as a reward. The line says ego cannot make peace; it only keeps forgetting Naam.",
+  "takeaway": "Let Naam quench what ego ignites.",
+  "lifeApplication": "Before insisting on your way one more time, notice the heat in the face and chest. Use the line before self-will turns into another round of inner noise.",
   "source": {
     "deepDiveId": "shabad-generated-705",
     "verseIds": [
       9525
     ],
-    "shortMeaning": "Acting in egotism, peace is not obtained",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Ego cannot make peace; Naam cools what self-will inflames.",
+    "lifeApplication": "When self-will rises, take Naam before trying to win the moment."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Acting in egotism, peace is not obtained",
+      "coreClaim": "Ego cannot make peace; Naam cools what self-will inflames.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: Nanak, the lowly, says embrace love for the Lord.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Ego cannot make peace; Naam and service can.",
+      "practicalImplication": "Before insisting on your way one more time, notice the heat in the face and chest. Use the line before self-will turns into another round of inner noise.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.66,
-      "clarity": 4.11,
-      "specificity": 4.26,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.85,
-      "overall": 3.91
+      "faithfulness": 4.32,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
+      "beauty": 4.17,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -41,23 +41,24 @@
     "evidence": {
       "coreClaim": "Conquering the mind matters more than conquering the world around you.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "The hardest field is the inner field. Win there first.",
+      "turn": "Conquer the mind before trying to conquer the world.",
       "practicalImplication": "When comparison or anger rises, bring the battle back from the room to the mind.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.21,
+      "faithfulness": 4.08,
       "clarity": 4.35,
-      "specificity": 4.96,
+      "specificity": 4.84,
       "emotionalHonesty": 3.36,
       "usefulness": 4.04,
       "beauty": 4.05,
-      "overall": 4.17
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,9 +1,9 @@
 {
   "id": "guidance-sing-bani-into-peace",
-  "title": "Do not only analyze peace. Sing your way into it.",
-  "summary": "The shabad answers peace not with abstraction but with Bani sung, grace received, and Naam remembered.",
-  "takeaway": "Sometimes peace enters through voiced devotion before it enters through insight.",
-  "lifeApplication": "Use your actual voice with one line today instead of keeping everything in mental commentary.",
+  "title": "Keep peace alive with Bani",
+  "summary": "This meets the moment after relief, when silence could either deepen into devotion or drift back into noise. The line says lasting peace has to be sung, kept, and fed by Bani.",
+  "takeaway": "Sustain peace with Bani before noise returns.",
+  "lifeApplication": "When the room finally settles, speak one line of Bani aloud before reaching for chatter, scrolling, or analysis.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
@@ -11,8 +11,8 @@
       27264,
       27265
     ],
-    "shortMeaning": "Grace and Guru Bani create a peace that is both rewarding and sustaining.",
-    "lifeApplication": "Peace can be practiced aloud."
+    "shortMeaning": "Peace stays living when Bani keeps sounding within it.",
+    "lifeApplication": "When relief arrives, speak Bani before noise takes the room back."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Grace and Guru Bani create a peace that is both rewarding and sustaining.",
+      "coreClaim": "Peace stays living when Bani keeps sounding within it.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
-      "practicalImplication": "Use your actual voice with one line today instead of keeping everything in mental commentary.",
+      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "When the room finally settles, speak one line of Bani aloud before reaching for chatter, scrolling, or analysis.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
+      "faithfulness": 4.02,
       "clarity": 4.35,
-      "specificity": 4.94,
+      "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 3.88,
+      "usefulness": 4.1,
       "beauty": 4.21,
-      "overall": 4.06
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

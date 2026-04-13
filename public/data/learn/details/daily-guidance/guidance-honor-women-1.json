@@ -1,16 +1,16 @@
 {
   "id": "guidance-honor-women-1",
-  "title": "To Woman He Is Engaged And Married",
-  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
-  "takeaway": "to woman he is engaged and married",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "title": "Honor the one through whom you arrived",
+  "summary": "This meets the casual contempt that speaks lightly of women while depending on them for everything. The line breaks that contempt by tracing life, love, and kingship through woman.",
+  "takeaway": "Do not insult the source of your own arrival.",
+  "lifeApplication": "Before repeating the joke, dismissal, or casual slight, stop at the mouth. Remember whose body carried every family line you honor.",
   "source": {
     "deepDiveId": "shabad-honor-women",
     "verseIds": [
       21284
     ],
-    "shortMeaning": "to woman he is engaged and married",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The one through whom life arrives cannot be spoken of with contempt.",
+    "lifeApplication": "Before speaking of women lightly, remember that every lineage passes through them."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -18,7 +18,7 @@
   ],
   "relatedCollectionIds": [],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "equality",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -34,25 +34,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "to woman he is engaged and married",
+      "coreClaim": "The one through whom life arrives cannot be spoken of with contempt.",
       "emotionalState": "dismissive, proud, habit-bound",
-      "turn": "What Guru honors cannot be spoken of with contempt.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "turn": "Refuse to despise the one through whom human life comes.",
+      "practicalImplication": "Before repeating the joke, dismissal, or casual slight, stop at the mouth. Remember whose body carried every family line you honor.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.85,
+      "faithfulness": 4.11,
       "clarity": 4.23,
-      "specificity": 4.8,
-      "emotionalHonesty": 3.36,
+      "specificity": 5,
+      "emotionalHonesty": 3,
       "usefulness": 4.26,
       "beauty": 3.97,
-      "overall": 4.06
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

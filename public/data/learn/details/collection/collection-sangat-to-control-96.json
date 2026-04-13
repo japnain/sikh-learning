@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-to-control-96",
-  "title": "Sangat to Control",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+  "title": "When belonging becomes management",
+  "subtitle": "When even good company becomes another room to manage",
+  "description": "These readings warn that even holy company can be used as a room to manage, correct, and quietly dominate.",
   "durationLabel": "6-step journey",
   "themes": [
     "sangat",
@@ -13,8 +13,8 @@
     "verseIds": [
       527
     ],
-    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
-    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+    "shortMeaning": "Belonging turns controlling when even sangat is treated as a room to run.",
+    "lifeApplication": "Let the next gathering correct you before you decide how everyone else should move."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+      "coreClaim": "These readings warn that even holy company can be used as a room to manage, correct, and quietly dominate.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When even good company becomes another room to manage",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.25,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.86
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

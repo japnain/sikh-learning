@@ -144,22 +144,23 @@
       "coreClaim": "This shabad opens with the minds and bodies of His devotees are infused with His Love. It turns the heart toward o Nanak, He is contained among all.",
       "emotionalState": "unworthy, guarded, hard-on-self",
       "turn": "The middle movement widens the correction through rare is the one who obtains their company.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, He is contained among all.",
+      "practicalImplication": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, He is contained among all.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 3.57,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 4,
-      "usefulness": 3.38,
+      "usefulness": 4.36,
       "beauty": 3.96,
-      "overall": 4.03
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

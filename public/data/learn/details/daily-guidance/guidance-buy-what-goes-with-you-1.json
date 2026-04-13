@@ -1,16 +1,16 @@
 {
   "id": "guidance-buy-what-goes-with-you-1",
-  "title": "Buy That Object Which Will Go Along",
-  "summary": "Discipline is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Buy that object which will go along with you",
-  "lifeApplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+  "title": "Buy what can follow you",
+  "summary": "This meets the ache to secure yourself by gathering more. The line asks a cleaner question: what can still follow you when the deal, the object, and the image are gone?",
+  "takeaway": "Choose the gain that can follow you.",
+  "lifeApplication": "Before you buy, upgrade, or chase the next win, stop with your hand on the card or screen. Ask whether this choice is feeding appetite or building the kind of wealth that can remain.",
   "source": {
     "deepDiveId": "shabad-buy-what-goes-with-you",
     "verseIds": [
       934
     ],
-    "shortMeaning": "Buy that object which will go along with you",
-    "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Choose the wealth that remains when possessions cannot follow you.",
+    "lifeApplication": "At the point of purchase, ask what here can remain beyond display."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -23,7 +23,7 @@
     "collection-restlessness-to-stillness"
   ],
   "rotation": {
-    "theme": "discipline",
+    "theme": "greed",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Buy that object which will go along with you",
+      "coreClaim": "Choose the wealth that remains when possessions cannot follow you.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Invest in what crosses the threshold with you.",
-      "practicalImplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+      "turn": "Pause the deal and choose the profit that can follow you.",
+      "practicalImplication": "Before you buy, upgrade, or chase the next win, stop with your hand on the card or screen. Ask whether this choice is feeding appetite or building the kind of wealth that can remain.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 3.99,
-      "specificity": 4.58,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.82,
-      "beauty": 3.81,
-      "overall": 3.93
+      "faithfulness": 4.26,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

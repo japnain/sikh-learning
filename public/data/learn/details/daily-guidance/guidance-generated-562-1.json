@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-562-1",
-  "title": "It Is Only Obtained By Great Good",
-  "summary": "Patience is named plainly here before the mind has time to decorate it.",
-  "takeaway": "it is only obtained by great good fortune",
-  "lifeApplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+  "title": "Do not waste the rare chance of a human life",
+  "summary": "This meets the sleepy assumption that there will always be more time. The line treats human birth as rare fortune, not a casual repeatable resource.",
+  "takeaway": "Spend this rare life deliberately.",
+  "lifeApplication": "Before another numbing loop of scrolling, snacking, or drifting, sit upright and say the line once. Let rarity bring the day into focus.",
   "source": {
     "deepDiveId": "shabad-generated-562",
     "verseIds": [
       7947
     ],
-    "shortMeaning": "it is only obtained by great good fortune",
-    "lifeApplication": "Wait by listening instead of simmering. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Human life is rare enough to demand deliberate use.",
+    "lifeApplication": "When the day goes dull, remember how rare this chance already is."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -23,7 +23,7 @@
     "collection-tired-heart-to-rest"
   ],
   "rotation": {
-    "theme": "patience",
+    "theme": "purpose",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "it is only obtained by great good fortune",
+      "coreClaim": "Human life is rare enough to demand deliberate use.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "Keep returning to this turn: the Name alone is contained within my heart.",
-      "practicalImplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+      "turn": "Treat this life as rare enough to center it on Naam.",
+      "practicalImplication": "Before another numbing loop of scrolling, snacking, or drifting, sit upright and say the line once. Let rarity bring the day into focus.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.62,
-      "clarity": 4.05,
-      "specificity": 4.04,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.36,
-      "beauty": 3.98,
-      "overall": 3.87
+      "faithfulness": 4.15,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 4.64,
+      "beauty": 4.05,
+      "overall": 4.19
     },
     "strengths": [
-      "usefulness",
-      "clarity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

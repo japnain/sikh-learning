@@ -1,17 +1,17 @@
 {
   "id": "guidance-detached-and-steady-2",
-  "title": "Greed, Emotional Attachment To Maya, Possessiveness",
-  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and pain -; holy Saadhus: rest and peace are in the Sanctuary of the Lord",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "title": "Hold the gift without gripping it",
+  "summary": "This meets the mind clinging to what it cannot finally keep. The line says steadiness grows where attachment loses its authority and the gift is received without possession.",
+  "takeaway": "Love is steadied by release, not possession.",
+  "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome.",
   "source": {
     "deepDiveId": "shabad-detached-and-steady",
     "verseIds": [
       9412,
       9414
     ],
-    "shortMeaning": "Greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and pain -; holy Saadhus: rest and peace are in the Sanctuary of the Lord",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Love is steadied by release, not possession.",
+    "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and pain -; holy Saadhus: rest and peace are in the Sanctuary of the Lord",
+      "coreClaim": "Love is steadied by release, not possession.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "turn": "Steadiness grows where attachment loses its authority.",
+      "practicalImplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 2.43,
-      "specificity": 4.76,
+      "faithfulness": 4.4,
+      "clarity": 4.11,
+      "specificity": 4.96,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.23,
-      "overall": 3.7
+      "usefulness": 3.82,
+      "beauty": 4.05,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-to-greed-81",
-  "title": "Seva to Greed",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+  "title": "When seva starts asking to be paid",
+  "subtitle": "When service starts asking to be paid back",
+  "description": "Guard seva from becoming greed, credit, or quiet entitlement.",
   "durationLabel": "6-step journey",
   "themes": [
     "seva",
@@ -14,8 +14,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
-    "lifeApplication": "Serve without building a story about being the servant."
+    "shortMeaning": "Service decays when it starts expecting return.",
+    "lifeApplication": "When seva wants credit, give again without collecting the result."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+      "coreClaim": "Guard seva from becoming greed, credit, or quiet entitlement.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When service starts asking to be paid back",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 3.75,
-      "specificity": 4.29,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.87
+      "faithfulness": 3.73,
+      "clarity": 4.23,
+      "specificity": 3.97,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.13,
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-priceless-mind",
-  "title": "Do not trade a priceless mind for a shell.",
-  "summary": "The mind is called a jewel here, yet it can still be squandered on what is passing and cheap.",
-  "takeaway": "Value the inner life at the price Guru gives it.",
-  "lifeApplication": "Notice one bargain you keep making that leaves your mind smaller than it was before.",
+  "title": "Return before reopening every question",
+  "summary": "This meets the mind that keeps reopening what was already clear enough to obey. The line says doubt clears when the Guru's word is kept longer than the wandering mood.",
+  "takeaway": "Clarity returns when the mind stays with one clear line.",
+  "lifeApplication": "Before reopening every question, return to one clear line and stay with it.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       923,
       928
     ],
-    "shortMeaning": "The mind is priceless, but it can still be sold beneath its worth.",
-    "lifeApplication": "Measure today's trade-offs by what they do to the soul, not only to convenience."
+    "shortMeaning": "Clarity returns when the mind stays with one clear line.",
+    "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The mind is priceless, but it can still be sold beneath its worth.",
+      "coreClaim": "Clarity returns when the mind stays with one clear line.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Notice one bargain you keep making that leaves your mind smaller than it was before.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before reopening every question, return to one clear line and stay with it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 4.29,
-      "specificity": 4.71,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 4.01,
-      "overall": 4.05
+      "faithfulness": 4.3,
+      "clarity": 3.87,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.42,
+      "beauty": 3.84,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

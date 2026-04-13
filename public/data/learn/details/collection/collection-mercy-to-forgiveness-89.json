@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-to-forgiveness-89",
-  "title": "Mercy to Forgiveness",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+  "title": "When mercy opens the hand",
+  "subtitle": "When received mercy starts opening the hand",
+  "description": "These readings move received mercy into the hand until release becomes the only honest continuation of what you were given.",
   "durationLabel": "6-step journey",
   "themes": [
     "mercy",
@@ -14,8 +14,8 @@
       501,
       503
     ],
-    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
-    "lifeApplication": "Return is possible because grace precedes your recovery."
+    "shortMeaning": "Mercy becomes forgiveness when what spared you begins loosening your grip on others.",
+    "lifeApplication": "When the debt comes back to mind, remember how you were spared before you hold them again."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru links forgiveness to freedom, fearless return, and the end of inner replay.",
+      "coreClaim": "These readings move received mercy into the hand until release becomes the only honest continuation of what you were given.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When received mercy starts opening the hand",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.15,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.94
+      "faithfulness": 3.92,
+      "clarity": 4.35,
+      "specificity": 4.14,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.03
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

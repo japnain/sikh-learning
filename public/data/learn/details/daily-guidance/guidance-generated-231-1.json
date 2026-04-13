@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-231-1",
-  "title": "He Is A Brave Warrior, Who Conquers",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "The brave fight is inward",
+  "summary": "This meets the self that still wants victory over other people. The line redefines courage as subduing the vicious ego within.",
+  "takeaway": "Fight the inner tyrant first.",
+  "lifeApplication": "Before the next argument, feel the heat in the face and ask what inside is trying to win. Keep the battle at the level of ego before you turn another person into the enemy.",
   "source": {
     "deepDiveId": "shabad-generated-231",
     "verseIds": [
       3458
     ],
-    "shortMeaning": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "True courage subdues the vicious ego within, not another person.",
+    "lifeApplication": "When conflict sharpens, fight the ego within before you fight anyone else."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "O Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego",
+      "coreClaim": "True courage subdues the vicious ego within, not another person.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Measure courage by how deeply ego is subdued.",
+      "practicalImplication": "Before the next argument, feel the heat in the face and ask what inside is trying to win. Keep the battle at the level of ego before you turn another person into the enemy.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.61,
-      "specificity": 4.33,
-      "emotionalHonesty": 3.54,
+      "faithfulness": 4.16,
+      "clarity": 4.29,
+      "specificity": 4.73,
+      "emotionalHonesty": 3.36,
       "usefulness": 4.2,
-      "beauty": 3.63,
-      "overall": 3.83
+      "beauty": 4.01,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

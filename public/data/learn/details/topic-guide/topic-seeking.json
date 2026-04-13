@@ -30,25 +30,6 @@
     "seeking novelty",
     "seeking stay with one line",
     "seeking ordinary search",
-    "seeking when the day tightens",
-    "seeking under pressure",
-    "pressure",
-    "stress",
-    "under strain",
-    "cornered",
-    "seeking pressure",
-    "seeking stress",
-    "seeking under strain",
-    "seeking cornered",
-    "seeking after the slip",
-    "repair",
-    "return",
-    "after slipping",
-    "start again",
-    "seeking repair",
-    "seeking return",
-    "seeking after slipping",
-    "seeking start again",
     "training the seeker to stay",
     "seeking steady practice",
     "seeking practice",
@@ -71,10 +52,10 @@
           3899,
           3900
         ],
-        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
-        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
+        "shortMeaning": "Seeking becomes cleaner when it stops roaming alone.",
+        "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
       },
-      "explanation": "Seeking ends differently here than the mind expects. The search cools when the soul finally lands in the right company instead of in one more restless loop."
+      "explanation": "The excerpt rescues seeking from private roaming by turning it toward holy company."
     },
     {
       "source": {
@@ -84,10 +65,10 @@
           3760,
           3762
         ],
-        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
+        "shortMeaning": "Searching matures where wisdom is already being lived.",
+        "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
       },
-      "explanation": "The seeker asks like a child, not like a collector of spiritual options. That smaller posture is already part of how wandering starts to end."
+      "explanation": "Gurbani refuses to let seeking become its own justification. The line insists that searching must be taught where wisdom is already alive."
     },
     {
       "source": {
@@ -97,10 +78,10 @@
           921,
           922
         ],
-        "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries; let the Words of the Guru abide within your mind",
-        "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line stay in charge of what comes next."
+        "shortMeaning": "Seeking settles when guidance becomes more believable than novelty.",
+        "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
       },
-      "explanation": "The search ripens when Guru's word is allowed to live within instead of remaining one more idea to inspect from a distance."
+      "explanation": "The line widens the room by making the Guru's guidance more believable than novelty."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -114,11 +95,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Seeking without scattering the day",
-      "issueStatement": "The hunger for truth is real, but it keeps turning the ordinary day into one more place to browse, compare, and move on before anything can settle into the heart.",
-      "centralInsight": "Gurbani teaches search that can stand still long enough to receive. Daily seeking becomes holy when novelty stops being mistaken for depth.",
-      "practicalReflection": "The ordinary day reveals whether you want transformation or only fresh stimulation. One line kept faithfully can teach more than ten new inputs skimmed restlessly.",
-      "actionPrompt": "Stay with one line past the point where the mind wants something newer, and let the day be taught by that staying.",
+      "title": "When seeking starts steering the day",
+      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru addresses errands, delays, and common rooms as real sites of practice.",
+      "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
+      "actionPrompt": "In the first plain stretch of the day, before starting one more search, stay with the shelter already in front of you.",
       "searchTerms": [
         "seeking",
         "searching",
@@ -145,10 +126,10 @@
             "verseIds": [
               1430
             ],
-            "shortMeaning": "If we keep contemplating about the time as to when to remember the Lord",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The line interrupts seeking inside the day through steadier return.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "Ordinary life is already being addressed here: if we keep contemplating about the time as to when to remember the Lord."
+          "explanation": "In the ordinary day, the verse turns seeking toward steadier return instead of self-enclosure."
         },
         {
           "source": {
@@ -157,10 +138,10 @@
               1449,
               1460
             ],
-            "shortMeaning": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The line interrupts seeking inside the day through the Guru's guidance.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "The teaching meets routine before the room becomes ideal. Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
+          "explanation": "The daily moment changes here because seeking is not left alone with itself."
         },
         {
           "source": {
@@ -169,64 +150,55 @@
               2138,
               2146
             ],
-            "shortMeaning": "Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "Seeking is checked here by the Guru's guidance.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "This makes daily faithfulness concrete: nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name."
+          "explanation": "This keeps the day from shrinking around seeking; the heart is returned to the Guru's guidance."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:daily",
         "evidence": {
-          "coreClaim": "Gurbani teaches search that can stand still long enough to receive. Daily seeking becomes holy when novelty stops being mistaken for depth.",
+          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru addresses errands, delays, and common rooms as real sites of practice.",
           "emotionalState": "reactive, heated, sharp",
-          "turn": "The hunger for truth is real, but it keeps turning the ordinary day into one more place to browse, compare, and move on before anything can settle into the heart.",
-          "practicalImplication": "Stay with one line past the point where the mind wants something newer, and let the day be taught by that staying.",
+          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+          "practicalImplication": "In the first plain stretch of the day, before starting one more search, stay with the shelter already in front of you.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.72,
-          "usefulness": 4.26,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.42,
           "beauty": 4.37,
-          "overall": 4.36
+          "overall": 4.32
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "usefulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Seeking when the day tightens",
-      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. Pressure exposes what the mind reaches for first when it feels cornered.",
-      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. Under strain, the line must interrupt panic before panic defines the moment.",
-      "practicalReflection": "Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.",
-      "actionPrompt": "Let one line keep you in place longer than the next new input. Use one line before the pressure chooses your tone.",
+      "title": "When searching keeps outrunning arrival and the room gets tight",
+      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. Pressure exposes what the heart reaches for when it feels cornered.",
+      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
+      "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
+      "actionPrompt": "When the jaw, chest, or shoulders tighten, before starting one more search, stay with the shelter already in front of you.",
       "searchTerms": [
         "seeking",
         "searching",
         "wandering",
         "spiritually lost",
-        "can't settle",
-        "seeking when the day tightens",
-        "seeking under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "seeking pressure",
-        "seeking stress",
-        "seeking under strain",
-        "seeking cornered"
+        "can't settle"
       ],
       "excerpts": [
         {
@@ -236,10 +208,10 @@
               1449,
               1460
             ],
-            "shortMeaning": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Seeking is not left to rule the strained moment.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "Under strain, the line stays exact: those who contemplate the Word of the Guru's Shabad are filled with the Fear of God; without Him, I cannot survive even for an instant, and my life-night passes in anguish."
+          "explanation": "Under pressure, the verse steadies seeking by returning the heart to the Guru's guidance."
         },
         {
           "source": {
@@ -248,10 +220,10 @@
               5559,
               5567
             ],
-            "shortMeaning": "He is the Patron of the poor, the Merciful, Luminous Lord, the Redeemer of sinners; bestow Your Mercy, God, and save me! No one else can bestow Your Mercy",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Seeking is not left to rule the strained moment.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "The next faithful move is smaller than panic wants. Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -259,10 +231,10 @@
             "verseIds": [
               6424
             ],
-            "shortMeaning": "The treasure of liberation is obtained through devotional worship of the Lord",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through steadier return.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "This line keeps urgency from becoming the only narrator in the room."
+          "explanation": "The strain does not get final say here; steadier return interrupts the reflex."
         }
       ],
       "editorial": {
@@ -271,51 +243,43 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:pressure",
         "evidence": {
-          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. Under strain, the line must interrupt panic before panic defines the moment.",
+          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
           "emotionalState": "foggy, uncertain, hesitant",
-          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. Pressure exposes what the mind reaches for first when it feels cornered.",
-          "practicalImplication": "Let one line keep you in place longer than the next new input. Use one line before the pressure chooses your tone.",
+          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. Pressure exposes what the heart reaches for when it feels cornered.",
+          "practicalImplication": "When the jaw, chest, or shoulders tighten, before starting one more search, stay with the shelter already in front of you.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 3.69,
+          "clarity": 4.35,
           "specificity": 5,
           "emotionalHonesty": 3.54,
-          "usefulness": 4.64,
-          "beauty": 3.61,
-          "overall": 4.17
+          "usefulness": 4.86,
+          "beauty": 4.37,
+          "overall": 4.42
         },
         "strengths": [
           "specificity",
           "usefulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Seeking after the slip",
-      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
-      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
-      "practicalReflection": "Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.",
-      "actionPrompt": "Let one line keep you in place longer than the next new input. Choose the next truthful return instead of rehearsing the failure.",
+      "title": "When repair has to begin after the mind has wandered",
+      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
+      "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps seeking from turning into a permanent self-story.",
+      "actionPrompt": "Once the miss is visible, before starting one more search, stay with the shelter already in front of you.",
       "searchTerms": [
         "seeking",
         "searching",
         "wandering",
         "spiritually lost",
-        "can't settle",
-        "seeking after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "seeking repair",
-        "seeking return",
-        "seeking after slipping",
-        "seeking start again"
+        "can't settle"
       ],
       "excerpts": [
         {
@@ -325,10 +289,10 @@
               2138,
               2146
             ],
-            "shortMeaning": "Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through the Guru's guidance.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "Return is still being offered here: nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation; i am a sacrifice to the True Guru, who has bestowed the True Name."
+          "explanation": "Repair stays honest here because seeking is answered without theatre."
         },
         {
           "source": {
@@ -336,10 +300,10 @@
             "verseIds": [
               5570
             ],
-            "shortMeaning": "He dwells deep within the mind and body. O Nanak, He cannot be measured",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through steadier return.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "The Guru does not leave repair at remorse alone. Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
+          "explanation": "After the slip, the verse keeps return possible through steadier return."
         },
         {
           "source": {
@@ -347,10 +311,10 @@
             "verseIds": [
               8834
             ],
-            "shortMeaning": "This life is diminishing, day and night",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Seeking is not allowed to become identity here.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "Truth and return are kept close enough here to move together."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         }
       ],
       "editorial": {
@@ -359,36 +323,37 @@
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:repair",
         "evidence": {
-          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. Gurbani keeps repair close to humility, remembrance, and return instead of theatre.",
+          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
           "emotionalState": "searching, hungry, unsettled",
-          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.",
-          "practicalImplication": "Let one line keep you in place longer than the next new input. Choose the next truthful return instead of rehearsing the failure.",
+          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "Once the miss is visible, before starting one more search, stay with the shelter already in front of you.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 3.75,
-          "specificity": 5,
+          "clarity": 4.29,
+          "specificity": 4.96,
           "emotionalHonesty": 3.54,
-          "usefulness": 4.8,
-          "beauty": 4.07,
-          "overall": 4.27
+          "usefulness": 4.2,
+          "beauty": 4.33,
+          "overall": 4.3
         },
         "strengths": [
           "specificity",
-          "usefulness"
+          "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Training the seeker to stay",
-      "issueStatement": "Search becomes thin when it never matures into rhythm. The heart keeps restarting instead of dwelling, so each new beginning feels sincere but nothing grows roots.",
-      "centralInsight": "The Guru steadies the seeker by joining longing to practice. Sangat, one guide, and repeated return slowly turn hunger into habitation.",
-      "practicalReflection": "A stable seeking life is built by what you stop chasing. Depth appears where the soul learns to remain long enough to be corrected.",
-      "actionPrompt": "Choose one place of return this week and keep coming back there until the habit of wandering begins to weaken.",
+      "title": "When seeking needs a repeatable shape",
+      "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The real need now is a rule that can survive Tuesday, not only move you once.",
+      "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. Practice gives the line an honest place in schedule, memory, and conduct.",
+      "practicalReflection": "Repeated return is what changes pace. Without a kept cue, seeking will keep reclaiming the room on strong days and weak ones alike.",
+      "actionPrompt": "At one fixed cue you can keep all week, before starting one more search, stay with the shelter already in front of you.",
       "searchTerms": [
         "seeking",
         "searching",
@@ -415,10 +380,10 @@
             "verseIds": [
               6424
             ],
-            "shortMeaning": "The treasure of liberation is obtained through devotional worship of the Lord",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives seeking a keepable form through steadier return.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "The line is teaching repetition more than momentary inspiration: the treasure of liberation is obtained through devotional worship of the Lord."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         },
         {
           "source": {
@@ -426,10 +391,10 @@
             "verseIds": [
               1430
             ],
-            "shortMeaning": "If we keep contemplating about the time as to when to remember the Lord",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives seeking a keepable form through steadier return.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "Durable practice appears when the teaching can survive an ordinary week. Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -438,38 +403,39 @@
               8834,
               8835
             ],
-            "shortMeaning": "Meeting with the Guru, your affairs shall be resolved",
-            "lifeApplication": "Let one line keep you in place longer than the next new input. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Seeking is trained through repeated return to the Guru's guidance.",
+            "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
           },
-          "explanation": "This excerpt matters because it trains posture, not only agreement."
+          "explanation": "As practice, the verse keeps returning seeking to the Guru's guidance."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-seeking:practice",
         "evidence": {
-          "coreClaim": "The Guru steadies the seeker by joining longing to practice. Sangat, one guide, and repeated return slowly turn hunger into habitation.",
+          "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. Practice gives the line an honest place in schedule, memory, and conduct.",
           "emotionalState": "scattered, unsettled, wandering",
-          "turn": "Search becomes thin when it never matures into rhythm. The heart keeps restarting instead of dwelling, so each new beginning feels sincere but nothing grows roots.",
-          "practicalImplication": "Choose one place of return this week and keep coming back there until the habit of wandering begins to weaken.",
+          "turn": "The hunger is real, but it keeps feeding on novelty instead of depth. The real need now is a rule that can survive Tuesday, not only move you once.",
+          "practicalImplication": "At one fixed cue you can keep all week, before starting one more search, stay with the shelter already in front of you.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
+          "specificity": 4.96,
           "emotionalHonesty": 3.36,
-          "usefulness": 3.98,
-          "beauty": 4.21,
-          "overall": 4.2
+          "usefulness": 4.2,
+          "beauty": 4.37,
+          "overall": 4.29
         },
         "strengths": [
           "specificity",
           "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -506,7 +472,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:seeking",
     "evidence": {
@@ -520,15 +486,16 @@
       "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 4.96,
-      "emotionalHonesty": 4,
-      "usefulness": 3.82,
+      "emotionalHonesty": 3.9,
+      "usefulness": 4.2,
       "beauty": 4.21,
-      "overall": 4.3
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

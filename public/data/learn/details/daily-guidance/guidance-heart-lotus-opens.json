@@ -1,9 +1,9 @@
 {
   "id": "guidance-heart-lotus-opens",
-  "title": "The heart opens by dying into the Shabad, not by decorating itself.",
-  "summary": "Guru describes inward blossoming as the result of self-recognition through Shabad, not as a mood accidentally stumbled into.",
-  "takeaway": "Depth opens where self-deception dies.",
-  "lifeApplication": "Ask what part of you still wants inspiration without surrender.",
+  "title": "Let the heart open under one clear word",
+  "summary": "This meets the closed inner life that keeps mistaking analysis for opening. The line says the heart opens where one clear word is kept long enough to bloom.",
+  "takeaway": "A heart opens where one clear word is kept.",
+  "lifeApplication": "Before reopening every question, stay with one trusted line until the chest softens around it.",
   "source": {
     "deepDiveId": "shabad-forgiveness-becomes-fearless",
     "verseIds": [
@@ -11,8 +11,8 @@
       9618,
       9622
     ],
-    "shortMeaning": "Knowing the One within and without opens the heart-lotus.",
-    "lifeApplication": "Let Shabad reveal you, not only soothe you."
+    "shortMeaning": "The heart opens when one trusted word is kept, not merely examined.",
+    "lifeApplication": "Stay with one trusted line until the chest softens around it."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -37,30 +37,31 @@
     ]
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Knowing the One within and without opens the heart-lotus.",
+      "coreClaim": "The heart opens when one trusted word is kept, not merely examined.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "Forgive deeply enough that fear loses its throne.",
-      "practicalImplication": "Ask what part of you still wants inspiration without surrender.",
+      "turn": "Forgiveness, conduct, and contentment free the heart from fear.",
+      "practicalImplication": "Before reopening every question, stay with one trusted line until the chest softens around it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.66,
-      "clarity": 4.35,
-      "specificity": 3.9,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3,
-      "beauty": 4.05,
-      "overall": 3.71
+      "faithfulness": 3.92,
+      "clarity": 4.05,
+      "specificity": 4.86,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.26,
+      "beauty": 3.85,
+      "overall": 4.01
     },
     "strengths": [
-      "clarity",
-      "beauty"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

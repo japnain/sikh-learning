@@ -1,16 +1,16 @@
 {
   "id": "guidance-detached-and-steady-1",
-  "title": "Holy Saadhus: Rest And Peace",
-  "summary": "Attachment is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+  "title": "Rest where attachment cannot rule",
+  "summary": "This meets the tired heart that keeps gripping people, outcomes, and opinion for stability. The line places rest in the Lord's shelter, not in possession.",
+  "takeaway": "Take shelter where possession loosens.",
+  "lifeApplication": "When praise, slander, or comparison starts moving your mood, step back from the screen or doorway and say the line once. Let sanctuary steady what possession cannot.",
   "source": {
     "deepDiveId": "shabad-detached-and-steady",
     "verseIds": [
       9412
     ],
-    "shortMeaning": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Peace begins when refuge matters more than possession or praise.",
+    "lifeApplication": "When the grip tightens, move the heart toward refuge before reaction."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
+      "coreClaim": "Peace begins when refuge matters more than possession or praise.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+      "turn": "Steadiness grows where attachment loses its authority.",
+      "practicalImplication": "When praise, slander, or comparison starts moving your mood, step back from the screen or doorway and say the line once. Let sanctuary steady what possession cannot.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 4.11,
-      "specificity": 4.34,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.98,
-      "beauty": 3.85,
-      "overall": 3.93
+      "faithfulness": 4.15,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.64,
+      "beauty": 4.85,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

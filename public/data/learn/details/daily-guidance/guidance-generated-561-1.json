@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-561-1",
-  "title": "Nothing Of The World Can Touch Them",
-  "summary": "Seva is named plainly here before the mind has time to decorate it.",
-  "takeaway": "nothing of the world can touch them at all",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "title": "Put your hope where the world cannot reach",
+  "summary": "This meets the body that keeps bracing for the next blow, opinion, or reversal. The line says the world's reach weakens when hope is placed in the Lord.",
+  "takeaway": "Let hope outrank the world's reach.",
+  "lifeApplication": "Before opening the message or walking into the room, feel the shoulders and stop rehearsing the hit. Let hope settle higher than the situation.",
   "source": {
     "deepDiveId": "shabad-generated-561",
     "verseIds": [
       7939
     ],
-    "shortMeaning": "nothing of the world can touch them at all",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Hope in the Lord lifts the heart beyond the world's reach.",
+    "lifeApplication": "Before the next anxious scan, lift the gaze and place your trust above the circumstance."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -23,7 +23,7 @@
     "collection-seva-journey"
   ],
   "rotation": {
-    "theme": "seva",
+    "theme": "trust",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "nothing of the world can touch them at all",
+      "coreClaim": "Hope in the Lord lifts the heart beyond the world's reach.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "Keep returning to this turn: who has shown me the Perfect, Supreme Lord God.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "turn": "Let hope in the Lord outrank the world's reach.",
+      "practicalImplication": "Before opening the message or walking into the room, feel the shoulders and stop rehearsing the hit. Let hope settle higher than the situation.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.99,
-      "specificity": 4.33,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.97,
-      "overall": 3.91
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.8,
+      "beauty": 4.01,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

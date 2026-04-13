@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-230",
-  "title": "It, The Gurmukh Is Honored And Approved",
+  "title": "Fruitful service gives the life a path",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "This shabad opens with through it, the Gurmukh is honored and approved. It turns the heart toward o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
-  "whyItMatters": "It matters when life feels directionless, numb, and adrift because the shabad keeps purpose inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+  "summary": "The shabad begins by calling service to the Lord fruitful and honorable. It moves through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
+  "whyItMatters": "This is for the person who feels busy but inwardly aimless. Held faithfully, it reconnects usefulness, guidance, and purpose so the day is no longer just maintenance.",
+  "takeaway": "The path becomes visible when service turns fruitful.",
   "themes": [
     "purpose",
     "ego",
@@ -77,9 +77,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: through it, the Gurmukh is honored and approved.",
-    "The middle movement widens the correction through through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across.",
-    "It closes with a return you can actually keep: o Nanak, he alone serves the Lord, whom the Lord attaches to Himself."
+    "It opens by giving service weight, fruit, and honor instead of treating it as leftover work.",
+    "The middle links guidance, Naam, and discovery through the Guru's Shabad.",
+    "It ends by stripping stubbornness of its authority and letting the Lord attach the servant."
   ],
   "keyVerseIds": [
     3452,
@@ -117,25 +117,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with through it, the Gurmukh is honored and approved. It turns the heart toward o Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "coreClaim": "The shabad begins by calling service to the Lord fruitful and honorable. It moves through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
       "emotionalState": "directionless, numb, adrift",
-      "turn": "The middle movement widens the correction through through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
+      "turn": "The middle links guidance, Naam, and discovery through the Guru's Shabad.",
+      "practicalImplication": "This is for the person who feels busy but inwardly aimless. Held faithfully, it reconnects usefulness, guidance, and purpose so the day is no longer just maintenance. The path becomes visible when service turns fruitful.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.45,
-      "specificity": 4.77,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.6,
-      "beauty": 3.6,
-      "overall": 3.97
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3,
+      "usefulness": 3.82,
+      "beauty": 4.21,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-forgiveness-bundle",
-  "title": "Forgiveness in one shorter sitting",
-  "subtitle": "A compact bundle for forgiveness",
-  "description": "The mind knows the wound but does not know how to loosen its grip. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "title": "Forgiveness, stripped back to return",
+  "subtitle": "For when release is possible but not yet believable",
+  "description": "A short sitting for the hour when release feels possible but still costly. It turns forgiveness into the first unclenched breath.",
   "durationLabel": "3-step bundle",
   "themes": [
     "forgiveness"
@@ -14,8 +14,8 @@
       9603,
       9605
     ],
-    "shortMeaning": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
-    "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
+    "shortMeaning": "Forgiveness becomes real when the fist of replay finally opens.",
+    "lifeApplication": "When the old sentence rises, release it before it fills the room."
   },
   "items": [
     {
@@ -46,25 +46,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind knows the wound but does not know how to loosen its grip. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short sitting for the hour when release feels possible but still costly. It turns forgiveness into the first unclenched breath.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "A compact bundle for forgiveness",
+      "turn": "For when release is possible but not yet believable",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.35,
-      "specificity": 4.17,
+      "faithfulness": 3.79,
+      "clarity": 4.35,
+      "specificity": 4.02,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.71
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

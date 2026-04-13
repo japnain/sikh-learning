@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-journey",
   "title": "From Hukam to steadier practice",
-  "subtitle": "A deliberate path through hukam",
-  "description": "Guru reframes peace as understanding the command already holding everything. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when hukam keeps steering the day",
+  "description": "Follow resistance until it meets the command already holding everything. These readings teach the heart to receive the day before arguing with it.",
   "durationLabel": "5-step journey",
   "themes": [
     "hukam",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow resistance until it meets the command already holding everything. These readings teach the heart to receive the day before arguing with it.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "A deliberate path through hukam",
+      "turn": "For when hukam keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.95,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.83
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.05
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-what-pleases-you-comes-to-pass-1",
-  "title": "Whatever Pleases You Comes To Pass",
-  "summary": "Hukam is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Whatever pleases You comes to pass. As You give, so do we receive",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+  "title": "Receive what is given under Hukam",
+  "summary": "This meets the struggle with outcomes you did not choose. The line places giving and receiving back under the Lord's will.",
+  "takeaway": "Receive what Hukam places in your hands.",
+  "lifeApplication": "Before calling the moment unfair, open the hand once and say the line. Let receiving become cleaner than resisting.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
       499
     ],
-    "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "What comes is governed by the Lord's pleasure, and we receive under Hukam.",
+    "lifeApplication": "When resistance rises, unclench the hand and receive what has been placed there."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Whatever pleases You comes to pass. As You give, so do we receive",
+      "coreClaim": "What comes is governed by the Lord's pleasure, and we receive under Hukam.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Receive the day as given, then answer it with Naam.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+      "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
+      "practicalImplication": "Before calling the moment unfair, open the hand once and say the line. Let receiving become cleaner than resisting.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.87,
-      "specificity": 4.61,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.82,
-      "overall": 4.05
+      "faithfulness": 4.16,
+      "clarity": 4.35,
+      "specificity": 4.91,
+      "emotionalHonesty": 3,
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

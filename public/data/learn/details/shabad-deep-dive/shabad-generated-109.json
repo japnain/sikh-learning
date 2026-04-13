@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-109",
-  "title": "Those Who Contemplate The Word",
+  "title": "The Shabad clears the double mind",
   "subtitle": "Siree Raag · Ang 35",
-  "summary": "This shabad opens with those who contemplate the Word of the Guru's Shabad are filled with the Fear of God. It turns the heart toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
-  "whyItMatters": "It matters when life feels foggy, uncertain, and hesitant because the shabad keeps doubt inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: They alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
+  "summary": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
+  "whyItMatters": "This is for the person who keeps reopening certainty until it turns cloudy. Held faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins.",
+  "takeaway": "Stay with the Shabad until duality loses its grip.",
   "themes": [
     "doubt",
     "restlessness",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: those who contemplate the Word of the Guru's Shabad are filled with the Fear of God.",
-    "The middle movement widens the correction through the True Guru comes to meet those who have such pre-ordained destiny.",
-    "It closes with a return you can actually keep: they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him."
+    "It opens with the Guru's word filling the heart with reverent seriousness.",
+    "The middle keeps the soul in true company until mental duality starts to fall away.",
+    "It ends in truthful speech and mind because love has replaced inner division."
   ],
   "keyVerseIds": [
     1449,
@@ -207,25 +207,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with those who contemplate the Word of the Guru's Shabad are filled with the Fear of God. It turns the heart toward they alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
+      "coreClaim": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "The middle movement widens the correction through the True Guru comes to meet those who have such pre-ordained destiny.",
-      "practicalImplication": "Keep returning to this turn: They alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
+      "turn": "The middle keeps the soul in true company until mental duality starts to fall away.",
+      "practicalImplication": "This is for the person who keeps reopening certainty until it turns cloudy. Held faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins. Stay with the Shabad until duality loses its grip.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.91,
+      "clarity": 4.23,
       "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 3.26,
-      "overall": 3.88
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.98,
+      "beauty": 4.45,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

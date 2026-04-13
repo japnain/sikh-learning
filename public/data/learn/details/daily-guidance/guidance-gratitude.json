@@ -1,17 +1,17 @@
 {
   "id": "guidance-gratitude",
-  "title": "Gratitude begins with mercy, not achievement",
-  "summary": "This is not gratitude for being impressive. It is gratitude for being carried.",
-  "takeaway": "Mercy is the atmosphere of real gratitude.",
-  "lifeApplication": "Name one mercy you have been treating as ordinary.",
+  "title": "Receive before demanding more",
+  "summary": "This meets the heart that notices absence faster than gift. The line says gratitude becomes honest when mercy is named before complaint.",
+  "takeaway": "Mercy restores the sight that gratitude needs.",
+  "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room.",
   "source": {
     "deepDiveId": "shabad-gratitude-restores-naam",
     "verseIds": [
       60338,
       60340
     ],
-    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
-    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+    "shortMeaning": "Mercy restores the sight that gratitude needs.",
+    "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Gratitude grows when the heart admits both unworthiness and mercy.",
+      "coreClaim": "Mercy restores the sight that gratitude needs.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "Real gratitude does not inflate the self. It softens it.",
-      "practicalImplication": "Name one mercy you have been treating as ordinary.",
+      "turn": "Honest gratitude becomes the doorway to mercy and Naam.",
+      "practicalImplication": "Before complaining about what is missing, name one mercy already resting in the room.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 4.35,
-      "specificity": 4.36,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.6,
+      "faithfulness": 4.19,
+      "clarity": 4.11,
+      "specificity": 4.94,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
       "beauty": 4.21,
-      "overall": 3.94
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

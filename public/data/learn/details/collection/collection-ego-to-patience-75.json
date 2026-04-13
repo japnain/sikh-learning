@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-to-patience-75",
-  "title": "Ego to Patience",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+  "title": "When waiting humbles the ego",
+  "subtitle": "When waiting reveals how important the self still feels",
+  "description": "Let waiting humble the ego instead of making the self feel more central.",
   "durationLabel": "6-step journey",
   "themes": [
     "ego",
@@ -14,8 +14,8 @@
       20963,
       20964
     ],
-    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-    "lifeApplication": "Move from self-justification toward teachability."
+    "shortMeaning": "Waiting exposes ego and can also humble it.",
+    "lifeApplication": "At the next delay, let the wait lower you before you speak from it."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru ties patience to listening, honor, and steadiness rather than passive resentment.",
+      "coreClaim": "Let waiting humble the ego instead of making the self feel more central.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When waiting reveals how important the self still feels",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.75,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.88
+      "faithfulness": 3.7,
+      "clarity": 4.35,
+      "specificity": 3.94,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.98
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

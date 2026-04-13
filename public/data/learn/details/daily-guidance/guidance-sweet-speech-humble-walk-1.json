@@ -1,16 +1,16 @@
 {
   "id": "guidance-sweet-speech-humble-walk-1",
-  "title": "Chant The Name Of The Lord",
-  "summary": "Speech is named plainly here before the mind has time to decorate it.",
-  "takeaway": "chant the Name of the Lord, and find peace",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+  "title": "Let peace reach the mouth and the walk",
+  "summary": "This meets devotional effort that still feels theatrical and restless. The line says peace grows in saintly company until speech sweetens and the walk humbles.",
+  "takeaway": "Let remembrance shape speech and conduct.",
+  "lifeApplication": "Before speaking in a tense room, lower the chin and slow the pace. Let the body and mouth match the peace you say you want.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
       1288
     ],
-    "shortMeaning": "chant the Name of the Lord, and find peace",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Holy company and Naam make speech sweet and the walk humble.",
+    "lifeApplication": "Before you answer, let your pace and tone come under remembrance."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "chant the Name of the Lord, and find peace",
+      "coreClaim": "Holy company and Naam make speech sweet and the walk humble.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Soft speech becomes believable when the ego has begun to bow.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+      "turn": "When remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "Before speaking in a tense room, lower the chin and slow the pace. Let the body and mouth match the peace you say you want.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 4.11,
-      "specificity": 4.91,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.86,
-      "overall": 4.15
+      "faithfulness": 4.16,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.26,
+      "beauty": 4.05,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

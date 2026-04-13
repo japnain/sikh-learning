@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-512",
-  "title": "For The Sake Of The Lord, Har",
+  "title": "The Guru asks for more than admiration",
   "subtitle": "Raag Gauree · Ang 171",
-  "summary": "This shabad opens with for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru. It turns the heart toward he has sold his head to the True Guru.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: he has sold his head to the True Guru.",
+  "summary": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It deepens through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
+  "whyItMatters": "This is for the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender.",
+  "takeaway": "Let surrender reach the body before the ego performs again.",
   "themes": [
     "ego",
     "seva",
@@ -119,9 +119,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru.",
-    "The middle movement widens the correction through in the darkness, the Guru has lit the lamp of the Guru's wisdom.",
-    "It closes with a return you can actually keep: he has sold his head to the True Guru."
+    "It opens with total offering before the Guru rather than devotional display.",
+    "The middle shows the Guru lighting wisdom, dispelling fear, and waking the mind to what is genuine.",
+    "It ends by contrasting those who never yield with the honor of giving one's head before the True Guru."
   ],
   "keyVerseIds": [
     7138,
@@ -158,25 +158,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with for the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru. It turns the heart toward he has sold his head to the True Guru.",
+      "coreClaim": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It deepens through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through in the darkness, the Guru has lit the lamp of the Guru's wisdom.",
-      "practicalImplication": "Keep returning to this turn: he has sold his head to the True Guru.",
+      "turn": "The middle shows the Guru lighting wisdom, dispelling fear, and waking the mind to what is genuine.",
+      "practicalImplication": "This is for the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender. Let surrender reach the body before the ego performs again.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.64,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.49,
-      "overall": 3.8
+      "clarity": 4.17,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.82,
+      "beauty": 3.92,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

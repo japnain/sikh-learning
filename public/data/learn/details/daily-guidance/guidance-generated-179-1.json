@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-179-1",
-  "title": "Serving The True Guru, The Mind Becomes",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Serving the True Guru, the mind becomes immaculate, and the body becomes pure",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Serve until mind and body agree",
+  "summary": "This meets the split between spiritual speech and ordinary conduct. The line says serving the True Guru makes the mind immaculate and the body pure together.",
+  "takeaway": "Serve until mind and body agree.",
+  "lifeApplication": "Before calling something devotion again, choose one act that cleans both inward motive and outward behavior.",
   "source": {
     "deepDiveId": "shabad-generated-179",
     "verseIds": [
       2787
     ],
-    "shortMeaning": "Serving the True Guru, the mind becomes immaculate, and the body becomes pure",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Service to the True Guru cleans both mind and body together.",
+    "lifeApplication": "When life feels split, choose the service that cleans both motive and behavior."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -23,7 +23,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "conduct",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Serving the True Guru, the mind becomes immaculate, and the body becomes pure",
+      "coreClaim": "Service to the True Guru cleans both mind and body together.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, the devotees are happy and peaceful forever. They are absorbed in the True Name.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Let the Guru's truth reach your food, speech, and shelter.",
+      "practicalImplication": "Before calling something devotion again, choose one act that cleans both inward motive and outward behavior.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.67,
-      "clarity": 3.75,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.54,
+      "faithfulness": 4,
+      "clarity": 4.17,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.2,
-      "beauty": 3.54,
-      "overall": 3.81
+      "beauty": 3.93,
+      "overall": 4.01
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

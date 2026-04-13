@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-and-belonging",
   "title": "Sangat and Belonging",
-  "subtitle": "A return to company that helps the heart breathe",
-  "description": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
+  "subtitle": "For the heart that needs nearness without performance",
+  "description": "Move through these readings until belonging stops depending on mood and starts resting in holy company.",
   "durationLabel": "6-day journey",
   "themes": [
     "sangat",
@@ -15,8 +15,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Saint company arrives as mercy and changes the whole climate of the seeker.",
-    "lifeApplication": "Belonging can be one form of rescue."
+    "shortMeaning": "Belonging becomes real where remembrance is shared, not performed.",
+    "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
   },
   "items": [
     {
@@ -56,32 +56,31 @@
     "shabad-generated-152"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Study how holy company cools isolation and teaches the heart how to belong without performing.",
+      "coreClaim": "Move through these readings until belonging stops depending on mood and starts resting in holy company.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A return to company that helps the heart breathe",
+      "turn": "For the heart that needs nearness without performance",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.8,
-      "clarity": 2.55,
-      "specificity": 4.03,
+      "faithfulness": 4.05,
+      "clarity": 4.35,
+      "specificity": 4.27,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.37,
-      "overall": 3.58
+      "overall": 4.11
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-journey",
   "title": "From Sangat to steadier practice",
-  "subtitle": "A deliberate path through sangat",
-  "description": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when sangat keeps steering the day",
+  "description": "Enter the medicine of better company. These readings show how atmosphere, placement, and shared remembrance change what the heart can become.",
   "durationLabel": "5-step journey",
   "themes": [
     "sangat",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru treats Sangat as medicine, placement, and atmosphere for growth. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Enter the medicine of better company. These readings show how atmosphere, placement, and shared remembrance change what the heart can become.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A deliberate path through sangat",
+      "turn": "For when sangat keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 3.95,
-      "specificity": 4.23,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.79
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-speech-84",
-  "title": "Doubt to Speech",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+  "title": "When doubt reaches the tongue",
+  "subtitle": "When uncertainty starts leaking into the tongue",
+  "description": "Keep doubt from becoming speech by returning to one clearer word first.",
   "durationLabel": "6-step journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       921,
       922
     ],
-    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-    "lifeApplication": "Move from circling to obedience."
+    "shortMeaning": "Confusion often reaches the mouth before it clears.",
+    "lifeApplication": "When you are unsure, let the tongue wait for a clearer word."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru makes speech answer to praise, restraint, and truthfulness.",
+      "coreClaim": "Keep doubt from becoming speech by returning to one clearer word first.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When uncertainty starts leaking into the tongue",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 4.25,
-      "specificity": 4.23,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.96
+      "faithfulness": 3.76,
+      "clarity": 4.35,
+      "specificity": 4,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 3.98
     },
     "strengths": [
-      "beauty",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

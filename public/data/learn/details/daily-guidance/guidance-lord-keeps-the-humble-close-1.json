@@ -1,16 +1,16 @@
 {
   "id": "guidance-lord-keeps-the-humble-close-1",
-  "title": "Meeting Him, The Lord Is Enshrined Within",
-  "summary": "Self-Worth is named plainly here before the mind has time to decorate it.",
-  "takeaway": "meeting Him, the Lord is enshrined within the heart",
-  "lifeApplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+  "title": "Let your worth come from being held",
+  "summary": "This meets the insecure heart that keeps begging the world to confirm it. The line says true worth begins when the Guru enshrines the Lord within.",
+  "takeaway": "Receive worth from the One who keeps you close.",
+  "lifeApplication": "Before fishing for reassurance, touch the sternum and slow the breath. Remember that the Lord keeps the humble servant close to His own heart.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
       37468
     ],
-    "shortMeaning": "meeting Him, the Lord is enshrined within the heart",
-    "lifeApplication": "Let dignity be received before it is defended. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The humble are kept close and made inwardly rich by the Lord.",
+    "lifeApplication": "Before asking the world who you are, remember whose child you already are."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "meeting Him, the Lord is enshrined within the heart",
+      "coreClaim": "The humble are kept close and made inwardly rich by the Lord.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Nearness is received in humility, not built out of status.",
-      "practicalImplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "Before fishing for reassurance, touch the sternum and slow the breath. Remember that the Lord keeps the humble servant close to His own heart.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 3.99,
-      "specificity": 4.54,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.58,
-      "beauty": 3.92,
-      "overall": 4.08
+      "faithfulness": 4.13,
+      "clarity": 4.35,
+      "specificity": 4.88,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.04,
+      "beauty": 4.53,
+      "overall": 4.18
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

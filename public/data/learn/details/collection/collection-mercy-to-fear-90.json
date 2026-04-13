@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-to-fear-90",
-  "title": "Mercy to Fear",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru answers fear by restoring the presence, shelter, and command of the one.",
+  "title": "When mercy quiets a frightened body",
+  "subtitle": "When mercy needs to quiet a frightened body",
+  "description": "Receive mercy until fear stops acting like the only honest voice in the room.",
   "durationLabel": "6-step journey",
   "themes": [
     "mercy",
@@ -14,8 +14,8 @@
       501,
       503
     ],
-    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
-    "lifeApplication": "Return is possible because grace precedes your recovery."
+    "shortMeaning": "Mercy can quiet a body fear has overtaken.",
+    "lifeApplication": "When fear takes the chest, receive one line as mercy before reacting."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. This bridge then carries into guru answers fear by restoring the presence, shelter, and command of the one.",
+      "coreClaim": "Receive mercy until fear stops acting like the only honest voice in the room.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When mercy needs to quiet a frightened body",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.15,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.94
+      "faithfulness": 3.79,
+      "clarity": 4.35,
+      "specificity": 4.02,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.69,
+      "overall": 4.06
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-conquer-the-mind",
-  "title": "Conquer the Mind, Not the Room",
+  "title": "Wear contentment before you speak of conquest",
   "subtitle": "Japji Sahib, Pauri 28",
-  "summary": "Guru Nanak redirects the spiritual struggle inward. Self-mastery matters more than external identity markers.",
-  "whyItMatters": "It speaks directly to scattered ambition, comparison, anger, and the urge to perform spirituality instead of being transformed by it.",
-  "takeaway": "The hardest field is the inner field. Win there first.",
+  "summary": "The shabad opens by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It widens into brotherhood and lands where true conquest happens, in the mind rather than the room.",
+  "whyItMatters": "This is for the person tempted by spiritual image, intensity, or performance. Held honestly, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
+  "takeaway": "Conquer the mind before trying to conquer the world.",
   "themes": [
     "discipline",
     "mind",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "Replaces outer religious symbols with inner virtues.",
-    "Moves from symbolic discipline toward the direct challenge of mastering the mind.",
-    "Closes in bowing, reminding the seeker that self-mastery is still grace-dependent."
+    "It opens by turning external marks of seriousness into inward discipline.",
+    "The middle widens the field into brotherhood and a different measure of strength.",
+    "It ends with conquest relocated to the mind and bowed before the Primal One."
   ],
   "keyVerseIds": [
     290,
@@ -108,25 +108,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Nanak redirects the spiritual struggle inward. Self-mastery matters more than external identity markers.",
+      "coreClaim": "The shabad opens by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It widens into brotherhood and lands where true conquest happens, in the mind rather than the room.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "Moves from symbolic discipline toward the direct challenge of mastering the mind.",
-      "practicalImplication": "The hardest field is the inner field. Win there first.",
+      "turn": "The middle widens the field into brotherhood and a different measure of strength.",
+      "practicalImplication": "This is for the person tempted by spiritual image, intensity, or performance. Held honestly, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake. Conquer the mind before trying to conquer the world.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3,
-      "beauty": 4.05,
-      "overall": 4.06
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.88,
+      "beauty": 4.21,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

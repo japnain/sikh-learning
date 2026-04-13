@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-510-1",
-  "title": "Body-village Is Filled To Overflowing With Sexual",
-  "summary": "Comparison is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The body-village is filled to overflowing with sexual desire and anger, which were broken",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+  "title": "Take the crowded body into saintly company",
+  "summary": "This meets the body-village already crowded by sexual desire and anger. The line says those forces were broken to pieces when the Holy Saint was finally met.",
+  "takeaway": "Take the crowded body where the heat can break.",
+  "lifeApplication": "When desire and anger surge together, do not stay alone negotiating with them. Go toward saintly company before the heat organizes your next action.",
   "source": {
     "deepDiveId": "shabad-generated-510",
     "verseIds": [
       7117
     ],
-    "shortMeaning": "The body-village is filled to overflowing with sexual desire and anger, which were broken",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Meeting the Holy Saint breaks lust and anger in the crowded body.",
+    "lifeApplication": "When desire and anger crowd the body, go toward saintly company before they choose for you."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "anger",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The body-village is filled to overflowing with sexual desire and anger, which were broken",
+      "coreClaim": "Meeting the Holy Saint breaks lust and anger in the crowded body.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+      "turn": "Take the overheated self back from distance until Naam becomes support.",
+      "practicalImplication": "When desire and anger surge together, do not stay alone negotiating with them. Go toward saintly company before the heat organizes your next action.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.63,
-      "clarity": 3.33,
-      "specificity": 4.41,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.42,
-      "beauty": 3.47,
-      "overall": 3.81
+      "faithfulness": 3.9,
+      "clarity": 4.29,
+      "specificity": 4.84,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
+      "beauty": 4.01,
+      "overall": 4.09
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

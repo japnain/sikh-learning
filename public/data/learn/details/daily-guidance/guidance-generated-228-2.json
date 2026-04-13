@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-228-2",
-  "title": "They Do Not Recognize God Within Themselves-they",
-  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The Pandits, the religious scholars, read and read, and shout out loud, but they; they do not recognize God within themselves-they are so foolish and ignorant",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "title": "Recognize the One within before you teach",
+  "summary": "This meets the religious or intellectual mood that can explain everything except the heart. The line says loud learning is empty if the Divine is still unrecognized within.",
+  "takeaway": "Turn inward before speaking outward.",
+  "lifeApplication": "Before correcting someone, posting the quote, or giving the lesson, touch the chest and ask if the line has entered your own conduct. Do not use sacred language to stay unexamined.",
   "source": {
     "deepDiveId": "shabad-generated-228",
     "verseIds": [
       3442,
       3443
     ],
-    "shortMeaning": "The Pandits, the religious scholars, read and read, and shout out loud, but they; they do not recognize God within themselves-they are so foolish and ignorant",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Knowledge ripens only when the One is recognized within.",
+    "lifeApplication": "Before teaching, ask whether the truth has already changed your own heart."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "attachment",
+    "theme": "honesty",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Pandits, the religious scholars, read and read, and shout out loud, but they; they do not recognize God within themselves-they are so foolish and ignorant",
+      "coreClaim": "Knowledge ripens only when the One is recognized within.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: they die, only to be re-born, over and over again.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "turn": "Knowledge without inward freedom still serves attachment.",
+      "practicalImplication": "Before correcting someone, posting the quote, or giving the lesson, touch the chest and ask if the line has entered your own conduct. Do not use sacred language to stay unexamined.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 1.83,
-      "specificity": 4.72,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.02,
-      "overall": 3.59
+      "faithfulness": 4.12,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

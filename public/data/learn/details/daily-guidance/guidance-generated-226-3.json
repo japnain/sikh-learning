@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-226-3",
-  "title": "Please Protect Me, By The Pleasure",
-  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
-  "takeaway": "Please protect me, by the Pleasure of Your Will. Nanak is Your slave",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "title": "Ask to be kept by the Will",
+  "summary": "This meets the moment when self-direction is failing but pride still resists surrender. The line becomes relief by asking to be kept according to the Beloved's pleasure.",
+  "takeaway": "Hand the outcome back to the Will.",
+  "lifeApplication": "Before sending the defense, the correction, or the demand, lower the eyes and say the line once. Let the body feel what surrender changes before the mouth speaks.",
   "source": {
     "deepDiveId": "shabad-generated-226",
     "verseIds": [
       3433,
       3434
     ],
-    "shortMeaning": "Through the Guru's Teachings, the Name is obtained, while the self-willed manmukh wastes away in emotional attachment; please protect me, by the Pleasure of Your Will. Nanak is Your slave",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Peace begins when the self asks to be kept by Hukam.",
+    "lifeApplication": "When pride hardens, ask to be held by the Will before you act."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -24,7 +24,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "hukam",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Through the Guru's Teachings, the Name is obtained, while the self-willed manmukh wastes away in emotional attachment; please protect me, by the Pleasure of Your Will. Nanak is Your slave",
+      "coreClaim": "Peace begins when the self asks to be kept by Hukam.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: Please protect me, by the Pleasure of Your Will. Nanak is Your slave.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "turn": "Serve first, and let peace expose the self.",
+      "practicalImplication": "Before sending the defense, the correction, or the demand, lower the eyes and say the line once. Let the body feel what surrender changes before the mouth speaks.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
-      "clarity": 3.99,
-      "specificity": 4.94,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.96,
-      "overall": 4.12
+      "faithfulness": 4.17,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.21,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

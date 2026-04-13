@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-journey",
   "title": "From Greed to steadier practice",
-  "subtitle": "A deliberate path through greed",
-  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when greed keeps steering the day",
+  "description": "Follow appetite until it is exposed as false wealth. These readings redirect desire toward what can still travel with the soul.",
   "durationLabel": "5-step journey",
   "themes": [
     "greed",
@@ -57,25 +57,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow appetite until it is exposed as false wealth. These readings redirect desire toward what can still travel with the soul.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A deliberate path through greed",
+      "turn": "For when greed keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 3.55,
-      "specificity": 4.28,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.76
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

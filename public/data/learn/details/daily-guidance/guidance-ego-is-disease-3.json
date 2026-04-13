@@ -1,17 +1,17 @@
 {
   "id": "guidance-ego-is-disease-3",
-  "title": "If The Lord Grants His Grace, One",
-  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
-  "takeaway": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "title": "Do not call the fever your personality",
+  "summary": "This meets the self getting mistaken for instinct, honesty, or force of character. The line says ego is a fever, and the Guru's medicine has to be taken before it starts feeling natural.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
       20963,
       20964
     ],
-    "shortMeaning": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad; ego is a chronic disease, but it contains its own cure as well",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Ego is a fever of selfhood, not your truest voice.",
+    "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad; ego is a chronic disease, but it contains its own cure as well",
+      "coreClaim": "Ego is a fever of selfhood, not your truest voice.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "The cure begins when ego is seen as illness rather than identity.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "turn": "Treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "Before defending yourself, ask where the self wants the line to confirm it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 3.69,
+      "faithfulness": 4.19,
+      "clarity": 4.29,
       "specificity": 4.76,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.71,
-      "overall": 3.96
+      "usefulness": 3.82,
+      "beauty": 4.01,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

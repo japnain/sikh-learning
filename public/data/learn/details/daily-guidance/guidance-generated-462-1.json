@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-462-1",
-  "title": "With Your Nectar-like Body, You Live",
-  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
-  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "title": "A passing drama is too short for waste",
+  "summary": "This meets the restless mood that treats the body like permanent shelter and the day like endless inventory. The line brings mortality close enough to clean up urgency.",
+  "takeaway": "Remember the passing body before you spend the day.",
+  "lifeApplication": "Before gossip, doomscrolling, or one more petty chase, feel the body's fragility in the breath and ribs. Let temporary life rebuke the waste.",
   "source": {
     "deepDiveId": "shabad-generated-462",
     "verseIds": [
       6434
     ],
-    "shortMeaning": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
-    "lifeApplication": "Choose better placement before choosing more movement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "This brief body should not be spent as though the drama were permanent.",
+    "lifeApplication": "When you waste the hour, remember how temporary the body already is."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
+      "coreClaim": "This brief body should not be spent as though the drama were permanent.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: This soul and body all are His. He Himself kills, and brings back to life.",
-      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "turn": "Remember the shortness of life before you spend it in gossip.",
+      "practicalImplication": "Before gossip, doomscrolling, or one more petty chase, feel the body's fragility in the breath and ribs. Let temporary life rebuke the waste.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 3.46,
-      "specificity": 4.43,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.42,
-      "overall": 3.79
+      "faithfulness": 4.32,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 4.86,
+      "beauty": 4.37,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

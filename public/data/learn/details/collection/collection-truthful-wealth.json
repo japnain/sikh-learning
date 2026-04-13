@@ -1,8 +1,8 @@
 {
   "id": "collection-truthful-wealth",
   "title": "Truthful Wealth",
-  "subtitle": "A path out of empty gain",
-  "description": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
+  "subtitle": "For the one who wants gain that can survive loss",
+  "description": "Follow this path until profit is measured by what deepens the soul, not by what decorates the self.",
   "durationLabel": "6-day journey",
   "themes": [
     "purpose",
@@ -15,8 +15,8 @@
       934,
       937
     ],
-    "shortMeaning": "Carry what will remain with you when the visible inventory is gone.",
-    "lifeApplication": "Let your accounts become spiritual, not merely impressive."
+    "shortMeaning": "Real wealth is what remains when possession cannot travel.",
+    "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
   },
   "items": [
     {
@@ -61,9 +61,9 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
+      "coreClaim": "Follow this path until profit is measured by what deepens the soul, not by what decorates the self.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "A path out of empty gain",
+      "turn": "For the one who wants gain that can survive loss",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
@@ -72,14 +72,15 @@
       "clarity": 4.35,
       "specificity": 4.02,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.84
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 3.98
     },
     "strengths": [
-      "beauty",
-      "clarity"
+      "usefulness",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

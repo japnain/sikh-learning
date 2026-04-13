@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-to-seeking-93",
-  "title": "Greed to Seeking",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers seeking by showing where wandering ends and dwelling begins.",
+  "title": "When appetite disguises itself as seeking",
+  "subtitle": "When hunger starts calling itself a spiritual search",
+  "description": "This path separates holy hunger from spiritualized appetite, so desire stops dressing itself in sacred language.",
   "durationLabel": "6-step journey",
   "themes": [
     "greed",
@@ -15,8 +15,8 @@
       640,
       641
     ],
-    "shortMeaning": "Unexamined appetite crowds out remembrance.",
-    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+    "shortMeaning": "Appetite can borrow sacred language without becoming holy.",
+    "lifeApplication": "When the hunger sounds holy, ask whether it is depth or appetite."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers seeking by showing where wandering ends and dwelling begins.",
+      "coreClaim": "This path separates holy hunger from spiritualized appetite, so desire stops dressing itself in sacred language.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When hunger starts calling itself a spiritual search",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 3.85,
-      "specificity": 4.28,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.83
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

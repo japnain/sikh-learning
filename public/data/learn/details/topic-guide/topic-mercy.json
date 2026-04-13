@@ -68,10 +68,10 @@
           501,
           503
         ],
-        "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-        "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line stay in charge of what comes next."
+        "shortMeaning": "Mercy becomes believable when praise interrupts self-prosecution.",
+        "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
       },
-      "explanation": "Mercy is not abstract here. The heart is taught to receive what comes from the Giver and to stop treating grace as something earned after self-punishment."
+      "explanation": "The verse makes mercy larger than self-judgment. Praise becomes more believable than the inner prosecution."
     },
     {
       "source": {
@@ -81,10 +81,10 @@
           3760,
           3762
         ],
-        "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-        "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line stay in charge of what comes next."
+        "shortMeaning": "Mercy is learned more honestly inside holy company than alone.",
+        "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
       },
-      "explanation": "The seeker does not hide need. Mercy begins where helplessness can be spoken plainly and the soul comes near like a child instead of defending its worth."
+      "explanation": "Gurbani does not let mercy stay private or theoretical. The line places it inside company, where grace can actually be learned."
     },
     {
       "source": {
@@ -94,10 +94,10 @@
           37476,
           37477
         ],
-        "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-        "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line stay in charge of what comes next."
+        "shortMeaning": "Mercy changes the heart only when it is received as care.",
+        "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
       },
-      "explanation": "Grace is felt here as nearness, not sentiment. The humble are kept close, cared for, and gathered without having to first prove they deserved to be received."
+      "explanation": "The excerpt matters because it turns mercy into something received, not merely admired from a distance."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -111,11 +111,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Mercy in the ordinary day",
-      "issueStatement": "By afternoon the day feels procedural, and mercy starts sounding like a word meant for larger crises or holier people.",
-      "centralInsight": "Gurbani does not wait for dramatic collapse before speaking of grace. Mercy belongs in errands, interruptions, and the plain shape of the day.",
-      "practicalReflection": "Ordinary time is where harshness usually becomes invisible. Receiving mercy there keeps the soul from hardening by habit.",
-      "actionPrompt": "Take one recurring part of the day and meet it with one line of gratitude before you meet it with critique.",
+      "title": "When mercy feels hard to receive before the day gets away from you",
+      "issueStatement": "The heart keeps assuming kindness must first be earned. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
+      "centralInsight": "Guru keeps mercy close to gift, nearness, and return. Gurbani does not leave the ordinary day outside the work of return.",
+      "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
+      "actionPrompt": "At the first self-accusing thought of the day, place a hand on the chest and receive one line before you do anything to earn it.",
       "searchTerms": [
         "mercy",
         "grace",
@@ -141,10 +141,10 @@
               499,
               501
             ],
-            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Daily mercy starts by receiving the day as given rather than as a test of deservingness. The line softens the ordinary room before criticism takes it over."
+          "explanation": "In the ordinary day, the verse turns mercy toward Naam and praise instead of self-enclosure."
         },
         {
           "source": {
@@ -153,10 +153,10 @@
               3757,
               3760
             ],
-            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by holy company.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "The ordinary day is where the soul forgets how dependent it is. This line keeps mercy close by letting need be honest instead of hidden under competence."
+          "explanation": "The daily moment changes here because mercy is not left alone with itself."
         },
         {
           "source": {
@@ -166,48 +166,49 @@
               37474,
               37476
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Ordinary mercy becomes durable when the heart remembers it is being kept, not merely evaluated. Nearness turns the whole day into a place where grace can actually be received."
+          "explanation": "This keeps the day from shrinking around mercy; the heart is returned to Naam and praise."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-mercy:daily",
         "evidence": {
-          "coreClaim": "Gurbani does not wait for dramatic collapse before speaking of grace. Mercy belongs in errands, interruptions, and the plain shape of the day.",
+          "coreClaim": "Guru keeps mercy close to gift, nearness, and return. Gurbani does not leave the ordinary day outside the work of return.",
           "emotionalState": "controlling, unsettled, lonely",
-          "turn": "By afternoon the day feels procedural, and mercy starts sounding like a word meant for larger crises or holier people.",
-          "practicalImplication": "Take one recurring part of the day and meet it with one line of gratitude before you meet it with critique.",
+          "turn": "The heart keeps assuming kindness must first be earned. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
+          "practicalImplication": "At the first self-accusing thought of the day, place a hand on the chest and receive one line before you do anything to earn it.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.18,
-          "usefulness": 3.88,
-          "beauty": 4.52,
-          "overall": 4.24
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.48,
+          "beauty": 4.84,
+          "overall": 4.4
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Mercy when the day tightens",
-      "issueStatement": "When pressure rises, the first instinct is to drive harder, narrow the heart, and treat tenderness as a luxury you cannot afford.",
-      "centralInsight": "Under pressure, mercy is not sentimental relief. It is the interruption that keeps urgency from becoming spiritual brutality.",
-      "practicalReflection": "Pressure reveals what rules you. If the mind reaches first for force, Gurbani re-teaches it to reach for the Giver.",
-      "actionPrompt": "Before solving the pressure, slow down enough to receive one line as shelter and let that line decide the next tone.",
+      "title": "When mercy tightens under pressure",
+      "issueStatement": "The heart keeps assuming kindness must first be earned. Under strain, the body starts choosing before discernment has properly arrived.",
+      "centralInsight": "Guru keeps mercy close to gift, nearness, and return. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
+      "practicalReflection": "Pressure makes hidden loyalties visible. If mercy reaches first for force, the line has to reach first for truth.",
+      "actionPrompt": "When criticism or failure lands, keep silent for one breath and answer from mercy before self-audit takes over.",
       "searchTerms": [
         "mercy",
         "grace",
@@ -236,10 +237,10 @@
               3762,
               3763
             ],
-            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; the Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through holy company.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Pressure often makes the soul hide its need and reach for force instead. This line answers by bringing mercy close through dependence rather than panic-driven self-command."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -248,10 +249,10 @@
               11502,
               11503
             ],
-            "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Mercy is not left to rule the strained moment.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "When the day tightens, mercy must interrupt quickly. Remembrance steadies the room before pressure has time to turn harshness into a false form of seriousness."
+          "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex."
         },
         {
           "source": {
@@ -261,48 +262,49 @@
               30989,
               30994
             ],
-            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Mercy is not left to rule the strained moment.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Mercy under strain begins by being steadied. The soul remembers it is sustained by the Creator before urgency gets to dictate the whole tone of the moment."
+          "explanation": "Under pressure, the verse steadies mercy by returning the heart to received care."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-mercy:pressure",
         "evidence": {
-          "coreClaim": "Under pressure, mercy is not sentimental relief. It is the interruption that keeps urgency from becoming spiritual brutality.",
+          "coreClaim": "Guru keeps mercy close to gift, nearness, and return. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
           "emotionalState": "alone, yearning, dependent",
-          "turn": "When pressure rises, the first instinct is to drive harder, narrow the heart, and treat tenderness as a luxury you cannot afford.",
-          "practicalImplication": "Before solving the pressure, slow down enough to receive one line as shelter and let that line decide the next tone.",
+          "turn": "The heart keeps assuming kindness must first be earned. Under strain, the body starts choosing before discernment has properly arrived.",
+          "practicalImplication": "When criticism or failure lands, keep silent for one breath and answer from mercy before self-audit takes over.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.29,
+          "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
-          "usefulness": 4.64,
-          "beauty": 4.49,
-          "overall": 4.39
+          "emotionalHonesty": 3.36,
+          "usefulness": 3.88,
+          "beauty": 4.95,
+          "overall": 4.33
         },
         "strengths": [
           "specificity",
-          "usefulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Mercy after the slip",
-      "issueStatement": "The mistake has already happened, and now shame wants to turn the aftermath into proof that return is no longer honest.",
-      "centralInsight": "Gurbani keeps mercy close to return. Repair begins when failure stops being theatre for the ego and becomes a doorway back to truth.",
-      "practicalReflection": "The mind often calls punishment sincerity. The Guru teaches a stricter honesty: admit the break, then come back without delay.",
-      "actionPrompt": "Name the slip without ornament, ask for mercy without bargaining, and make the next faithful act smaller than your shame wants.",
+      "title": "When repair has to begin after the mind has wandered",
+      "issueStatement": "The heart keeps assuming kindness must first be earned. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru keeps mercy close to gift, nearness, and return. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
+      "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps mercy from turning into a permanent self-story.",
+      "actionPrompt": "After the miss, confess plainly, receive mercy, and take the next obedient step instead of sentencing yourself.",
       "searchTerms": [
         "mercy",
         "grace",
@@ -330,10 +332,10 @@
               37476,
               37477
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through received care.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "After the slip, mercy is felt as nearness rather than exile. The heart is kept close enough to return honestly instead of turning shame into identity."
+          "explanation": "Repair stays honest here because mercy is answered without theatre."
         },
         {
           "source": {
@@ -342,10 +344,10 @@
               11502,
               11503
             ],
-            "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through Naam and praise.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Repair becomes possible when remembrance interrupts the spiral quickly. Mercy keeps the soul moving toward peace instead of rehearsing the break until it feels permanent."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -354,48 +356,49 @@
               3898,
               3899
             ],
-            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Mercy is not allowed to become identity here.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "This line keeps repair from becoming lonely theatre. Mercy cools the fever of self-judgment by bringing the soul back into company, shelter, and real return."
+          "explanation": "After the slip, the verse keeps return possible through holy company."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-mercy:repair",
         "evidence": {
-          "coreClaim": "Gurbani keeps mercy close to return. Repair begins when failure stops being theatre for the ego and becomes a doorway back to truth.",
+          "coreClaim": "Guru keeps mercy close to gift, nearness, and return. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
           "emotionalState": "small, unwanted, afraid",
-          "turn": "The mistake has already happened, and now shame wants to turn the aftermath into proof that return is no longer honest.",
-          "practicalImplication": "Name the slip without ornament, ask for mercy without bargaining, and make the next faithful act smaller than your shame wants.",
+          "turn": "The heart keeps assuming kindness must first be earned. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "After the miss, confess plainly, receive mercy, and take the next obedient step instead of sentencing yourself.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
-          "specificity": 4.78,
+          "clarity": 4.29,
+          "specificity": 4.96,
           "emotionalHonesty": 3.72,
-          "usefulness": 3.6,
-          "beauty": 4.69,
-          "overall": 4.27
+          "usefulness": 4.2,
+          "beauty": 4.65,
+          "overall": 4.37
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Learning a merciful way to live",
-      "issueStatement": "You can understand grace in flashes and still default to a punishing inner voice the rest of the week.",
-      "centralInsight": "Mercy becomes durable when it is practiced as posture, not only admired as doctrine. The Guru trains the heart to live received, not merely relieved.",
-      "practicalReflection": "A merciful life is not vague softness. It is disciplined refusal to build identity out of accusation and scarcity.",
-      "actionPrompt": "Choose one daily moment where you usually tighten against yourself and rehearse a truer, gentler response there for a week.",
+      "title": "When mercy needs a steadier rule",
+      "issueStatement": "The heart keeps assuming kindness must first be earned. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
+      "centralInsight": "Guru keeps mercy close to gift, nearness, and return. The teaching becomes durable when it is practiced, not merely admired.",
+      "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
+      "actionPrompt": "Keep one fixed mercy cue this week: before sleep or after mistakes, read one line before reviewing yourself.",
       "searchTerms": [
         "mercy",
         "grace",
@@ -421,10 +424,10 @@
               30989,
               30994
             ],
-            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to received care the same way again.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "A merciful life needs steadiness, not only relief. This line trains the soul to live sustained by the Creator instead of by constant self-pressure."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -434,10 +437,10 @@
               501,
               503
             ],
-            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives mercy a keepable form through Naam and praise.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Practice becomes real when the heart keeps returning to Hukam instead of to private audit. Mercy deepens through repeated consent to what the Giver is already holding."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         },
         {
           "source": {
@@ -447,38 +450,39 @@
               3899,
               3900
             ],
-            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
-            "lifeApplication": "Receive one line as mercy before turning it into a performance review. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives mercy a keepable form through holy company.",
+            "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
           },
-          "explanation": "Mercy grows durable when it is practiced in the right company. The line keeps grace from becoming solitary theory by teaching the soul to remain near shelter."
+          "explanation": "As practice, the verse keeps returning mercy to holy company."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-mercy:practice",
         "evidence": {
-          "coreClaim": "Mercy becomes durable when it is practiced as posture, not only admired as doctrine. The Guru trains the heart to live received, not merely relieved.",
+          "coreClaim": "Guru keeps mercy close to gift, nearness, and return. The teaching becomes durable when it is practiced, not merely admired.",
           "emotionalState": "afraid, shaken, alone",
-          "turn": "You can understand grace in flashes and still default to a punishing inner voice the rest of the week.",
-          "practicalImplication": "Choose one daily moment where you usually tighten against yourself and rehearse a truer, gentler response there for a week.",
+          "turn": "The heart keeps assuming kindness must first be earned. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
+          "practicalImplication": "Keep one fixed mercy cue this week: before sleep or after mistakes, read one line before reviewing yourself.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.72,
-          "usefulness": 3.6,
+          "specificity": 5,
+          "emotionalHonesty": 3.18,
+          "usefulness": 4.26,
           "beauty": 4.53,
-          "overall": 4.25
+          "overall": 4.3
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -512,7 +516,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:mercy",
     "evidence": {
@@ -528,13 +532,14 @@
       "specificity": 5,
       "emotionalHonesty": 3.54,
       "usefulness": 4.64,
-      "beauty": 4.85,
-      "overall": 4.46
+      "beauty": 4.95,
+      "overall": 4.47
     },
     "strengths": [
       "specificity",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

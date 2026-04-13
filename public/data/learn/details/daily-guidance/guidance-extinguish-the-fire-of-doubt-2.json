@@ -1,17 +1,17 @@
 {
   "id": "guidance-extinguish-the-fire-of-doubt-2",
-  "title": "Become Gurmukh, And Extinguish The Fire Within",
-  "summary": "Doubt is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries; o mind, become Gurmukh, and extinguish the fire within",
-  "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+  "title": "Wandering will not cool this fire",
+  "summary": "This meets the mind that keeps moving because stillness feels risky. The line says doubt is not cured by distance, only by becoming Gurmukh.",
+  "takeaway": "Stop roaming and face the inner fire.",
+  "lifeApplication": "Before opening another tab, changing the plan, or calling one more person, sit down and feel the heat in the chest. Ask the Guru's word to stay longer than the panic.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       918,
       921
     ],
-    "shortMeaning": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries; o mind, become Gurmukh, and extinguish the fire within",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The fire of doubt cools through Gurmukh steadiness, not roaming.",
+    "lifeApplication": "When confusion surges, stay with the line before you run to another distraction."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The fire of doubt is not extinguished, even by wandering through foreign lands and countries; o mind, become Gurmukh, and extinguish the fire within",
+      "coreClaim": "The fire of doubt cools through Gurmukh steadiness, not roaming.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Stop circling and let Guru's word take residence.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before opening another tab, changing the plan, or calling one more person, sit down and feel the heat in the chest. Ask the Guru's word to stay longer than the panic.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 2.14,
-      "specificity": 4.78,
+      "faithfulness": 4.19,
+      "clarity": 4.35,
+      "specificity": 4.94,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.23,
-      "overall": 3.72
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

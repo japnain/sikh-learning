@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-108",
-  "title": "If We Keep Contemplating About The Time",
+  "title": "Do not postpone remembrance",
   "subtitle": "Siree Raag · Ang 35",
-  "summary": "This shabad opens with if we keep contemplating about the time as to when to remember the Lord. It turns the heart toward o Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
-  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
+  "summary": "The shabad begins by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It answers with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
+  "whyItMatters": "This is for the person who respects practice in principle but keeps scheduling it out of reach. Held steadily, it breaks procrastination's spell and teaches constancy more than intensity.",
+  "takeaway": "Remembrance becomes true when it stops waiting for later.",
   "themes": [
     "anger",
     "sangat",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: if we keep contemplating about the time as to when to remember the Lord.",
-    "The middle movement widens the correction through this true mind is attuned to Truth, and it remains permeated with the True One.",
-    "It closes with a return you can actually keep: o Nanak, merging with the Shabad through the Name, one is immersed in the Name."
+    "It opens by mocking the mind's endless search for a more convenient hour.",
+    "The middle insists on day-and-night attunement as the real measure of devotion.",
+    "It ends by showing that even brief forgetfulness exposes a heart still learning constancy."
   ],
   "keyVerseIds": [
     1430,
@@ -207,25 +207,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with if we keep contemplating about the time as to when to remember the Lord. It turns the heart toward o Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
+      "coreClaim": "The shabad begins by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It answers with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement widens the correction through this true mind is attuned to Truth, and it remains permeated with the True One.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
+      "turn": "The middle insists on day-and-night attunement as the real measure of devotion.",
+      "practicalImplication": "This is for the person who respects practice in principle but keeps scheduling it out of reach. Held steadily, it breaks procrastination's spell and teaches constancy more than intensity. Remembrance becomes true when it stops waiting for later.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.36,
-      "specificity": 4.74,
-      "emotionalHonesty": 4,
-      "usefulness": 3.98,
-      "beauty": 3.64,
-      "overall": 3.91
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.36,
+      "beauty": 4.33,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

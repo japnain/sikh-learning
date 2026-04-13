@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-300-3",
-  "title": "The Perfect Guru, Congratulations Are Pouring In-nanak",
-  "summary": "The shabad does not leave fear at diagnosis. It turns toward return.",
-  "takeaway": "Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+  "title": "The battlefield changes when the Guru is with you",
+  "summary": "This meets the frightened feeling that life has become one long contest. The line says victory comes through the Perfect Guru, not through panic's private weapons.",
+  "takeaway": "Enter the battle with the Guru, not panic.",
+  "lifeApplication": "Before the appointment, confrontation, or sleepless spiral, place both feet on the floor and say the line once. Let companionship arrive before the mind starts fighting shadows.",
   "source": {
     "deepDiveId": "shabad-generated-300",
     "verseIds": [
       4138,
       4143
     ],
-    "shortMeaning": "Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The Guru turns life's hard field into a place of victory.",
+    "lifeApplication": "When fear makes life feel combative, ask for the Guru's nearness before reacting."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life",
+      "coreClaim": "The Guru turns life's hard field into a place of victory.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. After the reaction, make the next return smaller and truer.",
+      "turn": "Fear thins when shelter becomes personal again.",
+      "practicalImplication": "Before the appointment, confrontation, or sleepless spiral, place both feet on the floor and say the line once. Let companionship arrive before the mind starts fighting shadows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
-      "clarity": 3.57,
-      "specificity": 5,
+      "faithfulness": 4.01,
+      "clarity": 4.35,
+      "specificity": 4.95,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 3.59,
-      "overall": 4.03
+      "usefulness": 4.26,
+      "beauty": 4.05,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

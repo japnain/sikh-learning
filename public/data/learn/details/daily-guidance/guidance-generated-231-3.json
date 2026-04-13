@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-231-3",
-  "title": "Without The Name, Everything Is Painful",
-  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, without the Name, everything is painful, and happiness is forgotten",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "title": "Call courage what happens after ego kneels",
+  "summary": "This meets the self that still mistakes dominance for strength. The line says courage begins where ego kneels, not where it swells.",
+  "takeaway": "Count courage by what ego can surrender.",
+  "lifeApplication": "Before proving strength again, lower your voice, yield one inch, and let that be the braver act.",
   "source": {
     "deepDiveId": "shabad-generated-231",
     "verseIds": [
       3462,
       3465
     ],
-    "shortMeaning": "The self-willed manmukhs die in egotism-even their death is painfully ugly; o Nanak, without the Name, everything is painful, and happiness is forgotten",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Courage begins where ego kneels instead of swelling.",
+    "lifeApplication": "Before proving strength, choose the act that lowers ego instead."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The self-willed manmukhs die in egotism-even their death is painfully ugly; o Nanak, without the Name, everything is painful, and happiness is forgotten",
+      "coreClaim": "Courage begins where ego kneels instead of swelling.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "turn": "Measure courage by how deeply ego is subdued.",
+      "practicalImplication": "Before proving strength again, lower your voice, yield one inch, and let that be the braver act.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 3.81,
-      "specificity": 4.92,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.84,
-      "overall": 4.07
+      "faithfulness": 4.1,
+      "clarity": 4.23,
+      "specificity": 4.68,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 3.97,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

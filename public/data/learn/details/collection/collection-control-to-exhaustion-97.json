@@ -1,8 +1,8 @@
 {
   "id": "collection-control-to-exhaustion-97",
-  "title": "Control to Exhaustion",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru interrupts control by restoring the difference between response and authorship. This bridge then carries into guru answers exhaustion with rest in naam, truthful wealth, and better placement.",
+  "title": "When control empties the body",
+  "subtitle": "When gripping outcomes empties the body",
+  "description": "These readings show the bill control sends to the body when every outcome is gripped as if it depends on you alone.",
   "durationLabel": "6-step journey",
   "themes": [
     "control",
@@ -13,8 +13,8 @@
     "verseIds": [
       17
     ],
-    "shortMeaning": "Some sing of His Power-who has that Power",
-    "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Exhaustion is the body's receipt for carrying outcomes that were never yours to hold.",
+    "lifeApplication": "When your body is paying for control, release one demand before taking the next step."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. This bridge then carries into guru answers exhaustion with rest in naam, truthful wealth, and better placement.",
+      "coreClaim": "These readings show the bill control sends to the body when every outcome is gripped as if it depends on you alone.",
       "emotionalState": "gripping, controlling, tense",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When gripping outcomes empties the body",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 4.05,
-      "specificity": 4.24,
+      "faithfulness": 3.79,
+      "clarity": 4.35,
+      "specificity": 4.02,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.89
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.96
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

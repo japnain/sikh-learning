@@ -1,17 +1,17 @@
 {
   "id": "guidance-ego-cure",
-  "title": "Call ego what it is: illness",
-  "summary": "The point is not self-hatred. The point is honest diagnosis.",
-  "takeaway": "What is named clearly can stop ruling secretly.",
-  "lifeApplication": "When you feel offended, ask what wound to the ego you are defending.",
+  "title": "Ask who is speaking when ego sounds ordinary",
+  "summary": "This meets the moment when ego wears the plain clothes of common sense. The line breaks that spell by refusing to call the voice natural or final.",
+  "takeaway": "Interrogate the voice before you obey it.",
+  "lifeApplication": "When self-importance rises in the throat or chest, pause before the sentence forms and ask who is speaking. Do not grant that urgency the status of truth.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
-      20963,
-      20964
+      20961,
+      20962
     ],
-    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-    "lifeApplication": "Move from self-justification toward teachability."
+    "shortMeaning": "Ego weakens when its voice is questioned instead of trusted.",
+    "lifeApplication": "When ego flares, ask who is speaking before you let that voice lead."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
+      "coreClaim": "Ego weakens when its voice is questioned instead of trusted.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "The cure begins when ego is seen as illness rather than identity.",
-      "practicalImplication": "When you feel offended, ask what wound to the ego you are defending.",
+      "turn": "Treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "When self-importance rises in the throat or chest, pause before the sentence forms and ask who is speaking. Do not grant that urgency the status of truth.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 4.35,
-      "specificity": 4.3,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 3.87
+      "faithfulness": 3.96,
+      "clarity": 4.29,
+      "specificity": 4.9,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.64,
+      "beauty": 4.17,
+      "overall": 4.17
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-151-2",
-  "title": "True Lord And Master Has Come",
-  "summary": "Anger is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered; the True Lord and Master has come to dwell within my mind",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+  "title": "Fear recedes in humble company",
+  "summary": "This meets the alarmed state that tries to survive by closing in on itself. The line says safety grows where the humble gather and the Merciful One settles in the mind.",
+  "takeaway": "Go where humility makes fear smaller.",
+  "lifeApplication": "When the body goes tight and solitary, go sit near the humble person, the sangat, or the elder whose presence steadies you. Let company calm what panic is inflating.",
   "source": {
     "deepDiveId": "shabad-generated-151",
     "verseIds": [
       2099,
       2100
     ],
-    "shortMeaning": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered; the True Lord and Master has come to dwell within my mind",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Humble company makes room for the Merciful One to settle the mind.",
+    "lifeApplication": "When fear narrows you, move toward company that carries mercy instead of panic."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "fear",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Meeting with the humble beings, O Siblings of Destiny, the Messenger of Death is conquered; the True Lord and Master has come to dwell within my mind",
+      "coreClaim": "Humble company makes room for the Merciful One to settle the mind.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+      "turn": "Move toward the humble until fear loses its command.",
+      "practicalImplication": "When the body goes tight and solitary, go sit near the humble person, the sangat, or the elder whose presence steadies you. Let company calm what panic is inflating.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 1.71,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.26,
-      "beauty": 2.95,
-      "overall": 3.55
+      "faithfulness": 4.06,
+      "clarity": 4.35,
+      "specificity": 4.63,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.05,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

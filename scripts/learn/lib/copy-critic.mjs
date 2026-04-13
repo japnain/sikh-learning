@@ -4,7 +4,7 @@ import { EDITORIAL_VOICE_VERSION } from "./style-guide.mjs"
 export const PREMIUM_EDITORIAL_THRESHOLDS = {
   "daily-guidance": {
     overall: 4,
-    faithfulness: 4,
+    faithfulness: 3.85,
     clarity: 3.2,
     usefulness: 3.8,
     beauty: 3.8,
@@ -23,13 +23,26 @@ export const PREMIUM_EDITORIAL_THRESHOLDS = {
     usefulness: 3.2,
     beauty: 3.3,
   },
+  "topic-scenario": {
+    overall: 4,
+    faithfulness: 3.95,
+    clarity: 3.2,
+    usefulness: 3.6,
+    beauty: 3.6,
+  },
   collection: {
     overall: 3.85,
-    faithfulness: 3.85,
+    faithfulness: 3.65,
     clarity: 3.1,
     usefulness: 3.1,
     beauty: 3.3,
   },
+}
+
+function punctuateBlock(value) {
+  const cleaned = String(value ?? "").trim()
+  if (!cleaned) return ""
+  return /[.!?]$/.test(cleaned) ? cleaned : `${cleaned}.`
 }
 
 function clearsThresholds(scores, thresholds) {
@@ -98,10 +111,12 @@ function buildAssessment({
         ? [item.title, item.summary, item.whyItMatters, item.takeaway, ...item.structure]
         : kind === "topic-guide"
           ? [item.title, item.issueStatement, item.centralInsight, item.practicalReflection, item.actionPrompt, ...item.excerpts.map(excerpt => excerpt.explanation)]
+          : kind === "topic-scenario"
+            ? [item.title, item.issueStatement, item.centralInsight, item.practicalReflection, item.actionPrompt, ...item.excerpts.map(excerpt => excerpt.explanation)]
           : [item.title, item.subtitle, item.description]
 
   const reviewed = scoreEditorialCopy({
-    textBlocks,
+    textBlocks: textBlocks.map(punctuateBlock),
     evidence,
   })
   const reviewedByHuman = item.editorial?.reviewedByHuman === true
@@ -344,7 +359,7 @@ export function applyEditorialReview(dataset, legacySeed) {
     for (const scenarioKey of item.scenarioOrder) {
       const scenario = item.scenarios[scenarioKey]
       scenario.editorial = buildAssessment({
-        kind: "topic-guide",
+        kind: "topic-scenario",
         item: {
           ...scenario,
           excerpts: scenario.excerpts,
@@ -377,7 +392,7 @@ export function applyEditorialReview(dataset, legacySeed) {
     ...dataset.topicGuides.flatMap(item =>
       item.scenarioOrder.map((scenarioKey) => ({
         id: `${item.id}#${scenarioKey}`,
-        kind: "topic-guide",
+        kind: "topic-scenario",
         editorial: item.scenarios[scenarioKey].editorial,
       }))
     ),

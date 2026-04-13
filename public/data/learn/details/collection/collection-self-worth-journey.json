@@ -1,8 +1,8 @@
 {
   "id": "collection-self-worth-journey",
   "title": "From Self-Worth to steadier practice",
-  "subtitle": "A deliberate path through self-worth",
-  "description": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when self-worth keeps steering the day",
+  "description": "These readings return dignity to grace, humility, and belonging to the One, where opinion and response can no longer set the price.",
   "durationLabel": "5-step journey",
   "themes": [
     "self-worth",
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings return dignity to grace, humility, and belonging to the One, where opinion and response can no longer set the price.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "A deliberate path through self-worth",
+      "turn": "For when self-worth keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 3.35,
-      "specificity": 4.26,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.74
+      "usefulness": 4.5,
+      "beauty": 4.53,
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-forgiveness-opens-lasting-peace-2",
-  "title": "I Have Found Lasting Peace And Bliss",
-  "summary": "Forgiveness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "I have found lasting peace and bliss",
-  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+  "title": "Stop feeding the rehearsed wound",
+  "summary": "This meets the wound after it has already become a daily rehearsal. The line says lasting peace arrives when forgiveness ripens into return, not when replay gets one more turn.",
+  "takeaway": "Release becomes possible when return matters more than replay.",
+  "lifeApplication": "When the old sentence rises again, release it before it claims the room.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
       27259,
       27260
     ],
-    "shortMeaning": "I have found lasting peace and bliss",
-    "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Release becomes possible when return matters more than replay.",
+    "lifeApplication": "When the old sentence rises again, release it before it claims the room."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "I have found lasting peace and bliss",
+      "coreClaim": "Release becomes possible when return matters more than replay.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
-      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "When the old sentence rises again, release it before it claims the room.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 4.11,
-      "specificity": 4.81,
+      "faithfulness": 4.22,
+      "clarity": 3.99,
+      "specificity": 4.97,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.89,
-      "overall": 4.07
+      "usefulness": 4.04,
+      "beauty": 3.97,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

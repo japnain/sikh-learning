@@ -1,8 +1,8 @@
 {
   "id": "collection-conduct-and-clean-speech",
   "title": "Conduct and Clean Speech",
-  "subtitle": "A path for cleaner speech and truer living",
-  "description": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
+  "subtitle": "For the mouth that must answer to the heart",
+  "description": "These readings hold speech beside conduct until words stop asking for exemption and start carrying weight.",
   "durationLabel": "5-step arc",
   "themes": [
     "speech",
@@ -17,8 +17,8 @@
       11748,
       11749
     ],
-    "shortMeaning": "The best religion appears as pure conduct and speech trained by praise.",
-    "lifeApplication": "Let the tongue and the life answer to the same center."
+    "shortMeaning": "Speech is only clean when conduct can stand behind it.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
   },
   "items": [
     {
@@ -63,30 +63,31 @@
     "shabad-generated-937"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
+      "coreClaim": "These readings hold speech beside conduct until words stop asking for exemption and start carrying weight.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "A path for cleaner speech and truer living",
+      "turn": "For the mouth that must answer to the heart",
       "practicalImplication": "Move through 7 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
+      "faithfulness": 3.86,
       "clarity": 4.35,
-      "specificity": 4.07,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "specificity": 4.09,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.79
+      "overall": 3.99
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

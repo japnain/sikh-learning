@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-to-restlessness-92",
-  "title": "Greed to Restlessness",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+  "title": "When greed becomes restless motion",
+  "subtitle": "When wanting becomes motion",
+  "description": "These readings expose how appetite speeds the body up until craving becomes the rhythm of the whole day.",
   "durationLabel": "6-step journey",
   "themes": [
     "greed",
@@ -15,8 +15,8 @@
       640,
       641
     ],
-    "shortMeaning": "Unexamined appetite crowds out remembrance.",
-    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+    "shortMeaning": "Greed turns restless the moment wanting starts choosing the pace of the day.",
+    "lifeApplication": "When wanting makes you reach faster, stop the body before the next grasp."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+      "coreClaim": "These readings expose how appetite speeds the body up until craving becomes the rhythm of the whole day.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When wanting becomes motion",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.95,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.89
+      "faithfulness": 3.73,
+      "clarity": 4.35,
+      "specificity": 3.97,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.91
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

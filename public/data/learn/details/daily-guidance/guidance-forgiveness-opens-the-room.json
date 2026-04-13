@@ -1,9 +1,9 @@
 {
   "id": "guidance-forgiveness-opens-the-room",
-  "title": "Forgiveness can change the whole room you live inside.",
-  "summary": "The shabad does not treat forgiveness as a small emotional adjustment. It opens directly into peace and inhabitable space.",
-  "takeaway": "Forgiveness is one way grace rearranges the atmosphere.",
-  "lifeApplication": "Notice what bitterness is making unlivable, then bring that exact knot into Bani.",
+  "title": "Let forgiveness widen the whole room",
+  "summary": "This meets the moment when peace returns to you but has not yet been trusted with anyone else. The line says forgiveness should spread peace outward, not end in private relief.",
+  "takeaway": "Forgiveness should widen the room, not only soothe you.",
+  "lifeApplication": "After forgiveness is given or received, lower the temperature for everyone nearby: soften the next answer, the next glance, and the next version of the story.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
@@ -11,8 +11,8 @@
       27260,
       27261
     ],
-    "shortMeaning": "Forgiveness moves swiftly into peace that fills the room.",
-    "lifeApplication": "Release does not only change mood; it changes the space you move through."
+    "shortMeaning": "Forgiveness turns private relief into shared peace.",
+    "lifeApplication": "After forgiveness, let the next answer carry peace farther than your own relief."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Forgiveness moves swiftly into peace that fills the room.",
+      "coreClaim": "Forgiveness turns private relief into shared peace.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
-      "practicalImplication": "Notice what bitterness is making unlivable, then bring that exact knot into Bani.",
+      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "After forgiveness is given or received, lower the temperature for everyone nearby: soften the next answer, the next glance, and the next version of the story.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.21,
+      "faithfulness": 4.08,
       "clarity": 4.35,
-      "specificity": 4.42,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.76,
-      "beauty": 4.05,
-      "overall": 4.02
+      "specificity": 4.84,
+      "emotionalHonesty": 3,
+      "usefulness": 4.04,
+      "beauty": 4.37,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

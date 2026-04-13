@@ -42,23 +42,24 @@
     "evidence": {
       "coreClaim": "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
+      "turn": "Honest labor and sharing reveal the path better than costume.",
       "practicalImplication": "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
-      "clarity": 4.2,
-      "specificity": 4.68,
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 4.67,
       "emotionalHonesty": 3,
-      "usefulness": 4.2,
+      "usefulness": 4.58,
       "beauty": 4.05,
-      "overall": 4.04
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

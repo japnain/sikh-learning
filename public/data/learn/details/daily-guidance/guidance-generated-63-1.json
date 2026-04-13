@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-63-1",
-  "title": "Hug Me Close In Your Embrace",
-  "summary": "Gratitude is named plainly here before the mind has time to decorate it.",
-  "takeaway": "hug me close in your embrace",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+  "title": "Ask holy company to hold you close",
+  "summary": "This meets the heart that keeps trying to carry longing privately. The line asks for closeness from companions who can hold devotion with you.",
+  "takeaway": "Ask holy company to hold your longing.",
+  "lifeApplication": "When prayer thins out, do not disappear into private heaviness. Ask one companion to sit, walk, or recite with you and let the body be accompanied.",
   "source": {
     "deepDiveId": "shabad-generated-63",
     "verseIds": [
       729
     ],
-    "shortMeaning": "hug me close in your embrace",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Longing is steadied when spiritual companions hold it close together.",
+    "lifeApplication": "When prayer thins out, ask one companion to stay near and carry the line with you."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -23,7 +23,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "hug me close in your embrace",
+      "coreClaim": "Longing is steadied when spiritual companions hold it close together.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, the True King absorbs us into Himself.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+      "turn": "Holy company teaches the heart how to remember well.",
+      "practicalImplication": "When prayer thins out, do not disappear into private heaviness. Ask one companion to sit, walk, or recite with you and let the body be accompanied.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.6,
+      "faithfulness": 4.17,
       "clarity": 4.23,
-      "specificity": 4.2,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 4.29,
-      "overall": 4
+      "specificity": 4.92,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 3.97,
+      "overall": 4.15
     },
     "strengths": [
-      "usefulness",
-      "beauty"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

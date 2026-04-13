@@ -1,17 +1,17 @@
 {
   "id": "guidance-ambrosial-speech-pure-conduct-2",
-  "title": "Is To Chant The Name",
-  "summary": "Speech is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "is to chant the Name of the Lord and maintain pure conduct",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+  "title": "Let devotion show up in conduct",
+  "summary": "This meets the split between devotional language and lived behavior. The line refuses that split by calling religion true only when Naam and conduct stay together.",
+  "takeaway": "Let Naam become visible in conduct.",
+  "lifeApplication": "Before posting, promising, or advising, pause at the mouth and hands together. Choose the action that can carry the sacred words you want to say.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
       11742,
       11743
     ],
-    "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Real religion keeps Naam and clean conduct bound together in one life.",
+    "lifeApplication": "Before speaking devotion, ask if the next action can bear it."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -24,7 +24,7 @@
     "collection-conduct-and-clean-speech"
   ],
   "rotation": {
-    "theme": "speech",
+    "theme": "conduct",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "is to chant the Name of the Lord and maintain pure conduct",
+      "coreClaim": "Real religion keeps Naam and clean conduct bound together in one life.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The best religion sounds like praise and looks like clean conduct.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Use the line before the pressure chooses your tone.",
+      "turn": "The truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before posting, promising, or advising, pause at the mouth and hands together. Choose the action that can carry the sacred words you want to say.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 3.99,
-      "specificity": 4.79,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 3.76,
-      "overall": 4.01
+      "faithfulness": 4.24,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

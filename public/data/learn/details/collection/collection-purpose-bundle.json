@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-bundle",
   "title": "Purpose in one shorter sitting",
-  "subtitle": "A compact bundle for purpose",
-  "description": "The day fills up, but the inner reason for being here feels thin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when purpose is already close",
+  "description": "A short sitting for the day that feels full but hollow. It puts service and calling back inside ordinary work.",
   "durationLabel": "3-step bundle",
   "themes": [
     "purpose"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The day fills up, but the inner reason for being here feels thin. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short sitting for the day that feels full but hollow. It puts service and calling back inside ordinary work.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A compact bundle for purpose",
+      "turn": "A shorter sitting for when purpose is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.45,
-      "specificity": 4.17,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.69
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

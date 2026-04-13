@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-230-2",
-  "title": "The Word Of The Guru's Shabad",
-  "summary": "Purpose is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across; through it, the Gurmukh is honored and approved",
-  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+  "title": "Let service become the way across",
+  "summary": "This meets the useful life that is still spiritually unplaced. The line says service is not merely good activity; through the Shabad it becomes a path across.",
+  "takeaway": "Serve in a way the Shabad can carry.",
+  "lifeApplication": "Before adding another impressive task, choose the act that actually helps you cross: guided, quiet, and answered to the Guru.",
   "source": {
     "deepDiveId": "shabad-generated-230",
     "verseIds": [
       3452,
       3454
     ],
-    "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across; through it, the Gurmukh is honored and approved",
-    "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Service becomes a path across when the Shabad leads it.",
+    "lifeApplication": "When the day feels aimless, choose service the Shabad can actually carry."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Through the Word of the Guru's Shabad, the Lord is found. The Lord carries us across; through it, the Gurmukh is honored and approved",
+      "coreClaim": "Service becomes a path across when the Shabad leads it.",
       "emotionalState": "directionless, numb, adrift",
-      "turn": "Keep returning to this turn: O Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
-      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+      "turn": "The path becomes visible when service turns fruitful.",
+      "practicalImplication": "Before adding another impressive task, choose the act that actually helps you cross: guided, quiet, and answered to the Guru.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.83,
-      "clarity": 3.21,
-      "specificity": 4.96,
+      "faithfulness": 4.15,
+      "clarity": 4.29,
+      "specificity": 4.54,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.48,
-      "beauty": 3.14,
-      "overall": 3.8
+      "usefulness": 3.98,
+      "beauty": 4.17,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

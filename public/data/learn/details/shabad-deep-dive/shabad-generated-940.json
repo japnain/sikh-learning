@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-940",
-  "title": "God-conscious Being Knows God",
+  "title": "God-consciousness is received, not staged",
   "subtitle": "Raag Gauree · Ang 273",
-  "summary": "This shabad opens with the God-conscious being knows God. It turns the heart toward o Nanak, the God-conscious being is Himself the Supreme Lord God.",
-  "whyItMatters": "It matters when life feels alone, unseen, and disconnected because the shabad keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, the God-conscious being is Himself the Supreme Lord God.",
+  "summary": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
+  "whyItMatters": "This is for the person who feels unseen and tries to build spiritual worth through effort or image. Held honestly, it returns identity to what God causes rather than what the self stages.",
+  "takeaway": "Let God, not image, decide what greatness is.",
   "themes": [
     "loneliness",
     "purpose",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the God-conscious being knows God.",
-    "The middle movement widens the correction through the God-conscious being is gloriously great.",
-    "It closes with a return you can actually keep: o Nanak, the God-conscious being is Himself the Supreme Lord God."
+    "It opens with intimate knowledge and singular love for God.",
+    "The middle treats purity and carefree living as fruit, not performance.",
+    "It ends by saying the God-conscious being is made by God, then lifted into true greatness."
   ],
   "keyVerseIds": [
     12142,
@@ -141,25 +141,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the God-conscious being knows God. It turns the heart toward o Nanak, the God-conscious being is Himself the Supreme Lord God.",
+      "coreClaim": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle movement widens the correction through the God-conscious being is gloriously great.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, the God-conscious being is Himself the Supreme Lord God.",
+      "turn": "The middle treats purity and carefree living as fruit, not performance.",
+      "practicalImplication": "This is for the person who feels unseen and tries to build spiritual worth through effort or image. Held honestly, it returns identity to what God causes rather than what the self stages. Let God, not image, decide what greatness is.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.63,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.75,
-      "overall": 3.96
+      "clarity": 4.17,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.36,
+      "beauty": 4.57,
+      "overall": 4.31
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-discipline-bundle",
   "title": "Discipline in one shorter sitting",
-  "subtitle": "A compact bundle for discipline",
-  "description": "Good intention is present, but the pattern cannot hold. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when discipline is already close",
+  "description": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
   "durationLabel": "3-step bundle",
   "themes": [
     "discipline"
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "Good intention is present, but the pattern cannot hold. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "A compact bundle for discipline",
+      "turn": "A shorter sitting for when discipline is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 3.85,
-      "specificity": 4.16,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.75
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

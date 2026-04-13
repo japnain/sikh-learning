@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-153-2",
-  "title": "O Siblings Of Destiny, Service",
-  "summary": "Seeking is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name; o Siblings of Destiny, service to the True Guru alone is True",
-  "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+  "title": "Let seeking become service",
+  "summary": "This meets the hunger that keeps searching without landing. The line says release is not found by roaming, but by the True Name and service to the True Guru.",
+  "takeaway": "Let seeking kneel into service.",
+  "lifeApplication": "When the mind wants one more spiritual novelty, stop at the threshold and bow into the path already given. Serve before you search again.",
   "source": {
     "deepDiveId": "shabad-generated-153",
     "verseIds": [
       2133,
       2136
     ],
-    "shortMeaning": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name; o Siblings of Destiny, service to the True Guru alone is True",
-    "lifeApplication": "Let one line keep you in place longer than the next new input. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Release is found through the Name and service to the Guru.",
+    "lifeApplication": "Before searching for more, serve where the Guru has already placed you."
   },
   "relatedTopicIds": [
     "topic-seeking"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name; o Siblings of Destiny, service to the True Guru alone is True",
+      "coreClaim": "Release is found through the Name and service to the Guru.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "Keep returning to this turn: Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
-      "practicalImplication": "Let one line keep you in place longer than the next new input. Use the line before the pressure chooses your tone.",
+      "turn": "Seeking matures when it bows into the Name and service.",
+      "practicalImplication": "When the mind wants one more spiritual novelty, stop at the threshold and bow into the path already given. Serve before you search again.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.87,
-      "clarity": 1.88,
-      "specificity": 4.8,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 3.16,
-      "overall": 3.62
+      "faithfulness": 4.24,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.01,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

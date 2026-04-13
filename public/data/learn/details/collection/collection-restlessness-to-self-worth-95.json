@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-self-worth-95",
-  "title": "Restlessness to Self-Worth",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+  "title": "When motion is hiding a wound of worth",
+  "subtitle": "When restlessness is trying to outrun not-enoughness",
+  "description": "These readings uncover the self-doubt underneath constant motion and lead it toward steadier belonging.",
   "durationLabel": "6-step journey",
   "themes": [
     "restlessness",
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru restores worth by placing identity inside grace, humility, and belonging to the one.",
+      "coreClaim": "These readings uncover the self-doubt underneath constant motion and lead it toward steadier belonging.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When restlessness is trying to outrun not-enoughness",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.85,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.92
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

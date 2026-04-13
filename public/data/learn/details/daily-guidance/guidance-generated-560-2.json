@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-560-2",
-  "title": "My Friend's Actions Are Pleasing To Me",
-  "summary": "Loneliness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "My Friend's actions are pleasing to me",
-  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+  "title": "Let the Beloved's way please you",
+  "summary": "This meets the moment when the heart keeps arguing with what has already arrived. The line turns acceptance into affection instead of grim resignation.",
+  "takeaway": "Receive the Beloved's doing without inner protest.",
+  "lifeApplication": "When the day turns against your plan, catch the complaint in the throat. Say the line once before you retell the event as injury.",
   "source": {
     "deepDiveId": "shabad-generated-560",
     "verseIds": [
       7925,
       7926
     ],
-    "shortMeaning": "My Friend's actions are pleasing to me",
-    "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The heart stops arguing and learns to cherish the Beloved's way.",
+    "lifeApplication": "Before the next complaint, soften the mouth and receive this turn from the Beloved."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -24,7 +24,7 @@
     "collection-loneliness-journey"
   ],
   "rotation": {
-    "theme": "loneliness",
+    "theme": "hukam",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "My Friend's actions are pleasing to me",
+      "coreClaim": "The heart stops arguing and learns to cherish the Beloved's way.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "Keep returning to this turn: Nanak: my honor and glory are Yours, God.",
-      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Use the line before the pressure chooses your tone.",
+      "turn": "Let the Beloved's way grow dearer than the mind's protest.",
+      "practicalImplication": "When the day turns against your plan, catch the complaint in the throat. Say the line once before you retell the event as injury.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.7,
-      "clarity": 4.11,
-      "specificity": 4.66,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 3.83,
-      "overall": 4.04
+      "faithfulness": 4.08,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.48,
+      "beauty": 4.33,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-229-1",
-  "title": "Those Who Serve The True Guru Obtain",
-  "summary": "Anger is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Those who serve the True Guru obtain the Name. Reflect on this and understand",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+  "title": "Serve until the complaint quiets",
+  "summary": "This meets the restless habit of thinking harder while avoiding the next faithful act. The line says service ripens into Naam, and the inner noise begins to fall.",
+  "takeaway": "Serve, reflect, and let the complaint thin.",
+  "lifeApplication": "Before another tab, argument, or voice note, do one useful thing for someone nearby. Let service interrupt the mind before complaint becomes your atmosphere.",
   "source": {
     "deepDiveId": "shabad-generated-229",
     "verseIds": [
       3447
     ],
-    "shortMeaning": "Those who serve the True Guru obtain the Name. Reflect on this and understand",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Service ripens into Naam and quiets inner complaint.",
+    "lifeApplication": "Before asking for more clarity, answer one need and stay with it."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -23,7 +23,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "seva",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Those who serve the True Guru obtain the Name. Reflect on this and understand",
+      "coreClaim": "Service ripens into Naam and quiets inner complaint.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+      "turn": "Serve the Guru until complaint thins and love for the Beloved rises.",
+      "practicalImplication": "Before another tab, argument, or voice note, do one useful thing for someone nearby. Let service interrupt the mind before complaint becomes your atmosphere.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.67,
-      "clarity": 3.69,
-      "specificity": 4.45,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.54,
-      "overall": 3.81
+      "faithfulness": 4.04,
+      "clarity": 4.23,
+      "specificity": 4.8,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.29,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -45,23 +45,24 @@
     "evidence": {
       "coreClaim": "The best path is tied to Naam, conduct, and the removal of inner filth through company.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The best religion sounds like praise and looks like clean conduct.",
+      "turn": "The truest religion is clean conduct sustained by Naam.",
       "practicalImplication": "Choose the cleaner action over the more impressive one.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
+      "faithfulness": 4.1,
       "clarity": 4.35,
-      "specificity": 4.35,
+      "specificity": 4.5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.6,
+      "usefulness": 3.98,
       "beauty": 4.05,
-      "overall": 3.92
+      "overall": 4.03
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

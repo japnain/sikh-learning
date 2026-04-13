@@ -1,16 +1,16 @@
 {
   "id": "guidance-gratitude-restores-naam-1",
-  "title": "I Have Not Appreciated What You",
-  "summary": "Gratitude is named plainly here before the mind has time to decorate it.",
-  "takeaway": "I have not appreciated what You have done for me, Lord",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+  "title": "Let gratitude become honest again",
+  "summary": "This meets the ashamed heart that knows it has received more than it has recognized. The line turns unworthiness into thankful dependence and a plea for Naam.",
+  "takeaway": "Tell the truth about mercy and receive Naam.",
+  "lifeApplication": "At the end of the day, name one mercy you passed over. Let gratitude wake up before entitlement does.",
   "source": {
     "deepDiveId": "shabad-gratitude-restores-naam",
     "verseIds": [
       60338
     ],
-    "shortMeaning": "I have not appreciated what You have done for me, Lord",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Honest gratitude opens the heart to mercy and living Naam.",
+    "lifeApplication": "Before sleep, confess one gift you treated as ordinary and thank the Giver."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "I have not appreciated what You have done for me, Lord",
+      "coreClaim": "Honest gratitude opens the heart to mercy and living Naam.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "Real gratitude does not inflate the self. It softens it.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+      "turn": "Honest gratitude becomes the doorway to mercy and Naam.",
+      "practicalImplication": "At the end of the day, name one mercy you passed over. Let gratitude wake up before entitlement does.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 3.87,
-      "specificity": 4.55,
+      "faithfulness": 4.15,
+      "clarity": 4.35,
+      "specificity": 4.9,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 4.05,
-      "overall": 4.05
+      "usefulness": 4.42,
+      "beauty": 4.53,
+      "overall": 4.27
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

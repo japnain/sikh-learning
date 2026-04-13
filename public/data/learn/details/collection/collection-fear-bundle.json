@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-bundle",
   "title": "Fear in one shorter sitting",
-  "subtitle": "A compact bundle for fear",
-  "description": "The mind starts organizing itself around threat instead of truth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when fear is already close",
+  "description": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
   "durationLabel": "3-step bundle",
   "themes": [
     "fear"
@@ -12,8 +12,8 @@
     "verseIds": [
       4132
     ],
-    "shortMeaning": "You are my Father, and You are my Mother",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
+    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
   },
   "items": [
     {
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind starts organizing itself around threat instead of truth. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "A compact bundle for fear",
+      "turn": "A shorter sitting for when fear is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 3.75,
-      "specificity": 4.18,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.82
+      "overall": 4.03
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

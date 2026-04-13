@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-566-1",
-  "title": "Blessed Vision Of The Saints",
-  "summary": "Comparison is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The Blessed Vision of the Saints is the perfect cleansing bath",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+  "title": "Go where the heart is washed clean",
+  "summary": "This meets the grimy inner feeling left by envy, ego, and self-measuring. The line says holy company cleans more deeply than private polishing ever can.",
+  "takeaway": "Seek the company that cleans the heart.",
+  "lifeApplication": "Before doom-scrolling or stewing over someone else's life, leave the screen and sit near the one whose presence makes you simpler. Let that company wash the mind before comparison speaks again.",
   "source": {
     "deepDiveId": "shabad-generated-566",
     "verseIds": [
       7991
     ],
-    "shortMeaning": "The Blessed Vision of the Saints is the perfect cleansing bath",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The saints' presence washes ego and turns the heart toward Naam.",
+    "lifeApplication": "When comparison dirties the mind, move toward holy company before feeding it."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The Blessed Vision of the Saints is the perfect cleansing bath",
+      "coreClaim": "The saints' presence washes ego and turns the heart toward Naam.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: touches the feet of the Holy.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+      "turn": "Seek the company that washes the heart and turns it toward Naam.",
+      "practicalImplication": "Before doom-scrolling or stewing over someone else's life, leave the screen and sit near the one whose presence makes you simpler. Let that company wash the mind before comparison speaks again.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.88,
-      "clarity": 3.99,
-      "specificity": 4.65,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.73,
-      "overall": 4.02
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.48,
+      "beauty": 4.05,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,9 +1,9 @@
 {
   "id": "guidance-fear-dissolves-in-reverence",
-  "title": "Reverence can do what self-protection cannot.",
-  "summary": "The shabad says fearlessness grows where the self is steeped in reverence, not where it keeps hardening itself.",
-  "takeaway": "Become ruled by the right fear and the smaller fears begin to loosen.",
-  "lifeApplication": "When you feel defensive today, choose reverence over self-armor in one small act.",
+  "title": "Let reverence replace the room fear built",
+  "summary": "This meets the heart that has grown used to living under threat. The line says fear loosens where reverence, right conduct, and contentment begin to govern instead.",
+  "takeaway": "Fear shrinks where reverence becomes the stronger habit.",
+  "lifeApplication": "When fear starts arranging the room, bring the body back under one reverent line before the mind builds another defense.",
   "source": {
     "deepDiveId": "shabad-forgiveness-becomes-fearless",
     "verseIds": [
@@ -11,8 +11,8 @@
       9612,
       9613
     ],
-    "shortMeaning": "Service and reverence turn into fearlessness over time.",
-    "lifeApplication": "Let devotion shape your emotional reflexes."
+    "shortMeaning": "Fear loosens where reverence and contentment start ruling the heart.",
+    "lifeApplication": "When fear starts arranging the room, return the body to one reverent line."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Service and reverence turn into fearlessness over time.",
+      "coreClaim": "Fear loosens where reverence and contentment start ruling the heart.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "Forgive deeply enough that fear loses its throne.",
-      "practicalImplication": "When you feel defensive today, choose reverence over self-armor in one small act.",
+      "turn": "Forgiveness, conduct, and contentment free the heart from fear.",
+      "practicalImplication": "When fear starts arranging the room, bring the body back under one reverent line before the mind builds another defense.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.85,
-      "clarity": 4.35,
-      "specificity": 4.8,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
-      "beauty": 4.05,
-      "overall": 4.06
+      "faithfulness": 4.18,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.48,
+      "beauty": 4.01,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

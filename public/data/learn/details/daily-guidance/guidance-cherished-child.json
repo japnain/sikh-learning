@@ -1,9 +1,9 @@
 {
   "id": "guidance-cherished-child",
-  "title": "Bring your need like a child",
-  "summary": "Need does not disqualify you from the path. It becomes part of the prayer.",
-  "takeaway": "You do not have to become self-sufficient before seeking Guru.",
-  "lifeApplication": "Pray with plain need today instead of polished language.",
+  "title": "Receive the nearness you keep overlooking",
+  "summary": "This meets loneliness when it has started narrating abandonment. The line says longing ripens in holy company and the soul is led like a cherished child, not left to wander alone.",
+  "takeaway": "The line restores companionship before despair hardens.",
+  "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone.",
   "source": {
     "deepDiveId": "shabad-child-of-grace",
     "verseIds": [
@@ -11,8 +11,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "The Guru is named as protector, mother, and father.",
-    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+    "shortMeaning": "The line restores companionship before despair hardens.",
+    "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "The Guru is named as protector, mother, and father.",
+      "coreClaim": "The line restores companionship before despair hardens.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
-      "practicalImplication": "Pray with plain need today instead of polished language.",
+      "turn": "Longing ripens when saintly company shows the way.",
+      "practicalImplication": "At the next quiet ache, name the companionship being offered before the mind says alone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.7,
-      "clarity": 4.35,
-      "specificity": 4.29,
-      "emotionalHonesty": 3,
-      "usefulness": 3.44,
-      "beauty": 4.05,
-      "overall": 3.79
+      "faithfulness": 4.21,
+      "clarity": 4.05,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
+      "beauty": 4.33,
+      "overall": 4.2
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

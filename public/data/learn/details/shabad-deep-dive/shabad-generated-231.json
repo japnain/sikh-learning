@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-231",
-  "title": "He Is A Brave Warrior, Who Conquers",
+  "title": "The brave war is the one against inner ego",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "This shabad opens with o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego. It turns the heart toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
+  "summary": "The shabad begins by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and lands in Naam as the difference between pain and a redeemed life.",
+  "whyItMatters": "This is for the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy.",
+  "takeaway": "Measure courage by how deeply ego is subdued.",
   "themes": [
     "ego",
     "anger",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego.",
-    "The middle movement widens the correction through the self-willed manmukhs die in egotism-even their death is painfully ugly.",
-    "It closes with a return you can actually keep: o Nanak, without the Name, everything is painful, and happiness is forgotten."
+    "It opens by calling the conqueror of inner ego the true warrior.",
+    "The middle contrasts Gurmukh praise and liberation with the painful disfigurement of egotistical living.",
+    "It closes by saying life without Naam forgets happiness itself."
   ],
   "keyVerseIds": [
     3458,
@@ -138,25 +138,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with o Nanak, he is a brave warrior, who conquers and subdues his vicious inner ego. It turns the heart toward o Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "coreClaim": "The shabad begins by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and lands in Naam as the difference between pain and a redeemed life.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through the self-willed manmukhs die in egotism-even their death is painfully ugly.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, without the Name, everything is painful, and happiness is forgotten.",
+      "turn": "The middle contrasts Gurmukh praise and liberation with the painful disfigurement of egotistical living.",
+      "practicalImplication": "This is for the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy. Measure courage by how deeply ego is subdued.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.47,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.76,
-      "beauty": 3.49,
-      "overall": 3.83
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.6,
+      "beauty": 4.21,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

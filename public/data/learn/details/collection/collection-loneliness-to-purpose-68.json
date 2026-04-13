@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-to-purpose-68",
-  "title": "Loneliness to Purpose",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru frames human life as opportunity for meeting, service, and naam rather than mere maintenance.",
+  "title": "When loneliness becomes a question of purpose",
+  "subtitle": "When isolation starts draining the day of meaning",
+  "description": "These readings answer isolation with entrusted work, so the empty room stops being the only thing speaking.",
   "durationLabel": "6-step journey",
   "themes": [
     "loneliness",
@@ -15,8 +15,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "The Guru is named as protector, mother, and father.",
-    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+    "shortMeaning": "Loneliness thins when the day answers back through entrusted work.",
+    "lifeApplication": "When the room goes hollow, do the next given duty before the ache names the whole day."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru frames human life as opportunity for meeting, service, and naam rather than mere maintenance.",
+      "coreClaim": "These readings answer isolation with entrusted work, so the empty room stops being the only thing speaking.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When isolation starts draining the day of meaning",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.65,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.83
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.96
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

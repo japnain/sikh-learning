@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-3-1",
-  "title": "Some Sing Of His",
-  "summary": "Control is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Some sing of His Power-who has that Power",
-  "lifeApplication": "Release one demand that peace must wait for total control. Begin with the part of the day already in front of you.",
+  "title": "Let praise loosen your need to grasp",
+  "summary": "This meets the mind that wants reality explained, managed, and pinned down. The line opens the field wider: people sing of His power, but no one contains it.",
+  "takeaway": "Praise what you cannot possess.",
+  "lifeApplication": "Before you try to master the whole situation, step back and let the scale of the Lord interrupt you. Speak praise before analysis hardens into ownership.",
   "source": {
     "deepDiveId": "shabad-generated-3",
     "verseIds": [
       17
     ],
-    "shortMeaning": "Some sing of His Power-who has that Power",
-    "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Lord's power can be praised, but never possessed or contained.",
+    "lifeApplication": "When control tightens, answer first with praise instead of mastery."
   },
   "relatedTopicIds": [
     "topic-control"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Some sing of His Power-who has that Power",
+      "coreClaim": "The Lord's power can be praised, but never possessed or contained.",
       "emotionalState": "gripping, controlling, tense",
-      "turn": "Keep returning to this turn: O Nanak, He blossoms forth, Carefree and Untroubled.",
-      "practicalImplication": "Release one demand that peace must wait for total control. Begin with the part of the day already in front of you.",
+      "turn": "The proper response to vastness is praise, not possession.",
+      "practicalImplication": "Before you try to master the whole situation, step back and let the scale of the Lord interrupt you. Speak praise before analysis hardens into ownership.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.68,
-      "clarity": 3.99,
-      "specificity": 4.28,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.81,
-      "overall": 3.92
+      "faithfulness": 4.07,
+      "clarity": 4.35,
+      "specificity": 4.46,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.36,
+      "beauty": 4.21,
+      "overall": 4.1
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

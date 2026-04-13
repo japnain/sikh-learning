@@ -77,10 +77,10 @@
           639,
           641
         ],
-        "shortMeaning": "how can the Naam, the Name of the Lord, find its dwelling in the heart; falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
-        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
+        "shortMeaning": "Greed weakens when desire is turned toward what can actually remain.",
+        "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
       },
-      "explanation": "The shabad is blunt on purpose: greed is not styled as ambition or refinement. It is named as corruption that fills life with appetite while leaving no room for Naam to dwell."
+      "explanation": "The verse exposes greed by showing what appetite cannot finally keep. Naam gives desire a truer object."
     },
     {
       "source": {
@@ -91,10 +91,10 @@
           938,
           946
         ],
-        "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; those who do not have the Assets of Truth-how can they find peace",
-        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
+        "shortMeaning": "Lasting wealth becomes believable again before appetite can make its pitch.",
+        "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
       },
-      "explanation": "Here greed is corrected by a better economy. The question is not how much you can gather, but what can actually accompany you and make the soul rich."
+      "explanation": "The line widens the room by making praise and lasting wealth more believable than the next acquisition."
     },
     {
       "source": {
@@ -104,10 +104,10 @@
           37474,
           37476
         ],
-        "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-        "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line stay in charge of what comes next."
+        "shortMeaning": "Greed is unmasked when the heart remembers what can cross with it.",
+        "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
       },
-      "explanation": "The line contrasts begging for riches with praising the Lord and being kept close in humility. Greed shrinks when nearness becomes more desirable than accumulation."
+      "explanation": "Gurbani refuses to let greed sound normal here. The line turns the heart back toward what can cross the last threshold."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -121,11 +121,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Greed in ordinary decisions",
-      "issueStatement": "Greed rarely arrives announcing itself. It shows up in quick choices, small upgrades, and the quiet assumption that more will steady you.",
-      "centralInsight": "The Guru makes daily desire visible by asking what your decisions are training you to worship.",
-      "practicalReflection": "Ordinary wanting shapes the soul long before crisis does. Daily choices reveal whether contentment is being practiced or deferred.",
-      "actionPrompt": "Before the next purchase, scroll, or grasping impulse, ask whether it will actually nourish you or only extend the craving.",
+      "title": "When greed starts steering the day",
+      "issueStatement": "The appetite keeps expanding faster than contentment can breathe. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+      "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The plain day is still where remembrance and conduct have to hold.",
+      "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
+      "actionPrompt": "Before the day gathers more speed, before the next grasping move, ask what can actually travel with the soul.",
       "searchTerms": [
         "greed",
         "craving",
@@ -152,10 +152,10 @@
               634,
               639
             ],
-            "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass; the pleasures of gold and silver, the pleasures of women, the pleasure",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by steadier return.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "The ordinary day is where greed usually hides best, so the shabad names it without softness. Daily appetite is exposed through speech, habit, and the small dishonesties that make craving look respectable."
+          "explanation": "In the ordinary day, the verse turns greed toward steadier return instead of self-enclosure."
         },
         {
           "source": {
@@ -165,10 +165,10 @@
               53371,
               53372
             ],
-            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "The cure is practical, not theatrical. Honest work and open-handed giving retrain desire by reminding the heart that life is for right earning and sharing, not private accumulation."
+          "explanation": "The daily moment changes here because greed is not left alone with itself."
         },
         {
           "source": {
@@ -178,48 +178,49 @@
               11242,
               11244
             ],
-            "shortMeaning": "The Lord, Har, Har, is their wealth, and they trade in His Name; those who have the true wealth are the true bankers",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by truthful steadiness.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "This line slows the appetite down. Greed loses force when the soul begins recognizing Naam as wealth and patience as honor rather than treating delay as deprivation."
+          "explanation": "This keeps the day from shrinking around greed; the heart is returned to truthful steadiness."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-greed:daily",
         "evidence": {
-          "coreClaim": "The Guru makes daily desire visible by asking what your decisions are training you to worship.",
+          "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The plain day is still where remembrance and conduct have to hold.",
           "emotionalState": "reactive, hungry, resentful",
-          "turn": "Greed rarely arrives announcing itself. It shows up in quick choices, small upgrades, and the quiet assumption that more will steady you.",
-          "practicalImplication": "Before the next purchase, scroll, or grasping impulse, ask whether it will actually nourish you or only extend the craving.",
+          "turn": "The appetite keeps expanding faster than contentment can breathe. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+          "practicalImplication": "Before the day gathers more speed, before the next grasping move, ask what can actually travel with the soul.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.36,
-          "usefulness": 3.44,
-          "beauty": 4.37,
-          "overall": 4.17
+          "specificity": 5,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.42,
+          "beauty": 4.69,
+          "overall": 4.4
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Greed when fear starts talking",
-      "issueStatement": "Under pressure, accumulation can feel like wisdom. Fear tells you that keeping more, taking more, or hoarding more is just prudence.",
-      "centralInsight": "Gurbani separates provision from panic. Pressure does not justify letting fear rename greed as responsibility.",
-      "practicalReflection": "The anxious mind wants visible surplus. The Guru keeps returning the question to trust, truthful work, and what can actually accompany you.",
-      "actionPrompt": "When fear says take extra, pause long enough to ask whether you are being guided by care or by scarcity posing as care.",
+      "title": "When greed keeps calling itself need and the room gets tight",
+      "issueStatement": "The appetite keeps expanding faster than contentment can breathe. Pressure exposes what the heart reaches for when it feels cornered.",
+      "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The line has to interrupt panic before panic becomes posture.",
+      "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
+      "actionPrompt": "At the first sign of strain, before the next grasping move, ask what can actually travel with the soul.",
       "searchTerms": [
         "greed",
         "craving",
@@ -246,10 +247,10 @@
               934,
               937
             ],
-            "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; buy that object which will go along with you",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Under strain, greed is steadied by Naam and praise.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Pressure keeps inventing urgent purchases for the soul. Gurbani answers by asking what kind of gain still matters after fear has spent itself and the moment has passed."
+          "explanation": "Under pressure, the verse steadies greed by returning the heart to Naam and praise."
         },
         {
           "source": {
@@ -259,10 +260,10 @@
               525,
               527
             ],
-            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Under strain, greed is steadied by holy company.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Scarcity narrows the horizon to the next immediate need. This shabad widens it again by reminding you what human life is for, so fear does not get to define wisdom on its own."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -272,48 +273,49 @@
               501,
               503
             ],
-            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Under strain, greed is steadied by Naam and praise.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "The line breaks the trance of panic by returning the heart to Hukam. Trust does not erase provision; it stops fear from calling greed responsible."
+          "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-greed:pressure",
         "evidence": {
-          "coreClaim": "Gurbani separates provision from panic. Pressure does not justify letting fear rename greed as responsibility.",
+          "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The line has to interrupt panic before panic becomes posture.",
           "emotionalState": "distracted, ambitious, grasping",
-          "turn": "Under pressure, accumulation can feel like wisdom. Fear tells you that keeping more, taking more, or hoarding more is just prudence.",
-          "practicalImplication": "When fear says take extra, pause long enough to ask whether you are being guided by care or by scarcity posing as care.",
+          "turn": "The appetite keeps expanding faster than contentment can breathe. Pressure exposes what the heart reaches for when it feels cornered.",
+          "practicalImplication": "At the first sign of strain, before the next grasping move, ask what can actually travel with the soul.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.9,
-          "usefulness": 3.22,
-          "beauty": 4.69,
-          "overall": 4.24
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.2,
+          "beauty": 4.53,
+          "overall": 4.34
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Returning after grasping too hard",
-      "issueStatement": "You already let greed set the terms, and now the mind wants to defend the choice rather than confess the hunger beneath it.",
-      "centralInsight": "Repair begins when greed is named without euphemism. The Guru turns you back toward truthful earning, honest release, and inner poverty before God.",
-      "practicalReflection": "What was taken or clung to matters, but so does the desire beneath it. Return is not complete until the heart relearns sufficiency.",
-      "actionPrompt": "Admit where grasping overruled truth, undo one part of the harm if you can, and practice one concrete act of release today.",
+      "title": "When greed keeps calling itself need after the slip",
+      "issueStatement": "The appetite keeps expanding faster than contentment can breathe. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
+      "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
+      "actionPrompt": "Before shame turns theatrical, before the next grasping move, ask what can actually travel with the soul.",
       "searchTerms": [
         "greed",
         "craving",
@@ -341,10 +343,10 @@
               634,
               641
             ],
-            "shortMeaning": "how can the Naam, the Name of the Lord, find its dwelling in the heart; falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Repair starts with clean naming. The shabad refuses euphemism, which is exactly what the heart needs after greed has already tried to baptize itself as necessity."
+          "explanation": "Repair stays honest here because greed is answered without theatre."
         },
         {
           "source": {
@@ -353,10 +355,10 @@
               499,
               503
             ],
-            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive; you Yourself separate them from Yourself, and You Yourself reunite with them again",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Greed is not allowed to become identity here.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Release becomes possible when the soul remembers it was never the final owner. What was grasped can be returned because it was first received under Hukam."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -366,48 +368,49 @@
               11747,
               11748
             ],
-            "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through Naam and praise.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Greed leaves residue in conduct, not only in the original act. This line keeps repair practical by tying inward cleansing to the way you now speak, carry yourself, and move forward."
+          "explanation": "After the slip, the verse keeps return possible through Naam and praise."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-greed:repair",
         "evidence": {
-          "coreClaim": "Repair begins when greed is named without euphemism. The Guru turns you back toward truthful earning, honest release, and inner poverty before God.",
+          "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
           "emotionalState": "reactive, hungry, resentful",
-          "turn": "You already let greed set the terms, and now the mind wants to defend the choice rather than confess the hunger beneath it.",
-          "practicalImplication": "Admit where grasping overruled truth, undo one part of the harm if you can, and practice one concrete act of release today.",
+          "turn": "The appetite keeps expanding faster than contentment can breathe. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "Before shame turns theatrical, before the next grasping move, ask what can actually travel with the soul.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
-          "specificity": 5,
+          "clarity": 4.29,
+          "specificity": 4.96,
           "emotionalHonesty": 3.54,
-          "usefulness": 4.42,
-          "beauty": 4.69,
-          "overall": 4.4
+          "usefulness": 4.2,
+          "beauty": 4.49,
+          "overall": 4.32
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Training desire to live inside enough",
-      "issueStatement": "Greed does not usually break through one dramatic renunciation. It weakens when the appetite is retrained in small, repeated acts of enoughness.",
-      "centralInsight": "Contentment in Gurbani is not passivity. It is disciplined agreement with the Giver, repeated until craving stops sounding like your truest voice.",
-      "practicalReflection": "Enough has to be practiced because the world catechizes shortage all day long. Desire learns from repetition too.",
-      "actionPrompt": "Choose one appetite that usually asks for more and practice stopping while gratitude is still possible.",
+      "title": "When greed needs a repeatable shape",
+      "issueStatement": "The appetite keeps expanding faster than contentment can breathe. The real need now is a rule that can survive Tuesday, not only move you once.",
+      "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. Gurbani trains posture through kept repetition, not spiritual weather.",
+      "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
+      "actionPrompt": "For the next seven days at the same cue, before the next grasping move, ask what can actually travel with the soul.",
       "searchTerms": [
         "greed",
         "craving",
@@ -440,10 +443,10 @@
               937,
               946
             ],
-            "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; those who chant the Name of the Lord earn great profits",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Greed is trained through repeated return to Naam and praise.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Practice begins by choosing durable profit over instant appetite. The line keeps asking what kind of treasure still matters after the moment of acquisition has passed."
+          "explanation": "As practice, the verse keeps returning greed to Naam and praise."
         },
         {
           "source": {
@@ -454,10 +457,10 @@
               11243,
               11244
             ],
-            "shortMeaning": "The Lord, Har, Har, is their wealth, and they trade in His Name; those who have the true wealth are the true bankers",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives greed a keepable form through settled patience.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "True wealth is named here as the Lord's Name itself. Enoughness grows when the heart is trained to hear honor and abundance in Naam rather than in surplus."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -467,38 +470,39 @@
               37476,
               37477
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to received care the same way again.",
+            "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
           },
-          "explanation": "Desire becomes gentler when nearness matters more than possession. The humble servant is kept close, cherished, and held; that is a different kind of wealth altogether."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-greed:practice",
         "evidence": {
-          "coreClaim": "Contentment in Gurbani is not passivity. It is disciplined agreement with the Giver, repeated until craving stops sounding like your truest voice.",
+          "coreClaim": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. Gurbani trains posture through kept repetition, not spiritual weather.",
           "emotionalState": "distracted, ambitious, grasping",
-          "turn": "Greed does not usually break through one dramatic renunciation. It weakens when the appetite is retrained in small, repeated acts of enoughness.",
-          "practicalImplication": "Choose one appetite that usually asks for more and practice stopping while gratitude is still possible.",
+          "turn": "The appetite keeps expanding faster than contentment can breathe. The real need now is a rule that can survive Tuesday, not only move you once.",
+          "practicalImplication": "For the next seven days at the same cue, before the next grasping move, ask what can actually travel with the soul.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.36,
-          "usefulness": 4.36,
-          "beauty": 4.37,
-          "overall": 4.28
+          "specificity": 5,
+          "emotionalHonesty": 3.18,
+          "usefulness": 4.42,
+          "beauty": 4.69,
+          "overall": 4.35
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -534,7 +538,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:greed",
     "evidence": {
@@ -549,14 +553,15 @@
       "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.82,
+      "usefulness": 4.58,
       "beauty": 4.21,
-      "overall": 4.21
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

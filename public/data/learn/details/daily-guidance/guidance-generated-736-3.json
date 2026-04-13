@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-736-3",
-  "title": "He Alone Is The Lord's Servant, O",
-  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
-  "takeaway": "He alone is the Lord's servant, O Nanak, who is so blessed",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "title": "Seek the humble servant, not the impressive name",
+  "summary": "This meets the heart still impressed by size, rank, and visible importance. The line says help is found with the humble servant, not with the world's celebrated names.",
+  "takeaway": "Seek the humble servant before the impressive name.",
+  "lifeApplication": "Before leaning toward the loudest or most decorated voice, ask who in the room is actually carrying humility.",
   "source": {
     "deepDiveId": "shabad-generated-736",
     "verseIds": [
       10381,
       10394
     ],
-    "shortMeaning": "He alone is the Lord's servant, O Nanak, who is so blessed; working for Him, you shall obtain glorious greatness",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The humble servant carries more help than the impressive name.",
+    "lifeApplication": "Before choosing the impressive voice, look for the one carrying humility."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "He alone is the Lord's servant, O Nanak, who is so blessed; working for Him, you shall obtain glorious greatness",
+      "coreClaim": "The humble servant carries more help than the impressive name.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: He alone is the Lord's servant, O Nanak, who is so blessed.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "turn": "Seek the humble servant, not the world's impressive names.",
+      "practicalImplication": "Before leaning toward the loudest or most decorated voice, ask who in the room is actually carrying humility.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
-      "clarity": 3.87,
-      "specificity": 4.88,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.89,
-      "overall": 4.07
+      "faithfulness": 4.4,
+      "clarity": 4.23,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.58,
+      "beauty": 3.97,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

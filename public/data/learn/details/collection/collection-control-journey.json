@@ -1,8 +1,8 @@
 {
   "id": "collection-control-journey",
   "title": "From Control to steadier practice",
-  "subtitle": "A deliberate path through control",
-  "description": "Guru interrupts control by restoring the difference between response and authorship. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when control keeps steering the day",
+  "description": "Follow the grip from hand and jaw back to the fear beneath it, then stay until control gives way to trustful action.",
   "durationLabel": "5-step journey",
   "themes": [
     "control",
@@ -13,8 +13,8 @@
     "verseIds": [
       17
     ],
-    "shortMeaning": "Some sing of His Power-who has that Power",
-    "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The grip loosens when reality is received instead of managed.",
+    "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
   },
   "items": [
     {
@@ -55,25 +55,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Follow the grip from hand and jaw back to the fear beneath it, then stay until control gives way to trustful action.",
       "emotionalState": "gripping, controlling, tense",
-      "turn": "A deliberate path through control",
+      "turn": "For when control keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 3.85,
-      "specificity": 4.24,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.79
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

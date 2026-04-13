@@ -1,9 +1,9 @@
 {
   "id": "guidance-false-deals-empty-you",
-  "title": "False gain hollows the one gaining it.",
-  "summary": "Counterfeit dealings do not merely fail externally. They shape a counterfeit self internally.",
-  "takeaway": "Success that distorts the soul is loss.",
-  "lifeApplication": "Refuse one shortcut today because of what it would make you become, not only because it might get caught.",
+  "title": "A deal can fatten the hand and empty the soul",
+  "summary": "This meets the bargain that looks profitable while leaving the heart thinner. The line asks what kind of gain will still know your name at the final crossing.",
+  "takeaway": "Refuse the profit that empties the soul.",
+  "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul.",
   "source": {
     "deepDiveId": "shabad-buy-what-goes-with-you",
     "verseIds": [
@@ -11,8 +11,8 @@
       939,
       943
     ],
-    "shortMeaning": "False commerce makes the whole person false.",
-    "lifeApplication": "Integrity is part of spiritual survival, not optional polish."
+    "shortMeaning": "A deal is false when it enriches the hand and starves the soul.",
+    "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "False commerce makes the whole person false.",
+      "coreClaim": "A deal is false when it enriches the hand and starves the soul.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Invest in what crosses the threshold with you.",
-      "practicalImplication": "Refuse one shortcut today because of what it would make you become, not only because it might get caught.",
+      "turn": "Pause the deal and choose the profit that can follow you.",
+      "practicalImplication": "Before the next grasping move, ask what can actually travel with the soul.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
+      "faithfulness": 4.1,
       "clarity": 4.35,
-      "specificity": 4.76,
-      "emotionalHonesty": 3,
-      "usefulness": 4.04,
+      "specificity": 4.68,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.2,
       "beauty": 4.05,
-      "overall": 4.03
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-comparison-journey",
   "title": "From Comparison to steadier practice",
-  "subtitle": "A deliberate path through comparison",
-  "description": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when comparison keeps steering the day",
+  "description": "Begin where envy steals the gaze, then return to duty, gratitude, and the clean relief of staying in your own lane before the Guru.",
   "durationLabel": "5-step journey",
   "themes": [
     "comparison",
@@ -13,8 +13,8 @@
     "verseIds": [
       759
     ],
-    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Envy loosens when the gaze returns to duty and praise.",
+    "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
   },
   "items": [
     {
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Begin where envy steals the gaze, then return to duty, gratitude, and the clean relief of staying in your own lane before the Guru.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "A deliberate path through comparison",
+      "turn": "For when comparison keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 3.65,
-      "specificity": 4.23,
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.77
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-512-1",
-  "title": "For The Sake Of The Lord, Har",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Let the body learn surrender first",
+  "summary": "This meets the self that admires devotion while still bargaining with it. The line is physical and uncompromising: the body itself is given to the Guru.",
+  "takeaway": "Let surrender become embodied, not admired.",
+  "lifeApplication": "Before image management starts again, bow the head and shoulders physically. Let the body tell the truth before the mind edits it.",
   "source": {
     "deepDiveId": "shabad-generated-512",
     "verseIds": [
       7138
     ],
-    "shortMeaning": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Devotion becomes real when the body enters surrender.",
+    "lifeApplication": "When ego starts negotiating, bow physically before you let it speak."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -23,7 +23,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "seva",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru",
+      "coreClaim": "Devotion becomes real when the body enters surrender.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: he has sold his head to the True Guru.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Let surrender reach the body before the ego performs again.",
+      "practicalImplication": "Before image management starts again, bow the head and shoulders physically. Let the body tell the truth before the mind edits it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 3.29,
-      "specificity": 4.52,
+      "faithfulness": 4.21,
+      "clarity": 4.35,
+      "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.48,
-      "overall": 3.84
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

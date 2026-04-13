@@ -1,17 +1,17 @@
 {
   "id": "guidance-patience-listens-longer",
-  "title": "Patience may start as a listening discipline.",
-  "summary": "Guru ties patience and honor to hearing Naam. The point is not passive delay, but a heart that has stopped interrupting the medicine.",
-  "takeaway": "Wait by listening, not by simmering.",
-  "lifeApplication": "Before reacting to delay, make space to hear one line all the way through.",
+  "title": "Let waiting ripen into listening",
+  "summary": "This meets delay when it has already started souring into resentment. The line asks patience to listen longer than it complains so honor can return to the wait.",
+  "takeaway": "Listening turns waiting from bitterness toward honor.",
+  "lifeApplication": "At the next delay, listen before you let resentment narrate the wait.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
       11243,
       11244
     ],
-    "shortMeaning": "Patience and honor grow where the ear starts taking in Naam.",
-    "lifeApplication": "Listening can become the first form of obedience."
+    "shortMeaning": "Listening turns waiting from bitterness toward honor.",
+    "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Patience and honor grow where the ear starts taking in Naam.",
+      "coreClaim": "Listening turns waiting from bitterness toward honor.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Patience becomes luminous when it begins listening for Naam.",
-      "practicalImplication": "Before reacting to delay, make space to hear one line all the way through.",
+      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "practicalImplication": "At the next delay, listen before you let resentment narrate the wait.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 4.35,
+      "faithfulness": 4.19,
+      "clarity": 3.99,
       "specificity": 4.76,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.66,
-      "beauty": 4.21,
-      "overall": 4.02
+      "usefulness": 4.58,
+      "beauty": 4.13,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

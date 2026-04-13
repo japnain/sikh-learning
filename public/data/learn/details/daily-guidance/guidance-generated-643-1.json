@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-643-1",
-  "title": "I Am Intimate With Him",
-  "summary": "Exhaustion is named plainly here before the mind has time to decorate it.",
-  "takeaway": "I am intimate with Him",
-  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+  "title": "Rest in the nearness already given",
+  "summary": "This meets the tired mind that keeps searching elsewhere for relief. The line says intimacy arrives by grace, and then the running starts to lose its point.",
+  "takeaway": "Stop roaming and rest in nearness.",
+  "lifeApplication": "When fatigue makes you hunt for one more answer, one more person, or one more fix, pause with the eyes lifted. Let the nearness already given lower the chase.",
   "source": {
     "deepDiveId": "shabad-generated-643",
     "verseIds": [
       8823
     ],
-    "shortMeaning": "I am intimate with Him",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Grace makes the Lord intimate, and restless searching begins to end.",
+    "lifeApplication": "When tired seeking returns, pause and remember the One you are chasing is near."
   },
   "relatedTopicIds": [
     "topic-exhaustion"
@@ -23,7 +23,7 @@
     "collection-exhaustion-journey"
   ],
   "rotation": {
-    "theme": "exhaustion",
+    "theme": "trust",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "I am intimate with Him",
+      "coreClaim": "Grace makes the Lord intimate, and restless searching begins to end.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "Keep returning to this turn: in this way, my essence merges into God's essence.",
-      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+      "turn": "Let grace make the Lord near enough to stop the chase.",
+      "practicalImplication": "When fatigue makes you hunt for one more answer, one more person, or one more fix, pause with the eyes lifted. Let the nearness already given lower the chase.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
+      "faithfulness": 4.17,
       "clarity": 4.29,
-      "specificity": 4.36,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 4.17,
-      "overall": 4.05
+      "specificity": 4.74,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.94,
+      "beauty": 4.33,
+      "overall": 4.32
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

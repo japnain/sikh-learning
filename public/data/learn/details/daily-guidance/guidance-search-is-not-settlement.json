@@ -1,9 +1,9 @@
 {
   "id": "guidance-search-is-not-settlement",
-  "title": "Movement is not the same as settlement.",
-  "summary": "It is possible to keep searching sincerely and still avoid the stillness where truth would actually meet you.",
-  "takeaway": "Restlessness can masquerade as devotion.",
-  "lifeApplication": "Pause one extra search today and stay long enough with what you already know.",
+  "title": "Choose settlement over motion",
+  "summary": "This meets the search that keeps accelerating while clarity does not. The line says searching ripens only when it comes near shelter and holy company.",
+  "takeaway": "Better company teaches the wandering mind how to settle.",
+  "lifeApplication": "At the threshold, choose better placement before choosing more movement.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
@@ -11,8 +11,8 @@
       3895,
       3898
     ],
-    "shortMeaning": "Searching and ritual are not identical with peace.",
-    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+    "shortMeaning": "Better company teaches the wandering mind how to settle.",
+    "lifeApplication": "At the threshold, choose better placement before choosing more movement."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Searching and ritual are not identical with peace.",
+      "coreClaim": "Better company teaches the wandering mind how to settle.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "The mind settles less by roaming and more by right company.",
-      "practicalImplication": "Pause one extra search today and stay long enough with what you already know.",
+      "turn": "Bring your searching to holy company and let it cool there.",
+      "practicalImplication": "At the threshold, choose better placement before choosing more movement.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.35,
-      "specificity": 4.54,
+      "faithfulness": 3.98,
+      "clarity": 3.99,
+      "specificity": 4.56,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 4.21,
-      "overall": 4.01
+      "usefulness": 4.58,
+      "beauty": 3.97,
+      "overall": 4.06
     },
     "strengths": [
-      "specificity",
-      "clarity"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

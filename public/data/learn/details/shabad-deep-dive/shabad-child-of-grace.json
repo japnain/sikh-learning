@@ -1,10 +1,10 @@
 {
   "id": "shabad-child-of-grace",
-  "title": "Held Like a Child in Sangat",
+  "title": "Longing is led home in saintly company",
   "subtitle": "Raag Maajh",
-  "summary": "This shabad moves from searching and longing toward refuge in sangat and the care of the Guru.",
-  "whyItMatters": "It is especially strong for loneliness, dependence, and the need to be guided without shame.",
-  "takeaway": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+  "summary": "The shabad opens in aching longing for the Beloved and admits it cannot find the way alone. It searches mind and body, turns toward saintly company, and keeps asking to be brought near.",
+  "whyItMatters": "This is for the person who feels alone, spiritually lost, or emotionally closed in. Held faithfully, it changes loneliness from sealed isolation into guided longing and gives yearning somewhere truthful to go.",
+  "takeaway": "Longing ripens when saintly company shows the way.",
   "themes": [
     "loneliness",
     "sangat",
@@ -126,9 +126,9 @@
     }
   ],
   "structure": [
-    "Names longing without pretending it is already solved.",
-    "Directs that longing toward sangat rather than isolated self-repair.",
-    "Finds rest in being cared for by the Guru like a child."
+    "It opens with longing honest enough to admit it cannot find the Beloved alone.",
+    "The middle searches inward and asks how true meeting can happen at all.",
+    "It ends by leaning toward saintly company as the place where yearning is guided home."
   ],
   "keyVerseIds": [
     3757,
@@ -167,25 +167,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This shabad moves from searching and longing toward refuge in sangat and the care of the Guru.",
+      "coreClaim": "The shabad opens in aching longing for the Beloved and admits it cannot find the way alone. It searches mind and body, turns toward saintly company, and keeps asking to be brought near.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "Directs that longing toward sangat rather than isolated self-repair.",
-      "practicalImplication": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
+      "turn": "The middle searches inward and asks how true meeting can happen at all.",
+      "practicalImplication": "This is for the person who feels alone, spiritually lost, or emotionally closed in. Held faithfully, it changes loneliness from sealed isolation into guided longing and gives yearning somewhere truthful to go. Longing ripens when saintly company shows the way.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.22,
-      "beauty": 4.37,
-      "overall": 4.08
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.04,
+      "beauty": 4.65,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-the-creator-acts",
-  "title": "You are not the sole author of this moment",
-  "summary": "The shabad turns the mind away from self-importance and back toward the Creator's action.",
-  "takeaway": "Rest is possible when you stop carrying authorship that was never yours.",
-  "lifeApplication": "Where are you exhausting yourself by behaving as if everything depends on you alone?",
+  "title": "Stop arguing with what already stands",
+  "summary": "This meets the mind that wants reality to arrive on self-approved terms. The line places doing back in the Creator's hands and quiets the argument that you were meant to run the day.",
+  "takeaway": "Peace begins where argument with Hukam starts ending.",
+  "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
       21091,
       21096
     ],
-    "shortMeaning": "The Creator acts; the seeker is called into surrender and praise.",
-    "lifeApplication": "Let surrender interrupt false urgency."
+    "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -33,30 +33,31 @@
     ]
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Creator acts; the seeker is called into surrender and praise.",
+      "coreClaim": "Peace begins where argument with Hukam starts ending.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
-      "practicalImplication": "Where are you exhausting yourself by behaving as if everything depends on you alone?",
+      "turn": "Let pain reveal what comfort keeps covering.",
+      "practicalImplication": "Before you argue with the moment again, stop and name what is already here.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.67,
-      "clarity": 4.35,
-      "specificity": 4.09,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.22,
-      "beauty": 4.21,
-      "overall": 3.77
+      "faithfulness": 3.95,
+      "clarity": 4.05,
+      "specificity": 4.35,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.36,
+      "beauty": 4.17,
+      "overall": 4.03
     },
     "strengths": [
-      "clarity",
-      "beauty"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

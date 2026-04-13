@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-299-1",
-  "title": "Word Of Your Bani, Lord, Is Ambrosial",
-  "summary": "Attachment is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The Word of Your Bani, Lord, is Ambrosial Nectar",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+  "title": "Let the Bani cool what is burning",
+  "summary": "This meets the overheated heart that has had enough of its own inner weather. The line says the Lord's Bani is not decoration but nectar.",
+  "takeaway": "Return to the Bani for cooling.",
+  "lifeApplication": "When the mind feels scorched, stop feeding it with more noise. Read or hear one line again before asking the day for another remedy.",
   "source": {
     "deepDiveId": "shabad-generated-299",
     "verseIds": [
       4119
     ],
-    "shortMeaning": "The Word of Your Bani, Lord, is Ambrosial Nectar",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Lord's Bani cools the heart like nectar taken in again.",
+    "lifeApplication": "When the inside is burning, take the line in again before reaching elsewhere."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "attachment",
+    "theme": "exhaustion",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The Word of Your Bani, Lord, is Ambrosial Nectar",
+      "coreClaim": "The Lord's Bani cools the heart like nectar taken in again.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: As Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+      "turn": "Read the Bani again until the inner heat cools.",
+      "practicalImplication": "When the mind feels scorched, stop feeding it with more noise. Read or hear one line again before asking the day for another remedy.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.05,
-      "specificity": 4.17,
+      "faithfulness": 4.25,
+      "clarity": 4.29,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.98,
-      "beauty": 3.82,
-      "overall": 3.87
+      "usefulness": 5,
+      "beauty": 4.33,
+      "overall": 4.39
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

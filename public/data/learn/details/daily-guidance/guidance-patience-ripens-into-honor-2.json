@@ -1,17 +1,17 @@
 {
   "id": "guidance-patience-ripens-into-honor-2",
-  "title": "Those Who Have The True Wealth",
-  "summary": "Patience is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints; those who have the true wealth are the true bankers",
-  "lifeApplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+  "title": "Let patience gather real wealth",
+  "summary": "This meets the wandering mind that wants quick proof and visible gain. The line says true wealth is Naam, and patience ripens into honor in holy company.",
+  "takeaway": "Trade in Naam and let patience ripen.",
+  "lifeApplication": "When the mind starts running toward quicker returns, slow the breath and stay with the quieter work. Let patience make the account, not impulse.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
       11239,
       11241
     ],
-    "shortMeaning": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints; those who have the true wealth are the true bankers",
-    "lifeApplication": "Wait by listening instead of simmering. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "In holy company, wandering stops and patience ripens into Naam-rich honor.",
+    "lifeApplication": "When hurry rises, stay with the practice that grows wealth you can actually keep."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints; those who have the true wealth are the true bankers",
+      "coreClaim": "In holy company, wandering stops and patience ripens into Naam-rich honor.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Patience becomes luminous when it begins listening for Naam.",
-      "practicalImplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "practicalImplication": "When the mind starts running toward quicker returns, slow the breath and stay with the quieter work. Let patience make the account, not impulse.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
-      "clarity": 2.14,
-      "specificity": 4.87,
-      "emotionalHonesty": 3.36,
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.8,
-      "beauty": 3.21,
-      "overall": 3.79
+      "beauty": 4.49,
+      "overall": 4.36
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

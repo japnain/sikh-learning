@@ -1,17 +1,17 @@
 {
   "id": "guidance-buy-what-goes-with-you-2",
-  "title": "Take The Merchandise Of The Lord's Praises",
-  "summary": "Discipline is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; buy that object which will go along with you",
-  "lifeApplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+  "title": "Carry praise, not counterfeit profit",
+  "summary": "This meets the buyer's instinct to secure the self with goods that cannot stay. The line says take the merchandise of praise, the only wealth that survives the crossing.",
+  "takeaway": "Carry the profit that can travel.",
+  "lifeApplication": "Before the next purchase or ambition spike, ask what here can still travel with you. Choose the gain that does not rot into falsehood.",
   "source": {
     "deepDiveId": "shabad-buy-what-goes-with-you",
     "verseIds": [
       934,
       937
     ],
-    "shortMeaning": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; buy that object which will go along with you",
-    "lifeApplication": "Make the next faithful repetition smaller and truer. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Lasting merchandise is praise that can travel beyond visible profit.",
+    "lifeApplication": "At the point of purchase, ask whether this gain can travel with you."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -24,7 +24,7 @@
     "collection-restlessness-to-stillness"
   ],
   "rotation": {
-    "theme": "discipline",
+    "theme": "greed",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Take the Merchandise of the Lord's Praises with you. Your Husband Lord shall see this and approve; buy that object which will go along with you",
+      "coreClaim": "Lasting merchandise is praise that can travel beyond visible profit.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Invest in what crosses the threshold with you.",
-      "practicalImplication": "Make the next faithful repetition smaller and truer. Use the line before the pressure chooses your tone.",
+      "turn": "Pause the deal and choose the profit that can follow you.",
+      "practicalImplication": "Before the next purchase or ambition spike, ask what here can still travel with you. Choose the gain that does not rot into falsehood.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.13,
-      "clarity": 3.03,
-      "specificity": 5,
+      "faithfulness": 4.16,
+      "clarity": 4.35,
+      "specificity": 4.91,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
-      "beauty": 3.17,
-      "overall": 3.83
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

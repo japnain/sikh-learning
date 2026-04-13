@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-337-2",
-  "title": "The Word Of The Guru's Shabad",
-  "summary": "Self-Worth is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
-  "lifeApplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+  "title": "Let Truth give your heart its place",
+  "summary": "This meets the fragile craving to be confirmed by response, praise, or position. The line says worth becomes steadier when the Shabad shows the One within and Truth becomes the measure.",
+  "takeaway": "Take your place in Truth, not applause.",
+  "lifeApplication": "Before checking the reply, the numbers, or the room's reaction, touch the center of the chest and say the line once. Let inner sight steady you before outer feedback arrives.",
   "source": {
     "deepDiveId": "shabad-generated-337",
     "verseIds": [
       4852,
       4859
     ],
-    "shortMeaning": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
-    "lifeApplication": "Let dignity be received before it is defended. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The Shabad steadies worth by revealing Truth within the heart.",
+    "lifeApplication": "When approval tempts you, let Truth settle the heart before the room does."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Through the Word of the Guru's Shabad, the Lord is seen within one's own heart; those who meditate on the True One are attuned to Truth",
+      "coreClaim": "The Shabad steadies worth by revealing Truth within the heart.",
       "emotionalState": "unworthy, rejected, fragile",
-      "turn": "Keep returning to this turn: O Nanak, the One Name is pervading deep within my mind.",
-      "practicalImplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+      "turn": "Let Truth, not applause, give the heart its place.",
+      "practicalImplication": "Before checking the reply, the numbers, or the room's reaction, touch the center of the chest and say the line once. Let inner sight steady you before outer feedback arrives.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
-      "clarity": 1.72,
-      "specificity": 4.58,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.8,
-      "beauty": 3.29,
-      "overall": 3.62
+      "usefulness": 4.86,
+      "beauty": 4.53,
+      "overall": 4.42
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

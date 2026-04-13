@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-1-2",
-  "title": "Hunger Of The Hungry Is Not Appeased",
-  "summary": "Anger is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The hunger of the hungry is not appeased, even by piling up loads of worldly goods; true In The Primal Beginning. True Throughout The Ages",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+  "title": "Piling up will not satisfy hunger",
+  "summary": "This meets the appetite that keeps promising one more acquisition will settle everything. The line exposes a hunger that grows faster than whatever you stack in front of it.",
+  "takeaway": "Name hunger before feeding it again.",
+  "lifeApplication": "At the cart, the fridge, or the late-night scroll, stop before taking more in. Ask whether you are answering a need or trying to fill a hunger that objects cannot touch.",
   "source": {
     "deepDiveId": "shabad-generated-1",
     "verseIds": [
       3,
       7
     ],
-    "shortMeaning": "The hunger of the hungry is not appeased, even by piling up loads of worldly goods; true In The Primal Beginning. True Throughout The Ages",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Worldly accumulation cannot quiet the deeper hunger of the self.",
+    "lifeApplication": "Before adding more, ask if the hunger is spiritual, emotional, or simply impulsive."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "greed",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The hunger of the hungry is not appeased, even by piling up loads of worldly goods; true In The Primal Beginning. True Throughout The Ages",
+      "coreClaim": "Worldly accumulation cannot quiet the deeper hunger of the self.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+      "turn": "Truth is not won by pressure or wit, but by walking in Hukam.",
+      "practicalImplication": "At the cart, the fridge, or the late-night scroll, stop before taking more in. Ask whether you are answering a need or trying to fill a hunger that objects cannot touch.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
-      "clarity": 3.15,
-      "specificity": 4.71,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 3.07,
-      "overall": 3.73
+      "faithfulness": 4.11,
+      "clarity": 4.35,
+      "specificity": 4.69,
+      "emotionalHonesty": 3,
+      "usefulness": 4.58,
+      "beauty": 4.21,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

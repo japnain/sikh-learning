@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-1-3",
-  "title": "It Is Written That You Shall Obey",
-  "summary": "The shabad does not leave anger at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, it is written that you shall obey the Hukam of His Command",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
+  "title": "Cleverness cannot walk beside you",
+  "summary": "This meets the mind still bargaining for control through strategy and brilliance. The line strips that illusion and leaves one durable path: walk in Hukam.",
+  "takeaway": "Drop the trick and walk in Hukam.",
+  "lifeApplication": "Before drafting the perfect response or engineering the outcome, let the jaw unclench and the shoulders drop. Choose the next faithful step instead of another clever maneuver.",
   "source": {
     "deepDiveId": "shabad-generated-1",
     "verseIds": [
       8,
       10
     ],
-    "shortMeaning": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "No clever scheme lasts; only walking in Hukam does.",
+    "lifeApplication": "When control gets sharp, return to the next obedient step instead of another trick."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "control",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Hundreds of thousands of clever tricks, but not even one of them will go along with you in the end; o Nanak, it is written that you shall obey the Hukam of His Command",
+      "coreClaim": "No clever scheme lasts; only walking in Hukam does.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
+      "turn": "Truth is not won by pressure or wit, but by walking in Hukam.",
+      "practicalImplication": "Before drafting the perfect response or engineering the outcome, let the jaw unclench and the shoulders drop. Choose the next faithful step instead of another clever maneuver.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 3.81,
-      "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
-      "beauty": 3.82,
-      "overall": 4.05
+      "faithfulness": 4.24,
+      "clarity": 4.35,
+      "specificity": 4.99,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.32
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

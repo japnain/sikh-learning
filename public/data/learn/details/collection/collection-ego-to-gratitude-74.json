@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-to-gratitude-74",
-  "title": "Ego to Gratitude",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+  "title": "When ego is broken open by gratitude",
+  "subtitle": "When self-importance needs to be broken open by mercy",
+  "description": "Break ego open with gratitude before even gift gets turned into self-congratulation.",
   "durationLabel": "6-step journey",
   "themes": [
     "ego",
@@ -14,8 +14,8 @@
       20963,
       20964
     ],
-    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-    "lifeApplication": "Move from self-justification toward teachability."
+    "shortMeaning": "Gratitude loosens the self that keeps claiming the center.",
+    "lifeApplication": "When self-importance swells, name one gift you did not create."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+      "coreClaim": "Break ego open with gratitude before even gift gets turned into self-congratulation.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When self-importance needs to be broken open by mercy",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.95,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.88
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

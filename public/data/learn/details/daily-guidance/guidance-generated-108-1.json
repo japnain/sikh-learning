@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-108-1",
-  "title": "If We Keep Contemplating About The Time",
-  "summary": "Anger is named plainly here before the mind has time to decorate it.",
-  "takeaway": "If we keep contemplating about the time as to when to remember the Lord",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+  "title": "Stop waiting for the right time",
+  "summary": "This meets the delaying mind that honors practice in theory and postpones it in life. The line asks a sharp question: if not now, when does remembrance begin?",
+  "takeaway": "Begin before the schedule agrees.",
+  "lifeApplication": "Before reorganizing the morning again, sit where you are and say the line once. Let devotion start in the actual minute instead of the ideal one.",
   "source": {
     "deepDiveId": "shabad-generated-108",
     "verseIds": [
       1430
     ],
-    "shortMeaning": "If we keep contemplating about the time as to when to remember the Lord",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The right time appears only when remembrance begins now.",
+    "lifeApplication": "When you postpone practice, start with one faithful minute before planning more."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -23,7 +23,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "discipline",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "If we keep contemplating about the time as to when to remember the Lord",
+      "coreClaim": "The right time appears only when remembrance begins now.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+      "turn": "Remembrance becomes true when it stops waiting for later.",
+      "practicalImplication": "Before reorganizing the morning again, sit where you are and say the line once. Let devotion start in the actual minute instead of the ideal one.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 3.99,
-      "specificity": 4.53,
-      "emotionalHonesty": 3.54,
+      "faithfulness": 4.08,
+      "clarity": 4.35,
+      "specificity": 4.84,
+      "emotionalHonesty": 3.36,
       "usefulness": 4.04,
-      "beauty": 3.69,
-      "overall": 3.91
+      "beauty": 4.05,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

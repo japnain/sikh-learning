@@ -1,17 +1,17 @@
 {
   "id": "guidance-wanderings-cease-in-sangat",
-  "title": "Wandering slows where true company begins.",
-  "summary": "The pauree does not flatter the restless mind. It says the wandering starts easing when you actually dwell in saint company.",
-  "takeaway": "Do not confuse more movement with more progress.",
-  "lifeApplication": "Choose one faithful company today instead of ten new inputs.",
+  "title": "Let the search end in company, not novelty",
+  "summary": "This meets a hunger that is sincere but keeps scattering itself across new voices and new roads. The line says wandering ends where guidance, company, and devotion finally become home.",
+  "takeaway": "Search matures when it comes home to shelter.",
+  "lifeApplication": "Before starting one more search, stay with the shelter already in front of you.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
       11239,
       11240
     ],
-    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
-    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+    "shortMeaning": "Sincere search becomes home only in guidance, company, and devotion.",
+    "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Wandering eases where Sangat and mercy begin enlightening the mind.",
+      "coreClaim": "Sincere search becomes home only in guidance, company, and devotion.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Patience becomes luminous when it begins listening for Naam.",
-      "practicalImplication": "Choose one faithful company today instead of ten new inputs.",
+      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "practicalImplication": "Before starting one more search, stay with the shelter already in front of you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 4.35,
-      "specificity": 4.69,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 4.21,
-      "overall": 4.08
+      "faithfulness": 3.85,
+      "clarity": 4.29,
+      "specificity": 4.44,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.17,
+      "overall": 4
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

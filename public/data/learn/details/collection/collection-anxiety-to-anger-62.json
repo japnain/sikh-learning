@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-to-anger-62",
-  "title": "Anxiety to Anger",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru turns the battle inward so reaction loses its claim to righteousness.",
+  "title": "When anxiety hardens into anger",
+  "subtitle": "When fear starts recruiting anger as protection",
+  "description": "Track how anxiety hardens into anger, then cool the fear before it borrows your mouth.",
   "durationLabel": "6-step journey",
   "themes": [
     "anxiety",
@@ -14,8 +14,8 @@
       30988,
       30989
     ],
-    "shortMeaning": "The Creator who formed you remains your support.",
-    "lifeApplication": "Answer fear with remembrance before strategy."
+    "shortMeaning": "Unattended anxiety often hardens into a harsher tone.",
+    "lifeApplication": "When the chest is already tight, calm the fear before anger borrows your mouth."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru turns the battle inward so reaction loses its claim to righteousness.",
+      "coreClaim": "Track how anxiety hardens into anger, then cool the fear before it borrows your mouth.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When fear starts recruiting anger as protection",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 3.65,
-      "specificity": 4.28,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.88
+      "faithfulness": 3.79,
+      "clarity": 4.29,
+      "specificity": 4.02,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.17,
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }
