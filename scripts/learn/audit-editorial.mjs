@@ -1,31 +1,19 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { scoreEditorialCopy } from "./lib/editorial-rubric.mjs"
-import { collectStyleIssues, normalizeEditorialText } from "./lib/style-guide.mjs"
+import { scoreEditorialCopy, tokenSetSimilarity } from "./lib/editorial-rubric.mjs"
+import { collectStyleIssues } from "./lib/style-guide.mjs"
 import { loadTsModule } from "./lib/pipeline.mjs"
+import { loadArchiveDataset } from "./review/review-helpers.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const PROJECT_ROOT = path.resolve(__dirname, "../..")
-const PUBLIC_DIR = path.join(PROJECT_ROOT, "public/data/learn")
 const CACHE_DIR = path.join(PROJECT_ROOT, "scripts/learn/.cache")
 const OUTPUT_PATH = path.join(CACHE_DIR, "editorial-audit.json")
 
-async function readJson(filePath) {
-  return JSON.parse(await fs.readFile(filePath, "utf8"))
-}
-
 function getItemOverall(item) {
   return item?.editorial?.scores?.overall ?? 0
-}
-
-function tokenSetSimilarity(left, right) {
-  const leftTokens = new Set(normalizeEditorialText(left).split(" ").filter(Boolean))
-  const rightTokens = new Set(normalizeEditorialText(right).split(" ").filter(Boolean))
-  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
-  const union = new Set([...leftTokens, ...rightTokens]).size
-  return union === 0 ? 0 : overlap / union
 }
 
 function auditLearnShellCopy(editorialCopy) {
@@ -347,13 +335,28 @@ function buildSurfaceCollisionReport(catalog) {
 }
 
 async function main() {
-  const manifest = await readJson(path.join(PUBLIC_DIR, "manifest.json"))
-  const validation = await readJson(path.join(PUBLIC_DIR, "validation-report.json"))
-  const searchIndex = await readJson(path.join(PUBLIC_DIR, "search-index.json"))
-  const dailyGuidance = await readJson(path.join(PUBLIC_DIR, "lists/daily-guidance.json"))
-  const shabadDeepDives = await readJson(path.join(PUBLIC_DIR, "lists/shabad-deep-dives.json"))
-  const topicGuides = await readJson(path.join(PUBLIC_DIR, "lists/topic-guides.json"))
-  const collections = await readJson(path.join(PUBLIC_DIR, "lists/collections.json"))
+  const { source, dataset } = await loadArchiveDataset({ preferDrafts: true })
+  const manifest = dataset.manifest ?? {
+    inventory: {
+      dailyGuidance: dataset.dailyGuidance.length,
+      shabadDeepDives: dataset.shabadDeepDives.length,
+      topicGuides: dataset.topicGuides.length,
+      topicScenarios: dataset.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0),
+      collections: dataset.collections.length,
+    },
+  }
+  const validation = dataset.validation ?? {
+    editorial: {
+      statuses: { draft: 0, approved: 0, locked: 0, "theme-mismatch": 0 },
+      draftCount: 0,
+      duplicateWarnings: [],
+    },
+    hardFailures: [],
+    warnings: [],
+    averageCrossLinksPerItem: 0,
+  }
+  const searchIndex = dataset.searchIndex ?? { synonyms: {}, legacyTopicAliases: {} }
+  const { dailyGuidance, shabadDeepDives, topicGuides, collections } = dataset
 
   const editorialModule = loadTsModule(path.join(PROJECT_ROOT, "src/content/editorialCopy.ts"))
   const editorialCopy = editorialModule.getEditorialCopy("en")
@@ -389,8 +392,9 @@ async function main() {
   await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(report, null, 2)}\n`)
 
   console.log(`Editorial audit written to ${OUTPUT_PATH}`)
+  console.log(`Archive source: ${source}`)
   console.log(
-    `Archive statuses: locked ${archiveAudit.statuses.locked}, approved ${archiveAudit.statuses.approved}, draft ${archiveAudit.statuses.draft}`
+    `Archive statuses: locked ${archiveAudit.statuses.locked ?? 0}, approved ${archiveAudit.statuses.approved ?? 0}, draft ${archiveAudit.statuses.draft ?? 0}, theme-mismatch ${archiveAudit.statuses["theme-mismatch"] ?? 0}`
   )
   console.log(
     `Weakest canonical topic: ${archiveAudit.weakestCanonicalTopics[0]?.id ?? "none"}`

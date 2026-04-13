@@ -1,0 +1,10 @@
+- `source.shortMeaning`: 8-18 words. Do not restate the cited BaniDB translation verbatim or as a token-rewrite. Name the turn the line makes.
+- `summary`: 1-2 sentences. Keep each sentence at 24 words or fewer. Name the emotional state the line meets rather than repeating the topic label.
+- `takeaway`: one sentence, 14 words or fewer. Make it concrete and end on a clear verb or precise noun.
+- `lifeApplication`: 1-2 sentences. Name a specific time, place, or body cue such as the mouth, the doorway, before the reply, or before the message is sent. Do not use template phrasing.
+- `whyItMatters`: say who the item is for and what changes when they hold it.
+- `scenario excerpt`: quote or paraphrase the cited line directly enough that the source is still visible.
+- `scenario practicalGuidance`: give one concrete move the reader can take next.
+- `collection description`: stay under 40 words, name the through-line, and avoid `living archive`, `composed ritual`, or similar shell language.
+- Avoid every hard-banned phrase from the style guide, especially the recycled template lines that were removed from the pipeline.
+- Human approval is required before publish. Keep edits faithful to the cited verses, emotionally honest, and specific enough to survive ordinary use.

@@ -1,17 +1,85 @@
-import { scoreEditorialCopy } from "./editorial-rubric.mjs"
-import { EDITORIAL_VOICE_VERSION, normalizeEditorialText } from "./style-guide.mjs"
+import { checkShortMeaningTranslationEcho, scoreEditorialCopy, tokenSetSimilarity } from "./editorial-rubric.mjs"
+import { EDITORIAL_VOICE_VERSION } from "./style-guide.mjs"
 
-function tokenSetSimilarity(left, right) {
-  const leftTokens = new Set(normalizeEditorialText(left).split(" ").filter(Boolean))
-  const rightTokens = new Set(normalizeEditorialText(right).split(" ").filter(Boolean))
-  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
-  const union = new Set([...leftTokens, ...rightTokens]).size
-  return union === 0 ? 0 : overlap / union
+export const PREMIUM_EDITORIAL_THRESHOLDS = {
+  "daily-guidance": {
+    overall: 4,
+    faithfulness: 4,
+    clarity: 3.2,
+    usefulness: 3.8,
+    beauty: 3.8,
+  },
+  "shabad-deep-dive": {
+    overall: 4,
+    faithfulness: 4,
+    clarity: 3.2,
+    usefulness: 3.4,
+    beauty: 3.8,
+  },
+  "topic-guide": {
+    overall: 3.9,
+    faithfulness: 3.85,
+    clarity: 3.1,
+    usefulness: 3.2,
+    beauty: 3.3,
+  },
+  collection: {
+    overall: 3.85,
+    faithfulness: 3.85,
+    clarity: 3.1,
+    usefulness: 3.1,
+    beauty: 3.3,
+  },
+}
+
+function clearsThresholds(scores, thresholds) {
+  return (
+    scores.overall >= thresholds.overall
+    && scores.faithfulness >= thresholds.faithfulness
+    && scores.clarity >= thresholds.clarity
+    && scores.usefulness >= thresholds.usefulness
+    && scores.beauty >= thresholds.beauty
+  )
 }
 
 function getOrigin(kind, item, legacyIds) {
   if (item?.editorial?.forcedLocked) return "manual"
   return legacyIds[kind].has(item.id) ? "legacy" : "generated"
+}
+
+function getReferenceTranslation(dataset, source) {
+  const shabad = dataset.shabadDeepDivesById[source?.deepDiveId]
+  if (!shabad) return ""
+
+  return shabad.lines
+    .filter(line => source.verseIds.includes(line.verseId))
+    .map(line => line.translation)
+    .filter(Boolean)
+    .join(" ")
+}
+
+function collectTranslationEchoIssues(item, dataset) {
+  const sourcePairs =
+    item.source
+      ? [{ label: "source shortMeaning", source: item.source }]
+      : item.heroSource
+        ? [{ label: "hero shortMeaning", source: item.heroSource }]
+        : Array.isArray(item.excerpts)
+          ? item.excerpts.map((excerpt, index) => ({
+              label: `excerpt ${index + 1} shortMeaning`,
+              source: excerpt.source,
+            }))
+          : []
+
+  return sourcePairs.flatMap(({ label, source }) => {
+    const result = checkShortMeaningTranslationEcho(
+      source?.shortMeaning ?? "",
+      getReferenceTranslation(dataset, source)
+    )
+    return result.rejected
+      ? [`${label} echoes the cited translation too closely`]
+      : []
+  })
 }
 
 function buildAssessment({
@@ -20,6 +88,7 @@ function buildAssessment({
   evidence,
   templateKey,
   origin,
+  dataset,
   lockedByDefault = false,
 }) {
   const textBlocks =
@@ -35,30 +104,56 @@ function buildAssessment({
     textBlocks,
     evidence,
   })
+  const reviewedByHuman = item.editorial?.reviewedByHuman === true
+  const premiumThresholds = PREMIUM_EDITORIAL_THRESHOLDS[kind] ?? PREMIUM_EDITORIAL_THRESHOLDS.collection
+  const seededIssues = item.editorial?.issues ?? []
+  const translationEchoIssues = collectTranslationEchoIssues(item, dataset)
+  const issues = Array.from(new Set([
+    ...seededIssues,
+    ...reviewed.issues,
+    ...translationEchoIssues,
+  ]))
 
   const requiresActionThreshold = kind === "daily-guidance" || kind === "topic-guide"
-  let status = "approved"
+  let status = item.editorial?.status === "theme-mismatch" && !reviewedByHuman ? "theme-mismatch" : "approved"
   if (
-    reviewed.issues.some(issue =>
-      issue.includes("placeholder")
-      || issue.includes("banned overreach")
-      || issue.includes("do not support")
+    status !== "theme-mismatch"
+    && (
+      (origin === "generated" && !reviewedByHuman)
+      || issues.some(issue =>
+        issue.includes("needs human copy")
+        || issue.includes("translation too closely")
+        || issue.includes("theme mismatch")
+      )
+      || reviewed.issues.some(issue =>
+        issue.includes("placeholder")
+        || issue.includes("banned overreach")
+        || issue.includes("do not support")
+      )
+      || reviewed.scores.overall < (requiresActionThreshold ? 2.95 : 2.75)
+      || reviewed.scores.faithfulness < 2.75
+      || (requiresActionThreshold && reviewed.scores.usefulness < 2.5)
     )
-    || reviewed.scores.overall < (requiresActionThreshold ? 2.95 : 2.75)
-    || reviewed.scores.faithfulness < 2.75
-    || (requiresActionThreshold && reviewed.scores.usefulness < 2.5)
   ) {
     status = "draft"
   } else if (
-    (lockedByDefault || origin === "manual")
-    && reviewed.scores.overall >= 3.8
-    && reviewed.scores.faithfulness >= 3.7
-    && reviewed.scores.clarity >= 3.2
-    && reviewed.scores.usefulness >= 3.1
-    && reviewed.scores.beauty >= 3.1
+    reviewedByHuman
+    && !clearsThresholds(reviewed.scores, premiumThresholds)
+  ) {
+    status = "draft"
+  } else if (
+    status !== "theme-mismatch"
+    && (
+      (lockedByDefault || origin === "manual")
+      && clearsThresholds(reviewed.scores, premiumThresholds)
+    )
   ) {
     status = "locked"
-  } else if (origin === "legacy" && reviewed.scores.overall >= 3.55 && reviewed.scores.faithfulness >= 3.7) {
+  } else if (
+    status !== "theme-mismatch"
+    && origin === "legacy"
+    && clearsThresholds(reviewed.scores, premiumThresholds)
+  ) {
     status = "locked"
   }
 
@@ -70,7 +165,8 @@ function buildAssessment({
     evidence,
     scores: reviewed.scores,
     strengths: reviewed.strengths,
-    issues: reviewed.issues,
+    issues,
+    reviewedByHuman,
   }
 }
 
@@ -90,7 +186,7 @@ function buildShabadEvidence(item) {
     coreClaim: item.summary,
     emotionalState: item.emotionalStates.join(", "),
     turn: item.structure[1] || item.takeaway,
-    practicalImplication: item.takeaway,
+    practicalImplication: `${item.whyItMatters} ${item.takeaway}`.trim(),
     bannedOverreach: [],
   }
 }
@@ -219,6 +315,7 @@ export function applyEditorialReview(dataset, legacySeed) {
       evidence: buildGuidanceEvidence(item, dataset),
       templateKey: `guidance:${item.source.verseIds.length}-line-window`,
       origin: getOrigin("daily-guidance", item, legacyIds),
+      dataset,
     })
   }
 
@@ -229,6 +326,7 @@ export function applyEditorialReview(dataset, legacySeed) {
       evidence: buildShabadEvidence(item),
       templateKey: item.id.startsWith("shabad-generated-") ? "shabad:generated" : "shabad:legacy",
       origin: getOrigin("shabad-deep-dive", item, legacyIds),
+      dataset,
     })
   }
 
@@ -239,6 +337,7 @@ export function applyEditorialReview(dataset, legacySeed) {
       evidence: buildTopicEvidence(item, dataset),
       templateKey: item.id.split("-").slice(0, 3).join(":"),
       origin: getOrigin("topic-guide", item, legacyIds),
+      dataset,
       lockedByDefault: item.editorial?.forcedLocked === true,
     })
 
@@ -253,6 +352,7 @@ export function applyEditorialReview(dataset, legacySeed) {
         evidence: buildTopicScenarioEvidence(item, scenarioKey, dataset),
         templateKey: `${item.id}:${scenarioKey}`,
         origin: scenario.editorial?.forcedLocked === true ? "manual" : "generated",
+        dataset,
         lockedByDefault: scenario.editorial?.forcedLocked === true,
       })
     }
@@ -265,6 +365,7 @@ export function applyEditorialReview(dataset, legacySeed) {
       evidence: buildCollectionEvidence(item, dataset),
       templateKey: item.items.length >= 4 ? "collection:journey" : "collection:bundle",
       origin: getOrigin("collection", item, legacyIds),
+      dataset,
     })
   }
 
@@ -283,7 +384,7 @@ export function applyEditorialReview(dataset, legacySeed) {
     ...dataset.collections.map(item => ({ id: item.id, kind: "collection", editorial: item.editorial })),
   ]
 
-  const statuses = { draft: 0, approved: 0, locked: 0 }
+  const statuses = { draft: 0, approved: 0, locked: 0, "theme-mismatch": 0 }
   for (const item of allItems) {
     statuses[item.editorial.status] += 1
   }

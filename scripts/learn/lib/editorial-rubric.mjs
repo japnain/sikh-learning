@@ -20,6 +20,25 @@ function clampScore(value) {
   return Math.max(0, Math.min(5, Number(value.toFixed(2))))
 }
 
+export function tokenSetSimilarity(left, right) {
+  const leftTokens = new Set(normalizeEditorialText(left).split(" ").filter(Boolean))
+  const rightTokens = new Set(normalizeEditorialText(right).split(" ").filter(Boolean))
+  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
+  const union = new Set([...leftTokens, ...rightTokens]).size
+  return union === 0 ? 0 : overlap / union
+}
+
+export function checkShortMeaningTranslationEcho(shortMeaning, translation, threshold = 0.75) {
+  const similarity = tokenSetSimilarity(shortMeaning, translation)
+  return {
+    similarity,
+    rejected: similarity >= threshold,
+    issue: similarity >= threshold
+      ? "shortMeaning echoes the cited translation too closely"
+      : null,
+  }
+}
+
 function topStrengths(scores) {
   return Object.entries(scores)
     .filter(([key]) => key !== "overall")
