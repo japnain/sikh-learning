@@ -246,6 +246,566 @@
         "reviewedAt": "2026-04-13T03:14:28.706Z",
         "batchTag": "next-30-unique-banidb",
         "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-buy-what-goes-with-you-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.258Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-child-of-grace-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-1-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-151-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-151-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-230-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-3-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-337-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-338-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-361-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-510-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-510-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-512-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-560-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-561-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-562-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-562-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-563-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-564-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-566-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-63-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-64-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-643-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-645-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-65-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-705-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-736-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-737-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-gratitude-restores-naam-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-honor-women-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-lord-keeps-the-humble-close-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-patience-ripens-into-honor-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-search-ends-in-saint-company-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-selfless-service-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-speak-what-brings-honor-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-steadied-by-creator-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-suffering-as-medicine-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-sweet-speech-humble-walk-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-what-pleases-you-comes-to-pass-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-work-give-know-the-path-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-buy-what-goes-with-you-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-107-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-150-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-153-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-226-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-298-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-459-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-703-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-229-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-232-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-359-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-66-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-301-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-644-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-108-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-462-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-511-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-228-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-565-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-child-of-grace-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-512-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-forgiveness-opens-lasting-peace-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-509-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-301-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-300-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-1-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-230-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-460-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-461-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-361-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-ego-is-disease-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-extinguish-the-fire-of-doubt-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-231-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-642-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-hukam-inside-everything-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-remembrance-brings-peace-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-704-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-231-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-179-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
+      },
+      "guidance-generated-226-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.259Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.259Z"
       }
     },
     "shabad-deep-dive": {
@@ -493,6 +1053,300 @@
         "reviewedAt": "2026-04-13T03:14:28.721Z",
         "batchTag": "next-30-unique-banidb",
         "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-510": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-512": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-561": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-562": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-563": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-564": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-566": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-63": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-64": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-643": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-645": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-65": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-705": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-736": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-737": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-gratitude-restores-naam": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-honor-women": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-lord-keeps-the-humble-close": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-patience-ripens-into-honor": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-search-ends-in-saint-company": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-selfless-service": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-speak-what-brings-honor": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-steadied-by-creator": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-suffering-as-medicine": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-sweet-speech-humble-walk": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-what-pleases-you-comes-to-pass": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-work-give-know-the-path": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-150": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-298": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-232": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-359": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-66": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-644": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-511": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-565": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-remembrance-brings-peace": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-ego-is-disease": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-231": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-642": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-hukam-inside-everything": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-704": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
+      },
+      "shabad-generated-179": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T05:31:39.275Z",
+        "batchTag": "bulk-approved",
+        "notes": "Applied from snapshot tooling on 2026-04-13T05:31:39.275Z"
       }
     },
     "topic-guide": {},
