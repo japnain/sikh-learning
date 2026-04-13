@@ -1,4 +1,4 @@
-import type { ShabadOverridePayload } from "../types"
+import type { ShabadOverridePayload } from "../../types"
 
 export const SHABAD_COPY_OVERRIDES = {
   "shabad-ambrosial-speech-pure-conduct": {

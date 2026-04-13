@@ -1,4 +1,4 @@
-import type { CollectionOverridePayload } from "../types"
+import type { CollectionOverridePayload } from "../../types"
 
 export const COLLECTION_COPY_OVERRIDES = {
   "collection-conduct-and-clean-speech": {
