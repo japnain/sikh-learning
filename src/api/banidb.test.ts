@@ -132,6 +132,7 @@ describe('fetchBani', () => {
   it('defaults Rehras Sahib to the short STTM length without producing Ang 0 and keeps later sections', async () => {
     const result = await fetchBani(21)
     expect(result.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(result.resolvedLength).toBe('short')
     expect(result.entries).toHaveLength(3)
     expect(result.entries[0].ang).toBe(8)
     expect(result.entries[0].lines?.[0].isHeader).toBe(false)
@@ -145,33 +146,50 @@ describe('fetchBani', () => {
 
   it('filters Rehras Sahib to the long STTM start when requested', async () => {
     const result = await fetchBani(21, 'long')
+    expect(result.resolvedLength).toBe('long')
     expect(firstVisibleLine(result.entries)).toBe('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')
   })
 
   it('keeps the extra-long Rehras intro lines available for the reader intro block', async () => {
     const result = await fetchBani(21, 'extralong')
+    expect(result.resolvedLength).toBe('extralong')
     expect(introLines(result.entries)).toContain('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥')
   })
 
-  it('maps Benati Chaupai Sahib short and long starts correctly', async () => {
+  it('normalizes Benati Chaupai Sahib to three distinct ordered bands', async () => {
     const shortResult = await fetchBani(9, 'short')
+    const mediumResult = await fetchBani(9, 'medium')
     const longResult = await fetchBani(9, 'long')
     const extraLongResult = await fetchBani(9, 'extralong')
 
-    expect(shortResult.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(shortResult.availableLengths).toEqual(['short', 'medium', 'long'])
+    expect(shortResult.resolvedLength).toBe('short')
+    expect(mediumResult.resolvedLength).toBe('medium')
+    expect(longResult.resolvedLength).toBe('long')
+    expect(extraLongResult.resolvedLength).toBe('long')
     expect(firstVisibleLine(shortResult.entries)).toBe('ਕਬਿਯੋ ਬਾਚ ਬੇਨਤੀ ॥')
-    expect(firstVisibleLine(longResult.entries)).toBe('ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥')
+    expect(firstVisibleLine(mediumResult.entries)).toBe('ੴ ਸ੍ਰੀ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹ ॥')
+    expect(introLines(longResult.entries)).toContain('ਦੋਹਰਾ ॥')
     expect(introLines(extraLongResult.entries)).toContain('ਦੋਹਰਾ ॥')
   })
 
-  it('reports Aarti and Kirtan Sohila as adjustable and keeps their expanded intros', async () => {
+  it('normalizes Aarti to three ordered bands and keeps Kirtan Sohila at four', async () => {
+    const aartiShort = await fetchBani(22, 'short')
     const aarti = await fetchBani(22, 'extralong')
     const sohila = await fetchBani(23, 'long')
 
-    expect(aarti.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(aartiShort.availableLengths).toEqual(['short', 'medium', 'long'])
+    expect(aartiShort.resolvedLength).toBe('short')
+    expect(firstVisibleLine(aartiShort.entries)).toBe('ਸਭ ਮਹਿ ਜੋਤਿ ਜੋਤਿ ਹੈ ਸੋਇ ॥')
+    expect(aarti.availableLengths).toEqual(['short', 'medium', 'long'])
+    expect(aarti.resolvedLength).toBe('long')
     expect(sohila.availableLengths).toEqual(['short', 'medium', 'long', 'extralong'])
+    expect(sohila.resolvedLength).toBe('long')
     expect(introLines(aarti.entries)).toContain('ਆਰਤੀ-ਆਰਤਾ')
-    expect(introLines(sohila.entries)).toContain('ਸੋਹਿਲਾ ਸਾਹਿਬ')
+    expect(introLines(sohila.entries)).toContain('ਰਾਗੁ ਗਉੜੀ ਦੀਪਕੀ ਮਹਲਾ ੧ ॥')
+    const sohilaExtraLong = await fetchBani(23, 'extralong')
+    expect(sohilaExtraLong.resolvedLength).toBe('extralong')
+    expect(introLines(sohilaExtraLong.entries)).toContain('ਸੋਹਿਲਾ ਸਾਹਿਬ')
   })
 })
 

@@ -5,6 +5,7 @@ import {
   SUNDAR_GUTKA_SUPPORTED_BANI_IDS,
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   asSupportedSundarGutkaBaniId,
+  normalizeLegacyStoredSundarGutkaLength,
   type SupportedSundarGutkaBaniId,
 } from '../utils/sundarGutkaLength'
 
@@ -39,7 +40,7 @@ export const useSundarGutkaLengthStore = create<SundarGutkaLengthState>()(
     }),
     {
       name: 'sikh-sundar-gutka-lengths',
-      version: 1,
+      version: 2,
       migrate: (persisted) => {
         const state = (persisted ?? {}) as Partial<SundarGutkaLengthState>
         const nextLengths = { ...DEFAULT_SUNDAR_GUTKA_LENGTHS }
@@ -49,7 +50,7 @@ export const useSundarGutkaLengthStore = create<SundarGutkaLengthState>()(
           const baniId = asSupportedSundarGutkaBaniId(key)
           if (!baniId) continue
           if (value === 'short' || value === 'medium' || value === 'long' || value === 'extralong') {
-            nextLengths[baniId] = value
+            nextLengths[baniId] = normalizeLegacyStoredSundarGutkaLength(baniId, value)
           }
         }
 

@@ -4,6 +4,7 @@ import {
   SUNDAR_GUTKA_LENGTH_ORDER,
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   getSupportedSundarGutkaBaniIdByBaniDbId,
+  type SundarGutkaRawLength,
 } from '../utils/sundarGutkaLength'
 
 const BASE = 'https://api.banidb.com/v2'
@@ -147,6 +148,7 @@ export interface AmritKeertanShabad {
 export interface BaniFetchResult {
   entries: ScriptureEntry[]
   availableLengths: SundarGutkaLength[]
+  resolvedLength: SundarGutkaLength | null
 }
 
 function toScripture(source: BaniSource): string {
@@ -339,13 +341,111 @@ interface BaniFlatVerse {
   isHeader?: boolean
 }
 
-function getAvailableSundarGutkaLengths(rawArray: BaniResponseVerse[]): SundarGutkaLength[] {
-  return SUNDAR_GUTKA_LENGTH_ORDER.filter(length =>
-    rawArray.some(item => {
-      const flag = item[SUNDAR_GUTKA_LENGTH_EXISTS_KEY[length] as keyof BaniResponseVerse]
-      return Boolean(flag)
-    })
+interface NormalizedSundarGutkaLengthOption {
+  band: SundarGutkaLength
+  rawLengths: SundarGutkaRawLength[]
+  signature: string
+  lineCount: number
+}
+
+function hasSundarGutkaLengthFlags(item: BaniResponseVerse) {
+  return (
+    typeof item.existsSGPC !== 'undefined'
+    || typeof item.existsMedium !== 'undefined'
+    || typeof item.existsTaksal !== 'undefined'
+    || typeof item.existsBuddhaDal !== 'undefined'
   )
+}
+
+function filterRawSundarGutkaVerses(
+  rawArray: BaniResponseVerse[],
+  rawLength: SundarGutkaRawLength
+) {
+  return rawArray.filter(item => {
+    if (item.mangalPosition === 'above') return false
+    if (!hasSundarGutkaLengthFlags(item)) return true
+
+    const flag = item[SUNDAR_GUTKA_LENGTH_EXISTS_KEY[rawLength] as keyof BaniResponseVerse]
+    return Boolean(flag)
+  })
+}
+
+function buildSundarGutkaLengthSignature(rawArray: BaniResponseVerse[]) {
+  return rawArray.map(item => {
+    const nestedVerse = item.verse && typeof item.verse === 'object' && (
+      'verseId' in item.verse || 'shabadId' in item.verse || 'translation' in item.verse || 'transliteration' in item.verse
+    ) ? item.verse : null
+    const inner = (nestedVerse ?? item) as BaniShabadVerse & {
+      verseId?: number
+      shabadId?: number
+      pageNo?: number | null
+    }
+
+    return [
+      inner.verseId ?? 0,
+      inner.shabadId ?? 0,
+      inner.pageNo ?? item.pageNo ?? 'x',
+      item.header ? 'header' : 'line',
+      safeText(inner.verse?.unicode),
+    ].join(':')
+  }).join('|')
+}
+
+function getNormalizedSundarGutkaLengthOptions(
+  rawArray: BaniResponseVerse[]
+): NormalizedSundarGutkaLengthOption[] {
+  const distinctBySignature = new Map<string, {
+    rawLengths: SundarGutkaRawLength[]
+    signature: string
+    lineCount: number
+  }>()
+
+  for (const rawLength of SUNDAR_GUTKA_LENGTH_ORDER) {
+    const filtered = filterRawSundarGutkaVerses(rawArray, rawLength)
+    if (filtered.length === 0) continue
+
+    const signature = buildSundarGutkaLengthSignature(filtered)
+    const existing = distinctBySignature.get(signature)
+    if (existing) {
+      existing.rawLengths.push(rawLength)
+      continue
+    }
+
+    distinctBySignature.set(signature, {
+      rawLengths: [rawLength],
+      signature,
+      lineCount: filtered.length,
+    })
+  }
+
+  return Array.from(distinctBySignature.values())
+    .sort((left, right) =>
+      left.lineCount - right.lineCount
+      || SUNDAR_GUTKA_LENGTH_ORDER.indexOf(left.rawLengths[0]!) - SUNDAR_GUTKA_LENGTH_ORDER.indexOf(right.rawLengths[0]!)
+    )
+    .map((option, index) => ({
+      band: SUNDAR_GUTKA_LENGTH_ORDER[index]!,
+      rawLengths: option.rawLengths,
+      signature: option.signature,
+      lineCount: option.lineCount,
+    }))
+}
+
+function resolveNormalizedSundarGutkaLengthOption({
+  options,
+  requestedLength,
+  defaultLength,
+}: {
+  options: NormalizedSundarGutkaLengthOption[]
+  requestedLength?: SundarGutkaLength | null
+  defaultLength: SundarGutkaLength
+}) {
+  if (options.length === 0) return null
+
+  return options.find(option => option.band === requestedLength)
+    ?? options.find(option => option.rawLengths.includes(requestedLength as SundarGutkaRawLength))
+    ?? options.find(option => option.band === defaultLength)
+    ?? options[0]
 }
 
 export async function fetchBani(
@@ -361,30 +461,25 @@ export async function fetchBani(
     return {
       entries: [],
       availableLengths: [],
+      resolvedLength: null,
     }
   }
 
   const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
-  const availableLengths = supportedBaniId
-    ? getAvailableSundarGutkaLengths(rawArray)
+  const normalizedLengthOptions = supportedBaniId
+    ? getNormalizedSundarGutkaLengthOptions(rawArray)
     : []
-  const selectedLength = supportedBaniId
-    ? (sgLength ?? SUNDAR_GUTKA_SUPPORTED_BANIS[supportedBaniId].defaultLength)
+  const availableLengths = normalizedLengthOptions.map(option => option.band)
+  const selectedLengthOption = supportedBaniId
+    ? resolveNormalizedSundarGutkaLengthOption({
+        options: normalizedLengthOptions,
+        requestedLength: sgLength,
+        defaultLength: SUNDAR_GUTKA_SUPPORTED_BANIS[supportedBaniId].defaultLength,
+      })
     : null
 
-  const filteredRawArray = supportedBaniId && selectedLength
-    ? rawArray.filter(item => {
-        if (item.mangalPosition === 'above') return false
-        const flag = item[SUNDAR_GUTKA_LENGTH_EXISTS_KEY[selectedLength] as keyof BaniResponseVerse]
-        const hasLengthFlags =
-          typeof item.existsSGPC !== 'undefined'
-          || typeof item.existsMedium !== 'undefined'
-          || typeof item.existsTaksal !== 'undefined'
-          || typeof item.existsBuddhaDal !== 'undefined'
-
-        if (!hasLengthFlags) return true
-        return Boolean(flag)
-      })
+  const filteredRawArray = supportedBaniId && selectedLengthOption
+    ? filterRawSundarGutkaVerses(rawArray, selectedLengthOption.rawLengths[0]!)
     : rawArray
 
   const flatVerses: BaniFlatVerse[] = []
@@ -465,6 +560,7 @@ export async function fetchBani(
       })
     }),
     availableLengths,
+    resolvedLength: selectedLengthOption?.band ?? null,
   }
 }
 

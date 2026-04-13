@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
 import * as banidb from '../api/banidb'
+import * as learnRepository from '../data/learnRepository'
 import * as hukamnamaHook from '../hooks/useHukamnama'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLearningStore } from '../store/learning'
@@ -13,6 +14,9 @@ import { useLanguageStore } from '../store/language'
 import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { useThemeStore } from '../store/theme'
+import { getTodayLearnSurface } from '../utils/learnExperience'
+import { buildLearnDetailPath } from '../utils/learnRails'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
@@ -28,13 +32,23 @@ function todayStamp() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
 }
 
+async function getTodaySurface() {
+  const catalog = await learnRepository.loadLearnCatalog()
+  return getTodayLearnSurface(catalog, todayStamp(), useLearningStore.getState().learnState)
+}
+
 afterEach(() => {
   vi.useRealTimers()
   vi.restoreAllMocks()
+  document.documentElement.classList.remove('dark')
 })
 
 beforeEach(() => {
+  vi.useFakeTimers({ shouldAdvanceTime: true })
+  vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   localStorage.clear()
+  document.documentElement.classList.remove('dark')
+  useThemeStore.setState({ dark: false })
   useScriptureCacheStore.getState().clearAll()
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
   useDailyFlowStore.setState({ date: todayStamp(), completedActionIds: [] })
@@ -122,12 +136,16 @@ test('renders greeting', () => {
 test('shows the new hero shell immediately', () => {
   renderHome()
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
-  expect(screen.getByText(/A deliberate daily space for Gurbani, meaning, and return\./i)).toBeInTheDocument()
+  expect(screen.getByTestId('home-hero')).toBeInTheDocument()
+  expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
+  expect(screen.getByTestId('home-guidance-skeleton')).toBeInTheDocument()
   expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
   expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
 })
 
-test('routes the compact learn quick link into learn', async () => {
+test('renders the same daily guidance item that Learn resolves for the day', async () => {
+  const todaySurface = await getTodaySurface()
+
   render(
     <MemoryRouter initialEntries={['/']}>
       <Routes>
@@ -137,10 +155,16 @@ test('routes the compact learn quick link into learn', async () => {
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByTestId('home-open-learn'))
+  expect(await screen.findByRole('heading', { level: 2, name: todaySurface.dailyGuidance.item.title })).toBeInTheDocument()
+  expect(screen.getByText(todaySurface.dailyGuidance.item.summary)).toBeInTheDocument()
+  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+
+  fireEvent.click(screen.getByTestId('home-hero-primary-action'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/learn')
+    expect(screen.getByTestId('location').textContent).toBe(
+      buildLearnDetailPath('daily-guidance', todaySurface.dailyGuidance.item.id, 'today')
+    )
   })
 })
 
@@ -163,7 +187,42 @@ test('shows in-app matches first on home smart search and routes into learn deta
   fireEvent.click(firstResult)
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/learn/topics/topic-anxiety')
+    expect(screen.getByTestId('location').textContent).toContain('/learn/topics/topic-anxiety?from=topics')
+  })
+})
+
+test('routes the secondary quick links to live Learn and Read destinations', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/learn/*" element={<LocationSpy />} />
+        <Route path="/banis" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByTestId('home-open-topics'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/learn?tab=topics')
+  })
+})
+
+test('routes Browse Read from the quick links into the read archive', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/banis" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByTestId('home-open-read'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/banis')
   })
 })
 
@@ -202,7 +261,8 @@ test('shows the new daily actions', () => {
   renderHome()
   expect(screen.getByTestId('home-todays-path')).toBeInTheDocument()
   expect(screen.getByTestId('home-todays-path-lesson-summary')).toBeInTheDocument()
-  expect(screen.getAllByRole('button', { name: /continue learn|resume reading|open today’s hukamnama/i }).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-open-daily-lesson')).toBeInTheDocument()
+  expect(screen.queryByText(/continue learn/i)).not.toBeInTheDocument()
   expect(screen.getByText(/1 of 2 steps done/i)).toBeInTheDocument()
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /grow/i }).length).toBeGreaterThan(0)
@@ -270,13 +330,22 @@ test('shows continue reading when session exists', () => {
     currentSession: { scriptureId: 'G-12', lastCardIndex: 0 }
   })
   renderHome()
-  expect(screen.getAllByText(/pick up exactly where you paused/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/resume reading/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/Open the passage you were already working through/i).length).toBeGreaterThan(0)
 })
 
-test('shows dark mode toggle', () => {
+test('keeps the new hero and search surfaces visible after switching to dark mode', async () => {
   renderHome()
   const toggle = screen.getByLabelText(/switch to dark mode|switch to light mode/i)
-  expect(toggle).toBeInTheDocument()
+  fireEvent.click(toggle)
+
+  await waitFor(() => {
+    expect(document.documentElement.classList.contains('dark')).toBe(true)
+  })
+
+  expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
+  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
+  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
 })
 
 test('does not embed onboarding inside the home page anymore', () => {
@@ -307,14 +376,35 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
   })
 })
 
-test('shows adjustable STTM length detail for supported Nitnem banis', () => {
+test('shows length detail only for the four adjustable Nitnem banis and keeps the additional group optional', () => {
   renderHome()
 
   fireEvent.click(screen.getByRole('button', { name: /customize/i }))
 
-  expect(screen.getAllByRole('button', { name: /Rehras Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
-  expect(screen.getAllByRole('button', { name: /Benati Chaupai Sahib Adjustable length · currently Short/i }).length).toBeGreaterThan(0)
+  const customizePanel = screen.getByText('Customize Daily Nitnem').closest('.section-shell')
+  expect(customizePanel).not.toBeNull()
+
+  const panel = customizePanel as HTMLElement
+  expect(within(panel).getByText('Additional')).toBeInTheDocument()
+  expect(within(panel).getAllByText('Length · Short')).toHaveLength(4)
+  expect(within(panel).getByText('Salok Mahalla 9')).toBeInTheDocument()
+  expect(within(panel).getByText('Aarti')).toBeInTheDocument()
+  expect(within(panel).getByRole('button', { name: /Salok Mahalla 9/i }).textContent).not.toMatch(/Length/i)
+  expect(within(panel).getByRole('button', { name: /Aarti/i }).textContent).toMatch(/Length · Short/)
   expect(screen.queryByText(/BaniDB|STTM|API/i)).not.toBeInTheDocument()
+})
+
+test('falls back to the hukamnama-led hero when Learn fails to load', async () => {
+  vi.spyOn(learnRepository, 'loadLearnCatalog').mockRejectedValue(new Error('offline'))
+
+  renderHome()
+
+  await waitFor(() => {
+    expect(screen.getByText(/Today’s Learn guidance could not be loaded\./i)).toBeInTheDocument()
+  })
+
+  expect(screen.queryByTestId('home-hero-primary-action')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
 })
 
 test('requires a second tap before resetting Nitnem selections', () => {

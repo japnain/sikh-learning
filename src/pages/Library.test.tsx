@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
@@ -8,6 +8,7 @@ import { useLearningStore } from '../store/learning'
 describe('Library bookmarks section', () => {
   beforeEach(() => {
     useBookmarksStore.setState({ bookmarks: [] })
+    useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
     useLearningStore.setState(state => ({
       learnState: {
         ...state.learnState,
@@ -19,6 +20,15 @@ describe('Library bookmarks section', () => {
   test('bookmarks section hidden when no bookmarks', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
     expect(screen.queryByRole('button', { name: /saved passage/i })).not.toBeInTheDocument()
+  })
+
+  test('shows the redesigned saved shelf zero state when nothing has been kept yet', () => {
+    render(<MemoryRouter><Library /></MemoryRouter>)
+
+    const zeroState = screen.getByText(/Start the shelf/i).closest('.section-shell-quiet')
+    expect(zeroState).not.toBeNull()
+    expect(within(zeroState as HTMLElement).getByRole('button', { name: /Open Today/i })).toBeInTheDocument()
+    expect(within(zeroState as HTMLElement).getByRole('button', { name: /Browse Read/i })).toBeInTheDocument()
   })
 
   test('bookmarks section visible when bookmarks exist', () => {
@@ -66,8 +76,9 @@ describe('Library bookmarks section', () => {
 
     render(<MemoryRouter><Library /></MemoryRouter>)
 
-    expect(await screen.findByText('Learn Saves')).toBeInTheDocument()
-    expect(await screen.findByText('When the mind is anxious')).toBeInTheDocument()
+    const learnSavesSection = await screen.findByTestId('library-learn-saves')
+    expect(within(learnSavesSection).getByText('Learn Saves')).toBeInTheDocument()
+    expect(within(learnSavesSection).getByText('When the mind is anxious')).toBeInTheDocument()
 
     fireEvent.click(screen.getByLabelText('Remove saved Learn item'))
 

@@ -6,6 +6,7 @@ type BaniRequestState = {
   key: string
   entries: ScriptureEntry[]
   availableLengths: SundarGutkaLength[]
+  resolvedLength: SundarGutkaLength | null
   error: string | null
 }
 
@@ -25,6 +26,7 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
           key: requestKey,
           entries: data.entries,
           availableLengths: data.availableLengths,
+          resolvedLength: data.resolvedLength,
           error: null,
         })
       })
@@ -34,6 +36,7 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
           key: requestKey,
           entries: [],
           availableLengths: [],
+          resolvedLength: null,
           error: String(error),
         })
       })
@@ -44,6 +47,7 @@ export function useBani(baniDbId: number | null, sgLength?: SundarGutkaLength | 
   return {
     entries: currentState?.entries ?? [],
     availableLengths: currentState?.availableLengths ?? [],
+    resolvedLength: currentState?.resolvedLength ?? null,
     loading: requestKey !== null && currentState === null,
     error: currentState?.error ?? null,
   }

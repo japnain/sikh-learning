@@ -19,6 +19,7 @@ import { useAng } from '../hooks/useAng'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import useDailyLesson from '../hooks/useDailyLesson'
+import useLearnCatalog from '../hooks/useLearnCatalog'
 import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
@@ -29,7 +30,7 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, NITNEM_TIME_ORDER, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
+import { buildNitnemStudyPath, NITNEM_GROUP_ORDER, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import type { StudiedEntry, UiLocale } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
@@ -40,6 +41,9 @@ import { getDailyPickAng } from '../utils/dailyPick'
 import { formatUiDate } from '../utils/formatUiDate'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getAngTargets, groupSearchResults } from '../utils/appSearch'
+import { toLocalDayStamp } from '../utils/learnDates'
+import { getTodayLearnSurface } from '../utils/learnExperience'
+import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { getEditorialCopy } from '../content/editorialCopy'
 
 const TODAYS_PATH_HIGHLIGHT_CLASSES = [
@@ -187,10 +191,10 @@ export default function Home() {
   const getProgress = useReadingProgressStore(state => state.getProgress)
   const readingProgress = useReadingProgressStore(state => state.progress)
   const vocab = useVocabStore(s => s.vocab)
+  const learnStateSnapshot = useLearningStore(state => state.learnState)
   const { masteredSymbols, completedLessons, journeys, activeJourneyId } = useLearningStore()
   const {
     learningLevel,
-    audience,
     learningGoal,
     openOnboarding,
   } = useOnboardingStore()
@@ -213,9 +217,15 @@ export default function Home() {
   const nitnemResetConfirmRef = useRef<number | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
+  const {
+    catalog: learnCatalog,
+    loading: learnCatalogLoading,
+    error: learnCatalogError,
+  } = useLearnCatalog()
+  const learnDayStamp = toLocalDayStamp(new Date(now))
 
   const getNitnemOptionDetail = (option: NitnemRouteOption) => (
-    isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
+    option.supportsLengthAdjustment && isSundarGutkaLengthSupportedBaniId(option.baseBaniId)
       ? getSundarGutkaLengthDetail(sundarGutkaLengths[option.baseBaniId])
       : option.detail
   )
@@ -287,30 +297,40 @@ export default function Home() {
   const { source, ang } = getDailyPickAng()
   const { entries: pickEntries, loading: pickLoading } = useAng(ang, source)
   const todaysPick = pickEntries[0] ?? null
-  const { data: hukamnama, loading: hukamnamaLoading, error: hukamnamaError } = useHukamnama()
+  const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
+  const todayLearnSurface = useMemo(
+    () => (learnCatalog ? getTodayLearnSurface(learnCatalog, learnDayStamp, learnStateSnapshot) : null),
+    [learnCatalog, learnDayStamp, learnStateSnapshot]
+  )
+  const todayGuidance = todayLearnSurface?.dailyGuidance.item ?? null
+  const todayGuidancePath = todayGuidance
+    ? buildLearnDetailPath('daily-guidance', todayGuidance.id, 'today')
+    : null
+  const learnTodayPath = buildLearnTabPath('today')
+  const learnTopicsPath = buildLearnTabPath('topics')
 
   const selectedNitnemOptions = useMemo(() => {
     return selectedIds
       .map(optionId => NITNEM_ROUTE_OPTIONS.find(option => option.id === optionId) ?? null)
       .filter((option): option is NitnemRouteOption => option !== null)
       .sort((left, right) =>
-        NITNEM_TIME_ORDER[left.time] - NITNEM_TIME_ORDER[right.time]
+        NITNEM_GROUP_ORDER[left.group] - NITNEM_GROUP_ORDER[right.group]
         || left.startAng - right.startAng
         || left.name.localeCompare(right.name)
       )
   }, [selectedIds])
   const groupedNitnemOptions = useMemo(() => {
-    return selectedNitnemOptions.reduce<Record<NitnemRouteOption['time'], NitnemRouteOption[]>>(
+    return selectedNitnemOptions.reduce<Record<NitnemRouteOption['group'], NitnemRouteOption[]>>(
       (groups, option) => {
-        groups[option.time].push(option)
+        groups[option.group].push(option)
         return groups
       },
-      { Morning: [], Evening: [], Night: [] }
+      { Morning: [], Evening: [], Night: [], Additional: [] }
     )
   }, [selectedNitnemOptions])
   const availableNitnemOptions = useMemo(() => {
     return [...NITNEM_ROUTE_OPTIONS].sort((left, right) =>
-      NITNEM_TIME_ORDER[left.time] - NITNEM_TIME_ORDER[right.time]
+      NITNEM_GROUP_ORDER[left.group] - NITNEM_GROUP_ORDER[right.group]
       || left.startAng - right.startAng
       || left.name.localeCompare(right.name)
     )
@@ -348,7 +368,6 @@ export default function Home() {
   )
 
   const sessionTarget = parseSession(currentSession?.scriptureId)
-  const showLearnHero = learningLevel === 'beginner' && !currentSession
   const activeJourney = useMemo(() => {
     if (activeJourneyId) {
       return GUIDED_JOURNEYS.find(journey => journey.id === activeJourneyId) ?? null
@@ -379,56 +398,6 @@ export default function Home() {
     }
   }, [currentSession, homeMessages, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source])
 
-  const heroPrimary = useMemo(() => {
-    if (showLearnHero) {
-      return {
-        eyebrow: 'Grow',
-        title: learningGoal === 'habit'
-          ? homeMessages.buildHabitTitle
-          : learningGoal === 'understand'
-            ? homeMessages.learnScriptTitle
-            : homeMessages.buildConfidenceTitle,
-        body: audience === 'child'
-          ? homeMessages.childLearnBody
-          : homeMessages.adultLearnBody,
-        buttonLabel: 'Continue Learn',
-        buttonAction: () => navigate('/learn'),
-        secondaryLabel: homeMessages.openTodaysHukamnama,
-        secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
-      }
-    }
-
-    if (currentSession && sessionTarget.source && sessionTarget.ang) {
-      return {
-        eyebrow: 'Read',
-        title: homeMessages.pickUpPausedTitle,
-        body: learningGoal === 'understand'
-          ? homeMessages.resumeStudyBody
-          : homeMessages.nitnemImmediateBody,
-        buttonLabel: homeMessages.resumeReading,
-        buttonAction: () => navigate(`/study?source=${sessionTarget.source}&ang=${sessionTarget.ang}`),
-        secondaryLabel: homeMessages.openTodaysHukamnama,
-        secondaryAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
-      }
-    }
-
-    return {
-      eyebrow: 'Read',
-      title: learningGoal === 'habit'
-        ? homeMessages.beginTodayTitle
-        : learningGoal === 'understand'
-          ? homeMessages.beginTodayMeaningTitle
-          : homeMessages.beginTodayTitle,
-      body: learningGoal === 'understand'
-        ? homeMessages.beginTodayMeaningBody
-        : homeMessages.beginTodayBody,
-      buttonLabel: homeMessages.openTodaysHukamnama,
-      buttonAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
-      secondaryLabel: homeMessages.browseRead,
-      secondaryAction: () => navigate('/banis'),
-    }
-  }, [audience, currentSession, homeMessages, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source, showLearnHero])
-
   const openGrowAction = () => {
     toggleDailyAction('grow')
     if (nextJourneyStep?.type === 'study' && nextJourneyStep.source && nextJourneyStep.ang) {
@@ -439,7 +408,7 @@ export default function Home() {
       navigate('/vocab')
       return
     }
-    navigate('/learn')
+    navigate(learnTodayPath)
   }
 
   const openReadAction = () => {
@@ -662,76 +631,101 @@ export default function Home() {
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
       >
-        <div className="flex items-center justify-between gap-3 mb-4">
-          <span className="eyebrow">{editorial?.home.heroEyebrow ?? heroPrimary.eyebrow}</span>
+        <div className="flex items-center justify-between gap-3 mb-5">
+          <span className="eyebrow">{editorial?.learn.eyebrow ?? 'NaamRas Learn'}</span>
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
-        <h2 id="home-hero-title" className="font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[20ch]">
-          {editorial?.home.heroTitle ?? heroPrimary.title}
-        </h2>
-        <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70 mt-3 max-w-[34ch]">
-          {editorial?.home.heroBody ?? heroPrimary.body}
-        </p>
-
-        <div className="section-shell-quiet mt-5 p-4">
-          <p className="eyebrow">{heroPrimary.eyebrow}</p>
-          <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-            {heroPrimary.title}
-          </p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-            {heroPrimary.body}
-          </p>
-        </div>
-
-        {hukamnamaLoading ? (
-          <div className="section-shell-quiet mt-5 p-4 animate-pulse">
-            <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-24 mb-3" />
-            <div className="h-6 rounded bg-sand/20 dark:bg-dark-text/10 mb-2" />
-            <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-          </div>
-        ) : hukamnama ? (
-          <div className="section-shell-quiet mt-5 p-4">
-            <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-            <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
-              {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
-              {hukamnama.entry.scripture} · Ang {hukamnama.ang}
-            </p>
-            <p
-              lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-              className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl leading-relaxed text-ink dark:text-dark-text line-clamp-3`}
-            >
-              {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
-            </p>
-            {hukamnamaMeaningPreview && (
-              <p className={`mt-3 text-sm text-ink/70 dark:text-dark-text/70 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                {hukamnamaMeaningPreview}
-              </p>
+        <div className="grid gap-4 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.95fr)]">
+          <div className="section-shell-quiet p-5" data-testid="home-guidance-hero">
+            {learnCatalogLoading ? (
+              <div className="animate-pulse" data-testid="home-guidance-skeleton">
+                <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
+                <div className="mt-4 h-10 rounded bg-sand/20 dark:bg-dark-text/10" />
+                <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+                <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+              </div>
+            ) : todayGuidance && todayGuidancePath ? (
+              <>
+                <p className="eyebrow">Today&apos;s Guidance</p>
+                <h2 id="home-hero-title" className="mt-3 font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[18ch]">
+                  {todayGuidance.title}
+                </h2>
+                <p className="mt-4 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+                  {todayGuidance.summary || editorial?.learn.compactGuidanceBody || 'Open today’s Learn doorway and move into the exact guide chosen for the day.'}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => navigate(todayGuidancePath)}
+                  className="mt-5 min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
+                  data-testid="home-hero-primary-action"
+                >
+                  Open Today&apos;s Guidance
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="eyebrow">Today&apos;s Guidance</p>
+                <h2 id="home-hero-title" className="mt-3 font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[18ch]">
+                  {learnCatalogError ? 'Today’s Learn guidance could not be loaded.' : 'Today’s guidance is preparing the next doorway.'}
+                </h2>
+                <p className="mt-4 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+                  {learnCatalogError
+                    ? 'Home is falling back to the hukamnama-led reading path until the Learn archive is available again.'
+                    : editorial?.learn.compactGuidanceBody || 'A short doorway into the day, anchored in a real line and written for return rather than skimming.'}
+                </p>
+              </>
             )}
           </div>
-        ) : hukamnamaError ? (
-          <div className="section-shell-quiet mt-5 p-4" data-testid="home-hukamnama-error">
-            <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-            <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
-              Couldn't load today's hukamnama right now. You can still continue into Read.
-            </p>
-          </div>
-        ) : null}
 
-        <div className="grid grid-cols-1 gap-3 mt-5">
-          <button
-            onClick={heroPrimary.buttonAction}
-            className="min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light text-white font-sans text-sm font-semibold px-5 active:scale-95 transition-transform duration-150"
-            data-testid="home-hero-primary-action"
-          >
-            {heroPrimary.buttonLabel}
-          </button>
-          <button
-            onClick={heroPrimary.secondaryAction}
-            className="min-h-[48px] rounded-full bg-white/70 dark:bg-dark-card/70 text-ink dark:text-dark-text font-sans text-sm font-medium px-5 border border-sand/15 dark:border-dark-text/10 active:scale-95 transition-transform duration-150"
-            data-testid="home-hero-secondary-action"
-          >
-            {heroPrimary.secondaryLabel}
-          </button>
+          {hukamnamaLoading ? (
+            <div className="section-shell-quiet p-5 animate-pulse" data-testid="home-hukamnama-card">
+              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-24 mb-3" />
+              <div className="h-6 rounded bg-sand/20 dark:bg-dark-text/10 mb-2" />
+              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+            </div>
+          ) : hukamnama ? (
+            <button
+              type="button"
+              onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
+              className="section-shell-quiet p-5 text-left active:scale-[0.99] transition-transform duration-150"
+              data-testid="home-hukamnama-card"
+            >
+              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+              <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
+                {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
+                {hukamnama.entry.scripture} · Ang {hukamnama.ang}
+              </p>
+              <p
+                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl leading-relaxed text-ink dark:text-dark-text line-clamp-3`}
+              >
+                {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+              </p>
+              {hukamnamaMeaningPreview && (
+                <p className={`mt-3 text-sm text-ink/70 dark:text-dark-text/70 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                  {hukamnamaMeaningPreview}
+                </p>
+              )}
+              <div className="mt-4 flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                <span>Open Today&apos;s Hukamnama</span>
+                <IconArrowRight size={14} />
+              </div>
+            </button>
+          ) : (
+            <div className="section-shell-quiet p-5" data-testid="home-hukamnama-error">
+              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+                Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+              </p>
+              <button
+                type="button"
+                onClick={() => navigate('/banis')}
+                className="mt-4 min-h-[46px] rounded-full border border-sand/15 bg-white/70 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
+              >
+                Browse Read
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -782,13 +776,23 @@ export default function Home() {
         </label>
 
         <div className="mt-4 flex flex-wrap gap-2" data-testid="home-smart-search-quick-links">
+          {todayGuidancePath ? (
+            <button
+              type="button"
+              onClick={() => navigate(todayGuidancePath)}
+              className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+              data-testid="home-open-guidance"
+            >
+              Open Today&apos;s Guidance
+            </button>
+          ) : null}
           <button
             type="button"
-            onClick={() => navigate('/learn')}
+            onClick={() => navigate(learnTopicsPath)}
             className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-            data-testid="home-open-learn"
+            data-testid="home-open-topics"
           >
-            Continue Learn
+            Explore Topics
           </button>
           <button
             type="button"
@@ -975,11 +979,11 @@ export default function Home() {
               </span>
               <button
                 type="button"
-                onClick={() => navigate('/learn')}
+                onClick={() => navigate(learnTodayPath)}
                 className="font-sans text-xs font-semibold text-gold dark:text-gold-light"
                 data-testid="home-open-daily-lesson"
               >
-                Open Learn
+                Open Today
               </button>
             </div>
           </div>
@@ -1067,7 +1071,7 @@ export default function Home() {
             </p>
             <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/62">
               {selectedNitnemOptions.length > 0
-                ? `${selectedNitnemOptions[0]?.time} through ${selectedNitnemOptions[selectedNitnemOptions.length - 1]?.time} routes`
+                ? `${selectedNitnemOptions[0]?.group} through ${selectedNitnemOptions[selectedNitnemOptions.length - 1]?.group} routes`
                 : 'Choose the banis that make up your daily Nitnem.'}
             </p>
           </button>
@@ -1100,14 +1104,14 @@ export default function Home() {
         </div>
         {nitnemOpen && (
           <div id="nitnem-progress-panel" className="mt-4 space-y-4">
-            {(['Morning', 'Evening', 'Night'] as const).map(time => (
-              groupedNitnemOptions[time].length > 0 ? (
-                <div key={time}>
+            {(['Morning', 'Evening', 'Night', 'Additional'] as const).map(group => (
+              groupedNitnemOptions[group].length > 0 ? (
+                <div key={group}>
                   <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                    {time}
+                    {group}
                   </p>
                   <div className="space-y-2">
-                    {groupedNitnemOptions[time].map(option => {
+                    {groupedNitnemOptions[group].map(option => {
                       const done = isComplete(option.id)
                       return (
                         <div key={option.id} className="section-shell px-3 py-3 flex items-center gap-3">
@@ -1124,8 +1128,14 @@ export default function Home() {
                             onClick={() => navigate(buildNitnemStudyPath(option))}
                             className="flex-1 text-left"
                           >
-                            <p className={`font-sans text-sm ${done ? 'text-ink/50 dark:text-dark-text/50 line-through' : 'text-ink dark:text-dark-text'}`}>
-                              {option.name}
+                            <p
+                              lang="pa-Guru"
+                              className={`font-gurmukhi text-lg leading-relaxed ${done ? 'text-ink/50 dark:text-dark-text/50 line-through' : 'text-ink dark:text-dark-text'}`}
+                            >
+                              {option.gurmukhiTitle}
+                            </p>
+                            <p className={`font-sans text-xs ${done ? 'text-ink/44 dark:text-dark-text/46' : 'text-ink/60 dark:text-dark-text/60'}`}>
+                              {option.romanizedTitle}
                             </p>
                             <p className="font-sans text-[11px] text-ink/60 dark:text-dark-text/60 mt-1">
                               {getNitnemOptionDetail(option)}
@@ -1159,14 +1169,14 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-3 mt-4">
-                  {(['Morning', 'Evening', 'Night'] as const).map(time => (
-                    <div key={`manage-${time}`}>
+                  {(['Morning', 'Evening', 'Night', 'Additional'] as const).map(group => (
+                    <div key={`manage-${group}`}>
                       <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                        {time}
+                        {group}
                       </p>
                       <div className="space-y-2">
                         {availableNitnemOptions
-                          .filter(option => option.time === time)
+                          .filter(option => option.group === group)
                           .map(option => {
                             const selected = selectedIds.includes(option.id)
                             return (
@@ -1182,7 +1192,12 @@ export default function Home() {
                               >
                                 <div className="flex items-start justify-between gap-3">
                                   <div>
-                                    <p className="font-sans text-sm font-semibold">{option.name}</p>
+                                    <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed">
+                                      {option.gurmukhiTitle}
+                                    </p>
+                                    <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-white/92' : 'text-ink/72 dark:text-dark-text/76'}`}>
+                                      {option.romanizedTitle}
+                                    </p>
                                     <p className={`mt-1 font-sans text-xs ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
                                       {getNitnemOptionDetail(option)}
                                     </p>

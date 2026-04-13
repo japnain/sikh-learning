@@ -98,13 +98,15 @@ test('shows the exhaustive exact SGGS categories including raag sections', () =>
   expect(screen.getByText('Raag Gauri')).toBeInTheDocument()
 })
 
-test('loads Sundar Gutka groups and items', async () => {
+test('loads Sundar Gutka groups and items with bilingual labels', async () => {
   renderBanis()
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
 
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
   expect(screen.getByText('ਜਪੁਜੀ ਸਾਹਿਬ')).toBeInTheDocument()
+  expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
+  expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
   expect(screen.queryByText(/STTM|BaniDB|Adjustable length/i)).not.toBeInTheDocument()
 })
 
@@ -173,7 +175,9 @@ test('shows single clean Nitnem entries for adjustable Sundar Gutka banis', asyn
 
   expect(screen.getByText('ਰਹਰਾਸਿ ਸਾਹਿਬ')).toBeInTheDocument()
   expect(screen.getByText('ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ')).toBeInTheDocument()
+  expect(screen.getByText('Benati Chaupai Sahib')).toBeInTheDocument()
   expect(screen.queryByText(/Focused|Puraatan/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/Length ·|Adjustable/i)).not.toBeInTheDocument()
 })
 
 test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async () => {

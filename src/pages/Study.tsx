@@ -230,7 +230,7 @@ export default function Study() {
     baniId: supportedSundarGutkaBaniId,
     baniName,
   })
-  const resolvedSgLength = supportedSundarGutkaBaniId
+  const requestedSgLength = supportedSundarGutkaBaniId
     ? (sgLengthParam
       ?? legacySgLength
       ?? rememberedSgLength
@@ -264,8 +264,23 @@ export default function Study() {
     if (!isApiMode) navigate('/library', { replace: true })
   }, [isApiMode, navigate])
 
+  const angResult = useAng(
+    isAngMode ? angParam! : 1,
+    isAngMode ? source! : 'G'
+  )
+  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, requestedSgLength)
+  const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
+  const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
+  const effectiveSgLength = supportedSundarGutkaBaniId
+    ? (baniResult.resolvedLength ?? requestedSgLength)
+    : null
+
   useEffect(() => {
-    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !resolvedSgLength) return
+    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || !effectiveSgLength) return
+
+    if (rememberedSgLength !== effectiveSgLength) {
+      setSundarGutkaLength(supportedSundarGutkaBaniId, effectiveSgLength)
+    }
 
     const nextParams = new URLSearchParams(searchParamsString)
     const currentAng = angParam ?? startAngParam ?? supportedSundarGutkaBani.startAng
@@ -280,44 +295,38 @@ export default function Study() {
     nextParams.set('baniId', supportedSundarGutkaBaniId)
     nextParams.set('baniDbId', nextBaniDbId)
     nextParams.set('exactBani', '1')
-    nextParams.set('sgLength', resolvedSgLength)
+    nextParams.set('sgLength', effectiveSgLength)
 
     if (nextParams.toString() !== searchParamsString) {
       setSearchParams(nextParams, { replace: true })
     }
   }, [
     angParam,
-    resolvedSgLength,
+    effectiveSgLength,
+    rememberedSgLength,
     searchParamsString,
     setSearchParams,
+    setSundarGutkaLength,
     startAngParam,
     supportedSundarGutkaBani,
     supportedSundarGutkaBaniId,
   ])
-
-  const angResult = useAng(
-    isAngMode ? angParam! : 1,
-    isAngMode ? source! : 'G'
-  )
-  const baniResult = useBani(isBaniDbMode ? baniDbIdParam! : null, resolvedSgLength)
-  const shabadResult = useShabad(isExactShabadMode ? shabadIdParam! : null)
-  const hukamnamaResult = useHukamnama(hukamnamaDateParam, isHukamnamaMode)
 
   const baniPageEntries = useMemo(() => {
     if (!isBaniDbMode || baniResult.entries.length === 0) return []
     return baniResult.entries
   }, [baniResult.entries, isBaniDbMode])
   const availableSundarGutkaLengths = useMemo(() => {
-    if (!supportedSundarGutkaBaniId || !resolvedSgLength) return []
+    if (!supportedSundarGutkaBaniId || !effectiveSgLength) return []
 
     const available = baniResult.availableLengths.length > 0
       ? baniResult.availableLengths
-      : [resolvedSgLength]
+      : [effectiveSgLength]
 
     return SUNDAR_GUTKA_LENGTH_ORDER.filter(length => available.includes(length))
-  }, [baniResult.availableLengths, resolvedSgLength, supportedSundarGutkaBaniId])
-  const currentSundarGutkaLengthLabel = supportedSundarGutkaBaniId && resolvedSgLength
-    ? SUNDAR_GUTKA_LENGTH_LABELS[resolvedSgLength]
+  }, [baniResult.availableLengths, effectiveSgLength, supportedSundarGutkaBaniId])
+  const currentSundarGutkaLengthLabel = supportedSundarGutkaBaniId && effectiveSgLength
+    ? SUNDAR_GUTKA_LENGTH_LABELS[effectiveSgLength]
     : null
 
   const fullShabadEntry = isExactShabadMode ? (shabadResult.entries[0] ?? null) : null
@@ -638,7 +647,7 @@ export default function Study() {
   }
 
   const handleSundarGutkaLengthChange = (nextLength: SundarGutkaLength) => {
-    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || nextLength === resolvedSgLength) return
+    if (!supportedSundarGutkaBaniId || !supportedSundarGutkaBani || nextLength === effectiveSgLength) return
 
     setSundarGutkaLength(supportedSundarGutkaBaniId, nextLength)
 
@@ -729,7 +738,7 @@ export default function Study() {
       }
       if (baniName) params.bani = baniName
       if (baniIdParam) params.baniId = baniIdParam
-      if (resolvedSgLength) params.sgLength = resolvedSgLength
+      if (effectiveSgLength) params.sgLength = effectiveSgLength
       if (learnProgramParam) params.learnProgram = learnProgramParam
       if (learnModuleParam) params.learnModule = learnModuleParam
       setSearchParams(params)
@@ -943,7 +952,7 @@ export default function Study() {
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {availableSundarGutkaLengths.map(length => {
-                    const selected = resolvedSgLength === length
+                    const selected = effectiveSgLength === length
                     return (
                       <button
                         key={length}

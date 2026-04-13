@@ -5,17 +5,22 @@ import { toLocalDayStamp } from '../utils/learnDates'
 import { buildStudyRouteSearchParams, resolveStudyRouteSgLength } from '../utils/baniRouteResolver'
 import { queueActivityEvent } from './activityEvents'
 
+export type NitnemGroup = 'Morning' | 'Evening' | 'Night' | 'Additional'
+
 export interface NitnemRouteOption {
   id: string
   baseBaniId: string
   name: string
+  gurmukhiTitle: string
+  romanizedTitle: string
   source: 'G' | 'D'
   startAng: number
   endAng: number
-  time: 'Morning' | 'Evening' | 'Night'
+  group: NitnemGroup
   baniDbId?: number
   variant: 'standard' | 'adjustable' | 'exact-variant'
   variantLabel?: string
+  supportsLengthAdjustment: boolean
   detail: string
 }
 
@@ -26,22 +31,98 @@ type NitnemBaseBaniId =
   | 'chaupai-sahib'
   | 'anand-sahib'
   | 'rehras-sahib'
+  | 'salok-mahalla-9'
+  | 'sukhmani-sahib'
+  | 'asa-di-var'
+  | 'aarti'
+  | 'laavan'
   | 'kirtan-sohila'
 
-const NITNEM_TIME_BY_BANI_ID: Record<NitnemBaseBaniId, NitnemRouteOption['time']> = {
-  'japji-sahib': 'Morning',
-  'jaap-sahib': 'Morning',
-  'tav-prasad-savaiye': 'Morning',
-  'chaupai-sahib': 'Morning',
-  'anand-sahib': 'Morning',
-  'rehras-sahib': 'Evening',
-  'kirtan-sohila': 'Night',
+const NITNEM_META_BY_BANI_ID: Record<NitnemBaseBaniId, {
+  group: NitnemGroup
+  gurmukhiTitle: string
+  romanizedTitle: string
+  supportsLengthAdjustment: boolean
+}> = {
+  'japji-sahib': {
+    group: 'Morning',
+    gurmukhiTitle: 'ਜਪੁਜੀ ਸਾਹਿਬ',
+    romanizedTitle: 'Japji Sahib',
+    supportsLengthAdjustment: false,
+  },
+  'jaap-sahib': {
+    group: 'Morning',
+    gurmukhiTitle: 'ਜਾਪੁ ਸਾਹਿਬ',
+    romanizedTitle: 'Jaap Sahib',
+    supportsLengthAdjustment: false,
+  },
+  'tav-prasad-savaiye': {
+    group: 'Morning',
+    gurmukhiTitle: 'ਤ੍ਵ ਪ੍ਰਸਾਦਿ ਸਵੱਯੇ ਸ੍ਰਾਵਗ ਸੁੱਧ',
+    romanizedTitle: 'Tav Prasad Savaiye',
+    supportsLengthAdjustment: false,
+  },
+  'chaupai-sahib': {
+    group: 'Morning',
+    gurmukhiTitle: 'ਬੇਨਤੀ ਚੌਪਈ ਸਾਹਿਬ',
+    romanizedTitle: 'Benati Chaupai Sahib',
+    supportsLengthAdjustment: true,
+  },
+  'anand-sahib': {
+    group: 'Morning',
+    gurmukhiTitle: 'ਅਨੰਦੁ ਸਾਹਿਬ',
+    romanizedTitle: 'Anand Sahib',
+    supportsLengthAdjustment: false,
+  },
+  'rehras-sahib': {
+    group: 'Evening',
+    gurmukhiTitle: 'ਰਹਰਾਸਿ ਸਾਹਿਬ',
+    romanizedTitle: 'Rehras Sahib',
+    supportsLengthAdjustment: true,
+  },
+  'salok-mahalla-9': {
+    group: 'Additional',
+    gurmukhiTitle: 'ਸਲੋਕ ਮਹਲਾ ੯',
+    romanizedTitle: 'Salok Mahalla 9',
+    supportsLengthAdjustment: false,
+  },
+  'sukhmani-sahib': {
+    group: 'Additional',
+    gurmukhiTitle: 'ਸੁਖਮਨੀ ਸਾਹਿਬ',
+    romanizedTitle: 'Sukhmani Sahib',
+    supportsLengthAdjustment: false,
+  },
+  'asa-di-var': {
+    group: 'Additional',
+    gurmukhiTitle: 'ਆਸਾ ਦੀ ਵਾਰ',
+    romanizedTitle: 'Asa Di Var',
+    supportsLengthAdjustment: false,
+  },
+  aarti: {
+    group: 'Additional',
+    gurmukhiTitle: 'ਆਰਤੀ',
+    romanizedTitle: 'Aarti',
+    supportsLengthAdjustment: true,
+  },
+  laavan: {
+    group: 'Additional',
+    gurmukhiTitle: 'ਲਾਵਾਂ',
+    romanizedTitle: 'Laavan',
+    supportsLengthAdjustment: false,
+  },
+  'kirtan-sohila': {
+    group: 'Night',
+    gurmukhiTitle: 'ਸੋਹਿਲਾ ਸਾਹਿਬ',
+    romanizedTitle: 'Kirtan Sohila',
+    supportsLengthAdjustment: true,
+  },
 }
 
-export const NITNEM_TIME_ORDER: Record<NitnemRouteOption['time'], number> = {
+export const NITNEM_GROUP_ORDER: Record<NitnemRouteOption['group'], number> = {
   Morning: 0,
   Evening: 1,
   Night: 2,
+  Additional: 3,
 }
 
 function createNitnemOption({
@@ -66,22 +147,29 @@ function createNitnemOption({
   endAng?: number
 }): NitnemRouteOption {
   const bani = BANIS.find(entry => entry.id === baseBaniId)
-  const time = NITNEM_TIME_BY_BANI_ID[baseBaniId]
-  if (!bani || (bani.source !== 'G' && bani.source !== 'D') || !time) {
+  const meta = NITNEM_META_BY_BANI_ID[baseBaniId]
+  if (!bani || (bani.source !== 'G' && bani.source !== 'D') || !meta) {
     throw new Error(`Missing canonical Nitnem bani metadata for ${baseBaniId}`)
   }
+
+  const romanizedTitle = variantLabel
+    ? `${meta.romanizedTitle} · ${variantLabel}`
+    : meta.romanizedTitle
 
   return {
     id,
     baseBaniId,
     name,
+    gurmukhiTitle: meta.gurmukhiTitle,
+    romanizedTitle,
     source: bani.source,
     startAng: startAng ?? bani.startAng,
     endAng: endAng ?? bani.endAng,
-    time,
+    group: meta.group,
     baniDbId,
     variant,
     variantLabel,
+    supportsLengthAdjustment: meta.supportsLengthAdjustment,
     detail,
   }
 }
@@ -129,7 +217,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Benati Chaupai Sahib',
     baniDbId: 9,
     variant: 'adjustable',
-    detail: 'Adjustable STTM length inside the reader controls.',
+    detail: 'Length options appear inside the reader.',
   }),
   createNitnemOption({
     id: 'anand-sahib',
@@ -145,7 +233,47 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Rehras Sahib',
     baniDbId: 21,
     variant: 'adjustable',
-    detail: 'Adjustable STTM length inside the reader controls.',
+    detail: 'Length options appear inside the reader.',
+  }),
+  createNitnemOption({
+    id: 'salok-mahalla-9',
+    baseBaniId: 'salok-mahalla-9',
+    name: 'Salok Mahalla 9',
+    baniDbId: 30,
+    variant: 'standard',
+    detail: 'Optional Sundar Gutka bani.',
+  }),
+  createNitnemOption({
+    id: 'sukhmani-sahib',
+    baseBaniId: 'sukhmani-sahib',
+    name: 'Sukhmani Sahib',
+    baniDbId: 31,
+    variant: 'standard',
+    detail: 'Optional Sundar Gutka bani.',
+  }),
+  createNitnemOption({
+    id: 'asa-di-var',
+    baseBaniId: 'asa-di-var',
+    name: 'Asa Di Var',
+    baniDbId: 90,
+    variant: 'standard',
+    detail: 'Optional Sundar Gutka bani.',
+  }),
+  createNitnemOption({
+    id: 'aarti',
+    baseBaniId: 'aarti',
+    name: 'Aarti',
+    baniDbId: 22,
+    variant: 'adjustable',
+    detail: 'Length options appear inside the reader.',
+  }),
+  createNitnemOption({
+    id: 'laavan',
+    baseBaniId: 'laavan',
+    name: 'Laavan',
+    baniDbId: 11,
+    variant: 'standard',
+    detail: 'Optional Sundar Gutka bani.',
   }),
   createNitnemOption({
     id: 'kirtan-sohila',
@@ -153,7 +281,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Kirtan Sohila',
     baniDbId: 23,
     variant: 'adjustable',
-    detail: 'Adjustable STTM length inside the reader controls.',
+    detail: 'Length options appear inside the reader.',
   }),
 ]
 
@@ -287,7 +415,7 @@ export const useNitemStore = create<NitemState>()(
           .map(entryId => getNitnemOption(entryId))
           .filter((entry): entry is NitnemRouteOption => entry !== null)
           .sort((left, right) =>
-            NITNEM_TIME_ORDER[left.time] - NITNEM_TIME_ORDER[right.time]
+            NITNEM_GROUP_ORDER[left.group] - NITNEM_GROUP_ORDER[right.group]
             || left.startAng - right.startAng
             || left.name.localeCompare(right.name)
           )
