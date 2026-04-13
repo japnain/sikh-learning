@@ -2077,11 +2077,6 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "takeaway": "Treat this life as a crossing, not a possession.",
     "lifeApplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
     "source": {
-      "verseIds": [
-        527,
-        528,
-        529
-      ],
       "shortMeaning": "This life is given for crossing and meeting, not decoration.",
       "lifeApplication": "Before another drifting hour disappears, choose the act that helps you cross."
     },
@@ -2126,10 +2121,6 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "takeaway": "Interrogate the voice before you obey it.",
     "lifeApplication": "When self-importance rises in the throat or chest, pause before the sentence forms and ask who is speaking. Do not grant that urgency the status of truth.",
     "source": {
-      "verseIds": [
-        20961,
-        20962
-      ],
       "shortMeaning": "Ego weakens when its voice is questioned instead of trusted.",
       "lifeApplication": "When ego flares, ask who is speaking before you let that voice lead."
     },
@@ -2207,9 +2198,6 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "takeaway": "Keep earning and giving in one sentence.",
     "lifeApplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
     "source": {
-      "verseIds": [
-        53371
-      ],
       "shortMeaning": "Honest labor and open-handed giving reveal a truer path.",
       "lifeApplication": "When money hardens into accumulation, interrupt it with one deliberate gift."
     },
@@ -2254,10 +2242,6 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "takeaway": "Open the hand; Naam is received, not seized.",
     "lifeApplication": "When you want instant assurance, unclench the hand, say the Name once, and stop trying to own the experience. Receive before you evaluate.",
     "source": {
-      "verseIds": [
-        501,
-        502
-      ],
       "shortMeaning": "Naam is received by mercy; the self-willed grip loses it.",
       "lifeApplication": "Unclench the hand and receive the Name instead of trying to seize it."
     },
