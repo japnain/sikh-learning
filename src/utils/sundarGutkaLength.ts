@@ -2,6 +2,8 @@ import type { SundarGutkaLength } from '../types'
 
 export const SUNDAR_GUTKA_LENGTH_ORDER = ['short', 'medium', 'long', 'extralong'] as const satisfies readonly SundarGutkaLength[]
 
+export type SundarGutkaRawLength = SundarGutkaLength
+
 export const SUNDAR_GUTKA_LENGTH_LABELS: Record<SundarGutkaLength, string> = {
   short: 'Short',
   medium: 'Medium',
@@ -114,7 +116,7 @@ export function inferLegacySundarGutkaLength({
   }
 
   if (supportedBaniId === 'chaupai-sahib') {
-    if (normalizedName.includes('focused')) return 'long'
+    if (normalizedName.includes('focused')) return 'medium'
     if (normalizedName.includes('puraatan')) return 'short'
   }
 
@@ -126,5 +128,26 @@ export function getSundarGutkaLengthLabel(length: SundarGutkaLength): string {
 }
 
 export function getSundarGutkaLengthDetail(length: SundarGutkaLength): string {
-  return `Adjustable length · currently ${getSundarGutkaLengthLabel(length)}`
+  return `Length · ${getSundarGutkaLengthLabel(length)}`
+}
+
+export function normalizeLegacyStoredSundarGutkaLength(
+  baniId: SupportedSundarGutkaBaniId,
+  length: SundarGutkaLength
+): SundarGutkaLength {
+  if (baniId === 'chaupai-sahib') {
+    if (length === 'medium') return 'short'
+    if (length === 'long') return 'medium'
+    if (length === 'extralong') return 'long'
+    return 'short'
+  }
+
+  if (baniId === 'aarti') {
+    if (length === 'long') return 'short'
+    if (length === 'short' || length === 'medium') return 'medium'
+    if (length === 'extralong') return 'long'
+    return 'short'
+  }
+
+  return length
 }

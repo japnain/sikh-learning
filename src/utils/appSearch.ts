@@ -3,6 +3,7 @@ import { READ_EXACT_BANIS, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, type Bani
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { LearnSearchIndex } from '../types'
 import { buildCanonicalBaniStudyPath } from './baniRouteResolver'
+import { buildLearnDetailPath } from './learnRails'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
@@ -378,7 +379,12 @@ export function getLearnTopicMatches(
       detail: canonicalMatch?.scenarioKey && topic.id === canonicalTopicId
         ? `Learn topic · ${canonicalMatch.scenarioKey}`
         : 'Learn topic guide',
-      path: `/learn/topics/${topic.id}${topic.id === canonicalTopicId && canonicalMatch?.scenarioKey ? `?scenario=${canonicalMatch.scenarioKey}` : ""}`,
+      path: buildLearnDetailPath(
+        'topic-guide',
+        topic.id,
+        'topics',
+        topic.id === canonicalTopicId ? canonicalMatch?.scenarioKey ?? null : null
+      ),
       score,
       kind: 'learn-topic' as const,
     }))

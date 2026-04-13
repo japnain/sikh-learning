@@ -611,4 +611,53 @@ describe('Study adjustable STTM lengths', () => {
     expect(screen.queryByText('Intro')).not.toBeInTheDocument()
     expect(screen.getAllByTestId('study-header-block')).toHaveLength(1)
   })
+
+  it('collapses Benati Chaupai Sahib to three ordered bands and keeps Long as the longest option', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=D&ang=1386&startAng=1386&endAng=1388&bani=Benati%20Chaupai%20Sahib&baniDbId=9&exactBani=1&baniId=chaupai-sahib&sgLength=long']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByText(/Long ·/i).length).toBeGreaterThan(0)
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+
+    expect(screen.getByText(/^Length$/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Medium$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Long$/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /^Extra Long$/i })).not.toBeInTheDocument()
+  })
+
+  it('normalizes Aarti onto three real bands so Short is shortest and legacy extra-long lands on Long', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=663&startAng=663&endAng=663&bani=Aarti&baniDbId=22&exactBani=1&baniId=aarti&sgLength=extralong']}>
+        <Routes>
+          <Route path="/study" element={<><Study /><LocationSpy /></>} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toContain('sgLength=long')
+      expect(screen.getAllByText('ਆਰਤੀ-ਆਰਤਾ').length).toBeGreaterThan(0)
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: /show reader controls/i }))
+
+    expect(screen.getByRole('button', { name: /^Short$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Medium$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Long$/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /^Extra Long$/i })).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /^Short$/i }))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toContain('sgLength=short')
+      expect(screen.getByText('ਸਭ ਮਹਿ ਜੋਤਿ ਜੋਤਿ ਹੈ ਸੋਇ ॥')).toBeInTheDocument()
+    })
+  })
 })

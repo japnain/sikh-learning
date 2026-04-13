@@ -2,6 +2,7 @@ import { beforeEach, expect, test } from 'vitest'
 import {
   buildNitnemStudyPath,
   DEFAULT_NITNEM_OPTION_IDS,
+  NITNEM_ROUTE_OPTIONS,
   getNitnemOption,
   normalizePersistedNitnemIds,
   useNitemStore,
@@ -27,6 +28,33 @@ beforeEach(() => {
 
 test('keeps the default daily nitnem selection', () => {
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
+})
+
+test('keeps the new Sundar Gutka extras optional and grouped under Additional', () => {
+  const additionalOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.group === 'Additional')
+
+  expect(additionalOptions.map(option => option.id)).toEqual([
+    'salok-mahalla-9',
+    'sukhmani-sahib',
+    'asa-di-var',
+    'aarti',
+    'laavan',
+  ])
+  expect(DEFAULT_NITNEM_OPTION_IDS).not.toEqual(
+    expect.arrayContaining(additionalOptions.map(option => option.id))
+  )
+
+  const aarti = getNitnemOption('aarti')
+  expect(aarti).not.toBeNull()
+  expect(aarti?.gurmukhiTitle).toBe('ਆਰਤੀ')
+  expect(aarti?.romanizedTitle).toBe('Aarti')
+  expect(aarti?.supportsLengthAdjustment).toBe(true)
+
+  const salokMahalla9 = getNitnemOption('salok-mahalla-9')
+  expect(salokMahalla9).not.toBeNull()
+  expect(salokMahalla9?.gurmukhiTitle).toBe('ਸਲੋਕ ਮਹਲਾ ੯')
+  expect(salokMahalla9?.romanizedTitle).toBe('Salok Mahalla 9')
+  expect(salokMahalla9?.supportsLengthAdjustment).toBe(false)
 })
 
 test('normalizes legacy focused selections onto the single supported bani route', () => {

@@ -13,7 +13,7 @@ import useLearnCatalog from '../hooks/useLearnCatalog'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getLearnSavedItems, getLearnItemLabel } from '../utils/learnExperience'
-import { buildLearnDetailPath } from '../utils/learnRails'
+import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
@@ -138,6 +138,15 @@ export default function Library() {
     .map(item => getEntryById(item.id))
     .filter(Boolean)
   const resumeReference = currentSession ? formatSessionReference(currentSession.scriptureId) : null
+  const hasSavedShelfContent = (
+    savedLearnItemIds.length
+    + bookmarks.length
+    + favorites.length
+    + phrases.length
+    + words.length
+    + inProgress.length
+    + recentStudy.length
+  ) > 0
 
   const toggle = (id: string) => setExpanded(c => ({ ...c, [id]: !c[id] }))
 
@@ -152,53 +161,7 @@ export default function Library() {
       </div>
 
       <section
-        className="section-shell-quiet p-4 mb-5"
-        aria-labelledby="library-source-browser-title"
-        data-testid="library-source-browser"
-      >
-        <button
-          onClick={() => toggle('library')}
-          className="w-full flex justify-between items-center gap-3"
-          aria-expanded={Boolean(expanded.library)}
-          aria-controls="library-source-browser-panel"
-        >
-          <div className="text-left">
-            <p id="library-source-browser-title" className="eyebrow">{libraryCopy.sourceBrowsing}</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
-          </div>
-          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-        </button>
-
-        {expanded.library && (
-          <div id="library-source-browser-panel" className="mt-4 space-y-3">
-            {SECTIONS.map(section => {
-              const isOpen = expanded[section.id]
-              const panelId = `library-source-${section.id}`
-              return (
-                <div key={section.id} className="section-shell px-4 py-4">
-                  <button
-                    onClick={() => toggle(section.id)}
-                    className="w-full flex justify-between items-center gap-3"
-                    aria-expanded={Boolean(isOpen)}
-                    aria-controls={panelId}
-                  >
-                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
-                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-                  </button>
-                  {isOpen && (
-                    <div id={panelId} className="mt-4">
-                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </section>
-
-      <section
-        className="hero-surface p-5 mb-5"
+        className="hero-surface ornate-top p-5 mb-5"
         aria-labelledby="library-snapshot-title"
         data-testid="library-snapshot"
       >
@@ -229,6 +192,30 @@ export default function Library() {
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.phrases}</p>
           </div>
         </div>
+        {!hasSavedShelfContent ? (
+          <div className="section-shell-quiet mt-5 p-4 border border-gold/12 dark:border-gold/16">
+            <p className="eyebrow">Start the shelf</p>
+            <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
+              Saved words, Learn guides, bookmarks, and reading history will settle here once you begin keeping pieces close.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => navigate(buildLearnTabPath('today'))}
+                className="rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
+              >
+                Open Today
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate('/banis')}
+                className="rounded-full border border-sand/18 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+              >
+                Browse Read
+              </button>
+            </div>
+          </div>
+        ) : null}
       </section>
 
       {favorites.length > 0 && (
@@ -278,7 +265,7 @@ export default function Library() {
         </section>
       )}
 
-      <div className="grid gap-3 mb-5" data-testid="library-shortcuts">
+      <div className="grid gap-3 mb-5 sm:grid-cols-2" data-testid="library-shortcuts">
         <button
           onClick={() => navigate('/vocab')}
           className="section-shell p-4 text-left"
@@ -293,22 +280,43 @@ export default function Library() {
           </p>
         </button>
 
-        {currentSession && (
-          <button
-            onClick={() => {
+        <button
+          onClick={() => {
+            if (currentSession) {
               const parts = currentSession.scriptureId.split('-')
-              if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
-            }}
-            className="section-shell p-4 text-left"
-            data-testid="library-resume-reading"
-          >
-            <p className="eyebrow">{libraryCopy.resume}</p>
-            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">{libraryCopy.resumeTitle}</p>
-            <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
-              {resumeReference}
-            </p>
-          </button>
-        )}
+              if (parts.length >= 2) {
+                navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
+                return
+              }
+            }
+
+            navigate(buildLearnTabPath('today'))
+          }}
+          className="section-shell p-4 text-left"
+          data-testid="library-resume-reading"
+        >
+          <p className="eyebrow">{currentSession ? libraryCopy.resume : 'Learn'}</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
+            {currentSession ? libraryCopy.resumeTitle : 'Open Today'}
+          </p>
+          <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
+            {currentSession
+              ? resumeReference
+              : 'Return through today’s rotating Learn doorway when you do not have an active reading session yet.'}
+          </p>
+        </button>
+
+        <button
+          onClick={() => navigate('/banis')}
+          className="section-shell p-4 text-left sm:col-span-2"
+          data-testid="library-browse-read"
+        >
+          <p className="eyebrow">Read</p>
+          <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">Browse Read</p>
+          <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
+            Open exact banis, angs, and scripture sections without leaving the Saved shelf behind.
+          </p>
+        </button>
       </div>
 
       {savedLearnItemIds.length > 0 && (
@@ -487,6 +495,52 @@ export default function Library() {
           </div>
         </section>
       )}
+
+      <section
+        className="section-shell-quiet p-4 mb-5"
+        aria-labelledby="library-source-browser-title"
+        data-testid="library-source-browser"
+      >
+        <button
+          onClick={() => toggle('library')}
+          className="w-full flex justify-between items-center gap-3"
+          aria-expanded={Boolean(expanded.library)}
+          aria-controls="library-source-browser-panel"
+        >
+          <div className="text-left">
+            <p id="library-source-browser-title" className="eyebrow">{libraryCopy.sourceBrowsing}</p>
+            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
+          </div>
+          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+        </button>
+
+        {expanded.library && (
+          <div id="library-source-browser-panel" className="mt-4 space-y-3">
+            {SECTIONS.map(section => {
+              const isOpen = expanded[section.id]
+              const panelId = `library-source-${section.id}`
+              return (
+                <div key={section.id} className="section-shell px-4 py-4">
+                  <button
+                    onClick={() => toggle(section.id)}
+                    className="w-full flex justify-between items-center gap-3"
+                    aria-expanded={Boolean(isOpen)}
+                    aria-controls={panelId}
+                  >
+                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
+                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+                  </button>
+                  {isOpen && (
+                    <div id={panelId} className="mt-4">
+                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
 
     </div>
   )

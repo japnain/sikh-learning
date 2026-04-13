@@ -190,6 +190,15 @@ function getNitnemRouteOptionsForBani(item: BaniIndexItem) {
   return NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === canonicalId)
 }
 
+function getSundarGutkaDisplayCopy(item: BaniIndexItem) {
+  const canonicalBani = getCanonicalSundarGutkaBani(item)
+
+  return {
+    label: item.gurmukhi,
+    detail: canonicalBani?.name ?? item.transliteration,
+  }
+}
+
 function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
   const baseId = bani.variantOf ?? bani.id
   const nitnemOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.baseBaniId === baseId)
@@ -257,19 +266,29 @@ function IndexRow({
   label,
   detail,
   onClick,
+  labelClassName,
+  detailClassName,
+  labelLang,
 }: {
   label: string
   detail?: string
   onClick: () => void
+  labelClassName?: string
+  detailClassName?: string
+  labelLang?: string
 }) {
   return (
     <button
       onClick={onClick}
       className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
     >
-      <p className="font-sans text-sm text-ink dark:text-dark-text">{label}</p>
+      <p lang={labelLang} className={labelClassName ?? 'font-sans text-sm text-ink dark:text-dark-text'}>
+        {label}
+      </p>
       {detail ? (
-        <p className="font-sans text-xs text-gold dark:text-gold-light mt-0.5">{detail}</p>
+        <p className={detailClassName ?? 'font-sans text-xs text-gold dark:text-gold-light mt-0.5'}>
+          {detail}
+        </p>
       ) : null}
     </button>
   )
@@ -862,18 +881,26 @@ export default function Banis() {
                           return routeOptions.map(option => (
                             <IndexRow
                               key={`${item.id}-${option.id}`}
-                              label={routeOptions.length > 1 && option.variantLabel
-                                ? `${item.gurmukhi} · ${option.variantLabel}`
-                                : item.gurmukhi}
+                              label={option.gurmukhiTitle}
+                              detail={option.romanizedTitle}
+                              labelLang="pa-Guru"
+                              labelClassName="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text"
+                              detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
                               onClick={() => navigate(buildNitnemStudyPath(option))}
                             />
                           ))
                         }
 
+                        const displayCopy = getSundarGutkaDisplayCopy(item)
+
                         return (
                           <IndexRow
                             key={item.id}
-                            label={item.gurmukhi}
+                            label={displayCopy.label}
+                            detail={displayCopy.detail}
+                            labelLang="pa-Guru"
+                            labelClassName="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text"
+                            detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
                             onClick={() => openSundarGutkaBani(item)}
                           />
                         )
