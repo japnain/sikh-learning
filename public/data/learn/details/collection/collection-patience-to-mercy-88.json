@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-to-mercy-88",
-  "title": "Patience to Mercy",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+  "title": "When patience softens into mercy",
+  "subtitle": "When waiting ripens into a softer judgment",
+  "description": "These readings keep waiting from hardening into grievance until delay starts making the heart gentler, not harsher.",
   "durationLabel": "6-step journey",
   "themes": [
     "patience",
@@ -15,8 +15,8 @@
       3900,
       3901
     ],
-    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
-    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+    "shortMeaning": "Patience ripens into mercy when delay softens judgment instead of sharpening it.",
+    "lifeApplication": "Let the next delay lower your verdict before it lengthens your complaint."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This bridge then carries into guru keeps mercy close to gift, nearness, and return.",
+      "coreClaim": "These readings keep waiting from hardening into grievance until delay starts making the heart gentler, not harsher.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When waiting ripens into a softer judgment",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 4.25,
-      "specificity": 4.24,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.69,
-      "overall": 3.97
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
-      "beauty",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,9 +1,9 @@
 {
   "id": "guidance-one-pointed-naam",
-  "title": "A scattered soul does not become whole by accident.",
-  "summary": "One-pointedness is named directly because divided attention rarely matures into peace.",
-  "takeaway": "Wholeness usually begins by narrowing what the heart obeys.",
-  "lifeApplication": "Give one practice your full mind today, even if only for a few minutes.",
+  "title": "Keep one repetition until it changes you",
+  "summary": "This meets devotion that keeps restarting because it never stays with one repetition long enough to become habit. The line says steadiness is born from one clean return practiced past mood.",
+  "takeaway": "Keep one clean return past the mood.",
+  "lifeApplication": "When you want a fresher practice, keep today's repetition one round longer instead of reaching for novelty.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
@@ -11,8 +11,8 @@
       1288,
       1297
     ],
-    "shortMeaning": "One-pointed Naam, saint company, and steady remembrance belong to the same path.",
-    "lifeApplication": "Make focus an act of love, not mere discipline."
+    "shortMeaning": "Naam deepens when one return is kept past mood and vanity.",
+    "lifeApplication": "When novelty calls, keep today's repetition one round longer."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "One-pointed Naam, saint company, and steady remembrance belong to the same path.",
+      "coreClaim": "Naam deepens when one return is kept past mood and vanity.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Soft speech becomes believable when the ego has begun to bow.",
-      "practicalImplication": "Give one practice your full mind today, even if only for a few minutes.",
+      "turn": "When remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "When you want a fresher practice, keep today's repetition one round longer instead of reaching for novelty.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
+      "faithfulness": 3.98,
       "clarity": 4.35,
-      "specificity": 4.84,
-      "emotionalHonesty": 3.36,
+      "specificity": 4.92,
+      "emotionalHonesty": 3,
       "usefulness": 4.26,
       "beauty": 4.21,
-      "overall": 4.13
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

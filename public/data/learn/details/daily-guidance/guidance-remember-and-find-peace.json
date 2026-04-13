@@ -1,17 +1,17 @@
 {
   "id": "guidance-remember-and-find-peace",
-  "title": "Keep returning until remembrance holds you",
-  "summary": "The shabad is repetitive on purpose. Peace is cultivated by returning again.",
-  "takeaway": "Remembrance is a rhythm, not a one-time correction.",
-  "lifeApplication": "Choose one short simran phrase and return to it instead of feeding the same anxious loop.",
+  "title": "Let remembrance outrun the spiral",
+  "summary": "This meets anxiety before it settles fully into the body. The line sends remembrance into breath, chest, and thought until worry loses its right to rule.",
+  "takeaway": "Remembrance widens the mind beyond imagined danger.",
+  "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften.",
   "source": {
     "deepDiveId": "shabad-remembrance-brings-peace",
     "verseIds": [
       11502,
       11503
     ],
-    "shortMeaning": "Peace comes through repeated remembrance, not through endless mental churn.",
-    "lifeApplication": "Interrupt worry with repetition that re-roots the heart."
+    "shortMeaning": "Remembrance widens the mind beyond imagined danger.",
+    "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Peace comes through repeated remembrance, not through endless mental churn.",
+      "coreClaim": "Remembrance widens the mind beyond imagined danger.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "Steady remembrance calms what scattered thinking cannot.",
-      "practicalImplication": "Choose one short simran phrase and return to it instead of feeding the same anxious loop.",
+      "turn": "Carry remembrance into the body before worry settles there.",
+      "practicalImplication": "Before the next inward spiral, read one line aloud and let the chest soften.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 4.35,
-      "specificity": 4.3,
-      "emotionalHonesty": 3,
-      "usefulness": 3.98,
-      "beauty": 4.21,
-      "overall": 3.95
+      "faithfulness": 4.21,
+      "clarity": 4.11,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.26
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

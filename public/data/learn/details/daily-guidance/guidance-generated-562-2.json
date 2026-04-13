@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-562-2",
-  "title": "Those Who Do Not Meditate",
-  "summary": "Patience is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Those who do not meditate on the Naam, the Name of the Lord, are murderers of the soul; it is only obtained by great good fortune",
-  "lifeApplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+  "title": "Do not spend this rare life asleep",
+  "summary": "This meets the life being spent in appetite, distraction, and delay. The line reminds you the human body was obtained with difficulty and can still be wasted.",
+  "takeaway": "Use this rare life for Naam.",
+  "lifeApplication": "Before another hour disappears into feeding, scrolling, or showing off, touch the chest and remember the body was not given cheaply. Turn one moment back toward Naam.",
   "source": {
     "deepDiveId": "shabad-generated-562",
     "verseIds": [
       7947,
       7948
     ],
-    "shortMeaning": "Those who do not meditate on the Naam, the Name of the Lord, are murderers of the soul; it is only obtained by great good fortune",
-    "lifeApplication": "Wait by listening instead of simmering. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "A rare human life is squandered when it forgets Naam.",
+    "lifeApplication": "Before drift becomes another evening, remember what this life was given for."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -24,7 +24,7 @@
     "collection-tired-heart-to-rest"
   ],
   "rotation": {
-    "theme": "patience",
+    "theme": "purpose",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Those who do not meditate on the Naam, the Name of the Lord, are murderers of the soul; it is only obtained by great good fortune",
+      "coreClaim": "A rare human life is squandered when it forgets Naam.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "Keep returning to this turn: the Name alone is contained within my heart.",
-      "practicalImplication": "Wait by listening instead of simmering. Use the line before the pressure chooses your tone.",
+      "turn": "Treat this life as rare enough to center it on Naam.",
+      "practicalImplication": "Before another hour disappears into feeding, scrolling, or showing off, touch the chest and remember the body was not given cheaply. Turn one moment back toward Naam.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.87,
-      "clarity": 2.53,
-      "specificity": 4.62,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.8,
-      "beauty": 3.37,
-      "overall": 3.74
+      "faithfulness": 4.19,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.48,
+      "beauty": 4.05,
+      "overall": 4.23
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

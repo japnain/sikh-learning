@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-564-2",
-  "title": "They Alone Are Great, Who Are Lovingly",
-  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "They alone are great, who are lovingly attached to the Lord; those who seem to be great and powerful",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "title": "Measure greatness by what the heart clings to",
+  "summary": "This meets the envy that mistakes public size for true worth. The line says greatness belongs to the one whose attachment is fastened to the Lord.",
+  "takeaway": "Call greatness by devotion, not display.",
+  "lifeApplication": "Before comparing your place to someone else's, notice the body lean toward status. Ask what your heart is actually attached to before envy speaks.",
   "source": {
     "deepDiveId": "shabad-generated-564",
     "verseIds": [
       7969,
       7972
     ],
-    "shortMeaning": "They alone are great, who are lovingly attached to the Lord; those who seem to be great and powerful",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "True greatness is loving attachment to the Lord, not to Maya's scale.",
+    "lifeApplication": "When status enters the room, ask what your heart is serving before comparison hardens."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "They alone are great, who are lovingly attached to the Lord; those who seem to be great and powerful",
+      "coreClaim": "True greatness is loving attachment to the Lord, not to Maya's scale.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: without the Lord's meditation, there is no salvation.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "turn": "Choose the Lord's measure of greatness and refuse Maya's scale.",
+      "practicalImplication": "Before comparing your place to someone else's, notice the body lean toward status. Ask what your heart is actually attached to before envy speaks.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 3.1,
-      "specificity": 4.68,
+      "faithfulness": 4.25,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.36,
-      "overall": 3.82
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-to-restlessness-83",
-  "title": "Hukam to Restlessness",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+  "title": "When acceptance is abandoned for motion",
+  "subtitle": "When receiving less still feels too still",
+  "description": "These readings catch the heart abandoning consent for motion, proving that movement can be another way of refusing what is here.",
   "durationLabel": "6-step journey",
   "themes": [
     "hukam",
@@ -14,8 +14,8 @@
       11,
       15
     ],
-    "shortMeaning": "Everything stands inside Hukam, not outside it.",
-    "lifeApplication": "Release the demand that peace must wait for total control."
+    "shortMeaning": "Restlessness begins when received reality is traded back in for movement.",
+    "lifeApplication": "When stillness starts itching, stay with what has already been given before reaching for more."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru reframes peace as understanding the command already holding everything. This bridge then carries into guru answers wandering with saint company, listening, and honest stillness.",
+      "coreClaim": "These readings catch the heart abandoning consent for motion, proving that movement can be another way of refusing what is here.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When receiving less still feels too still",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
+      "faithfulness": 3.86,
       "clarity": 4.35,
-      "specificity": 4.24,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.99
+      "specificity": 4.09,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 4.02
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

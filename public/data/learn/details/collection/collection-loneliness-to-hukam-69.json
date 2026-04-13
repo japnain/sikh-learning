@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-to-hukam-69",
-  "title": "Loneliness to Hukam",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+  "title": "When loneliness is brought under Hukam",
+  "subtitle": "When loneliness starts arguing with reality",
+  "description": "These readings take private ache out of prosecution and teach the heart to receive the day it did not choose.",
   "durationLabel": "6-step journey",
   "themes": [
     "loneliness",
@@ -15,8 +15,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "The Guru is named as protector, mother, and father.",
-    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+    "shortMeaning": "Loneliness softens when ache stops prosecuting the day.",
+    "lifeApplication": "When the ache turns private, name what has still been given under Hukam."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This bridge then carries into guru reframes peace as understanding the command already holding everything.",
+      "coreClaim": "These readings take private ache out of prosecution and teach the heart to receive the day it did not choose.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When loneliness starts arguing with reality",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.15,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.92
+      "faithfulness": 3.79,
+      "clarity": 4.35,
+      "specificity": 4.02,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 3.99
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

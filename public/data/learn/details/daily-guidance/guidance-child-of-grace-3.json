@@ -1,17 +1,17 @@
 {
   "id": "guidance-child-of-grace-3",
-  "title": "Guru, The Perfect True Guru, Is My",
-  "summary": "The shabad does not leave loneliness at diagnosis. It turns toward return.",
-  "takeaway": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water",
-  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. After the reaction, make the next return smaller and truer.",
+  "title": "Let yourself be kept like a child",
+  "summary": "This meets the moment when the heart has no sturdy voice left. The line lets helplessness become trust by receiving the Guru as mother and father.",
+  "takeaway": "Let helplessness lean into the Guru.",
+  "lifeApplication": "At the bedside, doorway, or parked car, soften the throat and say the line like a child asking to be held. Stop rehearsing strength for one honest breath.",
   "source": {
     "deepDiveId": "shabad-child-of-grace",
     "verseIds": [
       3762,
       3763
     ],
-    "shortMeaning": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water; i am a helpless child-please cherish me",
-    "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The heart blossoms when it lets the Guru become its shelter.",
+    "lifeApplication": "When you feel small, ask to be held before you try to harden again."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -24,7 +24,7 @@
     "collection-loneliness-journey"
   ],
   "rotation": {
-    "theme": "loneliness",
+    "theme": "trust",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water; i am a helpless child-please cherish me",
+      "coreClaim": "The heart blossoms when it lets the Guru become its shelter.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
-      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. After the reaction, make the next return smaller and truer.",
+      "turn": "Longing ripens when saintly company shows the way.",
+      "practicalImplication": "At the bedside, doorway, or parked car, soften the throat and say the line like a child asking to be held. Stop rehearsing strength for one honest breath.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 3.75,
+      "faithfulness": 4.03,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.86,
-      "beauty": 3.73,
-      "overall": 4.1
+      "beauty": 4.53,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

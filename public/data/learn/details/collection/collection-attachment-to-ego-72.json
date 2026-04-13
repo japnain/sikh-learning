@@ -1,8 +1,8 @@
 {
   "id": "collection-attachment-to-ego-72",
-  "title": "Attachment to Ego",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru teaches love without possession and steadiness without denial. This bridge then carries into guru names haumai clearly and then redirects the heart toward humility, service, and truth.",
+  "title": "When attachment starts becoming ego",
+  "subtitle": "When desire starts building a self around itself",
+  "description": "These readings expose the moment desire stops loving and starts building a throne around itself.",
   "durationLabel": "6-step journey",
   "themes": [
     "attachment",
@@ -14,8 +14,8 @@
       9416,
       9417
     ],
-    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
-    "lifeApplication": "Let feedback inform you without governing your worth."
+    "shortMeaning": "Attachment becomes ego when desire starts arranging the world around the self.",
+    "lifeApplication": "When desire tightens the chest, ask what version of you it is trying to enthrone."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru teaches love without possession and steadiness without denial. This bridge then carries into guru names haumai clearly and then redirects the heart toward humility, service, and truth.",
+      "coreClaim": "These readings expose the moment desire stops loving and starts building a throne around itself.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When desire starts building a self around itself",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 4.05,
-      "specificity": 4.29,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
+      "faithfulness": 3.73,
+      "clarity": 4.35,
+      "specificity": 3.97,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.05,
       "overall": 3.91
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

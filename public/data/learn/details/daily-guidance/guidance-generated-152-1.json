@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-152-1",
-  "title": "Worship The Guru, The Transcendent Lord",
-  "summary": "Sangat is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Worship the Guru, the Transcendent Lord, with your mind and body attuned to love",
-  "lifeApplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+  "title": "Gather love at the Guru's feet",
+  "summary": "This meets the heart scattered across too many loves at once. The line gathers mind and body back to the Guru's feet.",
+  "takeaway": "Gather your loves at the Guru's feet.",
+  "lifeApplication": "When attention starts scattering, touch the forehead and pull one desire back under the Guru's gaze before it multiplies.",
   "source": {
     "deepDiveId": "shabad-generated-152",
     "verseIds": [
       2114
     ],
-    "shortMeaning": "Worship the Guru, the Transcendent Lord, with your mind and body attuned to love",
-    "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Mind and body are gathered by fastening love to the Guru.",
+    "lifeApplication": "When attention starts scattering, touch the forehead and pull one desire back under the Guru's gaze before it multiplies."
   },
   "relatedTopicIds": [
     "topic-sangat"
@@ -23,7 +23,7 @@
     "collection-sangat-and-belonging"
   ],
   "rotation": {
-    "theme": "sangat",
+    "theme": "attachment",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Worship the Guru, the Transcendent Lord, with your mind and body attuned to love",
+      "coreClaim": "Mind and body are gathered by fastening love to the Guru.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
-      "practicalImplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+      "turn": "Let love, company, and conduct gather under the Guru until forgetfulness weakens.",
+      "practicalImplication": "When attention starts scattering, touch the forehead and pull one desire back under the Guru's gaze before it multiplies.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.77,
-      "clarity": 3.75,
-      "specificity": 4.55,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.04,
-      "beauty": 3.74,
-      "overall": 3.91
+      "faithfulness": 4,
+      "clarity": 4.29,
+      "specificity": 4.94,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
+      "beauty": 4,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

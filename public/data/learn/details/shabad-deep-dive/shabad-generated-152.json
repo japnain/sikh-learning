@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-152",
-  "title": "Worship The Guru, The Transcendent Lord",
+  "title": "Love the Guru with mind and body",
   "subtitle": "Siree Raag · Ang 52",
-  "summary": "This shabad opens with worship the Guru, the Transcendent Lord, with your mind and body attuned to love. It turns the heart toward nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
-  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
+  "summary": "The shabad begins by fastening mind and body to the Guru in love. It widens through obedience, Sangat, and the dust-like poverty of Maya-attachment, then ends in total remembrance: this life, body, and breath are Yours.",
+  "whyItMatters": "This is for the person whose love has been scattered across comforts, approval, and restless seeking. Held faithfully, it gathers desire back to one center and turns company, conduct, and remembrance into a single path.",
+  "takeaway": "Let love, company, and conduct gather under the Guru until forgetfulness weakens.",
   "themes": [
     "sangat",
     "attachment",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: worship the Guru, the Transcendent Lord, with your mind and body attuned to love.",
-    "The middle movement widens the correction through whatever He wishes comes to pass.",
-    "It closes with a return you can actually keep: nanak: may I never forget You, Lord. This soul, body and breath are Yours."
+    "It opens by calling for whole-hearted love of the Guru, not partial admiration.",
+    "The middle shows how that love becomes lived: act on the Guru's word, stay in Sangat, and let Maya lose its glamour.",
+    "It ends in surrender so full that soul, body, and breath are handed back to the Lord."
   ],
   "keyVerseIds": [
     2114,
@@ -207,25 +207,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with worship the Guru, the Transcendent Lord, with your mind and body attuned to love. It turns the heart toward nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
+      "coreClaim": "The shabad begins by fastening mind and body to the Guru in love. It widens through obedience, Sangat, and the dust-like poverty of Maya-attachment, then ends in total remembrance: this life, body, and breath are Yours.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement widens the correction through whatever He wishes comes to pass.",
-      "practicalImplication": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
+      "turn": "The middle shows how that love becomes lived: act on the Guru's word, stay in Sangat, and let Maya lose its glamour.",
+      "practicalImplication": "This is for the person whose love has been scattered across comforts, approval, and restless seeking. Held faithfully, it gathers desire back to one center and turns company, conduct, and remembrance into a single path. Let love, company, and conduct gather under the Guru until forgetfulness weakens.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.03,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.35,
-      "overall": 3.85
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.6,
+      "beauty": 4.33,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

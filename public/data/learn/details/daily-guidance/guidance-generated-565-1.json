@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-565-1",
-  "title": "Perfect Is The Cleansing Bath",
-  "summary": "Comparison is named plainly here before the mind has time to decorate it.",
-  "takeaway": "perfect is the cleansing bath",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+  "title": "Let the heart be kept in what is complete",
+  "summary": "This meets the chronic sense that something essential is missing. The line says the path, cleansing, peace, and honor become whole when Naam lives in the heart.",
+  "takeaway": "Take shelter in what is complete.",
+  "lifeApplication": "When you feel unfinished and start hunting for another fix, pause and return to the Name already given. Let completeness grow from sanctuary, not frantic patching.",
   "source": {
     "deepDiveId": "shabad-generated-565",
     "verseIds": [
       7978
     ],
-    "shortMeaning": "perfect is the cleansing bath",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Everything becomes whole when the Name is kept in the heart.",
+    "lifeApplication": "In the feeling of lack, take shelter and return to the Name before grasping again."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "trust",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "perfect is the cleansing bath",
+      "coreClaim": "Everything becomes whole when the Name is kept in the heart.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: Says Nanak, my True Guru is Perfect.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+      "turn": "Wholeness begins when the Name is kept in the heart.",
+      "practicalImplication": "When you feel unfinished and start hunting for another fix, pause and return to the Name already given. Let completeness grow from sanctuary, not frantic patching.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.23,
-      "specificity": 4.53,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.97,
-      "overall": 4.04
+      "faithfulness": 4.23,
+      "clarity": 4.29,
+      "specificity": 4.62,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.72,
+      "beauty": 4.49,
+      "overall": 4.28
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-journey",
   "title": "From Anxiety to steadier practice",
-  "subtitle": "A deliberate path through anxiety",
-  "description": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when anxiety keeps steering the day",
+  "description": "Start where panic narrows the chest. These readings widen the field until fear stops narrating the whole day and the heart can receive care, Hukam, and breath again.",
   "durationLabel": "5-step journey",
   "themes": [
     "anxiety",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Start where panic narrows the chest. These readings widen the field until fear stops narrating the whole day and the heart can receive care, Hukam, and breath again.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "A deliberate path through anxiety",
+      "turn": "For when anxiety keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 3.45,
-      "specificity": 4.3,
+      "faithfulness": 3.95,
+      "clarity": 4.35,
+      "specificity": 4.17,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.83
+      "usefulness": 4.5,
+      "beauty": 4.53,
+      "overall": 4.12
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

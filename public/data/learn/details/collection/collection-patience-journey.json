@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-journey",
   "title": "From Patience to steadier practice",
-  "subtitle": "A deliberate path through patience",
-  "description": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when patience keeps steering the day",
+  "description": "These readings teach waiting to listen long enough for honor, steadiness, and mercy to arrive instead of resentment.",
   "durationLabel": "5-step journey",
   "themes": [
     "patience",
@@ -55,25 +55,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings teach waiting to listen long enough for honor, steadiness, and mercy to arrive instead of resentment.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A deliberate path through patience",
+      "turn": "For when patience keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 3.75,
-      "specificity": 4.26,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.8
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

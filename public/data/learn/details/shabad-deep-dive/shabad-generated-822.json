@@ -93,7 +93,7 @@
       "coreClaim": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
       "emotionalState": "afraid, guarded, dreading",
       "turn": "The middle movement keeps pressing past fear and doubt instead of negotiating with them.",
-      "practicalImplication": "Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
+      "practicalImplication": "It matters when fear feels personal and total because the shabad turns the heart from private bargaining toward union, clarity, and release from dread. Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
       "bannedOverreach": []
     },
     "scores": {
@@ -101,14 +101,15 @@
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
+      "usefulness": 5,
       "beauty": 4.21,
-      "overall": 4.27
+      "overall": 4.42
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

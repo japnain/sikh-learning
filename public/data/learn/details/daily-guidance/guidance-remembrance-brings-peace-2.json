@@ -1,17 +1,17 @@
 {
   "id": "guidance-remembrance-brings-peace-2",
-  "title": "Worry And Anguish Shall Be Dispelled",
-  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "title": "Let simran cool the body from within",
+  "summary": "This meets anxiety after it has already entered the jaw, chest, or stomach. The line says remembrance is not decorative sound; it is meant to cool the body from the inside.",
+  "takeaway": "Let simran cool the body from within.",
+  "lifeApplication": "When the body starts bracing, let the Name descend through the breath until one place inside softens.",
   "source": {
     "deepDiveId": "shabad-remembrance-brings-peace",
     "verseIds": [
       11502,
       11503
     ],
-    "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The Name cools the body by driving worry and anguish out.",
+    "lifeApplication": "When anxiety becomes physical, let the Name cool the body from within."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
+      "coreClaim": "The Name cools the body by driving worry and anguish out.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "Steady remembrance calms what scattered thinking cannot.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "turn": "Carry remembrance into the body before worry settles there.",
+      "practicalImplication": "When the body starts bracing, let the Name descend through the breath until one place inside softens.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 3.11,
-      "specificity": 4.73,
+      "faithfulness": 3.95,
+      "clarity": 4.11,
+      "specificity": 4.89,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.37,
-      "overall": 3.81
+      "usefulness": 4.64,
+      "beauty": 4.21,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

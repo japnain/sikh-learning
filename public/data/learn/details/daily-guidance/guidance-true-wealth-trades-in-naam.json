@@ -1,17 +1,17 @@
 {
   "id": "guidance-true-wealth-trades-in-naam",
-  "title": "Trade in what keeps the heart solvent.",
-  "summary": "The shabad calls Naam the real capital. What looks valuable may still leave the inner life bankrupt.",
-  "takeaway": "Carry wealth that can survive departure.",
-  "lifeApplication": "Ask what you are investing in today that will still matter when display disappears.",
+  "title": "Trade in Naam, not passing profit",
+  "summary": "This meets the appetite for gain that still leaves the heart poor. The line says true wealth is earned in Naam, and patience lets that trade ripen into honor.",
+  "takeaway": "Trade for the wealth that can honor the soul.",
+  "lifeApplication": "Before the next deal, ask what kind of profit will still honor the soul when the room is empty.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
       11241,
       11242
     ],
-    "shortMeaning": "True wealth is not abstract virtue but Naam treated as actual capital.",
-    "lifeApplication": "Let the day be measured by what deepens the heart, not by what decorates it."
+    "shortMeaning": "True wealth is earned in Naam and ripens through patient living.",
+    "lifeApplication": "Before the next deal, ask what profit can still honor the soul."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "True wealth is not abstract virtue but Naam treated as actual capital.",
+      "coreClaim": "True wealth is earned in Naam and ripens through patient living.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Patience becomes luminous when it begins listening for Naam.",
-      "practicalImplication": "Ask what you are investing in today that will still matter when display disappears.",
+      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "practicalImplication": "Before the next deal, ask what kind of profit will still honor the soul when the room is empty.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
-      "clarity": 4.35,
-      "specificity": 4.73,
+      "faithfulness": 4.4,
+      "clarity": 4.11,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.66,
-      "beauty": 4.05,
-      "overall": 4.01
+      "usefulness": 4.26,
+      "beauty": 3.89,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

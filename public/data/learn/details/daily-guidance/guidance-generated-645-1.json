@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-645-1",
-  "title": "Save Me, O My Father God",
-  "summary": "Fear is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Save me, O My Father God",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+  "title": "Run to sanctuary before fear hardens",
+  "summary": "This meets the moment when the inner thieves are already upon you and composure is gone. The line does not pretend strength; it cries to the Father and takes shelter.",
+  "takeaway": "Take sanctuary before panic organizes you.",
+  "lifeApplication": "When the body goes cold or the stomach drops, say the line before inventing your defense. Let the cry for shelter come earlier than the panic plan.",
   "source": {
     "deepDiveId": "shabad-generated-645",
     "verseIds": [
       8845
     ],
-    "shortMeaning": "Save me, O My Father God",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Fear is met by sanctuary, not by pretending self-sufficiency.",
+    "lifeApplication": "In the first surge of fear, ask for shelter before strategy takes over."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Save me, O My Father God",
+      "coreClaim": "Fear is met by sanctuary, not by pretending self-sufficiency.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+      "turn": "Call for shelter before fear becomes your only voice.",
+      "practicalImplication": "When the body goes cold or the stomach drops, say the line before inventing your defense. Let the cry for shelter come earlier than the panic plan.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.63,
-      "clarity": 4.29,
-      "specificity": 4.41,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 4.01,
-      "overall": 3.95
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.37,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

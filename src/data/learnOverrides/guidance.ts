@@ -110,13 +110,13 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-conquer-the-mind-2": {
-    "title": "Contentment makes discipline visible",
-    "summary": "Discipline becomes credible when humility, meditation, and contentment begin shaping the body before pressure does.",
-    "takeaway": "Contentment, humility, and meditation mark the disciplined life more truly than image or strain.",
-    "lifeApplication": "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
+    "title": "Let contentment prove your discipline",
+    "summary": "This meets the wish to look disciplined while the mind still runs loose. The line makes contentment, humility, and Naam the real mark.",
+    "takeaway": "Let contentment prove your discipline.",
+    "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler.",
     "source": {
-      "shortMeaning": "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
-      "lifeApplication": "Keep the next repetition plain enough that humility and contentment can remain inside it."
+      "shortMeaning": "Real discipline leaves the mind content, humble, and turned to Naam.",
+      "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler."
     },
     "reviewedByHuman": true,
     "forcedLocked": true
@@ -206,14 +206,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-forgiveness-opens-lasting-peace-1": {
-    "title": "Receive forgiveness as a place to live",
+    "title": "Do not waste the peace forgiveness brings",
     "rotationTheme": "forgiveness",
-    "summary": "This meets relief that could easily fade back into habit. The line says forgiveness opens a life of peace, Bani, and Naam, not just a passing feeling.",
-    "takeaway": "Live from forgiven peace.",
-    "lifeApplication": "After the apology, repair, or pardon, do not rush back to old noise. Answer forgiveness with one act of devotion before the old cycle returns.",
+    "summary": "This meets the quiet after pardon, when peace has returned but devotion has not yet answered it. The line treats forgiveness as the beginning of worship, not the end of crisis.",
+    "takeaway": "Answer forgiveness with worship.",
+    "lifeApplication": "After peace returns, sing or read Bani before filling the room with ordinary noise again.",
     "source": {
-      "shortMeaning": "Forgiveness becomes lasting peace when it ripens into devotion.",
-      "lifeApplication": "After being forgiven, answer with Bani before the old cycle returns."
+      "shortMeaning": "Forgiveness asks to be answered with devotion.",
+      "lifeApplication": "After peace returns, answer it with Bani before ordinary noise takes over."
     },
     "reviewedByHuman": true
   },
@@ -326,13 +326,13 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-109-2": {
-    "title": "Without the Beloved, the night stays anguished",
-    "summary": "Doubt loses its swagger when the heart admits how badly it needs the One it keeps postponing.",
-    "takeaway": "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
-    "lifeApplication": "Before reopening every question, let one line tell the truth about your dependence and stay there a moment longer.",
+    "title": "Without the Beloved, even one instant burns",
+    "summary": "This meets the mind that keeps dressing longing up as uncertainty. The line says the Shabad fills the heart with reverent awe, and without the Beloved even one instant burns.",
+    "takeaway": "Treat the ache as longing, not sophistication.",
+    "lifeApplication": "Before reopening the question, stay with the line long enough to feel the pain underneath it. Let longing tell the truth before doubt starts sounding clever.",
     "source": {
-      "shortMeaning": "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
-      "lifeApplication": "Use the line before the question multiplies again, and let reverence quiet what panic was trying to organize."
+      "shortMeaning": "Without the Beloved, the ache beneath doubt is exposed.",
+      "lifeApplication": "Before reopening the question, stay with the line until the ache tells the truth."
     },
     "reviewedByHuman": true,
     "forcedLocked": true
@@ -386,50 +386,50 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-151-3": {
-    "title": "Those who serve with love are truly wise",
+    "title": "Let the Court decide what honor is",
     "rotationTheme": "self-worth",
-    "summary": "This meets the need to be noticed. The line says those who serve with love are wise, and those attuned to the True One are given honor in the Lord's Court.",
+    "summary": "This meets the ache to be seen, thanked, and called worthy now. The line turns the heart away from the room and toward the Court, where love-filled service is what receives honor.",
     "takeaway": "Serve with love and let the Court decide honor.",
-    "lifeApplication": "Before saying your own name into the room, do one loving act quietly and leave it hidden. Stay attuned to the True One and let the Court, not the room, decide honor.",
+    "lifeApplication": "Before you introduce yourself, explain your value, or angle for credit, do one loving act no one can repay. Let hidden love correct the appetite for notice.",
     "source": {
-      "shortMeaning": "Attunement to the True One becomes honor in the Lord's Court.",
-      "lifeApplication": "When you want recognition, choose the truthful act that does not need display."
+      "shortMeaning": "Love-filled service is what the Lord's Court honors.",
+      "lifeApplication": "Before angling for credit, do one loving act no one can repay."
     },
     "reviewedByHuman": true
   },
   "guidance-generated-152-1": {
-    "title": "Gather love at its true center",
+    "title": "Gather love at the Guru's feet",
     "rotationTheme": "attachment",
-    "summary": "This meets the scattered feeling of loving too many things at once. The line gathers mind and body back to the One who can rightly hold them.",
-    "takeaway": "Return your love to its truest center.",
-    "lifeApplication": "When the hand reaches for the next distraction, pause before the scroll and touch the forehead once. Offer attention back to the Guru before desire starts choosing for you.",
+    "summary": "This meets the heart scattered across too many loves at once. The line gathers mind and body back to the Guru's feet.",
+    "takeaway": "Gather your loves at the Guru's feet.",
+    "lifeApplication": "When attention starts scattering, touch the forehead and pull one desire back under the Guru's gaze before it multiplies.",
     "source": {
-      "shortMeaning": "Love is gathered and fastened back to the Guru.",
-      "lifeApplication": "Before the next reach for comfort, steady the gaze and return your love."
+      "shortMeaning": "Mind and body are gathered by fastening love to the Guru.",
+      "lifeApplication": "When attention starts scattering, touch the forehead and pull one desire back under the Guru's gaze before it multiplies."
     },
     "reviewedByHuman": true
   },
   "guidance-generated-152-2": {
-    "title": "Without holy company, attachment stays dusty",
-    "summary": "Sangat is not decorative here. Without the right company, attachment keeps coating the heart.",
-    "takeaway": "Without attunement to the holy company, attachment to Maya stays like dust; with love for Guru, the heart turns cleanly toward the Divine.",
-    "lifeApplication": "Move closer to the company that helps the heart love well instead of simply agreeing with its habits.",
+    "title": "Let holy company lift Maya's dust",
+    "summary": "This meets attachment after it has already settled into the heart. The line says two things clear it: love for the Guru with mind and body, and life inside holy company.",
+    "takeaway": "Let holy company brush Maya's dust away.",
+    "lifeApplication": "When craving gets sticky, do not sit alone feeding it. Step toward the sangat, song, or room where love for the Guru gets cleaner.",
     "source": {
-      "shortMeaning": "Without holy company, attachment stays like dust; with love for Guru, the heart turns toward the Divine.",
-      "lifeApplication": "Choose one company today that makes remembrance easier and attachment less convincing."
+      "shortMeaning": "Love for the Guru and holy company clear Maya's dust.",
+      "lifeApplication": "When craving gets sticky, step toward the place where love for the Guru gets cleaner."
     },
     "reviewedByHuman": true,
     "forcedLocked": true
   },
   "guidance-generated-153-1": {
-    "title": "Release begins at the Guru's feet",
+    "title": "Let seeking kneel before it wanders",
     "rotationTheme": "seeking",
-    "summary": "This meets the search that wants freedom without surrender. The line says release comes through the True Name and the service of the True Guru.",
+    "summary": "This meets the search that keeps multiplying methods while resisting surrender. The line sends the search to Naam and the Guru's service.",
     "takeaway": "Seek release where service begins.",
-    "lifeApplication": "Before inventing a new path, return to the Guru's feet in the next concrete act of devotion. Let service steady the search before it multiplies again.",
+    "lifeApplication": "Before trying another method, do one act of service and repeat the Name until the search stops performing itself.",
     "source": {
-      "shortMeaning": "Release comes through the True Name and service to the Guru.",
-      "lifeApplication": "When the search grows noisy, bow into the path already given."
+      "shortMeaning": "Release is found where Naam and service meet the Guru.",
+      "lifeApplication": "Before trying another method, do one act of service and repeat the Name until the search stops performing itself."
     },
     "reviewedByHuman": true
   },
@@ -458,25 +458,25 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-179-1": {
-    "title": "Let service make the whole life clean",
+    "title": "Serve until mind and body agree",
     "rotationTheme": "conduct",
-    "summary": "This meets the split between devotion and daily behavior. The line says service to the True Guru purifies mind and body together.",
-    "takeaway": "Serve until mind and body grow clean.",
-    "lifeApplication": "Before separating inner devotion from outward behavior, do one thing that cleans both thought and action. Keep service concrete and close.",
+    "summary": "This meets the split between spiritual speech and ordinary conduct. The line says serving the True Guru makes the mind immaculate and the body pure together.",
+    "takeaway": "Serve until mind and body agree.",
+    "lifeApplication": "Before calling something devotion again, choose one act that cleans both inward motive and outward behavior.",
     "source": {
-      "shortMeaning": "Service to the True Guru purifies mind, body, and conduct together.",
-      "lifeApplication": "When life feels split, choose the service that cleans both thought and action."
+      "shortMeaning": "Service to the True Guru cleans both mind and body together.",
+      "lifeApplication": "When life feels split, choose the service that cleans both motive and behavior."
     },
     "reviewedByHuman": true
   },
   "guidance-generated-179-2": {
-    "title": "Serving the Guru makes the heart clean again",
-    "summary": "Ego loses some of its glamour when service stops being display and becomes inner cleansing.",
-    "takeaway": "Serving the True Guru lets the Lord abide within, and the mind and body begin to grow clean again.",
-    "lifeApplication": "When the self wants to lead, choose one act of service that cleans the heart instead of enlarging the image.",
+    "title": "Let service make room for the Lord",
+    "summary": "This meets the useful act that still carries a trace of self-display. The line says serving the True Guru lets the Lord dwell in the mind and keeps filth from clinging.",
+    "takeaway": "Serve until the Lord, not the self, fills it.",
+    "lifeApplication": "Before the next useful act, ask whether it makes more room for the Lord or more shine for your image.",
     "source": {
-      "shortMeaning": "Serving the True Guru lets the Lord abide within, and the mind and body grow pure.",
-      "lifeApplication": "Let service make you smaller and cleaner before urgency turns self-importance into the room's loudest voice."
+      "shortMeaning": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
+      "lifeApplication": "Before the next useful act, ask whether it makes room for the Lord or for your image."
     },
     "reviewedByHuman": true,
     "forcedLocked": true
@@ -590,14 +590,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-230-2": {
-    "title": "The path appears through service",
+    "title": "Let service become the way across",
     "rotationTheme": "purpose",
-    "summary": "This meets the busy life that still feels inwardly unplaced. The line says service becomes fruitful when the Shabad turns it into a real path.",
-    "takeaway": "Serve in the direction of the Shabad.",
-    "lifeApplication": "Before filling the day with another useful-looking task, stop and ask what actually helps you cross over. Choose the act that is guided, not just busy.",
+    "summary": "This meets the useful life that is still spiritually unplaced. The line says service is not merely good activity; through the Shabad it becomes a path across.",
+    "takeaway": "Serve in a way the Shabad can carry.",
+    "lifeApplication": "Before adding another impressive task, choose the act that actually helps you cross: guided, quiet, and answered to the Guru.",
     "source": {
-      "shortMeaning": "Fruitful service becomes a path when the Shabad leads it.",
-      "lifeApplication": "When the day feels aimless, choose service that is guided by the Shabad."
+      "shortMeaning": "Service becomes a path across when the Shabad leads it.",
+      "lifeApplication": "When the day feels aimless, choose service the Shabad can actually carry."
     },
     "reviewedByHuman": true
   },
@@ -962,14 +962,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-460-3": {
-    "title": "Hearts filled day and night leave doubt behind",
+    "title": "Let the filled heart leave doubt behind",
     "rotationTheme": "doubt",
-    "summary": "This meets the mind that keeps reopening uncertainty. The line says those filled with the Lord day and night are made whole, and doubt is cast away there.",
-    "takeaway": "Fill the heart until doubt is cast away.",
-    "lifeApplication": "When uncertainty returns at night, at the sink, or before the message, repeat the line until the heart feels full again. Stay with remembrance long enough for doubt to actually leave.",
+    "summary": "This meets the mind that keeps reopening uncertainty. The line says wholeness comes when the heart is filled with the Lord day and night, and doubt falls away there.",
+    "takeaway": "Keep the heart full enough for doubt to fall away.",
+    "lifeApplication": "When uncertainty returns at night, at the sink, or before the message, stay with remembrance until the heart feels full again. Do not restart the argument while the line is still doing its work.",
     "source": {
-      "shortMeaning": "A heart filled with the Lord day and night leaves doubt behind.",
-      "lifeApplication": "When uncertainty returns, stay with remembrance instead of restarting the argument."
+      "shortMeaning": "A heart filled with the Lord is made whole, and doubt falls away.",
+      "lifeApplication": "When uncertainty returns, keep the line in the body instead of restarting the argument."
     },
     "reviewedByHuman": true
   },
@@ -1058,26 +1058,26 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-510-1": {
-    "title": "Let holy company break the heat",
+    "title": "Take the crowded body into saintly company",
     "rotationTheme": "anger",
-    "summary": "This meets the body already overcrowded by desire and anger. The line says the heat starts breaking when saintly company is not kept at a distance.",
-    "takeaway": "Go where the heat can be broken.",
-    "lifeApplication": "When the body feels hot, impulsive, or charged, do not stay alone with it. Step into sangat, call the steady person, or sit where holiness can interrupt the surge.",
+    "summary": "This meets the body-village already crowded by sexual desire and anger. The line says those forces were broken to pieces when the Holy Saint was finally met.",
+    "takeaway": "Take the crowded body where the heat can break.",
+    "lifeApplication": "When desire and anger surge together, do not stay alone negotiating with them. Go toward saintly company before the heat organizes your next action.",
     "source": {
-      "shortMeaning": "Saintly company breaks the body's crowded heat of desire and anger.",
-      "lifeApplication": "When desire and anger crowd the body, move toward saintly company at once."
+      "shortMeaning": "Meeting the Holy Saint breaks lust and anger in the crowded body.",
+      "lifeApplication": "When desire and anger crowd the body, go toward saintly company before they choose for you."
     },
     "reviewedByHuman": true
   },
   "guidance-generated-510-2": {
-    "title": "Pre-ordained grace brought you to the Guru",
+    "title": "Your turning was written as grace",
     "rotationTheme": "mercy",
-    "summary": "This meets the urge to treat your turning as self-made. The line says meeting the Guru was written beforehand, and that meeting brought the mind into the Lord's love.",
-    "takeaway": "Receive the Guru as grace already written.",
-    "lifeApplication": "Before congratulating yourself for the change, stop at the doorway with palms pressed and forehead lowered. Thank the Guru for a meeting written before you knew to ask.",
+    "summary": "This meets the urge to treat your spiritual turning as self-made. The line says two things together: the old heat was broken by holy company, and meeting the Guru came by pre-ordained grace.",
+    "takeaway": "Receive your turning as grace, not self-authorship.",
+    "lifeApplication": "When pride appears after a better day, touch the forehead to the floor and remember who broke the old heat and who brought you to the Guru. Answer with gratitude, not self-credit.",
     "source": {
-      "shortMeaning": "Pre-ordained grace brings the Guru into the mind's Lordward love.",
-      "lifeApplication": "When pride appears, remember who brought you into the realm of love."
+      "shortMeaning": "Meeting the Guru and entering love arrives by grace already written.",
+      "lifeApplication": "When pride appears after a better day, remember who brought you into the realm of love."
     },
     "reviewedByHuman": true
   },
@@ -1094,14 +1094,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-511-1": {
-    "title": "Ask for the taste that stubbornness misses",
+    "title": "Do not mistake nearness for taste",
     "rotationTheme": "grace",
-    "summary": "This meets the stubborn heart living near the treasure but unable to taste it. The line says mercy through the Guru makes the Lord's praise sweet.",
-    "takeaway": "Ask for taste, not just proximity.",
-    "lifeApplication": "Before calling yourself close to the truth, ask whether you actually taste it. Stay with the Shabad until bitterness starts turning sweet.",
+    "summary": "This meets the soul living close to the treasure but still unable to taste it. The line says mercy is what turns nearness into sweetness.",
+    "takeaway": "Ask for taste, not proximity.",
+    "lifeApplication": "When devotion feels flat, stop calling yourself near just because the words are familiar. Stay until mercy turns bitterness sweet.",
     "source": {
-      "shortMeaning": "The Lord is already within, but only mercy gives the taste.",
-      "lifeApplication": "When devotion feels tasteless, ask for mercy and stay with the Shabad until sweetness returns."
+      "shortMeaning": "Mercy turns nearness into tasted sweetness.",
+      "lifeApplication": "When devotion feels flat, ask for mercy and stay until bitterness turns sweet."
     },
     "reviewedByHuman": true
   },
@@ -1118,13 +1118,13 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "forcedLocked": true
   },
   "guidance-generated-512-1": {
-    "title": "Offer the body before the ego bargains again",
+    "title": "Let the body learn surrender first",
     "rotationTheme": "seva",
-    "summary": "This meets the defensive self that still wants devotion without surrender. The line is stark: for the Lord's sake, the body is placed before the Guru.",
-    "takeaway": "Put the self at the Guru's feet.",
-    "lifeApplication": "At the threshold, before the performance, or before you protect your image, bow the head and shoulders physically. Let the body learn surrender before the mind negotiates it away.",
+    "summary": "This meets the self that admires devotion while still bargaining with it. The line is physical and uncompromising: the body itself is given to the Guru.",
+    "takeaway": "Let surrender become embodied, not admired.",
+    "lifeApplication": "Before image management starts again, bow the head and shoulders physically. Let the body tell the truth before the mind edits it.",
     "source": {
-      "shortMeaning": "Real devotion offers the body before the Guru, not just words.",
+      "shortMeaning": "Devotion becomes real when the body enters surrender.",
       "lifeApplication": "When ego starts negotiating, bow physically before you let it speak."
     },
     "reviewedByHuman": true
@@ -1322,14 +1322,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-63-1": {
-    "title": "Remember together, not alone",
+    "title": "Ask holy company to hold you close",
     "rotationTheme": "sangat",
-    "summary": "This meets the heart that tries to remember in isolation and goes flat. The line turns devotion into shared embrace and shared telling of the Lord's story.",
-    "takeaway": "Let remembrance ripen in company.",
-    "lifeApplication": "Before isolating with your heaviness, sit close to the friend who helps you remember. Speak one story of the Lord instead of another story of yourself.",
+    "summary": "This meets the heart that keeps trying to carry longing privately. The line asks for closeness from companions who can hold devotion with you.",
+    "takeaway": "Ask holy company to hold your longing.",
+    "lifeApplication": "When prayer thins out, do not disappear into private heaviness. Ask one companion to sit, walk, or recite with you and let the body be accompanied.",
     "source": {
-      "shortMeaning": "Companionship becomes holy when it gathers to remember the Lord.",
-      "lifeApplication": "When the heart closes in, move toward the company that can help you remember."
+      "shortMeaning": "Longing is steadied when spiritual companions hold it close together.",
+      "lifeApplication": "When prayer thins out, ask one companion to stay near and carry the line with you."
     },
     "reviewedByHuman": true
   },
@@ -1370,14 +1370,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-generated-642-1": {
-    "title": "Ask for the company that can show the way",
+    "title": "Ask for the saint who can show the way",
     "rotationTheme": "sangat",
-    "summary": "This meets the lonely bewilderment that knows effort alone is not enough. The line asks plainly for the saint who can show the way past ego's curtain.",
-    "takeaway": "Seek the guide who can show the way.",
-    "lifeApplication": "Before trying another spiritual method, admit the need out loud. Ask for the company that can actually turn you toward the door.",
+    "summary": "This meets bewilderment that has finally run out of private strategies. The line turns the cry itself into wisdom: ask for the saint who can give peace and show the way.",
+    "takeaway": "Ask for the saint who can show the way.",
+    "lifeApplication": "When confusion keeps multiplying methods, say the need out loud to one elder, teacher, or steady companion. Ask to be shown the way instead of pretending you already know.",
     "source": {
-      "shortMeaning": "Peace begins by asking for saintly guidance through the ego's curtain.",
-      "lifeApplication": "When self-effort stalls, ask for true company before reaching for another technique."
+      "shortMeaning": "Peace begins when the heart asks plainly to be shown the way.",
+      "lifeApplication": "When confusion multiplies methods, ask to be shown the way instead of pretending you know."
     },
     "reviewedByHuman": true
   },
@@ -1802,14 +1802,14 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "guidance-remembrance-brings-peace-2": {
-    "title": "Return to remembrance before worry settles",
+    "title": "Let simran cool the body from within",
     "rotationTheme": "anxiety",
-    "summary": "This meets the body already holding worry and mental noise. The line treats repeated remembrance as medicine that reaches the body, not just the thoughts.",
-    "takeaway": "Give anxiety to repeated simran.",
-    "lifeApplication": "When worry lands in the shoulders or stomach, repeat the Name before you rehearse the scenario again. Let the body hear remembrance before panic claims it.",
+    "summary": "This meets anxiety after it has already entered the jaw, chest, or stomach. The line says remembrance is not decorative sound; it is meant to cool the body from the inside.",
+    "takeaway": "Let simran cool the body from within.",
+    "lifeApplication": "When the body starts bracing, let the Name descend through the breath until one place inside softens.",
     "source": {
-      "shortMeaning": "Repeated remembrance drives worry and anguish out of the body.",
-      "lifeApplication": "When anxiety becomes physical, return to simran before analysis multiplies."
+      "shortMeaning": "The Name cools the body by driving worry and anguish out.",
+      "lifeApplication": "When anxiety becomes physical, let the Name cool the body from within."
     },
     "reviewedByHuman": true
   },
@@ -1937,11 +1937,11 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "title": "Let pain teach what comfort keeps hiding",
     "rotationTheme": "attachment",
     "summary": "This meets the instinct to call pleasure blessing and pain failure. The line reverses that instinct by saying suffering can reopen desire for God.",
-    "takeaway": "Let pain turn you back toward God.",
-    "lifeApplication": "When discomfort arrives, resist the first rush to numb it immediately. Ask what this pain is showing about what comfort has been covering.",
+    "takeaway": "Let pain expose what comfort keeps blurring.",
+    "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering.",
     "source": {
-      "shortMeaning": "Pain becomes medicine when it turns desire back toward God.",
-      "lifeApplication": "Before numbing discomfort, ask what it is uncovering about your attachments."
+      "shortMeaning": "Pain becomes medicine when it uncovers what comfort hides.",
+      "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering."
     },
     "reviewedByHuman": true
   },
@@ -2062,6 +2062,746 @@ export const GUIDANCE_COPY_OVERRIDES = {
     "source": {
       "shortMeaning": "The path is known in honest earning and open-handed giving.",
       "lifeApplication": "When money hardens into accumulation, interrupt it with one deliberate gift."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-hukam": {
+    "reviewedByHuman": true
+  },
+  "guidance-mind-mastery": {
+    "reviewedByHuman": true
+  },
+  "guidance-human-opportunity": {
+    "title": "Do not waste the crossing",
+    "summary": "This meets the day that stays busy but spiritually unspent. The line turns life from ornament into crossing, and asks for effort while the chance is still open.",
+    "takeaway": "Treat this life as a crossing, not a possession.",
+    "lifeApplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
+    "source": {
+      "verseIds": [
+        527,
+        528,
+        529
+      ],
+      "shortMeaning": "This life is given for crossing and meeting, not decoration.",
+      "lifeApplication": "Before another drifting hour disappears, choose the act that helps you cross."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-sangat-and-naam": {
+    "title": "Stay where the heart is helped",
+    "summary": "This meets the soul being shaped by whatever company it keeps. The line says life becomes meeting and remembrance in holy company, not in private drift.",
+    "takeaway": "Holy company carries what the solitary mind cannot.",
+    "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it.",
+    "source": {
+      "shortMeaning": "Holy company carries what the solitary mind cannot.",
+      "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-selfless-service": {
+    "title": "Let service stay hidden and real",
+    "summary": "This meets the good work that has started asking to be noticed. The line says service stays true when the self is no longer its hidden audience.",
+    "takeaway": "Service becomes clean when it leaves self-display behind.",
+    "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement.",
+    "source": {
+      "shortMeaning": "Service becomes clean when it leaves self-display behind.",
+      "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-obey-and-remember": {
+    "title": "Keep command and Naam in one breath",
+    "summary": "This meets the split between outward obedience and inward resistance. The line keeps the two together: obey the Guru's command with the whole mind, and keep the Name alive inside the heart.",
+    "takeaway": "Keep the Guru's command with the whole mind.",
+    "lifeApplication": "Before the next task or seva, stop at the threshold and bring the mind into it. Keep the Name moving inwardly while the hands move outwardly.",
+    "source": {
+      "shortMeaning": "The Guru's command is kept truly when obedience carries Naam inside it.",
+      "lifeApplication": "Before the next task or seva, stop at the threshold and bring the mind into it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-ego-cure": {
+    "title": "Ask who is speaking when ego sounds ordinary",
+    "summary": "This meets the moment when ego wears the plain clothes of common sense. The line breaks that spell by refusing to call the voice natural or final.",
+    "takeaway": "Interrogate the voice before you obey it.",
+    "lifeApplication": "When self-importance rises in the throat or chest, pause before the sentence forms and ask who is speaking. Do not grant that urgency the status of truth.",
+    "source": {
+      "verseIds": [
+        20961,
+        20962
+      ],
+      "shortMeaning": "Ego weakens when its voice is questioned instead of trusted.",
+      "lifeApplication": "When ego flares, ask who is speaking before you let that voice lead."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-suffering-as-medicine": {
+    "title": "Let pain uncover what comfort was hiding",
+    "summary": "This meets the moment when suffering feels useless and only punishing. The line says pain can uncover the dependence that easy days keep hidden.",
+    "takeaway": "Let pain tell the truth before comfort edits it.",
+    "lifeApplication": "When pain tightens the body, stop asking only how to escape it. Ask what dependence, prayer, or surrender it is exposing.",
+    "source": {
+      "shortMeaning": "Pain can uncover the dependence comfort often keeps hidden.",
+      "lifeApplication": "When pain tightens the body, ask what surrender it is trying to uncover."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-the-creator-acts": {
+    "title": "Stop arguing with what already stands",
+    "summary": "This meets the mind that wants reality to arrive on self-approved terms. The line places doing back in the Creator's hands and quiets the argument that you were meant to run the day.",
+    "takeaway": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
+    "source": {
+      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-fear-and-protection": {
+    "title": "Stand inside the care already holding you",
+    "summary": "This meets the body leaning toward the worst outcome. The line answers fear with the Creator's mercy and protection, steadier than your wavering.",
+    "takeaway": "Mercy is steadier than the mind's alarm.",
+    "lifeApplication": "When fear starts ruling the body, stand still, breathe once, and name the care already holding you before you plan the next defense.",
+    "source": {
+      "shortMeaning": "The Creator's mercy holds more firmly than fear's predictions.",
+      "lifeApplication": "When fear grips the body, name the care already holding you."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-gratitude": {
+    "title": "Receive before demanding more",
+    "summary": "This meets the heart that notices absence faster than gift. The line says gratitude becomes honest when mercy is named before complaint.",
+    "takeaway": "Mercy restores the sight that gratitude needs.",
+    "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room.",
+    "source": {
+      "shortMeaning": "Mercy restores the sight that gratitude needs.",
+      "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-cherished-child": {
+    "title": "Receive the nearness you keep overlooking",
+    "summary": "This meets loneliness when it has started narrating abandonment. The line says longing ripens in holy company and the soul is led like a cherished child, not left to wander alone.",
+    "takeaway": "The line restores companionship before despair hardens.",
+    "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone.",
+    "source": {
+      "shortMeaning": "The line restores companionship before despair hardens.",
+      "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-remember-and-find-peace": {
+    "title": "Let remembrance outrun the spiral",
+    "summary": "This meets anxiety before it settles fully into the body. The line sends remembrance into breath, chest, and thought until worry loses its right to rule.",
+    "takeaway": "Remembrance widens the mind beyond imagined danger.",
+    "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften.",
+    "source": {
+      "shortMeaning": "Remembrance widens the mind beyond imagined danger.",
+      "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-work-and-give": {
+    "title": "Earn cleanly and keep the hand open",
+    "summary": "This meets work that has become costume, accumulation, or self-display. The line honors the one who earns honestly, shares freely, and lets labor stay clean.",
+    "takeaway": "Keep earning and giving in one sentence.",
+    "lifeApplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
+    "source": {
+      "verseIds": [
+        53371
+      ],
+      "shortMeaning": "Honest labor and open-handed giving reveal a truer path.",
+      "lifeApplication": "When money hardens into accumulation, interrupt it with one deliberate gift."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-praise-and-blame": {
+    "title": "Let praise and insult lose their claim",
+    "summary": "This meets the moment when other people's words still set the temperature inside you. The line names freedom as sameness under praise and slander, not only detachment from possessions.",
+    "takeaway": "Do not let other mouths set your temperature.",
+    "lifeApplication": "After praise or criticism lands, wait one full breath before you adjust your story, posture, or plan. Let the line level the room before opinion does.",
+    "source": {
+      "shortMeaning": "Freedom begins when praise and slander stop moving the center.",
+      "lifeApplication": "After praise or criticism lands, let the line level the room before opinion does."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-honor-what-guru-honors": {
+    "title": "Do not insult the doorway through which you came",
+    "summary": "This meets contempt while it is still pretending to be casual speech. The line strips off that disguise by naming woman as the doorway through which life itself arrives.",
+    "takeaway": "Cheapening women is cheapening life's doorway.",
+    "lifeApplication": "Before repeating a joke, shrug, or judgment that cheapens women, stop with the tongue and remember how every life entered the room.",
+    "source": {
+      "shortMeaning": "The line rebukes contempt by naming woman as life's doorway.",
+      "lifeApplication": "Before contempt reaches the tongue, remember which bodies carried life here."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-what-pleases-you": {
+    "title": "Stop arguing with what already stands",
+    "summary": "This meets the mind that wants reality on self-approved terms. The line teaches a harder peace: receive under the Lord's pleasure rather than keep litigating the day.",
+    "takeaway": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
+    "source": {
+      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-mercy-gives-naam": {
+    "title": "You cannot clutch what mercy has to give",
+    "summary": "This meets the grasping heart that wants Naam as one more possession. The line says the jewel is given by mercy, while the self-willed hand loses what it tries to hold.",
+    "takeaway": "Open the hand; Naam is received, not seized.",
+    "lifeApplication": "When you want instant assurance, unclench the hand, say the Name once, and stop trying to own the experience. Receive before you evaluate.",
+    "source": {
+      "verseIds": [
+        501,
+        502
+      ],
+      "shortMeaning": "Naam is received by mercy; the self-willed grip loses it.",
+      "lifeApplication": "Unclench the hand and receive the Name instead of trying to seize it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-all-belong-to-you": {
+    "title": "All are already within the River of Life",
+    "summary": "This meets the reflex to divide life into inside and outside, mine and not mine. The line answers with something larger: the One is the River of Life, there is no second, and every being is already within Him.",
+    "takeaway": "There is no one outside the One.",
+    "lifeApplication": "When exclusion or rivalry stings, put a hand on the chest and say the line once. Then remember the person in front of you also lives inside the same One.",
+    "source": {
+      "shortMeaning": "The River of Life already holds every being; there is no second.",
+      "lifeApplication": "When exclusion stings, remember there is no outside to the One."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-speak-for-honor": {
+    "title": "Speak only what can stand at the Door",
+    "summary": "This meets the mouth that still wants the sharp sentence because it feels strong. The line measures speech by whether it can stand at the Lord's Door with honor.",
+    "takeaway": "Let honor, not impulse, choose the sentence.",
+    "lifeApplication": "Before the next message leaves you, ask whether you could repeat it before the Guru without shrinking.",
+    "source": {
+      "shortMeaning": "Only speech that can stand at the Door is worth speaking.",
+      "lifeApplication": "Before the next sentence leaves you, ask if it can stand at the Door."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-harsh-words-double-back": {
+    "title": "Do not give your mouth to the wound",
+    "summary": "This meets the hot second before speech goes looking for damage. The line says the tongue needs a master stronger than hurt: truth, praise, and restraint.",
+    "takeaway": "Do not let the wound speak for you.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "source": {
+      "shortMeaning": "A clean tongue answers to truth and praise, not to hurt.",
+      "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-name-needs-room": {
+    "title": "Make room for the Name by wanting less",
+    "summary": "This meets a life so crowded by appetite that the inner room stays noisy. The line asks what kind of gain still leaves space for Naam to live inside the heart.",
+    "takeaway": "Do not let appetite crowd out the Name.",
+    "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul.",
+    "source": {
+      "shortMeaning": "The Name needs an uncluttered heart, not one crammed with gain.",
+      "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-extinguish-the-fire": {
+    "title": "Wandering will not quench this fire",
+    "summary": "This meets the restless search for clarity through more movement, more content, and more distance. The line says doubt is not burned out by travel but by the Guru's word within.",
+    "takeaway": "Movement does not cure inward doubt.",
+    "lifeApplication": "Before opening another tab, book, or plan, sit still with one clear line until the inner heat drops.",
+    "source": {
+      "shortMeaning": "Doubt is quenched inwardly, not by more wandering.",
+      "lifeApplication": "Sit still with one clear line before you go searching again."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-priceless-mind": {
+    "title": "Return before reopening every question",
+    "summary": "This meets the mind that keeps reopening what was already clear enough to obey. The line says doubt clears when the Guru's word is kept longer than the wandering mood.",
+    "takeaway": "Clarity returns when the mind stays with one clear line.",
+    "lifeApplication": "Before reopening every question, return to one clear line and stay with it.",
+    "source": {
+      "shortMeaning": "Clarity returns when the mind stays with one clear line.",
+      "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-stay-near-sangat": {
+    "title": "Go where selfishness can soften",
+    "summary": "This meets the day when private effort has turned stale and self-absorbed. The line says peace returns by joining true company, dropping selfishness, and letting the heart be carried with others.",
+    "takeaway": "Go where selfishness can soften.",
+    "lifeApplication": "When you start brooding alone, physically move toward sangat: the gurdwara, the call, the elder, the friend who makes truth easier. Do not let private weather make the next decision.",
+    "source": {
+      "shortMeaning": "True company softens selfishness and lets the heart merge into peace.",
+      "lifeApplication": "When private weather thickens, move toward the company that makes truth easier."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-buy-what-goes-with-you": {
+    "title": "Trade for what crosses the last threshold",
+    "summary": "This meets the day spent polishing what death cannot carry. The line asks for profit the soul can still recognize at departure.",
+    "takeaway": "Choose the profit that survives departure.",
+    "lifeApplication": "Before the next purchase, tab, or extra hour of striving, ask what in this effort could cross the final threshold with you.",
+    "source": {
+      "shortMeaning": "The only lasting wealth is what can cross the last threshold.",
+      "lifeApplication": "Before the next purchase, tab, or extra hour of striving, ask what in this effort could cross the final threshold with you."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-false-deals-empty-you": {
+    "title": "A deal can fatten the hand and empty the soul",
+    "summary": "This meets the bargain that looks profitable while leaving the heart thinner. The line asks what kind of gain will still know your name at the final crossing.",
+    "takeaway": "Refuse the profit that empties the soul.",
+    "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul.",
+    "source": {
+      "shortMeaning": "A deal is false when it enriches the hand and starves the soul.",
+      "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-profit-that-remains": {
+    "title": "Spend this day on profit that remains",
+    "summary": "This meets a day swollen with tasks and thin in meaning. The line says human life is a chance to meet, serve, and earn what actually remains.",
+    "takeaway": "Use this life to earn what remains.",
+    "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity.",
+    "source": {
+      "shortMeaning": "The real profit of human life is meeting, service, and return.",
+      "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-sweet-speech-humble-walk": {
+    "title": "Give the tongue a truer master",
+    "summary": "This meets the split between devout speech and ordinary conduct. The line says remembrance is real only when it sweetens the mouth and lowers the walk.",
+    "takeaway": "The tongue is corrected by praise, restraint, and truth.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "source": {
+      "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
+      "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-doubt-cut-from-within": {
+    "title": "Return before reopening every question",
+    "summary": "This meets the mind that keeps reopening what was already clear enough to obey. The line cuts doubt from the inside by returning you to lived remembrance.",
+    "takeaway": "Stay with the line until doubt loses its room.",
+    "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows.",
+    "source": {
+      "shortMeaning": "Doubt weakens when lived remembrance outruns inner argument.",
+      "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-one-pointed-naam": {
+    "title": "Keep one repetition until it changes you",
+    "summary": "This meets devotion that keeps restarting because it never stays with one repetition long enough to become habit. The line says steadiness is born from one clean return practiced past mood.",
+    "takeaway": "Keep one clean return past the mood.",
+    "lifeApplication": "When you want a fresher practice, keep today's repetition one round longer instead of reaching for novelty.",
+    "source": {
+      "shortMeaning": "Naam deepens when one return is kept past mood and vanity.",
+      "lifeApplication": "When novelty calls, keep today's repetition one round longer."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-search-is-not-settlement": {
+    "title": "Choose settlement over motion",
+    "summary": "This meets the search that keeps accelerating while clarity does not. The line says searching ripens only when it comes near shelter and holy company.",
+    "takeaway": "Better company teaches the wandering mind how to settle.",
+    "lifeApplication": "At the threshold, choose better placement before choosing more movement.",
+    "source": {
+      "shortMeaning": "Better company teaches the wandering mind how to settle.",
+      "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-patience-after-mercy": {
+    "title": "Mercy cools the body into patience",
+    "summary": "This meets the overheated mind after mercy has finally arrived. The line says patience is not forced; it is what settles when holy company cools mind and body and the Lord comes near within.",
+    "takeaway": "Patience arrives as cooling, not as strain.",
+    "lifeApplication": "When agitation rises, move toward the company, line, or prayer that actually cools you before replying.",
+    "source": {
+      "shortMeaning": "Holy company cools mind and body until patience can finally settle.",
+      "lifeApplication": "When agitation rises, move toward what cools you before replying."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-forgiveness-is-the-fast": {
+    "title": "Fast from retaliation",
+    "summary": "This meets the wound at the moment it wants another sentence, another defense, another moral advantage. The line calls forgiveness the real fast because it changes conduct before it changes feelings.",
+    "takeaway": "Forgiveness is a discipline, not a mood.",
+    "lifeApplication": "When resentment asks to be fed, keep the fast by withholding the rehearsed reply. Let one full breath and one full act of restraint answer first.",
+    "source": {
+      "shortMeaning": "Forgiveness is a discipline that changes conduct.",
+      "lifeApplication": "When resentment rises, answer first with restraint instead of retaliation."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-fear-dissolves-in-reverence": {
+    "title": "Let reverence replace the room fear built",
+    "summary": "This meets the heart that has grown used to living under threat. The line says fear loosens where reverence, right conduct, and contentment begin to govern instead.",
+    "takeaway": "Fear shrinks where reverence becomes the stronger habit.",
+    "lifeApplication": "When fear starts arranging the room, bring the body back under one reverent line before the mind builds another defense.",
+    "source": {
+      "shortMeaning": "Fear loosens where reverence and contentment start ruling the heart.",
+      "lifeApplication": "When fear starts arranging the room, return the body to one reverent line."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-heart-lotus-opens": {
+    "title": "Let the heart open under one clear word",
+    "summary": "This meets the closed inner life that keeps mistaking analysis for opening. The line says the heart opens where one clear word is kept long enough to bloom.",
+    "takeaway": "A heart opens where one clear word is kept.",
+    "lifeApplication": "Before reopening every question, stay with one trusted line until the chest softens around it.",
+    "source": {
+      "shortMeaning": "The heart opens when one trusted word is kept, not merely examined.",
+      "lifeApplication": "Stay with one trusted line until the chest softens around it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-wanderings-cease-in-sangat": {
+    "title": "Let the search end in company, not novelty",
+    "summary": "This meets a hunger that is sincere but keeps scattering itself across new voices and new roads. The line says wandering ends where guidance, company, and devotion finally become home.",
+    "takeaway": "Search matures when it comes home to shelter.",
+    "lifeApplication": "Before starting one more search, stay with the shelter already in front of you.",
+    "source": {
+      "shortMeaning": "Sincere search becomes home only in guidance, company, and devotion.",
+      "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-patience-listens-longer": {
+    "title": "Let waiting ripen into listening",
+    "summary": "This meets delay when it has already started souring into resentment. The line asks patience to listen longer than it complains so honor can return to the wait.",
+    "takeaway": "Listening turns waiting from bitterness toward honor.",
+    "lifeApplication": "At the next delay, listen before you let resentment narrate the wait.",
+    "source": {
+      "shortMeaning": "Listening turns waiting from bitterness toward honor.",
+      "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-true-wealth-trades-in-naam": {
+    "title": "Trade in Naam, not passing profit",
+    "summary": "This meets the appetite for gain that still leaves the heart poor. The line says true wealth is earned in Naam, and patience lets that trade ripen into honor.",
+    "takeaway": "Trade for the wealth that can honor the soul.",
+    "lifeApplication": "Before the next deal, ask what kind of profit will still honor the soul when the room is empty.",
+    "source": {
+      "shortMeaning": "True wealth is earned in Naam and ripens through patient living.",
+      "lifeApplication": "Before the next deal, ask what profit can still honor the soul."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-pure-conduct-outweighs-display": {
+    "reviewedByHuman": true
+  },
+  "guidance-ambrosial-speech-needs-praise": {
+    "title": "Give the tongue a truer master",
+    "summary": "This meets the mouth that wants to sound spiritual without becoming clean. The line says the truest religion is conduct sustained by Naam, not speech performing devotion.",
+    "takeaway": "The tongue is corrected by praise, restraint, and truth.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "source": {
+      "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
+      "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-heart-becomes-the-place": {
+    "title": "Let the life match the line",
+    "summary": "This meets the gap between devotional language and actual conduct. The line says the heart becomes holy only when the life beneath it turns clean.",
+    "takeaway": "Make the life worthy of the language.",
+    "lifeApplication": "Before speaking devotion again, clean one concrete act: the message, the errand, the debt, or the tone.",
+    "source": {
+      "shortMeaning": "The heart becomes a holy place through clean conduct and Naam.",
+      "lifeApplication": "Before speaking devotion again, clean one concrete act: the message, the errand, the debt, or the tone."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-held-close-not-abandoned": {
+    "title": "Held close in the hidden hour",
+    "summary": "This meets the hour when distance feels more believable than care. The line answers by naming a closeness the Lord Himself keeps.",
+    "takeaway": "Believe the clasp before the silence.",
+    "lifeApplication": "When rejection or silence starts narrating your worth, put a hand on the chest and repeat the line until closeness sounds truer than absence.",
+    "source": {
+      "shortMeaning": "The Lord keeps the humble servant near, against His own heart.",
+      "lifeApplication": "When silence starts sounding final, repeat the line until closeness feels truer than absence."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-cherished-like-a-child": {
+    "title": "Stand where you are cherished",
+    "summary": "This meets the ache to earn tenderness through achievement. The line does something simpler: it calls God father and mother and lets the soul stand there as a cherished child.",
+    "takeaway": "Stand in cherished dependence, not self-manufacture.",
+    "lifeApplication": "At the mirror, after the silence, or before you send the proving message, soften the shoulders and speak to the Lord as a child already being kept.",
+    "source": {
+      "shortMeaning": "The soul is cherished as a child, not measured as a project.",
+      "lifeApplication": "Before the proving message leaves you, speak to the Lord as a child already being held."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-nearness-is-bigger-than-status": {
+    "title": "Nearness is worth more than what desire begs for",
+    "summary": "This meets the scramble for wealth, notice, and the kind of desire that turns the self into a beggar. The line says the Lord holds the humble servant near, and that nearness outranks what craving asks from the room.",
+    "takeaway": "Nearness outranks what desire begs for.",
+    "lifeApplication": "Before checking who noticed, bought, or wanted you, ask whether the heart is nearer to the Lord or merely hungrier for proof.",
+    "source": {
+      "shortMeaning": "The Lord's nearness outranks the urges that beg for wealth and notice.",
+      "lifeApplication": "Before seeking proof from the room, ask whether the heart is actually nearer to the Lord."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-forgiveness-opens-the-room": {
+    "title": "Let forgiveness widen the whole room",
+    "summary": "This meets the moment when peace returns to you but has not yet been trusted with anyone else. The line says forgiveness should spread peace outward, not end in private relief.",
+    "takeaway": "Forgiveness should widen the room, not only soothe you.",
+    "lifeApplication": "After forgiveness is given or received, lower the temperature for everyone nearby: soften the next answer, the next glance, and the next version of the story.",
+    "source": {
+      "shortMeaning": "Forgiveness turns private relief into shared peace.",
+      "lifeApplication": "After forgiveness, let the next answer carry peace farther than your own relief."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-sing-bani-into-peace": {
+    "title": "Keep peace alive with Bani",
+    "summary": "This meets the moment after relief, when silence could either deepen into devotion or drift back into noise. The line says lasting peace has to be sung, kept, and fed by Bani.",
+    "takeaway": "Sustain peace with Bani before noise returns.",
+    "lifeApplication": "When the room finally settles, speak one line of Bani aloud before reaching for chatter, scrolling, or analysis.",
+    "source": {
+      "shortMeaning": "Peace stays living when Bani keeps sounding within it.",
+      "lifeApplication": "When relief arrives, speak Bani before noise takes the room back."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-grace-settles-what-you-cannot": {
+    "title": "Let grace settle what you cannot",
+    "summary": "This meets the part of life you keep trying to force into resolution. The line says grace settles what strain cannot, and peace grows where the heart stops insisting on control.",
+    "takeaway": "Grace settles what strain keeps worsening.",
+    "lifeApplication": "When the problem will not yield, stop tightening around it and ask what grace is already offering in the middle of it.",
+    "source": {
+      "shortMeaning": "Grace settles what effort alone keeps stirring up.",
+      "lifeApplication": "When strain fails, pause and ask what grace is already offering."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-hukam-inside-everything-2": {
+    "title": "Stop arguing with what already stands",
+    "summary": "This meets the mind that still wants exceptions to Hukam. The line says everything stands within that order, and ego thins when this is actually seen.",
+    "takeaway": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
+    "source": {
+      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-human-birth-is-chance-2": {
+    "title": "Do not spend a rare life like loose change",
+    "summary": "This meets a day filling up while the reason for being alive grows faint. The line says human life is rare meeting ground, not something to spend by drift.",
+    "takeaway": "Do not waste a life meant for meeting and service.",
+    "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity.",
+    "source": {
+      "shortMeaning": "Human life is rare meeting ground, not spare time to waste.",
+      "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-ego-is-disease-2": {
+    "title": "Take the cure, not the diagnosis",
+    "summary": "This meets the moment when recognizing ego starts becoming one more intelligent pose. The line insists that naming the sickness is not enough; the medicine has to be taken.",
+    "takeaway": "Take the Guru's medicine, not the clever diagnosis.",
+    "lifeApplication": "When ego flares in a conversation, apology, or success, pause before the sentence lands and take one lowering action: listen, yield, or ask forgiveness.",
+    "source": {
+      "shortMeaning": "Ego stops being theory when the Guru's cure is actually taken.",
+      "lifeApplication": "When ego flares, take one lowering action before you let it speak."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-ego-is-disease-3": {
+    "title": "Do not call the fever your personality",
+    "summary": "This meets the self getting mistaken for instinct, honesty, or force of character. The line says ego is a fever, and the Guru's medicine has to be taken before it starts feeling natural.",
+    "takeaway": "Treat ego as illness, not identity.",
+    "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it.",
+    "source": {
+      "shortMeaning": "Ego is a fever of selfhood, not your truest voice.",
+      "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-detached-and-steady-2": {
+    "title": "Hold the gift without gripping it",
+    "summary": "This meets the mind clinging to what it cannot finally keep. The line says steadiness grows where attachment loses its authority and the gift is received without possession.",
+    "takeaway": "Love is steadied by release, not possession.",
+    "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "source": {
+      "shortMeaning": "Love is steadied by release, not possession.",
+      "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-forgiveness-opens-lasting-peace-2": {
+    "title": "Stop feeding the rehearsed wound",
+    "summary": "This meets the wound after it has already become a daily rehearsal. The line says lasting peace arrives when forgiveness ripens into return, not when replay gets one more turn.",
+    "takeaway": "Release becomes possible when return matters more than replay.",
+    "lifeApplication": "When the old sentence rises again, release it before it claims the room.",
+    "source": {
+      "shortMeaning": "Release becomes possible when return matters more than replay.",
+      "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-150-3": {
+    "title": "Stop arguing with what already stands",
+    "summary": "This meets the mind resisting what has happened because failure feels unbearable. The line says peace begins when truth about the loss is brought into mercy instead of argument.",
+    "takeaway": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
+    "source": {
+      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-178-2": {
+    "title": "Choose settlement over motion",
+    "summary": "This meets the moment when movement is increasing but clarity is not. The line says stay still long enough for fresh Naam to settle before motion takes over again.",
+    "takeaway": "Better company teaches the wandering mind how to settle.",
+    "lifeApplication": "At the threshold, choose better placement before choosing more movement.",
+    "source": {
+      "shortMeaning": "Better company teaches the wandering mind how to settle.",
+      "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-227-2": {
+    "title": "Receive the belonging you did not manufacture",
+    "summary": "This meets the self that keeps trying to secure belonging through position or force. The line says belonging is received from the One who already holds everyone.",
+    "takeaway": "Belonging is received, not manufactured.",
+    "lifeApplication": "Before defending your place in the room, remember who already holds you there.",
+    "source": {
+      "shortMeaning": "Belonging is received from the One who already holds everyone.",
+      "lifeApplication": "Before defending your place, remember who already holds you there."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-231-3": {
+    "title": "Call courage what happens after ego kneels",
+    "summary": "This meets the self that still mistakes dominance for strength. The line says courage begins where ego kneels, not where it swells.",
+    "takeaway": "Count courage by what ego can surrender.",
+    "lifeApplication": "Before proving strength again, lower your voice, yield one inch, and let that be the braver act.",
+    "source": {
+      "shortMeaning": "Courage begins where ego kneels instead of swelling.",
+      "lifeApplication": "Before proving strength, choose the act that lowers ego instead."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-360-1": {
+    "title": "Enter the teaching as given",
+    "summary": "This meets the mind that wants even the path on its own terms. The heading itself slows you down: entry into the teaching is received, not improvised.",
+    "takeaway": "Receive the path before trying to master it.",
+    "lifeApplication": "Before rushing into the next reading or practice, slow down enough to receive it in the form the Guru gives. Let reverence set the tone before effort does.",
+    "source": {
+      "shortMeaning": "Even the doorway into the teaching is received, not self-composed.",
+      "lifeApplication": "Before beginning, receive the path as given instead of improvising yourself into it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-360-2": {
+    "title": "Begin under the Name before anything else",
+    "summary": "This meets the tired mind that wants relief before orientation. The opening places everything under the One, Truth, and the Guru's grace before any other claim is allowed to speak.",
+    "takeaway": "Begin under the Name before asking for relief.",
+    "lifeApplication": "When weariness makes you grab for fixes, place the mind under the Name first. Let the One re-order the room before you decide what comes next.",
+    "source": {
+      "shortMeaning": "The opening places the heart under the One, Truth, and the Guru's grace.",
+      "lifeApplication": "When weariness scatters you, begin again under the Name before reaching for relief."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-360-3": {
+    "title": "Trust the cooling house",
+    "summary": "This meets weariness that keeps spending trust in the wrong places. The line says the Guru is cooling shelter and lasting wealth, and peace follows when the mind rests there.",
+    "takeaway": "Place the mind's faith in lasting wealth.",
+    "lifeApplication": "When you feel spent, stop looking for another stimulant or strategy. Put the mind back into the Guru's shelter and let peace cool the body.",
+    "source": {
+      "shortMeaning": "The Guru is cooling shelter and lasting wealth for a tired mind.",
+      "lifeApplication": "When you feel spent, put the mind back into the Guru's shelter before reaching for another fix."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-511-3": {
+    "title": "Grace reaches first",
+    "summary": "This meets the heart that keeps assuming kindness must first be earned. The line says grace is what turns nearness into something tasted rather than merely talked about.",
+    "takeaway": "Grace meets the soul before worthiness is proven.",
+    "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there.",
+    "source": {
+      "shortMeaning": "Grace meets the soul before worthiness is proven.",
+      "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-561-3": {
+    "title": "Let hope outrank the world's reach",
+    "summary": "This meets the hour when visible power starts feeling more real than divine care. The line says hope in the Lord shrinks what the world can actually threaten.",
+    "takeaway": "Let hope outrank whatever the world can reach.",
+    "lifeApplication": "When the room feels ruled by pressure or power, remember what the world can reach and what it cannot.",
+    "source": {
+      "shortMeaning": "Hope in the Lord outranks the reach of the world.",
+      "lifeApplication": "When pressure swells, remember what the world can reach and what it cannot."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-565-3": {
+    "title": "Leave their portion and keep your own heart",
+    "summary": "This meets the mind that keeps watching another life instead of tending its own. The line returns wholeness to the heart that keeps Naam rather than score.",
+    "takeaway": "Leave their portion and keep your own heart.",
+    "lifeApplication": "Before naming someone else's advantage, put your hand on your chest and name the work, prayer, or duty actually given to you.",
+    "source": {
+      "shortMeaning": "Wholeness returns when the heart leaves another person's portion.",
+      "lifeApplication": "Before naming someone else's advantage, put your hand on your chest and name the work, prayer, or duty actually given to you."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-566-3": {
+    "title": "Take comparison to the washing place",
+    "summary": "This meets comparison after it has already dirtied the heart. The line says clean company and Naam are stronger than the measuring habit.",
+    "takeaway": "Take comparison to the washing place.",
+    "lifeApplication": "When envy rises, move toward the sangat, song, or prayer that leaves the heart cleaner than it found it.",
+    "source": {
+      "shortMeaning": "Sangat and Naam wash comparison out of the heart.",
+      "lifeApplication": "When envy rises, move toward the sangat, song, or prayer that leaves the heart cleaner than it found it."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-645-3": {
+    "title": "Stand where fear cannot rule",
+    "summary": "This meets the mind starting to organize itself around threat instead of truth. The line calls for shelter before fear becomes the only voice in the room.",
+    "takeaway": "Reverence gives the heart another center besides fear.",
+    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you.",
+    "source": {
+      "shortMeaning": "Reverence gives the heart another center besides fear.",
+      "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-705-3": {
+    "title": "Serve with one gathered awareness",
+    "summary": "This meets the split between outward service and an inwardly scattered mind. The line says service becomes true when awareness and love are gathered toward the One, and the self grows low enough to mean it.",
+    "takeaway": "Gather the mind before you call it service.",
+    "lifeApplication": "Before the next act of seva, lower the self, gather the mind, and do one thing with undivided love.",
+    "source": {
+      "shortMeaning": "Service becomes true when love is gathered toward the One.",
+      "lifeApplication": "Before seva, gather the mind and lower the self."
+    },
+    "reviewedByHuman": true
+  },
+  "guidance-generated-736-3": {
+    "title": "Seek the humble servant, not the impressive name",
+    "summary": "This meets the heart still impressed by size, rank, and visible importance. The line says help is found with the humble servant, not with the world's celebrated names.",
+    "takeaway": "Seek the humble servant before the impressive name.",
+    "lifeApplication": "Before leaning toward the loudest or most decorated voice, ask who in the room is actually carrying humility.",
+    "source": {
+      "shortMeaning": "The humble servant carries more help than the impressive name.",
+      "lifeApplication": "Before choosing the impressive voice, look for the one carrying humility."
     },
     "reviewedByHuman": true
   }

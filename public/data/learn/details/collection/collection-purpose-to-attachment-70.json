@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-to-attachment-70",
-  "title": "Purpose to Attachment",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru teaches love without possession and steadiness without denial.",
+  "title": "When calling becomes something to possess",
+  "subtitle": "When service starts asking to be owned, defended, and admired",
+  "description": "These readings catch holy work at the instant it stops being offering and starts becoming private property.",
   "durationLabel": "6-step journey",
   "themes": [
     "purpose",
@@ -14,8 +14,8 @@
       524,
       525
     ],
-    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
-    "lifeApplication": "Let one part of the day answer that opportunity directly."
+    "shortMeaning": "Calling darkens when service is clutched as possession instead of entrusted work.",
+    "lifeApplication": "When the work feels threatened, place it back before the Guru before you start protecting it like yourself."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru teaches love without possession and steadiness without denial.",
+      "coreClaim": "These readings catch holy work at the instant it stops being offering and starts becoming private property.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When service starts asking to be owned, defended, and admired",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
-      "clarity": 3.95,
-      "specificity": 4.31,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.86
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

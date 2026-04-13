@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-bundle",
   "title": "Hukam in one shorter sitting",
-  "subtitle": "A compact bundle for hukam",
-  "description": "The mind wants reality to arrive on self-approved terms. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when hukam is already close",
+  "description": "A brief return for the hour when reality is refusing your script. It helps the heart receive the day before fighting it.",
   "durationLabel": "3-step bundle",
   "themes": [
     "hukam"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind wants reality to arrive on self-approved terms. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A brief return for the hour when reality is refusing your script. It helps the heart receive the day before fighting it.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "A compact bundle for hukam",
+      "turn": "A shorter sitting for when hukam is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.75,
-      "specificity": 4.17,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.77
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.06
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

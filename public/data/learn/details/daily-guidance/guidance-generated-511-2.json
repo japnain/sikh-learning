@@ -35,30 +35,31 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Keep returning to this turn: in the Sangat, the Holy Congregation, the bitter becomes sweet.",
+      "turn": "Ask for the mercy that turns nearness into tasted sweetness.",
       "practicalImplication": "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.66,
+      "faithfulness": 4.02,
       "clarity": 3.87,
-      "specificity": 4.62,
+      "specificity": 4.96,
       "emotionalHonesty": 3.54,
       "usefulness": 4.64,
       "beauty": 3.95,
-      "overall": 4.01
+      "overall": 4.15
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

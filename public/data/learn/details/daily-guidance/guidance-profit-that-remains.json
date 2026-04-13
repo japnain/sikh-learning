@@ -1,9 +1,9 @@
 {
   "id": "guidance-profit-that-remains",
-  "title": "The real profit leaves the mind lighter, not heavier.",
-  "summary": "The gain Guru approves is tied to Naam, fearlessness, and released confusion, not to accumulation for its own sake.",
-  "takeaway": "Profit should increase courage and clarity.",
-  "lifeApplication": "Judge today's work by whether it made the mind cleaner, steadier, and more fearless.",
+  "title": "Spend this day on profit that remains",
+  "summary": "This meets a day swollen with tasks and thin in meaning. The line says human life is a chance to meet, serve, and earn what actually remains.",
+  "takeaway": "Use this life to earn what remains.",
+  "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity.",
   "source": {
     "deepDiveId": "shabad-buy-what-goes-with-you",
     "verseIds": [
@@ -11,8 +11,8 @@
       945,
       946
     ],
-    "shortMeaning": "Instruction, praise, and Naam create a profit that removes burden.",
-    "lifeApplication": "Let your return on effort include clarity of soul."
+    "shortMeaning": "The real profit of human life is meeting, service, and return.",
+    "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Instruction, praise, and Naam create a profit that removes burden.",
+      "coreClaim": "The real profit of human life is meeting, service, and return.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Invest in what crosses the threshold with you.",
-      "practicalImplication": "Judge today's work by whether it made the mind cleaner, steadier, and more fearless.",
+      "turn": "Pause the deal and choose the profit that can follow you.",
+      "practicalImplication": "Before drifting into another task, choose one act that treats life as opportunity.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.97,
+      "faithfulness": 4.08,
       "clarity": 4.35,
-      "specificity": 4.73,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.66,
+      "specificity": 4.66,
+      "emotionalHonesty": 3,
+      "usefulness": 4.2,
       "beauty": 4.21,
-      "overall": 4.04
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

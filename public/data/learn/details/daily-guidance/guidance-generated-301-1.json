@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-301-1",
-  "title": "God Is The Breath Of Life",
-  "summary": "Forgiveness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "God is the Breath of Life of my soul, the Support of my mind",
-  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+  "title": "Let the mind lean where life comes from",
+  "summary": "This meets the worn heart that keeps trying to support itself alone. The line places life and mental support back in the One who already carries them.",
+  "takeaway": "Lean the mind where life is given.",
+  "lifeApplication": "Before you brace for the whole day by yourself, stop at the doorway and remember who is holding your breath. Let support be received before it is manufactured.",
   "source": {
     "deepDiveId": "shabad-generated-301",
     "verseIds": [
       4145
     ],
-    "shortMeaning": "God is the Breath of Life of my soul, the Support of my mind",
-    "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Lord is the mind's support and the soul's breath.",
+    "lifeApplication": "When the mind braces alone, return it to the One carrying its breath."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -23,7 +23,7 @@
     "collection-shame-to-welcome"
   ],
   "rotation": {
-    "theme": "forgiveness",
+    "theme": "anxiety",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "God is the Breath of Life of my soul, the Support of my mind",
+      "coreClaim": "The Lord is the mind's support and the soul's breath.",
       "emotionalState": "resentful, hurt, stuck",
-      "turn": "Keep returning to this turn: When my Lord and Master blessed me with His Mercy, O Nanak, then His.",
-      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Begin with the part of the day already in front of you.",
+      "turn": "Let the mind rest on the One already carrying its life.",
+      "practicalImplication": "Before you brace for the whole day by yourself, stop at the doorway and remember who is holding your breath. Let support be received before it is manufactured.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.63,
-      "clarity": 3.93,
-      "specificity": 4.23,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.64,
-      "overall": 3.81
+      "faithfulness": 4.2,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.37,
+      "overall": 4.39
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

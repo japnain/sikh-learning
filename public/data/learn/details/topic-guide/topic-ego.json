@@ -67,10 +67,10 @@
           20963,
           20964
         ],
-        "shortMeaning": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad; ego is a chronic disease, but it contains its own cure as well",
-        "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line stay in charge of what comes next."
+        "shortMeaning": "Ego is uncovered where it was pretending to be reason.",
+        "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
       },
-      "explanation": "The shabad names ego as illness rather than identity. That one move keeps the whole theme honest: pride is not a personality quirk to manage more elegantly, but a condition that requires grace and real treatment."
+      "explanation": "The verse exposes ego exactly where it sounds most reasonable. What felt like instinct is revealed as self-protection."
     },
     {
       "source": {
@@ -80,10 +80,10 @@
           1290,
           1296
         ],
-        "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-        "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line stay in charge of what comes next."
+        "shortMeaning": "The self is lowered by praise before it can crown itself again.",
+        "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
       },
-      "explanation": "Haumai is corrected here through companionship, speech, and posture. Humility is not an abstract mood; it becomes visible in the way the self stops insisting on sharpness and display."
+      "explanation": "It gives the self a truer task: bow, serve, and stop auditioning for centrality."
     },
     {
       "source": {
@@ -92,10 +92,10 @@
           290,
           292
         ],
-        "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
-        "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line stay in charge of what comes next."
+        "shortMeaning": "Naam interrupts ego before it can become the room's center.",
+        "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
       },
-      "explanation": "The line returns the struggle to its proper location. Ego is not conquered by winning the room, but by mastering the inner field where the self keeps trying to enthrone itself."
+      "explanation": "The line cuts ego down by returning it to Naam rather than applause or argument."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -109,11 +109,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Ego in ordinary interactions",
-      "issueStatement": "Most ego is not loud. It appears in the tiny insistences, interpretations, and quiet resentments that fill an ordinary day.",
-      "centralInsight": "The Guru brings ego into view by exposing how even casual interactions become self-referential when remembrance is thin.",
-      "practicalReflection": "If the day is full of inner commentary about being seen rightly, thanked properly, or treated specially, the self has taken too much space.",
-      "actionPrompt": "In one ordinary interaction today, choose listening over self-assertion and let the moment remain unedited by pride.",
+      "title": "When ego keeps making the self too large inside the ordinary day",
+      "issueStatement": "The self keeps pushing itself to the center of the room. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
+      "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani does not leave the ordinary day outside the work of return.",
+      "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
+      "actionPrompt": "In the next plain moment of the day, before defending yourself, ask where the self wants the line to confirm it.",
       "searchTerms": [
         "ego",
         "haumai",
@@ -138,10 +138,10 @@
             "verseIds": [
               20961
             ],
-            "shortMeaning": "Where does ego come from? How can it be removed",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by steadier return.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "The day changes when ego is treated as illness instead of instinct. That diagnosis makes ordinary self-importance visible before it matures into full speech or resentment."
+          "explanation": "In the ordinary day, the verse turns ego toward steadier return instead of self-enclosure."
         },
         {
           "source": {
@@ -151,10 +151,10 @@
               53371,
               53372
             ],
-            "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Daily ego weakens when the self stops making everything about image and returns to honest work and open-handed duty. The path is plain enough that pride cannot hide behind complexity."
+          "explanation": "This keeps the day from shrinking around ego; the heart is returned to the Guru's guidance."
         },
         {
           "source": {
@@ -163,48 +163,49 @@
               11743,
               11747
             ],
-            "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "Ego is checked here by Naam and praise.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Small ego is often most obvious in the mouth and manner. This line keeps humility concrete by tying inward remembrance to outward conduct and speech."
+          "explanation": "The daily moment changes here because ego is not left alone with itself."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-ego:daily",
         "evidence": {
-          "coreClaim": "The Guru brings ego into view by exposing how even casual interactions become self-referential when remembrance is thin.",
+          "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani does not leave the ordinary day outside the work of return.",
           "emotionalState": "defensive, offended, self-important",
-          "turn": "Most ego is not loud. It appears in the tiny insistences, interpretations, and quiet resentments that fill an ordinary day.",
-          "practicalImplication": "In one ordinary interaction today, choose listening over self-assertion and let the moment remain unedited by pride.",
+          "turn": "The self keeps pushing itself to the center of the room. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
+          "practicalImplication": "In the next plain moment of the day, before defending yourself, ask where the self wants the line to confirm it.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 4.29,
           "specificity": 5,
-          "emotionalHonesty": 3.18,
-          "usefulness": 4.8,
-          "beauty": 4.53,
-          "overall": 4.38
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.26,
+          "beauty": 4.26,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
-          "usefulness"
+          "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Ego when pressure makes defense feel necessary",
-      "issueStatement": "The moment tightens, and suddenly sharpness feels responsible. The self starts calling control wisdom and defensiveness honesty.",
-      "centralInsight": "Gurbani does not let pressure rename ego as strength. Humility is what keeps fear from climbing into the driver's seat.",
-      "practicalReflection": "The real loss is not only what gets said in heat. It is how quickly the self begins worshipping its own alarm.",
-      "actionPrompt": "Before you defend yourself, lower the temperature of one sentence and ask what truth would sound like without self-protection.",
+      "title": "When pressure exposes what ego reaches for",
+      "issueStatement": "The self keeps pushing itself to the center of the room. Pressure exposes what the heart reaches for when it feels cornered.",
+      "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
+      "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
+      "actionPrompt": "At the first sign of strain, before defending yourself, ask where the self wants the line to confirm it.",
       "searchTerms": [
         "ego",
         "haumai",
@@ -232,10 +233,10 @@
               20963,
               20964
             ],
-            "shortMeaning": "If the Lord grants His Grace, one acts according to the Teachings of the Guru's Shabad; ego is a chronic disease, but it contains its own cure as well",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through the Guru's guidance.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "This keeps the diagnosis clear in the pressured moment: ego is not a useful weapon you happen to be holding well. It is the illness itself, and its cure arrives through grace and Guru-aligned action."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -244,10 +245,10 @@
               1288,
               1290
             ],
-            "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through Naam and praise.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Pressure usually argues for urgency in tone. Gurbani answers by tying peace to saintly company and making humble, sweet speech a mark of inward alignment rather than social polish."
+          "explanation": "Under pressure, the verse steadies ego by returning the heart to Naam and praise."
         },
         {
           "source": {
@@ -257,48 +258,49 @@
               12943,
               12944
             ],
-            "shortMeaning": "He is to meditate constantly within his heart on the Name of the Lord; is to obey the Guru's Commands with all his mind",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Ego is not left to rule the strained moment.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "The line is practical: obey, stop calling attention to yourself, keep Naam within. When ego feels threatened, this is the kind of smaller posture that keeps the heart from hardening."
+          "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-ego:pressure",
         "evidence": {
-          "coreClaim": "Gurbani does not let pressure rename ego as strength. Humility is what keeps fear from climbing into the driver's seat.",
+          "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
           "emotionalState": "defensive, offended, self-important",
-          "turn": "The moment tightens, and suddenly sharpness feels responsible. The self starts calling control wisdom and defensiveness honesty.",
-          "practicalImplication": "Before you defend yourself, lower the temperature of one sentence and ask what truth would sound like without self-protection.",
+          "turn": "The self keeps pushing itself to the center of the room. Pressure exposes what the heart reaches for when it feels cornered.",
+          "practicalImplication": "At the first sign of strain, before defending yourself, ask where the self wants the line to confirm it.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 4.96,
-          "emotionalHonesty": 3.9,
-          "usefulness": 3.44,
-          "beauty": 4.21,
-          "overall": 4.23
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.82,
+          "beauty": 4.45,
+          "overall": 4.27
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Returning after pride has already spoken",
-      "issueStatement": "The sentence landed, the posture hardened, or the story bent itself around your innocence, and now the ego wants to manage the repair so you still come out looking right.",
-      "centralInsight": "Gurbani repairs pride by lowering the self before it gets to narrate its own humility. The work is confession, softened speech, and willingness to lose the last word.",
-      "practicalReflection": "Pride is not really healed when the apology explains you beautifully. It softens when truth is allowed to cost you something.",
-      "actionPrompt": "Tell the plain truth, repair the harm you can name, and do not reach back for the last protecting sentence.",
+      "title": "When repair has to begin after the mind has wandered",
+      "issueStatement": "The self keeps pushing itself to the center of the room. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
+      "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
+      "actionPrompt": "After the slip is named cleanly, before defending yourself, ask where the self wants the line to confirm it.",
       "searchTerms": [
         "ego",
         "haumai",
@@ -327,10 +329,10 @@
               3760,
               3762
             ],
-            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through holy company.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Repair starts better from need than from self-explanation. The child asks for the path and comes honestly into sangat, which is a truer beginning than one more brilliant defense of the self."
+          "explanation": "Repair stays honest here because ego is answered without theatre."
         },
         {
           "source": {
@@ -340,10 +342,10 @@
               37476,
               37477
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "After the slip, return stays open through received care.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "The point is not to look humble, but to become small enough again to be kept close. This line makes return relational rather than performative."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -353,48 +355,49 @@
               1290,
               1296
             ],
-            "shortMeaning": "Her speech is sweet, and her way of life is humble. She enjoys the Bed of her Husband Lord; chant the Name of the Lord, and find peace",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Ego is not allowed to become identity here.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "After pride has spoken, the repair is audible and embodied. Humble speech and saintly company are not cosmetic touches here; they are the actual path back from self-rule."
+          "explanation": "After the slip, the verse keeps return possible through Naam and praise."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-ego:repair",
         "evidence": {
-          "coreClaim": "Gurbani repairs pride by lowering the self before it gets to narrate its own humility. The work is confession, softened speech, and willingness to lose the last word.",
+          "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
           "emotionalState": "alone, yearning, dependent",
-          "turn": "The sentence landed, the posture hardened, or the story bent itself around your innocence, and now the ego wants to manage the repair so you still come out looking right.",
-          "practicalImplication": "Tell the plain truth, repair the harm you can name, and do not reach back for the last protecting sentence.",
+          "turn": "The self keeps pushing itself to the center of the room. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "After the slip is named cleanly, before defending yourself, ask where the self wants the line to confirm it.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.6,
-          "emotionalHonesty": 3.36,
-          "usefulness": 3.38,
-          "beauty": 4.37,
-          "overall": 4.11
+          "specificity": 5,
+          "emotionalHonesty": 3.72,
+          "usefulness": 4.8,
+          "beauty": 4.53,
+          "overall": 4.46
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "usefulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Practicing a smaller self",
-      "issueStatement": "Even after insight arrives, the ego keeps rebuilding itself through habit, especially in the places where competence or hurt feel most personal.",
-      "centralInsight": "Humility becomes stable through practice: repeated acts that return credit, soften speech, and keep the self from narrating everything back to itself.",
-      "practicalReflection": "The self shrinks healthily when service, praise, and truth are given more room than self-display.",
-      "actionPrompt": "Choose one place where you usually reach for recognition and practice hidden goodness there until the hunger weakens.",
+      "title": "When ego needs a rule that interrupts it early",
+      "issueStatement": "The self keeps pushing itself to the center of the room. The need now is a kept interruption, not one sharp moment of insight.",
+      "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Repeated interruption teaches the self that it does not have to stay in the middle.",
+      "practicalReflection": "Ego returns fast because it is fluent. A practice matters here because the interruption has to be learned before the defense feels necessary.",
+      "actionPrompt": "Choose one daily cue when the self usually swells, and answer it by listening longer than you defend.",
       "searchTerms": [
         "ego",
         "haumai",
@@ -422,10 +425,10 @@
               290,
               292
             ],
-            "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body; see the brotherhood of all mankind as the highest order of Yogis",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Practice starts by relocating the battlefield. Humility is not passive personality change; it is repeated inner governance where the mind stops obeying the ego's first demand."
+          "explanation": "As practice, the verse keeps returning ego to Naam and praise."
         },
         {
           "source": {
@@ -435,10 +438,10 @@
               12943,
               12944
             ],
-            "shortMeaning": "He is to meditate constantly within his heart on the Name of the Lord; is to obey the Guru's Commands with all his mind",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Service trains smallness when it is done under the Guru rather than for visibility. The practice matters because it gives the self less room to curate its own importance."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -448,38 +451,39 @@
               11747,
               11748
             ],
-            "shortMeaning": "is to chant the Name of the Lord and maintain pure conduct; is to chant the Name of the Lord in the heart, forever",
-            "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives ego a keepable form through Naam and praise.",
+            "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
           },
-          "explanation": "Stable humility eventually becomes recognizable in conduct. The line keeps practice from staying internal by asking whether speech and life now carry the same lowered posture."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-ego:practice",
         "evidence": {
-          "coreClaim": "Humility becomes stable through practice: repeated acts that return credit, soften speech, and keep the self from narrating everything back to itself.",
+          "coreClaim": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Repeated interruption teaches the self that it does not have to stay in the middle.",
           "emotionalState": "reactive, performing, scattered",
-          "turn": "Even after insight arrives, the ego keeps rebuilding itself through habit, especially in the places where competence or hurt feel most personal.",
-          "practicalImplication": "Choose one place where you usually reach for recognition and practice hidden goodness there until the hunger weakens.",
+          "turn": "The self keeps pushing itself to the center of the room. The need now is a kept interruption, not one sharp moment of insight.",
+          "practicalImplication": "Choose one daily cue when the self usually swells, and answer it by listening longer than you defend.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
+          "specificity": 4.96,
           "emotionalHonesty": 3.18,
-          "usefulness": 3.98,
-          "beauty": 4.53,
-          "overall": 4.22
+          "usefulness": 4.2,
+          "beauty": 4.69,
+          "overall": 4.31
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -515,7 +519,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:ego",
     "evidence": {
@@ -530,14 +534,15 @@
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
+      "usefulness": 4.8,
       "beauty": 4.37,
-      "overall": 4.32
+      "overall": 4.38
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

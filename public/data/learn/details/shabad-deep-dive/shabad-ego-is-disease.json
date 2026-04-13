@@ -1,10 +1,10 @@
 {
   "id": "shabad-ego-is-disease",
-  "title": "Ego Is the Disease and the Clue",
+  "title": "Ego is a chronic illness with a cure inside it",
   "subtitle": "Raag Aasaa",
-  "summary": "Guru Angad maps ego honestly: where it arises, what it does, and how grace turns the same diagnosis into a cure.",
-  "whyItMatters": "It is a precise shabad for anger, defensiveness, comparison, and the feeling that every conflict is happening outside the self.",
-  "takeaway": "The cure begins when ego is seen as illness rather than identity.",
+  "summary": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
+  "whyItMatters": "This is for the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay with this shabad after conflict, and it turns self-diagnosis from shame into treatment.",
+  "takeaway": "Treat ego as illness and keep the Guru's medicine near.",
   "themes": [
     "ego",
     "anger",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "Describes ego as a pattern shaping action and rebirth.",
-    "Asks directly how ego is removed rather than merely condemned.",
-    "Answers with grace and the lived discipline of Guru's Shabad."
+    "It begins by naming ego as the force behind ordinary action and repeated bondage.",
+    "The middle asks the decisive question: where does ego arise, and how does it leave?",
+    "It ends by locating the cure in grace and in living the Guru's Shabad."
   ],
   "keyVerseIds": [
     20961,
@@ -131,25 +131,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Angad maps ego honestly: where it arises, what it does, and how grace turns the same diagnosis into a cure.",
+      "coreClaim": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "Asks directly how ego is removed rather than merely condemned.",
-      "practicalImplication": "The cure begins when ego is seen as illness rather than identity.",
+      "turn": "The middle asks the decisive question: where does ego arise, and how does it leave?",
+      "practicalImplication": "This is for the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay with this shabad after conflict, and it turns self-diagnosis from shame into treatment. Treat ego as illness and keep the Guru's medicine near.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
+      "clarity": 4.29,
       "specificity": 4.78,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 4.09
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.98,
+      "beauty": 4.29,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

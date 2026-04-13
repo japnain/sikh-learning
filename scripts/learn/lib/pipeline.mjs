@@ -250,6 +250,13 @@ function trimToSentence(value, wordLimit = 14) {
   return `${trimmed.join(" ").replace(/[,:;.!?]+$/, "")}`
 }
 
+function stripActionLeadIn(value) {
+  const cleaned = cleanSentence(String(value ?? "").replace(/[.!?]+$/, ""))
+  if (!cleaned) return ""
+  const match = cleaned.match(/^(?:Before|When|At|After|For|In|On|As soon as)\b[^,]*,\s*(.+)$/i)
+  return match ? cleanSentence(match[1]) : cleaned
+}
+
 function trimTitleWords(words, maxWords = 7) {
   const trimmed = words.slice(0, Math.min(maxWords, words.length))
   while (trimmed.length >= 3) {
@@ -736,7 +743,15 @@ function pickScenarioVerseIds(deepDive, scenarioKey, index) {
 }
 
 function createTopicSourceLifeApplication(family, scenarioKey) {
-  return ""
+  const core = lowerFirst(stripActionLeadIn(family.actionBase))
+  const variants = {
+    overview: `At the next real cue in the body or room, ${core}.`,
+    daily: `In the next plain stretch of the day, ${core}.`,
+    pressure: `As soon as the body tightens under strain, ${core}.`,
+    repair: `After the miss is visible and before the excuse arrives, ${core}.`,
+    practice: `At one fixed cue you can keep this week, ${core}.`,
+  }
+  return variants[scenarioKey] ?? `${titleCase(family.shortTitle)} is practiced here by how you answer the next moment.`
 }
 
 function createTopicExcerpt(deepDive, family, scenarioKey, index, explanationFactory) {
@@ -2053,6 +2068,410 @@ function clearsEditorialThresholds(editorial, thresholds) {
   )
 }
 
+const TOPIC_EDITORIAL_THRESHOLDS = {
+  overall: 3.75,
+  faithfulness: 3.7,
+  clarity: 2.9,
+  usefulness: 3,
+  beauty: 3.1,
+}
+
+function getEditorialThresholds(kind) {
+  if (kind === "daily-guidance") return PREMIUM_EDITORIAL_THRESHOLDS["daily-guidance"]
+  if (kind === "shabad-deep-dive") return PREMIUM_EDITORIAL_THRESHOLDS["shabad-deep-dive"]
+  if (kind === "collection") return PREMIUM_EDITORIAL_THRESHOLDS.collection
+  if (kind === "topic-guide" || kind === "topic-scenario") return TOPIC_EDITORIAL_THRESHOLDS
+  return null
+}
+
+function getValidationPayload(item) {
+  if (item?.source?.deepDiveId) {
+    return JSON.stringify({
+      id: item.id,
+      title: item.title,
+      summary: item.summary,
+      takeaway: item.takeaway,
+      lifeApplication: item.lifeApplication,
+      source: {
+        shortMeaning: item.source.shortMeaning,
+        lifeApplication: item.source.lifeApplication,
+      },
+    })
+  }
+
+  if (Array.isArray(item?.lines)) {
+    return JSON.stringify({
+      id: item.id,
+      title: item.title,
+      summary: item.summary,
+      whyItMatters: item.whyItMatters,
+      takeaway: item.takeaway,
+      structure: item.structure,
+    })
+  }
+
+  if (item?.heroSource?.deepDiveId) {
+    return JSON.stringify({
+      id: item.id,
+      title: item.title,
+      subtitle: item.subtitle,
+      description: item.description,
+      heroSource: {
+        shortMeaning: item.heroSource.shortMeaning,
+        lifeApplication: item.heroSource.lifeApplication,
+      },
+    })
+  }
+
+  if (item?.centralInsight && item?.issueStatement) {
+    return JSON.stringify({
+      id: item.id,
+      title: item.title,
+      issueStatement: item.issueStatement,
+      centralInsight: item.centralInsight,
+      practicalReflection: item.practicalReflection,
+      actionPrompt: item.actionPrompt,
+      excerpts: (item.excerpts ?? []).map(excerpt => ({
+        explanation: excerpt.explanation,
+        source: {
+          shortMeaning: excerpt.source?.shortMeaning,
+          lifeApplication: excerpt.source?.lifeApplication,
+        },
+      })),
+    })
+  }
+
+  return JSON.stringify(item)
+}
+
+function pushPayloadCopyIssues(issues, item) {
+  const payload = getValidationPayload(item)
+  if (PLACEHOLDER_PATTERNS.some(pattern => pattern.test(payload))) {
+    issues.push(`${item.id} contains placeholder copy`)
+  }
+  if (HARD_BANNED_PATTERNS.some(pattern => pattern.test(payload))) {
+    issues.push(`${item.id} contains a hard-banned editorial phrase`)
+  }
+}
+
+function collectShabadPublishIssues(shabad, indexes) {
+  const issues = []
+  addEditorialGateFailures(issues, `Shabad ${shabad.id}`, shabad.editorial)
+  if (!shabad.editorial) {
+    issues.push(`Shabad ${shabad.id} is missing editorial review`)
+    return issues
+  }
+  if (shabad.editorial.status === "draft") {
+    issues.push(`Shabad ${shabad.id} is still in draft status`)
+  }
+  if (shouldValidatePublishedCopy(shabad.editorial)) {
+    addPublicTextValidation(issues, `Shabad ${shabad.id} title`, shabad.title)
+    addPublicTextValidation(issues, `Shabad ${shabad.id} summary`, shabad.summary)
+    addPublicTextValidation(issues, `Shabad ${shabad.id} whyItMatters`, shabad.whyItMatters)
+    addPublicTextValidation(issues, `Shabad ${shabad.id} takeaway`, shabad.takeaway)
+    for (const [index, structureLine] of shabad.structure.entries()) {
+      addPublicTextValidation(issues, `Shabad ${shabad.id} structure ${index + 1}`, structureLine)
+    }
+    if (shabad.editorial.issues.length > 0) {
+      issues.push(`Shabad ${shabad.id} still has editorial issues: ${shabad.editorial.issues.join(", ")}`)
+    }
+    if (!clearsEditorialThresholds(shabad.editorial, getEditorialThresholds("shabad-deep-dive"))) {
+      issues.push(`Shabad ${shabad.id} did not clear premium editorial thresholds`)
+    }
+    pushPayloadCopyIssues(issues, shabad)
+  }
+  return issues
+}
+
+function collectGuidancePublishIssues(guidance, indexes) {
+  const issues = []
+  addEditorialGateFailures(issues, `Guidance ${guidance.id}`, guidance.editorial)
+  if (!guidance.editorial) {
+    issues.push(`Guidance ${guidance.id} is missing editorial review`)
+    return issues
+  }
+  if (guidance.editorial.status === "draft") {
+    issues.push(`Guidance ${guidance.id} is still in draft status`)
+  }
+  if (!indexes.shabadDeepDivesById[guidance.source.deepDiveId]) {
+    issues.push(`Guidance ${guidance.id} references missing shabad ${guidance.source.deepDiveId}`)
+  }
+  if (shouldValidatePublishedCopy(guidance.editorial)) {
+    addPublicTextValidation(issues, `Guidance ${guidance.id} title`, guidance.title)
+    addPublicTextValidation(issues, `Guidance ${guidance.id} summary`, guidance.summary)
+    addPublicTextValidation(issues, `Guidance ${guidance.id} takeaway`, guidance.takeaway)
+    addPublicTextValidation(issues, `Guidance ${guidance.id} life application`, guidance.lifeApplication)
+    addLineReferenceValidation(issues, indexes, `Guidance ${guidance.id} excerpt meaning`, guidance.source)
+    if (guidance.editorial.issues.length > 0) {
+      issues.push(`Guidance ${guidance.id} still has editorial issues: ${guidance.editorial.issues.join(", ")}`)
+    }
+    if (!clearsEditorialThresholds(guidance.editorial, getEditorialThresholds("daily-guidance"))) {
+      issues.push(`Guidance ${guidance.id} did not clear premium editorial thresholds`)
+    }
+    pushPayloadCopyIssues(issues, guidance)
+  }
+  return issues
+}
+
+function collectScenarioPublishIssues(topic, scenarioKey, indexes) {
+  const scenario = topic.scenarios[scenarioKey]
+  const issues = []
+  if (!scenario) {
+    issues.push(`Scenario ${topic.id}#${scenarioKey} is missing`)
+    return issues
+  }
+  addEditorialGateFailures(issues, `Scenario ${topic.id}#${scenarioKey}`, scenario.editorial)
+  if (!scenario.editorial) {
+    issues.push(`Scenario ${topic.id}#${scenarioKey} is missing editorial review`)
+    return issues
+  }
+  if (scenario.editorial.status === "draft") {
+    issues.push(`Scenario ${topic.id}#${scenarioKey} is still in draft status`)
+  }
+  if (shouldValidatePublishedCopy(scenario.editorial)) {
+    addPublicTextValidation(issues, `Scenario ${topic.id}#${scenarioKey} title`, scenario.title)
+    for (const [excerptIndex, excerpt] of scenario.excerpts.entries()) {
+      addLineReferenceValidation(issues, indexes, `Scenario ${topic.id}#${scenarioKey} excerpt ${excerptIndex + 1} meaning`, excerpt.source)
+    }
+    if (scenario.editorial.issues.length > 0) {
+      issues.push(`Scenario ${topic.id}#${scenarioKey} still has editorial issues: ${scenario.editorial.issues.join(", ")}`)
+    }
+    if (!clearsEditorialThresholds(scenario.editorial, getEditorialThresholds("topic-scenario"))) {
+      issues.push(`Scenario ${topic.id}#${scenarioKey} did not clear editorial thresholds`)
+    }
+    pushPayloadCopyIssues(issues, scenario)
+  }
+  return issues
+}
+
+function collectTopicPublishIssues(topic, indexes) {
+  const issues = []
+  addEditorialGateFailures(issues, `Canonical topic ${topic.id}`, topic.editorial)
+  if (!topic.editorial) {
+    issues.push(`Canonical topic ${topic.id} is missing editorial review`)
+    return issues
+  }
+  if (topic.editorial.status === "draft") {
+    issues.push(`Canonical topic ${topic.id} is still in draft status`)
+  }
+  if (shouldValidatePublishedCopy(topic.editorial)) {
+    addPublicTextValidation(issues, `Topic ${topic.id} title`, topic.title)
+    for (const [excerptIndex, excerpt] of topic.excerpts.entries()) {
+      addLineReferenceValidation(issues, indexes, `Topic ${topic.id} overview excerpt ${excerptIndex + 1} meaning`, excerpt.source)
+    }
+    if (topic.editorial.issues.length > 0) {
+      issues.push(`Canonical topic ${topic.id} still has editorial issues: ${topic.editorial.issues.join(", ")}`)
+    }
+    if (!clearsEditorialThresholds(topic.editorial, getEditorialThresholds("topic-guide"))) {
+      issues.push(`Canonical topic ${topic.id} did not clear editorial thresholds`)
+    }
+    for (const scenarioKey of topic.scenarioOrder) {
+      issues.push(...collectScenarioPublishIssues(topic, scenarioKey, indexes))
+    }
+    pushPayloadCopyIssues(issues, topic)
+  }
+  return issues
+}
+
+function collectCollectionPublishIssues(collection, indexes) {
+  const issues = []
+  addEditorialGateFailures(issues, `Collection ${collection.id}`, collection.editorial)
+  if (!collection.editorial) {
+    issues.push(`Collection ${collection.id} is missing editorial review`)
+    return issues
+  }
+  if (collection.editorial.status === "draft") {
+    issues.push(`Collection ${collection.id} is still in draft status`)
+  }
+  if (!collection.heroSource?.deepDiveId) {
+    issues.push(`Collection ${collection.id} is missing a hero source`)
+  }
+  if (shouldValidatePublishedCopy(collection.editorial)) {
+    addPublicTextValidation(issues, `Collection ${collection.id} title`, collection.title)
+    addPublicTextValidation(issues, `Collection ${collection.id} subtitle`, collection.subtitle)
+    addPublicTextValidation(issues, `Collection ${collection.id} description`, collection.description)
+    addLineReferenceValidation(issues, indexes, `Collection ${collection.id} hero meaning`, collection.heroSource)
+    if (collection.editorial.issues.length > 0) {
+      issues.push(`Collection ${collection.id} still has editorial issues: ${collection.editorial.issues.join(", ")}`)
+    }
+    if (!clearsEditorialThresholds(collection.editorial, getEditorialThresholds("collection"))) {
+      issues.push(`Collection ${collection.id} did not clear premium editorial thresholds`)
+    }
+    pushPayloadCopyIssues(issues, collection)
+  }
+  return issues
+}
+
+async function loadExistingPublicDataset() {
+  const paths = {
+    manifest: path.join(PUBLIC_DIR, "manifest.json"),
+    searchIndex: path.join(PUBLIC_DIR, "search-index.json"),
+    validation: path.join(PUBLIC_DIR, "validation-report.json"),
+    dailyGuidance: path.join(PUBLIC_DIR, "lists/daily-guidance.json"),
+    shabadDeepDives: path.join(PUBLIC_DIR, "lists/shabad-deep-dives.json"),
+    topicGuides: path.join(PUBLIC_DIR, "lists/topic-guides.json"),
+    collections: path.join(PUBLIC_DIR, "lists/collections.json"),
+  }
+  const exists = await Promise.all(Object.values(paths).map(async filePath => {
+    try {
+      await fs.access(filePath)
+      return true
+    } catch {
+      return false
+    }
+  }))
+  if (!exists.every(Boolean)) return null
+
+  return {
+    manifest: await readJson(paths.manifest),
+    searchIndex: await readJson(paths.searchIndex),
+    validation: await readJson(paths.validation),
+    dailyGuidance: await readJson(paths.dailyGuidance),
+    shabadDeepDives: await readJson(paths.shabadDeepDives),
+    topicGuides: await readJson(paths.topicGuides),
+    collections: await readJson(paths.collections),
+  }
+}
+
+function mergeItemsById(existingItems, overlayItems) {
+  const overlaysById = new Map(overlayItems.map(item => [item.id, item]))
+  const merged = existingItems.map(item => overlaysById.get(item.id) ?? item)
+  for (const overlay of overlayItems) {
+    if (!existingItems.some(item => item.id === overlay.id)) {
+      merged.push(overlay)
+    }
+  }
+  return merged
+}
+
+function createPublishableOverlay(drafts) {
+  const indexes = buildDatasetIndexes(drafts)
+  const shabadDeepDives = drafts.shabadDeepDives.filter(item => collectShabadPublishIssues(item, indexes).length === 0)
+  const publishableShabadIds = new Set(shabadDeepDives.map(item => item.id))
+  const guidance = drafts.dailyGuidance.filter(item =>
+    publishableShabadIds.has(item.source.deepDiveId)
+    && collectGuidancePublishIssues(item, indexes).length === 0
+  )
+  const topicGuides = drafts.topicGuides.filter(item => collectTopicPublishIssues(item, indexes).length === 0)
+  const collections = drafts.collections.filter(item => collectCollectionPublishIssues(item, indexes).length === 0)
+
+  return {
+    version: drafts.version,
+    generatedAt: new Date().toISOString(),
+    dailyGuidance: guidance,
+    shabadDeepDives,
+    topicGuides,
+    collections,
+  }
+}
+
+function createMergedPublishedDataset(drafts, existingPublic) {
+  const overlay = createPublishableOverlay(drafts)
+  const merged = {
+    version: drafts.version,
+    generatedAt: new Date().toISOString(),
+    dailyGuidance: mergeItemsById(existingPublic?.dailyGuidance ?? [], overlay.dailyGuidance),
+    shabadDeepDives: mergeItemsById(existingPublic?.shabadDeepDives ?? [], overlay.shabadDeepDives),
+    topicGuides: mergeItemsById(existingPublic?.topicGuides ?? [], overlay.topicGuides),
+    collections: mergeItemsById(existingPublic?.collections ?? [], overlay.collections),
+  }
+
+  Object.assign(merged, buildDatasetIndexes(merged))
+  wireRelationships(merged)
+  merged.searchIndex = buildSearchIndex(merged.topicGuides)
+
+  return merged
+}
+
+function buildPublicManifest(dataset, validation) {
+  const shabadThemes = Array.from(new Set(dataset.shabadDeepDives.flatMap(item => item.themes))).sort((left, right) => left.localeCompare(right))
+  const shabadGurus = Array.from(new Set(dataset.shabadDeepDives.map(item => item.citation.guru))).sort((left, right) => left.localeCompare(right))
+  const shabadRaags = Array.from(new Set(dataset.shabadDeepDives.map(item => item.citation.raag))).sort((left, right) => left.localeCompare(right))
+  const inventory = {
+    dailyGuidance: dataset.dailyGuidance.length,
+    shabadDeepDives: dataset.shabadDeepDives.length,
+    topicGuides: dataset.topicGuides.length,
+    topicScenarios: dataset.topicGuides.reduce((count, topic) => count + topic.scenarioOrder.length, 0),
+    collections: dataset.collections.length,
+    crossLinks:
+      dataset.dailyGuidance.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.relatedCollectionIds.length, 0)
+      + dataset.shabadDeepDives.reduce((count, item) => count + item.relatedGuidanceIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
+      + dataset.topicGuides.reduce((count, item) => count + item.relatedShabadIds.length + item.relatedTopicIds.length + item.relatedCollectionIds.length, 0)
+      + dataset.topicGuides.reduce(
+        (count, item) => count + item.scenarioOrder.reduce(
+          (scenarioCount, scenarioKey) => scenarioCount + item.scenarios[scenarioKey].excerpts.length + 1,
+          0
+        ),
+        0
+      )
+      + dataset.collections.reduce((count, item) => count + item.relatedTopicIds.length + item.relatedShabadIds.length + item.items.length, 0),
+    readyForLaunch: validation.counts.readyForLaunch,
+  }
+
+  return {
+    version: dataset.version,
+    generatedAt: dataset.generatedAt,
+    inventory,
+    targets: {
+      dailyGuidance: 240,
+      shabadDeepDives: 100,
+      topicGuides: 28,
+      topicScenarios: 112,
+      collections: 100,
+      crossLinks: 500,
+      averageCrossLinksPerItem: 5,
+    },
+    filters: {
+      shabadThemes,
+      shabadGurus,
+      shabadRaags,
+    },
+    searchIndexPath: "/data/learn/search-index.json",
+    listPaths: {
+      dailyGuidance: "/data/learn/lists/daily-guidance.json",
+      shabadDeepDives: "/data/learn/lists/shabad-deep-dives.json",
+      topicGuides: "/data/learn/lists/topic-guides.json",
+      collections: "/data/learn/lists/collections.json",
+    },
+    detailPathTemplate: {
+      "daily-guidance": "/data/learn/details/daily-guidance/:id.json",
+      "shabad-deep-dive": "/data/learn/details/shabad-deep-dive/:id.json",
+      "topic-guide": "/data/learn/details/topic-guide/:id.json",
+      collection: "/data/learn/details/collection/:id.json",
+    },
+    validationReportPath: "/data/learn/validation-report.json",
+  }
+}
+
+async function writePublicArchive(dataset, validation) {
+  const manifest = buildPublicManifest(dataset, validation)
+
+  await fs.rm(PUBLIC_DIR, { recursive: true, force: true })
+  await ensureDir(PUBLIC_DIR)
+  await writeJson(path.join(PUBLIC_DIR, "manifest.json"), manifest)
+  await writeJson(path.join(PUBLIC_DIR, "search-index.json"), dataset.searchIndex)
+  await writeJson(path.join(PUBLIC_DIR, "validation-report.json"), validation)
+  await writeJson(path.join(PUBLIC_DIR, "lists/daily-guidance.json"), dataset.dailyGuidance)
+  await writeJson(path.join(PUBLIC_DIR, "lists/shabad-deep-dives.json"), dataset.shabadDeepDives)
+  await writeJson(path.join(PUBLIC_DIR, "lists/topic-guides.json"), dataset.topicGuides)
+  await writeJson(path.join(PUBLIC_DIR, "lists/collections.json"), dataset.collections)
+
+  for (const item of dataset.dailyGuidance) {
+    await writeJson(path.join(PUBLIC_DIR, `details/daily-guidance/${item.id}.json`), item)
+  }
+  for (const item of dataset.shabadDeepDives) {
+    await writeJson(path.join(PUBLIC_DIR, `details/shabad-deep-dive/${item.id}.json`), item)
+  }
+  for (const item of dataset.topicGuides) {
+    await writeJson(path.join(PUBLIC_DIR, `details/topic-guide/${item.id}.json`), item)
+  }
+  for (const item of dataset.collections) {
+    await writeJson(path.join(PUBLIC_DIR, `details/collection/${item.id}.json`), item)
+  }
+
+  return manifest
+}
+
 export async function validateDrafts(drafts = null) {
   const dataset = drafts ?? await generateDrafts()
   const hardFailures = []
@@ -2308,7 +2727,7 @@ export async function validateDrafts(drafts = null) {
   for (const bucket of [dataset.dailyGuidance, dataset.shabadDeepDives, dataset.topicGuides, dataset.collections]) {
     for (const item of bucket) {
       if (!shouldValidatePublishedCopy(item.editorial)) continue
-      const payload = JSON.stringify(item)
+      const payload = getValidationPayload(item)
       if (PLACEHOLDER_PATTERNS.some(pattern => pattern.test(payload))) {
         hardFailures.push(`${item.id} contains placeholder copy`)
       }
@@ -2434,69 +2853,16 @@ export async function validateDrafts(drafts = null) {
 export async function publishLearnArchive() {
   const drafts = await generateDrafts()
   const validation = await validateDrafts(drafts)
+  const publicBaseline = await loadExistingPublicDataset()
+  const publishedDataset =
+    validation.hardFailures.length === 0
+      ? drafts
+      : createMergedPublishedDataset(drafts, publicBaseline)
+
+  const manifest = await writePublicArchive(publishedDataset, validation)
+
   if (validation.hardFailures.length > 0) {
     throw new Error(`Learn archive validation failed:\n${validation.hardFailures.join("\n")}`)
-  }
-
-  const shabadThemes = Array.from(new Set(drafts.shabadDeepDives.flatMap(item => item.themes))).sort((left, right) => left.localeCompare(right))
-  const shabadGurus = Array.from(new Set(drafts.shabadDeepDives.map(item => item.citation.guru))).sort((left, right) => left.localeCompare(right))
-  const shabadRaags = Array.from(new Set(drafts.shabadDeepDives.map(item => item.citation.raag))).sort((left, right) => left.localeCompare(right))
-
-  const manifest = {
-    version: drafts.version,
-    generatedAt: drafts.generatedAt,
-    inventory: validation.counts,
-    targets: {
-      dailyGuidance: 240,
-      shabadDeepDives: 100,
-      topicGuides: 28,
-      topicScenarios: 112,
-      collections: 100,
-      crossLinks: 500,
-      averageCrossLinksPerItem: 5,
-    },
-    filters: {
-      shabadThemes,
-      shabadGurus,
-      shabadRaags,
-    },
-    searchIndexPath: "/data/learn/search-index.json",
-    listPaths: {
-      dailyGuidance: "/data/learn/lists/daily-guidance.json",
-      shabadDeepDives: "/data/learn/lists/shabad-deep-dives.json",
-      topicGuides: "/data/learn/lists/topic-guides.json",
-      collections: "/data/learn/lists/collections.json",
-    },
-    detailPathTemplate: {
-      "daily-guidance": "/data/learn/details/daily-guidance/:id.json",
-      "shabad-deep-dive": "/data/learn/details/shabad-deep-dive/:id.json",
-      "topic-guide": "/data/learn/details/topic-guide/:id.json",
-      collection: "/data/learn/details/collection/:id.json",
-    },
-    validationReportPath: "/data/learn/validation-report.json",
-  }
-
-  await fs.rm(PUBLIC_DIR, { recursive: true, force: true })
-  await ensureDir(PUBLIC_DIR)
-  await writeJson(path.join(PUBLIC_DIR, "manifest.json"), manifest)
-  await writeJson(path.join(PUBLIC_DIR, "search-index.json"), drafts.searchIndex)
-  await writeJson(path.join(PUBLIC_DIR, "validation-report.json"), validation)
-  await writeJson(path.join(PUBLIC_DIR, "lists/daily-guidance.json"), drafts.dailyGuidance)
-  await writeJson(path.join(PUBLIC_DIR, "lists/shabad-deep-dives.json"), drafts.shabadDeepDives)
-  await writeJson(path.join(PUBLIC_DIR, "lists/topic-guides.json"), drafts.topicGuides)
-  await writeJson(path.join(PUBLIC_DIR, "lists/collections.json"), drafts.collections)
-
-  for (const item of drafts.dailyGuidance) {
-    await writeJson(path.join(PUBLIC_DIR, `details/daily-guidance/${item.id}.json`), item)
-  }
-  for (const item of drafts.shabadDeepDives) {
-    await writeJson(path.join(PUBLIC_DIR, `details/shabad-deep-dive/${item.id}.json`), item)
-  }
-  for (const item of drafts.topicGuides) {
-    await writeJson(path.join(PUBLIC_DIR, `details/topic-guide/${item.id}.json`), item)
-  }
-  for (const item of drafts.collections) {
-    await writeJson(path.join(PUBLIC_DIR, `details/collection/${item.id}.json`), item)
   }
 
   return {

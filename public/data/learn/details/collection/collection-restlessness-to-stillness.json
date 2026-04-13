@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-stillness",
   "title": "From Restlessness to Stillness",
-  "subtitle": "For minds that move faster than they settle",
-  "description": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
+  "subtitle": "For the mind that keeps mistaking motion for clarity",
+  "description": "These readings slow the day by moving from scattered motion into listening, company, and inward rest.",
   "durationLabel": "6-day journey",
   "themes": [
     "restlessness",
@@ -16,8 +16,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Endless motion does not guarantee peace; mercy and saint company can.",
-    "lifeApplication": "Stay where the body begins to cool."
+    "shortMeaning": "Restlessness breaks when the heart accepts stillness as guidance.",
+    "lifeApplication": "At the threshold, choose better placement before choosing more movement."
   },
   "items": [
     {
@@ -57,32 +57,31 @@
     "shabad-patience-ripens-into-honor"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
+      "coreClaim": "These readings slow the day by moving from scattered motion into listening, company, and inward rest.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For minds that move faster than they settle",
+      "turn": "For the mind that keeps mistaking motion for clarity",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 1.95,
-      "specificity": 4.16,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.57
+      "overall": 4.03
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

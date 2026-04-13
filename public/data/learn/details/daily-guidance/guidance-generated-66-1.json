@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-66-1",
-  "title": "Life Of The Discarded Bride Is Cursed",
-  "summary": "Gratitude is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The life of the discarded bride is cursed. She is deceived by the love of duality",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+  "title": "Do not decorate the life that forgot the Beloved",
+  "summary": "This meets the life still polished on the outside while divided within. The line says without the Shabad and the Husband Lord, every decoration stays false.",
+  "takeaway": "Let the Shabad reach deeper than display.",
+  "lifeApplication": "Before fixing the surface again, ask what in you still loves duality. Let one line undo more vanity than another layer can hide.",
   "source": {
     "deepDiveId": "shabad-generated-66",
     "verseIds": [
       774
     ],
-    "shortMeaning": "The life of the discarded bride is cursed. She is deceived by the love of duality",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "A life deceived by duality cannot be beautified from the outside.",
+    "lifeApplication": "When you reach for another surface fix, ask what the Shabad still needs to heal."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -23,7 +23,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "attachment",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The life of the discarded bride is cursed. She is deceived by the love of duality",
+      "coreClaim": "A life deceived by duality cannot be beautified from the outside.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Begin with the part of the day already in front of you.",
+      "turn": "Without the Beloved and the Shabad, surface beauty stays false.",
+      "practicalImplication": "Before fixing the surface again, ask what in you still loves duality. Let one line undo more vanity than another layer can hide.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.71,
-      "clarity": 3.75,
-      "specificity": 4.3,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.87,
-      "overall": 3.91
+      "faithfulness": 4.33,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.21,
+      "overall": 4.26
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

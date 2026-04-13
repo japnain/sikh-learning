@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-459-1",
-  "title": "Past Actions Cannot Be Erased",
-  "summary": "Mercy is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Past actions cannot be erased",
-  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+  "title": "Bring regret under mercy, not despair",
+  "summary": "This meets the mind stuck staring at what cannot be undone. The line does not deny consequence, but it places karma beneath the larger mercy and Name of God.",
+  "takeaway": "Let mercy outrank regret.",
+  "lifeApplication": "When the old mistake returns, stop before turning it into an identity. Bring the regret under God's Name and ask what faithfulness looks like now.",
   "source": {
     "deepDiveId": "shabad-generated-459",
     "verseIds": [
       6386
     ],
-    "shortMeaning": "Past actions cannot be erased",
-    "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Past actions remain real, but mercy and the Name are still larger.",
+    "lifeApplication": "When regret revisits, take refuge in the Name before self-condemnation expands."
   },
   "relatedTopicIds": [
     "topic-mercy"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Past actions cannot be erased",
+      "coreClaim": "Past actions remain real, but mercy and the Name are still larger.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Keep returning to this turn: Nanak abides in the Sanctuary of Your devotees.",
-      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Begin with the part of the day already in front of you.",
+      "turn": "Regret quiets when the heart returns the moment to Hukam.",
+      "practicalImplication": "When the old mistake returns, stop before turning it into an identity. Bring the regret under God's Name and ask what faithfulness looks like now.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.71,
-      "clarity": 4.23,
-      "specificity": 4.66,
+      "faithfulness": 4.1,
+      "clarity": 4.35,
+      "specificity": 4.68,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.64,
-      "beauty": 4.29,
-      "overall": 4.13
+      "usefulness": 4.94,
+      "beauty": 4.37,
+      "overall": 4.31
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

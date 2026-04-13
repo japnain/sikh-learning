@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-705-3",
-  "title": "Nanak, The Lowly, Says Embrace Love",
-  "summary": "The shabad does not leave ego at diagnosis. It turns toward return.",
-  "takeaway": "Nanak, the lowly, says embrace love for the Lord",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+  "title": "Serve with one gathered awareness",
+  "summary": "This meets the split between outward service and an inwardly scattered mind. The line says service becomes true when awareness and love are gathered toward the One, and the self grows low enough to mean it.",
+  "takeaway": "Gather the mind before you call it service.",
+  "lifeApplication": "Before the next act of seva, lower the self, gather the mind, and do one thing with undivided love.",
   "source": {
     "deepDiveId": "shabad-generated-705",
     "verseIds": [
       9534,
       9558
     ],
-    "shortMeaning": "Nanak, the lowly, says embrace love for the Lord; so serve the One Lord, with loving awareness",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Service becomes true when love is gathered toward the One.",
+    "lifeApplication": "Before seva, gather the mind and lower the self."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Nanak, the lowly, says embrace love for the Lord; so serve the One Lord, with loving awareness",
+      "coreClaim": "Service becomes true when love is gathered toward the One.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: Nanak, the lowly, says embrace love for the Lord.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. After the reaction, make the next return smaller and truer.",
+      "turn": "Ego cannot make peace; Naam and service can.",
+      "practicalImplication": "Before the next act of seva, lower the self, gather the mind, and do one thing with undivided love.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
-      "clarity": 3.99,
-      "specificity": 4.88,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.97,
-      "overall": 4.1
+      "faithfulness": 4.02,
+      "clarity": 4.23,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.88,
+      "beauty": 3.92,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

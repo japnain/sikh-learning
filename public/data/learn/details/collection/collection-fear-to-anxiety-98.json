@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-to-anxiety-98",
-  "title": "Fear to Anxiety",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers fear by restoring the presence, shelter, and command of the One. This bridge then carries into guru widens attention from imagined danger back toward hukam, remembrance, and the care already present.",
+  "title": "When fear becomes the climate",
+  "subtitle": "When one tremor becomes a climate",
+  "description": "Catch the first tremor before fear spreads through the whole day and starts feeling like climate instead of episode.",
   "durationLabel": "6-step journey",
   "themes": [
     "fear",
@@ -13,8 +13,8 @@
     "verseIds": [
       4132
     ],
-    "shortMeaning": "You are my Father, and You are my Mother",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "A single fear can widen into the weather of the whole day.",
+    "lifeApplication": "Catch the first fear in the body before it becomes the day's atmosphere."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. This bridge then carries into guru widens attention from imagined danger back toward hukam, remembrance, and the care already present.",
+      "coreClaim": "Catch the first tremor before fear spreads through the whole day and starts feeling like climate instead of episode.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When one tremor becomes a climate",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.55,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.88
+      "faithfulness": 3.85,
+      "clarity": 4.35,
+      "specificity": 4.08,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.99
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

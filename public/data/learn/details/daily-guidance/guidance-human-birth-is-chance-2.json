@@ -1,17 +1,17 @@
 {
   "id": "guidance-human-birth-is-chance-2",
-  "title": "This Is Your Chance To Meet",
-  "summary": "Purpose is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "This is your chance to meet the Lord of the Universe; this human body has been given to you",
-  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+  "title": "Do not spend a rare life like loose change",
+  "summary": "This meets a day filling up while the reason for being alive grows faint. The line says human life is rare meeting ground, not something to spend by drift.",
+  "takeaway": "Do not waste a life meant for meeting and service.",
+  "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
       524,
       525
     ],
-    "shortMeaning": "This is your chance to meet the Lord of the Universe; this human body has been given to you",
-    "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Human life is rare meeting ground, not spare time to waste.",
+    "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "This is your chance to meet the Lord of the Universe; this human body has been given to you",
+      "coreClaim": "Human life is rare meeting ground, not spare time to waste.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Use this life for meeting, not merely for managing.",
-      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Use the line before the pressure chooses your tone.",
+      "turn": "Treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "Before drifting into another task, choose one act that treats life as opportunity.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.17,
-      "clarity": 3.06,
-      "specificity": 5,
+      "faithfulness": 4.11,
+      "clarity": 4.11,
+      "specificity": 4.69,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.48,
-      "beauty": 3.38,
-      "overall": 3.91
+      "usefulness": 4.2,
+      "beauty": 3.89,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

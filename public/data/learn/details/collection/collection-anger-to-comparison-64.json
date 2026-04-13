@@ -1,8 +1,8 @@
 {
   "id": "collection-anger-to-comparison-64",
-  "title": "Anger to Comparison",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into gurbani returns dignity to remembrance, contentment, and the work in front of you.",
+  "title": "When anger turns into comparison",
+  "subtitle": "When anger starts measuring and ranking everyone",
+  "description": "These readings catch the moment hurt stops burning inward and starts grading everybody else.",
   "durationLabel": "6-step journey",
   "themes": [
     "anger",
@@ -13,8 +13,8 @@
     "verseIds": [
       3
     ],
-    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Unhealed anger starts ranking other lives to justify itself.",
+    "lifeApplication": "Before replaying the slight, stop comparing your portion to theirs."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into gurbani returns dignity to remembrance, contentment, and the work in front of you.",
+      "coreClaim": "These readings catch the moment hurt stops burning inward and starts grading everybody else.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When anger starts measuring and ranking everyone",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 3.85,
-      "specificity": 4.23,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.86
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

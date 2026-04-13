@@ -1,17 +1,17 @@
 {
   "id": "guidance-ambrosial-speech-needs-praise",
-  "title": "Better speech starts by changing what the tongue loves.",
-  "summary": "Ambrosial speech here is not polished phrasing. It is speech trained by hearing and carrying praise.",
-  "takeaway": "A soft tongue still needs a holy subject.",
-  "lifeApplication": "Let one conversation today carry more reverence than reaction.",
+  "title": "Give the tongue a truer master",
+  "summary": "This meets the mouth that wants to sound spiritual without becoming clean. The line says the truest religion is conduct sustained by Naam, not speech performing devotion.",
+  "takeaway": "The tongue is corrected by praise, restraint, and truth.",
+  "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
       11748,
       11749
     ],
-    "shortMeaning": "Speech becomes ambrosial when it is fed by praise rather than appetite or contempt.",
-    "lifeApplication": "Train the tongue by training the heart's attention."
+    "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Speech becomes ambrosial when it is fed by praise rather than appetite or contempt.",
+      "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The best religion sounds like praise and looks like clean conduct.",
-      "practicalImplication": "Let one conversation today carry more reverence than reaction.",
+      "turn": "The truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.35,
-      "specificity": 4.54,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 4.4,
+      "clarity": 3.99,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
       "usefulness": 4.04,
-      "beauty": 4.21,
-      "overall": 3.99
+      "beauty": 4.13,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

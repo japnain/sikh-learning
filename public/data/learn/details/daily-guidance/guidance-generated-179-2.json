@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-179-2",
-  "title": "Serving the Guru makes the heart clean again",
-  "summary": "Ego loses some of its glamour when service stops being display and becomes inner cleansing.",
-  "takeaway": "Serving the True Guru lets the Lord abide within, and the mind and body begin to grow clean again.",
-  "lifeApplication": "When the self wants to lead, choose one act of service that cleans the heart instead of enlarging the image.",
+  "title": "Let service make room for the Lord",
+  "summary": "This meets the useful act that still carries a trace of self-display. The line says serving the True Guru lets the Lord dwell in the mind and keeps filth from clinging.",
+  "takeaway": "Serve until the Lord, not the self, fills it.",
+  "lifeApplication": "Before the next useful act, ask whether it makes more room for the Lord or more shine for your image.",
   "source": {
     "deepDiveId": "shabad-generated-179",
     "verseIds": [
       2787,
       2791
     ],
-    "shortMeaning": "Serving the True Guru lets the Lord abide within, and the mind and body grow pure.",
-    "lifeApplication": "Let service make you smaller and cleaner before urgency turns self-importance into the room's loudest voice."
+    "shortMeaning": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
+    "lifeApplication": "Before the next useful act, ask whether it makes room for the Lord or for your image."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -35,30 +35,31 @@
     "balanceCategory": "challenge"
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Serving the True Guru lets the Lord abide within, and the mind and body grow pure.",
+      "coreClaim": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, the devotees are happy and peaceful forever. They are absorbed in the True Name.",
-      "practicalImplication": "When the self wants to lead, choose one act of service that cleans the heart instead of enlarging the image.",
+      "turn": "Let the Guru's truth reach your food, speech, and shelter.",
+      "practicalImplication": "Before the next useful act, ask whether it makes more room for the Lord or more shine for your image.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.71,
-      "clarity": 3.45,
-      "specificity": 4.49,
+      "faithfulness": 4.04,
+      "clarity": 4.17,
+      "specificity": 4.8,
       "emotionalHonesty": 3.54,
       "usefulness": 4.04,
-      "beauty": 3.58,
-      "overall": 3.79
+      "beauty": 3.93,
+      "overall": 4.08
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

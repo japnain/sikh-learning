@@ -1,10 +1,10 @@
 {
   "id": "shabad-detached-and-steady",
-  "title": "Steady Beyond Praise and Possession",
+  "title": "Rest where praise and possession lose their force",
   "subtitle": "Raag Gauree",
-  "summary": "Guru Tegh Bahadur describes inner steadiness in a world of praise, blame, greed, and attachment.",
-  "whyItMatters": "It helps users facing comparison, attachment, or emotional volatility see what grounded freedom looks like in Gurbani terms.",
-  "takeaway": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
+  "summary": "The shabad begins by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
+  "whyItMatters": "This is for the person whipped around by approval, possession, or comparison. Held steadily, it makes detachment feel less like numbness and more like shelter strong enough to keep the heart even.",
+  "takeaway": "Steadiness grows where attachment loses its authority.",
   "themes": [
     "attachment",
     "comparison",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "Locates real rest in the Lord's sanctuary.",
-    "Describes the hooks that usually bind the mind: greed, attachment, praise, blame, pleasure, pain.",
-    "Names steadiness across those hooks as a sign of wisdom and freedom."
+    "It opens with sanctuary as the true place of rest and peace.",
+    "The middle lays opposites side by side until their power to rule the mind starts thinning.",
+    "It ends in a steadiness that no longer depends on possession, praise, or slander."
   ],
   "keyVerseIds": [
     9412,
@@ -131,25 +131,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Tegh Bahadur describes inner steadiness in a world of praise, blame, greed, and attachment.",
+      "coreClaim": "The shabad begins by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "Describes the hooks that usually bind the mind: greed, attachment, praise, blame, pleasure, pain.",
-      "practicalImplication": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
+      "turn": "The middle lays opposites side by side until their power to rule the mind starts thinning.",
+      "practicalImplication": "This is for the person whipped around by approval, possession, or comparison. Held steadily, it makes detachment feel less like numbness and more like shelter strong enough to keep the heart even. Steadiness grows where attachment loses its authority.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.96,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.44,
-      "beauty": 4.37,
-      "overall": 4.14
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.6,
+      "beauty": 4.69,
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

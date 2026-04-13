@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-bundle",
   "title": "Anxiety in one shorter sitting",
-  "subtitle": "A compact bundle for anxiety",
-  "description": "The mind keeps rehearsing danger before the future has even arrived. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when anxiety is already close",
+  "description": "A fast reset for the moment anxiety starts forecasting everything. It slows the body, interrupts catastrophe, and puts care back in front of imagination.",
   "durationLabel": "3-step bundle",
   "themes": [
     "anxiety"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind keeps rehearsing danger before the future has even arrived. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A fast reset for the moment anxiety starts forecasting everything. It slows the body, interrupts catastrophe, and puts care back in front of imagination.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "A compact bundle for anxiety",
+      "turn": "A shorter sitting for when anxiety is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.65,
-      "specificity": 4.17,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.78
+      "faithfulness": 3.9,
+      "clarity": 4.35,
+      "specificity": 4.13,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.03
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

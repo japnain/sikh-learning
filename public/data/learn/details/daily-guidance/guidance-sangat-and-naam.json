@@ -1,16 +1,16 @@
 {
   "id": "guidance-sangat-and-naam",
-  "title": "You were not meant to carry the path alone",
-  "summary": "This shabad moves immediately from opportunity to sangat and Naam.",
-  "takeaway": "Direction gets sturdier in holy company.",
-  "lifeApplication": "Reach for a place, person, or practice that reorients you toward sangat today.",
+  "title": "Stay where the heart is helped",
+  "summary": "This meets the soul being shaped by whatever company it keeps. The line says life becomes meeting and remembrance in holy company, not in private drift.",
+  "takeaway": "Holy company carries what the solitary mind cannot.",
+  "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
       527
     ],
-    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
-    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+    "shortMeaning": "Holy company carries what the solitary mind cannot.",
+    "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Sangat and Naam are not extras; they are the practical path.",
+      "coreClaim": "Holy company carries what the solitary mind cannot.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Use this life for meeting, not merely for managing.",
-      "practicalImplication": "Reach for a place, person, or practice that reorients you toward sangat today.",
+      "turn": "Treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "When the mind starts wandering alone, move toward the company that steadies it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 4.35,
-      "specificity": 4.56,
-      "emotionalHonesty": 3,
-      "usefulness": 3.82,
-      "beauty": 4.05,
-      "overall": 3.96
+      "faithfulness": 4.11,
+      "clarity": 4.05,
+      "specificity": 4.87,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.04,
+      "beauty": 3.85,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

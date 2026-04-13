@@ -1,8 +1,8 @@
 {
   "id": "collection-comparison-to-seva-67",
-  "title": "Comparison to Seva",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins service to humility, honest labor, and offering rather than display.",
+  "title": "When comparison is interrupted by service",
+  "subtitle": "When envy needs something cleaner to do",
+  "description": "These readings break envy by giving the heart a better use for its energy: relieve something real instead of measuring another life.",
   "durationLabel": "6-step journey",
   "themes": [
     "comparison",
@@ -13,8 +13,8 @@
     "verseIds": [
       759
     ],
-    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Comparison loses air when the hands are occupied with somebody else's need.",
+    "lifeApplication": "When envy starts keeping score, clean, carry, or help before you compare again."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. This bridge then carries into guru joins service to humility, honest labor, and offering rather than display.",
+      "coreClaim": "These readings break envy by giving the heart a better use for its energy: relieve something real instead of measuring another life.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When envy needs something cleaner to do",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.85,
-      "specificity": 4.25,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.84
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

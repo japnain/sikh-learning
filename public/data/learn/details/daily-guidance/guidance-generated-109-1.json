@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-109-1",
-  "title": "Those Who Contemplate The Word",
-  "summary": "Doubt is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God",
-  "lifeApplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+  "title": "Let the Shabad clear the double mind",
+  "summary": "This meets the fog that keeps reopening what was already shown. The line says the Guru's word fills the heart with reverence and cleans the dirt of duality.",
+  "takeaway": "Let the Shabad thin the double mind.",
+  "lifeApplication": "Before you chase a second explanation, stay with the line already given. Let reverence hold the mind long enough for its split to start closing.",
   "source": {
     "deepDiveId": "shabad-generated-109",
     "verseIds": [
       1449
     ],
-    "shortMeaning": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Guru's Shabad clears duality and steadies the heart in truth.",
+    "lifeApplication": "Before seeking another answer, remain with the line that already met you."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Those who contemplate the Word of the Guru's Shabad are filled with the Fear of God",
+      "coreClaim": "The Guru's Shabad clears duality and steadies the heart in truth.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "Keep returning to this turn: They alone see the Lord, unto whom He reveals Himself. O Nanak, the Gurmukhs find Him.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. Begin with the part of the day already in front of you.",
+      "turn": "Stay with the Shabad until duality loses its grip.",
+      "practicalImplication": "Before you chase a second explanation, stay with the line already given. Let reverence hold the mind long enough for its split to start closing.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.58,
-      "clarity": 3.6,
-      "specificity": 4.54,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.64,
-      "beauty": 3.74,
-      "overall": 3.93
+      "faithfulness": 4.18,
+      "clarity": 4.35,
+      "specificity": 4.93,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.35
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

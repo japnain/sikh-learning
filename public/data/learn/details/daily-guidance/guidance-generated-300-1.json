@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-300-1",
-  "title": "You Are My Father, And You",
-  "summary": "Fear is named plainly here before the mind has time to decorate it.",
-  "takeaway": "You are my Father, and You are my Mother",
-  "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+  "title": "Let shelter be personal again",
+  "summary": "This meets fear when it has made the world feel parentless and exposed. The line answers with startling nearness: Father, Mother, kin, protector.",
+  "takeaway": "Remember who is holding you.",
+  "lifeApplication": "When dread starts running ahead of the moment, place a hand on the chest and say the line slowly. Let relationship return before fear makes everything strange.",
   "source": {
     "deepDiveId": "shabad-generated-300",
     "verseIds": [
       4132
     ],
-    "shortMeaning": "You are my Father, and You are my Mother",
-    "lifeApplication": "Read the line until fear is no longer the loudest narrator in the room. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Lord shelters the heart as parent, kin, and protector.",
+    "lifeApplication": "When fear rises, let the line restore nearness before the mind runs."
   },
   "relatedTopicIds": [
     "topic-fear"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "You are my Father, and You are my Mother",
+      "coreClaim": "The Lord shelters the heart as parent, kin, and protector.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "Keep returning to this turn: Through the Perfect Guru, congratulations are pouring in-Nanak is victorious on the arduous battlefield of life.",
-      "practicalImplication": "Read the line until fear is no longer the loudest narrator in the room. Begin with the part of the day already in front of you.",
+      "turn": "Fear thins when shelter becomes personal again.",
+      "practicalImplication": "When dread starts running ahead of the moment, place a hand on the chest and say the line slowly. Let relationship return before fear makes everything strange.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.43,
-      "clarity": 4.11,
-      "specificity": 4.22,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.81,
-      "overall": 3.82
+      "faithfulness": 4.26,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.53,
+      "overall": 4.4
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

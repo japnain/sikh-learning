@@ -1,17 +1,17 @@
 {
   "id": "guidance-sweet-speech-humble-walk",
-  "title": "Sweet speech without humility is still performance.",
-  "summary": "Guru pairs tender speech with bowed conduct for a reason. One without the other can still be ego in ceremonial dress.",
-  "takeaway": "Tone matters most when posture has changed with it.",
-  "lifeApplication": "Choose a lower posture today, not just a softer sentence.",
+  "title": "Give the tongue a truer master",
+  "summary": "This meets the split between devout speech and ordinary conduct. The line says remembrance is real only when it sweetens the mouth and lowers the walk.",
+  "takeaway": "The tongue is corrected by praise, restraint, and truth.",
+  "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
       1288,
       1290
     ],
-    "shortMeaning": "Saint company and humble speech belong together.",
-    "lifeApplication": "Do not try to sound transformed while still standing on self-importance."
+    "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,28 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Saint company and humble speech belong together.",
+      "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Soft speech becomes believable when the ego has begun to bow.",
-      "practicalImplication": "Choose a lower posture today, not just a softer sentence.",
+      "turn": "When remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 4.25,
-      "specificity": 4.54,
+      "faithfulness": 4.29,
+      "clarity": 3.99,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.7,
+      "usefulness": 4.04,
       "beauty": 4.13,
-      "overall": 3.96
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": [
-      "leans on template-heavy phrasing",
-      "sounds interchangeable with other generated entries"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

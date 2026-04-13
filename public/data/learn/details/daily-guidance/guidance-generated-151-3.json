@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-151-3",
-  "title": "Attuned To The True One, You Shall",
-  "summary": "The shabad does not leave anger at diagnosis. It turns toward return.",
-  "takeaway": "Attuned to the True One, you shall obtain a place of honor in the Court of the Lord",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
+  "title": "Let the Court decide what honor is",
+  "summary": "This meets the ache to be seen, thanked, and called worthy now. The line turns the heart away from the room and toward the Court, where love-filled service is what receives honor.",
+  "takeaway": "Serve with love and let the Court decide honor.",
+  "lifeApplication": "Before you introduce yourself, explain your value, or angle for credit, do one loving act no one can repay. Let hidden love correct the appetite for notice.",
   "source": {
     "deepDiveId": "shabad-generated-151",
     "verseIds": [
       2104,
       2108
     ],
-    "shortMeaning": "Attuned to the True One, you shall obtain a place of honor in the Court of the Lord; those who have served You with love are truly wise",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Love-filled service is what the Lord's Court honors.",
+    "lifeApplication": "Before angling for credit, do one loving act no one can repay."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "self-worth",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Attuned to the True One, you shall obtain a place of honor in the Court of the Lord; those who have served You with love are truly wise",
+      "coreClaim": "Love-filled service is what the Lord's Court honors.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: Nanak lives by chanting and meditating on the One, who is pervading within and contained amongst all.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. After the reaction, make the next return smaller and truer.",
+      "turn": "Move toward the humble until fear loses its command.",
+      "practicalImplication": "Before you introduce yourself, explain your value, or angle for credit, do one loving act no one can repay. Let hidden love correct the appetite for notice.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.81,
-      "clarity": 3.63,
-      "specificity": 4.76,
+      "faithfulness": 3.97,
+      "clarity": 4.17,
+      "specificity": 4.55,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.26,
-      "beauty": 3.67,
-      "overall": 3.88
+      "usefulness": 4.2,
+      "beauty": 4.09,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

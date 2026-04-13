@@ -1,16 +1,16 @@
 {
   "id": "guidance-work-give-know-the-path-1",
-  "title": "One Who Calls Himself A Guru",
-  "summary": "Seva is named plainly here before the mind has time to decorate it.",
-  "takeaway": "One who calls himself a guru or a spiritual teacher, while he goes around",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+  "title": "Do not bow to performative holiness",
+  "summary": "This meets religious display emptied of labor, wisdom, and generosity. The line refuses fake authority and honors the one who works and gives.",
+  "takeaway": "Work, share, and distrust empty show.",
+  "lifeApplication": "Before admiring the costume, title, or voice, ask what this person actually labors for and gives away. Let conduct decide where your respect goes.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
       53369
     ],
-    "shortMeaning": "One who calls himself a guru or a spiritual teacher, while he goes around",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The path is known by honest labor and generosity, not by religious pose.",
+    "lifeApplication": "When impressed by spiritual display, look for work, generosity, and humility."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -23,7 +23,7 @@
     "collection-seva-journey"
   ],
   "rotation": {
-    "theme": "seva",
+    "theme": "conduct",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "One who calls himself a guru or a spiritual teacher, while he goes around",
+      "coreClaim": "The path is known by honest labor and generosity, not by religious pose.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "The path is not performed through appearance. It is walked through honest labor and giving.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. Begin with the part of the day already in front of you.",
+      "turn": "Honest labor and sharing reveal the path better than costume.",
+      "practicalImplication": "Before admiring the costume, title, or voice, ask what this person actually labors for and gives away. Let conduct decide where your respect goes.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.83,
-      "clarity": 3.75,
-      "specificity": 4.42,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.81,
-      "overall": 3.89
+      "faithfulness": 4.12,
+      "clarity": 4.35,
+      "specificity": 4.52,
+      "emotionalHonesty": 3,
+      "usefulness": 3.98,
+      "beauty": 4.05,
+      "overall": 4.02
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

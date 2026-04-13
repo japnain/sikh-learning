@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-153-1",
-  "title": "O Siblings Of Destiny, Listen: Release Comes",
-  "summary": "Seeking is named plainly here before the mind has time to decorate it.",
-  "takeaway": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name",
-  "lifeApplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+  "title": "Let seeking kneel before it wanders",
+  "summary": "This meets the search that keeps multiplying methods while resisting surrender. The line sends the search to Naam and the Guru's service.",
+  "takeaway": "Seek release where service begins.",
+  "lifeApplication": "Before trying another method, do one act of service and repeat the Name until the search stops performing itself.",
   "source": {
     "deepDiveId": "shabad-generated-153",
     "verseIds": [
       2133
     ],
-    "shortMeaning": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name",
-    "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Release is found where Naam and service meet the Guru.",
+    "lifeApplication": "Before trying another method, do one act of service and repeat the Name until the search stops performing itself."
   },
   "relatedTopicIds": [
     "topic-seeking"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "O Saints, O Siblings of Destiny, listen: release comes only through the True Name",
+      "coreClaim": "Release is found where Naam and service meet the Guru.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "Keep returning to this turn: Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
-      "practicalImplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+      "turn": "Seeking matures when it bows into the Name and service.",
+      "practicalImplication": "Before trying another method, do one act of service and repeat the Name until the search stops performing itself.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.77,
-      "clarity": 3.64,
-      "specificity": 4.73,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.74,
-      "overall": 3.96
+      "faithfulness": 4.05,
+      "clarity": 4.35,
+      "specificity": 4.63,
+      "emotionalHonesty": 3,
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

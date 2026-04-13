@@ -218,14 +218,14 @@ export const SHABAD_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "shabad-generated-179": {
-    "title": "Service makes the whole life clean",
-    "summary": "The shabad opens by saying service to the True Guru purifies mind and body together. It widens through Sangat, truth, honor, and dwelling in the inner home, then contrasts that wholeness with the misery of forgetting Truth.",
-    "whyItMatters": "This is for the person whose inner devotion and outer conduct have drifted apart. Held steadily, it reunites them through service, truth, and the Guru's boat.",
-    "takeaway": "Serve the True Guru until the whole life starts telling the truth.",
+    "title": "Truth is meant to occupy the whole life",
+    "summary": "The shabad starts by joining service to the True Guru with the cleansing of mind and body. Then it keeps widening truth until it touches food, speech, company, clothing, and shelter.",
+    "whyItMatters": "This is for the person whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live.",
+    "takeaway": "Let the Guru's truth reach your food, speech, and shelter.",
     "structure": [
-      "It opens by linking service directly to inner and bodily purification.",
-      "The middle builds a whole life around truth as food, clothing, speech, and dwelling.",
-      "It ends by rushing to the Guru's sanctuary as the only boat through a burning world."
+      "It opens with service to the Guru cleaning both mind and body.",
+      "The middle makes truth the atmosphere of speech, sustenance, company, and dwelling.",
+      "It ends by hurrying to the Guru's sanctuary as the crossing out of a burning world."
     ],
     "reviewedByHuman": true
   },
@@ -867,14 +867,14 @@ export const SHABAD_COPY_OVERRIDES = {
     "reviewedByHuman": true
   },
   "shabad-search-ends-in-saint-company": {
-    "title": "Roaming ends where saintly company cools the heart",
-    "summary": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy sends the holy saint, and then the mind and body finally cool.",
+    "title": "Roaming ends where holy company cools the heart",
+    "summary": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy brings true company, and then the mind and body finally cool.",
     "whyItMatters": "This is for the person trapped in spiritual roaming, method-switching, and never-arriving effort. Held honestly, it says peace is not found by multiplying techniques but by mercy and true company.",
-    "takeaway": "Bring your searching to saintly company and let it cool there.",
+    "takeaway": "Bring your searching to holy company and let it cool there.",
     "structure": [
       "It opens with a sincere search that still cannot bring the Lord near.",
       "The middle exhausts religious systems and bodily disciplines until their inability to give peace is obvious.",
-      "It ends in mercy, saintly company, and the Lord dwelling within a cooled heart."
+      "It ends in mercy, holy company, and the Lord dwelling within a cooled heart."
     ],
     "reviewedByHuman": true
   },
@@ -960,6 +960,183 @@ export const SHABAD_COPY_OVERRIDES = {
       "The middle refuses reverence toward the guru-figure who begs while claiming status.",
       "It ends in a simple mark of truth: work honestly, give from your hands, and the path becomes recognizable."
     ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-360": {
+    "title": "Place the tired mind in the Guru's cooling shelter",
+    "summary": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
+    "whyItMatters": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort.",
+    "takeaway": "Place the mind's trust in the Guru as cooling shelter.",
+    "structure": [
+      "It opens by naming the Guru as giver rather than as one more burden on the seeker.",
+      "The middle calls the Guru a cooling house and a light broad enough for all three worlds.",
+      "It ends by treating that light as lasting wealth and peace."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-739": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-815": {
+    "title": "Cling to the One until the mind cools",
+    "summary": "The pauree opens by praising those who release every other hold and cling to the One alone. It contrasts Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
+    "whyItMatters": "This is for the person still hungry after chasing ten different supports. Held steadily, it teaches that peace comes not from adding more but from holding one thing rightly.",
+    "takeaway": "Let one true hold replace the many false ones.",
+    "structure": [
+      "It opens by honoring the one who clings to the Lord instead of multiplying dependencies.",
+      "The middle contrasts Maya-soaked unrest with the sweetness found in saintly company.",
+      "It ends with the cooled and soothed mind as the fruit of Naam."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-816": {
+    "title": "Bow until wandering stops asking for the lead",
+    "summary": "This brief shabad opens in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
+    "whyItMatters": "This is for the person whose devotion has gone formal while the mind still keeps roaming. Held honestly, it turns bowing into dependence instead of performance.",
+    "takeaway": "Let prayer become a real request for rescue.",
+    "structure": [
+      "It opens in repeated prostration before the Lord's power.",
+      "The middle turns that posture into a plea for protection from wandering.",
+      "It ends by asking for the Lord's own hand rather than trusting the self."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-817": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-818": {
+    "title": "Where saving company interrupts judgment",
+    "summary": "This shabad opens with the fear of inescapable judgment. It turns the heart toward the saving nearness of Saadh Sangat and remembrance.",
+    "whyItMatters": "It matters for the person who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter.",
+    "takeaway": "Holy company keeps judgment from having the final word.",
+    "structure": [
+      "It begins by naming the helplessness of standing before judgment.",
+      "The middle movement turns toward the company where remembrance is still alive.",
+      "It closes by showing that salvation is received in Sangat, not manufactured alone."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-819": {
+    "title": "Stop roaming where the One is already near",
+    "summary": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
+    "whyItMatters": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest.",
+    "takeaway": "Search inwardly and let Sangat tear down the proud mound.",
+    "structure": [
+      "It opens by confronting wandering instead of admiring it.",
+      "The middle turns the seeker toward inner search and the company of the holy.",
+      "It ends by linking peace and delight to the breaking of egotistical pride."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-820": {
+    "title": "Where praise makes death keep its distance",
+    "summary": "This shabad opens inside the place where the Holy keep singing the Lord's praises. It turns the heart toward a sanctuary even fear and death do not rule.",
+    "whyItMatters": "It matters when speech has turned sharp, anxious, or spiritually thin. The shabad shows that praise changes the whole atmosphere a life is spoken inside.",
+    "takeaway": "Keep company with praise until fear stops ruling the room.",
+    "structure": [
+      "It opens by placing the seeker inside a living atmosphere of kirtan.",
+      "The middle movement shows that holy speech becomes protection, not ornament.",
+      "It closes by depicting a place even death is told not to approach."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-821": {
+    "title": "Conquer the self before you fight the world",
+    "summary": "This shabad opens by naming the true battlefield as the soul itself. It turns the heart toward Hukam, inner victory, and the peace that follows self-conquest.",
+    "whyItMatters": "It matters for anyone living hot, defensive, or split between reaction and discipline. The shabad corrects the urge to master the room before mastering the self.",
+    "takeaway": "Self-conquest is the way peace enters conduct.",
+    "structure": [
+      "It opens by naming inner conquest as the real battle of life.",
+      "The middle movement anchors the seeker in the One rather than in private force.",
+      "It closes by tying peace to understanding Hukam instead of egoic victory."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-823": {
+    "title": "Love the true treasure before desire names your wealth",
+    "summary": "The pauree opens by commanding love for the Lord as the true treasure. It answers desire, fear, and the fantasy of lasting wealth by saying the Name alone accompanies and enlightens.",
+    "whyItMatters": "This is for the person driven by craving, acquisition, or the fear of losing it all. Held honestly, it cools desire by showing what does and does not travel with you.",
+    "takeaway": "Love the true treasure before desire names your wealth.",
+    "structure": [
+      "It opens by naming the Lord as the real treasure worth loving.",
+      "The middle speaks to thirst, fear, and liberation through a heart filled with the Name.",
+      "It ends by stripping wealth, youth, and power of their claim to permanence."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-937": {
+    "title": "Let humility become the strength that does no harm",
+    "summary": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
+    "whyItMatters": "This is for the person who has started confusing hardness with spiritual seriousness. Stay with it when you are sharp; it retrains strength as kindness strong enough to bless whatever it touches.",
+    "takeaway": "Call humble the one from whom no harm comes.",
+    "structure": [
+      "It opens with radical lowliness rather than spiritual self-importance.",
+      "The middle names kindness, impartiality, and harmlessness as marks of God-consciousness.",
+      "It ends by showing that such presence nourishes others like falling nectar."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-938": {
+    "title": "Center hope where the wandering mind cannot rule",
+    "summary": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
+    "whyItMatters": "It matters when attachment, distraction, or doubt keeps scattering the heart. The shabad teaches a steadier center than private grasping can provide.",
+    "takeaway": "Hope steadies when it is centered in the One.",
+    "structure": [
+      "It opens by gathering hope into a single center.",
+      "The middle movement shows the wandering mind being brought under truthful rule.",
+      "It closes by widening that steadiness into remembrance that benefits more than the self."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-939": {
+    "title": "Let the Name become your family",
+    "summary": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
+    "whyItMatters": "This is for the person feeling impressionable, rootless, or easily claimed by whatever is nearest. Held steadily, it teaches a form of belonging that ego cannot counterfeit.",
+    "takeaway": "Take the Name as support, family, and lasting nearness.",
+    "structure": [
+      "It opens with singular love rather than divided loyalty.",
+      "The middle turns support and family into what is received through Naam.",
+      "It ends by pairing wakefulness and the renunciation of pride with a life that does not perish."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-940": {
+    "title": "God-consciousness is received, not staged",
+    "summary": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
+    "whyItMatters": "This is for the person who feels unseen and tries to build spiritual worth through effort or image. Held honestly, it returns identity to what God causes rather than what the self stages.",
+    "takeaway": "Let God, not image, decide what greatness is.",
+    "structure": [
+      "It opens with intimate knowledge and singular love for God.",
+      "The middle treats purity and carefree living as fruit, not performance.",
+      "It ends by saying the God-conscious being is made by God, then lifted into true greatness."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-941": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-942": {
+    "title": "Recognize greatness by the shelter it offers",
+    "summary": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
+    "whyItMatters": "This is for the person who needs real guidance and for the person tempted to admire stature without testing its fruit. Come to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand.",
+    "takeaway": "Test greatness by the shelter it gives away.",
+    "structure": [
+      "It opens by naming the God-conscious being through enduring, God-shaped qualities.",
+      "The middle turns that stature toward liberation, orchestration, and concrete help.",
+      "It ends by placing a hand extended to all at the center of true spiritual power."
+    ],
+    "reviewedByHuman": true
+  },
+  "shabad-generated-1046": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-1047": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-1048": {
+    "reviewedByHuman": true
+  },
+  "shabad-generated-1049": {
     "reviewedByHuman": true
   }
 } satisfies Record<string, ShabadOverridePayload>

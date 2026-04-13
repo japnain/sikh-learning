@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-and-contentment",
-  "title": "Gratitude and Contentment",
-  "subtitle": "A slower path out of grasping",
-  "description": "Study how mercy, steadiness, and truthful perspective loosen attachment and deepen gratitude.",
+  "title": "Enoughness and Gratitude",
+  "subtitle": "For the appetite that notices lack faster than mercy",
+  "description": "Move from grasping toward gratitude and contentment by naming what is already given.",
   "durationLabel": "5-day journey",
   "themes": [
     "gratitude",
@@ -14,8 +14,8 @@
     "verseIds": [
       60338
     ],
-    "shortMeaning": "I have not appreciated what You have done for me.",
-    "lifeApplication": "Let gratitude begin in honest recognition, not polished language."
+    "shortMeaning": "Enoughness becomes believable when mercy is named before lack.",
+    "lifeApplication": "Before reaching for more, name one gift already resting in your hands."
   },
   "items": [
     {
@@ -51,30 +51,31 @@
     "shabad-generated-152"
   ],
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Study how mercy, steadiness, and truthful perspective loosen attachment and deepen gratitude.",
+      "coreClaim": "Move from grasping toward gratitude and contentment by naming what is already given.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "A slower path out of grasping",
+      "turn": "For the appetite that notices lack faster than mercy",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.66,
-      "clarity": 3.75,
-      "specificity": 3.9,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.7
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.1,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.02
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

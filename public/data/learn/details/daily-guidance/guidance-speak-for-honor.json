@@ -1,17 +1,17 @@
 {
   "id": "guidance-speak-for-honor",
-  "title": "Speak in a way you can still respect tonight.",
-  "summary": "Guru does not separate speech from spiritual consequence. The tongue can preserve honor or steadily dissolve it.",
-  "takeaway": "Words are not neutral once spoken.",
-  "lifeApplication": "Choose one conversation today where dignity matters more than winning.",
+  "title": "Speak only what can stand at the Door",
+  "summary": "This meets the mouth that still wants the sharp sentence because it feels strong. The line measures speech by whether it can stand at the Lord's Door with honor.",
+  "takeaway": "Let honor, not impulse, choose the sentence.",
+  "lifeApplication": "Before the next message leaves you, ask whether you could repeat it before the Guru without shrinking.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       637,
       642
     ],
-    "shortMeaning": "Speak what carries honor, not just what releases heat.",
-    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+    "shortMeaning": "Only speech that can stand at the Door is worth speaking.",
+    "lifeApplication": "Before the next sentence leaves you, ask if it can stand at the Door."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,28 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Speak what carries honor, not just what releases heat.",
+      "coreClaim": "Only speech that can stand at the Door is worth speaking.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Guard the tongue, and the heart begins to clear.",
-      "practicalImplication": "Choose one conversation today where dignity matters more than winning.",
+      "turn": "Keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the next message leaves you, ask whether you could repeat it before the Guru without shrinking.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 4.25,
-      "specificity": 4.78,
+      "faithfulness": 4.29,
+      "clarity": 4.23,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.92,
+      "usefulness": 4.04,
       "beauty": 3.97,
-      "overall": 4.02
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": [
-      "leans on template-heavy phrasing",
-      "sounds interchangeable with other generated entries"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "collection-seeking-journey",
   "title": "From Seeking to steadier practice",
-  "subtitle": "A deliberate path through seeking",
-  "description": "Guru answers seeking by showing where wandering ends and dwelling begins. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when seeking keeps steering the day",
+  "description": "These readings separate holy hunger from restless novelty and teach the search how to dwell, obey, and finally land.",
   "durationLabel": "5-step journey",
   "themes": [
     "seeking",
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers seeking by showing where wandering ends and dwelling begins. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings separate holy hunger from restless novelty and teach the search how to dwell, obey, and finally land.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "A deliberate path through seeking",
+      "turn": "For when seeking keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.85,
-      "specificity": 4.25,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.82
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

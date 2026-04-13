@@ -1,8 +1,8 @@
 {
   "id": "collection-shame-to-welcome",
   "title": "From Shame to Welcome",
-  "subtitle": "A return path for the self that wants to hide",
-  "description": "This journey is for the voice that keeps saying you are disqualified. It answers that voice with forgiveness, nearness, and the language of being cherished.",
+  "subtitle": "For the heart that keeps shrinking from mercy",
+  "description": "These readings walk shame toward dignity, welcome, and a way back that does not depend on pretending.",
   "durationLabel": "5-step arc",
   "themes": [
     "shame",
@@ -65,25 +65,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "This journey is for the voice that keeps saying you are disqualified. It answers that voice with forgiveness, nearness, and the language of being cherished.",
+      "coreClaim": "These readings walk shame toward dignity, welcome, and a way back that does not depend on pretending.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "A return path for the self that wants to hide",
+      "turn": "For the heart that keeps shrinking from mercy",
       "practicalImplication": "Move through 7 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.86,
-      "clarity": 4.05,
-      "specificity": 4.09,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.8
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

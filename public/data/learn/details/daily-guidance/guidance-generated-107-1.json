@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-107-1",
-  "title": "Whom Shall I Serve? What Shall I",
-  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "title": "Ask the Guru before you scatter",
+  "summary": "This meets the anxious search for the right practice, teacher, or move. The line steadies the question by turning it toward the Guru instead of frantic self-invention.",
+  "takeaway": "Take the question to the Guru first.",
+  "lifeApplication": "Before opening another tab, asking another friend, or changing the plan again, stop with the question in your chest. Carry it to the Guru before carrying it everywhere else.",
   "source": {
     "deepDiveId": "shabad-generated-107",
     "verseIds": [
       1411
     ],
-    "shortMeaning": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The seeking heart becomes clear when it takes its question to the Guru.",
+    "lifeApplication": "When uncertainty spreads, ask the Guru before you ask the crowd."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -23,7 +23,7 @@
     "collection-anxiety-journey"
   ],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "seeking",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Whom shall I serve? What shall I chant? I will go and ask the Guru",
+      "coreClaim": "The seeking heart becomes clear when it takes its question to the Guru.",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "Keep returning to this turn: O Nanak, I am a sacrifice to those who are found to be true in the True Court.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "turn": "Clarity begins when the question is taken to the Guru.",
+      "practicalImplication": "Before opening another tab, asking another friend, or changing the plan again, stop with the question in your chest. Carry it to the Guru before carrying it everywhere else.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.75,
-      "specificity": 4.69,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 3.58,
-      "overall": 3.88
+      "faithfulness": 4.18,
+      "clarity": 4.29,
+      "specificity": 4.75,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.58,
+      "beauty": 4.01,
+      "overall": 4.17
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

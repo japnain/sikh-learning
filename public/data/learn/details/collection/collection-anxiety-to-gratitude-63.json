@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-to-gratitude-63",
-  "title": "Anxiety to Gratitude",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+  "title": "When anxiety is turned toward gratitude",
+  "subtitle": "When anxiety makes mercy harder to notice",
+  "description": "These readings interrupt the forecast by forcing the eye back onto the mercy already in the room.",
   "durationLabel": "6-step journey",
   "themes": [
     "anxiety",
@@ -14,8 +14,8 @@
       30988,
       30989
     ],
-    "shortMeaning": "The Creator who formed you remains your support.",
-    "lifeApplication": "Answer fear with remembrance before strategy."
+    "shortMeaning": "Gratitude interrupts anxiety when mercy is named before imagined danger.",
+    "lifeApplication": "When forecasting starts, name one mercy already present before planning more."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. This bridge then carries into guru keeps gratitude close to remembrance, contentment, and restored vision.",
+      "coreClaim": "These readings interrupt the forecast by forcing the eye back onto the mercy already in the room.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When anxiety makes mercy harder to notice",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.85,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
+      "faithfulness": 3.76,
+      "clarity": 4.35,
+      "specificity": 4,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.9
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

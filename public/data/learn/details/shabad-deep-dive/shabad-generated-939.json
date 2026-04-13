@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-939",
-  "title": "God-conscious Being Loves The One Lord Alone",
+  "title": "Let the Name become your family",
   "subtitle": "Raag Gauree · Ang 273",
-  "summary": "This shabad opens with the God-conscious being loves the One Lord alone. It turns the heart toward o Nanak, the God-conscious being shall never perish.",
-  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, the God-conscious being shall never perish.",
+  "summary": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
+  "whyItMatters": "This is for the person feeling impressionable, rootless, or easily claimed by whatever is nearest. Held steadily, it teaches a form of belonging that ego cannot counterfeit.",
+  "takeaway": "Take the Name as support, family, and lasting nearness.",
   "themes": [
     "sangat",
     "comparison",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the God-conscious being loves the One Lord alone.",
-    "The middle movement widens the correction through the God-conscious being renounces his proud ego.",
-    "It closes with a return you can actually keep: o Nanak, the God-conscious being shall never perish."
+    "It opens with singular love rather than divided loyalty.",
+    "The middle turns support and family into what is received through Naam.",
+    "It ends by pairing wakefulness and the renunciation of pride with a life that does not perish."
   ],
   "keyVerseIds": [
     12132,
@@ -141,25 +141,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the God-conscious being loves the One Lord alone. It turns the heart toward o Nanak, the God-conscious being shall never perish.",
+      "coreClaim": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement widens the correction through the God-conscious being renounces his proud ego.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, the God-conscious being shall never perish.",
+      "turn": "The middle turns support and family into what is received through Naam.",
+      "practicalImplication": "This is for the person feeling impressionable, rootless, or easily claimed by whatever is nearest. Held steadily, it teaches a form of belonging that ego cannot counterfeit. Take the Name as support, family, and lasting nearness.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.6,
+      "clarity": 4.35,
       "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.79,
-      "overall": 3.99
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.76,
+      "beauty": 4.69,
+      "overall": 4.19
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "beauty",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

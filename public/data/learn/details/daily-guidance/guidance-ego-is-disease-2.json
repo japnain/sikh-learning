@@ -1,17 +1,17 @@
 {
   "id": "guidance-ego-is-disease-2",
-  "title": "Ego Is A Chronic Disease, But It",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Ego is a chronic disease, but it contains its own cure as well; where does ego come from? How can it be removed",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Take the cure, not the diagnosis",
+  "summary": "This meets the moment when recognizing ego starts becoming one more intelligent pose. The line insists that naming the sickness is not enough; the medicine has to be taken.",
+  "takeaway": "Take the Guru's medicine, not the clever diagnosis.",
+  "lifeApplication": "When ego flares in a conversation, apology, or success, pause before the sentence lands and take one lowering action: listen, yield, or ask forgiveness.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
       20961,
       20963
     ],
-    "shortMeaning": "Ego is a chronic disease, but it contains its own cure as well; where does ego come from? How can it be removed",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Ego stops being theory when the Guru's cure is actually taken.",
+    "lifeApplication": "When ego flares, take one lowering action before you let it speak."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Ego is a chronic disease, but it contains its own cure as well; where does ego come from? How can it be removed",
+      "coreClaim": "Ego stops being theory when the Guru's cure is actually taken.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "The cure begins when ego is seen as illness rather than identity.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "Treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "When ego flares in a conversation, apology, or success, pause before the sentence lands and take one lowering action: listen, yield, or ask forgiveness.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 3.15,
-      "specificity": 4.68,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.11,
-      "overall": 3.79
+      "faithfulness": 4.1,
+      "clarity": 4.35,
+      "specificity": 4.86,
+      "emotionalHonesty": 3,
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

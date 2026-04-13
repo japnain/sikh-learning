@@ -1,16 +1,16 @@
 {
   "id": "guidance-speak-what-brings-honor-1",
-  "title": "Falsehood Is A Filthy Street-sweeper. Cheating",
-  "summary": "Speech is named plainly here before the mind has time to decorate it.",
-  "takeaway": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+  "title": "Do not let the mouth become a dumping ground",
+  "summary": "This meets speech already fouled by greed, slander, anger, and self-praise. The line insists that only words bringing honor are worth keeping.",
+  "takeaway": "Speak only what can bear honor.",
+  "lifeApplication": "Before the sharp comment or clever put-down, feel the tongue against the teeth. If the words dirty the mouth, do not give them voice.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       634
     ],
-    "shortMeaning": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Speech that carries greed and slander degrades the mouth; honorable words preserve it.",
+    "lifeApplication": "When harsh words rise, stop at the mouth and ask whether they can survive God's door."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "falsehood is a filthy street-sweeper. Cheating is eating a rotting carcass",
+      "coreClaim": "Speech that carries greed and slander degrades the mouth; honorable words preserve it.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Guard the tongue, and the heart begins to clear.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+      "turn": "Keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the sharp comment or clever put-down, feel the tongue against the teeth. If the words dirty the mouth, do not give them voice.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 3.81,
-      "specificity": 4.94,
+      "faithfulness": 4.18,
+      "clarity": 4.35,
+      "specificity": 4.93,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.64,
-      "overall": 4.06
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

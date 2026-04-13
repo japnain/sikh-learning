@@ -41,18 +41,18 @@
     "evidence": {
       "coreClaim": "Searching clears when it admits hunger for Darshan and stops roaming alone.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "Bring your searching to saintly company and let it cool there.",
+      "turn": "Bring your searching to holy company and let it cool there.",
       "practicalImplication": "When you start hunting everywhere again, stop before the next tab, errand, or plan. Say out loud what you want from God, then bring that search into saintly company instead of ten frantic moves.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.23,
+      "faithfulness": 4.18,
       "clarity": 4.35,
-      "specificity": 4.98,
+      "specificity": 4.93,
       "emotionalHonesty": 3.36,
       "usefulness": 4.8,
       "beauty": 4.21,
-      "overall": 4.31
+      "overall": 4.29
     },
     "strengths": [
       "specificity",

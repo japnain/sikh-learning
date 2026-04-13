@@ -1,17 +1,17 @@
 {
   "id": "guidance-obey-and-remember",
-  "title": "Obedience and remembrance belong together",
-  "summary": "This is not service as activity only. It is inward obedience and inward Naam.",
-  "takeaway": "Alignment matters more than motion.",
-  "lifeApplication": "Ask whether your effort today is actually aligned with Guru's direction or merely energetic.",
+  "title": "Keep command and Naam in one breath",
+  "summary": "This meets the split between outward obedience and inward resistance. The line keeps the two together: obey the Guru's command with the whole mind, and keep the Name alive inside the heart.",
+  "takeaway": "Keep the Guru's command with the whole mind.",
+  "lifeApplication": "Before the next task or seva, stop at the threshold and bring the mind into it. Keep the Name moving inwardly while the hands move outwardly.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12942,
       12944
     ],
-    "shortMeaning": "The Guru's servant is shaped by obedience and remembrance together.",
-    "lifeApplication": "Let your outer work be held by inner remembrance."
+    "shortMeaning": "The Guru's command is kept truly when obedience carries Naam inside it.",
+    "lifeApplication": "Before the next task or seva, stop at the threshold and bring the mind into it."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -35,30 +35,31 @@
     ]
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Guru's servant is shaped by obedience and remembrance together.",
+      "coreClaim": "The Guru's command is kept truly when obedience carries Naam inside it.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
-      "practicalImplication": "Ask whether your effort today is actually aligned with Guru's direction or merely energetic.",
+      "turn": "Service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "Before the next task or seva, stop at the threshold and bring the mind into it. Keep the Name moving inwardly while the hands move outwardly.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.68,
-      "clarity": 4.35,
-      "specificity": 4.28,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.44,
-      "beauty": 4.05,
-      "overall": 3.84
+      "faithfulness": 3.98,
+      "clarity": 4.11,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 5,
+      "beauty": 4.02,
+      "overall": 4.27
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

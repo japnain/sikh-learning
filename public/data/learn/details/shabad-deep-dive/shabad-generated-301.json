@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-301",
-  "title": "God Is The Breath Of Life",
+  "title": "The heart lives by the One supporting it",
   "subtitle": "Raag Maajh · Ang 103",
-  "summary": "This shabad opens with god is the Breath of Life of my soul, the Support of my mind. It turns the heart toward when my Lord and Master blessed me with His Mercy, O Nanak, then His.",
-  "whyItMatters": "It matters when life feels resentful, hurt, and stuck because the shabad keeps forgiveness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: When my Lord and Master blessed me with His Mercy, O Nanak, then His.",
+  "summary": "The shabad opens by calling God the breath of life and the support of the mind. It widens through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
+  "whyItMatters": "This is for the person secretly trying to hold themselves up alone. Held steadily, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen.",
+  "takeaway": "Let the mind rest on the One already carrying its life.",
   "themes": [
     "forgiveness",
     "restlessness",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: god is the Breath of Life of my soul, the Support of my mind.",
-    "The middle movement widens the correction through the limits of the Inaccessible and Unfathomable Lord cannot be known.",
-    "It closes with a return you can actually keep: when my Lord and Master blessed me with His Mercy, O Nanak, then His."
+    "It opens with support named as intimate and foundational: the Lord as breath and stay.",
+    "The middle turns that support into praise and the quieting peace of Naam.",
+    "It ends by drawing restless desire into holy company and the Guru's healing vision."
   ],
   "keyVerseIds": [
     4145,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with god is the Breath of Life of my soul, the Support of my mind. It turns the heart toward when my Lord and Master blessed me with His Mercy, O Nanak, then His.",
+      "coreClaim": "The shabad opens by calling God the breath of life and the support of the mind. It widens through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
       "emotionalState": "resentful, hurt, stuck",
-      "turn": "The middle movement widens the correction through the limits of the Inaccessible and Unfathomable Lord cannot be known.",
-      "practicalImplication": "Keep returning to this turn: When my Lord and Master blessed me with His Mercy, O Nanak, then His.",
+      "turn": "The middle turns that support into praise and the quieting peace of Naam.",
+      "practicalImplication": "This is for the person secretly trying to hold themselves up alone. Held steadily, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen. Let the mind rest on the One already carrying its life.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.53,
-      "specificity": 4.76,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.6,
-      "beauty": 3.63,
-      "overall": 3.86
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.79,
+      "overall": 4.5
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

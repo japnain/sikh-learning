@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-562",
-  "title": "It Is Only Obtained By Great Good",
+  "title": "A rare human life should not be spent asleep",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "This shabad opens with it is only obtained by great good fortune. It turns the heart toward the Name alone is contained within my heart.",
-  "whyItMatters": "It matters when life feels impatient, tense, and agitated because the shabad keeps patience inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: the Name alone is contained within my heart.",
+  "summary": "The shabad begins by calling human birth rare fortune, then asks what life is worth without Naam. It presses past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
+  "whyItMatters": "This is for the person drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic.",
+  "takeaway": "Treat this life as rare enough to center it on Naam.",
   "themes": [
     "patience",
     "anger",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: it is only obtained by great good fortune.",
-    "The middle movement widens the correction through what use are the ostentatious displays of the dead.",
-    "It closes with a return you can actually keep: the Name alone is contained within my heart."
+    "It opens by calling human birth rare and refusing to treat it casually.",
+    "The middle strips away the glamour of eating, laughing, and display without remembrance.",
+    "It ends with the GurMantra implanted and the heart occupied by Naam alone."
   ],
   "keyVerseIds": [
     7947,
@@ -151,25 +151,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with it is only obtained by great good fortune. It turns the heart toward the Name alone is contained within my heart.",
+      "coreClaim": "The shabad begins by calling human birth rare fortune, then asks what life is worth without Naam. It presses past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "The middle movement widens the correction through what use are the ostentatious displays of the dead.",
-      "practicalImplication": "Keep returning to this turn: the Name alone is contained within my heart.",
+      "turn": "The middle strips away the glamour of eating, laughing, and display without remembrance.",
+      "practicalImplication": "This is for the person drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic. Treat this life as rare enough to center it on Naam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
+      "clarity": 4.23,
       "specificity": 4.96,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.2,
-      "beauty": 3.86,
-      "overall": 4.16
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
+      "beauty": 3.97,
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

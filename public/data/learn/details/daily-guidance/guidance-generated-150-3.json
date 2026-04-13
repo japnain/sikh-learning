@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-150-3",
-  "title": "Meeting With The Guru, Nanak Has Recognized",
-  "summary": "The shabad does not leave hukam at diagnosis. It turns toward return.",
-  "takeaway": "Meeting with the Guru, Nanak has recognized the Supreme Lord God",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+  "title": "Stop arguing with what already stands",
+  "summary": "This meets the mind resisting what has happened because failure feels unbearable. The line says peace begins when truth about the loss is brought into mercy instead of argument.",
+  "takeaway": "Peace begins where argument with Hukam starts ending.",
+  "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
   "source": {
     "deepDiveId": "shabad-generated-150",
     "verseIds": [
       2092,
       2097
     ],
-    "shortMeaning": "Meeting with the Guru, Nanak has recognized the Supreme Lord God; you are my Strength. I know that You are mine",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Meeting with the Guru, Nanak has recognized the Supreme Lord God; you are my Strength. I know that You are mine",
+      "coreClaim": "Peace begins where argument with Hukam starts ending.",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+      "turn": "Bring the truth about failure into the Lord's mercy.",
+      "practicalImplication": "Before you argue with the moment again, stop and name what is already here.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
-      "clarity": 3.87,
-      "specificity": 4.88,
-      "emotionalHonesty": 3.18,
-      "usefulness": 5,
-      "beauty": 3.89,
-      "overall": 4.15
+      "faithfulness": 4.23,
+      "clarity": 4.05,
+      "specificity": 4.62,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.36,
+      "beauty": 4.17,
+      "overall": 4.17
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

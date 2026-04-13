@@ -1,17 +1,17 @@
 {
   "id": "guidance-search-ends-in-saint-company-2",
-  "title": "They Perform The Inner Cleansing Practice",
-  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "They perform the inner cleansing practice with water and adopt the eighty-four Yogic postures; i have searched and searched, seeking the Blessed Vision of His Darshan",
-  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "title": "Stop roaming for what saintly company gives",
+  "summary": "This meets the exhausted spiritual search that keeps mistaking motion for nearness. The line says techniques and travel cannot make peace arrive; saintly company can.",
+  "takeaway": "Let seeking kneel into saintly company.",
+  "lifeApplication": "Before changing methods again, sit down where the mind and body cool in honest company. Stay long enough for the chase to quiet.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
       3890,
       3895
     ],
-    "shortMeaning": "They perform the inner cleansing practice with water and adopt the eighty-four Yogic postures; i have searched and searched, seeking the Blessed Vision of His Darshan",
-    "lifeApplication": "Choose better placement before choosing more movement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Restless searching settles when saintly company cools the mind and body.",
+    "lifeApplication": "When the urge to roam returns, stay near the company that brings composure."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -24,7 +24,7 @@
     "collection-restlessness-journey"
   ],
   "rotation": {
-    "theme": "restlessness",
+    "theme": "seeking",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "They perform the inner cleansing practice with water and adopt the eighty-four Yogic postures; i have searched and searched, seeking the Blessed Vision of His Darshan",
+      "coreClaim": "Restless searching settles when saintly company cools the mind and body.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "The mind settles less by roaming and more by right company.",
-      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "turn": "Bring your searching to holy company and let it cool there.",
+      "practicalImplication": "Before changing methods again, sit down where the mind and body cool in honest company. Stay long enough for the chase to quiet.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 1.91,
-      "specificity": 4.82,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 2.97,
-      "overall": 3.58
+      "faithfulness": 4.09,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.26,
+      "beauty": 4.49,
+      "overall": 4.26
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

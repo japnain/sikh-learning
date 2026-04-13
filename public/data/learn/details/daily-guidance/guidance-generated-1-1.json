@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-1-1",
-  "title": "True In The Primal Beginning. True Throughout",
-  "summary": "Anger is named plainly here before the mind has time to decorate it.",
-  "takeaway": "True In The Primal Beginning. True Throughout The Ages",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+  "title": "Truth was here before your urgency",
+  "summary": "This meets the tightened moment when everything feels like it depends on your grip. The line breaks that spell by naming a truth older than your fear.",
+  "takeaway": "Let older Truth humble the urge to control.",
+  "lifeApplication": "Before you correct the room or send the message, plant both feet and say the line once. Let the age of Truth shrink the size of your panic.",
   "source": {
     "deepDiveId": "shabad-generated-1",
     "verseIds": [
       3
     ],
-    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Truth precedes the fear trying to rule this moment.",
+    "lifeApplication": "Before reacting, remember that Truth did not begin with this scene."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -23,7 +23,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "control",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "True In The Primal Beginning. True Throughout The Ages",
+      "coreClaim": "Truth precedes the fear trying to rule this moment.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Begin with the part of the day already in front of you.",
+      "turn": "Truth is not won by pressure or wit, but by walking in Hukam.",
+      "practicalImplication": "Before you correct the room or send the message, plant both feet and say the line once. Let the age of Truth shrink the size of your panic.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.61,
-      "clarity": 3.99,
-      "specificity": 4.39,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.71,
-      "overall": 3.85
+      "faithfulness": 4.15,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.64,
+      "beauty": 4.21,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

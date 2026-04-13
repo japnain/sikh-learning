@@ -137,22 +137,23 @@
       "coreClaim": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
       "emotionalState": "isolated, impressionable, needing-company",
       "turn": "The middle movement widens the correction through the value of that place beyond is known only to those.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
+      "practicalImplication": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.57,
-      "specificity": 4.6,
+      "clarity": 3.63,
+      "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
+      "usefulness": 3.98,
       "beauty": 3.82,
-      "overall": 3.99
+      "overall": 4.12
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

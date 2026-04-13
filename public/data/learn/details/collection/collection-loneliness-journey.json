@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-journey",
   "title": "From Loneliness to steadier practice",
-  "subtitle": "A deliberate path through loneliness",
-  "description": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when loneliness keeps steering the day",
+  "description": "These readings lead isolation toward company, remembrance, and the nearness that does not depend on being noticed.",
   "durationLabel": "5-step journey",
   "themes": [
     "loneliness",
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings lead isolation toward company, remembrance, and the nearness that does not depend on being noticed.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "A deliberate path through loneliness",
+      "turn": "For when loneliness keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 3.75,
-      "specificity": 4.23,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.81
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 3.97
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

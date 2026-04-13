@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-to-doubt-71",
-  "title": "Purpose to Doubt",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+  "title": "When purpose dissolves into doubt",
+  "subtitle": "When calling starts blurring into second-guessing",
+  "description": "These readings keep vocation from dissolving into endless reconsideration by fastening the heart to one entrusted act.",
   "durationLabel": "6-step journey",
   "themes": [
     "purpose",
@@ -14,8 +14,8 @@
       524,
       525
     ],
-    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
-    "lifeApplication": "Let one part of the day answer that opportunity directly."
+    "shortMeaning": "Purpose survives when one entrusted act is kept longer than the doubt around it.",
+    "lifeApplication": "When the mind reopens everything, keep the clearest duty until the fog loses authority."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This bridge then carries into guru answers doubt by clarifying what is worth trusting, keeping, and repeating.",
+      "coreClaim": "These readings keep vocation from dissolving into endless reconsideration by fastening the heart to one entrusted act.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When calling starts blurring into second-guessing",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 3.65,
-      "specificity": 4.28,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.83
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

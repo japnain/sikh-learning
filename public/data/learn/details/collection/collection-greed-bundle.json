@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-bundle",
   "title": "Greed in one shorter sitting",
-  "subtitle": "A compact bundle for greed",
-  "description": "The appetite keeps expanding faster than contentment can breathe. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when greed is already close",
+  "description": "A short return for the hour when appetite is outrunning breath. It brings desire back under truthful measure.",
   "durationLabel": "3-step bundle",
   "themes": [
     "greed"
@@ -46,25 +46,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The appetite keeps expanding faster than contentment can breathe. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when appetite is outrunning breath. It brings desire back under truthful measure.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A compact bundle for greed",
+      "turn": "A shorter sitting for when greed is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 3.85,
-      "specificity": 4.16,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.75
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.69,
+      "overall": 4.08
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

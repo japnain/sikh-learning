@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-361-3",
-  "title": "Without The Guru, The World Is Drowning",
-  "summary": "The shabad does not leave greed at diagnosis. It turns toward return.",
-  "takeaway": "Without the Guru, the world is drowning",
-  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. After the reaction, make the next return smaller and truer.",
+  "title": "When the soul asks the way, do not walk alone",
+  "summary": "This meets the late realization that appetite has not taught the way home. The line says the soul must ask direction, because the world without the Guru is already drowning.",
+  "takeaway": "Seek direction before desire sets the route.",
+  "lifeApplication": "At the end of the day, when success still feels directionless, stop at the doorway before the next task. Ask plainly where this life is being led, and do not let appetite answer for you.",
   "source": {
     "deepDiveId": "shabad-generated-361",
     "verseIds": [
       5606,
       5610
     ],
-    "shortMeaning": "The swan of the soul takes flight, and asks which way to go",
-    "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The soul needs the Guru's direction before desire makes it drown.",
+    "lifeApplication": "When you feel lost, ask for direction before you follow the next impulse."
   },
   "relatedTopicIds": [
     "topic-greed"
@@ -24,7 +24,7 @@
     "collection-truthful-wealth"
   ],
   "rotation": {
-    "theme": "greed",
+    "theme": "seeking",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The swan of the soul takes flight, and asks which way to go",
+      "coreClaim": "The soul needs the Guru's direction before desire makes it drown.",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "Keep returning to this turn: Without the Guru, the world is drowning.",
-      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. After the reaction, make the next return smaller and truer.",
+      "turn": "Greed becomes easier to face when its growth is named.",
+      "practicalImplication": "At the end of the day, when success still feels directionless, stop at the doorway before the next task. Ask plainly where this life is being led, and do not let appetite answer for you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
-      "clarity": 4.11,
-      "specificity": 4.87,
+      "faithfulness": 4,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
+      "usefulness": 5,
       "beauty": 4.05,
-      "overall": 4.09
+      "overall": 4.26
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

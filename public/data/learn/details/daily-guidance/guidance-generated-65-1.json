@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-65-1",
-  "title": "As Metal Merges With Metal",
-  "summary": "Comparison is named plainly here before the mind has time to decorate it.",
-  "takeaway": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+  "title": "Melt the self into praise",
+  "summary": "This meets the mind hardened by self-consciousness and comparison. The line imagines praise as fusion, not performance.",
+  "takeaway": "Praise until separation softens.",
+  "lifeApplication": "Before sizing yourself up beside someone else, notice the hard edge in the chest. Repeat the line until attention warms enough to join rather than compare.",
   "source": {
     "deepDiveId": "shabad-generated-65",
     "verseIds": [
       759
     ],
-    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "In praise, the separate self softens and begins to merge with the Lord.",
+    "lifeApplication": "When the mind hardens, stay with praise until the edge begins to soften."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
+      "coreClaim": "In praise, the separate self softens and begins to merge with the Lord.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Begin with the part of the day already in front of you.",
+      "turn": "Let praise, saintly company, and true action soften the self into homecoming.",
+      "practicalImplication": "Before sizing yourself up beside someone else, notice the hard edge in the chest. Repeat the line until attention warms enough to join rather than compare.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.75,
-      "clarity": 3.02,
-      "specificity": 4.53,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.56,
-      "overall": 3.8
+      "faithfulness": 4.06,
+      "clarity": 4.35,
+      "specificity": 4.99,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.26,
+      "beauty": 4.21,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

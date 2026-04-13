@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-bundle",
-  "title": "Seva in one shorter sitting",
-  "subtitle": "A compact bundle for seva",
-  "description": "The work may still be happening, but the heart has started bargaining with it. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "title": "Seva, stripped back to honesty",
+  "subtitle": "For when service needs to get honest again",
+  "description": "A short sitting that clears service of image and hurry until the hands can do honest good without asking to be seen.",
   "durationLabel": "3-step bundle",
   "themes": [
     "seva"
@@ -13,8 +13,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
-    "lifeApplication": "Serve without building a story about being the servant."
+    "shortMeaning": "Seva is clean when the hands finish the work without carrying applause back home.",
+    "lifeApplication": "Do the needed thing quietly, then refuse to rehearse it afterward."
   },
   "items": [
     {
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The work may still be happening, but the heart has started bargaining with it. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short sitting that clears service of image and hurry until the hands can do honest good without asking to be seen.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "A compact bundle for seva",
+      "turn": "For when service needs to get honest again",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.35,
-      "specificity": 4.17,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.1,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.79
+      "overall": 4.05
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-361-2",
-  "title": "Fifth, He Runs After Food And Drink",
-  "summary": "Greed is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "First, the baby loves mother's milk",
-  "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Use the line before the pressure chooses your tone.",
+  "title": "Watch appetite grow before it rules you",
+  "summary": "This meets desire before it has fully named itself as need. The line traces how appetite grows by stages until it begins ruling the life.",
+  "takeaway": "Notice appetite before it becomes destiny.",
+  "lifeApplication": "At the first reach for food, comfort, attention, or purchase, pause early rather than late. Greed is easier to tell the truth about before it calls itself normal.",
   "source": {
     "deepDiveId": "shabad-generated-361",
     "verseIds": [
       5595,
       5599
     ],
-    "shortMeaning": "First, the baby loves mother's milk",
-    "lifeApplication": "Ask what you are taking in that still leaves the heart poor. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Greed grows by stages until appetite starts running the life.",
+    "lifeApplication": "Catch the want early, before it settles in as identity."
   },
   "relatedTopicIds": [
     "topic-greed"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "First, the baby loves mother's milk",
+      "coreClaim": "Greed grows by stages until appetite starts running the life.",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "Keep returning to this turn: Without the Guru, the world is drowning.",
-      "practicalImplication": "Ask what you are taking in that still leaves the heart poor. Use the line before the pressure chooses your tone.",
+      "turn": "Greed becomes easier to face when its growth is named.",
+      "practicalImplication": "At the first reach for food, comfort, attention, or purchase, pause early rather than late. Greed is easier to tell the truth about before it calls itself normal.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.78,
-      "clarity": 4.11,
-      "specificity": 4.74,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.26,
-      "beauty": 3.89,
-      "overall": 4.03
+      "faithfulness": 4.21,
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3,
+      "usefulness": 3.82,
+      "beauty": 4.17,
+      "overall": 4.06
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

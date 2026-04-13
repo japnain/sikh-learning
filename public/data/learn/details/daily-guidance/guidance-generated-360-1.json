@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-360-1",
-  "title": "To Be Sung To The Tune",
-  "summary": "Exhaustion is named plainly here before the mind has time to decorate it.",
-  "takeaway": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
-  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+  "title": "Enter the teaching as given",
+  "summary": "This meets the mind that wants even the path on its own terms. The heading itself slows you down: entry into the teaching is received, not improvised.",
+  "takeaway": "Receive the path before trying to master it.",
+  "lifeApplication": "Before rushing into the next reading or practice, slow down enough to receive it in the form the Guru gives. Let reverence set the tone before effort does.",
   "source": {
     "deepDiveId": "shabad-generated-360",
     "verseIds": [
       5589
     ],
-    "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Even the doorway into the teaching is received, not self-composed.",
+    "lifeApplication": "Before beginning, receive the path as given instead of improvising yourself into it."
   },
   "relatedTopicIds": [
     "topic-exhaustion"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
+      "coreClaim": "Even the doorway into the teaching is received, not self-composed.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
-      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Begin with the part of the day already in front of you.",
+      "turn": "Place the mind's trust in the Guru as cooling shelter.",
+      "practicalImplication": "Before rushing into the next reading or practice, slow down enough to receive it in the form the Guru gives. Let reverence set the tone before effort does.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.64,
-      "clarity": 3.93,
-      "specificity": 4.23,
+      "faithfulness": 4.11,
+      "clarity": 4.23,
+      "specificity": 4.87,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.9,
-      "overall": 3.91
+      "usefulness": 5,
+      "beauty": 4.13,
+      "overall": 4.27
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-509-2",
-  "title": "Those Who Do Not Have Love",
-  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Those who do not have love for the Lord within their hearts, harbor only false intentions and goals; this mind does not hold still, even for an instant. Distracted by all sorts",
-  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "title": "Restless hearts also need love",
+  "summary": "This meets the mind that keeps moving because it has forgotten what it is moving toward. The line joins aimless wandering to a heart missing love for the Lord.",
+  "takeaway": "Let love quiet the wandering mind.",
+  "lifeApplication": "When the mind runs from input to input, stop before the next one lands. Ask what love for the Lord would make unnecessary right now.",
   "source": {
     "deepDiveId": "shabad-generated-509",
     "verseIds": [
       7107,
       7112
     ],
-    "shortMeaning": "Those who do not have love for the Lord within their hearts, harbor only false intentions and goals; this mind does not hold still, even for an instant. Distracted by all sorts",
-    "lifeApplication": "Choose better placement before choosing more movement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Restlessness deepens when the heart lacks love for the Lord.",
+    "lifeApplication": "When the mind scatters, ask what hunger beneath it is still unloved."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Those who do not have love for the Lord within their hearts, harbor only false intentions and goals; this mind does not hold still, even for an instant. Distracted by all sorts",
+      "coreClaim": "Restlessness deepens when the heart lacks love for the Lord.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
-      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "turn": "Love for the Lord gathers what distraction keeps scattering.",
+      "practicalImplication": "When the mind runs from input to input, stop before the next one lands. Ask what love for the Lord would make unnecessary right now.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 2.61,
-      "specificity": 4.77,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.04,
-      "beauty": 2.79,
-      "overall": 3.69
+      "faithfulness": 4.15,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.86,
+      "beauty": 4.17,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

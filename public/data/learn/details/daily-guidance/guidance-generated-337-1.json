@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-337-1",
-  "title": "Those Who Meditate On The True One",
-  "summary": "Self-Worth is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Those who meditate on the True One are attuned to Truth",
-  "lifeApplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+  "title": "Let worth be received in truth",
+  "summary": "This meets the fragile self that borrows dignity from reaction and approval. The line says those attuned to Truth are absorbed into what is most real, not into what others say.",
+  "takeaway": "Receive dignity from Truth, not applause.",
+  "lifeApplication": "Before defending your worth, stop and feel how much of it you are outsourcing. Let attunement to Truth arrive before the room's response does.",
   "source": {
     "deepDiveId": "shabad-generated-337",
     "verseIds": [
       4852
     ],
-    "shortMeaning": "Those who meditate on the True One are attuned to Truth",
-    "lifeApplication": "Let dignity be received before it is defended. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Worth steadies when the heart is attuned to Truth itself.",
+    "lifeApplication": "When worth feels borrowed, return it to Truth before you defend it."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Those who meditate on the True One are attuned to Truth",
+      "coreClaim": "Worth steadies when the heart is attuned to Truth itself.",
       "emotionalState": "unworthy, rejected, fragile",
-      "turn": "Keep returning to this turn: O Nanak, the One Name is pervading deep within my mind.",
-      "practicalImplication": "Let dignity be received before it is defended. Begin with the part of the day already in front of you.",
+      "turn": "Let Truth, not applause, give the heart its place.",
+      "practicalImplication": "Before defending your worth, stop and feel how much of it you are outsourcing. Let attunement to Truth arrive before the room's response does.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.65,
-      "clarity": 3.87,
-      "specificity": 4.25,
+      "faithfulness": 4.22,
+      "clarity": 4.35,
+      "specificity": 4.79,
       "emotionalHonesty": 3.36,
       "usefulness": 4.58,
-      "beauty": 4.01,
-      "overall": 3.92
+      "beauty": 4.37,
+      "overall": 4.27
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-230-1",
-  "title": "It, The Gurmukh Is Honored And Approved",
-  "summary": "Purpose is named plainly here before the mind has time to decorate it.",
-  "takeaway": "through it, the Gurmukh is honored and approved",
-  "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+  "title": "Let service make your life weighty",
+  "summary": "This meets the dull feeling that nothing you do is reaching beyond maintenance. The line says service to the Lord is fruitful and honors the one who lives from it.",
+  "takeaway": "Make service the work that outlives you.",
+  "lifeApplication": "Before calling the day pointless, take up one task as service rather than as burden. Let fruitfulness return through offering, not mood.",
   "source": {
     "deepDiveId": "shabad-generated-230",
     "verseIds": [
       3452
     ],
-    "shortMeaning": "through it, the Gurmukh is honored and approved",
-    "lifeApplication": "Choose one act today that treats life as opportunity instead of drift. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Service becomes fruitful when the whole life is offered through it.",
+    "lifeApplication": "When the day feels thin, do the next task as service."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -23,7 +23,7 @@
     "collection-truthful-wealth"
   ],
   "rotation": {
-    "theme": "purpose",
+    "theme": "seva",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "through it, the Gurmukh is honored and approved",
+      "coreClaim": "Service becomes fruitful when the whole life is offered through it.",
       "emotionalState": "directionless, numb, adrift",
-      "turn": "Keep returning to this turn: O Nanak, he alone serves the Lord, whom the Lord attaches to Himself.",
-      "practicalImplication": "Choose one act today that treats life as opportunity instead of drift. Begin with the part of the day already in front of you.",
+      "turn": "The path becomes visible when service turns fruitful.",
+      "practicalImplication": "Before calling the day pointless, take up one task as service rather than as burden. Let fruitfulness return through offering, not mood.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.61,
-      "clarity": 4.11,
-      "specificity": 4.39,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.89,
-      "overall": 3.93
+      "faithfulness": 4.14,
+      "clarity": 4.35,
+      "specificity": 4.89,
+      "emotionalHonesty": 3,
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.22
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

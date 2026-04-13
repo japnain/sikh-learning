@@ -1,17 +1,18 @@
 {
   "id": "guidance-human-opportunity",
-  "title": "This life is more than a schedule",
-  "summary": "Human birth is framed as an opening for meeting, sangat, and Naam.",
-  "takeaway": "Do not let busyness bury the point of being here.",
-  "lifeApplication": "Choose one practice today that treats life as an opportunity for meeting rather than maintenance.",
+  "title": "Do not waste the crossing",
+  "summary": "This meets the day that stays busy but spiritually unspent. The line turns life from ornament into crossing, and asks for effort while the chance is still open.",
+  "takeaway": "Treat this life as a crossing, not a possession.",
+  "lifeApplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
-      524,
-      525
+      527,
+      528,
+      529
     ],
-    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
-    "lifeApplication": "Let one part of the day answer that opportunity directly."
+    "shortMeaning": "This life is given for crossing and meeting, not decoration.",
+    "lifeApplication": "Before another drifting hour disappears, choose the act that helps you cross."
   },
   "relatedTopicIds": [
     "topic-purpose"
@@ -38,27 +39,28 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Human birth is given as the chance to meet the Divine.",
+      "coreClaim": "This life is given for crossing and meeting, not decoration.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Use this life for meeting, not merely for managing.",
-      "practicalImplication": "Choose one practice today that treats life as an opportunity for meeting rather than maintenance.",
+      "turn": "Treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.2,
+      "faithfulness": 4.25,
       "clarity": 4.35,
-      "specificity": 4.95,
-      "emotionalHonesty": 3,
-      "usefulness": 4.42,
+      "specificity": 4.81,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
       "beauty": 4.05,
-      "overall": 4.17
+      "overall": 4.09
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

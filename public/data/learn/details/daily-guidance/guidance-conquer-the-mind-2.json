@@ -1,17 +1,17 @@
 {
   "id": "guidance-conquer-the-mind-2",
-  "title": "Contentment makes discipline visible",
-  "summary": "Discipline becomes credible when humility, meditation, and contentment begin shaping the body before pressure does.",
-  "takeaway": "Contentment, humility, and meditation mark the disciplined life more truly than image or strain.",
-  "lifeApplication": "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
+  "title": "Let contentment prove your discipline",
+  "summary": "This meets the wish to look disciplined while the mind still runs loose. The line makes contentment, humility, and Naam the real mark.",
+  "takeaway": "Let contentment prove your discipline.",
+  "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler.",
   "source": {
     "deepDiveId": "shabad-conquer-the-mind",
     "verseIds": [
       290,
       292
     ],
-    "shortMeaning": "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
-    "lifeApplication": "Keep the next repetition plain enough that humility and contentment can remain inside it."
+    "shortMeaning": "Real discipline leaves the mind content, humble, and turned to Naam.",
+    "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
+      "coreClaim": "Real discipline leaves the mind content, humble, and turned to Naam.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "The hardest field is the inner field. Win there first.",
-      "practicalImplication": "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
+      "turn": "Conquer the mind before trying to conquer the world.",
+      "practicalImplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 3.99,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.82,
-      "beauty": 3.8,
-      "overall": 3.94
+      "faithfulness": 4.04,
+      "clarity": 4.23,
+      "specificity": 4.79,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.04,
+      "beauty": 3.97,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

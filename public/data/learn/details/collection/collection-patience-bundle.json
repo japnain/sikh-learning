@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-bundle",
   "title": "Patience in one shorter sitting",
-  "subtitle": "A compact bundle for patience",
-  "description": "Delay has started feeding resentment instead of ripening trust. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when patience is already close",
+  "description": "A short return for the hour when delay is turning bitter. It teaches waiting to soften instead of sour.",
   "durationLabel": "3-step bundle",
   "themes": [
     "patience"
@@ -46,25 +46,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "Delay has started feeding resentment instead of ripening trust. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when delay is turning bitter. It teaches waiting to soften instead of sour.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A compact bundle for patience",
+      "turn": "A shorter sitting for when patience is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.85,
-      "specificity": 4.17,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.76
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

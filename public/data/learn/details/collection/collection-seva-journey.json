@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-journey",
   "title": "From Seva to steadier practice",
-  "subtitle": "A deliberate path through seva",
-  "description": "Guru joins service to humility, honest labor, and offering rather than display. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when seva keeps steering the day",
+  "description": "These readings strip service of display and return it to humility, honest labor, and offering that leaves no monument to the self.",
   "durationLabel": "5-step journey",
   "themes": [
     "seva",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru joins service to humility, honest labor, and offering rather than display. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings strip service of display and return it to humility, honest labor, and offering that leaves no monument to the self.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "A deliberate path through seva",
+      "turn": "For when seva keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.75,
-      "specificity": 4.27,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.84
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.03
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

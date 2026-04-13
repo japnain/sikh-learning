@@ -1,9 +1,9 @@
 {
   "id": "guidance-all-belong-to-you",
-  "title": "The room is not outside the One.",
-  "summary": "Loneliness and control both shrink when you remember that all beings already stand inside Divine life.",
-  "takeaway": "Nothing in the room is abandoned to itself.",
-  "lifeApplication": "In one hard conversation today, quietly remember that everyone in it already belongs to the same Source.",
+  "title": "All are already within the River of Life",
+  "summary": "This meets the reflex to divide life into inside and outside, mine and not mine. The line answers with something larger: the One is the River of Life, there is no second, and every being is already within Him.",
+  "takeaway": "There is no one outside the One.",
+  "lifeApplication": "When exclusion or rivalry stings, put a hand on the chest and say the line once. Then remember the person in front of you also lives inside the same One.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
@@ -11,8 +11,8 @@
       505,
       506
     ],
-    "shortMeaning": "All beings already live within the One.",
-    "lifeApplication": "Belonging is ontological before it becomes emotional."
+    "shortMeaning": "The River of Life already holds every being; there is no second.",
+    "lifeApplication": "When exclusion stings, remember there is no outside to the One."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -42,25 +42,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "All beings already live within the One.",
+      "coreClaim": "The River of Life already holds every being; there is no second.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Receive the day as given, then answer it with Naam.",
-      "practicalImplication": "In one hard conversation today, quietly remember that everyone in it already belongs to the same Source.",
+      "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
+      "practicalImplication": "When exclusion or rivalry stings, put a hand on the chest and say the line once. Then remember the person in front of you also lives inside the same One.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.8,
-      "clarity": 4.35,
-      "specificity": 4.57,
+      "faithfulness": 3.92,
+      "clarity": 4.23,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.04,
-      "beauty": 4.21,
-      "overall": 4
+      "usefulness": 4.1,
+      "beauty": 3.9,
+      "overall": 4.04
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

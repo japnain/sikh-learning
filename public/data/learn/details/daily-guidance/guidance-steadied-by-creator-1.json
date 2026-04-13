@@ -1,16 +1,16 @@
 {
   "id": "guidance-steadied-by-creator-1",
-  "title": "Merciful, The Lord Master Is Merciful",
-  "summary": "Anxiety is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Merciful, the Lord Master is Merciful",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+  "title": "Let mercy stop the wavering",
+  "summary": "This meets the shaky moment when provision feels uncertain and the mind starts swaying. The line answers with the Creator's mercy and ongoing care.",
+  "takeaway": "Let the Creator hold what you fear.",
+  "lifeApplication": "Before spiraling over money, future, or survival, place a hand on the chest and say the line once. Remember the One who made you has not forgotten to sustain you.",
   "source": {
     "deepDiveId": "shabad-steadied-by-creator",
     "verseIds": [
       30985
     ],
-    "shortMeaning": "Merciful, the Lord Master is Merciful",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The merciful Creator sustains what He has made, so the heart can stop wavering.",
+    "lifeApplication": "When the mind sways, remember the One who created you still carries you."
   },
   "relatedTopicIds": [
     "topic-anxiety"
@@ -23,7 +23,7 @@
     "collection-anxiety-journey"
   ],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "trust",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Merciful, the Lord Master is Merciful",
+      "coreClaim": "The merciful Creator sustains what He has made, so the heart can stop wavering.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "The answer to fear is not bravado. It is remembrance of the One already holding you.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Begin with the part of the day already in front of you.",
+      "turn": "The Creator's mercy is steadier than your wavering.",
+      "practicalImplication": "Before spiraling over money, future, or survival, place a hand on the chest and say the line once. Remember the One who made you has not forgotten to sustain you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.92,
-      "clarity": 4.17,
-      "specificity": 4.87,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 3.92,
-      "overall": 4.07
+      "faithfulness": 4.17,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.1,
+      "beauty": 4.37,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

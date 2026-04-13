@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-563-2",
-  "title": "Why Are You Screaming And Shouting, You",
-  "summary": "Doubt is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Why are you screaming and shouting, you fool",
-  "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+  "title": "Do not let grief turn into ownership",
+  "summary": "This meets the panicked noise that rises when the mind treats people as possessions. The line breaks that spell by naming kinship as temporary and arrival as Hukam.",
+  "takeaway": "Let sorrow bow before Hukam.",
+  "lifeApplication": "When the chest surges and the mind starts crying mine, put one hand over the sternum and stop the wail for a breath. Let the line loosen ownership before grief becomes panic.",
   "source": {
     "deepDiveId": "shabad-generated-563",
     "verseIds": [
       7958,
       7960
     ],
-    "shortMeaning": "Why are you screaming and shouting, you fool",
-    "lifeApplication": "Return to one clear line before reopening every question at once. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The soul is not owned, and grief must answer to Hukam.",
+    "lifeApplication": "In the first rise of panic, release the word mine and breathe beneath Hukam."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -24,7 +24,7 @@
     "collection-doubt-journey"
   ],
   "rotation": {
-    "theme": "doubt",
+    "theme": "hukam",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Why are you screaming and shouting, you fool",
+      "coreClaim": "The soul is not owned, and grief must answer to Hukam.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "Keep returning to this turn: I am liberated, and my doubts have been dispelled.",
-      "practicalImplication": "Return to one clear line before reopening every question at once. Use the line before the pressure chooses your tone.",
+      "turn": "Let grief answer to Hukam instead of ownership.",
+      "practicalImplication": "When the chest surges and the mind starts crying mine, put one hand over the sternum and stop the wail for a breath. Let the line loosen ownership before grief becomes panic.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.65,
-      "clarity": 4.05,
-      "specificity": 4.43,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 4.01,
-      "overall": 3.95
+      "faithfulness": 4.32,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.21,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

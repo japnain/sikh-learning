@@ -1,17 +1,17 @@
 {
   "id": "guidance-praise-and-blame",
-  "title": "Praise and blame do not need to run your day",
-  "summary": "Steadiness grows when the mind stops needing approval and fearing dismissal.",
-  "takeaway": "Inner stability is stronger than public reaction.",
-  "lifeApplication": "Notice where today's mood is still being outsourced to other people's opinions.",
+  "title": "Let praise and insult lose their claim",
+  "summary": "This meets the moment when other people's words still set the temperature inside you. The line names freedom as sameness under praise and slander, not only detachment from possessions.",
+  "takeaway": "Do not let other mouths set your temperature.",
+  "lifeApplication": "After praise or criticism lands, wait one full breath before you adjust your story, posture, or plan. Let the line level the room before opinion does.",
   "source": {
     "deepDiveId": "shabad-detached-and-steady",
     "verseIds": [
       9416,
       9417
     ],
-    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
-    "lifeApplication": "Let feedback inform you without governing your worth."
+    "shortMeaning": "Freedom begins when praise and slander stop moving the center.",
+    "lifeApplication": "After praise or criticism lands, let the line level the room before opinion does."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
+      "coreClaim": "Freedom begins when praise and slander stop moving the center.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "Freedom is not numbness. It is steadiness before what usually hooks the mind.",
-      "practicalImplication": "Notice where today's mood is still being outsourced to other people's opinions.",
+      "turn": "Steadiness grows where attachment loses its authority.",
+      "practicalImplication": "After praise or criticism lands, wait one full breath before you adjust your story, posture, or plan. Let the line level the room before opinion does.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
+      "faithfulness": 4.01,
       "clarity": 4.35,
-      "specificity": 4.48,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.82,
-      "beauty": 4.21,
-      "overall": 4.04
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.37,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

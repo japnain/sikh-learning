@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-561-3",
-  "title": "Who Has Shown Me The Perfect, Supreme",
-  "summary": "The shabad does not leave seva at diagnosis. It turns toward return.",
-  "takeaway": "who has shown me the Perfect, Supreme Lord God",
-  "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+  "title": "Let hope outrank the world's reach",
+  "summary": "This meets the hour when visible power starts feeling more real than divine care. The line says hope in the Lord shrinks what the world can actually threaten.",
+  "takeaway": "Let hope outrank whatever the world can reach.",
+  "lifeApplication": "When the room feels ruled by pressure or power, remember what the world can reach and what it cannot.",
   "source": {
     "deepDiveId": "shabad-generated-561",
     "verseIds": [
       7944,
       7945
     ],
-    "shortMeaning": "who has shown me the Perfect, Supreme Lord God",
-    "lifeApplication": "Do one hidden act of service that does not return to self-advertisement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Hope in the Lord outranks the reach of the world.",
+    "lifeApplication": "When pressure swells, remember what the world can reach and what it cannot."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "who has shown me the Perfect, Supreme Lord God",
+      "coreClaim": "Hope in the Lord outranks the reach of the world.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "Keep returning to this turn: who has shown me the Perfect, Supreme Lord God.",
-      "practicalImplication": "Do one hidden act of service that does not return to self-advertisement. After the reaction, make the next return smaller and truer.",
+      "turn": "Let hope in the Lord outrank the world's reach.",
+      "practicalImplication": "When the room feels ruled by pressure or power, remember what the world can reach and what it cannot.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 3.99,
-      "specificity": 4.78,
-      "emotionalHonesty": 3,
-      "usefulness": 4.04,
-      "beauty": 3.97,
-      "overall": 3.97
+      "faithfulness": 4.4,
+      "clarity": 4.17,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
+      "beauty": 4.05,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

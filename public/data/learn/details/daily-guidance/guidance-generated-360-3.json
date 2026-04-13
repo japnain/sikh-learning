@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-360-3",
-  "title": "He Is Everlasting Wealth. Place Your Mind's",
-  "summary": "The shabad does not leave exhaustion at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace",
-  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. After the reaction, make the next return smaller and truer.",
+  "title": "Trust the cooling house",
+  "summary": "This meets weariness that keeps spending trust in the wrong places. The line says the Guru is cooling shelter and lasting wealth, and peace follows when the mind rests there.",
+  "takeaway": "Place the mind's faith in lasting wealth.",
+  "lifeApplication": "When you feel spent, stop looking for another stimulant or strategy. Put the mind back into the Guru's shelter and let peace cool the body.",
   "source": {
     "deepDiveId": "shabad-generated-360",
     "verseIds": [
       5592,
       5593
     ],
-    "shortMeaning": "O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace; the Guru is the House of ice. The Guru is the Light of the three worlds",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "The Guru is cooling shelter and lasting wealth for a tired mind.",
+    "lifeApplication": "When you feel spent, put the mind back into the Guru's shelter before reaching for another fix."
   },
   "relatedTopicIds": [
     "topic-exhaustion"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace; the Guru is the House of ice. The Guru is the Light of the three worlds",
+      "coreClaim": "The Guru is cooling shelter and lasting wealth for a tired mind.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
-      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. After the reaction, make the next return smaller and truer.",
+      "turn": "Place the mind's trust in the Guru as cooling shelter.",
+      "practicalImplication": "When you feel spent, stop looking for another stimulant or strategy. Put the mind back into the Guru's shelter and let peace cool the body.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 3.51,
-      "specificity": 4.92,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 3.57,
-      "overall": 3.98
+      "faithfulness": 4.4,
+      "clarity": 4.05,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.8,
+      "beauty": 4.15,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

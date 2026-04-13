@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-journey",
   "title": "From Purpose to steadier practice",
-  "subtitle": "A deliberate path through purpose",
-  "description": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when purpose keeps steering the day",
+  "description": "Move from drift into answered life. These readings reconnect ordinary duty to service, meeting, and the chance hidden inside this human birth.",
   "durationLabel": "5-step journey",
   "themes": [
     "purpose",
@@ -55,25 +55,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Move from drift into answered life. These readings reconnect ordinary duty to service, meeting, and the chance hidden inside this human birth.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A deliberate path through purpose",
+      "turn": "For when purpose keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 3.45,
-      "specificity": 4.29,
+      "faithfulness": 3.99,
+      "clarity": 4.35,
+      "specificity": 4.21,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.75
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

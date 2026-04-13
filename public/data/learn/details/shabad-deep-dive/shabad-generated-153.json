@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-153",
-  "title": "O Siblings Of Destiny, Listen: Release Comes",
+  "title": "Release arrives where seeking kneels into service",
   "subtitle": "Siree Raag · Ang 52",
-  "summary": "This shabad opens with o Saints, O Siblings of Destiny, listen: release comes only through the True Name. It turns the heart toward nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
-  "whyItMatters": "It matters when life feels searching, hungry, and unsettled because the shabad keeps seeking inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
+  "summary": "The shabad opens by declaring that release comes only through the True Name. It turns seeking toward the Guru's feet, true service, and the hidden Lord found when the True Guru is pleased.",
+  "whyItMatters": "This is for the person who keeps searching but cannot land. Held steadily, it ends the addiction to spiritual novelty and teaches that arrival comes through service, not endless roaming.",
+  "takeaway": "Seeking matures when it bows into the Name and service.",
   "themes": [
     "seeking",
     "restlessness",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: o Saints, O Siblings of Destiny, listen: release comes only through the True Name.",
-    "The middle movement widens the correction through true is the food, and true are the clothes, of those who chant the True Name of the True One.",
-    "It closes with a return you can actually keep: nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation."
+    "It opens by stripping release away from every substitute except the True Name.",
+    "The middle turns the seeker toward the Guru's feet until even homelessness becomes sheltered.",
+    "It ends by calling service to the True Guru the one path that actually arrives."
   ],
   "keyVerseIds": [
     2133,
@@ -179,27 +179,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with o Saints, O Siblings of Destiny, listen: release comes only through the True Name. It turns the heart toward nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
+      "coreClaim": "The shabad opens by declaring that release comes only through the True Name. It turns seeking toward the Guru's feet, true service, and the hidden Lord found when the True Guru is pleased.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "The middle movement widens the correction through true is the food, and true are the clothes, of those who chant the True Name of the True One.",
-      "practicalImplication": "Keep returning to this turn: Nanak seeks the Sanctuary of the Guru, who does not die, or come and go in reincarnation.",
+      "turn": "The middle turns the seeker toward the Guru's feet until even homelessness becomes sheltered.",
+      "practicalImplication": "This is for the person who keeps searching but cannot land. Held steadily, it ends the addiction to spiritual novelty and teaches that arrival comes through service, not endless roaming. Seeking matures when it bows into the Name and service.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.8,
-      "specificity": 4.57,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.51,
-      "overall": 3.65
+      "clarity": 4.23,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.98,
+      "beauty": 4.23,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

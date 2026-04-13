@@ -77,14 +77,15 @@
       "clarity": 4.35,
       "specificity": 4.18,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.88
+      "overall": 4.05
     },
     "strengths": [
-      "clarity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

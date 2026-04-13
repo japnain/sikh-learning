@@ -1,17 +1,17 @@
 {
   "id": "guidance-heart-becomes-the-place",
-  "title": "The best place may be an inhabited heart.",
-  "summary": "Guru finishes the shabad by relocating holiness. The truest place is the heart where Naam actually lives.",
-  "takeaway": "Make the interior fit for what you say you seek.",
-  "lifeApplication": "Before chasing atmosphere, ask what you are doing to make the heart more inhabitable.",
+  "title": "Let the life match the line",
+  "summary": "This meets the gap between devotional language and actual conduct. The line says the heart becomes holy only when the life beneath it turns clean.",
+  "takeaway": "Make the life worthy of the language.",
+  "lifeApplication": "Before speaking devotion again, clean one concrete act: the message, the errand, the debt, or the tone.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
       11750,
       11751
     ],
-    "shortMeaning": "The holiest place is not merely external; it is the heart carrying Naam.",
-    "lifeApplication": "Inner architecture matters more than scene-setting."
+    "shortMeaning": "The heart becomes a holy place through clean conduct and Naam.",
+    "lifeApplication": "Before speaking devotion again, clean one concrete act: the message, the errand, the debt, or the tone."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The holiest place is not merely external; it is the heart carrying Naam.",
+      "coreClaim": "The heart becomes a holy place through clean conduct and Naam.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The best religion sounds like praise and looks like clean conduct.",
-      "practicalImplication": "Before chasing atmosphere, ask what you are doing to make the heart more inhabitable.",
+      "turn": "The truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before speaking devotion again, clean one concrete act: the message, the errand, the debt, or the tone.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
+      "faithfulness": 4.1,
       "clarity": 4.35,
-      "specificity": 4.38,
+      "specificity": 4.86,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.44,
+      "usefulness": 4.04,
       "beauty": 4.05,
-      "overall": 3.86
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

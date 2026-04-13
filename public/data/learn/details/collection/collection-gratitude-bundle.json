@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-bundle",
   "title": "Gratitude in one shorter sitting",
-  "subtitle": "A compact bundle for gratitude",
-  "description": "The heart notices absence faster than gift. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when gratitude is already close",
+  "description": "A quick return for the hour when lack sounds louder than gift. It reopens the eye before appetite takes over again.",
   "durationLabel": "3-step bundle",
   "themes": [
     "gratitude"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The heart notices absence faster than gift. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A quick return for the hour when lack sounds louder than gift. It reopens the eye before appetite takes over again.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "A compact bundle for gratitude",
+      "turn": "A shorter sitting for when gratitude is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 4.05,
-      "specificity": 4.16,
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.81
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

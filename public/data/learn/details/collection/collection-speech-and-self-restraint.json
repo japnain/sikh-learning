@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-and-self-restraint",
-  "title": "Speech and Self-Restraint",
-  "subtitle": "A corrective for contempt, sharpness, and display",
-  "description": "Study how greed, anger, tone, and humility shape what the mouth is actually serving.",
+  "title": "A Rule for Tongue and Appetite",
+  "subtitle": "For the mouth that moves before the heart is clean",
+  "description": "Bring speech and self-restraint under one rule until the tongue starts serving truth.",
   "durationLabel": "6-day journey",
   "themes": [
     "speech",
@@ -16,8 +16,8 @@
       642,
       643
     ],
-    "shortMeaning": "Speech should carry honor, because harsh words return as grief.",
-    "lifeApplication": "Let the tongue answer to dignity before it answers to emotion."
+    "shortMeaning": "The tongue comes under rule when the heart returns to truth.",
+    "lifeApplication": "Before the next sentence, ask if it deserves to be spoken tonight."
   },
   "items": [
     {
@@ -62,27 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Study how greed, anger, tone, and humility shape what the mouth is actually serving.",
+      "coreClaim": "Bring speech and self-restraint under one rule until the tongue starts serving truth.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A corrective for contempt, sharpness, and display",
+      "turn": "For the mouth that moves before the heart is clean",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 2.95,
-      "specificity": 3.97,
+      "faithfulness": 3.82,
+      "clarity": 4.35,
+      "specificity": 4.05,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.56
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

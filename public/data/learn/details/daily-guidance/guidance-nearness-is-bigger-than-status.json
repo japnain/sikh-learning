@@ -1,17 +1,17 @@
 {
   "id": "guidance-nearness-is-bigger-than-status",
-  "title": "Status cannot do what nearness does.",
-  "summary": "The shabad contrasts desire-driven reaching with being held close. One is hungry display. The other is actual relation.",
-  "takeaway": "Aim for closeness, not rank.",
-  "lifeApplication": "Trade one status reflex today for one act of quiet remembrance.",
+  "title": "Nearness is worth more than what desire begs for",
+  "summary": "This meets the scramble for wealth, notice, and the kind of desire that turns the self into a beggar. The line says the Lord holds the humble servant near, and that nearness outranks what craving asks from the room.",
+  "takeaway": "Nearness outranks what desire begs for.",
+  "lifeApplication": "Before checking who noticed, bought, or wanted you, ask whether the heart is nearer to the Lord or merely hungrier for proof.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
       37473,
       37476
     ],
-    "shortMeaning": "The life that keeps reaching for riches is not the same life that learns nearness.",
-    "lifeApplication": "The deepest correction may be relational, not performative."
+    "shortMeaning": "The Lord's nearness outranks the urges that beg for wealth and notice.",
+    "lifeApplication": "Before seeking proof from the room, ask whether the heart is actually nearer to the Lord."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The life that keeps reaching for riches is not the same life that learns nearness.",
+      "coreClaim": "The Lord's nearness outranks the urges that beg for wealth and notice.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Nearness is received in humility, not built out of status.",
-      "practicalImplication": "Trade one status reflex today for one act of quiet remembrance.",
+      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "Before checking who noticed, bought, or wanted you, ask whether the heart is nearer to the Lord or merely hungrier for proof.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 4.35,
-      "specificity": 4.8,
-      "emotionalHonesty": 3,
-      "usefulness": 3.66,
-      "beauty": 4.53,
-      "overall": 4.06
+      "faithfulness": 3.98,
+      "clarity": 4.29,
+      "specificity": 4.56,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.17,
+      "overall": 4.05
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

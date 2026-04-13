@@ -1,10 +1,10 @@
 {
   "id": "shabad-forgiveness-opens-lasting-peace",
-  "title": "Forgiveness Opens Lasting Peace",
+  "title": "Forgiveness settles into lasting peace",
   "subtitle": "Raag Sorath · Ang 628",
-  "summary": "The movement here is short and decisive: forgiveness received, peace found, Bani sung, Naam remembered, destiny softened by grace.",
-  "whyItMatters": "It speaks to shame, bitterness, and the belief that peace must be self-authored before grace can begin working.",
-  "takeaway": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+  "summary": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It widens into peace spreading everywhere and lands in singing the Guru's Bani and meditating on Naam.",
+  "whyItMatters": "This is for the person who has tasted relief but does not yet know how to live from it. Held steadily, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere.",
+  "takeaway": "Received forgiveness becomes lasting peace when it ripens into Naam.",
   "themes": [
     "forgiveness",
     "peace",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "Moves immediately from forgiveness into peace and bliss.",
-    "Keeps the center of gravity in grace rather than self-improvement.",
-    "Ends by joining Guru Bani, Naam, and a life redirected into reward-bearing peace."
+    "It opens with the Guru's forgiveness as a finished gift, not a tentative possibility.",
+    "The middle lets that peace widen until it changes the whole atmosphere around the heart.",
+    "It ends by fastening lasting peace to Bani, praise, and meditated Naam."
   ],
   "keyVerseIds": [
     27259,
@@ -154,25 +154,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The movement here is short and decisive: forgiveness received, peace found, Bani sung, Naam remembered, destiny softened by grace.",
+      "coreClaim": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It widens into peace spreading everywhere and lands in singing the Guru's Bani and meditating on Naam.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Keeps the center of gravity in grace rather than self-improvement.",
-      "practicalImplication": "Forgiveness is not the end of the path; it is what makes peace inhabitable.",
+      "turn": "The middle lets that peace widen until it changes the whole atmosphere around the heart.",
+      "practicalImplication": "This is for the person who has tasted relief but does not yet know how to live from it. Held steadily, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere. Received forgiveness becomes lasting peace when it ripens into Naam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 3,
-      "beauty": 4.21,
-      "overall": 4
+      "usefulness": 3.98,
+      "beauty": 4.53,
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

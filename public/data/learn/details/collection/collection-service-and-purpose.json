@@ -1,8 +1,8 @@
 {
   "id": "collection-service-and-purpose",
   "title": "Service and Purpose",
-  "subtitle": "A practical path toward meaningful living",
-  "description": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
+  "subtitle": "For the life that needs a task worthy of its breath",
+  "description": "These readings take purpose out of self-concern and put it back into service that leaves the room lighter than it found it.",
   "durationLabel": "6-day journey",
   "themes": [
     "purpose",
@@ -15,8 +15,8 @@
       524,
       525
     ],
-    "shortMeaning": "This human body has been given to you. This is your chance to meet the Divine.",
-    "lifeApplication": "Let purpose begin with Guru's framing of life."
+    "shortMeaning": "Purpose becomes believable when it spends itself on what is near instead of feeding the self.",
+    "lifeApplication": "Before the next task starts enlarging your importance, relieve one real need in front of you."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
+      "coreClaim": "These readings take purpose out of self-concern and put it back into service that leaves the room lighter than it found it.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A practical path toward meaningful living",
+      "turn": "For the life that needs a task worthy of its breath",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
+      "faithfulness": 3.88,
       "clarity": 4.35,
-      "specificity": 4.05,
+      "specificity": 4.11,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.8
+      "overall": 4
     },
     "strengths": [
-      "clarity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-suffering-as-medicine",
-  "title": "Hard seasons can wake what comfort numbs",
-  "summary": "Guru is not praising pain for its own sake. Guru is exposing what comfort often hides.",
-  "takeaway": "A difficult day can still become a truthful day.",
-  "lifeApplication": "Instead of asking only how to escape the discomfort, ask what it is uncovering.",
+  "title": "Let pain uncover what comfort was hiding",
+  "summary": "This meets the moment when suffering feels useless and only punishing. The line says pain can uncover the dependence that easy days keep hidden.",
+  "takeaway": "Let pain tell the truth before comfort edits it.",
+  "lifeApplication": "When pain tightens the body, stop asking only how to escape it. Ask what dependence, prayer, or surrender it is exposing.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
       21090
     ],
-    "shortMeaning": "Suffering can become medicine when it returns the mind to reality and remembrance.",
-    "lifeApplication": "Let pain open dependence instead of only resentment."
+    "shortMeaning": "Pain can uncover the dependence comfort often keeps hidden.",
+    "lifeApplication": "When pain tightens the body, ask what surrender it is trying to uncover."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -37,25 +37,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Suffering can become medicine when it returns the mind to reality and remembrance.",
+      "coreClaim": "Pain can uncover the dependence comfort often keeps hidden.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
-      "practicalImplication": "Instead of asking only how to escape the discomfort, ask what it is uncovering.",
+      "turn": "Let pain reveal what comfort keeps covering.",
+      "practicalImplication": "When pain tightens the body, stop asking only how to escape it. Ask what dependence, prayer, or surrender it is exposing.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.35,
-      "specificity": 4,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3,
-      "beauty": 4.53,
-      "overall": 3.83
+      "faithfulness": 4.2,
+      "clarity": 4.23,
+      "specificity": 4.77,
+      "emotionalHonesty": 3,
+      "usefulness": 4.2,
+      "beauty": 4.13,
+      "overall": 4.1
     },
     "strengths": [
-      "beauty",
+      "specificity",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

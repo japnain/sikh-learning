@@ -1,17 +1,17 @@
 {
   "id": "guidance-hukam-inside-everything-2",
-  "title": "No One Is Beyond His Command",
-  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "no one is beyond His Command",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "title": "Stop arguing with what already stands",
+  "summary": "This meets the mind that still wants exceptions to Hukam. The line says everything stands within that order, and ego thins when this is actually seen.",
+  "takeaway": "Peace begins where argument with Hukam starts ending.",
+  "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
   "source": {
     "deepDiveId": "shabad-hukam-inside-everything",
     "verseIds": [
       11,
       15
     ],
-    "shortMeaning": "no one is beyond His Command",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "no one is beyond His Command",
+      "coreClaim": "Peace begins where argument with Hukam starts ending.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "turn": "Everything stands within Hukam, and ego thins when this is seen.",
+      "practicalImplication": "Before you argue with the moment again, stop and name what is already here.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 4.17,
-      "specificity": 4.51,
-      "emotionalHonesty": 3.36,
-      "usefulness": 5,
-      "beauty": 3.93,
-      "overall": 4.08
+      "faithfulness": 4.4,
+      "clarity": 4.05,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.36,
+      "beauty": 3.85,
+      "overall": 4.19
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

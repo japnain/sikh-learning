@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-644-1",
-  "title": "This Life Is Diminishing, Day And Night",
-  "summary": "Seeking is named plainly here before the mind has time to decorate it.",
-  "takeaway": "This life is diminishing, day and night",
-  "lifeApplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+  "title": "Spend the remaining day on what lasts",
+  "summary": "This meets the life acting as if time were still abundant. The line says the day is shrinking, so use it for the profit of Naam now.",
+  "takeaway": "Use the shrinking day for what endures.",
+  "lifeApplication": "When another evening starts disappearing into nothing, interrupt it on purpose. Turn one remaining hour toward the work that can still follow you.",
   "source": {
     "deepDiveId": "shabad-generated-644",
     "verseIds": [
       8834
     ],
-    "shortMeaning": "This life is diminishing, day and night",
-    "lifeApplication": "Let one line keep you in place longer than the next new input. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Life is shrinking, so spend it on what can endure beyond it.",
+    "lifeApplication": "When time slips, turn one remaining hour toward the profit of Naam."
   },
   "relatedTopicIds": [
     "topic-seeking"
@@ -23,7 +23,7 @@
     "collection-seeking-bundle"
   ],
   "rotation": {
-    "theme": "seeking",
+    "theme": "purpose",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "This life is diminishing, day and night",
+      "coreClaim": "Life is shrinking, so spend it on what can endure beyond it.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "Keep returning to this turn: Nanak, Your slave, begs for this happiness: let me be the dust of the feet of the Saints.",
-      "practicalImplication": "Let one line keep you in place longer than the next new input. Begin with the part of the day already in front of you.",
+      "turn": "Choose the remaining day for the profit of Naam.",
+      "practicalImplication": "When another evening starts disappearing into nothing, interrupt it on purpose. Turn one remaining hour toward the work that can still follow you.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.63,
-      "clarity": 4.11,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.89,
-      "overall": 4
+      "faithfulness": 4.32,
+      "clarity": 4.35,
+      "specificity": 4.89,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
+      "beauty": 4.05,
+      "overall": 4.12
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-510-2",
-  "title": "Pre-ordained Destiny, I Have Met",
-  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "By pre-ordained destiny, I have met with the Guru. I have entered into the realm of the Lord's Love; the body-village is filled to overflowing with sexual desire and anger, which were broken",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "title": "Your turning was written as grace",
+  "summary": "This meets the urge to treat your spiritual turning as self-made. The line says two things together: the old heat was broken by holy company, and meeting the Guru came by pre-ordained grace.",
+  "takeaway": "Receive your turning as grace, not self-authorship.",
+  "lifeApplication": "When pride appears after a better day, touch the forehead to the floor and remember who broke the old heat and who brought you to the Guru. Answer with gratitude, not self-credit.",
   "source": {
     "deepDiveId": "shabad-generated-510",
     "verseIds": [
       7117,
       7118
     ],
-    "shortMeaning": "By pre-ordained destiny, I have met with the Guru. I have entered into the realm of the Lord's Love; the body-village is filled to overflowing with sexual desire and anger, which were broken",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Meeting the Guru and entering love arrives by grace already written.",
+    "lifeApplication": "When pride appears after a better day, remember who brought you into the realm of love."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "mercy",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "By pre-ordained destiny, I have met with the Guru. I have entered into the realm of the Lord's Love; the body-village is filled to overflowing with sexual desire and anger, which were broken",
+      "coreClaim": "Meeting the Guru and entering love arrives by grace already written.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: Servant Nanak takes the Sustenance and Support of the Naam. In the Name of the Lord, he enjoys celestial peace.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "turn": "Take the overheated self back from distance until Naam becomes support.",
+      "practicalImplication": "When pride appears after a better day, touch the forehead to the floor and remember who broke the old heat and who brought you to the Guru. Answer with gratitude, not self-credit.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
-      "clarity": 2.28,
-      "specificity": 4.93,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.86,
-      "beauty": 2.72,
-      "overall": 3.73
+      "faithfulness": 3.87,
+      "clarity": 4.35,
+      "specificity": 4.82,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-child-of-grace-1",
-  "title": "If Only I Could Have The Good",
-  "summary": "Loneliness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "If only I could have the good fortune to meet some friendly Saint",
-  "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Begin with the part of the day already in front of you.",
+  "title": "Ask to be shown the way",
+  "summary": "This meets the lonely ache that does not know how to reach the Beloved on its own. The line turns longing toward saint-company instead of private brooding.",
+  "takeaway": "Let longing be led by holy company.",
+  "lifeApplication": "When isolation starts narrating the whole room, send the message, enter the sangat, or sit near the one who remembers well. Do not let longing close in on itself.",
   "source": {
     "deepDiveId": "shabad-child-of-grace",
     "verseIds": [
       3757
     ],
-    "shortMeaning": "If only I could have the good fortune to meet some friendly Saint",
-    "lifeApplication": "Name the companionship the line is restoring before the mind insists it is alone. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Grace leads longing toward the Beloved through saintly company.",
+    "lifeApplication": "When loneliness tightens, move toward the company that can point you home."
   },
   "relatedTopicIds": [
     "topic-loneliness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "If only I could have the good fortune to meet some friendly Saint",
+      "coreClaim": "Grace leads longing toward the Beloved through saintly company.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "Neediness is not rejected here. It is brought honestly into the Guru's care.",
-      "practicalImplication": "Name the companionship the line is restoring before the mind insists it is alone. Begin with the part of the day already in front of you.",
+      "turn": "Longing ripens when saintly company shows the way.",
+      "practicalImplication": "When isolation starts narrating the whole room, send the message, enter the sangat, or sit near the one who remembers well. Do not let longing close in on itself.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 3.75,
+      "faithfulness": 4.24,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.86,
-      "beauty": 3.55,
-      "overall": 4.09
+      "emotionalHonesty": 3,
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

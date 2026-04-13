@@ -1,17 +1,17 @@
 {
   "id": "guidance-selfless-service",
-  "title": "Let seva loosen the need to be seen",
-  "summary": "Service changes when it is no longer used to secure visibility, approval, or identity.",
-  "takeaway": "The deepest service is often the least self-announcing.",
-  "lifeApplication": "Choose one act of help today that does not need witness, credit, or acknowledgement to feel worthwhile.",
+  "title": "Let service stay hidden and real",
+  "summary": "This meets the good work that has started asking to be noticed. The line says service stays true when the self is no longer its hidden audience.",
+  "takeaway": "Service becomes clean when it leaves self-display behind.",
+  "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12947,
       12948
     ],
-    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
-    "lifeApplication": "Serve without building a story about being the servant."
+    "shortMeaning": "Service becomes clean when it leaves self-display behind.",
+    "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Selfless service becomes a way of union, not a way of building a self-image.",
+      "coreClaim": "Service becomes clean when it leaves self-display behind.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Seva becomes transformative when the self stops trying to be seen through it.",
-      "practicalImplication": "Choose one act of help today that does not need witness, credit, or acknowledgement to feel worthwhile.",
+      "turn": "Service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "Do one needed thing today without carrying it back into self-advertisement.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
-      "clarity": 4.35,
-      "specificity": 4.84,
-      "emotionalHonesty": 3.72,
+      "faithfulness": 4.2,
+      "clarity": 3.99,
+      "specificity": 4.95,
+      "emotionalHonesty": 3.54,
       "usefulness": 4.04,
-      "beauty": 4.05,
-      "overall": 4.17
+      "beauty": 3.81,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

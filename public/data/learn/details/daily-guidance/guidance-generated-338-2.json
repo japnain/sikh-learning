@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-338-2",
-  "title": "They Are Re-born, And Make Their Rounds",
-  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "they are re-born, and make their rounds on the wheel of reincarnation; in all colors and forms, You are pervading",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "title": "Scarcity breaks when the world is already full",
+  "summary": "This meets the comparing gaze that keeps turning abundance into rivalry. The line says the One is already pervading every form, while comparison only keeps the cycle turning.",
+  "takeaway": "See fullness before you compare again.",
+  "lifeApplication": "When another person's beauty, success, or closeness starts shrinking you, widen the gaze and name three forms already carrying the One. Refuse the tunnel that comparison builds.",
   "source": {
     "deepDiveId": "shabad-generated-338",
     "verseIds": [
       4875,
       4876
     ],
-    "shortMeaning": "they are re-born, and make their rounds on the wheel of reincarnation; in all colors and forms, You are pervading",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Comparison weakens when every form is seen as already filled.",
+    "lifeApplication": "When comparison narrows you, look again for the One already filling the scene."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "they are re-born, and make their rounds on the wheel of reincarnation; in all colors and forms, You are pervading",
+      "coreClaim": "Comparison weakens when every form is seen as already filled.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "turn": "Comparison weakens when the world is seen as already filled.",
+      "practicalImplication": "When another person's beauty, success, or closeness starts shrinking you, widen the gaze and name three forms already carrying the One. Refuse the tunnel that comparison builds.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.77,
-      "clarity": 2.49,
-      "specificity": 4.9,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.86,
-      "beauty": 3.29,
-      "overall": 3.8
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

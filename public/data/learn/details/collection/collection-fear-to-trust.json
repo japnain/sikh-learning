@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-to-trust",
-  "title": "From Fear to Trust",
-  "subtitle": "A steadier week for anxious hearts",
-  "description": "Move from panic and wavering toward Hukam, remembrance, and the Creator's care.",
+  "title": "From Vigilance to Trust",
+  "subtitle": "For the heart that keeps calling vigilance wisdom",
+  "description": "Move from fear toward trust by receiving Hukam and the care already here.",
   "durationLabel": "5-day journey",
   "themes": [
     "anxiety",
@@ -14,8 +14,8 @@
     "verseIds": [
       30988
     ],
-    "shortMeaning": "The Creator will protect you.",
-    "lifeApplication": "Let this line become the tone of the whole journey."
+    "shortMeaning": "Fear loosens when the heart receives care instead of rehearsing threat.",
+    "lifeApplication": "When vigilance spikes, read the line aloud and let the body soften before planning more."
   },
   "items": [
     {
@@ -55,25 +55,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Move from panic and wavering toward Hukam, remembrance, and the Creator's care.",
+      "coreClaim": "Move from fear toward trust by receiving Hukam and the care already here.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "A steadier week for anxious hearts",
+      "turn": "For the heart that keeps calling vigilance wisdom",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.77,
-      "clarity": 3.35,
-      "specificity": 4,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "faithfulness": 3.85,
+      "clarity": 4.35,
+      "specificity": 4.08,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.5,
       "beauty": 4.21,
-      "overall": 3.69
+      "overall": 4.06
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

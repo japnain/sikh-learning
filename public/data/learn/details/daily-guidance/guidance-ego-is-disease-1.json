@@ -1,16 +1,16 @@
 {
   "id": "guidance-ego-is-disease-1",
-  "title": "Where Does Ego Come From? How",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Where does ego come from? How can it be removed",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Start where ego is finally questioned",
+  "summary": "This meets the defensive moment that still assumes the self is right. The line becomes medicine by asking where ego comes from and how it can actually leave.",
+  "takeaway": "Question ego before you protect it.",
+  "lifeApplication": "Before the rebuttal, the explanation, or the cold withdrawal, feel the heat in the face and ask the line plainly. Let diagnosis begin before self-protection takes over.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
       20961
     ],
-    "shortMeaning": "Where does ego come from? How can it be removed",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Ego loosens when it is examined instead of instinctively defended.",
+    "lifeApplication": "When defensiveness rises, ask where ego came from before speaking from it."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Where does ego come from? How can it be removed",
+      "coreClaim": "Ego loosens when it is examined instead of instinctively defended.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "The cure begins when ego is seen as illness rather than identity.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "Before the rebuttal, the explanation, or the cold withdrawal, feel the heat in the face and ask the line plainly. Let diagnosis begin before self-protection takes over.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 3.93,
-      "specificity": 4.35,
+      "faithfulness": 4.04,
+      "clarity": 4.35,
+      "specificity": 4.62,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.71,
-      "overall": 3.9
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

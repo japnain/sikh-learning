@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-511-3",
-  "title": "In The Sangat, The Holy Congregation",
-  "summary": "The shabad does not leave mercy at diagnosis. It turns toward return.",
-  "takeaway": "in the Sangat, the Holy Congregation, the bitter becomes sweet",
-  "lifeApplication": "Receive one line as mercy before turning it into a performance review. After the reaction, make the next return smaller and truer.",
+  "title": "Grace reaches first",
+  "summary": "This meets the heart that keeps assuming kindness must first be earned. The line says grace is what turns nearness into something tasted rather than merely talked about.",
+  "takeaway": "Grace meets the soul before worthiness is proven.",
+  "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there.",
   "source": {
     "deepDiveId": "shabad-generated-511",
     "verseIds": [
       7131,
       7136
     ],
-    "shortMeaning": "The Lord, the Supreme Lord God, is Inaccessible and Unfathomable. Those who are committed; in the Sangat, the Holy Congregation, the bitter becomes sweet",
-    "lifeApplication": "Receive one line as mercy before turning it into a performance review. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Grace meets the soul before worthiness is proven.",
+    "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
   },
   "relatedTopicIds": [
     "topic-mercy"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Lord, the Supreme Lord God, is Inaccessible and Unfathomable. Those who are committed; in the Sangat, the Holy Congregation, the bitter becomes sweet",
+      "coreClaim": "Grace meets the soul before worthiness is proven.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Keep returning to this turn: in the Sangat, the Holy Congregation, the bitter becomes sweet.",
-      "practicalImplication": "Receive one line as mercy before turning it into a performance review. After the reaction, make the next return smaller and truer.",
+      "turn": "Ask for the mercy that turns nearness into tasted sweetness.",
+      "practicalImplication": "Before auditing yourself again, receive one line as mercy and answer from there.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.14,
-      "clarity": 3.99,
+      "faithfulness": 4.3,
+      "clarity": 4.05,
       "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.86,
-      "beauty": 4.29,
-      "overall": 4.23
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.04,
+      "beauty": 4.49,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

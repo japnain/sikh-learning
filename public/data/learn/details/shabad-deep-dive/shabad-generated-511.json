@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-511",
-  "title": "Within This Body-fortress Is The Lord",
+  "title": "Mercy turns bitter into sweet",
   "subtitle": "Raag Gauree · Ang 171",
-  "summary": "This shabad opens with within this body-fortress is the Lord, the Sovereign Lord King, but the stubborn ones do not find the taste. It turns the heart toward in the Sangat, the Holy Congregation, the bitter becomes sweet.",
-  "whyItMatters": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: in the Sangat, the Holy Congregation, the bitter becomes sweet.",
+  "summary": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It moves through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
+  "whyItMatters": "This is for the person close to sacred things but no longer tasting them. Held faithfully, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart.",
+  "takeaway": "Ask for the mercy that turns nearness into tasted sweetness.",
   "themes": [
     "mercy",
     "forgiveness",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: within this body-fortress is the Lord, the Sovereign Lord King, but the stubborn ones do not find the taste.",
-    "The middle movement widens the correction through those whose hearts are pleased with the Guru's Teachings - the Lord's Presence is revealed to them.",
-    "It closes with a return you can actually keep: in the Sangat, the Holy Congregation, the bitter becomes sweet."
+    "It opens by exposing the tragedy of living near the treasure without tasting it.",
+    "The middle contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
+    "It ends in prayer for union, Sangat, and the miracle of bitterness becoming sweet."
   ],
   "keyVerseIds": [
     7128,
@@ -145,25 +145,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with within this body-fortress is the Lord, the Sovereign Lord King, but the stubborn ones do not find the taste. It turns the heart toward in the Sangat, the Holy Congregation, the bitter becomes sweet.",
+      "coreClaim": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It moves through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle movement widens the correction through those whose hearts are pleased with the Guru's Teachings - the Lord's Presence is revealed to them.",
-      "practicalImplication": "Keep returning to this turn: in the Sangat, the Holy Congregation, the bitter becomes sweet.",
+      "turn": "The middle contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
+      "practicalImplication": "This is for the person close to sacred things but no longer tasting them. Held faithfully, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart. Ask for the mercy that turns nearness into tasted sweetness.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 1.94,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.48,
-      "overall": 3.71
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.72,
+      "usefulness": 3.6,
+      "beauty": 4.53,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

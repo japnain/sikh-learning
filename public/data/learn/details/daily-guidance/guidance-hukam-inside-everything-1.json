@@ -1,16 +1,16 @@
 {
   "id": "guidance-hukam-inside-everything-1",
-  "title": "His Command Cannot Be Described",
-  "summary": "Hukam is named plainly here before the mind has time to decorate it.",
-  "takeaway": "His Command cannot be described",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+  "title": "Nothing stands outside Hukam",
+  "summary": "This meets the mind still treating some outcomes as exceptions. The line says body, status, pain, blessing, and wandering all unfold within Hukam.",
+  "takeaway": "Stop searching for a place outside Hukam.",
+  "lifeApplication": "When the mind says this should not be happening, feel both feet on the floor and answer it with the line. Let Hukam become larger than your protest.",
   "source": {
     "deepDiveId": "shabad-hukam-inside-everything",
     "verseIds": [
       11
     ],
-    "shortMeaning": "His Command cannot be described",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "All conditions unfold within Hukam, and ego shrinks when this is understood.",
+    "lifeApplication": "In resistance, remember there is no corner of this moment outside Hukam."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "His Command cannot be described",
+      "coreClaim": "All conditions unfold within Hukam, and ego shrinks when this is understood.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Begin with the part of the day already in front of you.",
+      "turn": "Everything stands within Hukam, and ego thins when this is seen.",
+      "practicalImplication": "When the mind says this should not be happening, feel both feet on the floor and answer it with the line. Let Hukam become larger than your protest.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.76,
-      "clarity": 4.23,
-      "specificity": 4.35,
+      "faithfulness": 4.19,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.97,
-      "overall": 4.01
+      "usefulness": 4.64,
+      "beauty": 4.05,
+      "overall": 4.26
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

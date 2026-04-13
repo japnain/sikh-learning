@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-1",
-  "title": "True In The Primal Beginning. True Throughout",
+  "title": "Truth before beginning, truth through time",
   "subtitle": "Jap · Ang 1",
-  "summary": "This shabad opens with true In The Primal Beginning. True Throughout The Ages. It turns the heart toward o Nanak, it is written that you shall obey the Hukam of His Command.",
-  "whyItMatters": "It matters when life feels reactive, heated, and sharp because the shabad keeps anger inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
+  "summary": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, then lands in the question of how falsehood breaks: by walking in Hukam.",
+  "whyItMatters": "This is for the person swollen with urgency, cleverness, or spiritual self-effort. Held honestly, it changes scale: your fear stops posing as ultimate, and you begin learning how to live under what is already true.",
+  "takeaway": "Truth is not won by pressure or wit, but by walking in Hukam.",
   "themes": [
     "anger",
     "ego",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: true In The Primal Beginning. True Throughout The Ages.",
-    "The middle movement widens the correction through by remaining silent, inner silence is not obtained, even by remaining lovingly absorbed deep within.",
-    "It closes with a return you can actually keep: o Nanak, it is written that you shall obey the Hukam of His Command."
+    "It opens above history itself: Truth before beginning, through the ages, and not dependent on your recognition.",
+    "The middle refuses the usual escapes, because silence, accumulation, and cleverness do not tear falsehood open.",
+    "It closes in a single turn: become truthful by walking in Hukam, not by mastering the illusion of control."
   ],
   "keyVerseIds": [
     3,
@@ -145,25 +145,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with true In The Primal Beginning. True Throughout The Ages. It turns the heart toward o Nanak, it is written that you shall obey the Hukam of His Command.",
+      "coreClaim": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, then lands in the question of how falsehood breaks: by walking in Hukam.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "The middle movement widens the correction through by remaining silent, inner silence is not obtained, even by remaining lovingly absorbed deep within.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, it is written that you shall obey the Hukam of His Command.",
+      "turn": "The middle refuses the usual escapes, because silence, accumulation, and cleverness do not tear falsehood open.",
+      "practicalImplication": "This is for the person swollen with urgency, cleverness, or spiritual self-effort. Held honestly, it changes scale: your fear stops posing as ultimate, and you begin learning how to live under what is already true. Truth is not won by pressure or wit, but by walking in Hukam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.39,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 3.62,
-      "overall": 3.93
+      "clarity": 4.23,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.98,
+      "beauty": 4.45,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

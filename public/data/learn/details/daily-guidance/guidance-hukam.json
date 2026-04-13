@@ -42,23 +42,24 @@
     "evidence": {
       "coreClaim": "Everything stands inside Hukam, not outside it.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "Peace begins when the mind stops arguing with what already stands inside Hukam.",
+      "turn": "Everything stands within Hukam, and ego thins when this is seen.",
       "practicalImplication": "Before reacting, name one thing already here that you need to stop resisting.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
+      "faithfulness": 4,
       "clarity": 4.35,
-      "specificity": 4.38,
+      "specificity": 4.58,
       "emotionalHonesty": 3.18,
       "usefulness": 4.58,
       "beauty": 4.37,
-      "overall": 4.08
+      "overall": 4.16
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

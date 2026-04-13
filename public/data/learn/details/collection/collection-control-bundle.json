@@ -1,8 +1,8 @@
 {
   "id": "collection-control-bundle",
   "title": "Control in one shorter sitting",
-  "subtitle": "A compact bundle for control",
-  "description": "The mind keeps gripping outcomes because uncertainty feels unbearable. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when control is already close",
+  "description": "A short return for the hour when control is already in the hands and jaw. It loosens the grip before management becomes the day's mood.",
   "durationLabel": "3-step bundle",
   "themes": [
     "control"
@@ -12,8 +12,8 @@
     "verseIds": [
       17
     ],
-    "shortMeaning": "Some sing of His Power-who has that Power",
-    "lifeApplication": "Release one demand that peace must wait for total control. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Control softens when the heart stops trying to run the whole room.",
+    "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
   },
   "items": [
     {
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind keeps gripping outcomes because uncertainty feels unbearable. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when control is already in the hands and jaw. It loosens the grip before management becomes the day's mood.",
       "emotionalState": "gripping, controlling, tense",
-      "turn": "A compact bundle for control",
+      "turn": "A shorter sitting for when control is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.85,
-      "specificity": 4.17,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.81
+      "faithfulness": 3.79,
+      "clarity": 4.29,
+      "specificity": 4.02,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.17,
+      "overall": 3.97
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

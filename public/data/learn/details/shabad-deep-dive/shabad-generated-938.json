@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-938",
-  "title": "God-conscious Being Centers His Hopes",
+  "title": "Center hope where the wandering mind cannot rule",
   "subtitle": "Raag Gauree · Ang 273",
-  "summary": "This shabad opens with the God-conscious being centers his hopes on the One alone. It turns the heart toward o Nanak, through the God-conscious being, the whole world meditates on God.",
-  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, through the God-conscious being, the whole world meditates on God.",
+  "summary": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
+  "whyItMatters": "It matters when attachment, distraction, or doubt keeps scattering the heart. The shabad teaches a steadier center than private grasping can provide.",
+  "takeaway": "Hope steadies when it is centered in the One.",
   "themes": [
     "attachment",
     "discipline",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the God-conscious being centers his hopes on the One alone.",
-    "The middle movement widens the correction through the God-conscious being holds his wandering mind under control.",
-    "It closes with a return you can actually keep: o Nanak, through the God-conscious being, the whole world meditates on God."
+    "It opens by gathering hope into a single center.",
+    "The middle movement shows the wandering mind being brought under truthful rule.",
+    "It closes by widening that steadiness into remembrance that benefits more than the self."
   ],
   "keyVerseIds": [
     12122,
@@ -141,25 +141,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the God-conscious being centers his hopes on the One alone. It turns the heart toward o Nanak, through the God-conscious being, the whole world meditates on God.",
+      "coreClaim": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement widens the correction through the God-conscious being holds his wandering mind under control.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, through the God-conscious being, the whole world meditates on God.",
+      "turn": "The middle movement shows the wandering mind being brought under truthful rule.",
+      "practicalImplication": "It matters when attachment, distraction, or doubt keeps scattering the heart. The shabad teaches a steadier center than private grasping can provide. Hope steadies when it is centered in the One.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.76,
-      "specificity": 4.59,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.49,
-      "overall": 3.83
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.9,
+      "usefulness": 3.66,
+      "beauty": 4.37,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

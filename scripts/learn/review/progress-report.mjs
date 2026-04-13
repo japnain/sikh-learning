@@ -14,7 +14,7 @@ async function main() {
     const kindEntries = entries.filter(entry => entry.kind === kind)
     const polished = kindEntries.filter(({ id }) => {
       const status = reviewState.items[kind]?.[id]?.status ?? "pending"
-      return status === "polished" || status === "approved"
+      return status === "polished" || status === "approved" || status === "locked"
     }).length
     const medianOverall = median(kindEntries.map(entry => entry.item.editorial?.scores?.overall ?? 0))
     const humanReviewed = kindEntries.filter(entry => entry.item.editorial?.reviewedByHuman === true).length

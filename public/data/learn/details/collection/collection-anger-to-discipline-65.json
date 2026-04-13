@@ -1,8 +1,8 @@
 {
   "id": "collection-anger-to-discipline-65",
-  "title": "Anger to Discipline",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+  "title": "When anger dresses itself as discipline",
+  "subtitle": "When anger disguises itself as seriousness",
+  "description": "Hold anger beside discipline until you can hear the difference between governed strength and heat wearing a moral face.",
   "durationLabel": "6-step journey",
   "themes": [
     "anger",
@@ -13,8 +13,8 @@
     "verseIds": [
       3
     ],
-    "shortMeaning": "True In The Primal Beginning. True Throughout The Ages",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Discipline governs heat; it does not borrow its voice.",
+    "lifeApplication": "When anger starts calling itself seriousness, slow the body before naming it discipline."
   },
   "items": [
     {
@@ -61,25 +61,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru turns the battle inward so reaction loses its claim to righteousness. This bridge then carries into guru places discipline inside remembrance, restraint, and inner victory instead of image management.",
+      "coreClaim": "Hold anger beside discipline until you can hear the difference between governed strength and heat wearing a moral face.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When anger disguises itself as seriousness",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.05,
-      "clarity": 3.85,
-      "specificity": 4.26,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.85
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

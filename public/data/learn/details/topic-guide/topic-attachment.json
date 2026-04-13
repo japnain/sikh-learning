@@ -5,8 +5,8 @@
   "category": "inner-work",
   "issueStatement": "What you love has begun to dictate your inner weather. Approval, comfort, possession, or one imagined future starts feeling necessary for peace.",
   "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when the mind asks finite things to carry the weight only the Giver can bear.",
-  "practicalReflection": "Attachment reveals itself in the force of your reactions. What you cannot imagine losing without collapse has already been asked to become a lord.",
-  "actionPrompt": "Name what your peace has started depending on, and place that dependency before the Guru without disguising it as care.",
+  "practicalReflection": "Attachment reveals itself in the force of your reactions. What you cannot imagine losing without collapse has already been asked to become a lord. What changes here is not only mood, but the inner rule you let govern the next moment.",
+  "actionPrompt": "Before the mind gets another full run at the room, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
   "searchTerms": [
     "attachment",
     "clinging",
@@ -69,10 +69,10 @@
           9414,
           9416
         ],
-        "shortMeaning": "Praise and slander are all the same to them, as are greed and attachment; greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and pain -",
-        "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line stay in charge of what comes next."
+        "shortMeaning": "Attachment is exposed at the moment love starts acting like ownership.",
+        "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
       },
-      "explanation": "The shabad names the freedom attachment cannot produce: a steadiness that is no longer dragged around by praise, blame, greed, or possessiveness."
+      "explanation": "The verse catches attachment at the point where love begins turning into ownership. It refuses to call that intensity devotion."
     },
     {
       "source": {
@@ -82,10 +82,10 @@
           500,
           503
         ],
-        "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive; you Yourself separate them from Yourself, and You Yourself reunite with them again",
-        "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line stay in charge of what comes next."
+        "shortMeaning": "Praise loosens the grip without freezing the heart.",
+        "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
       },
-      "explanation": "Attachment loosens when the heart remembers what is given and gathered under Hukam. Love can stay tender without turning into ownership."
+      "explanation": "It teaches the heart to release without becoming cold. Praise becomes stronger than possession here."
     },
     {
       "source": {
@@ -94,10 +94,10 @@
           11,
           15
         ],
-        "shortMeaning": "no one is beyond His Command",
-        "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line stay in charge of what comes next."
+        "shortMeaning": "Attachment weakens when refuge matters more than possession.",
+        "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
       },
-      "explanation": "This line keeps the theme from collapsing into private psychology. The soul becomes freer when it stops acting as if the whole world exists outside the command of the One."
+      "explanation": "The line loosens the grip by making refuge more important than possession."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -111,11 +111,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Attachment in the ordinary day",
-      "issueStatement": "Attachment is usually revealed by ordinary dependence: the message that must arrive, the mood that must stay pleasant, the person or plan you keep checking to feel secure.",
-      "centralInsight": "The Guru exposes attachment by showing how quickly peace starts borrowing itself from what was only meant to be received.",
-      "practicalReflection": "Daily attachment often looks like care or diligence. Its real mark is that the heart keeps tightening around what it cannot actually keep.",
-      "actionPrompt": "Notice what you keep checking, protecting, or rehearsing for reassurance today, and loosen one grip before it hardens into claim.",
+      "title": "When attachment keeps tightening the grip before the day gets away from you",
+      "issueStatement": "The mind keeps clinging to what it cannot finally keep. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
+      "centralInsight": "Guru teaches love without possession and steadiness without denial. The plain day is still where remembrance and conduct have to hold.",
+      "practicalReflection": "This is where attachment usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
+      "actionPrompt": "Before the next ordinary decision, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "searchTerms": [
         "attachment",
         "clinging",
@@ -142,10 +142,10 @@
             "verseIds": [
               9412
             ],
-            "shortMeaning": "Holy Saadhus: rest and peace are in the Sanctuary of the Lord",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "Attachment is checked here by holy company.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "The ordinary day becomes readable here. Peace is described as steadiness before what usually hooks the mind, which is exactly where daily attachment first gives itself away."
+          "explanation": "In the ordinary day, the verse turns attachment toward holy company instead of self-enclosure."
         },
         {
           "source": {
@@ -154,10 +154,10 @@
               11,
               15
             ],
-            "shortMeaning": "no one is beyond His Command",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by steadier return.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "Attachment relaxes when the heart remembers it is receiving a day, not owning one. Hukam interrupts the private claim that everything must now arrange itself around your peace."
+          "explanation": "The daily moment changes here because attachment is not left alone with itself."
         },
         {
           "source": {
@@ -166,48 +166,49 @@
               524,
               527
             ],
-            "shortMeaning": "vibrate and meditate on the Jewel of the Naam; this human body has been given to you",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by holy company.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "This shabad widens the frame again. Human life is entrusted, not possessed, and that makes the little daily clutches look smaller and sadder than they first seemed."
+          "explanation": "This keeps the day from shrinking around attachment; the heart is returned to holy company."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-attachment:daily",
         "evidence": {
-          "coreClaim": "The Guru exposes attachment by showing how quickly peace starts borrowing itself from what was only meant to be received.",
+          "coreClaim": "Guru teaches love without possession and steadiness without denial. The plain day is still where remembrance and conduct have to hold.",
           "emotionalState": "hooked, needy, easily-shaken",
-          "turn": "Attachment is usually revealed by ordinary dependence: the message that must arrive, the mood that must stay pleasant, the person or plan you keep checking to feel secure.",
-          "practicalImplication": "Notice what you keep checking, protecting, or rehearsing for reassurance today, and loosen one grip before it hardens into claim.",
+          "turn": "The mind keeps clinging to what it cannot finally keep. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
+          "practicalImplication": "Before the next ordinary decision, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.36,
+          "emotionalHonesty": 3.72,
           "usefulness": 4.26,
-          "beauty": 4.37,
-          "overall": 4.3
+          "beauty": 4.36,
+          "overall": 4.35
         },
         "strengths": [
           "specificity",
           "faithfulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Attachment when fear starts clenching",
-      "issueStatement": "Pressure makes attachment feel like loyalty. The mind says it must grip harder because something precious might slip away.",
-      "centralInsight": "Gurbani answers pressure by returning the heart to the Giver. Fear does not become wisdom just because it is protecting what you love.",
-      "practicalReflection": "The pressured mind confuses holding with caring. Often the tighter the fist, the less room there is for trust, tenderness, or truthful seeing.",
-      "actionPrompt": "When fear tells you to grip harder, ask whether love is being guarded or possession is being defended.",
+      "title": "When pressure exposes what attachment reaches for",
+      "issueStatement": "The mind keeps clinging to what it cannot finally keep. Pressure exposes what the heart reaches for when it feels cornered.",
+      "centralInsight": "Guru teaches love without possession and steadiness without denial. The line has to interrupt panic before panic becomes posture.",
+      "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
+      "actionPrompt": "At the first sign of strain, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "searchTerms": [
         "attachment",
         "clinging",
@@ -235,10 +236,10 @@
               501,
               503
             ],
-            "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Under strain, attachment is steadied by Naam and praise.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "This line breaks the reflex to manage everything by force. What is loved is safest when returned to Hukam rather than made to carry the whole burden of your fear."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -247,10 +248,10 @@
               3762,
               3763
             ],
-            "shortMeaning": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water; i am a helpless child-please cherish me",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through received care.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "Fear softens when the soul is allowed to be needy before the One, not merely strategic before loss. The child does not save itself by tightening harder."
+          "explanation": "The strain does not get final say here; received care interrupts the reflex."
         },
         {
           "source": {
@@ -260,48 +261,49 @@
               30989,
               30994
             ],
-            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Attachment is not left to rule the strained moment.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "Attachment under strain is corrected by remembrance of who made you and who still sustains you. Trust becomes possible again when the heart stops acting orphaned."
+          "explanation": "Under pressure, the verse steadies attachment by returning the heart to received care."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-attachment:pressure",
         "evidence": {
-          "coreClaim": "Gurbani answers pressure by returning the heart to the Giver. Fear does not become wisdom just because it is protecting what you love.",
+          "coreClaim": "Guru teaches love without possession and steadiness without denial. The line has to interrupt panic before panic becomes posture.",
           "emotionalState": "controlling, unsettled, lonely",
-          "turn": "Pressure makes attachment feel like loyalty. The mind says it must grip harder because something precious might slip away.",
-          "practicalImplication": "When fear tells you to grip harder, ask whether love is being guarded or possession is being defended.",
+          "turn": "The mind keeps clinging to what it cannot finally keep. Pressure exposes what the heart reaches for when it feels cornered.",
+          "practicalImplication": "At the first sign of strain, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.78,
-          "emotionalHonesty": 3.9,
-          "usefulness": 3.6,
-          "beauty": 4.69,
-          "overall": 4.3
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.82,
+          "beauty": 4.53,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Returning after attachment took the throne",
-      "issueStatement": "You can see how much the heart has been ruled by one relationship, comfort, possession, or imagined outcome, and now shame wants to turn that discovery into one more fixation.",
-      "centralInsight": "Repair begins by telling the truth about misplaced dependence. The Guru does not ask you to become cold; He teaches you to return what you were trying to own.",
-      "practicalReflection": "What needs repair is not only the outward clinging. It is the inward agreement that peace could be secured by holding tighter.",
-      "actionPrompt": "Name what you tried to possess, release one controlling move today, and return that part of your life to Hukam in prayer.",
+      "title": "When repair has to begin after the mind has wandered",
+      "issueStatement": "The mind keeps clinging to what it cannot finally keep. The break has already happened, and now shame wants to turn the aftermath into identity.",
+      "centralInsight": "Guru teaches love without possession and steadiness without denial. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
+      "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
+      "actionPrompt": "Once the miss is visible, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "searchTerms": [
         "attachment",
         "clinging",
@@ -329,10 +331,10 @@
               3899,
               3900
             ],
-            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Attachment is not allowed to become identity here.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "Repair often begins when the exhausted search finally stops pretending it can save itself. Holy company cools the body and mind enough for release to become imaginable."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -342,10 +344,10 @@
               37476,
               37477
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "The heart returns by becoming smaller, not harder. Nearness to the Lord begins to matter more than controlling the thing that had quietly taken the throne."
+          "explanation": "Repair stays honest here because attachment is answered without theatre."
         },
         {
           "source": {
@@ -355,48 +357,49 @@
               529,
               533
             ],
-            "shortMeaning": "You are squandering this life uselessly in the love of Maya; make every effort to cross over this terrifying world-ocean",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "The line refuses despair. Human life is still a chance after the clinging has been seen, and sanctuary is still open to the one who stops trying to own what was only entrusted."
+          "explanation": "After the slip, the verse keeps return possible through steadier return."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-attachment:repair",
         "evidence": {
-          "coreClaim": "Repair begins by telling the truth about misplaced dependence. The Guru does not ask you to become cold; He teaches you to return what you were trying to own.",
+          "coreClaim": "Guru teaches love without possession and steadiness without denial. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
           "emotionalState": "wandering, exhausted, seeking",
-          "turn": "You can see how much the heart has been ruled by one relationship, comfort, possession, or imagined outcome, and now shame wants to turn that discovery into one more fixation.",
-          "practicalImplication": "Name what you tried to possess, release one controlling move today, and return that part of your life to Hukam in prayer.",
+          "turn": "The mind keeps clinging to what it cannot finally keep. The break has already happened, and now shame wants to turn the aftermath into identity.",
+          "practicalImplication": "Once the miss is visible, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.29,
-          "specificity": 5,
-          "emotionalHonesty": 3.72,
-          "usefulness": 4.8,
-          "beauty": 4.65,
-          "overall": 4.47
+          "clarity": 4.35,
+          "specificity": 4.96,
+          "emotionalHonesty": 3.54,
+          "usefulness": 3.82,
+          "beauty": 4.53,
+          "overall": 4.28
         },
         "strengths": [
           "specificity",
-          "usefulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Practicing nearness without possession",
-      "issueStatement": "Attachment is retrained slowly. The mind keeps trying to secure what it loves by gripping it harder, checking it more often, or fearing its loss in advance.",
-      "centralInsight": "Gurbani teaches love without ownership. Freedom grows when the heart can receive, enjoy, and release under Hukam instead of turning every gift into property.",
-      "practicalReflection": "Attachment is built through repetition too: the little grabs, the private claims, the refusal to let what is given remain given.",
-      "actionPrompt": "Practice enjoying one gift today without gripping it, naming it as received rather than owed.",
+      "title": "When the teaching has to become a practice, not a mood",
+      "issueStatement": "The mind keeps clinging to what it cannot finally keep. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
+      "centralInsight": "Guru teaches love without possession and steadiness without denial. A line proves its truth when it governs more than one moment.",
+      "practicalReflection": "Durable faithfulness is quieter than inspiration and often harder. The correction matters because it teaches the soul how to keep returning.",
+      "actionPrompt": "Pick one place in the day to practice this line, then when the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "searchTerms": [
         "attachment",
         "clinging",
@@ -423,10 +426,10 @@
               9414,
               9416
             ],
-            "shortMeaning": "Praise and slander are all the same to them, as are greed and attachment; greed, emotional attachment to Maya, possessiveness, the service of evil, pleasure and pain -",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to holy company the same way again.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "The shabad does not ask you to love less. It asks for a steadiness that is not owned by praise, possession, greed, or attachment."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -436,10 +439,10 @@
               500,
               503
             ],
-            "shortMeaning": "Whatever pleases You comes to pass. As You give, so do we receive; you Yourself separate them from Yourself, and You Yourself reunite with them again",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "Attachment loosens when the heart remembers who gives and who gathers. What is received under Hukam can also be released under Hukam."
+          "explanation": "As practice, the verse keeps returning attachment to Naam and praise."
         },
         {
           "source": {
@@ -449,38 +452,39 @@
               37476,
               37477
             ],
-            "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; the Lord is close to His humble servant, and His humble servant is close",
-            "lifeApplication": "Practice holding the gift without claiming authorship over it. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives attachment a keepable form through received care.",
+            "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
           },
-          "explanation": "The soul becomes safer when nearness to the Lord matters more than holding the world tightly. The child is cherished; the self does not need to keep proving ownership."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-attachment:practice",
         "evidence": {
-          "coreClaim": "Gurbani teaches love without ownership. Freedom grows when the heart can receive, enjoy, and release under Hukam instead of turning every gift into property.",
+          "coreClaim": "Guru teaches love without possession and steadiness without denial. A line proves its truth when it governs more than one moment.",
           "emotionalState": "hooked, needy, easily-shaken",
-          "turn": "Attachment is retrained slowly. The mind keeps trying to secure what it loves by gripping it harder, checking it more often, or fearing its loss in advance.",
-          "practicalImplication": "Practice enjoying one gift today without gripping it, naming it as received rather than owed.",
+          "turn": "The mind keeps clinging to what it cannot finally keep. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
+          "practicalImplication": "Pick one place in the day to practice this line, then when the hand tightens, loosen it and receive the gift without claiming the outcome.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
           "specificity": 5,
-          "emotionalHonesty": 3.54,
-          "usefulness": 4.42,
-          "beauty": 4.53,
-          "overall": 4.38
+          "emotionalHonesty": 3.18,
+          "usefulness": 4.86,
+          "beauty": 4.85,
+          "overall": 4.44
         },
         "strengths": [
           "specificity",
-          "beauty"
+          "usefulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -516,29 +520,30 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:attachment",
     "evidence": {
       "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when the mind asks finite things to carry the weight only the Giver can bear.",
       "emotionalState": "hooked, needy, easily-shaken",
       "turn": "What you love has begun to dictate your inner weather. Approval, comfort, possession, or one imagined future starts feeling necessary for peace.",
-      "practicalImplication": "Name what your peace has started depending on, and place that dependency before the Guru without disguising it as care.",
+      "practicalImplication": "Before the mind gets another full run at the room, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.78,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.6,
+      "usefulness": 4.48,
       "beauty": 4.53,
-      "overall": 4.22
+      "overall": 4.38
     },
     "strengths": [
       "specificity",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

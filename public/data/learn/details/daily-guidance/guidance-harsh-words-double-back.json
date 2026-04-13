@@ -1,17 +1,17 @@
 {
   "id": "guidance-harsh-words-double-back",
-  "title": "Harsh words do not finish outside you.",
-  "summary": "The harm of sharp speech does not stop at the other person. It also deepens the coarseness of the one speaking.",
-  "takeaway": "Contempt always leaves residue in the speaker.",
-  "lifeApplication": "Before replying in irritation, ask what kind of interior this sentence is building inside you.",
+  "title": "Do not give your mouth to the wound",
+  "summary": "This meets the hot second before speech goes looking for damage. The line says the tongue needs a master stronger than hurt: truth, praise, and restraint.",
+  "takeaway": "Do not let the wound speak for you.",
+  "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       643,
       644
     ],
-    "shortMeaning": "Harsh words return as grief, not mastery.",
-    "lifeApplication": "Do not confuse emotional discharge with strength."
+    "shortMeaning": "A clean tongue answers to truth and praise, not to hurt.",
+    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Harsh words return as grief, not mastery.",
+      "coreClaim": "A clean tongue answers to truth and praise, not to hurt.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Guard the tongue, and the heart begins to clear.",
-      "practicalImplication": "Before replying in irritation, ask what kind of interior this sentence is building inside you.",
+      "turn": "Keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 3.9,
       "clarity": 4.35,
-      "specificity": 4.3,
-      "emotionalHonesty": 3,
-      "usefulness": 3.22,
-      "beauty": 4.21,
-      "overall": 3.84
+      "specificity": 4.67,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.04,
+      "beauty": 4.37,
+      "overall": 4.07
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

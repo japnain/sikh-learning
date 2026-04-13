@@ -1,8 +1,8 @@
 {
   "id": "collection-self-worth-bundle",
   "title": "Self-Worth in one shorter sitting",
-  "subtitle": "A compact bundle for self-worth",
-  "description": "The mind keeps outsourcing dignity to response, approval, and success. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when self-worth is already close",
+  "description": "A short return for the hour when dignity has been outsourced to response and success. It returns worth to grace and belonging.",
   "durationLabel": "3-step bundle",
   "themes": [
     "self-worth"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind keeps outsourcing dignity to response, approval, and success. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when dignity has been outsourced to response and success. It returns worth to grace and belonging.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "A compact bundle for self-worth",
+      "turn": "A shorter sitting for when self-worth is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.55,
-      "specificity": 4.17,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.74
+      "usefulness": 4.5,
+      "beauty": 4.53,
+      "overall": 4.05
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "beauty",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

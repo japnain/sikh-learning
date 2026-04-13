@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-journey",
   "title": "From Doubt to steadier practice",
-  "subtitle": "A deliberate path through doubt",
-  "description": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when doubt keeps steering the day",
+  "description": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
   "durationLabel": "5-step journey",
   "themes": [
     "doubt",
@@ -57,25 +57,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "A deliberate path through doubt",
+      "turn": "For when doubt keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.75,
-      "specificity": 4.25,
+      "faithfulness": 3.94,
+      "clarity": 4.35,
+      "specificity": 4.16,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.8
+      "overall": 4.02
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

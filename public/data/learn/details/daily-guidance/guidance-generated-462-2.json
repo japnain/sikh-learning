@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-462-2",
-  "title": "You Indulge In Lies And Gossip",
-  "summary": "Restlessness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
-  "lifeApplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+  "title": "Do not spend the passing day in gossip",
+  "summary": "This meets restless speech that keeps burning through a life already brief. The line places passing-world clarity beside lies, slander, and gossip.",
+  "takeaway": "Do not waste a passing life on gossip.",
+  "lifeApplication": "Before repeating the story or sharpening the comment, feel the tongue and throat. Let the shortness of life interrupt the pleasure of saying it.",
   "source": {
     "deepDiveId": "shabad-generated-462",
     "verseIds": [
       6434,
       6440
     ],
-    "shortMeaning": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
-    "lifeApplication": "Choose better placement before choosing more movement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "A passing life is squandered when the tongue feeds on gossip.",
+    "lifeApplication": "When gossip feels easy, remember how quickly the body passes."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -24,7 +24,7 @@
     "collection-restlessness-journey"
   ],
   "rotation": {
-    "theme": "restlessness",
+    "theme": "speech",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "With your nectar-like body, you live in comfort, but this world is just a passing drama",
+      "coreClaim": "A passing life is squandered when the tongue feeds on gossip.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: This soul and body all are His. He Himself kills, and brings back to life.",
-      "practicalImplication": "Choose better placement before choosing more movement. Use the line before the pressure chooses your tone.",
+      "turn": "Remember the shortness of life before you spend it in gossip.",
+      "practicalImplication": "Before repeating the story or sharpening the comment, feel the tongue and throat. Let the shortness of life interrupt the pleasure of saying it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 3.51,
-      "specificity": 4.61,
+      "faithfulness": 4.3,
+      "clarity": 4.35,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.04,
-      "beauty": 3.49,
-      "overall": 3.78
+      "usefulness": 4.8,
+      "beauty": 4.05,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

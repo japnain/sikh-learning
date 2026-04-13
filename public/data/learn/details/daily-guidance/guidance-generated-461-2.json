@@ -42,23 +42,24 @@
     "evidence": {
       "coreClaim": "Through the True Guru, devotion and service become the crossing into union.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: Nanak's mind is imbued with the Lotus Feet of the Lord.",
+      "turn": "Roaming ends when the Guru reveals the deeper union.",
       "practicalImplication": "When the mind wants more motion, choose one act of devotion or service that returns you to the path you already know.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.8,
-      "clarity": 4.24,
-      "specificity": 4.57,
+      "faithfulness": 4.07,
+      "clarity": 4.29,
+      "specificity": 4.82,
       "emotionalHonesty": 3.36,
       "usefulness": 4.8,
       "beauty": 4.17,
-      "overall": 4.12
+      "overall": 4.23
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

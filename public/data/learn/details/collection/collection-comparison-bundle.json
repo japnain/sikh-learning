@@ -1,8 +1,8 @@
 {
   "id": "collection-comparison-bundle",
   "title": "Comparison in one shorter sitting",
-  "subtitle": "A compact bundle for comparison",
-  "description": "The mind keeps measuring worth and direction against other people. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when comparison is already close",
+  "description": "A short rescue when someone else's life has hijacked your sight. It returns the eye to gift, duty, and rightful proportion.",
   "durationLabel": "3-step bundle",
   "themes": [
     "comparison"
@@ -12,8 +12,8 @@
     "verseIds": [
       759
     ],
-    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Comparison weakens when the eye returns to gift, duty, and praise.",
+    "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
   },
   "items": [
     {
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "The mind keeps measuring worth and direction against other people. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short rescue when someone else's life has hijacked your sight. It returns the eye to gift, duty, and rightful proportion.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "A compact bundle for comparison",
+      "turn": "A shorter sitting for when comparison is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.75,
-      "specificity": 4.17,
+      "faithfulness": 3.86,
+      "clarity": 4.35,
+      "specificity": 4.09,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.77
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

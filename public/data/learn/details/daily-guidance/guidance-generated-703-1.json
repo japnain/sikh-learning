@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-703-1",
-  "title": "When The Insignia Of The True Shabad",
-  "summary": "Attachment is named plainly here before the mind has time to decorate it.",
-  "takeaway": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+  "title": "Let the Guru's word rein the mind",
+  "summary": "This meets the unruly moment when cleverness wants dignity without being governed. The line says the mind is honored only when the Guru's word takes the reins.",
+  "takeaway": "Let the Guru's word take the reins.",
+  "lifeApplication": "Before you enter the meeting or answer the message, ask what is holding your mind right now. Choose one line of Shabad before image or cleverness takes the lead.",
   "source": {
     "deepDiveId": "shabad-generated-703",
     "verseIds": [
       9473
     ],
-    "shortMeaning": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Guru's word reins the mind into right order.",
+    "lifeApplication": "At the threshold, let one line hold the mind before image does."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -23,7 +23,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "attachment",
+    "theme": "control",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
+      "coreClaim": "The Guru's word reins the mind into right order.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Begin with the part of the day already in front of you.",
+      "turn": "Let the Guru's Shabad govern the mind before cleverness does.",
+      "practicalImplication": "Before you enter the meeting or answer the message, ask what is holding your mind right now. Choose one line of Shabad before image or cleverness takes the lead.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.8,
-      "clarity": 3.22,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.98,
-      "beauty": 3.39,
-      "overall": 3.7
+      "faithfulness": 4.23,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 3.91,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

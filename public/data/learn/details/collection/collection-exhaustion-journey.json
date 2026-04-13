@@ -1,8 +1,8 @@
 {
   "id": "collection-exhaustion-journey",
   "title": "From Exhaustion to steadier practice",
-  "subtitle": "A deliberate path through exhaustion",
-  "description": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when exhaustion keeps steering the day",
+  "description": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
   "durationLabel": "5-step journey",
   "themes": [
     "exhaustion",
@@ -13,8 +13,8 @@
     "verseIds": [
       5589
     ],
-    "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Exhaustion eases when honesty replaces the performance of strength.",
+    "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
   },
   "items": [
     {
@@ -53,25 +53,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "A deliberate path through exhaustion",
+      "turn": "For when exhaustion keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.75,
+      "faithfulness": 4.03,
+      "clarity": 4.35,
       "specificity": 4.25,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.37,
-      "overall": 3.82
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 4.03
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

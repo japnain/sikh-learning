@@ -762,210 +762,6 @@
     "practice and life": {
       "topicId": "topic-conduct"
     },
-    "anxiety in the ordinary day": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "anxiety daily": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "today": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "daily": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "ordinary day": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "routine": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "anxiety today": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "anxiety ordinary day": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "anxiety routine": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "daily"
-    },
-    "anxiety when the day tightens": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety under pressure": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "pressure": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "under strain": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "cornered": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety pressure": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety stress": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety under strain": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety cornered": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "pressure"
-    },
-    "anxiety after the slip": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "repair": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "return": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "after slipping": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "start again": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "anxiety repair": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "anxiety return": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "anxiety after slipping": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "anxiety start again": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with anxiety": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anxiety steady practice": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "steady return": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "formation": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anxiety practice": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anxiety habit": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anxiety steady return": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anxiety formation": {
-      "topicId": "topic-anxiety",
-      "scenarioKey": "practice"
-    },
-    "anger in the ordinary day": {
-      "topicId": "topic-anger",
-      "scenarioKey": "daily"
-    },
-    "anger daily": {
-      "topicId": "topic-anger",
-      "scenarioKey": "daily"
-    },
-    "anger today": {
-      "topicId": "topic-anger",
-      "scenarioKey": "daily"
-    },
-    "anger ordinary day": {
-      "topicId": "topic-anger",
-      "scenarioKey": "daily"
-    },
-    "anger routine": {
-      "topicId": "topic-anger",
-      "scenarioKey": "daily"
-    },
-    "anger when the day tightens": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger under pressure": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger pressure": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger stress": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger under strain": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger cornered": {
-      "topicId": "topic-anger",
-      "scenarioKey": "pressure"
-    },
-    "anger after the slip": {
-      "topicId": "topic-anger",
-      "scenarioKey": "repair"
-    },
-    "anger repair": {
-      "topicId": "topic-anger",
-      "scenarioKey": "repair"
-    },
-    "anger return": {
-      "topicId": "topic-anger",
-      "scenarioKey": "repair"
-    },
-    "anger after slipping": {
-      "topicId": "topic-anger",
-      "scenarioKey": "repair"
-    },
-    "anger start again": {
-      "topicId": "topic-anger",
-      "scenarioKey": "repair"
-    },
     "training anger into a smaller first response": {
       "topicId": "topic-anger",
       "scenarioKey": "practice"
@@ -1014,70 +810,6 @@
       "topicId": "topic-anger",
       "scenarioKey": "practice"
     },
-    "comparison in the ordinary day": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "daily"
-    },
-    "comparison daily": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "daily"
-    },
-    "comparison today": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "daily"
-    },
-    "comparison ordinary day": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "daily"
-    },
-    "comparison routine": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "daily"
-    },
-    "comparison when the day tightens": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison under pressure": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison pressure": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison stress": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison under strain": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison cornered": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "pressure"
-    },
-    "comparison after the slip": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "repair"
-    },
-    "comparison repair": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "repair"
-    },
-    "comparison return": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "repair"
-    },
-    "comparison after slipping": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "repair"
-    },
-    "comparison start again": {
-      "topicId": "topic-comparison",
-      "scenarioKey": "repair"
-    },
     "training the heart away from comparison": {
       "topicId": "topic-comparison",
       "scenarioKey": "practice"
@@ -1116,94 +848,6 @@
     },
     "comparison receiving your portion": {
       "topicId": "topic-comparison",
-      "scenarioKey": "practice"
-    },
-    "loneliness in the ordinary day": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "daily"
-    },
-    "loneliness daily": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "daily"
-    },
-    "loneliness today": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "daily"
-    },
-    "loneliness ordinary day": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "daily"
-    },
-    "loneliness routine": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "daily"
-    },
-    "loneliness when the day tightens": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness under pressure": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness pressure": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness stress": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness under strain": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness cornered": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "pressure"
-    },
-    "loneliness after the slip": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "repair"
-    },
-    "loneliness repair": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "repair"
-    },
-    "loneliness return": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "repair"
-    },
-    "loneliness after slipping": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "repair"
-    },
-    "loneliness start again": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with loneliness": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "practice"
-    },
-    "loneliness steady practice": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "practice"
-    },
-    "loneliness practice": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "practice"
-    },
-    "loneliness habit": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "practice"
-    },
-    "loneliness steady return": {
-      "topicId": "topic-loneliness",
-      "scenarioKey": "practice"
-    },
-    "loneliness formation": {
-      "topicId": "topic-loneliness",
       "scenarioKey": "practice"
     },
     "purpose in the ordinary assignment": {
@@ -1245,50 +889,6 @@
     "purpose assignment": {
       "topicId": "topic-purpose",
       "scenarioKey": "daily"
-    },
-    "purpose when the day tightens": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose under pressure": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose pressure": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose stress": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose under strain": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose cornered": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "pressure"
-    },
-    "purpose after the slip": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "repair"
-    },
-    "purpose repair": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "repair"
-    },
-    "purpose return": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "repair"
-    },
-    "purpose after slipping": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "repair"
-    },
-    "purpose start again": {
-      "topicId": "topic-purpose",
-      "scenarioKey": "repair"
     },
     "building a life that keeps its purpose": {
       "topicId": "topic-purpose",
@@ -1430,6 +1030,10 @@
       "topicId": "topic-attachment",
       "scenarioKey": "repair"
     },
+    "repair": {
+      "topicId": "topic-attachment",
+      "scenarioKey": "repair"
+    },
     "misplaced dependence": {
       "topicId": "topic-attachment",
       "scenarioKey": "repair"
@@ -1546,6 +1150,10 @@
       "topicId": "topic-ego",
       "scenarioKey": "pressure"
     },
+    "cornered": {
+      "topicId": "topic-ego",
+      "scenarioKey": "pressure"
+    },
     "self protection": {
       "topicId": "topic-ego",
       "scenarioKey": "pressure"
@@ -1646,99 +1254,15 @@
       "topicId": "topic-ego",
       "scenarioKey": "practice"
     },
-    "gratitude in the ordinary day": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "daily"
-    },
-    "gratitude daily": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "daily"
-    },
-    "gratitude today": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "daily"
-    },
-    "gratitude ordinary day": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "daily"
-    },
-    "gratitude routine": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "daily"
-    },
-    "gratitude when the day tightens": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude under pressure": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude pressure": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude stress": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude under strain": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude cornered": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "pressure"
-    },
-    "gratitude after the slip": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "repair"
-    },
-    "gratitude repair": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "repair"
-    },
-    "gratitude return": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "repair"
-    },
-    "gratitude after slipping": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "repair"
-    },
-    "gratitude start again": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with gratitude": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
-    "gratitude steady practice": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
-    "gratitude practice": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
-    "gratitude habit": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
-    "gratitude steady return": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
-    "gratitude formation": {
-      "topicId": "topic-gratitude",
-      "scenarioKey": "practice"
-    },
     "discipline in the unremarkable middle of the day": {
       "topicId": "topic-discipline",
       "scenarioKey": "daily"
     },
     "discipline daily": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "daily"
+    },
+    "routine": {
       "topicId": "topic-discipline",
       "scenarioKey": "daily"
     },
@@ -1823,6 +1347,10 @@
       "scenarioKey": "repair"
     },
     "broken streak": {
+      "topicId": "topic-discipline",
+      "scenarioKey": "repair"
+    },
+    "start again": {
       "topicId": "topic-discipline",
       "scenarioKey": "repair"
     },
@@ -1970,6 +1498,10 @@
       "topicId": "topic-seva",
       "scenarioKey": "pressure"
     },
+    "pressure": {
+      "topicId": "topic-seva",
+      "scenarioKey": "pressure"
+    },
     "helping": {
       "topicId": "topic-seva",
       "scenarioKey": "pressure"
@@ -2096,270 +1628,6 @@
     },
     "seva steady seva": {
       "topicId": "topic-seva",
-      "scenarioKey": "practice"
-    },
-    "hukam in the ordinary day": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "daily"
-    },
-    "hukam daily": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "daily"
-    },
-    "hukam today": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "daily"
-    },
-    "hukam ordinary day": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "daily"
-    },
-    "hukam routine": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "daily"
-    },
-    "hukam when the day tightens": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam under pressure": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam pressure": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam stress": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam under strain": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam cornered": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "pressure"
-    },
-    "hukam after the slip": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "repair"
-    },
-    "hukam repair": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "repair"
-    },
-    "hukam return": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "repair"
-    },
-    "hukam after slipping": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "repair"
-    },
-    "hukam start again": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with hukam": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "hukam steady practice": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "hukam practice": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "hukam habit": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "hukam steady return": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "hukam formation": {
-      "topicId": "topic-hukam",
-      "scenarioKey": "practice"
-    },
-    "doubt in the ordinary day": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "daily"
-    },
-    "doubt daily": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "daily"
-    },
-    "doubt today": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "daily"
-    },
-    "doubt ordinary day": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "daily"
-    },
-    "doubt routine": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "daily"
-    },
-    "doubt when the day tightens": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt under pressure": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt pressure": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt stress": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt under strain": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt cornered": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "pressure"
-    },
-    "doubt after the slip": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "repair"
-    },
-    "doubt repair": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "repair"
-    },
-    "doubt return": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "repair"
-    },
-    "doubt after slipping": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "repair"
-    },
-    "doubt start again": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with doubt": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "doubt steady practice": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "doubt practice": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "doubt habit": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "doubt steady return": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "doubt formation": {
-      "topicId": "topic-doubt",
-      "scenarioKey": "practice"
-    },
-    "speech in the ordinary day": {
-      "topicId": "topic-speech",
-      "scenarioKey": "daily"
-    },
-    "speech daily": {
-      "topicId": "topic-speech",
-      "scenarioKey": "daily"
-    },
-    "speech today": {
-      "topicId": "topic-speech",
-      "scenarioKey": "daily"
-    },
-    "speech ordinary day": {
-      "topicId": "topic-speech",
-      "scenarioKey": "daily"
-    },
-    "speech routine": {
-      "topicId": "topic-speech",
-      "scenarioKey": "daily"
-    },
-    "speech when the day tightens": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech under pressure": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech pressure": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech stress": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech under strain": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech cornered": {
-      "topicId": "topic-speech",
-      "scenarioKey": "pressure"
-    },
-    "speech after the slip": {
-      "topicId": "topic-speech",
-      "scenarioKey": "repair"
-    },
-    "speech repair": {
-      "topicId": "topic-speech",
-      "scenarioKey": "repair"
-    },
-    "speech return": {
-      "topicId": "topic-speech",
-      "scenarioKey": "repair"
-    },
-    "speech after slipping": {
-      "topicId": "topic-speech",
-      "scenarioKey": "repair"
-    },
-    "speech start again": {
-      "topicId": "topic-speech",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with speech": {
-      "topicId": "topic-speech",
-      "scenarioKey": "practice"
-    },
-    "speech steady practice": {
-      "topicId": "topic-speech",
-      "scenarioKey": "practice"
-    },
-    "speech practice": {
-      "topicId": "topic-speech",
-      "scenarioKey": "practice"
-    },
-    "speech habit": {
-      "topicId": "topic-speech",
-      "scenarioKey": "practice"
-    },
-    "speech steady return": {
-      "topicId": "topic-speech",
-      "scenarioKey": "practice"
-    },
-    "speech formation": {
-      "topicId": "topic-speech",
       "scenarioKey": "practice"
     },
     "patience in the ordinary day": {
@@ -2502,6 +1770,10 @@
       "topicId": "topic-patience",
       "scenarioKey": "practice"
     },
+    "formation": {
+      "topicId": "topic-patience",
+      "scenarioKey": "practice"
+    },
     "patience practice patience": {
       "topicId": "topic-patience",
       "scenarioKey": "practice"
@@ -2527,6 +1799,10 @@
       "scenarioKey": "daily"
     },
     "mercy daily": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "daily"
+    },
+    "ordinary day": {
       "topicId": "topic-mercy",
       "scenarioKey": "daily"
     },
@@ -2562,6 +1838,10 @@
       "topicId": "topic-mercy",
       "scenarioKey": "pressure"
     },
+    "under strain": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "pressure"
+    },
     "mercy stress": {
       "topicId": "topic-mercy",
       "scenarioKey": "pressure"
@@ -2583,6 +1863,10 @@
       "scenarioKey": "pressure"
     },
     "mercy after the slip": {
+      "topicId": "topic-mercy",
+      "scenarioKey": "repair"
+    },
+    "after slipping": {
       "topicId": "topic-mercy",
       "scenarioKey": "repair"
     },
@@ -2723,6 +2007,10 @@
       "scenarioKey": "repair"
     },
     "bondage": {
+      "topicId": "topic-forgiveness",
+      "scenarioKey": "repair"
+    },
+    "return": {
       "topicId": "topic-forgiveness",
       "scenarioKey": "repair"
     },
@@ -2962,158 +2250,6 @@
       "topicId": "topic-greed",
       "scenarioKey": "practice"
     },
-    "restlessness in the ordinary day": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "daily"
-    },
-    "restlessness daily": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "daily"
-    },
-    "restlessness today": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "daily"
-    },
-    "restlessness ordinary day": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "daily"
-    },
-    "restlessness routine": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "daily"
-    },
-    "restlessness when the day tightens": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness under pressure": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness pressure": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness stress": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness under strain": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness cornered": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "pressure"
-    },
-    "restlessness after the slip": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "repair"
-    },
-    "restlessness repair": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "repair"
-    },
-    "restlessness return": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "repair"
-    },
-    "restlessness after slipping": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "repair"
-    },
-    "restlessness start again": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with restlessness": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "restlessness steady practice": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "restlessness practice": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "restlessness habit": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "restlessness steady return": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "restlessness formation": {
-      "topicId": "topic-restlessness",
-      "scenarioKey": "practice"
-    },
-    "sangat in the ordinary day": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "daily"
-    },
-    "sangat daily": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "daily"
-    },
-    "sangat today": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "daily"
-    },
-    "sangat ordinary day": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "daily"
-    },
-    "sangat routine": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "daily"
-    },
-    "sangat when the day tightens": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat under pressure": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat pressure": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat stress": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat under strain": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat cornered": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "pressure"
-    },
-    "sangat after the slip": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "repair"
-    },
-    "sangat repair": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "repair"
-    },
-    "sangat return": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "repair"
-    },
-    "sangat after slipping": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "repair"
-    },
-    "sangat start again": {
-      "topicId": "topic-sangat",
-      "scenarioKey": "repair"
-    },
     "practicing closeness to the right company": {
       "topicId": "topic-sangat",
       "scenarioKey": "practice"
@@ -3153,70 +2289,6 @@
     "sangat inner atmosphere": {
       "topicId": "topic-sangat",
       "scenarioKey": "practice"
-    },
-    "control in the ordinary day": {
-      "topicId": "topic-control",
-      "scenarioKey": "daily"
-    },
-    "control daily": {
-      "topicId": "topic-control",
-      "scenarioKey": "daily"
-    },
-    "control today": {
-      "topicId": "topic-control",
-      "scenarioKey": "daily"
-    },
-    "control ordinary day": {
-      "topicId": "topic-control",
-      "scenarioKey": "daily"
-    },
-    "control routine": {
-      "topicId": "topic-control",
-      "scenarioKey": "daily"
-    },
-    "control when the day tightens": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control under pressure": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control pressure": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control stress": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control under strain": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control cornered": {
-      "topicId": "topic-control",
-      "scenarioKey": "pressure"
-    },
-    "control after the slip": {
-      "topicId": "topic-control",
-      "scenarioKey": "repair"
-    },
-    "control repair": {
-      "topicId": "topic-control",
-      "scenarioKey": "repair"
-    },
-    "control return": {
-      "topicId": "topic-control",
-      "scenarioKey": "repair"
-    },
-    "control after slipping": {
-      "topicId": "topic-control",
-      "scenarioKey": "repair"
-    },
-    "control start again": {
-      "topicId": "topic-control",
-      "scenarioKey": "repair"
     },
     "practicing release before the grip returns": {
       "topicId": "topic-control",
@@ -3265,158 +2337,6 @@
     "control stop over managing": {
       "topicId": "topic-control",
       "scenarioKey": "practice"
-    },
-    "shame in the ordinary day": {
-      "topicId": "topic-shame",
-      "scenarioKey": "daily"
-    },
-    "shame daily": {
-      "topicId": "topic-shame",
-      "scenarioKey": "daily"
-    },
-    "shame today": {
-      "topicId": "topic-shame",
-      "scenarioKey": "daily"
-    },
-    "shame ordinary day": {
-      "topicId": "topic-shame",
-      "scenarioKey": "daily"
-    },
-    "shame routine": {
-      "topicId": "topic-shame",
-      "scenarioKey": "daily"
-    },
-    "shame when the day tightens": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame under pressure": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame pressure": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame stress": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame under strain": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame cornered": {
-      "topicId": "topic-shame",
-      "scenarioKey": "pressure"
-    },
-    "shame after the slip": {
-      "topicId": "topic-shame",
-      "scenarioKey": "repair"
-    },
-    "shame repair": {
-      "topicId": "topic-shame",
-      "scenarioKey": "repair"
-    },
-    "shame return": {
-      "topicId": "topic-shame",
-      "scenarioKey": "repair"
-    },
-    "shame after slipping": {
-      "topicId": "topic-shame",
-      "scenarioKey": "repair"
-    },
-    "shame start again": {
-      "topicId": "topic-shame",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with shame": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "shame steady practice": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "shame practice": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "shame habit": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "shame steady return": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "shame formation": {
-      "topicId": "topic-shame",
-      "scenarioKey": "practice"
-    },
-    "fear in the ordinary day": {
-      "topicId": "topic-fear",
-      "scenarioKey": "daily"
-    },
-    "fear daily": {
-      "topicId": "topic-fear",
-      "scenarioKey": "daily"
-    },
-    "fear today": {
-      "topicId": "topic-fear",
-      "scenarioKey": "daily"
-    },
-    "fear ordinary day": {
-      "topicId": "topic-fear",
-      "scenarioKey": "daily"
-    },
-    "fear routine": {
-      "topicId": "topic-fear",
-      "scenarioKey": "daily"
-    },
-    "fear when the day tightens": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear under pressure": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear pressure": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear stress": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear under strain": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear cornered": {
-      "topicId": "topic-fear",
-      "scenarioKey": "pressure"
-    },
-    "fear after the slip": {
-      "topicId": "topic-fear",
-      "scenarioKey": "repair"
-    },
-    "fear repair": {
-      "topicId": "topic-fear",
-      "scenarioKey": "repair"
-    },
-    "fear return": {
-      "topicId": "topic-fear",
-      "scenarioKey": "repair"
-    },
-    "fear after slipping": {
-      "topicId": "topic-fear",
-      "scenarioKey": "repair"
-    },
-    "fear start again": {
-      "topicId": "topic-fear",
-      "scenarioKey": "repair"
     },
     "training the heart not to bow to fear": {
       "topicId": "topic-fear",
@@ -3514,50 +2434,6 @@
       "topicId": "topic-honesty",
       "scenarioKey": "daily"
     },
-    "honesty when the day tightens": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty under pressure": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty pressure": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty stress": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty under strain": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty cornered": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "pressure"
-    },
-    "honesty after the slip": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "repair"
-    },
-    "honesty repair": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "repair"
-    },
-    "honesty return": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "repair"
-    },
-    "honesty after slipping": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "repair"
-    },
-    "honesty start again": {
-      "topicId": "topic-honesty",
-      "scenarioKey": "repair"
-    },
     "making truth easier to live with": {
       "topicId": "topic-honesty",
       "scenarioKey": "practice"
@@ -3654,50 +2530,6 @@
       "topicId": "topic-seeking",
       "scenarioKey": "daily"
     },
-    "seeking when the day tightens": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking under pressure": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking pressure": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking stress": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking under strain": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking cornered": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "pressure"
-    },
-    "seeking after the slip": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "repair"
-    },
-    "seeking repair": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "repair"
-    },
-    "seeking return": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "repair"
-    },
-    "seeking after slipping": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "repair"
-    },
-    "seeking start again": {
-      "topicId": "topic-seeking",
-      "scenarioKey": "repair"
-    },
     "training the seeker to stay": {
       "topicId": "topic-seeking",
       "scenarioKey": "practice"
@@ -3745,246 +2577,6 @@
     "seeking seek and stay": {
       "topicId": "topic-seeking",
       "scenarioKey": "practice"
-    },
-    "self worth in the ordinary day": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "daily"
-    },
-    "self worth daily": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "daily"
-    },
-    "self worth today": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "daily"
-    },
-    "self worth ordinary day": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "daily"
-    },
-    "self worth routine": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "daily"
-    },
-    "self worth when the day tightens": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth under pressure": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth pressure": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth stress": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth under strain": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth cornered": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "pressure"
-    },
-    "self worth after the slip": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "repair"
-    },
-    "self worth repair": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "repair"
-    },
-    "self worth return": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "repair"
-    },
-    "self worth after slipping": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "repair"
-    },
-    "self worth start again": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with self worth": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "self worth steady practice": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "self worth practice": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "self worth habit": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "self worth steady return": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "self worth formation": {
-      "topicId": "topic-self-worth",
-      "scenarioKey": "practice"
-    },
-    "softness in the ordinary day": {
-      "topicId": "topic-softness",
-      "scenarioKey": "daily"
-    },
-    "softness daily": {
-      "topicId": "topic-softness",
-      "scenarioKey": "daily"
-    },
-    "softness today": {
-      "topicId": "topic-softness",
-      "scenarioKey": "daily"
-    },
-    "softness ordinary day": {
-      "topicId": "topic-softness",
-      "scenarioKey": "daily"
-    },
-    "softness routine": {
-      "topicId": "topic-softness",
-      "scenarioKey": "daily"
-    },
-    "softness when the day tightens": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness under pressure": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness pressure": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness stress": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness under strain": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness cornered": {
-      "topicId": "topic-softness",
-      "scenarioKey": "pressure"
-    },
-    "softness after the slip": {
-      "topicId": "topic-softness",
-      "scenarioKey": "repair"
-    },
-    "softness repair": {
-      "topicId": "topic-softness",
-      "scenarioKey": "repair"
-    },
-    "softness return": {
-      "topicId": "topic-softness",
-      "scenarioKey": "repair"
-    },
-    "softness after slipping": {
-      "topicId": "topic-softness",
-      "scenarioKey": "repair"
-    },
-    "softness start again": {
-      "topicId": "topic-softness",
-      "scenarioKey": "repair"
-    },
-    "learning a steadier way with softness": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "softness steady practice": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "softness practice": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "softness habit": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "softness steady return": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "softness formation": {
-      "topicId": "topic-softness",
-      "scenarioKey": "practice"
-    },
-    "exhaustion in the ordinary day": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "daily"
-    },
-    "exhaustion daily": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "daily"
-    },
-    "exhaustion today": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "daily"
-    },
-    "exhaustion ordinary day": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "daily"
-    },
-    "exhaustion routine": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "daily"
-    },
-    "exhaustion when the day tightens": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion under pressure": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion pressure": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion stress": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion under strain": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion cornered": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "pressure"
-    },
-    "exhaustion after the slip": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "repair"
-    },
-    "exhaustion repair": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "repair"
-    },
-    "exhaustion return": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "repair"
-    },
-    "exhaustion after slipping": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "repair"
-    },
-    "exhaustion start again": {
-      "topicId": "topic-exhaustion",
-      "scenarioKey": "repair"
     },
     "practicing rest that actually restores": {
       "topicId": "topic-exhaustion",
@@ -4081,50 +2673,6 @@
     "conduct ordinary integrity": {
       "topicId": "topic-conduct",
       "scenarioKey": "daily"
-    },
-    "conduct when the day tightens": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct under pressure": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct pressure": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct stress": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct under strain": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct cornered": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "pressure"
-    },
-    "conduct after the slip": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "repair"
-    },
-    "conduct repair": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "repair"
-    },
-    "conduct return": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "repair"
-    },
-    "conduct after slipping": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "repair"
-    },
-    "conduct start again": {
-      "topicId": "topic-conduct",
-      "scenarioKey": "repair"
     },
     "training conduct until speech and life agree": {
       "topicId": "topic-conduct",
@@ -4722,44 +3270,7 @@
         "panic",
         "spiraling",
         "fear",
-        "restless",
-        "anxiety in the ordinary day",
-        "anxiety daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "anxiety today",
-        "anxiety ordinary day",
-        "anxiety routine",
-        "anxiety when the day tightens",
-        "anxiety under pressure",
-        "pressure",
-        "under strain",
-        "cornered",
-        "anxiety pressure",
-        "anxiety stress",
-        "anxiety under strain",
-        "anxiety cornered",
-        "anxiety after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "anxiety repair",
-        "anxiety return",
-        "anxiety after slipping",
-        "anxiety start again",
-        "learning a steadier way with anxiety",
-        "anxiety steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "anxiety practice",
-        "anxiety habit",
-        "anxiety steady return",
-        "anxiety formation"
+        "restless"
       ]
     },
     {
@@ -4775,34 +3286,6 @@
         "temper",
         "heated",
         "sharp reply",
-        "anger in the ordinary day",
-        "anger daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "anger today",
-        "anger ordinary day",
-        "anger routine",
-        "anger when the day tightens",
-        "anger under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "anger pressure",
-        "anger stress",
-        "anger under strain",
-        "anger cornered",
-        "anger after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "anger repair",
-        "anger return",
-        "anger after slipping",
-        "anger start again",
         "training anger into a smaller first response",
         "anger steady practice",
         "anger practice",
@@ -4831,34 +3314,6 @@
         "worth by comparison",
         "another person's life",
         "comparison peace",
-        "comparison in the ordinary day",
-        "comparison daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "comparison today",
-        "comparison ordinary day",
-        "comparison routine",
-        "comparison when the day tightens",
-        "comparison under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "comparison pressure",
-        "comparison stress",
-        "comparison under strain",
-        "comparison cornered",
-        "comparison after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "comparison repair",
-        "comparison return",
-        "comparison after slipping",
-        "comparison start again",
         "training the heart away from comparison",
         "comparison steady practice",
         "comparison habit",
@@ -4883,45 +3338,7 @@
         "abandoned",
         "unaccompanied",
         "apart",
-        "lonely",
-        "loneliness in the ordinary day",
-        "loneliness daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "loneliness today",
-        "loneliness ordinary day",
-        "loneliness routine",
-        "loneliness when the day tightens",
-        "loneliness under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "loneliness pressure",
-        "loneliness stress",
-        "loneliness under strain",
-        "loneliness cornered",
-        "loneliness after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "loneliness repair",
-        "loneliness return",
-        "loneliness after slipping",
-        "loneliness start again",
-        "learning a steadier way with loneliness",
-        "loneliness steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "loneliness practice",
-        "loneliness habit",
-        "loneliness steady return",
-        "loneliness formation"
+        "lonely"
       ]
     },
     {
@@ -4946,25 +3363,6 @@
         "purpose calling in daily life",
         "purpose meaning in duty",
         "purpose assignment",
-        "purpose when the day tightens",
-        "purpose under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "purpose pressure",
-        "purpose stress",
-        "purpose under strain",
-        "purpose cornered",
-        "purpose after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "purpose repair",
-        "purpose return",
-        "purpose after slipping",
-        "purpose start again",
         "building a life that keeps its purpose",
         "purpose steady practice",
         "purpose practice",
@@ -5103,45 +3501,7 @@
         "gift",
         "mercy",
         "entitlement",
-        "what is missing",
-        "gratitude in the ordinary day",
-        "gratitude daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "gratitude today",
-        "gratitude ordinary day",
-        "gratitude routine",
-        "gratitude when the day tightens",
-        "gratitude under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "gratitude pressure",
-        "gratitude stress",
-        "gratitude under strain",
-        "gratitude cornered",
-        "gratitude after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "gratitude repair",
-        "gratitude return",
-        "gratitude after slipping",
-        "gratitude start again",
-        "learning a steadier way with gratitude",
-        "gratitude steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "gratitude practice",
-        "gratitude habit",
-        "gratitude steady return",
-        "gratitude formation"
+        "what is missing"
       ]
     },
     {
@@ -5287,45 +3647,7 @@
         "reality",
         "arguing with reality",
         "false authorship",
-        "what is already here",
-        "hukam in the ordinary day",
-        "hukam daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "hukam today",
-        "hukam ordinary day",
-        "hukam routine",
-        "hukam when the day tightens",
-        "hukam under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "hukam pressure",
-        "hukam stress",
-        "hukam under strain",
-        "hukam cornered",
-        "hukam after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "hukam repair",
-        "hukam return",
-        "hukam after slipping",
-        "hukam start again",
-        "learning a steadier way with hukam",
-        "hukam steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "hukam practice",
-        "hukam habit",
-        "hukam steady return",
-        "hukam formation"
+        "what is already here"
       ]
     },
     {
@@ -5342,45 +3664,7 @@
         "inner fire",
         "circling questions",
         "can't trust",
-        "self-insistence",
-        "doubt in the ordinary day",
-        "doubt daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "doubt today",
-        "doubt ordinary day",
-        "doubt routine",
-        "doubt when the day tightens",
-        "doubt under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "doubt pressure",
-        "doubt stress",
-        "doubt under strain",
-        "doubt cornered",
-        "doubt after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "doubt repair",
-        "doubt return",
-        "doubt after slipping",
-        "doubt start again",
-        "learning a steadier way with doubt",
-        "doubt steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "doubt practice",
-        "doubt habit",
-        "doubt steady return",
-        "doubt formation"
+        "self-insistence"
       ]
     },
     {
@@ -5397,45 +3681,7 @@
         "speech discipline",
         "careless words",
         "sharp speech",
-        "clean speech",
-        "speech in the ordinary day",
-        "speech daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "speech today",
-        "speech ordinary day",
-        "speech routine",
-        "speech when the day tightens",
-        "speech under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "speech pressure",
-        "speech stress",
-        "speech under strain",
-        "speech cornered",
-        "speech after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "speech repair",
-        "speech return",
-        "speech after slipping",
-        "speech start again",
-        "learning a steadier way with speech",
-        "speech steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "speech practice",
-        "speech habit",
-        "speech steady return",
-        "speech formation"
+        "clean speech"
       ]
     },
     {
@@ -5691,45 +3937,7 @@
         "can't settle",
         "restless",
         "always searching",
-        "spiritually exhausted",
-        "restlessness in the ordinary day",
-        "restlessness daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "restlessness today",
-        "restlessness ordinary day",
-        "restlessness routine",
-        "restlessness when the day tightens",
-        "restlessness under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "restlessness pressure",
-        "restlessness stress",
-        "restlessness under strain",
-        "restlessness cornered",
-        "restlessness after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "restlessness repair",
-        "restlessness return",
-        "restlessness after slipping",
-        "restlessness start again",
-        "learning a steadier way with restlessness",
-        "restlessness steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "restlessness practice",
-        "restlessness habit",
-        "restlessness steady return",
-        "restlessness formation"
+        "spiritually exhausted"
       ]
     },
     {
@@ -5746,34 +3954,6 @@
         "right company",
         "saint company",
         "inner climate",
-        "sangat in the ordinary day",
-        "sangat daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "sangat today",
-        "sangat ordinary day",
-        "sangat routine",
-        "sangat when the day tightens",
-        "sangat under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "sangat pressure",
-        "sangat stress",
-        "sangat under strain",
-        "sangat cornered",
-        "sangat after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "sangat repair",
-        "sangat return",
-        "sangat after slipping",
-        "sangat start again",
         "practicing closeness to the right company",
         "sangat steady practice",
         "practice of sangat",
@@ -5799,34 +3979,6 @@
         "gripping",
         "control as care",
         "guaranteed result",
-        "control in the ordinary day",
-        "control daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "control today",
-        "control ordinary day",
-        "control routine",
-        "control when the day tightens",
-        "control under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "control pressure",
-        "control stress",
-        "control under strain",
-        "control cornered",
-        "control after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "control repair",
-        "control return",
-        "control after slipping",
-        "control start again",
         "practicing release before the grip returns",
         "control steady practice",
         "control practice",
@@ -5852,45 +4004,7 @@
         "regret",
         "self-loathing",
         "guilty",
-        "dirty",
-        "shame in the ordinary day",
-        "shame daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "shame today",
-        "shame ordinary day",
-        "shame routine",
-        "shame when the day tightens",
-        "shame under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "shame pressure",
-        "shame stress",
-        "shame under strain",
-        "shame cornered",
-        "shame after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "shame repair",
-        "shame return",
-        "shame after slipping",
-        "shame start again",
-        "learning a steadier way with shame",
-        "shame steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "shame practice",
-        "shame habit",
-        "shame steady return",
-        "shame formation"
+        "dirty"
       ]
     },
     {
@@ -5905,34 +4019,6 @@
         "insecurity",
         "panic",
         "insecure",
-        "fear in the ordinary day",
-        "fear daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "fear today",
-        "fear ordinary day",
-        "fear routine",
-        "fear when the day tightens",
-        "fear under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "fear pressure",
-        "fear stress",
-        "fear under strain",
-        "fear cornered",
-        "fear after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "fear repair",
-        "fear return",
-        "fear after slipping",
-        "fear start again",
         "training the heart not to bow to fear",
         "fear steady practice",
         "fear practice",
@@ -5972,25 +4058,6 @@
         "honesty plain truth",
         "honesty daily honesty",
         "honesty small choice",
-        "honesty when the day tightens",
-        "honesty under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "honesty pressure",
-        "honesty stress",
-        "honesty under strain",
-        "honesty cornered",
-        "honesty after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "honesty repair",
-        "honesty return",
-        "honesty after slipping",
-        "honesty start again",
         "making truth easier to live with",
         "honesty steady practice",
         "honesty practice",
@@ -6032,25 +4099,6 @@
         "seeking novelty",
         "seeking stay with one line",
         "seeking ordinary search",
-        "seeking when the day tightens",
-        "seeking under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "seeking pressure",
-        "seeking stress",
-        "seeking under strain",
-        "seeking cornered",
-        "seeking after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "seeking repair",
-        "seeking return",
-        "seeking after slipping",
-        "seeking start again",
         "training the seeker to stay",
         "seeking steady practice",
         "seeking practice",
@@ -6077,45 +4125,7 @@
         "rejected",
         "worth depends on approval",
         "fragile dignity",
-        "being kept",
-        "self-worth in the ordinary day",
-        "self-worth daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "self-worth today",
-        "self-worth ordinary day",
-        "self-worth routine",
-        "self-worth when the day tightens",
-        "self-worth under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "self-worth pressure",
-        "self-worth stress",
-        "self-worth under strain",
-        "self-worth cornered",
-        "self-worth after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "self-worth repair",
-        "self-worth return",
-        "self-worth after slipping",
-        "self-worth start again",
-        "learning a steadier way with self-worth",
-        "self-worth steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "self-worth practice",
-        "self-worth habit",
-        "self-worth steady return",
-        "self-worth formation"
+        "being kept"
       ]
     },
     {
@@ -6132,45 +4142,7 @@
         "sharp speech",
         "gentleness",
         "tone",
-        "hard heart",
-        "softness in the ordinary day",
-        "softness daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "softness today",
-        "softness ordinary day",
-        "softness routine",
-        "softness when the day tightens",
-        "softness under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "softness pressure",
-        "softness stress",
-        "softness under strain",
-        "softness cornered",
-        "softness after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "softness repair",
-        "softness return",
-        "softness after slipping",
-        "softness start again",
-        "learning a steadier way with softness",
-        "softness steady practice",
-        "practice",
-        "habit",
-        "steady return",
-        "formation",
-        "softness practice",
-        "softness habit",
-        "softness steady return",
-        "softness formation"
+        "hard heart"
       ]
     },
     {
@@ -6190,34 +4162,6 @@
         "need rest",
         "burnt out",
         "burned out",
-        "exhaustion in the ordinary day",
-        "exhaustion daily",
-        "today",
-        "daily",
-        "ordinary day",
-        "routine",
-        "exhaustion today",
-        "exhaustion ordinary day",
-        "exhaustion routine",
-        "exhaustion when the day tightens",
-        "exhaustion under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "exhaustion pressure",
-        "exhaustion stress",
-        "exhaustion under strain",
-        "exhaustion cornered",
-        "exhaustion after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "exhaustion repair",
-        "exhaustion return",
-        "exhaustion after slipping",
-        "exhaustion start again",
         "practicing rest that actually restores",
         "exhaustion steady practice",
         "rest practice",
@@ -6258,25 +4202,6 @@
         "conduct daily conduct",
         "conduct hidden habits",
         "conduct ordinary integrity",
-        "conduct when the day tightens",
-        "conduct under pressure",
-        "pressure",
-        "stress",
-        "under strain",
-        "cornered",
-        "conduct pressure",
-        "conduct stress",
-        "conduct under strain",
-        "conduct cornered",
-        "conduct after the slip",
-        "repair",
-        "return",
-        "after slipping",
-        "start again",
-        "conduct repair",
-        "conduct return",
-        "conduct after slipping",
-        "conduct start again",
         "training conduct until speech and life agree",
         "conduct steady practice",
         "conduct practice",

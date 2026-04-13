@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-sangat-85",
-  "title": "Doubt to Sangat",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+  "title": "When doubt needs better company",
+  "subtitle": "When questions multiply faster than trust",
+  "description": "These readings take the question out of private weather and place it among people whose peace has survived contact with life.",
   "durationLabel": "6-step journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       921,
       922
     ],
-    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-    "lifeApplication": "Move from circling to obedience."
+    "shortMeaning": "Doubt weakens in company that already knows how to keep peace.",
+    "lifeApplication": "Take the question to the person or sangat living more peace than you."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+      "coreClaim": "These readings take the question out of private weather and place it among people whose peace has survived contact with life.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When questions multiply faster than trust",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 4.15,
-      "specificity": 4.23,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
+      "faithfulness": 3.9,
+      "clarity": 4.35,
+      "specificity": 4.13,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.88
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

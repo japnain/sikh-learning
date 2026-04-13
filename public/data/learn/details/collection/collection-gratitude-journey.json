@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-journey",
   "title": "From Gratitude to steadier practice",
-  "subtitle": "A deliberate path through gratitude",
-  "description": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when gratitude keeps steering the day",
+  "description": "These readings retrain the eye that notices lack first. They lead the heart from appetite back to mercy, contentment, and praise.",
   "durationLabel": "5-step journey",
   "themes": [
     "gratitude",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru keeps gratitude close to remembrance, contentment, and restored vision. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "These readings retrain the eye that notices lack first. They lead the heart from appetite back to mercy, contentment, and praise.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "A deliberate path through gratitude",
+      "turn": "For when gratitude keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.03,
-      "clarity": 3.95,
-      "specificity": 4.24,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.8
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.37,
+      "overall": 4.05
     },
     "strengths": [
-      "specificity",
+      "usefulness",
       "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

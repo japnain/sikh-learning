@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-journey",
   "title": "From Mercy to steadier practice",
-  "subtitle": "A deliberate path through mercy",
-  "description": "Guru keeps mercy close to gift, nearness, and return. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when mercy keeps steering the day",
+  "description": "Move through gift, nearness, and return until mercy stops feeling abstract and starts becoming the climate of the heart.",
   "durationLabel": "5-step journey",
   "themes": [
     "mercy",
@@ -56,25 +56,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru keeps mercy close to gift, nearness, and return. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Move through gift, nearness, and return until mercy stops feeling abstract and starts becoming the climate of the heart.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "A deliberate path through mercy",
+      "turn": "For when mercy keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
-      "clarity": 4.05,
-      "specificity": 4.23,
-      "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "faithfulness": 3.95,
+      "clarity": 4.35,
+      "specificity": 4.17,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
       "beauty": 4.53,
-      "overall": 3.88
+      "overall": 4.1
     },
     "strengths": [
       "beauty",
-      "specificity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-227-1",
-  "title": "All Are Yours, And You Belong",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "All are Yours, and You belong to all. You are the wealth of all",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Belonging is not a private possession",
+  "summary": "This meets the self that keeps guarding worth like scarce property. The line widens the heart by saying all belong to the One, and the One belongs to all.",
+  "takeaway": "Receive belonging instead of hoarding it.",
+  "lifeApplication": "When you start measuring your place in the room, loosen the chest and hear the line once. Let shared belonging interrupt the need to rank yourself.",
   "source": {
     "deepDiveId": "shabad-generated-227",
     "verseIds": [
       3436
     ],
-    "shortMeaning": "All are Yours, and You belong to all. You are the wealth of all",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Belonging is received from the One who holds everyone together.",
+    "lifeApplication": "When worth feels scarce, remember that belonging is not yours to ration."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -23,7 +23,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "self-worth",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "All are Yours, and You belong to all. You are the wealth of all",
+      "coreClaim": "Belonging is received from the One who holds everyone together.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: at Your Door, the Gurmukhs are enlightened.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "Belonging is received from the One who holds everyone.",
+      "practicalImplication": "When you start measuring your place in the room, loosen the chest and hear the line once. Let shared belonging interrupt the need to rank yourself.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.75,
-      "specificity": 4.32,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.49,
-      "overall": 3.83
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.37,
+      "overall": 4.36
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

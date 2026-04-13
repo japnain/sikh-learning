@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-459",
-  "title": "Past Actions Cannot Be Erased",
+  "title": "What comes to pass is not outside the Doer",
   "subtitle": "Raag Gauree · Ang 154",
-  "summary": "This shabad opens with past actions cannot be erased. It turns the heart toward nanak abides in the Sanctuary of Your devotees.",
-  "whyItMatters": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak abides in the Sanctuary of Your devotees.",
+  "summary": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and lands in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
+  "whyItMatters": "This is for the person trapped in regret, replay, or bargaining with the past. Held steadily, it does not sentimentalize pain, but it loosens the argument with reality.",
+  "takeaway": "Regret quiets when the heart returns the moment to Hukam.",
   "themes": [
     "mercy",
     "ego",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: past actions cannot be erased.",
-    "The middle movement widens the correction through the soul and body are all at Your disposal.",
-    "It closes with a return you can actually keep: nanak abides in the Sanctuary of Your devotees."
+    "It opens by refusing the fantasy that the past can be edited after the fact.",
+    "The middle stays honest about how little the ego knows of what comes next.",
+    "It ends in the hard mercy that there is no other Doer outside the Divine will."
   ],
   "keyVerseIds": [
     6386,
@@ -207,25 +207,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with past actions cannot be erased. It turns the heart toward nanak abides in the Sanctuary of Your devotees.",
+      "coreClaim": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and lands in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle movement widens the correction through the soul and body are all at Your disposal.",
-      "practicalImplication": "Keep returning to this turn: Nanak abides in the Sanctuary of Your devotees.",
+      "turn": "The middle stays honest about how little the ego knows of what comes next.",
+      "practicalImplication": "This is for the person trapped in regret, replay, or bargaining with the past. Held steadily, it does not sentimentalize pain, but it loosens the argument with reality. Regret quiets when the heart returns the moment to Hukam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.05,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 4.32,
-      "overall": 4.15
+      "clarity": 4.23,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.82,
+      "beauty": 4.77,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

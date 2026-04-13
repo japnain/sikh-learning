@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-sangat-94",
-  "title": "Restlessness to Sangat",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+  "title": "When motion needs holy company",
+  "subtitle": "When motion starts dressing up as guidance",
+  "description": "These readings take motion out of private weather and place it among people whose steadiness has already survived the same urge.",
   "durationLabel": "6-step journey",
   "themes": [
     "restlessness",
@@ -15,8 +15,8 @@
       3895,
       3898
     ],
-    "shortMeaning": "Searching and ritual are not identical with peace.",
-    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+    "shortMeaning": "Restlessness quiets where steadier company has already learned how to stay.",
+    "lifeApplication": "Before chasing another change, sit where steadier people are already remaining."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru answers wandering with saint company, listening, and honest stillness. This bridge then carries into guru treats sangat as medicine, placement, and atmosphere for growth.",
+      "coreClaim": "These readings take motion out of private weather and place it among people whose steadiness has already survived the same urge.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When motion starts dressing up as guidance",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.01,
+      "faithfulness": 3.86,
       "clarity": 4.35,
-      "specificity": 4.23,
-      "emotionalHonesty": 3.54,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.96
+      "specificity": 4.09,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.99
     },
     "strengths": [
-      "clarity",
-      "specificity"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

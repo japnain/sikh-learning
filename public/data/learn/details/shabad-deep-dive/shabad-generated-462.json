@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-462",
-  "title": "With Your Nectar-like Body, You Live",
+  "title": "A passing life is too small for gossip",
   "subtitle": "Raag Gauree · Ang 154",
-  "summary": "This shabad opens with with your nectar-like body, you live in comfort, but this world is just a passing drama. It turns the heart toward this soul and body all are His. He Himself kills, and brings back to life.",
-  "whyItMatters": "It matters when life feels scattered, unsettled, and wandering because the shabad keeps restlessness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: This soul and body all are His. He Himself kills, and brings back to life.",
+  "summary": "The shabad begins by calling the body comfortable yet temporary, a passing drama. It presses on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
+  "whyItMatters": "This is for the person wasting precious energy on gossip, image, and false urgency. Held honestly, it brings mortality close enough to make the tongue and choices cleaner.",
+  "takeaway": "Remember the shortness of life before you spend it in gossip.",
   "themes": [
     "restlessness",
     "ego",
@@ -203,9 +203,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: with your nectar-like body, you live in comfort, but this world is just a passing drama.",
-    "The middle movement widens the correction through i have no honor in this world, and I shall find no shelter.",
-    "It closes with a return you can actually keep: this soul and body all are His. He Himself kills, and brings back to life."
+    "It opens by stripping comfort of its illusion of permanence.",
+    "The middle names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
+    "It ends by asking what deeds will remain once the passing drama closes."
   ],
   "keyVerseIds": [
     6434,
@@ -242,25 +242,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with with your nectar-like body, you live in comfort, but this world is just a passing drama. It turns the heart toward this soul and body all are His. He Himself kills, and brings back to life.",
+      "coreClaim": "The shabad begins by calling the body comfortable yet temporary, a passing drama. It presses on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle movement widens the correction through i have no honor in this world, and I shall find no shelter.",
-      "practicalImplication": "Keep returning to this turn: This soul and body all are His. He Himself kills, and brings back to life.",
+      "turn": "The middle names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
+      "practicalImplication": "This is for the person wasting precious energy on gossip, image, and false urgency. Held honestly, it brings mortality close enough to make the tongue and choices cleaner. Remember the shortness of life before you spend it in gossip.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.73,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.76,
-      "beauty": 3.12,
-      "overall": 3.79
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3,
+      "usefulness": 4.42,
+      "beauty": 4.17,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

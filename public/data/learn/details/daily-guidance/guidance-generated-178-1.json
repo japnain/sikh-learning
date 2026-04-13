@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-178-1",
-  "title": "Immaculate Naam Itself, Ever-fresh, Comes To Abide",
-  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The Immaculate Naam itself, ever-fresh, comes to abide within the mind",
-  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "title": "Let fresh Naam settle inside",
+  "summary": "This meets the tired wandering mind that keeps looking for novelty outside itself. The line says the freshest thing is Naam abiding within.",
+  "takeaway": "Let Naam freshen the mind from within.",
+  "lifeApplication": "When you feel stale and start reaching for stimulation, stay still one breath longer. Invite the Name inward before you go hunting for refreshment outside.",
   "source": {
     "deepDiveId": "shabad-generated-178",
     "verseIds": [
       2771
     ],
-    "shortMeaning": "The Immaculate Naam itself, ever-fresh, comes to abide within the mind",
-    "lifeApplication": "Choose better placement before choosing more movement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Naam enters the mind as an ever-fresh inward renewal.",
+    "lifeApplication": "When restlessness reaches outward, let the Name arrive inward first."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The Immaculate Naam itself, ever-fresh, comes to abide within the mind",
+      "coreClaim": "Naam enters the mind as an ever-fresh inward renewal.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: Nanak is absorbed in the Shabad.",
-      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "turn": "Stay still long enough for fresh Naam to settle.",
+      "practicalImplication": "When you feel stale and start reaching for stimulation, stay still one breath longer. Invite the Name inward before you go hunting for refreshment outside.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 3.81,
-      "specificity": 4.48,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 3.62,
-      "overall": 3.9
+      "faithfulness": 4.25,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.38
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

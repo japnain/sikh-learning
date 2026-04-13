@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-703-2",
-  "title": "No One Can Say No To Them",
-  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "title": "Let the Guru's goad train the wild mind",
+  "summary": "This meets the unruled mind while inner thieves keep stealing from it. The line says the Guru's mark gives direction, dignity, and a way to guard the treasure within.",
+  "takeaway": "Give the wild mind a truer master.",
+  "lifeApplication": "Before you let impulse lead the room, straighten the posture and pause. Ask what the Guru's Shabad would place in your hand right now.",
   "source": {
     "deepDiveId": "shabad-generated-703",
     "verseIds": [
       9473,
       9477
     ],
-    "shortMeaning": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "The Guru's Shabad trains the wild mind and guards the inner treasure.",
+    "lifeApplication": "When impulse surges, take the Guru's discipline before taking the next step."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "attachment",
+    "theme": "discipline",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King",
+      "coreClaim": "The Guru's Shabad trains the wild mind and guards the inner treasure.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "turn": "Let the Guru's Shabad govern the mind before cleverness does.",
+      "practicalImplication": "Before you let impulse lead the room, straighten the posture and pause. Ask what the Guru's Shabad would place in your hand right now.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
-      "clarity": 3.22,
-      "specificity": 4.59,
+      "faithfulness": 4.15,
+      "clarity": 4.29,
+      "specificity": 4.9,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.47,
-      "overall": 3.81
+      "usefulness": 4.8,
+      "beauty": 4.01,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

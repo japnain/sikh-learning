@@ -75,10 +75,10 @@
           11242,
           11244
         ],
-        "shortMeaning": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints; the Lord, Har, Har, is their wealth, and they trade in His Name",
-        "lifeApplication": "Wait by listening instead of simmering. Let the line stay in charge of what comes next."
+        "shortMeaning": "Patience grows where truthful steadiness becomes more convincing than urgency.",
+        "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
       },
-      "explanation": "The shabad names patience as honorable wealth rather than passive delay. Listening, restraint, and Naam are treated as a richer response than anxious forcing."
+      "explanation": "The verse enlarges patience by making steadiness more believable than the drama of delay."
     },
     {
       "source": {
@@ -88,10 +88,10 @@
           3899,
           3900
         ],
-        "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; by His Mercy, I have met the Holy Saint",
-        "lifeApplication": "Wait by listening instead of simmering. Let the line stay in charge of what comes next."
+        "shortMeaning": "Holy company teaches the body how to wait without souring.",
+        "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
       },
-      "explanation": "Patience becomes livable when the fever of restless searching cools. The line keeps waiting from becoming lonely by placing the soul inside company that steadies it."
+      "explanation": "This excerpt gives waiting a companionable shape. Patience becomes easier where holy company is already living it."
     },
     {
       "source": {
@@ -101,10 +101,10 @@
           30989,
           30994
         ],
-        "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-        "lifeApplication": "Wait by listening instead of simmering. Let the line stay in charge of what comes next."
+        "shortMeaning": "Waiting softens when the heart returns to care instead of resentment.",
+        "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
       },
-      "explanation": "This verse returns patience to dependence on the Creator. The waiting heart is not abandoned; it is being asked to remember who has held it all along."
+      "explanation": "Gurbani refuses to let waiting become private resentment. The line answers delay by turning the heart back toward care."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -118,11 +118,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "Patience in the ordinary day",
-      "issueStatement": "Impatience rarely begins in crisis. It starts in ordinary interruptions, unanswered hopes, and the small delays that quietly rearrange your tone.",
-      "centralInsight": "The Guru makes patience daily by tying it to listening, remembrance, and a body that does not immediately obey irritation.",
-      "practicalReflection": "Plain time reveals what the heart actually trusts. The ordinary day shows whether patience is becoming form or remaining aspiration.",
-      "actionPrompt": "When the next delay lands, slow the response enough to hear one line before your mood becomes your theology.",
+      "title": "When waiting keeps turning bitter before the day gets away from you",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The Guru addresses errands, delays, and common rooms as real sites of practice.",
+      "practicalReflection": "This is where patience usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
+      "actionPrompt": "In the next plain moment of the day, at the next delay, listen before you let resentment narrate the wait.",
       "searchTerms": [
         "patience",
         "waiting",
@@ -150,10 +150,10 @@
               11239,
               11241
             ],
-            "shortMeaning": "DHADHA: The mind's wanderings cease, when one comes to dwell in the Society of the Saints; those who have the true wealth are the true bankers",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "Patience is checked here by truthful steadiness.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "The ordinary day is where patience either becomes honorable or stays decorative. This line teaches the heart to listen before it reacts."
+          "explanation": "In the ordinary day, the verse turns patience toward truthful steadiness instead of self-enclosure."
         },
         {
           "source": {
@@ -162,10 +162,10 @@
               11502,
               11503
             ],
-            "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Daily impatience usually wants immediate emotional relief. Gurbani answers with a quieter discipline: remember, and let peace arrive before the tongue does."
+          "explanation": "This keeps the day from shrinking around patience; the heart is returned to Naam and praise."
         },
         {
           "source": {
@@ -174,22 +174,22 @@
               3757,
               3760
             ],
-            "shortMeaning": "Joining the Sat Sangat, the True Congregation, I ask about the Path to God; if only I could have the good fortune to meet some friendly Saint",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line meet the part of the day already in front of you."
+            "shortMeaning": "The next ordinary move is steadied by holy company.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Patience grows where dependence becomes honest. The one who asks for the path like a child is less likely to turn every delay into personal insult."
+          "explanation": "The daily moment changes here because patience is not left alone with itself."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-patience:daily",
         "evidence": {
-          "coreClaim": "The Guru makes patience daily by tying it to listening, remembrance, and a body that does not immediately obey irritation.",
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The Guru addresses errands, delays, and common rooms as real sites of practice.",
           "emotionalState": "restless, impatient, seeking",
-          "turn": "Impatience rarely begins in crisis. It starts in ordinary interruptions, unanswered hopes, and the small delays that quietly rearrange your tone.",
-          "practicalImplication": "When the next delay lands, slow the response enough to hear one line before your mood becomes your theology.",
+          "turn": "Delay has started feeding resentment instead of ripening trust. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
+          "practicalImplication": "In the next plain moment of the day, at the next delay, listen before you let resentment narrate the wait.",
           "bannedOverreach": []
         },
         "scores": {
@@ -197,25 +197,26 @@
           "clarity": 4.35,
           "specificity": 5,
           "emotionalHonesty": 3.18,
-          "usefulness": 4.1,
-          "beauty": 4.37,
-          "overall": 4.25
+          "usefulness": 4.8,
+          "beauty": 4.85,
+          "overall": 4.43
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "Patience when the day tightens",
-      "issueStatement": "Pressure makes impatience sound intelligent. The mind claims there is no time for waiting, only for control, sharpness, and immediate resolution.",
-      "centralInsight": "Gurbani does not let urgency define the soul's posture. Patience under strain is the refusal to let panic choose your tone, your speed, or your trust.",
-      "practicalReflection": "A pressured heart often calls aggression realism. Patience keeps the inner room from being ruled by the narrow horizon of the moment.",
-      "actionPrompt": "When pressure rises, keep one thread of restraint alive before you try to solve the whole moment.",
+      "title": "When pressure exposes what patience reaches for",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. This is the moment when panic, force, or performance tries to become the only available language.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The line has to interrupt panic before panic becomes posture.",
+      "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
+      "actionPrompt": "At the first sign of strain, at the next delay, listen before you let resentment narrate the wait.",
       "searchTerms": [
         "patience",
         "waiting",
@@ -243,10 +244,10 @@
               525,
               527
             ],
-            "shortMeaning": "This is your chance to meet the Lord of the Universe; vibrate and meditate on the Jewel of the Naam",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Under strain, patience is steadied by holy company.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Pressure shrinks the horizon to the next minute. This line widens it again by reminding you what human life is for before urgency claims the whole frame."
+          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
         },
         {
           "source": {
@@ -255,10 +256,10 @@
               11241,
               11244
             ],
-            "shortMeaning": "Those who have the true wealth are the true bankers; who listen to the Name of the Lord, Har, Har",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Pressure is answered here through truthful steadiness.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Patience is not erased by strain; it becomes more necessary. The verse insists that honor still belongs to the one who keeps listening rather than lunging."
+          "explanation": "Under pressure, the verse steadies patience by returning the heart to truthful steadiness."
         },
         {
           "source": {
@@ -267,48 +268,49 @@
               30988,
               30994
             ],
-            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-            "lifeApplication": "Wait by listening instead of simmering. Let the line decide the next tone before urgency does."
+            "shortMeaning": "Patience is not left to rule the strained moment.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "The mind loosens under pressure when it remembers it is sustained. Patience becomes possible again when the soul stops acting as if everything depends on its own speed."
+          "explanation": "The strain does not get final say here; received care interrupts the reflex."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-patience:pressure",
         "evidence": {
-          "coreClaim": "Gurbani does not let urgency define the soul's posture. Patience under strain is the refusal to let panic choose your tone, your speed, or your trust.",
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The line has to interrupt panic before panic becomes posture.",
           "emotionalState": "directionless, numb, wasting-time",
-          "turn": "Pressure makes impatience sound intelligent. The mind claims there is no time for waiting, only for control, sharpness, and immediate resolution.",
-          "practicalImplication": "When pressure rises, keep one thread of restraint alive before you try to solve the whole moment.",
+          "turn": "Delay has started feeding resentment instead of ripening trust. This is the moment when panic, force, or performance tries to become the only available language.",
+          "practicalImplication": "At the first sign of strain, at the next delay, listen before you let resentment narrate the wait.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 5,
-          "emotionalHonesty": 3.9,
-          "usefulness": 4.04,
-          "beauty": 4.21,
-          "overall": 4.32
+          "specificity": 4.96,
+          "emotionalHonesty": 3.36,
+          "usefulness": 4.58,
+          "beauty": 4.95,
+          "overall": 4.43
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "Patience after you already reacted",
-      "issueStatement": "The sharp word, the resentment, or the collapse has already happened, and now impatience wants to turn the whole story into proof that you are incapable of steady waiting.",
-      "centralInsight": "Repair in patience begins where hurry loses its right to narrate the self. Gurbani brings you back through smaller truth, humble return, and a calmer next step.",
-      "practicalReflection": "The real repair is not performing calm after the fact. It is refusing to make one impatient moment into the final authority over who you are becoming.",
-      "actionPrompt": "Make one quiet repair, then return to the next wait with less drama and more obedience.",
+      "title": "When patience has already run ahead of truth",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
+      "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
+      "actionPrompt": "Before shame turns theatrical, at the next delay, listen before you let resentment narrate the wait.",
       "searchTerms": [
         "patience",
         "waiting",
@@ -336,10 +338,10 @@
               3898,
               3900
             ],
-            "shortMeaning": "and yet, their hearts are not at peace, even for an instant. The Yogi; i have been blessed with patience and composure",
-            "lifeApplication": "Wait by listening instead of simmering. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving settled patience instead of self-theatre.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Repair starts when the feverish search to feel better right now finally cools. Holy company gives the heart a steadier atmosphere for beginning again."
+          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
         },
         {
           "source": {
@@ -348,10 +350,10 @@
               3762,
               3763
             ],
-            "shortMeaning": "The Guru, the Perfect True Guru, is my Mother and Father. Obtaining the Water; i am a helpless child-please cherish me",
-            "lifeApplication": "Wait by listening instead of simmering. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Impatience becomes repairable when helplessness is admitted without shame. The child asks again for the way instead of pretending the failure settled the question."
+          "explanation": "Repair stays honest here because patience is answered without theatre."
         },
         {
           "source": {
@@ -361,48 +363,49 @@
               30989,
               30994
             ],
-            "shortMeaning": "Why do you waver, O mortal being? The Lord who needs no care will care for you; why do you waver, O mortal being? The Creator Lord Himself shall protect you",
-            "lifeApplication": "Wait by listening instead of simmering. Let the next return stay smaller and truer than the slip."
+            "shortMeaning": "Patience is not allowed to become identity here.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "This line keeps repair from collapsing into self-reproach. The same Creator who steadies the waiting heart is also the One who steadies it after the slip."
+          "explanation": "After the slip, the verse keeps return possible through received care."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-patience:repair",
         "evidence": {
-          "coreClaim": "Repair in patience begins where hurry loses its right to narrate the self. Gurbani brings you back through smaller truth, humble return, and a calmer next step.",
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
           "emotionalState": "wandering, exhausted, seeking",
-          "turn": "The sharp word, the resentment, or the collapse has already happened, and now impatience wants to turn the whole story into proof that you are incapable of steady waiting.",
-          "practicalImplication": "Make one quiet repair, then return to the next wait with less drama and more obedience.",
+          "turn": "Delay has started feeding resentment instead of ripening trust. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
+          "practicalImplication": "Before shame turns theatrical, at the next delay, listen before you let resentment narrate the wait.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
-          "clarity": 4.35,
+          "clarity": 4.29,
           "specificity": 4.96,
-          "emotionalHonesty": 3.36,
-          "usefulness": 4.2,
-          "beauty": 4.69,
-          "overall": 4.33
+          "emotionalHonesty": 3.54,
+          "usefulness": 4.58,
+          "beauty": 4.91,
+          "overall": 4.44
         },
         "strengths": [
           "specificity",
           "beauty"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "Building a practice that can really wait",
-      "issueStatement": "You do not need a dramatic mood of patience. You need repeated forms of return that keep the heart from obeying urgency every time it rises.",
-      "centralInsight": "Patience becomes durable when it is trained through remembrance, company, and a pace of obedience that does not worship immediacy.",
-      "practicalReflection": "The waiting soul is always being formed by some rhythm. Gurbani asks whether the rhythm becoming ordinary is one of listening or one of restless demand.",
-      "actionPrompt": "Choose one repeated delay in your life and turn it into a place of remembrance instead of irritation for the next week.",
+      "title": "When waiting keeps turning bitter as a keepable practice",
+      "issueStatement": "Delay has started feeding resentment instead of ripening trust. The question is no longer whether the line is true, but whether it can survive repetition.",
+      "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. A line proves its truth when it governs more than one moment.",
+      "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
+      "actionPrompt": "Pick one place in the day to practice this line, then at the next delay, listen before you let resentment narrate the wait.",
       "searchTerms": [
         "patience",
         "waiting",
@@ -430,10 +433,10 @@
               11502,
               11503
             ],
-            "shortMeaning": "Meditate, meditate, meditate in remembrance of Him, and find peace; worry and anguish shall be dispelled from your body",
-            "lifeApplication": "Wait by listening instead of simmering. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "Practice becomes believable when it can be repeated in small spaces. This line keeps patience close to remembrance rather than leaving it as admirable temperament."
+          "explanation": "As practice, the verse keeps returning patience to Naam and praise."
         },
         {
           "source": {
@@ -442,10 +445,10 @@
               3899,
               3900
             ],
-            "shortMeaning": "By His Mercy, I have met the Holy Saint; i have been blessed with patience and composure",
-            "lifeApplication": "Wait by listening instead of simmering. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "Practice begins by returning to holy company the same way again.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "The body and mind have to learn cooling, not only agreement. Saintly company gives patience an atmosphere where it can become embodied rather than merely admired."
+          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
         },
         {
           "source": {
@@ -454,38 +457,39 @@
               524,
               527
             ],
-            "shortMeaning": "vibrate and meditate on the Jewel of the Naam; this human body has been given to you",
-            "lifeApplication": "Wait by listening instead of simmering. Keep the line close enough to become a repeatable posture."
+            "shortMeaning": "The verse gives patience a keepable form through holy company.",
+            "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
           },
-          "explanation": "A patient life is easier to keep when the soul remembers what the whole day is for. The verse lifts the practice above mood by returning it to human purpose itself."
+          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
-        "status": "locked",
-        "origin": "manual",
+        "status": "approved",
+        "origin": "generated",
         "voiceVersion": "sggs-editorial-v1",
         "templateKey": "topic-patience:practice",
         "evidence": {
-          "coreClaim": "Patience becomes durable when it is trained through remembrance, company, and a pace of obedience that does not worship immediacy.",
+          "coreClaim": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. A line proves its truth when it governs more than one moment.",
           "emotionalState": "overthinking, restless, drifting",
-          "turn": "You do not need a dramatic mood of patience. You need repeated forms of return that keep the heart from obeying urgency every time it rises.",
-          "practicalImplication": "Choose one repeated delay in your life and turn it into a place of remembrance instead of irritation for the next week.",
+          "turn": "Delay has started feeding resentment instead of ripening trust. The question is no longer whether the line is true, but whether it can survive repetition.",
+          "practicalImplication": "Pick one place in the day to practice this line, then at the next delay, listen before you let resentment narrate the wait.",
           "bannedOverreach": []
         },
         "scores": {
           "faithfulness": 4.4,
           "clarity": 4.35,
-          "specificity": 4.96,
-          "emotionalHonesty": 3.54,
-          "usefulness": 3.82,
-          "beauty": 4.37,
-          "overall": 4.26
+          "specificity": 5,
+          "emotionalHonesty": 3,
+          "usefulness": 5,
+          "beauty": 4.69,
+          "overall": 4.41
         },
         "strengths": [
           "specificity",
-          "faithfulness"
+          "usefulness"
         ],
-        "issues": []
+        "issues": [],
+        "reviewedByHuman": true
       }
     }
   },
@@ -519,7 +523,7 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "manual",
+    "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "topic:patience",
     "evidence": {
@@ -534,14 +538,15 @@
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 4.26,
-      "beauty": 4.53,
-      "overall": 4.38
+      "usefulness": 4.64,
+      "beauty": 4.37,
+      "overall": 4.41
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

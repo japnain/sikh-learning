@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-704-1",
-  "title": "Mind Is Under The Power",
-  "summary": "Ego is named plainly here before the mind has time to decorate it.",
-  "takeaway": "The mind is under the power of the demons of evil intellect and duality",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+  "title": "Let the split mind surrender",
+  "summary": "This meets the mind being dragged by duality and bad counsel. The line says surrender through the Guru turns that divided mind back toward oneness.",
+  "takeaway": "Surrender the split mind into oneness.",
+  "lifeApplication": "Before the mind runs in two directions again, say the line and choose one guided act. Let surrender happen in the next decision, not only in theory.",
   "source": {
     "deepDiveId": "shabad-generated-704",
     "verseIds": [
       9499
     ],
-    "shortMeaning": "The mind is under the power of the demons of evil intellect and duality",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The divided mind is healed when it surrenders through the Guru into the One.",
+    "lifeApplication": "When inner division returns, choose the one guided act that breaks the split."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -23,7 +23,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "doubt",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "The mind is under the power of the demons of evil intellect and duality",
+      "coreClaim": "The divided mind is healed when it surrenders through the Guru into the One.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Begin with the part of the day already in front of you.",
+      "turn": "The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
+      "practicalImplication": "Before the mind runs in two directions again, say the line and choose one guided act. Let surrender happen in the next decision, not only in theory.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 4.05,
-      "specificity": 4.33,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.72,
-      "overall": 3.91
+      "faithfulness": 4.15,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.04,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

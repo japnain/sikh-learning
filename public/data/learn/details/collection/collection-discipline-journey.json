@@ -1,8 +1,8 @@
 {
   "id": "collection-discipline-journey",
   "title": "From Discipline to steadier practice",
-  "subtitle": "A deliberate path through discipline",
-  "description": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+  "subtitle": "For when discipline keeps steering the day",
+  "description": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
   "durationLabel": "5-step journey",
   "themes": [
     "discipline",
@@ -54,25 +54,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. This path starts with short guidance, opens the topic fully, and then stays long enough with Gurbani to change pace.",
+      "coreClaim": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "A deliberate path through discipline",
+      "turn": "For when discipline keeps steering the day",
       "practicalImplication": "Move through 5 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.65,
-      "specificity": 4.27,
+      "faithfulness": 3.9,
+      "clarity": 4.35,
+      "specificity": 4.13,
       "emotionalHonesty": 3,
-      "usefulness": 3.38,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.77
+      "overall": 3.98
     },
     "strengths": [
-      "specificity",
-      "faithfulness"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

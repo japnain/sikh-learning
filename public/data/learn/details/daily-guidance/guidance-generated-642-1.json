@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-642-1",
-  "title": "Is There Any Saint, Who Can Bestow",
-  "summary": "Sangat is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Is there any Saint, who can bestow such celestial peace, and show me the Way to Him",
-  "lifeApplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+  "title": "Ask for the saint who can show the way",
+  "summary": "This meets bewilderment that has finally run out of private strategies. The line turns the cry itself into wisdom: ask for the saint who can give peace and show the way.",
+  "takeaway": "Ask for the saint who can show the way.",
+  "lifeApplication": "When confusion keeps multiplying methods, say the need out loud to one elder, teacher, or steady companion. Ask to be shown the way instead of pretending you already know.",
   "source": {
     "deepDiveId": "shabad-generated-642",
     "verseIds": [
       8811
     ],
-    "shortMeaning": "Is there any Saint, who can bestow such celestial peace, and show me the Way to Him",
-    "lifeApplication": "Move closer to one company that helps the heart tell the truth. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Peace begins when the heart asks plainly to be shown the way.",
+    "lifeApplication": "When confusion multiplies methods, ask to be shown the way instead of pretending you know."
   },
   "relatedTopicIds": [
     "topic-sangat"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Is there any Saint, who can bestow such celestial peace, and show me the Way to Him",
+      "coreClaim": "Peace begins when the heart asks plainly to be shown the way.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "Keep returning to this turn: celestial bliss is attained in an instant, and doubt is dispelled. Meeting Him, my light merges in the Light.",
-      "practicalImplication": "Move closer to one company that helps the heart tell the truth. Begin with the part of the day already in front of you.",
+      "turn": "Ask for the guidance that can lead you through ego's curtain.",
+      "practicalImplication": "When confusion keeps multiplying methods, say the need out loud to one elder, teacher, or steady companion. Ask to be shown the way instead of pretending you already know.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.65,
-      "clarity": 3.33,
-      "specificity": 4.43,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.04,
-      "beauty": 3.68,
-      "overall": 3.79
+      "faithfulness": 4.09,
+      "clarity": 3.93,
+      "specificity": 4.67,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 3.91,
+      "overall": 4.03
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

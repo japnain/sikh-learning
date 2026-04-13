@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-338",
-  "title": "In All Colors And Forms, You",
+  "title": "Pervasiveness cures the scarcity behind comparison",
   "subtitle": "Raag Maajh · Ang 120",
-  "summary": "This shabad opens with in all colors and forms, You are pervading. It turns the heart toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
-  "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
+  "summary": "The shabad opens by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and lands in understanding received through the Guru.",
+  "whyItMatters": "This is for the person whose eyes keep narrowing into comparison and competition. Held honestly, it breaks the scarcity spell by revealing a world already full of the One.",
+  "takeaway": "Comparison weakens when the world is seen as already filled.",
   "themes": [
     "comparison",
     "mercy",
@@ -224,9 +224,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: in all colors and forms, You are pervading.",
-    "The middle movement widens the correction through then, they die, never to die again. They are intuitively absorbed in the True One.",
-    "It closes with a return you can actually keep: o Nanak, those who are attuned to the Naam, reflect deeply on the Truth."
+    "It opens by placing the Divine inside every color and form the mind wants to divide.",
+    "The middle contrasts human change and cycling with the Eternal One who does not thin out.",
+    "It ends with understanding gifted through the Guru instead of seized through comparison."
   ],
   "keyVerseIds": [
     4875,
@@ -263,25 +263,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with in all colors and forms, You are pervading. It turns the heart toward o Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
+      "coreClaim": "The shabad opens by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and lands in understanding received through the Guru.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle movement widens the correction through then, they die, never to die again. They are intuitively absorbed in the True One.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, those who are attuned to the Naam, reflect deeply on the Truth.",
+      "turn": "The middle contrasts human change and cycling with the Eternal One who does not thin out.",
+      "practicalImplication": "This is for the person whose eyes keep narrowing into comparison and competition. Held honestly, it breaks the scarcity spell by revealing a world already full of the One. Comparison weakens when the world is seen as already filled.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.45,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.82,
-      "overall": 3.95
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.33,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

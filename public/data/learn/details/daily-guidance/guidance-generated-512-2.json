@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-512-2",
-  "title": "The Guru's Teachings, I Am Lovingly Centered",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Give yourself where love can be trained",
+  "summary": "This meets the self still trying to belong without surrender. The line says love deepens when body, fear, and doubt are handed to the Guru.",
+  "takeaway": "Surrender enough to be trained in love.",
+  "lifeApplication": "Before keeping part of yourself back, ask what you still refuse to give to the Guru. Offer one concrete attachment instead of another explanation.",
   "source": {
     "deepDiveId": "shabad-generated-512",
     "verseIds": [
       7138,
       7140
     ],
-    "shortMeaning": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Love deepens when the self is offered to the Guru without reserve.",
+    "lifeApplication": "When fear and doubt tighten, offer the withheld part instead of defending it."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -24,7 +24,7 @@
     "collection-ego-journey"
   ],
   "rotation": {
-    "theme": "ego",
+    "theme": "seva",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "For the sake of the Lord, Har, Har, I have sold my body to the Perfect Guru; through the Guru's Teachings, I am lovingly centered on the Lord",
+      "coreClaim": "Love deepens when the self is offered to the Guru without reserve.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: he has sold his head to the True Guru.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "Let surrender reach the body before the ego performs again.",
+      "practicalImplication": "Before keeping part of yourself back, ask what you still refuse to give to the Guru. Offer one concrete attachment instead of another explanation.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4,
-      "clarity": 1.38,
-      "specificity": 4.72,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 2.96,
-      "overall": 3.53
+      "faithfulness": 4.19,
+      "clarity": 4.35,
+      "specificity": 4.76,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

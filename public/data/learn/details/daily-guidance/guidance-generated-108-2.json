@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-108-2",
-  "title": "Night And Day, One Who Is Attuned",
-  "summary": "Anger is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+  "title": "Stop waiting for a better time",
+  "summary": "This meets the delaying mind that keeps planning devotion for later. The line strips away the excuse: the true time is now, night and day.",
+  "takeaway": "Do not postpone what steadies the heart.",
+  "lifeApplication": "At the moment you say 'later,' catch it in the throat and interrupt it. Take the Name before the next task teaches you to postpone again.",
   "source": {
     "deepDiveId": "shabad-generated-108",
     "verseIds": [
       1430,
       1431
     ],
-    "shortMeaning": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Remembrance becomes true when it stops waiting for a better hour.",
+    "lifeApplication": "When you say 'later,' take one breath and remember now."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "discipline",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Night and day, one who is attuned to the Name of the True Lord is true; if we keep contemplating about the time as to when to remember the Lord",
+      "coreClaim": "Remembrance becomes true when it stops waiting for a better hour.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: O Nanak, merging with the Shabad through the Name, one is immersed in the Name.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+      "turn": "Remembrance becomes true when it stops waiting for later.",
+      "practicalImplication": "At the moment you say 'later,' catch it in the throat and interrupt it. Take the Name before the next task teaches you to postpone again.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.84,
-      "clarity": 1.72,
-      "specificity": 4.74,
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 3.12,
-      "overall": 3.54
+      "usefulness": 5,
+      "beauty": 4.01,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

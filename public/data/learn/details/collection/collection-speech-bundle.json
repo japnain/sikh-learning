@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-bundle",
   "title": "Speech in one shorter sitting",
-  "subtitle": "A compact bundle for speech",
-  "description": "Words arrive before the heart has been cleaned enough to carry them well. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when speech is already close",
+  "description": "A short correction for the hour when the mouth is moving faster than the heart. It cleans the sentence before it hardens into harm.",
   "durationLabel": "3-step bundle",
   "themes": [
     "speech"
@@ -45,25 +45,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "Words arrive before the heart has been cleaned enough to carry them well. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short correction for the hour when the mouth is moving faster than the heart. It cleans the sentence before it hardens into harm.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A compact bundle for speech",
+      "turn": "A shorter sitting for when speech is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 3.45,
-      "specificity": 4.21,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
+      "faithfulness": 3.88,
+      "clarity": 4.35,
+      "specificity": 4.11,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.5,
       "beauty": 4.05,
-      "overall": 3.74
+      "overall": 4.03
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

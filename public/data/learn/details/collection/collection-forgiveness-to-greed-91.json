@@ -1,8 +1,8 @@
 {
   "id": "collection-forgiveness-to-greed-91",
-  "title": "Forgiveness to Greed",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+  "title": "When even release becomes appetite",
+  "subtitle": "When release itself becomes another appetite",
+  "description": "These readings guard release from becoming a moral asset, so forgiveness is not hoarded, displayed, or spent for leverage.",
   "durationLabel": "6-step journey",
   "themes": [
     "forgiveness",
@@ -15,8 +15,8 @@
       9603,
       9605
     ],
-    "shortMeaning": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
-    "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
+    "shortMeaning": "Forgiveness turns greedy the moment release is hoarded for leverage.",
+    "lifeApplication": "Let forgiveness stay free; do not turn it into a badge or bargain."
   },
   "items": [
     {
@@ -63,25 +63,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. This bridge then carries into guru exposes false wealth and redirects desire toward what actually travels with the soul.",
+      "coreClaim": "These readings guard release from becoming a moral asset, so forgiveness is not hoarded, displayed, or spent for leverage.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When release itself becomes another appetite",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 3.65,
-      "specificity": 4.27,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.21,
-      "overall": 3.85
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
+      "emotionalHonesty": 3,
+      "usefulness": 4.5,
+      "beauty": 4.05,
+      "overall": 3.96
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

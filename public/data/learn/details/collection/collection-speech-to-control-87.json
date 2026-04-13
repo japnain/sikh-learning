@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-to-control-87",
-  "title": "Speech to Control",
-  "subtitle": "A cross-linked bridge between two recurring pressures",
-  "description": "Guru makes speech answer to praise, restraint, and truthfulness. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+  "title": "When control starts in speech",
+  "subtitle": "When control starts in the tongue",
+  "description": "These readings expose management at the level of voice before it grows into pressure, domination, and the need to rule the room.",
   "durationLabel": "6-step journey",
   "themes": [
     "speech",
@@ -14,8 +14,8 @@
       637,
       642
     ],
-    "shortMeaning": "Speak what carries honor, not just what releases heat.",
-    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+    "shortMeaning": "Control enters first through the mouth, long before it takes the room.",
+    "lifeApplication": "When you start managing the room, soften the sentence before it lands."
   },
   "items": [
     {
@@ -62,25 +62,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:journey",
     "evidence": {
-      "coreClaim": "Guru makes speech answer to praise, restraint, and truthfulness. This bridge then carries into guru interrupts control by restoring the difference between response and authorship.",
+      "coreClaim": "These readings expose management at the level of voice before it grows into pressure, domination, and the need to rule the room.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A cross-linked bridge between two recurring pressures",
+      "turn": "When control starts in the tongue",
       "practicalImplication": "Move through 6 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.99,
-      "clarity": 4.35,
-      "specificity": 4.21,
+      "faithfulness": 3.84,
+      "clarity": 4.29,
+      "specificity": 4.07,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.53,
-      "overall": 3.94
+      "usefulness": 4.5,
+      "beauty": 4.01,
+      "overall": 3.97
     },
     "strengths": [
-      "beauty",
+      "usefulness",
       "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

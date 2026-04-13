@@ -1,16 +1,16 @@
 {
   "id": "guidance-conquer-the-mind-1",
-  "title": "Make Contentment Your Ear-rings, Humility Your Begging",
-  "summary": "Discipline is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body",
-  "lifeApplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+  "title": "Put discipline on the body",
+  "summary": "This meets the wish to look serious without being changed. The line remakes discipline as contentment, humility, and meditation worn plainly.",
+  "takeaway": "Let humility make your discipline believable.",
+  "lifeApplication": "Before the routine becomes performance, touch the body back into honesty. Choose the repetition that makes you smaller, steadier, and less hungry for notice.",
   "source": {
     "deepDiveId": "shabad-conquer-the-mind",
     "verseIds": [
       290
     ],
-    "shortMeaning": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body",
-    "lifeApplication": "Make the next faithful repetition smaller and truer. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Contentment, humility, and meditation make discipline plain and believable.",
+    "lifeApplication": "Before the day's first performance, choose the practice that humbles you."
   },
   "relatedTopicIds": [
     "topic-discipline"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Make contentment your ear-rings, humility your begging bowl, and meditation the ashes you apply to your body",
+      "coreClaim": "Contentment, humility, and meditation make discipline plain and believable.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "The hardest field is the inner field. Win there first.",
-      "practicalImplication": "Make the next faithful repetition smaller and truer. Begin with the part of the day already in front of you.",
+      "turn": "Conquer the mind before trying to conquer the world.",
+      "practicalImplication": "Before the routine becomes performance, touch the body back into honesty. Choose the repetition that makes you smaller, steadier, and less hungry for notice.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 3.2,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.82,
-      "beauty": 3.33,
-      "overall": 3.75
+      "faithfulness": 4.12,
+      "clarity": 4.29,
+      "specificity": 4.88,
+      "emotionalHonesty": 3,
+      "usefulness": 4.8,
+      "beauty": 4.01,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

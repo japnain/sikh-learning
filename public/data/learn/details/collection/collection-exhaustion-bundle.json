@@ -1,8 +1,8 @@
 {
   "id": "collection-exhaustion-bundle",
   "title": "Exhaustion in one shorter sitting",
-  "subtitle": "A compact bundle for exhaustion",
-  "description": "Weariness has made the heart suspicious of even good counsel. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+  "subtitle": "A shorter sitting for when exhaustion is already close",
+  "description": "A short return for the hour when strength is already thinning. It keeps exhaustion from turning into performance, numbness, or despair.",
   "durationLabel": "3-step bundle",
   "themes": [
     "exhaustion"
@@ -12,8 +12,8 @@
     "verseIds": [
       5589
     ],
-    "shortMeaning": "To Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\"",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Exhaustion eases when honesty replaces the performance of strength.",
+    "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
   },
   "items": [
     {
@@ -44,25 +44,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "collection:bundle",
     "evidence": {
-      "coreClaim": "Weariness has made the heart suspicious of even good counsel. This shorter bundle keeps one guidance card, one topic guide, and one shabad together so the archive stays usable on busy days.",
+      "coreClaim": "A short return for the hour when strength is already thinning. It keeps exhaustion from turning into performance, numbness, or despair.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "A compact bundle for exhaustion",
+      "turn": "A shorter sitting for when exhaustion is already close",
       "practicalImplication": "Move through 3 linked steps without dropping the thread.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 3.75,
-      "specificity": 4.17,
+      "faithfulness": 3.84,
+      "clarity": 4.35,
+      "specificity": 4.07,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.38,
-      "beauty": 4.05,
-      "overall": 3.77
+      "usefulness": 4.5,
+      "beauty": 4.21,
+      "overall": 4.01
     },
     "strengths": [
-      "specificity",
-      "beauty"
+      "usefulness",
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

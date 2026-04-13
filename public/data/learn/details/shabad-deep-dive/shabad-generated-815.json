@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-815",
-  "title": "T'hat'ha: Those Who Have Abandoned All Else",
+  "title": "Cling to the One until the mind cools",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "This shabad opens with t'HAT'HA: Those who have abandoned all else, and who cling to the One Lord. It turns the heart toward o Nanak, his mind is cooled and soothed.",
-  "whyItMatters": "It matters when life feels searching, hungry, and unsettled because the shabad keeps seeking inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, his mind is cooled and soothed.",
+  "summary": "The pauree opens by praising those who release every other hold and cling to the One alone. It contrasts Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
+  "whyItMatters": "This is for the person still hungry after chasing ten different supports. Held steadily, it teaches that peace comes not from adding more but from holding one thing rightly.",
+  "takeaway": "Let one true hold replace the many false ones.",
   "themes": [
     "seeking",
     "comparison",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: t'HAT'HA: Those who have abandoned all else, and who cling to the One Lord.",
-    "The middle movement widens the correction through one who dwells in the Society of the Saints finds a great peace.",
-    "It closes with a return you can actually keep: o Nanak, his mind is cooled and soothed."
+    "It opens by honoring the one who clings to the Lord instead of multiplying dependencies.",
+    "The middle contrasts Maya-soaked unrest with the sweetness found in saintly company.",
+    "It ends with the cooled and soothed mind as the fruit of Naam."
   ],
   "keyVerseIds": [
     11157,
@@ -127,25 +127,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with t'HAT'HA: Those who have abandoned all else, and who cling to the One Lord. It turns the heart toward o Nanak, his mind is cooled and soothed.",
+      "coreClaim": "The pauree opens by praising those who release every other hold and cling to the One alone. It contrasts Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
       "emotionalState": "searching, hungry, unsettled",
-      "turn": "The middle movement widens the correction through one who dwells in the Society of the Saints finds a great peace.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, his mind is cooled and soothed.",
+      "turn": "The middle contrasts Maya-soaked unrest with the sweetness found in saintly company.",
+      "practicalImplication": "This is for the person still hungry after chasing ten different supports. Held steadily, it teaches that peace comes not from adding more but from holding one thing rightly. Let one true hold replace the many false ones.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.72,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.6,
-      "beauty": 3.51,
-      "overall": 3.88
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.2,
+      "beauty": 4.33,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-what-pleases-you",
-  "title": "Receive what pleases the Divine before you interpret it.",
-  "summary": "Not every hard arrival means abandonment. Start by remembering that what comes is not outside Divine pleasure or seeing.",
-  "takeaway": "Reception comes before reaction.",
-  "lifeApplication": "When the next interruption arrives, pause long enough to stop framing yourself as the sole author.",
+  "title": "Stop arguing with what already stands",
+  "summary": "This meets the mind that wants reality on self-approved terms. The line teaches a harder peace: receive under the Lord's pleasure rather than keep litigating the day.",
+  "takeaway": "Peace begins where argument with Hukam starts ending.",
+  "lifeApplication": "Before you argue with the moment again, stop and name what is already here.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
       498,
       499
     ],
-    "shortMeaning": "What comes is still coming inside Divine authorship and permission.",
-    "lifeApplication": "Begin with surrender instead of instant self-narration."
+    "shortMeaning": "Peace begins where argument with Hukam starts ending.",
+    "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "What comes is still coming inside Divine authorship and permission.",
+      "coreClaim": "Peace begins where argument with Hukam starts ending.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Receive the day as given, then answer it with Naam.",
-      "practicalImplication": "When the next interruption arrives, pause long enough to stop framing yourself as the sole author.",
+      "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
+      "practicalImplication": "Before you argue with the moment again, stop and name what is already here.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 4.35,
-      "specificity": 4.59,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.82,
-      "beauty": 4.21,
-      "overall": 4.03
+      "faithfulness": 4.32,
+      "clarity": 4.05,
+      "specificity": 4.7,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.36,
+      "beauty": 4.01,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

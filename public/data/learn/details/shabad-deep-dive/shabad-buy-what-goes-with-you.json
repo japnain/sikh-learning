@@ -1,10 +1,10 @@
 {
   "id": "shabad-buy-what-goes-with-you",
-  "title": "Buy What Goes With You",
+  "title": "Trade for what can follow you",
   "subtitle": "Siree Raag · Ang 22",
-  "summary": "Guru Nanak turns life into honest commerce: carry only what survives departure.",
-  "whyItMatters": "It cuts through material obsession, status hunger, false gain, and the feeling that life's worth is measured by what can be displayed now.",
-  "takeaway": "Invest in what crosses the threshold with you.",
+  "summary": "The shabad begins with market language and turns it against ordinary appetite: buy what can go with you. It measures profit by praise, truth, and the wealth the Divine Merchant will still receive.",
+  "whyItMatters": "This is for the person trying to feel safe through buying, upgrading, or being seen as successful. Keep this shabad at the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you?",
+  "takeaway": "Pause the deal and choose the profit that can follow you.",
   "themes": [
     "discipline",
     "purpose",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "Recasts life as commerce and immediately asks what actually lasts beyond departure.",
-    "Contrasts truthful assets with false deals that deform the whole person.",
-    "Closes by naming praise, Naam, and fearlessness as the real profit."
+    "It opens like a merchant's lesson and asks what lasts beyond the visible deal.",
+    "The middle identifies praise and Naam as the goods worth taking with you.",
+    "It ends by placing approval with the Divine Merchant instead of the crowd."
   ],
   "keyVerseIds": [
     934,
@@ -182,25 +182,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Nanak turns life into honest commerce: carry only what survives departure.",
+      "coreClaim": "The shabad begins with market language and turns it against ordinary appetite: buy what can go with you. It measures profit by praise, truth, and the wealth the Divine Merchant will still receive.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Contrasts truthful assets with false deals that deform the whole person.",
-      "practicalImplication": "Invest in what crosses the threshold with you.",
+      "turn": "The middle identifies praise and Naam as the goods worth taking with you.",
+      "practicalImplication": "This is for the person trying to feel safe through buying, upgrading, or being seen as successful. Keep this shabad at the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you? Pause the deal and choose the profit that can follow you.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3,
+      "usefulness": 5,
       "beauty": 4.53,
-      "overall": 4.05
+      "overall": 4.41
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

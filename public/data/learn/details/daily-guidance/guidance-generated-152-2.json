@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-152-2",
-  "title": "Without holy company, attachment stays dusty",
-  "summary": "Sangat is not decorative here. Without the right company, attachment keeps coating the heart.",
-  "takeaway": "Without attunement to the holy company, attachment to Maya stays like dust; with love for Guru, the heart turns cleanly toward the Divine.",
-  "lifeApplication": "Move closer to the company that helps the heart love well instead of simply agreeing with its habits.",
+  "title": "Let holy company lift Maya's dust",
+  "summary": "This meets attachment after it has already settled into the heart. The line says two things clear it: love for the Guru with mind and body, and life inside holy company.",
+  "takeaway": "Let holy company brush Maya's dust away.",
+  "lifeApplication": "When craving gets sticky, do not sit alone feeding it. Step toward the sangat, song, or room where love for the Guru gets cleaner.",
   "source": {
     "deepDiveId": "shabad-generated-152",
     "verseIds": [
       2114,
       2117
     ],
-    "shortMeaning": "Without holy company, attachment stays like dust; with love for Guru, the heart turns toward the Divine.",
-    "lifeApplication": "Choose one company today that makes remembrance easier and attachment less convincing."
+    "shortMeaning": "Love for the Guru and holy company clear Maya's dust.",
+    "lifeApplication": "When craving gets sticky, step toward the place where love for the Guru gets cleaner."
   },
   "relatedTopicIds": [
     "topic-sangat"
@@ -35,30 +35,31 @@
     "balanceCategory": "seva"
   },
   "editorial": {
-    "status": "approved",
+    "status": "locked",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Without holy company, attachment stays like dust; with love for Guru, the heart turns toward the Divine.",
+      "coreClaim": "Love for the Guru and holy company clear Maya's dust.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "Keep returning to this turn: Nanak: may I never forget You, Lord. This soul, body and breath are Yours.",
-      "practicalImplication": "Move closer to the company that helps the heart love well instead of simply agreeing with its habits.",
+      "turn": "Let love, company, and conduct gather under the Guru until forgetfulness weakens.",
+      "practicalImplication": "When craving gets sticky, do not sit alone feeding it. Step toward the sangat, song, or room where love for the Guru gets cleaner.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.71,
-      "clarity": 3.81,
-      "specificity": 4.13,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.22,
-      "beauty": 3.56,
-      "overall": 3.64
+      "faithfulness": 3.94,
+      "clarity": 4.29,
+      "specificity": 4.7,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.42,
+      "beauty": 4.01,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

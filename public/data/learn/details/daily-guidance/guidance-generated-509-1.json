@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-509-1",
-  "title": "This Mind Does Not Hold Still, Even",
-  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "This mind does not hold still, even for an instant. Distracted by all sorts",
-  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "title": "Give the frantic mind a mantra",
+  "summary": "This meets the mind scattering itself in ten directions at once. The line says the Perfect Guru quiets that roaming by placing the Lord's mantra at the center.",
+  "takeaway": "Give the mind a steadier center.",
+  "lifeApplication": "Before following the next distraction, say the mantra once and stay seated one breath longer. Let the mind be gathered before it is spent again.",
   "source": {
     "deepDiveId": "shabad-generated-509",
     "verseIds": [
       7107
     ],
-    "shortMeaning": "This mind does not hold still, even for an instant. Distracted by all sorts",
-    "lifeApplication": "Choose better placement before choosing more movement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The roaming mind quiets when the Guru gives it the Lord's mantra.",
+    "lifeApplication": "When attention fragments, return it to the mantra before chasing the next pull."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "This mind does not hold still, even for an instant. Distracted by all sorts",
+      "coreClaim": "The roaming mind quiets when the Guru gives it the Lord's mantra.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Keep returning to this turn: For my failings and mistakes, O Guru, grant me Your Grace.",
-      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "turn": "Love for the Lord gathers what distraction keeps scattering.",
+      "practicalImplication": "Before following the next distraction, say the mantra once and stay seated one breath longer. Let the mind be gathered before it is spent again.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.8,
-      "clarity": 3.69,
-      "specificity": 4.39,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.61,
-      "overall": 3.86
+      "faithfulness": 4.08,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.48,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

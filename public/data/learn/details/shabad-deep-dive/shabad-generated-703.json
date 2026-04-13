@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-703",
-  "title": "When The Insignia Of The True Shabad",
+  "title": "When the Shabad takes the mind in hand",
   "subtitle": "Raag Gauree · Ang 221",
-  "summary": "This shabad opens with when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King. It turns the heart toward o Nanak, meditate on the Lord, each and every day.",
-  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
+  "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It moves through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+  "whyItMatters": "This is for the person whose mind is strong, clever, and difficult to govern. Held steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
+  "takeaway": "Let the Guru's Shabad govern the mind before cleverness does.",
   "themes": [
     "attachment",
     "doubt",
@@ -217,9 +217,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King.",
-    "The middle movement widens the correction through the Fearless Lord is in the oceans, just as He is in the mountains.",
-    "It closes with a return you can actually keep: o Nanak, meditate on the Lord, each and every day."
+    "It opens with restraint, not self-display: the mind needs the Guru's goad and the Shabad's mark.",
+    "The middle strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
+    "It ends in daily remembrance of the Lord who already pervades the whole field."
   ],
   "keyVerseIds": [
     9473,
@@ -256,25 +256,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with when the Insignia of the True Shabad is applied, one obtains honor in the Court of God the King. It turns the heart toward o Nanak, meditate on the Lord, each and every day.",
+      "coreClaim": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It moves through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement widens the correction through the Fearless Lord is in the oceans, just as He is in the mountains.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, meditate on the Lord, each and every day.",
+      "turn": "The middle strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
+      "practicalImplication": "This is for the person whose mind is strong, clever, and difficult to govern. Held steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand. Let the Guru's Shabad govern the mind before cleverness does.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.23,
-      "specificity": 4.77,
-      "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 3.37,
-      "overall": 3.8
+      "clarity": 4.11,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.8,
+      "beauty": 3.96,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

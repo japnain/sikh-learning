@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-360",
-  "title": "To Be Sung To The Tune",
+  "title": "Place the tired mind in the Guru's cooling shelter",
   "subtitle": "Raag Maajh · Ang 137",
-  "summary": "This shabad opens with to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\". It turns the heart toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
-  "whyItMatters": "It matters when life feels tired, drained, and worn-down because the shabad keeps exhaustion inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
+  "summary": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
+  "whyItMatters": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort.",
+  "takeaway": "Place the mind's trust in the Guru as cooling shelter.",
   "themes": [
     "exhaustion",
     "comparison",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\".",
-    "The middle movement widens the correction through the Guru is the House of ice. The Guru is the Light of the three worlds.",
-    "It closes with a return you can actually keep: o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace."
+    "It opens by naming the Guru as giver rather than as one more burden on the seeker.",
+    "The middle calls the Guru a cooling house and a light broad enough for all three worlds.",
+    "It ends by treating that light as lasting wealth and peace."
   ],
   "keyVerseIds": [
     5589,
@@ -110,25 +110,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with to Be Sung To The Tune Of \"\"Malik Mureed And Chandrahraa Sohee-Aa\"\". It turns the heart toward o Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
+      "coreClaim": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "The middle movement widens the correction through the Guru is the House of ice. The Guru is the Light of the three worlds.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, He is everlasting wealth. Place your mind's faith in Him, and you shall find peace.",
+      "turn": "The middle calls the Guru a cooling house and a light broad enough for all three worlds.",
+      "practicalImplication": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort. Place the mind's trust in the Guru as cooling shelter.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.03,
-      "specificity": 4.76,
-      "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 3.32,
-      "overall": 3.91
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.04,
+      "beauty": 4.35,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

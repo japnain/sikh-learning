@@ -1,17 +1,17 @@
 {
   "id": "guidance-cherished-like-a-child",
-  "title": "Let yourself be addressed as someone worth cherishing.",
-  "summary": "Guru does not merely tolerate the child here. Guru cherishes the child. That changes how need itself is carried.",
-  "takeaway": "Need can be brought honestly when care is trusted.",
-  "lifeApplication": "Bring one raw need into prayer today without dressing it up as competence.",
+  "title": "Stand where you are cherished",
+  "summary": "This meets the ache to earn tenderness through achievement. The line does something simpler: it calls God father and mother and lets the soul stand there as a cherished child.",
+  "takeaway": "Stand in cherished dependence, not self-manufacture.",
+  "lifeApplication": "At the mirror, after the silence, or before you send the proving message, soften the shoulders and speak to the Lord as a child already being kept.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
       37476,
       37477
     ],
-    "shortMeaning": "The servant held close is also the child cherished by the Divine.",
-    "lifeApplication": "Belonging softens the panic that says you must hold yourself up alone."
+    "shortMeaning": "The soul is cherished as a child, not measured as a project.",
+    "lifeApplication": "Before the proving message leaves you, speak to the Lord as a child already being held."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -41,25 +41,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The servant held close is also the child cherished by the Divine.",
+      "coreClaim": "The soul is cherished as a child, not measured as a project.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Nearness is received in humility, not built out of status.",
-      "practicalImplication": "Bring one raw need into prayer today without dressing it up as competence.",
+      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "At the mirror, after the silence, or before you send the proving message, soften the shoulders and speak to the Lord as a child already being kept.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
+      "faithfulness": 4.05,
       "clarity": 4.35,
-      "specificity": 4.67,
-      "emotionalHonesty": 3,
+      "specificity": 4.81,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.04,
-      "beauty": 4.37,
-      "overall": 4.04
+      "beauty": 4.21,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }
