@@ -5,11 +5,11 @@ import vm from "node:vm"
 import ts from "typescript"
 import { fileURLToPath } from "node:url"
 import { TOPIC_FAMILIES } from "./topic-taxonomy.mjs"
-import { applyEditorialReview } from "./copy-critic.mjs"
+import { PREMIUM_EDITORIAL_THRESHOLDS, applyEditorialReview } from "./copy-critic.mjs"
 import { createHuggingFaceAdapter } from "./huggingface-adapter.mjs"
-import { PLACEHOLDER_PATTERNS, collectStyleIssues } from "./style-guide.mjs"
+import { HARD_BANNED_PATTERNS, PLACEHOLDER_PATTERNS, collectStyleIssues, toTokens } from "./style-guide.mjs"
 import { TOPIC_GOLD_SET } from "./topic-gold-set.mjs"
-import { scoreEditorialCopy } from "./editorial-rubric.mjs"
+import { checkShortMeaningTranslationEcho, scoreEditorialCopy, tokenSetSimilarity } from "./editorial-rubric.mjs"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -21,6 +21,13 @@ const CORPUS_PATH = path.join(CACHE_DIR, "sggs-corpus.json")
 const VALIDATION_PATH = path.join(CACHE_DIR, "learn-validation.json")
 const TOPIC_UNIQUENESS_PATH = path.join(CACHE_DIR, "topic-uniqueness.json")
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public/data/learn")
+const LEARN_OVERRIDE_PATHS = {
+  guidance: path.join(PROJECT_ROOT, "src/data/learnOverrides/guidance.ts"),
+  shabad: path.join(PROJECT_ROOT, "src/data/learnOverrides/shabad.ts"),
+  topic: path.join(PROJECT_ROOT, "src/data/learnOverrides/topic.ts"),
+  scenario: path.join(PROJECT_ROOT, "src/data/learnOverrides/scenario.ts"),
+  collection: path.join(PROJECT_ROOT, "src/data/learnOverrides/collection.ts"),
+}
 
 const KIND_LABELS = {
   "daily-guidance": "Daily guidance",
@@ -48,132 +55,6 @@ const TOPIC_SCENARIO_SHABAD_LAYOUT = {
   pressure: [1, 3, 4],
   repair: [2, 3, 5],
   practice: [4, 0, 5],
-}
-
-const GUIDANCE_COPY_OVERRIDES = {
-  "guidance-generated-461-2": {
-    title: "Service carries the seeker across",
-    summary: "Restlessness eases when devotion and service stop being abstractions and become the next faithful act.",
-    takeaway: "Union with the Divine is learned through the True Guru, and devotion joined to service becomes a real crossing.",
-    lifeApplication: "When the mind wants more motion, choose one act of devotion or service that returns you to the path you already know.",
-    source: {
-      shortMeaning: "Through the True Guru, devotion and service become the crossing into union.",
-      lifeApplication: "Let devotion become concrete before restlessness turns into one more search for novelty.",
-    },
-  },
-  "guidance-work-give-know-the-path-2": {
-    title: "Honest work makes the path visible",
-    summary: "Seva becomes credible in honest labor and open-handed giving, not in spiritual performance.",
-    takeaway: "The true path appears where a person works honestly, shares what they earn, and keeps pretense out of religion.",
-    lifeApplication: "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
-    source: {
-      shortMeaning: "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
-      lifeApplication: "Do one useful thing cleanly and quietly, then let the giving matter more than the appearance of being good.",
-    },
-  },
-  "guidance-generated-511-2": {
-    title: "Mercy lets the hidden sweetness be found",
-    summary: "Mercy is not forced out of the day. The heart tastes what was already near when the Merciful One opens it.",
-    takeaway: "When the Merciful One shows mercy, the hidden sweetness of the Divine is finally tasted within.",
-    lifeApplication: "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
-    source: {
-      shortMeaning: "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
-      lifeApplication: "Receive mercy before you analyze it, and let that reception change the next tone you bring into the day.",
-    },
-  },
-  "guidance-generated-179-2": {
-    title: "Serving the Guru makes the heart clean again",
-    summary: "Ego loses some of its glamour when service stops being display and becomes inner cleansing.",
-    takeaway: "Serving the True Guru lets the Lord abide within, and the mind and body begin to grow clean again.",
-    lifeApplication: "When the self wants to lead, choose one act of service that cleans the heart instead of enlarging the image.",
-    source: {
-      shortMeaning: "Serving the True Guru lets the Lord abide within, and the mind and body grow pure.",
-      lifeApplication: "Let service make you smaller and cleaner before urgency turns self-importance into the room's loudest voice.",
-    },
-  },
-  "guidance-generated-152-2": {
-    title: "Without holy company, attachment stays dusty",
-    summary: "Sangat is not decorative here. Without the right company, attachment keeps coating the heart.",
-    takeaway: "Without attunement to the holy company, attachment to Maya stays like dust; with love for Guru, the heart turns cleanly toward the Divine.",
-    lifeApplication: "Move closer to the company that helps the heart love well instead of simply agreeing with its habits.",
-    source: {
-      shortMeaning: "Without holy company, attachment stays like dust; with love for Guru, the heart turns toward the Divine.",
-      lifeApplication: "Choose one company today that makes remembrance easier and attachment less convincing.",
-    },
-  },
-  "guidance-generated-109-2": {
-    title: "Without the Beloved, the night stays anguished",
-    summary: "Doubt loses its swagger when the heart admits how badly it needs the One it keeps postponing.",
-    takeaway: "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
-    lifeApplication: "Before reopening every question, let one line tell the truth about your dependence and stay there a moment longer.",
-    source: {
-      shortMeaning: "The Guru's word fills the heart with reverence; without the Beloved, even one instant feels anguished.",
-      lifeApplication: "Use the line before the question multiplies again, and let reverence quiet what panic was trying to organize.",
-    },
-  },
-  "guidance-conquer-the-mind-2": {
-    title: "Contentment makes discipline visible",
-    summary: "Discipline becomes credible when humility, meditation, and contentment begin shaping the body before pressure does.",
-    takeaway: "Contentment, humility, and meditation mark the disciplined life more truly than image or strain.",
-    lifeApplication: "Choose the smaller, steadier discipline that leaves the heart more content and less performative.",
-    source: {
-      shortMeaning: "Contentment, humility, and meditation reveal a disciplined life more truly than image or strain.",
-      lifeApplication: "Keep the next repetition plain enough that humility and contentment can remain inside it.",
-    },
-  },
-}
-
-const SHABAD_COPY_OVERRIDES = {
-  "shabad-generated-822": {
-    title: "Offering everything to the One who can unite you",
-    summary: "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
-    whyItMatters: "It matters when fear feels personal and total because the shabad turns the heart from private bargaining toward union, clarity, and release from dread.",
-    takeaway: "Keep returning to this turn: fear is dispelled when the heart is united with the One it was made for.",
-    structure: [
-      "It opens with total offering and a plain request for union with the Divine.",
-      "The middle movement keeps pressing past fear and doubt instead of negotiating with them.",
-      "It closes in freedom, where dread no longer gets to govern the soul.",
-    ],
-  },
-}
-
-const COLLECTION_COPY_OVERRIDES = {
-  "collection-tired-heart-to-rest": {
-    subtitle: "A slower path for the overused inner life",
-    description: "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
-  },
-  "collection-conduct-and-clean-speech": {
-    subtitle: "A path for cleaner speech and truer living",
-    description: "Keep speech and conduct tied together. Good words are not enough if the life carrying them says something else.",
-  },
-  "collection-control-to-release": {
-    subtitle: "For the mind that grips too hard",
-    description: "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
-  },
-  "collection-ego-to-humility": {
-    subtitle: "A path out of self-importance",
-    description: "See how haumai distorts the mind. Then follow the Guru's quieter path into humility, service, and truthful speech.",
-  },
-  "collection-truthful-wealth": {
-    subtitle: "A path out of empty gain",
-    description: "Follow the profit that can travel with the soul. Let work, praise, and truthful discipline replace the hunger for impressive gain.",
-  },
-  "collection-restlessness-to-stillness": {
-    subtitle: "For minds that move faster than they settle",
-    description: "Follow the wandering mind into better company, deeper listening, and the stillness that no longer needs constant motion.",
-  },
-  "collection-sangat-and-belonging": {
-    subtitle: "A return to company that helps the heart breathe",
-    description: "Study how holy company cools isolation and teaches the heart how to belong without performing.",
-  },
-  "collection-mercy-and-fearlessness": {
-    subtitle: "A path out of hardness and self-protection",
-    description: "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
-  },
-  "collection-service-and-purpose": {
-    subtitle: "A practical path toward meaningful living",
-    description: "Return to why life was given. Let seva, honest work, and Naam turn purpose from a mood into a way of living.",
-  },
 }
 
 const MODULE_CACHE = new Map()
@@ -257,7 +138,7 @@ function slugify(value) {
 }
 
 function normalizeText(value) {
-  return value
+  return String(value ?? "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
@@ -534,6 +415,22 @@ export function loadLegacySeed() {
   }
 }
 
+function loadLearnOverrides() {
+  const guidanceModule = loadTsModule(LEARN_OVERRIDE_PATHS.guidance)
+  const shabadModule = loadTsModule(LEARN_OVERRIDE_PATHS.shabad)
+  const topicModule = loadTsModule(LEARN_OVERRIDE_PATHS.topic)
+  const scenarioModule = loadTsModule(LEARN_OVERRIDE_PATHS.scenario)
+  const collectionModule = loadTsModule(LEARN_OVERRIDE_PATHS.collection)
+
+  return {
+    guidance: guidanceModule.GUIDANCE_COPY_OVERRIDES ?? {},
+    shabad: shabadModule.SHABAD_COPY_OVERRIDES ?? {},
+    topic: topicModule.TOPIC_COPY_OVERRIDES ?? {},
+    scenario: scenarioModule.SCENARIO_COPY_OVERRIDES ?? {},
+    collection: collectionModule.COLLECTION_COPY_OVERRIDES ?? {},
+  }
+}
+
 function getTopicFamily(key) {
   return TOPIC_FAMILIES.find(family => family.key === key) ?? TOPIC_FAMILIES[0]
 }
@@ -754,10 +651,12 @@ function selectReferenceLines(deepDive, verseIds) {
 
 function createLineReference(deepDive, verseIds, options = {}) {
   const referenceLines = selectReferenceLines(deepDive, verseIds)
-  const shortMeaning = summarizeVerseWindow(referenceLines)
-  const lifeApplication =
-    options.lifeApplication
-    ?? "Keep this line close enough to set the next faithful move before the old reflex retakes the room."
+  const shortMeaning = options.blankCopy === true
+    ? ""
+    : (options.shortMeaning ?? summarizeVerseWindow(referenceLines))
+  const lifeApplication = options.blankCopy === true
+    ? ""
+    : (options.lifeApplication ?? "Keep this line close enough to set the next faithful move before the old reflex retakes the room.")
 
   return {
     deepDiveId: deepDive.id,
@@ -770,57 +669,23 @@ function createLineReference(deepDive, verseIds, options = {}) {
 function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
   const windows = buildGuidanceWindows(deepDive)
   const verseIds = windows[slotIndex % windows.length]
-  const source = createLineReference(deepDive, verseIds)
+  const source = createLineReference(deepDive, verseIds, { blankCopy: true })
   const selectedLines = deepDive.lines.filter(line => verseIds.includes(line.verseId))
   const leadLine = selectedLines[0] ?? deepDive.lines[0]
   const tailLine = selectedLines[selectedLines.length - 1] ?? deepDive.lines[deepDive.lines.length - 1] ?? leadLine
   const family = getTopicFamily(familyKey)
-  const windowMeaning = summarizeVerseWindow(selectedLines.length > 0 ? selectedLines : [leadLine])
-  const variants = [
-    {
-      key: "doorway",
-      fallbackTitle: `Begin with ${family.shortTitle}`,
-      titleLine: leadLine,
-      summary: `${family.shortTitle} is named plainly here before the mind has time to decorate it.`,
-      takeaway: windowMeaning,
-      lifeApplication: `${family.actionBase} Begin with the part of the day already in front of you.`,
-      sourceLife: `${family.actionBase} Let the line meet the ordinary room before self-judgment starts arranging it.`,
-    },
-    {
-      key: "pressure",
-      fallbackTitle: `Hold ${family.shortTitle} Under Pressure`,
-      titleLine: tailLine,
-      summary: `${family.shortTitle} is being answered in the middle of pressure, not after the day has calmed down.`,
-      takeaway: windowMeaning,
-      lifeApplication: `${family.actionBase} Use the line before the pressure chooses your tone.`,
-      sourceLife: `${family.actionBase} Use the line before urgency gets to rename fear as wisdom.`,
-    },
-    {
-      key: "return",
-      fallbackTitle: `Return through ${family.shortTitle}`,
-      titleLine: tailLine,
-      summary: `The shabad does not leave ${family.shortTitle.toLowerCase()} at diagnosis. It turns toward return.`,
-      takeaway: trimToSentence(summarizeLine(tailLine), 14),
-      lifeApplication: `${family.actionBase} After the reaction, make the next return smaller and truer.`,
-      sourceLife: `${family.actionBase} Let this line guide the first honest return after the reaction.`,
-    },
-  ]
-  const variant = variants[slotIndex % variants.length]
   const title = buildTitleFromTranslation(
-    variant.titleLine.translation,
-    variant.fallbackTitle
+    (slotIndex % 3 === 0 ? leadLine : tailLine).translation,
+    slotIndex % 3 === 0 ? `Begin with ${family.shortTitle}` : `Return through ${family.shortTitle}`
   )
 
   return {
     id: `guidance-${deepDive.id.replace(/^shabad-/, "")}-${slotIndex + 1}`,
     title,
-    summary: variant.summary,
-    takeaway: variant.takeaway,
-    lifeApplication: variant.lifeApplication,
-    source: {
-      ...source,
-      lifeApplication: variant.sourceLife,
-    },
+    summary: "",
+    takeaway: "",
+    lifeApplication: "",
+    source,
     relatedTopicIds: [],
     relatedShabadIds: [deepDive.id],
     relatedCollectionIds: [],
@@ -831,7 +696,11 @@ function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
       balanceCategoryForFamily(family.key),
       slotIndex === 0 ? "fresh" : "evergreen"
     ),
-    editorial: null,
+    editorial: {
+      status: "draft",
+      issues: ["needs human copy"],
+      reviewedByHuman: false,
+    },
   }
 }
 
@@ -867,28 +736,19 @@ function pickScenarioVerseIds(deepDive, scenarioKey, index) {
 }
 
 function createTopicSourceLifeApplication(family, scenarioKey) {
-  switch (scenarioKey) {
-    case "daily":
-      return `${family.actionBase} Let the line meet the part of the day already in front of you.`
-    case "pressure":
-      return `${family.actionBase} Let the line decide the next tone before urgency does.`
-    case "repair":
-      return `${family.actionBase} Let the next return stay smaller and truer than the slip.`
-    case "practice":
-      return `${family.actionBase} Keep the line close enough to become a repeatable posture.`
-    default:
-      return `${family.actionBase} Let the line stay in charge of what comes next.`
-  }
+  return ""
 }
 
 function createTopicExcerpt(deepDive, family, scenarioKey, index, explanationFactory) {
   const verseIds = pickScenarioVerseIds(deepDive, scenarioKey, index)
-  const source = createLineReference(deepDive, verseIds, {
-    lifeApplication: createTopicSourceLifeApplication(family, scenarioKey),
-  })
+  const source = scenarioKey === "overview"
+    ? createLineReference(deepDive, verseIds)
+    : createLineReference(deepDive, verseIds, {
+        blankCopy: true,
+      })
   return {
     source,
-    explanation: explanationFactory({ source, deepDive, index }),
+    explanation: "",
   }
 }
 
@@ -911,7 +771,7 @@ function createManualTopicExcerpt(spec, shabadById, family, scenarioKey, index, 
 
   return {
     source,
-    explanation: spec.explanation || explanationFactory({ source, deepDive, index }),
+    explanation: spec.explanation || "",
   }
 }
 
@@ -985,49 +845,6 @@ function createGenericOverviewCopy(family) {
   }
 }
 
-function createGenericScenarioCopy(family, scenarioKey) {
-  switch (scenarioKey) {
-    case "daily":
-      return {
-        title: `${family.shortTitle} in the ordinary day`,
-        issueStatement: `${family.issueBase} The struggle keeps showing up in plain time, not only in dramatic moments.`,
-        centralInsight: `${family.insightBase} Gurbani treats the ordinary day as a real place of return.`,
-        practicalReflection: `The daily shape of life exposes whether ${family.shortTitle.toLowerCase()} is being remembered or postponed.`,
-        actionPrompt: `${family.actionBase} Keep the next response small enough to survive an ordinary day.`,
-        searchTerms: ["today", "daily", "ordinary day", "routine"],
-      }
-    case "pressure":
-      return {
-        title: `${family.shortTitle} when the day tightens`,
-        issueStatement: `${family.issueBase} Pressure exposes what the mind reaches for first when it feels cornered.`,
-        centralInsight: `${family.insightBase} Under strain, the line must interrupt panic before panic defines the moment.`,
-        practicalReflection: `Pressure is revealing because it shows which voice the mind trusts when there is no time to decorate itself.`,
-        actionPrompt: `${family.actionBase} Use one line before the pressure chooses your tone.`,
-        searchTerms: ["pressure", "stress", "under strain", "cornered"],
-      }
-    case "repair":
-      return {
-        title: `${family.shortTitle} after the slip`,
-        issueStatement: `${family.issueBase} The wound or failure has already happened, and the next task is to return truthfully instead of rehearsing despair.`,
-        centralInsight: `${family.insightBase} Gurbani keeps repair close to humility, remembrance, and return instead of theatre.`,
-        practicalReflection: `Repair becomes honest when the mind stops turning failure into identity and lets the next true act matter.`,
-        actionPrompt: `${family.actionBase} Choose the next truthful return instead of rehearsing the failure.`,
-        searchTerms: ["repair", "return", "after slipping", "start again"],
-      }
-    case "practice":
-      return {
-        title: `Learning a steadier way with ${family.shortTitle.toLowerCase()}`,
-        issueStatement: `${family.issueBase} The deeper need is a form of return that can outlast novelty, urgency, and mood.`,
-        centralInsight: `${family.insightBase} The teaching becomes durable when it is practiced repeatedly enough to change posture.`,
-        practicalReflection: `Practice matters because the heart is always being trained by something; Gurbani asks what pattern is becoming ordinary.`,
-        actionPrompt: `${family.actionBase} Repeat what you can actually keep.`,
-        searchTerms: ["practice", "habit", "steady return", "formation"],
-      }
-      default:
-        return createGenericOverviewCopy(family)
-  }
-}
-
 function buildScenarioShabadSets(candidateShabads) {
   return Object.fromEntries(
     TOPIC_SCENARIO_KEYS.map((scenarioKey) => ([
@@ -1040,9 +857,13 @@ function buildScenarioShabadSets(candidateShabads) {
 }
 
 function buildTopicScenario(family, scenarioKey, candidateShabads, shabadById, override = null) {
-  const scenarioCopy = {
-    ...createGenericScenarioCopy(family, scenarioKey),
-    ...(override ?? {}),
+  const scenarioCopy = override ?? {
+    title: "",
+    issueStatement: "",
+    centralInsight: "",
+    practicalReflection: "",
+    actionPrompt: "",
+    searchTerms: [],
   }
   const combinedScenarioTerms = (scenarioCopy.searchTerms ?? []).flatMap(term => ([
     `${family.shortTitle.toLowerCase()} ${term.toLowerCase()}`,
@@ -1069,19 +890,25 @@ function buildTopicScenario(family, scenarioKey, candidateShabads, shabadById, o
     searchTerms: dedupeSearchTerms([
       ...family.searchTerms,
       family.shortTitle.toLowerCase(),
-      scenarioCopy.title.toLowerCase(),
-      `${family.shortTitle.toLowerCase()} ${TOPIC_SCENARIO_LABELS[scenarioKey].toLowerCase()}`,
+      ...(scenarioCopy.title ? [scenarioCopy.title.toLowerCase()] : []),
+      ...(scenarioCopy.title ? [`${family.shortTitle.toLowerCase()} ${TOPIC_SCENARIO_LABELS[scenarioKey].toLowerCase()}`] : []),
       ...(scenarioCopy.searchTerms ?? []),
       ...combinedScenarioTerms,
     ]),
     excerpts,
-    editorial: override ? { forcedLocked: true } : null,
+    editorial: override
+      ? { forcedLocked: true }
+      : {
+          status: "draft",
+          issues: ["needs human copy"],
+          reviewedByHuman: false,
+        },
   }
 }
 
-function getOverviewExplanationFactory(family, overviewCopy) {
+function getOverviewExplanationFactory(overviewCopy) {
   return [
-    ({ source }) => `The theme is named plainly here: ${lowerFirst(source.shortMeaning)}.`,
+    ({ source }) => `The line turns the issue by naming ${lowerFirst(source.shortMeaning)}.`,
     ({ source }) => `The shabad widens the issue and gives it a truer direction. ${source.lifeApplication}`,
     () => `${overviewCopy.centralInsight} The line is not a detached quote; it belongs to a fuller turn the whole shabad is making.`,
   ]
@@ -1103,7 +930,7 @@ function buildCanonicalTopicGuide({
     family,
     candidateShabads,
     scenarioKey: "overview",
-    explanationFactory: getOverviewExplanationFactory(family, overviewCopy),
+    explanationFactory: getOverviewExplanationFactory(overviewCopy),
     manualExcerpts: goldSet?.overview?.excerpts ?? null,
     shabadById,
   })
@@ -1322,13 +1149,18 @@ function buildShabadNarrativeCopy(shabad) {
 }
 
 function normalizeLineReference(reference, deepDive, fallbackLifeApplication) {
-  const shortMeaning = publicTextNeedsCleanup(reference.shortMeaning)
-    ? summarizeVerseWindow(selectReferenceLines(deepDive, reference.verseIds))
-    : reference.shortMeaning
+  const shortMeaning = reference.shortMeaning === ""
+    ? ""
+    : publicTextNeedsCleanup(reference.shortMeaning)
+      ? summarizeVerseWindow(selectReferenceLines(deepDive, reference.verseIds))
+      : reference.shortMeaning
   const shouldReplaceLifeApplication =
-    publicTextNeedsCleanup(reference.lifeApplication)
-    || /becomes more truthful when/i.test(reference.lifeApplication)
-    || /let the wider window set the tone/i.test(reference.lifeApplication)
+    reference.lifeApplication !== ""
+    && (
+      publicTextNeedsCleanup(reference.lifeApplication)
+      || /becomes more truthful when/i.test(reference.lifeApplication)
+      || /let the wider window set the tone/i.test(reference.lifeApplication)
+    )
 
   return {
     ...reference,
@@ -1348,7 +1180,12 @@ function normalizeGuidanceItem(guidance, shabadById) {
   return {
     ...guidance,
     title: publicTextNeedsCleanup(guidance.title) ? fallbackTitle : guidance.title,
-    takeaway: publicTextNeedsCleanup(guidance.takeaway) ? fallbackMeaning : guidance.takeaway,
+    takeaway:
+      guidance.takeaway === ""
+        ? ""
+        : publicTextNeedsCleanup(guidance.takeaway)
+          ? fallbackMeaning
+          : guidance.takeaway,
     source: normalizeLineReference(guidance.source, deepDive, guidance.lifeApplication),
   }
 }
@@ -1360,9 +1197,12 @@ function normalizeExcerpt(excerpt, deepDive, family, scenarioKey, explanationFac
     createTopicSourceLifeApplication(family, scenarioKey)
   )
   const needsExplanationRefresh =
-    publicTextNeedsCleanup(excerpt.explanation)
-    || excerpt.explanation.includes(excerpt.source.shortMeaning)
-    || excerpt.explanation.includes(excerpt.source.lifeApplication)
+    excerpt.explanation !== ""
+    && (
+      publicTextNeedsCleanup(excerpt.explanation)
+      || excerpt.explanation.includes(excerpt.source.shortMeaning)
+      || excerpt.explanation.includes(excerpt.source.lifeApplication)
+    )
 
   return {
     source,
@@ -1382,7 +1222,7 @@ function normalizeTopicGuideItem(topic, shabadById) {
     actionPrompt: topic.actionPrompt,
     searchTerms: topic.searchTerms,
   }
-  const overviewFactory = getOverviewExplanationFactory(family, overviewCopy)
+  const overviewFactory = getOverviewExplanationFactory(overviewCopy)
 
   const excerpts = topic.excerpts.map((excerpt, index) => {
     const deepDive = shabadById.get(excerpt.source.deepDiveId)
@@ -1430,56 +1270,204 @@ function normalizeCollectionItem(collection, shabadById) {
   }
 }
 
-function applyGuidanceCopyOverrides(guidance) {
-  const override = GUIDANCE_COPY_OVERRIDES[guidance.id]
+function applyEditorialOverrideMetadata(item, override) {
+  if (!override) return item
+  const baseEditorial = override.reviewedByHuman === true ? {} : (item.editorial ?? {})
+  return {
+    ...item,
+    editorial: {
+      ...baseEditorial,
+      ...(override.reviewedByHuman === true ? { issues: [] } : {}),
+      ...(override.reviewedByHuman === true ? { reviewedByHuman: true } : {}),
+      ...(override.forcedLocked === true ? { forcedLocked: true } : {}),
+    },
+  }
+}
+
+function applyExcerptOverrides(excerpts, overrideExcerpts = []) {
+  if (!Array.isArray(overrideExcerpts) || overrideExcerpts.length === 0) {
+    return excerpts
+  }
+
+  return excerpts.map((excerpt, index) => {
+    const override = overrideExcerpts[index]
+    if (!override) return excerpt
+
+    return {
+      ...excerpt,
+      ...(override.explanation !== undefined ? { explanation: override.explanation } : {}),
+      source: {
+        ...excerpt.source,
+        ...(override.source ?? {}),
+      },
+    }
+  })
+}
+
+function applyGuidanceCopyOverrides(guidance, overrides) {
+  const override = overrides.guidance[guidance.id]
   if (!override) return guidance
 
-  return {
+  return applyEditorialOverrideMetadata({
     ...guidance,
-    ...(override.title ? { title: override.title } : {}),
-    ...(override.summary ? { summary: override.summary } : {}),
-    ...(override.takeaway ? { takeaway: override.takeaway } : {}),
-    ...(override.lifeApplication ? { lifeApplication: override.lifeApplication } : {}),
+    ...(override.title !== undefined ? { title: override.title } : {}),
+    ...(override.summary !== undefined ? { summary: override.summary } : {}),
+    ...(override.takeaway !== undefined ? { takeaway: override.takeaway } : {}),
+    ...(override.lifeApplication !== undefined ? { lifeApplication: override.lifeApplication } : {}),
+    ...(override.rotationTheme !== undefined
+      ? {
+          rotation: {
+            ...guidance.rotation,
+            theme: override.rotationTheme,
+          },
+        }
+      : {}),
     source: {
       ...guidance.source,
       ...(override.source ?? {}),
     },
-    editorial: {
-      ...(guidance.editorial ?? {}),
-      forcedLocked: true,
-    },
-  }
+  }, override)
 }
 
-function applyCollectionCopyOverrides(collection) {
-  const override = COLLECTION_COPY_OVERRIDES[collection.id]
+function applyCollectionCopyOverrides(collection, overrides) {
+  const override = overrides.collection[collection.id]
   if (!override) return collection
 
-  return {
+  return applyEditorialOverrideMetadata({
     ...collection,
-    ...override,
-    editorial: {
-      ...(collection.editorial ?? {}),
-      forcedLocked: true,
-    },
-  }
+    ...(override.title !== undefined ? { title: override.title } : {}),
+    ...(override.subtitle !== undefined ? { subtitle: override.subtitle } : {}),
+    ...(override.description !== undefined ? { description: override.description } : {}),
+    ...(override.heroSource
+      ? {
+          heroSource: {
+            ...collection.heroSource,
+            ...override.heroSource,
+          },
+        }
+      : {}),
+  }, override)
 }
 
-function applyShabadCopyOverrides(shabad) {
-  const override = SHABAD_COPY_OVERRIDES[shabad.id]
+function applyShabadCopyOverrides(shabad, overrides) {
+  const override = overrides.shabad[shabad.id]
   if (!override) return shabad
 
-  return {
+  return applyEditorialOverrideMetadata({
     ...shabad,
-    ...override,
+    ...(override.title !== undefined ? { title: override.title } : {}),
+    ...(override.summary !== undefined ? { summary: override.summary } : {}),
+    ...(override.whyItMatters !== undefined ? { whyItMatters: override.whyItMatters } : {}),
+    ...(override.takeaway !== undefined ? { takeaway: override.takeaway } : {}),
+    ...(override.structure !== undefined ? { structure: override.structure } : {}),
+  }, override)
+}
+
+function applyTopicCopyOverrides(topic, overrides) {
+  const topicOverride = overrides.topic[topic.id]
+  const updatedTopic = topicOverride
+    ? applyEditorialOverrideMetadata({
+        ...topic,
+        ...(topicOverride.title !== undefined ? { title: topicOverride.title } : {}),
+        ...(topicOverride.shortTitle !== undefined ? { shortTitle: topicOverride.shortTitle } : {}),
+        ...(topicOverride.issueStatement !== undefined ? { issueStatement: topicOverride.issueStatement } : {}),
+        ...(topicOverride.centralInsight !== undefined ? { centralInsight: topicOverride.centralInsight } : {}),
+        ...(topicOverride.practicalReflection !== undefined ? { practicalReflection: topicOverride.practicalReflection } : {}),
+        ...(topicOverride.actionPrompt !== undefined ? { actionPrompt: topicOverride.actionPrompt } : {}),
+        excerpts: applyExcerptOverrides(topic.excerpts, topicOverride.excerpts),
+      }, topicOverride)
+    : topic
+
+  const scenarios = Object.fromEntries(
+    updatedTopic.scenarioOrder.map((scenarioKey) => {
+      const scenario = updatedTopic.scenarios[scenarioKey]
+      const scenarioOverride = overrides.scenario[`${updatedTopic.id}#${scenarioKey}`]
+
+      if (!scenarioOverride) {
+        return [scenarioKey, scenario]
+      }
+
+      return [
+        scenarioKey,
+        applyEditorialOverrideMetadata({
+          ...scenario,
+          ...(scenarioOverride.title !== undefined ? { title: scenarioOverride.title } : {}),
+          ...(scenarioOverride.issueStatement !== undefined ? { issueStatement: scenarioOverride.issueStatement } : {}),
+          ...(scenarioOverride.centralInsight !== undefined ? { centralInsight: scenarioOverride.centralInsight } : {}),
+          ...(scenarioOverride.practicalReflection !== undefined ? { practicalReflection: scenarioOverride.practicalReflection } : {}),
+          ...(scenarioOverride.actionPrompt !== undefined ? { actionPrompt: scenarioOverride.actionPrompt } : {}),
+          excerpts: applyExcerptOverrides(scenario.excerpts, scenarioOverride.excerpts),
+        }, scenarioOverride),
+      ]
+    })
+  )
+
+  return {
+    ...updatedTopic,
+    scenarios,
+  }
+}
+
+function themeKeywordOverlapRatio(themeKey, lines) {
+  const family = getTopicFamily(themeKey)
+  const keywordTokens = new Set([
+    ...toTokens(family.key),
+    ...toTokens(family.shortTitle),
+    ...family.keywords.flatMap(keyword => toTokens(keyword)),
+    ...family.searchTerms.flatMap(term => toTokens(term)),
+    ...family.emotionalStates.flatMap(state => toTokens(state)),
+  ])
+  if (keywordTokens.size === 0) return 0
+
+  const verseTokens = new Set(lines.flatMap(line => toTokens(line.translation ?? "")))
+  const overlap = Array.from(keywordTokens).filter(token => verseTokens.has(token)).length
+  return overlap / keywordTokens.size
+}
+
+function applyGeneratedGuidanceGuards(guidance, shabadById) {
+  const isGenerated =
+    guidance.id.startsWith("guidance-generated-")
+    || guidance.editorial?.issues?.includes("needs human copy") === true
+  const reviewedByHuman = guidance.editorial?.reviewedByHuman === true
+  if (!isGenerated || reviewedByHuman) {
+    return guidance
+  }
+
+  const deepDive = shabadById.get(guidance.source.deepDiveId)
+  if (!deepDive) return guidance
+
+  const overlapRatio = themeKeywordOverlapRatio(
+    guidance.rotation.theme,
+    selectReferenceLines(deepDive, guidance.source.verseIds)
+  )
+  const issues = new Set(guidance.editorial?.issues ?? [])
+
+  if (overlapRatio < 0.15) {
+    issues.add("theme mismatch between verse and assigned theme")
+    return {
+      ...guidance,
+      editorial: {
+        ...(guidance.editorial ?? {}),
+        status: "theme-mismatch",
+        issues: Array.from(issues),
+        reviewedByHuman: false,
+      },
+    }
+  }
+
+  issues.add("needs human copy")
+  return {
+    ...guidance,
     editorial: {
-      ...(shabad.editorial ?? {}),
-      forcedLocked: true,
+      ...(guidance.editorial ?? {}),
+      status: "draft",
+      issues: Array.from(issues),
+      reviewedByHuman: false,
     },
   }
 }
 
-function normalizePublishedCopy(dataset) {
+function normalizePublishedCopy(dataset, overrides) {
   dataset.shabadDeepDives = dataset.shabadDeepDives.map((shabad) => {
     const refreshed = buildShabadNarrativeCopy(shabad)
     return {
@@ -1502,16 +1490,19 @@ function normalizePublishedCopy(dataset) {
           ? refreshed.structure
           : shabad.structure,
     }
-  }).map(applyShabadCopyOverrides)
+  }).map(shabad => applyShabadCopyOverrides(shabad, overrides))
 
   const shabadById = new Map(dataset.shabadDeepDives.map(item => [item.id, item]))
   dataset.dailyGuidance = dataset.dailyGuidance
     .map(item => normalizeGuidanceItem(item, shabadById))
-    .map(applyGuidanceCopyOverrides)
-  dataset.topicGuides = dataset.topicGuides.map(item => normalizeTopicGuideItem(item, shabadById))
+    .map(item => applyGuidanceCopyOverrides(item, overrides))
+    .map(item => applyGeneratedGuidanceGuards(item, shabadById))
+  dataset.topicGuides = dataset.topicGuides
+    .map(item => normalizeTopicGuideItem(item, shabadById))
+    .map(item => applyTopicCopyOverrides(item, overrides))
   dataset.collections = dataset.collections
     .map(item => normalizeCollectionItem(item, shabadById))
-    .map(applyCollectionCopyOverrides)
+    .map(item => applyCollectionCopyOverrides(item, overrides))
 }
 
 function buildSearchIndex(topicGuides) {
@@ -1778,6 +1769,7 @@ export async function syncSggsCorpus({
 
 export async function generateDrafts() {
   const legacy = loadLegacySeed()
+  const overrides = loadLearnOverrides()
   const corpus = await syncSggsCorpus()
   const huggingFaceAdapter = createHuggingFaceAdapter()
 
@@ -1909,7 +1901,7 @@ export async function generateDrafts() {
     collections: collections.slice(0, 100),
   }
 
-  normalizePublishedCopy(dataset)
+  normalizePublishedCopy(dataset, overrides)
   Object.assign(dataset, buildDatasetIndexes(dataset))
   wireRelationships(dataset)
   dataset.searchIndex = buildSearchIndex(dataset.topicGuides)
@@ -1922,15 +1914,6 @@ export async function generateDrafts() {
   await writeJson(DRAFTS_PATH, dataset)
   return dataset
 }
-
-function tokenSetSimilarity(left, right) {
-  const leftTokens = new Set(normalizeText(left).split(" ").filter(Boolean))
-  const rightTokens = new Set(normalizeText(right).split(" ").filter(Boolean))
-  const overlap = Array.from(leftTokens).filter(token => rightTokens.has(token)).length
-  const union = new Set([...leftTokens, ...rightTokens]).size
-  return union === 0 ? 0 : overlap / union
-}
-
 function cosineSimilarity(left, right) {
   if (!Array.isArray(left) || !Array.isArray(right) || left.length === 0 || right.length === 0) {
     return null
@@ -2021,11 +2004,61 @@ function addPublicTextValidation(hardFailures, label, value) {
   }
 }
 
+function getReferenceTranslation(indexes, source) {
+  const shabad = indexes.shabadDeepDivesById[source?.deepDiveId]
+  if (!shabad) return ""
+
+  return shabad.lines
+    .filter(line => source.verseIds.includes(line.verseId))
+    .map(line => line.translation)
+    .filter(Boolean)
+    .join(" ")
+}
+
+function addLineReferenceValidation(hardFailures, indexes, label, source) {
+  addPublicTextValidation(hardFailures, label, source.shortMeaning)
+  const translationCheck = checkShortMeaningTranslationEcho(
+    source.shortMeaning,
+    getReferenceTranslation(indexes, source)
+  )
+  if (translationCheck.rejected) {
+    hardFailures.push(`${label} echoes the cited translation too closely (${translationCheck.similarity.toFixed(2)})`)
+  }
+}
+
+function addEditorialGateFailures(hardFailures, label, editorial) {
+  if (!editorial) return
+
+  if (editorial.status === "theme-mismatch") {
+    hardFailures.push(`${label} is marked theme-mismatch and cannot be published`)
+  }
+  if (editorial.origin === "generated" && editorial.reviewedByHuman !== true) {
+    hardFailures.push(`${label} is generated but not marked reviewedByHuman`)
+  }
+}
+
+function shouldValidatePublishedCopy(editorial) {
+  return !(editorial?.origin === "generated" && editorial.reviewedByHuman !== true)
+    && editorial?.status !== "theme-mismatch"
+}
+
+function clearsEditorialThresholds(editorial, thresholds) {
+  if (!editorial || !thresholds) return false
+  return (
+    editorial.scores.overall >= thresholds.overall
+    && editorial.scores.faithfulness >= thresholds.faithfulness
+    && editorial.scores.clarity >= thresholds.clarity
+    && editorial.scores.usefulness >= thresholds.usefulness
+    && editorial.scores.beauty >= thresholds.beauty
+  )
+}
+
 export async function validateDrafts(drafts = null) {
   const dataset = drafts ?? await generateDrafts()
   const hardFailures = []
   const warnings = []
   const topicUniquenessRegistry = dataset.topicUniquenessRegistry ?? await readJson(TOPIC_UNIQUENESS_PATH)
+  const indexes = buildDatasetIndexes(dataset)
 
   const duplicateIds = {
     dailyGuidance: collectDuplicateIds(dataset.dailyGuidance),
@@ -2046,9 +2079,22 @@ export async function validateDrafts(drafts = null) {
       hardFailures.push(`Duplicate shabad coverage found for shabad_id ${shabad.citation.shabad_id}`)
     }
     shabadIds.add(shabad.citation.shabad_id)
-    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} title`, shabad.title)
-    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} summary`, shabad.summary)
-    addPublicTextValidation(hardFailures, `Shabad ${shabad.id} takeaway`, shabad.takeaway)
+    addEditorialGateFailures(hardFailures, `Shabad ${shabad.id}`, shabad.editorial)
+    if (shouldValidatePublishedCopy(shabad.editorial)) {
+      addPublicTextValidation(hardFailures, `Shabad ${shabad.id} title`, shabad.title)
+      addPublicTextValidation(hardFailures, `Shabad ${shabad.id} summary`, shabad.summary)
+      addPublicTextValidation(hardFailures, `Shabad ${shabad.id} whyItMatters`, shabad.whyItMatters)
+      addPublicTextValidation(hardFailures, `Shabad ${shabad.id} takeaway`, shabad.takeaway)
+      for (const [structureIndex, structureLine] of shabad.structure.entries()) {
+        addPublicTextValidation(hardFailures, `Shabad ${shabad.id} structure ${structureIndex + 1}`, structureLine)
+      }
+      if (shabad.editorial.issues.length > 0) {
+        hardFailures.push(`Shabad ${shabad.id} still has editorial issues: ${shabad.editorial.issues.join(", ")}`)
+      }
+      if (!clearsEditorialThresholds(shabad.editorial, PREMIUM_EDITORIAL_THRESHOLDS["shabad-deep-dive"])) {
+        hardFailures.push(`Shabad ${shabad.id} did not clear premium editorial thresholds`)
+      }
+    }
   }
 
   const guidanceKeys = new Set()
@@ -2058,9 +2104,20 @@ export async function validateDrafts(drafts = null) {
       hardFailures.push(`Duplicate daily guidance window detected for ${guidance.id}`)
     }
     guidanceKeys.add(key)
-    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} title`, guidance.title)
-    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} takeaway`, guidance.takeaway)
-    addPublicTextValidation(hardFailures, `Guidance ${guidance.id} excerpt meaning`, guidance.source.shortMeaning)
+    addEditorialGateFailures(hardFailures, `Guidance ${guidance.id}`, guidance.editorial)
+    if (shouldValidatePublishedCopy(guidance.editorial)) {
+      addPublicTextValidation(hardFailures, `Guidance ${guidance.id} title`, guidance.title)
+      addPublicTextValidation(hardFailures, `Guidance ${guidance.id} summary`, guidance.summary)
+      addPublicTextValidation(hardFailures, `Guidance ${guidance.id} takeaway`, guidance.takeaway)
+      addPublicTextValidation(hardFailures, `Guidance ${guidance.id} life application`, guidance.lifeApplication)
+      addLineReferenceValidation(hardFailures, indexes, `Guidance ${guidance.id} excerpt meaning`, guidance.source)
+      if (guidance.editorial.issues.length > 0) {
+        hardFailures.push(`Guidance ${guidance.id} still has editorial issues: ${guidance.editorial.issues.join(", ")}`)
+      }
+      if (!clearsEditorialThresholds(guidance.editorial, PREMIUM_EDITORIAL_THRESHOLDS["daily-guidance"])) {
+        hardFailures.push(`Guidance ${guidance.id} did not clear premium editorial thresholds`)
+      }
+    }
   }
 
   const topicFamilies = new Set()
@@ -2071,7 +2128,6 @@ export async function validateDrafts(drafts = null) {
     topicFamilies.add(topic.rotation.theme)
   }
 
-  const indexes = buildDatasetIndexes(dataset)
   for (const guidance of dataset.dailyGuidance) {
     if (!indexes.shabadDeepDivesById[guidance.source.deepDiveId]) {
       hardFailures.push(`Guidance ${guidance.id} references missing shabad ${guidance.source.deepDiveId}`)
@@ -2092,36 +2148,38 @@ export async function validateDrafts(drafts = null) {
   }
 
   for (const topic of dataset.topicGuides) {
-    addPublicTextValidation(hardFailures, `Topic ${topic.id} title`, topic.title)
     const shabadCount = new Set(topic.excerpts.map(excerpt => excerpt.source.deepDiveId)).size
     if (topic.excerpts.length < 3 || shabadCount < 2) {
       hardFailures.push(`Topic ${topic.id} does not have at least 3 excerpts from 2 shabads`)
-    }
-    for (const [excerptIndex, excerpt] of topic.excerpts.entries()) {
-      addPublicTextValidation(
-        hardFailures,
-        `Topic ${topic.id} overview excerpt ${excerptIndex + 1} meaning`,
-        excerpt.source.shortMeaning
-      )
     }
 
     if (!topic.editorial) {
       hardFailures.push(`Topic ${topic.id} is missing editorial review`)
     } else {
-      if (topic.editorial.status === "draft") {
+      addEditorialGateFailures(hardFailures, `Canonical topic ${topic.id}`, topic.editorial)
+      if (topic.editorial.status === "draft" && shouldValidatePublishedCopy(topic.editorial)) {
         hardFailures.push(`Canonical topic ${topic.id} is still in draft status`)
       }
-      if (topic.editorial.issues.length > 0) {
+      if (topic.editorial.issues.length > 0 && shouldValidatePublishedCopy(topic.editorial)) {
         hardFailures.push(`Canonical topic ${topic.id} still has editorial issues: ${topic.editorial.issues.join(", ")}`)
       }
       if (
+        shouldValidatePublishedCopy(topic.editorial)
+        && (
         topic.editorial.scores.overall < 3.75
         || topic.editorial.scores.faithfulness < 3.7
         || topic.editorial.scores.clarity < 2.9
         || topic.editorial.scores.usefulness < 3
         || topic.editorial.scores.beauty < 3.1
+        )
       ) {
         hardFailures.push(`Canonical topic ${topic.id} did not clear editorial thresholds`)
+      }
+    }
+    if (shouldValidatePublishedCopy(topic.editorial)) {
+      addPublicTextValidation(hardFailures, `Topic ${topic.id} title`, topic.title)
+      for (const [excerptIndex, excerpt] of topic.excerpts.entries()) {
+        addLineReferenceValidation(hardFailures, indexes, `Topic ${topic.id} overview excerpt ${excerptIndex + 1} meaning`, excerpt.source)
       }
     }
 
@@ -2137,14 +2195,6 @@ export async function validateDrafts(drafts = null) {
       if (scenario.excerpts.length < 3 || scenarioShabadCount < 2) {
         hardFailures.push(`Scenario ${topic.id}#${scenarioKey} does not have at least 3 excerpts from 2 shabads`)
       }
-      addPublicTextValidation(hardFailures, `Scenario ${topic.id}#${scenarioKey} title`, scenario.title)
-      for (const [excerptIndex, excerpt] of scenario.excerpts.entries()) {
-        addPublicTextValidation(
-          hardFailures,
-          `Scenario ${topic.id}#${scenarioKey} excerpt ${excerptIndex + 1} meaning`,
-          excerpt.source.shortMeaning
-        )
-      }
 
       const firstExcerptKey = scenario.excerpts[0]
         ? `${scenario.excerpts[0].source.deepDiveId}:${scenario.excerpts[0].source.verseIds.join(",")}`
@@ -2159,20 +2209,30 @@ export async function validateDrafts(drafts = null) {
       if (!scenario.editorial) {
         hardFailures.push(`Scenario ${topic.id}#${scenarioKey} is missing editorial review`)
       } else {
-        if (scenario.editorial.status === "draft") {
+        addEditorialGateFailures(hardFailures, `Scenario ${topic.id}#${scenarioKey}`, scenario.editorial)
+        if (scenario.editorial.status === "draft" && shouldValidatePublishedCopy(scenario.editorial)) {
           hardFailures.push(`Scenario ${topic.id}#${scenarioKey} is still in draft status`)
         }
-        if (scenario.editorial.issues.length > 0) {
+        if (scenario.editorial.issues.length > 0 && shouldValidatePublishedCopy(scenario.editorial)) {
           hardFailures.push(`Scenario ${topic.id}#${scenarioKey} still has editorial issues: ${scenario.editorial.issues.join(", ")}`)
         }
         if (
+          shouldValidatePublishedCopy(scenario.editorial)
+          && (
           scenario.editorial.scores.overall < 3.75
           || scenario.editorial.scores.faithfulness < 3.7
           || scenario.editorial.scores.clarity < 2.9
           || scenario.editorial.scores.usefulness < 3
           || scenario.editorial.scores.beauty < 3.1
+          )
         ) {
           hardFailures.push(`Scenario ${topic.id}#${scenarioKey} did not clear editorial thresholds`)
+        }
+      }
+      if (shouldValidatePublishedCopy(scenario.editorial)) {
+        addPublicTextValidation(hardFailures, `Scenario ${topic.id}#${scenarioKey} title`, scenario.title)
+        for (const [excerptIndex, excerpt] of scenario.excerpts.entries()) {
+          addLineReferenceValidation(hardFailures, indexes, `Scenario ${topic.id}#${scenarioKey} excerpt ${excerptIndex + 1} meaning`, excerpt.source)
         }
       }
     }
@@ -2213,8 +2273,19 @@ export async function validateDrafts(drafts = null) {
     if (!collection.heroSource?.deepDiveId) {
       hardFailures.push(`Collection ${collection.id} is missing a hero source`)
     }
-    addPublicTextValidation(hardFailures, `Collection ${collection.id} title`, collection.title)
-    addPublicTextValidation(hardFailures, `Collection ${collection.id} hero meaning`, collection.heroSource.shortMeaning)
+    addEditorialGateFailures(hardFailures, `Collection ${collection.id}`, collection.editorial)
+    if (shouldValidatePublishedCopy(collection.editorial)) {
+      addPublicTextValidation(hardFailures, `Collection ${collection.id} title`, collection.title)
+      addPublicTextValidation(hardFailures, `Collection ${collection.id} subtitle`, collection.subtitle)
+      addPublicTextValidation(hardFailures, `Collection ${collection.id} description`, collection.description)
+      addLineReferenceValidation(hardFailures, indexes, `Collection ${collection.id} hero meaning`, collection.heroSource)
+      if (collection.editorial.issues.length > 0) {
+        hardFailures.push(`Collection ${collection.id} still has editorial issues: ${collection.editorial.issues.join(", ")}`)
+      }
+      if (!clearsEditorialThresholds(collection.editorial, PREMIUM_EDITORIAL_THRESHOLDS.collection)) {
+        hardFailures.push(`Collection ${collection.id} did not clear premium editorial thresholds`)
+      }
+    }
     if (collection.items.length < 2 || collection.items.length > 7) {
       hardFailures.push(`Collection ${collection.id} has invalid length ${collection.items.length}`)
     }
@@ -2236,9 +2307,13 @@ export async function validateDrafts(drafts = null) {
 
   for (const bucket of [dataset.dailyGuidance, dataset.shabadDeepDives, dataset.topicGuides, dataset.collections]) {
     for (const item of bucket) {
+      if (!shouldValidatePublishedCopy(item.editorial)) continue
       const payload = JSON.stringify(item)
       if (PLACEHOLDER_PATTERNS.some(pattern => pattern.test(payload))) {
         hardFailures.push(`${item.id} contains placeholder copy`)
+      }
+      if (HARD_BANNED_PATTERNS.some(pattern => pattern.test(payload))) {
+        hardFailures.push(`${item.id} contains a hard-banned editorial phrase`)
       }
     }
   }

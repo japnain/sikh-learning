@@ -13,6 +13,14 @@ export const HARD_BANNED_PATTERNS = [
   /\bmanifest(?:ing)?\b/i,
   /\bheals? everything\b/i,
   /\bfix(?:es|ing) everything\b/i,
+  /named plainly here before the mind has time to decorate it/i,
+  /begin with the part of the day already in front of you/i,
+  /let the line meet the ordinary room before self-judgment/i,
+  /the theme is named plainly here/i,
+  /use the line before the pressure chooses your tone/i,
+  /let the line decide the next tone before urgency does/i,
+  /keep the line close enough to become a repeatable posture/i,
+  /after the reaction, make the next return smaller and truer/i,
 ]
 
 export const WEAK_COPY_PATTERNS = [
@@ -25,14 +33,28 @@ export const WEAK_COPY_PATTERNS = [
 ]
 
 export const ACTION_VERBS = [
+  "ask",
+  "breathe",
+  "bow",
+  "carry",
+  "catch",
+  "choose",
+  "drop",
+  "feel",
+  "hold",
+  "interrupt",
+  "lean",
+  "lift",
+  "move",
   "read",
   "name",
   "notice",
+  "pause",
+  "plant",
   "refuse",
   "release",
   "return",
   "let",
-  "choose",
   "guard",
   "wait",
   "receive",
@@ -40,10 +62,23 @@ export const ACTION_VERBS = [
   "bring",
   "listen",
   "stop",
+  "step",
+  "stay",
+  "touch",
+  "unclench",
+  "widen",
 ]
 
 export const BEAUTY_SIGNALS = [
+  "beloved",
+  "breath",
+  "cool",
+  "grace",
   "mercy",
+  "quiets",
+  "refuge",
+  "shelter",
+  "sanctuary",
   "steady",
   "return",
   "quiet",
@@ -60,6 +95,10 @@ export const BEAUTY_SIGNALS = [
 ]
 
 export const CONCRETE_SIGNALS = [
+  "body",
+  "breath",
+  "card",
+  "chest",
   "today",
   "day",
   "before",
@@ -68,8 +107,23 @@ export const CONCRETE_SIGNALS = [
   "one",
   "next",
   "room",
+  "screen",
+  "doorway",
+  "floor",
+  "gaze",
+  "hand",
+  "hands",
+  "jaw",
+  "meeting",
+  "message",
   "mouth",
+  "purchase",
+  "reply",
+  "scroll",
+  "sink",
   "tongue",
+  "throat",
+  "threshold",
   "heart",
   "mind",
   "line",
@@ -110,7 +164,7 @@ const REPETITION_STOP_WORDS = new Set([
 ])
 
 export function normalizeEditorialText(value) {
-  return value
+  return String(value ?? "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()

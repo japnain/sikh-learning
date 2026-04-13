@@ -1,0 +1,502 @@
+{
+  "version": 1,
+  "items": {
+    "daily-guidance": {
+      "guidance-generated-1-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.524Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.524Z"
+      },
+      "guidance-generated-229-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.524Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.524Z"
+      },
+      "guidance-generated-560-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.524Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.524Z"
+      },
+      "guidance-generated-703-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.524Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.524Z"
+      },
+      "guidance-generated-152-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.524Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.524Z"
+      },
+      "guidance-ambrosial-speech-pure-conduct-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-buy-what-goes-with-you-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-child-of-grace-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-conquer-the-mind-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-detached-and-steady-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-extinguish-the-fire-of-doubt-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-forgiveness-becomes-fearless-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-forgiveness-opens-lasting-peace-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-107-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-108-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-109-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-151-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-153-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-178-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-226-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-227-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-228-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-230-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-299-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-3-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-300-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-301-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-337-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-338-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-361-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-459-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-460-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-461-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-462-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      },
+      "guidance-generated-509-2": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.706Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.706Z"
+      }
+    },
+    "shabad-deep-dive": {
+      "shabad-generated-1": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.536Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.536Z"
+      },
+      "shabad-generated-229": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.536Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.536Z"
+      },
+      "shabad-generated-560": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.536Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.536Z"
+      },
+      "shabad-generated-703": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.536Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.536Z"
+      },
+      "shabad-generated-152": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T02:33:09.536Z",
+        "batchTag": "batch-a-1-paired",
+        "notes": "Applied from snapshot tooling on 2026-04-13T02:33:09.536Z"
+      },
+      "shabad-ambrosial-speech-pure-conduct": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-buy-what-goes-with-you": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-child-of-grace": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-conquer-the-mind": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-detached-and-steady": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-extinguish-the-fire-of-doubt": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-forgiveness-becomes-fearless": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-forgiveness-opens-lasting-peace": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-107": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-108": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-109": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-151": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-153": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-178": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-226": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-227": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-228": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-230": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-299": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-3": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-300": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-301": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-337": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-338": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-361": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-459": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-460": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-461": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-462": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      },
+      "shabad-generated-509": {
+        "reviewer": "japgrover",
+        "status": "approved",
+        "reviewedAt": "2026-04-13T03:14:28.721Z",
+        "batchTag": "next-30-unique-banidb",
+        "notes": "Applied from snapshot tooling on 2026-04-13T03:14:28.721Z"
+      }
+    },
+    "topic-guide": {},
+    "topic-scenario": {},
+    "collection": {}
+  }
+}

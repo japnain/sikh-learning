@@ -14,7 +14,12 @@
     "learn:validate": "node ./scripts/learn/validate.mjs",
     "learn:publish": "node ./scripts/learn/publish.mjs",
     "learn:audit": "node ./scripts/learn/audit-editorial.mjs",
-    "learn:check-bundle-guard": "node ./scripts/learn/check-bundle-guard.mjs"
+    "learn:check-bundle-guard": "node ./scripts/learn/check-bundle-guard.mjs",
+    "learn:review:export": "node ./scripts/learn/review/export-review.mjs",
+    "learn:review:rank": "node ./scripts/learn/review/rank-priority.mjs",
+    "learn:review:apply": "node ./scripts/learn/review/apply-edits.mjs",
+    "learn:review:status": "node ./scripts/learn/review/progress-report.mjs",
+    "learn:check-banned-phrases": "node ./scripts/learn/review/check-banned-phrases.mjs"
   },
   "dependencies": {
     "@insforge/sdk": "^1.2.4",

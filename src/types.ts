@@ -505,7 +505,7 @@ export interface LearnLineReference {
   lifeApplication: string
 }
 
-export type LearnEditorialStatus = 'draft' | 'approved' | 'locked'
+export type LearnEditorialStatus = 'draft' | 'approved' | 'locked' | 'theme-mismatch'
 
 export interface LearnEditorialEvidence {
   coreClaim: string
@@ -534,6 +534,70 @@ export interface LearnEditorialAssessment {
   scores: LearnEditorialScores
   strengths: string[]
   issues: string[]
+  reviewedByHuman?: boolean
+}
+
+export interface LearnLineReferenceOverride {
+  shortMeaning?: string
+  lifeApplication?: string
+}
+
+export interface TopicGuideExcerptOverride {
+  source?: LearnLineReferenceOverride
+  explanation?: string
+}
+
+export interface GuidanceOverridePayload {
+  title?: string
+  summary?: string
+  takeaway?: string
+  lifeApplication?: string
+  rotationTheme?: string
+  source?: LearnLineReferenceOverride
+  reviewedByHuman: boolean
+  forcedLocked?: boolean
+}
+
+export interface ShabadOverridePayload {
+  title?: string
+  summary?: string
+  whyItMatters?: string
+  takeaway?: string
+  structure?: string[]
+  reviewedByHuman: boolean
+  forcedLocked?: boolean
+}
+
+export interface TopicOverridePayload {
+  title?: string
+  shortTitle?: string
+  issueStatement?: string
+  centralInsight?: string
+  practicalReflection?: string
+  actionPrompt?: string
+  excerpts?: TopicGuideExcerptOverride[]
+  reviewedByHuman: boolean
+  forcedLocked?: boolean
+}
+
+export interface ScenarioOverridePayload {
+  title?: string
+  issueStatement?: string
+  centralInsight?: string
+  practicalReflection?: string
+  actionPrompt?: string
+  excerpts?: TopicGuideExcerptOverride[]
+  reviewedByHuman: boolean
+  forcedLocked?: boolean
+}
+
+export interface CollectionOverridePayload {
+  title?: string
+  subtitle?: string
+  description?: string
+  heroSource?: LearnLineReferenceOverride
+  reviewedByHuman: boolean
+  forcedLocked?: boolean
 }
 
 export interface DailyGuidance {
