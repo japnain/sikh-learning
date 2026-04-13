@@ -8,8 +8,12 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
+import { useLearningStore } from '../store/learning'
+import useLearnCatalog from '../hooks/useLearnCatalog'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
+import { getLearnSavedItems, getLearnItemLabel } from '../utils/learnExperience'
+import { buildLearnDetailPath } from '../utils/learnRails'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
@@ -102,16 +106,24 @@ export default function Library() {
   const { bookmarks, removeBookmark } = useBookmarksStore()
   const { favorites, removeFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
+  const savedLearnItemIds = useLearningStore(state => state.learnState.savedItemIds)
+  const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const { currentSession, studied } = useProgressStore()
   const { getProgress } = useReadingProgressStore()
   const { getEntryById } = useScriptureCacheStore()
+  const { catalog, loading: learnCatalogLoading } = useLearnCatalog()
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
+    learnSaves: savedLearnItemIds.length > 0,
     library: false,
   }))
 
   const words = vocab.filter(item => (item.kind ?? 'word') === 'word')
   const phrases = vocab.filter(item => (item.kind ?? 'word') === 'phrase')
+  const learnSavedItems = useMemo(
+    () => (catalog ? getLearnSavedItems(catalog, savedLearnItemIds) : []),
+    [catalog, savedLearnItemIds]
+  )
   const inProgress = useMemo(
     () => BANIS
       .map(bani => ({ ...bani, ...getProgress(bani.id) }))
@@ -199,7 +211,11 @@ export default function Library() {
           </div>
           <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
         </div>
-        <div className="grid grid-cols-3 gap-2 mt-5">
+        <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-4">
+          <div className="section-shell-quiet px-3 py-3">
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedLearnItemIds.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.learnSaves}</p>
+          </div>
           <div className="section-shell-quiet px-3 py-3">
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.bookmarks}</p>
@@ -294,6 +310,68 @@ export default function Library() {
           </button>
         )}
       </div>
+
+      {savedLearnItemIds.length > 0 && (
+        <section
+          className="section-shell-quiet p-4 mb-5 border border-gold/15 dark:border-gold/18"
+          aria-labelledby="library-learn-saves-title"
+          data-testid="library-learn-saves"
+        >
+          <button
+            onClick={() => toggle('learnSaves')}
+            className="w-full flex justify-between items-center gap-3"
+            aria-expanded={Boolean(expanded.learnSaves)}
+            aria-controls="library-learn-saves-panel"
+          >
+            <div className="text-left flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light">
+                <IconBookmarkFilled size={14} />
+              </span>
+              <div>
+                <p id="library-learn-saves-title" className="eyebrow">{libraryCopy.learnSaves}</p>
+                <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{savedLearnItemIds.length} saved Learn item{savedLearnItemIds.length === 1 ? '' : 's'}</p>
+              </div>
+            </div>
+            <span className="text-gold dark:text-gold-light">{expanded.learnSaves ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+          </button>
+          {expanded.learnSaves && (
+            <div id="library-learn-saves-panel" className="mt-4 space-y-2">
+              {learnCatalogLoading && learnSavedItems.length === 0 ? (
+                <div className="section-shell px-4 py-4 border border-gold/12 dark:border-gold/16">
+                  <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74">Loading Learn saves…</p>
+                </div>
+              ) : null}
+              {learnSavedItems.map(item => (
+                <div
+                  key={item.id}
+                  className="section-shell px-4 py-4 relative border border-gold/12 dark:border-gold/16"
+                >
+                  <button
+                    onClick={() => toggleSavedLearnItem(item.id)}
+                    className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
+                    aria-label="Remove saved Learn item"
+                  >
+                    <IconClose size={14} />
+                  </button>
+                  <button
+                    onClick={() => navigate(buildLearnDetailPath(item.kind, item.id, 'saved'))}
+                    className="text-left w-full pr-6"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
+                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        {getLearnItemLabel(item.kind)}
+                      </span>
+                    </div>
+                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{item.title}</p>
+                    <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-1">{item.subtitle}</p>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {inProgress.length > 0 && (
         <section

@@ -205,6 +205,7 @@ export async function bootstrapCloudSync() {
   if (bootstrapPromise) return bootstrapPromise
 
   bootstrapPromise = (async () => {
+    useBookmarksStore.getState().hydrateCachedBookmarks()
     await refreshCloudState()
     bindStoreSubscriptions()
     bindOnlineListener()

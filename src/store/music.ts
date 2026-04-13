@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { getLocalAmbientSoundSrc, resolveAmbientSoundSrc } from '../insforge/audio'
 import type {
   FocusContext,
   FocusPreset,
@@ -12,6 +13,7 @@ export interface Sound {
   name: string
   icon: string
   src: string
+  fallbackSrc?: string
   category: SoundCategory
   description: string
   energy: 1 | 2 | 3
@@ -32,7 +34,8 @@ export const SOUNDS: Sound[] = [
     id: 'gentle-rain',
     name: 'Heavy Thunderstorm',
     icon: '⛈️',
-    src: '/audio/ambient/gentle-rain.mp3',
+    src: resolveAmbientSoundSrc('gentle-rain.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('gentle-rain.mp3'),
     category: 'rain',
     description: 'Dense rain and low thunder for immersive focus without melody or speech.',
     energy: 2,
@@ -43,7 +46,8 @@ export const SOUNDS: Sound[] = [
     id: 'forest-canopy',
     name: 'Library Ambience',
     icon: '📚',
-    src: '/audio/ambient/forest-canopy.mp3',
+    src: resolveAmbientSoundSrc('forest-canopy.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('forest-canopy.mp3'),
     category: 'wind',
     description: 'A calm study-room bed with subtle room tone and quiet movement for reading sessions.',
     energy: 1,
@@ -54,7 +58,8 @@ export const SOUNDS: Sound[] = [
     id: 'mountain-stream',
     name: 'Harbor Drift',
     icon: '⚓',
-    src: '/audio/ambient/mountain-stream.mp3',
+    src: resolveAmbientSoundSrc('mountain-stream.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('mountain-stream.mp3'),
     category: 'water',
     description: 'Open harbor water and distant shore movement for steady, spacious concentration.',
     energy: 2,
@@ -65,7 +70,8 @@ export const SOUNDS: Sound[] = [
     id: 'sea-waves',
     name: 'Deep Ocean Waves',
     icon: '🌊',
-    src: '/audio/ambient/sea-waves.mp3',
+    src: resolveAmbientSoundSrc('sea-waves.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('sea-waves.mp3'),
     category: 'water',
     description: 'Slow repeating surf that settles pacing during longer passages.',
     energy: 1,
@@ -76,7 +82,8 @@ export const SOUNDS: Sound[] = [
     id: 'night-meadow',
     name: 'Fireside Crackle',
     icon: '🔥',
-    src: '/audio/ambient/night-meadow.mp3',
+    src: resolveAmbientSoundSrc('night-meadow.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('night-meadow.mp3'),
     category: 'night',
     description: 'Soft fireplace crackle that keeps evening study warm and low-distraction.',
     energy: 1,
@@ -87,7 +94,8 @@ export const SOUNDS: Sound[] = [
     id: 'temple-fountain',
     name: 'Fireplace Glow',
     icon: '🪵',
-    src: '/audio/ambient/temple-fountain.mp3',
+    src: resolveAmbientSoundSrc('temple-fountain.mp3'),
+    fallbackSrc: getLocalAmbientSoundSrc('temple-fountain.mp3'),
     category: 'sanctuary',
     description: 'A closer hearth bed for quiet repetition, reflection, and slower sessions.',
     energy: 1,

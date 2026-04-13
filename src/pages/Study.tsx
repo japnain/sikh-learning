@@ -1182,6 +1182,7 @@ export default function Study() {
               sectionEyebrow={showEntryOutline ? entryOutline[index]?.eyebrow ?? null : null}
               wordData={shabadId ? wordDataMap[shabadId] ?? null : null}
               hideMainLines={isArdaasReaderFlow}
+              showHeaderBlock={index === 0}
               showAudioPlayer={index === 0}
               onSavePhrase={handleSavePhrase}
               onCopyLine={handleCopyLine}

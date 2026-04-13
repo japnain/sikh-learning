@@ -117,5 +117,6 @@ test('can hide non-header lines for devotional readers like Ardaas', () => {
 
   expect(screen.getByText('ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥')).toBeInTheDocument()
   expect(screen.queryByText('ਪ੍ਰਿਥਮ ਭਗੌਤੀ ਸਿਮਰਿ ਕੈ')).not.toBeInTheDocument()
+  expect(screen.queryByText('Intro')).not.toBeInTheDocument()
   expect(screen.queryByText(/Tap any Gurbani word for meaning/i)).not.toBeInTheDocument()
 })

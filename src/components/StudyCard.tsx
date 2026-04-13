@@ -10,6 +10,7 @@ interface Props {
   entry: ScriptureEntry
   wordData?: Word[] | null
   hideMainLines?: boolean
+  showHeaderBlock?: boolean
   showAudioPlayer?: boolean
   sectionId?: string
   sectionEyebrow?: string | null
@@ -68,6 +69,7 @@ export default function StudyCard({
   entry,
   wordData,
   hideMainLines = false,
+  showHeaderBlock = true,
   showAudioPlayer = false,
   sectionId,
   sectionEyebrow = null,
@@ -97,7 +99,12 @@ export default function StudyCard({
   )
   const introLines = lines.filter(line => line.isHeader)
   const mainLines = lines.filter(line => !line.isHeader)
-  const visibleMainLines = hideMainLines ? [] : (mainLines.length > 0 ? mainLines : lines)
+  const shouldRenderHeaderBlock = showHeaderBlock && introLines.length > 0
+  const visibleMainLines = hideMainLines
+    ? []
+    : shouldRenderHeaderBlock
+    ? (mainLines.length > 0 ? mainLines : (introLines.length > 0 ? [] : lines))
+    : lines
 
   const cleanGurmukhi = (s: string) =>
     s.replace(/[;,।॥.\s]/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -176,11 +183,8 @@ export default function StudyCard({
           </div>
         ) : null}
 
-        {introLines.length > 0 && (
-          <div className="mb-5 section-shell-quiet rounded-[24px] px-4 py-4">
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-              Intro
-            </p>
+        {shouldRenderHeaderBlock && (
+          <div data-testid="study-header-block" className="mb-5 section-shell-quiet rounded-[24px] px-4 py-4">
             <div className="space-y-3">
               {introLines.map((line, index) => {
                 const introMeaning = getLineMeaningText(line, meaningLanguage, englishSource)

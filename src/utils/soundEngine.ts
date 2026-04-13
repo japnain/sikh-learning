@@ -53,29 +53,39 @@ function startSoundPlayback(id: string, currentTransitionId: number) {
   const sound = SOUNDS.find(entry => entry.id === id)
   if (!sound) return
 
-  const nextAudio = new Audio(sound.src)
-  nextAudio.loop = true
-  nextAudio.preload = 'auto'
-  nextAudio.volume = 0
+  const trySource = (src: string, allowFallback: boolean) => {
+    const nextAudio = new Audio(src)
+    nextAudio.loop = true
+    nextAudio.preload = 'auto'
+    nextAudio.volume = 0
 
-  activeAudio = nextAudio
-  activeSoundId = id
+    activeAudio = nextAudio
+    activeSoundId = id
 
-  void nextAudio.play()
-    .then(() => {
-      if (currentTransitionId !== transitionId) {
+    void nextAudio.play()
+      .then(() => {
+        if (currentTransitionId !== transitionId) {
+          cleanupAudio(nextAudio)
+          return
+        }
+        fadeTo(nextAudio, targetVolume)
+      })
+      .catch(() => {
         cleanupAudio(nextAudio)
-        return
-      }
-      fadeTo(nextAudio, targetVolume)
-    })
-    .catch(() => {
-      if (activeAudio === nextAudio) {
-        cleanupAudio(nextAudio)
-        activeAudio = null
-        activeSoundId = null
-      }
-    })
+
+        if (allowFallback && sound.fallbackSrc && sound.fallbackSrc !== src) {
+          trySource(sound.fallbackSrc, false)
+          return
+        }
+
+        if (activeAudio === nextAudio) {
+          activeAudio = null
+          activeSoundId = null
+        }
+      })
+  }
+
+  trySource(sound.src, true)
 }
 
 export function playSound(id: string): void {

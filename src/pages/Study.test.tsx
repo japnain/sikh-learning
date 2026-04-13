@@ -596,7 +596,7 @@ describe('Study adjustable STTM lengths', () => {
     })
   })
 
-  it('shows the extra-long intro block for Rehras when requested', async () => {
+  it('keeps the extra-long Rehras opening lines inline without a separate intro block', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras%20Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=extralong']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -604,9 +604,11 @@ describe('Study adjustable STTM lengths', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('Intro')).toBeInTheDocument()
       expect(screen.getAllByText('ਧੰਨੁ ਸੁ ਕਾਗਦੁ ਕਲਮ ਧੰਨੁ ਧਨ ਭਾਂਡਾ ਧਨੁ ਮਸੁ ॥').length).toBeGreaterThan(0)
       expect(screen.getByText('ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥')).toBeInTheDocument()
     })
+
+    expect(screen.queryByText('Intro')).not.toBeInTheDocument()
+    expect(screen.getAllByTestId('study-header-block')).toHaveLength(1)
   })
 })
