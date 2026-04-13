@@ -1,17 +1,17 @@
 {
   "id": "guidance-suffering-as-medicine-2",
-  "title": "I Can Do Nothing. Even If I",
-  "summary": "Anxiety is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God; i can do nothing. Even if I try, nothing happens",
-  "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+  "title": "Let helplessness tell the truth",
+  "summary": "This meets the moment when suffering strips away self-sufficiency. The line makes pain medicinal when it drives you out of illusion.",
+  "takeaway": "Tell the truth before numbing the pain.",
+  "lifeApplication": "When the hard thing exposes your limit, do not rush to numb it. Say plainly, \"I cannot do this alone,\" before reaching for the next distraction.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
       21090,
       21091
     ],
-    "shortMeaning": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God; i can do nothing. Even if I try, nothing happens",
-    "lifeApplication": "Read one line aloud before trying to solve the whole future. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Pain can wake dependence when pleasure has kept the heart asleep.",
+    "lifeApplication": "When pain exposes your limit, tell the truth before reaching for relief."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -22,7 +22,7 @@
     "collection-anxiety-journey"
   ],
   "rotation": {
-    "theme": "anxiety",
+    "theme": "exhaustion",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -38,25 +38,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Suffering is the medicine, and pleasure the disease, because where there is pleasure, there is no desire for God; i can do nothing. Even if I try, nothing happens",
+      "coreClaim": "Pain can wake dependence when pleasure has kept the heart asleep.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
-      "practicalImplication": "Read one line aloud before trying to solve the whole future. Use the line before the pressure chooses your tone.",
+      "turn": "Let pain reveal what comfort keeps covering.",
+      "practicalImplication": "When the hard thing exposes your limit, do not rush to numb it. Say plainly, \"I cannot do this alone,\" before reaching for the next distraction.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.88,
-      "clarity": 2.91,
-      "specificity": 4.63,
+      "faithfulness": 4.04,
+      "clarity": 4.35,
+      "specificity": 4.98,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.42,
-      "beauty": 2.92,
-      "overall": 3.68
+      "usefulness": 3.88,
+      "beauty": 4.21,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "clarity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

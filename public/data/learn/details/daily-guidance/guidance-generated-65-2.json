@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-65-2",
-  "title": "Hold Comparison Under Pressure",
-  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "title": "Let praise dye the whole life true",
+  "summary": "This meets the self-consciousness comparison keeps hardening. The line says praise and saintly company should dye the whole life truthful.",
+  "takeaway": "Let praise and company dye conduct true.",
+  "lifeApplication": "Before polishing the outside again, return to praise with those who keep the heart honest. Let one truthful act in saintly company soak deeper than display.",
   "source": {
     "deepDiveId": "shabad-generated-65",
     "verseIds": [
       759,
       760
     ],
-    "shortMeaning": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Praise and saintly company dye conduct with truth.",
+    "lifeApplication": "Before polishing the outside, return to praise and one truthful act."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "conduct",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "As metal merges with metal, those who chant the Praises of the Lord are absorbed into the Praiseworthy Lord; like the poppies, they are dyed in the deep crimson color of Truthfulness",
+      "coreClaim": "Praise and saintly company dye conduct with truth.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: O Nanak, I am forever a sacrifice to the one who beholds, and inspires others to behold Him.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "turn": "Let praise, saintly company, and true action soften the self into homecoming.",
+      "practicalImplication": "Before polishing the outside again, return to praise with those who keep the heart honest. Let one truthful act in saintly company soak deeper than display.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.89,
-      "clarity": 1.05,
-      "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.86,
-      "beauty": 3.38,
-      "overall": 3.65
+      "faithfulness": 4.09,
+      "clarity": 4.23,
+      "specificity": 4.85,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.6,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

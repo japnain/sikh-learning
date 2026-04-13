@@ -1,10 +1,10 @@
 {
   "id": "shabad-selfless-service",
-  "title": "Selfless Service Opens the Door",
+  "title": "Service without reward reaches the Master",
   "subtitle": "Raag Gauree",
-  "summary": "This shabad ties humility, obedience, Naam, and nishkaam seva together as one spiritual posture.",
-  "whyItMatters": "It is a corrective for performance, spiritual branding, and service that secretly seeks recognition.",
-  "takeaway": "Seva becomes transformative when the self stops trying to be seen through it.",
+  "summary": "The shabad opens by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+  "whyItMatters": "This is for the person doing good while keeping one eye on recognition. Held faithfully, it purifies service by taking self-display and reward out of the center.",
+  "takeaway": "Service becomes true when the self stops asking to be seen.",
   "themes": [
     "seva",
     "humility",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "Defines the true servant by obedience, inward remembrance, and hiddenness.",
-    "Moves from surrendering the mind to the Guru toward nishkaam seva.",
-    "Ends by placing the whole path inside grace, not technique."
+    "It opens by describing the servant who lives under the Guru's command rather than personal image.",
+    "The middle sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
+    "It ends with selfless service drawing the servant into the Lord and the Guru's teaching."
   ],
   "keyVerseIds": [
     12943,
@@ -145,25 +145,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This shabad ties humility, obedience, Naam, and nishkaam seva together as one spiritual posture.",
+      "coreClaim": "The shabad opens by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Moves from surrendering the mind to the Guru toward nishkaam seva.",
-      "practicalImplication": "Seva becomes transformative when the self stops trying to be seen through it.",
+      "turn": "The middle sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
+      "practicalImplication": "This is for the person doing good while keeping one eye on recognition. Held faithfully, it purifies service by taking self-display and reward out of the center. Service becomes true when the self stops asking to be seen.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
-      "specificity": 4.78,
+      "clarity": 4.17,
+      "specificity": 4.96,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.6,
-      "beauty": 4.05,
-      "overall": 4.2
+      "usefulness": 4.2,
+      "beauty": 4.08,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

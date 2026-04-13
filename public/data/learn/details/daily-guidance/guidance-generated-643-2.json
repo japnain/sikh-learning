@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-643-2",
-  "title": "I Am Totally Convinced",
-  "summary": "Exhaustion is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "I am intimate with Him",
-  "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Use the line before the pressure chooses your tone.",
+  "title": "Let nearness end the split vision",
+  "summary": "This meets the tired split between holy places and ordinary places. By grace, the Lord comes near enough for the chase to end: wherever you look, He is there.",
+  "takeaway": "Let grace make nearness end the chase.",
+  "lifeApplication": "At the sink, street, or desk, stop chasing a better mood. Lift your eyes and name one place where grace has already made the Lord near.",
   "source": {
     "deepDiveId": "shabad-generated-643",
     "verseIds": [
       8823,
       8825
     ],
-    "shortMeaning": "I am intimate with Him",
-    "lifeApplication": "Choose one return that gives rest instead of one more noisy demand. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Grace makes the Lord near enough to be seen everywhere.",
+    "lifeApplication": "In an ordinary moment, name one place where grace has made the Lord near."
   },
   "relatedTopicIds": [
     "topic-exhaustion"
@@ -24,7 +24,7 @@
     "collection-exhaustion-journey"
   ],
   "rotation": {
-    "theme": "exhaustion",
+    "theme": "doubt",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "I am intimate with Him",
+      "coreClaim": "Grace makes the Lord near enough to be seen everywhere.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "Keep returning to this turn: in this way, my essence merges into God's essence.",
-      "practicalImplication": "Choose one return that gives rest instead of one more noisy demand. Use the line before the pressure chooses your tone.",
+      "turn": "Let grace make the Lord near enough to stop the chase.",
+      "practicalImplication": "At the sink, street, or desk, stop chasing a better mood. Lift your eyes and name one place where grace has already made the Lord near.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.82,
-      "clarity": 4.29,
-      "specificity": 4.59,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 4.17,
-      "overall": 4.08
+      "usefulness": 4.94,
+      "beauty": 4.37,
+      "overall": 4.4
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

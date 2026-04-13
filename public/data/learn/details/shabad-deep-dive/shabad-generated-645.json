@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-645",
-  "title": "Save Me, O My Father God",
+  "title": "Sanctuary for a mind under assault",
   "subtitle": "Raag Gauree · Ang 205",
-  "summary": "This shabad opens with save me, O My Father God. It turns the heart toward says Nanak, the Divine Light has dawned within my mind.",
-  "whyItMatters": "It matters when life feels afraid, guarded, and dreading because the shabad keeps fear inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
+  "summary": "The shabad opens with a direct cry to the Father God for rescue. It moves through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
+  "whyItMatters": "This is for the person who is already afraid and no longer able to pretend control. Held sincerely, it gives fear a cleaner movement than panic: cry out, take shelter, and wait for light.",
+  "takeaway": "Call for shelter before fear becomes your only voice.",
   "themes": [
     "fear",
     "sangat",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: save me, O My Father God.",
-    "The middle movement widens the correction through but I have heard that they can be rooted out, in the Saadh Sangat.",
-    "It closes with a return you can actually keep: says Nanak, the Divine Light has dawned within my mind."
+    "It opens without bravado, asking the Father directly for rescue.",
+    "The middle names the assault honestly and turns toward sanctuary rather than self-sufficiency.",
+    "It ends with the mind lit from within after company, grace, and shelter have done their work."
   ],
   "keyVerseIds": [
     8845,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with save me, O My Father God. It turns the heart toward says Nanak, the Divine Light has dawned within my mind.",
+      "coreClaim": "The shabad opens with a direct cry to the Father God for rescue. It moves through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "The middle movement widens the correction through but I have heard that they can be rooted out, in the Saadh Sangat.",
-      "practicalImplication": "Keep returning to this turn: Says Nanak, the Divine Light has dawned within my mind.",
+      "turn": "The middle names the assault honestly and turns toward sanctuary rather than self-sufficiency.",
+      "practicalImplication": "This is for the person who is already afraid and no longer able to pretend control. Held sincerely, it gives fear a cleaner movement than panic: cry out, take shelter, and wait for light. Call for shelter before fear becomes your only voice.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.78,
+      "clarity": 4.35,
       "specificity": 4.78,
-      "emotionalHonesty": 4,
-      "usefulness": 3.6,
-      "beauty": 4,
-      "overall": 4.12
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.72,
+      "beauty": 4.69,
+      "overall": 4.44
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

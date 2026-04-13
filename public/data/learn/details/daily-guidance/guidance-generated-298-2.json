@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-298-2",
-  "title": "Your Mind Will Be Immaculate And Pure",
-  "summary": "Mercy is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "your mind will be immaculate and pure. Your comings and goings shall cease; those hands which write the Praises of the Lord are good",
-  "lifeApplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+  "title": "Use your hands for praise, not stain",
+  "summary": "This meets a body acting all day without much of it turning upward. The line blesses hands used for praise and clean work.",
+  "takeaway": "Ask what your hands are serving.",
+  "lifeApplication": "Before the next reflexive grab, type, or reach, ask what your hands are serving. Give them one act today that leaves the soul cleaner.",
   "source": {
     "deepDiveId": "shabad-generated-298",
     "verseIds": [
       4110,
       4114
     ],
-    "shortMeaning": "your mind will be immaculate and pure. Your comings and goings shall cease; those hands which write the Praises of the Lord are good",
-    "lifeApplication": "Receive one line as mercy before turning it into a performance review. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Hands become holy when they are given to praise and clean work.",
+    "lifeApplication": "Before the next reflexive reach, ask what your hands are serving."
   },
   "relatedTopicIds": [
     "topic-mercy"
@@ -24,7 +24,7 @@
     "collection-mercy-journey"
   ],
   "rotation": {
-    "theme": "mercy",
+    "theme": "conduct",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "your mind will be immaculate and pure. Your comings and goings shall cease; those hands which write the Praises of the Lord are good",
+      "coreClaim": "Hands become holy when they are given to praise and clean work.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Keep returning to this turn: God is pleasing to Nanak's mind.",
-      "practicalImplication": "Receive one line as mercy before turning it into a performance review. Use the line before the pressure chooses your tone.",
+      "turn": "Let speech, sight, hands, and feet become honorable through praise.",
+      "practicalImplication": "Before the next reflexive grab, type, or reach, ask what your hands are serving. Give them one act today that leaves the soul cleaner.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 3.21,
-      "specificity": 4.79,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.65,
-      "overall": 3.95
+      "faithfulness": 4.07,
+      "clarity": 4.11,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.05,
+      "overall": 4.2
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

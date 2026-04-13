@@ -1,10 +1,10 @@
 {
   "id": "shabad-sweet-speech-humble-walk",
-  "title": "Sweet Speech, Humble Walk",
+  "title": "Peace shows up in speech and gait",
   "subtitle": "Siree Raag · Ang 31",
-  "summary": "Guru Amar Daas frames beautiful speech and humility not as personality polish, but as marks of inward union and saintly company.",
-  "whyItMatters": "It is for people who are exhausted by performance, defensiveness, or the gap between spiritual language and actual conduct.",
-  "takeaway": "Soft speech becomes believable when the ego has begun to bow.",
+  "summary": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It turns toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
+  "whyItMatters": "This is for the person whose devotional language still outruns their conduct. Held faithfully, it lets peace become visible in tone, pace, and the body's way of moving through the world.",
+  "takeaway": "When remembrance is real, it reaches the mouth and the walk.",
   "themes": [
     "speech",
     "humility",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "Exposes outer performance that lacks inward union.",
-    "Moves quickly into one-pointed Naam and saint company as the path of peace.",
-    "Shows sweet speech and humility as fruits of love, Guru-alignment, and reduced ego."
+    "It opens by exposing performative religiosity as intimate misery rather than holiness.",
+    "The middle roots peace in saintly company, one-pointed Naam, and love for the Guru.",
+    "It ends with the Guru's Will as ambrosia and egotism dying where peace becomes embodied."
   ],
   "keyVerseIds": [
     1288,
@@ -182,25 +182,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Amar Daas frames beautiful speech and humility not as personality polish, but as marks of inward union and saintly company.",
+      "coreClaim": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It turns toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "Moves quickly into one-pointed Naam and saint company as the path of peace.",
-      "practicalImplication": "Soft speech becomes believable when the ego has begun to bow.",
+      "turn": "The middle roots peace in saintly company, one-pointed Naam, and love for the Guru.",
+      "practicalImplication": "This is for the person whose devotional language still outruns their conduct. Held faithfully, it lets peace become visible in tone, pace, and the body's way of moving through the world. When remembrance is real, it reaches the mouth and the walk.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.78,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.22,
-      "beauty": 4.05,
-      "overall": 4.04
+      "usefulness": 4.26,
+      "beauty": 4.21,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

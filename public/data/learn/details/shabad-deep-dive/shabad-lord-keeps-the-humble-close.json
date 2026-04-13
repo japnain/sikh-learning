@@ -1,10 +1,10 @@
 {
   "id": "shabad-lord-keeps-the-humble-close",
-  "title": "The Lord Keeps the Humble Close",
+  "title": "The humble are kept close",
   "subtitle": "Raag Raamkalee · Ang 882",
-  "summary": "This shabad moves from Guru-given life into intimacy: the servant held close, the child cherished, the heart made a place of nearness rather than display.",
-  "whyItMatters": "It answers shame, insecurity, and spiritual smallness with proximity instead of self-invention.",
-  "takeaway": "Nearness is received in humility, not built out of status.",
+  "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
+  "whyItMatters": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord.",
+  "takeaway": "Stay humble enough to be kept close and cherished by the Lord.",
   "themes": [
     "self-worth",
     "humility",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "Begins with Guru-given life and Naam placed in the heart.",
-    "Contrasts begging for desire with keeping praise close.",
-    "Ends by naming the servant held close and the child cherished by the Divine."
+    "It opens by making the Guru the giver of inward life and remembrance.",
+    "The middle contrasts that gift with the restless begging of desire and wealth.",
+    "It ends with the Lord as father and mother, keeping the humble servant close."
   ],
   "keyVerseIds": [
     37468,
@@ -153,25 +153,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This shabad moves from Guru-given life into intimacy: the servant held close, the child cherished, the heart made a place of nearness rather than display.",
+      "coreClaim": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Contrasts begging for desire with keeping praise close.",
-      "practicalImplication": "Nearness is received in humility, not built out of status.",
+      "turn": "The middle contrasts that gift with the restless begging of desire and wealth.",
+      "practicalImplication": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord. Stay humble enough to be kept close and cherished by the Lord.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
       "specificity": 4.6,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3.38,
-      "beauty": 4.65,
-      "overall": 4.14
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.76,
+      "beauty": 4.33,
+      "overall": 4.12
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "specificity",
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

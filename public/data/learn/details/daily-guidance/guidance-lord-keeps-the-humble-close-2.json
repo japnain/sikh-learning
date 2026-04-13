@@ -1,17 +1,17 @@
 {
   "id": "guidance-lord-keeps-the-humble-close-2",
-  "title": "One Who Chants The Praises",
-  "summary": "Self-Worth is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "One who chants the Praises of the Lord is the greatest of the great; meeting Him, the Lord is enshrined within the heart",
-  "lifeApplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+  "title": "Measure greatness by what the heart holds",
+  "summary": "This meets the self still looking for worth in scale or applause. The line says the greatest keep the Lord clasped in the heart.",
+  "takeaway": "Build greatness inward before seeking it outward.",
+  "lifeApplication": "Before reaching for a bigger role, deeper title, or faster praise, touch the chest and ask what is actually being held there. Build greatness inward first.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
       37468,
       37474
     ],
-    "shortMeaning": "One who chants the Praises of the Lord is the greatest of the great; meeting Him, the Lord is enshrined within the heart",
-    "lifeApplication": "Let dignity be received before it is defended. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Real greatness is measured by what the heart keeps close.",
+    "lifeApplication": "Before chasing stature, ask what your heart is actually holding close."
   },
   "relatedTopicIds": [
     "topic-self-worth"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One who chants the Praises of the Lord is the greatest of the great; meeting Him, the Lord is enshrined within the heart",
+      "coreClaim": "Real greatness is measured by what the heart keeps close.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Nearness is received in humility, not built out of status.",
-      "practicalImplication": "Let dignity be received before it is defended. Use the line before the pressure chooses your tone.",
+      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "Before reaching for a bigger role, deeper title, or faster praise, touch the chest and ask what is actually being held there. Build greatness inward first.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 2.8,
-      "specificity": 4.77,
+      "faithfulness": 4.07,
+      "clarity": 4.29,
+      "specificity": 4.64,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.8,
-      "beauty": 3.58,
-      "overall": 3.91
+      "usefulness": 4.2,
+      "beauty": 4.33,
+      "overall": 4.14
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

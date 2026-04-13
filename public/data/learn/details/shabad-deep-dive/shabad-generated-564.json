@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-564",
-  "title": "Those Who Seem To Be Great",
+  "title": "Anxiety follows borrowed greatness",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "This shabad opens with those who seem to be great and powerful. It turns the heart toward without the Lord's meditation, there is no salvation.",
-  "whyItMatters": "It matters when life feels clingy, possessive, and afraid-to-lose because the shabad keeps attachment inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: without the Lord's meditation, there is no salvation.",
+  "summary": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
+  "whyItMatters": "This is for the person pulled into status, land, ownership, or the need to look weighty. Held steadily, it changes the measure of greatness from possession to devotion.",
+  "takeaway": "Choose the Lord's measure of greatness and refuse Maya's scale.",
   "themes": [
     "attachment",
     "doubt",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: those who seem to be great and powerful.",
-    "The middle movement widens the correction through the landlord fights over his land each day.",
-    "It closes with a return you can actually keep: without the Lord's meditation, there is no salvation."
+    "It opens by exposing the anxiety hidden inside visible greatness.",
+    "The middle shows desire still raging even in the one who appears established and secure.",
+    "It ends in essence: without devotion to the Lord, there is no real release."
   ],
   "keyVerseIds": [
     7969,
@@ -137,25 +137,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with those who seem to be great and powerful. It turns the heart toward without the Lord's meditation, there is no salvation.",
+      "coreClaim": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle movement widens the correction through the landlord fights over his land each day.",
-      "practicalImplication": "Keep returning to this turn: without the Lord's meditation, there is no salvation.",
+      "turn": "The middle shows desire still raging even in the one who appears established and secure.",
+      "practicalImplication": "This is for the person pulled into status, land, ownership, or the need to look weighty. Held steadily, it changes the measure of greatness from possession to devotion. Choose the Lord's measure of greatness and refuse Maya's scale.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.75,
+      "clarity": 4.35,
       "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.91,
-      "overall": 4.05
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.76,
+      "beauty": 4.21,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

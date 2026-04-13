@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-704-2",
-  "title": "Deluded Mind Enters The House Of Maya",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The mind is under the power of the demons of evil intellect and duality; the deluded mind enters the house of Maya",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Name the house duality built",
+  "summary": "This meets the mind that still thinks divided loyalties are harmless. The line treats duality as architecture you can quietly start living inside.",
+  "takeaway": "Do not call divided living normal.",
+  "lifeApplication": "When you feel yourself split between devotion and image, stop and name the second allegiance. Do not call that house home once you can see who built it.",
   "source": {
     "deepDiveId": "shabad-generated-704",
     "verseIds": [
       9499,
       9506
     ],
-    "shortMeaning": "The mind is under the power of the demons of evil intellect and duality; the deluded mind enters the house of Maya",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Duality builds a whole inner house for ego to inhabit.",
+    "lifeApplication": "When you feel divided, name the second allegiance before it starts feeling normal."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The mind is under the power of the demons of evil intellect and duality; the deluded mind enters the house of Maya",
+      "coreClaim": "Duality builds a whole inner house for ego to inhabit.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
+      "practicalImplication": "When you feel yourself split between devotion and image, stop and name the second allegiance. Do not call that house home once you can see who built it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.81,
-      "clarity": 2.67,
-      "specificity": 4.55,
+      "faithfulness": 4.06,
+      "clarity": 4.35,
+      "specificity": 4.45,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.42,
-      "beauty": 3.34,
-      "overall": 3.73
+      "usefulness": 4.36,
+      "beauty": 4.21,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

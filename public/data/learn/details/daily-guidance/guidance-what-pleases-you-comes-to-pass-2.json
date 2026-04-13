@@ -1,17 +1,17 @@
 {
   "id": "guidance-what-pleases-you-comes-to-pass-2",
-  "title": "Those Who Are Blessed With Your Mercy",
-  "summary": "Hukam is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+  "title": "Receive what is given and keep the Naam",
+  "summary": "This meets the mind that receives with resentment. The line joins receiving to the Lord's pleasure and mercy to the Jewel of Naam.",
+  "takeaway": "Receive first, then keep the Jewel.",
+  "lifeApplication": "When the day hands you what you did not order, stop before complaint interprets it. Receive what is given, then hold fast to Naam inside it.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
       499,
       501
     ],
-    "shortMeaning": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "What He gives is received; mercy turns it into the Jewel of Naam.",
+    "lifeApplication": "When the day gives what you did not order, receive it and hold fast to Naam."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Those who are blessed with Your Mercy obtain the Jewel of the Naam, the Name of the Lord; whatever pleases You comes to pass. As You give, so do we receive",
+      "coreClaim": "What He gives is received; mercy turns it into the Jewel of Naam.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Receive the day as given, then answer it with Naam.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. Use the line before the pressure chooses your tone.",
+      "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
+      "practicalImplication": "When the day hands you what you did not order, stop before complaint interprets it. Receive what is given, then hold fast to Naam inside it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.21,
-      "clarity": 3.03,
-      "specificity": 4.95,
-      "emotionalHonesty": 3.36,
+      "faithfulness": 4.06,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
       "usefulness": 5,
-      "beauty": 3.33,
-      "overall": 4
+      "beauty": 4.28,
+      "overall": 4.27
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

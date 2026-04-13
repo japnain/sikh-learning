@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-63",
-  "title": "Hug Me Close In Your Embrace",
+  "title": "Remember together, not in isolation",
   "subtitle": "Siree Raag · Ang 17",
-  "summary": "This shabad opens with hug me close in your embrace. It turns the heart toward o Nanak, the True King absorbs us into Himself.",
-  "whyItMatters": "It matters when life feels dull, entitled, and forgetful because the shabad keeps gratitude inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, the True King absorbs us into Himself.",
+  "summary": "The shabad opens by calling spiritual companions close and asking them to speak of the Lord together. It widens through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
+  "whyItMatters": "This is for the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again.",
+  "takeaway": "Holy company teaches the heart how to remember well.",
   "themes": [
     "gratitude",
     "patience",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: hug me close in your embrace.",
-    "The middle movement widens the correction through we meet with our Beloved, the Source of Joy, when we listen.",
-    "It closes with a return you can actually keep: o Nanak, the True King absorbs us into Himself."
+    "It opens in embrace and shared storytelling rather than private striving.",
+    "The middle learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
+    "It ends in the True King's power to absorb the truthful into Himself."
   ],
   "keyVerseIds": [
     729,
@@ -179,25 +179,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with hug me close in your embrace. It turns the heart toward o Nanak, the True King absorbs us into Himself.",
+      "coreClaim": "The shabad opens by calling spiritual companions close and asking them to speak of the Lord together. It widens through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "The middle movement widens the correction through we meet with our Beloved, the Source of Joy, when we listen.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, the True King absorbs us into Himself.",
+      "turn": "The middle learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
+      "practicalImplication": "This is for the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again. Holy company teaches the heart how to remember well.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.87,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 4.18,
-      "overall": 4.06
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.04,
+      "beauty": 4.69,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

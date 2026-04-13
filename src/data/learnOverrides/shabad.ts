@@ -161,7 +161,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Mercy lets the child tell the truth",
     "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
     "whyItMatters": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike.",
-    "takeaway": "Tell the truth about your failure inside the Lord's mercy.",
+    "takeaway": "Bring the truth about failure into the Lord's mercy.",
     "structure": [
       "It opens by linking love to mercy and honest childlike admission.",
       "The middle admits how easy speech is and how difficult it is to actually accept Hukam.",
@@ -401,7 +401,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Steady service begins healing long separation",
     "summary": "The shabad opens with day-and-night service, remembrance, and sweet speech offered from sanctuary. It moves through the sorrow of separation, the need for mercy, and ends with the yearning to be united with the Lord through the Guru's feet.",
     "whyItMatters": "This is for the person whose longing has become dramatic, weary, or spiritually dry. Held steadily, it keeps longing honest by turning it into service, prayer, and saintly humility.",
-    "takeaway": "Serve and remember steadily enough for separation to begin healing.",
+    "takeaway": "Stay in service and remembrance until separation begins healing.",
     "structure": [
       "It opens with service and remembrance as the form longing takes when it is honest.",
       "The middle refuses to blame others for separation and asks mercy to do what self-effort cannot.",
@@ -485,7 +485,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Holy company breaks the crowded heat inside",
     "summary": "The shabad begins with the body crowded by desire and anger, then shows what changes when the Holy Saint is actually met. It turns from the thorn of ego and wandering pain toward humility, sanctuary, and peace supported by Naam.",
     "whyItMatters": "This is for the person living overheated, reactive, and internally crowded. Hold this shabad when anger and craving feel stronger than judgment, and it will make holy company feel like treatment rather than ornament.",
-    "takeaway": "Take the overheated self where saintly company can break it open.",
+    "takeaway": "Take the overheated self back from distance until Naam becomes support.",
     "structure": [
       "It opens by naming the body as overcrowded with desire and anger until saintly company breaks the pattern.",
       "The middle exposes ego as the thorn that hurts more the farther one walks from the Lord.",
@@ -569,7 +569,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Anxiety follows borrowed greatness",
     "summary": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
     "whyItMatters": "This is for the person pulled into status, land, ownership, or the need to look weighty. Held steadily, it changes the measure of greatness from possession to devotion.",
-    "takeaway": "True greatness is attachment to the Lord, not to Maya's scale.",
+    "takeaway": "Choose the Lord's measure of greatness and refuse Maya's scale.",
     "structure": [
       "It opens by exposing the anxiety hidden inside visible greatness.",
       "The middle shows desire still raging even in the one who appears established and secure.",
@@ -641,7 +641,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Nearness ends the frantic search",
     "summary": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It moves through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
     "whyItMatters": "This is for the person worn out by searching, petitioning, and looking elsewhere for relief. Held steadily, it teaches rest by revealing the nearness that restless effort keeps missing.",
-    "takeaway": "Let grace make the Lord near enough for the chase to end.",
+    "takeaway": "Let grace make the Lord near enough to stop the chase.",
     "structure": [
       "It opens with grace making intimacy possible instead of merely imagined.",
       "The middle loosens anxiety and the drama of pain and pleasure once the veil is removed.",
@@ -653,7 +653,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "The day is shrinking; spend it well",
     "summary": "The shabad opens with time diminishing day and night and immediately urges the mind toward the Guru. It turns the shrinking day into an argument for serving saints, earning Naam, and buying what you came here to buy.",
     "whyItMatters": "This is for the person living as if later were still guaranteed. Held clearly, it forces time, purpose, and profit back into the same conversation.",
-    "takeaway": "Spend the remaining day on the profit of Naam.",
+    "takeaway": "Choose the remaining day for the profit of Naam.",
     "structure": [
       "It opens by refusing the illusion that life is standing still.",
       "The middle urges service to saints and the earning of the Lord's profit while there is still time.",
@@ -677,7 +677,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Praise melts what comparison hardens",
     "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
     "whyItMatters": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming.",
-    "takeaway": "Let praise and saintly company melt the hardness comparison leaves behind.",
+    "takeaway": "Let praise, saintly company, and true action soften the self into homecoming.",
     "structure": [
       "It opens by picturing praise as fusion instead of performance.",
       "The middle turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
@@ -757,6 +757,18 @@ export const SHABAD_COPY_OVERRIDES = {
     ],
     "reviewedByHuman": true
   },
+  "shabad-generated-738": {
+    "title": "The Guru's word raises the soul into real stature",
+    "summary": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
+    "whyItMatters": "This is for the person chasing improvement, image, or spiritual status without steady submission to the Guru's word. Held honestly, it turns attainment from display into inward settlement.",
+    "takeaway": "Let the Guru's word define attainment.",
+    "structure": [
+      "It opens by naming the highest state as something received through the Guru's word.",
+      "The middle contrasts outer striving with the inward changes the Guru actually works.",
+      "It ends by locating fulfillment in meeting the Supreme Lord through the Guru."
+    ],
+    "reviewedByHuman": true
+  },
   "shabad-generated-822": {
     "title": "Offering everything to the One who can unite you",
     "summary": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
@@ -786,7 +798,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Honor the one through whom life arrives",
     "summary": "The shabad opens by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
     "whyItMatters": "This is for the person shaped by casual contempt, inherited patriarchy, or speech that lowers women while depending on them. Held honestly, it restores reverence, humility, and a truer social imagination.",
-    "takeaway": "Do not despise the one through whom human life comes.",
+    "takeaway": "Refuse to despise the one through whom human life comes.",
     "structure": [
       "It opens by naming how thoroughly human life is bound up with woman.",
       "The middle confronts contempt directly and calls it irrational in the face of reality.",
@@ -806,11 +818,23 @@ export const SHABAD_COPY_OVERRIDES = {
     ],
     "reviewedByHuman": true
   },
+  "shabad-human-birth-is-chance": {
+    "title": "Human birth is a chance, not an ornament",
+    "summary": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
+    "whyItMatters": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response.",
+    "takeaway": "Treat this life as a meeting, not an endless postponement.",
+    "structure": [
+      "It opens by calling human life a given chance rather than a private possession.",
+      "The middle refuses distraction and delay by making the purpose of life explicit.",
+      "It ends by pressing the seeker toward remembrance and company that answer the chance well."
+    ],
+    "reviewedByHuman": true
+  },
   "shabad-lord-keeps-the-humble-close": {
     "title": "The humble are kept close",
     "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
     "whyItMatters": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord.",
-    "takeaway": "The humble are kept close and cherished by the Lord.",
+    "takeaway": "Stay humble enough to be kept close and cherished by the Lord.",
     "structure": [
       "It opens by making the Guru the giver of inward life and remembrance.",
       "The middle contrasts that gift with the restless begging of desire and wealth.",
@@ -832,9 +856,9 @@ export const SHABAD_COPY_OVERRIDES = {
   },
   "shabad-remembrance-brings-peace": {
     "title": "Remembrance settles the body",
-    "summary": "The ashtapadee opens by repeating remembrance until peace is found and bodily anguish begins to lift. It moves through praise of the One Word behind scripture and ends with yearning to be saved in the company of those who long for His Darshan.",
-    "whyItMatters": "This is for the person whose anxiety is no longer only mental but physical. Held with consistency, it turns simran into bodily medicine and not just devotional language.",
-    "takeaway": "Let remembrance reach the body before worry claims it.",
+    "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
+    "whyItMatters": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language.",
+    "takeaway": "Carry remembrance into the body before worry settles there.",
     "structure": [
       "It opens by linking repeated remembrance directly to peace and the easing of anguish in the body.",
       "The middle magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
@@ -846,7 +870,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Roaming ends where saintly company cools the heart",
     "summary": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy sends the holy saint, and then the mind and body finally cool.",
     "whyItMatters": "This is for the person trapped in spiritual roaming, method-switching, and never-arriving effort. Held honestly, it says peace is not found by multiplying techniques but by mercy and true company.",
-    "takeaway": "Saintly company gives the cooling that endless seeking cannot.",
+    "takeaway": "Bring your searching to saintly company and let it cool there.",
     "structure": [
       "It opens with a sincere search that still cannot bring the Lord near.",
       "The middle exhausts religious systems and bodily disciplines until their inability to give peace is obvious.",
@@ -894,7 +918,7 @@ export const SHABAD_COPY_OVERRIDES = {
     "title": "Pain tells the truth comfort hides",
     "summary": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
     "whyItMatters": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
-    "takeaway": "Pain can heal what comfort keeps covering.",
+    "takeaway": "Let pain reveal what comfort keeps covering.",
     "structure": [
       "It opens with the startling reversal of suffering as medicine and pleasure as disease.",
       "The middle gives up control and admits the Creator's will is doing what your effort cannot.",
@@ -928,7 +952,7 @@ export const SHABAD_COPY_OVERRIDES = {
   },
   "shabad-work-give-know-the-path": {
     "title": "The path is known by labor and generosity",
-    "summary": "The shalok opens by exposing different forms of religious pose without wisdom, labor, or integrity behind them. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
+    "summary": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
     "whyItMatters": "This is for the person confused by spiritual branding, costume, or authority language. Held honestly, it returns discernment to labor, generosity, and humility.",
     "takeaway": "Honest labor and sharing reveal the path better than costume.",
     "structure": [

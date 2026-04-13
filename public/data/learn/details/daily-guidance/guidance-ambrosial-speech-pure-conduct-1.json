@@ -1,16 +1,16 @@
 {
   "id": "guidance-ambrosial-speech-pure-conduct-1",
-  "title": "Of All Religions, The Best Religion",
-  "summary": "Speech is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Of all religions, the best religion",
-  "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+  "title": "Let religion show up in conduct",
+  "summary": "This meets the habit of praising religion in words while excusing behavior. The line pushes the question down into life.",
+  "takeaway": "Let conduct answer first.",
+  "lifeApplication": "Before speaking about values again, ask what your treatment of people showed today. Let conduct answer first.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
       11742
     ],
-    "shortMeaning": "Of all religions, the best religion",
-    "lifeApplication": "Refuse one unnecessary sharp word before it leaves the mouth. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "True religion appears in lived conduct, not in religious pose.",
+    "lifeApplication": "Before praising religion again, ask what your conduct showed today."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -23,7 +23,7 @@
     "collection-conduct-and-clean-speech"
   ],
   "rotation": {
-    "theme": "speech",
+    "theme": "conduct",
     "depthLevel": "beginner",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Of all religions, the best religion",
+      "coreClaim": "True religion appears in lived conduct, not in religious pose.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The best religion sounds like praise and looks like clean conduct.",
-      "practicalImplication": "Refuse one unnecessary sharp word before it leaves the mouth. Begin with the part of the day already in front of you.",
+      "turn": "The truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before speaking about values again, ask what your treatment of people showed today. Let conduct answer first.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.83,
-      "clarity": 4.17,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.64,
-      "beauty": 3.93,
-      "overall": 4.09
+      "faithfulness": 4.07,
+      "clarity": 4.29,
+      "specificity": 4.82,
+      "emotionalHonesty": 3,
+      "usefulness": 4.42,
+      "beauty": 4.01,
+      "overall": 4.1
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

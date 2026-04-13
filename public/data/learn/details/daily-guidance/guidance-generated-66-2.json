@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-66-2",
-  "title": "O Soul-bride, Without Your Husband Lord, What",
-  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The life of the discarded bride is cursed. She is deceived by the love of duality; o soul-bride, without your Husband Lord, what good are your decorations",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "title": "Without the Beloved, decoration stays hollow",
+  "summary": "This meets the effort to look radiant while the heart is estranged. The line asks what ornaments can do when duality has already left the bride abandoned.",
+  "takeaway": "Seek the Beloved before the ornament.",
+  "lifeApplication": "Before fixing the outside again, ask whether the heart is still living in duality. Let one honest turn toward the Beloved matter more than the whole arrangement.",
   "source": {
     "deepDiveId": "shabad-generated-66",
     "verseIds": [
       774,
       777
     ],
-    "shortMeaning": "The life of the discarded bride is cursed. She is deceived by the love of duality; o soul-bride, without your Husband Lord, what good are your decorations",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Without the Beloved, decoration cannot cover a heart split by duality.",
+    "lifeApplication": "Before fixing the outside, ask whether the heart is still living in duality."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -24,7 +24,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "attachment",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The life of the discarded bride is cursed. She is deceived by the love of duality; o soul-bride, without your Husband Lord, what good are your decorations",
+      "coreClaim": "Without the Beloved, decoration cannot cover a heart split by duality.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "turn": "Without the Beloved and the Shabad, surface beauty stays false.",
+      "practicalImplication": "Before fixing the outside again, ask whether the heart is still living in duality. Let one honest turn toward the Beloved matter more than the whole arrangement.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 3.03,
-      "specificity": 4.65,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.8,
-      "beauty": 3.32,
-      "overall": 3.82
+      "faithfulness": 4.11,
+      "clarity": 4.29,
+      "specificity": 4.87,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.42,
+      "beauty": 4.17,
+      "overall": 4.22
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

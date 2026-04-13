@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-705-2",
-  "title": "All Who Love Duality Are Ruined",
-  "summary": "Ego is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Acting in egotism, peace is not obtained",
-  "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+  "title": "Duality ruins what ego keeps defending",
+  "summary": "This meets the self asking for peace while clinging to divided loyalties. The line says unrest is not accidental; ego and duality keep feeding it.",
+  "takeaway": "Name the split that keeps peace away.",
+  "lifeApplication": "When you want peace without giving up the second attachment, name the split honestly. Stop asking for rest while protecting what ruins it.",
   "source": {
     "deepDiveId": "shabad-generated-705",
     "verseIds": [
       9525,
       9527
     ],
-    "shortMeaning": "Acting in egotism, peace is not obtained",
-    "lifeApplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Ego keeps its unrest alive by loving two masters.",
+    "lifeApplication": "When you want peace, name the second loyalty you are still protecting."
   },
   "relatedTopicIds": [
     "topic-ego"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Acting in egotism, peace is not obtained",
+      "coreClaim": "Ego keeps its unrest alive by loving two masters.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Keep returning to this turn: Nanak, the lowly, says embrace love for the Lord.",
-      "practicalImplication": "Notice where the self wants the line to confirm it instead of soften it. Use the line before the pressure chooses your tone.",
+      "turn": "Ego cannot make peace; Naam and service can.",
+      "practicalImplication": "When you want peace without giving up the second attachment, name the split honestly. Stop asking for rest while protecting what ruins it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 4.11,
-      "specificity": 4.51,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.89,
-      "overall": 3.98
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 4.67,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.15
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,16 +1,16 @@
 {
   "id": "guidance-search-ends-in-saint-company-1",
-  "title": "I Have Searched And Searched, Seeking",
-  "summary": "Restlessness is named plainly here before the mind has time to decorate it.",
-  "takeaway": "I have searched and searched, seeking the Blessed Vision of His Darshan",
-  "lifeApplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+  "title": "Let searching speak its real hunger",
+  "summary": "This meets the restless heart that keeps moving without naming what it wants. The line admits the search plainly so it can be brought where it finally cools.",
+  "takeaway": "Say what you are actually seeking.",
+  "lifeApplication": "When you start hunting everywhere again, stop before the next tab, errand, or plan. Say out loud what you want from God, then bring that search into saintly company instead of ten frantic moves.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
       3890
     ],
-    "shortMeaning": "I have searched and searched, seeking the Blessed Vision of His Darshan",
-    "lifeApplication": "Choose better placement before choosing more movement. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "Searching clears when it admits hunger for Darshan and stops roaming alone.",
+    "lifeApplication": "When you start hunting everywhere, name the Darshan you seek and bring it to company."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "I have searched and searched, seeking the Blessed Vision of His Darshan",
+      "coreClaim": "Searching clears when it admits hunger for Darshan and stops roaming alone.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "The mind settles less by roaming and more by right company.",
-      "practicalImplication": "Choose better placement before choosing more movement. Begin with the part of the day already in front of you.",
+      "turn": "Bring your searching to saintly company and let it cool there.",
+      "practicalImplication": "When you start hunting everywhere again, stop before the next tab, errand, or plan. Say out loud what you want from God, then bring that search into saintly company instead of ten frantic moves.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 3.81,
-      "specificity": 4.56,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 3.67,
-      "overall": 3.96
+      "faithfulness": 4.23,
+      "clarity": 4.35,
+      "specificity": 4.98,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.31
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "id": "shabad-honor-women",
-  "title": "Honor the One Through Whom We Arrive",
+  "title": "Honor the one through whom life arrives",
   "subtitle": "Raag Aasaa",
-  "summary": "Guru Nanak confronts social contempt directly and dissolves it through truth: human life itself comes through woman.",
-  "whyItMatters": "It grounds equality in Gurbani itself and interrupts dismissive, demeaning, or inherited cultural habits.",
-  "takeaway": "What Guru honors cannot be spoken of with contempt.",
+  "summary": "The shabad opens by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
+  "whyItMatters": "This is for the person shaped by casual contempt, inherited patriarchy, or speech that lowers women while depending on them. Held honestly, it restores reverence, humility, and a truer social imagination.",
+  "takeaway": "Refuse to despise the one through whom human life comes.",
   "themes": [
     "equality",
     "humility",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "Names ordinary social realities to cut through abstraction.",
-    "Turns the argument by asking why contempt is spoken toward the one through whom life arrives.",
-    "Closes by moving honor back toward praise of the Lord."
+    "It opens by naming how thoroughly human life is bound up with woman.",
+    "The middle confronts contempt directly and calls it irrational in the face of reality.",
+    "It ends by lifting the mouth that praises the Lord rather than degrading His creation."
   ],
   "keyVerseIds": [
     21284,
@@ -131,25 +131,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Nanak confronts social contempt directly and dissolves it through truth: human life itself comes through woman.",
+      "coreClaim": "The shabad opens by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
       "emotionalState": "dismissive, proud, habit-bound",
-      "turn": "Turns the argument by asking why contempt is spoken toward the one through whom life arrives.",
-      "practicalImplication": "What Guru honors cannot be spoken of with contempt.",
+      "turn": "The middle confronts contempt directly and calls it irrational in the face of reality.",
+      "practicalImplication": "This is for the person shaped by casual contempt, inherited patriarchy, or speech that lowers women while depending on them. Held honestly, it restores reverence, humility, and a truer social imagination. Refuse to despise the one through whom human life comes.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.36,
-      "usefulness": 3,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.6,
       "beauty": 4.33,
-      "overall": 4.04
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

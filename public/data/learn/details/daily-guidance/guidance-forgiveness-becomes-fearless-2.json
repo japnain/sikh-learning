@@ -1,17 +1,17 @@
 {
   "id": "guidance-forgiveness-becomes-fearless-2",
-  "title": "What Fear Does The Yogi",
-  "summary": "Forgiveness is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "To practice forgiveness is the true fast, good conduct and contentment",
-  "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+  "title": "Practice forgiveness until fear loses its stage",
+  "summary": "This meets the guarded heart that calls its tension caution. The line ties forgiveness, conduct, and contentment together until fear shrinks.",
+  "takeaway": "Release one claim and watch what softens.",
+  "lifeApplication": "Before rehearsing the wound again, notice how fear is living inside the grudge. Release one claim and watch what softens.",
   "source": {
     "deepDiveId": "shabad-forgiveness-becomes-fearless",
     "verseIds": [
       9600,
       9603
     ],
-    "shortMeaning": "To practice forgiveness is the true fast, good conduct and contentment",
-    "lifeApplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Forgiveness thins fear because the heart stops guarding its injury.",
+    "lifeApplication": "When fear is living inside the grudge, release one claim and watch what softens."
   },
   "relatedTopicIds": [
     "topic-forgiveness"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "To practice forgiveness is the true fast, good conduct and contentment",
+      "coreClaim": "Forgiveness thins fear because the heart stops guarding its injury.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "Forgive deeply enough that fear loses its throne.",
-      "practicalImplication": "Release one rehearsed sentence you keep feeding with resentment. Use the line before the pressure chooses your tone.",
+      "turn": "Forgiveness, conduct, and contentment free the heart from fear.",
+      "practicalImplication": "Before rehearsing the wound again, notice how fear is living inside the grudge. Release one claim and watch what softens.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.96,
-      "clarity": 3.87,
-      "specificity": 4.72,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.73,
-      "overall": 4
+      "faithfulness": 4.24,
+      "clarity": 4.11,
+      "specificity": 4.81,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.2,
+      "beauty": 3.89,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

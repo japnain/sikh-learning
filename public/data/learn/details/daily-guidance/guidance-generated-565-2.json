@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-565-2",
-  "title": "One's Honor Remains Perfect, When The Perfect",
-  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "One's honor remains perfect, when the Perfect Lord preserves it",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "title": "Let the Perfect One keep your standing",
+  "summary": "This meets the fear of losing face. The line moves honor out of public management and into the keeping of the Perfect Lord.",
+  "takeaway": "Stop managing what the Perfect One can keep.",
+  "lifeApplication": "Before defending your name, let the body stand still and the mouth stay quiet for a beat. Ask who is really responsible for keeping your honor intact.",
   "source": {
     "deepDiveId": "shabad-generated-565",
     "verseIds": [
       7978,
       7980
     ],
-    "shortMeaning": "One's honor remains perfect, when the Perfect Lord preserves it",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Standing is safest when the Perfect One, not the crowd, preserves it.",
+    "lifeApplication": "Before defending your name, ask who is truly keeping your honor intact."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "self-worth",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "One's honor remains perfect, when the Perfect Lord preserves it",
+      "coreClaim": "Standing is safest when the Perfect One, not the crowd, preserves it.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: Says Nanak, my True Guru is Perfect.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "turn": "Wholeness begins when the Name is kept in the heart.",
+      "practicalImplication": "Before defending your name, let the body stand still and the mouth stay quiet for a beat. Ask who is really responsible for keeping your honor intact.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.83,
-      "clarity": 3.93,
-      "specificity": 4.96,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.86,
-      "beauty": 3.71,
-      "overall": 4.11
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 4.85,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.29
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

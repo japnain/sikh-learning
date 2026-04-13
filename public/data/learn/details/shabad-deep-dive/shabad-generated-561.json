@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-561",
-  "title": "Nothing Of The World Can Touch Them",
+  "title": "Hope in the Lord outlives the world's reach",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "This shabad opens with nothing of the world can touch them at all. It turns the heart toward who has shown me the Perfect, Supreme Lord God.",
-  "whyItMatters": "It matters when life feels performing, transactional, and dry because the shabad keeps seva inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: who has shown me the Perfect, Supreme Lord God.",
+  "summary": "The shabad opens by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
+  "whyItMatters": "This is for the person living in anticipation of the next blow, opinion, or setback. Held steadily, it relocates safety from changing circumstances to the One who keeps the heart.",
+  "takeaway": "Let hope in the Lord outrank the world's reach.",
   "themes": [
     "seva",
     "attachment",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: nothing of the world can touch them at all.",
-    "The middle movement widens the correction through no anxiety can affect them.",
-    "It closes with a return you can actually keep: who has shown me the Perfect, Supreme Lord God."
+    "It opens by saying the world cannot finally mark the one supported by the Lord.",
+    "The middle widens that protection into freedom from anxiety and even approaching pain.",
+    "It ends in gratitude for the Guru who reveals the Perfect Lord behind that steadiness."
   ],
   "keyVerseIds": [
     7939,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with nothing of the world can touch them at all. It turns the heart toward who has shown me the Perfect, Supreme Lord God.",
+      "coreClaim": "The shabad opens by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "The middle movement widens the correction through no anxiety can affect them.",
-      "practicalImplication": "Keep returning to this turn: who has shown me the Perfect, Supreme Lord God.",
+      "turn": "The middle widens that protection into freedom from anxiety and even approaching pain.",
+      "practicalImplication": "This is for the person living in anticipation of the next blow, opinion, or setback. Held steadily, it relocates safety from changing circumstances to the One who keeps the heart. Let hope in the Lord outrank the world's reach.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.57,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.77,
-      "overall": 3.96
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.04,
+      "beauty": 4.01,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

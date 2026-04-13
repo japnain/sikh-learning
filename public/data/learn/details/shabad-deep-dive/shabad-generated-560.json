@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-560",
-  "title": "Whatever My Friend Does, I Accept",
+  "title": "What the Beloved does, I accept",
   "subtitle": "Raag Gauree · Ang 187",
-  "summary": "This shabad opens with whatever my Friend does, I accept. It turns the heart toward nanak: my honor and glory are Yours, God.",
-  "whyItMatters": "It matters when life feels alone, unseen, and disconnected because the shabad keeps loneliness inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak: my honor and glory are Yours, God.",
+  "summary": "The shabad begins by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
+  "whyItMatters": "This is for the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Held steadily, it changes complaint into trust and loosens the fear that acceptance means abandonment.",
+  "takeaway": "Let the Beloved's way grow dearer than the mind's protest.",
   "themes": [
     "loneliness",
     "comparison",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: whatever my Friend does, I accept.",
-    "The middle movement widens the correction through by Guru's Grace, I give my love to Him.",
-    "It closes with a return you can actually keep: nanak: my honor and glory are Yours, God."
+    "It opens with bare consent: what the Beloved does is received, not argued with.",
+    "The middle gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
+    "It ends in belonging: servant and Master, honor and glory returned to God alone."
   ],
   "keyVerseIds": [
     7925,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with whatever my Friend does, I accept. It turns the heart toward nanak: my honor and glory are Yours, God.",
+      "coreClaim": "The shabad begins by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle movement widens the correction through by Guru's Grace, I give my love to Him.",
-      "practicalImplication": "Keep returning to this turn: Nanak: my honor and glory are Yours, God.",
+      "turn": "The middle gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
+      "practicalImplication": "This is for the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Held steadily, it changes complaint into trust and loosens the fear that acceptance means abandonment. Let the Beloved's way grow dearer than the mind's protest.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.81,
-      "specificity": 4.6,
+      "clarity": 4.29,
+      "specificity": 4.96,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.97,
-      "overall": 4.02
+      "usefulness": 3.82,
+      "beauty": 4.81,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

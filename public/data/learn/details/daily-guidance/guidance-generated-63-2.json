@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-63-2",
-  "title": "Go, And Ask The Happy Soul-brides",
-  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "title": "Learn love from those who live it",
+  "summary": "This meets the seeker who wants closeness without company. The line sends you into the embrace of companions who already know how to love the Lord.",
+  "takeaway": "Ask practiced hearts how they keep love warm.",
+  "lifeApplication": "When remembrance goes cold, sit beside someone whose practice still glows and ask one plain question. Let their lived virtue teach what private guessing cannot.",
   "source": {
     "deepDiveId": "shabad-generated-63",
     "verseIds": [
       729,
       734
     ],
-    "shortMeaning": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Companions teach love by embrace, example, and honest asking.",
+    "lifeApplication": "When longing swells, ask a practiced heart how it keeps love warm."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -24,7 +24,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Go, and ask the happy soul-brides, \"\"By what virtuous qualities do you enjoy your",
+      "coreClaim": "Companions teach love by embrace, example, and honest asking.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, the True King absorbs us into Himself.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "turn": "Holy company teaches the heart how to remember well.",
+      "practicalImplication": "When remembrance goes cold, sit beside someone whose practice still glows and ask one plain question. Let their lived virtue teach what private guessing cannot.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.59,
-      "specificity": 4.51,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.8,
-      "beauty": 3.9,
-      "overall": 3.93
+      "faithfulness": 4.09,
+      "clarity": 4.35,
+      "specificity": 4.66,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.2
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-232-2",
-  "title": "I Sing The Lord's Name",
-  "summary": "Anger is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within; i sing the Lord's Name and the Kirtan of the Lord's Praises",
-  "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+  "title": "Sing until doubt loses its room",
+  "summary": "This meets the foggy mind that wants clarity without devotion. The line says doubt thins when Naam is implanted deeply enough to be sung.",
+  "takeaway": "Let song do what analysis has not.",
+  "lifeApplication": "When uncertainty crowds the head, stop explaining it and sing the Name once with a full breath. Let sound make a way where analysis has not.",
   "source": {
     "deepDiveId": "shabad-generated-232",
     "verseIds": [
       3467,
       3468
     ],
-    "shortMeaning": "The Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within; i sing the Lord's Name and the Kirtan of the Lord's Praises",
-    "lifeApplication": "Slow the tongue before you defend the self-image behind it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Sung Naam turns inner light on and shows the way.",
+    "lifeApplication": "When uncertainty crowds the head, sing until the way becomes visible again."
   },
   "relatedTopicIds": [
     "topic-anger"
@@ -24,7 +24,7 @@
     "collection-speech-and-self-restraint"
   ],
   "rotation": {
-    "theme": "anger",
+    "theme": "doubt",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Perfect Guru has implanted the Name of the Lord within me. It has dispelled my doubts from within; i sing the Lord's Name and the Kirtan of the Lord's Praises",
+      "coreClaim": "Sung Naam turns inner light on and shows the way.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "Keep returning to this turn: Servant Nanak chants the Naam, and so he lives. Without the Name, he would die in an instant.",
-      "practicalImplication": "Slow the tongue before you defend the self-image behind it. Use the line before the pressure chooses your tone.",
+      "turn": "When Naam is planted within, doubt loses its house.",
+      "practicalImplication": "When uncertainty crowds the head, stop explaining it and sing the Name once with a full breath. Let sound make a way where analysis has not.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 2.85,
-      "specificity": 4.61,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.26,
-      "beauty": 2.96,
-      "overall": 3.67
+      "faithfulness": 4.18,
+      "clarity": 4.35,
+      "specificity": 4.75,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.58,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

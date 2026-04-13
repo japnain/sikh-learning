@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-66-3",
-  "title": "Blessed Is That Fortunate Bride",
-  "summary": "The shabad does not leave gratitude at diagnosis. It turns toward return.",
-  "takeaway": "O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+  "title": "No shelter holds the false self",
+  "summary": "This meets loneliness still trying to hide in false shelters. The line says what is false will not protect you here or hereafter.",
+  "takeaway": "Turn toward the shelter that actually holds.",
+  "lifeApplication": "When you feel abandoned and reach for a quick shelter, ask whether it can actually hold you. Turn toward the love that does not fail after the mood passes.",
   "source": {
     "deepDiveId": "shabad-generated-66",
     "verseIds": [
       778,
       790
     ],
-    "shortMeaning": "O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord; in the world hereafter, being false, you shall suffer",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "False shelters collapse, but love of the Lord still holds.",
+    "lifeApplication": "When you reach for a quick shelter, ask whether it can actually hold you."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -24,7 +24,7 @@
     "collection-gratitude-journey"
   ],
   "rotation": {
-    "theme": "gratitude",
+    "theme": "loneliness",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord; in the world hereafter, being false, you shall suffer",
+      "coreClaim": "False shelters collapse, but love of the Lord still holds.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "Keep returning to this turn: O Nanak, blessed is that fortunate bride, who is in love with her Husband Lord.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. After the reaction, make the next return smaller and truer.",
+      "turn": "Without the Beloved and the Shabad, surface beauty stays false.",
+      "practicalImplication": "When you feel abandoned and reach for a quick shelter, ask whether it can actually hold you. Turn toward the love that does not fail after the mood passes.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 3.69,
-      "specificity": 4.91,
-      "emotionalHonesty": 3,
+      "faithfulness": 4,
+      "clarity": 4.35,
+      "specificity": 4.76,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.8,
-      "beauty": 4.09,
-      "overall": 4.11
+      "beauty": 4.21,
+      "overall": 4.19
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

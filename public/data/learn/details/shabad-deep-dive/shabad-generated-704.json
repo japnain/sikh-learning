@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-704",
-  "title": "Mind Is Under The Power",
+  "title": "The split mind becomes one through surrender",
   "subtitle": "Raag Gauree · Ang 222",
-  "summary": "This shabad opens with the mind is under the power of the demons of evil intellect and duality. It turns the heart toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+  "summary": "The shabad opens by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
+  "whyItMatters": "This is for the person who feels mentally scattered, morally divided, and unable to stay steady. Held honestly, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can.",
+  "takeaway": "The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
   "themes": [
     "ego",
     "self-worth",
@@ -224,9 +224,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the mind is under the power of the demons of evil intellect and duality.",
-    "The middle movement widens the correction through in the game of chess, their pieces do not reach their destination.",
-    "It closes with a return you can actually keep: o Nanak, the Gurmukh sings the Glorious Praises of the Lord."
+    "It opens by saying the job is unfinished as long as the mind remains alive to duality.",
+    "The middle follows that split mind into Maya, corruption, anxiety, and unending motion.",
+    "It ends with grace, Shabad, and Naam gathering merits and drawing the mind back toward unity."
   ],
   "keyVerseIds": [
     9499,
@@ -263,25 +263,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the mind is under the power of the demons of evil intellect and duality. It turns the heart toward o Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+      "coreClaim": "The shabad opens by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through in the game of chess, their pieces do not reach their destination.",
-      "practicalImplication": "Keep returning to this turn: O Nanak, the Gurmukh sings the Glorious Praises of the Lord.",
+      "turn": "The middle follows that split mind into Maya, corruption, anxiety, and unending motion.",
+      "practicalImplication": "This is for the person who feels mentally scattered, morally divided, and unable to stay steady. Held honestly, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can. The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.06,
-      "specificity": 4.6,
-      "emotionalHonesty": 4,
-      "usefulness": 3.38,
-      "beauty": 3.9,
-      "overall": 3.94
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.53,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

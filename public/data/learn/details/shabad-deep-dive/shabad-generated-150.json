@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-150",
-  "title": "Relying On Your Mercy, Dear Lord, I",
+  "title": "Mercy lets the child tell the truth",
   "subtitle": "Siree Raag · Ang 51",
-  "summary": "This shabad opens with relying on Your Mercy, Dear Lord, I have cherished and loved you. It turns the heart toward meeting with the Guru, Nanak has recognized the Supreme Lord God.",
-  "whyItMatters": "It matters when life feels resisting, controlling, and argumentative because the shabad keeps hukam inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+  "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
+  "whyItMatters": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike.",
+  "takeaway": "Bring the truth about failure into the Lord's mercy.",
   "themes": [
     "hukam",
     "shame",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: relying on Your Mercy, Dear Lord, I have cherished and loved you.",
-    "The middle movement widens the correction through inside of all, and outside of all, You are our Self-sufficient Father.",
-    "It closes with a return you can actually keep: meeting with the Guru, Nanak has recognized the Supreme Lord God."
+    "It opens by linking love to mercy and honest childlike admission.",
+    "The middle admits how easy speech is and how difficult it is to actually accept Hukam.",
+    "It ends with possessiveness loosening and the Supreme Lord being recognized through the Guru."
   ],
   "keyVerseIds": [
     2088,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with relying on Your Mercy, Dear Lord, I have cherished and loved you. It turns the heart toward meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+      "coreClaim": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "The middle movement widens the correction through inside of all, and outside of all, You are our Self-sufficient Father.",
-      "practicalImplication": "Keep returning to this turn: Meeting with the Guru, Nanak has recognized the Supreme Lord God.",
+      "turn": "The middle admits how easy speech is and how difficult it is to actually accept Hukam.",
+      "practicalImplication": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike. Bring the truth about failure into the Lord's mercy.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 2.81,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.7,
-      "overall": 3.83
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3,
+      "usefulness": 3.6,
+      "beauty": 4.63,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

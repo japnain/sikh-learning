@@ -1,10 +1,10 @@
 {
   "id": "shabad-gratitude-restores-naam",
-  "title": "Gratitude That Returns to Naam",
+  "title": "Mercy remembered becomes living Naam",
   "subtitle": "Mundhaavanee Fifth Mehl",
-  "summary": "This short shalok is a mature form of gratitude. It does not begin in self-congratulation but in humility, mercy, and the gift of Naam.",
-  "whyItMatters": "It helps gratitude move past positivity into truthful dependence on grace.",
-  "takeaway": "Real gratitude does not inflate the self. It softens it.",
+  "summary": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
+  "whyItMatters": "This is for the person who has gone numb to mercy or embarrassed by their own ingratitude. Held honestly, it turns shame into gratitude and gratitude into renewed life in Naam.",
+  "takeaway": "Honest gratitude becomes the doorway to mercy and Naam.",
   "themes": [
     "gratitude",
     "humility",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "Begins by admitting that the Lord's care has not been properly appreciated.",
-    "Moves through unworthiness and mercy rather than self-esteem.",
-    "Ends by locating life itself in the gift of Naam."
+    "It opens by telling the truth about unnoticed grace.",
+    "The middle deepens into confessed unworthiness and the Lord's pity.",
+    "It ends with the Guru's friendship and Naam making the whole being live again."
   ],
   "keyVerseIds": [
     60338,
@@ -109,25 +109,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "This short shalok is a mature form of gratitude. It does not begin in self-congratulation but in humility, mercy, and the gift of Naam.",
+      "coreClaim": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "Moves through unworthiness and mercy rather than self-esteem.",
-      "practicalImplication": "Real gratitude does not inflate the self. It softens it.",
+      "turn": "The middle deepens into confessed unworthiness and the Lord's pity.",
+      "practicalImplication": "This is for the person who has gone numb to mercy or embarrassed by their own ingratitude. Held honestly, it turns shame into gratitude and gratitude into renewed life in Naam. Honest gratitude becomes the doorway to mercy and Naam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.29,
-      "specificity": 4.6,
-      "emotionalHonesty": 3,
-      "usefulness": 3,
-      "beauty": 4.81,
-      "overall": 4.05
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.44,
+      "beauty": 4.85,
+      "overall": 4.22
     },
     "strengths": [
-      "beauty",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

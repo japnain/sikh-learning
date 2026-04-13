@@ -1,10 +1,10 @@
 {
   "id": "shabad-suffering-as-medicine",
-  "title": "When Suffering Becomes Medicine",
+  "title": "Pain tells the truth comfort hides",
   "subtitle": "Raag Aasaa",
-  "summary": "Guru Nanak does not glorify pain. He exposes how comfort can sedate remembrance while suffering can reopen dependence on the Creator.",
-  "whyItMatters": "This shabad reframes hard seasons without trivializing them and helps a user move from resentment toward reverent honesty.",
-  "takeaway": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+  "summary": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+  "whyItMatters": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
+  "takeaway": "Let pain reveal what comfort keeps covering.",
   "themes": [
     "reflection",
     "anxiety",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "Begins with the startling inversion of pain and pleasure.",
-    "Moves quickly into dependence on the Creator, not self-management.",
-    "Ends in awe at the Creator's all-pervading presence and action."
+    "It opens with the startling reversal of suffering as medicine and pleasure as disease.",
+    "The middle gives up control and admits the Creator's will is doing what your effort cannot.",
+    "It ends in praise, light, and trust in the One whose work runs through everything."
   ],
   "keyVerseIds": [
     21090,
@@ -128,25 +128,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "Guru Nanak does not glorify pain. He exposes how comfort can sedate remembrance while suffering can reopen dependence on the Creator.",
+      "coreClaim": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Moves quickly into dependence on the Creator, not self-management.",
-      "practicalImplication": "Hardship is not automatically holy, but it can become the place where reality is finally faced.",
+      "turn": "The middle gives up control and admits the Creator's will is doing what your effort cannot.",
+      "practicalImplication": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher. Let pain reveal what comfort keeps covering.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.29,
+      "clarity": 4.35,
       "specificity": 4.6,
       "emotionalHonesty": 3,
-      "usefulness": 3,
-      "beauty": 4.01,
-      "overall": 3.93
+      "usefulness": 3.76,
+      "beauty": 4.53,
+      "overall": 4.14
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

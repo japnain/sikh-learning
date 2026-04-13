@@ -1,17 +1,17 @@
 {
   "id": "guidance-gratitude-restores-naam-2",
-  "title": "You Took Pity On Me, And Blessed",
-  "summary": "Gratitude is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
-  "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+  "title": "Mercy restores the gratitude you ignored",
+  "summary": "This meets the heart living on mercy it barely notices. The line joins confession and gratitude so the gift can be felt again.",
+  "takeaway": "Confess what mercy has already carried.",
+  "lifeApplication": "Before the next complaint, name one mercy you have already used all day. Let gratitude begin where entitlement is interrupted.",
   "source": {
     "deepDiveId": "shabad-gratitude-restores-naam",
     "verseIds": [
       60338,
       60340
     ],
-    "shortMeaning": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
-    "lifeApplication": "Let one received thing become a place of praise instead of entitlement. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Mercy is first noticed when ingratitude is finally confessed.",
+    "lifeApplication": "Before complaining, name one mercy you have already been living on."
   },
   "relatedTopicIds": [
     "topic-gratitude"
@@ -40,27 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "You took pity on me, and blessed me with Your Mercy, and I have met the True Guru, my Friend; i have not appreciated what You have done for me, Lord",
+      "coreClaim": "Mercy is first noticed when ingratitude is finally confessed.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "Real gratitude does not inflate the self. It softens it.",
-      "practicalImplication": "Let one received thing become a place of praise instead of entitlement. Use the line before the pressure chooses your tone.",
+      "turn": "Honest gratitude becomes the doorway to mercy and Naam.",
+      "practicalImplication": "Before the next complaint, name one mercy you have already used all day. Let gratitude begin where entitlement is interrupted.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.09,
-      "clarity": 1.45,
-      "specificity": 4.83,
-      "emotionalHonesty": 3.18,
-      "usefulness": 4.8,
-      "beauty": 3.57,
-      "overall": 3.7
+      "faithfulness": 4.05,
+      "clarity": 4.35,
+      "specificity": 4.99,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.3
     },
     "strengths": [
-      "specificity",
-      "usefulness"
+      "usefulness",
+      "specificity"
     ],
-    "issues": [
-      "runs too long at the sentence level"
-    ]
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

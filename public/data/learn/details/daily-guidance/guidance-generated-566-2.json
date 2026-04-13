@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-566-2",
-  "title": "In The Society Of The Saints, Egotism",
-  "summary": "Comparison is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "The Blessed Vision of the Saints is the perfect cleansing bath; in the Society of the Saints, egotism is shed",
-  "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+  "title": "Go where ego comes off",
+  "summary": "This meets the self trying to cleanse itself without surrender. The line says ego actually falls in saintly company.",
+  "takeaway": "Go where ego comes off.",
+  "lifeApplication": "When you feel sticky with self-concern, do not stay private. Sit near the one whose presence makes performance unnecessary and let that company do its work.",
   "source": {
     "deepDiveId": "shabad-generated-566",
     "verseIds": [
       7991,
       7993
     ],
-    "shortMeaning": "The Blessed Vision of the Saints is the perfect cleansing bath; in the Society of the Saints, egotism is shed",
-    "lifeApplication": "Bring the mind back from the other person to the state of your own heart. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Saintly company washes off the ego you cannot scrub alone.",
+    "lifeApplication": "When self-concern thickens, move toward the company that makes performance unnecessary."
   },
   "relatedTopicIds": [
     "topic-comparison"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "comparison",
+    "theme": "sangat",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The Blessed Vision of the Saints is the perfect cleansing bath; in the Society of the Saints, egotism is shed",
+      "coreClaim": "Saintly company washes off the ego you cannot scrub alone.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "Keep returning to this turn: touches the feet of the Holy.",
-      "practicalImplication": "Bring the mind back from the other person to the state of your own heart. Use the line before the pressure chooses your tone.",
+      "turn": "Seek the company that washes the heart and turns it toward Naam.",
+      "practicalImplication": "When you feel sticky with self-concern, do not stay private. Sit near the one whose presence makes performance unnecessary and let that company do its work.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.93,
-      "clarity": 2.82,
-      "specificity": 5,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.86,
-      "beauty": 3.33,
-      "overall": 3.92
+      "faithfulness": 4.03,
+      "clarity": 4.23,
+      "specificity": 4.61,
+      "emotionalHonesty": 3,
+      "usefulness": 4.58,
+      "beauty": 3.97,
+      "overall": 4.07
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

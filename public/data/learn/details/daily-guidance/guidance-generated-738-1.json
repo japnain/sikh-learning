@@ -1,16 +1,16 @@
 {
   "id": "guidance-generated-738-1",
-  "title": "The Guru's Word, I Have Attained",
-  "summary": "Patience is named plainly here before the mind has time to decorate it.",
-  "takeaway": "Through the Guru's Word, I have attained the supreme status",
-  "lifeApplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+  "title": "Let the Guru's word lift you into real stature",
+  "summary": "This meets ambition disguised as spiritual progress. The line says true stature is attained through the Guru's word, which steadies the mind from within.",
+  "takeaway": "Let the Guru's word define your stature.",
+  "lifeApplication": "Before reaching for a higher image, return to one instruction the Guru has already given. Stay there until the word steadies and lifts you from within.",
   "source": {
     "deepDiveId": "shabad-generated-738",
     "verseIds": [
       10415
     ],
-    "shortMeaning": "Through the Guru's Word, I have attained the supreme status",
-    "lifeApplication": "Wait by listening instead of simmering. Let the line meet the ordinary room before self-judgment starts arranging it."
+    "shortMeaning": "The Guru's word lifts the soul into true stature.",
+    "lifeApplication": "Before chasing a higher image, stay with the Guru's word until it steadies you."
   },
   "relatedTopicIds": [
     "topic-patience"
@@ -23,7 +23,7 @@
     "collection-tired-heart-to-rest"
   ],
   "rotation": {
-    "theme": "patience",
+    "theme": "discipline",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -39,25 +39,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:1-line-window",
     "evidence": {
-      "coreClaim": "Through the Guru's Word, I have attained the supreme status",
+      "coreClaim": "The Guru's word lifts the soul into true stature.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "Keep returning to this turn: O Nanak, meeting with the Guru, I have found the Supreme Lord God.",
-      "practicalImplication": "Wait by listening instead of simmering. Begin with the part of the day already in front of you.",
+      "turn": "Let the Guru's word define attainment.",
+      "practicalImplication": "Before reaching for a higher image, return to one instruction the Guru has already given. Stay there until the word steadies and lifts you from within.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.73,
-      "clarity": 3.87,
-      "specificity": 4.15,
+      "faithfulness": 4.31,
+      "clarity": 4.23,
+      "specificity": 4.88,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.36,
-      "beauty": 3.87,
-      "overall": 3.87
+      "usefulness": 4.94,
+      "beauty": 4.13,
+      "overall": 4.31
     },
     "strengths": [
       "usefulness",
       "specificity"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

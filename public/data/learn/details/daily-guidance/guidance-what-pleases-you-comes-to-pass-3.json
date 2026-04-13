@@ -1,17 +1,17 @@
 {
   "id": "guidance-what-pleases-you-comes-to-pass-3",
-  "title": "You Yourself Are The Creator. Everything",
-  "summary": "The shabad does not leave hukam at diagnosis. It turns toward return.",
-  "takeaway": "You Yourself are the Creator. Everything that happens is by Your Doing",
-  "lifeApplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+  "title": "Receive reunion without forgetting the Doer",
+  "summary": "This meets the heart that wants to claim return as its own achievement. The line teaches reunion under the Lord's pleasure because the Creator is still the Doer.",
+  "takeaway": "Receive reunion under the Lord's pleasure.",
+  "lifeApplication": "When what was absent finally returns, pause before telling the success story. Receive the reunion under the Lord's pleasure, then thank the Creator who did it.",
   "source": {
     "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
     "verseIds": [
       507,
       512
     ],
-    "shortMeaning": "The separated ones meet, and by great good fortune, those suffering in separation are reunited once again; you Yourself are the Creator. Everything that happens is by Your Doing",
-    "lifeApplication": "Name one thing already here that you need to stop negotiating with. Let this line guide the first honest return after the reaction."
+    "shortMeaning": "Reunion is received under the Lord's pleasure and the Creator's doing.",
+    "lifeApplication": "When reunion comes, receive it under the Lord's pleasure before claiming it."
   },
   "relatedTopicIds": [
     "topic-hukam"
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The separated ones meet, and by great good fortune, those suffering in separation are reunited once again; you Yourself are the Creator. Everything that happens is by Your Doing",
+      "coreClaim": "Reunion is received under the Lord's pleasure and the Creator's doing.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "Receive the day as given, then answer it with Naam.",
-      "practicalImplication": "Name one thing already here that you need to stop negotiating with. After the reaction, make the next return smaller and truer.",
+      "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
+      "practicalImplication": "When what was absent finally returns, pause before telling the success story. Receive the reunion under the Lord's pleasure, then thank the Creator who did it.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.14,
-      "clarity": 3.99,
-      "specificity": 4.9,
-      "emotionalHonesty": 3.18,
-      "usefulness": 5,
-      "beauty": 3.97,
-      "overall": 4.19
+      "faithfulness": 4,
+      "clarity": 4.23,
+      "specificity": 4.58,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.58,
+      "beauty": 4.24,
+      "overall": 4.15
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

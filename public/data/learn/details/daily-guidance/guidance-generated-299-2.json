@@ -1,17 +1,17 @@
 {
   "id": "guidance-generated-299-2",
-  "title": "Hearing It Again And Again, I Am",
-  "summary": "Attachment is being answered in the middle of pressure, not after the day has calmed down.",
-  "takeaway": "Hearing it again and again, I am elevated to the supreme heights; the Word of Your Bani, Lord, is Ambrosial Nectar",
-  "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+  "title": "Hear the Bani until it lifts you",
+  "summary": "This meets the impatient habit of tasting Bani once and moving on. The line says ascent comes through repeated hearing, not novelty.",
+  "takeaway": "Stay with the line again.",
+  "lifeApplication": "Before chasing another new insight, stay with the same line again. Let repetition do the slow lifting your appetite resists.",
   "source": {
     "deepDiveId": "shabad-generated-299",
     "verseIds": [
       4119,
       4120
     ],
-    "shortMeaning": "Hearing it again and again, I am elevated to the supreme heights; the Word of Your Bani, Lord, is Ambrosial Nectar",
-    "lifeApplication": "Practice holding the gift without claiming authorship over it. Use the line before urgency gets to rename fear as wisdom."
+    "shortMeaning": "Repeated hearing lifts the soul beyond what one reading can do.",
+    "lifeApplication": "Before chasing something new, stay with the same line again."
   },
   "relatedTopicIds": [
     "topic-attachment"
@@ -24,7 +24,7 @@
     "collection-comparison-journey"
   ],
   "rotation": {
-    "theme": "attachment",
+    "theme": "discipline",
     "depthLevel": "growing",
     "cooldownWindowDays": 45,
     "seasonality": [
@@ -40,25 +40,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Hearing it again and again, I am elevated to the supreme heights; the Word of Your Bani, Lord, is Ambrosial Nectar",
+      "coreClaim": "Repeated hearing lifts the soul beyond what one reading can do.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "Keep returning to this turn: As Gurmukh, Nanak meditates on the One who fulfills the desires of the mind.",
-      "practicalImplication": "Practice holding the gift without claiming authorship over it. Use the line before the pressure chooses your tone.",
+      "turn": "Read the Bani again until the inner heat cools.",
+      "practicalImplication": "Before chasing another new insight, stay with the same line again. Let repetition do the slow lifting your appetite resists.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.79,
-      "clarity": 3.08,
-      "specificity": 4.56,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 3.44,
-      "overall": 3.78
+      "faithfulness": 4.11,
+      "clarity": 4.35,
+      "specificity": 4.69,
+      "emotionalHonesty": 3,
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.13
     },
     "strengths": [
       "specificity",
       "usefulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

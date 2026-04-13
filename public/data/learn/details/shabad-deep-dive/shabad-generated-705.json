@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-705",
-  "title": "Acting In Egotism, Peace Is Not Obtained",
+  "title": "The world asks for peace and forgets Naam",
   "subtitle": "Raag Gauree · Ang 222",
-  "summary": "This shabad opens with acting in egotism, peace is not obtained. It turns the heart toward nanak, the lowly, says embrace love for the Lord.",
-  "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: Nanak, the lowly, says embrace love for the Lord.",
+  "summary": "The shabad opens by saying egotism cannot produce peace. It widens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
+  "whyItMatters": "This is for the person exhausted by self-will but still expecting it to work. Held honestly, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace.",
+  "takeaway": "Ego cannot make peace; Naam and service can.",
   "themes": [
     "ego",
     "gratitude",
@@ -280,9 +280,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: acting in egotism, peace is not obtained.",
-    "The middle movement widens the correction through through the True Word of His Bani, sing the Glorious Praises of the Lord.",
-    "It closes with a return you can actually keep: nanak, the lowly, says embrace love for the Lord."
+    "It opens by naming egotism and false intellect as the root of unrest.",
+    "The middle exposes the world's gamble: begging for peace while forgetting Naam.",
+    "It ends in service, Bani, grace, and the Lord's Will as the place where peace actually stays."
   ],
   "keyVerseIds": [
     9525,
@@ -320,25 +320,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with acting in egotism, peace is not obtained. It turns the heart toward nanak, the lowly, says embrace love for the Lord.",
+      "coreClaim": "The shabad opens by saying egotism cannot produce peace. It widens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle movement widens the correction through through the True Word of His Bani, sing the Glorious Praises of the Lord.",
-      "practicalImplication": "Keep returning to this turn: Nanak, the lowly, says embrace love for the Lord.",
+      "turn": "The middle exposes the world's gamble: begging for peace while forgetting Naam.",
+      "practicalImplication": "This is for the person exhausted by self-will but still expecting it to work. Held honestly, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace. Ego cannot make peace; Naam and service can.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.38,
-      "beauty": 4.07,
-      "overall": 4.05
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.44,
+      "beauty": 4.4,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
       "faithfulness"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }

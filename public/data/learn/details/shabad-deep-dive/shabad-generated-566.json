@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-566",
-  "title": "Blessed Vision Of The Saints",
+  "title": "Holy company washes deeper than self-scrubbing",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "This shabad opens with the Blessed Vision of the Saints is the perfect cleansing bath. It turns the heart toward touches the feet of the Holy.",
-  "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: touches the feet of the Holy.",
+  "summary": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It moves through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
+  "whyItMatters": "This is for the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Held faithfully, it turns cleansing from private labor into grace received in holy company.",
+  "takeaway": "Seek the company that washes the heart and turns it toward Naam.",
   "themes": [
     "comparison",
     "ego",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the Blessed Vision of the Saints is the perfect cleansing bath.",
-    "The middle movement widens the correction through and the One Lord is seen everywhere.",
-    "It closes with a return you can actually keep: touches the feet of the Holy."
+    "It opens by naming saintly presence itself as a complete cleansing.",
+    "The middle shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
+    "It ends with perfect karma expressed as meeting the feet of the holy."
   ],
   "keyVerseIds": [
     7991,
@@ -152,25 +152,26 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the Blessed Vision of the Saints is the perfect cleansing bath. It turns the heart toward touches the feet of the Holy.",
+      "coreClaim": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It moves through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle movement widens the correction through and the One Lord is seen everywhere.",
-      "practicalImplication": "Keep returning to this turn: touches the feet of the Holy.",
+      "turn": "The middle shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
+      "practicalImplication": "This is for the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Held faithfully, it turns cleansing from private labor into grace received in holy company. Seek the company that washes the heart and turns it toward Naam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.87,
-      "specificity": 4.6,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.38,
-      "beauty": 3.97,
-      "overall": 4.03
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.36,
+      "beauty": 4.69,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
-    "issues": []
+    "issues": [],
+    "reviewedByHuman": true
   }
 }
