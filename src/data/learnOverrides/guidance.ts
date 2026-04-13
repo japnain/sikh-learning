@@ -1,4 +1,4 @@
-import type { GuidanceOverridePayload } from "../types"
+import type { GuidanceOverridePayload } from "../../types"
 
 export const GUIDANCE_COPY_OVERRIDES = {
   "guidance-ambrosial-speech-pure-conduct-2": {

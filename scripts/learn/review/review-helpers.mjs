@@ -232,5 +232,5 @@ export function serializeOverrideModule(kind, record) {
   }
 
   const objectLiteral = JSON.stringify(record, null, 2)
-  return `import type { ${moduleInfo.typeName} } from "../types"\n\nexport const ${moduleInfo.exportName} = ${objectLiteral} satisfies Record<string, ${moduleInfo.typeName}>\n`
+  return `import type { ${moduleInfo.typeName} } from "../../types"\n\nexport const ${moduleInfo.exportName} = ${objectLiteral} satisfies Record<string, ${moduleInfo.typeName}>\n`
 }
