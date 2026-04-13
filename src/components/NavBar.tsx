@@ -183,6 +183,7 @@ export default function NavBar() {
             aria-label={tab.ariaLabel}
             title={tab.ariaLabel}
             data-testid={`nav-tab-${tab.id}`}
+            data-ai-action={`nav-${tab.id}`}
             className="group relative flex min-w-0 flex-1"
           >
             {({ isActive }) => (

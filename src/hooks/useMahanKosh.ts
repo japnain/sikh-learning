@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { MahanKoshEntry } from '../types'
+import { resolveAsyncIssue } from '../qa/async'
+import type { AsyncIssue, AsyncStatus, MahanKoshEntry } from '../types'
 import { fetchMahanKoshEntries } from '../api/mahankosh'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { normalizeLookupWord } from '../utils/wordLookup'
@@ -7,7 +8,7 @@ import { normalizeLookupWord } from '../utils/wordLookup'
 type MahanKoshRequestState = {
   key: string
   entries: MahanKoshEntry[]
-  error: string | null
+  issue: AsyncIssue | null
 }
 
 export function useMahanKosh(word: string) {
@@ -30,15 +31,15 @@ export function useMahanKosh(word: string) {
         setState({
           key: requestKey,
           entries: result,
-          error: null,
+          issue: null,
         })
       })
-      .catch(() => {
+      .catch(error => {
         if (cancelled) return
         setState({
           key: requestKey,
           entries: [],
-          error: 'Unable to load Mahankosh right now.',
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -47,10 +48,23 @@ export function useMahanKosh(word: string) {
     }
   }, [cachedEntries, currentState, requestKey, setMahanKosh])
 
+  const issue = currentState?.issue ?? null
+  const status: AsyncStatus = !requestKey
+    ? 'empty'
+    : issue
+      ? 'degraded'
+      : cachedEntries
+        ? (cachedEntries.length === 0 ? 'empty' : 'ready')
+        : currentState
+          ? (currentState.entries.length === 0 ? 'empty' : 'ready')
+          : 'loading'
+
   return {
     entries: cachedEntries ?? currentState?.entries ?? [],
-    loading: Boolean(requestKey) && !cachedEntries && currentState === null,
-    error: currentState?.error ?? null,
+    status,
+    issue,
+    loading: status === 'loading',
+    error: issue?.code ?? null,
     normalizedWord,
   }
 }

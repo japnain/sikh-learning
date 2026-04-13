@@ -258,16 +258,19 @@ function ProviderChoice({
   label,
   onClick,
   disabled,
+  dataAiAction,
 }: {
   label: string
   onClick: () => void
   disabled?: boolean
+  dataAiAction?: string
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
+      data-ai-action={dataAiAction}
       className="rounded-[20px] border border-sand/15 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-white/10"
     >
       {label}
@@ -378,6 +381,14 @@ export default function OnboardingSheet({
   const isCloudBusy = cloudStatus === 'booting' || cloudStatus === 'authenticating' || cloudStatus === 'syncing'
   const isProviderLoading = configured && !currentUser && supportedProviders.length === 0 && isCloudBusy
   const connectedLabel = currentUser?.email ?? currentUser?.name ?? null
+  const onboardingAuthState = isCloudBusy
+    ? 'loading'
+    : lastError
+      ? 'degraded'
+      : currentUser
+        ? 'ready'
+        : 'empty'
+  const onboardingErrorCode = lastError ? (currentUser ? 'cloud-sync' : 'insforge-bootstrap') : null
 
   useEffect(() => {
     if (presentation !== 'overlay') return
@@ -693,6 +704,8 @@ export default function OnboardingSheet({
         isOverlayPresentation ? 'h-full min-h-0 overflow-hidden' : 'overflow-visible'
       }`}
       data-testid={isOverlayPresentation ? 'onboarding-dialog' : 'onboarding-first-run-panel'}
+      data-ai-surface={isOverlayPresentation ? 'onboarding-overlay-panel' : 'onboarding-first-run-panel'}
+      data-ai-state="ready"
     >
       <div className="pointer-events-none absolute -right-8 top-0 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-16 h-44 w-44 rounded-full bg-gold/15 blur-3xl" />
@@ -756,7 +769,12 @@ export default function OnboardingSheet({
             <p className="mb-3 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
               {routeSummary}
             </p>
-            <div className="overflow-hidden rounded-[26px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.18),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,235,220,0.92))] p-4 dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.16),transparent_38%),linear-gradient(180deg,rgba(34,31,26,0.96),rgba(28,25,21,0.98))]">
+            <div
+              className="overflow-hidden rounded-[26px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.18),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,235,220,0.92))] p-4 dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.16),transparent_38%),linear-gradient(180deg,rgba(34,31,26,0.96),rgba(28,25,21,0.98))]"
+              data-ai-surface="onboarding-auth"
+              data-ai-state={onboardingAuthState}
+              data-ai-error={onboardingErrorCode ?? undefined}
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
@@ -797,6 +815,7 @@ export default function OnboardingSheet({
                     type="button"
                     onClick={() => void onComplete()}
                     disabled={isCompleting}
+                    data-ai-action="complete-onboarding"
                     className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {getPrimaryActionLabel(learningGoal, copy.onboarding)}
@@ -807,6 +826,7 @@ export default function OnboardingSheet({
                       type="button"
                       onClick={() => void onComplete()}
                       disabled={isCompleting || isCloudBusy}
+                      data-ai-action="continue-as-guest"
                       className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       {copy.onboarding.authGuest}
@@ -820,6 +840,7 @@ export default function OnboardingSheet({
                             label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
                             disabled={isCompleting || isCloudBusy}
                             onClick={() => void handleProviderSignIn(provider)}
+                            dataAiAction={`onboarding-sign-in-${provider}`}
                           />
                         ))}
                       </div>
@@ -843,6 +864,9 @@ export default function OnboardingSheet({
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
         data-testid="onboarding-overlay"
+        data-page="onboarding-overlay"
+        data-ai-surface="onboarding-overlay"
+        data-ai-state="ready"
       >
         <div
           className="mx-auto flex h-[100dvh] w-full max-w-md flex-col px-4"
@@ -864,6 +888,8 @@ export default function OnboardingSheet({
       aria-describedby={descriptionId}
       data-testid="onboarding-first-run"
       data-page="onboarding"
+      data-ai-surface="onboarding"
+      data-ai-state="ready"
     >
       <div
         className="mx-auto flex min-h-[100dvh] w-full max-w-md flex-col px-4"

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
+import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useBani } from '../hooks/useBani'
@@ -359,6 +360,11 @@ export default function Study() {
     isExactShabadMode ? shabadResult.error :
     isBaniDbMode ? baniResult.error :
     angResult.error
+  const readerStatus =
+    isHukamnamaMode ? hukamnamaResult.status :
+    isExactShabadMode ? shabadResult.status :
+    isBaniDbMode ? baniResult.status :
+    angResult.status
 
   const currentEntry = entries[0] ?? null
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
@@ -766,11 +772,24 @@ export default function Study() {
 
   if (loading) {
     return (
-      <div className="page-shell" data-testid="page-study" data-page="study">
+      <div
+        className="page-shell"
+        data-testid="page-study"
+        data-page="study"
+        data-ai-surface="study-reader"
+        data-ai-state="loading"
+        data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
+      >
         <div className="flex items-center justify-between mb-4">
-          <button onClick={() => navigate(-1)} className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
+          <button
+            onClick={() => navigate(-1)}
+            className="text-saffron dark:text-saffron-light font-sans text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"
+            data-ai-action="study-back"
+          >
+            <IconArrowLeft size={18} /> Back
+          </button>
         </div>
-        <div className="section-shell p-6 min-h-[300px] animate-pulse">
+        <div className="section-shell p-6 min-h-[300px] animate-pulse" data-ai-surface="study-reader-body" data-ai-state="loading">
           <div className="h-3 bg-sand/30 dark:bg-dark-text/10 rounded w-1/4 mb-4" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-full mb-3" />
           <div className="h-8 bg-sand/30 dark:bg-dark-text/10 rounded w-4/5 mb-3" />
@@ -780,26 +799,84 @@ export default function Study() {
     )
   }
 
-  if (error || entries.length === 0) {
+  if (readerStatus === 'degraded') {
     return (
-      <div className="page-shell text-center mt-20" data-testid="page-study" data-page="study">
-        <p className="font-sans text-ink/60 dark:text-dark-text/60 mb-2">
-          No verses found{baniName ? ` for ${baniName}` : ''}.
-        </p>
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light mt-4 flex items-center gap-1 mx-auto active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
-      </div>
+      <SurfaceStateCard
+        surface="study-reader"
+        state="degraded"
+        eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
+        title="This reading view needs another pass."
+        body="The passage did not settle this time. Reload the reader or step back and open a different route."
+        testId="page-study"
+        page="study"
+        errorCode={error ?? 'unavailable'}
+        actions={[
+          {
+            label: 'Reload Reader',
+            onClick: () => window.location.reload(),
+            aiAction: 'reload-study',
+          },
+          {
+            label: 'Back',
+            onClick: () => navigate(-1),
+            aiAction: 'study-back',
+            emphasis: 'secondary',
+          },
+        ]}
+      />
+    )
+  }
+
+  if (readerStatus === 'empty' || entries.length === 0) {
+    return (
+      <SurfaceStateCard
+        surface="study-reader"
+        state="empty"
+        eyebrow={isHukamnamaMode ? "Today's Hukamnama" : 'Reader'}
+        title="Nothing landed on this route yet."
+        body={`Try another ang, bani, or saved passage${baniName ? ` instead of ${baniName}` : ''}.`}
+        testId="page-study"
+        page="study"
+        actions={[
+          {
+            label: 'Back',
+            onClick: () => navigate(-1),
+            aiAction: 'study-back',
+          },
+          {
+            label: 'Browse Read',
+            onClick: () => navigate('/banis'),
+            aiAction: 'browse-read',
+            emphasis: 'secondary',
+          },
+        ]}
+      />
     )
   }
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-study" data-page="study">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="page-study"
+      data-page="study"
+      data-ai-surface="study-reader"
+      data-ai-state="ready"
+      data-ai-flow={isHukamnamaMode ? 'hukamnama' : isExactShabadMode ? 'exact-shabad' : isBaniDbMode ? 'bani' : 'ang'}
+    >
       <div className="flex items-center justify-between mb-4">
-        <button onClick={() => navigate(-1)} className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"><IconArrowLeft size={18} /> Back</button>
+        <button
+          onClick={() => navigate(-1)}
+          className="font-sans text-saffron dark:text-saffron-light text-sm min-h-[44px] min-w-[44px] flex items-center gap-1 active:scale-95 transition-transform duration-150"
+          data-ai-action="study-back"
+        >
+          <IconArrowLeft size={18} /> Back
+        </button>
         <div className="flex items-center gap-1">
           <button
             onClick={handleShare}
             className="text-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-ink/30 dark:text-dark-text/30 transition-colors duration-300 active:scale-95 transition-transform duration-150"
             aria-label="Share"
+            data-ai-action="study-share"
           >
             <IconShare size={20} />
           </button>
@@ -807,6 +884,7 @@ export default function Study() {
             onClick={toggleFavorite}
             aria-label={isFavorited ? 'Remove favorite' : 'Add favorite'}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isFavorited ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
+            data-ai-action="toggle-favorite"
           >
             {isFavorited ? <IconHeartFilled size={20} /> : <IconHeart size={20} />}
           </button>
@@ -821,6 +899,7 @@ export default function Study() {
             }}
             aria-label={isBookmarked ? 'Bookmark saved' : 'Add bookmark'}
             className={`text-xl min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300 active:scale-95 transition-transform duration-150 ${isBookmarked ? 'text-saffron dark:text-saffron-light' : 'text-ink/30 dark:text-dark-text/30'}`}
+            data-ai-action="toggle-bookmark"
           >
             {isBookmarked ? <IconBookmarkFilled size={20} /> : <IconBookmark size={20} />}
           </button>

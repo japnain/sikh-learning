@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react"
 import { Link, useParams } from "react-router-dom"
+import SurfaceStateCard from "../../components/SurfaceStateCard"
 import { IconArrowRight } from "../../components/icons"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import useLearnDetail from "../../hooks/useLearnDetail"
@@ -29,16 +30,43 @@ function CollectionMetric({
 
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
-function MissingCollectionDetail() {
+function MissingCollectionDetail({
+  state,
+  errorCode = null,
+}: {
+  state: 'loading' | 'empty' | 'degraded'
+  errorCode?: string | null
+}) {
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn-detail-missing">
-      <div className="section-shell p-5">
-        <p className="eyebrow">Collection not found</p>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-          This collection is not available.
-        </p>
-      </div>
-    </div>
+    <SurfaceStateCard
+      surface="learn-collection-detail"
+      state={state}
+      eyebrow="Today"
+      title={state === 'loading' ? 'Preparing this collection.' : state === 'degraded' ? 'This collection needs another pass.' : 'This collection is not available right now.'}
+      body={state === 'loading'
+        ? 'The collection is loading into place.'
+        : state === 'degraded'
+          ? 'The collection did not settle this time. Reload and try again, or return to Today.'
+          : 'The requested collection could not be found in the current Learn archive.'}
+      testId="page-learn-detail-missing"
+      page="learn-detail"
+      errorCode={errorCode}
+      actions={state === 'loading'
+        ? []
+        : [
+            {
+              label: state === 'degraded' ? 'Reload Collection' : 'Back to Today',
+              onClick: () => {
+                if (state === 'degraded') {
+                  window.location.reload()
+                  return
+                }
+                window.location.assign('/learn?tab=today')
+              },
+              aiAction: state === 'degraded' ? 'reload-collection-detail' : 'back-to-today',
+            },
+          ]}
+    />
   )
 }
 
@@ -89,8 +117,8 @@ function getStepCopy(
 
 export default function CollectionDetailPage() {
   const { collectionId } = useParams<{ collectionId: string }>()
-  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
-  const { item: collection, error: collectionError, loading: collectionLoading } = useLearnDetail("collection", collectionId)
+  const { catalog, error: catalogError, status: catalogStatus } = useLearnCatalog()
+  const { item: collection, error: collectionError, status: collectionStatus } = useLearnDetail("collection", collectionId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
   const setActiveLearnCollection = useLearningStore(state => state.setActiveLearnCollection)
   const viewedItems = useLearningStore(state => state.learnState.viewedItems)
@@ -103,8 +131,11 @@ export default function CollectionDetailPage() {
     }
   }, [collection, recordLearnItemView, setActiveLearnCollection])
 
-  if (catalogLoading || collectionLoading) return <MissingCollectionDetail />
-  if (catalogError || collectionError || !catalog || !collection) return <MissingCollectionDetail />
+  if (catalogStatus === 'loading' || collectionStatus === 'loading') return <MissingCollectionDetail state="loading" />
+  if (catalogStatus === 'degraded' || collectionStatus === 'degraded' || catalogError || collectionError || !catalog) {
+    return <MissingCollectionDetail state="degraded" errorCode={catalogError ?? collectionError ?? 'unavailable'} />
+  }
+  if (!collection) return <MissingCollectionDetail state="empty" />
 
   const heroExcerpt = resolveLineReference(catalog, collection.heroSource)
   const completedCount = collection.items.filter(item => viewedIds.has(item.id)).length

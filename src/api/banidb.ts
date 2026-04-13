@@ -1,4 +1,5 @@
 import type { EnglishTranslations, ScriptureEntry, ScriptureLine, SundarGutkaLength, Word } from '../types'
+import { withQaControl } from '../qa/runtime'
 import {
   SUNDAR_GUTKA_LENGTH_EXISTS_KEY,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -274,34 +275,38 @@ function buildEntry({
 }
 
 export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {
-  const res = await fetch(`${BASE}/angs/${ang}/${source}`)
-  if (!res.ok) throw new Error(`BaniDB /angs error: ${res.status}`)
-  const data = await res.json() as Record<string, unknown>
+  return withQaControl('study-ang', async () => {
+    const res = await fetch(`${BASE}/angs/${ang}/${source}`)
+    if (!res.ok) throw new Error(`BaniDB /angs error: ${res.status}`)
+    const data = await res.json() as Record<string, unknown>
 
-  const rawPage = (data.page ?? data.verses ?? data.shabads) as BaniVerse[] | undefined
-  if (!rawPage?.length) return []
+    const rawPage = (data.page ?? data.verses ?? data.shabads) as BaniVerse[] | undefined
+    if (!rawPage?.length) return []
 
-  const grouped = new Map<number, BaniVerse[]>()
-  for (const v of rawPage) {
-    const list = grouped.get(v.shabadId) ?? []
-    list.push(v)
-    grouped.set(v.shabadId, list)
-  }
+    const grouped = new Map<number, BaniVerse[]>()
+    for (const v of rawPage) {
+      const list = grouped.get(v.shabadId) ?? []
+      list.push(v)
+      grouped.set(v.shabadId, list)
+    }
 
-  const scripture = toScripture(source)
-  return Array.from(grouped.entries()).map(([shabadId, verses]) =>
-    buildEntry({
-      id: `${source}-${ang}-${shabadId}`,
-      scripture,
-      ang,
-      source,
-      shabadId,
-      verses,
-      sourceName: verses[0]?.source?.id ? toScripture(verses[0].source.id) : scripture,
-      raag: safeText(verses[0]?.raag?.english),
-      writer: safeText(verses[0]?.writer?.english),
-    })
-  )
+    const scripture = toScripture(source)
+    return Array.from(grouped.entries()).map(([shabadId, verses]) =>
+      buildEntry({
+        id: `${source}-${ang}-${shabadId}`,
+        scripture,
+        ang,
+        source,
+        shabadId,
+        verses,
+        sourceName: verses[0]?.source?.id ? toScripture(verses[0].source.id) : scripture,
+        raag: safeText(verses[0]?.raag?.english),
+        writer: safeText(verses[0]?.writer?.english),
+      })
+    )
+  }, {
+    emptyValue: [],
+  })
 }
 
 export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
@@ -452,169 +457,186 @@ export async function fetchBani(
   baniDbId: number,
   sgLength?: SundarGutkaLength | null
 ): Promise<BaniFetchResult> {
-  const res = await fetch(`${BASE}/banis/${baniDbId}`)
-  if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
-  const data = await res.json() as Record<string, unknown>
+  return withQaControl('study-bani', async () => {
+    const res = await fetch(`${BASE}/banis/${baniDbId}`)
+    if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
+    const data = await res.json() as Record<string, unknown>
 
-  const rawArray = (data.verses ?? []) as BaniResponseVerse[]
-  if (!rawArray.length) {
-    return {
-      entries: [],
-      availableLengths: [],
-      resolvedLength: null,
-    }
-  }
-
-  const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
-  const normalizedLengthOptions = supportedBaniId
-    ? getNormalizedSundarGutkaLengthOptions(rawArray)
-    : []
-  const availableLengths = normalizedLengthOptions.map(option => option.band)
-  const selectedLengthOption = supportedBaniId
-    ? resolveNormalizedSundarGutkaLengthOption({
-        options: normalizedLengthOptions,
-        requestedLength: sgLength,
-        defaultLength: SUNDAR_GUTKA_SUPPORTED_BANIS[supportedBaniId].defaultLength,
-      })
-    : null
-
-  const filteredRawArray = supportedBaniId && selectedLengthOption
-    ? filterRawSundarGutkaVerses(rawArray, selectedLengthOption.rawLengths[0]!)
-    : rawArray
-
-  const flatVerses: BaniFlatVerse[] = []
-  const pendingHeaderLines: BaniFlatVerse[] = []
-  let currentPageNo: number | null = null
-
-  for (const item of filteredRawArray) {
-    const nestedVerse = item.verse && typeof item.verse === 'object' && (
-      'verseId' in item.verse || 'shabadId' in item.verse || 'translation' in item.verse || 'transliteration' in item.verse
-    ) ? item.verse : null
-    const inner = (nestedVerse ?? item) as BaniShabadVerse & {
-      verseId?: number
-      shabadId?: number
-      pageNo?: number | null
-      source?: { id?: string }
-    }
-    const pageNo = inner.pageNo ?? item.pageNo ?? null
-    const flatVerse: BaniFlatVerse = {
-      verseId: inner.verseId ?? 0,
-      shabadId: inner.shabadId ?? 0,
-      verse: inner.verse ?? { unicode: '' },
-      transliteration: inner.transliteration ?? { english: '' },
-      translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
-      pageNo,
-      originalPageNo: pageNo,
-      source: (inner.source ?? item.source ?? { id: 'G' }) as { id: string },
-      isHeader: Boolean(item.header) || pageNo === null,
-    }
-
-    if (pageNo === null && currentPageNo === null) {
-      pendingHeaderLines.push(flatVerse)
-      continue
-    }
-
-    if (pageNo !== null) {
-      currentPageNo = pageNo
-      if (pendingHeaderLines.length > 0) {
-        flatVerses.push(
-          ...pendingHeaderLines.map(headerLine => ({
-            ...headerLine,
-            pageNo,
-          }))
-        )
-        pendingHeaderLines.length = 0
+    const rawArray = (data.verses ?? []) as BaniResponseVerse[]
+    if (!rawArray.length) {
+      return {
+        entries: [],
+        availableLengths: [],
+        resolvedLength: null,
       }
     }
 
-    flatVerses.push({
-      ...flatVerse,
-      pageNo: pageNo ?? currentPageNo,
-    })
-  }
+    const supportedBaniId = getSupportedSundarGutkaBaniIdByBaniDbId(baniDbId)
+    const normalizedLengthOptions = supportedBaniId
+      ? getNormalizedSundarGutkaLengthOptions(rawArray)
+      : []
+    const availableLengths = normalizedLengthOptions.map(option => option.band)
+    const selectedLengthOption = supportedBaniId
+      ? resolveNormalizedSundarGutkaLengthOption({
+          options: normalizedLengthOptions,
+          requestedLength: sgLength,
+          defaultLength: SUNDAR_GUTKA_SUPPORTED_BANIS[supportedBaniId].defaultLength,
+        })
+      : null
 
-  const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
+    const filteredRawArray = supportedBaniId && selectedLengthOption
+      ? filterRawSundarGutkaVerses(rawArray, selectedLengthOption.rawLengths[0]!)
+      : rawArray
 
-  // Group by page + shabad so the reader can render one section per shabad.
-  const grouped = new Map<string, BaniFlatVerse[]>()
-  for (const v of flatVerses) {
-    const key = `${v.pageNo ?? currentPageNo ?? 1}-${v.shabadId}`
-    const list = grouped.get(key) ?? []
-    list.push(v)
-    grouped.set(key, list)
-  }
+    const flatVerses: BaniFlatVerse[] = []
+    const pendingHeaderLines: BaniFlatVerse[] = []
+    let currentPageNo: number | null = null
 
-  return {
-    entries: Array.from(grouped.entries()).map(([key, verses]) => {
-      const [pageNoString] = key.split('-')
-      const pageNo = Number(pageNoString)
-      const srcId = verses[0]?.source?.id ?? 'G'
-      return buildEntry({
-        id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
-        scripture: sourceMap[srcId] ?? 'SGGS',
-        ang: pageNo,
-        source: (srcId as BaniSource) ?? 'G',
-        shabadId: verses[0]?.shabadId,
-        verses,
-        sourceName: sourceMap[srcId] ?? 'SGGS',
+    for (const item of filteredRawArray) {
+      const nestedVerse = item.verse && typeof item.verse === 'object' && (
+        'verseId' in item.verse || 'shabadId' in item.verse || 'translation' in item.verse || 'transliteration' in item.verse
+      ) ? item.verse : null
+      const inner = (nestedVerse ?? item) as BaniShabadVerse & {
+        verseId?: number
+        shabadId?: number
+        pageNo?: number | null
+        source?: { id?: string }
+      }
+      const pageNo = inner.pageNo ?? item.pageNo ?? null
+      const flatVerse: BaniFlatVerse = {
+        verseId: inner.verseId ?? 0,
+        shabadId: inner.shabadId ?? 0,
+        verse: inner.verse ?? { unicode: '' },
+        transliteration: inner.transliteration ?? { english: '' },
+        translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
+        pageNo,
+        originalPageNo: pageNo,
+        source: (inner.source ?? item.source ?? { id: 'G' }) as { id: string },
+        isHeader: Boolean(item.header) || pageNo === null,
+      }
+
+      if (pageNo === null && currentPageNo === null) {
+        pendingHeaderLines.push(flatVerse)
+        continue
+      }
+
+      if (pageNo !== null) {
+        currentPageNo = pageNo
+        if (pendingHeaderLines.length > 0) {
+          flatVerses.push(
+            ...pendingHeaderLines.map(headerLine => ({
+              ...headerLine,
+              pageNo,
+            }))
+          )
+          pendingHeaderLines.length = 0
+        }
+      }
+
+      flatVerses.push({
+        ...flatVerse,
+        pageNo: pageNo ?? currentPageNo,
       })
-    }),
-    availableLengths,
-    resolvedLength: selectedLengthOption?.band ?? null,
-  }
+    }
+
+    const sourceMap: Record<string, string> = { G: 'SGGS', D: 'DG', B: 'BGV', A: 'AK' }
+
+    // Group by page + shabad so the reader can render one section per shabad.
+    const grouped = new Map<string, BaniFlatVerse[]>()
+    for (const v of flatVerses) {
+      const key = `${v.pageNo ?? currentPageNo ?? 1}-${v.shabadId}`
+      const list = grouped.get(key) ?? []
+      list.push(v)
+      grouped.set(key, list)
+    }
+
+    return {
+      entries: Array.from(grouped.entries()).map(([key, verses]) => {
+        const [pageNoString] = key.split('-')
+        const pageNo = Number(pageNoString)
+        const srcId = verses[0]?.source?.id ?? 'G'
+        return buildEntry({
+          id: `bani-${baniDbId}-${pageNo}-${verses[0]?.shabadId ?? 0}`,
+          scripture: sourceMap[srcId] ?? 'SGGS',
+          ang: pageNo,
+          source: (srcId as BaniSource) ?? 'G',
+          shabadId: verses[0]?.shabadId,
+          verses,
+          sourceName: sourceMap[srcId] ?? 'SGGS',
+        })
+      }),
+      availableLengths,
+      resolvedLength: selectedLengthOption?.band ?? null,
+    }
+  }, {
+    emptyValue: {
+      entries: [],
+      availableLengths: [],
+      resolvedLength: null,
+    },
+  })
 }
 
 export async function fetchSearch(
   query: string,
   searchType: number = 0,
-  source: BaniSource | 'all' = 'all'
+  source: BaniSource | 'all' = 'all',
+  context: 'home-search' | 'read-search' = 'read-search'
 ): Promise<SearchResult[]> {
-  const encoded = encodeURIComponent(query)
-  const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=${source}`)
-  if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
-  const data = await res.json() as { verses?: BaniVerse[] }
-  const verses = data.verses ?? []
+  return withQaControl(context, async () => {
+    const encoded = encodeURIComponent(query)
+    const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=${source}`)
+    if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
+    const data = await res.json() as { verses?: BaniVerse[] }
+    const verses = data.verses ?? []
 
-  return verses.slice(0, 30).map(v => ({
-    shabadId: v.shabadId,
-    verseId: v.verseId,
-    source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
-    pageNo: v.pageNo ?? null,
-    sourceName: safeText(((v.source as { english?: string } | undefined)?.english)) || (v.source?.id ? toScripture(v.source.id) : ''),
-    gurmukhi: safeText(v.verse?.unicode),
-    transliteration: safeText(v.transliteration?.english),
-    translation_en: getEnglish(v.translation),
-    raag: safeText(v.raag?.english),
-    writer: safeText(v.writer?.english),
-  }))
+    return verses.slice(0, 30).map(v => ({
+      shabadId: v.shabadId,
+      verseId: v.verseId,
+      source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
+      pageNo: v.pageNo ?? null,
+      sourceName: safeText(((v.source as { english?: string } | undefined)?.english)) || (v.source?.id ? toScripture(v.source.id) : ''),
+      gurmukhi: safeText(v.verse?.unicode),
+      transliteration: safeText(v.transliteration?.english),
+      translation_en: getEnglish(v.translation),
+      raag: safeText(v.raag?.english),
+      writer: safeText(v.writer?.english),
+    }))
+  }, {
+    emptyValue: [],
+  })
 }
 
 export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | null> {
-  const res = await fetch(`${BASE}/shabads/${shabadId}`)
-  if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-  const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
+  return withQaControl('study-shabad', async () => {
+    const res = await fetch(`${BASE}/shabads/${shabadId}`)
+    if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
+    const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
 
-  const verses = data.verses ?? []
-  if (!verses.length) return null
+    const verses = data.verses ?? []
+    if (!verses.length) return null
 
-  const source = data.shabadInfo?.source?.sourceId ?? 'G'
-  const ang = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
-  const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
+    const source = data.shabadInfo?.source?.sourceId ?? 'G'
+    const ang = data.shabadInfo?.pageNo ?? verses[0]?.pageNo ?? 1
+    const resolvedShabadId = data.shabadInfo?.shabadId ?? shabadId
 
-  const id = verses.length === 1
-    ? `${source}-${ang}-${resolvedShabadId}-${verses[0]?.verseId ?? 0}`
-    : `${source}-${ang}-${resolvedShabadId}`
+    const id = verses.length === 1
+      ? `${source}-${ang}-${resolvedShabadId}-${verses[0]?.verseId ?? 0}`
+      : `${source}-${ang}-${resolvedShabadId}`
 
-  return buildEntry({
-    id,
-    scripture: toScripture(source),
-    ang,
-    source,
-    shabadId: resolvedShabadId,
-    verses,
-    sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
-    raag: safeText(data.shabadInfo?.raag?.english),
-    writer: safeText(data.shabadInfo?.writer?.english),
+    return buildEntry({
+      id,
+      scripture: toScripture(source),
+      ang,
+      source,
+      shabadId: resolvedShabadId,
+      verses,
+      sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
+      raag: safeText(data.shabadInfo?.raag?.english),
+      writer: safeText(data.shabadInfo?.writer?.english),
+    })
+  }, {
+    emptyValue: null,
   })
 }
 
@@ -710,54 +732,56 @@ export async function fetchAudio(shabadId: number): Promise<string | null> {
 }
 
 export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
-  const targetDate = date ? new Date(`${date}T00:00:00`) : new Date()
-  const year = targetDate.getFullYear()
-  const month = String(targetDate.getMonth() + 1).padStart(2, '0')
-  const day = String(targetDate.getDate()).padStart(2, '0')
+  return withQaControl('study-hukamnama', async () => {
+    const targetDate = date ? new Date(`${date}T00:00:00`) : new Date()
+    const year = targetDate.getFullYear()
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0')
+    const day = String(targetDate.getDate()).padStart(2, '0')
 
-  let res = await fetch(`${BASE}/hukamnamas/${year}/${month}/${day}`)
-  if (!res.ok) res = await fetch(`${BASE}/hukamnamas`)
-  if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
+    let res = await fetch(`${BASE}/hukamnamas/${year}/${month}/${day}`)
+    if (!res.ok) res = await fetch(`${BASE}/hukamnamas`)
+    if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
 
-  const data = await res.json() as {
-    isLatest?: boolean
-    date?: { gregorian?: { year?: number; month?: number; date?: number } }
-    hukamnamaInfo?: { ang?: number; source?: { id?: BaniSource } }
-    shabads?: Array<{
-      shabadInfo?: ShabadInfo
-      verses?: BaniVerse[]
-      shabad?: {
-        shabadInfo?: ShabadInfo & { ang?: { ang?: number } }
+    const data = await res.json() as {
+      isLatest?: boolean
+      date?: { gregorian?: { year?: number; month?: number; date?: number } }
+      hukamnamaInfo?: { ang?: number; source?: { id?: BaniSource } }
+      shabads?: Array<{
+        shabadInfo?: ShabadInfo
         verses?: BaniVerse[]
-      }
-    }>
-  }
+        shabad?: {
+          shabadInfo?: ShabadInfo & { ang?: { ang?: number } }
+          verses?: BaniVerse[]
+        }
+      }>
+    }
 
-  const allShabads = data.shabads ?? []
-  const firstShabad = allShabads[0]
-  const shabadInfo = firstShabad?.shabadInfo ?? firstShabad?.shabad?.shabadInfo
-  const allVerses = allShabads.flatMap(s => s.verses ?? s.shabad?.verses ?? [])
-  const ang = data.hukamnamaInfo?.ang ?? shabadInfo?.pageNo ?? shabadInfo?.ang?.ang ?? 1
-  const sourceId = data.hukamnamaInfo?.source?.id ?? shabadInfo?.source?.sourceId ?? 'G'
-  const shabadId = shabadInfo?.shabadId ?? 0
-  const dateString = [
-    data.date?.gregorian?.year ?? year,
-    String(data.date?.gregorian?.month ?? month).padStart(2, '0'),
-    String(data.date?.gregorian?.date ?? day).padStart(2, '0'),
-  ].join('-')
+    const allShabads = data.shabads ?? []
+    const firstShabad = allShabads[0]
+    const shabadInfo = firstShabad?.shabadInfo ?? firstShabad?.shabad?.shabadInfo
+    const allVerses = allShabads.flatMap(s => s.verses ?? s.shabad?.verses ?? [])
+    const ang = data.hukamnamaInfo?.ang ?? shabadInfo?.pageNo ?? shabadInfo?.ang?.ang ?? 1
+    const sourceId = data.hukamnamaInfo?.source?.id ?? shabadInfo?.source?.sourceId ?? 'G'
+    const shabadId = shabadInfo?.shabadId ?? 0
+    const dateString = [
+      data.date?.gregorian?.year ?? year,
+      String(data.date?.gregorian?.month ?? month).padStart(2, '0'),
+      String(data.date?.gregorian?.date ?? day).padStart(2, '0'),
+    ].join('-')
 
-  const entry = buildEntry({
-    id: `hukamnama-${dateString}-${sourceId}-${shabadId}`,
-    scripture: toScripture(sourceId),
-    ang,
-    source: sourceId,
-    shabadId,
-    verses: allVerses,
-    sourceName: safeText(shabadInfo?.source?.english) || toScripture(sourceId),
-    raag: safeText(shabadInfo?.raag?.english),
-    writer: safeText(shabadInfo?.writer?.english),
-    hukamnamaDate: dateString,
+    const entry = buildEntry({
+      id: `hukamnama-${dateString}-${sourceId}-${shabadId}`,
+      scripture: toScripture(sourceId),
+      ang,
+      source: sourceId,
+      shabadId,
+      verses: allVerses,
+      sourceName: safeText(shabadInfo?.source?.english) || toScripture(sourceId),
+      raag: safeText(shabadInfo?.raag?.english),
+      writer: safeText(shabadInfo?.writer?.english),
+      hukamnamaDate: dateString,
+    })
+
+    return { date: dateString, entry, ang, source: sourceId, shabadId }
   })
-
-  return { date: dateString, entry, ang, source: sourceId, shabadId }
 }

@@ -519,7 +519,7 @@ export default function Home() {
     setHomeSearching(true)
     homeSearchDebounceRef.current = window.setTimeout(async () => {
       try {
-        const results = await fetchSearch(trimmed, 8, 'all')
+        const results = await fetchSearch(trimmed, 8, 'all', 'home-search')
         if (cancelled) return
         setHomeSearchResults(results)
         setHomeSearchError(false)
@@ -589,7 +589,7 @@ export default function Home() {
   }
 
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home">
+    <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <div className="flex justify-between items-start gap-3 mb-5">
         <div>
           <p className="eyebrow">{editorial?.brand.domain ?? 'Naamras.xyz'}</p>
@@ -607,6 +607,7 @@ export default function Home() {
             aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
             aria-pressed={dark}
             data-testid="home-theme-toggle"
+            data-ai-action="toggle-theme"
           >
             {dark ? <IconSun size={18} /> : <IconMoon size={18} />}
           </button>
@@ -636,7 +637,13 @@ export default function Home() {
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
         <div className="grid gap-4 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.95fr)]">
-          <div className="section-shell-quiet p-5" data-testid="home-guidance-hero">
+          <div
+            className="section-shell-quiet p-5"
+            data-testid="home-guidance-hero"
+            data-ai-surface="home-guidance"
+            data-ai-state={learnCatalogLoading ? 'loading' : learnCatalogError ? 'degraded' : todayGuidance && todayGuidancePath ? 'ready' : 'empty'}
+            data-ai-error={learnCatalogError ? 'learn-catalog' : undefined}
+          >
             {learnCatalogLoading ? (
               <div className="animate-pulse" data-testid="home-guidance-skeleton">
                 <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
@@ -658,6 +665,7 @@ export default function Home() {
                   onClick={() => navigate(todayGuidancePath)}
                   className="mt-5 min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
                   data-testid="home-hero-primary-action"
+                  data-ai-action="open-todays-guidance"
                 >
                   Open Today&apos;s Guidance
                 </button>
@@ -689,6 +697,9 @@ export default function Home() {
               onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
               className="section-shell-quiet p-5 text-left active:scale-[0.99] transition-transform duration-150"
               data-testid="home-hukamnama-card"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="ready"
+              data-ai-action="open-hukamnama"
             >
               <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
               <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
@@ -712,7 +723,13 @@ export default function Home() {
               </div>
             </button>
           ) : (
-            <div className="section-shell-quiet p-5" data-testid="home-hukamnama-error">
+            <div
+              className="section-shell-quiet p-5"
+              data-testid="home-hukamnama-error"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="degraded"
+              data-ai-error="study-hukamnama"
+            >
               <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
               <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
                 Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
@@ -721,6 +738,7 @@ export default function Home() {
                 type="button"
                 onClick={() => navigate('/banis')}
                 className="mt-4 min-h-[46px] rounded-full border border-sand/15 bg-white/70 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
+                data-ai-action="browse-read"
               >
                 Browse Read
               </button>
@@ -772,6 +790,7 @@ export default function Home() {
             className="w-full bg-transparent font-sans text-sm text-ink placeholder:text-ink/40 focus:outline-none dark:text-dark-text dark:placeholder:text-dark-text/36"
             data-testid="home-smart-search-input"
             data-ai-search-input="home-smart-search"
+            data-ai-action="home-smart-search"
           />
         </label>
 
@@ -782,6 +801,7 @@ export default function Home() {
               onClick={() => navigate(todayGuidancePath)}
               className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               data-testid="home-open-guidance"
+              data-ai-action="open-guidance"
             >
               Open Today&apos;s Guidance
             </button>
@@ -791,6 +811,7 @@ export default function Home() {
             onClick={() => navigate(learnTopicsPath)}
             className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
             data-testid="home-open-topics"
+            data-ai-action="open-topics"
           >
             Explore Topics
           </button>
@@ -799,6 +820,7 @@ export default function Home() {
             onClick={() => navigate('/banis')}
             className="rounded-full border border-sand/20 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
             data-testid="home-open-read"
+            data-ai-action="browse-read"
           >
             Browse Read
           </button>
@@ -809,6 +831,18 @@ export default function Home() {
           aria-live="polite"
           data-testid="home-smart-search-results"
           data-ai-search-state={homeSearchQuery.trim().length >= 2 ? 'active' : 'idle'}
+          data-ai-state={
+            homeSearchQuery.trim().length < 2
+              ? 'empty'
+              : homeSearching
+                ? 'loading'
+                : homeSearchError
+                  ? 'degraded'
+                  : (homeAngTargets.length > 0 || homeAppMatches.length > 0 || groupedHomeSearchResults.length > 0)
+                    ? 'ready'
+                    : 'empty'
+          }
+          data-ai-error={homeSearchError ? 'home-search' : undefined}
         >
           {homeSearchQuery.trim().length < 2 ? (
             <p className="font-sans text-xs leading-5 text-ink/46 dark:text-dark-text/46">

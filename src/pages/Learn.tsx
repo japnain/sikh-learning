@@ -1,5 +1,6 @@
 import { useMemo } from "react"
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom"
+import SurfaceStateCard from "../components/SurfaceStateCard"
 import CollectionDetailPage from "./learn/CollectionDetailPage"
 import GuidanceDetailPage from "./learn/GuidanceDetailPage"
 import LearnHub from "./learn/LearnHub"
@@ -54,27 +55,43 @@ function LearnIndexRoute() {
 
   if (loading) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-learn-loading">
-        <div className="section-shell p-5">
-          <p className="eyebrow">Learn</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-            Loading the SGGS archive…
-          </p>
-        </div>
-      </div>
+      <SurfaceStateCard
+        surface="learn-index"
+        state="loading"
+        eyebrow="Learn"
+        title="Preparing the SGGS archive."
+        body="Daily guidance, topic pages, and shabad deep dives are loading into place."
+        testId="page-learn-loading"
+        page="learn"
+      />
     )
   }
 
   if (error || !catalog) {
     return (
-      <div className="page-shell animate-fade-in" data-testid="page-learn-error">
-        <div className="section-shell p-5">
-          <p className="eyebrow">Learn</p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-            The Learn archive could not be loaded.
-          </p>
-        </div>
-      </div>
+      <SurfaceStateCard
+        surface="learn-index"
+        state="degraded"
+        eyebrow="Learn"
+        title="Learn is regrouping."
+        body="The archive did not settle this time. Reload and try again, or head back home and keep reading from there."
+        testId="page-learn-error"
+        page="learn"
+        errorCode={error ?? 'unavailable'}
+        actions={[
+          {
+            label: 'Reload Learn',
+            onClick: () => window.location.reload(),
+            aiAction: 'reload-learn',
+          },
+          {
+            label: 'Go Home',
+            onClick: () => window.location.assign('/'),
+            aiAction: 'go-home',
+            emphasis: 'secondary',
+          },
+        ]}
+      />
     )
   }
 

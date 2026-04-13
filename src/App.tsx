@@ -34,6 +34,9 @@ function RouteFallback() {
     <div
       className="page-shell"
       data-testid="route-fallback"
+      data-ai-surface="route-fallback"
+      data-ai-state="loading"
+      data-ai-flow="route-transition"
       aria-busy="true"
       aria-label="Loading page content"
     >
@@ -199,8 +202,16 @@ function AppShell() {
           className="app-shell bg-parchment transition-colors duration-300 dark:bg-dark-bg"
           data-display-mode={displayMode}
           data-testid="app-shell"
+          data-ai-surface="app-shell"
+          data-ai-state="ready"
         >
-          <main id="main-content" className="min-h-screen" data-testid="main-content">
+          <main
+            id="main-content"
+            className="min-h-screen"
+            data-testid="main-content"
+            data-ai-surface="main-content"
+            data-ai-state="ready"
+          >
             <Suspense fallback={<RouteFallback />}>
               <Routes>
                 <Route path="/" element={<HomePage />} />

@@ -1,4 +1,5 @@
 import type { MahanKoshEntry } from '../types'
+import { withQaControl } from '../qa/runtime'
 import { buildMahanKoshUrl, normalizeLookupWord } from '../utils/wordLookup'
 
 const BASE = 'https://backend.searchgurbani.com/api/res/mahan-kosh/view'
@@ -51,21 +52,25 @@ export async function fetchMahanKoshEntries(word: string): Promise<MahanKoshEntr
   const normalizedWord = normalizeLookupWord(word)
   if (!normalizedWord) return []
 
-  const params = new URLSearchParams({
-    keyword: normalizedWord,
-    alpha: 'alpha',
-    page: '0',
+  return withQaControl('mahankosh', async () => {
+    const params = new URLSearchParams({
+      keyword: normalizedWord,
+      alpha: 'alpha',
+      page: '0',
+    })
+
+    const response = await fetch(`${BASE}?${params.toString()}`)
+    if (!response.ok) {
+      throw new Error(`Mahankosh lookup failed: ${response.status}`)
+    }
+
+    const data = await response.json() as MahanKoshApiResponse
+
+    return (data.lines ?? [])
+      .map(line => toEntry(line, normalizedWord))
+      .filter(entry => Boolean(entry.word))
+      .sort(compareEntries)
+  }, {
+    emptyValue: [],
   })
-
-  const response = await fetch(`${BASE}?${params.toString()}`)
-  if (!response.ok) {
-    throw new Error(`Mahankosh lookup failed: ${response.status}`)
-  }
-
-  const data = await response.json() as MahanKoshApiResponse
-
-  return (data.lines ?? [])
-    .map(line => toEntry(line, normalizedWord))
-    .filter(entry => Boolean(entry.word))
-    .sort(compareEntries)
 }

@@ -12,9 +12,10 @@ import {
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
+import { resolveAsyncIssue } from '../qa/async'
 import { useRecentSearchStore } from '../store/recentSearch'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
-import type { SearchMode } from '../types'
+import type { AsyncIssueCode, SearchMode } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
@@ -309,6 +310,7 @@ export default function Banis() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searching, setSearching] = useState(false)
+  const [searchIssue, setSearchIssue] = useState<AsyncIssueCode | null>(null)
   const [searchMode, setSearchMode] = useState<SearchMode>('auto-detect')
   const [searchSource, setSearchSource] = useState<SearchSource>('all')
   const [raagFilter, setRaagFilter] = useState<string>('all')
@@ -375,21 +377,26 @@ export default function Banis() {
     if (trimmed.length < SEARCH_MODE_META[mode].minLength) {
       setSearchResults([])
       setSearching(false)
+      setSearchIssue(null)
       return
     }
     if (mode === 'ang') {
       setSearchResults([])
       setSearching(false)
+      setSearchIssue(null)
       return
     }
     setSearching(true)
+    setSearchIssue(null)
     debounceRef.current = setTimeout(async () => {
       try {
-        const results = await fetchSearch(trimmed, SEARCH_MODE_META[mode].type, source)
+        const results = await fetchSearch(trimmed, SEARCH_MODE_META[mode].type, source, 'read-search')
         setSearchResults(results)
+        setSearchIssue(null)
         addRecent(trimmed, mode)
-      } catch {
+      } catch (error) {
         setSearchResults([])
+        setSearchIssue(resolveAsyncIssue(error).code)
       } finally {
         setSearching(false)
       }
@@ -556,6 +563,8 @@ export default function Banis() {
       className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
       data-testid="page-banis"
       data-page="banis"
+      data-ai-surface="read"
+      data-ai-state="ready"
     >
       <div className="mb-6 mt-4">
         <p className="eyebrow">{editorial?.read.eyebrow ?? 'Read'}</p>
@@ -572,6 +581,20 @@ export default function Banis() {
         aria-labelledby="banis-quick-find-title"
         data-testid="banis-quick-find"
         data-ai-surface="read-smart-search"
+        data-ai-state={
+          searchMode === 'ang'
+            ? (searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength ? 'ready' : 'empty')
+            : searching
+              ? 'loading'
+              : searchIssue
+                ? 'degraded'
+              : (appSearchMatches.length > 0 || searchResults.length > 0)
+                ? 'ready'
+                : searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength
+                  ? 'empty'
+                  : 'empty'
+        }
+        data-ai-error={searchIssue ? 'read-search' : undefined}
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -589,6 +612,7 @@ export default function Banis() {
             className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/65"
             aria-expanded={searchOptionsOpen}
             aria-controls="banis-search-options-panel"
+            data-ai-action="toggle-search-options"
           >
             {searchOptionsOpen ? 'Simplify' : 'Refine'}
           </button>
@@ -611,6 +635,7 @@ export default function Banis() {
             onChange={e => handleSearch(e.target.value)}
             placeholder={SEARCH_MODE_META[searchMode].placeholder}
             className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
+            data-ai-action="read-smart-search"
           />
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -688,6 +713,11 @@ export default function Banis() {
           </div>
         )}
         {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
+        {searchIssue && !searching && searchMode !== 'ang' && (
+          <div className="mt-3 rounded-[20px] border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
+            Read search is taking longer than usual. You can switch modes, browse a bani directly, or try again in a moment.
+          </div>
+        )}
         {appSearchMatches.length > 0 && searchMode !== 'ang' && (
           <div className="mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
             <div className="flex items-center justify-between gap-3 px-1">
@@ -783,7 +813,7 @@ export default function Banis() {
             ))}
           </div>
         )}
-        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
+        {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && !searchIssue && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
           <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
         )}
         {!searchQuery && recent.length > 0 && (
@@ -823,6 +853,7 @@ export default function Banis() {
         onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
         className="hero-surface mb-4 w-full p-5 text-left active:scale-[0.99] transition-transform duration-150"
         data-testid="banis-featured-flow"
+        data-ai-action="open-ardaas-hukamnama-flow"
       >
         <p className="eyebrow">{editorial?.read.featuredFlowEyebrow ?? 'Featured Flow'}</p>
         <div className="mt-3 flex items-start justify-between gap-4">

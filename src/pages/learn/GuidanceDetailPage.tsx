@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Link, useParams, useSearchParams } from "react-router-dom"
+import SurfaceStateCard from "../../components/SurfaceStateCard"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import useLearnDetail from "../../hooks/useLearnDetail"
 import { useLearningStore } from "../../store/learning"
@@ -11,27 +12,54 @@ import ExcerptBlock from "./components/ExcerptBlock"
 
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
-function MissingGuidanceDetail() {
+function MissingGuidanceDetail({
+  state,
+  errorCode = null,
+}: {
+  state: 'loading' | 'empty' | 'degraded'
+  errorCode?: string | null
+}) {
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-learn-detail-missing">
-      <div className="section-shell p-5">
-        <p className="eyebrow">Guidance not found</p>
-        <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-          This guidance page is not available.
-        </p>
-      </div>
-    </div>
+    <SurfaceStateCard
+      surface="learn-guidance-detail"
+      state={state}
+      eyebrow="Today"
+      title={state === 'loading' ? 'Preparing this guidance page.' : state === 'degraded' ? 'This guidance page needs another pass.' : 'This guidance page is not available right now.'}
+      body={state === 'loading'
+        ? 'The guidance page is loading into place.'
+        : state === 'degraded'
+          ? 'The guidance page did not settle this time. Reload and try again, or head back to Today.'
+          : 'The requested guidance page could not be found in the current Learn archive.'}
+      testId="page-learn-detail-missing"
+      page="learn-detail"
+      errorCode={errorCode}
+      actions={state === 'loading'
+        ? []
+        : [
+            {
+              label: state === 'degraded' ? 'Reload Guidance' : 'Back to Today',
+              onClick: () => {
+                if (state === 'degraded') {
+                  window.location.reload()
+                  return
+                }
+                window.location.assign('/learn?tab=today')
+              },
+              aiAction: state === 'degraded' ? 'reload-guidance-detail' : 'back-to-today',
+            },
+          ]}
+    />
   )
 }
 
 export default function GuidanceDetailPage() {
   const { guidanceId } = useParams<{ guidanceId: string }>()
   const [searchParams] = useSearchParams()
-  const { catalog, error: catalogError, loading: catalogLoading } = useLearnCatalog()
+  const { catalog, error: catalogError, status: catalogStatus } = useLearnCatalog()
   const {
     item: guidance,
     error: guidanceError,
-    loading: guidanceLoading,
+    status: guidanceStatus,
   } = useLearnDetail("daily-guidance", guidanceId)
   const recordLearnItemView = useLearningStore(state => state.recordLearnItemView)
 
@@ -41,8 +69,11 @@ export default function GuidanceDetailPage() {
     }
   }, [guidance, recordLearnItemView])
 
-  if (catalogLoading || guidanceLoading) return <MissingGuidanceDetail />
-  if (catalogError || guidanceError || !catalog || !guidance) return <MissingGuidanceDetail />
+  if (catalogStatus === 'loading' || guidanceStatus === 'loading') return <MissingGuidanceDetail state="loading" />
+  if (catalogStatus === 'degraded' || guidanceStatus === 'degraded' || catalogError || guidanceError || !catalog) {
+    return <MissingGuidanceDetail state="degraded" errorCode={catalogError ?? guidanceError ?? 'unavailable'} />
+  }
+  if (!guidance) return <MissingGuidanceDetail state="empty" />
 
   const excerpt = resolveLineReference(catalog, guidance.source)
   const from = searchParams.get("from") ?? "today"

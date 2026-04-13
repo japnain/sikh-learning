@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import type { ScriptureEntry } from '../types'
+import { resolveAsyncIssue } from '../qa/async'
+import type { AsyncIssue, AsyncStatus, ScriptureEntry } from '../types'
 import { fetchShabad } from '../api/banidb'
 
 type ShabadRequestState = {
   key: string
   entries: ScriptureEntry[]
-  error: string | null
+  issue: AsyncIssue | null
 }
 
 export function useShabad(shabadId: number | null) {
@@ -24,7 +25,7 @@ export function useShabad(shabadId: number | null) {
         setState({
           key: requestKey,
           entries: data ? [data] : [],
-          error: null,
+          issue: null,
         })
       })
       .catch(error => {
@@ -32,7 +33,7 @@ export function useShabad(shabadId: number | null) {
         setState({
           key: requestKey,
           entries: [],
-          error: String(error),
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -41,9 +42,20 @@ export function useShabad(shabadId: number | null) {
     }
   }, [currentState, requestKey, shabadId])
 
+  const issue = currentState?.issue ?? null
+  const status: AsyncStatus = requestKey === null
+    ? 'empty'
+    : issue
+      ? 'degraded'
+      : currentState
+        ? (currentState.entries.length === 0 ? 'empty' : 'ready')
+        : 'loading'
+
   return {
     entries: currentState?.entries ?? [],
-    loading: requestKey !== null && currentState === null,
-    error: currentState?.error ?? null,
+    status,
+    issue,
+    loading: status === 'loading',
+    error: issue?.code ?? null,
   }
 }

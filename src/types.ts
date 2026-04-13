@@ -6,6 +6,14 @@ export interface Word {
   meaning_pa: string
 }
 
+export type AsyncStatus = 'idle' | 'loading' | 'ready' | 'empty' | 'degraded'
+export type AsyncIssueCode = 'qa-fault' | 'missing' | 'offline' | 'unavailable'
+
+export interface AsyncIssue {
+  code: AsyncIssueCode
+  detail?: string | null
+}
+
 export interface MahanKoshEntry {
   id: number
   word: string

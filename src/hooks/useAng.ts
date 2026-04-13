@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react'
 import type { ScriptureEntry } from '../types'
+import { resolveAsyncIssue } from '../qa/async'
 import { fetchAng } from '../api/banidb'
 import { useScriptureCacheStore } from '../store/scriptureCache'
+import type { AsyncIssue, AsyncStatus } from '../types'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
 type AngRequestState = {
   key: string
   entries: ScriptureEntry[]
-  error: string | null
+  issue: AsyncIssue | null
 }
 
 type RefreshState = {
   key: string
-  loading: boolean
-  error: string | null
+  status: AsyncStatus
+  issue: AsyncIssue | null
 }
 
 export function useAng(ang: number, source: BaniSource) {
@@ -37,7 +39,7 @@ export function useAng(ang: number, source: BaniSource) {
         setState({
           key: requestKey,
           entries: data,
-          error: null,
+          issue: null,
         })
       })
       .catch(error => {
@@ -45,7 +47,7 @@ export function useAng(ang: number, source: BaniSource) {
         setState({
           key: requestKey,
           entries: [],
-          error: String(error),
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -55,8 +57,8 @@ export function useAng(ang: number, source: BaniSource) {
   const refetch = () => {
     setRefreshState({
       key: requestKey,
-      loading: true,
-      error: null,
+      status: 'loading',
+      issue: null,
     })
 
     fetchAng(ang, source)
@@ -65,27 +67,39 @@ export function useAng(ang: number, source: BaniSource) {
         setState({
           key: requestKey,
           entries: data,
-          error: null,
+          issue: null,
         })
         setRefreshState({
           key: requestKey,
-          loading: false,
-          error: null,
+          status: 'ready',
+          issue: null,
         })
       })
       .catch(error => {
         setRefreshState({
           key: requestKey,
-          loading: false,
-          error: String(error),
+          status: 'degraded',
+          issue: resolveAsyncIssue(error),
         })
       })
   }
 
+  const issue = currentRefreshState?.issue ?? currentState?.issue ?? null
+  const status = currentRefreshState?.status
+    ?? (issue
+      ? 'degraded'
+      : cachedEntries
+        ? 'ready'
+        : currentState
+          ? (currentState.entries.length === 0 ? 'empty' : 'ready')
+          : 'loading')
+
   return {
     entries: cachedEntries ?? currentState?.entries ?? [],
-    loading: currentRefreshState?.loading ?? (!cachedEntries && currentState === null),
-    error: currentRefreshState?.error ?? currentState?.error ?? null,
+    status,
+    issue,
+    loading: status === 'loading',
+    error: issue?.code ?? null,
     refetch,
   }
 }

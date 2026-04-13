@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
+import { resolveAsyncIssue } from "../qa/async"
 import { loadLearnCatalog } from "../data/learnRepository"
-import type { LearnCatalog } from "../types"
+import type { AsyncIssue, AsyncStatus, LearnCatalog } from "../types"
 
 type LearnCatalogState = {
   catalog: LearnCatalog | null
-  loading: boolean
-  error: Error | null
+  status: AsyncStatus
+  issue: AsyncIssue | null
 }
 
 const INITIAL_STATE: LearnCatalogState = {
   catalog: null,
-  loading: true,
-  error: null,
+  status: 'loading',
+  issue: null,
 }
 
 export default function useLearnCatalog() {
@@ -25,16 +26,16 @@ export default function useLearnCatalog() {
         if (cancelled) return
         setState({
           catalog,
-          loading: false,
-          error: null,
+          status: 'ready',
+          issue: null,
         })
       })
       .catch(error => {
         if (cancelled) return
         setState({
           catalog: null,
-          loading: false,
-          error: error instanceof Error ? error : new Error("Failed to load the Learn catalog."),
+          status: 'degraded',
+          issue: resolveAsyncIssue(error),
         })
       })
 
@@ -43,5 +44,9 @@ export default function useLearnCatalog() {
     }
   }, [])
 
-  return state
+  return {
+    ...state,
+    loading: state.status === 'loading',
+    error: state.issue?.code ?? null,
+  }
 }
