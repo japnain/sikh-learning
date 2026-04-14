@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama, fetchSearch } from './banidb'
 import type { ScriptureEntry } from '../types'
 
@@ -14,6 +14,23 @@ function introLines(entries: ScriptureEntry[]) {
 }
 
 describe('fetchAng', () => {
+  it('routes scripture reads through the InsForge banidb proxy endpoint', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+
+    await fetchAng(1, 'G')
+
+    const [requestUrl, requestInit] = fetchSpy.mock.calls[0] ?? []
+    expect(String(requestUrl)).toContain('/banidb-proxy')
+    expect(requestInit).toMatchObject({
+      method: 'POST',
+    })
+    expect(JSON.parse(String(requestInit?.body))).toMatchObject({
+      path: '/v2/angs/1/G',
+    })
+
+    fetchSpy.mockRestore()
+  })
+
   it('fetches ang and returns ScriptureEntry[] grouped by shabadId', async () => {
     const entries = await fetchAng(1, 'G')
     expect(entries).toHaveLength(2) // shabadId 1 and 2

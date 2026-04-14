@@ -1,4 +1,5 @@
 import type { EnglishTranslations, ScriptureEntry, ScriptureLine, SundarGutkaLength, Word } from '../types'
+import { requestBanidb } from '../insforge/banidb'
 import { withQaControl } from '../qa/runtime'
 import {
   SUNDAR_GUTKA_LENGTH_EXISTS_KEY,
@@ -8,7 +9,7 @@ import {
   type SundarGutkaRawLength,
 } from '../utils/sundarGutkaLength'
 
-const BASE = 'https://api.banidb.com/v2'
+const API_PREFIX = '/v2'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
 
@@ -276,9 +277,8 @@ function buildEntry({
 
 export async function fetchAng(ang: number, source: BaniSource): Promise<ScriptureEntry[]> {
   return withQaControl('study-ang', async () => {
-    const res = await fetch(`${BASE}/angs/${ang}/${source}`)
+    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/angs/${ang}/${source}`)
     if (!res.ok) throw new Error(`BaniDB /angs error: ${res.status}`)
-    const data = await res.json() as Record<string, unknown>
 
     const rawPage = (data.page ?? data.verses ?? data.shabads) as BaniVerse[] | undefined
     if (!rawPage?.length) return []
@@ -310,9 +310,8 @@ export async function fetchAng(ang: number, source: BaniSource): Promise<Scriptu
 }
 
 export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
-  const res = await fetch(`${BASE}/shabads/${shabadId}`)
+  const { response: res, data } = await requestBanidb<{ verses: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`)
   if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-  const data: { verses: BaniShabadVerse[] } = await res.json()
   if (!data.verses?.length) return []
 
   const seen = new Set<string>()
@@ -458,9 +457,8 @@ export async function fetchBani(
   sgLength?: SundarGutkaLength | null
 ): Promise<BaniFetchResult> {
   return withQaControl('study-bani', async () => {
-    const res = await fetch(`${BASE}/banis/${baniDbId}`)
+    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/banis/${baniDbId}`)
     if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
-    const data = await res.json() as Record<string, unknown>
 
     const rawArray = (data.verses ?? []) as BaniResponseVerse[]
     if (!rawArray.length) {
@@ -585,9 +583,11 @@ export async function fetchSearch(
 ): Promise<SearchResult[]> {
   return withQaControl(context, async () => {
     const encoded = encodeURIComponent(query)
-    const res = await fetch(`${BASE}/search/${encoded}?searchtype=${searchType}&source=${source}`)
+    const { response: res, data } = await requestBanidb<{ verses?: BaniVerse[] }>(`${API_PREFIX}/search/${encoded}`, {
+      searchtype: searchType,
+      source,
+    })
     if (!res.ok) throw new Error(`BaniDB /search error: ${res.status}`)
-    const data = await res.json() as { verses?: BaniVerse[] }
     const verses = data.verses ?? []
 
     return verses.slice(0, 30).map(v => ({
@@ -609,9 +609,8 @@ export async function fetchSearch(
 
 export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | null> {
   return withQaControl('study-shabad', async () => {
-    const res = await fetch(`${BASE}/shabads/${shabadId}`)
+    const { response: res, data } = await requestBanidb<{ shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`)
     if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-    const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
 
     const verses = data.verses ?? []
     if (!verses.length) return null
@@ -641,9 +640,8 @@ export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | nu
 }
 
 export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntry[]> {
-  const res = await fetch(`${BASE}/shabads/${shabadId}`)
+  const { response: res, data } = await requestBanidb<{ shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }>(`${API_PREFIX}/shabads/${shabadId}`)
   if (!res.ok) throw new Error(`BaniDB /shabads error: ${res.status}`)
-  const data = await res.json() as { shabadInfo?: ShabadInfo; verses?: BaniShabadVerse[] }
 
   const verses = data.verses ?? []
   if (!verses.length) return []
@@ -668,9 +666,8 @@ export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntr
 }
 
 export async function fetchBanisIndex(): Promise<BaniIndexItem[]> {
-  const res = await fetch(`${BASE}/banis`)
+  const { response: res, data } = await requestBanidb<BaniInfoResponse[]>(`${API_PREFIX}/banis`)
   if (!res.ok) throw new Error(`BaniDB /banis error: ${res.status}`)
-  const data = await res.json() as BaniInfoResponse[]
 
   return data.map(item => ({
     id: item.ID,
@@ -680,9 +677,8 @@ export async function fetchBanisIndex(): Promise<BaniIndexItem[]> {
 }
 
 export async function fetchAmritKeertanIndex(): Promise<AmritKeertanHeader[]> {
-  const res = await fetch(`${BASE}/amritkeertan`)
+  const { response: res, data } = await requestBanidb<{ headers?: AmritKeertanHeaderResponse[] }>(`${API_PREFIX}/amritkeertan`)
   if (!res.ok) throw new Error(`BaniDB /amritkeertan error: ${res.status}`)
-  const data = await res.json() as { headers?: AmritKeertanHeaderResponse[] }
 
   return (data.headers ?? []).map(item => ({
     headerId: item.HeaderID,
@@ -692,9 +688,8 @@ export async function fetchAmritKeertanIndex(): Promise<AmritKeertanHeader[]> {
 }
 
 export async function fetchAmritKeertanShabads(headerId: number): Promise<AmritKeertanShabad[]> {
-  const res = await fetch(`${BASE}/amritkeertan/index/${headerId}`)
+  const { response: res, data } = await requestBanidb<{ index?: AmritKeertanIndexResponse[] }>(`${API_PREFIX}/amritkeertan/index/${headerId}`)
   if (!res.ok) throw new Error(`BaniDB /amritkeertan/index error: ${res.status}`)
-  const data = await res.json() as { index?: AmritKeertanIndexResponse[] }
 
   return (data.index ?? []).map(item => ({
     shabadId: item.ShabadID,
@@ -709,9 +704,8 @@ export async function fetchAmritKeertanShabads(headerId: number): Promise<AmritK
 export async function fetchAudio(shabadId: number): Promise<string | null> {
   try {
     // Try the shabad endpoint — it may include audio URLs in the response
-    const res = await fetch(`${BASE}/shabads/${shabadId}`)
+    const { response: res, data } = await requestBanidb<Record<string, unknown>>(`${API_PREFIX}/shabads/${shabadId}`)
     if (!res.ok) return null
-    const data = await res.json() as Record<string, unknown>
     // Check various possible audio field locations
     const shabadInfo = data.shabadInfo as Record<string, unknown> | undefined
     if (shabadInfo?.audio) {
@@ -738,11 +732,7 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
     const month = String(targetDate.getMonth() + 1).padStart(2, '0')
     const day = String(targetDate.getDate()).padStart(2, '0')
 
-    let res = await fetch(`${BASE}/hukamnamas/${year}/${month}/${day}`)
-    if (!res.ok) res = await fetch(`${BASE}/hukamnamas`)
-    if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
-
-    const data = await res.json() as {
+    let request = await requestBanidb<{
       isLatest?: boolean
       date?: { gregorian?: { year?: number; month?: number; date?: number } }
       hukamnamaInfo?: { ang?: number; source?: { id?: BaniSource } }
@@ -754,7 +744,24 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
           verses?: BaniVerse[]
         }
       }>
+    }>(`${API_PREFIX}/hukamnamas/${year}/${month}/${day}`)
+    if (!request.response.ok) {
+      request = await requestBanidb<{
+        isLatest?: boolean
+        date?: { gregorian?: { year?: number; month?: number; date?: number } }
+        hukamnamaInfo?: { ang?: number; source?: { id?: BaniSource } }
+        shabads?: Array<{
+          shabadInfo?: ShabadInfo
+          verses?: BaniVerse[]
+          shabad?: {
+            shabadInfo?: ShabadInfo & { ang?: { ang?: number } }
+            verses?: BaniVerse[]
+          }
+        }>
+      }>(`${API_PREFIX}/hukamnamas`)
     }
+    const { response: res, data } = request
+    if (!res.ok) throw new Error(`BaniDB /hukamnamas error: ${res.status}`)
 
     const allShabads = data.shabads ?? []
     const firstShabad = allShabads[0]

@@ -4,7 +4,7 @@ NaamRas keeps BaniDB as the canonical scripture source. InsForge is the user bac
 
 - optional sign-in
 - cloud sync for bookmarks, vocab, Learn saves, progress, and reader preferences
-- edge functions such as `merge-local-state` and `generate-study-response`
+- edge functions such as `banidb-proxy`, `merge-local-state`, and `generate-study-response`
 
 ## 1. Create Or Link A Project
 
@@ -42,17 +42,20 @@ Before deploying functions, set these runtime values in your InsForge project:
 - `INSFORGE_BASE_URL` (optional but recommended)
   Set this to your project URL if the function runtime should not infer it from the incoming request.
 
-`merge-local-state` uses the caller's auth token and project database with RLS. `generate-study-response` requires both an authenticated user and a configured AI model.
+`banidb-proxy` is public and read-only. It proxies browser-safe BaniDB v2 requests through InsForge and applies basic response caching derived from upstream cache headers. `merge-local-state` uses the caller's auth token and project database with RLS. `generate-study-response` requires both an authenticated user and a configured AI model.
 
 ## 4. Deploy Edge Functions
 
 ```bash
+npx @insforge/cli functions deploy banidb-proxy --file ./insforge/functions/banidb-proxy.ts
 npx @insforge/cli functions deploy merge-local-state --file ./insforge/functions/merge-local-state.ts
 npx @insforge/cli functions deploy generate-study-response --file ./insforge/functions/generate-study-response.ts
 ```
 
 Both function files in this repo now contain real NaamRas logic:
 
+- `banidb-proxy`
+  Public BaniDB v2 passthrough for all scripture reads used by the app, with browser CORS support and short-lived in-memory caching.
 - `merge-local-state`
   Authenticated guest-to-account merge, soft-delete handling, durable activity-event ingestion, and server-derived streak recomputation.
 - `generate-study-response`
@@ -64,12 +67,13 @@ Copy `.env.example` to `.env.local` and set at least:
 
 ```bash
 VITE_INSFORGE_URL=https://your-app.your-region.insforge.app
+VITE_INSFORGE_FUNCTIONS_URL=https://your-appkey.functions.insforge.app
 ```
 
 Optional:
 
 - `VITE_INSFORGE_ANON_KEY`
-- `VITE_INSFORGE_FUNCTIONS_URL`
+- `VITE_INSFORGE_BANIDB_FUNCTION`
 - `VITE_INSFORGE_MERGE_FUNCTION`
 - `VITE_INSFORGE_STUDY_FUNCTION`
 - `VITE_INSFORGE_ENABLE_STUDY_AI`
@@ -91,7 +95,8 @@ Use this sequence after deployment:
 1. Open NaamRas as a guest and create bookmarks, Learn saves, or vocab items offline.
 2. Sign in from the `More` page and confirm the first sync merges local state into the account.
 3. Open the same account on a second device and confirm bookmarks, vocab, progress, and Nitnem state arrive without duplicates.
-4. When `VITE_INSFORGE_ENABLE_STUDY_AI=true`, confirm AI study responses are clearly labeled as explanatory and non-canonical commentary.
+4. Confirm Nitnem, Banis, Hukamnama, search, and Study word data still load through `banidb-proxy` without any response-shape changes.
+5. When `VITE_INSFORGE_ENABLE_STUDY_AI=true`, confirm AI study responses are clearly labeled as explanatory and non-canonical commentary.
 
 ## 8. Run The Backend Smoke Test
 
@@ -108,3 +113,9 @@ It verifies:
 - `merge-local-state` accepts a real user JWT
 - synced rows land in all five NaamRas tables
 - the temporary smoke-test user and rows are deleted afterward
+
+To compare the live proxy against public BaniDB for the main read endpoints:
+
+```bash
+npm run insforge:banidb-smoke
+```

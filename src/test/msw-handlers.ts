@@ -641,19 +641,54 @@ const MOCK_MAHANKOSH_RESPONSES: Record<string, { lines: Array<Record<string, unk
   },
 }
 
-export const handlers = [
-  http.get('https://api.banidb.com/v2/angs/:ang/:source', ({ params }) => {
-    const { ang } = params as { ang: string; source: string }
-    if (ang === '9999') return HttpResponse.json({ page: [] })
-    if (ang === 'error') return HttpResponse.error()
-    const page = MOCK_ANG_PAGE.map(v => ({ ...v, pageNo: Number(ang) }))
-    return HttpResponse.json({ page })
-  }),
+function trimTrailingSlashes(value: string) {
+  return value.replace(/\/+$/, '')
+}
 
-  http.get('https://api.banidb.com/v2/shabads/:shabadId', ({ params }) => {
-    const { shabadId } = params as { shabadId: string }
+function deriveFunctionsUrl(baseUrl: string) {
+  const url = new URL(baseUrl)
+  if (url.hostname.includes('.functions.insforge.app')) {
+    return trimTrailingSlashes(url.origin)
+  }
+
+  const [appKey] = url.hostname.split('.')
+  return `https://${appKey}.functions.insforge.app`
+}
+
+const INSFORGE_BASE_URL = import.meta.env.VITE_INSFORGE_URL?.trim() || 'https://epz3fhj8.us-east.insforge.app'
+const INSFORGE_FUNCTIONS_URL = trimTrailingSlashes(
+  import.meta.env.VITE_INSFORGE_FUNCTIONS_URL?.trim() || deriveFunctionsUrl(INSFORGE_BASE_URL)
+)
+const BANIDB_FUNCTION_SLUG = import.meta.env.VITE_INSFORGE_BANIDB_FUNCTION?.trim() || 'banidb-proxy'
+const BANIDB_PROXY_URL = `${INSFORGE_FUNCTIONS_URL}/${BANIDB_FUNCTION_SLUG.replace(/^\/+/, '')}`
+
+function getMockBanidbResponse(url: URL) {
+  if (url.pathname === '/v2/banis') {
+    return HttpResponse.json(MOCK_BANIS_INDEX)
+  }
+
+  if (url.pathname === '/v2/amritkeertan') {
+    return HttpResponse.json(MOCK_AMRIT_HEADERS)
+  }
+
+  if (url.pathname === '/v2/hukamnamas') {
+    return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+  }
+
+  const angMatch = url.pathname.match(/^\/v2\/angs\/([^/]+)\/([^/]+)$/)
+  if (angMatch) {
+    const [, ang] = angMatch
+    if (ang === '9999') return HttpResponse.json({ page: [] })
+    if (ang === 'error') return HttpResponse.json({ error: 'upstream failure' }, { status: 502 })
+    const page = MOCK_ANG_PAGE.map(verse => ({ ...verse, pageNo: Number(ang) }))
+    return HttpResponse.json({ page })
+  }
+
+  const shabadMatch = url.pathname.match(/^\/v2\/shabads\/([^/]+)$/)
+  if (shabadMatch) {
+    const [, shabadId] = shabadMatch
     if (shabadId === '9999') return HttpResponse.json({ verses: [] })
-    if (shabadId === 'error') return HttpResponse.error()
+    if (shabadId === 'error') return HttpResponse.json({ error: 'upstream failure' }, { status: 502 })
     const shabadIdNumber = Number(shabadId)
     return HttpResponse.json({
       ...MOCK_SHABAD_RESPONSE,
@@ -667,40 +702,55 @@ export const handlers = [
         verseId: shabadIdNumber === 50 ? 100 + index : verse.verseId,
       })),
     })
-  }),
+  }
 
-  http.get('https://api.banidb.com/v2/search/:query', () => {
+  if (url.pathname.startsWith('/v2/search/')) {
     return HttpResponse.json(MOCK_SEARCH_RESPONSE)
-  }),
+  }
 
-  http.get('https://api.banidb.com/v2/banis', () => {
-    return HttpResponse.json(MOCK_BANIS_INDEX)
-  }),
-
-  http.get('https://api.banidb.com/v2/banis/:baniId', ({ params }) => {
-    const { baniId } = params as { baniId: string }
+  const baniMatch = url.pathname.match(/^\/v2\/banis\/([^/]+)$/)
+  if (baniMatch) {
+    const [, baniId] = baniMatch
     if (baniId === '21') return HttpResponse.json(MOCK_REHRAS_BANI_RESPONSE)
     if (baniId === '22') return HttpResponse.json(MOCK_AARTI_BANI_RESPONSE)
     if (baniId === '23') return HttpResponse.json(MOCK_SOHILA_BANI_RESPONSE)
     if (baniId === '24') return HttpResponse.json(MOCK_ARDAAS_BANI_RESPONSE)
     if (baniId === '9') return HttpResponse.json(MOCK_CHAUPAI_BANI_RESPONSE)
     return HttpResponse.json(MOCK_BANI_RESPONSE)
-  }),
+  }
 
-  http.get('https://api.banidb.com/v2/amritkeertan', () => {
-    return HttpResponse.json(MOCK_AMRIT_HEADERS)
-  }),
-
-  http.get('https://api.banidb.com/v2/amritkeertan/index/:headerId', () => {
+  if (url.pathname.startsWith('/v2/amritkeertan/index/')) {
     return HttpResponse.json(MOCK_AMRIT_HEADER_RESPONSE)
-  }),
+  }
 
-  http.get('https://api.banidb.com/v2/hukamnamas', () => {
+  const datedHukamnamaMatch = url.pathname.match(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)
+  if (datedHukamnamaMatch) {
     return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
-  }),
+  }
 
-  http.get('https://api.banidb.com/v2/hukamnamas/:year/:month/:day', () => {
-    return HttpResponse.json(MOCK_HUKAMNAMA_RESPONSE)
+  return null
+}
+
+export const handlers = [
+  http.post(BANIDB_PROXY_URL, async ({ request }) => {
+    const body = await request.json() as { path?: unknown; query?: unknown }
+    if (typeof body.path !== 'string') {
+      return HttpResponse.json({ error: 'Request body must include a string path.' }, { status: 400 })
+    }
+
+    const url = new URL(body.path, 'https://api.banidb.com')
+    if (!url.pathname.startsWith('/v2/')) {
+      return HttpResponse.json({ error: 'Only BaniDB v2 read paths are allowed.' }, { status: 400 })
+    }
+
+    if (body.query && typeof body.query === 'object' && !Array.isArray(body.query)) {
+      for (const [key, value] of Object.entries(body.query as Record<string, string>)) {
+        if (value === undefined || value === null) continue
+        url.searchParams.set(key, String(value))
+      }
+    }
+
+    return getMockBanidbResponse(url) ?? HttpResponse.json({ error: 'Not found.' }, { status: 404 })
   }),
 
   http.get('https://backend.searchgurbani.com/api/res/mahan-kosh/view', ({ request }) => {
