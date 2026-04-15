@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect, useMemo, type ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   fetchSearch,
   fetchBanisIndex,
@@ -23,6 +23,7 @@ import {
 } from '../utils/sundarGutkaLength'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
+import SearchHighlight, { hasSearchMatch } from '../components/SearchHighlight'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
   getAngTargets,
@@ -32,6 +33,7 @@ import {
   type GroupedSearchResult,
   type SearchSource,
 } from '../utils/appSearch'
+import { buildReadSearchPath } from '../utils/searchRoutes'
 
 type Scripture = 'SGGS' | 'DG'
 type ExactBani = Bani & { baniDbId: number }
@@ -65,6 +67,15 @@ const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   ang: 'Open an ang or page directly without running a word search.',
   'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
 }
+
+function isSearchModeParam(value: string | null): value is SearchMode {
+  return value !== null && value in SEARCH_MODE_META
+}
+
+function isSearchSourceParam(value: string | null): value is SearchSource {
+  return value !== null && value in SEARCH_SOURCE_LABELS
+}
+
 const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set([
   'japji-sahib',
   'jaap-sahib',
@@ -247,22 +258,6 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
   })
 }
 
-function Highlight({ text, query }: { text: string; query: string }) {
-  if (!query || query.length < 2) return <>{text}</>
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const regex = new RegExp(`(${escaped})`, 'gi')
-  const parts = text.split(regex)
-  return (
-    <>
-      {parts.map((part, i) =>
-        i % 2 === 1
-          ? <span key={i} className="bg-saffron/30 text-saffron dark:text-saffron-light font-semibold rounded-sm px-0.5">{part}</span>
-          : <span key={i}>{part}</span>
-      )}
-    </>
-  )
-}
-
 function IndexRow({
   label,
   detail,
@@ -304,15 +299,23 @@ function MetadataChip({ children }: { children: ReactNode }) {
 }
 
 export default function Banis() {
+  const location = useLocation()
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const initialModeParam = searchParams.get('mode')
+  const initialSourceParam = searchParams.get('source')
   const editorial = getEditorialCopy('en')
   const [expanded, setExpanded] = useState<Record<string, boolean>>({})
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? '')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [searching, setSearching] = useState(false)
   const [searchIssue, setSearchIssue] = useState<AsyncIssueCode | null>(null)
-  const [searchMode, setSearchMode] = useState<SearchMode>('auto-detect')
-  const [searchSource, setSearchSource] = useState<SearchSource>('all')
+  const [searchMode, setSearchMode] = useState<SearchMode>(() => (
+    isSearchModeParam(initialModeParam) ? initialModeParam : 'auto-detect'
+  ))
+  const [searchSource, setSearchSource] = useState<SearchSource>(() => (
+    isSearchSourceParam(initialSourceParam) ? initialSourceParam : 'all'
+  ))
   const [raagFilter, setRaagFilter] = useState<string>('all')
   const [writerFilter, setWriterFilter] = useState<string>('all')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
@@ -329,6 +332,7 @@ export default function Banis() {
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -367,6 +371,55 @@ export default function Banis() {
       if (debounceRef.current) clearTimeout(debounceRef.current)
     }
   }, [])
+
+  useEffect(() => {
+    const nextQuery = searchParams.get('query') ?? ''
+    const nextModeParam = searchParams.get('mode')
+    const nextSourceParam = searchParams.get('source')
+    const nextMode: SearchMode = isSearchModeParam(nextModeParam) ? nextModeParam : 'auto-detect'
+    const nextSource: SearchSource = isSearchSourceParam(nextSourceParam) ? nextSourceParam : 'all'
+
+    if (searchQuery !== nextQuery) {
+      setSearchQuery(nextQuery)
+    }
+    if (searchMode !== nextMode) {
+      setSearchMode(nextMode)
+    }
+    if (searchSource !== nextSource) {
+      setSearchSource(nextSource)
+    }
+  }, [location.search])
+
+  useEffect(() => {
+    const nextPath = buildReadSearchPath({
+      query: searchQuery,
+      mode: searchMode,
+      source: searchSource,
+    })
+    const currentPath = `${location.pathname}${location.search}`
+
+    if (nextPath === currentPath) return
+
+    const nextSearch = nextPath.split('?')[1] ?? ''
+    setSearchParams(new URLSearchParams(nextSearch), { replace: true })
+  }, [location.pathname, location.search, searchMode, searchQuery, searchSource, setSearchParams])
+
+  useEffect(() => {
+    const state = (location.state as { focusSearch?: boolean } | null) ?? null
+    if (!state?.focusSearch) return
+
+    globalThis.requestAnimationFrame(() => {
+      searchInputRef.current?.focus()
+    })
+
+    navigate(
+      {
+        pathname: location.pathname,
+        search: location.search,
+      },
+      { replace: true, state: null }
+    )
+  }, [location.pathname, location.search, location.state, navigate])
 
   const handleSearch = useCallback((query: string, mode: SearchMode = searchMode, source: SearchSource = searchSource) => {
     setSearchQuery(query)
@@ -621,6 +674,7 @@ export default function Banis() {
         <div className="relative mt-4" data-ai-search-shell="read-smart-search">
           <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
           <input
+            ref={searchInputRef}
             id="banis-search"
             name="banis-search"
             type="search"
@@ -701,7 +755,8 @@ export default function Banis() {
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
                 <p className="font-sans text-sm text-ink dark:text-dark-text">
-                  Open {target.label} {target.kind} {searchQuery.trim()}
+                  Open {target.label} {target.kind}{' '}
+                  <SearchHighlight text={searchQuery.trim()} query={searchQuery.trim()} />
                 </p>
                 <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1">
                   Direct page lookup without running a word search.
@@ -729,19 +784,37 @@ export default function Banis() {
               </p>
             </div>
             {appSearchMatches.map(match => (
-              <button
-                key={match.key}
-                onClick={() => navigate(match.path)}
-                className="w-full text-left rounded-[22px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:from-saffron/12 dark:to-saffron-light/12"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{match.label}</p>
-                    <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">{match.detail}</p>
-                  </div>
-                  <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
-                </div>
-              </button>
+              (() => {
+                const trimmedSearchQuery = searchQuery.trim()
+                const showMatchedQuery = trimmedSearchQuery.length >= 2
+                  && !hasSearchMatch(match.label, trimmedSearchQuery)
+                  && !hasSearchMatch(match.detail, trimmedSearchQuery)
+
+                return (
+                  <button
+                    key={match.key}
+                    onClick={() => navigate(match.path)}
+                    className="w-full text-left rounded-[22px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 transition-colors duration-300 active:scale-[0.99] dark:border-saffron/20 dark:from-saffron/12 dark:to-saffron-light/12"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                          <SearchHighlight text={match.label} query={trimmedSearchQuery} />
+                        </p>
+                        <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
+                          <SearchHighlight text={match.detail} query={trimmedSearchQuery} />
+                        </p>
+                        {showMatchedQuery ? (
+                          <p className="mt-2 font-sans text-[11px] text-ink/52 dark:text-dark-text/54">
+                            Matched for <SearchHighlight text={trimmedSearchQuery} query={trimmedSearchQuery} />
+                          </p>
+                        ) : null}
+                      </div>
+                      <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
+                    </div>
+                  </button>
+                )
+              })()
             ))}
           </div>
         )}
@@ -799,9 +872,9 @@ export default function Banis() {
                 onClick={() => openSearchResult(r)}
                 className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 transition-colors duration-300"
               >
-                <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><Highlight text={r.gurmukhi} query={searchQuery} /></p>
-                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><Highlight text={r.transliteration} query={searchQuery} /></p>
-                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><Highlight text={r.translation_en} query={searchQuery} /></p>
+                <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><SearchHighlight text={r.gurmukhi} query={searchQuery.trim()} /></p>
+                <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><SearchHighlight text={r.transliteration} query={searchQuery.trim()} /></p>
+                <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></p>
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {r.sourceName && <MetadataChip>{r.sourceName}</MetadataChip>}
                   {typeof r.pageNo === 'number' && r.pageNo > 0 && <MetadataChip>{`Ang ${r.pageNo}`}</MetadataChip>}
@@ -881,7 +954,7 @@ export default function Banis() {
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
           </div>
-          <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+          <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
 
         {expanded['sundar-gutka'] && (
@@ -899,7 +972,7 @@ export default function Banis() {
                     aria-controls={`${groupKey}-panel`}
                   >
                     <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.label}</p>
-                    <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                    <span className="icon-surface h-7 w-7 text-ink/58 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                   </button>
                   {expanded[groupKey] && (
                     <div id={`${groupKey}-panel`} className="mt-1 ml-2">
@@ -962,7 +1035,7 @@ export default function Banis() {
               <div className="text-left">
                 <p className={`font-sans font-semibold text-base flex items-center gap-1.5 ${scripture === 'SGGS' ? 'text-saffron dark:text-saffron-light' : 'text-ink dark:text-dark-text'}`}>{meta.icon} {meta.label}</p>
               </div>
-              <span className="text-saffron dark:text-saffron-light font-sans text-sm">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+              <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{isOpen ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
             </button>
 
             {isOpen && (
@@ -978,7 +1051,7 @@ export default function Banis() {
                         aria-controls={`${groupKey}-panel`}
                       >
                         <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 uppercase tracking-wider">{group.category}</p>
-                        <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+                        <span className="icon-surface h-7 w-7 text-ink/58 dark:text-dark-text/66">{expanded[groupKey] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
                       </button>
                       {expanded[groupKey] && (
                         <div id={`${groupKey}-panel`} className="mt-1 ml-2">
@@ -1027,7 +1100,7 @@ export default function Banis() {
           <div className="text-left">
             <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
           </div>
-          <span className="text-saffron dark:text-saffron-light font-sans text-sm">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
+          <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
 
         {expanded['ak'] && (

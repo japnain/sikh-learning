@@ -5,7 +5,6 @@ import Home from './Home'
 import * as banidb from '../api/banidb'
 import * as learnRepository from '../data/learnRepository'
 import * as hukamnamaHook from '../hooks/useHukamnama'
-import { useDailyFlowStore } from '../store/dailyFlow'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useProgressStore } from '../store/progress'
@@ -17,6 +16,7 @@ import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { getTodayLearnSurface } from '../utils/learnExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
+import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
@@ -51,7 +51,6 @@ beforeEach(() => {
   useThemeStore.setState({ dark: false })
   useScriptureCacheStore.getState().clearAll()
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
-  useDailyFlowStore.setState({ date: todayStamp(), completedActionIds: [] })
   useNitemStore.setState({
     completedDate: todayStamp(),
     completedIds: [],
@@ -191,6 +190,15 @@ test('shows in-app matches first on home smart search and routes into learn deta
   })
 })
 
+test('highlights the matching home search terms inside surfaced results', async () => {
+  renderHome()
+
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
+
+  const inAppResults = await screen.findByTestId('home-smart-search-app-results')
+  expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()
+})
+
 test('routes the secondary quick links to live Learn and Read destinations', async () => {
   render(
     <MemoryRouter initialEntries={['/']}>
@@ -226,6 +234,44 @@ test('routes Browse Read from the quick links into the read archive', async () =
   })
 })
 
+test('continues a topical home search into Learn with the same query on enter', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/learn/*" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
+  fireEvent.keyDown(screen.getByTestId('home-smart-search-input'), { key: 'Enter' })
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe(buildLearnSearchPath('stress'))
+  })
+})
+
+test('shows query carry-over actions and routes read search with the same query', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/banis" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'Japji Sahib' } })
+
+  expect(await screen.findByTestId('home-open-read-search')).toBeInTheDocument()
+  fireEvent.click(screen.getByTestId('home-open-read-search'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe(buildReadSearchPath({ query: 'Japji Sahib' }))
+  })
+})
+
 test('shows direct ang targets before broader search results on home', async () => {
   renderHome()
 
@@ -248,43 +294,65 @@ test('shows an inline error when Gurbani home search fails', async () => {
   expect(screen.queryByText(/No in-app or Gurbani matches found yet/i)).not.toBeInTheDocument()
 })
 
-test('shows today\'s pick after load', async () => {
+test('shows a featured shabad card from Learn inside today’s path', async () => {
   renderHome()
   await waitFor(() => {
-    expect(screen.queryByText(/no verse available today/i)).not.toBeInTheDocument()
-    const gurmukhi = document.querySelector('[lang="pa-Guru"]')
-    expect(gurmukhi).toBeInTheDocument()
+    expect(screen.getByTestId('home-todays-path-featured-shabad')).toBeInTheDocument()
+    expect(screen.getByTestId('home-open-featured-shabad')).toBeInTheDocument()
   })
 })
 
-test('shows the new daily actions', () => {
+test('renders nitnem above today’s path and removes the old nitnem progress card', () => {
   renderHome()
+
+  const nitnem = screen.getByTestId('home-nitnem-spotlight')
+  const todaysPath = screen.getByTestId('home-todays-path')
+
+  expect(nitnem.compareDocumentPosition(todaysPath) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(screen.queryByTestId('home-nitnem-progress')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
+})
+
+test('starts the active nitnem card on Japji Sahib in the default daily order', () => {
+  renderHome()
+
+  const activeCard = screen.getByTestId('home-nitnem-active-card')
+  expect(within(activeCard).getByText(/Japji Sahib/i)).toBeInTheDocument()
+  expect(within(activeCard).queryByText(/Jaap Sahib/i)).not.toBeInTheDocument()
+})
+
+test('keeps the active nitnem card on Japji Sahib after marking it complete', () => {
+  renderHome()
+
+  const activeCard = screen.getByTestId('home-nitnem-active-card')
+  fireEvent.click(within(activeCard).getByRole('button', { name: /mark as complete/i }))
+
+  const updatedActiveCard = screen.getByTestId('home-nitnem-active-card')
+  expect(within(updatedActiveCard).getByText(/Japji Sahib/i)).toBeInTheDocument()
+  expect(within(updatedActiveCard).getByRole('button', { name: /mark as incomplete/i })).toBeInTheDocument()
+})
+
+test('rebuilds today’s path around live reading and real Learn surfaces', () => {
+  renderHome()
+
   expect(screen.getByTestId('home-todays-path')).toBeInTheDocument()
-  expect(screen.getByTestId('home-todays-path-lesson-summary')).toBeInTheDocument()
-  expect(screen.getByTestId('home-open-daily-lesson')).toBeInTheDocument()
-  expect(screen.queryByText(/continue learn/i)).not.toBeInTheDocument()
-  expect(screen.getByText(/1 of 2 steps done/i)).toBeInTheDocument()
+  expect(screen.getByTestId('home-todays-path-featured-shabad')).toBeInTheDocument()
+  expect(screen.getByTestId('home-todays-path-learn')).toBeInTheDocument()
+  expect(screen.getByTestId('home-open-continue-learning')).toBeInTheDocument()
+  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/open today’s hukamnama/i)
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
-  expect(screen.getAllByRole('button', { name: /grow/i }).length).toBeGreaterThan(0)
-  expect(screen.getAllByRole('button', { name: /review/i }).length).toBeGreaterThan(0)
-  expect(screen.queryByText(/add text/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/quiz/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/core letters/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/steps done/i)).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-share-progress')).not.toBeInTheDocument()
+  expect(screen.queryByText(/core actions done/i)).not.toBeInTheDocument()
 })
 
-test('shows active journey recommendations on home', () => {
-  useLearningStore.setState({
-    journeys: {
-      'journey-japji-opening': {
-        startedAt: new Date().toISOString(),
-        completedStepIds: ['japji-foundation'],
-        lastTouchedAt: new Date().toISOString(),
-      },
-    },
-    activeJourneyId: 'journey-japji-opening',
-  })
-
+test('keeps the lower home surface saved-only', () => {
   renderHome()
-  expect(screen.getAllByText(/Japji Opening Flow/i).length).toBeGreaterThan(0)
+
+  expect(screen.getByTestId('home-saved-overview')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-discovery-history')).not.toBeInTheDocument()
+  expect(screen.queryByText(/^In Progress$/i)).not.toBeInTheDocument()
 })
 
 test('shows today’s hukamnama action', async () => {
@@ -317,11 +385,6 @@ test('hides preview meanings when meaning language is off', async () => {
   })
 })
 
-test('does not show recently studied section when empty', () => {
-  renderHome()
-  expect(screen.queryByText(/recently studied/i)).not.toBeInTheDocument()
-})
-
 test('does not show continue reading when no session', () => {
   renderHome()
   expect(screen.queryByText(/continue reading/i)).not.toBeInTheDocument()
@@ -348,6 +411,8 @@ test('keeps the new hero and search surfaces visible after switching to dark mod
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(screen.getByTestId('home-smart-search-input').previousElementSibling).toHaveClass('icon-surface')
+  expect(screen.getByRole('button', { name: /customize daily nitnem|hide nitnem options/i }).querySelector('.icon-surface')).not.toBeNull()
 })
 
 test('does not embed onboarding inside the home page anymore', () => {
@@ -361,6 +426,12 @@ test('does not embed onboarding inside the home page anymore', () => {
 })
 
 test('opens Nitnem banis through exact BaniDB routes', async () => {
+  useNitemStore.setState({
+    completedDate: todayStamp(),
+    completedIds: [],
+    selectedIds: ['rehras-sahib'],
+  })
+
   render(
     <MemoryRouter initialEntries={['/']}>
       <Routes>
@@ -370,20 +441,19 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getAllByRole('button', { name: /nitnem progress/i })[0]!)
-  fireEvent.click(screen.getByText('Rehras Sahib'))
+  fireEvent.click(screen.getByTestId('home-nitnem-primary-action'))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=8&startAng=8&endAng=12&bani=Rehras+Sahib&baniDbId=21&exactBani=1&baniId=rehras-sahib&sgLength=short')
   })
 })
 
-test('shows length detail only for the four adjustable Nitnem banis and keeps the additional group optional', () => {
+test('shows length detail only for the four adjustable Nitnem banis and keeps the additional group clean', () => {
   renderHome()
 
-  fireEvent.click(screen.getByRole('button', { name: /customize/i }))
+  fireEvent.click(screen.getByRole('button', { name: /customize daily nitnem/i }))
 
-  const customizePanel = screen.getByText('Customize Daily Nitnem').closest('.section-shell')
+  const customizePanel = screen.getByText('Customize Daily Nitnem').closest('.section-shell-quiet')
   expect(customizePanel).not.toBeNull()
 
   const panel = customizePanel as HTMLElement
@@ -418,7 +488,7 @@ test('requires a second tap before resetting Nitnem selections', () => {
 
   renderHome()
 
-  fireEvent.click(screen.getByRole('button', { name: /customize/i }))
+  fireEvent.click(screen.getByRole('button', { name: /customize daily nitnem/i }))
   fireEvent.click(screen.getByTestId('home-nitnem-reset'))
 
   expect(screen.getByRole('button', { name: /tap again to reset/i })).toBeInTheDocument()

@@ -1,5 +1,6 @@
 import { useId } from "react"
 import { Link } from "react-router-dom"
+import SearchHighlight from "../../../components/SearchHighlight"
 import type { TopicGuide } from "../../../types"
 
 function getTopicCategoryLabel(topic: TopicGuide) {
@@ -11,11 +12,13 @@ function getTopicCategoryLabel(topic: TopicGuide) {
 export default function TopicCard({
   topic,
   active,
+  query = "",
   viewed = false,
   to,
 }: {
   topic: TopicGuide
   active: boolean
+  query?: string
   viewed?: boolean
   to: string
 }) {
@@ -39,8 +42,12 @@ export default function TopicCard({
         <p id={categoryId} className="eyebrow">{getTopicCategoryLabel(topic)}</p>
         {viewed ? <span className="chip-pill">Viewed</span> : null}
       </div>
-      <p id={titleId} className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">{topic.title}</p>
-      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/60">{topic.centralInsight}</p>
+      <p id={titleId} className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+        <SearchHighlight text={topic.title} query={query} />
+      </p>
+      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/60">
+        <SearchHighlight text={topic.centralInsight} query={query} />
+      </p>
     </Link>
   )
 }

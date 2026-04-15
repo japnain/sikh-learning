@@ -100,11 +100,11 @@ test('toggles ambient playback without clearing the selected sound', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
 
-  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  fireEvent.click(screen.getByRole('button', { name: /heavy thunderstorm/i }))
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(true)
 
-  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  fireEvent.click(screen.getByRole('button', { name: /heavy thunderstorm/i }))
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(false)
 })
@@ -113,7 +113,7 @@ test('pause button stops playback without clearing the selected sound', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
 
-  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  fireEvent.click(screen.getByRole('button', { name: /heavy thunderstorm/i }))
   expect(useMusicStore.getState().isPlaying).toBe(true)
 
   fireEvent.click(screen.getByRole('button', { name: /pause soundscape/i }))
@@ -136,12 +136,12 @@ test('full soundscape library collapses without clearing playback state', () => 
   render(<MemoryRouter><More /></MemoryRouter>)
   fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
 
-  fireEvent.click(screen.getByRole('button', { name: /gentle rain/i }))
+  fireEvent.click(screen.getByRole('button', { name: /heavy thunderstorm/i }))
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(true)
 
   fireEvent.click(screen.getByRole('button', { name: /collapse soundscapes/i }))
-  expect(screen.queryByRole('button', { name: /gentle rain/i })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /heavy thunderstorm/i })).not.toBeInTheDocument()
   expect(useMusicStore.getState().selectedSoundId).toBe('gentle-rain')
   expect(useMusicStore.getState().isPlaying).toBe(true)
 
@@ -150,7 +150,13 @@ test('full soundscape library collapses without clearing playback state', () => 
   expect(useMusicStore.getState().isPlaying).toBe(false)
 
   fireEvent.click(screen.getByRole('button', { name: /expand soundscapes/i }))
-  expect(screen.getByRole('button', { name: /gentle rain/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /heavy thunderstorm/i })).toBeInTheDocument()
+})
+
+test('shared disclosure controls use the icon-surface affordance', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+
+  expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveClass('icon-surface')
 })
 
 test('More disclosure state persists across remounts', () => {

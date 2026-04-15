@@ -1,15 +1,18 @@
 import { useId } from "react"
 import { Link } from "react-router-dom"
+import SearchHighlight from "../../../components/SearchHighlight"
 import type { TopicGuide } from "../../../types"
 
 export default function TopicDoorCard({
   topic,
   active,
+  query = "",
   viewed = false,
   to,
 }: {
   topic: TopicGuide
   active: boolean
+  query?: string
   viewed?: boolean
   to: string
 }) {
@@ -29,10 +32,12 @@ export default function TopicDoorCard({
       } touch-manipulation`}
     >
       <div className="flex items-center justify-between gap-3">
-        <p id={titleId} className="eyebrow">{topic.shortTitle}</p>
+        <p id={titleId} className="eyebrow"><SearchHighlight text={topic.shortTitle} query={query} /></p>
         {viewed ? <span className="chip-pill">Viewed</span> : null}
       </div>
-      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{topic.issueStatement}</p>
+      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+        <SearchHighlight text={topic.issueStatement} query={query} />
+      </p>
     </Link>
   )
 }

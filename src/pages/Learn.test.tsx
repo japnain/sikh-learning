@@ -106,7 +106,23 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
   })
 
   expect(screen.getAllByText(/When the mind is anxious/i).length).toBeGreaterThan(0)
-  expect(screen.getByText(/Showing the canonical approved guide for “stress”/i)).toBeInTheDocument()
+  const [statusCopy] = screen.getAllByText((_, element) => (
+    element?.tagName.toLowerCase() === 'p'
+    && (element.textContent?.includes('Showing the canonical approved guide for “stress”') ?? false)
+  ))
+  expect(statusCopy).toBeInTheDocument()
+})
+
+test("highlights matching terms inside learn topic results", async () => {
+  renderLearnRoute("/learn?tab=topics")
+
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
+    target: { value: "stress" },
+  })
+
+  await waitFor(() => {
+    expect(document.querySelector('[data-search-highlight="true"]')).not.toBeNull()
+  })
 })
 
 test("topic search keeps the literal query in both inputs and the url", async () => {
@@ -158,7 +174,7 @@ test("searching mercy under pressure opens the canonical mercy page with the pre
   await waitFor(() => {
     expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-mercy?from=topics&scenario=pressure")
   })
-  expect(await screen.findByRole("heading", { level: 1, name: /Mercy when the day tightens/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /When mercy tightens under pressure/i })).toBeInTheDocument()
 })
 
 test("clicking today's guidance opens a real detail route", async () => {

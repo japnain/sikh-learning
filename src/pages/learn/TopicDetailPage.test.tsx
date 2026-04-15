@@ -43,9 +43,9 @@ test("topic detail back button falls back to the topics hub on direct entry", as
 test("topic detail opens the requested scenario on the canonical topic page", async () => {
   renderLearnRoute("/learn/topics/topic-mercy?from=topics&scenario=pressure")
 
-  expect(await screen.findByRole("heading", { level: 1, name: /Mercy when the day tightens/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /When mercy tightens under pressure/i })).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Under Pressure/i })).toHaveAttribute("aria-current", "page")
-  expect(screen.getByText(/Under pressure, mercy is not sentimental relief/i)).toBeInTheDocument()
+  expect(screen.getByText(/The heart keeps assuming kindness must first be earned/i)).toBeInTheDocument()
 })
 
 test("legacy flat topic ids redirect to the canonical topic route with the matching scenario", async () => {

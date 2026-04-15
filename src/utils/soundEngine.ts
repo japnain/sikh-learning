@@ -1,20 +1,26 @@
 import { SOUNDS } from '../store/music'
 
-let activeAudio: HTMLAudioElement | null = null
-let activeSoundId: string | null = null
-let targetVolume = 0.6
-let fadeTimer: ReturnType<typeof globalThis.setTimeout> | null = null
-let transitionId = 0
+interface PlaybackSession {
+  id: number
+  soundId: string
+  audio: HTMLAudioElement | null
+  fadeTimer: ReturnType<typeof globalThis.setTimeout> | null
+}
+
+const engineState: {
+  session: PlaybackSession | null
+  targetVolume: number
+  commandToken: number
+  nextSessionId: number
+} = {
+  session: null,
+  targetVolume: 0.6,
+  commandToken: 0,
+  nextSessionId: 0,
+}
 
 function clampVolume(value: number) {
   return Math.max(0, Math.min(1, value))
-}
-
-function clearFadeTimer() {
-  if (fadeTimer !== null) {
-    globalThis.clearTimeout(fadeTimer)
-    fadeTimer = null
-  }
 }
 
 function cleanupAudio(audio: HTMLAudioElement) {
@@ -22,16 +28,48 @@ function cleanupAudio(audio: HTMLAudioElement) {
   audio.currentTime = 0
 }
 
-function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void) {
-  clearFadeTimer()
+function clearSessionFade(session: PlaybackSession) {
+  if (session.fadeTimer !== null) {
+    globalThis.clearTimeout(session.fadeTimer)
+    session.fadeTimer = null
+  }
+}
+
+function cleanupSession(session: PlaybackSession) {
+  clearSessionFade(session)
+
+  if (session.audio) {
+    cleanupAudio(session.audio)
+    session.audio = null
+  }
+}
+
+function fadeSessionTo(session: PlaybackSession, nextVolume: number, onDone?: () => void) {
+  clearSessionFade(session)
+
+  const audio = session.audio
+  if (!audio) {
+    onDone?.()
+    return
+  }
 
   const clampedTarget = clampVolume(nextVolume)
+  if (audio.volume === clampedTarget) {
+    onDone?.()
+    return
+  }
+
   const step = clampedTarget > audio.volume ? 0.05 : -0.05
   const tick = () => {
+    if (session.audio !== audio) {
+      clearSessionFade(session)
+      return
+    }
+
     const reachedTarget = step > 0 ? audio.volume >= clampedTarget : audio.volume <= clampedTarget
     if (reachedTarget) {
       audio.volume = clampedTarget
-      fadeTimer = null
+      session.fadeTimer = null
       onDone?.()
       return
     }
@@ -43,45 +81,66 @@ function fadeTo(audio: HTMLAudioElement, nextVolume: number, onDone?: () => void
       audio.volume = clampVolume(candidate)
     }
 
-    fadeTimer = globalThis.setTimeout(tick, 50)
+    session.fadeTimer = globalThis.setTimeout(tick, 50)
   }
 
-  fadeTimer = globalThis.setTimeout(tick, 50)
+  session.fadeTimer = globalThis.setTimeout(tick, 50)
 }
 
-function startSoundPlayback(id: string, currentTransitionId: number) {
+function updateTargetVolume(v: number, options?: { applyToSession?: PlaybackSession | null }) {
+  engineState.targetVolume = clampVolume(v)
+
+  const targetSession = options?.applyToSession
+  if (!targetSession?.audio) return
+
+  clearSessionFade(targetSession)
+  targetSession.audio.volume = engineState.targetVolume
+}
+
+function startSoundPlayback(id: string, commandToken: number) {
   const sound = SOUNDS.find(entry => entry.id === id)
   if (!sound) return
+
+  const session: PlaybackSession = {
+    id: ++engineState.nextSessionId,
+    soundId: id,
+    audio: null,
+    fadeTimer: null,
+  }
+
+  engineState.session = session
 
   const trySource = (src: string, allowFallback: boolean) => {
     const nextAudio = new Audio(src)
     nextAudio.loop = true
     nextAudio.preload = 'auto'
     nextAudio.volume = 0
-
-    activeAudio = nextAudio
-    activeSoundId = id
+    session.audio = nextAudio
 
     void nextAudio.play()
       .then(() => {
-        if (currentTransitionId !== transitionId) {
+        if (commandToken !== engineState.commandToken || engineState.session !== session || session.audio !== nextAudio) {
           cleanupAudio(nextAudio)
           return
         }
-        fadeTo(nextAudio, targetVolume)
+
+        fadeSessionTo(session, engineState.targetVolume)
       })
       .catch(() => {
         cleanupAudio(nextAudio)
 
+        if (commandToken !== engineState.commandToken || engineState.session !== session || session.audio !== nextAudio) {
+          return
+        }
+
         if (allowFallback && sound.fallbackSrc && sound.fallbackSrc !== src) {
+          session.audio = null
           trySource(sound.fallbackSrc, false)
           return
         }
 
-        if (activeAudio === nextAudio) {
-          activeAudio = null
-          activeSoundId = null
-        }
+        session.audio = null
+        engineState.session = null
       })
   }
 
@@ -90,68 +149,116 @@ function startSoundPlayback(id: string, currentTransitionId: number) {
 
 export function playSound(id: string): void {
   if (!SOUNDS.some(entry => entry.id === id)) return
-  clearFadeTimer()
-  transitionId += 1
-  const currentTransitionId = transitionId
 
-  if (activeAudio && activeSoundId === id) {
-    activeAudio.loop = true
-    activeAudio.volume = targetVolume === 0 ? 0 : activeAudio.volume
-    void activeAudio.play()
-    fadeTo(activeAudio, targetVolume)
+  engineState.commandToken += 1
+  const commandToken = engineState.commandToken
+  const activeSession = engineState.session
+
+  if (activeSession && activeSession.soundId === id) {
+    clearSessionFade(activeSession)
+
+    const audio = activeSession.audio
+    if (!audio) {
+      cleanupSession(activeSession)
+      engineState.session = null
+      startSoundPlayback(id, commandToken)
+      return
+    }
+
+    audio.loop = true
+    void audio.play()
+      .then(() => {
+        if (commandToken !== engineState.commandToken || engineState.session !== activeSession || activeSession.audio !== audio) {
+          cleanupAudio(audio)
+          return
+        }
+
+        fadeSessionTo(activeSession, engineState.targetVolume)
+      })
+      .catch(() => {
+        cleanupSession(activeSession)
+        if (engineState.session === activeSession) {
+          engineState.session = null
+        }
+
+        if (commandToken === engineState.commandToken) {
+          startSoundPlayback(id, commandToken)
+        }
+      })
     return
   }
 
-  if (activeAudio) {
-    const previousAudio = activeAudio
-    activeAudio = null
-    activeSoundId = null
-    fadeTo(previousAudio, 0, () => {
-      cleanupAudio(previousAudio)
-      if (currentTransitionId === transitionId) {
-        startSoundPlayback(id, currentTransitionId)
+  if (activeSession) {
+    engineState.session = null
+    fadeSessionTo(activeSession, 0, () => {
+      cleanupSession(activeSession)
+
+      if (commandToken === engineState.commandToken) {
+        startSoundPlayback(id, commandToken)
       }
     })
     return
   }
 
-  startSoundPlayback(id, currentTransitionId)
+  startSoundPlayback(id, commandToken)
 }
 
 export function stopSound(immediate: boolean = true): void {
-  if (!activeAudio) return
-  clearFadeTimer()
-  transitionId += 1
-  const audioToStop = activeAudio
-  activeAudio = null
-  activeSoundId = null
+  const activeSession = engineState.session
+  if (!activeSession) return
+
+  engineState.commandToken += 1
+  engineState.session = null
 
   if (immediate) {
-    cleanupAudio(audioToStop)
+    cleanupSession(activeSession)
     return
   }
 
-  fadeTo(audioToStop, 0, () => {
-    cleanupAudio(audioToStop)
+  fadeSessionTo(activeSession, 0, () => {
+    cleanupSession(activeSession)
   })
 }
 
 export function setMasterVolume(v: number): void {
-  targetVolume = clampVolume(v)
-  clearFadeTimer()
-  if (activeAudio) {
-    activeAudio.volume = targetVolume
+  updateTargetVolume(v, { applyToSession: engineState.session })
+}
+
+export function syncSoundPlayback(nextState: {
+  selectedSoundId: string | null
+  isPlaying: boolean
+  volume: number
+}) {
+  const activeSession = engineState.session
+  const shouldApplyVolumeToActiveSession = Boolean(
+    activeSession
+      && nextState.isPlaying
+      && nextState.selectedSoundId
+      && activeSession.soundId === nextState.selectedSoundId
+  )
+
+  updateTargetVolume(nextState.volume, {
+    applyToSession: shouldApplyVolumeToActiveSession ? activeSession : null,
+  })
+
+  if (nextState.isPlaying && nextState.selectedSoundId) {
+    playSound(nextState.selectedSoundId)
+    return
   }
+
+  stopSound()
 }
 
 export function __resetSoundEngineForTests(): void {
-  clearFadeTimer()
-  if (activeAudio) {
-    cleanupAudio(activeAudio)
+  engineState.commandToken = 0
+  engineState.nextSessionId = 0
+  engineState.targetVolume = 0.6
+
+  if (engineState.session) {
+    cleanupSession(engineState.session)
   }
-  activeAudio = null
-  activeSoundId = null
-  targetVolume = 0.6
+
+  engineState.session = null
 }
 
 export function __getSoundEngineSnapshotForTests(): {
@@ -160,8 +267,8 @@ export function __getSoundEngineSnapshotForTests(): {
   targetVolume: number
 } {
   return {
-    activeAudio,
-    activeSoundId,
-    targetVolume,
+    activeAudio: engineState.session?.audio ?? null,
+    activeSoundId: engineState.session?.soundId ?? null,
+    targetVolume: engineState.targetVolume,
   }
 }
