@@ -241,7 +241,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Salok Mahalla 9',
     baniDbId: 30,
     variant: 'standard',
-    detail: 'Optional Sundar Gutka bani.',
+    detail: 'Closing saloks for reflection.',
   }),
   createNitnemOption({
     id: 'sukhmani-sahib',
@@ -249,7 +249,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Sukhmani Sahib',
     baniDbId: 31,
     variant: 'standard',
-    detail: 'Optional Sundar Gutka bani.',
+    detail: 'Long-form bani for settled recitation.',
   }),
   createNitnemOption({
     id: 'asa-di-var',
@@ -257,7 +257,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Asa Di Var',
     baniDbId: 90,
     variant: 'standard',
-    detail: 'Optional Sundar Gutka bani.',
+    detail: 'Morning var for extended reading.',
   }),
   createNitnemOption({
     id: 'aarti',
@@ -273,7 +273,7 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     name: 'Laavan',
     baniDbId: 11,
     variant: 'standard',
-    detail: 'Optional Sundar Gutka bani.',
+    detail: 'Wedding hymns for ceremonial reading.',
   }),
   createNitnemOption({
     id: 'kirtan-sohila',
@@ -284,6 +284,20 @@ export const NITNEM_ROUTE_OPTIONS: NitnemRouteOption[] = [
     detail: 'Length options appear inside the reader.',
   }),
 ]
+
+export const NITNEM_ROUTE_ORDER: Record<NitnemRouteOption['id'], number> = NITNEM_ROUTE_OPTIONS.reduce(
+  (order, option, index) => {
+    order[option.id] = index
+    return order
+  },
+  {} as Record<NitnemRouteOption['id'], number>
+)
+
+export function compareNitnemOptions(left: NitnemRouteOption, right: NitnemRouteOption): number {
+  return NITNEM_GROUP_ORDER[left.group] - NITNEM_GROUP_ORDER[right.group]
+    || NITNEM_ROUTE_ORDER[left.id] - NITNEM_ROUTE_ORDER[right.id]
+    || left.name.localeCompare(right.name)
+}
 
 export const DEFAULT_NITNEM_OPTION_IDS = [
   'japji-sahib',
@@ -414,11 +428,7 @@ export const useNitemStore = create<NitemState>()(
         const nextOptions = nextIds
           .map(entryId => getNitnemOption(entryId))
           .filter((entry): entry is NitnemRouteOption => entry !== null)
-          .sort((left, right) =>
-            NITNEM_GROUP_ORDER[left.group] - NITNEM_GROUP_ORDER[right.group]
-            || left.startAng - right.startAng
-            || left.name.localeCompare(right.name)
-          )
+          .sort(compareNitnemOptions)
 
         set({ selectedIds: nextOptions.map(entry => entry.id) })
       },

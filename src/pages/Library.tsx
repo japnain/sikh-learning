@@ -340,7 +340,7 @@ export default function Library() {
                 <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{savedLearnItemIds.length} saved Learn item{savedLearnItemIds.length === 1 ? '' : 's'}</p>
               </div>
             </div>
-            <span className="text-gold dark:text-gold-light">{expanded.learnSaves ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+            <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.learnSaves ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
           {expanded.learnSaves && (
             <div id="library-learn-saves-panel" className="mt-4 space-y-2">
@@ -429,7 +429,7 @@ export default function Library() {
                 <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{bookmarks.length} saved passage{bookmarks.length === 1 ? '' : 's'}</p>
               </div>
             </div>
-            <span className="text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+            <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.bookmarks ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
           </button>
           {expanded.bookmarks && (
             <div id="library-bookmarks-panel" className="mt-4 space-y-2">
@@ -511,7 +511,7 @@ export default function Library() {
             <p id="library-source-browser-title" className="eyebrow">{libraryCopy.sourceBrowsing}</p>
             <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
           </div>
-          <span className="text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+          <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
         </button>
 
         {expanded.library && (
@@ -528,7 +528,7 @@ export default function Library() {
                     aria-controls={panelId}
                   >
                     <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
-                    <span className="text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
+                    <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
                   </button>
                   {isOpen && (
                     <div id={panelId} className="mt-4">

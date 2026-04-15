@@ -53,10 +53,8 @@ export default function DisclosureSection({
           ) : null}
         </div>
         <span
-          className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ${
-            open
-              ? "border-sand/12 bg-white/60 text-ink/60 dark:border-dark-text/12 dark:bg-dark-surface/72 dark:text-dark-text/60"
-              : "border-sand/20 bg-white/70 text-gold dark:border-gold/18 dark:bg-dark-card/82 dark:text-gold-light"
+          className={`icon-surface mt-1 h-10 w-10 shrink-0 ${
+            open ? "text-ink/60 dark:text-dark-text/64" : "text-gold dark:text-gold-light"
           }`}
           aria-hidden="true"
         >

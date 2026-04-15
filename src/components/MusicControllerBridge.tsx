@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useMusicStore } from '../store/music'
-import { playSound, setMasterVolume, stopSound } from '../utils/soundEngine'
+import { syncSoundPlayback } from '../utils/soundEngine'
 
 export default function MusicControllerBridge() {
   const selectedSoundId = useMusicStore(state => state.selectedSoundId)
@@ -8,17 +8,8 @@ export default function MusicControllerBridge() {
   const volume = useMusicStore(state => state.volume)
 
   useEffect(() => {
-    setMasterVolume(volume)
-  }, [volume])
-
-  useEffect(() => {
-    if (isPlaying && selectedSoundId) {
-      playSound(selectedSoundId)
-      return
-    }
-
-    stopSound()
-  }, [isPlaying, selectedSoundId])
+    syncSoundPlayback({ selectedSoundId, isPlaying, volume })
+  }, [isPlaying, selectedSoundId, volume])
 
   return null
 }

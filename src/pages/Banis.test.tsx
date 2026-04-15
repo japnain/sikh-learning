@@ -50,6 +50,19 @@ test('uses a search-first default input with stable search attributes', () => {
   expect(searchInput?.getAttribute('spellcheck')).toBe('false')
 })
 
+test('hydrates the read search from the url so home can hand off the same query', () => {
+  render(
+    <MemoryRouter initialEntries={['/banis?query=Japji%20Sahib&mode=auto-detect']}>
+      <Routes>
+        <Route path="/banis" element={<Banis />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  const searchInput = document.querySelector('#banis-search') as HTMLInputElement | null
+  expect(searchInput?.value).toBe('Japji Sahib')
+})
+
 test('renders the four main content sections', () => {
   renderBanis()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
@@ -311,4 +324,13 @@ test('surfaces learn topic destinations ahead of broader read search results', a
   const [firstResult] = within(inAppResults).getAllByRole('button')
   expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
   expect(within(firstResult).getByText(/^Learn$/i)).toBeInTheDocument()
+})
+
+test('highlights matching terms inside read search results', async () => {
+  renderBanis()
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'stress' } })
+
+  const inAppResults = await screen.findByTestId('banis-search-app-results')
+  expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()
 })

@@ -34,6 +34,7 @@ import ShabadCard from "./components/ShabadCard"
 import SpotlightButton from "./components/SpotlightButton"
 import TopicCard from "./components/TopicCard"
 import TopicDoorCard from "./components/TopicDoorCard"
+import SearchHighlight from "../../components/SearchHighlight"
 
 const DEPTH_OPTIONS: Array<{ id: LearnDepthPreference; label: string; detail: string }> = [
   { id: "gentle", label: "Gentle", detail: "More accessible and immediate guidance." },
@@ -598,6 +599,7 @@ export default function LearnHub() {
                       key={topic.id}
                       topic={topic}
                       active={selectedTopic?.id === topic.id}
+                      query={deferredQuery}
                       viewed={viewedIds.has(topic.id)}
                       to={buildLearnDetailPath("topic-guide", topic.id, "today")}
                     />
@@ -666,12 +668,31 @@ export default function LearnHub() {
             {deferredQuery ? (
               <p className="mt-3 font-sans text-sm text-ink/72 dark:text-dark-text/74">
                 {queryResolution.matchedBy === "synonym"
-                  ? `Showing the canonical approved guide for “${deferredQuery}”${selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}`
+                  ? (
+                      <>
+                        Showing the canonical approved guide for “
+                        <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                        ”
+                        {selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}
+                      </>
+                    )
                   : queryResolution.matchedBy === "no-match"
                     ? "No matching topic found - showing today's spotlight."
                     : queryResolution.matchedBy === "closest"
-                      ? `No exact approved page matched “${deferredQuery}”, so the nearest approved guide is shown.`
-                      : `Approved guide matched “${deferredQuery}”.`}
+                      ? (
+                          <>
+                            No exact approved page matched “
+                            <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                            ”, so the nearest approved guide is shown.
+                          </>
+                        )
+                      : (
+                          <>
+                            Approved guide matched “
+                            <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                            ”.
+                          </>
+                        )}
               </p>
             ) : null}
             <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
@@ -690,7 +711,7 @@ export default function LearnHub() {
                       : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
                   } touch-manipulation`}
                 >
-                  {topic.shortTitle}
+                  <SearchHighlight text={topic.shortTitle} query={deferredQuery} />
                 </Link>
               ))}
             </div>
@@ -702,6 +723,7 @@ export default function LearnHub() {
                 key={topic.id}
                 topic={topic}
                 active={selectedTopic?.id === topic.id}
+                query={deferredQuery}
                 viewed={viewedIds.has(topic.id)}
                 to={buildLearnDetailPath(
                   "topic-guide",

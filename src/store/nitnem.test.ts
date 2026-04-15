@@ -30,7 +30,7 @@ test('keeps the default daily nitnem selection', () => {
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
 })
 
-test('keeps the new Sundar Gutka extras optional and grouped under Additional', () => {
+test('keeps the additional banis grouped under Additional with clean card copy', () => {
   const additionalOptions = NITNEM_ROUTE_OPTIONS.filter(option => option.group === 'Additional')
 
   expect(additionalOptions.map(option => option.id)).toEqual([
@@ -55,6 +55,7 @@ test('keeps the new Sundar Gutka extras optional and grouped under Additional', 
   expect(salokMahalla9?.gurmukhiTitle).toBe('ਸਲੋਕ ਮਹਲਾ ੯')
   expect(salokMahalla9?.romanizedTitle).toBe('Salok Mahalla 9')
   expect(salokMahalla9?.supportsLengthAdjustment).toBe(false)
+  expect(additionalOptions.map(option => option.detail)).not.toContain('Optional Sundar Gutka bani.')
 })
 
 test('normalizes legacy focused selections onto the single supported bani route', () => {

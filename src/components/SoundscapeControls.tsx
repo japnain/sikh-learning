@@ -507,7 +507,7 @@ export default function SoundscapeControls({
             aria-expanded={isExpanded}
             aria-controls={panelId}
             aria-label={isExpanded ? copy.collapse : copy.expand}
-            className="flex min-h-[40px] min-w-[40px] items-center justify-center rounded-full border border-sand/15 bg-white/60 text-gold transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card/60 dark:text-gold-light"
+            className="icon-surface min-h-[40px] min-w-[40px] text-gold dark:text-gold-light"
           >
             {isExpanded ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
           </button>
