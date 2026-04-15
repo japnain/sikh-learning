@@ -5,6 +5,8 @@ import Home from './Home'
 import * as banidb from '../api/banidb'
 import * as learnRepository from '../data/learnRepository'
 import * as hukamnamaHook from '../hooks/useHukamnama'
+import { useBookmarksStore } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useProgressStore } from '../store/progress'
@@ -14,6 +16,8 @@ import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
+import { useVocabStore } from '../store/vocab'
+import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { getTodayLearnSurface } from '../utils/learnExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
@@ -49,8 +53,12 @@ beforeEach(() => {
   localStorage.clear()
   document.documentElement.classList.remove('dark')
   useThemeStore.setState({ dark: false })
+  useSavedFeedbackStore.getState().clearSaved()
   useScriptureCacheStore.getState().clearAll()
+  useBookmarksStore.setState({ bookmarks: [] })
+  useFavoritesStore.setState({ favorites: [] })
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
+  useVocabStore.setState({ vocab: [] })
   useNitemStore.setState({
     completedDate: todayStamp(),
     completedIds: [],
@@ -142,6 +150,21 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
 })
 
+test('puts today’s hukamnama before today’s guidance in the home hero stack', async () => {
+  renderHome()
+
+  await waitFor(() => {
+    expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+    expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
+  })
+
+  const heroStack = screen.getByTestId('home-hero').querySelector('.grid')
+  const [firstCard, secondCard] = Array.from(heroStack?.children ?? [])
+
+  expect(firstCard).toBe(screen.getByTestId('home-hukamnama-card'))
+  expect(secondCard).toBe(screen.getByTestId('home-guidance-hero'))
+})
+
 test('renders the same daily guidance item that Learn resolves for the day', async () => {
   const todaySurface = await getTodaySurface()
 
@@ -154,11 +177,11 @@ test('renders the same daily guidance item that Learn resolves for the day', asy
     </MemoryRouter>
   )
 
-  expect(await screen.findByRole('heading', { level: 2, name: todaySurface.dailyGuidance.item.title })).toBeInTheDocument()
+  expect(await screen.findByText(todaySurface.dailyGuidance.item.title)).toBeInTheDocument()
   expect(screen.getByText(todaySurface.dailyGuidance.item.summary)).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
 
-  fireEvent.click(screen.getByTestId('home-hero-primary-action'))
+  fireEvent.click(screen.getByTestId('home-hero-guidance-action'))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe(
@@ -181,7 +204,7 @@ test('shows in-app matches first on home smart search and routes into learn deta
 
   expect(await screen.findByText(/In the app/i)).toBeInTheDocument()
   const inAppResults = screen.getByTestId('home-smart-search-app-results')
-  const [firstResult] = within(inAppResults).getAllByRole('button')
+  const [firstResult] = within(inAppResults).getAllByRole('link')
   expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
   fireEvent.click(firstResult)
 
@@ -278,8 +301,8 @@ test('shows direct ang targets before broader search results on home', async () 
   fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: '12' } })
 
   expect(await screen.findByText(/Direct ang/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Open SGGS Ang 12/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Open DG Ang 12/i })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /Open SGGS Ang 12/i })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /Open DG Ang 12/i })).toBeInTheDocument()
 })
 
 test('shows an inline error when Gurbani home search fails', async () => {
@@ -358,7 +381,7 @@ test('keeps the lower home surface saved-only', () => {
 test('shows today’s hukamnama action', async () => {
   renderHome()
   await waitFor(() => {
-    expect(screen.getAllByRole('button', { name: /open today’s hukamnama/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('link', { name: /open today’s hukamnama/i }).length).toBeGreaterThan(0)
   })
 })
 
@@ -392,11 +415,132 @@ test('does not show continue reading when no session', () => {
 
 test('shows continue reading when session exists', () => {
   useProgressStore.setState({
-    currentSession: { scriptureId: 'G-12', lastCardIndex: 0 }
+    currentSession: {
+      scriptureId: 'G-12',
+      resumePath: '/study?source=G&ang=12',
+      updatedAt: '2026-04-11T09:00:00.000Z',
+    }
   })
   renderHome()
   expect(screen.getAllByText(/resume reading/i).length).toBeGreaterThan(0)
   expect(screen.getAllByText(/Open the passage you were already working through/i).length).toBeGreaterThan(0)
+})
+
+test('uses the deep resume path when a saved reader anchor exists', async () => {
+  useProgressStore.setState({
+    currentSession: {
+      scriptureId: 'G-12',
+      resumePath: '/study?source=G&ang=12',
+      resumeVerseId: 345,
+      updatedAt: '2026-04-11T09:00:00.000Z',
+    },
+  })
+
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/study" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByTestId('home-todays-path-action'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=12&resumeVerseId=345')
+  })
+})
+
+test('shows real saved preview rows on home instead of vocab-only counts', async () => {
+  useLearningStore.setState(state => ({
+    learnState: {
+      ...state.learnState,
+      savedItemIds: ['topic-anxiety'],
+    },
+  }))
+  useBookmarksStore.setState({
+    bookmarks: [{
+      id: 'bookmark-1',
+      type: 'verse',
+      title: 'Japji Sahib',
+      source: 'G',
+      ang: 1,
+      shabadId: 50,
+      verseId: 100,
+      savedAt: '2026-04-11T10:00:00.000Z',
+    }],
+  })
+  useVocabStore.setState({
+    vocab: [{
+      word: 'ਸਬਰ',
+      transliteration: 'sabar',
+      meaning_en: 'patience',
+      meaning_hi: 'धैर्य',
+      meaning_pa: 'ਸਬਰ',
+      scripture: 'SGGS',
+      sourceId: 'G-1-100',
+      savedAt: '2026-04-11T11:00:00.000Z',
+    }],
+  })
+
+  renderHome()
+
+  const previewList = await screen.findByTestId('home-saved-preview-list')
+  expect(within(previewList).getByText('When the mind is anxious')).toBeInTheDocument()
+  expect(within(previewList).getByText('Japji Sahib')).toBeInTheDocument()
+  expect(within(previewList).getByText('ਸਬਰ')).toBeInTheDocument()
+  expect(screen.getByTestId('home-saved-preview-learn')).toBeInTheDocument()
+  expect(screen.getByTestId('home-saved-preview-passage')).toBeInTheDocument()
+  expect(screen.getByTestId('home-saved-preview-vocab')).toBeInTheDocument()
+  expect(screen.getByTestId('home-saved-metrics')).toHaveTextContent('1')
+})
+
+test('uses links and shared focus styling for home navigation surfaces', async () => {
+  useLearningStore.setState(state => ({
+    learnState: {
+      ...state.learnState,
+      savedItemIds: ['topic-anxiety'],
+    },
+  }))
+
+  renderHome()
+
+  const heroAction = await screen.findByTestId('home-hero-primary-action')
+  const guidanceAction = screen.getByTestId('home-hero-guidance-action')
+  const savedPreview = await screen.findByTestId('home-saved-preview-learn')
+
+  expect(heroAction.tagName).toBe('A')
+  expect(guidanceAction.tagName).toBe('A')
+  expect(screen.getByTestId('home-open-topics').tagName).toBe('A')
+  expect(savedPreview.tagName).toBe('A')
+  expect(heroAction).toHaveClass('interactive-focus', 'interactive-pill-link')
+  expect(guidanceAction).toHaveClass('interactive-focus', 'interactive-pill-link')
+  expect(savedPreview).toHaveClass('interactive-focus', 'interactive-card-link')
+})
+
+test('highlights the matching saved preview row after a recent save', async () => {
+  useLearningStore.setState(state => ({
+    learnState: {
+      ...state.learnState,
+      savedItemIds: ['topic-anxiety'],
+    },
+  }))
+  useSavedFeedbackStore.setState({
+    lastSaved: {
+      kind: 'learn',
+      targetId: 'topic-anxiety',
+      surfacedAt: '2026-04-11T11:00:00.000Z',
+    },
+  })
+
+  renderHome()
+
+  const previewRow = await screen.findByTestId('home-saved-preview-learn')
+
+  expect(previewRow).toHaveClass('saved-feedback-highlight')
+  expect(within(previewRow).getByText(/Saved just now/i)).toBeInTheDocument()
+  expect(screen.getByRole('status')).toHaveTextContent(/Learn save added to the shelf/i)
 })
 
 test('keeps the new hero and search surfaces visible after switching to dark mode', async () => {
@@ -475,8 +619,9 @@ test('falls back to the hukamnama-led hero when Learn fails to load', async () =
     expect(screen.getByText(/Today’s Learn guidance could not be loaded\./i)).toBeInTheDocument()
   })
 
-  expect(screen.queryByTestId('home-hero-primary-action')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(screen.getByTestId('home-hero-primary-action')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-hero-guidance-action')).not.toBeInTheDocument()
 })
 
 test('requires a second tap before resetting Nitnem selections', () => {

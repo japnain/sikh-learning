@@ -40,7 +40,7 @@ export default function DisclosureSection({
         onClick={() => setOpen(current => !current)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="flex w-full items-start justify-between gap-4 text-left"
+        className="interactive-focus flex w-full items-start justify-between gap-4 text-left"
       >
         <div className="min-w-0 flex-1">
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}

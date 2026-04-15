@@ -1,14 +1,15 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { BANIS } from '../data/banis'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
-import { useFavoritesStore } from '../store/favorites'
-import { useProgressStore } from '../store/progress'
+import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
+import { buildSessionResumePath, useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { useLearningStore } from '../store/learning'
+import { useSavedFeedbackStore } from '../store/savedFeedback'
 import useLearnCatalog from '../hooks/useLearnCatalog'
 import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
@@ -47,8 +48,19 @@ function formatSessionReference(scriptureId: string): string {
   return `${sourceLabel} · ${angLabel(source)} ${ang}`
 }
 
+function buildSavedPassagePath(item: Bookmark | FavoriteItem): string {
+  if ('verseId' in item && item.verseId && item.shabadId) {
+    return `/study?shabadId=${item.shabadId}&verseId=${item.verseId}`
+  }
+
+  if (item.shabadId) {
+    return `/study?shabadId=${item.shabadId}`
+  }
+
+  return `/study?source=${item.source}&ang=${item.ang}`
+}
+
 function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }) {
-  const navigate = useNavigate()
   const [page, setPage] = useState(0)
   const PAGE_SIZE = 50
   const start = page * PAGE_SIZE + 1
@@ -58,13 +70,13 @@ function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }
     <div>
       <div className="grid grid-cols-5 gap-2 mb-4">
         {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(ang => (
-          <button
+          <Link
             key={ang}
-            onClick={() => navigate(`/study?source=${source}&ang=${ang}`)}
-            className="section-shell min-h-[44px] rounded-2xl py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light"
+            to={`/study?source=${source}&ang=${ang}`}
+            className="section-shell interactive-focus interactive-card-link min-h-[44px] rounded-2xl py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light"
           >
             {ang}
-          </button>
+          </Link>
         ))}
       </div>
       <div className="flex justify-between items-center">
@@ -98,7 +110,6 @@ const SECTIONS: Section[] = [
 ]
 
 export default function Library() {
-  const navigate = useNavigate()
   const locale = useLocaleStore(s => s.locale)
   const copy = getUiCopy(locale)
   const editorial = getEditorialCopy(locale)
@@ -106,6 +117,7 @@ export default function Library() {
   const { bookmarks, removeBookmark } = useBookmarksStore()
   const { favorites, removeFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
+  const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
   const savedLearnItemIds = useLearningStore(state => state.learnState.savedItemIds)
   const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const { currentSession, studied } = useProgressStore()
@@ -124,6 +136,7 @@ export default function Library() {
     () => (catalog ? getLearnSavedItems(catalog, savedLearnItemIds) : []),
     [catalog, savedLearnItemIds]
   )
+  const resumePath = buildSessionResumePath(currentSession)
   const inProgress = useMemo(
     () => BANIS
       .map(bani => ({ ...bani, ...getProgress(bani.id) }))
@@ -138,6 +151,20 @@ export default function Library() {
     .map(item => getEntryById(item.id))
     .filter(Boolean)
   const resumeReference = currentSession ? formatSessionReference(currentSession.scriptureId) : null
+  const savedShelfNotice = useMemo(() => {
+    switch (lastSaved?.kind) {
+      case 'learn':
+        return 'Learn save added to Saved.'
+      case 'bookmark':
+        return 'Bookmarked passage added to Saved.'
+      case 'favorite':
+        return 'Favorite added to Saved.'
+      case 'review':
+        return 'Review Bank updated.'
+      default:
+        return null
+    }
+  }, [lastSaved?.kind])
   const hasSavedShelfContent = (
     savedLearnItemIds.length
     + bookmarks.length
@@ -175,23 +202,30 @@ export default function Library() {
           <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
         </div>
         <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-4">
-          <div className="section-shell-quiet px-3 py-3">
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedLearnItemIds.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.learnSaves}</p>
           </div>
-          <div className="section-shell-quiet px-3 py-3">
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.bookmarks}</p>
           </div>
-          <div className="section-shell-quiet px-3 py-3">
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{favorites.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.favorites}</p>
           </div>
-          <div className="section-shell-quiet px-3 py-3">
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{phrases.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.phrases}</p>
           </div>
         </div>
+        {savedShelfNotice ? (
+          <div aria-live="polite" className="mt-4 min-h-[1.5rem]">
+            <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
+              {savedShelfNotice}
+            </p>
+          </div>
+        ) : null}
         {!hasSavedShelfContent ? (
           <div className="section-shell-quiet mt-5 p-4 border border-gold/12 dark:border-gold/16">
             <p className="eyebrow">Start the shelf</p>
@@ -199,20 +233,18 @@ export default function Library() {
               Saved words, Learn guides, bookmarks, and reading history will settle here once you begin keeping pieces close.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => navigate(buildLearnTabPath('today'))}
-                className="rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
+              <Link
+                to={buildLearnTabPath('today')}
+                className="interactive-focus interactive-pill-link rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
               >
                 Open Today
-              </button>
-              <button
-                type="button"
-                onClick={() => navigate('/banis')}
-                className="rounded-full border border-sand/18 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+              </Link>
+              <Link
+                to="/banis"
+                className="interactive-focus interactive-pill-link rounded-full border border-sand/18 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               >
                 Browse Read
-              </button>
+              </Link>
             </div>
           </div>
         ) : null}
@@ -241,15 +273,9 @@ export default function Library() {
                 >
                   <IconClose size={14} />
                 </button>
-                <button
-                  onClick={() => {
-                    if (favorite.shabadId) {
-                      navigate(`/study?shabadId=${favorite.shabadId}`)
-                      return
-                    }
-                    navigate(`/study?source=${favorite.source}&ang=${favorite.ang}`)
-                  }}
-                  className="text-left w-full pr-6"
+                <Link
+                  to={buildSavedPassagePath(favorite)}
+                  className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'favorite' && lastSaved.targetId === favorite.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <IconHeartFilled size={14} className="text-saffron dark:text-saffron-light" />
@@ -258,7 +284,7 @@ export default function Library() {
                     </span>
                   </div>
                   <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{favorite.title}</p>
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -266,9 +292,9 @@ export default function Library() {
       )}
 
       <div className="grid gap-3 mb-5 sm:grid-cols-2" data-testid="library-shortcuts">
-        <button
-          onClick={() => navigate('/vocab')}
-          className="section-shell p-4 text-left"
+        <Link
+          to="/vocab"
+          className={`section-shell interactive-focus interactive-card-link p-4 text-left ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}
           data-testid="library-open-vocab"
         >
           <p className="eyebrow">{libraryCopy.reviewBank}</p>
@@ -278,21 +304,11 @@ export default function Library() {
               ? `${words.length} words · ${phrases.length} phrases. ${editorial.library.reviewBody}`
               : `${words.length} saved words and ${phrases.length} saved phrases are ready for review.`}
           </p>
-        </button>
+        </Link>
 
-        <button
-          onClick={() => {
-            if (currentSession) {
-              const parts = currentSession.scriptureId.split('-')
-              if (parts.length >= 2) {
-                navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
-                return
-              }
-            }
-
-            navigate(buildLearnTabPath('today'))
-          }}
-          className="section-shell p-4 text-left"
+        <Link
+          to={resumePath ?? buildLearnTabPath('today')}
+          className="section-shell interactive-focus interactive-card-link p-4 text-left"
           data-testid="library-resume-reading"
         >
           <p className="eyebrow">{currentSession ? libraryCopy.resume : 'Learn'}</p>
@@ -304,11 +320,11 @@ export default function Library() {
               ? resumeReference
               : 'Return through today’s rotating Learn doorway when you do not have an active reading session yet.'}
           </p>
-        </button>
+        </Link>
 
-        <button
-          onClick={() => navigate('/banis')}
-          className="section-shell p-4 text-left sm:col-span-2"
+        <Link
+          to="/banis"
+          className="section-shell interactive-focus interactive-card-link p-4 text-left sm:col-span-2"
           data-testid="library-browse-read"
         >
           <p className="eyebrow">Read</p>
@@ -316,7 +332,7 @@ export default function Library() {
           <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
             Open exact banis, angs, and scripture sections without leaving the Saved shelf behind.
           </p>
-        </button>
+        </Link>
       </div>
 
       {savedLearnItemIds.length > 0 && (
@@ -361,9 +377,9 @@ export default function Library() {
                   >
                     <IconClose size={14} />
                   </button>
-                  <button
-                    onClick={() => navigate(buildLearnDetailPath(item.kind, item.id, 'saved'))}
-                    className="text-left w-full pr-6"
+                  <Link
+                    to={buildLearnDetailPath(item.kind, item.id, 'saved')}
+                    className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'learn' && lastSaved.targetId === item.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
@@ -373,7 +389,7 @@ export default function Library() {
                     </div>
                     <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{item.title}</p>
                     <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-1">{item.subtitle}</p>
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -390,10 +406,10 @@ export default function Library() {
           <p id="library-in-progress-title" className="eyebrow mb-3">In Progress</p>
           <div className="space-y-2">
             {inProgress.map(item => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
-                className="w-full section-shell px-4 py-3 text-left"
+                to={buildCanonicalBaniStudyPath(item)}
+                className="w-full section-shell interactive-focus interactive-card-link px-4 py-3 text-left"
               >
                 <div className="flex justify-between gap-3">
                   <p className="font-sans text-sm text-ink dark:text-dark-text">{item.name}</p>
@@ -402,7 +418,7 @@ export default function Library() {
                 <div className="h-1.5 bg-sand/20 dark:bg-dark-text/10 rounded-full overflow-hidden mt-2">
                   <div className="h-full bg-gradient-to-r from-saffron to-saffron-light rounded-full" style={{ width: `${item.pct}%` }} />
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
         </section>
@@ -445,9 +461,9 @@ export default function Library() {
                   >
                     <IconClose size={14} />
                   </button>
-                  <button
-                    onClick={() => navigate(`/study?source=${bookmark.source}&ang=${bookmark.ang}`)}
-                    className="text-left w-full pr-6"
+                  <Link
+                    to={buildSavedPassagePath(bookmark)}
+                    className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'bookmark' && lastSaved.targetId === bookmark.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
@@ -459,7 +475,7 @@ export default function Library() {
                     {bookmark.description && (
                       <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 italic mt-1">{bookmark.description}</p>
                     )}
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -476,13 +492,10 @@ export default function Library() {
           <p id="library-reading-history-title" className="eyebrow mb-3">Reading History</p>
           <div className="space-y-2">
             {recentStudy.map(entry => (
-              <button
+              <Link
                 key={entry!.id}
-                onClick={() => {
-                  const parts = entry!.id.split('-')
-                  if (parts.length >= 2) navigate(`/study?source=${parts[0]}&ang=${parts[1]}`)
-                }}
-                className="w-full section-shell-quiet px-4 py-4 text-left"
+                to={`/study?source=${entry!.id.split('-')[0]}&ang=${entry!.id.split('-')[1]}`}
+                className="w-full section-shell-quiet interactive-focus interactive-card-link px-4 py-4 text-left"
               >
                 <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                   {entry!.scripture}
@@ -490,7 +503,7 @@ export default function Library() {
                 <p className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text mt-2 line-clamp-2">
                   {entry!.gurmukhi}
                 </p>
-              </button>
+              </Link>
             ))}
           </div>
         </section>

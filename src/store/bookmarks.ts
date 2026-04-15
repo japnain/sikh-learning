@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persistBookmarkToCloud, removeBookmarkFromCloud } from '../insforge/bookmarks'
 import { queueActivityEvent } from './activityEvents'
+import { useSavedFeedbackStore } from './savedFeedback'
 
 export interface Bookmark {
   id: string
@@ -91,6 +92,11 @@ export const useBookmarksStore = create<BookmarksState>()((set, get) => ({
     }
 
     setBookmarks(set, [...get().bookmarks, bookmark])
+    useSavedFeedbackStore.getState().recordSaved({
+      kind: 'bookmark',
+      targetId: bookmark.id,
+      surfacedAt: bookmark.savedAt,
+    })
 
     queueActivityEvent('saved-item.bookmark.added', {
       bookmarkId: bookmark.id,

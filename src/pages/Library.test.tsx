@@ -2,13 +2,19 @@ import { render, screen, fireEvent, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useProgressStore } from '../store/progress'
 import { useLearningStore } from '../store/learning'
+import { useSavedFeedbackStore } from '../store/savedFeedback'
+import { useVocabStore } from '../store/vocab'
 
 describe('Library bookmarks section', () => {
   beforeEach(() => {
     useBookmarksStore.setState({ bookmarks: [] })
+    useFavoritesStore.setState({ favorites: [] })
     useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
+    useSavedFeedbackStore.getState().clearSaved()
+    useVocabStore.setState({ vocab: [] })
     useLearningStore.setState(state => ({
       learnState: {
         ...state.learnState,
@@ -27,8 +33,8 @@ describe('Library bookmarks section', () => {
 
     const zeroState = screen.getByText(/Start the shelf/i).closest('.section-shell-quiet')
     expect(zeroState).not.toBeNull()
-    expect(within(zeroState as HTMLElement).getByRole('button', { name: /Open Today/i })).toBeInTheDocument()
-    expect(within(zeroState as HTMLElement).getByRole('button', { name: /Browse Read/i })).toBeInTheDocument()
+    expect(within(zeroState as HTMLElement).getByRole('link', { name: /Open Today/i })).toBeInTheDocument()
+    expect(within(zeroState as HTMLElement).getByRole('link', { name: /Browse Read/i })).toBeInTheDocument()
   })
 
   test('bookmarks section visible when bookmarks exist', () => {
@@ -84,12 +90,38 @@ describe('Library bookmarks section', () => {
 
     expect(useLearningStore.getState().learnState.savedItemIds).toEqual([])
   })
+
+  test('library snapshot reflects the latest saved learn item inline', async () => {
+    useLearningStore.setState(state => ({
+      learnState: {
+        ...state.learnState,
+        savedItemIds: ['topic-anxiety'],
+      },
+    }))
+    useSavedFeedbackStore.setState({
+      lastSaved: {
+        kind: 'learn',
+        targetId: 'topic-anxiety',
+        surfacedAt: '2026-04-11T11:00:00.000Z',
+      },
+    })
+
+    render(<MemoryRouter><Library /></MemoryRouter>)
+
+    expect(screen.getByRole('status')).toHaveTextContent(/Learn save added to Saved/i)
+    const learnMetric = within(screen.getByTestId('library-snapshot')).getByText('1')
+    expect(learnMetric.closest('.saved-feedback-highlight')).not.toBeNull()
+    expect((await screen.findByText('When the mind is anxious')).closest('.saved-feedback-highlight')).not.toBeNull()
+  })
 })
 
 describe('Library removed sections', () => {
   beforeEach(() => {
     useBookmarksStore.setState({ bookmarks: [] })
+    useFavoritesStore.setState({ favorites: [] })
     useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
+    useSavedFeedbackStore.getState().clearSaved()
+    useVocabStore.setState({ vocab: [] })
   })
 
   it('does not show Sarbloh Granth section', () => {
@@ -124,7 +156,11 @@ describe('Library removed sections', () => {
 
   it('shows a readable resume reference instead of the raw internal session id', () => {
     useProgressStore.setState({
-      currentSession: { scriptureId: 'G-256', lastCardIndex: 0 },
+      currentSession: {
+        scriptureId: 'G-256',
+        resumePath: '/study?source=G&ang=256',
+        updatedAt: '2026-04-11T09:00:00.000Z',
+      },
     })
     render(<MemoryRouter><Library /></MemoryRouter>)
     expect(screen.getByText(/Sri Guru Granth Sahib Ji · Ang 256/i)).toBeInTheDocument()

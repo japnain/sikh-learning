@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
+import { useSavedFeedbackStore } from "../../store/savedFeedback"
 import type { LearnContentKind, LearnTab } from "../../types"
 import { buildLearnDetailPath, buildLearnTabPath, type LearnRailChip } from "../../utils/learnRails"
 import { IconArrowLeft, IconArrowRight } from "../../components/icons"
@@ -138,10 +139,12 @@ export default function LearnDetailShell({
   const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const savedItemIds = useLearningStore(state => state.learnState.savedItemIds)
   const viewedItems = useLearningStore(state => state.learnState.viewedItems)
+  const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
   const [activeTargetId, setActiveTargetId] = useState<string | null>(rail[0]?.targetId ?? null)
 
   const saved = savedItemIds.includes(itemId)
   const viewed = viewedItems.some(item => item.itemId === itemId)
+  const recentlySaved = saved && lastSaved?.kind === "learn" && lastSaved.targetId === itemId
   const collectionById = catalog?.collectionById ?? {}
   const backContext = getBackContext(collectionById, searchParams.get("from"), defaultFrom, sectionLabel, sectionTab)
   const collectionStepContext = useMemo(
@@ -200,9 +203,16 @@ export default function LearnDetailShell({
 
         <div className="flex items-center gap-2">
           {viewed ? <span className="chip-pill">Viewed</span> : null}
-          <SaveButton saved={saved} onClick={() => toggleSavedLearnItem(itemId)} label={title} />
+          <SaveButton saved={saved} recentlySaved={recentlySaved} onClick={() => toggleSavedLearnItem(itemId)} label={title} />
         </div>
       </div>
+      {recentlySaved ? (
+        <div aria-live="polite" className="mt-3 min-h-[1.5rem]">
+          <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
+            Saved to Learn just now.
+          </p>
+        </div>
+      ) : null}
 
       <div className="mt-5 max-w-[48rem]">
         <h1 className="font-display text-[2.85rem] leading-none text-ink dark:text-dark-text">{title}</h1>

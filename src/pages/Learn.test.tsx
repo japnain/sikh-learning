@@ -1,15 +1,16 @@
 import { afterEach, beforeEach, expect, test, vi } from "vitest"
 import { fireEvent, screen, waitFor, within } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
 import { loadLearnCatalog } from "../data/learnRepository"
 import { getTodayLearnSurface } from "../utils/learnExperience"
 import { createDefaultLearnState, renderLearnRoute, resetLearnTestState } from "./learn/testUtils"
 import { useLearningStore } from "../store/learning"
+import { useSavedFeedbackStore } from "../store/savedFeedback"
 
 beforeEach(() => {
   vi.useFakeTimers({ shouldAdvanceTime: true })
   vi.setSystemTime(new Date("2026-04-11T09:00:00.000Z"))
   resetLearnTestState()
+  useSavedFeedbackStore.getState().clearSaved()
 })
 
 afterEach(() => {
@@ -26,6 +27,9 @@ test("renders the learn hub with the today-first archive structure", async () =>
   expect(screen.getByText(/The library is growing in public\./i)).toBeInTheDocument()
   expect(screen.getByTestId("learn-surface-rail")).toBeInTheDocument()
   expect(screen.getByTestId("learn-subsection-rail")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-today-support-row")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-inventory-compact")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-reading-depth-compact")).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Today's Guidance/i })).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Featured Shabad/i })).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Topic Spotlight/i })).toBeInTheDocument()
@@ -46,44 +50,31 @@ test("learn hub card links render as block-level cards for stable mobile paintin
 test("shows live inventory proof instead of fixed launch claims", async () => {
   const catalog = await loadLearnCatalog()
   const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
-  const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
 
   renderLearnRoute()
 
-  await user.click(await screen.findByRole("button", { name: /The library is growing in public\./i }))
+  const compactInventory = await screen.findByTestId("learn-inventory-compact")
 
-  await waitFor(() => {
-    expect(within(screen.getByTestId("learn-inventory")).getByText(/Daily guidance entries/i)).toBeInTheDocument()
-  })
-  expect(within(screen.getByTestId("learn-inventory")).getByText(/Canonical topic guides/i)).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(/Scenario views/i)).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.topicGuides))).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.topicScenarios))).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(/^Cross-links$/i)).toBeInTheDocument()
-  expect(within(screen.getByTestId("learn-inventory")).getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
+  expect(within(compactInventory).getByText(/Daily guidance entries/i)).toBeInTheDocument()
+  expect(within(compactInventory).getByText(/Full shabad deep dives/i)).toBeInTheDocument()
+  expect(within(compactInventory).getByText(/Canonical topic guides/i)).toBeInTheDocument()
+  expect(within(compactInventory).getByText(/^Cross-links$/i)).toBeInTheDocument()
+  expect(within(compactInventory).getByText(String(todaySurface.inventory.dailyGuidance))).toBeInTheDocument()
+  expect(within(compactInventory).getByText(String(todaySurface.inventory.shabadDeepDives))).toBeInTheDocument()
+  expect(within(compactInventory).getByText(String(todaySurface.inventory.topicGuides))).toBeInTheDocument()
+  expect(within(compactInventory).getByText(String(todaySurface.inventory.crossLinks))).toBeInTheDocument()
   expect(screen.queryByText(/150\+/i)).not.toBeInTheDocument()
 })
 
-test("learn disclosure sections start collapsed and reveal their controls on demand", async () => {
-  const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
-
+test("learn today keeps inventory and reading depth compact before the archive doors", async () => {
   renderLearnRoute()
 
-  const inventoryButton = await screen.findByRole("button", { name: /The library is growing in public\./i })
-  const depthButton = screen.getByRole("button", { name: /Reading Depth Balanced Current/i })
-
-  expect(inventoryButton).toHaveAttribute("aria-expanded", "false")
-  expect(depthButton).toHaveAttribute("aria-expanded", "false")
-  expect(screen.queryByText(/Daily guidance entries/i)).not.toBeInTheDocument()
-  expect(screen.queryByRole("button", { name: /Gentle/i })).not.toBeInTheDocument()
-
-  await user.click(depthButton)
-
-  await waitFor(() => {
-    expect(screen.getByRole("button", { name: /Reading Depth Balanced Current/i })).toHaveAttribute("aria-expanded", "true")
-  })
+  expect(await screen.findByTestId("learn-reading-depth-compact")).toBeInTheDocument()
+  expect(screen.queryByRole("button", { name: /The library is growing in public\./i })).not.toBeInTheDocument()
+  expect(screen.queryByRole("button", { name: /Reading Depth Balanced Current/i })).not.toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Balanced/i })).toBeInTheDocument()
   expect(screen.getByRole("button", { name: /Gentle/i })).toBeInTheDocument()
+  expect(screen.getByRole("button", { name: /Deep/i })).toBeInTheDocument()
 })
 
 test("uses stable search input attributes for the archive search", async () => {
@@ -253,6 +244,29 @@ test("saved tab opens saved items on their own learn sub-routes", async () => {
   await waitFor(() => {
     expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/guidance/guidance-hukam?from=saved")
   })
+})
+
+test("saved tab reflects the most recent learn save inline and highlights the matching row", async () => {
+  useLearningStore.setState({
+    learnState: {
+      ...createDefaultLearnState(),
+      savedItemIds: ["guidance-hukam"],
+    },
+  })
+  useSavedFeedbackStore.setState({
+    lastSaved: {
+      kind: "learn",
+      targetId: "guidance-hukam",
+      surfacedAt: "2026-04-11T11:00:00.000Z",
+    },
+  })
+
+  renderLearnRoute("/learn?tab=saved")
+
+  expect(await screen.findByRole("status")).toHaveTextContent(/Saved to Learn just now/i)
+  const savedCard = document.querySelector("#learn-saved-items .saved-feedback-highlight")
+  expect(savedCard).not.toBeNull()
+  expect(within(savedCard as HTMLElement).getByText(/^Daily guidance$/i)).toBeInTheDocument()
 })
 
 test("exposes the updated stable subsection anchors for the learn rails", async () => {

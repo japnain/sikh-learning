@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { queueActivityEvent } from './activityEvents'
+import { useSavedFeedbackStore } from './savedFeedback'
 
 export interface FavoriteItem {
   id: string
@@ -36,6 +37,11 @@ export const useFavoritesStore = create<FavoritesState>()(
             favorite,
           ],
         }))
+        useSavedFeedbackStore.getState().recordSaved({
+          kind: 'favorite',
+          targetId: favorite.id,
+          surfacedAt: favorite.savedAt,
+        })
         queueActivityEvent('saved-item.favorite.added', {
           favoriteId: favorite.id,
           source: favorite.source,
