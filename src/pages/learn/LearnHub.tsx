@@ -9,6 +9,7 @@ import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
 import { useLearnRailStore } from "../../store/learnRail"
 import { useLocaleStore } from "../../store/locale"
+import { useSavedFeedbackStore } from "../../store/savedFeedback"
 import type { LearnDepthPreference, LearnTab, TopicScenarioKey } from "../../types"
 import { toLocalDayStamp } from "../../utils/learnDates"
 import {
@@ -96,6 +97,7 @@ export default function LearnHub() {
   const setLearnDepthPreference = useLearningStore(state => state.setLearnDepthPreference)
   const activeSectionId = useLearnRailStore(state => state.activeSectionId)
   const setActiveSectionId = useLearnRailStore(state => state.setActiveSectionId)
+  const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
 
   const tabParam = searchParams.get("tab")
   const activeTab: LearnTab = isLearnTab(tabParam) ? tabParam : "today"
@@ -189,6 +191,15 @@ export default function LearnHub() {
   )
 
   const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === depthPreference) ?? DEPTH_OPTIONS[1]
+  const compactTodayPageBody = locale === "en" && activeTab === "today"
+    ? "One question, one shabad, one next step."
+    : pageCopy.body
+  const compactTodayHeroBody = locale === "en" && activeTab === "today"
+    ? "Search plainly. One reviewed guide stays central, with the full shabad and the next faithful paths close."
+    : editorial?.learn.heroBody
+  const compactTodayHeroHint = locale === "en" && activeTab === "today"
+    ? "The strongest reviewed guide opens first."
+    : editorial?.learn.heroSearchHint
   const hasActiveShabadFilters = Boolean(
     shabadThemeFilter
     || shabadGuruFilter
@@ -356,17 +367,17 @@ export default function LearnHub() {
         <p className="eyebrow">{editorial?.learn.eyebrow ?? "Learn"}</p>
         <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">{pageCopy.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/76 dark:text-dark-text/78">
-          {pageCopy.body}
+          {compactTodayPageBody}
         </p>
       </div>
 
-      <section className="hero-surface p-5" aria-labelledby="learn-hero-title" data-testid="learn-hero">
+      <section className="hero-surface p-4 sm:p-5" aria-labelledby="learn-hero-title" data-testid="learn-hero">
         <p className="eyebrow">{editorial?.learn.heroEyebrow ?? "Archive"}</p>
-        <h2 id="learn-hero-title" className="mt-2 font-display text-[2.45rem] leading-none text-ink dark:text-dark-text">
+        <h2 id="learn-hero-title" className="mt-2 font-display text-[2.15rem] leading-none text-ink dark:text-dark-text sm:text-[2.45rem]">
           {editorial?.learn.heroTitle ?? "Find the guide that meets the question."}
         </h2>
         <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/76 dark:text-dark-text/78">
-          {editorial?.learn.heroBody}
+          {compactTodayHeroBody}
         </p>
 
         <label className="section-shell mt-5 flex items-center gap-3 rounded-[26px] px-4 py-3 focus-within:ring-2 focus-within:ring-saffron/25 focus-within:ring-offset-2 focus-within:ring-offset-parchment dark:focus-within:ring-gold/30 dark:focus-within:ring-offset-dark-bg">
@@ -391,8 +402,8 @@ export default function LearnHub() {
             data-ai-action="learn-archive-search"
           />
         </label>
-        <p className="mt-3 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/62">
-          {editorial?.learn.heroSearchHint}
+        <p className="mt-2 font-sans text-[11px] leading-5 text-ink/60 dark:text-dark-text/62 sm:mt-3 sm:text-xs">
+          {compactTodayHeroHint}
         </p>
       </section>
 
@@ -408,85 +419,89 @@ export default function LearnHub() {
         ariaLabel="Learn surface navigation"
       />
 
-      <DisclosureSection
-        storageKey="learn-archive-public"
-        eyebrow={editorial?.learn.proofEyebrow ?? "Inventory"}
-        title={editorial?.learn.proofTitle ?? "The library is growing in public."}
-        summary="Open to inspect the live archive counts and cross-link depth."
-        badge="Live"
-        defaultOpen={false}
-        className="section-shell mt-5 p-5"
-        bodyClassName="mt-5"
-        titleClassName="font-display text-[2rem] leading-none text-ink dark:text-dark-text"
-        sectionId="learn-inventory"
-        testId="learn-inventory"
-      >
-        <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-          {editorial?.learn.proofBody ?? inventorySummary}
-        </p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
-            value={todaySurface.inventory.dailyGuidance}
-          />
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.shabadDeepDives ?? "Full shabad deep dives"}
-            value={todaySurface.inventory.shabadDeepDives}
-          />
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.topicGuides ?? "Topical answer pages"}
-            value={todaySurface.inventory.topicGuides}
-          />
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.topicScenarios ?? "Scenario views"}
-            value={todaySurface.inventory.topicScenarios}
-          />
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.collections ?? "Curated collections"}
-            value={todaySurface.inventory.collections}
-          />
-          <InventoryMetric
-            label={editorial?.learn.inventoryLabels.crossLinks ?? "Cross-links"}
-            value={todaySurface.inventory.crossLinks}
-          />
-        </div>
-        <p className="mt-4 font-sans text-xs leading-5 text-ink/65 dark:text-dark-text/65">
-          {editorial?.learn.proofFooter}
-        </p>
-      </DisclosureSection>
+      {activeTab !== "today" ? (
+        <>
+          <DisclosureSection
+            storageKey="learn-archive-public"
+            eyebrow={editorial?.learn.proofEyebrow ?? "Inventory"}
+            title={editorial?.learn.proofTitle ?? "The library is growing in public."}
+            summary="Open to inspect the live archive counts and cross-link depth."
+            badge="Live"
+            defaultOpen={false}
+            className="section-shell mt-5 p-5"
+            bodyClassName="mt-5"
+            titleClassName="font-display text-[2rem] leading-none text-ink dark:text-dark-text"
+            sectionId="learn-inventory"
+            testId="learn-inventory"
+          >
+            <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+              {editorial?.learn.proofBody ?? inventorySummary}
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
+                value={todaySurface.inventory.dailyGuidance}
+              />
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.shabadDeepDives ?? "Full shabad deep dives"}
+                value={todaySurface.inventory.shabadDeepDives}
+              />
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.topicGuides ?? "Topical answer pages"}
+                value={todaySurface.inventory.topicGuides}
+              />
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.topicScenarios ?? "Scenario views"}
+                value={todaySurface.inventory.topicScenarios}
+              />
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.collections ?? "Curated collections"}
+                value={todaySurface.inventory.collections}
+              />
+              <InventoryMetric
+                label={editorial?.learn.inventoryLabels.crossLinks ?? "Cross-links"}
+                value={todaySurface.inventory.crossLinks}
+              />
+            </div>
+            <p className="mt-4 font-sans text-xs leading-5 text-ink/65 dark:text-dark-text/65">
+              {editorial?.learn.proofFooter}
+            </p>
+          </DisclosureSection>
 
-      <DisclosureSection
-        storageKey="learn-reading-depth"
-        eyebrow="Reading Depth"
-        title={activeDepthOption.label}
-        summary="Open to change whether shabads surface more accessible guidance or denser study first."
-        badge="Current"
-        defaultOpen={false}
-        sectionId="learn-reading-depth"
-        testId="learn-reading-depth"
-      >
-        <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-          {activeDepthOption.detail}
-        </p>
-        <div className="grid gap-3 md:grid-cols-3">
-          {DEPTH_OPTIONS.map(option => (
-            <button
-              key={option.id}
-              type="button"
-              onClick={() => setLearnDepthPreference(option.id)}
-              aria-pressed={depthPreference === option.id}
-              className={`rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
-                depthPreference === option.id
-                  ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
-                  : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:!bg-dark-surface"
-              }`}
-            >
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{option.label}</p>
-              <p className="mt-1 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/60">{option.detail}</p>
-            </button>
-          ))}
-        </div>
-      </DisclosureSection>
+          <DisclosureSection
+            storageKey="learn-reading-depth"
+            eyebrow="Reading Depth"
+            title={activeDepthOption.label}
+            summary="Open to change whether shabads surface more accessible guidance or denser study first."
+            badge="Current"
+            defaultOpen={false}
+            sectionId="learn-reading-depth"
+            testId="learn-reading-depth"
+          >
+            <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
+              {activeDepthOption.detail}
+            </p>
+            <div className="grid gap-3 md:grid-cols-3">
+              {DEPTH_OPTIONS.map(option => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setLearnDepthPreference(option.id)}
+                  aria-pressed={depthPreference === option.id}
+                  className={`interactive-focus rounded-[24px] border px-4 py-4 text-left transition-all duration-300 ${
+                    depthPreference === option.id
+                      ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
+                      : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:!bg-dark-surface"
+                  }`}
+                >
+                  <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">{option.label}</p>
+                  <p className="mt-1 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/60">{option.detail}</p>
+                </button>
+              ))}
+            </div>
+          </DisclosureSection>
+        </>
+      ) : null}
 
       {showInlineSubsectionRail ? (
         <InlineRail
@@ -553,7 +568,7 @@ export default function LearnHub() {
                 <SectionHeader
                   eyebrow="Today in the archive"
                   title="Open one doorway, then go deep."
-                  body={editorial?.learn.detailBody}
+                  body={editorial?.learn.detailBody ?? "Start with one edited doorway, then keep the next two in reach without turning the first screen into a wall of equal cards."}
                 />
                 <div className="grid gap-3">
                   <SpotlightButton
@@ -564,23 +579,106 @@ export default function LearnHub() {
                     viewed={viewedIds.has(todaySurface.dailyGuidance.item.id)}
                     to={buildLearnDetailPath("daily-guidance", todaySurface.dailyGuidance.item.id, "today")}
                   />
-                  <SpotlightButton
-                    eyebrow="Featured Shabad"
-                    title={todaySurface.featuredShabad.item.title}
-                    body={editorial?.learn.compactShabadBody ?? todaySurface.featuredShabad.item.whyItMatters}
-                    active={false}
-                    viewed={viewedIds.has(todaySurface.featuredShabad.item.id)}
-                    to={buildLearnDetailPath("shabad-deep-dive", todaySurface.featuredShabad.item.id, "today")}
-                  />
-                  <SpotlightButton
-                    eyebrow="Topic Spotlight"
-                    title={todaySurface.topicSpotlight.item.title}
-                    body={editorial?.learn.compactTopicBody ?? todaySurface.topicSpotlight.item.centralInsight}
-                    active={false}
-                    viewed={viewedIds.has(todaySurface.topicSpotlight.item.id)}
-                    to={buildLearnDetailPath("topic-guide", todaySurface.topicSpotlight.item.id, "today")}
-                  />
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <Link
+                      to={buildLearnDetailPath("shabad-deep-dive", todaySurface.featuredShabad.item.id, "today")}
+                      className="section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="eyebrow">Featured Shabad</p>
+                        {viewedIds.has(todaySurface.featuredShabad.item.id) ? <span className="chip-pill">Viewed</span> : null}
+                      </div>
+                      <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                        {todaySurface.featuredShabad.item.title}
+                      </p>
+                      <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62">
+                        {editorial?.learn.compactShabadBody ?? todaySurface.featuredShabad.item.whyItMatters}
+                      </p>
+                    </Link>
+                    <Link
+                      to={buildLearnDetailPath("topic-guide", todaySurface.topicSpotlight.item.id, "today")}
+                      className="section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="eyebrow">Topic Spotlight</p>
+                        {viewedIds.has(todaySurface.topicSpotlight.item.id) ? <span className="chip-pill">Viewed</span> : null}
+                      </div>
+                      <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                        {todaySurface.topicSpotlight.item.title}
+                      </p>
+                      <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62">
+                        {editorial?.learn.compactTopicBody ?? todaySurface.topicSpotlight.item.centralInsight}
+                      </p>
+                    </Link>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-5 grid gap-3 lg:grid-cols-[1.1fr,0.9fr]" data-testid="learn-today-support-row">
+            <div className="section-shell-quiet p-4" data-testid="learn-inventory-compact">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="eyebrow">{editorial?.learn.proofEyebrow ?? "Inventory"}</p>
+                  <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+                    {editorial?.learn.proofTitle ?? "The library is growing in public."}
+                  </p>
+                </div>
+                <span className="chip-pill">Live</span>
+              </div>
+              <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
+                {editorial?.learn.proofBody ?? inventorySummary}
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <InventoryMetric
+                  label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
+                  value={todaySurface.inventory.dailyGuidance}
+                />
+                <InventoryMetric
+                  label={editorial?.learn.inventoryLabels.shabadDeepDives ?? "Full shabad deep dives"}
+                  value={todaySurface.inventory.shabadDeepDives}
+                />
+                <InventoryMetric
+                  label={editorial?.learn.inventoryLabels.topicGuides ?? "Topical answer pages"}
+                  value={todaySurface.inventory.topicGuides}
+                />
+                <InventoryMetric
+                  label={editorial?.learn.inventoryLabels.crossLinks ?? "Cross-links"}
+                  value={todaySurface.inventory.crossLinks}
+                />
+              </div>
+            </div>
+
+            <div className="section-shell-quiet p-4" data-testid="learn-reading-depth-compact">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="eyebrow">Reading Depth</p>
+                  <p className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
+                    {activeDepthOption.label}
+                  </p>
+                </div>
+                <span className="chip-pill">Current</span>
+              </div>
+              <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
+                {activeDepthOption.detail}
+              </p>
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {DEPTH_OPTIONS.map(option => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setLearnDepthPreference(option.id)}
+                    aria-pressed={depthPreference === option.id}
+                    className={`interactive-focus rounded-[20px] border px-3 py-3 text-left transition-all duration-300 ${
+                      depthPreference === option.id
+                        ? "border-saffron/30 bg-white dark:border-gold/25 dark:bg-dark-card"
+                        : "border-sand/12 bg-parchment-low/70 dark:border-dark-text/10 dark:!bg-dark-surface"
+                    }`}
+                  >
+                    <p className="font-sans text-xs font-semibold text-ink dark:text-dark-text">{option.label}</p>
+                  </button>
+                ))}
               </div>
             </div>
           </section>
@@ -885,6 +983,13 @@ export default function LearnHub() {
               title={editorial?.learn.savedIntroTitle ?? "Keep verses, topics, and shabads together"}
               body={editorial?.learn.savedIntroBody ?? "Everything saved inside Learn stays labelled by type so inspiration still leads back into context."}
             />
+            {lastSaved?.kind === "learn" ? (
+              <div aria-live="polite" className="mt-3 min-h-[1.5rem]">
+                <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
+                  Saved to Learn just now.
+                </p>
+              </div>
+            ) : null}
           </section>
 
           <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-saved-items" data-learn-anchor data-learn-section-anchor="true">
@@ -897,8 +1002,11 @@ export default function LearnHub() {
               </div>
             ) : null}
 
-            {savedItems.map(item => (
-              <div key={item.id} className="section-shell rounded-[28px] p-4">
+            {savedItems.map(item => {
+              const recentlySaved = lastSaved?.kind === "learn" && lastSaved.targetId === item.id
+
+              return (
+              <div key={item.id} className={`section-shell rounded-[28px] p-4 transition-all duration-300 ${recentlySaved ? "saved-feedback-highlight" : ""}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="eyebrow">{getLearnItemLabel(item.kind)}</p>
@@ -906,7 +1014,7 @@ export default function LearnHub() {
                     <p className="mt-1 font-sans text-sm text-ink/58 dark:text-dark-text/58">{item.subtitle}</p>
                     <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">{item.detail}</p>
                   </div>
-                  <SaveButton saved onClick={() => toggleSavedLearnItem(item.id)} label={item.title} />
+                  <SaveButton saved recentlySaved={recentlySaved} onClick={() => toggleSavedLearnItem(item.id)} label={item.title} />
                 </div>
 
                 <div className="mt-4 flex items-center justify-between gap-3">
@@ -922,7 +1030,7 @@ export default function LearnHub() {
                   </Link>
                 </div>
               </div>
-            ))}
+            )})}
           </section>
         </>
       ) : null}

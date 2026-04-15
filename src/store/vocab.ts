@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { VocabContext, VocabEntry, VocabKind, VocabReviewState } from '../types'
 import { queueActivityEvent } from './activityEvents'
+import { buildVocabFeedbackId, useSavedFeedbackStore } from './savedFeedback'
 
 type ReviewRating = 'again' | 'good' | 'easy'
 
@@ -86,6 +87,11 @@ export const useVocabStore = create<VocabState>()(
         set(state => ({
           vocab: [...state.vocab, vocabEntry],
         }))
+        useSavedFeedbackStore.getState().recordSaved({
+          kind: 'review',
+          targetId: buildVocabFeedbackId(vocabEntry),
+          surfacedAt: vocabEntry.savedAt,
+        })
         queueActivityEvent('vocab.entry.added', {
           word: vocabEntry.word,
           kind: vocabEntry.kind,

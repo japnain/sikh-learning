@@ -4,9 +4,11 @@ import type { StudiedEntry } from '../types'
 import { getUpdatedStreak } from '../utils/streak'
 import { queueActivityEvent } from './activityEvents'
 
-interface Session {
+export interface Session {
   scriptureId: string
-  lastCardIndex: number
+  resumePath: string
+  resumeVerseId?: number
+  updatedAt: string
 }
 
 interface ProgressState {
@@ -20,6 +22,87 @@ interface ProgressState {
   updateSession: (session: Session) => void
   clearSession: () => void
   recordSwipeToday: () => void
+}
+
+type LegacySession = {
+  scriptureId: string
+  lastCardIndex: number
+}
+
+function parseSessionScriptureIdParts(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
+  if (!scriptureId) return { source: null, ang: null }
+
+  const parts = scriptureId.split('-')
+  if (parts.length < 2) return { source: null, ang: null }
+
+  return {
+    source: parts[0] ?? null,
+    ang: Number(parts[1]) || null,
+  }
+}
+
+function buildLegacyResumePath(scriptureId: string | null | undefined): string | null {
+  const { source, ang } = parseSessionScriptureIdParts(scriptureId)
+  if (!source || !ang) return null
+  return `/study?source=${source}&ang=${ang}`
+}
+
+export function parseSessionScriptureId(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
+  return parseSessionScriptureIdParts(scriptureId)
+}
+
+export function buildSessionResumePath(session: Session | null | undefined): string | null {
+  if (!session) return null
+
+  const basePath = session.resumePath || buildLegacyResumePath(session.scriptureId)
+  if (!basePath) return null
+
+  if (!session.resumeVerseId) {
+    return basePath
+  }
+
+  const [pathname, rawSearch = ''] = basePath.split('?')
+  const params = new URLSearchParams(rawSearch)
+
+  if (!params.has('verseId')) {
+    params.set('resumeVerseId', String(session.resumeVerseId))
+  }
+
+  const nextSearch = params.toString()
+  return nextSearch ? `${pathname}?${nextSearch}` : pathname
+}
+
+function normalizeSession(session: Session | LegacySession | null | undefined): Session | null {
+  if (!session || typeof session !== 'object') return null
+
+  if (typeof session.scriptureId !== 'string' || !session.scriptureId.trim()) {
+    return null
+  }
+
+  if ('resumePath' in session && typeof session.resumePath === 'string' && session.resumePath.trim()) {
+    const resumeVerseId = typeof session.resumeVerseId === 'number' && session.resumeVerseId > 0
+      ? session.resumeVerseId
+      : undefined
+    const updatedAt = typeof session.updatedAt === 'string' && session.updatedAt.trim()
+      ? session.updatedAt
+      : new Date().toISOString()
+
+    return {
+      scriptureId: session.scriptureId,
+      resumePath: session.resumePath,
+      ...(resumeVerseId ? { resumeVerseId } : {}),
+      updatedAt,
+    }
+  }
+
+  const legacyResumePath = buildLegacyResumePath(session.scriptureId)
+  if (!legacyResumePath) return null
+
+  return {
+    scriptureId: session.scriptureId,
+    resumePath: legacyResumePath,
+    updatedAt: new Date().toISOString(),
+  }
 }
 
 function todayLocal(): string {
@@ -66,6 +149,17 @@ export const useProgressStore = create<ProgressState>()(
         }, occurredAt)
       },
     }),
-    { name: 'sikh-progress' }
+    {
+      name: 'sikh-progress',
+      version: 1,
+      migrate: (persistedState) => {
+        const state = (persistedState as Partial<ProgressState> | undefined) ?? {}
+
+        return {
+          ...state,
+          currentSession: normalizeSession(state.currentSession as Session | LegacySession | null | undefined),
+        }
+      },
+    }
   )
 )

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore } from '../store/progress'
@@ -179,6 +179,7 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
 }
 
 export default function Study() {
+  const location = useLocation()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
@@ -201,6 +202,7 @@ export default function Study() {
   const endAngParam = Number(searchParams.get('endAng')) || null
   const shabadIdParam = Number(searchParams.get('shabadId')) || null
   const verseIdParam = Number(searchParams.get('verseId')) || null
+  const resumeVerseIdParam = Number(searchParams.get('resumeVerseId')) || null
   const baniDbIdParam = Number(searchParams.get('baniDbId')) || null
   const hukamnamaDateParam = searchParams.get('hukamnamaDate')
   const flowParam = searchParams.get('flow')
@@ -260,6 +262,12 @@ export default function Study() {
     ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
     : null
   const searchParamsString = searchParams.toString()
+  const resumePath = useMemo(() => {
+    const nextParams = new URLSearchParams(searchParams)
+    nextParams.delete('resumeVerseId')
+    const nextSearch = nextParams.toString()
+    return nextSearch ? `${location.pathname}?${nextSearch}` : location.pathname
+  }, [location.pathname, searchParams])
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
@@ -387,13 +395,6 @@ export default function Study() {
 
   const updateSession = useProgressStore(state => state.updateSession)
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
-
-  useEffect(() => {
-    if (shouldTrackProgress && currentAng) {
-      updateSession({ scriptureId: `${currentSource}-${currentAng}`, lastCardIndex: 0 })
-    }
-  }, [currentAng, currentSource, shouldTrackProgress, updateSession])
-
   const { addBookmark, hasBookmark } = useBookmarksStore()
   const { addFavorite, removeFavorite, isFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
@@ -406,6 +407,100 @@ export default function Study() {
   const [controlsOpen, setControlsOpen] = useState(false)
   const readerControlsRef = useRef<HTMLDivElement | null>(null)
   const actionNoticeTimeoutRef = useRef<number | null>(null)
+  const latestResumeVerseIdRef = useRef<number | null>(null)
+  const resumeSyncFrameRef = useRef<number | null>(null)
+
+  const baseSession = useMemo(() => {
+    if (!shouldTrackProgress || !currentAng) return null
+
+    return {
+      scriptureId: `${currentSource}-${currentAng}`,
+      resumePath,
+    }
+  }, [currentAng, currentSource, resumePath, shouldTrackProgress])
+
+  useEffect(() => {
+    if (!baseSession) return
+
+    latestResumeVerseIdRef.current = null
+    updateSession({
+      ...baseSession,
+      updatedAt: new Date().toISOString(),
+    })
+  }, [baseSession, updateSession])
+
+  useEffect(() => {
+    if (!baseSession || loading || typeof window === 'undefined') return
+
+    const syncVisibleVerse = () => {
+      resumeSyncFrameRef.current = null
+
+      const verseElements = Array.from(document.querySelectorAll<HTMLElement>('[data-testid="study-line"][data-verse-id]'))
+      if (verseElements.length === 0) return
+
+      const topOffset = 132
+      const target =
+        verseElements.find(element => element.getBoundingClientRect().top >= topOffset)
+        ?? verseElements.find(element => element.getBoundingClientRect().bottom > topOffset)
+        ?? verseElements[0]
+      const nextVerseId = Number(target.dataset.verseId) || null
+
+      if (!nextVerseId || nextVerseId === latestResumeVerseIdRef.current) return
+
+      latestResumeVerseIdRef.current = nextVerseId
+      updateSession({
+        ...baseSession,
+        resumeVerseId: nextVerseId,
+        updatedAt: new Date().toISOString(),
+      })
+    }
+
+    const scheduleSync = () => {
+      if (resumeSyncFrameRef.current !== null) return
+      resumeSyncFrameRef.current = window.requestAnimationFrame(syncVisibleVerse)
+    }
+
+    scheduleSync()
+    window.addEventListener('scroll', scheduleSync, { passive: true })
+    window.addEventListener('resize', scheduleSync)
+
+    return () => {
+      if (resumeSyncFrameRef.current !== null) {
+        window.cancelAnimationFrame(resumeSyncFrameRef.current)
+        resumeSyncFrameRef.current = null
+      }
+      window.removeEventListener('scroll', scheduleSync)
+      window.removeEventListener('resize', scheduleSync)
+    }
+  }, [baseSession, loading, updateSession, searchParamsString])
+
+  useEffect(() => {
+    if (!resumeVerseIdParam || loading || typeof window === 'undefined') return
+
+    let timeoutId: number | null = null
+    const scrollToResumeVerse = () => {
+      const target = document.querySelector<HTMLElement>(`[data-verse-id="${resumeVerseIdParam}"]`)
+      if (!target) return false
+
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return true
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!scrollToResumeVerse()) {
+        timeoutId = window.setTimeout(() => {
+          scrollToResumeVerse()
+        }, 160)
+      }
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId)
+      }
+    }
+  }, [loading, resumeVerseIdParam, searchParamsString])
 
   const announceAction = (message: string) => {
     setActionNotice(message)

@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { fetchSearch, type SearchResult } from '../api/banidb'
 import {
   IconArrowRight,
+  IconBookmarkFilled,
   IconCheck,
   IconChevronDown,
   IconChevronUp,
+  IconLibrary,
   IconMoon,
   IconSearch,
   IconSun,
@@ -16,16 +18,19 @@ import { useHukamnama } from '../hooks/useHukamnama'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { useCurrentTime } from '../hooks/useCurrentTime'
 import useLearnCatalog from '../hooks/useLearnCatalog'
+import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
+import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
-import { useProgressStore } from '../store/progress'
+import { buildSessionResumePath, useProgressStore } from '../store/progress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { buildNitnemStudyPath, compareNitnemOptions, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
-import type { UiLocale } from '../types'
+import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
+import type { UiLocale, VocabEntry } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getLearningLevelLabels } from '../utils/translations'
@@ -33,7 +38,7 @@ import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { getAngTargets, groupSearchResults } from '../utils/appSearch'
 import { toLocalDayStamp } from '../utils/learnDates'
-import { getTodayLearnSurface } from '../utils/learnExperience'
+import { getLearnItemLabel, getLearnSavedItems, getTodayLearnSurface } from '../utils/learnExperience'
 import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
 import { getEditorialCopy } from '../content/editorialCopy'
@@ -48,14 +53,83 @@ const TODAYS_PATH_HIGHLIGHT_CLASSES = [
   'dark:ring-offset-dark-bg',
 ]
 
-function parseSession(scriptureId: string | null | undefined): { source: string | null; ang: number | null } {
-  if (!scriptureId) return { source: null, ang: null }
-  const parts = scriptureId.split('-')
-  if (parts.length < 2) return { source: null, ang: null }
-  return {
-    source: parts[0] ?? null,
-    ang: Number(parts[1]) || null,
+const SOURCE_SHORT_NAME: Record<string, string> = {
+  G: 'SGGS',
+  D: 'DG',
+  B: 'BGV',
+  A: 'AK',
+}
+
+type HomeSavedPreviewItem = {
+  id: string
+  kind: 'learn' | 'passage' | 'vocab'
+  feedbackKind: SavedFeedbackKind
+  label: string
+  title: string
+  detail: string
+  path: string
+  meta?: string
+}
+
+const HOME_SAVED_PREVIEW_APPEARANCE: Record<
+  HomeSavedPreviewItem['kind'],
+  {
+    icon: typeof IconLibrary
+    badgeClassName: string
+    surfaceClassName: string
+    detailClassName: string
   }
+> = {
+  learn: {
+    icon: IconLibrary,
+    badgeClassName: 'bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light',
+    surfaceClassName: 'border-gold/16 bg-[linear-gradient(180deg,rgba(255,248,237,0.88),rgba(249,239,221,0.76))] dark:border-gold/16 dark:bg-[linear-gradient(180deg,rgba(42,31,57,0.96),rgba(28,21,40,0.92))]',
+    detailClassName: 'text-ink/66 dark:text-dark-text/70',
+  },
+  passage: {
+    icon: IconBookmarkFilled,
+    badgeClassName: 'bg-saffron/12 text-saffron dark:bg-saffron/12 dark:text-saffron-light',
+    surfaceClassName: 'border-saffron/14 bg-[linear-gradient(180deg,rgba(255,250,242,0.92),rgba(250,240,227,0.8))] dark:border-saffron/18 dark:bg-[linear-gradient(180deg,rgba(40,29,55,0.96),rgba(24,19,36,0.92))]',
+    detailClassName: 'text-saffron dark:text-saffron-light',
+  },
+  vocab: {
+    icon: IconCheck,
+    badgeClassName: 'bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/14 dark:text-emerald-300',
+    surfaceClassName: 'border-emerald-500/14 bg-[linear-gradient(180deg,rgba(248,252,246,0.94),rgba(239,247,237,0.82))] dark:border-emerald-500/20 dark:bg-[linear-gradient(180deg,rgba(31,39,42,0.96),rgba(20,28,30,0.92))]',
+    detailClassName: 'text-ink/70 dark:text-dark-text/72',
+  },
+}
+
+function formatSavedPassageReference(source: string, ang: number, verseId?: number): string {
+  const sourceLabel = SOURCE_SHORT_NAME[source] ?? source.toUpperCase()
+  return verseId ? `${sourceLabel} · Ang ${ang} · Verse ${verseId}` : `${sourceLabel} · Ang ${ang}`
+}
+
+function buildSavedPassagePath(item: Bookmark | FavoriteItem): string {
+  if ('verseId' in item && item.verseId && item.shabadId) {
+    return `/study?shabadId=${item.shabadId}&verseId=${item.verseId}`
+  }
+
+  if (item.shabadId) {
+    return `/study?shabadId=${item.shabadId}`
+  }
+
+  return `/study?source=${item.source}&ang=${item.ang}`
+}
+
+function compareSavedAtDesc(
+  left: { savedAt: string },
+  right: { savedAt: string }
+): number {
+  return new Date(right.savedAt).getTime() - new Date(left.savedAt).getTime()
+}
+
+function getVocabPreviewDetail(entry: VocabEntry, locale: UiLocale): string {
+  if (locale === 'pa' && entry.meaning_pa.trim()) return entry.meaning_pa
+  if (locale === 'hi' && entry.meaning_hi.trim()) return entry.meaning_hi
+  if (entry.meaning_en.trim()) return entry.meaning_en
+  if (entry.transliteration.trim()) return entry.transliteration
+  return entry.scripture
 }
 
 const HOME_MESSAGES: Record<UiLocale, {
@@ -255,7 +329,10 @@ export default function Home() {
     resetSelections,
     resetIfNewDay,
   } = useNitemStore()
+  const bookmarks = useBookmarksStore(state => state.bookmarks)
+  const favorites = useFavoritesStore(state => state.favorites)
   const vocab = useVocabStore(s => s.vocab)
+  const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
   const learnStateSnapshot = useLearningStore(state => state.learnState)
   const {
     learningLevel,
@@ -265,6 +342,7 @@ export default function Home() {
   const copy = getUiCopy(locale)
   const editorial = getEditorialCopy(locale)
   const homeCopy = copy.home
+  const libraryCopy = copy.library
   const homeMessages = HOME_MESSAGES[locale]
   const learningLevelLabels = getLearningLevelLabels(locale)
   const [nitnemOpen, setNitnemOpen] = useState(false)
@@ -381,20 +459,39 @@ export default function Home() {
   const nitnemProgressPct = selectedNitnemOptions.length > 0
     ? (nitnemDone / selectedNitnemOptions.length) * 100
     : 0
-  const { savedWords, savedPhrases } = useMemo(() => ({
-    savedWords: vocab.filter(entry => (entry.kind ?? 'word') === 'word').length,
-    savedPhrases: vocab.filter(entry => (entry.kind ?? 'word') === 'phrase').length,
-  }), [vocab])
-  const sessionTarget = parseSession(currentSession?.scriptureId)
+  const savedLearnItems = useMemo(
+    () => (learnCatalog ? getLearnSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
+    [learnCatalog, learnStateSnapshot.savedItemIds]
+  )
+  const savedBookmarks = bookmarks.length
+  const savedFavorites = favorites.length
+  const savedReviewItems = vocab.length
+  const resumePath = buildSessionResumePath(currentSession)
+  const savedShelfNotice = useMemo(() => {
+    switch (lastSaved?.kind) {
+      case 'learn':
+        return 'Learn save added to the shelf.'
+      case 'bookmark':
+        return 'Bookmarked passage added to the shelf.'
+      case 'favorite':
+        return 'Favorite added to the shelf.'
+      case 'review':
+        return 'Review Bank updated.'
+      default:
+        return null
+    }
+  }, [lastSaved?.kind])
 
   const readAction = useMemo(() => {
-    if (currentSession && sessionTarget.source && sessionTarget.ang) {
+    const path = resumePath ?? (hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis')
+
+    if (resumePath) {
       return {
         title: homeMessages.resumeReading,
         body: learningGoal === 'understand'
           ? homeMessages.resumeStudyBody
           : homeMessages.resumeReadingBody,
-        onAction: () => navigate(`/study?source=${sessionTarget.source}&ang=${sessionTarget.ang}`),
+        path,
       }
     }
 
@@ -403,9 +500,9 @@ export default function Home() {
       body: learningGoal === 'understand'
         ? homeMessages.todaysMeaningBody
         : homeMessages.todaysReadingBody,
-      onAction: () => navigate(hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis'),
+      path,
     }
-  }, [currentSession, homeMessages, hukamnama, learningGoal, navigate, sessionTarget.ang, sessionTarget.source])
+  }, [homeMessages, hukamnama, learningGoal, resumePath])
   const hukamnamaPreviewLine = useMemo(() => {
     if (!hukamnama) return null
     return hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))
@@ -420,6 +517,59 @@ export default function Home() {
     }
     return getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
   }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
+  const savedPreviewItems = useMemo<HomeSavedPreviewItem[]>(() => {
+    const previewItems: HomeSavedPreviewItem[] = []
+    const latestLearnSave = savedLearnItems[0]
+
+    if (latestLearnSave) {
+      previewItems.push({
+        id: latestLearnSave.id,
+        kind: 'learn',
+        feedbackKind: 'learn',
+        label: getLearnItemLabel(latestLearnSave.kind),
+        title: latestLearnSave.title,
+        detail: latestLearnSave.detail,
+        path: buildLearnDetailPath(latestLearnSave.kind, latestLearnSave.id, 'saved'),
+        meta: latestLearnSave.theme,
+      })
+    }
+
+    const latestSavedPassage = [
+      ...bookmarks.map(item => ({ item, feedbackKind: 'bookmark' as const, label: libraryCopy.bookmarks })),
+      ...favorites.map(item => ({ item, feedbackKind: 'favorite' as const, label: libraryCopy.favorites })),
+    ].sort((left, right) => compareSavedAtDesc(left.item, right.item))[0]
+    if (latestSavedPassage) {
+      previewItems.push({
+        id: latestSavedPassage.item.id,
+        kind: 'passage',
+        feedbackKind: latestSavedPassage.feedbackKind,
+        label: latestSavedPassage.label,
+        title: latestSavedPassage.item.title,
+        detail: formatSavedPassageReference(
+          latestSavedPassage.item.source,
+          latestSavedPassage.item.ang,
+          'verseId' in latestSavedPassage.item ? latestSavedPassage.item.verseId : undefined
+        ),
+        path: buildSavedPassagePath(latestSavedPassage.item),
+      })
+    }
+
+    const latestVocab = [...vocab].sort(compareSavedAtDesc)[0]
+    if (latestVocab) {
+      previewItems.push({
+        id: buildVocabFeedbackId(latestVocab),
+        kind: 'vocab',
+        feedbackKind: 'review',
+        label: libraryCopy.reviewBank,
+        title: latestVocab.word,
+        detail: getVocabPreviewDetail(latestVocab, locale),
+        path: '/vocab',
+        meta: (latestVocab.kind ?? 'word') === 'phrase' ? homeCopy.phrases : homeCopy.words,
+      })
+    }
+
+    return previewItems.slice(0, 3)
+  }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, savedLearnItems, vocab])
   const featuredShabadSupport = useMemo(() => {
     if (featuredShabad && featuredShabadPath) {
       return {
@@ -428,7 +578,7 @@ export default function Home() {
         body: editorial?.learn.compactShabadBody ?? featuredShabad.whyItMatters,
         meta: featuredShabad.rotation.theme,
         actionLabel: homeMessages.openFeaturedShabad,
-        onAction: () => navigate(featuredShabadPath),
+        path: featuredShabadPath,
       }
     }
 
@@ -439,7 +589,7 @@ export default function Home() {
         body: editorial?.learn.compactGuidanceBody ?? todayGuidance.summary,
         meta: homeCopy.grow,
         actionLabel: homeMessages.openLearnToday,
-        onAction: () => navigate(todayGuidancePath),
+        path: todayGuidancePath,
       }
     }
 
@@ -449,7 +599,7 @@ export default function Home() {
       body: homeMessages.learnFallbackBody,
       meta: learningLevelLabels[learningLevel],
       actionLabel: homeMessages.openLearnToday,
-      onAction: () => navigate(learnTodayPath),
+      path: learnTodayPath,
     }
   }, [
     editorial?.learn.compactGuidanceBody,
@@ -465,7 +615,6 @@ export default function Home() {
     learnTodayPath,
     learningLevel,
     learningLevelLabels,
-    navigate,
     todayGuidance,
     todayGuidancePath,
   ])
@@ -479,7 +628,7 @@ export default function Home() {
         body: editorial?.learn.compactContinueBody ?? continueLearning.collection.description,
         meta: continueLearning.collection.durationLabel,
         actionLabel: homeMessages.continueInLearn,
-        onAction: () => navigate(buildLearnDetailPath('collection', continueLearning.collection.id, 'today')),
+        path: buildLearnDetailPath('collection', continueLearning.collection.id, 'today'),
       }
     }
 
@@ -490,7 +639,7 @@ export default function Home() {
         body: editorial?.learn.compactContinueBody ?? continueLearning.topic.centralInsight,
         meta: homeMessages.topicGuideMeta,
         actionLabel: homeMessages.continueInLearn,
-        onAction: () => navigate(buildLearnDetailPath('topic-guide', continueLearning.topic.id, 'today')),
+        path: buildLearnDetailPath('topic-guide', continueLearning.topic.id, 'today'),
       }
     }
 
@@ -501,7 +650,7 @@ export default function Home() {
         body: editorial?.learn.compactGuidanceBody ?? todayGuidance.summary ?? homeMessages.todayInLearnBody,
         meta: homeCopy.grow,
         actionLabel: homeMessages.openLearnToday,
-        onAction: () => navigate(todayGuidancePath),
+        path: todayGuidancePath,
       }
     }
 
@@ -511,7 +660,7 @@ export default function Home() {
       body: homeMessages.learnFallbackBody,
       meta: learningLevelLabels[learningLevel],
       actionLabel: homeMessages.openLearnToday,
-      onAction: () => navigate(learnTodayPath),
+      path: learnTodayPath,
     }
   }, [
     editorial?.learn.compactContinueBody,
@@ -527,7 +676,6 @@ export default function Home() {
     learnTodayPath,
     learningLevel,
     learningLevelLabels,
-    navigate,
     todayGuidance,
     todayGuidancePath,
     todayLearnSurface?.continueLearning,
@@ -551,15 +699,23 @@ export default function Home() {
     if (homeHasReadRouteMatches || groupedHomeSearchResults.length > 0) return 'read'
     return 'learn'
   }, [groupedHomeSearchResults.length, homeAngTargets.length, homeHasLearnMatches, homeHasReadRouteMatches])
+  const learnSearchPath = hasActiveHomeSearch ? buildLearnSearchPath(trimmedHomeSearchQuery) : null
+  const readSearchPath = hasActiveHomeSearch
+    ? buildReadSearchPath({
+      query: trimmedHomeSearchQuery,
+      mode: homeAngTargets.length > 0 ? 'ang' : 'auto-detect',
+      source: 'all',
+    })
+    : null
 
   const openLearnSearch = () => {
-    navigate(buildLearnSearchPath(trimmedHomeSearchQuery), {
+    navigate(learnSearchPath ?? buildLearnSearchPath(trimmedHomeSearchQuery), {
       state: trimmedHomeSearchQuery ? null : { focusSearch: true },
     })
   }
 
   const openReadSearch = () => {
-    navigate(buildReadSearchPath({
+    navigate(readSearchPath ?? buildReadSearchPath({
       query: trimmedHomeSearchQuery,
       mode: homeAngTargets.length > 0 ? 'ang' : 'auto-detect',
       source: 'all',
@@ -703,11 +859,74 @@ export default function Home() {
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
       >
+        <h2 id="home-hero-title" className="sr-only">NaamRas Learn</h2>
         <div className="flex items-center justify-between gap-3 mb-5">
           <span className="eyebrow">{editorial?.learn.eyebrow ?? 'NaamRas Learn'}</span>
           <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
         </div>
         <div className="grid gap-4">
+          {hukamnamaLoading ? (
+            <div className="section-shell-quiet p-5 animate-pulse" data-testid="home-hukamnama-card">
+              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28 mb-3" />
+              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-40" />
+              <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
+              <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+              <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+            </div>
+          ) : hukamnama ? (
+            <div
+              className="section-shell-quiet p-5"
+              data-testid="home-hukamnama-card"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="ready"
+            >
+              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+              <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
+                {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
+                {hukamnama.entry.scripture} · Ang {hukamnama.ang}
+              </p>
+              <p
+                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-4 text-[2.2rem] leading-[1.15] text-ink dark:text-dark-text line-clamp-3`}
+              >
+                {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+              </p>
+              {hukamnamaMeaningPreview && (
+                <p className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/70 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                  {hukamnamaMeaningPreview}
+                </p>
+              )}
+              <Link
+                to={`/study?hukamnamaDate=${hukamnama.date}`}
+                className="interactive-focus interactive-pill-link mt-5 min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
+                data-testid="home-hero-primary-action"
+                data-ai-action="open-hukamnama"
+              >
+                Open Today&apos;s Hukamnama
+              </Link>
+            </div>
+          ) : (
+            <div
+              className="section-shell-quiet p-5"
+              data-testid="home-hukamnama-error"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="degraded"
+              data-ai-error="study-hukamnama"
+            >
+              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+                Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+              </p>
+              <Link
+                to="/banis"
+                className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-full border border-sand/15 bg-white/70 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
+                data-ai-action="browse-read"
+              >
+                Browse Read
+              </Link>
+            </div>
+          )}
+
           <div
             className="section-shell-quiet p-5"
             data-testid="home-guidance-hero"
@@ -725,96 +944,36 @@ export default function Home() {
             ) : todayGuidance && todayGuidancePath ? (
               <>
                 <p className="eyebrow">Today&apos;s Guidance</p>
-                <h2 id="home-hero-title" className="mt-3 font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[18ch]">
+                <h3 className="mt-3 font-display text-[2rem] leading-[0.98] text-ink dark:text-dark-text max-w-[18ch]">
                   {todayGuidance.title}
-                </h2>
+                </h3>
                 <p className="mt-4 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
                   {todayGuidance.summary || editorial?.learn.compactGuidanceBody || 'Open today’s Learn doorway and move into the exact guide chosen for the day.'}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => navigate(todayGuidancePath)}
-                  className="mt-5 min-h-[50px] rounded-full bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
-                  data-testid="home-hero-primary-action"
+                <Link
+                  to={todayGuidancePath}
+                  className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
+                  data-testid="home-hero-guidance-action"
                   data-ai-action="open-todays-guidance"
                 >
-                  Open Today&apos;s Guidance
-                </button>
+                  <span>Open Today&apos;s Guidance</span>
+                  <IconArrowRight size={14} />
+                </Link>
               </>
             ) : (
               <>
                 <p className="eyebrow">Today&apos;s Guidance</p>
-                <h2 id="home-hero-title" className="mt-3 font-display text-[2.35rem] leading-[0.95] text-ink dark:text-dark-text max-w-[18ch]">
+                <h3 className="mt-3 font-display text-[2rem] leading-[0.98] text-ink dark:text-dark-text max-w-[18ch]">
                   {learnCatalogError ? 'Today’s Learn guidance could not be loaded.' : 'Today’s guidance is preparing the next doorway.'}
-                </h2>
+                </h3>
                 <p className="mt-4 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
                   {learnCatalogError
-                    ? 'Home is falling back to the hukamnama-led reading path until the Learn archive is available again.'
+                    ? 'Home is staying grounded in the hukamnama-led path until the Learn archive is available again.'
                     : editorial?.learn.compactGuidanceBody || 'A short doorway into the day, anchored in a real line and written for return rather than skimming.'}
                 </p>
               </>
             )}
           </div>
-
-          {hukamnamaLoading ? (
-            <div className="section-shell-quiet p-5 animate-pulse" data-testid="home-hukamnama-card">
-              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-24 mb-3" />
-              <div className="h-6 rounded bg-sand/20 dark:bg-dark-text/10 mb-2" />
-              <div className="h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-            </div>
-          ) : hukamnama ? (
-            <button
-              type="button"
-              onClick={() => navigate(`/study?hukamnamaDate=${hukamnama.date}`)}
-              className="section-shell-quiet p-5 text-left active:scale-[0.99] transition-transform duration-150"
-              data-testid="home-hukamnama-card"
-              data-ai-surface="home-hukamnama"
-              data-ai-state="ready"
-              data-ai-action="open-hukamnama"
-            >
-              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-              <p className="font-sans text-[11px] text-ink/65 dark:text-dark-text/65 mb-2">
-                {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
-                {hukamnama.entry.scripture} · Ang {hukamnama.ang}
-              </p>
-              <p
-                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-2xl leading-relaxed text-ink dark:text-dark-text line-clamp-3`}
-              >
-                {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
-              </p>
-              {hukamnamaMeaningPreview && (
-                <p className={`mt-3 text-sm text-ink/70 dark:text-dark-text/70 line-clamp-2 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                  {hukamnamaMeaningPreview}
-                </p>
-              )}
-              <div className="mt-4 flex items-center gap-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                <span>Open Today&apos;s Hukamnama</span>
-                <IconArrowRight size={14} />
-              </div>
-            </button>
-          ) : (
-            <div
-              className="section-shell-quiet p-5"
-              data-testid="home-hukamnama-error"
-              data-ai-surface="home-hukamnama"
-              data-ai-state="degraded"
-              data-ai-error="study-hukamnama"
-            >
-              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
-                Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
-              </p>
-              <button
-                type="button"
-                onClick={() => navigate('/banis')}
-                className="mt-4 min-h-[46px] rounded-full border border-sand/15 bg-white/70 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
-                data-ai-action="browse-read"
-              >
-                Browse Read
-              </button>
-            </div>
-          )}
         </div>
       </section>
 
@@ -886,56 +1045,55 @@ export default function Home() {
 
         {hasActiveHomeSearch ? (
           <div className="mt-2.5 flex flex-wrap gap-1.5" data-testid="home-smart-search-transfer-links">
-            <button
-              type="button"
-              onClick={openLearnSearch}
-              className="rounded-full border border-saffron/18 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-saffron/20 dark:bg-dark-card/78 dark:text-dark-text"
+            <Link
+              to={learnSearchPath ?? buildLearnSearchPath(trimmedHomeSearchQuery)}
+              className="interactive-focus interactive-pill-link rounded-full border border-saffron/18 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-saffron/20 dark:bg-dark-card/78 dark:text-dark-text"
               data-testid="home-open-learn-search"
               data-ai-action="open-learn-search"
             >
               Continue in Learn
-            </button>
-            <button
-              type="button"
-              onClick={openReadSearch}
-              className="rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            </Link>
+            <Link
+              to={readSearchPath ?? buildReadSearchPath({
+                query: trimmedHomeSearchQuery,
+                mode: homeAngTargets.length > 0 ? 'ang' : 'auto-detect',
+                source: 'all',
+              })}
+              className="interactive-focus interactive-pill-link rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               data-testid="home-open-read-search"
               data-ai-action="open-read-search"
             >
               Continue in Read
-            </button>
+            </Link>
           </div>
         ) : (
           <div className="mt-2.5 flex flex-wrap gap-1.5" data-testid="home-smart-search-quick-links">
             {todayGuidancePath ? (
-              <button
-                type="button"
-                onClick={() => navigate(todayGuidancePath)}
-                className="rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+              <Link
+                to={todayGuidancePath}
+                className="interactive-focus interactive-pill-link rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
                 data-testid="home-open-guidance"
                 data-ai-action="open-guidance"
               >
                 Open Today&apos;s Guidance
-              </button>
+              </Link>
             ) : null}
-            <button
-              type="button"
-              onClick={() => navigate(learnTopicsPath)}
-              className="rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            <Link
+              to={learnTopicsPath}
+              className="interactive-focus interactive-pill-link rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               data-testid="home-open-topics"
               data-ai-action="open-topics"
             >
               Explore Topics
-            </button>
-            <button
-              type="button"
-              onClick={() => navigate('/banis')}
-              className="rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+            </Link>
+            <Link
+              to="/banis"
+              className="interactive-focus interactive-pill-link rounded-full border border-sand/20 bg-white/76 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-all duration-300 active:scale-[0.98] dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               data-testid="home-open-read"
               data-ai-action="browse-read"
             >
               Browse Read
-            </button>
+            </Link>
           </div>
         )}
 
@@ -974,11 +1132,10 @@ export default function Home() {
                 </p>
               </div>
               {homeAngTargets.map(target => (
-                <button
+                <Link
                   key={target.source}
-                  type="button"
-                  onClick={() => navigate(target.path)}
-                  className="w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
+                  to={target.path}
+                  className="interactive-focus interactive-card-link w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
                   data-ai-result-kind="ang"
                 >
                   <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
@@ -988,7 +1145,7 @@ export default function Home() {
                   <p className="mt-1 font-sans text-xs text-ink/55 dark:text-dark-text/55">
                     Direct page lookup without leaving the home surface.
                   </p>
-                </button>
+                </Link>
               ))}
             </div>
           ) : null}
@@ -1010,11 +1167,10 @@ export default function Home() {
                     && !hasSearchMatch(match.detail, trimmedHomeSearchQuery)
 
                   return (
-                    <button
+                    <Link
                       key={match.key}
-                      type="button"
-                      onClick={() => navigate(match.path)}
-                      className="w-full rounded-[24px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-saffron/18 dark:from-saffron/12 dark:to-saffron-light/12"
+                      to={match.path}
+                      className="interactive-focus interactive-card-link w-full rounded-[24px] border border-saffron/20 bg-gradient-to-r from-saffron/8 to-saffron-light/10 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-saffron/18 dark:from-saffron/12 dark:to-saffron-light/12"
                       data-ai-result-kind={match.kind}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -1033,7 +1189,7 @@ export default function Home() {
                         </div>
                         <span className="chip-pill">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
                       </div>
-                    </button>
+                    </Link>
                   )
                 })()
               ))}
@@ -1063,11 +1219,10 @@ export default function Home() {
                 </p>
               </div>
               {groupedHomeSearchResults.map(result => (
-                <button
+                <Link
                   key={result.key}
-                  type="button"
-                  onClick={() => navigate(`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`)}
-                  className="w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
+                  to={`/study?shabadId=${result.shabadId}&verseId=${result.verseId}`}
+                  className="interactive-focus interactive-card-link w-full rounded-[22px] border border-sand/16 bg-white/74 px-4 py-3 text-left transition-all duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-card/78"
                   data-ai-result-kind="gurbani-search"
                 >
                   <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text">
@@ -1084,7 +1239,7 @@ export default function Home() {
                     {typeof result.pageNo === 'number' && result.pageNo > 0 ? <span className="chip-pill">{`Ang ${result.pageNo}`}</span> : null}
                     {result.matchCount > 1 ? <span className="chip-pill">{`${result.matchCount} matches`}</span> : null}
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           ) : null}
@@ -1190,14 +1345,13 @@ export default function Home() {
                     </div>
 
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                      <button
-                        type="button"
-                        onClick={() => navigate(buildNitnemStudyPath(option))}
-                        className="min-h-[48px] flex-1 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
+                      <Link
+                        to={buildNitnemStudyPath(option)}
+                        className="interactive-focus interactive-pill-link min-h-[48px] flex-1 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
                         data-testid={index === activeNitnemIndex ? 'home-nitnem-primary-action' : undefined}
                       >
                         {nitnemDone > 0 ? homeMessages.continueNitnem : homeMessages.beginNitnem}
-                      </button>
+                      </Link>
                       <button
                         type="button"
                         onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
@@ -1353,14 +1507,13 @@ export default function Home() {
             <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
               {editorial?.home.pathBodyPrefix ? `${editorial.home.pathBodyPrefix} ${readAction.body}` : readAction.body}
             </p>
-            <button
-              type="button"
-              onClick={readAction.onAction}
-              className="mt-5 min-h-[48px] w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
+            <Link
+              to={readAction.path}
+              className="interactive-focus interactive-pill-link mt-5 min-h-[48px] w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
               data-testid="home-todays-path-action"
             >
               {readAction.title}
-            </button>
+            </Link>
           </div>
 
           <div className="grid gap-3">
@@ -1381,15 +1534,14 @@ export default function Home() {
               <p className="mt-2 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
                 {featuredShabadSupport.body}
               </p>
-              <button
-                type="button"
-                onClick={featuredShabadSupport.onAction}
-                className="mt-4 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
+              <Link
+                to={featuredShabadSupport.path}
+                className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
                 data-testid="home-open-featured-shabad"
               >
                 <span>{featuredShabadSupport.actionLabel}</span>
                 <IconArrowRight size={14} />
-              </button>
+              </Link>
             </div>
 
             <div
@@ -1409,15 +1561,14 @@ export default function Home() {
                 </div>
                 <span className="chip-pill shrink-0">{learnSupport.meta}</span>
               </div>
-              <button
-                type="button"
-                onClick={learnSupport.onAction}
-                className="mt-4 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
+              <Link
+                to={learnSupport.path}
+                className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
                 data-testid="home-open-continue-learning"
               >
                 <span>{learnSupport.actionLabel}</span>
                 <IconArrowRight size={14} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -1435,22 +1586,88 @@ export default function Home() {
               {editorial?.home.savedTitle ?? homeCopy.savedTitle}
             </h3>
           </div>
-          <button
-            onClick={() => navigate('/library')}
-            className="font-sans text-sm text-gold dark:text-gold-light flex items-center gap-1"
+          <Link
+            to="/library"
+            className="interactive-focus inline-flex items-center gap-1 font-sans text-sm text-gold dark:text-gold-light"
           >
             {homeCopy.openSaved} <IconArrowRight size={14} />
-          </button>
+          </Link>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedWords}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{homeCopy.words}</p>
+        {savedShelfNotice ? (
+          <div aria-live="polite" className="mt-3 min-h-[1.5rem]">
+            <p role="status" className="inline-flex rounded-full bg-gold/10 px-3 py-1.5 font-sans text-xs font-medium text-gold-dark dark:bg-gold/12 dark:text-gold-light">
+              {savedShelfNotice}
+            </p>
           </div>
-          <div className="section-shell-quiet px-3 py-3">
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedPhrases}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{homeCopy.phrases}</p>
+        ) : null}
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4" data-testid="home-saved-metrics">
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{learnStateSnapshot.savedItemIds.length}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.learnSaves}</p>
           </div>
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.bookmarks}</p>
+          </div>
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedFavorites}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.favorites}</p>
+          </div>
+          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
+            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedReviewItems}</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.reviewBank}</p>
+          </div>
+        </div>
+
+        <div className="mt-4 space-y-2" data-testid="home-saved-preview-list">
+          {savedPreviewItems.length > 0 ? (
+            savedPreviewItems.map(item => {
+              const appearance = HOME_SAVED_PREVIEW_APPEARANCE[item.kind]
+              const SavedPreviewIcon = appearance.icon
+              const isHighlighted = lastSaved?.kind === item.feedbackKind && lastSaved.targetId === item.id
+
+              return (
+              <Link
+                key={item.id}
+                to={item.path}
+                className={`section-shell-quiet interactive-focus interactive-card-link flex w-full items-start gap-3 px-4 py-4 text-left transition-colors duration-300 hover:border-gold/18 dark:hover:border-gold/20 ${appearance.surfaceClassName} ${isHighlighted ? 'saved-feedback-highlight' : ''}`}
+                data-testid={`home-saved-preview-${item.kind}`}
+              >
+                <span className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${appearance.badgeClassName}`}>
+                  <SavedPreviewIcon size={16} />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="eyebrow">{item.label}</p>
+                    {item.meta ? <span className="chip-pill">{item.meta}</span> : null}
+                    {isHighlighted ? <span className="chip-pill">Saved just now</span> : null}
+                  </div>
+                  <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                    {item.title}
+                  </p>
+                  {item.kind === 'passage' ? (
+                    <p className={`mt-2 font-sans text-[11px] uppercase tracking-[0.18em] ${appearance.detailClassName}`}>
+                      {item.detail}
+                    </p>
+                  ) : (
+                    <p className={`mt-1.5 font-sans text-sm leading-6 ${appearance.detailClassName}`}>
+                      {item.detail}
+                    </p>
+                  )}
+                </div>
+                <span className="mt-1 shrink-0 text-gold dark:text-gold-light">
+                  <IconArrowRight size={16} />
+                </span>
+              </Link>
+            )})
+          ) : (
+            <div className="section-shell-quiet px-4 py-4">
+              <p className="eyebrow">Saved Preview</p>
+              <p className="mt-2 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
+                Learn saves, bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>

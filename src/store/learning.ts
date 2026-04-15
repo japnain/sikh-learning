@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { THEME_PATH_BY_ID } from '../data/themePaths'
 import { queueActivityEvent } from './activityEvents'
+import { useSavedFeedbackStore } from './savedFeedback'
 import type {
   DailyLesson,
   GuidedJourneyProgress,
@@ -691,6 +692,13 @@ export const useLearningStore = create<LearningState>()(
               : [itemId, ...state.learnState.savedItemIds],
           },
         }))
+        if (!wasSaved) {
+          useSavedFeedbackStore.getState().recordSaved({
+            kind: 'learn',
+            targetId: itemId,
+            surfacedAt: occurredAt,
+          })
+        }
         queueActivityEvent(wasSaved ? 'saved-item.learn.removed' : 'saved-item.learn.added', {
           itemId,
         }, occurredAt)

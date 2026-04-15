@@ -8,6 +8,7 @@ import { useLanguageStore } from '../store/language'
 import { useMusicStore } from '../store/music'
 import { useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
+import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
 
@@ -28,6 +29,7 @@ beforeEach(() => {
       writeText: vi.fn().mockResolvedValue(undefined),
     },
   })
+  useSavedFeedbackStore.getState().clearSaved()
   useScriptureCacheStore.getState().clearAll()
   useVocabStore.setState({ vocab: [] })
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
@@ -405,7 +407,11 @@ describe('Study soundscapes and tracking', () => {
     })
 
     expect(useProgressStore.getState().streak).toBe(1)
-    expect(useProgressStore.getState().currentSession).toEqual({ scriptureId: 'G-1', lastCardIndex: 0 })
+    expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
+      scriptureId: 'G-1',
+      resumePath: '/study?source=G&ang=1',
+      resumeVerseId: 1,
+    }))
 
     firstRender.unmount()
 
@@ -423,7 +429,11 @@ describe('Study soundscapes and tracking', () => {
   })
 
   it('excludes the Ardaas + Hukamnama flow from streaks, session resume, and reading progress', async () => {
-    const session = { scriptureId: 'G-256', lastCardIndex: 0 }
+    const session = {
+      scriptureId: 'G-256',
+      resumePath: '/study?source=G&ang=256',
+      updatedAt: '2026-04-11T09:00:00.000Z',
+    }
     useProgressStore.setState({ streak: 2, currentSession: session, studied: [], reviewQueue: [], lastStudied: null })
 
     const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0)
@@ -469,6 +479,23 @@ describe('Study soundscapes and tracking', () => {
       randomSpy.mockRestore()
     }
   })
+
+  it('stores the active study route as the resume path for direct shabad views', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('study-card')).toHaveLength(1)
+    })
+
+    expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
+      scriptureId: 'G-1',
+      resumePath: '/study?shabadId=50',
+    }))
+  })
 })
 
 describe('Study exact shabad mode', () => {
@@ -501,6 +528,21 @@ describe('Study exact shabad mode', () => {
       expect(cards.length).toBe(1)
       expect(screen.getByText('ੴ')).toBeInTheDocument()
       expect(screen.getByText(/open full shabad/i)).toBeInTheDocument()
+    })
+  })
+
+  it('scrolls to a resume verse without breaking exact search mode', async () => {
+    const scrollSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
+
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100&resumeVerseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Exact Search Result')).toBeInTheDocument()
+      expect(scrollSpy).toHaveBeenCalled()
     })
   })
 })
