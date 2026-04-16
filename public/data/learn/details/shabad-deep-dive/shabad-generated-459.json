@@ -2,9 +2,9 @@
   "id": "shabad-generated-459",
   "title": "What comes to pass is not outside the Doer",
   "subtitle": "Raag Gauree · Ang 154",
-  "summary": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and lands in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
-  "whyItMatters": "This is for the person trapped in regret, replay, or bargaining with the past. Held steadily, it does not sentimentalize pain, but it loosens the argument with reality.",
-  "takeaway": "Regret quiets when the heart returns the moment to Hukam.",
+  "summary": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and ends in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
+  "whyItMatters": "This is for anyone who feels trapped in regret, replay, or bargaining with the past. Stayed with, it does not sentimentalize pain, but it loosens the argument with reality.",
+  "takeaway": "Let this stay with you: regret quiets when the heart returns the moment to Hukam.",
   "themes": [
     "mercy",
     "ego",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by refusing the fantasy that the past can be edited after the fact.",
-    "The middle stays honest about how little the ego knows of what comes next.",
-    "It ends in the hard mercy that there is no other Doer outside the Divine will."
+    "First, it begins by refusing the fantasy that the past can be edited after the fact.",
+    "Then, it stays honest about how little the ego knows of what comes next.",
+    "Finally, it ends in the hard mercy that there is no other Doer outside the Divine will."
   ],
   "keyVerseIds": [
     6386,
@@ -207,24 +207,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and lands in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
+      "coreClaim": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and ends in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle stays honest about how little the ego knows of what comes next.",
-      "practicalImplication": "This is for the person trapped in regret, replay, or bargaining with the past. Held steadily, it does not sentimentalize pain, but it loosens the argument with reality. Regret quiets when the heart returns the moment to Hukam.",
+      "turn": "Then, it stays honest about how little the ego knows of what comes next.",
+      "practicalImplication": "This is for anyone who feels trapped in regret, replay, or bargaining with the past. Stayed with, it does not sentimentalize pain, but it loosens the argument with reality. Let this stay with you: regret quiets when the heart returns the moment to Hukam.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.23,
-      "specificity": 4.96,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.82,
-      "beauty": 4.77,
-      "overall": 4.3
+      "usefulness": 5,
+      "beauty": 4.6,
+      "overall": 4.46
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

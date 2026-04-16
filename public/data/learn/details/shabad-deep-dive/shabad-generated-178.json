@@ -2,9 +2,9 @@
   "id": "shabad-generated-178",
   "title": "Fresh Naam enters the mind",
   "subtitle": "Siree Raag · Ang 69",
-  "summary": "The shabad begins by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
-  "whyItMatters": "This is for the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within.",
-  "takeaway": "Stay still long enough for fresh Naam to settle.",
+  "summary": "The shabad opens by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
+  "whyItMatters": "This speaks to the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within.",
+  "takeaway": "Carry this with you: stay still long enough for fresh Naam to settle.",
   "themes": [
     "restlessness",
     "fear",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens with the True Guru breaking the old cycle of pain and return.",
-    "The middle gives understanding through the Shabad instead of through restless striving.",
-    "It ends with Naam arriving as something ever-fresh inside the mind itself."
+    "First, it starts with the True Guru breaking the old cycle of pain and return.",
+    "Then, it gives understanding through the Shabad instead of through restless striving.",
+    "Finally, it ends with Naam arriving as something ever-fresh inside the mind itself."
   ],
   "keyVerseIds": [
     2771,
@@ -207,10 +207,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
+      "coreClaim": "The shabad opens by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle gives understanding through the Shabad instead of through restless striving.",
-      "practicalImplication": "This is for the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within. Stay still long enough for fresh Naam to settle.",
+      "turn": "Then, it gives understanding through the Shabad instead of through restless striving.",
+      "practicalImplication": "This speaks to the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within. Carry this with you: stay still long enough for fresh Naam to settle.",
       "bannedOverreach": []
     },
     "scores": {
@@ -218,13 +218,13 @@
       "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.36,
-      "beauty": 4.15,
-      "overall": 4.25
+      "usefulness": 4.72,
+      "beauty": 4.16,
+      "overall": 4.31
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

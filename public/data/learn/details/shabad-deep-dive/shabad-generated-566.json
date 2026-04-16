@@ -2,9 +2,9 @@
   "id": "shabad-generated-566",
   "title": "Holy company washes deeper than self-scrubbing",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It moves through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
-  "whyItMatters": "This is for the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Held faithfully, it turns cleansing from private labor into grace received in holy company.",
-  "takeaway": "Seek the company that washes the heart and turns it toward Naam.",
+  "summary": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It travels through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
+  "whyItMatters": "This speaks to the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Kept close, it turns cleansing from private labor into grace received in holy company.",
+  "takeaway": "Let this stay with you: seek the company that washes the heart and turns it toward Naam.",
   "themes": [
     "comparison",
     "ego",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by naming saintly presence itself as a complete cleansing.",
-    "The middle shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
-    "It ends with perfect karma expressed as meeting the feet of the holy."
+    "First, it begins by naming saintly presence itself as a complete cleansing.",
+    "Then, it shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
+    "Finally, it ends with perfect karma expressed as meeting the feet of the holy."
   ],
   "keyVerseIds": [
     7991,
@@ -152,10 +152,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It moves through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
+      "coreClaim": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It travels through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
-      "practicalImplication": "This is for the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Held faithfully, it turns cleansing from private labor into grace received in holy company. Seek the company that washes the heart and turns it toward Naam.",
+      "turn": "Then, it shows what that cleansing does: ego thins, the One is seen, and the passions lose ground.",
+      "practicalImplication": "This speaks to the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Kept close, it turns cleansing from private labor into grace received in holy company. Let this stay with you: seek the company that washes the heart and turns it toward Naam.",
       "bannedOverreach": []
     },
     "scores": {
@@ -163,13 +163,13 @@
       "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.36,
-      "beauty": 4.69,
-      "overall": 4.3
+      "usefulness": 4.72,
+      "beauty": 4.53,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -3,8 +3,8 @@
   "title": "The path is known by labor and generosity",
   "subtitle": "Raag Saarang",
   "summary": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
-  "whyItMatters": "This is for the person confused by spiritual branding, costume, or authority language. Held honestly, it returns discernment to labor, generosity, and humility.",
-  "takeaway": "Honest labor and sharing reveal the path better than costume.",
+  "whyItMatters": "This speaks to the person confused by spiritual branding, costume, or authority language. Stayed with honestly, it returns discernment to labor, generosity, and humility.",
+  "takeaway": "Carry this with you: honest labor and sharing reveal the path better than costume.",
   "themes": [
     "seva",
     "discipline",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by mocking hollow religious performances that substitute image for wisdom.",
-    "The middle refuses reverence toward the guru-figure who begs while claiming status.",
-    "It ends in a simple mark of truth: work honestly, give from your hands, and the path becomes recognizable."
+    "First, it begins by mocking hollow religious performances that substitute image for wisdom.",
+    "Then, it refuses reverence toward the guru-figure who begs while claiming status.",
+    "Finally, it ends in a simple mark of truth: work honestly, give from your hands, and the path becomes recognizable."
   ],
   "keyVerseIds": [
     53369,
@@ -140,8 +140,8 @@
     "evidence": {
       "coreClaim": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "The middle refuses reverence toward the guru-figure who begs while claiming status.",
-      "practicalImplication": "This is for the person confused by spiritual branding, costume, or authority language. Held honestly, it returns discernment to labor, generosity, and humility. Honest labor and sharing reveal the path better than costume.",
+      "turn": "Then, it refuses reverence toward the guru-figure who begs while claiming status.",
+      "practicalImplication": "This speaks to the person confused by spiritual branding, costume, or authority language. Stayed with honestly, it returns discernment to labor, generosity, and humility. Carry this with you: honest labor and sharing reveal the path better than costume.",
       "bannedOverreach": []
     },
     "scores": {
@@ -149,13 +149,13 @@
       "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3,
-      "usefulness": 3.6,
-      "beauty": 4.53,
-      "overall": 4.14
+      "usefulness": 4.36,
+      "beauty": 4.37,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

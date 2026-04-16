@@ -6253,12 +6253,17 @@
       "id": "shabad-hukam-inside-everything",
       "title": "Hukam is the atmosphere of everything",
       "subtitle": "Japji Sahib, Pauri 2",
-      "summary": "The shabad opens by placing form, life, greatness, pain, blessing, and wandering inside Hukam. It keeps widening that field until nothing stands outside the Command and ego has nowhere left to boast.",
-      "whyItMatters": "This is for the person still dividing life into acceptable turns and unacceptable ones. Held steadily, it enlarges reality beyond protest and makes humility possible inside every condition.",
+      "summary": "The shabad starts by placing form, life, greatness, pain, blessing, and wandering inside Hukam. It keeps widening that field until nothing stands outside the Command and ego has nowhere left to boast.",
+      "whyItMatters": "This is for anyone who is still dividing life into acceptable turns and unacceptable ones. Stayed with, it enlarges reality beyond protest and makes humility possible inside every condition.",
       "themes": [
         "hukam",
         "anxiety",
         "surrender"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-doubt-to-clarity",
+        "collection-control-to-release"
       ],
       "relatedGuidanceIds": [
         "guidance-hukam",
@@ -6267,11 +6272,6 @@
       ],
       "relatedTopicIds": [
         "topic-hukam"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-doubt-to-clarity",
-        "collection-control-to-release"
       ],
       "rotation": {
         "theme": "hukam",
@@ -6289,12 +6289,17 @@
       "id": "shabad-conquer-the-mind",
       "title": "Wear contentment before you speak of conquest",
       "subtitle": "Japji Sahib, Pauri 28",
-      "summary": "The shabad opens by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It widens into brotherhood and lands where true conquest happens, in the mind rather than the room.",
-      "whyItMatters": "This is for the person tempted by spiritual image, intensity, or performance. Held honestly, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
+      "summary": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
+      "whyItMatters": "This is for anyone who feels tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
       "themes": [
         "discipline",
         "mind",
         "comparison"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-restlessness-to-stillness",
+        "collection-truthful-wealth"
       ],
       "relatedGuidanceIds": [
         "guidance-mind-mastery",
@@ -6303,11 +6308,6 @@
       ],
       "relatedTopicIds": [
         "topic-discipline"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-restlessness-to-stillness",
-        "collection-truthful-wealth"
       ],
       "rotation": {
         "theme": "discipline",
@@ -6325,12 +6325,17 @@
       "id": "shabad-human-birth-is-chance",
       "title": "Human birth is a chance, not an ornament",
       "subtitle": "So Purakh",
-      "summary": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
-      "whyItMatters": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response.",
+      "summary": "The shabad refuses to flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
+      "whyItMatters": "This one meets the person busy enough to forget that life is more than maintenance and self-arrangement. Kept near, it turns a precious life from drift into response.",
       "themes": [
         "purpose",
         "discipline",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-truthful-wealth",
+        "collection-purpose-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-human-opportunity",
@@ -6340,11 +6345,6 @@
       ],
       "relatedTopicIds": [
         "topic-purpose"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-truthful-wealth",
-        "collection-purpose-journey"
       ],
       "rotation": {
         "theme": "purpose",
@@ -6362,12 +6362,17 @@
       "id": "shabad-selfless-service",
       "title": "Service without reward reaches the Master",
       "subtitle": "Raag Gauree",
-      "summary": "The shabad opens by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
-      "whyItMatters": "This is for the person doing good while keeping one eye on recognition. Held faithfully, it purifies service by taking self-display and reward out of the center.",
+      "summary": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+      "whyItMatters": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center.",
       "themes": [
         "seva",
         "humility",
         "discipline"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-seva-journey",
+        "collection-seva-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-selfless-service",
@@ -6377,11 +6382,6 @@
       ],
       "relatedTopicIds": [
         "topic-seva"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-seva-journey",
-        "collection-seva-journey"
       ],
       "rotation": {
         "theme": "seva",
@@ -6400,11 +6400,16 @@
       "title": "Ego is a chronic illness with a cure inside it",
       "subtitle": "Raag Aasaa",
       "summary": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
-      "whyItMatters": "This is for the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay with this shabad after conflict, and it turns self-diagnosis from shame into treatment.",
+      "whyItMatters": "This one meets the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay close to this shabad after conflict, and it turns self-diagnosis from shame into treatment.",
       "themes": [
         "ego",
         "anger",
         "self-awareness"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-ego-cure",
@@ -6414,11 +6419,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -6436,12 +6436,16 @@
       "id": "shabad-suffering-as-medicine",
       "title": "Pain tells the truth comfort hides",
       "subtitle": "Raag Aasaa",
-      "summary": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
-      "whyItMatters": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
+      "summary": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+      "whyItMatters": "This is for anyone who feels clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
       "themes": [
         "reflection",
         "anxiety",
         "gratitude"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-anxiety-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-suffering-as-medicine",
@@ -6450,10 +6454,6 @@
         "guidance-suffering-as-medicine-2"
       ],
       "relatedTopicIds": [],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-anxiety-journey"
-      ],
       "rotation": {
         "theme": "reflection",
         "depthLevel": "growing",
@@ -6470,12 +6470,17 @@
       "id": "shabad-steadied-by-creator",
       "title": "Why waver under a merciful Creator",
       "subtitle": "Raag Tilang",
-      "summary": "The shabad opens by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
-      "whyItMatters": "This is for the person spiraling over provision, safety, or the future. Held steadily, it pulls the mind back under mercy and teaches trust while breath remains.",
+      "summary": "The shabad begins by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
+      "whyItMatters": "This is for anyone who feels spiraling over provision, safety, or the future. Taken steadily, it pulls the mind back under mercy and teaches trust while breath remains.",
       "themes": [
         "anxiety",
         "fear",
         "trust"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-anxiety-journey",
+        "collection-anxiety-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-fear-and-protection",
@@ -6484,11 +6489,6 @@
       ],
       "relatedTopicIds": [
         "topic-anxiety"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-anxiety-journey",
-        "collection-anxiety-bundle"
       ],
       "rotation": {
         "theme": "anxiety",
@@ -6507,11 +6507,16 @@
       "title": "Mercy remembered becomes living Naam",
       "subtitle": "Mundhaavanee Fifth Mehl",
       "summary": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
-      "whyItMatters": "This is for the person who has gone numb to mercy or embarrassed by their own ingratitude. Held honestly, it turns shame into gratitude and gratitude into renewed life in Naam.",
+      "whyItMatters": "This one meets the person who has gone numb to mercy or embarrassed by their own ingratitude. Stayed with honestly, it turns shame into gratitude and gratitude into renewed life in Naam.",
       "themes": [
         "gratitude",
         "humility",
         "naam"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-gratitude-journey",
+        "collection-gratitude-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-gratitude",
@@ -6520,11 +6525,6 @@
       ],
       "relatedTopicIds": [
         "topic-gratitude"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-gratitude-journey",
-        "collection-gratitude-journey"
       ],
       "rotation": {
         "theme": "gratitude",
@@ -6543,11 +6543,16 @@
       "title": "Longing is led home in saintly company",
       "subtitle": "Raag Maajh",
       "summary": "The shabad opens in aching longing for the Beloved and admits it cannot find the way alone. It searches mind and body, turns toward saintly company, and keeps asking to be brought near.",
-      "whyItMatters": "This is for the person who feels alone, spiritually lost, or emotionally closed in. Held faithfully, it changes loneliness from sealed isolation into guided longing and gives yearning somewhere truthful to go.",
+      "whyItMatters": "This speaks to the person who feels alone, spiritually lost, or emotionally closed in. Taken faithfully, it changes loneliness from sealed isolation into guided longing and gives yearning somewhere truthful to go.",
       "themes": [
         "loneliness",
         "sangat",
         "trust"
+      ],
+      "relatedCollectionIds": [
+        "collection-sangat-and-belonging",
+        "collection-loneliness-journey",
+        "collection-loneliness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-cherished-child",
@@ -6557,11 +6562,6 @@
       ],
       "relatedTopicIds": [
         "topic-loneliness"
-      ],
-      "relatedCollectionIds": [
-        "collection-sangat-and-belonging",
-        "collection-loneliness-journey",
-        "collection-loneliness-bundle"
       ],
       "rotation": {
         "theme": "loneliness",
@@ -6579,12 +6579,17 @@
       "id": "shabad-remembrance-brings-peace",
       "title": "Remembrance settles the body",
       "subtitle": "Raag Gauree",
-      "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
-      "whyItMatters": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language.",
+      "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It broadens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
+      "whyItMatters": "This is for anyone whose worry has moved into the chest, gut, and shoulders. Kept near, it gives simran a bodily honesty instead of leaving it as decorative language.",
       "themes": [
         "anxiety",
         "naam",
         "discipline"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-anxiety-journey",
+        "collection-anxiety-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-remember-and-find-peace",
@@ -6593,11 +6598,6 @@
       ],
       "relatedTopicIds": [
         "topic-anxiety"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-anxiety-journey",
-        "collection-anxiety-bundle"
       ],
       "rotation": {
         "theme": "anxiety",
@@ -6615,20 +6615,20 @@
       "id": "shabad-honor-women",
       "title": "Honor the one through whom life arrives",
       "subtitle": "Raag Aasaa",
-      "summary": "The shabad opens by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
-      "whyItMatters": "This is for the person shaped by casual contempt, inherited patriarchy, or speech that lowers women while depending on them. Held honestly, it restores reverence, humility, and a truer social imagination.",
+      "summary": "The shabad begins by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
+      "whyItMatters": "This is for anyone who feels shaped by casual contempt, inherited patriarchy, or speech that lowers women while depending on them. Taken seriously, it restores reverence, humility, and a truer social imagination.",
       "themes": [
         "equality",
         "humility",
         "relationships"
       ],
+      "relatedCollectionIds": [],
       "relatedGuidanceIds": [
         "guidance-honor-what-guru-honors",
         "guidance-honor-women-1",
         "guidance-honor-women-2"
       ],
       "relatedTopicIds": [],
-      "relatedCollectionIds": [],
       "rotation": {
         "theme": "equality",
         "depthLevel": "beginner",
@@ -6646,11 +6646,16 @@
       "title": "The path is known by labor and generosity",
       "subtitle": "Raag Saarang",
       "summary": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
-      "whyItMatters": "This is for the person confused by spiritual branding, costume, or authority language. Held honestly, it returns discernment to labor, generosity, and humility.",
+      "whyItMatters": "This speaks to the person confused by spiritual branding, costume, or authority language. Stayed with honestly, it returns discernment to labor, generosity, and humility.",
       "themes": [
         "seva",
         "discipline",
         "honesty"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-seva-journey",
+        "collection-seva-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-work-and-give",
@@ -6660,11 +6665,6 @@
       ],
       "relatedTopicIds": [
         "topic-seva"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-seva-journey",
-        "collection-seva-journey"
       ],
       "rotation": {
         "theme": "discipline",
@@ -6682,12 +6682,17 @@
       "id": "shabad-detached-and-steady",
       "title": "Rest where praise and possession lose their force",
       "subtitle": "Raag Gauree",
-      "summary": "The shabad begins by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
-      "whyItMatters": "This is for the person whipped around by approval, possession, or comparison. Held steadily, it makes detachment feel less like numbness and more like shelter strong enough to keep the heart even.",
+      "summary": "The shabad starts by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
+      "whyItMatters": "This one meets the person whipped around by approval, possession, or comparison. Kept near, it makes detachment feel less like numbness and more like shelter strong enough to keep the heart even.",
       "themes": [
         "attachment",
         "comparison",
         "steadiness"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-comparison-journey",
+        "collection-attachment-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-praise-and-blame",
@@ -6696,11 +6701,6 @@
       ],
       "relatedTopicIds": [
         "topic-attachment"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-comparison-journey",
-        "collection-attachment-journey"
       ],
       "rotation": {
         "theme": "attachment",
@@ -6718,12 +6718,17 @@
       "id": "shabad-what-pleases-you-comes-to-pass",
       "title": "Receiving under Hukam",
       "subtitle": "So Purakh · Ang 11",
-      "summary": "The shabad opens by placing all becoming, giving, and receiving in the Lord's pleasure. It widens through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
-      "whyItMatters": "This is for the person fighting outcomes they did not choose or trying to carry reality by force. Held steadily, it teaches a cleaner receiving under Hukam and loosens the fist of resistance.",
+      "summary": "The shabad starts by placing all becoming, giving, and receiving in the Lord's pleasure. It opens further through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
+      "whyItMatters": "This one meets the person fighting outcomes they did not choose or trying to carry reality by force. Taken steadily, it teaches a cleaner receiving under Hukam and loosens the fist of resistance.",
       "themes": [
         "hukam",
         "mercy",
         "trust"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-doubt-to-clarity",
+        "collection-control-to-release"
       ],
       "relatedGuidanceIds": [
         "guidance-what-pleases-you",
@@ -6733,11 +6738,6 @@
       ],
       "relatedTopicIds": [
         "topic-hukam"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-doubt-to-clarity",
-        "collection-control-to-release"
       ],
       "rotation": {
         "theme": "hukam",
@@ -6755,12 +6755,17 @@
       "id": "shabad-speak-what-brings-honor",
       "title": "Do not let speech carry filth",
       "subtitle": "Siree Raag · Ang 15",
-      "summary": "The shabad opens by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
-      "whyItMatters": "This is for the person whose hurt, sharpness, or cleverness keeps leaking out through the mouth. Held honestly, it makes speech answerable to honor, not impulse.",
+      "summary": "The shabad begins by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
+      "whyItMatters": "This one meets the person whose hurt, sharpness, or cleverness keeps leaking out through the mouth. Stayed with honestly, it makes speech answerable to honor, not impulse.",
       "themes": [
         "speech",
         "greed",
         "anger"
+      ],
+      "relatedCollectionIds": [
+        "collection-speech-and-self-restraint",
+        "collection-conduct-and-clean-speech",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-speak-for-honor",
@@ -6770,11 +6775,6 @@
       ],
       "relatedTopicIds": [
         "topic-speech"
-      ],
-      "relatedCollectionIds": [
-        "collection-speech-and-self-restraint",
-        "collection-conduct-and-clean-speech",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "speech",
@@ -6792,12 +6792,17 @@
       "id": "shabad-extinguish-the-fire-of-doubt",
       "title": "Doubt does not die by wandering",
       "subtitle": "Siree Raag · Ang 22",
-      "summary": "The shabad opens by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
-      "whyItMatters": "This is for the person who keeps moving, researching, and second-guessing without getting clearer. Held honestly, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea.",
+      "summary": "The shabad begins by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
+      "whyItMatters": "This one meets the person who keeps moving, researching, and second-guessing without getting clearer. Taken seriously, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea.",
       "themes": [
         "doubt",
         "sangat",
         "naam"
+      ],
+      "relatedCollectionIds": [
+        "collection-doubt-to-clarity",
+        "collection-doubt-journey",
+        "collection-doubt-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-extinguish-the-fire",
@@ -6807,11 +6812,6 @@
       ],
       "relatedTopicIds": [
         "topic-doubt"
-      ],
-      "relatedCollectionIds": [
-        "collection-doubt-to-clarity",
-        "collection-doubt-journey",
-        "collection-doubt-bundle"
       ],
       "rotation": {
         "theme": "doubt",
@@ -6830,11 +6830,16 @@
       "title": "Trade for what can follow you",
       "subtitle": "Siree Raag · Ang 22",
       "summary": "The shabad begins with market language and turns it against ordinary appetite: buy what can go with you. It measures profit by praise, truth, and the wealth the Divine Merchant will still receive.",
-      "whyItMatters": "This is for the person trying to feel safe through buying, upgrading, or being seen as successful. Keep this shabad at the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you?",
+      "whyItMatters": "This is for anyone who feels trying to feel safe through buying, upgrading, or being seen as successful. Bring this shabad to the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you?",
       "themes": [
         "discipline",
         "purpose",
         "greed"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-restlessness-to-stillness",
+        "collection-truthful-wealth"
       ],
       "relatedGuidanceIds": [
         "guidance-buy-what-goes-with-you",
@@ -6844,11 +6849,6 @@
       ],
       "relatedTopicIds": [
         "topic-discipline"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-restlessness-to-stillness",
-        "collection-truthful-wealth"
       ],
       "rotation": {
         "theme": "purpose",
@@ -6866,12 +6866,17 @@
       "id": "shabad-sweet-speech-humble-walk",
       "title": "Peace shows up in speech and gait",
       "subtitle": "Siree Raag · Ang 31",
-      "summary": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It turns toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
-      "whyItMatters": "This is for the person whose devotional language still outruns their conduct. Held faithfully, it lets peace become visible in tone, pace, and the body's way of moving through the world.",
+      "summary": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It directs the heart toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
+      "whyItMatters": "This one meets the person whose devotional language still outruns their conduct. Kept close, it lets peace become visible in tone, pace, and the body's way of moving through the world.",
       "themes": [
         "speech",
         "humility",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-speech-and-self-restraint",
+        "collection-conduct-and-clean-speech",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-sweet-speech-humble-walk",
@@ -6881,11 +6886,6 @@
       ],
       "relatedTopicIds": [
         "topic-speech"
-      ],
-      "relatedCollectionIds": [
-        "collection-speech-and-self-restraint",
-        "collection-conduct-and-clean-speech",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "speech",
@@ -6904,11 +6904,16 @@
       "title": "Roaming ends where holy company cools the heart",
       "subtitle": "Raag Maajh · Ang 98",
       "summary": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy brings true company, and then the mind and body finally cool.",
-      "whyItMatters": "This is for the person trapped in spiritual roaming, method-switching, and never-arriving effort. Held honestly, it says peace is not found by multiplying techniques but by mercy and true company.",
+      "whyItMatters": "This one meets the person trapped in spiritual roaming, method-switching, and never-arriving effort. Taken seriously, it says peace is not found by multiplying techniques but by mercy and true company.",
       "themes": [
         "restlessness",
         "patience",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-restlessness-journey",
+        "collection-restlessness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-search-is-not-settlement",
@@ -6918,11 +6923,6 @@
       ],
       "relatedTopicIds": [
         "topic-restlessness"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-restlessness-journey",
-        "collection-restlessness-bundle"
       ],
       "rotation": {
         "theme": "restlessness",
@@ -6940,12 +6940,17 @@
       "id": "shabad-forgiveness-becomes-fearless",
       "title": "Forgiveness is the fast that makes one fearless",
       "subtitle": "Raag Gauree · Ang 223",
-      "summary": "The shabad begins by naming forgiveness, good conduct, and contentment as the real fast. It moves through release from disease and death-fear and settles in the Lord already present within and without.",
-      "whyItMatters": "This is for the person holding hurt so tightly that it has started feeling like identity. Held faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power.",
+      "summary": "The shabad starts by naming forgiveness, good conduct, and contentment as the real fast. It travels through release from disease and death-fear and comes to rest in the Lord already present within and without.",
+      "whyItMatters": "This speaks to the person holding hurt so tightly that it has started feeling like identity. Taken faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power.",
       "themes": [
         "forgiveness",
         "fearlessness",
         "discipline"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-shame-to-welcome",
+        "collection-forgiveness-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-forgiveness-is-the-fast",
@@ -6955,11 +6960,6 @@
       ],
       "relatedTopicIds": [
         "topic-forgiveness"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-shame-to-welcome",
-        "collection-forgiveness-journey"
       ],
       "rotation": {
         "theme": "forgiveness",
@@ -6978,11 +6978,16 @@
       "title": "True bankers trade in Naam",
       "subtitle": "Raag Gauree · Ang 257",
       "summary": "The pauree opens by saying the mind's wandering stops in the company of saints. It then names the true bankers as those whose wealth is the Name and whose patience, honor, and glory ripen from listening well.",
-      "whyItMatters": "This is for the person chasing quick gains, visible results, or restless proof. Held consistently, it redefines wealth, slows the heart, and lets patience become a real form of honor.",
+      "whyItMatters": "This is for anyone who feels chasing quick gains, visible results, or restless proof. Stayed with consistently, it redefines wealth, slows the heart, and lets patience become a real form of honor.",
       "themes": [
         "patience",
         "sangat",
         "truth"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-tired-heart-to-rest",
+        "collection-patience-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-wanderings-cease-in-sangat",
@@ -6992,11 +6997,6 @@
       ],
       "relatedTopicIds": [
         "topic-patience"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-tired-heart-to-rest",
-        "collection-patience-journey"
       ],
       "rotation": {
         "theme": "patience",
@@ -7014,12 +7014,17 @@
       "id": "shabad-ambrosial-speech-pure-conduct",
       "title": "Religion measured by Naam and conduct",
       "subtitle": "Raag Gauree · Ang 266",
-      "summary": "The shabad begins by ranking the path plainly: the best religion is Naam joined to pure conduct. It widens through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
-      "whyItMatters": "This is for the person whose language of devotion has started outrunning the life carrying it. Held honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior.",
+      "summary": "The shabad opens by ranking the path plainly: the best religion is Naam joined to pure conduct. It moves through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
+      "whyItMatters": "This one meets the person whose language of devotion has started outrunning the life carrying it. Stayed with honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior.",
       "themes": [
         "speech",
         "discipline",
         "truth"
+      ],
+      "relatedCollectionIds": [
+        "collection-speech-and-self-restraint",
+        "collection-conduct-and-clean-speech",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-pure-conduct-outweighs-display",
@@ -7029,11 +7034,6 @@
       ],
       "relatedTopicIds": [
         "topic-speech"
-      ],
-      "relatedCollectionIds": [
-        "collection-speech-and-self-restraint",
-        "collection-conduct-and-clean-speech",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "speech",
@@ -7051,12 +7051,17 @@
       "id": "shabad-lord-keeps-the-humble-close",
       "title": "The humble are kept close",
       "subtitle": "Raag Raamkalee · Ang 882",
-      "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
-      "whyItMatters": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord.",
+      "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It carries the listener through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
+      "whyItMatters": "This one meets the person whose sense of worth keeps depending on attention, beauty, or riches. Stayed with gently, it turns worth into something received from being held near the Lord.",
       "themes": [
         "self-worth",
         "humility",
         "trust"
+      ],
+      "relatedCollectionIds": [
+        "collection-self-worth-journey",
+        "collection-self-worth-bundle",
+        "collection-restlessness-to-self-worth-95"
       ],
       "relatedGuidanceIds": [
         "guidance-held-close-not-abandoned",
@@ -7066,11 +7071,6 @@
       ],
       "relatedTopicIds": [
         "topic-self-worth"
-      ],
-      "relatedCollectionIds": [
-        "collection-self-worth-journey",
-        "collection-self-worth-bundle",
-        "collection-restlessness-to-self-worth-95"
       ],
       "rotation": {
         "theme": "self-worth",
@@ -7088,12 +7088,17 @@
       "id": "shabad-forgiveness-opens-lasting-peace",
       "title": "Forgiveness settles into lasting peace",
       "subtitle": "Raag Sorath · Ang 628",
-      "summary": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It widens into peace spreading everywhere and lands in singing the Guru's Bani and meditating on Naam.",
-      "whyItMatters": "This is for the person who has tasted relief but does not yet know how to live from it. Held steadily, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere.",
+      "summary": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
+      "whyItMatters": "This one meets the person who has tasted relief but does not yet know how to live from it. Stayed with, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere.",
       "themes": [
         "forgiveness",
         "peace",
         "grace"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-shame-to-welcome",
+        "collection-forgiveness-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-forgiveness-opens-the-room",
@@ -7103,11 +7108,6 @@
       ],
       "relatedTopicIds": [
         "topic-forgiveness"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-shame-to-welcome",
-        "collection-forgiveness-journey"
       ],
       "rotation": {
         "theme": "forgiveness",
@@ -7125,12 +7125,17 @@
       "id": "shabad-generated-1",
       "title": "Truth before beginning, truth through time",
       "subtitle": "Jap · Ang 1",
-      "summary": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, then lands in the question of how falsehood breaks: by walking in Hukam.",
-      "whyItMatters": "This is for the person swollen with urgency, cleverness, or spiritual self-effort. Held honestly, it changes scale: your fear stops posing as ultimate, and you begin learning how to live under what is already true.",
+      "summary": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, before coming to rest in the question of how falsehood breaks: by walking in Hukam.",
+      "whyItMatters": "This one meets the person swollen with urgency, cleverness, or spiritual self-effort. Kept close, it changes scale: your fear stops posing as ultimate, and you begin learning how to live under what is already true.",
       "themes": [
         "anger",
         "ego",
         "gratitude"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-speech-and-self-restraint",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-1-1",
@@ -7139,11 +7144,6 @@
       ],
       "relatedTopicIds": [
         "topic-anger"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-speech-and-self-restraint",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "anger",
@@ -7162,11 +7162,16 @@
       "title": "Praise breaks the illusion of mastery",
       "subtitle": "Jap · Ang 1",
       "summary": "The shabad begins with many voices singing different dimensions of the Lord's power, gifts, beauty, knowledge, making, and unmaking. It opens the field so wide that control, ownership, and single-angle thinking start to look small.",
-      "whyItMatters": "This is for the person gripping reality too tightly and mistaking analysis for authority. Held honestly, it restores scale and invites praise where the mind wanted to dominate.",
+      "whyItMatters": "This is for anyone who feels gripping reality too tightly and mistaking analysis for authority. Stayed with honestly, it restores scale and invites praise where the mind wanted to dominate.",
       "themes": [
         "control",
         "purpose",
         "hukam"
+      ],
+      "relatedCollectionIds": [
+        "collection-control-to-release",
+        "collection-control-journey",
+        "collection-control-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-3-1",
@@ -7174,11 +7179,6 @@
       ],
       "relatedTopicIds": [
         "topic-control"
-      ],
-      "relatedCollectionIds": [
-        "collection-control-to-release",
-        "collection-control-journey",
-        "collection-control-bundle"
       ],
       "rotation": {
         "theme": "control",
@@ -7196,12 +7196,17 @@
       "id": "shabad-generated-63",
       "title": "Remember together, not in isolation",
       "subtitle": "Siree Raag · Ang 17",
-      "summary": "The shabad opens by calling spiritual companions close and asking them to speak of the Lord together. It widens through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
-      "whyItMatters": "This is for the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again.",
+      "summary": "The shabad begins by calling spiritual companions close and asking them to speak of the Lord together. It carries the listener through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
+      "whyItMatters": "This one meets the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again.",
       "themes": [
         "gratitude",
         "patience",
         "doubt"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-gratitude-journey",
+        "collection-gratitude-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-63-1",
@@ -7209,11 +7214,6 @@
       ],
       "relatedTopicIds": [
         "topic-gratitude"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-gratitude-journey",
-        "collection-gratitude-journey"
       ],
       "rotation": {
         "theme": "gratitude",
@@ -7231,12 +7231,17 @@
       "id": "shabad-generated-64",
       "title": "Fear leaves when schemes do",
       "subtitle": "Siree Raag · Ang 18",
-      "summary": "The shabad opens with rescue arriving alongside subdued ego. It moves through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
-      "whyItMatters": "This is for the person trying to survive by cleverness, image-management, or endless contingency planning. Held honestly, it turns salvation away from schemes and back toward the Guru's truth.",
+      "summary": "The shabad opens with rescue arriving alongside subdued ego. It travels through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
+      "whyItMatters": "This speaks to the person trying to survive by cleverness, image-management, or endless contingency planning. Taken seriously, it turns salvation away from schemes and back toward the Guru's truth.",
       "themes": [
         "ego",
         "comparison",
         "seva"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-64-1",
@@ -7244,11 +7249,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -7266,12 +7266,17 @@
       "id": "shabad-generated-65",
       "title": "Praise melts what comparison hardens",
       "subtitle": "Siree Raag · Ang 18",
-      "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
-      "whyItMatters": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming.",
+      "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It carries the listener through saintly dust, true action, and the home of the self being found within.",
+      "whyItMatters": "This is for anyone whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Kept near, it softens the separate self and turns it toward praise, holy company, and homecoming.",
       "themes": [
         "comparison",
         "self-worth",
         "gratitude"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-comparison-journey",
+        "collection-comparison-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-65-1",
@@ -7280,11 +7285,6 @@
       ],
       "relatedTopicIds": [
         "topic-comparison"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-comparison-journey",
-        "collection-comparison-bundle"
       ],
       "rotation": {
         "theme": "comparison",
@@ -7302,12 +7302,17 @@
       "id": "shabad-generated-66",
       "title": "Duality makes decoration hollow",
       "subtitle": "Siree Raag · Ang 18",
-      "summary": "The shabad opens by calling the life deceived by duality cursed and unstable like a wall of sand. It moves through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
-      "whyItMatters": "This is for the person still trying to fix inner separation with outer polish. Held honestly, it exposes display without love and turns the heart back toward the Beloved.",
+      "summary": "The shabad starts by calling the life deceived by duality cursed and unstable like a wall of sand. It travels through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
+      "whyItMatters": "This one meets the person still trying to fix inner separation with outer polish. Stayed with honestly, it exposes display without love and turns the heart back toward the Beloved.",
       "themes": [
         "gratitude",
         "mercy",
         "anxiety"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-gratitude-journey",
+        "collection-gratitude-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-66-1",
@@ -7316,11 +7321,6 @@
       ],
       "relatedTopicIds": [
         "topic-gratitude"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-gratitude-journey",
-        "collection-gratitude-journey"
       ],
       "rotation": {
         "theme": "gratitude",
@@ -7339,11 +7339,16 @@
       "title": "Ask the Guru before you multiply the questions",
       "subtitle": "Siree Raag · Ang 34",
       "summary": "The shabad opens with an exposed question: whom shall I serve, what shall I chant? It answers by accepting the True Guru's will, uprooting selfishness, and letting Naam bring peace into the mind.",
-      "whyItMatters": "This is for the person exhausted by indecision, self-invention, or spiritual sampling. Held honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered.",
+      "whyItMatters": "This is for anyone who feels exhausted by indecision, self-invention, or spiritual sampling. Stayed with honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered.",
       "themes": [
         "anxiety",
         "comparison",
         "ego"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-anxiety-journey",
+        "collection-anxiety-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-107-1",
@@ -7351,11 +7356,6 @@
       ],
       "relatedTopicIds": [
         "topic-anxiety"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-anxiety-journey",
-        "collection-anxiety-bundle"
       ],
       "rotation": {
         "theme": "anxiety",
@@ -7373,12 +7373,17 @@
       "id": "shabad-generated-108",
       "title": "Do not postpone remembrance",
       "subtitle": "Siree Raag · Ang 35",
-      "summary": "The shabad begins by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It answers with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
-      "whyItMatters": "This is for the person who respects practice in principle but keeps scheduling it out of reach. Held steadily, it breaks procrastination's spell and teaches constancy more than intensity.",
+      "summary": "The shabad starts by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It responds with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
+      "whyItMatters": "This one meets the person who respects practice in principle but keeps scheduling it out of reach. Taken steadily, it breaks procrastination's spell and teaches constancy more than intensity.",
       "themes": [
         "anger",
         "sangat",
         "seeking"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-speech-and-self-restraint",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-108-1",
@@ -7386,11 +7391,6 @@
       ],
       "relatedTopicIds": [
         "topic-anger"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-speech-and-self-restraint",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "anger",
@@ -7409,11 +7409,16 @@
       "title": "The Shabad clears the double mind",
       "subtitle": "Siree Raag · Ang 35",
       "summary": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
-      "whyItMatters": "This is for the person who keeps reopening certainty until it turns cloudy. Held faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins.",
+      "whyItMatters": "This is for anyone who keeps reopening certainty until it turns cloudy. Taken faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins.",
       "themes": [
         "doubt",
         "restlessness",
         "seeking"
+      ],
+      "relatedCollectionIds": [
+        "collection-doubt-to-clarity",
+        "collection-doubt-journey",
+        "collection-doubt-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-109-1",
@@ -7421,11 +7426,6 @@
       ],
       "relatedTopicIds": [
         "topic-doubt"
-      ],
-      "relatedCollectionIds": [
-        "collection-doubt-to-clarity",
-        "collection-doubt-journey",
-        "collection-doubt-bundle"
       ],
       "rotation": {
         "theme": "doubt",
@@ -7444,11 +7444,16 @@
       "title": "Mercy lets the child tell the truth",
       "subtitle": "Siree Raag · Ang 51",
       "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
-      "whyItMatters": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike.",
+      "whyItMatters": "This is for anyone who feels stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike.",
       "themes": [
         "hukam",
         "shame",
         "purpose"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-to-trust",
+        "collection-doubt-to-clarity",
+        "collection-control-to-release"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-150-1",
@@ -7457,11 +7462,6 @@
       ],
       "relatedTopicIds": [
         "topic-hukam"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-to-trust",
-        "collection-doubt-to-clarity",
-        "collection-control-to-release"
       ],
       "rotation": {
         "theme": "hukam",
@@ -7479,12 +7479,17 @@
       "id": "shabad-generated-151",
       "title": "Humble company ends the fight underneath the fight",
       "subtitle": "Siree Raag · Ang 52",
-      "summary": "The shabad opens by saying that meeting the humble defeats the messenger of death. It deepens through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
-      "whyItMatters": "This is for the person whose heat, fear, or defensiveness keeps masquerading as strength. Keep this shabad close when you want to fight alone, and it will remind you that the company you enter is already shaping your courage.",
+      "summary": "The shabad begins by saying that meeting the humble defeats the messenger of death. It pushes deeper through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
+      "whyItMatters": "This speaks to the person whose heat, fear, or defensiveness keeps masquerading as strength. Keep this shabad close when you want to fight alone, and it will remind you that the company you enter is already shaping your courage.",
       "themes": [
         "anger",
         "ego",
         "discipline"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-speech-and-self-restraint",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-151-1",
@@ -7493,11 +7498,6 @@
       ],
       "relatedTopicIds": [
         "topic-anger"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-speech-and-self-restraint",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "anger",
@@ -7515,12 +7515,17 @@
       "id": "shabad-generated-152",
       "title": "Love the Guru with mind and body",
       "subtitle": "Siree Raag · Ang 52",
-      "summary": "The shabad begins by fastening mind and body to the Guru in love. It widens through obedience, Sangat, and the dust-like poverty of Maya-attachment, then ends in total remembrance: this life, body, and breath are Yours.",
-      "whyItMatters": "This is for the person whose love has been scattered across comforts, approval, and restless seeking. Held faithfully, it gathers desire back to one center and turns company, conduct, and remembrance into a single path.",
+      "summary": "The shabad starts by fastening mind and body to the Guru in love. It broadens through obedience, Sangat, and the dust-like poverty of Maya-attachment, then ends in total remembrance: this life, body, and breath are Yours.",
+      "whyItMatters": "This one meets the person whose love has been scattered across comforts, approval, and restless seeking. Kept close, it gathers desire back to one center and turns company, conduct, and remembrance into a single path.",
       "themes": [
         "sangat",
         "attachment",
         "loneliness"
+      ],
+      "relatedCollectionIds": [
+        "collection-doubt-to-clarity",
+        "collection-sangat-and-belonging",
+        "collection-loneliness-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-152-1",
@@ -7528,11 +7533,6 @@
       ],
       "relatedTopicIds": [
         "topic-sangat"
-      ],
-      "relatedCollectionIds": [
-        "collection-doubt-to-clarity",
-        "collection-sangat-and-belonging",
-        "collection-loneliness-journey"
       ],
       "rotation": {
         "theme": "sangat",
@@ -7550,12 +7550,17 @@
       "id": "shabad-generated-153",
       "title": "Release arrives where seeking kneels into service",
       "subtitle": "Siree Raag · Ang 52",
-      "summary": "The shabad opens by declaring that release comes only through the True Name. It turns seeking toward the Guru's feet, true service, and the hidden Lord found when the True Guru is pleased.",
-      "whyItMatters": "This is for the person who keeps searching but cannot land. Held steadily, it ends the addiction to spiritual novelty and teaches that arrival comes through service, not endless roaming.",
+      "summary": "The shabad begins by declaring that release comes only through the True Name. It turns seeking toward the Guru's feet, true service, and the hidden Lord found when the True Guru is pleased.",
+      "whyItMatters": "This speaks to the person who keeps searching but cannot land. Taken steadily, it ends the addiction to spiritual novelty and teaches that arrival comes through service, not endless roaming.",
       "themes": [
         "seeking",
         "restlessness",
         "shame"
+      ],
+      "relatedCollectionIds": [
+        "collection-seeking-journey",
+        "collection-seeking-bundle",
+        "collection-greed-to-seeking-93"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-153-1",
@@ -7563,11 +7568,6 @@
       ],
       "relatedTopicIds": [
         "topic-seeking"
-      ],
-      "relatedCollectionIds": [
-        "collection-seeking-journey",
-        "collection-seeking-bundle",
-        "collection-greed-to-seeking-93"
       ],
       "rotation": {
         "theme": "seeking",
@@ -7585,12 +7585,17 @@
       "id": "shabad-generated-178",
       "title": "Fresh Naam enters the mind",
       "subtitle": "Siree Raag · Ang 69",
-      "summary": "The shabad begins by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
-      "whyItMatters": "This is for the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within.",
+      "summary": "The shabad opens by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
+      "whyItMatters": "This speaks to the person worn out by inner repetition and hungry for something truly renewing. Return to this shabad before reaching for novelty, and it will move refreshment from outside stimulation to Naam settling within.",
       "themes": [
         "restlessness",
         "fear",
         "purpose"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-restlessness-journey",
+        "collection-restlessness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-178-1",
@@ -7598,11 +7603,6 @@
       ],
       "relatedTopicIds": [
         "topic-restlessness"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-restlessness-journey",
-        "collection-restlessness-bundle"
       ],
       "rotation": {
         "theme": "restlessness",
@@ -7621,11 +7621,16 @@
       "title": "Truth is meant to occupy the whole life",
       "subtitle": "Siree Raag · Ang 69",
       "summary": "The shabad starts by joining service to the True Guru with the cleansing of mind and body. Then it keeps widening truth until it touches food, speech, company, clothing, and shelter.",
-      "whyItMatters": "This is for the person whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live.",
+      "whyItMatters": "This is for anyone whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live.",
       "themes": [
         "ego",
         "discipline",
         "doubt"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-179-1",
@@ -7633,11 +7638,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -7655,12 +7655,17 @@
       "id": "shabad-generated-226",
       "title": "Peace comes through serving the True Guru",
       "subtitle": "Siree Raag · Ang 85",
-      "summary": "The shabad opens by joining service, peace, and the treasure of the True Name. It deepens through self-recognition, inner light, truthfulness, and praise that returns body and soul to the Lord.",
-      "whyItMatters": "This is for the person wanting peace without surrendering the center seat. Read it before self-justification or image-management takes over, and it will press peace back through service, recognition, and praise.",
+      "summary": "The shabad starts by joining service, peace, and the treasure of the True Name. It deepens through self-recognition, inner light, truthfulness, and praise that returns body and soul to the Lord.",
+      "whyItMatters": "This one meets the person wanting peace without surrendering the center seat. Reach for it before self-justification or image-management takes over, and it will press peace back through service, recognition, and praise.",
       "themes": [
         "ego",
         "discipline",
         "anger"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-226-1",
@@ -7669,11 +7674,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -7691,12 +7691,17 @@
       "id": "shabad-generated-227",
       "title": "All belong to the One who belongs to all",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad begins by overturning private ownership: all are Yours, and You belong to all. It widens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
-      "whyItMatters": "This is for the person shrinking worth into possession, status, or exclusivity. Held honestly, it changes the emotional climate from scarcity to shared dependence and from ego to belonging.",
+      "summary": "The shabad opens by overturning private ownership: all are Yours, and You belong to all. It broadens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
+      "whyItMatters": "This speaks to the person shrinking worth into possession, status, or exclusivity. Kept close, it changes the emotional climate from scarcity to shared dependence and from ego to belonging.",
       "themes": [
         "ego",
         "restlessness",
         "loneliness"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-227-1",
@@ -7704,11 +7709,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -7726,12 +7726,17 @@
       "id": "shabad-generated-228",
       "title": "Learning without inward turning stays trapped in Maya",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad opens by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
-      "whyItMatters": "This is for the person hiding inside religious language, intellect, or correction. Held honestly, it strips away borrowed authority and asks whether the heart has actually turned.",
+      "summary": "The shabad begins by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
+      "whyItMatters": "This is for anyone who feels hiding inside religious language, intellect, or correction. Taken seriously, it strips away borrowed authority and asks whether the heart has actually turned.",
       "themes": [
         "attachment",
         "loneliness",
         "seva"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-comparison-journey",
+        "collection-attachment-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-228-1",
@@ -7739,11 +7744,6 @@
       ],
       "relatedTopicIds": [
         "topic-attachment"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-comparison-journey",
-        "collection-attachment-journey"
       ],
       "rotation": {
         "theme": "attachment",
@@ -7762,11 +7762,16 @@
       "title": "Those who serve the True Guru receive the Name",
       "subtitle": "Siree Raag · Ang 86",
       "summary": "The shabad starts with service to the True Guru and refuses to separate understanding from obedience. As it deepens, complaint quiets, ego is consumed, and liberation appears as love for the Beloved.",
-      "whyItMatters": "This is for the person who keeps circling the issue but cannot settle the mind. Held honestly, it changes reflection itself: insight stops being private theory and becomes something received through service, purity, and love.",
+      "whyItMatters": "This one meets the person who keeps circling the issue but cannot settle the mind. Stayed with honestly, it changes reflection itself: insight stops being private theory and becomes something received through service, purity, and love.",
       "themes": [
         "anger",
         "discipline",
         "restlessness"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-speech-and-self-restraint",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-229-1",
@@ -7774,11 +7779,6 @@
       ],
       "relatedTopicIds": [
         "topic-anger"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-speech-and-self-restraint",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "anger",
@@ -7796,12 +7796,17 @@
       "id": "shabad-generated-230",
       "title": "Fruitful service gives the life a path",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad begins by calling service to the Lord fruitful and honorable. It moves through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
-      "whyItMatters": "This is for the person who feels busy but inwardly aimless. Held faithfully, it reconnects usefulness, guidance, and purpose so the day is no longer just maintenance.",
+      "summary": "The shabad opens by calling service to the Lord fruitful and honorable. It travels through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
+      "whyItMatters": "This one meets the person who feels busy but inwardly aimless. Kept close, it reconnects usefulness, guidance, and purpose so the day is no longer just maintenance.",
       "themes": [
         "purpose",
         "ego",
         "anger"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-truthful-wealth",
+        "collection-purpose-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-230-1",
@@ -7810,11 +7815,6 @@
       ],
       "relatedTopicIds": [
         "topic-purpose"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-truthful-wealth",
-        "collection-purpose-journey"
       ],
       "rotation": {
         "theme": "purpose",
@@ -7832,12 +7832,17 @@
       "id": "shabad-generated-231",
       "title": "The brave war is the one against inner ego",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad begins by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and lands in Naam as the difference between pain and a redeemed life.",
-      "whyItMatters": "This is for the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy.",
+      "summary": "The shabad opens by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
+      "whyItMatters": "This speaks to the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy.",
       "themes": [
         "ego",
         "anger",
         "doubt"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-231-1",
@@ -7846,11 +7851,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -7868,12 +7868,17 @@
       "id": "shabad-generated-232",
       "title": "Naam planted within clears the inner fog",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It moves through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
-      "whyItMatters": "This is for the person trapped in inner fog, repeated uncertainty, or spiritual confusion. Held steadily, it shows that doubt thins when Naam is planted deeply enough to become direction.",
+      "summary": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It travels through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
+      "whyItMatters": "This speaks to the person trapped in inner fog, repeated uncertainty, or spiritual confusion. Stayed with, it shows that doubt thins when Naam is planted deeply enough to become direction.",
       "themes": [
         "anger",
         "ego",
         "gratitude"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-speech-and-self-restraint",
+        "collection-anger-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-232-1",
@@ -7881,11 +7886,6 @@
       ],
       "relatedTopicIds": [
         "topic-anger"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-speech-and-self-restraint",
-        "collection-anger-journey"
       ],
       "rotation": {
         "theme": "anger",
@@ -7903,12 +7903,17 @@
       "id": "shabad-generated-298",
       "title": "Make the body honorable by what it serves",
       "subtitle": "Raag Maajh · Ang 103",
-      "summary": "The shabad opens by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It ends with a prayer that even a sinking stone be lifted by mercy.",
-      "whyItMatters": "This is for the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company.",
+      "summary": "The shabad begins by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It closes with a prayer that even a sinking stone be lifted by mercy.",
+      "whyItMatters": "This one meets the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company.",
       "themes": [
         "mercy",
         "gratitude",
         "restlessness"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-mercy-journey",
+        "collection-mercy-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-298-1",
@@ -7916,11 +7921,6 @@
       ],
       "relatedTopicIds": [
         "topic-mercy"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-mercy-journey",
-        "collection-mercy-bundle"
       ],
       "rotation": {
         "theme": "mercy",
@@ -7938,12 +7938,17 @@
       "id": "shabad-generated-299",
       "title": "The Lord's Bani cools what is burning",
       "subtitle": "Raag Maajh · Ang 103",
-      "summary": "The shabad opens by calling the Lord's Bani ambrosial nectar. It moves through repeated hearing, the inner burning extinguished, and the mind cooled in the Guru's presence.",
-      "whyItMatters": "This is for the person whose chest feels hot with grief, agitation, or inner noise. Return to this shabad before reaching for more noise, and Bani stops sounding decorative and starts acting like medicine.",
+      "summary": "The shabad starts by calling the Lord's Bani ambrosial nectar. It travels through repeated hearing, the inner burning extinguished, and the mind cooled in the Guru's presence.",
+      "whyItMatters": "This speaks to the person whose chest feels hot with grief, agitation, or inner noise. Return to this shabad before reaching for more noise, and Bani stops sounding decorative and starts acting like medicine.",
       "themes": [
         "attachment",
         "comparison",
         "ego"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-comparison-journey",
+        "collection-attachment-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-299-1",
@@ -7951,11 +7956,6 @@
       ],
       "relatedTopicIds": [
         "topic-attachment"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-comparison-journey",
-        "collection-attachment-journey"
       ],
       "rotation": {
         "theme": "attachment",
@@ -7974,11 +7974,16 @@
       "title": "You are family wherever fear tries to exile me",
       "subtitle": "Raag Maajh · Ang 103",
       "summary": "The shabad begins with intimate naming: Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
-      "whyItMatters": "This is for the person frightened, exposed, or emotionally orphaned by circumstances. Held tenderly, it makes divine nearness personal enough to change how fear occupies the body.",
+      "whyItMatters": "This speaks to the person frightened, exposed, or emotionally orphaned by circumstances. Held tenderly, it makes divine nearness personal enough to change how fear occupies the body.",
       "themes": [
         "fear",
         "anxiety",
         "gratitude"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-journey",
+        "collection-fear-bundle",
+        "collection-mercy-to-fear-90"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-300-1",
@@ -7987,11 +7992,6 @@
       ],
       "relatedTopicIds": [
         "topic-fear"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-journey",
-        "collection-fear-bundle",
-        "collection-mercy-to-fear-90"
       ],
       "rotation": {
         "theme": "fear",
@@ -8009,12 +8009,17 @@
       "id": "shabad-generated-301",
       "title": "The heart lives by the One supporting it",
       "subtitle": "Raag Maajh · Ang 103",
-      "summary": "The shabad opens by calling God the breath of life and the support of the mind. It widens through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
-      "whyItMatters": "This is for the person secretly trying to hold themselves up alone. Held steadily, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen.",
+      "summary": "The shabad starts by calling God the breath of life and the support of the mind. It opens further through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
+      "whyItMatters": "This is for anyone who feels secretly trying to hold themselves up alone. Stayed with, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen.",
       "themes": [
         "forgiveness",
         "restlessness",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-shame-to-welcome",
+        "collection-forgiveness-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-301-1",
@@ -8023,11 +8028,6 @@
       ],
       "relatedTopicIds": [
         "topic-forgiveness"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-shame-to-welcome",
-        "collection-forgiveness-journey"
       ],
       "rotation": {
         "theme": "forgiveness",
@@ -8046,11 +8046,16 @@
       "title": "Truth gives the heart a steadier worth",
       "subtitle": "Raag Maajh · Ang 119",
       "summary": "The shabad begins with those who please the Lord being linked to Truth. It grows into praise, sacrifice to such people, and the state of being absorbed into the Truest of the True.",
-      "whyItMatters": "This is for the person borrowing dignity from response, success, or praise. Read this shabad when approval starts naming your value, and it will return worth to Truth instead of the room's reaction.",
+      "whyItMatters": "This speaks to the person borrowing dignity from response, success, or praise. Read this shabad when approval starts naming your value, and it will return worth to Truth instead of the room's reaction.",
       "themes": [
         "self-worth",
         "comparison",
         "speech"
+      ],
+      "relatedCollectionIds": [
+        "collection-self-worth-journey",
+        "collection-self-worth-bundle",
+        "collection-restlessness-to-self-worth-95"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-337-1",
@@ -8058,11 +8063,6 @@
       ],
       "relatedTopicIds": [
         "topic-self-worth"
-      ],
-      "relatedCollectionIds": [
-        "collection-self-worth-journey",
-        "collection-self-worth-bundle",
-        "collection-restlessness-to-self-worth-95"
       ],
       "rotation": {
         "theme": "self-worth",
@@ -8080,12 +8080,17 @@
       "id": "shabad-generated-338",
       "title": "Pervasiveness cures the scarcity behind comparison",
       "subtitle": "Raag Maajh · Ang 120",
-      "summary": "The shabad opens by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and lands in understanding received through the Guru.",
-      "whyItMatters": "This is for the person whose eyes keep narrowing into comparison and competition. Held honestly, it breaks the scarcity spell by revealing a world already full of the One.",
+      "summary": "The shabad begins by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and comes to rest in understanding received through the Guru.",
+      "whyItMatters": "This is for anyone whose eyes keep narrowing into comparison and competition. Stayed with honestly, it breaks the scarcity spell by revealing a world already full of the One.",
       "themes": [
         "comparison",
         "mercy",
         "greed"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-comparison-journey",
+        "collection-comparison-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-338-1",
@@ -8093,11 +8098,6 @@
       ],
       "relatedTopicIds": [
         "topic-comparison"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-comparison-journey",
-        "collection-comparison-bundle"
       ],
       "rotation": {
         "theme": "comparison",
@@ -8115,12 +8115,17 @@
       "id": "shabad-generated-359",
       "title": "Steady service begins healing long separation",
       "subtitle": "Raag Maajh · Ang 136",
-      "summary": "The shabad opens with day-and-night service, remembrance, and sweet speech offered from sanctuary. It moves through the sorrow of separation, the need for mercy, and ends with the yearning to be united with the Lord through the Guru's feet.",
-      "whyItMatters": "This is for the person whose longing has become dramatic, weary, or spiritually dry. Held steadily, it keeps longing honest by turning it into service, prayer, and saintly humility.",
+      "summary": "The shabad opens with day-and-night service, remembrance, and sweet speech offered from sanctuary. It travels through the sorrow of separation, the need for mercy, and ends with the yearning to be united with the Lord through the Guru's feet.",
+      "whyItMatters": "This one meets the person whose longing has become dramatic, weary, or spiritually dry. Taken steadily, it keeps longing honest by turning it into service, prayer, and saintly humility.",
       "themes": [
         "mercy",
         "seeking",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-mercy-journey",
+        "collection-mercy-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-359-1",
@@ -8128,11 +8133,6 @@
       ],
       "relatedTopicIds": [
         "topic-mercy"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-mercy-journey",
-        "collection-mercy-bundle"
       ],
       "rotation": {
         "theme": "mercy",
@@ -8157,6 +8157,11 @@
         "comparison",
         "seva"
       ],
+      "relatedCollectionIds": [
+        "collection-tired-heart-to-rest",
+        "collection-exhaustion-journey",
+        "collection-exhaustion-journey"
+      ],
       "relatedGuidanceIds": [
         "guidance-generated-360-1",
         "guidance-generated-360-2",
@@ -8164,11 +8169,6 @@
       ],
       "relatedTopicIds": [
         "topic-exhaustion"
-      ],
-      "relatedCollectionIds": [
-        "collection-tired-heart-to-rest",
-        "collection-exhaustion-journey",
-        "collection-exhaustion-journey"
       ],
       "rotation": {
         "theme": "exhaustion",
@@ -8187,11 +8187,16 @@
       "title": "Appetite grows in stages unless it is taught otherwise",
       "subtitle": "Raag Maajh · Ang 137",
       "summary": "The shabad begins by tracing desire through the stages of life: milk, family, play, food, sexuality, wealth. It shows how attachment matures into a governing pattern unless the soul is reoriented.",
-      "whyItMatters": "This is for the person who treats craving as natural simply because it has been familiar for a long time. Held honestly, it gives appetite a history and makes early truthfulness possible.",
+      "whyItMatters": "This is for anyone who treats craving as natural simply because it has been familiar for a long time. Kept close, it gives appetite a history and makes early truthfulness possible.",
       "themes": [
         "greed",
         "attachment",
         "ego"
+      ],
+      "relatedCollectionIds": [
+        "collection-speech-and-self-restraint",
+        "collection-truthful-wealth",
+        "collection-greed-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-361-1",
@@ -8200,11 +8205,6 @@
       ],
       "relatedTopicIds": [
         "topic-greed"
-      ],
-      "relatedCollectionIds": [
-        "collection-speech-and-self-restraint",
-        "collection-truthful-wealth",
-        "collection-greed-journey"
       ],
       "rotation": {
         "theme": "greed",
@@ -8222,12 +8222,17 @@
       "id": "shabad-generated-459",
       "title": "What comes to pass is not outside the Doer",
       "subtitle": "Raag Gauree · Ang 154",
-      "summary": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and lands in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
-      "whyItMatters": "This is for the person trapped in regret, replay, or bargaining with the past. Held steadily, it does not sentimentalize pain, but it loosens the argument with reality.",
+      "summary": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and ends in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
+      "whyItMatters": "This is for anyone who feels trapped in regret, replay, or bargaining with the past. Stayed with, it does not sentimentalize pain, but it loosens the argument with reality.",
       "themes": [
         "mercy",
         "ego",
         "comparison"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-mercy-journey",
+        "collection-mercy-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-459-1",
@@ -8235,11 +8240,6 @@
       ],
       "relatedTopicIds": [
         "topic-mercy"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-mercy-journey",
-        "collection-mercy-bundle"
       ],
       "rotation": {
         "theme": "mercy",
@@ -8257,12 +8257,17 @@
       "id": "shabad-generated-460",
       "title": "Deeper fearlessness comes by tasting Naam",
       "subtitle": "Raag Gauree · Ang 154",
-      "summary": "The shabad begins with the strange claim that speaking the Unspoken becomes nectar. It moves through lesser fears falling away, recognition through the Guru's Shabad, and hearts filled with the Lord's essence.",
-      "whyItMatters": "This is for the person harassed by many small fears. Held honestly, it replaces scattered fear-management with a deeper orientation to the One that makes the lesser fears lose force.",
+      "summary": "The shabad begins with the strange claim that speaking the Unspoken becomes nectar. It carries the listener through lesser fears falling away, recognition through the Guru's Shabad, and hearts filled with the Lord's essence.",
+      "whyItMatters": "This is for anyone who feels harassed by many small fears. Taken seriously, it replaces scattered fear-management with a deeper orientation to the One that makes the lesser fears lose force.",
       "themes": [
         "gratitude",
         "mercy",
         "fear"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-gratitude-journey",
+        "collection-gratitude-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-460-1",
@@ -8271,11 +8276,6 @@
       ],
       "relatedTopicIds": [
         "topic-gratitude"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-gratitude-journey",
-        "collection-gratitude-journey"
       ],
       "rotation": {
         "theme": "gratitude",
@@ -8294,11 +8294,16 @@
       "title": "The deeper union is not found by roaming",
       "subtitle": "Raag Gauree · Ang 154",
       "summary": "The shabad begins by naming the ordinary states the mind circles within. It then declares that the fourth state, union with the Lord, is known only through the True Guru and crossed into by devotion and service.",
-      "whyItMatters": "This is for the person exhausted by movement, method, and spiritual curiosity that never lands. Held honestly, it lets the search stop circling what is visible and return to the Guru's path.",
+      "whyItMatters": "This speaks to the person exhausted by movement, method, and spiritual curiosity that never lands. Stayed with honestly, it lets the search stop circling what is visible and return to the Guru's path.",
       "themes": [
         "restlessness",
         "sangat",
         "seeking"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-restlessness-journey",
+        "collection-restlessness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-461-1",
@@ -8307,11 +8312,6 @@
       ],
       "relatedTopicIds": [
         "topic-restlessness"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-restlessness-journey",
-        "collection-restlessness-bundle"
       ],
       "rotation": {
         "theme": "restlessness",
@@ -8329,12 +8329,17 @@
       "id": "shabad-generated-462",
       "title": "A passing life is too small for gossip",
       "subtitle": "Raag Gauree · Ang 154",
-      "summary": "The shabad begins by calling the body comfortable yet temporary, a passing drama. It presses on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
-      "whyItMatters": "This is for the person wasting precious energy on gossip, image, and false urgency. Held honestly, it brings mortality close enough to make the tongue and choices cleaner.",
+      "summary": "The shabad opens by calling the body comfortable yet temporary, a passing drama. It leans harder on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
+      "whyItMatters": "This one meets the person wasting precious energy on gossip, image, and false urgency. Stayed with honestly, it brings mortality close enough to make the tongue and choices cleaner.",
       "themes": [
         "restlessness",
         "ego",
         "anger"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-restlessness-journey",
+        "collection-restlessness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-462-1",
@@ -8342,11 +8347,6 @@
       ],
       "relatedTopicIds": [
         "topic-restlessness"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-restlessness-journey",
-        "collection-restlessness-bundle"
       ],
       "rotation": {
         "theme": "restlessness",
@@ -8365,11 +8365,16 @@
       "title": "Restlessness reveals what the heart still loves",
       "subtitle": "Raag Gauree · Ang 170",
       "summary": "The shabad begins with a mind that will not stay still for an instant. It turns through the Guru's gift of Naam and quiet, then exposes false aims in hearts lacking love for the Lord.",
-      "whyItMatters": "This is for the person mistaking movement for aliveness. Held honestly, it shows restlessness as a love problem before it is merely an attention problem.",
+      "whyItMatters": "This one meets the person mistaking movement for aliveness. Taken seriously, it shows restlessness as a love problem before it is merely an attention problem.",
       "themes": [
         "restlessness",
         "comparison",
         "doubt"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-restlessness-journey",
+        "collection-restlessness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-509-1",
@@ -8377,11 +8382,6 @@
       ],
       "relatedTopicIds": [
         "topic-restlessness"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-restlessness-journey",
-        "collection-restlessness-bundle"
       ],
       "rotation": {
         "theme": "restlessness",
@@ -8400,11 +8400,16 @@
       "title": "Holy company breaks the crowded heat inside",
       "subtitle": "Raag Gauree · Ang 171",
       "summary": "The shabad begins with the body crowded by desire and anger, then shows what changes when the Holy Saint is actually met. It turns from the thorn of ego and wandering pain toward humility, sanctuary, and peace supported by Naam.",
-      "whyItMatters": "This is for the person living overheated, reactive, and internally crowded. Hold this shabad when anger and craving feel stronger than judgment, and it will make holy company feel like treatment rather than ornament.",
+      "whyItMatters": "This speaks to the person living overheated, reactive, and internally crowded. Hold this shabad when anger and craving feel stronger than judgment, and it will make holy company feel like treatment rather than ornament.",
       "themes": [
         "comparison",
         "attachment",
         "fear"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-comparison-journey",
+        "collection-comparison-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-510-1",
@@ -8413,11 +8418,6 @@
       ],
       "relatedTopicIds": [
         "topic-comparison"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-comparison-journey",
-        "collection-comparison-bundle"
       ],
       "rotation": {
         "theme": "comparison",
@@ -8435,12 +8435,17 @@
       "id": "shabad-generated-511",
       "title": "Mercy turns bitter into sweet",
       "subtitle": "Raag Gauree · Ang 171",
-      "summary": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It moves through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
-      "whyItMatters": "This is for the person close to sacred things but no longer tasting them. Held faithfully, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart.",
+      "summary": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It travels through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
+      "whyItMatters": "This one meets the person close to sacred things but no longer tasting them. Kept close, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart.",
       "themes": [
         "mercy",
         "forgiveness",
         "restlessness"
+      ],
+      "relatedCollectionIds": [
+        "collection-mercy-and-fearlessness",
+        "collection-mercy-journey",
+        "collection-mercy-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-511-1",
@@ -8449,11 +8454,6 @@
       ],
       "relatedTopicIds": [
         "topic-mercy"
-      ],
-      "relatedCollectionIds": [
-        "collection-mercy-and-fearlessness",
-        "collection-mercy-journey",
-        "collection-mercy-bundle"
       ],
       "rotation": {
         "theme": "mercy",
@@ -8471,12 +8471,17 @@
       "id": "shabad-generated-512",
       "title": "The Guru asks for more than admiration",
       "subtitle": "Raag Gauree · Ang 171",
-      "summary": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It deepens through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
-      "whyItMatters": "This is for the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender.",
+      "summary": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
+      "whyItMatters": "This speaks to the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender.",
       "themes": [
         "ego",
         "seva",
         "restlessness"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-512-1",
@@ -8484,11 +8489,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -8506,12 +8506,17 @@
       "id": "shabad-generated-560",
       "title": "What the Beloved does, I accept",
       "subtitle": "Raag Gauree · Ang 187",
-      "summary": "The shabad begins by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
-      "whyItMatters": "This is for the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Held steadily, it changes complaint into trust and loosens the fear that acceptance means abandonment.",
+      "summary": "The shabad opens by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
+      "whyItMatters": "This one meets the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Stayed with, it changes complaint into trust and loosens the fear that acceptance means abandonment.",
       "themes": [
         "loneliness",
         "comparison",
         "hukam"
+      ],
+      "relatedCollectionIds": [
+        "collection-sangat-and-belonging",
+        "collection-loneliness-journey",
+        "collection-loneliness-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-560-1",
@@ -8520,11 +8525,6 @@
       ],
       "relatedTopicIds": [
         "topic-loneliness"
-      ],
-      "relatedCollectionIds": [
-        "collection-sangat-and-belonging",
-        "collection-loneliness-journey",
-        "collection-loneliness-bundle"
       ],
       "rotation": {
         "theme": "loneliness",
@@ -8542,12 +8542,17 @@
       "id": "shabad-generated-561",
       "title": "Hope in the Lord outlives the world's reach",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad opens by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
-      "whyItMatters": "This is for the person living in anticipation of the next blow, opinion, or setback. Held steadily, it relocates safety from changing circumstances to the One who keeps the heart.",
+      "summary": "The shabad begins by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
+      "whyItMatters": "This speaks to the person living in anticipation of the next blow, opinion, or setback. Taken steadily, it relocates safety from changing circumstances to the One who keeps the heart.",
       "themes": [
         "seva",
         "attachment",
         "loneliness"
+      ],
+      "relatedCollectionIds": [
+        "collection-service-and-purpose",
+        "collection-seva-journey",
+        "collection-seva-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-561-1",
@@ -8556,11 +8561,6 @@
       ],
       "relatedTopicIds": [
         "topic-seva"
-      ],
-      "relatedCollectionIds": [
-        "collection-service-and-purpose",
-        "collection-seva-journey",
-        "collection-seva-journey"
       ],
       "rotation": {
         "theme": "seva",
@@ -8578,12 +8578,17 @@
       "id": "shabad-generated-562",
       "title": "A rare human life should not be spent asleep",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad begins by calling human birth rare fortune, then asks what life is worth without Naam. It presses past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
-      "whyItMatters": "This is for the person drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic.",
+      "summary": "The shabad opens by calling human birth rare fortune, then asks what life is worth without Naam. It leans harder past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
+      "whyItMatters": "This is for anyone who feels drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic.",
       "themes": [
         "patience",
         "anger",
         "purpose"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-tired-heart-to-rest",
+        "collection-patience-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-562-1",
@@ -8591,11 +8596,6 @@
       ],
       "relatedTopicIds": [
         "topic-patience"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-tired-heart-to-rest",
-        "collection-patience-journey"
       ],
       "rotation": {
         "theme": "patience",
@@ -8613,12 +8613,17 @@
       "id": "shabad-generated-563",
       "title": "The soul was never yours to keep",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad opens by unsettling possessive grief: relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
-      "whyItMatters": "This is for the person overwhelmed by loss, panic, or the cry of mine. Held honestly, it does not belittle sorrow, but it stops grief from turning into possession.",
+      "summary": "The shabad begins by unsettling possessive grief: relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
+      "whyItMatters": "This speaks to the person overwhelmed by loss, panic, or the cry of mine. Taken seriously, it does not belittle sorrow, but it stops grief from turning into possession.",
       "themes": [
         "doubt",
         "gratitude",
         "hukam"
+      ],
+      "relatedCollectionIds": [
+        "collection-doubt-to-clarity",
+        "collection-doubt-journey",
+        "collection-doubt-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-563-1",
@@ -8626,11 +8631,6 @@
       ],
       "relatedTopicIds": [
         "topic-doubt"
-      ],
-      "relatedCollectionIds": [
-        "collection-doubt-to-clarity",
-        "collection-doubt-journey",
-        "collection-doubt-bundle"
       ],
       "rotation": {
         "theme": "doubt",
@@ -8649,11 +8649,16 @@
       "title": "Anxiety follows borrowed greatness",
       "subtitle": "Raag Gauree · Ang 188",
       "summary": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
-      "whyItMatters": "This is for the person pulled into status, land, ownership, or the need to look weighty. Held steadily, it changes the measure of greatness from possession to devotion.",
+      "whyItMatters": "This one meets the person pulled into status, land, ownership, or the need to look weighty. Kept near, it changes the measure of greatness from possession to devotion.",
       "themes": [
         "attachment",
         "doubt",
         "loneliness"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-comparison-journey",
+        "collection-attachment-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-564-1",
@@ -8661,11 +8666,6 @@
       ],
       "relatedTopicIds": [
         "topic-attachment"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-comparison-journey",
-        "collection-attachment-journey"
       ],
       "rotation": {
         "theme": "attachment",
@@ -8683,12 +8683,17 @@
       "id": "shabad-generated-565",
       "title": "Everything becomes whole when Naam lives inside",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad opens by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
-      "whyItMatters": "This is for the person living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement.",
+      "summary": "The shabad begins by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
+      "whyItMatters": "This is for anyone who feels living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement.",
       "themes": [
         "comparison",
         "gratitude",
         "seva"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-comparison-journey",
+        "collection-comparison-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-565-1",
@@ -8697,11 +8702,6 @@
       ],
       "relatedTopicIds": [
         "topic-comparison"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-comparison-journey",
-        "collection-comparison-bundle"
       ],
       "rotation": {
         "theme": "comparison",
@@ -8719,12 +8719,17 @@
       "id": "shabad-generated-566",
       "title": "Holy company washes deeper than self-scrubbing",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It moves through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
-      "whyItMatters": "This is for the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Held faithfully, it turns cleansing from private labor into grace received in holy company.",
+      "summary": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It travels through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
+      "whyItMatters": "This speaks to the person trying to clean themselves with effort while envy, ego, and the five passions keep returning. Kept close, it turns cleansing from private labor into grace received in holy company.",
       "themes": [
         "comparison",
         "ego",
         "mercy"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-comparison-journey",
+        "collection-comparison-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-566-1",
@@ -8733,11 +8738,6 @@
       ],
       "relatedTopicIds": [
         "topic-comparison"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-comparison-journey",
-        "collection-comparison-bundle"
       ],
       "rotation": {
         "theme": "comparison",
@@ -8755,12 +8755,17 @@
       "id": "shabad-generated-642",
       "title": "The key is handed to the Guru",
       "subtitle": "Raag Gauree · Ang 204",
-      "summary": "The shabad opens with an honest plea for the saint who can show the way to the Lord. It moves through ego's curtain, Maya's sleep, and the hidden substance within, then lands in the Guru holding the key.",
-      "whyItMatters": "This is for the person who knows effort alone is not getting them home. Held patiently, it changes spiritual frustration into a truer dependence on the Guru and the company of the holy.",
+      "summary": "The shabad opens with an honest plea for the saint who can show the way to the Lord. It travels through ego's curtain, Maya's sleep, and the hidden substance within, before coming to rest in the Guru holding the key.",
+      "whyItMatters": "This one meets the person who knows effort alone is not getting them home. Held patiently, it changes spiritual frustration into a truer dependence on the Guru and the company of the holy.",
       "themes": [
         "sangat",
         "ego",
         "doubt"
+      ],
+      "relatedCollectionIds": [
+        "collection-doubt-to-clarity",
+        "collection-sangat-and-belonging",
+        "collection-loneliness-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-642-1",
@@ -8768,11 +8773,6 @@
       ],
       "relatedTopicIds": [
         "topic-sangat"
-      ],
-      "relatedCollectionIds": [
-        "collection-doubt-to-clarity",
-        "collection-sangat-and-belonging",
-        "collection-loneliness-journey"
       ],
       "rotation": {
         "theme": "sangat",
@@ -8790,12 +8790,17 @@
       "id": "shabad-generated-643",
       "title": "Nearness ends the frantic search",
       "subtitle": "Raag Gauree · Ang 205",
-      "summary": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It moves through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
-      "whyItMatters": "This is for the person worn out by searching, petitioning, and looking elsewhere for relief. Held steadily, it teaches rest by revealing the nearness that restless effort keeps missing.",
+      "summary": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
+      "whyItMatters": "This one meets the person worn out by searching, petitioning, and looking elsewhere for relief. Kept near, it teaches rest by revealing the nearness that restless effort keeps missing.",
       "themes": [
         "exhaustion",
         "gratitude",
         "mercy"
+      ],
+      "relatedCollectionIds": [
+        "collection-tired-heart-to-rest",
+        "collection-exhaustion-journey",
+        "collection-exhaustion-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-643-1",
@@ -8803,11 +8808,6 @@
       ],
       "relatedTopicIds": [
         "topic-exhaustion"
-      ],
-      "relatedCollectionIds": [
-        "collection-tired-heart-to-rest",
-        "collection-exhaustion-journey",
-        "collection-exhaustion-journey"
       ],
       "rotation": {
         "theme": "exhaustion",
@@ -8826,11 +8826,16 @@
       "title": "The day is shrinking; spend it well",
       "subtitle": "Raag Gauree · Ang 205",
       "summary": "The shabad opens with time diminishing day and night and immediately urges the mind toward the Guru. It turns the shrinking day into an argument for serving saints, earning Naam, and buying what you came here to buy.",
-      "whyItMatters": "This is for the person living as if later were still guaranteed. Held clearly, it forces time, purpose, and profit back into the same conversation.",
+      "whyItMatters": "This speaks to the person living as if later were still guaranteed. Held clearly, it forces time, purpose, and profit back into the same conversation.",
       "themes": [
         "seeking",
         "patience",
         "exhaustion"
+      ],
+      "relatedCollectionIds": [
+        "collection-seeking-journey",
+        "collection-seeking-bundle",
+        "collection-greed-to-seeking-93"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-644-1",
@@ -8838,11 +8843,6 @@
       ],
       "relatedTopicIds": [
         "topic-seeking"
-      ],
-      "relatedCollectionIds": [
-        "collection-seeking-journey",
-        "collection-seeking-bundle",
-        "collection-greed-to-seeking-93"
       ],
       "rotation": {
         "theme": "seeking",
@@ -8860,12 +8860,17 @@
       "id": "shabad-generated-645",
       "title": "Sanctuary for a mind under assault",
       "subtitle": "Raag Gauree · Ang 205",
-      "summary": "The shabad opens with a direct cry to the Father God for rescue. It moves through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
-      "whyItMatters": "This is for the person who is already afraid and no longer able to pretend control. Held sincerely, it gives fear a cleaner movement than panic: cry out, take shelter, and wait for light.",
+      "summary": "The shabad opens with a direct cry to the Father God for rescue. It carries the listener through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
+      "whyItMatters": "This one meets the person who is already afraid and no longer able to pretend control. Kept sincere, it gives fear a cleaner movement than panic: cry out, take shelter, and wait for light.",
       "themes": [
         "fear",
         "sangat",
         "seeking"
+      ],
+      "relatedCollectionIds": [
+        "collection-fear-journey",
+        "collection-fear-bundle",
+        "collection-mercy-to-fear-90"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-645-1",
@@ -8874,11 +8879,6 @@
       ],
       "relatedTopicIds": [
         "topic-fear"
-      ],
-      "relatedCollectionIds": [
-        "collection-fear-journey",
-        "collection-fear-bundle",
-        "collection-mercy-to-fear-90"
       ],
       "rotation": {
         "theme": "fear",
@@ -8896,12 +8896,17 @@
       "id": "shabad-generated-703",
       "title": "When the Shabad takes the mind in hand",
       "subtitle": "Raag Gauree · Ang 221",
-      "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It moves through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
-      "whyItMatters": "This is for the person whose mind is strong, clever, and difficult to govern. Held steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
+      "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+      "whyItMatters": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
       "themes": [
         "attachment",
         "doubt",
         "speech"
+      ],
+      "relatedCollectionIds": [
+        "collection-gratitude-and-contentment",
+        "collection-comparison-journey",
+        "collection-attachment-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-703-1",
@@ -8909,11 +8914,6 @@
       ],
       "relatedTopicIds": [
         "topic-attachment"
-      ],
-      "relatedCollectionIds": [
-        "collection-gratitude-and-contentment",
-        "collection-comparison-journey",
-        "collection-attachment-journey"
       ],
       "rotation": {
         "theme": "attachment",
@@ -8931,12 +8931,17 @@
       "id": "shabad-generated-704",
       "title": "The split mind becomes one through surrender",
       "subtitle": "Raag Gauree · Ang 222",
-      "summary": "The shabad opens by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
-      "whyItMatters": "This is for the person who feels mentally scattered, morally divided, and unable to stay steady. Held honestly, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can.",
+      "summary": "The shabad starts by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
+      "whyItMatters": "This is for anyone who feels mentally scattered, morally divided, and unable to stay steady. Kept close, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can.",
       "themes": [
         "ego",
         "self-worth",
         "anxiety"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-704-1",
@@ -8944,11 +8949,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -8966,12 +8966,17 @@
       "id": "shabad-generated-705",
       "title": "The world asks for peace and forgets Naam",
       "subtitle": "Raag Gauree · Ang 222",
-      "summary": "The shabad opens by saying egotism cannot produce peace. It widens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
-      "whyItMatters": "This is for the person exhausted by self-will but still expecting it to work. Held honestly, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace.",
+      "summary": "The shabad starts by saying egotism cannot produce peace. It broadens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
+      "whyItMatters": "This is for anyone who feels exhausted by self-will but still expecting it to work. Kept close, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace.",
       "themes": [
         "ego",
         "gratitude",
         "hukam"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-705-1",
@@ -8980,11 +8985,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -9002,12 +9002,17 @@
       "id": "shabad-generated-736",
       "title": "The powerful cannot do your inner work",
       "subtitle": "Raag Gauree · Ang 238",
-      "summary": "The shabad opens by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
-      "whyItMatters": "This is for the person drawn to influence, status, and impressive company as if they could save the heart. Held firmly, it redirects admiration away from power and toward devotion, humility, and labor for the Lord.",
+      "summary": "The shabad begins by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
+      "whyItMatters": "This speaks to the person drawn to influence, status, and impressive company as if they could save the heart. Held firmly, it redirects admiration away from power and toward devotion, humility, and labor for the Lord.",
       "themes": [
         "ego",
         "comparison",
         "shame"
+      ],
+      "relatedCollectionIds": [
+        "collection-ego-to-humility",
+        "collection-ego-journey",
+        "collection-ego-bundle"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-736-1",
@@ -9016,11 +9021,6 @@
       ],
       "relatedTopicIds": [
         "topic-ego"
-      ],
-      "relatedCollectionIds": [
-        "collection-ego-to-humility",
-        "collection-ego-journey",
-        "collection-ego-bundle"
       ],
       "rotation": {
         "theme": "ego",
@@ -9039,11 +9039,16 @@
       "title": "One instant of remembrance outweighs drift",
       "subtitle": "Raag Gauree · Ang 239",
       "summary": "The shabad opens by contrasting a life without remembrance with a life given even one true instant of simran. It then presses the contrast hard, exposing what drift becomes without the Name and where mercy finally leads.",
-      "whyItMatters": "This is for the person who keeps excusing distraction because it looks ordinary. Held honestly, it restores seriousness to remembrance and makes one real instant feel weightier than a long wasted stretch.",
+      "whyItMatters": "This is for anyone who keeps excusing distraction because it looks ordinary. Stayed with honestly, it restores seriousness to remembrance and makes one real instant feel weightier than a long wasted stretch.",
       "themes": [
         "seeking",
         "gratitude",
         "sangat"
+      ],
+      "relatedCollectionIds": [
+        "collection-seeking-journey",
+        "collection-seeking-bundle",
+        "collection-greed-to-seeking-93"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-737-1",
@@ -9051,11 +9056,6 @@
       ],
       "relatedTopicIds": [
         "topic-seeking"
-      ],
-      "relatedCollectionIds": [
-        "collection-seeking-journey",
-        "collection-seeking-bundle",
-        "collection-greed-to-seeking-93"
       ],
       "rotation": {
         "theme": "seeking",
@@ -9074,22 +9074,22 @@
       "title": "The Guru's word raises the soul into real stature",
       "subtitle": "Raag Gauree · Ang 239",
       "summary": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
-      "whyItMatters": "This is for the person chasing improvement, image, or spiritual status without steady submission to the Guru's word. Held honestly, it turns attainment from display into inward settlement.",
+      "whyItMatters": "This is for anyone who feels chasing improvement, image, or spiritual status without steady submission to the Guru's word. Taken seriously, it turns attainment from display into inward settlement.",
       "themes": [
         "patience",
         "doubt",
         "mercy"
+      ],
+      "relatedCollectionIds": [
+        "collection-restlessness-to-stillness",
+        "collection-tired-heart-to-rest",
+        "collection-patience-journey"
       ],
       "relatedGuidanceIds": [
         "guidance-generated-738-1"
       ],
       "relatedTopicIds": [
         "topic-patience"
-      ],
-      "relatedCollectionIds": [
-        "collection-restlessness-to-stillness",
-        "collection-tired-heart-to-rest",
-        "collection-patience-journey"
       ],
       "rotation": {
         "theme": "patience",
@@ -9105,23 +9105,23 @@
     },
     {
       "id": "shabad-generated-739",
-      "title": "I Remember The Guru With Each",
+      "title": "Remember the Guru with every breath",
       "subtitle": "Raag Gauree · Ang 239",
-      "summary": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
-      "whyItMatters": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad begins with breath-by-breath remembrance of the Guru as life and wealth. It moves through service, the washing of ego, rescue from inner fire, and finally rests in the certainty that the Guru is powerful enough to carry the soul.",
+      "whyItMatters": "This one meets the person who feels restless, isolated, or afraid that faith will collapse under pressure. Kept close, it turns remembrance from duty into lifeline, and lets gratitude steady what fear keeps shaking.",
       "themes": [
         "anxiety",
         "loneliness",
         "gratitude"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-anxiety"
-      ],
       "relatedCollectionIds": [
         "collection-fear-to-trust",
         "collection-anxiety-journey",
         "collection-anxiety-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-anxiety"
       ],
       "rotation": {
         "theme": "anxiety",
@@ -9139,21 +9139,21 @@
       "id": "shabad-generated-815",
       "title": "Cling to the One until the mind cools",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "The pauree opens by praising those who release every other hold and cling to the One alone. It contrasts Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
-      "whyItMatters": "This is for the person still hungry after chasing ten different supports. Held steadily, it teaches that peace comes not from adding more but from holding one thing rightly.",
+      "summary": "The pauree begins by praising those who release every other hold and cling to the One alone. It sets side by side Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
+      "whyItMatters": "This is for anyone who is still hungry after chasing ten different supports. Kept near, it teaches that peace comes not from adding more but from holding one thing rightly.",
       "themes": [
         "seeking",
         "comparison",
         "sangat"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-seeking"
-      ],
       "relatedCollectionIds": [
         "collection-seeking-journey",
         "collection-seeking-bundle",
         "collection-greed-to-seeking-93"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-seeking"
       ],
       "rotation": {
         "theme": "seeking",
@@ -9171,21 +9171,21 @@
       "id": "shabad-generated-816",
       "title": "Bow until wandering stops asking for the lead",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "This brief shabad opens in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
-      "whyItMatters": "This is for the person whose devotion has gone formal while the mind still keeps roaming. Held honestly, it turns bowing into dependence instead of performance.",
+      "summary": "This brief shabad begins in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
+      "whyItMatters": "This one meets the person whose devotion has gone formal while the mind still keeps roaming. Stayed with honestly, it turns bowing into dependence instead of performance.",
       "themes": [
         "seva",
         "restlessness",
         "seeking"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-seva"
-      ],
       "relatedCollectionIds": [
         "collection-service-and-purpose",
         "collection-seva-journey",
         "collection-seva-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-seva"
       ],
       "rotation": {
         "theme": "seva",
@@ -9201,23 +9201,23 @@
     },
     {
       "id": "shabad-generated-817",
-      "title": "Dadda: This Is Not Your True Place",
+      "title": "This is not your lasting home",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
-      "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The pauree begins by stripping this passing world of final status. It teaches that the way to the true dwelling is known through the Guru's Shabad, and that stable belonging is found in the company of the holy rather than in what cannot go with you.",
+      "whyItMatters": "This one speaks to the person who feels unrooted, easily swayed, or hungry for real belonging. Taken seriously, it loosens attachment to what cannot last and directs the heart toward the company that steadies it.",
       "themes": [
         "sangat",
         "restlessness",
         "shame"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-sangat"
-      ],
       "relatedCollectionIds": [
         "collection-doubt-to-clarity",
         "collection-sangat-and-belonging",
         "collection-loneliness-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-sangat"
       ],
       "rotation": {
         "theme": "sangat",
@@ -9235,21 +9235,21 @@
       "id": "shabad-generated-818",
       "title": "Where saving company interrupts judgment",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "This shabad opens with the fear of inescapable judgment. It turns the heart toward the saving nearness of Saadh Sangat and remembrance.",
-      "whyItMatters": "It matters for the person who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter.",
+      "summary": "The shabad begins with the fear of inescapable judgment. It directs the heart toward the saving nearness of Saadh Sangat and remembrance.",
+      "whyItMatters": "This matters for anyone who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter.",
       "themes": [
         "loneliness",
         "restlessness",
         "forgiveness"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-loneliness"
-      ],
       "relatedCollectionIds": [
         "collection-sangat-and-belonging",
         "collection-loneliness-journey",
         "collection-loneliness-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-loneliness"
       ],
       "rotation": {
         "theme": "loneliness",
@@ -9267,21 +9267,21 @@
       "id": "shabad-generated-819",
       "title": "Stop roaming where the One is already near",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
-      "whyItMatters": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest.",
+      "summary": "The pauree begins by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
+      "whyItMatters": "This one meets the person exhausted by spiritual roaming, method-switching, or lonely searching. Kept near, it makes company and inward turning feel more trustworthy than the next forest.",
       "themes": [
         "sangat",
         "seeking",
         "ego"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-sangat"
-      ],
       "relatedCollectionIds": [
         "collection-doubt-to-clarity",
         "collection-sangat-and-belonging",
         "collection-loneliness-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-sangat"
       ],
       "rotation": {
         "theme": "sangat",
@@ -9300,20 +9300,20 @@
       "title": "Where praise makes death keep its distance",
       "subtitle": "Raag Gauree · Ang 256",
       "summary": "This shabad opens inside the place where the Holy keep singing the Lord's praises. It turns the heart toward a sanctuary even fear and death do not rule.",
-      "whyItMatters": "It matters when speech has turned sharp, anxious, or spiritually thin. The shabad shows that praise changes the whole atmosphere a life is spoken inside.",
+      "whyItMatters": "This matters when speech has turned sharp, anxious, or spiritually thin. The shabad shows that praise changes the whole atmosphere a life is spoken inside.",
       "themes": [
         "speech",
         "sangat",
         "anxiety"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-speech"
-      ],
       "relatedCollectionIds": [
         "collection-speech-and-self-restraint",
         "collection-conduct-and-clean-speech",
         "collection-anger-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-speech"
       ],
       "rotation": {
         "theme": "speech",
@@ -9331,21 +9331,21 @@
       "id": "shabad-generated-821",
       "title": "Conquer the self before you fight the world",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "This shabad opens by naming the true battlefield as the soul itself. It turns the heart toward Hukam, inner victory, and the peace that follows self-conquest.",
+      "summary": "This shabad opens by naming the true battlefield as the soul itself. It directs the heart toward Hukam, inner victory, and the peace that follows self-conquest.",
       "whyItMatters": "It matters for anyone living hot, defensive, or split between reaction and discipline. The shabad corrects the urge to master the room before mastering the self.",
       "themes": [
         "anger",
         "ego",
         "discipline"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-anger"
-      ],
       "relatedCollectionIds": [
         "collection-ego-to-humility",
         "collection-speech-and-self-restraint",
         "collection-anger-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-anger"
       ],
       "rotation": {
         "theme": "anger",
@@ -9363,21 +9363,21 @@
       "id": "shabad-generated-822",
       "title": "Offering everything to the One who can unite you",
       "subtitle": "Raag Gauree · Ang 256",
-      "summary": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It ends with fear losing its final authority.",
-      "whyItMatters": "It matters when fear feels personal and total because the shabad turns the heart from private bargaining toward union, clarity, and release from dread.",
+      "summary": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It closes with fear losing its final authority.",
+      "whyItMatters": "This one meets the person whose fear has started feeling personal and total. Kept close, it turns the heart from private bargaining toward union, clarity, and release from dread.",
       "themes": [
         "fear",
         "exhaustion",
         "anger"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-fear"
-      ],
       "relatedCollectionIds": [
         "collection-fear-journey",
         "collection-fear-bundle",
         "collection-mercy-to-fear-90"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-fear"
       ],
       "rotation": {
         "theme": "fear",
@@ -9396,20 +9396,20 @@
       "title": "Love the true treasure before desire names your wealth",
       "subtitle": "Raag Gauree · Ang 256",
       "summary": "The pauree opens by commanding love for the Lord as the true treasure. It answers desire, fear, and the fantasy of lasting wealth by saying the Name alone accompanies and enlightens.",
-      "whyItMatters": "This is for the person driven by craving, acquisition, or the fear of losing it all. Held honestly, it cools desire by showing what does and does not travel with you.",
+      "whyItMatters": "This is for anyone who feels driven by craving, acquisition, or the fear of losing it all. Kept close, it cools desire by showing what does and does not travel with you.",
       "themes": [
         "greed",
         "comparison",
         "ego"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-greed"
-      ],
       "relatedCollectionIds": [
         "collection-speech-and-self-restraint",
         "collection-truthful-wealth",
         "collection-greed-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-greed"
       ],
       "rotation": {
         "theme": "greed",
@@ -9428,17 +9428,17 @@
       "title": "Let humility become the strength that does no harm",
       "subtitle": "Raag Gauree · Ang 272",
       "summary": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
-      "whyItMatters": "This is for the person who has started confusing hardness with spiritual seriousness. Stay with it when you are sharp; it retrains strength as kindness strong enough to bless whatever it touches.",
+      "whyItMatters": "This speaks to the person who has started confusing hardness with spiritual seriousness. Stay with it when you are sharp; it retrains strength as kindness strong enough to bless whatever it touches.",
       "themes": [
         "softness",
         "conduct",
         "mercy"
       ],
+      "relatedCollectionIds": [],
       "relatedGuidanceIds": [],
       "relatedTopicIds": [
         "topic-softness"
       ],
-      "relatedCollectionIds": [],
       "rotation": {
         "theme": "softness",
         "depthLevel": "growing",
@@ -9456,20 +9456,20 @@
       "title": "Center hope where the wandering mind cannot rule",
       "subtitle": "Raag Gauree · Ang 273",
       "summary": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
-      "whyItMatters": "It matters when attachment, distraction, or doubt keeps scattering the heart. The shabad teaches a steadier center than private grasping can provide.",
+      "whyItMatters": "This one speaks to the person whose attachment, distraction, or doubt keeps scattering the heart. It teaches a steadier center than private grasping can provide.",
       "themes": [
         "attachment",
         "discipline",
         "doubt"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-attachment"
-      ],
       "relatedCollectionIds": [
         "collection-gratitude-and-contentment",
         "collection-comparison-journey",
         "collection-attachment-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-attachment"
       ],
       "rotation": {
         "theme": "attachment",
@@ -9488,20 +9488,20 @@
       "title": "Let the Name become your family",
       "subtitle": "Raag Gauree · Ang 273",
       "summary": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
-      "whyItMatters": "This is for the person feeling impressionable, rootless, or easily claimed by whatever is nearest. Held steadily, it teaches a form of belonging that ego cannot counterfeit.",
+      "whyItMatters": "This is for anyone who feels impressionable, rootless, or easily claimed by whatever is nearest. Stayed with, it teaches a form of belonging that ego cannot counterfeit.",
       "themes": [
         "sangat",
         "comparison",
         "loneliness"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-sangat"
-      ],
       "relatedCollectionIds": [
         "collection-doubt-to-clarity",
         "collection-sangat-and-belonging",
         "collection-loneliness-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-sangat"
       ],
       "rotation": {
         "theme": "sangat",
@@ -9520,20 +9520,20 @@
       "title": "God-consciousness is received, not staged",
       "subtitle": "Raag Gauree · Ang 273",
       "summary": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
-      "whyItMatters": "This is for the person who feels unseen and tries to build spiritual worth through effort or image. Held honestly, it returns identity to what God causes rather than what the self stages.",
+      "whyItMatters": "This speaks to the person who feels unseen and tries to build spiritual worth through effort or image. Taken seriously, it returns identity to what God causes rather than what the self stages.",
       "themes": [
         "loneliness",
         "purpose",
         "ego"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-loneliness"
-      ],
       "relatedCollectionIds": [
         "collection-sangat-and-belonging",
         "collection-loneliness-journey",
         "collection-loneliness-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-loneliness"
       ],
       "rotation": {
         "theme": "loneliness",
@@ -9549,23 +9549,23 @@
     },
     {
       "id": "shabad-generated-941",
-      "title": "God-conscious Being Cannot Be Appraised",
+      "title": "A God-conscious being cannot be measured",
       "subtitle": "Raag Gauree · Ang 273",
-      "summary": "This shabad opens with the God-conscious being cannot be appraised. It turns the heart toward o Nanak, to the God-conscious being, bow forever in reverence.",
-      "whyItMatters": "It matters when life feels inflated, defensive, and self-protective because the shabad keeps ego inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad refuses to reduce the Brahm Giani to reputation or display. It describes a life so joined to the Divine that reverence becomes natural, not because of image, but because the God-conscious one lives beyond ordinary measure.",
+      "whyItMatters": "This one meets the person trapped in comparison, status, or the urge to appraise spiritual worth from the outside. Kept close, it trains the mind to honor depth without trying to own or measure it.",
       "themes": [
         "ego",
         "discipline",
         "comparison"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-ego"
-      ],
       "relatedCollectionIds": [
         "collection-ego-to-humility",
         "collection-ego-journey",
         "collection-ego-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-ego"
       ],
       "rotation": {
         "theme": "ego",
@@ -9584,20 +9584,20 @@
       "title": "Recognize greatness by the shelter it offers",
       "subtitle": "Raag Gauree · Ang 273",
       "summary": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
-      "whyItMatters": "This is for the person who needs real guidance and for the person tempted to admire stature without testing its fruit. Come to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand.",
+      "whyItMatters": "This is for anyone who needs real guidance and for the person tempted to admire stature without testing its fruit. Return to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand.",
       "themes": [
         "sangat",
         "control",
         "loneliness"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-sangat"
-      ],
       "relatedCollectionIds": [
         "collection-doubt-to-clarity",
         "collection-sangat-and-belonging",
         "collection-loneliness-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-sangat"
       ],
       "rotation": {
         "theme": "sangat",
@@ -9613,23 +9613,23 @@
     },
     {
       "id": "shabad-generated-1046",
-      "title": "Why Forget Him, Who Does Not Overlook",
+      "title": "Do not forget the One who never forgets you",
       "subtitle": "Raag Gauree · Ang 289",
-      "summary": "This shabad opens with why forget Him, who does not overlook our efforts. It turns the heart toward o Nanak, God's humble servants meditate on Him.",
-      "whyItMatters": "It matters when life feels performing, transactional, and dry because the shabad keeps seva inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
+      "whyItMatters": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding.",
       "themes": [
         "seva",
         "shame",
         "self-worth"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-seva"
-      ],
       "relatedCollectionIds": [
         "collection-service-and-purpose",
         "collection-seva-journey",
         "collection-seva-journey"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-seva"
       ],
       "rotation": {
         "theme": "seva",
@@ -9645,23 +9645,23 @@
     },
     {
       "id": "shabad-generated-1047",
-      "title": "O Saints, Make This Your Work",
+      "title": "Make Naam the work of your life",
       "subtitle": "Raag Gauree · Ang 290",
-      "summary": "This shabad opens with o friends, O Saints, make this your work. It turns the heart toward o Nanak, chant the Naam, the treasure of excellence.",
-      "whyItMatters": "It matters when life feels searching, hungry, and unsettled because the shabad keeps seeking inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+      "whyItMatters": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline.",
       "themes": [
         "seeking",
         "exhaustion",
         "anxiety"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-seeking"
-      ],
       "relatedCollectionIds": [
         "collection-seeking-journey",
         "collection-seeking-bundle",
         "collection-greed-to-seeking-93"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-seeking"
       ],
       "rotation": {
         "theme": "seeking",
@@ -9677,23 +9677,23 @@
     },
     {
       "id": "shabad-generated-1048",
-      "title": "Minds And Bodies Of His Devotees",
+      "title": "Love fills the minds and bodies of the devoted",
       "subtitle": "Raag Gauree · Ang 290",
-      "summary": "This shabad opens with the minds and bodies of His devotees are infused with His Love. It turns the heart toward o Nanak, He is contained among all.",
-      "whyItMatters": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad begins with love rising inside the mind and body as a real hunger for darshan and holy company. It asks for one mercy only, the grace to chant Naam, and ends by widening the heart into the Lord's presence everywhere.",
+      "whyItMatters": "This one speaks to the person who feels unworthy, guarded, or tired of being hard on themselves. Kept close, it makes yearning honest again and shows that mercy often arrives through saintly company and the simple grace to remember.",
       "themes": [
         "mercy",
         "forgiveness",
         "anxiety"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-mercy"
-      ],
       "relatedCollectionIds": [
         "collection-mercy-and-fearlessness",
         "collection-mercy-journey",
         "collection-mercy-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-mercy"
       ],
       "rotation": {
         "theme": "mercy",
@@ -9709,23 +9709,23 @@
     },
     {
       "id": "shabad-generated-1049",
-      "title": "God, The Forgiving Lord, Is Kind",
+      "title": "The forgiving Lord shelters the lowly",
       "subtitle": "Raag Gauree · Ang 290",
-      "summary": "This shabad opens with god, the Forgiving Lord, is kind to the poor. It turns the heart toward nanak has entered Your Sanctuary, O Supreme Lord God.",
-      "whyItMatters": "It matters when life feels envious, unsettled, and small because the shabad keeps comparison inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
+      "summary": "The shabad begins by praising the Lord as forgiving, merciful, and tender toward the poor and unprotected. It keeps widening that refuge until the speaker can admit smallness without despair and enter sanctuary instead of comparison.",
+      "whyItMatters": "This one meets the person who feels envious, unsettled, or quietly beneath everyone else. Stayed with, it replaces comparison with refuge and makes humility safe because the Lord's mercy moves toward the lowly.",
       "themes": [
         "comparison",
         "attachment",
         "shame"
       ],
-      "relatedGuidanceIds": [],
-      "relatedTopicIds": [
-        "topic-comparison"
-      ],
       "relatedCollectionIds": [
         "collection-ego-to-humility",
         "collection-comparison-journey",
         "collection-comparison-bundle"
+      ],
+      "relatedGuidanceIds": [],
+      "relatedTopicIds": [
+        "topic-comparison"
       ],
       "rotation": {
         "theme": "comparison",

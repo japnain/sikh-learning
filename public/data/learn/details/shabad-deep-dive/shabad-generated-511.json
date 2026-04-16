@@ -2,9 +2,9 @@
   "id": "shabad-generated-511",
   "title": "Mercy turns bitter into sweet",
   "subtitle": "Raag Gauree · Ang 171",
-  "summary": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It moves through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
-  "whyItMatters": "This is for the person close to sacred things but no longer tasting them. Held faithfully, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart.",
-  "takeaway": "Ask for the mercy that turns nearness into tasted sweetness.",
+  "summary": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It travels through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
+  "whyItMatters": "This one meets the person close to sacred things but no longer tasting them. Kept close, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart.",
+  "takeaway": "Keep this in front of you: ask for the mercy that turns nearness into tasted sweetness.",
   "themes": [
     "mercy",
     "forgiveness",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by exposing the tragedy of living near the treasure without tasting it.",
-    "The middle contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
-    "It ends in prayer for union, Sangat, and the miracle of bitterness becoming sweet."
+    "First, it begins by exposing the tragedy of living near the treasure without tasting it.",
+    "Then, it contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
+    "Finally, it ends in prayer for union, Sangat, and the miracle of bitterness becoming sweet."
   ],
   "keyVerseIds": [
     7128,
@@ -145,24 +145,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It moves through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
+      "coreClaim": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It travels through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
-      "practicalImplication": "This is for the person close to sacred things but no longer tasting them. Held faithfully, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart. Ask for the mercy that turns nearness into tasted sweetness.",
+      "turn": "Then, it contrasts the sweetness given through Guru and Shabad with the poison of the hard heart.",
+      "practicalImplication": "This one meets the person close to sacred things but no longer tasting them. Kept close, it teaches that proximity is not enough; mercy and Shabad must soften the stubborn heart. Keep this in front of you: ask for the mercy that turns nearness into tasted sweetness.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.78,
+      "specificity": 4.96,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.6,
-      "beauty": 4.53,
-      "overall": 4.25
+      "usefulness": 3.82,
+      "beauty": 4.37,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -2,9 +2,9 @@
   "id": "shabad-human-birth-is-chance",
   "title": "Human birth is a chance, not an ornament",
   "subtitle": "So Purakh",
-  "summary": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
-  "whyItMatters": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response.",
-  "takeaway": "Treat this life as a meeting, not an endless postponement.",
+  "summary": "The shabad refuses to flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
+  "whyItMatters": "This one meets the person busy enough to forget that life is more than maintenance and self-arrangement. Kept near, it turns a precious life from drift into response.",
+  "takeaway": "Let this stay with you: treat this life as a meeting, not an endless postponement.",
   "themes": [
     "purpose",
     "discipline",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by calling human life a given chance rather than a private possession.",
-    "The middle refuses distraction and delay by making the purpose of life explicit.",
-    "It ends by pressing the seeker toward remembrance and company that answer the chance well."
+    "First, it begins by calling human life a given chance rather than a private possession.",
+    "Then, it refuses distraction and delay by making the purpose of life explicit.",
+    "Finally, it ends by pressing the seeker toward remembrance and company that answer the chance well."
   ],
   "keyVerseIds": [
     524,
@@ -153,10 +153,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad does not flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
+      "coreClaim": "The shabad refuses to flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "The middle refuses distraction and delay by making the purpose of life explicit.",
-      "practicalImplication": "This is for the person busy enough to forget that life is more than maintenance and self-arrangement. Held steadily, it turns a precious life from drift into response. Treat this life as a meeting, not an endless postponement.",
+      "turn": "Then, it refuses distraction and delay by making the purpose of life explicit.",
+      "practicalImplication": "This one meets the person busy enough to forget that life is more than maintenance and self-arrangement. Kept near, it turns a precious life from drift into response. Let this stay with you: treat this life as a meeting, not an endless postponement.",
       "bannedOverreach": []
     },
     "scores": {
@@ -164,9 +164,9 @@
       "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.44,
-      "beauty": 4.36,
-      "overall": 4.14
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",

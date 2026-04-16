@@ -3,8 +3,8 @@
   "title": "Ask the Guru before you multiply the questions",
   "subtitle": "Siree Raag · Ang 34",
   "summary": "The shabad opens with an exposed question: whom shall I serve, what shall I chant? It answers by accepting the True Guru's will, uprooting selfishness, and letting Naam bring peace into the mind.",
-  "whyItMatters": "This is for the person exhausted by indecision, self-invention, or spiritual sampling. Held honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered.",
-  "takeaway": "Clarity begins when the question is taken to the Guru.",
+  "whyItMatters": "This is for anyone who feels exhausted by indecision, self-invention, or spiritual sampling. Stayed with honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered.",
+  "takeaway": "Carry this with you: clarity begins when the question is taken to the Guru.",
   "themes": [
     "anxiety",
     "comparison",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens with a naked question instead of pretending certainty is already present.",
-    "The middle accepts the Guru's will and lets selfishness be pulled up by the roots.",
-    "It ends with Naam entering the mind and peace becoming something lived, not guessed at."
+    "First, it starts with a naked question instead of pretending certainty is already present.",
+    "Then, it accepts the Guru's will and lets selfishness be pulled up by the roots.",
+    "Finally, it ends with Naam entering the mind and peace becoming something lived, not guessed at."
   ],
   "keyVerseIds": [
     1411,
@@ -209,8 +209,8 @@
     "evidence": {
       "coreClaim": "The shabad opens with an exposed question: whom shall I serve, what shall I chant? It answers by accepting the True Guru's will, uprooting selfishness, and letting Naam bring peace into the mind.",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "The middle accepts the Guru's will and lets selfishness be pulled up by the roots.",
-      "practicalImplication": "This is for the person exhausted by indecision, self-invention, or spiritual sampling. Held honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered. Clarity begins when the question is taken to the Guru.",
+      "turn": "Then, it accepts the Guru's will and lets selfishness be pulled up by the roots.",
+      "practicalImplication": "This is for anyone who feels exhausted by indecision, self-invention, or spiritual sampling. Stayed with honestly, it changes the search itself: the question becomes cleaner, the ego quieter, and practice less scattered. Carry this with you: clarity begins when the question is taken to the Guru.",
       "bannedOverreach": []
     },
     "scores": {
@@ -218,13 +218,13 @@
       "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 4.37,
-      "overall": 4.29
+      "usefulness": 4.94,
+      "beauty": 4.21,
+      "overall": 4.37
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

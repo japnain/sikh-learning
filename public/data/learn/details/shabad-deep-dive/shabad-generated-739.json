@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-739",
-  "title": "I Remember The Guru With Each",
+  "title": "Remember the Guru with every breath",
   "subtitle": "Raag Gauree · Ang 239",
-  "summary": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
-  "whyItMatters": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: says Nanak, my Guru is All-powerful.",
+  "summary": "The shabad begins with breath-by-breath remembrance of the Guru as life and wealth. It moves through service, the washing of ego, rescue from inner fire, and finally rests in the certainty that the Guru is powerful enough to carry the soul.",
+  "whyItMatters": "This one meets the person who feels restless, isolated, or afraid that faith will collapse under pressure. Kept close, it turns remembrance from duty into lifeline, and lets gratitude steady what fear keeps shaking.",
+  "takeaway": "Keep returning to the Guru as breath, wealth, and shelter.",
   "themes": [
     "anxiety",
     "loneliness",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: i remember the Guru with each and every breath.",
-    "The middle movement widens the correction through from the Guru, I have learned the Way of the One Lord.",
-    "It closes with a return you can actually keep: says Nanak, my Guru is All-powerful."
+    "First, it makes remembrance intimate: the Guru is named with every breath.",
+    "Then, it shows service and humility washing old ego and teaching the way of the One.",
+    "Finally, it lands in rescue, friendship, love, and the confidence that the Guru is powerful enough to hold you."
   ],
   "keyVerseIds": [
     10434,
@@ -204,24 +204,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with i remember the Guru with each and every breath. It turns the heart toward says Nanak, my Guru is All-powerful.",
+      "coreClaim": "The shabad begins with breath-by-breath remembrance of the Guru as life and wealth. It moves through service, the washing of ego, rescue from inner fire, and finally rests in the certainty that the Guru is powerful enough to carry the soul.",
       "emotionalState": "restless, uncertain, fearful",
-      "turn": "The middle movement widens the correction through from the Guru, I have learned the Way of the One Lord.",
-      "practicalImplication": "It matters when life feels restless, uncertain, and fearful because the shabad keeps anxiety inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: says Nanak, my Guru is All-powerful.",
+      "turn": "Then, it shows service and humility washing old ego and teaching the way of the One.",
+      "practicalImplication": "This one meets the person who feels restless, isolated, or afraid that faith will collapse under pressure. Kept close, it turns remembrance from duty into lifeline, and lets gratitude steady what fear keeps shaking. Keep returning to the Guru as breath, wealth, and shelter.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.69,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.98,
-      "beauty": 4.03,
-      "overall": 4.16
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.8,
+      "beauty": 4.54,
+      "overall": 4.41
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

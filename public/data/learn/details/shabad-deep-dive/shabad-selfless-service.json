@@ -2,9 +2,9 @@
   "id": "shabad-selfless-service",
   "title": "Service without reward reaches the Master",
   "subtitle": "Raag Gauree",
-  "summary": "The shabad opens by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
-  "whyItMatters": "This is for the person doing good while keeping one eye on recognition. Held faithfully, it purifies service by taking self-display and reward out of the center.",
-  "takeaway": "Service becomes true when the self stops asking to be seen.",
+  "summary": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+  "whyItMatters": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center.",
+  "takeaway": "Carry this with you: service becomes true when the self stops asking to be seen.",
   "themes": [
     "seva",
     "humility",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by describing the servant who lives under the Guru's command rather than personal image.",
-    "The middle sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
-    "It ends with selfless service drawing the servant into the Lord and the Guru's teaching."
+    "First, it begins by describing the servant who lives under the Guru's command rather than personal image.",
+    "Then, it sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
+    "Finally, it ends with selfless service drawing the servant into the Lord and the Guru's teaching."
   ],
   "keyVerseIds": [
     12943,
@@ -145,10 +145,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+      "coreClaim": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "The middle sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
-      "practicalImplication": "This is for the person doing good while keeping one eye on recognition. Held faithfully, it purifies service by taking self-display and reward out of the center. Service becomes true when the self stops asking to be seen.",
+      "turn": "Then, it sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
+      "practicalImplication": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center. Carry this with you: service becomes true when the self stops asking to be seen.",
       "bannedOverreach": []
     },
     "scores": {
@@ -156,13 +156,13 @@
       "clarity": 4.17,
       "specificity": 4.96,
       "emotionalHonesty": 3.9,
-      "usefulness": 4.2,
-      "beauty": 4.08,
-      "overall": 4.3
+      "usefulness": 4.58,
+      "beauty": 3.92,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

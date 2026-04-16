@@ -3,8 +3,8 @@
   "title": "Truth is meant to occupy the whole life",
   "subtitle": "Siree Raag · Ang 69",
   "summary": "The shabad starts by joining service to the True Guru with the cleansing of mind and body. Then it keeps widening truth until it touches food, speech, company, clothing, and shelter.",
-  "whyItMatters": "This is for the person whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live.",
-  "takeaway": "Let the Guru's truth reach your food, speech, and shelter.",
+  "whyItMatters": "This is for anyone whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live.",
+  "takeaway": "Carry this with you: let the Guru's truth reach your food, speech, and shelter.",
   "themes": [
     "ego",
     "discipline",
@@ -224,9 +224,9 @@
     }
   ],
   "structure": [
-    "It opens with service to the Guru cleaning both mind and body.",
-    "The middle makes truth the atmosphere of speech, sustenance, company, and dwelling.",
-    "It ends by hurrying to the Guru's sanctuary as the crossing out of a burning world."
+    "First, it starts with service to the Guru cleaning both mind and body.",
+    "Then, it makes truth the atmosphere of speech, sustenance, company, and dwelling.",
+    "Finally, it ends by hurrying to the Guru's sanctuary as the crossing out of a burning world."
   ],
   "keyVerseIds": [
     2787,
@@ -265,22 +265,22 @@
     "evidence": {
       "coreClaim": "The shabad starts by joining service to the True Guru with the cleansing of mind and body. Then it keeps widening truth until it touches food, speech, company, clothing, and shelter.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle makes truth the atmosphere of speech, sustenance, company, and dwelling.",
-      "practicalImplication": "This is for the person whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live. Let the Guru's truth reach your food, speech, and shelter.",
+      "turn": "Then, it makes truth the atmosphere of speech, sustenance, company, and dwelling.",
+      "practicalImplication": "This is for anyone whose devotion still lives in a separate room from the rest of the day. Stay with it when prayer and conduct drift apart; it insists that truth should enter the whole way you live. Carry this with you: let the Guru's truth reach your food, speech, and shelter.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.35,
+      "clarity": 4.23,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.42,
-      "beauty": 4.52,
-      "overall": 4.35
+      "usefulness": 5,
+      "beauty": 4.42,
+      "overall": 4.4
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

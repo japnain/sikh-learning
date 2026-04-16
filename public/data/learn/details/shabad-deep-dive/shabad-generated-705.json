@@ -2,9 +2,9 @@
   "id": "shabad-generated-705",
   "title": "The world asks for peace and forgets Naam",
   "subtitle": "Raag Gauree · Ang 222",
-  "summary": "The shabad opens by saying egotism cannot produce peace. It widens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
-  "whyItMatters": "This is for the person exhausted by self-will but still expecting it to work. Held honestly, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace.",
-  "takeaway": "Ego cannot make peace; Naam and service can.",
+  "summary": "The shabad starts by saying egotism cannot produce peace. It broadens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
+  "whyItMatters": "This is for anyone who feels exhausted by self-will but still expecting it to work. Kept close, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace.",
+  "takeaway": "Let this stay with you: ego cannot make peace; Naam and service can.",
   "themes": [
     "ego",
     "gratitude",
@@ -280,9 +280,9 @@
     }
   ],
   "structure": [
-    "It opens by naming egotism and false intellect as the root of unrest.",
-    "The middle exposes the world's gamble: begging for peace while forgetting Naam.",
-    "It ends in service, Bani, grace, and the Lord's Will as the place where peace actually stays."
+    "First, it begins by naming egotism and false intellect as the root of unrest.",
+    "Then, it exposes the world's gamble: begging for peace while forgetting Naam.",
+    "Finally, it ends in service, Bani, grace, and the Lord's Will as the place where peace actually stays."
   ],
   "keyVerseIds": [
     9525,
@@ -320,10 +320,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by saying egotism cannot produce peace. It widens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
+      "coreClaim": "The shabad starts by saying egotism cannot produce peace. It broadens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle exposes the world's gamble: begging for peace while forgetting Naam.",
-      "practicalImplication": "This is for the person exhausted by self-will but still expecting it to work. Held honestly, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace. Ego cannot make peace; Naam and service can.",
+      "turn": "Then, it exposes the world's gamble: begging for peace while forgetting Naam.",
+      "practicalImplication": "This is for anyone who feels exhausted by self-will but still expecting it to work. Kept close, it exposes the fraud of ego and turns the heart toward Naam as the only lasting peace. Let this stay with you: ego cannot make peace; Naam and service can.",
       "bannedOverreach": []
     },
     "scores": {
@@ -331,13 +331,13 @@
       "clarity": 4.29,
       "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.44,
-      "beauty": 4.4,
-      "overall": 4.19
+      "usefulness": 4.58,
+      "beauty": 4.27,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

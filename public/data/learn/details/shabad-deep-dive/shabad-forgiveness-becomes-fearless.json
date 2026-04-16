@@ -2,9 +2,9 @@
   "id": "shabad-forgiveness-becomes-fearless",
   "title": "Forgiveness is the fast that makes one fearless",
   "subtitle": "Raag Gauree · Ang 223",
-  "summary": "The shabad begins by naming forgiveness, good conduct, and contentment as the real fast. It moves through release from disease and death-fear and settles in the Lord already present within and without.",
-  "whyItMatters": "This is for the person holding hurt so tightly that it has started feeling like identity. Held faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power.",
-  "takeaway": "Forgiveness, conduct, and contentment free the heart from fear.",
+  "summary": "The shabad starts by naming forgiveness, good conduct, and contentment as the real fast. It travels through release from disease and death-fear and comes to rest in the Lord already present within and without.",
+  "whyItMatters": "This speaks to the person holding hurt so tightly that it has started feeling like identity. Taken faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power.",
+  "takeaway": "Remember this: forgiveness, conduct, and contentment free the heart from fear.",
   "themes": [
     "forgiveness",
     "fearlessness",
@@ -224,9 +224,9 @@
     }
   ],
   "structure": [
-    "It opens by redefining austerity through forgiveness and character instead of display.",
-    "The middle loosens disease, death-fear, and the authority of threat itself.",
-    "It ends in the Lord's nearness within and without, where fear has less room to stand."
+    "First, it begins by redefining austerity through forgiveness and character instead of display.",
+    "Then, it loosens disease, death-fear, and the authority of threat itself.",
+    "Finally, it ends in the Lord's nearness within and without, where fear has less room to stand."
   ],
   "keyVerseIds": [
     9600,
@@ -266,10 +266,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad begins by naming forgiveness, good conduct, and contentment as the real fast. It moves through release from disease and death-fear and settles in the Lord already present within and without.",
+      "coreClaim": "The shabad starts by naming forgiveness, good conduct, and contentment as the real fast. It travels through release from disease and death-fear and comes to rest in the Lord already present within and without.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "The middle loosens disease, death-fear, and the authority of threat itself.",
-      "practicalImplication": "This is for the person holding hurt so tightly that it has started feeling like identity. Held faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power. Forgiveness, conduct, and contentment free the heart from fear.",
+      "turn": "Then, it loosens disease, death-fear, and the authority of threat itself.",
+      "practicalImplication": "This speaks to the person holding hurt so tightly that it has started feeling like identity. Taken faithfully, it turns forgiveness from sentiment into discipline and lets fear lose some of its hidden power. Remember this: forgiveness, conduct, and contentment free the heart from fear.",
       "bannedOverreach": []
     },
     "scores": {
@@ -278,8 +278,8 @@
       "specificity": 4.96,
       "emotionalHonesty": 3.54,
       "usefulness": 4.58,
-      "beauty": 4.37,
-      "overall": 4.37
+      "beauty": 4.21,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",

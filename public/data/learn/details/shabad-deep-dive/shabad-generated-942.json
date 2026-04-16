@@ -3,8 +3,8 @@
   "title": "Recognize greatness by the shelter it offers",
   "subtitle": "Raag Gauree · Ang 273",
   "summary": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
-  "whyItMatters": "This is for the person who needs real guidance and for the person tempted to admire stature without testing its fruit. Come to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand.",
-  "takeaway": "Test greatness by the shelter it gives away.",
+  "whyItMatters": "This is for anyone who needs real guidance and for the person tempted to admire stature without testing its fruit. Return to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand.",
+  "takeaway": "Keep this in front of you: test greatness by the shelter it gives away.",
   "themes": [
     "sangat",
     "control",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the God-conscious being through enduring, God-shaped qualities.",
-    "The middle turns that stature toward liberation, orchestration, and concrete help.",
-    "It ends by placing a hand extended to all at the center of true spiritual power."
+    "First, it begins by naming the God-conscious being through enduring, God-shaped qualities.",
+    "Then, it turns that stature toward liberation, orchestration, and concrete help.",
+    "Finally, it ends by placing a hand extended to all at the center of true spiritual power."
   ],
   "keyVerseIds": [
     12163,
@@ -143,18 +143,18 @@
     "evidence": {
       "coreClaim": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle turns that stature toward liberation, orchestration, and concrete help.",
-      "practicalImplication": "This is for the person who needs real guidance and for the person tempted to admire stature without testing its fruit. Come to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand. Test greatness by the shelter it gives away.",
+      "turn": "Then, it turns that stature toward liberation, orchestration, and concrete help.",
+      "practicalImplication": "This is for anyone who needs real guidance and for the person tempted to admire stature without testing its fruit. Return to it when spirituality gets vague; it teaches you to look for shelter, help, and an outstretched hand. Keep this in front of you: test greatness by the shelter it gives away.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.23,
-      "specificity": 4.96,
+      "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 3.44,
-      "beauty": 4.13,
-      "overall": 4.06
+      "usefulness": 4.04,
+      "beauty": 4.29,
+      "overall": 4.18
     },
     "strengths": [
       "specificity",

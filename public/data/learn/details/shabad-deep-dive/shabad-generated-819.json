@@ -2,9 +2,9 @@
   "id": "shabad-generated-819",
   "title": "Stop roaming where the One is already near",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
-  "whyItMatters": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest.",
-  "takeaway": "Search inwardly and let Sangat tear down the proud mound.",
+  "summary": "The pauree begins by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
+  "whyItMatters": "This one meets the person exhausted by spiritual roaming, method-switching, or lonely searching. Kept near, it makes company and inward turning feel more trustworthy than the next forest.",
+  "takeaway": "Let this stay with you: search inwardly and let Sangat tear down the proud mound.",
   "themes": [
     "sangat",
     "seeking",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by confronting wandering instead of admiring it.",
-    "The middle turns the seeker toward inner search and the company of the holy.",
-    "It ends by linking peace and delight to the breaking of egotistical pride."
+    "First, it begins by confronting wandering instead of admiring it.",
+    "Then, it turns the seeker toward inner search and the company of the holy.",
+    "Finally, it ends by linking peace and delight to the breaking of egotistical pride."
   ],
   "keyVerseIds": [
     11180,
@@ -134,10 +134,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The pauree opens by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
+      "coreClaim": "The pauree begins by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle turns the seeker toward inner search and the company of the holy.",
-      "practicalImplication": "This is for the person exhausted by spiritual roaming, method-switching, or lonely searching. Held steadily, it makes company and inward turning feel more trustworthy than the next forest. Search inwardly and let Sangat tear down the proud mound.",
+      "turn": "Then, it turns the seeker toward inner search and the company of the holy.",
+      "practicalImplication": "This one meets the person exhausted by spiritual roaming, method-switching, or lonely searching. Kept near, it makes company and inward turning feel more trustworthy than the next forest. Let this stay with you: search inwardly and let Sangat tear down the proud mound.",
       "bannedOverreach": []
     },
     "scores": {
@@ -145,13 +145,13 @@
       "clarity": 4.35,
       "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.2,
-      "beauty": 4.21,
-      "overall": 4.29
+      "usefulness": 4.58,
+      "beauty": 4.05,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

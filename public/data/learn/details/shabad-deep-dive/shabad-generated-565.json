@@ -2,9 +2,9 @@
   "id": "shabad-generated-565",
   "title": "Everything becomes whole when Naam lives inside",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "The shabad opens by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
-  "whyItMatters": "This is for the person living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement.",
-  "takeaway": "Wholeness begins when the Name is kept in the heart.",
+  "summary": "The shabad begins by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
+  "whyItMatters": "This is for anyone who feels living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement.",
+  "takeaway": "Let this stay with you: wholeness begins when the Name is kept in the heart.",
   "themes": [
     "comparison",
     "gratitude",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by placing perfection inside the heart that holds Naam.",
-    "The middle shows peace, contentment, honor, and humanity becoming whole under that same keeping.",
-    "It ends with the servant sheltered in the Supreme Lord and the True Guru confessed as complete."
+    "First, it begins by placing perfection inside the heart that holds Naam.",
+    "Then, it shows peace, contentment, honor, and humanity becoming whole under that same keeping.",
+    "Finally, it ends with the servant sheltered in the Supreme Lord and the True Guru confessed as complete."
   ],
   "keyVerseIds": [
     7978,
@@ -152,24 +152,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
+      "coreClaim": "The shabad begins by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle shows peace, contentment, honor, and humanity becoming whole under that same keeping.",
-      "practicalImplication": "This is for the person living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement. Wholeness begins when the Name is kept in the heart.",
+      "turn": "Then, it shows peace, contentment, honor, and humanity becoming whole under that same keeping.",
+      "practicalImplication": "This is for anyone who feels living with a chronic sense of incompletion and searching for patches everywhere else. Held quietly, it teaches that wholeness grows from sanctuary and Naam, not from frantic improvement. Let this stay with you: wholeness begins when the Name is kept in the heart.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.96,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.2,
+      "usefulness": 5,
       "beauty": 4.69,
-      "overall": 4.31
+      "overall": 4.43
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

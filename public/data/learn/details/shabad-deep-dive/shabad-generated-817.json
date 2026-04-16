@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-817",
-  "title": "Dadda: This Is Not Your True Place",
+  "title": "This is not your lasting home",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
-  "whyItMatters": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
+  "summary": "The pauree begins by stripping this passing world of final status. It teaches that the way to the true dwelling is known through the Guru's Shabad, and that stable belonging is found in the company of the holy rather than in what cannot go with you.",
+  "whyItMatters": "This one speaks to the person who feels unrooted, easily swayed, or hungry for real belonging. Taken seriously, it loosens attachment to what cannot last and directs the heart toward the company that steadies it.",
+  "takeaway": "Do not mistake the temporary camp for your true home.",
   "themes": [
     "sangat",
     "restlessness",
@@ -98,9 +98,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: dADDA: This is not your true place.",
-    "The middle movement widens the correction through the value of that place beyond is known only to those.",
-    "It closes with a return you can actually keep: o Nanak, those humble beings do not waver or wander."
+    "First, it says plainly that this visible place is not the soul's final dwelling.",
+    "Then, it teaches that the way there is recognized through the Guru's Shabad, not through possession or effort alone.",
+    "Finally, it locates true stability in Saadh Sangat, where the heart stops wavering."
   ],
   "keyVerseIds": [
     11168,
@@ -134,20 +134,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with dADDA: This is not your true place. It turns the heart toward o Nanak, those humble beings do not waver or wander.",
+      "coreClaim": "The pauree begins by stripping this passing world of final status. It teaches that the way to the true dwelling is known through the Guru's Shabad, and that stable belonging is found in the company of the holy rather than in what cannot go with you.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "The middle movement widens the correction through the value of that place beyond is known only to those.",
-      "practicalImplication": "It matters when life feels isolated, impressionable, and needing-company because the shabad keeps sangat inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, those humble beings do not waver or wander.",
+      "turn": "Then, it teaches that the way there is recognized through the Guru's Shabad, not through possession or effort alone.",
+      "practicalImplication": "This one speaks to the person who feels unrooted, easily swayed, or hungry for real belonging. Taken seriously, it loosens attachment to what cannot last and directs the heart toward the company that steadies it. Do not mistake the temporary camp for your true home.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.63,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.9,
-      "usefulness": 3.98,
-      "beauty": 3.82,
-      "overall": 4.12
+      "clarity": 4.17,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.06,
+      "overall": 4.16
     },
     "strengths": [
       "specificity",

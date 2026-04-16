@@ -2,9 +2,9 @@
   "id": "shabad-generated-816",
   "title": "Bow until wandering stops asking for the lead",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "This brief shabad opens in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
-  "whyItMatters": "This is for the person whose devotion has gone formal while the mind still keeps roaming. Held honestly, it turns bowing into dependence instead of performance.",
-  "takeaway": "Let prayer become a real request for rescue.",
+  "summary": "This brief shabad begins in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
+  "whyItMatters": "This one meets the person whose devotion has gone formal while the mind still keeps roaming. Stayed with honestly, it turns bowing into dependence instead of performance.",
+  "takeaway": "Let this stay with you: let prayer become a real request for rescue.",
   "themes": [
     "seva",
     "restlessness",
@@ -56,9 +56,9 @@
     }
   ],
   "structure": [
-    "It opens in repeated prostration before the Lord's power.",
-    "The middle turns that posture into a plea for protection from wandering.",
-    "It ends by asking for the Lord's own hand rather than trusting the self."
+    "First, it opens in repeated prostration before the Lord's power.",
+    "Then, it turns that posture into a plea for protection from wandering.",
+    "Finally, it ends by asking for the Lord's own hand rather than trusting the self."
   ],
   "keyVerseIds": [
     11165,
@@ -90,10 +90,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This brief shabad opens in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
+      "coreClaim": "This brief shabad begins in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "The middle turns that posture into a plea for protection from wandering.",
-      "practicalImplication": "This is for the person whose devotion has gone formal while the mind still keeps roaming. Held honestly, it turns bowing into dependence instead of performance. Let prayer become a real request for rescue.",
+      "turn": "Then, it turns that posture into a plea for protection from wandering.",
+      "practicalImplication": "This one meets the person whose devotion has gone formal while the mind still keeps roaming. Stayed with honestly, it turns bowing into dependence instead of performance. Let this stay with you: let prayer become a real request for rescue.",
       "bannedOverreach": []
     },
     "scores": {
@@ -101,13 +101,13 @@
       "clarity": 4.17,
       "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.2,
-      "beauty": 4.09,
-      "overall": 4.22
+      "usefulness": 4.58,
+      "beauty": 3.93,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

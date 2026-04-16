@@ -3,8 +3,8 @@
   "title": "Mercy lets the child tell the truth",
   "subtitle": "Siree Raag · Ang 51",
   "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
-  "whyItMatters": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike.",
-  "takeaway": "Bring the truth about failure into the Lord's mercy.",
+  "whyItMatters": "This is for anyone who feels stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike.",
+  "takeaway": "Hold onto this: bring the truth about failure into the Lord's mercy.",
   "themes": [
     "hukam",
     "shame",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by linking love to mercy and honest childlike admission.",
-    "The middle admits how easy speech is and how difficult it is to actually accept Hukam.",
-    "It ends with possessiveness loosening and the Supreme Lord being recognized through the Guru."
+    "First, it begins by linking love to mercy and honest childlike admission.",
+    "Then, it admits how easy speech is and how difficult it is to actually accept Hukam.",
+    "Finally, it ends with possessiveness loosening and the Supreme Lord being recognized through the Guru."
   ],
   "keyVerseIds": [
     2088,
@@ -154,22 +154,22 @@
     "evidence": {
       "coreClaim": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
       "emotionalState": "resisting, controlling, argumentative",
-      "turn": "The middle admits how easy speech is and how difficult it is to actually accept Hukam.",
-      "practicalImplication": "This is for the person stuck between shame and self-protection after failure. Held sincerely, it makes confession safer and trust more childlike. Bring the truth about failure into the Lord's mercy.",
+      "turn": "Then, it admits how easy speech is and how difficult it is to actually accept Hukam.",
+      "practicalImplication": "This is for anyone who feels stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike. Hold onto this: bring the truth about failure into the Lord's mercy.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.78,
+      "specificity": 4.96,
       "emotionalHonesty": 3,
-      "usefulness": 3.6,
-      "beauty": 4.63,
-      "overall": 4.14
+      "usefulness": 4.94,
+      "beauty": 4.48,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

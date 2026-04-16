@@ -3,8 +3,8 @@
   "title": "Ego is a chronic illness with a cure inside it",
   "subtitle": "Raag Aasaa",
   "summary": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
-  "whyItMatters": "This is for the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay with this shabad after conflict, and it turns self-diagnosis from shame into treatment.",
-  "takeaway": "Treat ego as illness and keep the Guru's medicine near.",
+  "whyItMatters": "This one meets the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay close to this shabad after conflict, and it turns self-diagnosis from shame into treatment.",
+  "takeaway": "Hold onto this: treat ego as illness and keep the Guru's medicine near.",
   "themes": [
     "ego",
     "anger",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "It begins by naming ego as the force behind ordinary action and repeated bondage.",
-    "The middle asks the decisive question: where does ego arise, and how does it leave?",
-    "It ends by locating the cure in grace and in living the Guru's Shabad."
+    "First, it begins by naming ego as the force behind ordinary action and repeated bondage.",
+    "Then, it asks the decisive question: where does ego arise, and how does it leave?",
+    "Finally, it ends by locating the cure in grace and in living the Guru's Shabad."
   ],
   "keyVerseIds": [
     20961,
@@ -133,22 +133,22 @@
     "evidence": {
       "coreClaim": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "The middle asks the decisive question: where does ego arise, and how does it leave?",
-      "practicalImplication": "This is for the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay with this shabad after conflict, and it turns self-diagnosis from shame into treatment. Treat ego as illness and keep the Guru's medicine near.",
+      "turn": "Then, it asks the decisive question: where does ego arise, and how does it leave?",
+      "practicalImplication": "This one meets the person who keeps locating every problem outside the self while anger, injury, and self-importance keep returning. Stay close to this shabad after conflict, and it turns self-diagnosis from shame into treatment. Hold onto this: treat ego as illness and keep the Guru's medicine near.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.78,
+      "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.98,
-      "beauty": 4.29,
-      "overall": 4.21
+      "usefulness": 4.58,
+      "beauty": 4.31,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true
