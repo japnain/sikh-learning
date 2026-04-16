@@ -477,8 +477,8 @@ export default function Home() {
   const savedFavorites = favorites.length
   const savedReviewItems = vocab.length
   const resumePath = buildSessionResumePath(currentSession)
-  const resolvedTheme = useThemeStore(s => s.resolvedTheme)
-  const setThemeMode = useThemeStore(s => s.setThemeMode)
+  const isDarkTheme = useThemeStore(s => s.dark)
+  const toggleTheme = useThemeStore(s => s.toggle)
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
       case 'learn':
@@ -674,12 +674,12 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => setThemeMode(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            aria-label={resolvedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            onClick={toggleTheme}
+            aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
             className="icon-surface interactive-focus touch-target h-12 w-12 text-ink dark:text-dark-text"
             data-testid="home-theme-toggle"
           >
-            {resolvedTheme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
+            {isDarkTheme ? <IconSun size={18} /> : <IconMoon size={18} />}
           </button>
           <StreakBadge streak={streak} />
         </div>

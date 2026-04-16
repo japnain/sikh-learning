@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
         parchment: '#fff8ef',
         'parchment-low': '#fbf3e4',
         'parchment-deep': '#f3e6d2',
@@ -21,6 +22,8 @@ export default {
         'dark-card': '#1d1535',
         'dark-surface': '#161230',
         'dark-text': '#e8e0d4',
+        text: 'rgb(var(--color-text) / <alpha-value>)',
+        'text-muted': 'rgb(var(--color-text-muted) / <alpha-value>)',
       },
       fontFamily: {
         gurmukhi: ['Noto Serif Gurmukhi', 'serif'],

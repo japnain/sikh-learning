@@ -50,8 +50,7 @@ beforeEach(() => {
   vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   localStorage.clear()
   document.documentElement.classList.remove('dark')
-  useThemeStore.getState().setThemeMode('light')
-  useThemeStore.getState().setMotionMode('system')
+  useThemeStore.setState({ dark: false })
   useSavedFeedbackStore.getState().clearSaved()
   useScriptureCacheStore.getState().clearAll()
   useBookmarksStore.setState({ bookmarks: [] })
@@ -447,13 +446,13 @@ test('restores a direct light-dark toggle on the home header', () => {
   renderHome()
 
   const toggle = screen.getByTestId('home-theme-toggle')
-  expect(useThemeStore.getState().themeMode).toBe('light')
+  expect(useThemeStore.getState().dark).toBe(false)
 
   fireEvent.click(toggle)
-  expect(useThemeStore.getState().themeMode).toBe('dark')
+  expect(useThemeStore.getState().dark).toBe(true)
 
   fireEvent.click(screen.getByTestId('home-theme-toggle'))
-  expect(useThemeStore.getState().themeMode).toBe('light')
+  expect(useThemeStore.getState().dark).toBe(false)
 })
 
 test('highlights the matching saved preview row after a recent save', async () => {
@@ -481,7 +480,7 @@ test('highlights the matching saved preview row after a recent save', async () =
 })
 
 test('keeps the new hero and read-today surfaces visible in dark mode', async () => {
-  useThemeStore.getState().setThemeMode('dark')
+  useThemeStore.getState().toggle()
   renderHome()
 
   await waitFor(() => {
