@@ -2,6 +2,8 @@ import type {
   Collection,
   DailyGuidance,
   LearnCatalog,
+  LearnHomeCatalog,
+  LearnHomeCatalogPayload,
   LearnContentKind,
   LearnManifest,
   LearnSearchIndex,
@@ -21,9 +23,20 @@ type LearnDetailMap = {
 }
 
 const DEFAULT_MANIFEST_PATH = "/data/learn/manifest.json"
+const DEFAULT_HOME_SUMMARY_PATH = "/data/learn/home-summary.json"
 
 function createIndexMap<T extends { id: string }>(items: T[]) {
   return Object.fromEntries(items.map(item => [item.id, item] as const)) as Record<string, T>
+}
+
+function buildLearnHomeCatalog(summary: LearnHomeCatalogPayload): LearnHomeCatalog {
+  return {
+    ...summary,
+    dailyGuidanceById: createIndexMap(summary.dailyGuidance),
+    shabadDeepDiveById: createIndexMap(summary.shabadDeepDives),
+    topicGuideById: createIndexMap(summary.topicGuides),
+    collectionById: createIndexMap(summary.collections),
+  }
 }
 
 async function defaultFetchJson<T>(path: string): Promise<T> {
@@ -38,6 +51,7 @@ let jsonLoader: LearnJsonLoader = defaultFetchJson
 let manifestPromise: Promise<LearnManifest> | null = null
 let searchIndexPromise: Promise<LearnSearchIndex> | null = null
 let catalogPromise: Promise<LearnCatalog> | null = null
+let homeCatalogPromise: Promise<LearnHomeCatalog> | null = null
 const detailPromises = new Map<string, Promise<DailyGuidance | ShabadDeepDive | TopicGuide | Collection>>()
 
 export function configureLearnRepositoryLoader(loader: LearnJsonLoader | null) {
@@ -49,6 +63,7 @@ export function resetLearnRepositoryCache() {
   manifestPromise = null
   searchIndexPromise = null
   catalogPromise = null
+  homeCatalogPromise = null
   detailPromises.clear()
 }
 
@@ -98,6 +113,74 @@ export async function loadLearnCatalog() {
   }
 
   return catalogPromise
+}
+
+export async function loadLearnHomeCatalog() {
+  if (!homeCatalogPromise) {
+    homeCatalogPromise = withQaControl('learn-catalog', async () => {
+      try {
+        const summary = await jsonLoader<LearnHomeCatalogPayload>(DEFAULT_HOME_SUMMARY_PATH)
+        return buildLearnHomeCatalog(summary)
+      } catch (error) {
+        if (
+          !(error instanceof Error)
+          || !/404|ENOENT|no such file/i.test(error.message)
+        ) {
+          throw error
+        }
+
+        const catalog = await loadLearnCatalog()
+        return buildLearnHomeCatalog({
+          dailyGuidance: catalog.dailyGuidance.map(item => ({
+            id: item.id,
+            title: item.title,
+            summary: item.summary,
+            relatedTopicIds: item.relatedTopicIds,
+            relatedShabadIds: item.relatedShabadIds,
+            relatedCollectionIds: item.relatedCollectionIds,
+            rotation: item.rotation,
+          })),
+          shabadDeepDives: catalog.shabadDeepDives.map(item => ({
+            id: item.id,
+            title: item.title,
+            subtitle: item.subtitle,
+            summary: item.summary,
+            whyItMatters: item.whyItMatters,
+            themes: item.themes,
+            relatedGuidanceIds: item.relatedGuidanceIds,
+            relatedTopicIds: item.relatedTopicIds,
+            relatedCollectionIds: item.relatedCollectionIds,
+            rotation: item.rotation,
+          })),
+          topicGuides: catalog.topicGuides.map(item => ({
+            id: item.id,
+            title: item.title,
+            shortTitle: item.shortTitle,
+            category: item.category,
+            centralInsight: item.centralInsight,
+            searchTerms: item.searchTerms,
+            relatedTopicIds: item.relatedTopicIds,
+            relatedShabadIds: item.relatedShabadIds,
+            relatedCollectionIds: item.relatedCollectionIds,
+            rotation: item.rotation,
+          })),
+          collections: catalog.collections.map(item => ({
+            id: item.id,
+            title: item.title,
+            subtitle: item.subtitle,
+            description: item.description,
+            durationLabel: item.durationLabel,
+            themes: item.themes,
+            relatedTopicIds: item.relatedTopicIds,
+            relatedShabadIds: item.relatedShabadIds,
+            itemCount: item.items.length,
+          })),
+        })
+      }
+    })
+  }
+
+  return homeCatalogPromise
 }
 
 function buildDetailPath(manifest: LearnManifest, kind: LearnContentKind, id: string) {

@@ -1,7 +1,6 @@
 import type { UserSchema } from '@insforge/sdk'
 import { getNaamrasInsforgeClient } from './client'
 import { getNaamrasInsforgeConfig } from './config'
-import { loadRemoteSnapshotFromRepositories } from './repositories'
 import { applyRemoteSnapshot, exportLocalSnapshot } from './snapshot'
 import type { CloudUserSummary, MergeLocalStateResult } from './types'
 import { withQaControl } from '../qa/runtime'
@@ -182,20 +181,6 @@ export async function syncNow(reason = 'manual') {
     }))
 
     if (functionResponse.error) {
-      const remoteSnapshot = await loadRemoteSnapshotFromRepositories(client)
-      if (remoteSnapshot) {
-        applyingRemoteSnapshot = true
-        try {
-          applyRemoteSnapshot(remoteSnapshot)
-        } finally {
-          applyingRemoteSnapshot = false
-        }
-        syncStore.setStatus('ready')
-        syncStore.setLastSyncedAt(new Date().toISOString())
-        syncStore.setLastError(getCloudSyncFailureMessage('sync'))
-        return { ok: false, fallbackLoaded: true }
-      }
-
       syncStore.setStatus('error')
       syncStore.setLastError(getCloudSyncFailureMessage('sync'))
       syncStore.setSyncQueued(true)
@@ -222,20 +207,6 @@ export async function syncNow(reason = 'manual') {
 
     return { ok: true }
   } catch (error) {
-    const remoteSnapshot = await loadRemoteSnapshotFromRepositories(client).catch(() => null)
-    if (remoteSnapshot) {
-      applyingRemoteSnapshot = true
-      try {
-        applyRemoteSnapshot(remoteSnapshot)
-      } finally {
-        applyingRemoteSnapshot = false
-      }
-      syncStore.setStatus('ready')
-      syncStore.setLastSyncedAt(new Date().toISOString())
-      syncStore.setLastError(getCloudSyncFailureMessage('sync'))
-      return { ok: false, fallbackLoaded: true }
-    }
-
     syncStore.setStatus('error')
     syncStore.setLastError(getCloudSyncFailureMessage('sync'))
     syncStore.setSyncQueued(true)

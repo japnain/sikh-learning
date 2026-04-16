@@ -704,6 +704,73 @@ export interface Collection {
   editorial?: LearnEditorialAssessment
 }
 
+export type LearnHomeDailyGuidance = Pick<
+  DailyGuidance,
+  | 'id'
+  | 'title'
+  | 'summary'
+  | 'relatedTopicIds'
+  | 'relatedShabadIds'
+  | 'relatedCollectionIds'
+  | 'rotation'
+>
+
+export type LearnHomeShabadDeepDive = Pick<
+  ShabadDeepDive,
+  | 'id'
+  | 'title'
+  | 'subtitle'
+  | 'summary'
+  | 'whyItMatters'
+  | 'themes'
+  | 'relatedGuidanceIds'
+  | 'relatedTopicIds'
+  | 'relatedCollectionIds'
+  | 'rotation'
+>
+
+export type LearnHomeTopicGuide = Pick<
+  TopicGuide,
+  | 'id'
+  | 'title'
+  | 'shortTitle'
+  | 'category'
+  | 'centralInsight'
+  | 'searchTerms'
+  | 'relatedTopicIds'
+  | 'relatedShabadIds'
+  | 'relatedCollectionIds'
+  | 'rotation'
+>
+
+export type LearnHomeCollection = Pick<
+  Collection,
+  | 'id'
+  | 'title'
+  | 'subtitle'
+  | 'description'
+  | 'durationLabel'
+  | 'themes'
+  | 'relatedTopicIds'
+  | 'relatedShabadIds'
+> & {
+  itemCount: number
+}
+
+export interface LearnHomeCatalogPayload {
+  dailyGuidance: LearnHomeDailyGuidance[]
+  shabadDeepDives: LearnHomeShabadDeepDive[]
+  topicGuides: LearnHomeTopicGuide[]
+  collections: LearnHomeCollection[]
+}
+
+export interface LearnHomeCatalog extends LearnHomeCatalogPayload {
+  dailyGuidanceById: Record<string, LearnHomeDailyGuidance>
+  shabadDeepDiveById: Record<string, LearnHomeShabadDeepDive>
+  topicGuideById: Record<string, LearnHomeTopicGuide>
+  collectionById: Record<string, LearnHomeCollection>
+}
+
 export interface LearnItemView {
   itemId: string
   kind: LearnContentKind

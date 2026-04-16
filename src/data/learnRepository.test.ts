@@ -2,6 +2,7 @@ import { beforeEach, expect, test } from "vitest"
 import {
   loadLearnCatalog,
   loadLearnDetail,
+  loadLearnHomeCatalog,
   loadLearnSearchIndex,
   resetLearnRepositoryCache,
 } from "./learnRepository"
@@ -47,6 +48,19 @@ test("search index keeps legacy topic ids as aliases to canonical topics and sce
     topicId: "topic-mercy",
     scenarioKey: "pressure",
   })
+})
+
+test("home catalog summary omits the search index and still exposes lookup maps", async () => {
+  const catalog = await loadLearnHomeCatalog()
+
+  expect(catalog.dailyGuidance.length).toBeGreaterThan(0)
+  expect(catalog.shabadDeepDives.length).toBeGreaterThan(0)
+  expect(catalog.topicGuides.length).toBeGreaterThan(0)
+  expect(catalog.collections.length).toBeGreaterThan(0)
+  expect(catalog.dailyGuidanceById[catalog.dailyGuidance[0]!.id]).toEqual(catalog.dailyGuidance[0])
+  expect(catalog.shabadDeepDiveById[catalog.shabadDeepDives[0]!.id]).toEqual(catalog.shabadDeepDives[0])
+  expect(catalog.topicGuideById[catalog.topicGuides[0]!.id]).toEqual(catalog.topicGuides[0])
+  expect(catalog.collectionById[catalog.collections[0]!.id]).toEqual(catalog.collections[0])
 })
 
 test("topic detail payloads stay canonical and expose scenario content", async () => {
