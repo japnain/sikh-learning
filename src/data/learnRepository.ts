@@ -12,6 +12,7 @@ import type {
   TopicGuide,
 } from "../types"
 import { withQaControl } from "../qa/runtime"
+import { resolveAppPath } from "../utils/basePath"
 
 type LearnJsonLoader = <T>(path: string) => Promise<T>
 
@@ -24,6 +25,10 @@ type LearnDetailMap = {
 
 const DEFAULT_MANIFEST_PATH = "/data/learn/manifest.json"
 const DEFAULT_HOME_SUMMARY_PATH = "/data/learn/home-summary.json"
+
+function resolveLearnAssetPath(path: string) {
+  return resolveAppPath(path, import.meta.env.BASE_URL)
+}
 
 function createIndexMap<T extends { id: string }>(items: T[]) {
   return Object.fromEntries(items.map(item => [item.id, item] as const)) as Record<string, T>
@@ -40,11 +45,28 @@ function buildLearnHomeCatalog(summary: LearnHomeCatalogPayload): LearnHomeCatal
 }
 
 async function defaultFetchJson<T>(path: string): Promise<T> {
-  const response = await fetch(path)
+  const response = await fetch(resolveLearnAssetPath(path))
   if (!response.ok) {
     throw new Error(`Learn repository request failed for ${path}: ${response.status}`)
   }
-  return response.json() as Promise<T>
+
+  const contentType = response.headers.get('content-type') ?? ''
+  if (!/application\/json|text\/json/i.test(contentType)) {
+    throw new Error(`Learn repository returned non-JSON for ${path}: ${contentType || 'unknown content type'}`)
+  }
+
+  try {
+    return await response.json() as T
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new Error(`Learn repository returned malformed JSON for ${path}: ${detail}`)
+  }
+}
+
+function canRecoverHomeSummaryError(error: unknown) {
+  if (!(error instanceof Error)) return false
+
+  return /404|ENOENT|no such file|non-json|malformed json|unexpected token/i.test(error.message)
 }
 
 let jsonLoader: LearnJsonLoader = defaultFetchJson
@@ -122,10 +144,7 @@ export async function loadLearnHomeCatalog() {
         const summary = await jsonLoader<LearnHomeCatalogPayload>(DEFAULT_HOME_SUMMARY_PATH)
         return buildLearnHomeCatalog(summary)
       } catch (error) {
-        if (
-          !(error instanceof Error)
-          || !/404|ENOENT|no such file/i.test(error.message)
-        ) {
+        if (!canRecoverHomeSummaryError(error)) {
           throw error
         }
 

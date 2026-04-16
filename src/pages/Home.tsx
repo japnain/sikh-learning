@@ -140,6 +140,7 @@ const HOME_MESSAGES: Record<UiLocale, {
   openTodaysHukamnama: string
   todaysMeaningBody: string
   todaysReadingBody: string
+  browseReadBody: string
   buildHabitTitle: string
   learnScriptTitle: string
   buildConfidenceTitle: string
@@ -184,6 +185,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     openTodaysHukamnama: 'Open Today’s Hukamnama',
     todaysMeaningBody: 'Start with the daily hukamnama and keep the meaning close.',
     todaysReadingBody: 'Start with the daily hukamnama and stay in a steady daily rhythm.',
+    browseReadBody: 'Open the reading surfaces that are already live in the app without restarting from today’s hukamnama.',
     buildHabitTitle: 'Build a reading habit before adding more weight.',
     learnScriptTitle: 'Learn the script before chasing too much meaning.',
     buildConfidenceTitle: 'Build reading confidence before the overwhelm.',
@@ -228,6 +230,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     openTodaysHukamnama: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਖੋਲ੍ਹੋ',
     todaysMeaningBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
     todaysReadingBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਪਾਠ ਦੀ ਲਯ ਬਣਾਈ ਰੱਖੋ।',
+    browseReadBody: 'ਅੱਜ ਦੇ ਹੁਕਮਨਾਮੇ ਨੂੰ ਦੁਹਰਾਉਣ ਤੋਂ ਬਿਨਾਂ ਐਪ ਵਿੱਚ ਮੌਜੂਦ ਪੜ੍ਹਨ ਵਾਲੀਆਂ ਸਤਹਾਂ ਖੋਲ੍ਹੋ।',
     buildHabitTitle: 'ਹੋਰ ਭਾਰ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੀ ਆਦਤ ਬਣਾਓ।',
     learnScriptTitle: 'ਬਹੁਤ ਅਰਥ ਦੇ ਪਿੱਛੇ ਦੌੜਨ ਤੋਂ ਪਹਿਲਾਂ ਲਿਪੀ ਸਿੱਖੋ।',
     buildConfidenceTitle: 'ਘਬਰਾਹਟ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦਾ ਵਿਸ਼ਵਾਸ ਬਣਾਓ।',
@@ -272,6 +275,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     openTodaysHukamnama: 'आज का हुकमनामा खोलें',
     todaysMeaningBody: 'दैनिक हुकमनामे से शुरू करें और अर्थ को पास रखें।',
     todaysReadingBody: 'दैनिक हुकमनामे से शुरू करें और पढ़ने की लय बनाए रखें।',
+    browseReadBody: 'आज के हुकमनामे को दोहराए बिना ऐप के भीतर मौजूद रीड सतहों को खोलें।',
     buildHabitTitle: 'और भार जोड़ने से पहले पढ़ने की आदत बनाइए।',
     learnScriptTitle: 'बहुत अर्थ पकड़ने से पहले लिपि सीखिए।',
     buildConfidenceTitle: 'घबराहट से पहले पढ़ने का आत्मविश्वास बनाइए।',
@@ -484,26 +488,22 @@ export default function Home() {
   }, [lastSaved?.kind])
 
   const readAction = useMemo(() => {
-    const path = resumePath ?? (hukamnama ? `/study?hukamnamaDate=${hukamnama.date}` : '/banis')
-
     if (resumePath) {
       return {
         title: homeMessages.resumeReading,
         body: learningGoal === 'understand'
           ? homeMessages.resumeStudyBody
           : homeMessages.resumeReadingBody,
-        path,
+        path: resumePath,
       }
     }
 
     return {
-      title: homeMessages.openTodaysHukamnama,
-      body: learningGoal === 'understand'
-        ? homeMessages.todaysMeaningBody
-        : homeMessages.todaysReadingBody,
-      path,
+      title: homeMessages.browseRead,
+      body: homeMessages.browseReadBody,
+      path: '/banis',
     }
-  }, [homeMessages, hukamnama, learningGoal, resumePath])
+  }, [homeMessages, learningGoal, resumePath])
   const hukamnamaPreviewLine = useMemo(() => {
     if (!hukamnama) return null
     return hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))
