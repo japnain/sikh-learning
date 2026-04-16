@@ -1,9 +1,9 @@
 {
   "id": "guidance-pure-conduct-outweighs-display",
   "title": "Pure conduct outranks spiritual display.",
-  "summary": "Guru does not leave the religious life undefined. The better religion is the one that purifies action, not the one that performs itself most loudly.",
-  "takeaway": "What you do with the heart matters more than what you advertise about it.",
-  "lifeApplication": "Choose the cleaner action over the more impressive one.",
+  "summary": "The highest religion is to chant the Lord's Name and maintain pure conduct. Let holy company wash the mind's filth, so devotion grows quiet in the life before it turns into display.",
+  "takeaway": "Let the Lord's Name and pure conduct remain one.",
+  "lifeApplication": "Before the urge to look spiritual, pause and choose one act of apology, restraint, or service that keeps conduct pure today.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
@@ -12,8 +12,8 @@
       11744,
       11745
     ],
-    "shortMeaning": "The best path is tied to Naam, conduct, and the removal of inner filth through company.",
-    "lifeApplication": "Do not let ritual substitute for transformation."
+    "shortMeaning": "The highest religion is the Lord's Name, pure conduct, and the cleansing of the mind in holy company.",
+    "lifeApplication": "Before display begins, let holy company cleanse the mind and let pure conduct guide the body."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -43,24 +43,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:4-line-window",
     "evidence": {
-      "coreClaim": "The best path is tied to Naam, conduct, and the removal of inner filth through company.",
+      "coreClaim": "The highest religion is the Lord's Name, pure conduct, and the cleansing of the mind in holy company.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The truest religion is clean conduct sustained by Naam.",
-      "practicalImplication": "Choose the cleaner action over the more impressive one.",
+      "turn": "Hold onto this: the truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before the urge to look spiritual, pause and choose one act of apology, restraint, or service that keeps conduct pure today.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.1,
-      "clarity": 4.35,
-      "specificity": 4.5,
+      "faithfulness": 3.92,
+      "clarity": 4.17,
+      "specificity": 4.86,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.98,
-      "beauty": 4.05,
-      "overall": 4.03
+      "usefulness": 4.64,
+      "beauty": 3.99,
+      "overall": 4.11
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

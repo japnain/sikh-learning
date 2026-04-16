@@ -1156,7 +1156,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Before reacting, name one thing already here that you need to stop resisting.",
     source: ref(
       "shabad-hukam-inside-everything",
-      [11, 15],
+      [15],
       "Everything stands inside Hukam, not outside it.",
       "Release the demand that peace must wait for total control."
     ),
@@ -1241,7 +1241,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Ask whether your effort today is actually aligned with Guru's direction or merely energetic.",
     source: ref(
       "shabad-selfless-service",
-      [12942, 12944],
+      [12942, 12943, 12944],
       "The Guru's servant is shaped by obedience and remembrance together.",
       "Let your outer work be held by inner remembrance."
     ),
@@ -1292,7 +1292,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Where are you exhausting yourself by behaving as if everything depends on you alone?",
     source: ref(
       "shabad-suffering-as-medicine",
-      [21091, 21096],
+      [21091, 21092, 21093],
       "The Creator acts; the seeker is called into surrender and praise.",
       "Let surrender interrupt false urgency."
     ),
@@ -1326,7 +1326,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Name one mercy you have been treating as ordinary.",
     source: ref(
       "shabad-gratitude-restores-naam",
-      [60338, 60340],
+      [60338, 60339, 60340],
       "Gratitude grows when the heart admits both unworthiness and mercy.",
       "Let thankfulness soften you instead of making you self-satisfied."
     ),
@@ -1411,7 +1411,7 @@ export const DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Examine one attitude you carry that Gurbani would ask you to unlearn.",
     source: ref(
       "shabad-honor-women",
-      [21287, 21289],
+      [21287, 21288, 21289],
       "Guru Nanak directly rejects contempt toward women.",
       "Let reverence revise the way you speak about people."
     ),

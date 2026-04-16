@@ -1,13 +1,13 @@
 {
   "id": "guidance-extinguish-the-fire",
   "title": "Wandering will not quench this fire",
-  "summary": "This meets the restless search for clarity through more movement, more content, and more distance. The line says doubt is not burned out by travel but by the Guru's word within.",
-  "takeaway": "Movement does not cure inward doubt.",
-  "lifeApplication": "Before opening another tab, book, or plan, sit still with one clear line until the inner heat drops.",
+  "summary": "The line does not reward endless circling; it asks for trust, keeping, and return. Let this stay near the next choice: hold onto this: doubt clears when the Guru's word outlasts wandering.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
-      918,
+      920,
       921,
       922
     ],
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "Doubt is quenched inwardly, not by more wandering.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Doubt clears when the Guru's word outlasts wandering.",
-      "practicalImplication": "Before opening another tab, book, or plan, sit still with one clear line until the inner heat drops.",
+      "turn": "Hold onto this: doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.14,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.89,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 4.05,
-      "overall": 4.17
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

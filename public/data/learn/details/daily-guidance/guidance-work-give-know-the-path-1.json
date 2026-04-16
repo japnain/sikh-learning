@@ -1,9 +1,9 @@
 {
   "id": "guidance-work-give-know-the-path-1",
   "title": "Do not bow to performative holiness",
-  "summary": "This meets religious display emptied of labor, wisdom, and generosity. The line refuses fake authority and honors the one who works and gives.",
-  "takeaway": "Work, share, and distrust empty show.",
-  "lifeApplication": "Before admiring the costume, title, or voice, ask what this person actually labors for and gives away. Let conduct decide where your respect goes.",
+  "summary": "Let truth grow visible in the way the body moves through the day. Do not let the day outrun this: carry this with you: honest labor and sharing reveal the path better than costume.",
+  "takeaway": "Let conduct answer before performance does.",
+  "lifeApplication": "Before speaking about values again, ask what your treatment of people showed today and choose the cleaner act.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "The path is known by honest labor and generosity, not by religious pose.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "Honest labor and sharing reveal the path better than costume.",
-      "practicalImplication": "Before admiring the costume, title, or voice, ask what this person actually labors for and gives away. Let conduct decide where your respect goes.",
+      "turn": "Carry this with you: honest labor and sharing reveal the path better than costume.",
+      "practicalImplication": "Before speaking about values again, ask what your treatment of people showed today and choose the cleaner act.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.52,
+      "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 3.98,
-      "beauty": 4.05,
-      "overall": 4.02
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

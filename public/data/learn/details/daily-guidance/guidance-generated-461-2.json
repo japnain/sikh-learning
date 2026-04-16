@@ -1,8 +1,8 @@
 {
   "id": "guidance-generated-461-2",
   "title": "Service carries the seeker across",
-  "summary": "Restlessness eases when devotion and service stop being abstractions and become the next faithful act.",
-  "takeaway": "Union with the Divine is learned through the True Guru, and devotion joined to service becomes a real crossing.",
+  "summary": "Let better company and honest stillness teach the wandering mind how to settle. Keep this close: Carry this with you: roaming ends when the Guru reveals the deeper union.",
+  "takeaway": "Choose settlement before more motion.",
   "lifeApplication": "When the mind wants more motion, choose one act of devotion or service that returns you to the path you already know.",
   "source": {
     "deepDiveId": "shabad-generated-461",
@@ -35,25 +35,25 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Through the True Guru, devotion and service become the crossing into union.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Roaming ends when the Guru reveals the deeper union.",
+      "turn": "Carry this with you: roaming ends when the Guru reveals the deeper union.",
       "practicalImplication": "When the mind wants more motion, choose one act of devotion or service that returns you to the path you already know.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.07,
-      "clarity": 4.29,
-      "specificity": 4.82,
-      "emotionalHonesty": 3.36,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
       "usefulness": 4.8,
-      "beauty": 4.17,
-      "overall": 4.23
+      "beauty": 4.21,
+      "overall": 4.41
     },
     "strengths": [
       "specificity",

@@ -1,17 +1,18 @@
 {
   "id": "guidance-honor-what-guru-honors",
-  "title": "Do not insult the doorway through which you came",
-  "summary": "This meets contempt while it is still pretending to be casual speech. The line strips off that disguise by naming woman as the doorway through which life itself arrives.",
-  "takeaway": "Cheapening women is cheapening life's doorway.",
-  "lifeApplication": "Before repeating a joke, shrug, or judgment that cheapens women, stop with the tongue and remember how every life entered the room.",
+  "title": "Honor what the Guru honors",
+  "summary": "The Guru speaks with sharp truth: from woman, woman is born, and from woman even kings are born. Where the Guru has placed honor, let speech and conduct carry dignity, not contempt.",
+  "takeaway": "Let truth and dignity replace contempt in speech and conduct.",
+  "lifeApplication": "Before contempt reaches the mouth, remember whom the Guru has already honored and choose the cleaner word, tone, and action.",
   "source": {
     "deepDiveId": "shabad-honor-women",
     "verseIds": [
       21287,
+      21288,
       21289
     ],
-    "shortMeaning": "The line rebukes contempt by naming woman as life's doorway.",
-    "lifeApplication": "Before contempt reaches the tongue, remember which bodies carried life here."
+    "shortMeaning": "The Guru rebukes contempt and honors woman as the doorway through which human life comes.",
+    "lifeApplication": "Before contempt reaches the mouth, let reverence and truth revise the next word, tone, and action."
   },
   "relatedTopicIds": [],
   "relatedShabadIds": [
@@ -33,26 +34,26 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "The line rebukes contempt by naming woman as life's doorway.",
+      "coreClaim": "The Guru rebukes contempt and honors woman as the doorway through which human life comes.",
       "emotionalState": "dismissive, proud, habit-bound",
-      "turn": "Refuse to despise the one through whom human life comes.",
-      "practicalImplication": "Before repeating a joke, shrug, or judgment that cheapens women, stop with the tongue and remember how every life entered the room.",
+      "turn": "Keep this in front of you: refuse to despise the one through whom human life comes.",
+      "practicalImplication": "Before contempt reaches the mouth, remember whom the Guru has already honored and choose the cleaner word, tone, and action.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.04,
-      "clarity": 4.23,
+      "clarity": 4.35,
       "specificity": 4.8,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.04,
-      "beauty": 3.97,
-      "overall": 4.04
+      "usefulness": 4.8,
+      "beauty": 4.19,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

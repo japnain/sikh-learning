@@ -1,14 +1,14 @@
 {
   "id": "guidance-work-give-know-the-path-2",
   "title": "Honest work makes the path visible",
-  "summary": "Seva becomes credible in honest labor and open-handed giving, not in spiritual performance.",
-  "takeaway": "The true path appears where a person works honestly, shares what they earn, and keeps pretense out of religion.",
-  "lifeApplication": "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
+  "summary": "Let service become care that steadies both hand and heart. Keep this close: Carry this with you: honest labor and sharing reveal the path better than costume.",
+  "takeaway": "Gather the mind before you call it service.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
       53369,
-      53371
+      53370
     ],
     "shortMeaning": "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
     "lifeApplication": "Do one useful thing cleanly and quietly, then let the giving matter more than the appearance of being good."
@@ -35,29 +35,29 @@
     "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "The true guide is recognized in honest work and generous sharing, not in spiritual display.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "Honest labor and sharing reveal the path better than costume.",
-      "practicalImplication": "Let service become plain and clean today: do the work, share what you can, and stop curating the image of goodness.",
+      "turn": "Carry this with you: honest labor and sharing reveal the path better than costume.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.09,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.67,
-      "emotionalHonesty": 3,
-      "usefulness": 4.58,
-      "beauty": 4.05,
-      "overall": 4.12
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 4.53,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,9 +1,9 @@
 {
   "id": "guidance-sangat-and-naam",
   "title": "Stay where the heart is helped",
-  "summary": "This meets the soul being shaped by whatever company it keeps. The line says life becomes meeting and remembrance in holy company, not in private drift.",
-  "takeaway": "Holy company carries what the solitary mind cannot.",
-  "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it.",
+  "summary": "The line keeps shelter, remembrance, and belonging braided together. Keep this close: Let this stay with you: treat this life as a meeting, not an endless postponement.",
+  "takeaway": "Take the question into sangat.",
+  "lifeApplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "Holy company carries what the solitary mind cannot.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Treat this life as a meeting, not an endless postponement.",
-      "practicalImplication": "When the mind starts wandering alone, move toward the company that steadies it.",
+      "turn": "Let this stay with you: treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
-      "clarity": 4.05,
-      "specificity": 4.87,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 3.85,
-      "overall": 4.05
+      "usefulness": 3.82,
+      "beauty": 4.69,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

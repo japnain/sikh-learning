@@ -4,8 +4,8 @@
   "shortTitle": "Exhaustion",
   "category": "most-needed",
   "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand.",
-  "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless search for relief in the wrong places.",
-  "practicalReflection": "A worn soul often mistakes motion for survival. The Guru keeps turning it toward shelter, company, and a smaller faithful return.",
+  "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places.",
+  "practicalReflection": "Exhaustion makes the false urgent and the truly healing feel optional. Rest begins when the soul is allowed to become simple again.",
   "actionPrompt": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
   "searchTerms": [
     "exhaustion",
@@ -42,10 +42,10 @@
           3899,
           3900
         ],
-        "shortMeaning": "Exhaustion is given company before it is judged as weakness.",
-        "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+        "shortMeaning": "Exhaustion loosens when the heart is brought back under care, rest, and simple remembrance.",
+        "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
       },
-      "explanation": "The excerpt refuses to treat exhaustion as a private failure. It directs the tired heart toward company instead of performance."
+      "explanation": "This excerpt interrupts living in strain past the soul's strength by turning the heart back toward rested faithfulness."
     },
     {
       "source": {
@@ -54,10 +54,10 @@
           3762,
           3763
         ],
-        "shortMeaning": "Received care interrupts the demand that tiredness must hide itself.",
-        "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+        "shortMeaning": "Exhaustion loses some of its claim when the mind returns to rested faithfulness.",
+        "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
       },
-      "explanation": "The line widens exhaustion by making received care more believable than self-demand."
+      "explanation": "This passage loosens living in strain past the soul's strength by returning the mind to care, rest, and simple remembrance instead of leaving it alone with itself."
     },
     {
       "source": {
@@ -65,12 +65,16 @@
         "verseIds": [
           30988,
           30989,
+          30990,
+          30991,
+          30992,
+          30993,
           30994
         ],
-        "shortMeaning": "Tiredness is met first with care, not with accusation.",
-        "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+        "shortMeaning": "Exhaustion stops ruling the room when remembrance restores proportion.",
+        "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
       },
-      "explanation": "Gurbani refuses to let exhaustion become a verdict on worth. The line turns the heart toward care before it turns back toward effort."
+      "explanation": "The inner room widens here because exhaustion is no longer allowed to speak as the whole truth."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -85,10 +89,10 @@
       "key": "daily",
       "label": "Daily",
       "title": "When exhaustion keeps thinning hope inside the ordinary day",
-      "issueStatement": "Weariness has made the heart suspicious of even good counsel. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-      "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani does not leave the ordinary day outside the work of return.",
-      "practicalReflection": "This is where exhaustion usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-      "actionPrompt": "In the first plain stretch of the day, when force is failing, stop performing strength and let the line carry the next step.",
+      "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. In small routines, living in strain past the soul's strength can quietly become the tone of the next hour unless it is interrupted early.",
+      "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "practicalReflection": "Exhaustion becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+      "actionPrompt": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
       "searchTerms": [
         "exhaustion",
         "burnout",
@@ -103,22 +107,23 @@
             "verseIds": [
               5589
             ],
-            "shortMeaning": "The next ordinary move is steadied by steadier return.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "The day steadies when exhaustion is met with care, rest, and simple remembrance.",
+            "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "This keeps the day from shrinking around exhaustion; the heart is returned to steadier return."
+          "explanation": "In the daily rhythm, this excerpt interrupts living in strain past the soul's strength before it becomes the mood of the whole day."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-643",
             "verseIds": [
               8823,
+              8824,
               8825
             ],
-            "shortMeaning": "The next ordinary move is steadied by steadier return.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Ordinary moments change when the mind returns to rested faithfulness instead of living in strain past the soul's strength.",
+            "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "In the ordinary day, the verse turns exhaustion toward steadier return instead of self-enclosure."
+          "explanation": "The passage pulls the heart back from living in strain past the soul's strength and into rested faithfulness."
         },
         {
           "source": {
@@ -127,22 +132,22 @@
               8842,
               8843
             ],
-            "shortMeaning": "The next ordinary move is steadied by steadier return.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "This excerpt restores proportion before exhaustion takes over the tone of the day.",
+            "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "The daily moment changes here because exhaustion is not left alone with itself."
+          "explanation": "This keeps the next ordinary moment from being governed by exhaustion."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-exhaustion:daily",
         "evidence": {
-          "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani does not leave the ordinary day outside the work of return.",
+          "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
           "emotionalState": "tired, drained, worn-down",
-          "turn": "Weariness has made the heart suspicious of even good counsel. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-          "practicalImplication": "In the first plain stretch of the day, when force is failing, stop performing strength and let the line carry the next step.",
+          "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. In small routines, living in strain past the soul's strength can quietly become the tone of the next hour unless it is interrupted early.",
+          "practicalImplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
           "bannedOverreach": []
         },
         "scores": {
@@ -159,17 +164,17 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
       "title": "When pressure exposes what exhaustion reaches for",
-      "issueStatement": "Weariness has made the heart suspicious of even good counsel. Pressure exposes what the heart reaches for when it feels cornered.",
-      "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. The line has to interrupt panic before panic becomes posture.",
-      "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-      "actionPrompt": "When pressure meets low reserves, drop the shoulders, stop performing competence, and let the line choose the next small step.",
+      "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Under strain, living in strain past the soul's strength starts sounding urgent, necessary, and completely justified.",
+      "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+      "actionPrompt": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
       "searchTerms": [
         "exhaustion",
         "burnout",
@@ -183,12 +188,13 @@
             "deepDiveId": "shabad-generated-643",
             "verseIds": [
               8823,
+              8824,
               8825
             ],
-            "shortMeaning": "Under strain, exhaustion is steadied by steadier return.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Pressure loses some of its claim when the heart returns to rested faithfulness.",
+            "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "Under pressure, the verse steadies exhaustion by returning the heart to steadier return."
+          "explanation": "Under pressure, this excerpt interrupts living in strain past the soul's strength before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
@@ -196,10 +202,10 @@
             "verseIds": [
               11202
             ],
-            "shortMeaning": "Under strain, exhaustion is steadied by steadier return.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "This line steadies the reflex before exhaustion can rule the moment.",
+            "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
+          "explanation": "The passage refuses to let strain turn exhaustion into the only voice in the room."
         },
         {
           "source": {
@@ -207,22 +213,22 @@
             "verseIds": [
               13142
             ],
-            "shortMeaning": "Pressure is answered here through Naam and praise.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Exhaustion is answered here through care, rest, and simple remembrance.",
+            "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex."
+          "explanation": "Pressure loosens here because the heart is pulled back toward care, rest, and simple remembrance."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-exhaustion:pressure",
         "evidence": {
-          "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. The line has to interrupt panic before panic becomes posture.",
+          "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
           "emotionalState": "tired, drained, worn-down",
-          "turn": "Weariness has made the heart suspicious of even good counsel. Pressure exposes what the heart reaches for when it feels cornered.",
-          "practicalImplication": "When pressure meets low reserves, drop the shoulders, stop performing competence, and let the line choose the next small step.",
+          "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Under strain, living in strain past the soul's strength starts sounding urgent, necessary, and completely justified.",
+          "practicalImplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
           "bannedOverreach": []
         },
         "scores": {
@@ -239,17 +245,17 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
       "title": "When repair has to begin after the mind has wandered",
-      "issueStatement": "Weariness has made the heart suspicious of even good counsel. The problem is no longer only temptation or pain, but how to return without theatre.",
-      "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-      "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps exhaustion from turning into a permanent self-story.",
-      "actionPrompt": "After the slip is named cleanly, when force is failing, stop performing strength and let the line carry the next step.",
+      "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+      "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "actionPrompt": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
       "searchTerms": [
         "exhaustion",
         "burnout",
@@ -265,10 +271,10 @@
               8842,
               8843
             ],
-            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Repair begins when the heart returns to care, rest, and simple remembrance instead of performance.",
+            "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "After the slip, the verse keeps return possible through steadier return."
+          "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment."
         },
         {
           "source": {
@@ -276,10 +282,10 @@
             "verseIds": [
               11201
             ],
-            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Exhaustion is not allowed to become identity here.",
+            "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
+          "explanation": "The passage keeps exhaustion from hardening into identity by pointing the heart back to rested faithfulness."
         },
         {
           "source": {
@@ -287,22 +293,22 @@
             "verseIds": [
               11
             ],
-            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "This passage opens a clean way back through rested faithfulness.",
+            "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "Repair stays honest here because exhaustion is answered without theatre."
+          "explanation": "Repair becomes possible here because the line refuses both excuse and despair."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-exhaustion:repair",
         "evidence": {
-          "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
+          "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
           "emotionalState": "searching, hungry, unsettled",
-          "turn": "Weariness has made the heart suspicious of even good counsel. The problem is no longer only temptation or pain, but how to return without theatre.",
-          "practicalImplication": "After the slip is named cleanly, when force is failing, stop performing strength and let the line carry the next step.",
+          "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+          "practicalImplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
           "bannedOverreach": []
         },
         "scores": {
@@ -319,17 +325,17 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
       "title": "When exhaustion needs a repeatable shape",
-      "issueStatement": "Weariness has made the heart suspicious of even good counsel. Inspiration is no longer the shortage; kept repetition is.",
-      "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. A kept rule lets the teaching shape conduct before mood changes again.",
-      "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-      "actionPrompt": "For the next seven days at the same cue, when force is failing, stop performing strength and let the line carry the next step.",
+      "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Inspiration is not the main need now; a repeatable return is.",
+      "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. What is repeated with honesty begins to retrain the reflex itself.",
+      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "actionPrompt": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
       "searchTerms": [
         "exhaustion",
         "burnout",
@@ -356,10 +362,10 @@
             "verseIds": [
               13142
             ],
-            "shortMeaning": "The verse gives exhaustion a keepable form through Naam and praise.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "Exhaustion is retrained through repeated return to rested faithfulness.",
+            "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
+          "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent."
         },
         {
           "source": {
@@ -367,34 +373,37 @@
             "verseIds": [
               5589
             ],
-            "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "This excerpt gives the heart a keepable pattern of care, rest, and simple remembrance.",
+            "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
+          "explanation": "The passage gives exhaustion a repeatable interruption through care, rest, and simple remembrance."
         },
         {
           "source": {
             "deepDiveId": "shabad-hukam-inside-everything",
             "verseIds": [
               11,
+              12,
+              13,
+              14,
               15
             ],
-            "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-            "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+            "shortMeaning": "A steady practice weakens living in strain past the soul's strength over time.",
+            "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
           },
-          "explanation": "As practice, the verse keeps returning exhaustion to steadier return."
+          "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-exhaustion:practice",
         "evidence": {
-          "coreClaim": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. A kept rule lets the teaching shape conduct before mood changes again.",
+          "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. What is repeated with honesty begins to retrain the reflex itself.",
           "emotionalState": "searching, hungry, unsettled",
-          "turn": "Weariness has made the heart suspicious of even good counsel. Inspiration is no longer the shortage; kept repetition is.",
-          "practicalImplication": "For the next seven days at the same cue, when force is failing, stop performing strength and let the line carry the next step.",
+          "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Inspiration is not the main need now; a repeatable return is.",
+          "practicalImplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
           "bannedOverreach": []
         },
         "scores": {
@@ -411,7 +420,7 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     }
   },
@@ -447,12 +456,12 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "topic:exhaustion",
     "evidence": {
-      "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless search for relief in the wrong places.",
+      "coreClaim": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places.",
       "emotionalState": "wandering, exhausted, seeking",
       "turn": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand.",
       "practicalImplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
@@ -472,6 +481,6 @@
       "beauty"
     ],
     "issues": [],
-    "reviewedByHuman": true
+    "reviewedByHuman": false
   }
 }

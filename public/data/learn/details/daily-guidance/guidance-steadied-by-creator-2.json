@@ -1,14 +1,14 @@
 {
   "id": "guidance-steadied-by-creator-2",
   "title": "Stop wavering where mercy already holds you",
-  "summary": "This meets the body leaning toward the worst outcome. The line answers wavering with the Creator's mercy and protection.",
-  "takeaway": "Let mercy interrupt the wobble.",
-  "lifeApplication": "When fear starts arranging tomorrow, feel both feet on the floor and unclench the stomach. Let mercy speak before another imagined disaster does.",
+  "summary": "Do not let imagined danger become the loudest voice in the room. Keep this close: Let this stay with you: the Creator's mercy is steadier than your wavering.",
+  "takeaway": "Return the breath before fear writes the day.",
+  "lifeApplication": "Before solving the whole future, name what care is already present in this room today.",
   "source": {
     "deepDiveId": "shabad-steadied-by-creator",
     "verseIds": [
       30985,
-      30988
+      30986
     ],
     "shortMeaning": "Mercy steadies the mind before the danger has changed.",
     "lifeApplication": "When you start wavering, let mercy speak before the disaster story grows."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "Mercy steadies the mind before the danger has changed.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "The Creator's mercy is steadier than your wavering.",
-      "practicalImplication": "When fear starts arranging tomorrow, feel both feet on the floor and unclench the stomach. Let mercy speak before another imagined disaster does.",
+      "turn": "Let this stay with you: the Creator's mercy is steadier than your wavering.",
+      "practicalImplication": "Before solving the whole future, name what care is already present in this room today.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.18,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.93,
+      "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 4.8,
-      "beauty": 4.21,
-      "overall": 4.35
+      "usefulness": 4.64,
+      "beauty": 4.69,
+      "overall": 4.46
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

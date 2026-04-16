@@ -5,7 +5,7 @@
   "category": "most-needed",
   "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against.",
   "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment.",
-  "practicalReflection": "Fear wants guarantees before obedience. Gurbani keeps turning the mind toward the One who remains present before the guarantees arrive.",
+  "practicalReflection": "Fear becomes a scriptwriter when the heart forgets who is carrying the scene. The correction is not denial of danger but remembrance of deeper shelter.",
   "actionPrompt": "When fear rises, read one line aloud before you plan your defense.",
   "searchTerms": [
     "fear",
@@ -35,34 +35,42 @@
         "verseIds": [
           30985
         ],
-        "shortMeaning": "Fear loosens when the body is called back before panic finishes its story.",
-        "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+        "shortMeaning": "Fear loosens when the heart is brought back under reverence, Hukam, and divine nearness.",
+        "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
       },
-      "explanation": "The verse widens fear by giving the body a truer center than alarm. Return becomes more believable than panic."
+      "explanation": "This excerpt interrupts letting dread write the script by turning the heart back toward courage under care."
     },
     {
       "source": {
         "deepDiveId": "shabad-generated-178",
         "verseIds": [
           2771,
+          2772,
+          2773,
+          2774,
+          2775,
           2776
         ],
-        "shortMeaning": "Naam gives fear a rival center stronger than alarm.",
-        "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+        "shortMeaning": "Fear loses some of its claim when the mind returns to courage under care.",
+        "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
       },
-      "explanation": "Gurbani refuses to let fear become the only honest voice. The heart is turned toward Naam and praise instead."
+      "explanation": "This passage loosens letting dread write the script by returning the mind to reverence, Hukam, and divine nearness instead of leaving it alone with itself."
     },
     {
       "source": {
         "deepDiveId": "shabad-generated-300",
         "verseIds": [
           4138,
+          4139,
+          4140,
+          4141,
+          4142,
           4143
         ],
-        "shortMeaning": "Fear is steadied when guidance outruns survival reflex.",
-        "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+        "shortMeaning": "Fear stops ruling the room when remembrance restores proportion.",
+        "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
       },
-      "explanation": "This excerpt gives fear a truer direction by handing it back to the Guru's guidance instead of to survival reflex alone."
+      "explanation": "The inner room widens here because fear is no longer allowed to speak as the whole truth."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -77,10 +85,10 @@
       "key": "daily",
       "label": "Daily",
       "title": "When fear keeps shrinking the field of vision inside the ordinary day",
-      "issueStatement": "The mind starts organizing itself around threat instead of truth. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-      "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. Gurbani does not leave the ordinary day outside the work of return.",
-      "practicalReflection": "This is where fear usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-      "actionPrompt": "At the next ordinary doorway, inbox, or reply, when fear starts ruling the body, stand still long enough to remember what holds you.",
+      "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. In small routines, letting dread write the script can quietly become the tone of the next hour unless it is interrupted early.",
+      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "practicalReflection": "Fear becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+      "actionPrompt": "Today, when fear rises, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
         "afraid",
@@ -95,46 +103,54 @@
             "verseIds": [
               30985
             ],
-            "shortMeaning": "The line interrupts fear inside the day through steadier return.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "The day steadies when fear is met with reverence, Hukam, and divine nearness.",
+            "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
           },
-          "explanation": "This keeps the day from shrinking around fear; the heart is returned to steadier return."
+          "explanation": "In the daily rhythm, this excerpt interrupts letting dread write the script before it becomes the mood of the whole day."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-178",
             "verseIds": [
               2771,
+              2772,
+              2773,
+              2774,
+              2775,
               2776
             ],
-            "shortMeaning": "The line interrupts fear inside the day through Naam and praise.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Ordinary moments change when the mind returns to courage under care instead of letting dread write the script.",
+            "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
           },
-          "explanation": "The daily moment changes here because fear is not left alone with itself."
+          "explanation": "The passage pulls the heart back from letting dread write the script and into courage under care."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-300",
             "verseIds": [
               4138,
+              4139,
+              4140,
+              4141,
+              4142,
               4143
             ],
-            "shortMeaning": "Fear is checked here by the Guru's guidance.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "This excerpt restores proportion before fear takes over the tone of the day.",
+            "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
           },
-          "explanation": "In the ordinary day, the verse turns fear toward the Guru's guidance instead of self-enclosure."
+          "explanation": "This keeps the next ordinary moment from being governed by fear."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-fear:daily",
         "evidence": {
-          "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. Gurbani does not leave the ordinary day outside the work of return.",
+          "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
           "emotionalState": "afraid, shaken, alone",
-          "turn": "The mind starts organizing itself around threat instead of truth. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-          "practicalImplication": "At the next ordinary doorway, inbox, or reply, when fear starts ruling the body, stand still long enough to remember what holds you.",
+          "turn": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. In small routines, letting dread write the script can quietly become the tone of the next hour unless it is interrupted early.",
+          "practicalImplication": "Today, when fear rises, read one line aloud before you plan your defense.",
           "bannedOverreach": []
         },
         "scores": {
@@ -151,17 +167,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
       "title": "When fear tightens under pressure",
-      "issueStatement": "The mind starts organizing itself around threat instead of truth. This is the moment when panic, force, or performance tries to become the only available language.",
-      "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. The line has to interrupt panic before panic becomes posture.",
-      "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-      "actionPrompt": "When the jaw, chest, or shoulders tighten, when fear starts ruling the body, stand still long enough to remember what holds you.",
+      "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Under strain, letting dread write the script starts sounding urgent, necessary, and completely justified.",
+      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+      "actionPrompt": "When the room tightens, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
         "afraid",
@@ -175,12 +191,16 @@
             "deepDiveId": "shabad-generated-178",
             "verseIds": [
               2771,
+              2772,
+              2773,
+              2774,
+              2775,
               2776
             ],
-            "shortMeaning": "Fear is not left to rule the strained moment.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Pressure loses some of its claim when the heart returns to courage under care.",
+            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
           },
-          "explanation": "When the room tightens, this line refuses panic and gives the body a truer center."
+          "explanation": "Under pressure, this excerpt interrupts letting dread write the script before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
@@ -189,10 +209,10 @@
               6412,
               6413
             ],
-            "shortMeaning": "Pressure is answered here through steadier return.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "This line steadies the reflex before fear can rule the moment.",
+            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
           },
-          "explanation": "The strain does not get final say here; steadier return interrupts the reflex."
+          "explanation": "The passage refuses to let strain turn fear into the only voice in the room."
         },
         {
           "source": {
@@ -200,22 +220,22 @@
             "verseIds": [
               7122
             ],
-            "shortMeaning": "Pressure is answered here through steadier return.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Fear is answered here through reverence, Hukam, and divine nearness.",
+            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
           },
-          "explanation": "Under pressure, the verse steadies fear by returning the heart to steadier return."
+          "explanation": "Pressure loosens here because the heart is pulled back toward reverence, Hukam, and divine nearness."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-fear:pressure",
         "evidence": {
-          "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. The line has to interrupt panic before panic becomes posture.",
+          "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
           "emotionalState": "scattered, unsettled, wandering",
-          "turn": "The mind starts organizing itself around threat instead of truth. This is the moment when panic, force, or performance tries to become the only available language.",
-          "practicalImplication": "When the jaw, chest, or shoulders tighten, when fear starts ruling the body, stand still long enough to remember what holds you.",
+          "turn": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Under strain, letting dread write the script starts sounding urgent, necessary, and completely justified.",
+          "practicalImplication": "When the room tightens, read one line aloud before you plan your defense.",
           "bannedOverreach": []
         },
         "scores": {
@@ -232,17 +252,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
       "title": "When repair has to begin after the mind has wandered",
-      "issueStatement": "The mind starts organizing itself around threat instead of truth. The break has already happened, and now shame wants to turn the aftermath into identity.",
-      "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-      "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps fear from turning into a permanent self-story.",
-      "actionPrompt": "Before the excuse or self-punishment starts, when fear starts ruling the body, stand still long enough to remember what holds you.",
+      "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "actionPrompt": "After the slip is visible, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
         "afraid",
@@ -256,12 +276,16 @@
             "deepDiveId": "shabad-generated-300",
             "verseIds": [
               4138,
+              4139,
+              4140,
+              4141,
+              4142,
               4143
             ],
-            "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Repair begins when the heart returns to reverence, Hukam, and divine nearness instead of performance.",
+            "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
           },
-          "explanation": "Repair stays honest here because fear is answered without theatre."
+          "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment."
         },
         {
           "source": {
@@ -269,10 +293,10 @@
             "verseIds": [
               6409
             ],
-            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Fear is not allowed to become identity here.",
+            "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
           },
-          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
+          "explanation": "The passage keeps fear from hardening into identity by pointing the heart back to courage under care."
         },
         {
           "source": {
@@ -280,22 +304,22 @@
             "verseIds": [
               8845
             ],
-            "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "This passage opens a clean way back through courage under care.",
+            "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
           },
-          "explanation": "After the slip, the verse keeps return possible through received care."
+          "explanation": "Repair becomes possible here because the line refuses both excuse and despair."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-fear:repair",
         "evidence": {
-          "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
+          "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
           "emotionalState": "afraid, guarded, dreading",
-          "turn": "The mind starts organizing itself around threat instead of truth. The break has already happened, and now shame wants to turn the aftermath into identity.",
-          "practicalImplication": "Before the excuse or self-punishment starts, when fear starts ruling the body, stand still long enough to remember what holds you.",
+          "turn": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+          "practicalImplication": "After the slip is visible, read one line aloud before you plan your defense.",
           "bannedOverreach": []
         },
         "scores": {
@@ -312,17 +336,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
       "title": "When fear keeps shrinking the field of vision as a practice that survives the week",
-      "issueStatement": "The mind starts organizing itself around threat instead of truth. The real need now is a rule that can survive Tuesday, not only move you once.",
-      "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. A kept rule lets the teaching shape conduct before mood changes again.",
-      "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-      "actionPrompt": "At one fixed cue you can keep all week, when fear starts ruling the body, stand still long enough to remember what holds you.",
+      "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Inspiration is not the main need now; a repeatable return is.",
+      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. What is repeated with honesty begins to retrain the reflex itself.",
+      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "actionPrompt": "For the next seven days at the same cue, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
         "afraid",
@@ -349,10 +373,10 @@
             "verseIds": [
               7122
             ],
-            "shortMeaning": "Fear is trained through repeated return to steadier return.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "Fear is retrained through repeated return to courage under care.",
+            "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
           },
-          "explanation": "This is where the teaching becomes repeatable enough to shape conduct."
+          "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent."
         },
         {
           "source": {
@@ -360,34 +384,37 @@
             "verseIds": [
               30985
             ],
-            "shortMeaning": "Fear is trained through repeated return to steadier return.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "This excerpt gives the heart a keepable pattern of reverence, Hukam, and divine nearness.",
+            "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
           },
-          "explanation": "Durable practice grows here because the same turn can be kept again tomorrow."
+          "explanation": "The passage gives fear a repeatable interruption through reverence, Hukam, and divine nearness."
         },
         {
           "source": {
             "deepDiveId": "shabad-generated-645",
             "verseIds": [
               8845,
+              8846,
+              8847,
+              8848,
               8849
             ],
-            "shortMeaning": "Fear is trained through repeated return to received care.",
-            "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+            "shortMeaning": "A steady practice weakens letting dread write the script over time.",
+            "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
           },
-          "explanation": "As practice, the verse keeps returning fear to received care."
+          "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-fear:practice",
         "evidence": {
-          "coreClaim": "Guru answers fear by restoring the presence, shelter, and command of the One. A kept rule lets the teaching shape conduct before mood changes again.",
+          "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. What is repeated with honesty begins to retrain the reflex itself.",
           "emotionalState": "envious, unsettled, small",
-          "turn": "The mind starts organizing itself around threat instead of truth. The real need now is a rule that can survive Tuesday, not only move you once.",
-          "practicalImplication": "At one fixed cue you can keep all week, when fear starts ruling the body, stand still long enough to remember what holds you.",
+          "turn": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Inspiration is not the main need now; a repeatable return is.",
+          "practicalImplication": "For the next seven days at the same cue, read one line aloud before you plan your defense.",
           "bannedOverreach": []
         },
         "scores": {
@@ -404,7 +431,7 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     }
   },
@@ -437,9 +464,9 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "topic:fear",
     "evidence": {
       "coreClaim": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment.",
@@ -462,6 +489,6 @@
       "beauty"
     ],
     "issues": [],
-    "reviewedByHuman": true
+    "reviewedByHuman": false
   }
 }

@@ -1,14 +1,13 @@
 {
   "id": "guidance-selfless-service-3",
   "title": "Serve without auditioning for reward",
-  "summary": "This meets the subtle bargain hiding inside good work. The line says service becomes true when reward is not the secret reason.",
-  "takeaway": "Serve until reward stops leading you.",
-  "lifeApplication": "Before volunteering, helping, or posting about it, ask what part of you wants to be seen. Do the quieter version and keep the heart with the Guru.",
+  "summary": "Let service become care that steadies both hand and heart. Keep this close: Carry this with you: service becomes true when the self stops asking to be seen.",
+  "takeaway": "Serve in a way that leaves the self quieter.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
-      12947,
-      12948
+      12946
     ],
     "shortMeaning": "Selfless service reaches the Lord when reward is no longer the motive.",
     "lifeApplication": "Before doing good visibly, choose the form of service that leaves less of you on display."
@@ -38,26 +37,26 @@
     "status": "approved",
     "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:1-line-window",
     "evidence": {
       "coreClaim": "Selfless service reaches the Lord when reward is no longer the motive.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Service becomes true when the self stops asking to be seen.",
-      "practicalImplication": "Before volunteering, helping, or posting about it, ask what part of you wants to be seen. Do the quieter version and keep the heart with the Guru.",
+      "turn": "Carry this with you: service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.26,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.82,
+      "specificity": 5,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.82,
-      "beauty": 4.21,
-      "overall": 4.23
+      "usefulness": 4.42,
+      "beauty": 4.69,
+      "overall": 4.45
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

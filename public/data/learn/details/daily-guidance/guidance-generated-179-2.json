@@ -1,14 +1,14 @@
 {
   "id": "guidance-generated-179-2",
   "title": "Let service make room for the Lord",
-  "summary": "This meets the useful act that still carries a trace of self-display. The line says serving the True Guru lets the Lord dwell in the mind and keeps filth from clinging.",
-  "takeaway": "Serve until the Lord, not the self, fills it.",
-  "lifeApplication": "Before the next useful act, ask whether it makes more room for the Lord or more shine for your image.",
+  "summary": "The line refuses to let self-importance dress itself as honesty, intelligence, or force. Do not let the day outrun this: carry this with you: let the Guru's truth reach your food, speech, and shelter.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "At the next success, apology, or argument, listen, yield, or ask forgiveness before the self swells.",
   "source": {
     "deepDiveId": "shabad-generated-179",
     "verseIds": [
       2787,
-      2791
+      2788
     ],
     "shortMeaning": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
     "lifeApplication": "Before the next useful act, ask whether it makes room for the Lord or for your image."
@@ -35,29 +35,29 @@
     "balanceCategory": "challenge"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Let the Guru's truth reach your food, speech, and shelter.",
-      "practicalImplication": "Before the next useful act, ask whether it makes more room for the Lord or more shine for your image.",
+      "turn": "Carry this with you: let the Guru's truth reach your food, speech, and shelter.",
+      "practicalImplication": "At the next success, apology, or argument, listen, yield, or ask forgiveness before the self swells.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
-      "clarity": 4.17,
-      "specificity": 4.8,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.93,
-      "overall": 4.08
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.53,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,14 +1,14 @@
 {
   "id": "guidance-generated-152-2",
   "title": "Let holy company lift Maya's dust",
-  "summary": "This meets attachment after it has already settled into the heart. The line says two things clear it: love for the Guru with mind and body, and life inside holy company.",
-  "takeaway": "Let holy company brush Maya's dust away.",
-  "lifeApplication": "When craving gets sticky, do not sit alone feeding it. Step toward the sangat, song, or room where love for the Guru gets cleaner.",
+  "summary": "The line keeps shelter, remembrance, and belonging braided together. Do not let the day outrun this: hold onto this: let love, company, and conduct gather under the Guru until forgetfulness weakens.",
+  "takeaway": "Move toward the company that steadies the heart.",
+  "lifeApplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
   "source": {
     "deepDiveId": "shabad-generated-152",
     "verseIds": [
       2114,
-      2117
+      2115
     ],
     "shortMeaning": "Love for the Guru and holy company clear Maya's dust.",
     "lifeApplication": "When craving gets sticky, step toward the place where love for the Guru gets cleaner."
@@ -35,29 +35,29 @@
     "balanceCategory": "seva"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Love for the Guru and holy company clear Maya's dust.",
       "emotionalState": "isolated, impressionable, needing-company",
-      "turn": "Let love, company, and conduct gather under the Guru until forgetfulness weakens.",
-      "practicalImplication": "When craving gets sticky, do not sit alone feeding it. Step toward the sangat, song, or room where love for the Guru gets cleaner.",
+      "turn": "Hold onto this: let love, company, and conduct gather under the Guru until forgetfulness weakens.",
+      "practicalImplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.94,
-      "clarity": 4.29,
-      "specificity": 4.7,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.42,
-      "beauty": 4.01,
-      "overall": 4.16
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.69,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

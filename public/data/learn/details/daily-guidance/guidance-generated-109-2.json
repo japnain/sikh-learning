@@ -1,14 +1,14 @@
 {
   "id": "guidance-generated-109-2",
   "title": "Without the Beloved, even one instant burns",
-  "summary": "This meets the mind that keeps dressing longing up as uncertainty. The line says the Shabad fills the heart with reverent awe, and without the Beloved even one instant burns.",
-  "takeaway": "Treat the ache as longing, not sophistication.",
-  "lifeApplication": "Before reopening the question, stay with the line long enough to feel the pain underneath it. Let longing tell the truth before doubt starts sounding clever.",
+  "summary": "The line does not reward endless circling; it asks for trust, keeping, and return. Keep this close: Carry this with you: stay with the Shabad until duality loses its grip.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
   "source": {
     "deepDiveId": "shabad-generated-109",
     "verseIds": [
       1449,
-      1460
+      1450
     ],
     "shortMeaning": "Without the Beloved, the ache beneath doubt is exposed.",
     "lifeApplication": "Before reopening the question, stay with the line until the ache tells the truth."
@@ -35,29 +35,29 @@
     "balanceCategory": "reflection"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Without the Beloved, the ache beneath doubt is exposed.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "Stay with the Shabad until duality loses its grip.",
-      "practicalImplication": "Before reopening the question, stay with the line long enough to feel the pain underneath it. Let longing tell the truth before doubt starts sounding clever.",
+      "turn": "Carry this with you: stay with the Shabad until duality loses its grip.",
+      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
-      "clarity": 4.11,
-      "specificity": 4.69,
-      "emotionalHonesty": 3.72,
-      "usefulness": 4.58,
-      "beauty": 4.21,
-      "overall": 4.22
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.26,
+      "beauty": 4.53,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

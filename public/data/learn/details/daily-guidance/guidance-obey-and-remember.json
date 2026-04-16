@@ -1,13 +1,14 @@
 {
   "id": "guidance-obey-and-remember",
   "title": "Keep command and Naam in one breath",
-  "summary": "This meets the split between outward obedience and inward resistance. The line keeps the two together: obey the Guru's command with the whole mind, and keep the Name alive inside the heart.",
-  "takeaway": "Keep the Guru's command with the whole mind.",
-  "lifeApplication": "Before the next task or seva, stop at the threshold and bring the mind into it. Keep the Name moving inwardly while the hands move outwardly.",
+  "summary": "Let contentment, humility, and remembrance make the next repetition believable. Keep this close: Carry this with you: service becomes true when the self stops asking to be seen.",
+  "takeaway": "Choose the practice that leaves the heart steadier, not louder.",
+  "lifeApplication": "At the fixed cue you can actually keep, return to one line before adding anything new.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12942,
+      12943,
       12944
     ],
     "shortMeaning": "The Guru's command is kept truly when obedience carries Naam inside it.",
@@ -38,26 +39,26 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:3-line-window",
     "evidence": {
       "coreClaim": "The Guru's command is kept truly when obedience carries Naam inside it.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Service becomes true when the self stops asking to be seen.",
-      "practicalImplication": "Before the next task or seva, stop at the threshold and bring the mind into it. Keep the Name moving inwardly while the hands move outwardly.",
+      "turn": "Carry this with you: service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "At the fixed cue you can actually keep, return to one line before adding anything new.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 4.11,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.72,
-      "usefulness": 5,
-      "beauty": 4.02,
-      "overall": 4.27
+      "emotionalHonesty": 3.9,
+      "usefulness": 4.04,
+      "beauty": 4.37,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

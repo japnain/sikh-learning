@@ -1,14 +1,14 @@
 {
   "id": "guidance-remembrance-brings-peace-2",
   "title": "Let simran cool the body from within",
-  "summary": "This meets anxiety after it has already entered the jaw, chest, or stomach. The line says remembrance is not decorative sound; it is meant to cool the body from the inside.",
-  "takeaway": "Let simran cool the body from within.",
-  "lifeApplication": "When the body starts bracing, let the Name descend through the breath until one place inside softens.",
+  "summary": "Do not let imagined danger become the loudest voice in the room. Do not let the day outrun this: hold onto this: carry remembrance into the body before worry settles there.",
+  "takeaway": "Return the breath before fear writes the day.",
+  "lifeApplication": "Before solving the whole future, name what care is already present in this room today.",
   "source": {
     "deepDiveId": "shabad-remembrance-brings-peace",
     "verseIds": [
-      11502,
-      11503
+      11510,
+      11511
     ],
     "shortMeaning": "The Name cools the body by driving worry and anguish out.",
     "lifeApplication": "When anxiety becomes physical, let the Name cool the body from within."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "The Name cools the body by driving worry and anguish out.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "Carry remembrance into the body before worry settles there.",
-      "practicalImplication": "When the body starts bracing, let the Name descend through the breath until one place inside softens.",
+      "turn": "Hold onto this: carry remembrance into the body before worry settles there.",
+      "practicalImplication": "Before solving the whole future, name what care is already present in this room today.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.95,
-      "clarity": 4.11,
-      "specificity": 4.89,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
       "usefulness": 4.64,
-      "beauty": 4.21,
-      "overall": 4.14
+      "beauty": 4.69,
+      "overall": 4.43
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

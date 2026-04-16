@@ -1,14 +1,14 @@
 {
   "id": "guidance-extinguish-the-fire-of-doubt-2",
   "title": "Wandering will not cool this fire",
-  "summary": "This meets the mind that keeps moving because stillness feels risky. The line says doubt is not cured by distance, only by becoming Gurmukh.",
-  "takeaway": "Stop roaming and face the inner fire.",
-  "lifeApplication": "Before opening another tab, changing the plan, or calling one more person, sit down and feel the heat in the chest. Ask the Guru's word to stay longer than the panic.",
+  "summary": "The line does not reward endless circling; it asks for trust, keeping, and return. Keep this close: Hold onto this: doubt clears when the Guru's word outlasts wandering.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       918,
-      921
+      919
     ],
     "shortMeaning": "The fire of doubt cools through Gurmukh steadiness, not roaming.",
     "lifeApplication": "When confusion surges, stay with the line before you run to another distraction."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "The fire of doubt cools through Gurmukh steadiness, not roaming.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Doubt clears when the Guru's word outlasts wandering.",
-      "practicalImplication": "Before opening another tab, changing the plan, or calling one more person, sit down and feel the heat in the chest. Ask the Guru's word to stay longer than the panic.",
+      "turn": "Hold onto this: doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.94,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.8,
-      "beauty": 4.21,
-      "overall": 4.32
+      "usefulness": 4.26,
+      "beauty": 4.53,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

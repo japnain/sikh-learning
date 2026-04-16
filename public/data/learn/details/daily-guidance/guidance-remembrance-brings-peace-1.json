@@ -1,9 +1,9 @@
 {
   "id": "guidance-remembrance-brings-peace-1",
   "title": "Remember until the mind stops sprinting",
-  "summary": "This meets an anxious mind already running ahead of the body. The line is simple on purpose: remembrance is the way back to peace.",
-  "takeaway": "Repeat the Name until the body returns.",
-  "lifeApplication": "Before the next panic loop grows legs, pause where you are and repeat the Name slowly enough to feel the breath return.",
+  "summary": "Do not let imagined danger become the loudest voice in the room. Let this stay near the next choice: hold onto this: carry remembrance into the body before worry settles there.",
+  "takeaway": "Quiet the spiral before it sounds like wisdom.",
+  "lifeApplication": "Before solving the whole future, name what care is already present in this room today.",
   "source": {
     "deepDiveId": "shabad-remembrance-brings-peace",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "Peace follows remembrance when the mind stops sprinting ahead.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "Carry remembrance into the body before worry settles there.",
-      "practicalImplication": "Before the next panic loop grows legs, pause where you are and repeat the Name slowly enough to feel the breath return.",
+      "turn": "Hold onto this: carry remembrance into the body before worry settles there.",
+      "practicalImplication": "Before solving the whole future, name what care is already present in this room today.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
+      "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.81,
-      "emotionalHonesty": 3.36,
-      "usefulness": 5,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.64,
       "beauty": 4.33,
-      "overall": 4.28
+      "overall": 4.37
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

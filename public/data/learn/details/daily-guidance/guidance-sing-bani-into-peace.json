@@ -1,9 +1,9 @@
 {
   "id": "guidance-sing-bani-into-peace",
   "title": "Keep peace alive with Bani",
-  "summary": "This meets the moment after relief, when silence could either deepen into devotion or drift back into noise. The line says lasting peace has to be sung, kept, and fed by Bani.",
-  "takeaway": "Sustain peace with Bani before noise returns.",
-  "lifeApplication": "When the room finally settles, speak one line of Bani aloud before reaching for chatter, scrolling, or analysis.",
+  "summary": "The line does not deny the wound; it refuses to let resentment keep writing the future. Keep this close: Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
+  "takeaway": "Release becomes possible when return matters more than replay.",
+  "lifeApplication": "When the old sentence rises again, release it before it claims the room and choose one softer answer instead of replay.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "Peace stays living when Bani keeps sounding within it.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
-      "practicalImplication": "When the room finally settles, speak one line of Bani aloud before reaching for chatter, scrolling, or analysis.",
+      "turn": "Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "When the old sentence rises again, release it before it claims the room and choose one softer answer instead of replay.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
+      "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 4.1,
-      "beauty": 4.21,
-      "overall": 4.1
+      "usefulness": 4.64,
+      "beauty": 4.37,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true
