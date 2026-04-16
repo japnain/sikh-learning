@@ -502,20 +502,59 @@ function toLearnLines(scriptureEntry) {
     }))
 }
 
+function buildContiguousLineWindow(lineIds, anchorIndex, size, placement = "center") {
+  if (lineIds.length === 0) return []
+
+  const boundedSize = Math.max(1, Math.min(size, lineIds.length))
+  let startIndex
+
+  if (placement === "after") {
+    startIndex = anchorIndex
+  } else if (placement === "before") {
+    startIndex = anchorIndex - boundedSize + 1
+  } else {
+    startIndex = anchorIndex - Math.floor((boundedSize - 1) / 2)
+  }
+
+  const clampedStart = Math.max(0, Math.min(startIndex, lineIds.length - boundedSize))
+  return lineIds.slice(clampedStart, clampedStart + boundedSize)
+}
+
 function buildGuidanceWindows(deepDive) {
   const lineIds = deepDive.lines.map(line => line.verseId).filter(Boolean)
+  if (lineIds.length === 0) return []
+
   const meaningfulLineIds = deepDive.lines
     .filter(line => line.verseId && isMeaningfulExcerptText(line.translation))
     .map(line => line.verseId)
-  const usableLineIds = meaningfulLineIds.length > 0 ? meaningfulLineIds : lineIds
-  const midpointId = usableLineIds[Math.floor(usableLineIds.length / 2)] ?? usableLineIds[0]
+  const meaningfulLineIdSet = new Set(meaningfulLineIds)
+  const hasMeaningfulLines = meaningfulLineIds.length > 0
+  const keyLineIds = deepDive.keyVerseIds.filter(verseId => lineIds.includes(verseId))
+  const preferredKeyLineIds = hasMeaningfulLines
+    ? keyLineIds.filter(verseId => meaningfulLineIdSet.has(verseId))
+    : keyLineIds
+
+  const midpointIndex = (() => {
+    if (!hasMeaningfulLines) return Math.floor(lineIds.length / 2)
+    const meaningfulIndexes = lineIds
+      .map((verseId, index) => (meaningfulLineIdSet.has(verseId) ? index : -1))
+      .filter(index => index >= 0)
+    return meaningfulIndexes[Math.floor(meaningfulIndexes.length / 2)] ?? Math.floor(lineIds.length / 2)
+  })()
+  const firstAnchorIndex = lineIds.indexOf(preferredKeyLineIds[0] ?? keyLineIds[0] ?? lineIds[0])
+  const lastAnchorVerseId = preferredKeyLineIds.at(-1) ?? keyLineIds.at(-1) ?? lineIds.at(-1)
+  const lastAnchorIndex = lineIds.indexOf(lastAnchorVerseId)
   const candidates = [
-    deepDive.keyVerseIds.slice(0, 1),
-    deepDive.keyVerseIds.slice(0, Math.min(2, deepDive.keyVerseIds.length)),
-    deepDive.keyVerseIds.length >= 2
-      ? deepDive.keyVerseIds.slice(-2)
-      : [usableLineIds[usableLineIds.length - 1] ?? midpointId],
-    [midpointId],
+    buildContiguousLineWindow(lineIds, firstAnchorIndex, 1, "center"),
+    buildContiguousLineWindow(lineIds, firstAnchorIndex, 2, "after"),
+    buildContiguousLineWindow(lineIds, lastAnchorIndex, 2, "before"),
+    buildContiguousLineWindow(lineIds, midpointIndex, 1, "center"),
+    buildContiguousLineWindow(lineIds, midpointIndex, 2, "after"),
+    buildContiguousLineWindow(lineIds, midpointIndex, 2, "before"),
+    buildContiguousLineWindow(lineIds, lastAnchorIndex, 1, "center"),
+    buildContiguousLineWindow(lineIds, firstAnchorIndex + 1, 1, "center"),
+    buildContiguousLineWindow(lineIds, lastAnchorIndex - 1, 1, "center"),
+    buildContiguousLineWindow(lineIds, midpointIndex, 3, "center"),
   ]
 
   const unique = []
@@ -529,6 +568,10 @@ function buildGuidanceWindows(deepDive) {
     unique.push(filtered)
   }
   return unique
+}
+
+function guidanceWindowKey(verseIds) {
+  return verseIds.filter(Boolean).join(",")
 }
 
 function summarizeVerseWindow(selectedLines) {
@@ -656,8 +699,24 @@ function selectReferenceLines(deepDive, verseIds) {
   return deepDive.lines.slice(0, 1)
 }
 
+function normalizeExcerptVerseIds(deepDive, verseIds) {
+  const orderedLineIds = deepDive.lines.map(line => line.verseId).filter(Boolean)
+  if (!orderedLineIds.length) return []
+
+  const selectedIndexes = orderedLineIds
+    .map((verseId, index) => (verseIds.includes(verseId) ? index : -1))
+    .filter(index => index >= 0)
+
+  if (!selectedIndexes.length) return orderedLineIds.slice(0, 1)
+
+  const startIndex = selectedIndexes[0]
+  const endIndex = selectedIndexes[selectedIndexes.length - 1]
+  return orderedLineIds.slice(startIndex, endIndex + 1)
+}
+
 function createLineReference(deepDive, verseIds, options = {}) {
-  const referenceLines = selectReferenceLines(deepDive, verseIds)
+  const normalizedVerseIds = normalizeExcerptVerseIds(deepDive, verseIds)
+  const referenceLines = selectReferenceLines(deepDive, normalizedVerseIds)
   const shortMeaning = options.blankCopy === true
     ? ""
     : (options.shortMeaning ?? summarizeVerseWindow(referenceLines))
@@ -667,17 +726,17 @@ function createLineReference(deepDive, verseIds, options = {}) {
 
   return {
     deepDiveId: deepDive.id,
-    verseIds,
+    verseIds: normalizedVerseIds,
     shortMeaning,
     lifeApplication,
   }
 }
 
-function createGuidanceFromShabad(deepDive, slotIndex, familyKey) {
+function createGuidanceFromShabad(deepDive, slotIndex, familyKey, verseIds = null) {
   const windows = buildGuidanceWindows(deepDive)
-  const verseIds = windows[slotIndex % windows.length]
-  const source = createLineReference(deepDive, verseIds, { blankCopy: true })
-  const selectedLines = deepDive.lines.filter(line => verseIds.includes(line.verseId))
+  const selectedVerseIds = verseIds ?? windows[slotIndex % windows.length]
+  const source = createLineReference(deepDive, selectedVerseIds, { blankCopy: true })
+  const selectedLines = deepDive.lines.filter(line => source.verseIds.includes(line.verseId))
   const leadLine = selectedLines[0] ?? deepDive.lines[0]
   const tailLine = selectedLines[selectedLines.length - 1] ?? deepDive.lines[deepDive.lines.length - 1] ?? leadLine
   const family = getTopicFamily(familyKey)
@@ -1800,9 +1859,22 @@ export async function generateDrafts() {
   const dailyGuidance = [...legacy.dailyGuidance]
   for (const shabad of shabadDeepDives) {
     const slots = shabad.citation.shabad_id % 5 < 2 ? 3 : 2
-    for (let slotIndex = 0; slotIndex < slots; slotIndex += 1) {
+    const occupiedWindowKeys = new Set(
+      dailyGuidance
+        .filter(item => item.source.deepDiveId === shabad.id)
+        .map(item => guidanceWindowKey(item.source.verseIds))
+    )
+    const availableWindows = buildGuidanceWindows(shabad)
+      .filter(window => !occupiedWindowKeys.has(guidanceWindowKey(window)))
+
+    for (let slotIndex = 0; slotIndex < Math.min(slots, availableWindows.length); slotIndex += 1) {
       if (dailyGuidance.length >= 240) break
-      const guidance = createGuidanceFromShabad(shabad, slotIndex, shabad.themes[0] ?? "anxiety")
+      const guidance = createGuidanceFromShabad(
+        shabad,
+        slotIndex,
+        shabad.themes[0] ?? "anxiety",
+        availableWindows[slotIndex]
+      )
       if (!dailyGuidance.some(item => item.id === guidance.id)) {
         dailyGuidance.push(guidance)
       }
