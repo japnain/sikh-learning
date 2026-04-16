@@ -202,8 +202,7 @@ test('shows in-app matches first on home smart search and routes into learn deta
 
   fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
 
-  expect(await screen.findByText(/In the app/i)).toBeInTheDocument()
-  const inAppResults = screen.getByTestId('home-smart-search-app-results')
+  const inAppResults = await screen.findByTestId('home-smart-search-app-results')
   const [firstResult] = within(inAppResults).getAllByRole('link')
   expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
   fireEvent.click(firstResult)
@@ -362,7 +361,7 @@ test('rebuilds today’s path around live reading and real Learn surfaces', () =
   expect(screen.getByTestId('home-todays-path-featured-shabad')).toBeInTheDocument()
   expect(screen.getByTestId('home-todays-path-learn')).toBeInTheDocument()
   expect(screen.getByTestId('home-open-continue-learning')).toBeInTheDocument()
-  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/open today’s hukamnama/i)
+  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/browse read/i)
   expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
   expect(screen.queryByText(/core letters/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/steps done/i)).not.toBeInTheDocument()
@@ -381,7 +380,7 @@ test('keeps the lower home surface saved-only', () => {
 test('shows today’s hukamnama action', async () => {
   renderHome()
   await waitFor(() => {
-    expect(screen.getAllByRole('link', { name: /open today’s hukamnama/i }).length).toBeGreaterThan(0)
+    expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
   })
 })
 
@@ -411,6 +410,13 @@ test('hides preview meanings when meaning language is off', async () => {
 test('does not show continue reading when no session', () => {
   renderHome()
   expect(screen.queryByText(/continue reading/i)).not.toBeInTheDocument()
+})
+
+test('uses Browse Read in today’s path instead of duplicating the hukamnama CTA when no session exists', async () => {
+  renderHome()
+
+  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/^Browse Read$/i)
+  expect(await screen.findByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
 })
 
 test('shows continue reading when session exists', () => {

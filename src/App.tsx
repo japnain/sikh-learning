@@ -11,6 +11,7 @@ import { useLanguageStore } from './store/language'
 import { useLocaleStore } from './store/locale'
 import { useOnboardingStore } from './store/onboarding'
 import { useThemeStore } from './store/theme'
+import { getRouterBasename } from './utils/basePath'
 
 const HomePage = lazy(() => import('./pages/Home'))
 const StudyPage = lazy(() => import('./pages/Study'))
@@ -259,8 +260,10 @@ function AppShell() {
 }
 
 export default function App() {
+  const routerBasename = getRouterBasename(import.meta.env.BASE_URL)
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <AppShell />
     </BrowserRouter>
   )

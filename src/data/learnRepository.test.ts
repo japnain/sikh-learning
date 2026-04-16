@@ -1,5 +1,8 @@
+import fs from "node:fs"
+import path from "node:path"
 import { beforeEach, expect, test } from "vitest"
 import {
+  configureLearnRepositoryLoader,
   loadLearnCatalog,
   loadLearnDetail,
   loadLearnHomeCatalog,
@@ -25,6 +28,16 @@ function hasStructuralHeadingLeak(value: string) {
     || STRUCTURAL_PREFIX_PATTERN.test(cleaned)
     || (SHORT_TITLE_COLON_PATTERN.test(cleaned) && wordCount <= 6)
   )
+}
+
+const PROJECT_ROOT = process.cwd()
+
+function readPublicLearnJson(resourcePath: string) {
+  const normalizedPath = resourcePath.startsWith('/')
+    ? resourcePath.slice(1)
+    : resourcePath
+  const filePath = path.join(PROJECT_ROOT, 'public', normalizedPath.replace(/^data\/learn\//, 'data/learn/'))
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 }
 
 beforeEach(() => {
@@ -61,6 +74,22 @@ test("home catalog summary omits the search index and still exposes lookup maps"
   expect(catalog.shabadDeepDiveById[catalog.shabadDeepDives[0]!.id]).toEqual(catalog.shabadDeepDives[0])
   expect(catalog.topicGuideById[catalog.topicGuides[0]!.id]).toEqual(catalog.topicGuides[0])
   expect(catalog.collectionById[catalog.collections[0]!.id]).toEqual(catalog.collections[0])
+})
+
+test("home catalog falls back to the full learn archive when the summary payload is malformed", async () => {
+  configureLearnRepositoryLoader(async (resourcePath) => {
+    if (resourcePath === '/data/learn/home-summary.json') {
+      throw new Error('Learn repository returned malformed JSON for /data/learn/home-summary.json: Unexpected token < in JSON')
+    }
+    return readPublicLearnJson(resourcePath)
+  })
+
+  resetLearnRepositoryCache()
+
+  const homeCatalog = await loadLearnHomeCatalog()
+
+  expect(homeCatalog.dailyGuidance.length).toBeGreaterThan(0)
+  expect(homeCatalog.shabadDeepDives.length).toBeGreaterThan(0)
 })
 
 test("topic detail payloads stay canonical and expose scenario content", async () => {
