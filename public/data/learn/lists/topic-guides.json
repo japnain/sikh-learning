@@ -1580,9 +1580,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-loneliness:daily",
           "evidence": {
             "coreClaim": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -1593,16 +1593,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.23,
             "specificity": 5,
-            "emotionalHonesty": 3.54,
-            "usefulness": 4.48,
-            "beauty": 4.95,
+            "emotionalHonesty": 3.36,
+            "usefulness": 5,
+            "beauty": 4.73,
             "overall": 4.45
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -1670,9 +1670,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-loneliness:pressure",
           "evidence": {
             "coreClaim": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -1683,16 +1683,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
+            "clarity": 4.05,
             "specificity": 5,
             "emotionalHonesty": 3.36,
-            "usefulness": 4.04,
-            "beauty": 4.91,
-            "overall": 4.34
+            "usefulness": 5,
+            "beauty": 4.31,
+            "overall": 4.36
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -1759,9 +1759,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-loneliness:repair",
           "evidence": {
             "coreClaim": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -1772,16 +1772,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
+            "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 4.64,
-            "beauty": 4.81,
-            "overall": 4.44
+            "usefulness": 5,
+            "beauty": 4.85,
+            "overall": 4.51
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -1853,9 +1853,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-loneliness:practice",
           "evidence": {
             "coreClaim": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. What is repeated with honesty begins to retrain the reflex itself.",
@@ -1866,16 +1866,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.23,
             "specificity": 5,
-            "emotionalHonesty": 3.54,
-            "usefulness": 4.64,
-            "beauty": 4.95,
-            "overall": 4.47
+            "emotionalHonesty": 3.36,
+            "usefulness": 5,
+            "beauty": 4.61,
+            "overall": 4.43
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -1911,9 +1911,9 @@
       "balanceCategory": "comfort"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:loneliness",
       "evidence": {
         "coreClaim": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone.",
@@ -1924,12 +1924,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.29,
+        "clarity": 4.05,
         "specificity": 5,
         "emotionalHonesty": 3.72,
         "usefulness": 5,
-        "beauty": 4.91,
-        "overall": 4.54
+        "beauty": 4.47,
+        "overall": 4.44
       },
       "strengths": [
         "specificity",
@@ -2633,9 +2633,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-attachment:daily",
           "evidence": {
             "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -2646,16 +2646,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.29,
             "specificity": 5,
-            "emotionalHonesty": 3.72,
-            "usefulness": 4.26,
-            "beauty": 4.36,
-            "overall": 4.35
+            "emotionalHonesty": 3.18,
+            "usefulness": 4.04,
+            "beauty": 4.49,
+            "overall": 4.25
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "beauty"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -2734,9 +2734,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-attachment:pressure",
           "evidence": {
             "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -2747,16 +2747,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.29,
             "specificity": 4.96,
-            "emotionalHonesty": 3.54,
+            "emotionalHonesty": 3.36,
             "usefulness": 3.82,
-            "beauty": 4.53,
-            "overall": 4.28
+            "beauty": 4.16,
+            "overall": 4.19
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "faithfulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -2834,9 +2834,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-attachment:repair",
           "evidence": {
             "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -2848,15 +2848,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 4.96,
+            "specificity": 4.78,
             "emotionalHonesty": 3.54,
-            "usefulness": 3.82,
-            "beauty": 4.53,
-            "overall": 4.28
+            "usefulness": 3.6,
+            "beauty": 4.85,
+            "overall": 4.27
           },
           "strengths": [
-            "specificity",
-            "beauty"
+            "beauty",
+            "specificity"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -2934,9 +2934,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-attachment:practice",
           "evidence": {
             "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. What is repeated with honesty begins to retrain the reflex itself.",
@@ -2948,15 +2948,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 5,
-            "emotionalHonesty": 3.18,
-            "usefulness": 4.86,
-            "beauty": 4.85,
-            "overall": 4.44
+            "specificity": 4.96,
+            "emotionalHonesty": 3,
+            "usefulness": 3.82,
+            "beauty": 4.37,
+            "overall": 4.18
           },
           "strengths": [
             "specificity",
-            "usefulness"
+            "faithfulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -2994,9 +2994,9 @@
       "balanceCategory": "reflection"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:attachment",
       "evidence": {
         "coreClaim": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear.",
@@ -3007,12 +3007,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.35,
-        "specificity": 5,
+        "clarity": 4.23,
+        "specificity": 4.78,
         "emotionalHonesty": 3.54,
-        "usefulness": 4.48,
-        "beauty": 4.53,
-        "overall": 4.38
+        "usefulness": 3.6,
+        "beauty": 4.45,
+        "overall": 4.19
       },
       "strengths": [
         "specificity",
@@ -3206,9 +3206,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-ego:daily",
           "evidence": {
             "coreClaim": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -3219,16 +3219,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
+            "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.36,
-            "usefulness": 4.26,
-            "beauty": 4.26,
-            "overall": 4.28
+            "usefulness": 4.42,
+            "beauty": 4.53,
+            "overall": 4.35
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "beauty"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -3303,9 +3303,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-ego:pressure",
           "evidence": {
             "coreClaim": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -3317,15 +3317,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 4.96,
+            "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 3.82,
-            "beauty": 4.45,
-            "overall": 4.27
+            "usefulness": 4.86,
+            "beauty": 4.37,
+            "overall": 4.42
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -3410,9 +3410,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-ego:repair",
           "evidence": {
             "coreClaim": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -3425,14 +3425,14 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3.72,
-            "usefulness": 4.8,
-            "beauty": 4.53,
-            "overall": 4.46
+            "emotionalHonesty": 3.54,
+            "usefulness": 4.64,
+            "beauty": 4.69,
+            "overall": 4.43
           },
           "strengths": [
             "specificity",
-            "usefulness"
+            "beauty"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -3510,9 +3510,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-ego:practice",
           "evidence": {
             "coreClaim": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. What is repeated with honesty begins to retrain the reflex itself.",
@@ -3524,15 +3524,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 4.96,
-            "emotionalHonesty": 3.18,
-            "usefulness": 4.2,
-            "beauty": 4.69,
-            "overall": 4.31
+            "specificity": 5,
+            "emotionalHonesty": 3,
+            "usefulness": 4.64,
+            "beauty": 4.53,
+            "overall": 4.33
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -3570,9 +3570,9 @@
       "balanceCategory": "challenge"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:ego",
       "evidence": {
         "coreClaim": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment.",
@@ -3585,14 +3585,14 @@
         "faithfulness": 4.4,
         "clarity": 4.35,
         "specificity": 5,
-        "emotionalHonesty": 3.36,
-        "usefulness": 4.8,
-        "beauty": 4.37,
-        "overall": 4.38
+        "emotionalHonesty": 3.54,
+        "usefulness": 4.42,
+        "beauty": 4.69,
+        "overall": 4.4
       },
       "strengths": [
         "specificity",
-        "usefulness"
+        "beauty"
       ],
       "issues": [],
       "reviewedByHuman": false
@@ -4251,9 +4251,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-discipline:daily",
           "evidence": {
             "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -4264,16 +4264,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.29,
             "specificity": 5,
-            "emotionalHonesty": 3.54,
+            "emotionalHonesty": 3.36,
             "usefulness": 4.26,
-            "beauty": 4.37,
-            "overall": 4.33
+            "beauty": 4.58,
+            "overall": 4.32
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "beauty"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -4347,9 +4347,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-discipline:pressure",
           "evidence": {
             "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -4360,12 +4360,12 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.29,
             "specificity": 5,
-            "emotionalHonesty": 3.36,
+            "emotionalHonesty": 3.54,
             "usefulness": 4.48,
-            "beauty": 4.37,
-            "overall": 4.33
+            "beauty": 4.48,
+            "overall": 4.37
           },
           "strengths": [
             "specificity",
@@ -4454,9 +4454,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-discipline:repair",
           "evidence": {
             "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -4470,9 +4470,9 @@
             "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 4.26,
-            "beauty": 4.53,
-            "overall": 4.35
+            "usefulness": 4.48,
+            "beauty": 4.69,
+            "overall": 4.41
           },
           "strengths": [
             "specificity",
@@ -4566,9 +4566,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-discipline:practice",
           "evidence": {
             "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. What is repeated with honesty begins to retrain the reflex itself.",
@@ -4579,12 +4579,12 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
+            "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3,
-            "usefulness": 4.04,
-            "beauty": 4.65,
-            "overall": 4.25
+            "emotionalHonesty": 3.18,
+            "usefulness": 4.48,
+            "beauty": 4.53,
+            "overall": 4.33
           },
           "strengths": [
             "specificity",
@@ -4625,9 +4625,9 @@
       "balanceCategory": "discipline"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:discipline",
       "evidence": {
         "coreClaim": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule.",
@@ -4638,12 +4638,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.35,
+        "clarity": 4.29,
         "specificity": 5,
-        "emotionalHonesty": 3.18,
+        "emotionalHonesty": 3.36,
         "usefulness": 4.26,
-        "beauty": 4.53,
-        "overall": 4.3
+        "beauty": 4.49,
+        "overall": 4.31
       },
       "strengths": [
         "specificity",
@@ -4823,8 +4823,7 @@
               "deepDiveId": "shabad-work-give-know-the-path",
               "verseIds": [
                 53369,
-                53370,
-                53371
+                53370
               ],
               "shortMeaning": "Ordinary moments change when the mind returns to clean offering instead of serving for inward profit.",
               "lifeApplication": "Today, before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
@@ -4835,10 +4834,6 @@
             "source": {
               "deepDiveId": "shabad-generated-64",
               "verseIds": [
-                749,
-                750,
-                751,
-                752,
                 753,
                 754
               ],
@@ -4849,9 +4844,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-seva:daily",
           "evidence": {
             "coreClaim": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -4862,16 +4857,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.29,
             "specificity": 5,
             "emotionalHonesty": 4,
-            "usefulness": 4.26,
-            "beauty": 4.21,
-            "overall": 4.37
+            "usefulness": 4.86,
+            "beauty": 4.31,
+            "overall": 4.47
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -4910,8 +4905,7 @@
               "deepDiveId": "shabad-work-give-know-the-path",
               "verseIds": [
                 53369,
-                53370,
-                53371
+                53370
               ],
               "shortMeaning": "Pressure loses some of its claim when the heart returns to clean offering.",
               "lifeApplication": "When the room tightens, ask what would remain if no one noticed it and no inward debt could be collected from it."
@@ -4943,9 +4937,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-seva:pressure",
           "evidence": {
             "coreClaim": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -4956,16 +4950,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.23,
+            "clarity": 4.29,
             "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 4.04,
-            "beauty": 4.29,
-            "overall": 4.27
+            "usefulness": 4.42,
+            "beauty": 4.01,
+            "overall": 4.29
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -5003,10 +4997,6 @@
             "source": {
               "deepDiveId": "shabad-generated-64",
               "verseIds": [
-                749,
-                750,
-                751,
-                752,
                 753,
                 754
               ],
@@ -5030,7 +5020,8 @@
             "source": {
               "deepDiveId": "shabad-generated-512",
               "verseIds": [
-                7138
+                7143,
+                7144
               ],
               "shortMeaning": "This passage opens a clean way back through clean offering.",
               "lifeApplication": "After the slip is visible, ask what would remain if no one noticed it and no inward debt could be collected from it."
@@ -5039,9 +5030,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-seva:repair",
           "evidence": {
             "coreClaim": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -5052,16 +5043,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
-            "specificity": 5,
+            "clarity": 4.35,
+            "specificity": 4.96,
             "emotionalHonesty": 3.72,
-            "usefulness": 4.26,
-            "beauty": 4.17,
-            "overall": 4.32
+            "usefulness": 4.2,
+            "beauty": 4.69,
+            "overall": 4.39
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "beauty"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -5154,9 +5145,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-seva:practice",
           "evidence": {
             "coreClaim": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. What is repeated with honesty begins to retrain the reflex itself.",
@@ -5170,13 +5161,13 @@
             "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.9,
-            "usefulness": 4.26,
-            "beauty": 4.37,
+            "usefulness": 4.42,
+            "beauty": 4.21,
             "overall": 4.38
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -5214,9 +5205,9 @@
       "balanceCategory": "discipline"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:seva",
       "evidence": {
         "coreClaim": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering.",
@@ -5227,12 +5218,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.35,
+        "clarity": 4.23,
         "specificity": 5,
-        "emotionalHonesty": 3.9,
+        "emotionalHonesty": 4,
         "usefulness": 4.42,
-        "beauty": 4.21,
-        "overall": 4.38
+        "beauty": 4.28,
+        "overall": 4.39
       },
       "strengths": [
         "specificity",
@@ -6837,9 +6828,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-patience:daily",
           "evidence": {
             "coreClaim": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -6852,14 +6843,14 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3.18,
-            "usefulness": 4.8,
-            "beauty": 4.85,
-            "overall": 4.43
+            "emotionalHonesty": 3.36,
+            "usefulness": 4.86,
+            "beauty": 4.53,
+            "overall": 4.42
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -6939,9 +6930,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-patience:pressure",
           "evidence": {
             "coreClaim": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -6953,15 +6944,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 4.96,
-            "emotionalHonesty": 3.36,
-            "usefulness": 4.58,
-            "beauty": 4.95,
-            "overall": 4.43
+            "specificity": 5,
+            "emotionalHonesty": 3.72,
+            "usefulness": 4.86,
+            "beauty": 4.21,
+            "overall": 4.42
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -7039,9 +7030,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-patience:repair",
           "evidence": {
             "coreClaim": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -7052,16 +7043,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
-            "specificity": 4.96,
+            "clarity": 4.35,
+            "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 4.58,
-            "beauty": 4.91,
-            "overall": 4.44
+            "usefulness": 4.86,
+            "beauty": 4.85,
+            "overall": 4.49
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -7135,9 +7126,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-patience:practice",
           "evidence": {
             "coreClaim": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. What is repeated with honesty begins to retrain the reflex itself.",
@@ -7148,12 +7139,12 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.35,
+            "clarity": 4.23,
             "specificity": 5,
-            "emotionalHonesty": 3,
-            "usefulness": 5,
-            "beauty": 4.69,
-            "overall": 4.41
+            "emotionalHonesty": 3.36,
+            "usefulness": 4.64,
+            "beauty": 4.29,
+            "overall": 4.33
           },
           "strengths": [
             "specificity",
@@ -7193,9 +7184,9 @@
       "balanceCategory": "discipline"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:patience",
       "evidence": {
         "coreClaim": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence.",
@@ -7206,12 +7197,12 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.35,
+        "clarity": 4.29,
         "specificity": 5,
-        "emotionalHonesty": 3.72,
+        "emotionalHonesty": 3.36,
         "usefulness": 4.64,
-        "beauty": 4.37,
-        "overall": 4.41
+        "beauty": 4.49,
+        "overall": 4.37
       },
       "strengths": [
         "specificity",
@@ -7406,9 +7397,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-mercy:daily",
           "evidence": {
             "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -7421,10 +7412,10 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3.36,
-            "usefulness": 4.48,
-            "beauty": 4.84,
-            "overall": 4.4
+            "emotionalHonesty": 3.54,
+            "usefulness": 4.64,
+            "beauty": 4.95,
+            "overall": 4.47
           },
           "strengths": [
             "specificity",
@@ -7507,9 +7498,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-mercy:pressure",
           "evidence": {
             "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -7522,14 +7513,14 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3.36,
-            "usefulness": 3.88,
-            "beauty": 4.95,
-            "overall": 4.33
+            "emotionalHonesty": 3.72,
+            "usefulness": 4.86,
+            "beauty": 4.69,
+            "overall": 4.49
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -7602,9 +7593,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-mercy:repair",
           "evidence": {
             "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -7615,12 +7606,12 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
-            "specificity": 4.96,
+            "clarity": 4.35,
+            "specificity": 5,
             "emotionalHonesty": 3.72,
-            "usefulness": 4.2,
-            "beauty": 4.65,
-            "overall": 4.37
+            "usefulness": 4.64,
+            "beauty": 4.95,
+            "overall": 4.5
           },
           "strengths": [
             "specificity",
@@ -7702,9 +7693,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-mercy:practice",
           "evidence": {
             "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. What is repeated with honesty begins to retrain the reflex itself.",
@@ -7717,10 +7708,10 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 5,
-            "emotionalHonesty": 3.18,
-            "usefulness": 4.26,
-            "beauty": 4.53,
-            "overall": 4.3
+            "emotionalHonesty": 3.36,
+            "usefulness": 4.64,
+            "beauty": 4.69,
+            "overall": 4.41
           },
           "strengths": [
             "specificity",
@@ -7760,9 +7751,9 @@
       "balanceCategory": "comfort"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:mercy",
       "evidence": {
         "coreClaim": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible.",
@@ -7775,10 +7766,10 @@
         "faithfulness": 4.4,
         "clarity": 4.35,
         "specificity": 5,
-        "emotionalHonesty": 3.54,
+        "emotionalHonesty": 3.9,
         "usefulness": 4.64,
         "beauty": 4.95,
-        "overall": 4.47
+        "overall": 4.53
       },
       "strengths": [
         "specificity",
@@ -7969,8 +7960,6 @@
             "source": {
               "deepDiveId": "shabad-generated-301",
               "verseIds": [
-                4151,
-                4152,
                 4153,
                 4154
               ],
@@ -7981,9 +7970,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-forgiveness:daily",
           "evidence": {
             "coreClaim": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -7994,16 +7983,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
+            "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.72,
-            "usefulness": 4.26,
-            "beauty": 4.49,
-            "overall": 4.36
+            "usefulness": 5,
+            "beauty": 4.37,
+            "overall": 4.47
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8050,10 +8039,6 @@
             "source": {
               "deepDiveId": "shabad-generated-511",
               "verseIds": [
-                7131,
-                7132,
-                7133,
-                7134,
                 7135,
                 7136
               ],
@@ -8066,7 +8051,9 @@
             "source": {
               "deepDiveId": "shabad-generated-818",
               "verseIds": [
-                11177
+                11176,
+                11177,
+                11178
               ],
               "shortMeaning": "Hurt is answered here through release, clean speech, and peace.",
               "lifeApplication": "When the room tightens, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
@@ -8075,9 +8062,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-forgiveness:pressure",
           "evidence": {
             "coreClaim": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -8089,15 +8076,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 5,
-            "emotionalHonesty": 3.72,
-            "usefulness": 4.04,
-            "beauty": 4.21,
-            "overall": 4.3
+            "specificity": 4.96,
+            "emotionalHonesty": 3.9,
+            "usefulness": 4.94,
+            "beauty": 4.05,
+            "overall": 4.43
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8134,8 +8121,6 @@
             "source": {
               "deepDiveId": "shabad-generated-301",
               "verseIds": [
-                4151,
-                4152,
                 4153,
                 4154
               ],
@@ -8159,7 +8144,8 @@
             "source": {
               "deepDiveId": "shabad-generated-1048",
               "verseIds": [
-                13151
+                13152,
+                13153
               ],
               "shortMeaning": "This passage opens a clean way back through a freed heart.",
               "lifeApplication": "After the slip is visible, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
@@ -8168,9 +8154,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-forgiveness:repair",
           "evidence": {
             "coreClaim": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -8181,16 +8167,16 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.23,
-            "specificity": 5,
-            "emotionalHonesty": 3.54,
-            "usefulness": 4.04,
-            "beauty": 4.45,
-            "overall": 4.29
+            "clarity": 4.35,
+            "specificity": 4.96,
+            "emotionalHonesty": 3.9,
+            "usefulness": 4.94,
+            "beauty": 4.69,
+            "overall": 4.53
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8226,7 +8212,9 @@
             "source": {
               "deepDiveId": "shabad-generated-818",
               "verseIds": [
-                11177
+                11176,
+                11177,
+                11178
               ],
               "shortMeaning": "Hurt is retrained through repeated return to a freed heart.",
               "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
@@ -8237,7 +8225,8 @@
             "source": {
               "deepDiveId": "shabad-forgiveness-becomes-fearless",
               "verseIds": [
-                9600
+                9613,
+                9614
               ],
               "shortMeaning": "This excerpt gives the heart a keepable pattern of release, clean speech, and peace.",
               "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
@@ -8248,8 +8237,7 @@
             "source": {
               "deepDiveId": "shabad-generated-1048",
               "verseIds": [
-                13151,
-                13152
+                13156
               ],
               "shortMeaning": "A steady practice weakens feeding the wound over time.",
               "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
@@ -8258,9 +8246,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-forgiveness:practice",
           "evidence": {
             "coreClaim": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. What is repeated with honesty begins to retrain the reflex itself.",
@@ -8274,13 +8262,13 @@
             "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.36,
-            "usefulness": 4.26,
+            "usefulness": 5,
             "beauty": 4.21,
-            "overall": 4.28
+            "overall": 4.39
           },
           "strengths": [
             "specificity",
-            "faithfulness"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8317,9 +8305,9 @@
       "balanceCategory": "reflection"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:forgiveness",
       "evidence": {
         "coreClaim": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again.",
@@ -8330,16 +8318,16 @@
       },
       "scores": {
         "faithfulness": 4.4,
-        "clarity": 4.35,
+        "clarity": 4.29,
         "specificity": 5,
-        "emotionalHonesty": 3.54,
-        "usefulness": 4.04,
-        "beauty": 4.53,
-        "overall": 4.32
+        "emotionalHonesty": 3.72,
+        "usefulness": 5,
+        "beauty": 4.33,
+        "overall": 4.45
       },
       "strengths": [
         "specificity",
-        "beauty"
+        "usefulness"
       ],
       "issues": [],
       "reviewedByHuman": false
@@ -8553,9 +8541,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-greed:daily",
           "evidence": {
             "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
@@ -8569,13 +8557,13 @@
             "clarity": 4.35,
             "specificity": 5,
             "emotionalHonesty": 3.54,
-            "usefulness": 4.42,
-            "beauty": 4.69,
-            "overall": 4.4
+            "usefulness": 5,
+            "beauty": 4.37,
+            "overall": 4.44
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "usefulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8653,9 +8641,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-greed:pressure",
           "evidence": {
             "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
@@ -8668,14 +8656,14 @@
             "faithfulness": 4.4,
             "clarity": 4.35,
             "specificity": 4.96,
-            "emotionalHonesty": 3.54,
+            "emotionalHonesty": 3.9,
             "usefulness": 4.2,
-            "beauty": 4.53,
-            "overall": 4.34
+            "beauty": 4.05,
+            "overall": 4.32
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "faithfulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8760,9 +8748,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-greed:repair",
           "evidence": {
             "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
@@ -8773,12 +8761,12 @@
           },
           "scores": {
             "faithfulness": 4.4,
-            "clarity": 4.29,
-            "specificity": 4.96,
-            "emotionalHonesty": 3.54,
-            "usefulness": 4.2,
-            "beauty": 4.49,
-            "overall": 4.32
+            "clarity": 4.35,
+            "specificity": 4.78,
+            "emotionalHonesty": 3.72,
+            "usefulness": 3.98,
+            "beauty": 4.69,
+            "overall": 4.33
           },
           "strengths": [
             "specificity",
@@ -8873,9 +8861,9 @@
           }
         ],
         "editorial": {
-          "status": "approved",
-          "origin": "generated",
-          "voiceVersion": "sggs-editorial-v2",
+          "status": "locked",
+          "origin": "manual",
+          "voiceVersion": "sggs-editorial-v1",
           "templateKey": "topic-greed:practice",
           "evidence": {
             "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. What is repeated with honesty begins to retrain the reflex itself.",
@@ -8887,15 +8875,15 @@
           "scores": {
             "faithfulness": 4.4,
             "clarity": 4.35,
-            "specificity": 5,
-            "emotionalHonesty": 3.18,
-            "usefulness": 4.42,
-            "beauty": 4.69,
-            "overall": 4.35
+            "specificity": 4.96,
+            "emotionalHonesty": 3.54,
+            "usefulness": 4.2,
+            "beauty": 4.21,
+            "overall": 4.29
           },
           "strengths": [
             "specificity",
-            "beauty"
+            "faithfulness"
           ],
           "issues": [],
           "reviewedByHuman": false
@@ -8933,9 +8921,9 @@
       "balanceCategory": "challenge"
     },
     "editorial": {
-      "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v2",
+      "status": "locked",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v1",
       "templateKey": "topic:greed",
       "evidence": {
         "coreClaim": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open.",
@@ -8948,10 +8936,10 @@
         "faithfulness": 4.4,
         "clarity": 4.35,
         "specificity": 4.96,
-        "emotionalHonesty": 3.36,
+        "emotionalHonesty": 3.72,
         "usefulness": 4.58,
-        "beauty": 4.21,
-        "overall": 4.32
+        "beauty": 4.37,
+        "overall": 4.4
       },
       "strengths": [
         "specificity",

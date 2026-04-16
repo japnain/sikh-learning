@@ -1,13 +1,14 @@
 {
   "id": "guidance-suffering-as-medicine-1",
   "title": "Let pain teach what comfort keeps hiding",
-  "summary": "This meets the instinct to call pleasure blessing and pain failure. The line reverses that instinct by saying suffering can reopen desire for God.",
-  "takeaway": "Let pain expose what comfort keeps blurring.",
-  "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering.",
+  "summary": "The line loosens the hand without asking the heart to go cold. Keep this close: Let this stay with you: let pain reveal what comfort keeps covering.",
+  "takeaway": "Receive the gift without claiming the outcome.",
+  "lifeApplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
-      21090
+      21090,
+      21091
     ],
     "shortMeaning": "Pain becomes medicine when it uncovers what comfort hides.",
     "lifeApplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering."
@@ -35,26 +36,26 @@
     "status": "approved",
     "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:1-line-window",
+    "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Pain becomes medicine when it uncovers what comfort hides.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Let pain reveal what comfort keeps covering.",
-      "practicalImplication": "When the ache rises in the body, do not numb it first. Sit one minute longer and ask what it is uncovering.",
+      "turn": "Let this stay with you: let pain reveal what comfort keeps covering.",
+      "practicalImplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.94,
-      "emotionalHonesty": 3,
-      "usefulness": 4.04,
-      "beauty": 4.05,
-      "overall": 4.1
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.37,
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

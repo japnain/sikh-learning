@@ -1,13 +1,14 @@
 {
   "id": "guidance-work-and-give",
   "title": "Earn cleanly and keep the hand open",
-  "summary": "This meets work that has become costume, accumulation, or self-display. The line honors the one who earns honestly, shares freely, and lets labor stay clean.",
-  "takeaway": "Keep earning and giving in one sentence.",
-  "lifeApplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
+  "summary": "Let service become care that steadies both hand and heart. Keep this close: Carry this with you: honest labor and sharing reveal the path better than costume.",
+  "takeaway": "Serve in a way that leaves the self quieter.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
   "source": {
     "deepDiveId": "shabad-work-give-know-the-path",
     "verseIds": [
-      53371
+      53371,
+      53372
     ],
     "shortMeaning": "Honest labor and open-handed giving reveal a truer path.",
     "lifeApplication": "When money hardens into accumulation, interrupt it with one deliberate gift."
@@ -37,26 +38,26 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:1-line-window",
+    "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Honest labor and open-handed giving reveal a truer path.",
       "emotionalState": "pretending, unclear, performing",
-      "turn": "Honest labor and sharing reveal the path better than costume.",
-      "practicalImplication": "When money becomes only accumulation, interrupt it with one deliberate gift. Let earning and giving stay in the same spiritual sentence.",
+      "turn": "Carry this with you: honest labor and sharing reveal the path better than costume.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.17,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.74,
-      "emotionalHonesty": 3,
-      "usefulness": 4.58,
-      "beauty": 4.05,
-      "overall": 4.15
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.69,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,14 +1,14 @@
 {
   "id": "guidance-suffering-as-medicine-2",
   "title": "Let helplessness tell the truth",
-  "summary": "This meets the moment when suffering strips away self-sufficiency. The line makes pain medicinal when it drives you out of illusion.",
-  "takeaway": "Tell the truth before numbing the pain.",
-  "lifeApplication": "When the hard thing exposes your limit, do not rush to numb it. Say plainly, \"I cannot do this alone,\" before reaching for the next distraction.",
+  "summary": "Exhaustion becomes harsher when you keep performing strength instead of receiving help. Do not let the day outrun this: let this stay with you: let pain reveal what comfort keeps covering.",
+  "takeaway": "Return the tired body to refuge before asking more of it.",
+  "lifeApplication": "Before pushing harder, name what this body can honestly carry today and receive the help already near.",
   "source": {
     "deepDiveId": "shabad-suffering-as-medicine",
     "verseIds": [
-      21090,
-      21091
+      21094,
+      21095
     ],
     "shortMeaning": "Pain can wake dependence when pleasure has kept the heart asleep.",
     "lifeApplication": "When pain exposes your limit, tell the truth before reaching for relief."
@@ -40,22 +40,22 @@
     "evidence": {
       "coreClaim": "Pain can wake dependence when pleasure has kept the heart asleep.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "Let pain reveal what comfort keeps covering.",
-      "practicalImplication": "When the hard thing exposes your limit, do not rush to numb it. Say plainly, \"I cannot do this alone,\" before reaching for the next distraction.",
+      "turn": "Let this stay with you: let pain reveal what comfort keeps covering.",
+      "practicalImplication": "Before pushing harder, name what this body can honestly carry today and receive the help already near.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.98,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.88,
-      "beauty": 4.21,
-      "overall": 4.1
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.69,
+      "overall": 4.46
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

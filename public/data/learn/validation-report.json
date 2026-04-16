@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T21:06:13.735Z",
+  "generatedAt": "2026-04-16T16:41:23.301Z",
   "counts": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
@@ -7,20 +7,248 @@
     "topicScenarios": 112,
     "collections": 100,
     "crossLinks": 3449,
-    "readyForLaunch": true
+    "readyForLaunch": false
   },
   "averageCrossLinksPerItem": 5.95,
   "editorial": {
     "voiceVersion": "sggs-editorial-v1",
     "statuses": {
-      "draft": 0,
-      "approved": 458,
-      "locked": 122,
+      "draft": 63,
+      "approved": 353,
+      "locked": 164,
       "theme-mismatch": 0
     },
-    "draftCount": 0,
-    "lowScoringItems": [],
-    "duplicateWarnings": []
+    "draftCount": 63,
+    "lowScoringItems": [
+      {
+        "id": "topic-purpose#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.23,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-speech#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.23,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-softness#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.23,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-softness#repair",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.24,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-sangat#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.25,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-shame#practice",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.26,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-conduct#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.27,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-sangat#repair",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.28,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-self-worth#practice",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.28,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-shame#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.29,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-anger#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.3,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-purpose#repair",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.3,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-speech#practice",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.3,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-control#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.3,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-comparison#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.31,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-sangat#daily",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.31,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-self-worth#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.31,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-softness#practice",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.31,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-comparison#repair",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.33,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-shame#daily",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.33,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-fear#pressure",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.33,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-conduct#repair",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.34,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "guidance-hukam-inside-everything-1",
+        "kind": "daily-guidance",
+        "status": "draft",
+        "overall": 4.35,
+        "issues": [
+          "too similar to guidance-hukam"
+        ]
+      },
+      {
+        "id": "topic-anger#daily",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.35,
+        "issues": [
+          "needs human copy"
+        ]
+      },
+      {
+        "id": "topic-control#daily",
+        "kind": "topic-scenario",
+        "status": "draft",
+        "overall": 4.35,
+        "issues": [
+          "needs human copy"
+        ]
+      }
+    ],
+    "duplicateWarnings": [
+      "daily guidance similarity: guidance-hukam vs guidance-hukam-inside-everything-1"
+    ]
   },
   "shellCopy": [
     {
@@ -175,6 +403,135 @@
     }
   ],
   "surfaceCollisions": [],
-  "hardFailures": [],
-  "warnings": []
+  "hardFailures": [
+    "Guidance guidance-hukam-inside-everything-1 still has editorial issues: too similar to guidance-hukam",
+    "Scenario topic-anxiety#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-anxiety#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-anxiety#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-anxiety#practice is generated but not marked reviewedByHuman",
+    "Scenario topic-anger#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-anger#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-anger#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-comparison#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-comparison#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-comparison#repair is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-loneliness#daily and topic-loneliness#pressure have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-loneliness#daily and topic-loneliness#repair have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-loneliness#daily and topic-loneliness#practice have overlapping action prompts (0.76)",
+    "Sibling scenarios topic-loneliness#pressure and topic-loneliness#repair have overlapping action prompts (0.76)",
+    "Sibling scenarios topic-loneliness#pressure and topic-loneliness#practice have overlapping action prompts (0.70)",
+    "Sibling scenarios topic-loneliness#repair and topic-loneliness#practice have overlapping action prompts (0.70)",
+    "Scenario topic-purpose#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-purpose#repair is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-attachment#daily and topic-attachment#pressure have overlapping action prompts (0.77)",
+    "Sibling scenarios topic-ego#daily and topic-ego#pressure have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-ego#daily and topic-ego#repair have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-ego#daily and topic-ego#practice have overlapping action prompts (0.71)",
+    "Sibling scenarios topic-ego#pressure and topic-ego#repair have overlapping action prompts (0.71)",
+    "Scenario topic-gratitude#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-gratitude#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-gratitude#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-gratitude#practice is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-gratitude#pressure and topic-gratitude#repair have overlapping action prompts (0.72)",
+    "Sibling scenarios topic-discipline#daily and topic-discipline#pressure have overlapping action prompts (0.81)",
+    "Sibling scenarios topic-discipline#daily and topic-discipline#repair have overlapping action prompts (0.76)",
+    "Sibling scenarios topic-discipline#pressure and topic-discipline#repair have overlapping action prompts (0.74)",
+    "Scenario topic-hukam#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-hukam#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-hukam#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-hukam#practice is generated but not marked reviewedByHuman",
+    "Scenario topic-doubt#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-doubt#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-doubt#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-doubt#practice is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-doubt#pressure and topic-doubt#repair have overlapping action prompts (0.70)",
+    "Scenario topic-speech#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-speech#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-speech#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-speech#practice is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-patience#daily and topic-patience#pressure have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-patience#daily and topic-patience#repair have overlapping action prompts (0.83)",
+    "Sibling scenarios topic-patience#daily and topic-patience#practice have overlapping action prompts (0.86)",
+    "Sibling scenarios topic-patience#pressure and topic-patience#repair have overlapping action prompts (0.76)",
+    "Sibling scenarios topic-patience#pressure and topic-patience#practice have overlapping action prompts (0.79)",
+    "Sibling scenarios topic-patience#repair and topic-patience#practice have overlapping action prompts (0.79)",
+    "Sibling scenarios topic-mercy#pressure and topic-mercy#repair have overlapping action prompts (0.71)",
+    "Sibling scenarios topic-forgiveness#pressure and topic-forgiveness#repair have overlapping action prompts (0.74)",
+    "Sibling scenarios topic-greed#pressure and topic-greed#repair have overlapping action prompts (0.71)",
+    "Scenario topic-restlessness#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-restlessness#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-restlessness#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-restlessness#practice is generated but not marked reviewedByHuman",
+    "Scenario topic-sangat#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-sangat#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-sangat#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-control#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-control#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-control#repair is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-control#daily and topic-control#pressure have overlapping action prompts (0.81)",
+    "Sibling scenarios topic-control#daily and topic-control#repair have overlapping action prompts (0.81)",
+    "Sibling scenarios topic-control#daily and topic-control#practice have overlapping action prompts (0.74)",
+    "Sibling scenarios topic-control#pressure and topic-control#repair have overlapping action prompts (0.74)",
+    "Scenario topic-shame#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-shame#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-shame#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-shame#practice is generated but not marked reviewedByHuman",
+    "Scenario topic-fear#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-fear#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-fear#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-honesty#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-honesty#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-seeking#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-seeking#repair is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-seeking#daily and topic-seeking#practice have overlapping action prompts (0.70)",
+    "Scenario topic-self-worth#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-self-worth#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-self-worth#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-self-worth#practice is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-self-worth#daily and topic-self-worth#pressure have overlapping action prompts (0.81)",
+    "Sibling scenarios topic-self-worth#daily and topic-self-worth#repair have overlapping action prompts (0.81)",
+    "Sibling scenarios topic-self-worth#daily and topic-self-worth#practice have overlapping action prompts (0.74)",
+    "Sibling scenarios topic-self-worth#pressure and topic-self-worth#repair have overlapping action prompts (0.74)",
+    "Scenario topic-softness#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-softness#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-softness#repair is generated but not marked reviewedByHuman",
+    "Scenario topic-softness#practice is generated but not marked reviewedByHuman",
+    "Scenario topic-exhaustion#daily is generated but not marked reviewedByHuman",
+    "Scenario topic-exhaustion#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-exhaustion#repair is generated but not marked reviewedByHuman",
+    "Sibling scenarios topic-exhaustion#daily and topic-exhaustion#pressure have overlapping action prompts (0.78)",
+    "Sibling scenarios topic-exhaustion#daily and topic-exhaustion#repair have overlapping action prompts (0.78)",
+    "Sibling scenarios topic-exhaustion#pressure and topic-exhaustion#repair have overlapping action prompts (0.71)",
+    "Scenario topic-conduct#pressure is generated but not marked reviewedByHuman",
+    "Scenario topic-conduct#repair is generated but not marked reviewedByHuman",
+    "Editorial review left 63 public items in draft status"
+  ],
+  "warnings": [
+    "daily guidance similarity: guidance-hukam vs guidance-hukam-inside-everything-1",
+    "Editorial review: topic-scenario topic-purpose#pressure scored 4.23",
+    "Editorial review: topic-scenario topic-speech#pressure scored 4.23",
+    "Editorial review: topic-scenario topic-softness#pressure scored 4.23",
+    "Editorial review: topic-scenario topic-softness#repair scored 4.24",
+    "Editorial review: topic-scenario topic-sangat#pressure scored 4.25",
+    "Editorial review: topic-scenario topic-shame#practice scored 4.26",
+    "Editorial review: topic-scenario topic-conduct#pressure scored 4.27",
+    "Editorial review: topic-scenario topic-sangat#repair scored 4.28",
+    "Editorial review: topic-scenario topic-self-worth#practice scored 4.28",
+    "Editorial review: topic-scenario topic-shame#pressure scored 4.29",
+    "Editorial review: topic-scenario topic-anger#pressure scored 4.30",
+    "Editorial review: topic-scenario topic-purpose#repair scored 4.30",
+    "Editorial review: topic-scenario topic-speech#practice scored 4.30",
+    "Editorial review: topic-scenario topic-control#pressure scored 4.30",
+    "Editorial review: topic-scenario topic-comparison#pressure scored 4.31",
+    "Editorial review: topic-scenario topic-sangat#daily scored 4.31",
+    "Editorial review: topic-scenario topic-self-worth#pressure scored 4.31",
+    "Editorial review: topic-scenario topic-softness#practice scored 4.31",
+    "Editorial review: topic-scenario topic-comparison#repair scored 4.33",
+    "Editorial review: topic-scenario topic-shame#daily scored 4.33",
+    "Editorial review: topic-scenario topic-fear#pressure scored 4.33",
+    "Editorial review: topic-scenario topic-conduct#repair scored 4.34",
+    "Editorial review: daily-guidance guidance-hukam-inside-everything-1 scored 4.35",
+    "Editorial review: topic-scenario topic-anger#daily scored 4.35",
+    "Editorial review: topic-scenario topic-control#daily scored 4.35"
+  ]
 }

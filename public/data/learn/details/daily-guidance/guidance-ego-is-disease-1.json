@@ -1,9 +1,9 @@
 {
   "id": "guidance-ego-is-disease-1",
   "title": "Start where ego is finally questioned",
-  "summary": "This meets the defensive moment that still assumes the self is right. The line becomes medicine by asking where ego comes from and how it can actually leave.",
-  "takeaway": "Question ego before you protect it.",
-  "lifeApplication": "Before the rebuttal, the explanation, or the cold withdrawal, feel the heat in the face and ask the line plainly. Let diagnosis begin before self-protection takes over.",
+  "summary": "The line refuses to let self-importance dress itself as honesty, intelligence, or force. Let this stay near the next choice: hold onto this: treat ego as illness and keep the Guru's medicine near.",
+  "takeaway": "Interrogate the voice before you obey it.",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "Ego loosens when it is examined instead of instinctively defended.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "Treat ego as illness and keep the Guru's medicine near.",
-      "practicalImplication": "Before the rebuttal, the explanation, or the cold withdrawal, feel the heat in the face and ask the line plainly. Let diagnosis begin before self-protection takes over.",
+      "turn": "Hold onto this: treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.62,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.58,
-      "beauty": 4.05,
-      "overall": 4.18
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

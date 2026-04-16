@@ -1,9 +1,9 @@
 {
   "id": "guidance-forgiveness-opens-the-room",
   "title": "Let forgiveness widen the whole room",
-  "summary": "This meets the moment when peace returns to you but has not yet been trusted with anyone else. The line says forgiveness should spread peace outward, not end in private relief.",
-  "takeaway": "Forgiveness should widen the room, not only soothe you.",
-  "lifeApplication": "After forgiveness is given or received, lower the temperature for everyone nearby: soften the next answer, the next glance, and the next version of the story.",
+  "summary": "The line does not deny the wound; it refuses to let resentment keep writing the future. Keep this close: Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
+  "takeaway": "Release becomes possible when return matters more than replay.",
+  "lifeApplication": "When the old sentence rises again, release it before it claims the room and choose one softer answer instead of replay.",
   "source": {
     "deepDiveId": "shabad-forgiveness-opens-lasting-peace",
     "verseIds": [
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "Forgiveness turns private relief into shared peace.",
       "emotionalState": "ashamed, heavy, bitter",
-      "turn": "Received forgiveness becomes lasting peace when it ripens into Naam.",
-      "practicalImplication": "After forgiveness is given or received, lower the temperature for everyone nearby: soften the next answer, the next glance, and the next version of the story.",
+      "turn": "Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
+      "practicalImplication": "When the old sentence rises again, release it before it claims the room and choose one softer answer instead of replay.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.84,
+      "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 4.04,
+      "usefulness": 4.64,
       "beauty": 4.37,
-      "overall": 4.11
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

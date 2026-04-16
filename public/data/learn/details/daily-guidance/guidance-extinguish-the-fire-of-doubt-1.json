@@ -1,9 +1,9 @@
 {
   "id": "guidance-extinguish-the-fire-of-doubt-1",
   "title": "Roaming will not put doubt out",
-  "summary": "This meets the hope that a new setting or method will finally quiet the mind. The line says doubt travels well.",
-  "takeaway": "Name the fire before running again.",
-  "lifeApplication": "When the urge to escape feels spiritual, stop before booking, scrolling, or seeking elsewhere. Stay long enough for the real fire to be named.",
+  "summary": "The line does not reward endless circling; it asks for trust, keeping, and return. Do not let the day outrun this: hold onto this: doubt clears when the Guru's word outlasts wandering.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "Distance and novelty cannot do what the Guru must do.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Doubt clears when the Guru's word outlasts wandering.",
-      "practicalImplication": "When the urge to escape feels spiritual, stop before booking, scrolling, or seeking elsewhere. Stay long enough for the real fire to be named.",
+      "turn": "Hold onto this: doubt clears when the Guru's word outlasts wandering.",
+      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
+      "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.87,
-      "emotionalHonesty": 3.36,
-      "usefulness": 5,
-      "beauty": 4.21,
-      "overall": 4.3
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.33
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

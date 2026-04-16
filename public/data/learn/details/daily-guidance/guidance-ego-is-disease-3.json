@@ -1,14 +1,13 @@
 {
   "id": "guidance-ego-is-disease-3",
   "title": "Do not call the fever your personality",
-  "summary": "This meets the self getting mistaken for instinct, honesty, or force of character. The line says ego is a fever, and the Guru's medicine has to be taken before it starts feeling natural.",
-  "takeaway": "Treat ego as illness, not identity.",
-  "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it.",
+  "summary": "The line refuses to let self-importance dress itself as honesty, intelligence, or force. Let this stay near the next choice: hold onto this: treat ego as illness and keep the Guru's medicine near.",
+  "takeaway": "Interrogate the voice before you obey it.",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
   "source": {
     "deepDiveId": "shabad-ego-is-disease",
     "verseIds": [
-      20963,
-      20964
+      20962
     ],
     "shortMeaning": "Ego is a fever of selfhood, not your truest voice.",
     "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
@@ -38,26 +37,26 @@
     "status": "approved",
     "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:1-line-window",
     "evidence": {
       "coreClaim": "Ego is a fever of selfhood, not your truest voice.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "Treat ego as illness and keep the Guru's medicine near.",
-      "practicalImplication": "Before defending yourself, ask where the self wants the line to confirm it.",
+      "turn": "Hold onto this: treat ego as illness and keep the Guru's medicine near.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
-      "clarity": 4.29,
-      "specificity": 4.76,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.82,
-      "beauty": 4.01,
-      "overall": 4.06
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

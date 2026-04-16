@@ -1,17 +1,17 @@
 {
   "id": "guidance-harsh-words-double-back",
   "title": "Do not give your mouth to the wound",
-  "summary": "This meets the hot second before speech goes looking for damage. The line says the tongue needs a master stronger than hurt: truth, praise, and restraint.",
-  "takeaway": "Do not let the wound speak for you.",
-  "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+  "summary": "Harsh words bring only grief. Let truth and praise quiet the mouth before the next sentence tries to stand at God's Door.",
+  "takeaway": "Keep only the speech that can stand at God's Door.",
+  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       643,
       644
     ],
-    "shortMeaning": "A clean tongue answers to truth and praise, not to hurt.",
-    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    "shortMeaning": "Truth and praise quiet the tongue before harsh words turn into grief.",
+    "lifeApplication": "Before the next sharp reply, return the mouth to truth and praise so the speech can still stand clean."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -41,24 +41,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "A clean tongue answers to truth and praise, not to hurt.",
+      "coreClaim": "Truth and praise quiet the tongue before harsh words turn into grief.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Keep only the speech that can stand at God's Door.",
-      "practicalImplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+      "turn": "Carry this with you: keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.9,
-      "clarity": 4.35,
-      "specificity": 4.67,
+      "faithfulness": 4.27,
+      "clarity": 4.11,
+      "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.04,
-      "beauty": 4.37,
-      "overall": 4.07
+      "usefulness": 4.86,
+      "beauty": 4.51,
+      "overall": 4.32
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,15 +1,15 @@
 {
   "id": "guidance-search-is-not-settlement",
   "title": "Choose settlement over motion",
-  "summary": "This meets the search that keeps accelerating while clarity does not. The line says searching ripens only when it comes near shelter and holy company.",
-  "takeaway": "Better company teaches the wandering mind how to settle.",
-  "lifeApplication": "At the threshold, choose better placement before choosing more movement.",
+  "summary": "Let better company and honest stillness teach the wandering mind how to settle. Keep this close: Let this stay with you: bring your searching to holy company and let it cool there.",
+  "takeaway": "Return the mind to better company before it scatters again.",
+  "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
-      3890,
-      3895,
-      3898
+      3898,
+      3899,
+      3900
     ],
     "shortMeaning": "Better company teaches the wandering mind how to settle.",
     "lifeApplication": "At the threshold, choose better placement before choosing more movement."
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "Better company teaches the wandering mind how to settle.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "Bring your searching to holy company and let it cool there.",
-      "practicalImplication": "At the threshold, choose better placement before choosing more movement.",
+      "turn": "Let this stay with you: bring your searching to holy company and let it cool there.",
+      "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 3.98,
-      "clarity": 3.99,
-      "specificity": 4.56,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.58,
-      "beauty": 3.97,
-      "overall": 4.06
+      "faithfulness": 4.4,
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.04,
+      "beauty": 4.41,
+      "overall": 4.3
     },
     "strengths": [
-      "usefulness",
-      "specificity"
+      "specificity",
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,9 +1,9 @@
 {
   "id": "guidance-ambrosial-speech-needs-praise",
   "title": "Give the tongue a truer master",
-  "summary": "This meets the mouth that wants to sound spiritual without becoming clean. The line says the truest religion is conduct sustained by Naam, not speech performing devotion.",
-  "takeaway": "The tongue is corrected by praise, restraint, and truth.",
-  "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+  "summary": "Let truth and praise quiet the mouth before the next reply. Do not let the day outrun this: hold onto this: the truest religion is clean conduct sustained by Naam.",
+  "takeaway": "Return the mouth to praise before it carries hurt.",
+  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
@@ -43,22 +43,22 @@
     "evidence": {
       "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The truest religion is clean conduct sustained by Naam.",
-      "practicalImplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight.",
+      "turn": "Hold onto this: the truest religion is clean conduct sustained by Naam.",
+      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.99,
+      "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.36,
-      "usefulness": 4.04,
-      "beauty": 4.13,
-      "overall": 4.18
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.85,
+      "overall": 4.44
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -1,14 +1,14 @@
 {
   "id": "guidance-sweet-speech-humble-walk-2",
   "title": "Sweet speech is a path, not polish",
-  "summary": "This meets the temptation to make speech beautiful while the life stays proud. The line joins sweetness, humility, peace, and union in one path.",
-  "takeaway": "Make the tone match the way you walk.",
-  "lifeApplication": "Before speaking gently just to seem refined, lower your pace and let the body become humble too. Make the tone match the way you are moving.",
+  "summary": "Let truth and praise quiet the mouth before the next reply. Let this stay near the next choice: let this stay with you: when remembrance is real, it reaches the mouth and the walk.",
+  "takeaway": "Return the mouth to praise before it carries hurt.",
+  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
-      1288,
-      1290
+      1295,
+      1296
     ],
     "shortMeaning": "Sweet speech is believable only when the life around it is humble.",
     "lifeApplication": "Before using a gentle tone, let the body become humble too."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "Sweet speech is believable only when the life around it is humble.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "When remembrance is real, it reaches the mouth and the walk.",
-      "practicalImplication": "Before speaking gently just to seem refined, lower your pace and let the body become humble too. Make the tone match the way you are moving.",
+      "turn": "Let this stay with you: when remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.11,
-      "clarity": 4.11,
-      "specificity": 4.87,
-      "emotionalHonesty": 3,
-      "usefulness": 4.04,
-      "beauty": 3.89,
-      "overall": 4.01
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.85,
+      "overall": 4.44
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

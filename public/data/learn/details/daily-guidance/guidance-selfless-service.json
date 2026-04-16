@@ -1,17 +1,17 @@
 {
   "id": "guidance-selfless-service",
   "title": "Let service stay hidden and real",
-  "summary": "This meets the good work that has started asking to be noticed. The line says service stays true when the self is no longer its hidden audience.",
-  "takeaway": "Service becomes clean when it leaves self-display behind.",
-  "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement.",
+  "summary": "Selfless service becomes true when the self stops asking to be seen. Let hidden care steady both hand and heart before credit enters the room.",
+  "takeaway": "Let hidden service leave the self unseen, quieter, and true.",
+  "lifeApplication": "Do one needed thing today with your own hands and leave it there, without carrying it back into self-advertisement.",
   "source": {
     "deepDiveId": "shabad-selfless-service",
     "verseIds": [
       12947,
       12948
     ],
-    "shortMeaning": "Service becomes clean when it leaves self-display behind.",
-    "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+    "shortMeaning": "Service becomes true when the self stops asking to be seen.",
+    "lifeApplication": "Do one needed thing today without asking to be seen for it."
   },
   "relatedTopicIds": [
     "topic-seva"
@@ -40,24 +40,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Service becomes clean when it leaves self-display behind.",
+      "coreClaim": "Service becomes true when the self stops asking to be seen.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "Service becomes true when the self stops asking to be seen.",
-      "practicalImplication": "Do one needed thing today without carrying it back into self-advertisement.",
+      "turn": "Carry this with you: service becomes true when the self stops asking to be seen.",
+      "practicalImplication": "Do one needed thing today with your own hands and leave it there, without carrying it back into self-advertisement.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.2,
-      "clarity": 3.99,
-      "specificity": 4.95,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
-      "beauty": 3.81,
-      "overall": 4.1
+      "faithfulness": 4.23,
+      "clarity": 3.87,
+      "specificity": 5,
+      "emotionalHonesty": 3.9,
+      "usefulness": 4.48,
+      "beauty": 4.21,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

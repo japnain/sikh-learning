@@ -1,14 +1,14 @@
 {
   "id": "guidance-speak-what-brings-honor-2",
   "title": "Choose the word that can bear honor",
-  "summary": "This meets a mouth ready to wound, posture, or bargain. The line asks for words that can survive truth.",
-  "takeaway": "Speak only what can bear honor.",
-  "lifeApplication": "Before the sharp reply leaves, rest the tongue against the teeth for one breath. Speak only what you would be willing to hear repeated in the Guru's presence.",
+  "summary": "Let truth and praise quiet the mouth before the next reply. Do not let the day outrun this: carry this with you: keep only the speech that can stand at God's Door.",
+  "takeaway": "Return the mouth to praise before it carries hurt.",
+  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
   "source": {
     "deepDiveId": "shabad-speak-what-brings-honor",
     "verseIds": [
       634,
-      637
+      635
     ],
     "shortMeaning": "Speech carries your honor long before reputation does.",
     "lifeApplication": "Before replying sharply, speak only what you could repeat before the Guru."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "Speech carries your honor long before reputation does.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "Keep only the speech that can stand at God's Door.",
-      "practicalImplication": "Before the sharp reply leaves, rest the tongue against the teeth for one breath. Speak only what you would be willing to hear repeated in the Guru's presence.",
+      "turn": "Carry this with you: keep only the speech that can stand at God's Door.",
+      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.19,
+      "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3,
-      "usefulness": 4.1,
-      "beauty": 4.37,
-      "overall": 4.17
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.85,
+      "overall": 4.44
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

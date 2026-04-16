@@ -1,6 +1,6 @@
 {
   "version": "2026-04-11",
-  "generatedAt": "2026-04-13T21:06:10.415Z",
+  "generatedAt": "2026-04-16T16:41:23.371Z",
   "inventory": {
     "dailyGuidance": 240,
     "shabadDeepDives": 100,
@@ -8,7 +8,7 @@
     "topicScenarios": 112,
     "collections": 100,
     "crossLinks": 3449,
-    "readyForLaunch": true
+    "readyForLaunch": false
   },
   "targets": {
     "dailyGuidance": 240,

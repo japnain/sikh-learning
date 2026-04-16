@@ -1,9 +1,9 @@
 {
   "id": "guidance-generated-511-2",
   "title": "Mercy lets the hidden sweetness be found",
-  "summary": "Mercy is not forced out of the day. The heart tastes what was already near when the Merciful One opens it.",
-  "takeaway": "When the Merciful One shows mercy, the hidden sweetness of the Divine is finally tasted within.",
-  "lifeApplication": "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
+  "summary": "Let mercy and grace reach the heart before effort strains. Keep this close: Keep this in front of you: ask for the mercy that turns nearness into tasted sweetness.",
+  "takeaway": "Return to the gift before turning it into a review.",
+  "lifeApplication": "When shame starts taking over the room, pause and let grace reach the heart before you explain yourself.",
   "source": {
     "deepDiveId": "shabad-generated-511",
     "verseIds": [
@@ -35,25 +35,25 @@
     "balanceCategory": "comfort"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "When the Merciful One shows mercy, the hidden sweetness of the Lord is tasted within.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "Ask for the mercy that turns nearness into tasted sweetness.",
-      "practicalImplication": "Before you judge the day again, receive one sign of mercy and let it soften the room you are standing in.",
+      "turn": "Keep this in front of you: ask for the mercy that turns nearness into tasted sweetness.",
+      "practicalImplication": "When shame starts taking over the room, pause and let grace reach the heart before you explain yourself.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.02,
-      "clarity": 3.87,
-      "specificity": 4.96,
+      "faithfulness": 4.4,
+      "clarity": 4.23,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
       "usefulness": 4.64,
-      "beauty": 3.95,
-      "overall": 4.15
+      "beauty": 4.61,
+      "overall": 4.4
     },
     "strengths": [
       "specificity",

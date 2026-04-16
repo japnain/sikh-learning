@@ -4,8 +4,8 @@
   "shortTitle": "Control",
   "category": "most-needed",
   "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility.",
-  "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to be the maker of every result.",
-  "practicalReflection": "The controlling mind grows tired because it treats every outcome as personal territory. Release becomes possible when peace no longer depends on total command.",
+  "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result.",
+  "practicalReflection": "Much of what looks like care is hidden fear with a plan. Release begins when the soul accepts its duty without trying to become the maker.",
   "actionPrompt": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
   "searchTerms": [
     "control",
@@ -36,10 +36,10 @@
         "verseIds": [
           17
         ],
-        "shortMeaning": "Control loosens when praise becomes more urgent than management.",
-        "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+        "shortMeaning": "Control loosens when the heart is brought back under response without authorship.",
+        "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
       },
-      "explanation": "Gurbani refuses to let control sound like maturity here. The verse turns the heart away from management and back toward praise."
+      "explanation": "This excerpt interrupts gripping for certainty by turning the heart back toward a released grip."
     },
     {
       "source": {
@@ -48,10 +48,10 @@
           12163,
           12164
         ],
-        "shortMeaning": "Return becomes possible when the grip stops pretending to be wisdom.",
-        "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+        "shortMeaning": "Control loses some of its claim when the mind returns to a released grip.",
+        "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
       },
-      "explanation": "The line widens the room by making surrender more believable than control's tightening logic."
+      "explanation": "This passage loosens gripping for certainty by returning the mind to response without authorship instead of leaving it alone with itself."
     },
     {
       "source": {
@@ -60,10 +60,10 @@
           15,
           16
         ],
-        "shortMeaning": "The controlling mind is given back to return instead of authorship.",
-        "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+        "shortMeaning": "Control stops ruling the room when remembrance restores proportion.",
+        "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
       },
-      "explanation": "This excerpt gives the controlling mind a truer task: receive, return, and stop trying to author the whole room."
+      "explanation": "The inner room widens here because control is no longer allowed to speak as the whole truth."
     }
   ],
   "defaultScenarioKey": "overview",
@@ -78,10 +78,10 @@
       "key": "daily",
       "label": "Daily",
       "title": "When control starts steering the day",
-      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. The plain day is still where remembrance and conduct have to hold.",
-      "practicalReflection": "This is where control usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-      "actionPrompt": "In the first plain stretch of the day, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. In small routines, gripping for certainty can quietly become the tone of the next hour unless it is interrupted early.",
+      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "practicalReflection": "Control becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+      "actionPrompt": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
         "controlling",
@@ -96,10 +96,10 @@
             "verseIds": [
               17
             ],
-            "shortMeaning": "The line interrupts control inside the day through Naam and praise.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "The day steadies when control is met with response without authorship.",
+            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "The daily moment changes here because control is not left alone with itself."
+          "explanation": "In the daily rhythm, this excerpt interrupts gripping for certainty before it becomes the mood of the whole day."
         },
         {
           "source": {
@@ -108,10 +108,10 @@
               12163,
               12164
             ],
-            "shortMeaning": "Control is checked here by steadier return.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "Ordinary moments change when the mind returns to a released grip instead of gripping for certainty.",
+            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "This keeps the day from shrinking around control; the heart is returned to steadier return."
+          "explanation": "The passage pulls the heart back from gripping for certainty and into a released grip."
         },
         {
           "source": {
@@ -120,22 +120,22 @@
               15,
               16
             ],
-            "shortMeaning": "The next ordinary move is steadied by steadier return.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "This excerpt restores proportion before control takes over the tone of the day.",
+            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "In the ordinary day, the verse turns control toward steadier return instead of self-enclosure."
+          "explanation": "This keeps the next ordinary moment from being governed by control."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:daily",
         "evidence": {
-          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. The plain day is still where remembrance and conduct have to hold.",
+          "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
           "emotionalState": "gripping, controlling, tense",
-          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-          "practicalImplication": "In the first plain stretch of the day, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+          "turn": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. In small routines, gripping for certainty can quietly become the tone of the next hour unless it is interrupted early.",
+          "practicalImplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
           "bannedOverreach": []
         },
         "scores": {
@@ -152,17 +152,17 @@
           "faithfulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
       "title": "When control is pretending to be safety and the room gets tight",
-      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. Under pressure, control starts sounding like responsibility and feeling like safety.",
-      "centralInsight": "Gurbani interrupts that reflex before it becomes atmosphere. The point is not passivity but truthful action inside a reality you did not author.",
-      "practicalReflection": "Pressure exposes where the body has already voted: clenched hand, fixed jaw, harder voice. If the line cannot reach there first, management will take the room.",
-      "actionPrompt": "Before strain takes over the room, open the hand, soften the jaw, and answer the piece that is actually yours.",
+      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Under strain, gripping for certainty starts sounding urgent, necessary, and completely justified.",
+      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+      "actionPrompt": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
         "controlling",
@@ -178,10 +178,10 @@
               12163,
               12164
             ],
-            "shortMeaning": "Pressure loses some of its claim when the body stops confusing grip with faithfulness.",
-            "lifeApplication": "When the room tightens, unclench before you decide what must happen."
+            "shortMeaning": "Pressure loses some of its claim when the heart returns to a released grip.",
+            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "When the room tightens, the verse interrupts the body's first lie: that gripping harder is the same as being faithful."
+          "explanation": "Under pressure, this excerpt interrupts gripping for certainty before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
@@ -189,10 +189,10 @@
             "verseIds": [
               292
             ],
-            "shortMeaning": "Control weakens when response replaces the urge to run the whole room.",
-            "lifeApplication": "Before the harder tone arrives, answer only the part that is actually yours."
+            "shortMeaning": "This line steadies the reflex before control can rule the moment.",
+            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "The line restores response in place of management. You are asked to answer truthfully, not to run the whole room by force of will."
+          "explanation": "The passage refuses to let strain turn control into the only voice in the room."
         },
         {
           "source": {
@@ -200,22 +200,22 @@
             "verseIds": [
               529
             ],
-            "shortMeaning": "Under strain, surrender returns proportion to hand, jaw, and voice.",
-            "lifeApplication": "When pressure spikes, lower your voice before you enlarge your control."
+            "shortMeaning": "Control is answered here through response without authorship.",
+            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "Under strain, surrender looks very physical here: proportion returns to hand, jaw, and voice before it ever becomes a speech about trust."
+          "explanation": "Pressure loosens here because the heart is pulled back toward response without authorship."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:pressure",
         "evidence": {
-          "coreClaim": "Gurbani interrupts that reflex before it becomes atmosphere. The point is not passivity but truthful action inside a reality you did not author.",
+          "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
           "emotionalState": "isolated, impressionable, needing-company",
-          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. Under pressure, control starts sounding like responsibility and feeling like safety.",
-          "practicalImplication": "Before strain takes over the room, open the hand, soften the jaw, and answer the piece that is actually yours.",
+          "turn": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Under strain, gripping for certainty starts sounding urgent, necessary, and completely justified.",
+          "practicalImplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
           "bannedOverreach": []
         },
         "scores": {
@@ -232,17 +232,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
       "title": "When control is pretending to be safety after the slip",
-      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-      "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-      "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-      "actionPrompt": "After the slip is named cleanly, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "actionPrompt": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
         "controlling",
@@ -258,10 +258,10 @@
               15,
               16
             ],
-            "shortMeaning": "Control is not allowed to become identity here.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "Repair begins when the heart returns to response without authorship instead of performance.",
+            "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "This keeps failure from becoming identity; the line still opens a way back."
+          "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment."
         },
         {
           "source": {
@@ -269,10 +269,10 @@
             "verseIds": [
               290
             ],
-            "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "Control is not allowed to become identity here.",
+            "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "After the slip, the verse keeps return possible through Naam and praise."
+          "explanation": "The passage keeps control from hardening into identity by pointing the heart back to a released grip."
         },
         {
           "source": {
@@ -280,22 +280,22 @@
             "verseIds": [
               12943
             ],
-            "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-            "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+            "shortMeaning": "This passage opens a clean way back through a released grip.",
+            "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "Repair stays honest here because control is answered without theatre."
+          "explanation": "Repair becomes possible here because the line refuses both excuse and despair."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:repair",
         "evidence": {
-          "coreClaim": "Guru interrupts control by restoring the difference between response and authorship. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
+          "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
           "emotionalState": "restless, controlling, uncertain",
-          "turn": "The mind keeps gripping outcomes because uncertainty feels unbearable. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-          "practicalImplication": "After the slip is named cleanly, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+          "turn": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+          "practicalImplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
           "bannedOverreach": []
         },
         "scores": {
@@ -312,17 +312,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     },
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
       "title": "When control needs a repeatable shape",
-      "issueStatement": "The mind keeps gripping outcomes because uncertainty feels like exposure. What is needed now is not another insight about surrender but a practiced interruption that reaches the body before control gets fluent.",
-      "centralInsight": "The grip has its own liturgy: refresh, re-check, rehearse, press harder. Guru breaks it by restoring creatureliness: answer cleanly, but stop pretending you are the keeper of outcomes.",
-      "practicalReflection": "A real rule catches control at the first bodily theft, the hand closing, the jaw setting, the second message forming. If the practice starts later than that, the room is already being managed.",
-      "actionPrompt": "Choose one cue all week, the refresh, the threshold, or the second follow-up. At that cue, open the hand, soften the jaw, and answer only what is actually yours.",
+      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Inspiration is not the main need now; a repeatable return is.",
+      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. What is repeated with honesty begins to retrain the reflex itself.",
+      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "actionPrompt": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
         "controlling",
@@ -349,10 +349,10 @@
             "verseIds": [
               529
             ],
-            "shortMeaning": "Control weakens when the body relearns the difference between answering and authoring.",
-            "lifeApplication": "At your chosen cue, unclench the hand before you decide what must happen."
+            "shortMeaning": "Control is retrained through repeated return to a released grip.",
+            "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "The verse becomes practice when it is used at the instant authorship starts taking over the body."
+          "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent."
         },
         {
           "source": {
@@ -360,34 +360,37 @@
             "verseIds": [
               17
             ],
-            "shortMeaning": "Practice begins by returning the outcome to the One who actually holds it.",
-            "lifeApplication": "Before sending the second follow-up, return the outcome before you return to the task."
+            "shortMeaning": "This excerpt gives the heart a keepable pattern of response without authorship.",
+            "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "This becomes repeatable because it names the first theft: the heart begins treating the outcome as private property."
+          "explanation": "The passage gives control a repeatable interruption through response without authorship."
         },
         {
           "source": {
             "deepDiveId": "shabad-selfless-service",
             "verseIds": [
               12943,
+              12944,
+              12945,
+              12946,
               12947
             ],
-            "shortMeaning": "Surrender becomes believable when the grip, the voice, and the pace all soften.",
-            "lifeApplication": "Use the same cue tomorrow until the body stops calling management faithfulness."
+            "shortMeaning": "A steady practice weakens gripping for certainty over time.",
+            "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
           },
-          "explanation": "A lasting practice of surrender is measured here in inches, not moods: looser grip, fewer extra words, cleaner obedience."
+          "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
         "status": "approved",
         "origin": "generated",
-        "voiceVersion": "sggs-editorial-v1",
+        "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:practice",
         "evidence": {
-          "coreClaim": "The grip has its own liturgy: refresh, re-check, rehearse, press harder. Guru breaks it by restoring creatureliness: answer cleanly, but stop pretending you are the keeper of outcomes.",
+          "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. What is repeated with honesty begins to retrain the reflex itself.",
           "emotionalState": "directionless, numb, wasting-time",
-          "turn": "The mind keeps gripping outcomes because uncertainty feels like exposure. What is needed now is not another insight about surrender but a practiced interruption that reaches the body before control gets fluent.",
-          "practicalImplication": "Choose one cue all week, the refresh, the threshold, or the second follow-up. At that cue, open the hand, soften the jaw, and answer only what is actually yours.",
+          "turn": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Inspiration is not the main need now; a repeatable return is.",
+          "practicalImplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
           "bannedOverreach": []
         },
         "scores": {
@@ -404,7 +407,7 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": true
+        "reviewedByHuman": false
       }
     }
   },
@@ -437,12 +440,12 @@
     "balanceCategory": "hukam"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "topic:control",
     "evidence": {
-      "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to be the maker of every result.",
+      "coreClaim": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result.",
       "emotionalState": "gripping, controlling, tense",
       "turn": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility.",
       "practicalImplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
@@ -462,6 +465,6 @@
       "beauty"
     ],
     "issues": [],
-    "reviewedByHuman": true
+    "reviewedByHuman": false
   }
 }

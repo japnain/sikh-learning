@@ -1,13 +1,12 @@
 {
   "id": "guidance-held-close-not-abandoned",
   "title": "Held close in the hidden hour",
-  "summary": "This meets the hour when distance feels more believable than care. The line answers by naming a closeness the Lord Himself keeps.",
-  "takeaway": "Believe the clasp before the silence.",
-  "lifeApplication": "When rejection or silence starts narrating your worth, put a hand on the chest and repeat the line until closeness sounds truer than absence.",
+  "summary": "Let yourself be held close instead of measured by rank, performance, or proof. Do not let the day outrun this: hold onto this: stay humble enough to be kept close and cherished by the Lord.",
+  "takeaway": "Stand where grace holds you, not where status ranks you.",
+  "lifeApplication": "At the mirror, after the silence, or before the proving message, speak to the Lord as one already being held.",
   "source": {
     "deepDiveId": "shabad-lord-keeps-the-humble-close",
     "verseIds": [
-      37474,
       37476
     ],
     "shortMeaning": "The Lord keeps the humble servant near, against His own heart.",
@@ -39,26 +38,26 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:1-line-window",
     "evidence": {
       "coreClaim": "The Lord keeps the humble servant near, against His own heart.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "Stay humble enough to be kept close and cherished by the Lord.",
-      "practicalImplication": "When rejection or silence starts narrating your worth, put a hand on the chest and repeat the line until closeness sounds truer than absence.",
+      "turn": "Hold onto this: stay humble enough to be kept close and cherished by the Lord.",
+      "practicalImplication": "At the mirror, after the silence, or before the proving message, speak to the Lord as one already being held.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.12,
+      "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 5,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.88,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
       "beauty": 4.37,
-      "overall": 4.15
+      "overall": 4.3
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

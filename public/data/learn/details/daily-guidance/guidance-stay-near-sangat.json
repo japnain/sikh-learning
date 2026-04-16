@@ -1,15 +1,15 @@
 {
   "id": "guidance-stay-near-sangat",
   "title": "Go where selfishness can soften",
-  "summary": "This meets the day when private effort has turned stale and self-absorbed. The line says peace returns by joining true company, dropping selfishness, and letting the heart be carried with others.",
-  "takeaway": "Go where selfishness can soften.",
+  "summary": "The line keeps shelter, remembrance, and belonging braided together. Keep this close: Hold onto this: doubt clears when the Guru's word outlasts wandering.",
+  "takeaway": "Take the question into sangat.",
   "lifeApplication": "When you start brooding alone, physically move toward sangat: the gurdwara, the call, the elder, the friend who makes truth easier. Do not let private weather make the next decision.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       924,
       925,
-      930
+      926
     ],
     "shortMeaning": "True company softens selfishness and lets the heart merge into peace.",
     "lifeApplication": "When private weather thickens, move toward the company that makes truth easier."
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "True company softens selfishness and lets the heart merge into peace.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Doubt clears when the Guru's word outlasts wandering.",
+      "turn": "Hold onto this: doubt clears when the Guru's word outlasts wandering.",
       "practicalImplication": "When you start brooding alone, physically move toward sangat: the gurdwara, the call, the elder, the friend who makes truth easier. Do not let private weather make the next decision.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.06,
-      "clarity": 4.23,
-      "specificity": 4.81,
-      "emotionalHonesty": 3.18,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
       "usefulness": 4.42,
-      "beauty": 4.29,
-      "overall": 4.15
+      "beauty": 4.53,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

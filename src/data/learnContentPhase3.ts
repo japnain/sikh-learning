@@ -590,7 +590,7 @@ export const PHASE_THREE_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "When insecurity rises, answer it with nearness instead of self-attack.",
     source: ref(
       "shabad-lord-keeps-the-humble-close",
-      [37474, 37476],
+      [37476],
       "Praise and nearness belong together in the life of the humble servant.",
       "You do not need status to be held close."
     ),
@@ -607,7 +607,7 @@ export const PHASE_THREE_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Bring one raw need into prayer today without dressing it up as competence.",
     source: ref(
       "shabad-lord-keeps-the-humble-close",
-      [37476, 37477],
+      [37477],
       "The servant held close is also the child cherished by the Divine.",
       "Belonging softens the panic that says you must hold yourself up alone."
     ),
@@ -624,7 +624,7 @@ export const PHASE_THREE_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Trade one status reflex today for one act of quiet remembrance.",
     source: ref(
       "shabad-lord-keeps-the-humble-close",
-      [37473, 37476],
+      [37473, 37474],
       "The life that keeps reaching for riches is not the same life that learns nearness.",
       "The deepest correction may be relational, not performative."
     ),
@@ -675,7 +675,7 @@ export const PHASE_THREE_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Name one place where effort has become hardening, then ask for grace there without embarrassment.",
     source: ref(
       "shabad-forgiveness-opens-lasting-peace",
-      [27263, 27266, 27267],
+      [27265, 27266, 27267],
       "Grace, Naam, and destiny are bound together more tightly than control admits.",
       "You can stop pretending that everything must be forced open."
     ),

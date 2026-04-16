@@ -1,14 +1,14 @@
 {
   "id": "guidance-generated-178-2",
   "title": "Choose settlement over motion",
-  "summary": "This meets the moment when movement is increasing but clarity is not. The line says stay still long enough for fresh Naam to settle before motion takes over again.",
-  "takeaway": "Better company teaches the wandering mind how to settle.",
-  "lifeApplication": "At the threshold, choose better placement before choosing more movement.",
+  "summary": "Let better company and honest stillness teach the wandering mind how to settle. Keep this close: Carry this with you: stay still long enough for fresh Naam to settle.",
+  "takeaway": "Return the mind to better company before it scatters again.",
+  "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
   "source": {
     "deepDiveId": "shabad-generated-178",
     "verseIds": [
       2771,
-      2776
+      2772
     ],
     "shortMeaning": "Better company teaches the wandering mind how to settle.",
     "lifeApplication": "At the threshold, choose better placement before choosing more movement."
@@ -42,22 +42,22 @@
     "evidence": {
       "coreClaim": "Better company teaches the wandering mind how to settle.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "Stay still long enough for fresh Naam to settle.",
-      "practicalImplication": "At the threshold, choose better placement before choosing more movement.",
+      "turn": "Carry this with you: stay still long enough for fresh Naam to settle.",
+      "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.99,
-      "specificity": 4.96,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.58,
-      "beauty": 3.81,
-      "overall": 4.23
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.04,
+      "beauty": 4.25,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "usefulness"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

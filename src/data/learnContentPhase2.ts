@@ -1032,7 +1032,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "When you feel spiritually behind, ask for mercy before you ask for intensity.",
     source: ref(
       "shabad-what-pleases-you-comes-to-pass",
-      [501, 503],
+      [501, 502],
       "Mercy gives Naam and even reunites what has wandered.",
       "Return is possible because grace precedes your recovery."
     ),
@@ -1066,7 +1066,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Choose one conversation today where dignity matters more than winning.",
     source: ref(
       "shabad-speak-what-brings-honor",
-      [637, 642],
+      [642, 643],
       "Speak what carries honor, not just what releases heat.",
       "Restraint is sometimes the most truthful form of speech."
     ),
@@ -1117,7 +1117,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Write down the question you keep circling, then write the instruction you already know and keep delaying.",
     source: ref(
       "shabad-extinguish-the-fire-of-doubt",
-      [918, 921, 922],
+      [920, 921, 922],
       "The fire is inside, and the Guru-word is meant to address the inside first.",
       "Move from circling to obedience."
     ),
@@ -1134,7 +1134,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Notice one bargain you keep making that leaves your mind smaller than it was before.",
     source: ref(
       "shabad-extinguish-the-fire-of-doubt",
-      [923, 928],
+      [923, 924],
       "The mind is priceless, but it can still be sold beneath its worth.",
       "Measure today's trade-offs by what they do to the soul, not only to convenience."
     ),
@@ -1151,7 +1151,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Make one concrete move toward company that makes Naam easier, not noisier.",
     source: ref(
       "shabad-extinguish-the-fire-of-doubt",
-      [924, 925, 930],
+      [924, 925, 926],
       "Saint company cools the body and changes the outcome of the crossing.",
       "Let belonging become part of your discipline."
     ),
@@ -1168,7 +1168,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Ask whether today's effort is increasing what lasts or merely polishing what will be left behind.",
     source: ref(
       "shabad-buy-what-goes-with-you",
-      [933, 934, 937],
+      [933, 934, 935],
       "Take with you the merchandise that actually crosses the threshold.",
       "Let praise, truth, and Naam become real assets."
     ),
@@ -1185,7 +1185,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Refuse one shortcut today because of what it would make you become, not only because it might get caught.",
     source: ref(
       "shabad-buy-what-goes-with-you",
-      [938, 939, 943],
+      [937, 938, 939],
       "False commerce makes the whole person false.",
       "Integrity is part of spiritual survival, not optional polish."
     ),
@@ -1219,7 +1219,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Choose a lower posture today, not just a softer sentence.",
     source: ref(
       "shabad-sweet-speech-humble-walk",
-      [1288, 1290],
+      [1288, 1289],
       "Saint company and humble speech belong together.",
       "Do not try to sound transformed while still standing on self-importance."
     ),
@@ -1253,7 +1253,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Give one practice your full mind today, even if only for a few minutes.",
     source: ref(
       "shabad-sweet-speech-humble-walk",
-      [1287, 1288, 1297],
+      [1287, 1288, 1289],
       "One-pointed Naam, saint company, and steady remembrance belong to the same path.",
       "Make focus an act of love, not mere discipline."
     ),
@@ -1270,7 +1270,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Pause one extra search today and stay long enough with what you already know.",
     source: ref(
       "shabad-search-ends-in-saint-company",
-      [3890, 3895, 3898],
+      [3898, 3899, 3900],
       "Searching and ritual are not identical with peace.",
       "Do not confuse spiritual activity with inward arrival."
     ),
@@ -1304,7 +1304,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Practice one hidden renunciation today: release retaliation, self-justification, or the need to be seen doing good.",
     source: ref(
       "shabad-forgiveness-becomes-fearless",
-      [9600, 9603, 9605],
+      [9603, 9604, 9605],
       "Forgiveness is not weakness here; it is the doorway into fearlessness.",
       "Choose the discipline that purifies the heart, not merely the schedule."
     ),
@@ -1338,7 +1338,7 @@ export const PHASE_TWO_DAILY_GUIDANCE_ENTRIES: DailyGuidance[] = [
     lifeApplication: "Ask what part of you still wants inspiration without surrender.",
     source: ref(
       "shabad-forgiveness-becomes-fearless",
-      [9617, 9618, 9622],
+      [9617, 9618, 9619],
       "Knowing the One within and without opens the heart-lotus.",
       "Let Shabad reveal you, not only soothe you."
     ),

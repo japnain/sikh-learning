@@ -1,9 +1,9 @@
 {
   "id": "guidance-doubt-cut-from-within",
   "title": "Return before reopening every question",
-  "summary": "This meets the mind that keeps reopening what was already clear enough to obey. The line cuts doubt from the inside by returning you to lived remembrance.",
-  "takeaway": "Stay with the line until doubt loses its room.",
-  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows.",
+  "summary": "The line does not reward endless circling; it asks for trust, keeping, and return. Do not let the day outrun this: let this stay with you: when remembrance is real, it reaches the mouth and the walk.",
+  "takeaway": "Stay with one clear line until doubt loses room.",
+  "lifeApplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
@@ -44,22 +44,22 @@
     "evidence": {
       "coreClaim": "Doubt weakens when lived remembrance outruns inner argument.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "When remembrance is real, it reaches the mouth and the walk.",
-      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows.",
+      "turn": "Let this stay with you: when remembrance is real, it reaches the mouth and the walk.",
+      "practicalImplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.08,
+      "faithfulness": 4.4,
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 4.26,
-      "beauty": 4.37,
-      "overall": 4.25
+      "usefulness": 4.64,
+      "beauty": 4.21,
+      "overall": 4.36
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

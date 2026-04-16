@@ -1,14 +1,14 @@
 {
   "id": "guidance-conquer-the-mind-2",
   "title": "Let contentment prove your discipline",
-  "summary": "This meets the wish to look disciplined while the mind still runs loose. The line makes contentment, humility, and Naam the real mark.",
+  "summary": "Let contentment, humility, and remembrance make the next repetition believable. Let this stay near the next choice: hold onto this: conquer the mind before trying to conquer the world.",
   "takeaway": "Let contentment prove your discipline.",
-  "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler.",
+  "lifeApplication": "Choose one repeatable cue today and keep it without negotiation, even if it is small enough to feel unremarkable.",
   "source": {
     "deepDiveId": "shabad-conquer-the-mind",
     "verseIds": [
       290,
-      292
+      291
     ],
     "shortMeaning": "Real discipline leaves the mind content, humble, and turned to Naam.",
     "lifeApplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler."
@@ -35,29 +35,29 @@
     "balanceCategory": "discipline"
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual",
+    "status": "approved",
+    "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "Real discipline leaves the mind content, humble, and turned to Naam.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "Conquer the mind before trying to conquer the world.",
-      "practicalImplication": "When discipline turns harsh or theatrical, keep only the practice that leaves the heart humbler.",
+      "turn": "Hold onto this: conquer the mind before trying to conquer the world.",
+      "practicalImplication": "Choose one repeatable cue today and keep it without negotiation, even if it is small enough to feel unremarkable.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.04,
+      "faithfulness": 4.4,
       "clarity": 4.23,
-      "specificity": 4.79,
-      "emotionalHonesty": 3.54,
-      "usefulness": 4.04,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
       "beauty": 3.97,
-      "overall": 4.1
+      "overall": 4.22
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

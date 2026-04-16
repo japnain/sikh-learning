@@ -1,14 +1,13 @@
 {
   "id": "guidance-patience-ripens-into-honor-2",
   "title": "Let patience gather real wealth",
-  "summary": "This meets the wandering mind that wants quick proof and visible gain. The line says true wealth is Naam, and patience ripens into honor in holy company.",
-  "takeaway": "Trade in Naam and let patience ripen.",
+  "summary": "Listening turns waiting from bitterness toward honor. Let this stay near the next choice: carry this with you: trade in Naam, and let patience ripen into honor.",
+  "takeaway": "Wait by listening instead of simmering.",
   "lifeApplication": "When the mind starts running toward quicker returns, slow the breath and stay with the quieter work. Let patience make the account, not impulse.",
   "source": {
     "deepDiveId": "shabad-patience-ripens-into-honor",
     "verseIds": [
-      11239,
-      11241
+      11243
     ],
     "shortMeaning": "In holy company, wandering stops and patience ripens into Naam-rich honor.",
     "lifeApplication": "When hurry rises, stay with the practice that grows wealth you can actually keep."
@@ -38,22 +37,22 @@
     "status": "approved",
     "origin": "generated",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:2-line-window",
+    "templateKey": "guidance:1-line-window",
     "evidence": {
       "coreClaim": "In holy company, wandering stops and patience ripens into Naam-rich honor.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "Trade in Naam, and let patience ripen into honor.",
+      "turn": "Carry this with you: trade in Naam, and let patience ripen into honor.",
       "practicalImplication": "When the mind starts running toward quicker returns, slow the breath and stay with the quieter work. Let patience make the account, not impulse.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.29,
+      "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.18,
       "usefulness": 4.8,
-      "beauty": 4.49,
-      "overall": 4.36
+      "beauty": 4.69,
+      "overall": 4.4
     },
     "strengths": [
       "specificity",

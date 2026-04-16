@@ -1,15 +1,14 @@
 {
   "id": "guidance-human-opportunity",
   "title": "Do not waste the crossing",
-  "summary": "This meets the day that stays busy but spiritually unspent. The line turns life from ornament into crossing, and asks for effort while the chance is still open.",
-  "takeaway": "Treat this life as a crossing, not a possession.",
-  "lifeApplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
+  "summary": "Human life is not spare time; it is rare meeting ground for Naam, service, and return. Do not spend a rare life like loose change in drift and delay.",
+  "takeaway": "Treat this life as opportunity, not drift.",
+  "lifeApplication": "Before drifting into another task, choose one act today that would still matter at departure.",
   "source": {
     "deepDiveId": "shabad-human-birth-is-chance",
     "verseIds": [
-      527,
-      528,
-      529
+      524,
+      525
     ],
     "shortMeaning": "This life is given for crossing and meeting, not decoration.",
     "lifeApplication": "Before another drifting hour disappears, choose the act that helps you cross."
@@ -39,26 +38,26 @@
     "status": "locked",
     "origin": "legacy",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "guidance:3-line-window",
+    "templateKey": "guidance:2-line-window",
     "evidence": {
       "coreClaim": "This life is given for crossing and meeting, not decoration.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "Treat this life as a meeting, not an endless postponement.",
-      "practicalImplication": "Before another drifting hour disappears, choose the one act that actually helps you cross: join sangat, repeat Naam, or leave the indulgence unfinished.",
+      "turn": "Let this stay with you: treat this life as a meeting, not an endless postponement.",
+      "practicalImplication": "Before drifting into another task, choose one act today that would still matter at departure.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.25,
+      "faithfulness": 4.05,
       "clarity": 4.35,
-      "specificity": 4.81,
-      "emotionalHonesty": 3.18,
-      "usefulness": 3.82,
-      "beauty": 4.05,
-      "overall": 4.09
+      "specificity": 4.99,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.21,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

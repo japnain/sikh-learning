@@ -1,9 +1,9 @@
 {
   "id": "guidance-generated-231-1",
   "title": "The brave fight is inward",
-  "summary": "This meets the self that still wants victory over other people. The line redefines courage as subduing the vicious ego within.",
-  "takeaway": "Fight the inner tyrant first.",
-  "lifeApplication": "Before the next argument, feel the heat in the face and ask what inside is trying to win. Keep the battle at the level of ego before you turn another person into the enemy.",
+  "summary": "The line refuses to let self-importance dress itself as honesty, intelligence, or force. Let this stay near the next choice: remember this: measure courage by how deeply ego is subdued.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
   "source": {
     "deepDiveId": "shabad-generated-231",
     "verseIds": [
@@ -41,22 +41,22 @@
     "evidence": {
       "coreClaim": "True courage subdues the vicious ego within, not another person.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Measure courage by how deeply ego is subdued.",
-      "practicalImplication": "Before the next argument, feel the heat in the face and ask what inside is trying to win. Keep the battle at the level of ego before you turn another person into the enemy.",
+      "turn": "Remember this: measure courage by how deeply ego is subdued.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
       "bannedOverreach": []
     },
     "scores": {
-      "faithfulness": 4.16,
-      "clarity": 4.29,
-      "specificity": 4.73,
-      "emotionalHonesty": 3.36,
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
       "usefulness": 4.2,
-      "beauty": 4.01,
-      "overall": 4.13
+      "beauty": 4.21,
+      "overall": 4.23
     },
     "strengths": [
       "specificity",
-      "clarity"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true
