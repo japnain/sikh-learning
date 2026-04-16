@@ -21,7 +21,7 @@ import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
-import { buildSessionResumePath, useProgressStore } from '../store/progress'
+import { useProgressStore } from '../store/progress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { buildNitnemStudyPath, compareNitnemOptions, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
@@ -342,7 +342,6 @@ export default function Home() {
   const location = useLocation()
   const navigate = useNavigate()
   const streak = useProgressStore(state => state.streak)
-  const currentSession = useProgressStore(state => state.currentSession)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
@@ -363,7 +362,6 @@ export default function Home() {
   const learnStateSnapshot = useLearningStore(state => state.learnState)
   const {
     learningLevel,
-    learningGoal,
     openOnboarding,
   } = useOnboardingStore()
   const copy = getUiCopy(locale)
@@ -476,7 +474,6 @@ export default function Home() {
   const savedBookmarks = bookmarks.length
   const savedFavorites = favorites.length
   const savedReviewItems = vocab.length
-  const resumePath = buildSessionResumePath(currentSession)
   const isDarkTheme = useThemeStore(s => s.dark)
   const toggleTheme = useThemeStore(s => s.toggle)
   const savedShelfNotice = useMemo(() => {
@@ -494,23 +491,11 @@ export default function Home() {
     }
   }, [lastSaved?.kind])
 
-  const readAction = useMemo(() => {
-    if (resumePath) {
-      return {
-        title: homeMessages.resumeReading,
-        body: learningGoal === 'understand'
-          ? homeMessages.resumeStudyBody
-          : homeMessages.resumeReadingBody,
-        path: resumePath,
-      }
-    }
-
-    return {
-      title: 'Ardaas + Hukamnama',
-      body: editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.',
-      path: '/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama',
-    }
-  }, [editorial?.read.featuredFlowBody, homeMessages, learningGoal, resumePath])
+  const devotionalReadAction = useMemo(() => ({
+    title: 'Ardaas + Hukamnama',
+    body: editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.',
+    path: '/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama',
+  }), [editorial?.read.featuredFlowBody])
   const hukamnamaPreviewLine = useMemo(() => {
     if (!hukamnama) return null
     return hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))
@@ -821,21 +806,18 @@ export default function Home() {
       </section>
 
       <section
-        className="hero-surface ornate-top p-5 mb-5 animate-slide-up stagger-3"
+        className="mb-5 rounded-[30px] border border-sand/15 bg-[linear-gradient(180deg,rgba(255,252,247,0.97),rgba(248,240,228,0.9))] px-5 py-6 shadow-[0_14px_40px_rgba(64,42,16,0.06)] animate-slide-up stagger-3 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(29,23,37,0.96),rgba(20,16,29,0.92))] dark:shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p id="home-nitnem-title" className="eyebrow">{homeMessages.dailyNitnem}</p>
-            <h2 className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-              {homeMessages.nitnemHeroTitle}
-            </h2>
-            <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-              {homeMessages.nitnemHeroBody}
-            </p>
-          </div>
-          <span className="chip-pill shrink-0">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <p
+            id="home-nitnem-title"
+            className="font-sans text-[11px] uppercase tracking-[0.24em] text-gold dark:text-gold-light"
+          >
+            {homeMessages.dailyNitnem}
+          </p>
+          <span className="shrink-0 rounded-full border border-sand/16 bg-white/58 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
             {selectedNitnemOptions.length > 0
               ? nitnemRemainingCount > 0
                 ? homeMessages.nitnemRemaining(nitnemRemainingCount)
@@ -844,23 +826,34 @@ export default function Home() {
           </span>
         </div>
 
-        <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-sand/20 dark:bg-dark-text/10">
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-saffron to-saffron-light transition-all duration-500"
-            style={{ width: `${nitnemProgressPct}%` }}
-          />
+        <div className="mt-4 grid gap-4 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:items-end">
+          <h2 className="max-w-[12ch] font-display text-[2rem] leading-[0.92] tracking-[-0.02em] text-ink dark:text-dark-text sm:max-w-[14ch] sm:text-[2.15rem] md:max-w-none">
+            {homeMessages.nitnemHeroTitle}
+          </h2>
+          <p className="max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70 md:justify-self-end">
+            {homeMessages.nitnemHeroBody}
+          </p>
         </div>
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/58 dark:text-dark-text/60">
+
+        <div className="mt-5">
+          <div className="h-px overflow-hidden bg-[rgba(105,75,31,0.16)] dark:bg-[rgba(255,248,225,0.14)]">
+            <div
+              className="h-full bg-[linear-gradient(90deg,rgba(158,111,41,0.9),rgba(232,196,104,0.7))] transition-all duration-500"
+              style={{ width: `${nitnemProgressPct}%` }}
+            />
+          </div>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/52 dark:text-dark-text/56">
               {selectedNitnemOptions.length > 0
                 ? `${nitnemDone} / ${selectedNitnemOptions.length} ${homeCopy.dailyBanisComplete}`
                 : homeMessages.chooseNitnemBody}
-          </p>
-          {selectedNitnemOptions.length > 0 ? (
-            <p className="font-sans text-[11px] text-ink/54 dark:text-dark-text/56">
-              {homeMessages.nitnemCarouselLabel(safeActiveNitnemIndex + 1, selectedNitnemOptions.length)}
             </p>
-          ) : null}
+            {selectedNitnemOptions.length > 0 ? (
+              <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/46 dark:text-dark-text/50">
+                {homeMessages.nitnemCarouselLabel(safeActiveNitnemIndex + 1, selectedNitnemOptions.length)}
+              </p>
+            ) : null}
+          </div>
         </div>
 
         {selectedNitnemOptions.length > 0 ? (
@@ -888,59 +881,89 @@ export default function Home() {
                 return (
                   <article
                     key={option.id}
-                    className={`section-shell-quiet min-w-full snap-center p-5 transition-transform duration-300 ${
-                      isActive ? 'border-gold/20 dark:border-gold/20' : 'scale-[0.985]'
+                    className={`relative min-w-full snap-center overflow-hidden rounded-[30px] border px-5 py-5 transition-all duration-300 ${
+                      isActive
+                        ? 'border-gold/22 bg-[linear-gradient(180deg,rgba(255,254,250,0.97),rgba(248,241,230,0.9))] shadow-[0_18px_34px_rgba(77,53,19,0.08)] dark:border-gold/20 dark:bg-[linear-gradient(180deg,rgba(35,28,46,0.98),rgba(24,19,34,0.94))]'
+                        : 'border-sand/12 bg-[rgba(255,250,242,0.78)] opacity-92 dark:border-dark-text/8 dark:bg-[rgba(28,22,37,0.8)]'
                     }`}
                     aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                     data-testid={isActive ? 'home-nitnem-active-card' : undefined}
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="eyebrow">{option.group}</p>
-                        <p lang="pa-Guru" className="mt-3 font-gurmukhi text-[1.9rem] leading-tight text-ink dark:text-dark-text">
-                          {option.gurmukhiTitle}
-                        </p>
-                        <p className="mt-2 font-sans text-sm font-semibold text-ink/76 dark:text-dark-text/80">
-                          {option.romanizedTitle}
-                        </p>
-                        <p className="mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
-                          {getNitnemOptionDetail(option)}
-                        </p>
-                      </div>
-                      <span className="chip-pill shrink-0">
-                        {index + 1}/{selectedNitnemOptions.length}
-                      </span>
-                    </div>
+                    <div className="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full bg-[radial-gradient(circle_at_center,rgba(232,196,104,0.18),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(232,196,104,0.12),transparent_72%)]" />
+                    <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(158,111,41,0.58),transparent)] dark:bg-[linear-gradient(90deg,transparent,rgba(232,196,104,0.42),transparent)]" />
 
-                    <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                      <Link
-                        to={buildNitnemStudyPath(option)}
-                        className="interactive-focus interactive-pill-link min-h-[48px] flex-1 rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
-                        data-testid={index === safeActiveNitnemIndex ? 'home-nitnem-primary-action' : undefined}
-                      >
-                        {nitnemDone > 0 ? homeMessages.continueNitnem : homeMessages.beginNitnem}
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
-                        className={`min-h-[48px] rounded-2xl border px-4 font-sans text-sm font-medium transition-colors duration-300 ${
-                          done
-                            ? 'border-gold/15 bg-gold/12 text-gold dark:border-gold/22 dark:bg-gold/12 dark:text-gold-light'
-                            : 'border-sand/12 bg-white/80 text-ink dark:border-gold/20 dark:bg-gold/10 dark:text-gold-light'
-                        }`}
-                      >
-                        <span className="inline-flex items-center gap-2">
-                          <IconCheck size={14} className={done ? '' : 'text-saffron dark:text-gold-light'} />
-                          {done ? homeMessages.markNitnemIncomplete : homeMessages.completeNitnemStep}
+                    <div className="relative">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="font-sans text-[10px] uppercase tracking-[0.24em] text-gold dark:text-gold-light">
+                            Today&apos;s Bani
+                          </p>
+                          <p className="mt-2 font-sans text-[11px] uppercase tracking-[0.2em] text-ink/42 dark:text-dark-text/52">
+                            {option.group}
+                          </p>
+                        </div>
+                        <span className="shrink-0 rounded-full border border-sand/16 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.18em] text-ink/52 dark:border-dark-text/10 dark:text-dark-text/58">
+                          {index + 1}/{selectedNitnemOptions.length}
                         </span>
-                      </button>
+                      </div>
+
+                      <div className="mt-5 grid gap-4 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:items-start">
+                        <div className="min-w-0">
+                          <p lang="pa-Guru" className="font-gurmukhi text-[2.05rem] leading-[1.04] text-ink dark:text-dark-text sm:text-[2.2rem]">
+                            {option.gurmukhiTitle}
+                          </p>
+                          <p className="mt-3 font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-ink/72 dark:text-dark-text/76">
+                            {option.romanizedTitle}
+                          </p>
+                        </div>
+
+                        <div className="rounded-[20px] border border-sand/14 bg-white/46 px-4 py-4 dark:border-dark-text/10 dark:bg-white/5">
+                          <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
+                            Ritual Note
+                          </p>
+                          <p className="mt-2 font-sans text-sm leading-6 text-ink/64 dark:text-dark-text/68">
+                            {getNitnemOptionDetail(option)}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex items-center justify-between gap-3 border-t border-sand/12 pt-3 dark:border-dark-text/10">
+                        <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/42 dark:text-dark-text/50">
+                          Swipe through the full order
+                        </p>
+                        <div className="h-px flex-1 bg-[linear-gradient(90deg,rgba(105,75,31,0.18),transparent)] dark:bg-[linear-gradient(90deg,rgba(255,248,225,0.16),transparent)]" />
+                      </div>
+
+                      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                        <Link
+                          to={buildNitnemStudyPath(option)}
+                          className="interactive-focus interactive-pill-link min-h-[50px] flex-1 rounded-full bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+                          data-testid={index === safeActiveNitnemIndex ? 'home-nitnem-primary-action' : undefined}
+                        >
+                          {nitnemDone > 0 ? homeMessages.continueNitnem : homeMessages.beginNitnem}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => done ? unmarkComplete(option.id) : markComplete(option.id)}
+                          className={`min-h-[50px] rounded-full border px-5 font-sans text-sm font-medium transition-colors duration-300 ${
+                            done
+                              ? 'border-gold/18 bg-gold/10 text-gold dark:border-gold/24 dark:bg-gold/12 dark:text-gold-light'
+                              : 'border-sand/16 bg-white/55 text-ink/82 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/78'
+                          }`}
+                        >
+                          <span className="inline-flex items-center gap-2">
+                            <IconCheck size={14} className={done ? '' : 'text-saffron dark:text-gold-light'} />
+                            {done ? homeMessages.markNitnemIncomplete : homeMessages.completeNitnemStep}
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </article>
                 )
               })}
             </div>
 
-            <div className="mt-4 flex justify-center gap-2">
+            <div className="mt-4 flex items-center justify-center gap-2">
               {selectedNitnemOptions.map((option, index) => (
                 <button
                   key={`${option.id}-dot`}
@@ -948,49 +971,54 @@ export default function Home() {
                   onClick={() => setActiveNitnemIndex(index)}
                   aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                   aria-pressed={index === safeActiveNitnemIndex}
-                  className={`h-3 rounded-full border transition-all duration-300 ${
+                  className={`rounded-full border transition-all duration-300 ${
                     index === safeActiveNitnemIndex
-                      ? 'w-8 border-[rgba(232,196,104,0.8)] bg-gold shadow-[0_0_18px_rgba(232,196,104,0.25)] dark:border-[rgba(232,196,104,0.82)] dark:bg-gold-light'
-                      : 'w-3 border-[rgba(232,196,104,0.22)] bg-[rgba(232,196,104,0.18)] dark:border-[rgba(232,196,104,0.38)] dark:bg-[rgba(255,248,225,0.18)]'
+                      ? 'h-2.5 w-7 border-gold/18 bg-gold/72 dark:border-gold/24 dark:bg-gold-light'
+                      : 'h-2 w-2 border-sand/18 bg-sand/22 dark:border-dark-text/14 dark:bg-dark-text/14'
                   }`}
                 />
               ))}
             </div>
           </>
         ) : (
-          <div className="section-shell-quiet mt-5 p-5">
-            <p className="font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/72">
+          <div className="mt-5 rounded-[24px] border border-dashed border-sand/18 px-5 py-6 dark:border-dark-text/10">
+            <p className="font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/68">
               {homeMessages.chooseNitnemBody}
             </p>
           </div>
         )}
 
-        <div className="section-shell-quiet mt-5 p-4">
-          <div className="flex items-start justify-between gap-3">
+        <div className="mt-6 border-t border-sand/12 pt-4 dark:border-dark-text/10">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="eyebrow">{homeMessages.customizeNitnem}</p>
-              <p className="mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/70">
+              <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
+                {homeMessages.customizeNitnem}
+              </p>
+              <p className="mt-2 max-w-[42ch] font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/68">
                 {homeMessages.chooseNitnemBody}
               </p>
             </div>
             <button
               type="button"
               onClick={handleNitnemCustomizeToggle}
-              className="flex shrink-0 items-center gap-2"
+              className="flex shrink-0 items-center gap-2 rounded-full border border-sand/16 bg-white/50 px-3 py-2 text-ink/72 transition-colors duration-300 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/74"
               aria-expanded={nitnemOpen}
               aria-controls="home-nitnem-panel"
             >
-              <span className="font-sans text-xs font-semibold text-gold dark:text-gold-light">
+              <span className="font-sans text-xs font-semibold">
                 {nitnemOpen ? homeMessages.hideNitnemCustomize : homeMessages.customizeNitnem}
               </span>
-              <span className="icon-surface h-10 w-10 text-gold dark:text-gold-light">
+              <span className="inline-flex items-center justify-center text-gold dark:text-gold-light">
                 {nitnemOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
               </span>
             </button>
           </div>
 
           {nitnemOpen ? (
-            <div id="home-nitnem-panel" className="mt-5 space-y-3">
+            <div
+              id="home-nitnem-panel"
+              className="mt-4 space-y-4 rounded-[24px] border border-sand/12 bg-white/36 px-4 py-4 dark:border-dark-text/10 dark:bg-white/4"
+            >
               <div className="flex items-center justify-between gap-3">
                 <p className="font-sans text-xs text-ink/55 dark:text-dark-text/58">
                   Length choices for supported banis stay inside the reader.
@@ -1007,7 +1035,7 @@ export default function Home() {
 
               {(['Morning', 'Evening', 'Night', 'Additional'] as const).map(group => (
                 <div key={`manage-${group}`}>
-                  <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/48 dark:text-dark-text/52">
                     {group}
                   </p>
                   <div className="space-y-2">
@@ -1021,10 +1049,10 @@ export default function Home() {
                             key={`manage-${option.id}`}
                             type="button"
                             onClick={() => toggleSelected(option.id)}
-                            className={`w-full rounded-2xl border px-3 py-3 text-left transition-colors duration-300 ${
+                            className={`w-full rounded-[22px] border px-3 py-3 text-left transition-colors duration-300 ${
                               selected
-                                ? 'border-saffron bg-gradient-to-r from-saffron to-saffron-light text-white'
-                                : 'border-sand/15 bg-white/70 text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
+                                ? 'border-gold/24 bg-[linear-gradient(180deg,rgba(250,241,222,0.9),rgba(246,235,214,0.82))] text-ink dark:border-gold/26 dark:bg-[linear-gradient(180deg,rgba(54,41,63,0.96),rgba(38,29,47,0.92))] dark:text-dark-text'
+                                : 'border-sand/15 bg-white/58 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text'
                             }`}
                           >
                             <div className="flex items-start justify-between gap-3">
@@ -1032,16 +1060,16 @@ export default function Home() {
                                 <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed">
                                   {option.gurmukhiTitle}
                                 </p>
-                                <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-white/92' : 'text-ink/72 dark:text-dark-text/76'}`}>
+                                <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-ink/76 dark:text-dark-text/78' : 'text-ink/72 dark:text-dark-text/76'}`}>
                                   {option.romanizedTitle}
                                 </p>
-                                <p className={`mt-1 font-sans text-xs ${selected ? 'text-white/80' : 'text-ink/55 dark:text-dark-text/55'}`}>
+                                <p className={`mt-1 font-sans text-xs ${selected ? 'text-ink/58 dark:text-dark-text/62' : 'text-ink/55 dark:text-dark-text/55'}`}>
                                   {getNitnemOptionDetail(option)}
                                 </p>
                               </div>
                               <span className={`rounded-full px-2 py-1 font-sans text-[10px] uppercase tracking-[0.18em] ${
                                 selected
-                                  ? 'bg-white/15 text-white'
+                                  ? 'bg-ink/6 text-ink dark:bg-white/10 dark:text-dark-text'
                                   : 'bg-gold/10 text-gold dark:text-gold-light'
                               }`}>
                                 {selected ? 'Shown' : 'Hidden'}
@@ -1076,17 +1104,17 @@ export default function Home() {
           <div className="section-shell-quiet p-5">
             <p className="eyebrow">{homeCopy.read}</p>
             <h3 className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
-              {readAction.title}
+              {devotionalReadAction.title}
             </h3>
             <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-              {readAction.body}
+              {devotionalReadAction.body}
             </p>
             <Link
-              to={readAction.path}
+              to={devotionalReadAction.path}
               className="interactive-focus interactive-pill-link mt-5 min-h-[48px] w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
               data-testid="home-read-today-action"
             >
-              {readAction.title}
+              {devotionalReadAction.title}
             </Link>
           </div>
 
