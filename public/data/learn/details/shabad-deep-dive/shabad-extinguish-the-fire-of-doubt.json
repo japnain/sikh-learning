@@ -2,9 +2,9 @@
   "id": "shabad-extinguish-the-fire-of-doubt",
   "title": "Doubt does not die by wandering",
   "subtitle": "Siree Raag · Ang 22",
-  "summary": "The shabad opens by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
-  "whyItMatters": "This is for the person who keeps moving, researching, and second-guessing without getting clearer. Held honestly, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea.",
-  "takeaway": "Doubt clears when the Guru's word outlasts wandering.",
+  "summary": "The shabad begins by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
+  "whyItMatters": "This one meets the person who keeps moving, researching, and second-guessing without getting clearer. Taken seriously, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea.",
+  "takeaway": "Hold onto this: doubt clears when the Guru's word outlasts wandering.",
   "themes": [
     "doubt",
     "sangat",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by rejecting wandering as a cure for the inner fire.",
-    "The middle places the Guru's word inside the mind until ego and desire begin to die.",
-    "It ends in true company, surrendered selfishness, and peace merging without remainder."
+    "First, it begins by rejecting wandering as a cure for the inner fire.",
+    "Then, it places the Guru's word inside the mind until ego and desire begin to die.",
+    "Finally, it ends in true company, surrendered selfishness, and peace merging without remainder."
   ],
   "keyVerseIds": [
     918,
@@ -182,10 +182,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
+      "coreClaim": "The shabad begins by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "The middle places the Guru's word inside the mind until ego and desire begin to die.",
-      "practicalImplication": "This is for the person who keeps moving, researching, and second-guessing without getting clearer. Held honestly, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea. Doubt clears when the Guru's word outlasts wandering.",
+      "turn": "Then, it places the Guru's word inside the mind until ego and desire begin to die.",
+      "practicalImplication": "This one meets the person who keeps moving, researching, and second-guessing without getting clearer. Taken seriously, it gives doubt a real treatment: the line is kept, ego loosens, and peace becomes more than an idea. Hold onto this: doubt clears when the Guru's word outlasts wandering.",
       "bannedOverreach": []
     },
     "scores": {
@@ -193,9 +193,9 @@
       "clarity": 4.29,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.66,
-      "beauty": 4.16,
-      "overall": 4.17
+      "usefulness": 4.04,
+      "beauty": 4.01,
+      "overall": 4.21
     },
     "strengths": [
       "specificity",

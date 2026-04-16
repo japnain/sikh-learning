@@ -4,7 +4,7 @@
   "subtitle": "Raag Maajh · Ang 137",
   "summary": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
   "whyItMatters": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort.",
-  "takeaway": "Place the mind's trust in the Guru as cooling shelter.",
+  "takeaway": "Hold onto this: place the mind's trust in the Guru as cooling shelter.",
   "themes": [
     "exhaustion",
     "comparison",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the Guru as giver rather than as one more burden on the seeker.",
-    "The middle calls the Guru a cooling house and a light broad enough for all three worlds.",
-    "It ends by treating that light as lasting wealth and peace."
+    "First, it begins by naming the Guru as giver rather than as one more burden on the seeker.",
+    "Then, it calls the Guru a cooling house and a light broad enough for all three worlds.",
+    "Finally, it ends by treating that light as lasting wealth and peace."
   ],
   "keyVerseIds": [
     5589,
@@ -112,8 +112,8 @@
     "evidence": {
       "coreClaim": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "The middle calls the Guru a cooling house and a light broad enough for all three worlds.",
-      "practicalImplication": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort. Place the mind's trust in the Guru as cooling shelter.",
+      "turn": "Then, it calls the Guru a cooling house and a light broad enough for all three worlds.",
+      "practicalImplication": "This is for the worn-down person who keeps spending trust on supports that do not cool anything. Return to it when exhaustion makes you grab for quick relief; it teaches peace as reliance, not one more effort. Hold onto this: place the mind's trust in the Guru as cooling shelter.",
       "bannedOverreach": []
     },
     "scores": {
@@ -121,13 +121,13 @@
       "clarity": 4.17,
       "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 4.04,
+      "usefulness": 4.42,
       "beauty": 4.35,
-      "overall": 4.29
+      "overall": 4.35
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -2,9 +2,9 @@
   "id": "shabad-suffering-as-medicine",
   "title": "Pain tells the truth comfort hides",
   "subtitle": "Raag Aasaa",
-  "summary": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
-  "whyItMatters": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
-  "takeaway": "Let pain reveal what comfort keeps covering.",
+  "summary": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+  "whyItMatters": "This is for anyone who feels clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
+  "takeaway": "Let this stay with you: let pain reveal what comfort keeps covering.",
   "themes": [
     "reflection",
     "anxiety",
@@ -91,9 +91,9 @@
     }
   ],
   "structure": [
-    "It opens with the startling reversal of suffering as medicine and pleasure as disease.",
-    "The middle gives up control and admits the Creator's will is doing what your effort cannot.",
-    "It ends in praise, light, and trust in the One whose work runs through everything."
+    "First, it starts with the startling reversal of suffering as medicine and pleasure as disease.",
+    "Then, it gives up control and admits the Creator's will is doing what your effort cannot.",
+    "Finally, it ends in praise, light, and trust in the One whose work runs through everything."
   ],
   "keyVerseIds": [
     21090,
@@ -128,24 +128,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+      "coreClaim": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
       "emotionalState": "hurting, resentful, confused",
-      "turn": "The middle gives up control and admits the Creator's will is doing what your effort cannot.",
-      "practicalImplication": "This is for the person clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher. Let pain reveal what comfort keeps covering.",
+      "turn": "Then, it gives up control and admits the Creator's will is doing what your effort cannot.",
+      "practicalImplication": "This is for anyone who feels clinging to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher. Let this stay with you: let pain reveal what comfort keeps covering.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3,
-      "usefulness": 3.76,
+      "usefulness": 4.72,
       "beauty": 4.53,
-      "overall": 4.14
+      "overall": 4.31
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

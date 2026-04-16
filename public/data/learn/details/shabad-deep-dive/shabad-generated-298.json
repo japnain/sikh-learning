@@ -2,9 +2,9 @@
   "id": "shabad-generated-298",
   "title": "Make the body honorable by what it serves",
   "subtitle": "Raag Maajh · Ang 103",
-  "summary": "The shabad opens by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It ends with a prayer that even a sinking stone be lifted by mercy.",
-  "whyItMatters": "This is for the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company.",
-  "takeaway": "Let speech, sight, hands, and feet become honorable through praise.",
+  "summary": "The shabad begins by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It closes with a prayer that even a sinking stone be lifted by mercy.",
+  "whyItMatters": "This one meets the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company.",
+  "takeaway": "Hold onto this: let speech, sight, hands, and feet become honorable through praise.",
   "themes": [
     "mercy",
     "gratitude",
@@ -126,9 +126,9 @@
     }
   ],
   "structure": [
-    "It opens by blessing the word that speaks Naam and the time spent hearing it.",
-    "The middle extends that blessing to eyes, hands, and feet when they move in the Lord's direction.",
-    "It ends in Saadh Sangat, purity, and a humble prayer for mercy on the sinking self."
+    "First, it begins by blessing the word that speaks Naam and the time spent hearing it.",
+    "Then, it extends that blessing to eyes, hands, and feet when they move in the Lord's direction.",
+    "Finally, it ends in Saadh Sangat, purity, and a humble prayer for mercy on the sinking self."
   ],
   "keyVerseIds": [
     4110,
@@ -165,10 +165,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It ends with a prayer that even a sinking stone be lifted by mercy.",
+      "coreClaim": "The shabad begins by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It closes with a prayer that even a sinking stone be lifted by mercy.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle extends that blessing to eyes, hands, and feet when they move in the Lord's direction.",
-      "practicalImplication": "This is for the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company. Let speech, sight, hands, and feet become honorable through praise.",
+      "turn": "Then, it extends that blessing to eyes, hands, and feet when they move in the Lord's direction.",
+      "practicalImplication": "This one meets the person whose body is busy all day without much of it turning toward God. Held carefully, it makes ordinary faculties answerable to praise and holy company. Hold onto this: let speech, sight, hands, and feet become honorable through praise.",
       "bannedOverreach": []
     },
     "scores": {
@@ -176,13 +176,13 @@
       "clarity": 4.17,
       "specificity": 5,
       "emotionalHonesty": 3.36,
-      "usefulness": 4.26,
-      "beauty": 4.56,
-      "overall": 4.3
+      "usefulness": 4.86,
+      "beauty": 4.57,
+      "overall": 4.39
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

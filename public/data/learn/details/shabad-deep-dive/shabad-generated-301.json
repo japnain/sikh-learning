@@ -2,9 +2,9 @@
   "id": "shabad-generated-301",
   "title": "The heart lives by the One supporting it",
   "subtitle": "Raag Maajh · Ang 103",
-  "summary": "The shabad opens by calling God the breath of life and the support of the mind. It widens through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
-  "whyItMatters": "This is for the person secretly trying to hold themselves up alone. Held steadily, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen.",
-  "takeaway": "Let the mind rest on the One already carrying its life.",
+  "summary": "The shabad starts by calling God the breath of life and the support of the mind. It opens further through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
+  "whyItMatters": "This is for anyone who feels secretly trying to hold themselves up alone. Stayed with, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen.",
+  "takeaway": "Carry this with you: let the mind rest on the One already carrying its life.",
   "themes": [
     "forgiveness",
     "restlessness",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens with support named as intimate and foundational: the Lord as breath and stay.",
-    "The middle turns that support into praise and the quieting peace of Naam.",
-    "It ends by drawing restless desire into holy company and the Guru's healing vision."
+    "First, it starts with support named as intimate and foundational: the Lord as breath and stay.",
+    "Then, it turns that support into praise and the quieting peace of Naam.",
+    "Finally, it ends by drawing restless desire into holy company and the Guru's healing vision."
   ],
   "keyVerseIds": [
     4145,
@@ -152,10 +152,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by calling God the breath of life and the support of the mind. It widens through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
+      "coreClaim": "The shabad starts by calling God the breath of life and the support of the mind. It opens further through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
       "emotionalState": "resentful, hurt, stuck",
-      "turn": "The middle turns that support into praise and the quieting peace of Naam.",
-      "practicalImplication": "This is for the person secretly trying to hold themselves up alone. Held steadily, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen. Let the mind rest on the One already carrying its life.",
+      "turn": "Then, it turns that support into praise and the quieting peace of Naam.",
+      "practicalImplication": "This is for anyone who feels secretly trying to hold themselves up alone. Stayed with, it turns support from abstraction into something received, and it draws the heart toward company where peace can deepen. Carry this with you: let the mind rest on the One already carrying its life.",
       "bannedOverreach": []
     },
     "scores": {
@@ -164,8 +164,8 @@
       "specificity": 5,
       "emotionalHonesty": 3.54,
       "usefulness": 5,
-      "beauty": 4.79,
-      "overall": 4.5
+      "beauty": 4.64,
+      "overall": 4.48
     },
     "strengths": [
       "specificity",

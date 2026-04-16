@@ -2,9 +2,9 @@
   "id": "shabad-generated-818",
   "title": "Where saving company interrupts judgment",
   "subtitle": "Raag Gauree · Ang 256",
-  "summary": "This shabad opens with the fear of inescapable judgment. It turns the heart toward the saving nearness of Saadh Sangat and remembrance.",
-  "whyItMatters": "It matters for the person who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter.",
-  "takeaway": "Holy company keeps judgment from having the final word.",
+  "summary": "The shabad begins with the fear of inescapable judgment. It directs the heart toward the saving nearness of Saadh Sangat and remembrance.",
+  "whyItMatters": "This matters for anyone who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter.",
+  "takeaway": "Let this stay with you: holy company keeps judgment from having the final word.",
   "themes": [
     "loneliness",
     "restlessness",
@@ -56,9 +56,9 @@
     }
   ],
   "structure": [
-    "It begins by naming the helplessness of standing before judgment.",
-    "The middle movement turns toward the company where remembrance is still alive.",
-    "It closes by showing that salvation is received in Sangat, not manufactured alone."
+    "First, it begins by naming the helplessness of standing before judgment.",
+    "Then, it turns toward the company where remembrance is still alive.",
+    "Finally, it closes by showing that salvation is received in Sangat, not manufactured alone."
   ],
   "keyVerseIds": [
     11177,
@@ -90,24 +90,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the fear of inescapable judgment. It turns the heart toward the saving nearness of Saadh Sangat and remembrance.",
+      "coreClaim": "The shabad begins with the fear of inescapable judgment. It directs the heart toward the saving nearness of Saadh Sangat and remembrance.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle movement turns toward the company where remembrance is still alive.",
-      "practicalImplication": "It matters for the person who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter. Holy company keeps judgment from having the final word.",
+      "turn": "Then, it turns toward the company where remembrance is still alive.",
+      "practicalImplication": "This matters for anyone who feels cut off, exposed, or already condemned. The shabad changes the atmosphere from private doom to shared shelter. Let this stay with you: holy company keeps judgment from having the final word.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.9,
-      "usefulness": 3.76,
+      "usefulness": 4.72,
       "beauty": 4.53,
-      "overall": 4.27
+      "overall": 4.44
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

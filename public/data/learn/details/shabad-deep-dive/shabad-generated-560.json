@@ -2,9 +2,9 @@
   "id": "shabad-generated-560",
   "title": "What the Beloved does, I accept",
   "subtitle": "Raag Gauree · Ang 187",
-  "summary": "The shabad begins by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
-  "whyItMatters": "This is for the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Held steadily, it changes complaint into trust and loosens the fear that acceptance means abandonment.",
-  "takeaway": "Let the Beloved's way grow dearer than the mind's protest.",
+  "summary": "The shabad opens by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
+  "whyItMatters": "This one meets the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Stayed with, it changes complaint into trust and loosens the fear that acceptance means abandonment.",
+  "takeaway": "Let this stay with you: let the Beloved's way grow dearer than the mind's protest.",
   "themes": [
     "loneliness",
     "comparison",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens with bare consent: what the Beloved does is received, not argued with.",
-    "The middle gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
-    "It ends in belonging: servant and Master, honor and glory returned to God alone."
+    "First, it starts with bare consent: what the Beloved does is received, not argued with.",
+    "Then, it gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
+    "Finally, it ends in belonging: servant and Master, honor and glory returned to God alone."
   ],
   "keyVerseIds": [
     7925,
@@ -152,20 +152,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
+      "coreClaim": "The shabad opens by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
       "emotionalState": "alone, unseen, disconnected",
-      "turn": "The middle gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
-      "practicalImplication": "This is for the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Held steadily, it changes complaint into trust and loosens the fear that acceptance means abandonment. Let the Beloved's way grow dearer than the mind's protest.",
+      "turn": "Then, it gathers the heart around one support, naming the Lord as the inner-knower and only true stay.",
+      "practicalImplication": "This one meets the person exhausting themselves by resisting the day, the loss, or the unanswered turn. Stayed with, it changes complaint into trust and loosens the fear that acceptance means abandonment. Let this stay with you: let the Beloved's way grow dearer than the mind's protest.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.96,
+      "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 3.82,
-      "beauty": 4.81,
-      "overall": 4.34
+      "usefulness": 4.42,
+      "beauty": 4.65,
+      "overall": 4.41
     },
     "strengths": [
       "specificity",

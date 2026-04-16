@@ -2,9 +2,9 @@
   "id": "shabad-generated-703",
   "title": "When the Shabad takes the mind in hand",
   "subtitle": "Raag Gauree · Ang 221",
-  "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It moves through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
-  "whyItMatters": "This is for the person whose mind is strong, clever, and difficult to govern. Held steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
-  "takeaway": "Let the Guru's Shabad govern the mind before cleverness does.",
+  "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+  "whyItMatters": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
+  "takeaway": "Let this stay with you: let the Guru's Shabad govern the mind before cleverness does.",
   "themes": [
     "attachment",
     "doubt",
@@ -217,9 +217,9 @@
     }
   ],
   "structure": [
-    "It opens with restraint, not self-display: the mind needs the Guru's goad and the Shabad's mark.",
-    "The middle strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
-    "It ends in daily remembrance of the Lord who already pervades the whole field."
+    "First, it starts with restraint, not self-display: the mind needs the Guru's goad and the Shabad's mark.",
+    "Then, it strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
+    "Finally, it ends in daily remembrance of the Lord who already pervades the whole field."
   ],
   "keyVerseIds": [
     9473,
@@ -256,20 +256,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It moves through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+      "coreClaim": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
-      "practicalImplication": "This is for the person whose mind is strong, clever, and difficult to govern. Held steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand. Let the Guru's Shabad govern the mind before cleverness does.",
+      "turn": "Then, it strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
+      "practicalImplication": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand. Let this stay with you: let the Guru's Shabad govern the mind before cleverness does.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 4.11,
+      "clarity": 4.02,
       "specificity": 5,
       "emotionalHonesty": 3.72,
-      "usefulness": 4.8,
-      "beauty": 3.96,
-      "overall": 4.34
+      "usefulness": 5,
+      "beauty": 3.95,
+      "overall": 4.35
     },
     "strengths": [
       "specificity",

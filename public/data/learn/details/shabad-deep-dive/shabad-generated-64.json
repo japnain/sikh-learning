@@ -2,9 +2,9 @@
   "id": "shabad-generated-64",
   "title": "Fear leaves when schemes do",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "The shabad opens with rescue arriving alongside subdued ego. It moves through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
-  "whyItMatters": "This is for the person trying to survive by cleverness, image-management, or endless contingency planning. Held honestly, it turns salvation away from schemes and back toward the Guru's truth.",
-  "takeaway": "Let ego and scheming fall so fear can leave with them.",
+  "summary": "The shabad opens with rescue arriving alongside subdued ego. It travels through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
+  "whyItMatters": "This speaks to the person trying to survive by cleverness, image-management, or endless contingency planning. Taken seriously, it turns salvation away from schemes and back toward the Guru's truth.",
+  "takeaway": "Let this stay with you: let ego and scheming fall so fear can leave with them.",
   "themes": [
     "ego",
     "comparison",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by linking rescue with ego being quieted inside the heart.",
-    "The middle drops frantic planning and asks how fearlessness can arise without becoming Gurmukh.",
-    "It ends with true merchandise replacing the false trades of self-protection."
+    "First, it begins by linking rescue with ego being quieted inside the heart.",
+    "Then, it drops frantic planning and asks how fearlessness can arise without becoming Gurmukh.",
+    "Finally, it ends with true merchandise replacing the false trades of self-protection."
   ],
   "keyVerseIds": [
     744,
@@ -179,24 +179,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens with rescue arriving alongside subdued ego. It moves through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
+      "coreClaim": "The shabad opens with rescue arriving alongside subdued ego. It travels through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "The middle drops frantic planning and asks how fearlessness can arise without becoming Gurmukh.",
-      "practicalImplication": "This is for the person trying to survive by cleverness, image-management, or endless contingency planning. Held honestly, it turns salvation away from schemes and back toward the Guru's truth. Let ego and scheming fall so fear can leave with them.",
+      "turn": "Then, it drops frantic planning and asks how fearlessness can arise without becoming Gurmukh.",
+      "practicalImplication": "This speaks to the person trying to survive by cleverness, image-management, or endless contingency planning. Taken seriously, it turns salvation away from schemes and back toward the Guru's truth. Let this stay with you: let ego and scheming fall so fear can leave with them.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.78,
+      "specificity": 4.6,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.6,
-      "beauty": 4.53,
-      "overall": 4.22
+      "usefulness": 3.76,
+      "beauty": 4.37,
+      "overall": 4.19
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "faithfulness"
     ],
     "issues": [],
     "reviewedByHuman": true

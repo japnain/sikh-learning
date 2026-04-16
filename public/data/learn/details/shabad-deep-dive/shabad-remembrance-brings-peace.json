@@ -2,9 +2,9 @@
   "id": "shabad-remembrance-brings-peace",
   "title": "Remembrance settles the body",
   "subtitle": "Raag Gauree",
-  "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
-  "whyItMatters": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language.",
-  "takeaway": "Carry remembrance into the body before worry settles there.",
+  "summary": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It broadens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
+  "whyItMatters": "This is for anyone whose worry has moved into the chest, gut, and shoulders. Kept near, it gives simran a bodily honesty instead of leaving it as decorative language.",
+  "takeaway": "Hold onto this: carry remembrance into the body before worry settles there.",
   "themes": [
     "anxiety",
     "naam",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by linking repeated remembrance directly to peace and the easing of anguish in the body.",
-    "The middle magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
-    "It ends with longing for the company of those whose hearts want only His Darshan."
+    "First, it begins by linking repeated remembrance directly to peace and the easing of anguish in the body.",
+    "Then, it magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
+    "Finally, it ends with longing for the company of those whose hearts want only His Darshan."
   ],
   "keyVerseIds": [
     11502,
@@ -151,10 +151,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It widens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
+      "coreClaim": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It broadens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
       "emotionalState": "overthinking, restless, drifting",
-      "turn": "The middle magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
-      "practicalImplication": "This is for the person whose worry has moved into the chest, gut, and shoulders. Held steadily, it gives simran a bodily honesty instead of leaving it as decorative language. Carry remembrance into the body before worry settles there.",
+      "turn": "Then, it magnifies the Name by placing scripture and glory beneath the One Word of the Lord.",
+      "practicalImplication": "This is for anyone whose worry has moved into the chest, gut, and shoulders. Kept near, it gives simran a bodily honesty instead of leaving it as decorative language. Hold onto this: carry remembrance into the body before worry settles there.",
       "bannedOverreach": []
     },
     "scores": {
@@ -162,9 +162,9 @@
       "clarity": 4.23,
       "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.64,
-      "beauty": 4.23,
-      "overall": 4.29
+      "usefulness": 5,
+      "beauty": 4.09,
+      "overall": 4.33
     },
     "strengths": [
       "specificity",

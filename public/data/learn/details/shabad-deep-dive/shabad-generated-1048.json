@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-1048",
-  "title": "Minds And Bodies Of His Devotees",
+  "title": "Love fills the minds and bodies of the devoted",
   "subtitle": "Raag Gauree · Ang 290",
-  "summary": "This shabad opens with the minds and bodies of His devotees are infused with His Love. It turns the heart toward o Nanak, He is contained among all.",
-  "whyItMatters": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, He is contained among all.",
+  "summary": "The shabad begins with love rising inside the mind and body as a real hunger for darshan and holy company. It asks for one mercy only, the grace to chant Naam, and ends by widening the heart into the Lord's presence everywhere.",
+  "whyItMatters": "This one speaks to the person who feels unworthy, guarded, or tired of being hard on themselves. Kept close, it makes yearning honest again and shows that mercy often arrives through saintly company and the simple grace to remember.",
+  "takeaway": "Ask for the grace to remember, and let love soften the guarded heart.",
   "themes": [
     "mercy",
     "forgiveness",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: the minds and bodies of His devotees are infused with His Love.",
-    "The middle movement widens the correction through rare is the one who obtains their company.",
-    "It closes with a return you can actually keep: o Nanak, He is contained among all."
+    "First, it names love and yearning as the true movement inside the devotee.",
+    "Then, it praises the company of the holy, where the mind blossoms and devotion deepens.",
+    "Finally, it asks for the one essential gift, Naam, and sees the Lord pervading all."
   ],
   "keyVerseIds": [
     13151,
@@ -141,24 +141,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with the minds and bodies of His devotees are infused with His Love. It turns the heart toward o Nanak, He is contained among all.",
+      "coreClaim": "The shabad begins with love rising inside the mind and body as a real hunger for darshan and holy company. It asks for one mercy only, the grace to chant Naam, and ends by widening the heart into the Lord's presence everywhere.",
       "emotionalState": "unworthy, guarded, hard-on-self",
-      "turn": "The middle movement widens the correction through rare is the one who obtains their company.",
-      "practicalImplication": "It matters when life feels unworthy, guarded, and hard-on-self because the shabad keeps mercy inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, He is contained among all.",
+      "turn": "Then, it praises the company of the holy, where the mind blossoms and devotion deepens.",
+      "practicalImplication": "This one speaks to the person who feels unworthy, guarded, or tired of being hard on themselves. Kept close, it makes yearning honest again and shows that mercy often arrives through saintly company and the simple grace to remember. Ask for the grace to remember, and let love soften the guarded heart.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.57,
-      "specificity": 4.78,
+      "clarity": 4.35,
+      "specificity": 4.96,
       "emotionalHonesty": 4,
-      "usefulness": 4.36,
-      "beauty": 3.96,
-      "overall": 4.2
+      "usefulness": 4.94,
+      "beauty": 4.51,
+      "overall": 4.51
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

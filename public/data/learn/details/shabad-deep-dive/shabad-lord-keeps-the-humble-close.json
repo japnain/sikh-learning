@@ -2,9 +2,9 @@
   "id": "shabad-lord-keeps-the-humble-close",
   "title": "The humble are kept close",
   "subtitle": "Raag Raamkalee · Ang 882",
-  "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
-  "whyItMatters": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord.",
-  "takeaway": "Stay humble enough to be kept close and cherished by the Lord.",
+  "summary": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It carries the listener through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
+  "whyItMatters": "This one meets the person whose sense of worth keeps depending on attention, beauty, or riches. Stayed with gently, it turns worth into something received from being held near the Lord.",
+  "takeaway": "Hold onto this: stay humble enough to be kept close and cherished by the Lord.",
   "themes": [
     "self-worth",
     "humility",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "It opens by making the Guru the giver of inward life and remembrance.",
-    "The middle contrasts that gift with the restless begging of desire and wealth.",
-    "It ends with the Lord as father and mother, keeping the humble servant close."
+    "First, it begins by making the Guru the giver of inward life and remembrance.",
+    "Then, it contrasts that gift with the restless begging of desire and wealth.",
+    "Finally, it ends with the Lord as father and mother, keeping the humble servant close."
   ],
   "keyVerseIds": [
     37468,
@@ -153,24 +153,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It moves through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
+      "coreClaim": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It carries the listener through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "The middle contrasts that gift with the restless begging of desire and wealth.",
-      "practicalImplication": "This is for the person whose sense of worth keeps depending on attention, beauty, or riches. Held gently, it turns worth into something received from being held near the Lord. Stay humble enough to be kept close and cherished by the Lord.",
+      "turn": "Then, it contrasts that gift with the restless begging of desire and wealth.",
+      "practicalImplication": "This one meets the person whose sense of worth keeps depending on attention, beauty, or riches. Stayed with gently, it turns worth into something received from being held near the Lord. Hold onto this: stay humble enough to be kept close and cherished by the Lord.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.6,
+      "specificity": 4.78,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.76,
-      "beauty": 4.33,
-      "overall": 4.12
+      "usefulness": 4.36,
+      "beauty": 4.49,
+      "overall": 4.26
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true

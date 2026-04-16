@@ -2,9 +2,9 @@
   "id": "shabad-steadied-by-creator",
   "title": "Why waver under a merciful Creator",
   "subtitle": "Raag Tilang",
-  "summary": "The shabad opens by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
-  "whyItMatters": "This is for the person spiraling over provision, safety, or the future. Held steadily, it pulls the mind back under mercy and teaches trust while breath remains.",
-  "takeaway": "The Creator's mercy is steadier than your wavering.",
+  "summary": "The shabad begins by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
+  "whyItMatters": "This is for anyone who feels spiraling over provision, safety, or the future. Taken steadily, it pulls the mind back under mercy and teaches trust while breath remains.",
+  "takeaway": "Let this stay with you: the Creator's mercy is steadier than your wavering.",
   "themes": [
     "anxiety",
     "fear",
@@ -119,9 +119,9 @@
     }
   ],
   "structure": [
-    "It opens with mercy as the atmosphere of the Lord's relation to creation.",
-    "The middle asks the trembling heart why it doubts the care of the One who made it.",
-    "It ends in breath-by-breath devotion and a prayer to find peace through mercy."
+    "First, it starts with mercy as the atmosphere of the Lord's relation to creation.",
+    "Then, it asks the trembling heart why it doubts the care of the One who made it.",
+    "Finally, it ends in breath-by-breath devotion and a prayer to find peace through mercy."
   ],
   "keyVerseIds": [
     30985,
@@ -158,24 +158,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
+      "coreClaim": "The shabad begins by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "The middle asks the trembling heart why it doubts the care of the One who made it.",
-      "practicalImplication": "This is for the person spiraling over provision, safety, or the future. Held steadily, it pulls the mind back under mercy and teaches trust while breath remains. The Creator's mercy is steadier than your wavering.",
+      "turn": "Then, it asks the trembling heart why it doubts the care of the One who made it.",
+      "practicalImplication": "This is for anyone who feels spiraling over provision, safety, or the future. Taken steadily, it pulls the mind back under mercy and teaches trust while breath remains. Let this stay with you: the Creator's mercy is steadier than your wavering.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.35,
-      "specificity": 4.96,
+      "specificity": 5,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.44,
-      "beauty": 4.69,
-      "overall": 4.25
+      "usefulness": 4.8,
+      "beauty": 4.53,
+      "overall": 4.43
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

@@ -2,9 +2,9 @@
   "id": "shabad-ambrosial-speech-pure-conduct",
   "title": "Religion measured by Naam and conduct",
   "subtitle": "Raag Gauree · Ang 266",
-  "summary": "The shabad begins by ranking the path plainly: the best religion is Naam joined to pure conduct. It widens through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
-  "whyItMatters": "This is for the person whose language of devotion has started outrunning the life carrying it. Held honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior.",
-  "takeaway": "The truest religion is clean conduct sustained by Naam.",
+  "summary": "The shabad opens by ranking the path plainly: the best religion is Naam joined to pure conduct. It moves through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
+  "whyItMatters": "This one meets the person whose language of devotion has started outrunning the life carrying it. Stayed with honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior.",
+  "takeaway": "Hold onto this: the truest religion is clean conduct sustained by Naam.",
   "themes": [
     "speech",
     "discipline",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by redefining religion, not as display but as remembrance joined to conduct.",
-    "The middle turns from ritual prestige to inner cleansing in the company of the holy.",
-    "It ends with Naam kept in the heart until devotion becomes lived character."
+    "First, it begins by redefining religion, not as display but as remembrance joined to conduct.",
+    "Then, it turns from ritual prestige to inner cleansing in the company of the holy.",
+    "Finally, it ends with Naam kept in the heart until devotion becomes lived character."
   ],
   "keyVerseIds": [
     11742,
@@ -147,10 +147,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad begins by ranking the path plainly: the best religion is Naam joined to pure conduct. It widens through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
+      "coreClaim": "The shabad opens by ranking the path plainly: the best religion is Naam joined to pure conduct. It moves through cleansing the dirty mind in holy company and ends with the Lord's Name kept living in the heart.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The middle turns from ritual prestige to inner cleansing in the company of the holy.",
-      "practicalImplication": "This is for the person whose language of devotion has started outrunning the life carrying it. Held honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior. The truest religion is clean conduct sustained by Naam.",
+      "turn": "Then, it turns from ritual prestige to inner cleansing in the company of the holy.",
+      "practicalImplication": "This one meets the person whose language of devotion has started outrunning the life carrying it. Stayed with honestly, it closes the split between speech and conduct and makes remembrance answerable to daily behavior. Hold onto this: the truest religion is clean conduct sustained by Naam.",
       "bannedOverreach": []
     },
     "scores": {
@@ -158,13 +158,13 @@
       "clarity": 4.35,
       "specificity": 4.78,
       "emotionalHonesty": 3.36,
-      "usefulness": 3.98,
-      "beauty": 4.18,
-      "overall": 4.2
+      "usefulness": 4.72,
+      "beauty": 4.03,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

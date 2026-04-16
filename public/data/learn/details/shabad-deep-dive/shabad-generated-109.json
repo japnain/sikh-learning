@@ -3,8 +3,8 @@
   "title": "The Shabad clears the double mind",
   "subtitle": "Siree Raag · Ang 35",
   "summary": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
-  "whyItMatters": "This is for the person who keeps reopening certainty until it turns cloudy. Held faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins.",
-  "takeaway": "Stay with the Shabad until duality loses its grip.",
+  "whyItMatters": "This is for anyone who keeps reopening certainty until it turns cloudy. Taken faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins.",
+  "takeaway": "Carry this with you: stay with the Shabad until duality loses its grip.",
   "themes": [
     "doubt",
     "restlessness",
@@ -168,9 +168,9 @@
     }
   ],
   "structure": [
-    "It opens with the Guru's word filling the heart with reverent seriousness.",
-    "The middle keeps the soul in true company until mental duality starts to fall away.",
-    "It ends in truthful speech and mind because love has replaced inner division."
+    "First, it starts with the Guru's word filling the heart with reverent seriousness.",
+    "Then, it keeps the soul in true company until mental duality starts to fall away.",
+    "Finally, it ends in truthful speech and mind because love has replaced inner division."
   ],
   "keyVerseIds": [
     1449,
@@ -209,22 +209,22 @@
     "evidence": {
       "coreClaim": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
       "emotionalState": "foggy, uncertain, hesitant",
-      "turn": "The middle keeps the soul in true company until mental duality starts to fall away.",
-      "practicalImplication": "This is for the person who keeps reopening certainty until it turns cloudy. Held faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins. Stay with the Shabad until duality loses its grip.",
+      "turn": "Then, it keeps the soul in true company until mental duality starts to fall away.",
+      "practicalImplication": "This is for anyone who keeps reopening certainty until it turns cloudy. Taken faithfully, it gives doubt a cleaner answer than endless thought: remain with the Shabad until the split mind thins. Carry this with you: stay with the Shabad until duality loses its grip.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.23,
-      "specificity": 4.78,
+      "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.98,
-      "beauty": 4.45,
-      "overall": 4.25
+      "usefulness": 4.58,
+      "beauty": 4.29,
+      "overall": 4.34
     },
     "strengths": [
       "specificity",
-      "beauty"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

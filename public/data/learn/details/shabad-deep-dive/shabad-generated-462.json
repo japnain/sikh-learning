@@ -2,9 +2,9 @@
   "id": "shabad-generated-462",
   "title": "A passing life is too small for gossip",
   "subtitle": "Raag Gauree · Ang 154",
-  "summary": "The shabad begins by calling the body comfortable yet temporary, a passing drama. It presses on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
-  "whyItMatters": "This is for the person wasting precious energy on gossip, image, and false urgency. Held honestly, it brings mortality close enough to make the tongue and choices cleaner.",
-  "takeaway": "Remember the shortness of life before you spend it in gossip.",
+  "summary": "The shabad opens by calling the body comfortable yet temporary, a passing drama. It leans harder on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
+  "whyItMatters": "This one meets the person wasting precious energy on gossip, image, and false urgency. Stayed with honestly, it brings mortality close enough to make the tongue and choices cleaner.",
+  "takeaway": "Carry this with you: remember the shortness of life before you spend it in gossip.",
   "themes": [
     "restlessness",
     "ego",
@@ -203,9 +203,9 @@
     }
   ],
   "structure": [
-    "It opens by stripping comfort of its illusion of permanence.",
-    "The middle names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
-    "It ends by asking what deeds will remain once the passing drama closes."
+    "First, it begins by stripping comfort of its illusion of permanence.",
+    "Then, it names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
+    "Finally, it ends by asking what deeds will remain once the passing drama closes."
   ],
   "keyVerseIds": [
     6434,
@@ -242,10 +242,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins by calling the body comfortable yet temporary, a passing drama. It presses on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
+      "coreClaim": "The shabad opens by calling the body comfortable yet temporary, a passing drama. It leans harder on through greed, falsehood, and slander, then pleads for deeds that will remain when the performance is over.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The middle names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
-      "practicalImplication": "This is for the person wasting precious energy on gossip, image, and false urgency. Held honestly, it brings mortality close enough to make the tongue and choices cleaner. Remember the shortness of life before you spend it in gossip.",
+      "turn": "Then, it names greed, falsehood, and slander as a heavy burden the body cannot keep carrying forever.",
+      "practicalImplication": "This one meets the person wasting precious energy on gossip, image, and false urgency. Stayed with honestly, it brings mortality close enough to make the tongue and choices cleaner. Carry this with you: remember the shortness of life before you spend it in gossip.",
       "bannedOverreach": []
     },
     "scores": {
@@ -253,9 +253,9 @@
       "clarity": 4.29,
       "specificity": 5,
       "emotionalHonesty": 3,
-      "usefulness": 4.42,
-      "beauty": 4.17,
-      "overall": 4.23
+      "usefulness": 5,
+      "beauty": 4.01,
+      "overall": 4.29
     },
     "strengths": [
       "specificity",

@@ -2,9 +2,9 @@
   "id": "shabad-generated-63",
   "title": "Remember together, not in isolation",
   "subtitle": "Siree Raag · Ang 17",
-  "summary": "The shabad opens by calling spiritual companions close and asking them to speak of the Lord together. It widens through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
-  "whyItMatters": "This is for the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again.",
-  "takeaway": "Holy company teaches the heart how to remember well.",
+  "summary": "The shabad begins by calling spiritual companions close and asking them to speak of the Lord together. It carries the listener through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
+  "whyItMatters": "This one meets the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again.",
+  "takeaway": "Let this stay with you: holy company teaches the heart how to remember well.",
   "themes": [
     "gratitude",
     "patience",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens in embrace and shared storytelling rather than private striving.",
-    "The middle learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
-    "It ends in the True King's power to absorb the truthful into Himself."
+    "First, it opens in embrace and shared storytelling rather than private striving.",
+    "Then, it learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
+    "Finally, it ends in the True King's power to absorb the truthful into Himself."
   ],
   "keyVerseIds": [
     729,
@@ -179,10 +179,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by calling spiritual companions close and asking them to speak of the Lord together. It widens through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
+      "coreClaim": "The shabad begins by calling spiritual companions close and asking them to speak of the Lord together. It carries the listener through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
       "emotionalState": "dull, entitled, forgetful",
-      "turn": "The middle learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
-      "practicalImplication": "This is for the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again. Holy company teaches the heart how to remember well.",
+      "turn": "Then, it learns from the happy soul-brides that ease, contentment, and sweet speech prepare true meeting.",
+      "practicalImplication": "This one meets the person whose remembrance has gone flat in private heaviness. Held warmly, it turns companionship into a place where gratitude, virtue, and shared remembrance can breathe again. Let this stay with you: holy company teaches the heart how to remember well.",
       "bannedOverreach": []
     },
     "scores": {
@@ -190,9 +190,9 @@
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 4.04,
-      "beauty": 4.69,
-      "overall": 4.29
+      "usefulness": 4.8,
+      "beauty": 4.85,
+      "overall": 4.43
     },
     "strengths": [
       "specificity",

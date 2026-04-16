@@ -2,9 +2,9 @@
   "id": "shabad-generated-228",
   "title": "Learning without inward turning stays trapped in Maya",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "The shabad opens by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
-  "whyItMatters": "This is for the person hiding inside religious language, intellect, or correction. Held honestly, it strips away borrowed authority and asks whether the heart has actually turned.",
-  "takeaway": "Knowledge without inward freedom still serves attachment.",
+  "summary": "The shabad begins by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
+  "whyItMatters": "This is for anyone who feels hiding inside religious language, intellect, or correction. Taken seriously, it strips away borrowed authority and asks whether the heart has actually turned.",
+  "takeaway": "Hold onto this: knowledge without inward freedom still serves attachment.",
   "themes": [
     "attachment",
     "loneliness",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "It opens by exposing scholarship still chained to Maya.",
-    "The middle shows how easily teaching the world can become another form of duality.",
-    "It ends by naming the cost: a life spent repeating what was never inwardly known."
+    "First, it begins by exposing scholarship still chained to Maya.",
+    "Then, it shows how easily teaching the world can become another form of duality.",
+    "Finally, it ends by naming the cost: a life spent repeating what was never inwardly known."
   ],
   "keyVerseIds": [
     3442,
@@ -109,10 +109,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
+      "coreClaim": "The shabad begins by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
       "emotionalState": "clingy, possessive, afraid-to-lose",
-      "turn": "The middle shows how easily teaching the world can become another form of duality.",
-      "practicalImplication": "This is for the person hiding inside religious language, intellect, or correction. Held honestly, it strips away borrowed authority and asks whether the heart has actually turned. Knowledge without inward freedom still serves attachment.",
+      "turn": "Then, it shows how easily teaching the world can become another form of duality.",
+      "practicalImplication": "This is for anyone who feels hiding inside religious language, intellect, or correction. Taken seriously, it strips away borrowed authority and asks whether the heart has actually turned. Hold onto this: knowledge without inward freedom still serves attachment.",
       "bannedOverreach": []
     },
     "scores": {
@@ -120,13 +120,13 @@
       "clarity": 4.05,
       "specificity": 4.96,
       "emotionalHonesty": 3.54,
-      "usefulness": 3.82,
-      "beauty": 4.01,
-      "overall": 4.16
+      "usefulness": 4.58,
+      "beauty": 3.85,
+      "overall": 4.25
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

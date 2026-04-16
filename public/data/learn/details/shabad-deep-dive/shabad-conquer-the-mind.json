@@ -2,9 +2,9 @@
   "id": "shabad-conquer-the-mind",
   "title": "Wear contentment before you speak of conquest",
   "subtitle": "Japji Sahib, Pauri 28",
-  "summary": "The shabad opens by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It widens into brotherhood and lands where true conquest happens, in the mind rather than the room.",
-  "whyItMatters": "This is for the person tempted by spiritual image, intensity, or performance. Held honestly, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
-  "takeaway": "Conquer the mind before trying to conquer the world.",
+  "summary": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
+  "whyItMatters": "This is for anyone who feels tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
+  "takeaway": "Hold onto this: conquer the mind before trying to conquer the world.",
   "themes": [
     "discipline",
     "mind",
@@ -70,9 +70,9 @@
     }
   ],
   "structure": [
-    "It opens by turning external marks of seriousness into inward discipline.",
-    "The middle widens the field into brotherhood and a different measure of strength.",
-    "It ends with conquest relocated to the mind and bowed before the Primal One."
+    "First, it begins by turning external marks of seriousness into inward discipline.",
+    "Then, it widens the field into brotherhood and a different measure of strength.",
+    "Finally, it ends with conquest relocated to the mind and bowed before the Primal One."
   ],
   "keyVerseIds": [
     290,
@@ -108,10 +108,10 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad opens by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It widens into brotherhood and lands where true conquest happens, in the mind rather than the room.",
+      "coreClaim": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "The middle widens the field into brotherhood and a different measure of strength.",
-      "practicalImplication": "This is for the person tempted by spiritual image, intensity, or performance. Held honestly, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake. Conquer the mind before trying to conquer the world.",
+      "turn": "Then, it widens the field into brotherhood and a different measure of strength.",
+      "practicalImplication": "This is for anyone who feels tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake. Hold onto this: conquer the mind before trying to conquer the world.",
       "bannedOverreach": []
     },
     "scores": {
@@ -119,13 +119,13 @@
       "clarity": 4.35,
       "specificity": 5,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.88,
-      "beauty": 4.21,
-      "overall": 4.19
+      "usefulness": 4.64,
+      "beauty": 4.05,
+      "overall": 4.28
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "usefulness"
     ],
     "issues": [],
     "reviewedByHuman": true

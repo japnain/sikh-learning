@@ -1,10 +1,10 @@
 {
   "id": "shabad-generated-1046",
-  "title": "Why Forget Him, Who Does Not Overlook",
+  "title": "Do not forget the One who never forgets you",
   "subtitle": "Raag Gauree · Ang 289",
-  "summary": "This shabad opens with why forget Him, who does not overlook our efforts. It turns the heart toward o Nanak, God's humble servants meditate on Him.",
-  "whyItMatters": "It matters when life feels performing, transactional, and dry because the shabad keeps seva inside remembrance, conduct, and the Creator's larger care instead of private momentum.",
-  "takeaway": "Keep returning to this turn: O Nanak, God's humble servants meditate on Him.",
+  "summary": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
+  "whyItMatters": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding.",
+  "takeaway": "Remember the Giver before you start measuring your effort.",
   "themes": [
     "seva",
     "shame",
@@ -105,9 +105,9 @@
     }
   ],
   "structure": [
-    "It opens by naming the condition without ornament: why forget Him, who does not overlook our efforts.",
-    "The middle movement widens the correction through by Guru's Grace, rare is the one who realizes this.",
-    "It closes with a return you can actually keep: o Nanak, God's humble servants meditate on Him."
+    "First, it repeats the question until forgetfulness starts looking unreasonable.",
+    "Then, it names the Lord as giver, life-source, protector, and rescuer from corruption.",
+    "Finally, it says the heart understands this through the Guru and answers by meditating on the Lord."
   ],
   "keyVerseIds": [
     13127,
@@ -141,20 +141,20 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "This shabad opens with why forget Him, who does not overlook our efforts. It turns the heart toward o Nanak, God's humble servants meditate on Him.",
+      "coreClaim": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
       "emotionalState": "performing, transactional, dry",
-      "turn": "The middle movement widens the correction through by Guru's Grace, rare is the one who realizes this.",
-      "practicalImplication": "It matters when life feels performing, transactional, and dry because the shabad keeps seva inside remembrance, conduct, and the Creator's larger care instead of private momentum. Keep returning to this turn: O Nanak, God's humble servants meditate on Him.",
+      "turn": "Then, it names the Lord as giver, life-source, protector, and rescuer from corruption.",
+      "practicalImplication": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding. Remember the Giver before you start measuring your effort.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
-      "clarity": 3.57,
-      "specificity": 4.78,
-      "emotionalHonesty": 3.72,
-      "usefulness": 3.98,
-      "beauty": 3.95,
-      "overall": 4.1
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 3.82,
+      "beauty": 4.33,
+      "overall": 4.24
     },
     "strengths": [
       "specificity",

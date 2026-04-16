@@ -2,9 +2,9 @@
   "id": "shabad-generated-65",
   "title": "Praise melts what comparison hardens",
   "subtitle": "Siree Raag · Ang 18",
-  "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
-  "whyItMatters": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming.",
-  "takeaway": "Let praise, saintly company, and true action soften the self into homecoming.",
+  "summary": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It carries the listener through saintly dust, true action, and the home of the self being found within.",
+  "whyItMatters": "This is for anyone whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Kept near, it softens the separate self and turns it toward praise, holy company, and homecoming.",
+  "takeaway": "Let this stay with you: let praise, saintly company, and true action soften the self into homecoming.",
   "themes": [
     "comparison",
     "self-worth",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "It opens by picturing praise as fusion instead of performance.",
-    "The middle turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
-    "It ends in homecoming, where other hopes are abandoned and the One is beheld."
+    "First, it begins by picturing praise as fusion instead of performance.",
+    "Then, it turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
+    "Finally, it ends in homecoming, where other hopes are abandoned and the One is beheld."
   ],
   "keyVerseIds": [
     759,
@@ -180,24 +180,24 @@
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It moves through saintly dust, true action, and the home of the self being found within.",
+      "coreClaim": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It carries the listener through saintly dust, true action, and the home of the self being found within.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "The middle turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
-      "practicalImplication": "This is for the person whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Held steadily, it softens the separate self and turns it toward praise, holy company, and homecoming. Let praise, saintly company, and true action soften the self into homecoming.",
+      "turn": "Then, it turns toward saintly company, true action, and the Guru as the way beyond anxiety and the three qualities.",
+      "practicalImplication": "This is for anyone whose mind keeps hardening around comparison, self-consciousness, or restless ambition. Kept near, it softens the separate self and turns it toward praise, holy company, and homecoming. Let this stay with you: let praise, saintly company, and true action soften the self into homecoming.",
       "bannedOverreach": []
     },
     "scores": {
       "faithfulness": 4.4,
       "clarity": 4.29,
-      "specificity": 4.78,
+      "specificity": 4.96,
       "emotionalHonesty": 3.18,
-      "usefulness": 3.6,
-      "beauty": 4.33,
-      "overall": 4.13
+      "usefulness": 4.2,
+      "beauty": 4.49,
+      "overall": 4.27
     },
     "strengths": [
       "specificity",
-      "faithfulness"
+      "beauty"
     ],
     "issues": [],
     "reviewedByHuman": true
