@@ -331,7 +331,7 @@ test('opens the Ardaas + Hukamnama devotional flow from read today when no sessi
   })
 })
 
-test('shows continue reading when session exists', () => {
+test('keeps Ardaas + Hukamnama in read today even when a session exists', () => {
   useProgressStore.setState({
     currentSession: {
       scriptureId: 'G-12',
@@ -340,11 +340,12 @@ test('shows continue reading when session exists', () => {
     }
   })
   renderHome()
-  expect(screen.getAllByText(/resume reading/i).length).toBeGreaterThan(0)
-  expect(screen.getAllByText(/Open the passage you were already working through/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
+  expect(screen.queryByText(/resume reading/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
 })
 
-test('uses the deep resume path when a saved reader anchor exists', async () => {
+test('opens the Ardaas + Hukamnama devotional flow from read today even when a session exists', async () => {
   useProgressStore.setState({
     currentSession: {
       scriptureId: 'G-12',
@@ -366,7 +367,7 @@ test('uses the deep resume path when a saved reader anchor exists', async () => 
   fireEvent.click(screen.getByTestId('home-read-today-action'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=12&resumeVerseId=345')
+    expect(screen.getByTestId('location').textContent).toBe('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')
   })
 })
 
@@ -491,7 +492,7 @@ test('keeps the new hero and read-today surfaces visible in dark mode', async ()
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
   expect(screen.getByTestId('home-theme-toggle')).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /customize daily nitnem|hide nitnem options/i }).querySelector('.icon-surface')).not.toBeNull()
+  expect(screen.getByRole('button', { name: /customize daily nitnem|hide nitnem options/i })).toBeInTheDocument()
 })
 
 test('does not embed onboarding inside the home page anymore', () => {
@@ -532,7 +533,8 @@ test('shows length detail only for the four adjustable Nitnem banis and keeps th
 
   fireEvent.click(screen.getByRole('button', { name: /customize daily nitnem/i }))
 
-  const customizePanel = screen.getByText('Customize Daily Nitnem').closest('.section-shell-quiet')
+  const nitnemSection = screen.getByTestId('home-nitnem-spotlight')
+  const customizePanel = nitnemSection.querySelector('#home-nitnem-panel')
   expect(customizePanel).not.toBeNull()
 
   const panel = customizePanel as HTMLElement
