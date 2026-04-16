@@ -2,759 +2,841 @@ import type { TopicOverridePayload } from "../../types"
 
 export const TOPIC_COPY_OVERRIDES = {
   "topic-anxiety": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "The mind runs ahead of the day, rehearsing outcomes it cannot yet carry and calling that vigilance.",
+    "centralInsight": "Gurbani does not shame fear or ask you to deny it. It gathers the mind back under Hukam, Naam, and the care already holding you.",
+    "practicalReflection": "Anxiety grows by making imagined trouble feel more immediate than present grace. The turn is not passivity; it is letting remembrance steady you before planning takes over.",
+    "actionPrompt": "Before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it.",
     "excerpts": [
       {
-        "explanation": "The verse interrupts anxiety before it turns into weather. It gives the heart more room than the panic story allows.",
+        "explanation": "This excerpt interrupts forecasting danger by turning the heart back toward steadier trust.",
         "source": {
-          "shortMeaning": "The line interrupts panic by opening the heart back into steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Anxiety loosens when the heart is brought back under Hukam, remembrance, and received care.",
+          "lifeApplication": "Before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "This excerpt gives fear a narrower claim and care a larger one. Anxiety stops sounding like the only honest reading of the moment.",
+        "explanation": "This passage loosens forecasting danger by returning the mind to Hukam, remembrance, and received care instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Fear loses authority when care is allowed to speak more loudly.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Anxiety loses some of its claim when the mind returns to steadier trust.",
+          "lifeApplication": "Before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "Gurbani does not negotiate with panic here; it re-seats the heart inside received care.",
+        "explanation": "The inner room widens here because anxiety is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Anxiety is brought back under the care already present.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Anxiety stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       }
     ]
   },
   "topic-anger": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Heat rises fast, and the mind starts calling reaction honesty, urgency, or strength.",
+    "centralInsight": "Gurbani names anger as fire that burns discernment. The answer is not suppression but cooling through Naam, humility, and disciplined speech.",
+    "practicalReflection": "Anger often borrows the language of justice while quietly centering the injured self. Real strength appears in the pause where heat no longer owns the tongue.",
+    "actionPrompt": "Before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath.",
     "excerpts": [
       {
-        "explanation": "The verse lowers anger before it can recruit righteousness. Heat is not allowed to pose as clarity.",
+        "explanation": "This excerpt interrupts the heat of self-defense by turning the heart back toward clean restraint.",
         "source": {
-          "shortMeaning": "Anger loses momentum when the heart is turned back toward steadiness.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Anger loosens when the heart is brought back under Naam, humility, and softened speech.",
+          "lifeApplication": "Before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "What this excerpt gives the heated mind is praise instead of self-defense. The center of gravity moves away from reaction.",
+        "explanation": "This passage loosens the heat of self-defense by returning the mind to Naam, humility, and softened speech instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The heated mind is turned from self-defense back toward Naam.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Anger loses some of its claim when the mind returns to clean restraint.",
+          "lifeApplication": "Before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "The line takes the fire away from the tongue and hands it to Naam. That is how the room widens again.",
+        "explanation": "The inner room widens here because anger is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Naam cools the anger that was about to speak for the whole self.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Anger stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       }
     ]
   },
   "topic-comparison": {
-    "reviewedByHuman": true,
-    "issueStatement": "Another person's portion keeps entering the room before your own calling does. Comparison is no longer occasional; it is deciding how large or small your life feels.",
-    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives portions. Rivalry fades when the gift given to them no longer cancels the work given to you.",
-    "practicalReflection": "Comparison survives on sideways attention. The correction is simple but severe: bless what was given there, then come back to what is yours to keep.",
-    "actionPrompt": "Before naming another person's advantage again, bless their portion once and name the duty already placed in your own hands.",
+    "reviewedByHuman": false,
+    "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures.",
+    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion.",
+    "practicalReflection": "Comparison survives on sideways attention. Peace returns when another person's gift is blessed rather than used as evidence against your own life.",
+    "actionPrompt": "Before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you.",
     "excerpts": [
       {
-        "explanation": "The verse breaks comparison by returning the gaze to your own duty. Rivalry loses force when remembrance becomes more urgent than ranking.",
+        "explanation": "This excerpt interrupts sideways measurement by turning the heart back toward your entrusted work.",
         "source": {
-          "shortMeaning": "Comparison loosens when the gaze is brought home to duty and remembrance.",
-          "lifeApplication": "When your eyes start wandering sideways in the meeting, return them to the work already given you."
+          "shortMeaning": "Comparison loosens when the heart is brought back under praise, duty, and contentment.",
+          "lifeApplication": "Before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "This excerpt rescues worth from the eyes of other people and places it inside holy company.",
+        "explanation": "This passage loosens sideways measurement by returning the mind to praise, duty, and contentment instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Worth steadies when holy company gives the heart a truer scale than applause.",
-          "lifeApplication": "After someone else's good news, bless it once before you start measuring your own life against it."
+          "shortMeaning": "Comparison loses some of its claim when the mind returns to your entrusted work.",
+          "lifeApplication": "Before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "The line loosens rivalry by restoring the heart to a steadier measure than envy can offer.",
+        "explanation": "The inner room widens here because comparison is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Proportion returns when praise and duty replace rivalry as the day's measure.",
-          "lifeApplication": "When the scroll starts shrinking your day, set the phone down and name the work already in your hands."
+          "shortMeaning": "Comparison stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       }
     ]
   },
   "topic-loneliness": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Even while moving through the day, the heart feels unaccompanied, harder to reach, and easier to abandon to its own story.",
+    "centralInsight": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone.",
+    "practicalReflection": "Loneliness becomes dangerous when it starts speaking as final truth. The turn begins when the heart stops treating separation as identity and starts moving toward living company.",
+    "actionPrompt": "Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day.",
     "excerpts": [
       {
-        "explanation": "The verse does not flatter loneliness; it leads it toward company. Isolation is treated as a place to be guided out of, not interpreted forever.",
+        "explanation": "This excerpt interrupts letting isolation narrate the heart by turning the heart back toward truthful connection.",
         "source": {
-          "shortMeaning": "Loneliness is led toward company instead of being left alone with itself.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Loneliness loosens when the heart is brought back under sangat, prayer, and the Lord's nearness.",
+          "lifeApplication": "Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "Gurbani denies the mind the right to call isolation final. The doorway out is companionship shaped by remembrance.",
+        "explanation": "This passage loosens letting isolation narrate the heart by returning the mind to sangat, prayer, and the Lord's nearness instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The line refuses to let loneliness become a final verdict.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Loneliness loses some of its claim when the mind returns to truthful connection.",
+          "lifeApplication": "Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "The line restores care and companionship before despair can harden into identity.",
+        "explanation": "The inner room widens here because loneliness is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Care becomes believable again before loneliness can harden into identity.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Loneliness stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       }
     ]
   },
   "topic-purpose": {
-    "reviewedByHuman": true,
-    "practicalReflection": "Purpose usually thins out in the middle of ordinary duty, not only in crisis. The correction matters because it asks whether this very day is being answered like a calling or merely managed.",
-    "actionPrompt": "Before the next task swallows the hour, choose one act that answers life as calling instead of maintenance.",
+    "reviewedByHuman": false,
+    "issueStatement": "The schedule may be full, yet the soul keeps asking what all this effort finally serves.",
+    "centralInsight": "Gurbani frames human life as a chance for meeting, service, and Naam. Purpose becomes clearer when life is received as trust, not merely managed as maintenance.",
+    "practicalReflection": "Loss of purpose is not always dramatic. Often it appears when daily work is no longer connected to devotion, usefulness, or the Giver.",
+    "actionPrompt": "Before the next task swallows the hour, choose one act that answers life as calling rather than maintenance.",
     "excerpts": [
       {
-        "explanation": "The verse rescues purpose from private ambition by tying it to guidance, company, and service the self does not get to own.",
+        "explanation": "This excerpt interrupts treating life as maintenance by turning the heart back toward entrusted purpose.",
         "source": {
-          "shortMeaning": "Purpose becomes cleaner when calling is shaped by guidance and service.",
-          "lifeApplication": "Before drifting into another task, choose one act that answers life as calling."
+          "shortMeaning": "Drift loosens when the heart is brought back under calling, service, and Naam.",
+          "lifeApplication": "Before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "It treats human life as something to answer, not merely something to survive. That shift returns weight to hours that had started feeling disposable.",
+        "explanation": "This passage loosens treating life as maintenance by returning the mind to calling, service, and Naam instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Life regains weight when it is answered as calling, not drift.",
-          "lifeApplication": "Before the day blurs again, choose one act that gives the hour back its weight."
+          "shortMeaning": "Drift loses some of its claim when the mind returns to entrusted purpose.",
+          "lifeApplication": "Before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "The line turns calling toward praise and holy usefulness, not self-importance or spiritual careerism.",
+        "explanation": "The inner room widens here because drift is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Purpose is made trustworthy when it bends toward praise and usefulness.",
-          "lifeApplication": "Before ambition borrows the language of calling, choose the useful act in front of you."
+          "shortMeaning": "Drift stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       }
     ]
   },
   "topic-attachment": {
-    "reviewedByHuman": true,
-    "practicalReflection": "Attachment reveals itself in the force of your reactions. What you cannot imagine losing without collapse has already been asked to become a lord. What changes here is not only mood, but the inner rule you let govern the next moment.",
-    "actionPrompt": "Before the mind gets another full run at the room, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "reviewedByHuman": false,
+    "issueStatement": "What you love has started dictating your weather. Approval, comfort, possession, or one hoped-for outcome feels necessary for peace.",
+    "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear.",
+    "practicalReflection": "Attachment reveals itself in the force of your reactions. When the hand cannot open, the heart has already asked the gift to become a lord.",
+    "actionPrompt": "When the grip tightens, loosen it and receive the gift without claiming the outcome.",
     "excerpts": [
       {
-        "explanation": "The verse catches attachment at the point where love begins turning into ownership. It refuses to call that intensity devotion.",
+        "explanation": "This excerpt interrupts the grip of possession by turning the heart back toward open-handedness.",
         "source": {
-          "shortMeaning": "Attachment is exposed at the moment love starts acting like ownership.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Attachment loosens when the heart is brought back under love of the Giver above the gift.",
+          "lifeApplication": "When the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "It teaches the heart to release without becoming cold. Praise becomes stronger than possession here.",
+        "explanation": "This passage loosens the grip of possession by returning the mind to love of the Giver above the gift instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Praise loosens the grip without freezing the heart.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Attachment loses some of its claim when the mind returns to open-handedness.",
+          "lifeApplication": "When the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "The line loosens the grip by making refuge more important than possession.",
+        "explanation": "The inner room widens here because attachment is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Attachment weakens when refuge matters more than possession.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Attachment stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "When the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       }
     ]
   },
   "topic-ego": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "The room may look calm, but inwardly everything is being measured through injury, credit, image, or control.",
+    "centralInsight": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment.",
+    "practicalReflection": "Ego often sounds reasonable from the inside. The correction is not self-hatred but truthful smallness, where praise matters more than being seen as right.",
+    "actionPrompt": "Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today.",
     "excerpts": [
       {
-        "explanation": "The verse exposes ego exactly where it sounds most reasonable. What felt like instinct is revealed as self-protection.",
+        "explanation": "This excerpt interrupts self-centering by turning the heart back toward honest smallness.",
         "source": {
-          "shortMeaning": "Ego is uncovered where it was pretending to be reason.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ego loosens when the heart is brought back under humility, service, and praise.",
+          "lifeApplication": "Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "It gives the self a truer task: bow, serve, and stop auditioning for centrality.",
+        "explanation": "This passage loosens self-centering by returning the mind to humility, service, and praise instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The self is lowered by praise before it can crown itself again.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ego loses some of its claim when the mind returns to honest smallness.",
+          "lifeApplication": "Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "The line cuts ego down by returning it to Naam rather than applause or argument.",
+        "explanation": "The inner room widens here because ego is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Naam interrupts ego before it can become the room's center.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ego stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       }
     ]
   },
   "topic-gratitude": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Mercy is still present, but the heart has narrowed around what is missing, delayed, or still not enough.",
+    "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than demanding a performance of positivity.",
+    "practicalReflection": "Gratitude is corrected sight, not cheerful denial. It begins when entitlement loosens and the heart relearns how much is already being carried for it.",
+    "actionPrompt": "Before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it.",
     "excerpts": [
       {
-        "explanation": "The verse retrains the eye that only notices what is missing. Gratitude begins as corrected sight here.",
+        "explanation": "This excerpt interrupts fixation on lack by turning the heart back toward thankful attention.",
         "source": {
-          "shortMeaning": "Gratitude begins when the eye is pulled back from lack.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude loosens when the heart is brought back under gift, mercy, and Naam.",
+          "lifeApplication": "Before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "It teaches gratitude as restored sight, not polite language. The line is trying to change vision, not manners.",
+        "explanation": "This passage loosens fixation on lack by returning the mind to gift, mercy, and Naam instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The Guru's guidance restores the sight gratitude depends on.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude loses some of its claim when the mind returns to thankful attention.",
+          "lifeApplication": "Before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "The line turns gift into praise before entitlement can swallow it whole.",
+        "explanation": "The inner room widens here because ingratitude is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Gift ripens into praise before entitlement can consume it.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       }
     ]
   },
   "topic-discipline": {
-    "reviewedByHuman": true,
-    "practicalReflection": "The correction matters because it interrupts the pattern where discipline usually feels most normal.",
-    "actionPrompt": "At the next embodied cue, choose one repeatable cue today and keep it without negotiation.",
+    "reviewedByHuman": false,
+    "issueStatement": "You mean it in the morning, but by midday the mind has started bargaining with fatigue, mood, and convenience.",
+    "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule.",
+    "practicalReflection": "Discipline is proven in ordinary interruptions, not ideal conditions. The practice becomes real when devotion can survive tiredness, boredom, and delay.",
+    "actionPrompt": "Choose one cue you can actually keep today, and when it comes, keep it without negotiation.",
     "excerpts": [
       {
-        "explanation": "The verse removes discipline from image and returns it to remembrance. Practice stops being theatre here.",
+        "explanation": "This excerpt interrupts bargaining with the practice by turning the heart back toward kept rhythm.",
         "source": {
-          "shortMeaning": "Discipline becomes real when remembrance matters more than appearance.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline loosens when the heart is brought back under remembered repetition and clean conduct.",
+          "lifeApplication": "Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "It makes repetition believable by joining it to humility instead of self-display.",
+        "explanation": "This passage loosens bargaining with the practice by returning the mind to remembered repetition and clean conduct instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Humility keeps repetition from hardening into performance.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline loses some of its claim when the mind returns to kept rhythm.",
+          "lifeApplication": "Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "The line says consistency is a spiritual posture, not a personality trait you either happen to have or lack.",
+        "explanation": "The inner room widens here because wavering discipline is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Consistency is learned under Naam, not inherited as temperament.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       }
     ]
   },
   "topic-seva": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "The work may still be useful, but inwardly it has started asking for witness, leverage, or emotional repayment.",
+    "centralInsight": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering.",
+    "practicalReflection": "Service is tested not only by what is done, but by what the heart tries to collect from it. Seva ripens when usefulness matters more than recognition.",
+    "actionPrompt": "Before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it.",
     "excerpts": [
       {
-        "explanation": "The verse clears seva of self-advertisement by placing it back under the Guru's guidance.",
+        "explanation": "This excerpt interrupts serving for inward profit by turning the heart back toward clean offering.",
         "source": {
-          "shortMeaning": "Seva becomes trustworthy when it stays under the Guru's guidance.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service loosens when the heart is brought back under hidden service, obedience, and remembrance.",
+          "lifeApplication": "Before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "Gurbani does not let service become a private performance here. The line gives the work back to obedience.",
+        "explanation": "This passage loosens serving for inward profit by returning the mind to hidden service, obedience, and remembrance instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Service is purified when it is given back to obedience.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service loses some of its claim when the mind returns to clean offering.",
+          "lifeApplication": "Before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "The line widens seva by placing it in holy company, where the self has fewer places to hide.",
+        "explanation": "The inner room widens here because self-conscious service is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Holy company keeps service from collapsing back into self-concern.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       }
     ]
   },
   "topic-hukam": {
-    "reviewedByHuman": true,
-    "issueStatement": "The mind keeps arguing with what has already been given. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten.",
-    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has arrived. Hukam restores proportion by ending the fantasy that refusal can rule reality.",
-    "practicalReflection": "Resistance always sounds specific and justified. That is why Hukam has to land in the next resisted fact, not in a grand speech about surrender.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps arguing with what has already arrived. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten.",
+    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has been given. Hukam restores proportion by ending the fantasy that refusal can rule reality.",
+    "practicalReflection": "Resistance feels powerful because it keeps the ego speaking. Peace begins when the heart stops pretending it can bargain its way outside the Command.",
     "actionPrompt": "Before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it.",
     "excerpts": [
       {
-        "explanation": "The verse takes Hukam out of abstraction and puts it back into the next thing you are refusing to receive.",
+        "explanation": "This excerpt interrupts arguing with what has already come by turning the heart back toward yielded obedience.",
         "source": {
-          "shortMeaning": "Hukam becomes real at the point where resistance finally loosens.",
-          "lifeApplication": "Before rewriting the moment in your head, name the fact you are refusing to receive."
+          "shortMeaning": "Resistance loosens when the heart is brought back under praise, obedience, and receiving what has come.",
+          "lifeApplication": "Before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "Gurbani refuses to make acceptance grim here. The heart is turned toward praise, not passive defeat.",
+        "explanation": "This passage loosens arguing with what has already come by returning the mind to praise, obedience, and receiving what has come instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Acceptance becomes alive when it bends toward praise instead of resignation.",
-          "lifeApplication": "When acceptance starts feeling grim, add praise before you add another complaint."
+          "shortMeaning": "Resistance loses some of its claim when the mind returns to yielded obedience.",
+          "lifeApplication": "Before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "The line widens the room by showing that surrender is not collapse; it is the return of proportion.",
+        "explanation": "The inner room widens here because resistance is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Hukam restores proportion where the self was trying to rule.",
-          "lifeApplication": "When the self swells against the day, lower the voice and answer the reality already in front of you."
+          "shortMeaning": "Resistance stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       }
     ]
   },
   "topic-doubt": {
-    "reviewedByHuman": true,
-    "practicalReflection": "The correction matters because it interrupts the pattern where doubt usually feels most normal.",
-    "actionPrompt": "Before the next hard moment, return to one clear line and stay with it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The question may be real, but the circling has become its own fire, and hesitation is starting to feel like home.",
+    "centralInsight": "Gurbani does not flatter doubt as depth. It cools the mind by giving it somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you.",
+    "practicalReflection": "Doubt becomes corrosive when it no longer seeks light but keeps postponing surrender. The turn is not blind certainty; it is obedient clarity.",
+    "actionPrompt": "Before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering.",
     "excerpts": [
       {
-        "explanation": "The verse does not flatter doubt as sophistication. It gives the mind back to the Guru's guidance before fog becomes identity.",
+        "explanation": "This excerpt interrupts circling hesitation by turning the heart back toward clear footing.",
         "source": {
-          "shortMeaning": "Doubt weakens when the mind is handed back to guidance.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Doubt loosens when the heart is brought back under Guru's word, sangat, and trust.",
+          "lifeApplication": "Before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "The line widens the room by placing uncertainty inside holy company, where confusion is less free to keep rehearsing itself.",
+        "explanation": "This passage loosens circling hesitation by returning the mind to Guru's word, sangat, and trust instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Holy company keeps confusion from becoming its own authority.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Doubt loses some of its claim when the mind returns to clear footing.",
+          "lifeApplication": "Before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "Gurbani refuses to let doubt become a private verdict. The line answers it with received care, not with endless analysis.",
+        "explanation": "The inner room widens here because doubt is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Received care interrupts the doubt that keeps eating its own tail.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Doubt stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       }
     ]
   },
   "topic-speech": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Words are arriving faster than remembrance, so speech starts leaving damage before wisdom enters the room.",
+    "centralInsight": "Gurbani disciplines speech through Naam, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre.",
+    "practicalReflection": "Speech reveals the state of the inner room. A clean tongue is not produced by technique alone; it comes from a heart slowed enough to speak under guidance.",
+    "actionPrompt": "Before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful.",
     "excerpts": [
       {
-        "explanation": "The verse slows speech down until the mouth is forced to answer to the state of the heart.",
+        "explanation": "This excerpt interrupts letting the tongue outrun remembrance by turning the heart back toward clean words.",
         "source": {
-          "shortMeaning": "Speech becomes safer when it is forced to answer to the heart.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech loosens when the heart is brought back under humility, remembrance, and praise.",
+          "lifeApplication": "Before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "The line widens speech by placing it under Naam and praise instead of reaction and display.",
+        "explanation": "This passage loosens letting the tongue outrun remembrance by returning the mind to humility, remembrance, and praise instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Naam gives the mouth a truer master than reaction does.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech loses some of its claim when the mind returns to clean words.",
+          "lifeApplication": "Before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "Gurbani does not let speech become its own authority. The line sends the mouth back under steadier return.",
+        "explanation": "The inner room widens here because reckless speech is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "The mouth is called back under steadier return before it hardens.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       }
     ]
   },
   "topic-patience": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Time is passing, but the inner room is not staying open. Delay has begun feeding irritation, urgency, and the demand for immediate proof.",
+    "centralInsight": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence.",
+    "practicalReflection": "Waiting tests what the heart trusts. Patience is not empty time; it is faithful time in which the soul keeps its shape.",
+    "actionPrompt": "Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result.",
     "excerpts": [
       {
-        "explanation": "The verse enlarges patience by making steadiness more believable than the drama of delay.",
+        "explanation": "This excerpt interrupts demanding immediate proof by turning the heart back toward ripened waiting.",
         "source": {
-          "shortMeaning": "Patience grows where truthful steadiness becomes more convincing than urgency.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience loosens when the heart is brought back under remembrance, sangat, and trust.",
+          "lifeApplication": "Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "This excerpt gives waiting a companionable shape. Patience becomes easier where holy company is already living it.",
+        "explanation": "This passage loosens demanding immediate proof by returning the mind to remembrance, sangat, and trust instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Holy company teaches the body how to wait without souring.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience loses some of its claim when the mind returns to ripened waiting.",
+          "lifeApplication": "Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "Gurbani refuses to let waiting become private resentment. The line answers delay by turning the heart back toward care.",
+        "explanation": "The inner room widens here because impatience is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Waiting softens when the heart returns to care instead of resentment.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       }
     ]
   },
   "topic-mercy": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "You are still reading the day through debt, performance, or punishment, so kindness feels suspicious instead of sustaining.",
+    "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible.",
+    "practicalReflection": "Some hearts fear mercy because it takes away the old systems of self-measuring. Yet without mercy, repentance hardens into despair.",
+    "actionPrompt": "Before you audit yourself again, name one way grace has already met you today and answer from that place.",
     "excerpts": [
       {
-        "explanation": "The verse makes mercy larger than self-judgment. Praise becomes more believable than the inner prosecution.",
+        "explanation": "This excerpt interrupts distrusting grace by turning the heart back toward received kindness.",
         "source": {
-          "shortMeaning": "Mercy becomes believable when praise interrupts self-prosecution.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness loosens when the heart is brought back under grace, nearness, and return.",
+          "lifeApplication": "Before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "Gurbani does not let mercy stay private or theoretical. The line places it inside company, where grace can actually be learned.",
+        "explanation": "This passage loosens distrusting grace by returning the mind to grace, nearness, and return instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Mercy is learned more honestly inside holy company than alone.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness loses some of its claim when the mind returns to received kindness.",
+          "lifeApplication": "Before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "The excerpt matters because it turns mercy into something received, not merely admired from a distance.",
+        "explanation": "The inner room widens here because hardness is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Mercy changes the heart only when it is received as care.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       }
     ]
   },
   "topic-forgiveness": {
-    "reviewedByHuman": true,
-    "practicalReflection": "The correction matters because it interrupts the pattern where forgiveness usually feels most normal.",
-    "actionPrompt": "Before the mind gets another full run at the room, release it before it claims the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Something real happened, but the mind has begun guarding the wound as if staying injured were the last honest thing left to do.",
+    "centralInsight": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again.",
+    "practicalReflection": "Hurt can become a private altar. Forgiveness does not erase memory; it refuses to keep feeding the wound until it becomes your identity.",
+    "actionPrompt": "Before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room.",
     "excerpts": [
       {
-        "explanation": "The verse gives forgiveness a spine. It is not softness without truth, but release held inside steadiness.",
+        "explanation": "This excerpt interrupts feeding the wound by turning the heart back toward a freed heart.",
         "source": {
-          "shortMeaning": "Forgiveness becomes durable when it is held inside truthful steadiness.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt loosens when the heart is brought back under release, clean speech, and peace.",
+          "lifeApplication": "Before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "The line widens forgiveness by putting it near Naam and praise instead of near replay and self-congratulation.",
+        "explanation": "This passage loosens feeding the wound by returning the mind to release, clean speech, and peace instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Naam keeps forgiveness from collapsing back into replay.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt loses some of its claim when the mind returns to a freed heart.",
+          "lifeApplication": "Before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "Gurbani refuses to let forgiveness stay a private mood. The line places it inside holy company, where peace can spread outward.",
+        "explanation": "The inner room widens here because hurt is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Holy company turns forgiveness from a mood into a way of living.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       }
     ]
   },
   "topic-greed": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Appetite always arrives with a reason: security, reward, beauty, prudence. Yet after each excuse is obeyed, the heart is still unsettled.",
+    "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open.",
+    "practicalReflection": "Greed is not only about abundance; it is about fear. The grasping hand is usually trying to protect itself from a future it does not trust.",
+    "actionPrompt": "Before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs.",
     "excerpts": [
       {
-        "explanation": "The verse exposes greed by showing what appetite cannot finally keep. Naam gives desire a truer object.",
+        "explanation": "This excerpt interrupts restless grasping by turning the heart back toward an open hand.",
         "source": {
-          "shortMeaning": "Greed weakens when desire is turned toward what can actually remain.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Greed loosens when the heart is brought back under true wealth, enoughness, and generosity.",
+          "lifeApplication": "Before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "The line widens the room by making praise and lasting wealth more believable than the next acquisition.",
+        "explanation": "This passage loosens restless grasping by returning the mind to true wealth, enoughness, and generosity instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Lasting wealth becomes believable again before appetite can make its pitch.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Greed loses some of its claim when the mind returns to an open hand.",
+          "lifeApplication": "Before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "Gurbani refuses to let greed sound normal here. The line turns the heart back toward what can cross the last threshold.",
+        "explanation": "The inner room widens here because greed is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Greed is unmasked when the heart remembers what can cross with it.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Greed stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       }
     ]
   },
   "topic-restlessness": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing.",
+    "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness in which truth would finally meet you.",
+    "practicalReflection": "A searching mind can become proud of its motion. Depth usually begins when the soul stops sampling and starts staying.",
+    "actionPrompt": "Pause one more search. Return to one line, one practice, one sangat, and stay.",
     "excerpts": [
       {
-        "explanation": "Gurbani refuses to let restlessness name the whole day. The verse answers it with steadier return before motion becomes identity.",
+        "explanation": "This excerpt interrupts constant motion without landing by turning the heart back toward quiet dwelling.",
         "source": {
-          "shortMeaning": "Restlessness loosens when the heart is called back before motion hardens.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Restlessness loosens when the heart is brought back under stillness, one line, and one place of staying.",
+          "lifeApplication": "Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "The excerpt matters because it turns wandering toward the Guru's guidance instead of toward one more self-invented fix.",
+        "explanation": "This passage loosens constant motion without landing by returning the mind to stillness, one line, and one place of staying instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The Guru's guidance interrupts the wandering that calls itself necessity.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Restlessness loses some of its claim when the mind returns to quiet dwelling.",
+          "lifeApplication": "Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "The line widens the room by making guidance more believable than momentum.",
+        "explanation": "The inner room widens here because restlessness is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Guidance becomes stronger than momentum when the heart slows enough to hear it.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Restlessness stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       }
     ]
   },
   "topic-sangat": {
-    "reviewedByHuman": true,
-    "practicalReflection": "Not every circle nourishes. Some company strengthens noise, ego, and drift; holy company makes return easier than self-invention. What changes here is not only mood, but the inner rule you let govern the next moment.",
-    "actionPrompt": "Before the next hard moment, when the mind starts wandering alone, move toward the company that steadies it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs.",
+    "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near.",
+    "practicalReflection": "Company always forms the heart. Sangat matters because the soul rarely rises above the climate it keeps consenting to.",
+    "actionPrompt": "Before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness.",
     "excerpts": [
       {
-        "explanation": "Gurbani refuses to let belonging become self-invented here. The verse leads the heart toward holy company instead of private weather.",
+        "explanation": "This excerpt interrupts being shaped by noisy or empty company by turning the heart back toward steady company.",
         "source": {
-          "shortMeaning": "Belonging becomes reliable when it is received in holy company.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company loosens when the heart is brought back under sangat, truthful presence, and Naam.",
+          "lifeApplication": "Before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "This excerpt gives company a sharper test: does it make return easier, or does it feed the drift?",
+        "explanation": "This passage loosens being shaped by noisy or empty company by returning the mind to sangat, truthful presence, and Naam instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "True company is known by whether it makes return easier.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company loses some of its claim when the mind returns to steady company.",
+          "lifeApplication": "Before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "The line widens the room by making holy company more believable than private thinking.",
+        "explanation": "The inner room widens here because company is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Holy company becomes more trustworthy than whatever the lonely mind is inventing.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       }
     ]
   },
   "topic-control": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility.",
+    "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result.",
+    "practicalReflection": "Much of what looks like care is hidden fear with a plan. Release begins when the soul accepts its duty without trying to become the maker.",
+    "actionPrompt": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
     "excerpts": [
       {
-        "explanation": "Gurbani refuses to let control sound like maturity here. The verse turns the heart away from management and back toward praise.",
+        "explanation": "This excerpt interrupts gripping for certainty by turning the heart back toward a released grip.",
         "source": {
-          "shortMeaning": "Control loosens when praise becomes more urgent than management.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "Control loosens when the heart is brought back under response without authorship.",
+          "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "The line widens the room by making surrender more believable than control's tightening logic.",
+        "explanation": "This passage loosens gripping for certainty by returning the mind to response without authorship instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Return becomes possible when the grip stops pretending to be wisdom.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "Control loses some of its claim when the mind returns to a released grip.",
+          "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "This excerpt gives the controlling mind a truer task: receive, return, and stop trying to author the whole room.",
+        "explanation": "The inner room widens here because control is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "The controlling mind is given back to return instead of authorship.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "Control stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       }
     ]
   },
   "topic-shame": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself.",
+    "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned.",
+    "practicalReflection": "Shame loves final language. Gurbani breaks that spell by keeping return possible even where the heart wants to disappear.",
+    "actionPrompt": "When shame starts narrating finality, answer it with one line of Bani and one act of return.",
     "excerpts": [
       {
-        "explanation": "The excerpt turns shame toward received mercy before the self can turn it into identity.",
+        "explanation": "This excerpt interrupts turning failure into identity by turning the heart back toward clean return.",
         "source": {
-          "shortMeaning": "Shame starts loosening when mercy is allowed in before self-hatred.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Shame loosens when the heart is brought back under forgiveness, nearness, and belonging.",
+          "lifeApplication": "When shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "The line widens the room by making the Guru's guidance more believable than the shame story.",
+        "explanation": "This passage loosens turning failure into identity by returning the mind to forgiveness, nearness, and belonging instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "The Guru's guidance interrupts the shame that was trying to define you.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Shame loses some of its claim when the mind returns to clean return.",
+          "lifeApplication": "When shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "Gurbani refuses to let shame become a private verdict. The line turns the heart toward return instead of concealment.",
+        "explanation": "The inner room widens here because shame is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Shame loses force when return becomes more believable than hiding.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Shame stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "When shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       }
     ]
   },
   "topic-fear": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against.",
+    "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment.",
+    "practicalReflection": "Fear becomes a scriptwriter when the heart forgets who is carrying the scene. The correction is not denial of danger but remembrance of deeper shelter.",
+    "actionPrompt": "When fear rises, read one line aloud before you plan your defense.",
     "excerpts": [
       {
-        "explanation": "The verse widens fear by giving the body a truer center than alarm. Return becomes more believable than panic.",
+        "explanation": "This excerpt interrupts letting dread write the script by turning the heart back toward courage under care.",
         "source": {
-          "shortMeaning": "Fear loosens when the body is called back before panic finishes its story.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear loosens when the heart is brought back under reverence, Hukam, and divine nearness.",
+          "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "Gurbani refuses to let fear become the only honest voice. The heart is turned toward Naam and praise instead.",
+        "explanation": "This passage loosens letting dread write the script by returning the mind to reverence, Hukam, and divine nearness instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Naam gives fear a rival center stronger than alarm.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear loses some of its claim when the mind returns to courage under care.",
+          "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "This excerpt gives fear a truer direction by handing it back to the Guru's guidance instead of to survival reflex alone.",
+        "explanation": "The inner room widens here because fear is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Fear is steadied when guidance outruns survival reflex.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "When fear rises, read one line aloud before you plan your defense."
         }
       }
     ]
   },
   "topic-honesty": {
-    "reviewedByHuman": true,
-    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only lying to others; it is the inner split of living by edited speech.",
+    "reviewedByHuman": false,
+    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only outward lying but the inward split of living by edited speech.",
     "centralInsight": "Gurbani makes honesty more than bluntness. Truth becomes clean when it answers to praise, guidance, and the courage to stop protecting convenience.",
-    "practicalReflection": "The soul grows tired when it must carry two stories at once. The correction has to touch conduct, not only agreement.",
+    "practicalReflection": "Dishonesty fractures the self before it deceives anyone else. Honest speech is costly because it refuses to let comfort outrank truth.",
     "actionPrompt": "Before convenience edits the sentence, say the cleaner thing and let your body stay with it.",
     "excerpts": [
       {
-        "explanation": "The verse widens honesty by making praise more believable than convenience. Truth is given a stronger ally than image.",
+        "explanation": "This excerpt interrupts editing truth for convenience by turning the heart back toward integrity.",
         "source": {
-          "shortMeaning": "Honesty becomes sturdier when praise matters more than convenience.",
-          "lifeApplication": "Before the story gets smoother in your mouth, tell the truer version even if it costs polish."
+          "shortMeaning": "Dishonesty loosens when the heart is brought back under clean speech under the Guru's gaze.",
+          "lifeApplication": "Before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "Gurbani refuses to let honesty become a private slogan. The line returns truth-telling to the Guru's guidance and lived conduct.",
+        "explanation": "This passage loosens editing truth for convenience by returning the mind to clean speech under the Guru's gaze instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Truth-telling becomes durable when it answers to guidance instead of mood.",
-          "lifeApplication": "When mood starts deciding what counts as honest, ask what the Guru's guidance still permits you to say."
+          "shortMeaning": "Dishonesty loses some of its claim when the mind returns to integrity.",
+          "lifeApplication": "Before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "This excerpt gives honesty a truer direction by placing it inside praise instead of mere self-consistency.",
+        "explanation": "The inner room widens here because dishonesty is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Honesty is brought back under praise before self-interest can bend it.",
-          "lifeApplication": "Before protecting your image with a half-truth, choose praise over self-preservation and keep the sentence clean."
+          "shortMeaning": "Dishonesty stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       }
     ]
   },
   "topic-seeking": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given.",
+    "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling. Search is fulfilled not by endless input but by obedient staying.",
+    "practicalReflection": "Seeking can become its own delay. The heart matures when it stops collecting more doors and walks through one of them.",
+    "actionPrompt": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
     "excerpts": [
       {
-        "explanation": "The excerpt rescues seeking from private roaming by turning it toward holy company.",
+        "explanation": "This excerpt interrupts collecting without dwelling by turning the heart back toward abiding.",
         "source": {
-          "shortMeaning": "Seeking becomes cleaner when it stops roaming alone.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Seeking loosens when the heart is brought back under instruction, sangat, and staying.",
+          "lifeApplication": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "Gurbani refuses to let seeking become its own justification. The line insists that searching must be taught where wisdom is already alive.",
+        "explanation": "This passage loosens collecting without dwelling by returning the mind to instruction, sangat, and staying instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Searching matures where wisdom is already being lived.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Seeking loses some of its claim when the mind returns to abiding.",
+          "lifeApplication": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "The line widens the room by making the Guru's guidance more believable than novelty.",
+        "explanation": "The inner room widens here because seeking is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Seeking settles when guidance becomes more believable than novelty.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Seeking stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "For one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       }
     ]
   },
   "topic-self-worth": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity.",
+    "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended.",
+    "practicalReflection": "Conditional worth exhausts the heart because it keeps outsourcing identity. The turn is to live from being kept, not from being confirmed.",
+    "actionPrompt": "Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
     "excerpts": [
       {
-        "explanation": "The verse widens self-worth by putting it under the Guru's guidance instead of under the room's fluctuating verdicts.",
+        "explanation": "This excerpt interrupts checking dignity in other people by turning the heart back toward received dignity.",
         "source": {
-          "shortMeaning": "Self-worth steadies when it answers to guidance instead of applause.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "Conditional worth loosens when the heart is brought back under grace, humility, and belonging.",
+          "lifeApplication": "Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "Gurbani refuses to let self-worth become a private verdict. The line puts worth back beside Naam and praise, where it cannot be bought by approval.",
+        "explanation": "This passage loosens checking dignity in other people by returning the mind to grace, humility, and belonging instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Worth becomes less fragile when it rests beside Naam and praise.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "Conditional worth loses some of its claim when the mind returns to received dignity.",
+          "lifeApplication": "Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "This excerpt gives self-worth a truer direction by returning it to the One who gives nearness, not to the self who keeps grading itself.",
+        "explanation": "The inner room widens here because conditional worth is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Self-worth is returned to the One who gives nearness, not to self-grading.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "Conditional worth stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       }
     ]
   },
   "topic-softness": {
-    "reviewedByHuman": true,
-    "practicalReflection": "Softness is hardest where harshness still feels like honesty. The correction matters because the mouth, face, and posture all have to come under Naam before force calls itself truth.",
+    "reviewedByHuman": false,
+    "issueStatement": "Your speech lands harder than you mean, and inwardly the same sharpness keeps rehearsing itself after the conversation is over.",
+    "centralInsight": "Gurbani does not ask for gentleness as etiquette. It asks for a heart softened by praise, humility, and regard for the one standing before you.",
+    "practicalReflection": "Harshness often masquerades as honesty. Softness is stronger because it keeps truth clean without handing it over to ego.",
     "actionPrompt": "At the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it.",
     "excerpts": [
       {
-        "explanation": "The verse does not confuse softness with timidity. It gives gentleness a truer root: strength governed by Naam rather than by the impulse to wound.",
+        "explanation": "This excerpt interrupts sharpening the room by turning the heart back toward gentle strength.",
         "source": {
-          "shortMeaning": "Softness is strength disciplined by Naam, not fear of conflict.",
-          "lifeApplication": "When the heart hardens, keep the voice low and the truth clean."
+          "shortMeaning": "Harshness loosens when the heart is brought back under humility, praise, and regard.",
+          "lifeApplication": "At the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "Here softness is not appeasement. Praise gives it backbone, so the heart can stay tender without surrendering truth.",
+        "explanation": "This passage loosens sharpening the room by returning the mind to humility, praise, and regard instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Praise gives gentleness a spine strong enough to tell the truth.",
-          "lifeApplication": "Before the sentence sharpens, let praise steady the tone and keep it clean."
+          "shortMeaning": "Harshness loses some of its claim when the mind returns to gentle strength.",
+          "lifeApplication": "At the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "The excerpt turns softness into conduct. It has to reach the mouth, eyes, and pace of the body before it counts.",
+        "explanation": "The inner room widens here because harshness is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Softness becomes real when truth reaches the body without turning cruel.",
-          "lifeApplication": "At the next embodied cue, let the body carry truth without adding hardness to it."
+          "shortMeaning": "Harshness stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "At the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       }
     ]
   },
   "topic-exhaustion": {
-    "reviewedByHuman": true,
+    "reviewedByHuman": false,
+    "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand.",
+    "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places.",
+    "practicalReflection": "Exhaustion makes the false urgent and the truly healing feel optional. Rest begins when the soul is allowed to become simple again.",
+    "actionPrompt": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
     "excerpts": [
       {
-        "explanation": "The excerpt refuses to treat exhaustion as a private failure. It directs the tired heart toward company instead of performance.",
+        "explanation": "This excerpt interrupts living in strain past the soul's strength by turning the heart back toward rested faithfulness.",
         "source": {
-          "shortMeaning": "Exhaustion is given company before it is judged as weakness.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion loosens when the heart is brought back under care, rest, and simple remembrance.",
+          "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "The line widens exhaustion by making received care more believable than self-demand.",
+        "explanation": "This passage loosens living in strain past the soul's strength by returning the mind to care, rest, and simple remembrance instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Received care interrupts the demand that tiredness must hide itself.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion loses some of its claim when the mind returns to rested faithfulness.",
+          "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "Gurbani refuses to let exhaustion become a verdict on worth. The line turns the heart toward care before it turns back toward effort.",
+        "explanation": "The inner room widens here because exhaustion is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "Tiredness is met first with care, not with accusation.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       }
     ]
   },
   "topic-conduct": {
-    "reviewedByHuman": true,
-    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is not hypocrisy in the dramatic sense; it is the slow split between devotion and the next visible act.",
-    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the hands, mouth, schedule, and habits actually do next.",
-    "practicalReflection": "Conduct is where devotion loses its alibi. The next visible act tells the truth faster than any devotional vocabulary, which is why ordinary behavior is where sincerity stands trial.",
+    "reviewedByHuman": false,
+    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is the quiet split between devotion and the next visible act.",
+    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the mouth, schedule, habits, and hands actually do next.",
+    "practicalReflection": "Conduct is where longing becomes believable. Without embodied obedience, even beautiful insight can remain a kind of distance from the Guru.",
     "actionPrompt": "At the next visible choice, let the body do the thing the line could still bless tomorrow.",
     "excerpts": [
       {
-        "explanation": "The verse refuses decorative spirituality. If Naam cannot pass into the next act, the speech around it is still performance.",
+        "explanation": "This excerpt interrupts keeping devotion separate from behavior by turning the heart back toward integrated life.",
         "source": {
-          "shortMeaning": "Naam becomes credible when it reaches the next visible act.",
-          "lifeApplication": "Before the image is managed, choose the act the line could still bear in public tonight."
+          "shortMeaning": "Conduct loosens when the heart is brought back under embodied practice and visible faithfulness.",
+          "lifeApplication": "At the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "The Guru judges conduct by obedience under pressure, not by how coherent your explanation sounds afterward.",
+        "explanation": "This passage loosens keeping devotion separate from behavior by returning the mind to embodied practice and visible faithfulness instead of leaving it alone with itself.",
         "source": {
-          "shortMeaning": "Conduct is weighed by obedience, not by the story told about it.",
-          "lifeApplication": "Before explaining yourself, ask what obedience requires in the next concrete act."
+          "shortMeaning": "Conduct loses some of its claim when the mind returns to integrated life.",
+          "lifeApplication": "At the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "This line keeps returning to one embarrassing test: what do the hand, the mouth, and the schedule actually do next?",
+        "explanation": "The inner room widens here because conduct is no longer allowed to speak as the whole truth.",
         "source": {
-          "shortMeaning": "The next concrete act reveals whether devotion is being obeyed or displayed.",
-          "lifeApplication": "At the next visible choice, let hand, mouth, and schedule answer before your image does."
+          "shortMeaning": "Conduct stops ruling the room when remembrance restores proportion.",
+          "lifeApplication": "At the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       }
     ]

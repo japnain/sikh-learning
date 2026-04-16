@@ -3,3474 +3,3474 @@ import type { ScenarioOverridePayload } from "../../types"
 export const SCENARIO_COPY_OVERRIDES = {
   "topic-anxiety#daily": {
     "title": "When the mind is anxious inside the ordinary day",
-    "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "This is where anxiety usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the first plain stretch of the day, before the next inward spiral, read one line aloud and let the chest soften.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind runs ahead of the day, rehearsing outcomes it cannot yet carry and calling that vigilance. In small routines, forecasting danger can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not shame fear or ask you to deny it. It gathers the mind back under Hukam, Naam, and the care already holding you. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Anxiety becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns anxiety toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts forecasting danger before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "The day steadies when anxiety is met with Hukam, remembrance, and received care.",
+          "lifeApplication": "Today, before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around anxiety; the heart is returned to steadier return.",
+        "explanation": "The passage pulls the heart back from forecasting danger and into steadier trust.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Ordinary moments change when the mind returns to steadier trust instead of forecasting danger.",
+          "lifeApplication": "Today, before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "The daily moment changes here because anxiety is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by anxiety.",
         "source": {
-          "shortMeaning": "Anxiety is checked here by received care.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "This excerpt restores proportion before anxiety takes over the tone of the day.",
+          "lifeApplication": "Today, before you forecast or fix the next thing, read one anchoring line aloud and let your breath follow it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anxiety#pressure": {
     "title": "When the mind is anxious and the room gets tight",
-    "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "When the chest tightens and the room narrows, stop the forecast, breathe into the ribs once, and repeat the line before you speak.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind runs ahead of the day, rehearsing outcomes it cannot yet carry and calling that vigilance. Under strain, forecasting danger starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not shame fear or ask you to deny it. It gathers the mind back under Hukam, Naam, and the care already holding you. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, read one anchoring line aloud and let your breath follow it.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts forecasting danger before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to steadier trust.",
+          "lifeApplication": "When the room tightens, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies anxiety by returning the heart to steadier return.",
+        "explanation": "The passage refuses to let strain turn anxiety into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "This line steadies the reflex before anxiety can rule the moment.",
+          "lifeApplication": "When the room tightens, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward Hukam, remembrance, and received care.",
         "source": {
-          "shortMeaning": "Under strain, anxiety is steadied by the Guru's guidance.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Anxiety is answered here through Hukam, remembrance, and received care.",
+          "lifeApplication": "When the room tightens, read one anchoring line aloud and let your breath follow it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anxiety#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The problem is no longer only temptation or pain, but how to return without theatre.",
-    "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "Before the excuse or self-punishment starts, before the next inward spiral, read one line aloud and let the chest soften.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind runs ahead of the day, rehearsing outcomes it cannot yet carry and calling that vigilance. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not shame fear or ask you to deny it. It gathers the mind back under Hukam, Naam, and the care already holding you. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, read one anchoring line aloud and let your breath follow it.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because anxiety is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Repair begins when the heart returns to Hukam, remembrance, and received care instead of performance.",
+          "lifeApplication": "After the slip is visible, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
-        "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
-        }
-      },
-      {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps anxiety from hardening into identity by pointing the heart back to steadier trust.",
         "source": {
           "shortMeaning": "Anxiety is not allowed to become identity here.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "lifeApplication": "After the slip is visible, read one anchoring line aloud and let your breath follow it."
+        }
+      },
+      {
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
+        "source": {
+          "shortMeaning": "This passage opens a clean way back through steadier trust.",
+          "lifeApplication": "After the slip is visible, read one anchoring line aloud and let your breath follow it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anxiety#practice": {
     "title": "When anxiety needs a repeatable shape",
-    "issueStatement": "The mind keeps rehearsing danger before the future has even arrived. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru widens attention from imagined danger back toward Hukam, remembrance, and the care already present. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, anxiety will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "For the next seven days at the same cue, before the next inward spiral, read one line aloud and let the chest soften.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind runs ahead of the day, rehearsing outcomes it cannot yet carry and calling that vigilance. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not shame fear or ask you to deny it. It gathers the mind back under Hukam, Naam, and the care already holding you. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, read one anchoring line aloud and let your breath follow it.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning anxiety to the Guru's guidance.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Anxiety is trained through repeated return to the Guru's guidance.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "Anxiety is retrained through repeated return to steadier trust.",
+          "lifeApplication": "For the next seven days at the same cue, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives anxiety a repeatable interruption through Hukam, remembrance, and received care.",
         "source": {
-          "shortMeaning": "Anxiety is trained through repeated return to steadier return.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of Hukam, remembrance, and received care.",
+          "lifeApplication": "For the next seven days at the same cue, read one anchoring line aloud and let your breath follow it."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives anxiety a keepable form through Naam and praise.",
-          "lifeApplication": "Before the next inward spiral, read one line aloud and let the chest soften."
+          "shortMeaning": "A steady practice weakens forecasting danger over time.",
+          "lifeApplication": "For the next seven days at the same cue, read one anchoring line aloud and let your breath follow it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anger#daily": {
     "title": "When anger rises quickly inside the ordinary day",
-    "issueStatement": "The mind reacts before truth and proportion have time to speak. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "Before the day gathers more speed, before the next hard reply, slow the tongue and give the heat one more breath.",
+    "reviewedByHuman": false,
+    "issueStatement": "Heat rises fast, and the mind starts calling reaction honesty, urgency, or strength. In small routines, the heat of self-defense can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani names anger as fire that burns discernment. The answer is not suppression but cooling through Naam, humility, and disciplined speech. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Anger becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because anger is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts the heat of self-defense before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts anger inside the day through steadier return.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "The day steadies when anger is met with Naam, humility, and softened speech.",
+          "lifeApplication": "Today, before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around anger; the heart is returned to steadier return.",
+        "explanation": "The passage pulls the heart back from the heat of self-defense and into clean restraint.",
         "source": {
-          "shortMeaning": "The line interrupts anger inside the day through steadier return.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Ordinary moments change when the mind returns to clean restraint instead of the heat of self-defense.",
+          "lifeApplication": "Today, before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns anger toward trust in Hukam instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by anger.",
         "source": {
-          "shortMeaning": "Anger is checked here by trust in Hukam.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "This excerpt restores proportion before anger takes over the tone of the day.",
+          "lifeApplication": "Today, before the next hard reply leaves your mouth, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anger#pressure": {
     "title": "When anger rises quickly and the room gets tight",
-    "issueStatement": "The mind reacts before truth and proportion have time to speak. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. Pressure reveals the ruler of the heart, so Gurbani answers at the level of reflex, not image.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before the next hard reply, slow the tongue and give the heat one more breath.",
+    "reviewedByHuman": false,
+    "issueStatement": "Heat rises fast, and the mind starts calling reaction honesty, urgency, or strength. Under strain, the heat of self-defense starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani names anger as fire that burns discernment. The answer is not suppression but cooling through Naam, humility, and disciplined speech. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, slow the body, repeat one line of Naam, and give the moment one more breath.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies anger by returning the heart to steadier return.",
+        "explanation": "Under pressure, this excerpt interrupts the heat of self-defense before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to clean restraint.",
+          "lifeApplication": "When the room tightens, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "The strain does not get final say here; holy company interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn anger into the only voice in the room.",
         "source": {
-          "shortMeaning": "Anger is not left to rule the strained moment.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "This line steadies the reflex before anger can rule the moment.",
+          "lifeApplication": "When the room tightens, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward Naam, humility, and softened speech.",
         "source": {
-          "shortMeaning": "Anger is not left to rule the strained moment.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Anger is answered here through Naam, humility, and softened speech.",
+          "lifeApplication": "When the room tightens, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anger#repair": {
     "title": "When anger rises quickly after the slip",
-    "issueStatement": "The mind reacts before truth and proportion have time to speak. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps anger from turning into a permanent self-story.",
-    "actionPrompt": "Once the miss is visible, before the next hard reply, slow the tongue and give the heat one more breath.",
+    "reviewedByHuman": false,
+    "issueStatement": "Heat rises fast, and the mind starts calling reaction honesty, urgency, or strength. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani names anger as fire that burns discernment. The answer is not suppression but cooling through Naam, humility, and disciplined speech. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, slow the body, repeat one line of Naam, and give the moment one more breath.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because anger is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Anger is not allowed to become identity here.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Repair begins when the heart returns to Naam, humility, and softened speech instead of performance.",
+          "lifeApplication": "After the slip is visible, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps anger from hardening into identity by pointing the heart back to clean restraint.",
         "source": {
           "shortMeaning": "Anger is not allowed to become identity here.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "lifeApplication": "After the slip is visible, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through the Guru's guidance.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "This passage opens a clean way back through clean restraint.",
+          "lifeApplication": "After the slip is visible, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-anger#practice": {
     "title": "When anger needs a repeatable shape",
-    "issueStatement": "The mind reacts before truth and proportion have time to speak. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru turns the battle inward so reaction loses its claim to righteousness. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "At one fixed cue you can keep all week, before the next hard reply, slow the tongue and give the heat one more breath.",
+    "reviewedByHuman": false,
+    "issueStatement": "Heat rises fast, and the mind starts calling reaction honesty, urgency, or strength. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani names anger as fire that burns discernment. The answer is not suppression but cooling through Naam, humility, and disciplined speech. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, slow the body, repeat one line of Naam, and give the moment one more breath.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to the Guru's guidance the same way again.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "Anger is retrained through repeated return to clean restraint.",
+          "lifeApplication": "For the next seven days at the same cue, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives anger a repeatable interruption through Naam, humility, and softened speech.",
         "source": {
-          "shortMeaning": "The verse gives anger a keepable form through steadier return.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of Naam, humility, and softened speech.",
+          "lifeApplication": "For the next seven days at the same cue, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning anger to Naam and praise.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Anger is trained through repeated return to Naam and praise.",
-          "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+          "shortMeaning": "A steady practice weakens the heat of self-defense over time.",
+          "lifeApplication": "For the next seven days at the same cue, slow the body, repeat one line of Naam, and give the moment one more breath."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-comparison#daily": {
     "title": "When comparison starts steering the day",
-    "issueStatement": "The mind keeps checking another life to decide what yours means. By the time it reaches the kitchen, inbox, or commute, comparison is no longer a thought; it has become the day's atmosphere.",
-    "centralInsight": "Gurbani breaks comparison by returning the eye to praise, the hands to duty, and dignity to what has actually been given. The point is not denying another person's gift, but refusing to live inside it.",
-    "practicalReflection": "Comparison becomes ordinary by repetition, so its correction has to become ordinary too. The day changes when sideways vision is interrupted before it grows a story.",
-    "actionPrompt": "Before the day gathers more speed, bless one good thing in another person's life, then name the duty already placed in your own hands.",
+    "reviewedByHuman": false,
+    "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. In small routines, sideways measurement can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Comparison becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you.",
     "excerpts": [
       {
-        "explanation": "The daily turn begins when the eye is brought home from somebody else's portion and taught to stand again in praise.",
+        "explanation": "In the daily rhythm, this excerpt interrupts sideways measurement before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Comparison weakens when the eye returns from envy to praise.",
-          "lifeApplication": "Before the next sideways glance becomes a story, bless their gift and come back to the task already waiting for you."
+          "shortMeaning": "The day steadies when comparison is met with praise, duty, and contentment.",
+          "lifeApplication": "Today, before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "This verse interrupts the household version of envy, the quiet measuring that can fill a whole morning without saying its own name.",
+        "explanation": "The passage pulls the heart back from sideways measurement and into your entrusted work.",
         "source": {
-          "shortMeaning": "Comparison loses momentum when the heart is given a truer measure than other people.",
-          "lifeApplication": "When the inbox, table, or commute starts turning into a ranking system, stop and name what has actually been entrusted to you today."
+          "shortMeaning": "Ordinary moments change when the mind returns to your entrusted work instead of sideways measurement.",
+          "lifeApplication": "Today, before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "The line does not merely condemn comparison; it shrinks its territory by handing the day back to responsibility, gratitude, and steadier sight.",
+        "explanation": "This keeps the next ordinary moment from being governed by comparison.",
         "source": {
-          "shortMeaning": "The day widens when responsibility replaces the urge to measure yourself against others.",
-          "lifeApplication": "After someone else's success enters the room, bless it once and turn immediately to the next clean duty that is yours."
+          "shortMeaning": "This excerpt restores proportion before comparison takes over the tone of the day.",
+          "lifeApplication": "Today, before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-comparison#pressure": {
     "title": "When comparison keeps stealing steadiness and the room gets tight",
-    "issueStatement": "The mind keeps measuring worth and direction against other people. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If comparison reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "Before strain takes over the room, before naming another person's advantage again, name your own duty out loud.",
+    "reviewedByHuman": false,
+    "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. Under strain, sideways measurement starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, bless their portion once and return to the work already entrusted to you.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts sideways measurement before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Comparison is not left to rule the strained moment.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to your entrusted work.",
+          "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "The strain does not get final say here; truthful steadiness interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn comparison into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through truthful steadiness.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "This line steadies the reflex before comparison can rule the moment.",
+          "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies comparison by returning the heart to truthful steadiness.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward praise, duty, and contentment.",
         "source": {
-          "shortMeaning": "Pressure is answered here through truthful steadiness.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "Comparison is answered here through praise, duty, and contentment.",
+          "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-comparison#repair": {
     "title": "When comparison keeps stealing steadiness after the slip",
-    "issueStatement": "The mind keeps measuring worth and direction against other people. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Gurbani returns dignity to remembrance, contentment, and the work in front of you. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "After the slip is named cleanly, before naming another person's advantage again, name your own duty out loud.",
+    "reviewedByHuman": false,
+    "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, bless their portion once and return to the work already entrusted to you.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because comparison is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "Repair begins when the heart returns to praise, duty, and contentment instead of performance.",
+          "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps comparison from hardening into identity by pointing the heart back to your entrusted work.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "Comparison is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+          "shortMeaning": "This passage opens a clean way back through your entrusted work.",
+          "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-comparison#practice": {
     "title": "When comparison needs a repeatable shape",
-    "issueStatement": "The mind keeps measuring worth and direction against other people. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Gurbani keeps turning the eyes back from another person's portion to your own duty, praise, and contentment. The rule has to fire before comparison gets fluent.",
-    "practicalReflection": "Comparison is not defeated by one noble insight. It is starved by a repeated refusal to stare sideways, so the real work here is training the eye.",
-    "actionPrompt": "Choose one cue this week: social media, the meeting, or someone else's good news. Bless their portion once, then name your own duty aloud.",
+    "reviewedByHuman": false,
+    "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, bless their portion once and return to the work already entrusted to you.",
     "excerpts": [
       {
-        "explanation": "The verse becomes practice when it catches the eye at the instant it starts wandering sideways.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Comparison breaks when the eye is trained to return before envy gets fluent.",
-          "lifeApplication": "At the cue you chose, bless their portion once and name your own duty out loud."
+          "shortMeaning": "Comparison is retrained through repeated return to your entrusted work.",
+          "lifeApplication": "For the next seven days at the same cue, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "This is less about suppressing envy than replacing its habit: praise for the gift given to them, duty for the work given to you.",
+        "explanation": "The passage gives comparison a repeatable interruption through praise, duty, and contentment.",
         "source": {
-          "shortMeaning": "Praise and duty give the comparing mind somewhere cleaner to stand.",
-          "lifeApplication": "When envy rises, bless what they were given and return to the work already yours."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of praise, duty, and contentment.",
+          "lifeApplication": "For the next seven days at the same cue, bless their portion once and return to the work already entrusted to you."
         }
       },
       {
-        "explanation": "A real rule is measurable here: bless, return, work. That repeated turn is what keeps another person's portion from running your day.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Comparison weakens when bless, return, and work become a practiced sequence.",
-          "lifeApplication": "Use the same cue tomorrow and the next day until the measuring reflex loses speed."
+          "shortMeaning": "A steady practice weakens sideways measurement over time.",
+          "lifeApplication": "For the next seven days at the same cue, bless their portion once and return to the work already entrusted to you."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-loneliness#daily": {
     "title": "When loneliness closes the room in before the day gets away from you",
-    "issueStatement": "The heart feels unaccompanied even when people are nearby. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "This is where loneliness usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "At the first quiet pocket of the day, send one truthful message or step toward company before loneliness starts narrating the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Even while moving through the day, the heart feels unaccompanied, harder to reach, and easier to abandon to its own story. In small routines, letting isolation narrate the heart can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Loneliness becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because loneliness is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts letting isolation narrate the heart before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts loneliness inside the day through holy company.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "The day steadies when loneliness is met with sangat, prayer, and the Lord's nearness.",
+          "lifeApplication": "Today, name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around loneliness; the heart is returned to holy company.",
+        "explanation": "The passage pulls the heart back from letting isolation narrate the heart and into truthful connection.",
         "source": {
-          "shortMeaning": "The line interrupts loneliness inside the day through holy company.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Ordinary moments change when the mind returns to truthful connection instead of letting isolation narrate the heart.",
+          "lifeApplication": "Today, name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns loneliness toward Naam and praise instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by loneliness.",
         "source": {
-          "shortMeaning": "Loneliness is checked here by Naam and praise.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "This excerpt restores proportion before loneliness takes over the tone of the day.",
+          "lifeApplication": "Today, name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-loneliness#pressure": {
     "title": "When loneliness tightens under pressure",
-    "issueStatement": "The heart feels unaccompanied even when people are nearby. This is the moment when panic, force, or performance tries to become the only available language.",
-    "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If loneliness reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When pressure makes you disappear inwardly, move toward one real person, prayer, or place of sangat before the ache hardens.",
+    "reviewedByHuman": false,
+    "issueStatement": "Even while moving through the day, the heart feels unaccompanied, harder to reach, and easier to abandon to its own story. Under strain, letting isolation narrate the heart starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies loneliness by returning the heart to holy company.",
+        "explanation": "Under pressure, this excerpt interrupts letting isolation narrate the heart before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through holy company.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to truthful connection.",
+          "lifeApplication": "When the room tightens, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn loneliness into the only voice in the room.",
         "source": {
-          "shortMeaning": "Under strain, loneliness is steadied by holy company.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "This line steadies the reflex before loneliness can rule the moment.",
+          "lifeApplication": "When the room tightens, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "The strain does not get final say here; received care interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward sangat, prayer, and the Lord's nearness.",
         "source": {
-          "shortMeaning": "Under strain, loneliness is steadied by received care.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Loneliness is answered here through sangat, prayer, and the Lord's nearness.",
+          "lifeApplication": "When the room tightens, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-loneliness#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The heart feels unaccompanied even when people are nearby. The problem is no longer only temptation or pain, but how to return without theatre.",
-    "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps loneliness from turning into a permanent self-story.",
-    "actionPrompt": "After you withdraw or go numb, make one concrete return: answer the message, enter the sangat, or name the ache before it seals shut.",
+    "reviewedByHuman": false,
+    "issueStatement": "Even while moving through the day, the heart feels unaccompanied, harder to reach, and easier to abandon to its own story. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through received care.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Repair begins when the heart returns to sangat, prayer, and the Lord's nearness instead of performance.",
+          "lifeApplication": "After the slip is visible, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "Repair stays honest here because loneliness is answered without theatre.",
-        "source": {
-          "shortMeaning": "Repair begins by receiving holy company instead of self-theatre.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
-        }
-      },
-      {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps loneliness from hardening into identity by pointing the heart back to truthful connection.",
         "source": {
           "shortMeaning": "Loneliness is not allowed to become identity here.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "lifeApplication": "After the slip is visible, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
+        }
+      },
+      {
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
+        "source": {
+          "shortMeaning": "This passage opens a clean way back through truthful connection.",
+          "lifeApplication": "After the slip is visible, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-loneliness#practice": {
     "title": "When loneliness closes the room in as a keepable practice",
-    "issueStatement": "The heart feels unaccompanied even when people are nearby. What is needed now is a form you can keep through an ordinary week.",
-    "centralInsight": "Guru joins belonging to remembrance, Sangat, and the nearness of the One. A line proves its truth when it governs more than one moment.",
-    "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
-    "actionPrompt": "Choose one repeatable cue this week and at the next quiet ache, name the companionship being offered before the mind says alone.",
+    "reviewedByHuman": false,
+    "issueStatement": "Even while moving through the day, the heart feels unaccompanied, harder to reach, and easier to abandon to its own story. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not romanticize isolation. It leads the soul toward sangat, prayer, and the Lord whose nearness is deeper than the feeling of being alone. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Loneliness is trained through repeated return to received care.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "Loneliness is retrained through repeated return to truthful connection.",
+          "lifeApplication": "For the next seven days at the same cue, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives loneliness a repeatable interruption through sangat, prayer, and the Lord's nearness.",
         "source": {
-          "shortMeaning": "The verse gives loneliness a keepable form through holy company.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of sangat, prayer, and the Lord's nearness.",
+          "lifeApplication": "For the next seven days at the same cue, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning loneliness to Naam and praise.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
-          "lifeApplication": "At the next quiet ache, name the companionship being offered before the mind says alone."
+          "shortMeaning": "A steady practice weakens letting isolation narrate the heart over time.",
+          "lifeApplication": "For the next seven days at the same cue, Name the loneliness plainly, then take one real step toward prayer, sangat, or truthful contact before the feeling narrates the whole day."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-purpose#daily": {
     "title": "When purpose starts steering the day",
-    "issueStatement": "The day fills up, but the inner reason for being here feels thin. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where purpose usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the first plain stretch of the day, before drifting into another task, choose one act that treats life as opportunity.",
+    "reviewedByHuman": false,
+    "issueStatement": "The schedule may be full, yet the soul keeps asking what all this effort finally serves. In small routines, treating life as maintenance can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani frames human life as a chance for meeting, service, and Naam. Purpose becomes clearer when life is received as trust, not merely managed as maintenance. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Drift becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next task swallows the hour, choose one act that answers life as calling rather than maintenance.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because purpose is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts treating life as maintenance before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Purpose is checked here by the human chance.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "The day steadies when drift is met with calling, service, and Naam.",
+          "lifeApplication": "Today, before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns purpose toward Naam and praise instead of self-enclosure.",
+        "explanation": "The passage pulls the heart back from treating life as maintenance and into entrusted purpose.",
         "source": {
-          "shortMeaning": "The line interrupts purpose inside the day through Naam and praise.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "Ordinary moments change when the mind returns to entrusted purpose instead of treating life as maintenance.",
+          "lifeApplication": "Today, before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around purpose; the heart is returned to steadier return.",
+        "explanation": "This keeps the next ordinary moment from being governed by drift.",
         "source": {
-          "shortMeaning": "The line interrupts purpose inside the day through steadier return.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "This excerpt restores proportion before drift takes over the tone of the day.",
+          "lifeApplication": "Today, before the next task swallows the hour, choose one act that answers life as calling rather than maintenance."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-purpose#pressure": {
     "title": "When pressure exposes what purpose reaches for",
-    "issueStatement": "The day fills up, but the inner reason for being here feels thin. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before drifting into another task, choose one act that treats life as opportunity.",
+    "reviewedByHuman": false,
+    "issueStatement": "The schedule may be full, yet the soul keeps asking what all this effort finally serves. Under strain, treating life as maintenance starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani frames human life as a chance for meeting, service, and Naam. Purpose becomes clearer when life is received as trust, not merely managed as maintenance. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, choose one act that answers life as calling rather than maintenance.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts treating life as maintenance before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, purpose is steadied by Naam and praise.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to entrusted purpose.",
+          "lifeApplication": "When the room tightens, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn drift into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "This line steadies the reflex before drift can rule the moment.",
+          "lifeApplication": "When the room tightens, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies purpose by returning the heart to steadier return.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward calling, service, and Naam.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "Drift is answered here through calling, service, and Naam.",
+          "lifeApplication": "When the room tightens, choose one act that answers life as calling rather than maintenance."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-purpose#repair": {
     "title": "When life starts feeling aimless after the slip",
-    "issueStatement": "The day fills up, but the inner reason for being here feels thin. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru frames human life as opportunity for meeting, service, and Naam rather than mere maintenance. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "Once the miss is visible, before drifting into another task, choose one act that treats life as opportunity.",
+    "reviewedByHuman": false,
+    "issueStatement": "The schedule may be full, yet the soul keeps asking what all this effort finally serves. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani frames human life as a chance for meeting, service, and Naam. Purpose becomes clearer when life is received as trust, not merely managed as maintenance. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, choose one act that answers life as calling rather than maintenance.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "Repair begins when the heart returns to calling, service, and Naam instead of performance.",
+          "lifeApplication": "After the slip is visible, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "Repair stays honest here because purpose is answered without theatre.",
+        "explanation": "The passage keeps drift from hardening into identity by pointing the heart back to entrusted purpose.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "Drift is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Purpose is not allowed to become identity here.",
-          "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity."
+          "shortMeaning": "This passage opens a clean way back through entrusted purpose.",
+          "lifeApplication": "After the slip is visible, choose one act that answers life as calling rather than maintenance."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-purpose#practice": {
     "title": "When purpose needs a repeatable shape",
-    "issueStatement": "The day fills up, but the inner reason for being here keeps thinning out. Purpose rarely disappears in one decision; it is usually spent away in a hundred necessary-looking motions.",
-    "centralInsight": "Guru names human life as rare opportunity for meeting, service, and Naam. A real practice of purpose therefore has to rescue the day from maintenance, not from drama.",
-    "practicalReflection": "A believable rule for purpose survives the dull hour. If it only works when you feel stirred, drift will outlast it.",
-    "actionPrompt": "Choose one hinge in the day, the first task, the lunch break, or the doorway home. At that cue, name one act of service before the day spends itself on maintenance.",
+    "reviewedByHuman": false,
+    "issueStatement": "The schedule may be full, yet the soul keeps asking what all this effort finally serves. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani frames human life as a chance for meeting, service, and Naam. Purpose becomes clearer when life is received as trust, not merely managed as maintenance. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, choose one act that answers life as calling rather than maintenance.",
     "excerpts": [
       {
-        "explanation": "Purpose becomes practice when one ordinary hinge in the day is repeatedly handed back to service instead of being swallowed by momentum.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Purpose becomes keepable when one daily hinge is returned to service and remembrance.",
-          "lifeApplication": "At your chosen cue, stop before the next task and ask what this hour can serve."
+          "shortMeaning": "Drift is retrained through repeated return to entrusted purpose.",
+          "lifeApplication": "For the next seven days at the same cue, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "The line treats human birth as something to be guarded from drift, not merely admired in theory.",
+        "explanation": "The passage gives drift a repeatable interruption through calling, service, and Naam.",
         "source": {
-          "shortMeaning": "The human chance is honored when repetition protects it from drift.",
-          "lifeApplication": "Use the same cue tomorrow so calling is kept, not merely admired."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of calling, service, and Naam.",
+          "lifeApplication": "For the next seven days at the same cue, choose one act that answers life as calling rather than maintenance."
         }
       },
       {
-        "explanation": "A durable rule is measured here by whether the day keeps being returned to the Guru before routine consumes it whole.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Purpose survives when the day is repeatedly returned to the Guru before it is consumed.",
-          "lifeApplication": "Before routine swallows the afternoon, give one ordinary act back to the Guru as offering."
+          "shortMeaning": "A steady practice weakens treating life as maintenance over time.",
+          "lifeApplication": "For the next seven days at the same cue, choose one act that answers life as calling rather than maintenance."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-attachment#daily": {
     "title": "When attachment keeps tightening the grip before the day gets away from you",
-    "issueStatement": "The mind keeps clinging to what it cannot finally keep. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru teaches love without possession and steadiness without denial. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "This is where attachment usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "Before the next ordinary decision, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "reviewedByHuman": false,
+    "issueStatement": "What you love has started dictating your weather. Approval, comfort, possession, or one hoped-for outcome feels necessary for peace. In small routines, the grip of possession can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Attachment becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, when the grip tightens, loosen it and receive the gift without claiming the outcome.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns attachment toward holy company instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts the grip of possession before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Attachment is checked here by holy company.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "The day steadies when attachment is met with love of the Giver above the gift.",
+          "lifeApplication": "Today, when the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "The daily moment changes here because attachment is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from the grip of possession and into open-handedness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Ordinary moments change when the mind returns to open-handedness instead of the grip of possession.",
+          "lifeApplication": "Today, when the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around attachment; the heart is returned to holy company.",
+        "explanation": "This keeps the next ordinary moment from being governed by attachment.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by holy company.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "This excerpt restores proportion before attachment takes over the tone of the day.",
+          "lifeApplication": "Today, when the grip tightens, loosen it and receive the gift without claiming the outcome."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-attachment#pressure": {
     "title": "When pressure exposes what attachment reaches for",
-    "issueStatement": "The mind keeps clinging to what it cannot finally keep. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru teaches love without possession and steadiness without denial. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "At the first sign of strain, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "reviewedByHuman": false,
+    "issueStatement": "What you love has started dictating your weather. Approval, comfort, possession, or one hoped-for outcome feels necessary for peace. Under strain, the grip of possession starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, loosen it and receive the gift without claiming the outcome.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts the grip of possession before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, attachment is steadied by Naam and praise.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to open-handedness.",
+          "lifeApplication": "When the room tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "The strain does not get final say here; received care interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn attachment into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through received care.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "This line steadies the reflex before attachment can rule the moment.",
+          "lifeApplication": "When the room tightens, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies attachment by returning the heart to received care.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward love of the Giver above the gift.",
         "source": {
-          "shortMeaning": "Attachment is not left to rule the strained moment.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Attachment is answered here through love of the Giver above the gift.",
+          "lifeApplication": "When the room tightens, loosen it and receive the gift without claiming the outcome."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-attachment#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The mind keeps clinging to what it cannot finally keep. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru teaches love without possession and steadiness without denial. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "Once the miss is visible, when the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "reviewedByHuman": false,
+    "issueStatement": "What you love has started dictating your weather. Approval, comfort, possession, or one hoped-for outcome feels necessary for peace. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, loosen it and receive the gift without claiming the outcome.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
+        "source": {
+          "shortMeaning": "Repair begins when the heart returns to love of the Giver above the gift instead of performance.",
+          "lifeApplication": "After the slip is visible, loosen it and receive the gift without claiming the outcome."
+        }
+      },
+      {
+        "explanation": "The passage keeps attachment from hardening into identity by pointing the heart back to open-handedness.",
         "source": {
           "shortMeaning": "Attachment is not allowed to become identity here.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "lifeApplication": "After the slip is visible, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "Repair stays honest here because attachment is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
-        }
-      },
-      {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
-        "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "This passage opens a clean way back through open-handedness.",
+          "lifeApplication": "After the slip is visible, loosen it and receive the gift without claiming the outcome."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-attachment#practice": {
     "title": "When the teaching has to become a practice, not a mood",
-    "issueStatement": "The mind keeps clinging to what it cannot finally keep. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
-    "centralInsight": "Guru teaches love without possession and steadiness without denial. A line proves its truth when it governs more than one moment.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and often harder. The correction matters because it teaches the soul how to keep returning.",
-    "actionPrompt": "Pick one place in the day to practice this line, then when the hand tightens, loosen it and receive the gift without claiming the outcome.",
+    "reviewedByHuman": false,
+    "issueStatement": "What you love has started dictating your weather. Approval, comfort, possession, or one hoped-for outcome feels necessary for peace. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not condemn love; it loosens possession. Attachment begins when finite things are asked to carry the weight only the Giver can bear. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, loosen it and receive the gift without claiming the outcome.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to holy company the same way again.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "Attachment is retrained through repeated return to open-handedness.",
+          "lifeApplication": "For the next seven days at the same cue, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning attachment to Naam and praise.",
+        "explanation": "The passage gives attachment a repeatable interruption through love of the Giver above the gift.",
         "source": {
-          "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of love of the Giver above the gift.",
+          "lifeApplication": "For the next seven days at the same cue, loosen it and receive the gift without claiming the outcome."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives attachment a keepable form through received care.",
-          "lifeApplication": "When the hand tightens, loosen it and receive the gift without claiming the outcome."
+          "shortMeaning": "A steady practice weakens the grip of possession over time.",
+          "lifeApplication": "For the next seven days at the same cue, loosen it and receive the gift without claiming the outcome."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-ego#daily": {
     "title": "When ego keeps making the self too large inside the ordinary day",
-    "issueStatement": "The self keeps pushing itself to the center of the room. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
-    "actionPrompt": "In the next plain moment of the day, before defending yourself, ask where the self wants the line to confirm it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The room may look calm, but inwardly everything is being measured through injury, credit, image, or control. In small routines, self-centering can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Ego becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns ego toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts self-centering before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "The day steadies when ego is met with humility, service, and praise.",
+          "lifeApplication": "Today, notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around ego; the heart is returned to the Guru's guidance.",
+        "explanation": "The passage pulls the heart back from self-centering and into honest smallness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ordinary moments change when the mind returns to honest smallness instead of self-centering.",
+          "lifeApplication": "Today, notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "The daily moment changes here because ego is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by ego.",
         "source": {
-          "shortMeaning": "Ego is checked here by Naam and praise.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "This excerpt restores proportion before ego takes over the tone of the day.",
+          "lifeApplication": "Today, notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-ego#pressure": {
     "title": "When pressure exposes what ego reaches for",
-    "issueStatement": "The self keeps pushing itself to the center of the room. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "At the first sign of strain, before defending yourself, ask where the self wants the line to confirm it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The room may look calm, but inwardly everything is being measured through injury, credit, image, or control. Under strain, self-centering starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts self-centering before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to honest smallness.",
+          "lifeApplication": "When the room tightens, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies ego by returning the heart to Naam and praise.",
+        "explanation": "The passage refuses to let strain turn ego into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "This line steadies the reflex before ego can rule the moment.",
+          "lifeApplication": "When the room tightens, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward humility, service, and praise.",
         "source": {
-          "shortMeaning": "Ego is not left to rule the strained moment.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ego is answered here through humility, service, and praise.",
+          "lifeApplication": "When the room tightens, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-ego#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The self keeps pushing itself to the center of the room. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "After the slip is named cleanly, before defending yourself, ask where the self wants the line to confirm it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The room may look calm, but inwardly everything is being measured through injury, credit, image, or control. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because ego is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through holy company.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Repair begins when the heart returns to humility, service, and praise instead of performance.",
+          "lifeApplication": "After the slip is visible, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
-        "source": {
-          "shortMeaning": "After the slip, return stays open through received care.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
-        }
-      },
-      {
-        "explanation": "After the slip, the verse keeps return possible through Naam and praise.",
+        "explanation": "The passage keeps ego from hardening into identity by pointing the heart back to honest smallness.",
         "source": {
           "shortMeaning": "Ego is not allowed to become identity here.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "lifeApplication": "After the slip is visible, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
+        }
+      },
+      {
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
+        "source": {
+          "shortMeaning": "This passage opens a clean way back through honest smallness.",
+          "lifeApplication": "After the slip is visible, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-ego#practice": {
     "title": "When ego needs a rule that interrupts it early",
-    "issueStatement": "The self keeps pushing itself to the center of the room. The need now is a kept interruption, not one sharp moment of insight.",
-    "centralInsight": "Guru names haumai clearly and then redirects the heart toward humility, service, and truth. Repeated interruption teaches the self that it does not have to stay in the middle.",
-    "practicalReflection": "Ego returns fast because it is fluent. A practice matters here because the interruption has to be learned before the defense feels necessary.",
-    "actionPrompt": "Choose one daily cue when the self usually swells, and answer it by listening longer than you defend.",
+    "reviewedByHuman": false,
+    "issueStatement": "The room may look calm, but inwardly everything is being measured through injury, credit, image, or control. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani names haumai as distortion, not confidence. The self swells beyond truth and tries to become narrator, judge, and center of the moment. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning ego to Naam and praise.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "Ego is retrained through repeated return to honest smallness.",
+          "lifeApplication": "For the next seven days at the same cue, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives ego a repeatable interruption through humility, service, and praise.",
         "source": {
-          "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of humility, service, and praise.",
+          "lifeApplication": "For the next seven days at the same cue, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives ego a keepable form through Naam and praise.",
-          "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+          "shortMeaning": "A steady practice weakens self-centering over time.",
+          "lifeApplication": "For the next seven days at the same cue, Notice where the self wants to be confirmed, defended, or admired, and let one of those demands go unanswered today."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-gratitude#daily": {
     "title": "When gratitude feels distant inside the ordinary day",
-    "issueStatement": "The heart notices absence faster than gift. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where gratitude usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "Before the day gathers more speed, before complaining about what is missing, name one mercy already resting in the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Mercy is still present, but the heart has narrowed around what is missing, delayed, or still not enough. In small routines, fixation on lack can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than demanding a performance of positivity. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Ingratitude becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around gratitude; the heart is returned to steadier return.",
+        "explanation": "In the daily rhythm, this excerpt interrupts fixation on lack before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts gratitude inside the day through steadier return.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "The day steadies when ingratitude is met with gift, mercy, and Naam.",
+          "lifeApplication": "Today, before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "The daily moment changes here because gratitude is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from fixation on lack and into thankful attention.",
         "source": {
-          "shortMeaning": "The line interrupts gratitude inside the day through the Guru's guidance.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ordinary moments change when the mind returns to thankful attention instead of fixation on lack.",
+          "lifeApplication": "Today, before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns gratitude toward trust in Hukam instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by ingratitude.",
         "source": {
-          "shortMeaning": "The line interrupts gratitude inside the day through trust in Hukam.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "This excerpt restores proportion before ingratitude takes over the tone of the day.",
+          "lifeApplication": "Today, before you complain about what is absent, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-gratitude#pressure": {
     "title": "When pressure exposes what gratitude reaches for",
-    "issueStatement": "The heart notices absence faster than gift. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. Pressure reveals the ruler of the heart, so Gurbani answers at the level of reflex, not image.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before complaining about what is missing, name one mercy already resting in the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Mercy is still present, but the heart has narrowed around what is missing, delayed, or still not enough. Under strain, fixation on lack starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than demanding a performance of positivity. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, name one mercy already resting in the room and stay with it long enough to feel it.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts fixation on lack before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to thankful attention.",
+          "lifeApplication": "When the room tightens, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies gratitude by returning the heart to truthful steadiness.",
+        "explanation": "The passage refuses to let strain turn ingratitude into the only voice in the room.",
         "source": {
-          "shortMeaning": "Gratitude is not left to rule the strained moment.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "This line steadies the reflex before ingratitude can rule the moment.",
+          "lifeApplication": "When the room tightens, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward gift, mercy, and Naam.",
         "source": {
-          "shortMeaning": "Gratitude is not left to rule the strained moment.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude is answered here through gift, mercy, and Naam.",
+          "lifeApplication": "When the room tightens, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-gratitude#repair": {
     "title": "When gratitude feels distant after the slip",
-    "issueStatement": "The heart notices absence faster than gift. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "Once the miss is visible, before complaining about what is missing, name one mercy already resting in the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Mercy is still present, but the heart has narrowed around what is missing, delayed, or still not enough. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than demanding a performance of positivity. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, name one mercy already resting in the room and stay with it long enough to feel it.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Gratitude is not allowed to become identity here.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Repair begins when the heart returns to gift, mercy, and Naam instead of performance.",
+          "lifeApplication": "After the slip is visible, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "Repair stays honest here because gratitude is answered without theatre.",
+        "explanation": "The passage keeps ingratitude from hardening into identity by pointing the heart back to thankful attention.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "This passage opens a clean way back through thankful attention.",
+          "lifeApplication": "After the slip is visible, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-gratitude#practice": {
     "title": "When gratitude needs a repeatable shape",
-    "issueStatement": "The heart notices absence faster than gift. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru keeps gratitude close to remembrance, contentment, and restored vision. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "At one fixed cue you can keep all week, before complaining about what is missing, name one mercy already resting in the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Mercy is still present, but the heart has narrowed around what is missing, delayed, or still not enough. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani restores gratitude by returning the soul to gift, mercy, and Naam rather than demanding a performance of positivity. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, name one mercy already resting in the room and stay with it long enough to feel it.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning gratitude to steadier return.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "Ingratitude is retrained through repeated return to thankful attention.",
+          "lifeApplication": "For the next seven days at the same cue, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives ingratitude a repeatable interruption through gift, mercy, and Naam.",
         "source": {
-          "shortMeaning": "The verse gives gratitude a keepable form through steadier return.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of gift, mercy, and Naam.",
+          "lifeApplication": "For the next seven days at the same cue, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Gratitude is trained through repeated return to steadier return.",
-          "lifeApplication": "Before complaining about what is missing, name one mercy already resting in the room."
+          "shortMeaning": "A steady practice weakens fixation on lack over time.",
+          "lifeApplication": "For the next seven days at the same cue, name one mercy already resting in the room and stay with it long enough to feel it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-discipline#daily": {
     "title": "When discipline keeps thinning out inside the ordinary day",
-    "issueStatement": "Good intention is present, but the pattern cannot hold. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "This is where discipline usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "Before the day gathers more speed, choose one repeatable cue today and keep it without negotiation.",
+    "reviewedByHuman": false,
+    "issueStatement": "You mean it in the morning, but by midday the mind has started bargaining with fatigue, mood, and convenience. In small routines, bargaining with the practice can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Wavering discipline becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, choose one cue you can actually keep today, and when it comes, keep it without negotiation.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around discipline; the heart is returned to Naam and praise.",
+        "explanation": "In the daily rhythm, this excerpt interrupts bargaining with the practice before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts discipline inside the day through Naam and praise.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "The day steadies when wavering discipline is met with remembered repetition and clean conduct.",
+          "lifeApplication": "Today, choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns discipline toward Naam and praise instead of self-enclosure.",
+        "explanation": "The passage pulls the heart back from bargaining with the practice and into kept rhythm.",
         "source": {
-          "shortMeaning": "The line interrupts discipline inside the day through Naam and praise.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Ordinary moments change when the mind returns to kept rhythm instead of bargaining with the practice.",
+          "lifeApplication": "Today, choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "The daily moment changes here because discipline is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by wavering discipline.",
         "source": {
-          "shortMeaning": "Discipline is checked here by steadier return.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "This excerpt restores proportion before wavering discipline takes over the tone of the day.",
+          "lifeApplication": "Today, choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-discipline#pressure": {
     "title": "When discipline tightens under pressure",
-    "issueStatement": "Good intention is present, but the pattern cannot hold. This is the moment when panic, force, or performance tries to become the only available language.",
-    "centralInsight": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "When the body tightens, choose one repeatable cue today and keep it without negotiation.",
+    "reviewedByHuman": false,
+    "issueStatement": "You mean it in the morning, but by midday the mind has started bargaining with fatigue, mood, and convenience. Under strain, bargaining with the practice starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Choose one cue you can actually keep today, and when it comes, keep it without negotiation.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts bargaining with the practice before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Discipline is not left to rule the strained moment.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to kept rhythm.",
+          "lifeApplication": "When the room tightens, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies discipline by returning the heart to Naam and praise.",
+        "explanation": "The passage refuses to let strain turn wavering discipline into the only voice in the room.",
         "source": {
-          "shortMeaning": "Discipline is not left to rule the strained moment.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "This line steadies the reflex before wavering discipline can rule the moment.",
+          "lifeApplication": "When the room tightens, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward remembered repetition and clean conduct.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline is answered here through remembered repetition and clean conduct.",
+          "lifeApplication": "When the room tightens, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-discipline#repair": {
     "title": "When discipline has already run ahead of truth",
-    "issueStatement": "Good intention is present, but the pattern cannot hold. The problem is no longer only temptation or pain, but how to return without theatre.",
-    "centralInsight": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "Before shame turns theatrical, choose one repeatable cue today and keep it without negotiation.",
+    "reviewedByHuman": false,
+    "issueStatement": "You mean it in the morning, but by midday the mind has started bargaining with fatigue, mood, and convenience. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Choose one cue you can actually keep today, and when it comes, keep it without negotiation.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through Naam and praise.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Discipline is not allowed to become identity here.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Repair begins when the heart returns to remembered repetition and clean conduct instead of performance.",
+          "lifeApplication": "After the slip is visible, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "Repair stays honest here because discipline is answered without theatre.",
+        "explanation": "The passage keeps wavering discipline from hardening into identity by pointing the heart back to kept rhythm.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "This passage opens a clean way back through kept rhythm.",
+          "lifeApplication": "After the slip is visible, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-discipline#practice": {
     "title": "When discipline keeps thinning out as a keepable practice",
-    "issueStatement": "Good intention is present, but the pattern cannot hold. What is needed now is a form you can keep through an ordinary week.",
-    "centralInsight": "Guru places discipline inside remembrance, restraint, and inner victory instead of image management. A line proves its truth when it governs more than one moment.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and often harder. The correction matters because it teaches the soul how to keep returning.",
-    "actionPrompt": "Choose one repeatable cue this week and choose one repeatable cue today and keep it without negotiation.",
+    "reviewedByHuman": false,
+    "issueStatement": "You mean it in the morning, but by midday the mind has started bargaining with fatigue, mood, and convenience. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani places discipline in remembrance, clean conduct, and truthful repetition. The work is not one intense moment but a kept return before the mind resumes self-rule. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Choose one cue you can actually keep today, and when it comes, keep it without negotiation.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning discipline to Naam and praise.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives discipline a keepable form through Naam and praise.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "Wavering discipline is retrained through repeated return to kept rhythm.",
+          "lifeApplication": "For the next seven days at the same cue, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives wavering discipline a repeatable interruption through remembered repetition and clean conduct.",
         "source": {
-          "shortMeaning": "Discipline is trained through repeated return to the Guru's guidance.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of remembered repetition and clean conduct.",
+          "lifeApplication": "For the next seven days at the same cue, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Discipline is trained through repeated return to Naam and praise.",
-          "lifeApplication": "Choose one repeatable cue today and keep it without negotiation."
+          "shortMeaning": "A steady practice weakens bargaining with the practice over time.",
+          "lifeApplication": "For the next seven days at the same cue, Choose one cue you can actually keep today, and when it comes, keep it without negotiation."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seva#daily": {
     "title": "When service needs its center back before the day gets away from you",
-    "issueStatement": "The work may still be happening, but the heart has started bargaining with it. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "Before the day gathers more speed, do one needed thing today without carrying it back into self-advertisement.",
+    "reviewedByHuman": false,
+    "issueStatement": "The work may still be useful, but inwardly it has started asking for witness, leverage, or emotional repayment. In small routines, serving for inward profit can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Self-conscious service becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns seva toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts serving for inward profit before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "The day steadies when self-conscious service is met with hidden service, obedience, and remembrance.",
+          "lifeApplication": "Today, before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "The daily moment changes here because seva is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from serving for inward profit and into clean offering.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Ordinary moments change when the mind returns to clean offering instead of serving for inward profit.",
+          "lifeApplication": "Today, before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around seva; the heart is returned to steadier return.",
+        "explanation": "This keeps the next ordinary moment from being governed by self-conscious service.",
         "source": {
-          "shortMeaning": "Seva is checked here by steadier return.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "This excerpt restores proportion before self-conscious service takes over the tone of the day.",
+          "lifeApplication": "Today, before the next act of service, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seva#pressure": {
     "title": "When service needs its center back and the room gets tight",
-    "issueStatement": "The work may still be happening, but the heart has started bargaining with it. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If seva reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "At the first embodied sign of pressure, do one needed thing today without carrying it back into self-advertisement.",
+    "reviewedByHuman": false,
+    "issueStatement": "The work may still be useful, but inwardly it has started asking for witness, leverage, or emotional repayment. Under strain, serving for inward profit starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, ask what would remain if no one noticed it and no inward debt could be collected from it.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies seva by returning the heart to the Guru's guidance.",
+        "explanation": "Under pressure, this excerpt interrupts serving for inward profit before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Seva is not left to rule the strained moment.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to clean offering.",
+          "lifeApplication": "When the room tightens, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn self-conscious service into the only voice in the room.",
         "source": {
-          "shortMeaning": "Seva is not left to rule the strained moment.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "This line steadies the reflex before self-conscious service can rule the moment.",
+          "lifeApplication": "When the room tightens, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward hidden service, obedience, and remembrance.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service is answered here through hidden service, obedience, and remembrance.",
+          "lifeApplication": "When the room tightens, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seva#repair": {
     "title": "When service needs its center back after the slip",
-    "issueStatement": "The work may still be happening, but the heart has started bargaining with it. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "Before the excuse or self-punishment starts, do one needed thing today without carrying it back into self-advertisement.",
+    "reviewedByHuman": false,
+    "issueStatement": "The work may still be useful, but inwardly it has started asking for witness, leverage, or emotional repayment. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, ask what would remain if no one noticed it and no inward debt could be collected from it.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Repair begins when the heart returns to hidden service, obedience, and remembrance instead of performance.",
+          "lifeApplication": "After the slip is visible, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps self-conscious service from hardening into identity by pointing the heart back to clean offering.",
         "source": {
-          "shortMeaning": "Seva is not allowed to become identity here.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "Repair stays honest here because seva is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Seva is not allowed to become identity here.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "This passage opens a clean way back through clean offering.",
+          "lifeApplication": "After the slip is visible, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seva#practice": {
     "title": "When seva needs a rule you can keep",
-    "issueStatement": "The work may still be happening, but the heart has started bargaining with it. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
-    "centralInsight": "Guru joins service to humility, honest labor, and offering rather than display. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, seva will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "For the next seven days at the same cue, do one needed thing today without carrying it back into self-advertisement.",
+    "reviewedByHuman": false,
+    "issueStatement": "The work may still be useful, but inwardly it has started asking for witness, leverage, or emotional repayment. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani joins seva to hiddenness, obedience, and remembrance. Service becomes clean when the self is no longer the secret beneficiary of the offering. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, ask what would remain if no one noticed it and no inward debt could be collected from it.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives seva a keepable form through the Guru's guidance.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "Self-conscious service is retrained through repeated return to clean offering.",
+          "lifeApplication": "For the next seven days at the same cue, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives self-conscious service a repeatable interruption through hidden service, obedience, and remembrance.",
         "source": {
-          "shortMeaning": "Seva is trained through repeated return to Naam and praise.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of hidden service, obedience, and remembrance.",
+          "lifeApplication": "For the next seven days at the same cue, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning seva to Naam and praise.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Seva is trained through repeated return to Naam and praise.",
-          "lifeApplication": "Do one needed thing today without carrying it back into self-advertisement."
+          "shortMeaning": "A steady practice weakens serving for inward profit over time.",
+          "lifeApplication": "For the next seven days at the same cue, ask what would remain if no one noticed it and no inward debt could be collected from it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-hukam#daily": {
     "title": "When resistance keeps arguing with Hukam inside the ordinary day",
-    "issueStatement": "The mind wants reality to arrive on self-approved terms. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru reframes peace as understanding the command already holding everything. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "Before the day gathers more speed, before you argue with the moment again, stop and name what is already here.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps arguing with what has already arrived. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten. In small routines, arguing with what has already come can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has been given. Hukam restores proportion by ending the fantasy that refusal can rule reality. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Resistance becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because hukam is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts arguing with what has already come before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts hukam inside the day through steadier return.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "The day steadies when resistance is met with praise, obedience, and receiving what has come.",
+          "lifeApplication": "Today, before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around hukam; the heart is returned to Naam and praise.",
+        "explanation": "The passage pulls the heart back from arguing with what has already come and into yielded obedience.",
         "source": {
-          "shortMeaning": "The line interrupts hukam inside the day through Naam and praise.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Ordinary moments change when the mind returns to yielded obedience instead of arguing with what has already come.",
+          "lifeApplication": "Today, before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns hukam toward steadier return instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by resistance.",
         "source": {
-          "shortMeaning": "Hukam is checked here by steadier return.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "This excerpt restores proportion before resistance takes over the tone of the day.",
+          "lifeApplication": "Today, before you reopen the complaint, name what is already here, praise once, and take the next faithful step inside it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-hukam#pressure": {
     "title": "When resistance keeps arguing with Hukam and the room gets tight",
-    "issueStatement": "The mind wants reality to arrive on self-approved terms. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru reframes peace as understanding the command already holding everything. Pressure reveals the ruler of the heart, so Gurbani answers at the level of reflex, not image.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If hukam reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before you argue with the moment again, stop and name what is already here.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps arguing with what has already arrived. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten. Under strain, arguing with what has already come starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has been given. Hukam restores proportion by ending the fantasy that refusal can rule reality. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, name what is already here, praise once, and take the next faithful step inside it.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies hukam by returning the heart to Naam and praise.",
+        "explanation": "Under pressure, this excerpt interrupts arguing with what has already come before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to yielded obedience.",
+          "lifeApplication": "When the room tightens, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn resistance into the only voice in the room.",
         "source": {
-          "shortMeaning": "Hukam is not left to rule the strained moment.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "This line steadies the reflex before resistance can rule the moment.",
+          "lifeApplication": "When the room tightens, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward praise, obedience, and receiving what has come.",
         "source": {
-          "shortMeaning": "Hukam is not left to rule the strained moment.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Resistance is answered here through praise, obedience, and receiving what has come.",
+          "lifeApplication": "When the room tightens, name what is already here, praise once, and take the next faithful step inside it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-hukam#repair": {
     "title": "When hukam has already run ahead of truth",
-    "issueStatement": "The mind wants reality to arrive on self-approved terms. The problem is no longer only temptation or pain, but how to return without theatre.",
-    "centralInsight": "Guru reframes peace as understanding the command already holding everything. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "After the slip is named cleanly, before you argue with the moment again, stop and name what is already here.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps arguing with what has already arrived. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has been given. Hukam restores proportion by ending the fantasy that refusal can rule reality. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, name what is already here, praise once, and take the next faithful step inside it.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Repair begins when the heart returns to praise, obedience, and receiving what has come instead of performance.",
+          "lifeApplication": "After the slip is visible, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through received care.",
+        "explanation": "The passage keeps resistance from hardening into identity by pointing the heart back to yielded obedience.",
         "source": {
-          "shortMeaning": "Hukam is not allowed to become identity here.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Resistance is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "Repair stays honest here because hukam is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through received care.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "This passage opens a clean way back through yielded obedience.",
+          "lifeApplication": "After the slip is visible, name what is already here, praise once, and take the next faithful step inside it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-hukam#practice": {
     "title": "When hukam needs a rule you can keep",
-    "issueStatement": "The mind wants reality to arrive on self-approved terms. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
-    "centralInsight": "Guru reframes peace as understanding the command already holding everything. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, hukam will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "At one fixed cue you can keep all week, before you argue with the moment again, stop and name what is already here.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps arguing with what has already arrived. Hukam feels hardest not in philosophy but in the ordinary fact you still want rewritten. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani makes acceptance active, not numb: receive, praise, and answer faithfully inside what has been given. Hukam restores proportion by ending the fantasy that refusal can rule reality. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, name what is already here, praise once, and take the next faithful step inside it.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to the Guru's guidance the same way again.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "Resistance is retrained through repeated return to yielded obedience.",
+          "lifeApplication": "For the next seven days at the same cue, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives resistance a repeatable interruption through praise, obedience, and receiving what has come.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of praise, obedience, and receiving what has come.",
+          "lifeApplication": "For the next seven days at the same cue, name what is already here, praise once, and take the next faithful step inside it."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning hukam to received care.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives hukam a keepable form through received care.",
-          "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+          "shortMeaning": "A steady practice weakens arguing with what has already come over time.",
+          "lifeApplication": "For the next seven days at the same cue, name what is already here, praise once, and take the next faithful step inside it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-doubt#daily": {
     "title": "When doubt starts steering the day",
-    "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "Before the day gathers more speed, before reopening every question, return to one clear line and stay with it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The question may be real, but the circling has become its own fire, and hesitation is starting to feel like home. In small routines, circling hesitation can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not flatter doubt as depth. It cools the mind by giving it somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Doubt becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns doubt toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts circling hesitation before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts doubt inside the day through steadier return.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "The day steadies when doubt is met with Guru's word, sangat, and trust.",
+          "lifeApplication": "Today, before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "The daily moment changes here because doubt is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from circling hesitation and into clear footing.",
         "source": {
-          "shortMeaning": "Doubt is checked here by steadier return.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Ordinary moments change when the mind returns to clear footing instead of circling hesitation.",
+          "lifeApplication": "Today, before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around doubt; the heart is returned to received mercy.",
+        "explanation": "This keeps the next ordinary moment from being governed by doubt.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by received mercy.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "This excerpt restores proportion before doubt takes over the tone of the day.",
+          "lifeApplication": "Today, before the next wave of circling thought, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-doubt#pressure": {
     "title": "When pressure exposes what doubt reaches for",
-    "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "Before strain takes over the room, before reopening every question, return to one clear line and stay with it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The question may be real, but the circling has become its own fire, and hesitation is starting to feel like home. Under strain, circling hesitation starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not flatter doubt as depth. It cools the mind by giving it somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, return to one clear line and stay with it long enough for the mind to stop scattering.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts circling hesitation before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to clear footing.",
+          "lifeApplication": "When the room tightens, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies doubt by returning the heart to truthful steadiness.",
+        "explanation": "The passage refuses to let strain turn doubt into the only voice in the room.",
         "source": {
-          "shortMeaning": "Doubt is not left to rule the strained moment.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "This line steadies the reflex before doubt can rule the moment.",
+          "lifeApplication": "When the room tightens, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward Guru's word, sangat, and trust.",
         "source": {
-          "shortMeaning": "Doubt is not left to rule the strained moment.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Doubt is answered here through Guru's word, sangat, and trust.",
+          "lifeApplication": "When the room tightens, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-doubt#repair": {
     "title": "When doubt keeps fogging the path after the slip",
-    "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "After the slip is named cleanly, before reopening every question, return to one clear line and stay with it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The question may be real, but the circling has become its own fire, and hesitation is starting to feel like home. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not flatter doubt as depth. It cools the mind by giving it somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, return to one clear line and stay with it long enough for the mind to stop scattering.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through received mercy.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through received mercy.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Repair begins when the heart returns to Guru's word, sangat, and trust instead of performance.",
+          "lifeApplication": "After the slip is visible, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps doubt from hardening into identity by pointing the heart back to clear footing.",
         "source": {
           "shortMeaning": "Doubt is not allowed to become identity here.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "lifeApplication": "After the slip is visible, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "Repair stays honest here because doubt is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Doubt is not allowed to become identity here.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "This passage opens a clean way back through clear footing.",
+          "lifeApplication": "After the slip is visible, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-doubt#practice": {
     "title": "When doubt needs a repeatable shape",
-    "issueStatement": "The mind keeps second-guessing what it once knew clearly enough to begin. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru answers doubt by clarifying what is worth trusting, keeping, and repeating. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, doubt will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "Pick one repeatable time and place, then before reopening every question, return to one clear line and stay with it.",
+    "reviewedByHuman": false,
+    "issueStatement": "The question may be real, but the circling has become its own fire, and hesitation is starting to feel like home. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not flatter doubt as depth. It cools the mind by giving it somewhere to stand: Guru's word within, saintly company around, and trust in the One already caring for you. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, return to one clear line and stay with it long enough for the mind to stop scattering.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning doubt to steadier return.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "Doubt is retrained through repeated return to clear footing.",
+          "lifeApplication": "For the next seven days at the same cue, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives doubt a repeatable interruption through Guru's word, sangat, and trust.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of Guru's word, sangat, and trust.",
+          "lifeApplication": "For the next seven days at the same cue, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives doubt a keepable form through steadier return.",
-          "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+          "shortMeaning": "A steady practice weakens circling hesitation over time.",
+          "lifeApplication": "For the next seven days at the same cue, return to one clear line and stay with it long enough for the mind to stop scattering."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-speech#daily": {
     "title": "When speech starts steering the day",
-    "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "reviewedByHuman": false,
+    "issueStatement": "Words are arriving faster than remembrance, so speech starts leaving damage before wisdom enters the room. In small routines, letting the tongue outrun remembrance can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani disciplines speech through Naam, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Reckless speech becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around speech; the heart is returned to steadier return.",
+        "explanation": "In the daily rhythm, this excerpt interrupts letting the tongue outrun remembrance before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts speech inside the day through steadier return.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "The day steadies when reckless speech is met with humility, remembrance, and praise.",
+          "lifeApplication": "Today, before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "The daily moment changes here because speech is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from letting the tongue outrun remembrance and into clean words.",
         "source": {
-          "shortMeaning": "Speech is checked here by Naam and praise.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Ordinary moments change when the mind returns to clean words instead of letting the tongue outrun remembrance.",
+          "lifeApplication": "Today, before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns speech toward steadier return instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by reckless speech.",
         "source": {
-          "shortMeaning": "Speech is checked here by steadier return.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "This excerpt restores proportion before reckless speech takes over the tone of the day.",
+          "lifeApplication": "Today, before the next unnecessary word, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-speech#pressure": {
     "title": "When speech keeps outrunning wisdom and the room gets tight",
-    "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If speech reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "reviewedByHuman": false,
+    "issueStatement": "Words are arriving faster than remembrance, so speech starts leaving damage before wisdom enters the room. Under strain, letting the tongue outrun remembrance starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani disciplines speech through Naam, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, ask whether it will leave the room cleaner, truer, and more peaceful.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts letting the tongue outrun remembrance before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to clean words.",
+          "lifeApplication": "When the room tightens, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies speech by returning the heart to the Guru's guidance.",
+        "explanation": "The passage refuses to let strain turn reckless speech into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "This line steadies the reflex before reckless speech can rule the moment.",
+          "lifeApplication": "When the room tightens, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward humility, remembrance, and praise.",
         "source": {
-          "shortMeaning": "Speech is not left to rule the strained moment.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech is answered here through humility, remembrance, and praise.",
+          "lifeApplication": "When the room tightens, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-speech#repair": {
     "title": "When speech keeps outrunning wisdom after the slip",
-    "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps speech from turning into a permanent self-story.",
-    "actionPrompt": "After the slip is named cleanly, before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "reviewedByHuman": false,
+    "issueStatement": "Words are arriving faster than remembrance, so speech starts leaving damage before wisdom enters the room. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani disciplines speech through Naam, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, ask whether it will leave the room cleaner, truer, and more peaceful.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because speech is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through steadier return.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Repair begins when the heart returns to humility, remembrance, and praise instead of performance.",
+          "lifeApplication": "After the slip is visible, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps reckless speech from hardening into identity by pointing the heart back to clean words.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through Naam and praise.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through holy company.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Speech is not allowed to become identity here.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "This passage opens a clean way back through clean words.",
+          "lifeApplication": "After the slip is visible, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-speech#practice": {
     "title": "When speech needs a rule you can keep",
-    "issueStatement": "Words arrive before the heart has been cleaned enough to carry them well. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
-    "centralInsight": "Guru makes speech answer to praise, restraint, and truthfulness. Practice gives the line an honest place in schedule, memory, and conduct.",
-    "practicalReflection": "A practice is only real if it survives a crowded week. The line matters here because it is asking to become rule, not atmosphere.",
-    "actionPrompt": "At one fixed cue you can keep all week, before the next message or sentence leaves you, ask if it can still be honored tonight.",
+    "reviewedByHuman": false,
+    "issueStatement": "Words are arriving faster than remembrance, so speech starts leaving damage before wisdom enters the room. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani disciplines speech through Naam, humility, and praise. The tongue becomes trustworthy when it no longer serves ego, impulse, or spiritual theatre. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, ask whether it will leave the room cleaner, truer, and more peaceful.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning speech to steadier return.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "Reckless speech is retrained through repeated return to clean words.",
+          "lifeApplication": "For the next seven days at the same cue, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives reckless speech a repeatable interruption through humility, remembrance, and praise.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of humility, remembrance, and praise.",
+          "lifeApplication": "For the next seven days at the same cue, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives speech a keepable form through steadier return.",
-          "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+          "shortMeaning": "A steady practice weakens letting the tongue outrun remembrance over time.",
+          "lifeApplication": "For the next seven days at the same cue, ask whether it will leave the room cleaner, truer, and more peaceful."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-patience#daily": {
     "title": "When waiting keeps turning bitter before the day gets away from you",
-    "issueStatement": "Delay has started feeding resentment instead of ripening trust. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where patience usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the next plain moment of the day, at the next delay, listen before you let resentment narrate the wait.",
+    "reviewedByHuman": false,
+    "issueStatement": "Time is passing, but the inner room is not staying open. Delay has begun feeding irritation, urgency, and the demand for immediate proof. In small routines, demanding immediate proof can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Impatience becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns patience toward truthful steadiness instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts demanding immediate proof before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Patience is checked here by truthful steadiness.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "The day steadies when impatience is met with remembrance, sangat, and trust.",
+          "lifeApplication": "Today, stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around patience; the heart is returned to Naam and praise.",
+        "explanation": "The passage pulls the heart back from demanding immediate proof and into ripened waiting.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Ordinary moments change when the mind returns to ripened waiting instead of demanding immediate proof.",
+          "lifeApplication": "Today, stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "The daily moment changes here because patience is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by impatience.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by holy company.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "This excerpt restores proportion before impatience takes over the tone of the day.",
+          "lifeApplication": "Today, stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-patience#pressure": {
     "title": "When pressure exposes what patience reaches for",
-    "issueStatement": "Delay has started feeding resentment instead of ripening trust. This is the moment when panic, force, or performance tries to become the only available language.",
-    "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "At the first sign of strain, at the next delay, listen before you let resentment narrate the wait.",
+    "reviewedByHuman": false,
+    "issueStatement": "Time is passing, but the inner room is not staying open. Delay has begun feeding irritation, urgency, and the demand for immediate proof. Under strain, demanding immediate proof starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts demanding immediate proof before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, patience is steadied by holy company.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to ripened waiting.",
+          "lifeApplication": "When the room tightens, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies patience by returning the heart to truthful steadiness.",
+        "explanation": "The passage refuses to let strain turn impatience into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through truthful steadiness.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "This line steadies the reflex before impatience can rule the moment.",
+          "lifeApplication": "When the room tightens, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "The strain does not get final say here; received care interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward remembrance, sangat, and trust.",
         "source": {
-          "shortMeaning": "Patience is not left to rule the strained moment.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience is answered here through remembrance, sangat, and trust.",
+          "lifeApplication": "When the room tightens, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-patience#repair": {
     "title": "When patience has already run ahead of truth",
-    "issueStatement": "Delay has started feeding resentment instead of ripening trust. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "Before shame turns theatrical, at the next delay, listen before you let resentment narrate the wait.",
+    "reviewedByHuman": false,
+    "issueStatement": "Time is passing, but the inner room is not staying open. Delay has begun feeding irritation, urgency, and the demand for immediate proof. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving settled patience instead of self-theatre.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Repair begins when the heart returns to remembrance, sangat, and trust instead of performance.",
+          "lifeApplication": "After the slip is visible, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "Repair stays honest here because patience is answered without theatre.",
+        "explanation": "The passage keeps impatience from hardening into identity by pointing the heart back to ripened waiting.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through received care.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Patience is not allowed to become identity here.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "This passage opens a clean way back through ripened waiting.",
+          "lifeApplication": "After the slip is visible, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-patience#practice": {
     "title": "When waiting keeps turning bitter as a keepable practice",
-    "issueStatement": "Delay has started feeding resentment instead of ripening trust. The question is no longer whether the line is true, but whether it can survive repetition.",
-    "centralInsight": "Guru ties patience to listening, honor, and steadiness rather than passive resentment. A line proves its truth when it governs more than one moment.",
-    "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
-    "actionPrompt": "Pick one place in the day to practice this line, then at the next delay, listen before you let resentment narrate the wait.",
+    "reviewedByHuman": false,
+    "issueStatement": "Time is passing, but the inner room is not staying open. Delay has begun feeding irritation, urgency, and the demand for immediate proof. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not treat patience as limp delay. Patience ripens where remembrance steadies the body, sangat cools the mind, and the soul stops demanding quick evidence. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning patience to Naam and praise.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to Naam and praise the same way again.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "Impatience is retrained through repeated return to ripened waiting.",
+          "lifeApplication": "For the next seven days at the same cue, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives impatience a repeatable interruption through remembrance, sangat, and trust.",
         "source": {
-          "shortMeaning": "Practice begins by returning to holy company the same way again.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of remembrance, sangat, and trust.",
+          "lifeApplication": "For the next seven days at the same cue, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives patience a keepable form through holy company.",
-          "lifeApplication": "At the next delay, listen before you let resentment narrate the wait."
+          "shortMeaning": "A steady practice weakens demanding immediate proof over time.",
+          "lifeApplication": "For the next seven days at the same cue, Stay with one honest act for the next seven days, and measure the waiting by sincerity of heart rather than speed of result."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-mercy#daily": {
     "title": "When mercy feels hard to receive before the day gets away from you",
-    "issueStatement": "The heart keeps assuming kindness must first be earned. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru keeps mercy close to gift, nearness, and return. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
-    "actionPrompt": "At the first self-accusing thought of the day, place a hand on the chest and receive one line before you do anything to earn it.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still reading the day through debt, performance, or punishment, so kindness feels suspicious instead of sustaining. In small routines, distrusting grace can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Hardness becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before you audit yourself again, name one way grace has already met you today and answer from that place.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns mercy toward Naam and praise instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts distrusting grace before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "The day steadies when hardness is met with grace, nearness, and return.",
+          "lifeApplication": "Today, before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "The daily moment changes here because mercy is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from distrusting grace and into received kindness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by holy company.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Ordinary moments change when the mind returns to received kindness instead of distrusting grace.",
+          "lifeApplication": "Today, before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around mercy; the heart is returned to Naam and praise.",
+        "explanation": "This keeps the next ordinary moment from being governed by hardness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "This excerpt restores proportion before hardness takes over the tone of the day.",
+          "lifeApplication": "Today, before you audit yourself again, name one way grace has already met you today and answer from that place."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-mercy#pressure": {
     "title": "When mercy tightens under pressure",
-    "issueStatement": "The heart keeps assuming kindness must first be earned. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru keeps mercy close to gift, nearness, and return. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If mercy reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When criticism or failure lands, keep silent for one breath and answer from mercy before self-audit takes over.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still reading the day through debt, performance, or punishment, so kindness feels suspicious instead of sustaining. Under strain, distrusting grace starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, name one way grace has already met you today and answer from that place.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts distrusting grace before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through holy company.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to received kindness.",
+          "lifeApplication": "When the room tightens, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn hardness into the only voice in the room.",
         "source": {
-          "shortMeaning": "Mercy is not left to rule the strained moment.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "This line steadies the reflex before hardness can rule the moment.",
+          "lifeApplication": "When the room tightens, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies mercy by returning the heart to received care.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward grace, nearness, and return.",
         "source": {
-          "shortMeaning": "Mercy is not left to rule the strained moment.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness is answered here through grace, nearness, and return.",
+          "lifeApplication": "When the room tightens, name one way grace has already met you today and answer from that place."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-mercy#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The heart keeps assuming kindness must first be earned. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru keeps mercy close to gift, nearness, and return. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps mercy from turning into a permanent self-story.",
-    "actionPrompt": "After the miss, confess plainly, receive mercy, and take the next obedient step instead of sentencing yourself.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still reading the day through debt, performance, or punishment, so kindness feels suspicious instead of sustaining. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, name one way grace has already met you today and answer from that place.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because mercy is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through received care.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Repair begins when the heart returns to grace, nearness, and return instead of performance.",
+          "lifeApplication": "After the slip is visible, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps hardness from hardening into identity by pointing the heart back to received kindness.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through Naam and praise.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through holy company.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Mercy is not allowed to become identity here.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "This passage opens a clean way back through received kindness.",
+          "lifeApplication": "After the slip is visible, name one way grace has already met you today and answer from that place."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-mercy#practice": {
     "title": "When mercy needs a steadier rule",
-    "issueStatement": "The heart keeps assuming kindness must first be earned. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
-    "centralInsight": "Guru keeps mercy close to gift, nearness, and return. The teaching becomes durable when it is practiced, not merely admired.",
-    "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
-    "actionPrompt": "Keep one fixed mercy cue this week: before sleep or after mistakes, read one line before reviewing yourself.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still reading the day through debt, performance, or punishment, so kindness feels suspicious instead of sustaining. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani places mercy near gift, nearness, and return. Grace is not a soft excuse; it is the condition that keeps return possible. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, name one way grace has already met you today and answer from that place.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to received care the same way again.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "Hardness is retrained through repeated return to received kindness.",
+          "lifeApplication": "For the next seven days at the same cue, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "The passage gives hardness a repeatable interruption through grace, nearness, and return.",
         "source": {
-          "shortMeaning": "The verse gives mercy a keepable form through Naam and praise.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of grace, nearness, and return.",
+          "lifeApplication": "For the next seven days at the same cue, name one way grace has already met you today and answer from that place."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning mercy to holy company.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives mercy a keepable form through holy company.",
-          "lifeApplication": "Before auditing yourself again, receive one line as mercy and answer from there."
+          "shortMeaning": "A steady practice weakens distrusting grace over time.",
+          "lifeApplication": "For the next seven days at the same cue, name one way grace has already met you today and answer from that place."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-forgiveness#daily": {
     "title": "When forgiveness keeps feeling costly inside the ordinary day",
-    "issueStatement": "The mind knows the wound but does not know how to loosen its grip. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where forgiveness usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the first plain stretch of the day, when the old sentence rises again, release it before it claims the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Something real happened, but the mind has begun guarding the wound as if staying injured were the last honest thing left to do. In small routines, feeding the wound can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Hurt becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around forgiveness; the heart is returned to truthful steadiness.",
+        "explanation": "In the daily rhythm, this excerpt interrupts feeding the wound before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Forgiveness is checked here by truthful steadiness.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "The day steadies when hurt is met with release, clean speech, and peace.",
+          "lifeApplication": "Today, before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns forgiveness toward settled patience instead of self-enclosure.",
+        "explanation": "The passage pulls the heart back from feeding the wound and into a freed heart.",
         "source": {
-          "shortMeaning": "Forgiveness is checked here by settled patience.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Ordinary moments change when the mind returns to a freed heart instead of feeding the wound.",
+          "lifeApplication": "Today, before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "The daily moment changes here because forgiveness is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by hurt.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by Naam and praise.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "This excerpt restores proportion before hurt takes over the tone of the day.",
+          "lifeApplication": "Today, before the mind reopens the wound again, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-forgiveness#pressure": {
     "title": "When forgiveness tightens under pressure",
-    "issueStatement": "The mind knows the wound but does not know how to loosen its grip. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "Before strain takes over the room, when the old sentence rises again, release it before it claims the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Something real happened, but the mind has begun guarding the wound as if staying injured were the last honest thing left to do. Under strain, feeding the wound starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts feeding the wound before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Forgiveness is not left to rule the strained moment.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to a freed heart.",
+          "lifeApplication": "When the room tightens, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies forgiveness by returning the heart to holy company.",
+        "explanation": "The passage refuses to let strain turn hurt into the only voice in the room.",
         "source": {
-          "shortMeaning": "Forgiveness is not left to rule the strained moment.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "This line steadies the reflex before hurt can rule the moment.",
+          "lifeApplication": "When the room tightens, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward release, clean speech, and peace.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt is answered here through release, clean speech, and peace.",
+          "lifeApplication": "When the room tightens, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-forgiveness#repair": {
     "title": "When forgiveness keeps feeling costly after the slip",
-    "issueStatement": "The mind knows the wound but does not know how to loosen its grip. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps forgiveness from turning into a permanent self-story.",
-    "actionPrompt": "Before the excuse or self-punishment starts, when the old sentence rises again, release it before it claims the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Something real happened, but the mind has begun guarding the wound as if staying injured were the last honest thing left to do. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because forgiveness is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Repair begins when the heart returns to release, clean speech, and peace instead of performance.",
+          "lifeApplication": "After the slip is visible, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps hurt from hardening into identity by pointing the heart back to a freed heart.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Forgiveness is not allowed to become identity here.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "This passage opens a clean way back through a freed heart.",
+          "lifeApplication": "After the slip is visible, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-forgiveness#practice": {
     "title": "When forgiveness needs a rule you can keep",
-    "issueStatement": "The mind knows the wound but does not know how to loosen its grip. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru links forgiveness to freedom, fearless return, and the end of inner replay. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, forgiveness will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "Pick one repeatable time and place, then when the old sentence rises again, release it before it claims the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Something real happened, but the mind has begun guarding the wound as if staying injured were the last honest thing left to do. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not ask you to call harm harmless. It asks you to stop letting bitterness govern the inner room. Forgiveness loosens fear, cleans speech, and makes peace livable again. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning forgiveness to steadier return.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives forgiveness a keepable form through steadier return.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "Hurt is retrained through repeated return to a freed heart.",
+          "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives hurt a repeatable interruption through release, clean speech, and peace.",
         "source": {
-          "shortMeaning": "Forgiveness is trained through repeated return to truthful steadiness.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of release, clean speech, and peace.",
+          "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Forgiveness is trained through repeated return to steadier return.",
-          "lifeApplication": "When the old sentence rises again, release it before it claims the room."
+          "shortMeaning": "A steady practice weakens feeding the wound over time.",
+          "lifeApplication": "For the next seven days at the same cue, release what you can, speak cleanly, and refuse to let bitterness keep occupying the room."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-greed#daily": {
     "title": "When greed starts steering the day",
-    "issueStatement": "The appetite keeps expanding faster than contentment can breathe. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "Before the day gathers more speed, before the next grasping move, ask what can actually travel with the soul.",
+    "reviewedByHuman": false,
+    "issueStatement": "Appetite always arrives with a reason: security, reward, beauty, prudence. Yet after each excuse is obeyed, the heart is still unsettled. In small routines, restless grasping can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Greed becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns greed toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts restless grasping before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "The day steadies when greed is met with true wealth, enoughness, and generosity.",
+          "lifeApplication": "Today, before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "The daily moment changes here because greed is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from restless grasping and into an open hand.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Ordinary moments change when the mind returns to an open hand instead of restless grasping.",
+          "lifeApplication": "Today, before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around greed; the heart is returned to truthful steadiness.",
+        "explanation": "This keeps the next ordinary moment from being governed by greed.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by truthful steadiness.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "This excerpt restores proportion before greed takes over the tone of the day.",
+          "lifeApplication": "Today, before the next grasping move, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-greed#pressure": {
     "title": "When greed keeps calling itself need and the room gets tight",
-    "issueStatement": "The appetite keeps expanding faster than contentment can breathe. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "At the first sign of strain, before the next grasping move, ask what can actually travel with the soul.",
+    "reviewedByHuman": false,
+    "issueStatement": "Appetite always arrives with a reason: security, reward, beauty, prudence. Yet after each excuse is obeyed, the heart is still unsettled. Under strain, restless grasping starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, ask what you fear will happen if you stop taking more than this moment actually needs.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies greed by returning the heart to Naam and praise.",
+        "explanation": "Under pressure, this excerpt interrupts restless grasping before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, greed is steadied by Naam and praise.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to an open hand.",
+          "lifeApplication": "When the room tightens, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn greed into the only voice in the room.",
         "source": {
-          "shortMeaning": "Under strain, greed is steadied by holy company.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "This line steadies the reflex before greed can rule the moment.",
+          "lifeApplication": "When the room tightens, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward true wealth, enoughness, and generosity.",
         "source": {
-          "shortMeaning": "Under strain, greed is steadied by Naam and praise.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Greed is answered here through true wealth, enoughness, and generosity.",
+          "lifeApplication": "When the room tightens, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-greed#repair": {
     "title": "When greed keeps calling itself need after the slip",
-    "issueStatement": "The appetite keeps expanding faster than contentment can breathe. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "Before shame turns theatrical, before the next grasping move, ask what can actually travel with the soul.",
+    "reviewedByHuman": false,
+    "issueStatement": "Appetite always arrives with a reason: security, reward, beauty, prudence. Yet after each excuse is obeyed, the heart is still unsettled. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, ask what you fear will happen if you stop taking more than this moment actually needs.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because greed is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Repair begins when the heart returns to true wealth, enoughness, and generosity instead of performance.",
+          "lifeApplication": "After the slip is visible, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps greed from hardening into identity by pointing the heart back to an open hand.",
         "source": {
           "shortMeaning": "Greed is not allowed to become identity here.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "lifeApplication": "After the slip is visible, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through Naam and praise.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through Naam and praise.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "This passage opens a clean way back through an open hand.",
+          "lifeApplication": "After the slip is visible, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-greed#practice": {
     "title": "When greed needs a repeatable shape",
-    "issueStatement": "The appetite keeps expanding faster than contentment can breathe. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru exposes false wealth and redirects desire toward what actually travels with the soul. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "For the next seven days at the same cue, before the next grasping move, ask what can actually travel with the soul.",
+    "reviewedByHuman": false,
+    "issueStatement": "Appetite always arrives with a reason: security, reward, beauty, prudence. Yet after each excuse is obeyed, the heart is still unsettled. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani exposes greed by asking what actually remains. False wealth fattens anxiety; true wealth travels with the soul and teaches the hand to open. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, ask what you fear will happen if you stop taking more than this moment actually needs.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning greed to Naam and praise.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Greed is trained through repeated return to Naam and praise.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "Greed is retrained through repeated return to an open hand.",
+          "lifeApplication": "For the next seven days at the same cue, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives greed a repeatable interruption through true wealth, enoughness, and generosity.",
         "source": {
-          "shortMeaning": "The verse gives greed a keepable form through settled patience.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of true wealth, enoughness, and generosity.",
+          "lifeApplication": "For the next seven days at the same cue, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to received care the same way again.",
-          "lifeApplication": "Before the next grasping move, ask what can actually travel with the soul."
+          "shortMeaning": "A steady practice weakens restless grasping over time.",
+          "lifeApplication": "For the next seven days at the same cue, ask what you fear will happen if you stop taking more than this moment actually needs."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-restlessness#daily": {
     "title": "When restlessness keeps scattering the heart inside the ordinary day",
-    "issueStatement": "Movement is increasing, but clarity is not. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru answers wandering with saint company, listening, and honest stillness. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "In the first plain stretch of the day, at the threshold, choose better placement before choosing more movement.",
+    "reviewedByHuman": false,
+    "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing. In small routines, constant motion without landing can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness in which truth would finally meet you. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Restlessness becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, pause one more search. Return to one line, one practice, one sangat, and stay.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because restlessness is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts constant motion without landing before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts restlessness inside the day through steadier return.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "The day steadies when restlessness is met with stillness, one line, and one place of staying.",
+          "lifeApplication": "Today, pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around restlessness; the heart is returned to the Guru's guidance.",
+        "explanation": "The passage pulls the heart back from constant motion without landing and into quiet dwelling.",
         "source": {
-          "shortMeaning": "Restlessness is checked here by the Guru's guidance.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Ordinary moments change when the mind returns to quiet dwelling instead of constant motion without landing.",
+          "lifeApplication": "Today, pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns restlessness toward the Guru's guidance instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by restlessness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "This excerpt restores proportion before restlessness takes over the tone of the day.",
+          "lifeApplication": "Today, pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-restlessness#pressure": {
     "title": "When restlessness tightens under pressure",
-    "issueStatement": "Movement is increasing, but clarity is not. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru answers wandering with saint company, listening, and honest stillness. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "Before strain takes over the room, at the threshold, choose better placement before choosing more movement.",
+    "reviewedByHuman": false,
+    "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing. Under strain, constant motion without landing starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness in which truth would finally meet you. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Pause one more search. Return to one line, one practice, one sangat, and stay.",
     "excerpts": [
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "Under pressure, this excerpt interrupts constant motion without landing before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, restlessness is steadied by the Guru's guidance.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to quiet dwelling.",
+          "lifeApplication": "When the room tightens, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies restlessness by returning the heart to steadier return.",
+        "explanation": "The passage refuses to let strain turn restlessness into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "This line steadies the reflex before restlessness can rule the moment.",
+          "lifeApplication": "When the room tightens, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward stillness, one line, and one place of staying.",
         "source": {
-          "shortMeaning": "Restlessness is not left to rule the strained moment.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Restlessness is answered here through stillness, one line, and one place of staying.",
+          "lifeApplication": "When the room tightens, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-restlessness#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "Movement is increasing, but clarity is not. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru answers wandering with saint company, listening, and honest stillness. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "Before the excuse or self-punishment starts, at the threshold, choose better placement before choosing more movement.",
+    "reviewedByHuman": false,
+    "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness in which truth would finally meet you. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Pause one more search. Return to one line, one practice, one sangat, and stay.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Repair begins when the heart returns to stillness, one line, and one place of staying instead of performance.",
+          "lifeApplication": "After the slip is visible, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "The passage keeps restlessness from hardening into identity by pointing the heart back to quiet dwelling.",
         "source": {
           "shortMeaning": "Restlessness is not allowed to become identity here.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "lifeApplication": "After the slip is visible, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "Repair stays honest here because restlessness is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Restlessness is not allowed to become identity here.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "This passage opens a clean way back through quiet dwelling.",
+          "lifeApplication": "After the slip is visible, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-restlessness#practice": {
     "title": "When restlessness needs a rule you can keep",
-    "issueStatement": "Movement is increasing, but clarity is not. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru answers wandering with saint company, listening, and honest stillness. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "Pick one repeatable time and place, then at the threshold, choose better placement before choosing more movement.",
+    "reviewedByHuman": false,
+    "issueStatement": "You keep moving, reading, comparing, and trying things, but inwardly nothing is actually landing. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Restlessness is not always hunger for truth. Sometimes it is resistance to the stillness in which truth would finally meet you. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Pause one more search. Return to one line, one practice, one sangat, and stay.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to trust in Hukam the same way again.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "Restlessness is retrained through repeated return to quiet dwelling.",
+          "lifeApplication": "For the next seven days at the same cue, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning restlessness to steadier return.",
+        "explanation": "The passage gives restlessness a repeatable interruption through stillness, one line, and one place of staying.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of stillness, one line, and one place of staying.",
+          "lifeApplication": "For the next seven days at the same cue, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to the Guru's guidance the same way again.",
-          "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+          "shortMeaning": "A steady practice weakens constant motion without landing over time.",
+          "lifeApplication": "For the next seven days at the same cue, Pause one more search. Return to one line, one practice, one sangat, and stay."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-sangat#daily": {
     "title": "When sangat starts steering the day",
-    "issueStatement": "The soul is being formed by company, whether that company is holy or not. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru treats Sangat as medicine, placement, and atmosphere for growth. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "This is where sangat usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "Before the day gathers more speed, when the mind starts wandering alone, move toward the company that steadies it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. In small routines, being shaped by noisy or empty company can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Company becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because sangat is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts being shaped by noisy or empty company before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts sangat inside the day through the human chance.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "The day steadies when company is met with sangat, truthful presence, and Naam.",
+          "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around sangat; the heart is returned to holy company.",
+        "explanation": "The passage pulls the heart back from being shaped by noisy or empty company and into steady company.",
         "source": {
-          "shortMeaning": "The line interrupts sangat inside the day through holy company.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Ordinary moments change when the mind returns to steady company instead of being shaped by noisy or empty company.",
+          "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns sangat toward holy company instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by company.",
         "source": {
-          "shortMeaning": "Sangat is checked here by holy company.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "This excerpt restores proportion before company takes over the tone of the day.",
+          "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-sangat#pressure": {
     "title": "When pressure exposes what sangat reaches for",
-    "issueStatement": "The soul is being formed by company, whether that company is holy or not. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru treats Sangat as medicine, placement, and atmosphere for growth. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If sangat reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, when the mind starts wandering alone, move toward the company that steadies it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. Under strain, being shaped by noisy or empty company starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness.",
     "excerpts": [
       {
-        "explanation": "The strain does not get final say here; holy company interrupts the reflex.",
+        "explanation": "Under pressure, this excerpt interrupts being shaped by noisy or empty company before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Sangat is not left to rule the strained moment.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to steady company.",
+          "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn company into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "This line steadies the reflex before company can rule the moment.",
+          "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies sangat by returning the heart to Naam and praise.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward sangat, truthful presence, and Naam.",
         "source": {
-          "shortMeaning": "Under strain, sangat is steadied by Naam and praise.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company is answered here through sangat, truthful presence, and Naam.",
+          "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-sangat#repair": {
     "title": "When sangat has already run ahead of truth",
-    "issueStatement": "The soul is being formed by company, whether that company is holy or not. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru treats Sangat as medicine, placement, and atmosphere for growth. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "Once the miss is visible, when the mind starts wandering alone, move toward the company that steadies it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Sangat is not allowed to become identity here.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Repair begins when the heart returns to sangat, truthful presence, and Naam instead of performance.",
+          "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "Repair stays honest here because sangat is answered without theatre.",
+        "explanation": "The passage keeps company from hardening into identity by pointing the heart back to steady company.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "This passage opens a clean way back through steady company.",
+          "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-sangat#practice": {
     "title": "When the teaching has to become a practice, not a mood",
-    "issueStatement": "The soul is being formed by company, whether that company is holy or not. Inspiration is not the real shortage anymore; repeatable faithfulness is.",
-    "centralInsight": "Guru treats Sangat as medicine, placement, and atmosphere for growth. A line proves its truth when it governs more than one moment.",
-    "practicalReflection": "A practice is only real if it can be kept on a crowded week. The line matters here because it is asking to become posture, not a brief mood.",
-    "actionPrompt": "Choose one repeatable cue this week and when the mind starts wandering alone, move toward the company that steadies it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, move toward the company that steadies you and away from the company that feeds forgetfulness.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Sangat is trained through repeated return to holy company.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "Company is retrained through repeated return to steady company.",
+          "lifeApplication": "For the next seven days at the same cue, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning sangat to holy company.",
+        "explanation": "The passage gives company a repeatable interruption through sangat, truthful presence, and Naam.",
         "source": {
-          "shortMeaning": "Sangat is trained through repeated return to holy company.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of sangat, truthful presence, and Naam.",
+          "lifeApplication": "For the next seven days at the same cue, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives sangat a keepable form through Naam and praise.",
-          "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+          "shortMeaning": "A steady practice weakens being shaped by noisy or empty company over time.",
+          "lifeApplication": "For the next seven days at the same cue, move toward the company that steadies you and away from the company that feeds forgetfulness."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-control#daily": {
     "title": "When control starts steering the day",
-    "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "This is where control usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the first plain stretch of the day, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. In small routines, gripping for certainty can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Control becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because control is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts gripping for certainty before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts control inside the day through Naam and praise.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "The day steadies when control is met with response without authorship.",
+          "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around control; the heart is returned to steadier return.",
+        "explanation": "The passage pulls the heart back from gripping for certainty and into a released grip.",
         "source": {
-          "shortMeaning": "Control is checked here by steadier return.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "Ordinary moments change when the mind returns to a released grip instead of gripping for certainty.",
+          "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns control toward steadier return instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by control.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "This excerpt restores proportion before control takes over the tone of the day.",
+          "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-control#pressure": {
     "title": "When control is pretending to be safety and the room gets tight",
-    "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. Under pressure, control starts sounding like responsibility and feeling like safety.",
-    "centralInsight": "Gurbani interrupts that reflex before it becomes atmosphere. The point is not passivity but truthful action inside a reality you did not author.",
-    "practicalReflection": "Pressure exposes where the body has already voted: clenched hand, fixed jaw, harder voice. If the line cannot reach there first, management will take the room.",
-    "actionPrompt": "Before strain takes over the room, open the hand, soften the jaw, and answer the piece that is actually yours.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Under strain, gripping for certainty starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, the verse interrupts the body's first lie: that gripping harder is the same as being faithful.",
+        "explanation": "Under pressure, this excerpt interrupts gripping for certainty before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure loses some of its claim when the body stops confusing grip with faithfulness.",
-          "lifeApplication": "When the room tightens, unclench before you decide what must happen."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to a released grip.",
+          "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "The line restores response in place of management. You are asked to answer truthfully, not to run the whole room by force of will.",
+        "explanation": "The passage refuses to let strain turn control into the only voice in the room.",
         "source": {
-          "shortMeaning": "Control weakens when response replaces the urge to run the whole room.",
-          "lifeApplication": "Before the harder tone arrives, answer only the part that is actually yours."
+          "shortMeaning": "This line steadies the reflex before control can rule the moment.",
+          "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "Under strain, surrender looks very physical here: proportion returns to hand, jaw, and voice before it ever becomes a speech about trust.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward response without authorship.",
         "source": {
-          "shortMeaning": "Under strain, surrender returns proportion to hand, jaw, and voice.",
-          "lifeApplication": "When pressure spikes, lower your voice before you enlarge your control."
+          "shortMeaning": "Control is answered here through response without authorship.",
+          "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-control#repair": {
     "title": "When control is pretending to be safety after the slip",
-    "issueStatement": "The mind keeps gripping outcomes because uncertainty feels unbearable. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru interrupts control by restoring the difference between response and authorship. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "Shame likes to call itself sincerity. Gurbani answers by bringing truth and return back into the same room.",
-    "actionPrompt": "After the slip is named cleanly, before tightening around the outcome, loosen the grip and let reality be larger than you.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
+        "source": {
+          "shortMeaning": "Repair begins when the heart returns to response without authorship instead of performance.",
+          "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+        }
+      },
+      {
+        "explanation": "The passage keeps control from hardening into identity by pointing the heart back to a released grip.",
         "source": {
           "shortMeaning": "Control is not allowed to become identity here.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through Naam and praise.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving Naam and praise instead of self-theatre.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
-        }
-      },
-      {
-        "explanation": "Repair stays honest here because control is answered without theatre.",
-        "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+          "shortMeaning": "This passage opens a clean way back through a released grip.",
+          "lifeApplication": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-control#practice": {
     "title": "When control needs a repeatable shape",
-    "issueStatement": "The mind keeps gripping outcomes because uncertainty feels like exposure. What is needed now is not another insight about surrender but a practiced interruption that reaches the body before control gets fluent.",
-    "centralInsight": "The grip has its own liturgy: refresh, re-check, rehearse, press harder. Guru breaks it by restoring creatureliness: answer cleanly, but stop pretending you are the keeper of outcomes.",
-    "practicalReflection": "A real rule catches control at the first bodily theft, the hand closing, the jaw setting, the second message forming. If the practice starts later than that, the room is already being managed.",
-    "actionPrompt": "Choose one cue all week, the refresh, the threshold, or the second follow-up. At that cue, open the hand, soften the jaw, and answer only what is actually yours.",
+    "reviewedByHuman": false,
+    "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
     "excerpts": [
       {
-        "explanation": "The verse becomes practice when it is used at the instant authorship starts taking over the body.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Control weakens when the body relearns the difference between answering and authoring.",
-          "lifeApplication": "At your chosen cue, unclench the hand before you decide what must happen."
+          "shortMeaning": "Control is retrained through repeated return to a released grip.",
+          "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "This becomes repeatable because it names the first theft: the heart begins treating the outcome as private property.",
+        "explanation": "The passage gives control a repeatable interruption through response without authorship.",
         "source": {
-          "shortMeaning": "Practice begins by returning the outcome to the One who actually holds it.",
-          "lifeApplication": "Before sending the second follow-up, return the outcome before you return to the task."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of response without authorship.",
+          "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       },
       {
-        "explanation": "A lasting practice of surrender is measured here in inches, not moods: looser grip, fewer extra words, cleaner obedience.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Surrender becomes believable when the grip, the voice, and the pace all soften.",
-          "lifeApplication": "Use the same cue tomorrow until the body stops calling management faithfulness."
+          "shortMeaning": "A steady practice weakens gripping for certainty over time.",
+          "lifeApplication": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-shame#daily": {
     "title": "When shame keeps closing the heart before the day gets away from you",
-    "issueStatement": "The mind turns weakness into identity and then calls that honesty. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru answers shame with mercy, dignity, and a path of return. The plain day is still where remembrance and conduct have to hold.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, let the line correct your identity before it corrects your behavior.",
+    "reviewedByHuman": false,
+    "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. In small routines, turning failure into identity can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Shame becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns shame toward received mercy instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts turning failure into identity before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Shame is checked here by received mercy.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "The day steadies when shame is met with forgiveness, nearness, and belonging.",
+          "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "The daily moment changes here because shame is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from turning failure into identity and into clean return.",
         "source": {
-          "shortMeaning": "The line interrupts shame inside the day through the Guru's guidance.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Ordinary moments change when the mind returns to clean return instead of turning failure into identity.",
+          "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around shame; the heart is returned to steadier return.",
+        "explanation": "This keeps the next ordinary moment from being governed by shame.",
         "source": {
-          "shortMeaning": "The line interrupts shame inside the day through steadier return.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "This excerpt restores proportion before shame takes over the tone of the day.",
+          "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-shame#pressure": {
     "title": "When shame keeps closing the heart and the room gets tight",
-    "issueStatement": "The mind turns weakness into identity and then calls that honesty. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru answers shame with mercy, dignity, and a path of return. Pressure reveals the ruler of the heart, so Gurbani answers at the level of reflex, not image.",
-    "practicalReflection": "Pressure makes hidden loyalties visible. If shame reaches first for force, the line has to reach first for truth.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, let the line correct your identity before it corrects your behavior.",
+    "reviewedByHuman": false,
+    "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. Under strain, turning failure into identity starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, answer it with one line of Bani and one act of return.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies shame by returning the heart to the Guru's guidance.",
+        "explanation": "Under pressure, this excerpt interrupts turning failure into identity before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through the Guru's guidance.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to clean return.",
+          "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn shame into the only voice in the room.",
         "source": {
-          "shortMeaning": "Under strain, shame is steadied by holy company.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "This line steadies the reflex before shame can rule the moment.",
+          "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "The strain does not get final say here; the Guru's guidance interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward forgiveness, nearness, and belonging.",
         "source": {
-          "shortMeaning": "Under strain, shame is steadied by the Guru's guidance.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Shame is answered here through forgiveness, nearness, and belonging.",
+          "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-shame#repair": {
     "title": "When shame has already run ahead of truth",
-    "issueStatement": "The mind turns weakness into identity and then calls that honesty. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru answers shame with mercy, dignity, and a path of return. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps shame from turning into a permanent self-story.",
-    "actionPrompt": "After the slip is named cleanly, let the line correct your identity before it corrects your behavior.",
+    "reviewedByHuman": false,
+    "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, answer it with one line of Bani and one act of return.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because shame is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through steadier return.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Repair begins when the heart returns to forgiveness, nearness, and belonging instead of performance.",
+          "lifeApplication": "After the slip is visible, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "The passage keeps shame from hardening into identity by pointing the heart back to clean return.",
         "source": {
           "shortMeaning": "Shame is not allowed to become identity here.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "lifeApplication": "After the slip is visible, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "This passage opens a clean way back through clean return.",
+          "lifeApplication": "After the slip is visible, answer it with one line of Bani and one act of return."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-shame#practice": {
     "title": "When shame needs a repeatable shape",
-    "issueStatement": "The mind turns weakness into identity and then calls that honesty. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru answers shame with mercy, dignity, and a path of return. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, shame will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "Pick one repeatable time and place, then let the line correct your identity before it corrects your behavior.",
+    "reviewedByHuman": false,
+    "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, answer it with one line of Bani and one act of return.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning shame to the Guru's guidance.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Shame is trained through repeated return to the Guru's guidance.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "Shame is retrained through repeated return to clean return.",
+          "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives shame a repeatable interruption through forgiveness, nearness, and belonging.",
         "source": {
-          "shortMeaning": "The verse gives shame a keepable form through received mercy.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of forgiveness, nearness, and belonging.",
+          "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Let the line correct your identity before it corrects your behavior."
+          "shortMeaning": "A steady practice weakens turning failure into identity over time.",
+          "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-fear#daily": {
     "title": "When fear keeps shrinking the field of vision inside the ordinary day",
-    "issueStatement": "The mind starts organizing itself around threat instead of truth. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "This is where fear usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, when fear starts ruling the body, stand still long enough to remember what holds you.",
+    "reviewedByHuman": false,
+    "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. In small routines, letting dread write the script can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Fear becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, when fear rises, read one line aloud before you plan your defense.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around fear; the heart is returned to steadier return.",
+        "explanation": "In the daily rhythm, this excerpt interrupts letting dread write the script before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts fear inside the day through steadier return.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "The day steadies when fear is met with reverence, Hukam, and divine nearness.",
+          "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "The daily moment changes here because fear is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from letting dread write the script and into courage under care.",
         "source": {
-          "shortMeaning": "The line interrupts fear inside the day through Naam and praise.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Ordinary moments change when the mind returns to courage under care instead of letting dread write the script.",
+          "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns fear toward the Guru's guidance instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by fear.",
         "source": {
-          "shortMeaning": "Fear is checked here by the Guru's guidance.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "This excerpt restores proportion before fear takes over the tone of the day.",
+          "lifeApplication": "Today, when fear rises, read one line aloud before you plan your defense."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-fear#pressure": {
     "title": "When fear tightens under pressure",
-    "issueStatement": "The mind starts organizing itself around threat instead of truth. This is the moment when panic, force, or performance tries to become the only available language.",
-    "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, when fear starts ruling the body, stand still long enough to remember what holds you.",
+    "reviewedByHuman": false,
+    "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Under strain, letting dread write the script starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, read one line aloud before you plan your defense.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts letting dread write the script before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Fear is not left to rule the strained moment.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to courage under care.",
+          "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn fear into the only voice in the room.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "This line steadies the reflex before fear can rule the moment.",
+          "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies fear by returning the heart to steadier return.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward reverence, Hukam, and divine nearness.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear is answered here through reverence, Hukam, and divine nearness.",
+          "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-fear#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The mind starts organizing itself around threat instead of truth. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps fear from turning into a permanent self-story.",
-    "actionPrompt": "Before the excuse or self-punishment starts, when fear starts ruling the body, stand still long enough to remember what holds you.",
+    "reviewedByHuman": false,
+    "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, read one line aloud before you plan your defense.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because fear is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving the Guru's guidance instead of self-theatre.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Repair begins when the heart returns to reverence, Hukam, and divine nearness instead of performance.",
+          "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps fear from hardening into identity by pointing the heart back to courage under care.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through received care.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving received care instead of self-theatre.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "This passage opens a clean way back through courage under care.",
+          "lifeApplication": "After the slip is visible, read one line aloud before you plan your defense."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-fear#practice": {
     "title": "When fear keeps shrinking the field of vision as a practice that survives the week",
-    "issueStatement": "The mind starts organizing itself around threat instead of truth. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru answers fear by restoring the presence, shelter, and command of the One. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "At one fixed cue you can keep all week, when fear starts ruling the body, stand still long enough to remember what holds you.",
+    "reviewedByHuman": false,
+    "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, read one line aloud before you plan your defense.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Fear is trained through repeated return to steadier return.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "Fear is retrained through repeated return to courage under care.",
+          "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "The passage gives fear a repeatable interruption through reverence, Hukam, and divine nearness.",
         "source": {
-          "shortMeaning": "Fear is trained through repeated return to steadier return.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of reverence, Hukam, and divine nearness.",
+          "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning fear to received care.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Fear is trained through repeated return to received care.",
-          "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+          "shortMeaning": "A steady practice weakens letting dread write the script over time.",
+          "lifeApplication": "For the next seven days at the same cue, read one line aloud before you plan your defense."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-honesty#daily": {
     "title": "When honesty keeps getting traded away inside the ordinary day",
-    "issueStatement": "Compromise starts looking efficient when truth feels costly. In the ordinary day it rarely arrives as outright lying; it comes as softening, trimming, omitting, or choosing the version that keeps life easier.",
-    "centralInsight": "Guru ties truth to conduct, speech, and inner alignment. The daily work of honesty is therefore not heroic display but refusing to let convenience write the sentence for you.",
-    "practicalReflection": "This is where dishonesty becomes atmosphere. If the line cannot survive the easy email, the casual explanation, or the polished half-truth, it will not help when the cost gets larger.",
-    "actionPrompt": "In the first plain stretch of the day, say the cleaner sentence before efficiency, politeness, or self-protection can edit it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only outward lying but the inward split of living by edited speech. In small routines, editing truth for convenience can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani makes honesty more than bluntness. Truth becomes clean when it answers to praise, guidance, and the courage to stop protecting convenience. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Dishonesty becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, before convenience edits the sentence, say the cleaner thing and let your body stay with it.",
     "excerpts": [
       {
-        "explanation": "The daily turn begins here because honesty is taken out of theory and placed back into the sentence you are about to shape.",
+        "explanation": "In the daily rhythm, this excerpt interrupts editing truth for convenience before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Honesty stays clean when guidance reaches the sentence before convenience does.",
-          "lifeApplication": "Before the easy version forms, say the cleaner sentence and stay with it."
+          "shortMeaning": "The day steadies when dishonesty is met with clean speech under the Guru's gaze.",
+          "lifeApplication": "Today, before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "This line interrupts the ordinary habit of sanding truth down until it becomes more comfortable than real.",
+        "explanation": "The passage pulls the heart back from editing truth for convenience and into integrity.",
         "source": {
-          "shortMeaning": "Daily honesty survives when the truth is not polished into something easier to carry.",
-          "lifeApplication": "When the explanation starts getting smoother than it was true, stop and return to what actually happened."
+          "shortMeaning": "Ordinary moments change when the mind returns to integrity instead of editing truth for convenience.",
+          "lifeApplication": "Today, before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "The verse gives the day a truer rhythm by teaching that clean speech matters in the small places where character is usually spent away.",
+        "explanation": "This keeps the next ordinary moment from being governed by dishonesty.",
         "source": {
-          "shortMeaning": "Honesty keeps the day whole by refusing the small compromises that quietly divide it.",
-          "lifeApplication": "Before the inbox, table, or hallway takes the sentence from you, say the truer version and let it stand."
+          "shortMeaning": "This excerpt restores proportion before dishonesty takes over the tone of the day.",
+          "lifeApplication": "Today, before convenience edits the sentence, say the cleaner thing and let your body stay with it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-honesty#pressure": {
     "title": "When pressure exposes what honesty reaches for",
-    "issueStatement": "Compromise starts looking efficient when truth feels costly. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. Under pressure the real battle is between the clean sentence and the cheaper one, so Gurbani has to reach the mouth before convenience does.",
-    "practicalReflection": "Pressure reveals whether truth is loved or merely admired. The soul gets thinner every time convenience is allowed to rewrite what it knows.",
-    "actionPrompt": "At the first tightening in chest, throat, or jaw, speak the cleaner sentence before fear starts editing it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only outward lying but the inward split of living by edited speech. Under strain, editing truth for convenience starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani makes honesty more than bluntness. Truth becomes clean when it answers to praise, guidance, and the courage to stop protecting convenience. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, say the cleaner thing and let your body stay with it.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse asks whether you will keep the cleaner sentence once cost enters the room.",
+        "explanation": "Under pressure, this excerpt interrupts editing truth for convenience before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure reveals whether truth will still be spoken once it costs.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to integrity.",
+          "lifeApplication": "When the room tightens, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "The line refuses the bargain where compromise is renamed wisdom just because the room is expensive.",
+        "explanation": "The passage refuses to let strain turn dishonesty into the only voice in the room.",
         "source": {
-          "shortMeaning": "The cheaper version of truth is still compromise, even when pressure recommends it.",
-          "lifeApplication": "Before the costly truth gets sanded down, say the cleaner thing and keep it."
+          "shortMeaning": "This line steadies the reflex before dishonesty can rule the moment.",
+          "lifeApplication": "When the room tightens, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "When the room tightens, Gurbani steadies the body so honesty is not left alone with fear and self-protection.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward clean speech under the Guru's gaze.",
         "source": {
-          "shortMeaning": "Honesty holds when the body is steadied before fear edits the mouth.",
-          "lifeApplication": "When the room tightens, ground the body and speak the cleaner sentence before fear edits it."
+          "shortMeaning": "Dishonesty is answered here through clean speech under the Guru's gaze.",
+          "lifeApplication": "When the room tightens, say the cleaner thing and let your body stay with it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-honesty#repair": {
     "title": "When honesty keeps getting traded away after the slip",
-    "issueStatement": "Compromise starts looking efficient when truth feels costly. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "Repair is spiritual work with real consequences. The line matters because it teaches what to do after the heart has already missed the mark.",
-    "actionPrompt": "After the slip is named cleanly, before convenience edits the truth, say the cleaner thing and keep it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only outward lying but the inward split of living by edited speech. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani makes honesty more than bluntness. Truth becomes clean when it answers to praise, guidance, and the courage to stop protecting convenience. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, say the cleaner thing and let your body stay with it.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Honesty is not allowed to become identity here.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "Repair begins when the heart returns to clean speech under the Guru's gaze instead of performance.",
+          "lifeApplication": "After the slip is visible, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps dishonesty from hardening into identity by pointing the heart back to integrity.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "Dishonesty is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "Repair stays honest here because honesty is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "This passage opens a clean way back through integrity.",
+          "lifeApplication": "After the slip is visible, say the cleaner thing and let your body stay with it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-honesty#practice": {
     "title": "When honesty needs a repeatable shape",
-    "issueStatement": "Compromise starts looking efficient when truth feels costly. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru keeps truth tied to conduct, speech, and inner alignment. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "Pick one repeatable time and place, then before convenience edits the truth, say the cleaner thing and keep it.",
+    "reviewedByHuman": false,
+    "issueStatement": "Truth keeps getting negotiated into something easier to carry. The pain is not only outward lying but the inward split of living by edited speech. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani makes honesty more than bluntness. Truth becomes clean when it answers to praise, guidance, and the courage to stop protecting convenience. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, say the cleaner thing and let your body stay with it.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Honesty is trained through repeated return to steadier return.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "Dishonesty is retrained through repeated return to integrity.",
+          "lifeApplication": "For the next seven days at the same cue, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "The passage gives dishonesty a repeatable interruption through clean speech under the Guru's gaze.",
         "source": {
-          "shortMeaning": "Honesty is trained through repeated return to the Guru's guidance.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of clean speech under the Guru's gaze.",
+          "lifeApplication": "For the next seven days at the same cue, say the cleaner thing and let your body stay with it."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning honesty to steadier return.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives honesty a keepable form through steadier return.",
-          "lifeApplication": "Before convenience edits the truth, say the cleaner thing and keep it."
+          "shortMeaning": "A steady practice weakens editing truth for convenience over time.",
+          "lifeApplication": "For the next seven days at the same cue, say the cleaner thing and let your body stay with it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seeking#daily": {
     "title": "When seeking starts steering the day",
-    "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "Small moments are where the deeper pattern becomes visible. The correction matters here because this is where the soul is usually trained.",
-    "actionPrompt": "In the first plain stretch of the day, before starting one more search, stay with the shelter already in front of you.",
+    "reviewedByHuman": false,
+    "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given. In small routines, collecting without dwelling can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling. Search is fulfilled not by endless input but by obedient staying. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Seeking becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, for one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns seeking toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts collecting without dwelling before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts seeking inside the day through steadier return.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "The day steadies when seeking is met with instruction, sangat, and staying.",
+          "lifeApplication": "Today, for one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "The daily moment changes here because seeking is not left alone with itself.",
+        "explanation": "The passage pulls the heart back from collecting without dwelling and into abiding.",
         "source": {
-          "shortMeaning": "The line interrupts seeking inside the day through the Guru's guidance.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Ordinary moments change when the mind returns to abiding instead of collecting without dwelling.",
+          "lifeApplication": "Today, for one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around seeking; the heart is returned to the Guru's guidance.",
+        "explanation": "This keeps the next ordinary moment from being governed by seeking.",
         "source": {
-          "shortMeaning": "Seeking is checked here by the Guru's guidance.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "This excerpt restores proportion before seeking takes over the tone of the day.",
+          "lifeApplication": "Today, for one day, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seeking#pressure": {
     "title": "When searching keeps outrunning arrival and the room gets tight",
-    "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not flatter urgency; the line steadies the room before reaction claims it.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "When the jaw, chest, or shoulders tighten, before starting one more search, stay with the shelter already in front of you.",
+    "reviewedByHuman": false,
+    "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given. Under strain, collecting without dwelling starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling. Search is fulfilled not by endless input but by obedient staying. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies seeking by returning the heart to the Guru's guidance.",
+        "explanation": "Under pressure, this excerpt interrupts collecting without dwelling before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Seeking is not left to rule the strained moment.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to abiding.",
+          "lifeApplication": "When the room tightens, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn seeking into the only voice in the room.",
         "source": {
-          "shortMeaning": "Seeking is not left to rule the strained moment.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "This line steadies the reflex before seeking can rule the moment.",
+          "lifeApplication": "When the room tightens, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward instruction, sangat, and staying.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Seeking is answered here through instruction, sangat, and staying.",
+          "lifeApplication": "When the room tightens, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seeking#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The break has already happened, and now shame wants to turn the aftermath into identity.",
-    "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps seeking from turning into a permanent self-story.",
-    "actionPrompt": "Once the miss is visible, before starting one more search, stay with the shelter already in front of you.",
+    "reviewedByHuman": false,
+    "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling. Search is fulfilled not by endless input but by obedient staying. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because seeking is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through the Guru's guidance.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Repair begins when the heart returns to instruction, sangat, and staying instead of performance.",
+          "lifeApplication": "After the slip is visible, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
-        "source": {
-          "shortMeaning": "After the slip, return stays open through steadier return.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
-        }
-      },
-      {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps seeking from hardening into identity by pointing the heart back to abiding.",
         "source": {
           "shortMeaning": "Seeking is not allowed to become identity here.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "lifeApplication": "After the slip is visible, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
+        }
+      },
+      {
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
+        "source": {
+          "shortMeaning": "This passage opens a clean way back through abiding.",
+          "lifeApplication": "After the slip is visible, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-seeking#practice": {
     "title": "When seeking needs a repeatable shape",
-    "issueStatement": "The hunger is real, but it keeps feeding on novelty instead of depth. The real need now is a rule that can survive Tuesday, not only move you once.",
-    "centralInsight": "Guru answers seeking by showing where wandering ends and dwelling begins. Practice gives the line an honest place in schedule, memory, and conduct.",
-    "practicalReflection": "Repeated return is what changes pace. Without a kept cue, seeking will keep reclaiming the room on strong days and weak ones alike.",
-    "actionPrompt": "At one fixed cue you can keep all week, before starting one more search, stay with the shelter already in front of you.",
+    "reviewedByHuman": false,
+    "issueStatement": "New explanations keep arriving, but the heart still does not know how to stay long enough to receive what has already been given. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani honors sincere seeking by bringing it to sangat, instruction, and dwelling. Search is fulfilled not by endless input but by obedient staying. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, stop collecting new input. Stay with one guide, one shabad, and one act of sangat.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives seeking a keepable form through steadier return.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "Seeking is retrained through repeated return to abiding.",
+          "lifeApplication": "For the next seven days at the same cue, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives seeking a repeatable interruption through instruction, sangat, and staying.",
         "source": {
-          "shortMeaning": "The verse gives seeking a keepable form through steadier return.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of instruction, sangat, and staying.",
+          "lifeApplication": "For the next seven days at the same cue, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning seeking to the Guru's guidance.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Seeking is trained through repeated return to the Guru's guidance.",
-          "lifeApplication": "Before starting one more search, stay with the shelter already in front of you."
+          "shortMeaning": "A steady practice weakens collecting without dwelling over time.",
+          "lifeApplication": "For the next seven days at the same cue, stop collecting new input. Stay with one guide, one shabad, and one act of sangat."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-self-worth#daily": {
     "title": "When worth keeps feeling borrowed inside the ordinary day",
-    "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where self-worth usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, before naming yourself as small again, remember where nearness is still being given.",
+    "reviewedByHuman": false,
+    "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. In small routines, checking dignity in other people can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Conditional worth becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because self-worth is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts checking dignity in other people before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The line interrupts self-worth inside the day through the Guru's guidance.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "The day steadies when conditional worth is met with grace, humility, and belonging.",
+          "lifeApplication": "Today, receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns self-worth toward Naam and praise instead of self-enclosure.",
+        "explanation": "The passage pulls the heart back from checking dignity in other people and into received dignity.",
         "source": {
-          "shortMeaning": "Self-worth is checked here by Naam and praise.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "Ordinary moments change when the mind returns to received dignity instead of checking dignity in other people.",
+          "lifeApplication": "Today, receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around self-worth; the heart is returned to the Guru's guidance.",
+        "explanation": "This keeps the next ordinary moment from being governed by conditional worth.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by the Guru's guidance.",
-          "lifeApplication": "Before naming yourself as small again, remember where nearness is still being given."
+          "shortMeaning": "This excerpt restores proportion before conditional worth takes over the tone of the day.",
+          "lifeApplication": "Today, receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-self-worth#pressure": {
     "title": "When approval pressure starts deciding your worth",
-    "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. Under pressure, one look, one delay, or one criticism starts feeling like a verdict on the self.",
-    "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. The line gives the body somewhere truer to stand before the room grades you.",
-    "practicalReflection": "Pressure reveals how quickly borrowed worth collapses. The correction matters because the body needs a truer center before response, praise, or criticism takes over.",
-    "actionPrompt": "When the stomach drops after criticism, put a hand on the chest, plant both feet, and repeat the line before you answer the room.",
+    "reviewedByHuman": false,
+    "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. Under strain, checking dignity in other people starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts checking dignity in other people before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "When criticism lands in the body, repeat the line before you answer the room."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to received dignity.",
+          "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn conditional worth into the only voice in the room.",
         "source": {
-          "shortMeaning": "Self-worth is not left to rule the strained moment.",
-          "lifeApplication": "When the stomach drops, repeat the line before the room gets to decide your worth."
+          "shortMeaning": "This line steadies the reflex before conditional worth can rule the moment.",
+          "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies self-worth by returning the heart to the Guru's guidance.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward grace, humility, and belonging.",
         "source": {
-          "shortMeaning": "Self-worth is not left to rule the strained moment.",
-          "lifeApplication": "Plant both feet and return to the line before you answer from shame."
+          "shortMeaning": "Conditional worth is answered here through grace, humility, and belonging.",
+          "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-self-worth#repair": {
     "title": "When self-worth has already fallen into shame",
-    "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "Repair starts when the second wound is refused. The line matters because it stops one failure from becoming a whole identity.",
-    "actionPrompt": "After the slip, stop before the verdict lands. Put a hand on the chest, name what happened plainly, and take one small obedient step back.",
+    "reviewedByHuman": false,
+    "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
     "excerpts": [
       {
-        "explanation": "This line keeps failure from becoming identity; nearness is still being offered.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Failure is not allowed to become identity here.",
-          "lifeApplication": "When shame surges, tell the truth plainly and return instead of sentencing yourself."
+          "shortMeaning": "Repair begins when the heart returns to grace, humility, and belonging instead of performance.",
+          "lifeApplication": "After the slip is visible, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "Return stays possible here because mercy matters more than self-punishment.",
+        "explanation": "The passage keeps conditional worth from hardening into identity by pointing the heart back to received dignity.",
         "source": {
-          "shortMeaning": "Repair begins by receiving mercy instead of performing shame.",
-          "lifeApplication": "After the slip, take the next obedient step before replay takes over."
+          "shortMeaning": "Conditional worth is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "The deepest repair is to re-enter what is already true, not to stage a dramatic collapse.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by returning to what is already true.",
-          "lifeApplication": "When the mind starts acting ruined, come back to the line and answer it with one clean act."
+          "shortMeaning": "This passage opens a clean way back through received dignity.",
+          "lifeApplication": "After the slip is visible, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-self-worth#practice": {
     "title": "When dignity needs a practice, not a pep talk",
-    "issueStatement": "The mind keeps outsourcing dignity to response, approval, and success. What is needed now is a daily return that remembers nearness before the room gets a vote.",
-    "centralInsight": "Guru restores worth by placing identity inside grace, humility, and belonging to the One. Repeated remembrance teaches the self to receive dignity instead of chase it.",
-    "practicalReflection": "Borrowed worth comes back quickly. A fixed practice matters here because the body has to learn nearness at the same hour, not only in crisis.",
-    "actionPrompt": "Choose one fixed mirror, doorway, or bedtime cue and repeat the line there every day before you seek reassurance anywhere else.",
+    "reviewedByHuman": false,
+    "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to the Guru's guidance the same way again.",
-          "lifeApplication": "At the chosen cue, repeat the line before you ask the room to tell you who you are."
+          "shortMeaning": "Conditional worth is retrained through repeated return to received dignity.",
+          "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning self-worth to the Guru's guidance.",
+        "explanation": "The passage gives conditional worth a repeatable interruption through grace, humility, and belonging.",
         "source": {
-          "shortMeaning": "Practice begins by returning to the Guru's guidance the same way again.",
-          "lifeApplication": "Keep the same cue long enough for nearness to become more believable than approval."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of grace, humility, and belonging.",
+          "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives self-worth a keepable form through steadier return.",
-          "lifeApplication": "Repeat the line at the fixed cue before you go looking for reassurance anywhere else."
+          "shortMeaning": "A steady practice weakens checking dignity in other people over time.",
+          "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-softness#daily": {
     "title": "When softness starts steering the day",
-    "issueStatement": "The heart hardens because harshness feels safer than tenderness. It is not abstract anymore; it is in the kitchen, the inbox, the commute, and the next reply.",
-    "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "This is where softness usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, when the heart hardens, keep the tone gentle without leaving truth behind.",
+    "reviewedByHuman": false,
+    "issueStatement": "Your speech lands harder than you mean, and inwardly the same sharpness keeps rehearsing itself after the conversation is over. In small routines, sharpening the room can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not ask for gentleness as etiquette. It asks for a heart softened by praise, humility, and regard for the one standing before you. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Harshness becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, at the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it.",
     "excerpts": [
       {
-        "explanation": "The daily moment changes here because softness is not left alone with itself.",
+        "explanation": "In the daily rhythm, this excerpt interrupts sharpening the room before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Softness is checked here by steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "The day steadies when harshness is met with humility, praise, and regard.",
+          "lifeApplication": "Today, at the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around softness; the heart is returned to steadier return.",
+        "explanation": "The passage pulls the heart back from sharpening the room and into gentle strength.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Ordinary moments change when the mind returns to gentle strength instead of sharpening the room.",
+          "lifeApplication": "Today, at the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns softness toward steadier return instead of self-enclosure.",
+        "explanation": "This keeps the next ordinary moment from being governed by harshness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "This excerpt restores proportion before harshness takes over the tone of the day.",
+          "lifeApplication": "Today, at the next tightening in jaw or tone, keep the voice low, the truth clean, and ego out of it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-softness#pressure": {
     "title": "When pressure exposes what softness reaches for",
-    "issueStatement": "The heart hardens because harshness feels safer than tenderness. This is the moment when panic, force, or performance tries to become the only available language.",
-    "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "Pressure narrows everything quickly. The correction matters because it keeps the soul from mistaking intensity for clarity.",
-    "actionPrompt": "At the first embodied sign of pressure, when the heart hardens, keep the tone gentle without leaving truth behind.",
+    "reviewedByHuman": false,
+    "issueStatement": "Your speech lands harder than you mean, and inwardly the same sharpness keeps rehearsing itself after the conversation is over. Under strain, sharpening the room starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not ask for gentleness as etiquette. It asks for a heart softened by praise, humility, and regard for the one standing before you. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, keep the voice low, the truth clean, and ego out of it.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts sharpening the room before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, softness is steadied by steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to gentle strength.",
+          "lifeApplication": "When the room tightens, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies softness by returning the heart to holy company.",
+        "explanation": "The passage refuses to let strain turn harshness into the only voice in the room.",
         "source": {
-          "shortMeaning": "Under strain, softness is steadied by holy company.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "This line steadies the reflex before harshness can rule the moment.",
+          "lifeApplication": "When the room tightens, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "The strain does not get final say here; steadier return interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward humility, praise, and regard.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Harshness is answered here through humility, praise, and regard.",
+          "lifeApplication": "When the room tightens, keep the voice low, the truth clean, and ego out of it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-softness#repair": {
     "title": "When softness has already run ahead of truth",
-    "issueStatement": "The heart hardens because harshness feels safer than tenderness. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. The Guru does not leave repair at remorse alone; the line keeps a real way back open.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps softness from turning into a permanent self-story.",
-    "actionPrompt": "Once the miss is visible, when the heart hardens, keep the tone gentle without leaving truth behind.",
+    "reviewedByHuman": false,
+    "issueStatement": "Your speech lands harder than you mean, and inwardly the same sharpness keeps rehearsing itself after the conversation is over. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not ask for gentleness as etiquette. It asks for a heart softened by praise, humility, and regard for the one standing before you. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, keep the voice low, the truth clean, and ego out of it.",
     "excerpts": [
       {
-        "explanation": "Repair stays honest here because softness is answered without theatre.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Repair begins when the heart returns to humility, praise, and regard instead of performance.",
+          "lifeApplication": "After the slip is visible, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps harshness from hardening into identity by pointing the heart back to gentle strength.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Harshness is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Softness is not allowed to become identity here.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "This passage opens a clean way back through gentle strength.",
+          "lifeApplication": "After the slip is visible, keep the voice low, the truth clean, and ego out of it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-softness#practice": {
     "title": "When softness keeps getting replaced by harshness as a practice that survives the week",
-    "issueStatement": "The heart hardens because harshness feels safer than tenderness. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
-    "centralInsight": "Guru makes clean speech and gentle conduct signs of depth, not weakness. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "For the next seven days at the same cue, when the heart hardens, keep the tone gentle without leaving truth behind.",
+    "reviewedByHuman": false,
+    "issueStatement": "Your speech lands harder than you mean, and inwardly the same sharpness keeps rehearsing itself after the conversation is over. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not ask for gentleness as etiquette. It asks for a heart softened by praise, humility, and regard for the one standing before you. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, keep the voice low, the truth clean, and ego out of it.",
     "excerpts": [
       {
-        "explanation": "As practice, the verse keeps returning softness to steadier return.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives softness a keepable form through steadier return.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "Harshness is retrained through repeated return to gentle strength.",
+          "lifeApplication": "For the next seven days at the same cue, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives harshness a repeatable interruption through humility, praise, and regard.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of humility, praise, and regard.",
+          "lifeApplication": "For the next seven days at the same cue, keep the voice low, the truth clean, and ego out of it."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "When the heart hardens, keep the tone gentle without leaving truth behind."
+          "shortMeaning": "A steady practice weakens sharpening the room over time.",
+          "lifeApplication": "For the next seven days at the same cue, keep the voice low, the truth clean, and ego out of it."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-exhaustion#daily": {
     "title": "When exhaustion keeps thinning hope inside the ordinary day",
-    "issueStatement": "Weariness has made the heart suspicious of even good counsel. The strain is showing up in the plain shape of the day, not only in dramatic moments.",
-    "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani does not leave the ordinary day outside the work of return.",
-    "practicalReflection": "This is where exhaustion usually becomes habit. If the line cannot stay with the ordinary day, it remains admired and unused.",
-    "actionPrompt": "In the first plain stretch of the day, when force is failing, stop performing strength and let the line carry the next step.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. In small routines, living in strain past the soul's strength can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Exhaustion becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
     "excerpts": [
       {
-        "explanation": "This keeps the day from shrinking around exhaustion; the heart is returned to steadier return.",
+        "explanation": "In the daily rhythm, this excerpt interrupts living in strain past the soul's strength before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "The day steadies when exhaustion is met with care, rest, and simple remembrance.",
+          "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "In the ordinary day, the verse turns exhaustion toward steadier return instead of self-enclosure.",
+        "explanation": "The passage pulls the heart back from living in strain past the soul's strength and into rested faithfulness.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Ordinary moments change when the mind returns to rested faithfulness instead of living in strain past the soul's strength.",
+          "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "The daily moment changes here because exhaustion is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by exhaustion.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "This excerpt restores proportion before exhaustion takes over the tone of the day.",
+          "lifeApplication": "Today, let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-exhaustion#pressure": {
     "title": "When pressure exposes what exhaustion reaches for",
-    "issueStatement": "Weariness has made the heart suspicious of even good counsel. Pressure exposes what the heart reaches for when it feels cornered.",
-    "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. The line has to interrupt panic before panic becomes posture.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "When pressure meets low reserves, drop the shoulders, stop performing competence, and let the line choose the next small step.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Under strain, living in strain past the soul's strength starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
     "excerpts": [
       {
-        "explanation": "Under pressure, the verse steadies exhaustion by returning the heart to steadier return.",
+        "explanation": "Under pressure, this excerpt interrupts living in strain past the soul's strength before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Under strain, exhaustion is steadied by steadier return.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to rested faithfulness.",
+          "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "The passage refuses to let strain turn exhaustion into the only voice in the room.",
         "source": {
-          "shortMeaning": "Under strain, exhaustion is steadied by steadier return.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "This line steadies the reflex before exhaustion can rule the moment.",
+          "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "The strain does not get final say here; Naam and praise interrupts the reflex.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward care, rest, and simple remembrance.",
         "source": {
-          "shortMeaning": "Pressure is answered here through Naam and praise.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion is answered here through care, rest, and simple remembrance.",
+          "lifeApplication": "When the room tightens, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-exhaustion#repair": {
     "title": "When repair has to begin after the mind has wandered",
-    "issueStatement": "Weariness has made the heart suspicious of even good counsel. The problem is no longer only temptation or pain, but how to return without theatre.",
-    "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. Gurbani keeps repair close to humility, remembrance, and the next clean return.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps exhaustion from turning into a permanent self-story.",
-    "actionPrompt": "After the slip is named cleanly, when force is failing, stop performing strength and let the line carry the next step.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
     "excerpts": [
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Repair begins when the heart returns to care, rest, and simple remembrance instead of performance.",
+          "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "The passage keeps exhaustion from hardening into identity by pointing the heart back to rested faithfulness.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion is not allowed to become identity here.",
+          "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "Repair stays honest here because exhaustion is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "This passage opens a clean way back through rested faithfulness.",
+          "lifeApplication": "After the slip is visible, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-exhaustion#practice": {
     "title": "When exhaustion needs a repeatable shape",
-    "issueStatement": "Weariness has made the heart suspicious of even good counsel. Inspiration is no longer the shortage; kept repetition is.",
-    "centralInsight": "Guru answers exhaustion with rest in Naam, truthful wealth, and better placement. A kept rule lets the teaching shape conduct before mood changes again.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "For the next seven days at the same cue, when force is failing, stop performing strength and let the line carry the next step.",
+    "reviewedByHuman": false,
+    "issueStatement": "You are still moving, but the soul has begun to fray. Everything sounds urgent, and even good counsel can feel like one more demand. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani does not answer exhaustion with intensity. It answers by cooling the body and mind, returning the heart to care, and ending the restless hunt for relief in the wrong places. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure.",
     "excerpts": [
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "The verse gives exhaustion a keepable form through Naam and praise.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "Exhaustion is retrained through repeated return to rested faithfulness.",
+          "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "The passage gives exhaustion a repeatable interruption through care, rest, and simple remembrance.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of care, rest, and simple remembrance.",
+          "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning exhaustion to steadier return.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+          "shortMeaning": "A steady practice weakens living in strain past the soul's strength over time.",
+          "lifeApplication": "For the next seven days at the same cue, Let one burden drop today, then keep one simple practice that gives rest instead of pressure."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-conduct#daily": {
     "title": "When conduct needs to catch up with speech before the day gets away from you",
-    "issueStatement": "The language of devotion can get ahead of the life carrying it. The pressure is arriving through small choices, small tones, and the next ordinary moment.",
-    "centralInsight": "Guru measures religion by clean conduct, not impressive performance. The Guru addresses errands, delays, and common rooms as real sites of practice.",
-    "practicalReflection": "The ordinary day reveals what already governs the heart. The teaching has to reach the next simple moment, not only the ideal one.",
-    "actionPrompt": "At the next ordinary doorway, inbox, or reply, before image management starts, let the next act answer to the line itself.",
+    "reviewedByHuman": false,
+    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is the quiet split between devotion and the next visible act. In small routines, keeping devotion separate from behavior can quietly become the tone of the next hour unless it is interrupted early.",
+    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the mouth, schedule, habits, and hands actually do next. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+    "practicalReflection": "Conduct becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
+    "actionPrompt": "Today, at the next visible choice, let the body do the thing the line could still bless tomorrow.",
     "excerpts": [
       {
-        "explanation": "In the ordinary day, the verse turns conduct toward steadier return instead of self-enclosure.",
+        "explanation": "In the daily rhythm, this excerpt interrupts keeping devotion separate from behavior before it becomes the mood of the whole day.",
         "source": {
-          "shortMeaning": "Conduct is checked here by steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "The day steadies when conduct is met with embodied practice and visible faithfulness.",
+          "lifeApplication": "Today, at the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "This keeps the day from shrinking around conduct; the heart is returned to steadier return.",
+        "explanation": "The passage pulls the heart back from keeping devotion separate from behavior and into integrated life.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "Ordinary moments change when the mind returns to integrated life instead of keeping devotion separate from behavior.",
+          "lifeApplication": "Today, at the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "The daily moment changes here because conduct is not left alone with itself.",
+        "explanation": "This keeps the next ordinary moment from being governed by conduct.",
         "source": {
-          "shortMeaning": "The next ordinary move is steadied by steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "This excerpt restores proportion before conduct takes over the tone of the day.",
+          "lifeApplication": "Today, at the next visible choice, let the body do the thing the line could still bless tomorrow."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-conduct#pressure": {
     "title": "When conduct needs to catch up with speech and the room gets tight",
-    "issueStatement": "The language of devotion can get ahead of the life carrying it. Under strain, the body starts choosing before discernment has properly arrived.",
-    "centralInsight": "Guru measures religion by clean conduct, not impressive performance. Pressure reveals the ruler of the heart, so Gurbani answers at the level of reflex, not image.",
-    "practicalReflection": "This is where the inner rule is exposed. Under pressure, the teaching has to enter the body before the reaction enters the mouth.",
-    "actionPrompt": "At the first embodied sign of pressure, before image management starts, let the next act answer to the line itself.",
+    "reviewedByHuman": false,
+    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is the quiet split between devotion and the next visible act. Under strain, keeping devotion separate from behavior starts sounding urgent, necessary, and completely justified.",
+    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the mouth, schedule, habits, and hands actually do next. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
+    "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+    "actionPrompt": "When the room tightens, let the body do the thing the line could still bless tomorrow.",
     "excerpts": [
       {
-        "explanation": "When the room tightens, this line refuses panic and gives the body a truer center.",
+        "explanation": "Under pressure, this excerpt interrupts keeping devotion separate from behavior before it reaches the tongue, body, or imagination.",
         "source": {
-          "shortMeaning": "Pressure is answered here through steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "Pressure loses some of its claim when the heart returns to integrated life.",
+          "lifeApplication": "When the room tightens, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "The strain does not get final say here; holy company interrupts the reflex.",
+        "explanation": "The passage refuses to let strain turn conduct into the only voice in the room.",
         "source": {
-          "shortMeaning": "Conduct is not left to rule the strained moment.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "This line steadies the reflex before conduct can rule the moment.",
+          "lifeApplication": "When the room tightens, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "Under pressure, the verse steadies conduct by returning the heart to steadier return.",
+        "explanation": "Pressure loosens here because the heart is pulled back toward embodied practice and visible faithfulness.",
         "source": {
-          "shortMeaning": "Conduct is not left to rule the strained moment.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "Conduct is answered here through embodied practice and visible faithfulness.",
+          "lifeApplication": "When the room tightens, let the body do the thing the line could still bless tomorrow."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-conduct#repair": {
     "title": "When conduct has already run ahead of truth",
-    "issueStatement": "The language of devotion can get ahead of the life carrying it. After the slip, the mind wants either self-defense or self-punishment instead of truthful return.",
-    "centralInsight": "Guru measures religion by clean conduct, not impressive performance. Return becomes truer when the soul stops rehearsing the failure and starts answering the teaching again.",
-    "practicalReflection": "After the slip, the loudest voice is rarely the truest one. The correction matters because it keeps conduct from turning into a permanent self-story.",
-    "actionPrompt": "Once the miss is visible, before image management starts, let the next act answer to the line itself.",
+    "reviewedByHuman": false,
+    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is the quiet split between devotion and the next visible act. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
+    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the mouth, schedule, habits, and hands actually do next. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
+    "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+    "actionPrompt": "After the slip is visible, let the body do the thing the line could still bless tomorrow.",
     "excerpts": [
       {
-        "explanation": "This keeps failure from becoming identity; the line still opens a way back.",
+        "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment.",
         "source": {
-          "shortMeaning": "After the slip, return stays open through steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "Repair begins when the heart returns to embodied practice and visible faithfulness instead of performance.",
+          "lifeApplication": "After the slip is visible, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "After the slip, the verse keeps return possible through steadier return.",
+        "explanation": "The passage keeps conduct from hardening into identity by pointing the heart back to integrated life.",
         "source": {
           "shortMeaning": "Conduct is not allowed to become identity here.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "lifeApplication": "After the slip is visible, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "Repair stays honest here because conduct is answered without theatre.",
+        "explanation": "Repair becomes possible here because the line refuses both excuse and despair.",
         "source": {
-          "shortMeaning": "Repair begins by receiving steadier return instead of self-theatre.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "This passage opens a clean way back through integrated life.",
+          "lifeApplication": "After the slip is visible, let the body do the thing the line could still bless tomorrow."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   },
   "topic-conduct#practice": {
     "title": "When conduct needs a rule you can keep",
-    "issueStatement": "The language of devotion can get ahead of the life carrying it. The question is not whether the line feels true, but whether it can still be kept tomorrow.",
-    "centralInsight": "Guru measures religion by clean conduct, not impressive performance. Gurbani trains posture through kept repetition, not spiritual weather.",
-    "practicalReflection": "Durable faithfulness is quieter than inspiration and harder to fake. The correction matters because it teaches the soul how to return on purpose.",
-    "actionPrompt": "For the next seven days at the same cue, before image management starts, let the next act answer to the line itself.",
+    "reviewedByHuman": false,
+    "issueStatement": "The line is loved in speech but not yet trusted enough to govern ordinary behavior. The strain is the quiet split between devotion and the next visible act. Inspiration is not the main need now; a repeatable return is.",
+    "centralInsight": "Gurbani keeps conduct concrete. Naam is not proven by how sincerely it is described but by what the mouth, schedule, habits, and hands actually do next. What is repeated with honesty begins to retrain the reflex itself.",
+    "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+    "actionPrompt": "For the next seven days at the same cue, let the body do the thing the line could still bless tomorrow.",
     "excerpts": [
       {
-        "explanation": "This is where the teaching becomes repeatable enough to shape conduct.",
+        "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent.",
         "source": {
-          "shortMeaning": "Practice begins by returning to steadier return the same way again.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "Conduct is retrained through repeated return to integrated life.",
+          "lifeApplication": "For the next seven days at the same cue, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "As practice, the verse keeps returning conduct to steadier return.",
+        "explanation": "The passage gives conduct a repeatable interruption through embodied practice and visible faithfulness.",
         "source": {
-          "shortMeaning": "The verse gives conduct a keepable form through steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "This excerpt gives the heart a keepable pattern of embodied practice and visible faithfulness.",
+          "lifeApplication": "For the next seven days at the same cue, let the body do the thing the line could still bless tomorrow."
         }
       },
       {
-        "explanation": "Durable practice grows here because the same turn can be kept again tomorrow.",
+        "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow.",
         "source": {
-          "shortMeaning": "The verse gives conduct a keepable form through steadier return.",
-          "lifeApplication": "Before image management starts, let the next act answer to the line itself."
+          "shortMeaning": "A steady practice weakens keeping devotion separate from behavior over time.",
+          "lifeApplication": "For the next seven days at the same cue, let the body do the thing the line could still bless tomorrow."
         }
       }
-    ],
-    "reviewedByHuman": true
+    ]
   }
 } satisfies Record<string, ScenarioOverridePayload>
