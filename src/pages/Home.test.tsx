@@ -18,7 +18,7 @@ import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
-import { getTodayLearnSurface } from '../utils/learnExperience'
+import { getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
 
@@ -37,8 +37,8 @@ function todayStamp() {
 }
 
 async function getTodaySurface() {
-  const catalog = await learnRepository.loadLearnCatalog()
-  return getTodayLearnSurface(catalog, todayStamp(), useLearningStore.getState().learnState)
+  const catalog = await learnRepository.loadLearnHomeCatalog()
+  return getTodayLearnHomeSurface(catalog, todayStamp(), useLearningStore.getState().learnState)
 }
 
 afterEach(() => {
@@ -611,7 +611,7 @@ test('shows length detail only for the four adjustable Nitnem banis and keeps th
 })
 
 test('falls back to the hukamnama-led hero when Learn fails to load', async () => {
-  vi.spyOn(learnRepository, 'loadLearnCatalog').mockRejectedValue(new Error('offline'))
+  vi.spyOn(learnRepository, 'loadLearnHomeCatalog').mockRejectedValue(new Error('offline'))
 
   renderHome()
 

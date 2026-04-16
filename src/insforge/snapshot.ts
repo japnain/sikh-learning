@@ -25,6 +25,15 @@ import type {
   CloudVocabRecord,
 } from './types'
 
+const SNAPSHOT_METADATA_STORAGE_KEY = 'naamras-cloud-sync-export-metadata'
+
+type SnapshotMetadataRecord = {
+  hash: string
+  clientUpdatedAt: string
+}
+
+type SnapshotMetadataMap = Record<string, SnapshotMetadataRecord>
+
 function createMetadata(id: string, clientUpdatedAt: string, deletedAt: string | null = null) {
   return {
     id,
@@ -33,6 +42,66 @@ function createMetadata(id: string, clientUpdatedAt: string, deletedAt: string |
     clientUpdatedAt,
     deletedAt,
   }
+}
+
+function canUseStorage() {
+  return typeof globalThis !== 'undefined' && typeof globalThis.localStorage !== 'undefined'
+}
+
+function readSnapshotMetadata(): SnapshotMetadataMap {
+  if (!canUseStorage()) return {}
+
+  try {
+    const raw = globalThis.localStorage.getItem(SNAPSHOT_METADATA_STORAGE_KEY)
+    if (!raw) return {}
+
+    const parsed = JSON.parse(raw)
+    return parsed && typeof parsed === 'object' ? parsed as SnapshotMetadataMap : {}
+  } catch {
+    return {}
+  }
+}
+
+function writeSnapshotMetadata(metadata: SnapshotMetadataMap) {
+  if (!canUseStorage()) return
+
+  try {
+    globalThis.localStorage.setItem(SNAPSHOT_METADATA_STORAGE_KEY, JSON.stringify(metadata))
+  } catch {
+    // Ignore storage pressure and keep the snapshot export responsive.
+  }
+}
+
+function serializeMetadataPayload(payload: unknown) {
+  return JSON.stringify(payload)
+}
+
+function resolveGeneratedTimestamp(metadata: SnapshotMetadataMap, key: string, payload: unknown) {
+  const hash = serializeMetadataPayload(payload)
+  const previous = metadata[key]
+  if (previous?.hash === hash) {
+    return previous.clientUpdatedAt
+  }
+
+  const clientUpdatedAt = new Date().toISOString()
+  metadata[key] = {
+    hash,
+    clientUpdatedAt,
+  }
+  return clientUpdatedAt
+}
+
+function syncAuthoritativeTimestamp(
+  metadata: SnapshotMetadataMap,
+  key: string,
+  payload: unknown,
+  clientUpdatedAt: string
+) {
+  metadata[key] = {
+    hash: serializeMetadataPayload(payload),
+    clientUpdatedAt,
+  }
+  return clientUpdatedAt
 }
 
 function normalizeVocabWord(value: string) {
@@ -48,48 +117,58 @@ function buildVocabNaturalKey(record: CloudVocabRecord['payload']) {
   return `${record.kind ?? 'word'}:${normalizeVocabWord(record.word)}`
 }
 
-function extractProfileRecord(): CloudProfileRecord {
+function extractProfileRecord(metadata: SnapshotMetadataMap): CloudProfileRecord {
   const locale = useLocaleStore.getState().locale
   const darkMode = useThemeStore.getState().dark
   const language = useLanguageStore.getState()
   const onboarding = useOnboardingStore.getState()
   const sundarGutkaLengths = useSundarGutkaLengthStore.getState().lengths
 
-  return {
-    ...createMetadata('profile', new Date().toISOString()),
+  const reader = {
+    scriptMode: language.scriptMode,
+    showTransliteration: language.showTransliteration,
+    meaningLanguage: language.meaningLanguage,
+    larivaar: language.larivaar,
+    showVishraam: language.showVishraam,
+    lineSpacing: language.lineSpacing,
+    textAlign: language.textAlign,
+    fontSize: language.fontSize,
+    englishSource: language.englishSource,
+    sundarGutkaLengths,
+  }
+  const onboardingState = {
+    hasCompletedOnboarding: onboarding.hasCompletedOnboarding,
+    learningLevel: onboarding.learningLevel,
+    audience: onboarding.audience,
+    learningGoal: onboarding.learningGoal,
+    presentationMode: onboarding.presentationMode,
+  }
+  const clientUpdatedAt = resolveGeneratedTimestamp(metadata, 'profile', {
     locale,
     darkMode,
-    reader: {
-      scriptMode: language.scriptMode,
-      showTransliteration: language.showTransliteration,
-      meaningLanguage: language.meaningLanguage,
-      larivaar: language.larivaar,
-      showVishraam: language.showVishraam,
-      lineSpacing: language.lineSpacing,
-      textAlign: language.textAlign,
-      fontSize: language.fontSize,
-      englishSource: language.englishSource,
-      sundarGutkaLengths,
-    },
-    onboarding: {
-      hasCompletedOnboarding: onboarding.hasCompletedOnboarding,
-      learningLevel: onboarding.learningLevel,
-      audience: onboarding.audience,
-      learningGoal: onboarding.learningGoal,
-      presentationMode: onboarding.presentationMode,
-    },
+    reader,
+    onboarding: onboardingState,
+  })
+
+  return {
+    ...createMetadata('profile', clientUpdatedAt),
+    locale,
+    darkMode,
+    reader,
+    onboarding: onboardingState,
   }
 }
 
-function extractSavedItems(): CloudSavedItemRecord[] {
+function extractSavedItems(metadata: SnapshotMetadataMap): CloudSavedItemRecord[] {
   const learningState = useLearningStore.getState().learnState
   const bookmarkRecords = useBookmarksStore.getState().bookmarks.map((bookmark) => {
     const payload: CloudBookmarkPayload = {
       ...bookmark,
     }
+    const clientUpdatedAt = syncAuthoritativeTimestamp(metadata, bookmark.id, payload, bookmark.savedAt)
 
     return {
-      ...createMetadata(bookmark.id, bookmark.savedAt),
+      ...createMetadata(bookmark.id, clientUpdatedAt),
       kind: 'bookmark' as const,
       naturalKey: buildBookmarkNaturalKey(payload),
       payload,
@@ -100,9 +179,10 @@ function extractSavedItems(): CloudSavedItemRecord[] {
     const payload: CloudFavoritePayload = {
       ...favorite,
     }
+    const clientUpdatedAt = syncAuthoritativeTimestamp(metadata, favorite.id, payload, favorite.savedAt)
 
     return {
-      ...createMetadata(favorite.id, favorite.savedAt),
+      ...createMetadata(favorite.id, clientUpdatedAt),
       kind: 'favorite' as const,
       naturalKey: buildFavoriteNaturalKey(payload),
       payload,
@@ -111,14 +191,16 @@ function extractSavedItems(): CloudSavedItemRecord[] {
 
   const savedLearnRecords = learningState.savedItemIds.map((itemId) => {
     const viewedAt = learningState.viewedItems.find(item => item.itemId === itemId)?.viewedAt
-      ?? new Date().toISOString()
+    const savedAt = viewedAt
+      ? syncAuthoritativeTimestamp(metadata, `learn-save:${itemId}`, { itemId }, viewedAt)
+      : resolveGeneratedTimestamp(metadata, `learn-save:${itemId}`, { itemId })
     const payload: CloudSavedLearnItemPayload = {
       itemId,
-      savedAt: viewedAt,
+      savedAt,
     }
 
     return {
-      ...createMetadata(`learn-save:${itemId}`, viewedAt),
+      ...createMetadata(`learn-save:${itemId}`, savedAt),
       kind: 'learn-item' as const,
       naturalKey: buildSavedLearnNaturalKey(itemId),
       payload,
@@ -128,20 +210,29 @@ function extractSavedItems(): CloudSavedItemRecord[] {
   return [...bookmarkRecords, ...favoriteRecords, ...savedLearnRecords]
 }
 
-function extractVocabEntries(): CloudVocabRecord[] {
-  return useVocabStore.getState().vocab.map(entry => ({
-    ...createMetadata(buildVocabNaturalKey(entry), entry.review?.lastReviewedAt ?? entry.savedAt),
-    naturalKey: buildVocabNaturalKey(entry),
-    payload: entry,
-  }))
+function extractVocabEntries(metadata: SnapshotMetadataMap): CloudVocabRecord[] {
+  return useVocabStore.getState().vocab.map(entry => {
+    const naturalKey = buildVocabNaturalKey(entry)
+    const clientUpdatedAt = syncAuthoritativeTimestamp(
+      metadata,
+      naturalKey,
+      entry,
+      entry.review?.lastReviewedAt ?? entry.savedAt
+    )
+
+    return {
+      ...createMetadata(naturalKey, clientUpdatedAt),
+      naturalKey,
+      payload: entry,
+    }
+  })
 }
 
-function extractLearningProgress(): CloudLearningProgressRecord[] {
+function extractLearningProgress(metadata: SnapshotMetadataMap): CloudLearningProgressRecord[] {
   const learning = useLearningStore.getState()
   const progress = useProgressStore.getState()
   const readingProgress = useReadingProgressStore.getState()
   const nitnem = useNitemStore.getState()
-  const updatedAt = new Date().toISOString()
 
   const learningPayload = {
     masteredSymbols: learning.masteredSymbols,
@@ -170,52 +261,105 @@ function extractLearningProgress(): CloudLearningProgressRecord[] {
     completedThemePathIds: learning.completedThemePathIds,
     learnState: learning.learnState,
   }
+  const studyProgressPayload = {
+    studied: progress.studied,
+    reviewQueue: progress.reviewQueue,
+    lastStudied: progress.lastStudied,
+    currentSession: progress.currentSession,
+  }
+  const readingProgressPayload = {
+    progress: readingProgress.progress,
+  }
+  const nitnemStatePayload = {
+    completedDate: nitnem.completedDate,
+    completedIds: nitnem.completedIds,
+    selectedIds: nitnem.selectedIds,
+  }
+
+  const learningUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:learning-state', learningPayload)
+  const studyProgressUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:study-progress', studyProgressPayload)
+  const readingProgressUpdatedAt = resolveGeneratedTimestamp(
+    metadata,
+    'learning-progress:reading-progress',
+    readingProgressPayload
+  )
+  const nitnemUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:nitnem-state', nitnemStatePayload)
 
   return [
     {
-      ...createMetadata('learning-state', updatedAt),
+      ...createMetadata('learning-state', learningUpdatedAt),
       scope: 'learning-state',
       payload: learningPayload,
     },
     {
-      ...createMetadata('study-progress', updatedAt),
+      ...createMetadata('study-progress', studyProgressUpdatedAt),
       scope: 'study-progress',
-      payload: {
-        studied: progress.studied,
-        reviewQueue: progress.reviewQueue,
-        lastStudied: progress.lastStudied,
-        currentSession: progress.currentSession,
-      },
+      payload: studyProgressPayload,
     },
     {
-      ...createMetadata('reading-progress', updatedAt),
+      ...createMetadata('reading-progress', readingProgressUpdatedAt),
       scope: 'reading-progress',
-      payload: {
-        progress: readingProgress.progress,
-      },
+      payload: readingProgressPayload,
     },
     {
-      ...createMetadata('nitnem-state', updatedAt),
+      ...createMetadata('nitnem-state', nitnemUpdatedAt),
       scope: 'nitnem-state',
-      payload: {
-        completedDate: nitnem.completedDate,
-        completedIds: nitnem.completedIds,
-        selectedIds: nitnem.selectedIds,
-      },
+      payload: nitnemStatePayload,
     },
   ]
 }
 
 export function exportLocalSnapshot(): CloudLocalSnapshot {
-  return {
+  const metadata = readSnapshotMetadata()
+  const snapshot: CloudLocalSnapshot = {
     version: 1,
     deviceId: getNaamrasDeviceId(),
-    profile: extractProfileRecord(),
-    savedItems: extractSavedItems(),
-    vocabEntries: extractVocabEntries(),
-    learningProgress: extractLearningProgress(),
+    profile: extractProfileRecord(metadata),
+    savedItems: extractSavedItems(metadata),
+    vocabEntries: extractVocabEntries(metadata),
+    learningProgress: extractLearningProgress(metadata),
     activityEvents: useActivityEventsStore.getState().pendingEvents,
   }
+  writeSnapshotMetadata(metadata)
+  return snapshot
+}
+
+function syncRemoteSnapshotMetadata(snapshot: CloudRemoteSnapshot) {
+  const metadata = readSnapshotMetadata()
+
+  if (snapshot.profile) {
+    syncAuthoritativeTimestamp(metadata, snapshot.profile.id, {
+      locale: snapshot.profile.locale,
+      darkMode: snapshot.profile.darkMode,
+      reader: snapshot.profile.reader,
+      onboarding: snapshot.profile.onboarding,
+    }, snapshot.profile.clientUpdatedAt)
+  }
+
+  for (const record of snapshot.savedItems ?? []) {
+    const metadataKey = record.kind === 'learn-item'
+      ? `learn-save:${(record.payload as CloudSavedLearnItemPayload).itemId}`
+      : record.id
+    const metadataPayload = record.kind === 'learn-item'
+      ? { itemId: (record.payload as CloudSavedLearnItemPayload).itemId }
+      : record.payload
+    syncAuthoritativeTimestamp(metadata, metadataKey, metadataPayload, record.clientUpdatedAt)
+  }
+
+  for (const record of snapshot.vocabEntries ?? []) {
+    syncAuthoritativeTimestamp(metadata, record.naturalKey, record.payload, record.clientUpdatedAt)
+  }
+
+  for (const record of snapshot.learningProgress ?? []) {
+    syncAuthoritativeTimestamp(
+      metadata,
+      `learning-progress:${record.scope}`,
+      record.payload,
+      record.clientUpdatedAt
+    )
+  }
+
+  writeSnapshotMetadata(metadata)
 }
 
 function applyProfileRecord(profile: CloudProfileRecord | null | undefined) {
@@ -313,4 +457,5 @@ export function applyRemoteSnapshot(snapshot: CloudRemoteSnapshot | null | undef
   applySavedItems(snapshot.savedItems)
   applyVocabEntries(snapshot.vocabEntries)
   applyLearningProgress(snapshot.learningProgress)
+  syncRemoteSnapshotMetadata(snapshot)
 }

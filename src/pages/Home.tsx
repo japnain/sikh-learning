@@ -15,9 +15,9 @@ import {
 import StreakBadge from '../components/StreakBadge'
 import SearchHighlight, { hasSearchMatch } from '../components/SearchHighlight'
 import { useHukamnama } from '../hooks/useHukamnama'
+import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { useCurrentTime } from '../hooks/useCurrentTime'
-import useLearnCatalog from '../hooks/useLearnCatalog'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
@@ -38,7 +38,8 @@ import { getUiCopy } from '../utils/uiCopy'
 import { formatUiDate } from '../utils/formatUiDate'
 import { getAngTargets, groupSearchResults } from '../utils/appSearch'
 import { toLocalDayStamp } from '../utils/learnDates'
-import { getLearnItemLabel, getLearnSavedItems, getTodayLearnSurface } from '../utils/learnExperience'
+import { getLearnItemLabel } from '../utils/learnExperience'
+import { getLearnHomeSavedItems, getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
 import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
 import { getEditorialCopy } from '../content/editorialCopy'
@@ -363,7 +364,7 @@ export default function Home() {
     catalog: learnCatalog,
     loading: learnCatalogLoading,
     error: learnCatalogError,
-  } = useLearnCatalog()
+  } = useLearnHomeCatalog()
   const learnDayStamp = toLocalDayStamp(new Date(now))
 
   const getNitnemOptionDetail = (option: NitnemRouteOption) => (
@@ -431,7 +432,7 @@ export default function Home() {
 
   const { data: hukamnama, loading: hukamnamaLoading } = useHukamnama()
   const todayLearnSurface = useMemo(
-    () => (learnCatalog ? getTodayLearnSurface(learnCatalog, learnDayStamp, learnStateSnapshot) : null),
+    () => (learnCatalog ? getTodayLearnHomeSurface(learnCatalog, learnDayStamp, learnStateSnapshot) : null),
     [learnCatalog, learnDayStamp, learnStateSnapshot]
   )
   const todayGuidance = todayLearnSurface?.dailyGuidance.item ?? null
@@ -460,7 +461,7 @@ export default function Home() {
     ? (nitnemDone / selectedNitnemOptions.length) * 100
     : 0
   const savedLearnItems = useMemo(
-    () => (learnCatalog ? getLearnSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
+    () => (learnCatalog ? getLearnHomeSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
     [learnCatalog, learnStateSnapshot.savedItemIds]
   )
   const savedBookmarks = bookmarks.length

@@ -2443,12 +2443,63 @@ function buildPublicManifest(dataset, validation) {
   }
 }
 
+function buildHomeSummary(dataset) {
+  return {
+    dailyGuidance: dataset.dailyGuidance.map(item => ({
+      id: item.id,
+      title: item.title,
+      summary: item.summary,
+      relatedTopicIds: item.relatedTopicIds,
+      relatedShabadIds: item.relatedShabadIds,
+      relatedCollectionIds: item.relatedCollectionIds,
+      rotation: item.rotation,
+    })),
+    shabadDeepDives: dataset.shabadDeepDives.map(item => ({
+      id: item.id,
+      title: item.title,
+      subtitle: item.subtitle,
+      summary: item.summary,
+      whyItMatters: item.whyItMatters,
+      themes: item.themes,
+      relatedGuidanceIds: item.relatedGuidanceIds,
+      relatedTopicIds: item.relatedTopicIds,
+      relatedCollectionIds: item.relatedCollectionIds,
+      rotation: item.rotation,
+    })),
+    topicGuides: dataset.topicGuides.map(item => ({
+      id: item.id,
+      title: item.title,
+      shortTitle: item.shortTitle,
+      category: item.category,
+      centralInsight: item.centralInsight,
+      searchTerms: item.searchTerms,
+      relatedTopicIds: item.relatedTopicIds,
+      relatedShabadIds: item.relatedShabadIds,
+      relatedCollectionIds: item.relatedCollectionIds,
+      rotation: item.rotation,
+    })),
+    collections: dataset.collections.map(item => ({
+      id: item.id,
+      title: item.title,
+      subtitle: item.subtitle,
+      description: item.description,
+      durationLabel: item.durationLabel,
+      themes: item.themes,
+      relatedTopicIds: item.relatedTopicIds,
+      relatedShabadIds: item.relatedShabadIds,
+      itemCount: item.items.length,
+    })),
+  }
+}
+
 async function writePublicArchive(dataset, validation) {
   const manifest = buildPublicManifest(dataset, validation)
+  const homeSummary = buildHomeSummary(dataset)
 
   await fs.rm(PUBLIC_DIR, { recursive: true, force: true })
   await ensureDir(PUBLIC_DIR)
   await writeJson(path.join(PUBLIC_DIR, "manifest.json"), manifest)
+  await writeJson(path.join(PUBLIC_DIR, "home-summary.json"), homeSummary)
   await writeJson(path.join(PUBLIC_DIR, "search-index.json"), dataset.searchIndex)
   await writeJson(path.join(PUBLIC_DIR, "validation-report.json"), validation)
   await writeJson(path.join(PUBLIC_DIR, "lists/daily-guidance.json"), dataset.dailyGuidance)
