@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor, within } from '@testing-library/rea
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
-import * as banidb from '../api/banidb'
 import * as learnRepository from '../data/learnRepository'
 import * as hukamnamaHook from '../hooks/useHukamnama'
 import { useBookmarksStore } from '../store/bookmarks'
@@ -20,7 +19,6 @@ import { useVocabStore } from '../store/vocab'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
-import { buildLearnSearchPath, buildReadSearchPath } from '../utils/searchRoutes'
 
 function renderHome() {
   return render(<MemoryRouter><Home /></MemoryRouter>)
@@ -52,7 +50,8 @@ beforeEach(() => {
   vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   localStorage.clear()
   document.documentElement.classList.remove('dark')
-  useThemeStore.setState({ dark: false })
+  useThemeStore.getState().setThemeMode('light')
+  useThemeStore.getState().setMotionMode('system')
   useSavedFeedbackStore.getState().clearSaved()
   useScriptureCacheStore.getState().clearAll()
   useBookmarksStore.setState({ bookmarks: [] })
@@ -146,8 +145,9 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-skeleton')).toBeInTheDocument()
-  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
-  expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
+  expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
 })
 
 test('puts today’s hukamnama before today’s guidance in the home hero stack', async () => {
@@ -190,147 +190,41 @@ test('renders the same daily guidance item that Learn resolves for the day', asy
   })
 })
 
-test('shows in-app matches first on home smart search and routes into learn detail', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/learn/*" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
-
-  const inAppResults = await screen.findByTestId('home-smart-search-app-results')
-  const [firstResult] = within(inAppResults).getAllByRole('link')
-  expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
-  fireEvent.click(firstResult)
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/learn/topics/topic-anxiety?from=topics')
-  })
-})
-
-test('highlights the matching home search terms inside surfaced results', async () => {
+test('keeps today’s guidance action only in the hero flow', async () => {
   renderHome()
 
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
-
-  const inAppResults = await screen.findByTestId('home-smart-search-app-results')
-  expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()
+  expect(await screen.findByTestId('home-hero-guidance-action')).toBeInTheDocument()
+  expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
+  expect(screen.queryByTestId('home-next-guidance')).not.toBeInTheDocument()
 })
 
-test('routes the secondary quick links to live Learn and Read destinations', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/learn/*" element={<LocationSpy />} />
-        <Route path="/banis" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.click(screen.getByTestId('home-open-topics'))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/learn?tab=topics')
-  })
-})
-
-test('routes Browse Read from the quick links into the read archive', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/banis" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.click(screen.getByTestId('home-open-read'))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/banis')
-  })
-})
-
-test('continues a topical home search into Learn with the same query on enter', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/learn/*" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'stress' } })
-  fireEvent.keyDown(screen.getByTestId('home-smart-search-input'), { key: 'Enter' })
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe(buildLearnSearchPath('stress'))
-  })
-})
-
-test('shows query carry-over actions and routes read search with the same query', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/banis" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'Japji Sahib' } })
-
-  expect(await screen.findByTestId('home-open-read-search')).toBeInTheDocument()
-  fireEvent.click(screen.getByTestId('home-open-read-search'))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe(buildReadSearchPath({ query: 'Japji Sahib' }))
-  })
-})
-
-test('shows direct ang targets before broader search results on home', async () => {
+test('replaces the lower duplicate cards with one read-today source browser surface', async () => {
   renderHome()
 
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: '12' } })
-
-  expect(await screen.findByText(/Direct ang/i)).toBeInTheDocument()
-  expect(screen.getByRole('link', { name: /Open SGGS Ang 12/i })).toBeInTheDocument()
-  expect(screen.getByRole('link', { name: /Open DG Ang 12/i })).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-source-browser-shell')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-source-browser')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-next-guidance')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-next-source-browser')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-next-read')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-next-library')).not.toBeInTheDocument()
+  expect(screen.getByText(/source browsing/i)).toBeInTheDocument()
 })
 
-test('shows an inline error when Gurbani home search fails', async () => {
-  vi.spyOn(banidb, 'fetchSearch').mockRejectedValue(new Error('offline'))
-
-  renderHome()
-  fireEvent.change(screen.getByTestId('home-smart-search-input'), { target: { value: 'tomato' } })
-
-  await waitFor(() => {
-    expect(screen.getByTestId('home-smart-search-error')).toBeInTheDocument()
-  })
-  expect(screen.queryByText(/No in-app or Gurbani matches found yet/i)).not.toBeInTheDocument()
-})
-
-test('shows a featured shabad card from Learn inside today’s path', async () => {
+test('shows a featured shabad card from Learn inside read today', async () => {
   renderHome()
   await waitFor(() => {
-    expect(screen.getByTestId('home-todays-path-featured-shabad')).toBeInTheDocument()
+    expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
     expect(screen.getByTestId('home-open-featured-shabad')).toBeInTheDocument()
   })
 })
 
-test('renders nitnem above today’s path and removes the old nitnem progress card', () => {
+test('renders nitnem above the unified read today surface', () => {
   renderHome()
 
   const nitnem = screen.getByTestId('home-nitnem-spotlight')
-  const todaysPath = screen.getByTestId('home-todays-path')
+  const readToday = screen.getByTestId('home-read-today')
 
-  expect(nitnem.compareDocumentPosition(todaysPath) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(nitnem.compareDocumentPosition(readToday) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   expect(screen.queryByTestId('home-nitnem-progress')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
 })
@@ -354,15 +248,17 @@ test('keeps the active nitnem card on Japji Sahib after marking it complete', ()
   expect(within(updatedActiveCard).getByRole('button', { name: /mark as incomplete/i })).toBeInTheDocument()
 })
 
-test('rebuilds today’s path around live reading and real Learn surfaces', () => {
+test('rebuilds read today around one live reading and discovery surface', () => {
   renderHome()
 
-  expect(screen.getByTestId('home-todays-path')).toBeInTheDocument()
-  expect(screen.getByTestId('home-todays-path-featured-shabad')).toBeInTheDocument()
-  expect(screen.getByTestId('home-todays-path-learn')).toBeInTheDocument()
-  expect(screen.getByTestId('home-open-continue-learning')).toBeInTheDocument()
-  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/browse read/i)
-  expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-source-browser')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/ardaas \+ hukamnama/i)
+  expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/today in learn/i)).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-open-continue-learning')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-todays-path-learn')).not.toBeInTheDocument()
   expect(screen.queryByText(/core letters/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/steps done/i)).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-share-progress')).not.toBeInTheDocument()
@@ -412,11 +308,28 @@ test('does not show continue reading when no session', () => {
   expect(screen.queryByText(/continue reading/i)).not.toBeInTheDocument()
 })
 
-test('uses Browse Read in today’s path instead of duplicating the hukamnama CTA when no session exists', async () => {
+test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama CTA when no session exists', async () => {
   renderHome()
 
-  expect(screen.getByTestId('home-todays-path-action')).toHaveTextContent(/^Browse Read$/i)
+  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
   expect(await screen.findByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
+})
+
+test('opens the Ardaas + Hukamnama devotional flow from read today when no session exists', async () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/study" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(screen.getByTestId('home-read-today-action'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')
+  })
 })
 
 test('shows continue reading when session exists', () => {
@@ -451,7 +364,7 @@ test('uses the deep resume path when a saved reader anchor exists', async () => 
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByTestId('home-todays-path-action'))
+  fireEvent.click(screen.getByTestId('home-read-today-action'))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=12&resumeVerseId=345')
@@ -514,15 +427,33 @@ test('uses links and shared focus styling for home navigation surfaces', async (
 
   const heroAction = await screen.findByTestId('home-hero-primary-action')
   const guidanceAction = screen.getByTestId('home-hero-guidance-action')
+  const readTodayAction = screen.getByTestId('home-read-today-action')
+  const featuredShabadAction = await screen.findByTestId('home-open-featured-shabad')
   const savedPreview = await screen.findByTestId('home-saved-preview-learn')
 
   expect(heroAction.tagName).toBe('A')
   expect(guidanceAction.tagName).toBe('A')
-  expect(screen.getByTestId('home-open-topics').tagName).toBe('A')
+  expect(readTodayAction.tagName).toBe('A')
+  expect(featuredShabadAction.tagName).toBe('A')
   expect(savedPreview.tagName).toBe('A')
   expect(heroAction).toHaveClass('interactive-focus', 'interactive-pill-link')
   expect(guidanceAction).toHaveClass('interactive-focus', 'interactive-pill-link')
+  expect(readTodayAction).toHaveClass('interactive-focus', 'interactive-pill-link')
+  expect(featuredShabadAction).toHaveClass('interactive-focus', 'interactive-pill-link')
   expect(savedPreview).toHaveClass('interactive-focus', 'interactive-card-link')
+})
+
+test('restores a direct light-dark toggle on the home header', () => {
+  renderHome()
+
+  const toggle = screen.getByTestId('home-theme-toggle')
+  expect(useThemeStore.getState().themeMode).toBe('light')
+
+  fireEvent.click(toggle)
+  expect(useThemeStore.getState().themeMode).toBe('dark')
+
+  fireEvent.click(screen.getByTestId('home-theme-toggle'))
+  expect(useThemeStore.getState().themeMode).toBe('light')
 })
 
 test('highlights the matching saved preview row after a recent save', async () => {
@@ -549,19 +480,18 @@ test('highlights the matching saved preview row after a recent save', async () =
   expect(screen.getByRole('status')).toHaveTextContent(/Learn save added to the shelf/i)
 })
 
-test('keeps the new hero and search surfaces visible after switching to dark mode', async () => {
+test('keeps the new hero and read-today surfaces visible in dark mode', async () => {
+  useThemeStore.getState().setThemeMode('dark')
   renderHome()
-  const toggle = screen.getByLabelText(/switch to dark mode|switch to light mode/i)
-  fireEvent.click(toggle)
 
   await waitFor(() => {
     expect(document.documentElement.classList.contains('dark')).toBe(true)
   })
 
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
-  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.getByTestId('home-theme-toggle')).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(screen.getByTestId('home-smart-search-input').previousElementSibling).toHaveClass('icon-surface')
   expect(screen.getByRole('button', { name: /customize daily nitnem|hide nitnem options/i }).querySelector('.icon-surface')).not.toBeNull()
 })
 
