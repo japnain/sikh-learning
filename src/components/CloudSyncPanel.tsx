@@ -26,7 +26,7 @@ const CLOUD_COPY = {
     cloudMode: 'Cloud connected',
     waiting: 'Waiting',
     providers: 'Providers',
-    providerReady: 'Ready',
+    providerSupported: 'Supported',
     providerNeedsSetup: 'Needs setup',
     featureGuest: 'Guest reading stays open',
     featureLibrary: 'Bookmarks, vocab, Learn, progress',
@@ -63,7 +63,7 @@ const CLOUD_COPY = {
     cloudMode: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
     waiting: 'ਉਡੀਕ ਵਿੱਚ',
     providers: 'ਪ੍ਰੋਵਾਈਡਰ',
-    providerReady: 'ਤਿਆਰ',
+    providerSupported: 'ਸਮਰਥਿਤ',
     providerNeedsSetup: 'ਸੈੱਟਅੱਪ ਲੋੜੀਂਦਾ',
     featureGuest: 'Guest ਪੜ੍ਹਾਈ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ',
     featureLibrary: 'ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, Learn, ਤਰੱਕੀ',
@@ -100,7 +100,7 @@ const CLOUD_COPY = {
     cloudMode: 'क्लाउड जुड़ा हुआ',
     waiting: 'प्रतीक्षा में',
     providers: 'प्रोवाइडर',
-    providerReady: 'तैयार',
+    providerSupported: 'समर्थित',
     providerNeedsSetup: 'सेटअप चाहिए',
     featureGuest: 'Guest reading खुली रहती है',
     featureLibrary: 'बुकमार्क, शब्द, Learn, प्रगति',
@@ -267,6 +267,32 @@ function getCloudSyncErrorCode({
   return currentUser ? 'cloud-sync' : 'insforge-bootstrap'
 }
 
+function getProviderAvailabilityView({
+  enabled,
+  statusView,
+  copy,
+}: {
+  enabled: boolean
+  statusView: { label: string; className: string }
+  copy: CloudCopy
+}) {
+  if (!enabled) {
+    return {
+      label: copy.providerNeedsSetup,
+      statusLabel: null,
+      statusClassName: null,
+      className: 'text-ink/52 dark:text-dark-text/52',
+    }
+  }
+
+  return {
+    label: copy.providerSupported,
+    statusLabel: statusView.label,
+    statusClassName: statusView.className,
+    className: 'text-ink dark:text-dark-text',
+  }
+}
+
 export default function CloudSyncPanel() {
   const locale = useLocaleStore(state => state.locale)
   const copy = CLOUD_COPY[locale]
@@ -407,6 +433,11 @@ export default function CloudSyncPanel() {
                 {(['google', 'apple', 'github'] as const).map(providerId => {
                   const provider = PROVIDER_META[providerId]
                   const enabled = supportedProviders.includes(providerId)
+                  const providerState = getProviderAvailabilityView({
+                    enabled,
+                    statusView,
+                    copy,
+                  })
 
                   return (
                   <div
@@ -420,12 +451,15 @@ export default function CloudSyncPanel() {
                   >
                     <p className="eyebrow">{provider.name}</p>
                     <p className={`mt-2 font-sans text-sm font-semibold ${
-                      enabled
-                        ? 'text-ink dark:text-dark-text'
-                        : 'text-ink/52 dark:text-dark-text/52'
+                      providerState.className
                     }`}>
-                      {enabled ? copy.providerReady : copy.providerNeedsSetup}
+                      {providerState.label}
                     </p>
+                    {providerState.statusLabel ? (
+                      <p className={`mt-2 inline-flex rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${providerState.statusClassName}`}>
+                        {providerState.statusLabel}
+                      </p>
+                    ) : null}
                   </div>
                   )
                 })}

@@ -201,7 +201,7 @@ test('replaces the lower duplicate cards with one read-today source browser surf
   renderHome()
 
   expect(screen.getByTestId('home-read-today-source-browser-shell')).toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today-source-browser')).toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-source-browser')).toHaveAttribute('data-component', 'scripture-source-browser')
   expect(screen.queryByTestId('home-next-guidance')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-source-browser')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-read')).not.toBeInTheDocument()
@@ -413,6 +413,35 @@ test('shows real saved preview rows on home instead of vocab-only counts', async
   expect(screen.getByTestId('home-saved-preview-passage')).toBeInTheDocument()
   expect(screen.getByTestId('home-saved-preview-vocab')).toBeInTheDocument()
   expect(screen.getByTestId('home-saved-metrics')).toHaveTextContent('1')
+})
+
+test('home saved passage preview reopens broken partial bookmark routes on canonical ang paths', async () => {
+  useBookmarksStore.setState({
+    bookmarks: [{
+      id: 'bookmark-1',
+      type: 'shabad',
+      title: 'Ang 2 bookmark',
+      source: 'G',
+      ang: 2,
+      shabadId: 50,
+      savedAt: '2026-04-11T10:00:00.000Z',
+    }],
+  })
+
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<><Home /><LocationSpy /></>} />
+        <Route path="/study" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  fireEvent.click(await screen.findByTestId('home-saved-preview-passage'))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=2')
+  })
 })
 
 test('uses links and shared focus styling for home navigation surfaces', async () => {

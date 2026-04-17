@@ -9,7 +9,9 @@ export interface FavoriteItem {
   source: 'G' | 'D' | 'B' | 'A'
   ang: number
   shabadId?: number
+  verseId?: number
   type: 'ang' | 'shabad' | 'bani'
+  routeMode?: 'canonical' | 'shabad' | 'verse'
   savedAt: string
 }
 
@@ -47,7 +49,9 @@ export const useFavoritesStore = create<FavoritesState>()(
           source: favorite.source,
           ang: favorite.ang,
           shabadId: favorite.shabadId ?? null,
+          verseId: favorite.verseId ?? null,
           type: favorite.type,
+          routeMode: favorite.routeMode ?? 'canonical',
         }, favorite.savedAt)
       },
       removeFavorite: (id) => {
@@ -61,7 +65,9 @@ export const useFavoritesStore = create<FavoritesState>()(
             source: favorite.source,
             ang: favorite.ang,
             shabadId: favorite.shabadId ?? null,
+            verseId: favorite.verseId ?? null,
             type: favorite.type,
+            routeMode: favorite.routeMode ?? 'canonical',
           })
         }
       },

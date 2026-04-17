@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor, within } from '@testing-library/rea
 import { MemoryRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Study from './Study'
 import { useBookmarksStore } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useLanguageStore } from '../store/language'
 import { useMusicStore } from '../store/music'
@@ -30,6 +31,8 @@ beforeEach(() => {
     },
   })
   useSavedFeedbackStore.getState().clearSaved()
+  useBookmarksStore.setState({ bookmarks: [] })
+  useFavoritesStore.setState({ favorites: [] })
   useScriptureCacheStore.getState().clearAll()
   useVocabStore.setState({ vocab: [] })
   useProgressStore.setState({ streak: 0, currentSession: null, studied: [], reviewQueue: [], lastStudied: null })
@@ -82,6 +85,9 @@ describe('Study bookmark button', () => {
   })
 
   test('bookmark form appears on clicking unactive bookmark button', async () => {
+    const scrollSpy = vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(() => {})
+    window.innerWidth = 390
+
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -89,8 +95,16 @@ describe('Study bookmark button', () => {
     )
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
-    expect(screen.getByPlaceholderText('Add a note...')).toBeInTheDocument()
-    expect(screen.getByText('Save Bookmark')).toBeInTheDocument()
+
+    const bookmarkForm = await screen.findByTestId('study-bookmark-form')
+    const bookmarkInput = within(bookmarkForm).getByLabelText('Bookmark note')
+
+    expect(bookmarkForm).toBeVisible()
+    expect(within(bookmarkForm).getByText('Save Bookmark')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(bookmarkInput).toHaveFocus()
+      expect(scrollSpy).toHaveBeenCalled()
+    })
   })
 
   test('clicking save bookmark adds to store', async () => {
@@ -101,7 +115,8 @@ describe('Study bookmark button', () => {
     )
     await waitFor(() => expect(screen.queryByLabelText(/add bookmark/i)).toBeInTheDocument())
     fireEvent.click(screen.getByLabelText(/add bookmark/i))
-    fireEvent.click(screen.getByText('Save Bookmark'))
+    const bookmarkForm = await screen.findByTestId('study-bookmark-form')
+    fireEvent.click(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' }))
     expect(useBookmarksStore.getState().hasBookmark('G', 1)).toBe(true)
     expect(screen.getByText(/bookmark saved/i)).toBeInTheDocument()
   })
@@ -248,6 +263,8 @@ describe('Study renders all shabads on an ang', () => {
   })
 
   it('keeps verse actions hidden until the overflow menu is opened', async () => {
+    window.innerWidth = 390
+
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -264,6 +281,9 @@ describe('Study renders all shabads on an ang', () => {
     fireEvent.click(screen.getAllByRole('button', { name: /open verse actions/i })[0])
 
     const dialog = screen.getByRole('dialog', { name: /verse actions/i })
+    const actionSheet = screen.getByTestId('study-verse-actions-sheet')
+
+    expect(actionSheet).toBeVisible()
     expect(within(dialog).getByRole('button', { name: /save phrase/i })).toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: /^Copy$/i })).toBeInTheDocument()
     expect(within(dialog).getByRole('button', { name: /^Share$/i })).toBeInTheDocument()
@@ -480,7 +500,7 @@ describe('Study soundscapes and tracking', () => {
     }
   })
 
-  it('stores the active study route as the resume path for direct shabad views', async () => {
+  it('stores the canonical ang route as the resume path for direct shabad views', async () => {
     render(
       <MemoryRouter initialEntries={['/study?shabadId=50']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -493,7 +513,7 @@ describe('Study soundscapes and tracking', () => {
 
     expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
       scriptureId: 'G-1',
-      resumePath: '/study?shabadId=50',
+      resumePath: '/study?source=G&ang=1',
     }))
   })
 })
@@ -528,6 +548,54 @@ describe('Study exact shabad mode', () => {
       expect(cards.length).toBe(1)
       expect(screen.getByText('ੴ')).toBeInTheDocument()
       expect(screen.getByText(/open full shabad/i)).toBeInTheDocument()
+    })
+  })
+
+  it('keeps the session resume canonical after exact search opens', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText('Exact Search Result')).toBeInTheDocument()
+      expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
+        scriptureId: 'G-1',
+        resumePath: '/study?source=G&ang=1',
+        resumeVerseId: 100,
+      }))
+    })
+  })
+
+  it('keeps the session resume canonical after saving an exact result to favorites', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByLabelText(/add favorite/i)).toBeInTheDocument()
+    })
+
+    fireEvent.click(screen.getByLabelText(/add favorite/i))
+
+    await waitFor(() => {
+      expect(useFavoritesStore.getState().favorites).toEqual([
+        expect.objectContaining({
+          source: 'G',
+          ang: 1,
+          shabadId: 50,
+          verseId: 100,
+          routeMode: 'verse',
+        }),
+      ])
+      expect(useProgressStore.getState().currentSession).toEqual(expect.objectContaining({
+        scriptureId: 'G-1',
+        resumePath: '/study?source=G&ang=1',
+        resumeVerseId: 100,
+      }))
     })
   })
 

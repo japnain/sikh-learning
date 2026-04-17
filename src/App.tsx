@@ -1,5 +1,5 @@
-import { lazy, Suspense, startTransition, useEffect, useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
+import { lazy, Suspense, startTransition, useEffect, useRef, useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
@@ -100,7 +100,9 @@ function RouteFallback() {
 }
 
 function AppShell() {
+  const location = useLocation()
   const navigate = useNavigate()
+  const mainContentRef = useRef<HTMLElement | null>(null)
   const dark = useThemeStore(s => s.dark)
   const displayMode = useDisplayMode()
   const scriptMode = useLanguageStore(s => s.scriptMode)
@@ -164,11 +166,22 @@ function AppShell() {
 
   const showFirstRun = !hasCompletedOnboarding && presentationMode === 'first-run'
   const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
+  const skipToContentHref = `${location.pathname}${location.search}#main-content`
+
+  function handleSkipToContent() {
+    if (typeof window === 'undefined') return
+
+    window.requestAnimationFrame(() => {
+      mainContentRef.current?.focus()
+    })
+  }
 
   return (
     <>
       <a
-        href="#main-content"
+        key={skipToContentHref}
+        href={skipToContentHref}
+        onClick={handleSkipToContent}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-medium focus:text-ink dark:focus:bg-dark-card dark:focus:text-dark-text"
         data-testid="skip-to-content"
       >
@@ -207,7 +220,9 @@ function AppShell() {
           data-ai-state="ready"
         >
           <main
+            ref={mainContentRef}
             id="main-content"
+            tabIndex={-1}
             className="min-h-screen"
             data-testid="main-content"
             data-ai-surface="main-content"

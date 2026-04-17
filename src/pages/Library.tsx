@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { BANIS } from '../data/banis'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
-import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
+import { useFavoritesStore } from '../store/favorites'
 import { buildSessionResumePath, useProgressStore } from '../store/progress'
 import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
@@ -11,15 +12,13 @@ import { useLocaleStore } from '../store/locale'
 import { useLearningStore } from '../store/learning'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import useLearnCatalog from '../hooks/useLearnCatalog'
-import { SGGS_ANG_COUNT, DG_ANG_COUNT } from '../utils/dailyPick'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import { getLearnSavedItems, getLearnItemLabel } from '../utils/learnExperience'
 import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
+import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
-  IconArrowLeft,
-  IconArrowRight,
   IconBookmarkFilled,
   IconChevronDown,
   IconChevronUp,
@@ -47,67 +46,6 @@ function formatSessionReference(scriptureId: string): string {
   const sourceLabel = SOURCE_FULL_NAME[source] ?? SOURCE_SHORT_NAME[source] ?? source.toUpperCase()
   return `${sourceLabel} · ${angLabel(source)} ${ang}`
 }
-
-function buildSavedPassagePath(item: Bookmark | FavoriteItem): string {
-  if ('verseId' in item && item.verseId && item.shabadId) {
-    return `/study?shabadId=${item.shabadId}&verseId=${item.verseId}`
-  }
-
-  if (item.shabadId) {
-    return `/study?shabadId=${item.shabadId}`
-  }
-
-  return `/study?source=${item.source}&ang=${item.ang}`
-}
-
-function AngBrowser({ source, totalAngs }: { source: string; totalAngs: number }) {
-  const [page, setPage] = useState(0)
-  const PAGE_SIZE = 50
-  const start = page * PAGE_SIZE + 1
-  const end = Math.min(start + PAGE_SIZE - 1, totalAngs)
-
-  return (
-    <div>
-      <div className="grid grid-cols-5 gap-2 mb-4">
-        {Array.from({ length: end - start + 1 }, (_, i) => start + i).map(ang => (
-          <Link
-            key={ang}
-            to={`/study?source=${source}&ang=${ang}`}
-            className="section-shell interactive-focus interactive-card-link min-h-[44px] rounded-2xl py-2 font-sans text-sm text-ink dark:text-dark-text hover:text-gold dark:hover:text-gold-light"
-          >
-            {ang}
-          </Link>
-        ))}
-      </div>
-      <div className="flex justify-between items-center">
-        <button
-          onClick={() => setPage(p => Math.max(0, p - 1))}
-          disabled={page === 0}
-          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1"
-        ><IconArrowLeft size={14} /> Prev</button>
-        <span className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">{angLabel(source)} {start}–{end} of {totalAngs}</span>
-        <button
-          onClick={() => setPage(p => p + 1)}
-          disabled={end >= totalAngs}
-          className="font-sans text-gold dark:text-gold-light text-sm disabled:opacity-30 min-h-[44px] px-3 flex items-center gap-1"
-        >Next <IconArrowRight size={14} /></button>
-      </div>
-    </div>
-  )
-}
-
-interface Section {
-  id: string
-  name: string
-  source: string
-  totalAngs: number
-}
-
-const SECTIONS: Section[] = [
-  { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
-  { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
-  { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
-]
 
 export default function Library() {
   const locale = useLocaleStore(s => s.locale)
@@ -274,7 +212,7 @@ export default function Library() {
                   <IconClose size={14} />
                 </button>
                 <Link
-                  to={buildSavedPassagePath(favorite)}
+                  to={buildSavedStudyPath(favorite)}
                   className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'favorite' && lastSaved.targetId === favorite.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
                 >
                   <div className="flex items-center gap-2 mb-2">
@@ -462,7 +400,7 @@ export default function Library() {
                     <IconClose size={14} />
                   </button>
                   <Link
-                    to={buildSavedPassagePath(bookmark)}
+                    to={buildSavedStudyPath(bookmark)}
                     className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'bookmark' && lastSaved.targetId === bookmark.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
@@ -529,28 +467,10 @@ export default function Library() {
 
         {expanded.library && (
           <div id="library-source-browser-panel" className="mt-4 space-y-3">
-            {SECTIONS.map(section => {
-              const isOpen = expanded[section.id]
-              const panelId = `library-source-${section.id}`
-              return (
-                <div key={section.id} className="section-shell px-4 py-4">
-                  <button
-                    onClick={() => toggle(section.id)}
-                    className="w-full flex justify-between items-center gap-3"
-                    aria-expanded={Boolean(isOpen)}
-                    aria-controls={panelId}
-                  >
-                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{section.name}</p>
-                    <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{isOpen ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-                  </button>
-                  {isOpen && (
-                    <div id={panelId} className="mt-4">
-                      <AngBrowser source={section.source} totalAngs={section.totalAngs} />
-                    </div>
-                  )}
-                </div>
-              )
-            })}
+            <ScriptureSourceBrowser
+              dataTestId="library-source-browser-shared"
+              sectionClassName="section-shell px-4 py-4"
+            />
           </div>
         )}
       </section>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { useLocation, useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
 import { useProgressStore } from '../store/progress'
@@ -179,7 +179,6 @@ const STUDY_EXPERIENCE_COPY: Record<UiLocale, {
 }
 
 export default function Study() {
-  const location = useLocation()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const { scriptureId } = useParams<{ scriptureId: string }>()
@@ -262,12 +261,6 @@ export default function Study() {
     ? LEARN_PROGRAMS.find(program => program.id === learnProgramParam) ?? null
     : null
   const searchParamsString = searchParams.toString()
-  const resumePath = useMemo(() => {
-    const nextParams = new URLSearchParams(searchParams)
-    nextParams.delete('resumeVerseId')
-    const nextSearch = nextParams.toString()
-    return nextSearch ? `${location.pathname}?${nextSearch}` : location.pathname
-  }, [location.pathname, searchParams])
 
   useEffect(() => {
     if (!isApiMode) navigate('/library', { replace: true })
@@ -377,6 +370,7 @@ export default function Study() {
   const currentEntry = entries[0] ?? null
   const currentAng = currentEntry?.ang ?? angParam ?? baniResult.entries[0]?.ang ?? null
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
+  const currentShabadId = currentEntry ? (parseShabadId(currentEntry) ?? undefined) : undefined
   const englishSource = useLanguageStore(s => s.englishSource)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const setScriptMode = useLanguageStore(s => s.setScriptMode)
@@ -396,7 +390,7 @@ export default function Study() {
   const updateSession = useProgressStore(state => state.updateSession)
   const recordSwipeToday = useProgressStore(state => state.recordSwipeToday)
   const { addBookmark, hasBookmark } = useBookmarksStore()
-  const { addFavorite, removeFavorite, isFavorite, favorites } = useFavoritesStore()
+  const { addFavorite, removeFavorite, favorites } = useFavoritesStore()
   const { addWord, vocab } = useVocabStore()
   const { recordAng } = useReadingProgressStore()
   const studyExperienceCopy = STUDY_EXPERIENCE_COPY[locale]
@@ -406,18 +400,68 @@ export default function Study() {
   const [isTakingHukamnama, setIsTakingHukamnama] = useState(false)
   const [controlsOpen, setControlsOpen] = useState(false)
   const readerControlsRef = useRef<HTMLDivElement | null>(null)
+  const bookmarkFormRef = useRef<HTMLDivElement | null>(null)
+  const bookmarkInputRef = useRef<HTMLInputElement | null>(null)
   const actionNoticeTimeoutRef = useRef<number | null>(null)
   const latestResumeVerseIdRef = useRef<number | null>(null)
   const resumeSyncFrameRef = useRef<number | null>(null)
+  const canonicalResumePath = useMemo(() => {
+    if (!shouldTrackProgress) return null
+
+    if (isHukamnamaMode && hukamnamaDateParam) {
+      return `/study?hukamnamaDate=${hukamnamaDateParam}`
+    }
+
+    if (!currentAng) return null
+
+    const nextParams = new URLSearchParams()
+    nextParams.set('source', currentSource)
+    nextParams.set('ang', String(currentAng))
+
+    if (isBaniDbMode || isBaniRangeMode) {
+      const startAng = startAngParam ?? angParam ?? currentAng
+
+      nextParams.set('startAng', String(startAng))
+
+      if (endAngParam) nextParams.set('endAng', String(endAngParam))
+      if (baniName) nextParams.set('bani', baniName)
+      if (baniIdParam) nextParams.set('baniId', baniIdParam)
+      if (baniDbIdParam) nextParams.set('baniDbId', String(baniDbIdParam))
+      if (isBaniDbMode) nextParams.set('exactBani', '1')
+      if (effectiveSgLength) nextParams.set('sgLength', effectiveSgLength)
+      if (learnProgramParam) nextParams.set('learnProgram', learnProgramParam)
+      if (learnModuleParam) nextParams.set('learnModule', learnModuleParam)
+    }
+
+    const nextSearch = nextParams.toString()
+    return nextSearch ? `/study?${nextSearch}` : '/study'
+  }, [
+    angParam,
+    baniDbIdParam,
+    baniIdParam,
+    baniName,
+    currentAng,
+    currentSource,
+    effectiveSgLength,
+    endAngParam,
+    hukamnamaDateParam,
+    isBaniDbMode,
+    isBaniRangeMode,
+    isHukamnamaMode,
+    learnModuleParam,
+    learnProgramParam,
+    shouldTrackProgress,
+    startAngParam,
+  ])
 
   const baseSession = useMemo(() => {
-    if (!shouldTrackProgress || !currentAng) return null
+    if (!shouldTrackProgress || !currentAng || !canonicalResumePath) return null
 
     return {
       scriptureId: `${currentSource}-${currentAng}`,
-      resumePath,
+      resumePath: canonicalResumePath,
     }
-  }, [currentAng, currentSource, resumePath, shouldTrackProgress])
+  }, [canonicalResumePath, currentAng, currentSource, shouldTrackProgress])
 
   useEffect(() => {
     if (!baseSession) return
@@ -589,6 +633,17 @@ export default function Study() {
     return () => window.cancelAnimationFrame(frame)
   }, [controlsOpen])
 
+  useEffect(() => {
+    if (!showBookmarkForm || typeof window === 'undefined') return
+
+    const frame = window.requestAnimationFrame(() => {
+      bookmarkInputRef.current?.focus()
+      bookmarkFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [showBookmarkForm])
+
   const handleShare = async () => {
     if (!currentEntry) return
     const text = [
@@ -606,18 +661,40 @@ export default function Study() {
     [entries]
   )
   const { wordDataMap } = useMultiShabadWordData(isApiMode ? shabadIds : [])
+  const isExactSearchResult = isExactShabadMode && verseIdParam !== null
+  const currentFavoriteRouteMode = isExactSearchResult
+    ? 'verse'
+    : isExactShabadMode
+      ? 'shabad'
+      : 'canonical'
 
   const isBookmarked = currentAng
     ? hasBookmark(currentSource, currentAng)
     : false
   const currentFavorite = currentEntry && currentAng
-    ? favorites.find(favorite =>
-      favorite.source === currentSource
-      && favorite.ang === currentAng
-      && favorite.shabadId === (currentEntry.shabadId ?? undefined)
-    ) ?? null
+    ? favorites.find(favorite => {
+      const routeMode = favorite.routeMode ?? 'canonical'
+
+      if (
+        favorite.source !== currentSource
+        || favorite.ang !== currentAng
+        || routeMode !== currentFavoriteRouteMode
+      ) {
+        return false
+      }
+
+      if (routeMode === 'verse') {
+        return favorite.shabadId === currentShabadId && favorite.verseId === verseIdParam
+      }
+
+      if (routeMode === 'shabad') {
+        return favorite.shabadId === currentShabadId
+      }
+
+      return true
+    }) ?? null
     : null
-  const isFavorited = currentAng ? isFavorite(currentSource, currentAng, currentEntry?.shabadId) : false
+  const isFavorited = Boolean(currentFavorite)
 
   const handleSaveBookmark = () => {
     if (!currentEntry || !currentAng) return
@@ -648,8 +725,10 @@ export default function Study() {
         : `${currentEntry.scripture} · Ang ${currentAng}`,
       source: currentSource,
       ang: currentAng,
-      shabadId: currentEntry.shabadId,
-      type: currentEntry.shabadId ? 'shabad' : 'ang',
+      shabadId: currentFavoriteRouteMode === 'canonical' ? undefined : currentShabadId,
+      verseId: currentFavoriteRouteMode === 'verse' ? verseIdParam ?? undefined : undefined,
+      type: currentFavoriteRouteMode === 'canonical' ? 'ang' : 'shabad',
+      routeMode: currentFavoriteRouteMode,
     })
     announceAction(studyExperienceCopy.favoriteAdded)
   }
@@ -772,7 +851,6 @@ export default function Study() {
     hasBookmark((entry.source ?? currentSource) as BaniSource, line.ang, line.verseId)
   const isPhraseSaved = (line: ScriptureLine) =>
     vocab.some(item => item.word === line.gurmukhi && (item.kind ?? 'word') === 'phrase')
-  const isExactSearchResult = isExactShabadMode && verseIdParam !== null
 
   const titleLine = currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))?.gurmukhi
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
@@ -1269,8 +1347,14 @@ export default function Study() {
       </div>
 
       {showBookmarkForm && (
-        <div className="mb-4 section-shell p-4 transition-colors duration-300 shadow-card dark:shadow-gold">
+        <div
+          ref={bookmarkFormRef}
+          className="mb-4 section-shell rounded-[28px] border border-saffron/18 bg-[linear-gradient(180deg,rgba(255,249,240,0.96),rgba(252,239,220,0.9))] p-4 shadow-gold-strong transition-colors duration-300 dark:border-gold/18 dark:bg-[linear-gradient(180deg,rgba(41,31,56,0.96),rgba(28,21,40,0.94))]"
+          data-testid="study-bookmark-form"
+        >
+          <p className="eyebrow">{studyCopy.saveBookmark}</p>
           <input
+            ref={bookmarkInputRef}
             id="study-bookmark-note"
             name="study-bookmark-note"
             type="text"
@@ -1278,11 +1362,11 @@ export default function Study() {
             value={bookmarkText}
             onChange={e => setBookmarkText(e.target.value)}
             placeholder={studyCopy.addNote}
-            className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-2 font-sans text-ink dark:text-dark-text text-sm mb-2 outline-none focus:border-saffron/30 transition-colors duration-300"
+            className="mt-3 w-full rounded-xl border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/30 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
           />
           <button
             onClick={handleSaveBookmark}
-            className="w-full bg-gradient-to-r from-saffron to-saffron-light rounded-xl py-2 text-white font-sans font-semibold text-sm min-h-[44px] transition-colors duration-300"
+            className="mt-3 w-full rounded-xl bg-gradient-to-r from-saffron to-saffron-light py-2 text-sm font-semibold text-white transition-colors duration-300 min-h-[44px]"
           >
             {studyCopy.saveBookmark}
           </button>

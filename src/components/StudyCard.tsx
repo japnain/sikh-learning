@@ -315,66 +315,71 @@ export default function StudyCard({
             aria-label="Close verse actions"
           />
           <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Verse actions"
-            className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-md rounded-t-[30px] border border-sand/15 bg-parchment-card px-4 pb-5 pt-3 shadow-gold-strong dark:border-dark-text/10 dark:bg-dark-card"
-            style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
+            className="absolute inset-x-0 bottom-0 flex justify-center px-3"
+            style={{ paddingBottom: 'calc(var(--nav-stack-height, 0px) + 0.75rem + env(safe-area-inset-bottom))' }}
           >
-            <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
-            <div className="mb-4 flex items-start justify-between gap-3">
-              <div>
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                  Verse Actions
-                </p>
-                <p
-                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Verse actions"
+              data-testid="study-verse-actions-sheet"
+              className="w-full max-w-md overflow-y-auto rounded-[30px] border border-sand/15 bg-parchment-card px-4 pb-5 pt-3 shadow-gold-strong max-h-[min(72vh,38rem)] dark:border-dark-text/10 dark:bg-dark-card"
+            >
+              <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-sand/25 dark:bg-dark-text/15" />
+              <div className="mb-4 flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    Verse Actions
+                  </p>
+                  <p
+                    lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                    className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
+                  >
+                    {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam })}
+                  </p>
+                  {showTransliteration && actionLine.transliteration && (
+                    <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
+                      {actionLine.transliteration}
+                    </p>
+                  )}
+                  {actionMeaning && (
+                    <p className={`mt-2 text-sm text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                      {actionMeaning}
+                    </p>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={closeActionSheet}
+                  aria-label="Dismiss verse actions"
+                  className="flex min-h-[36px] min-w-[36px] items-center justify-center rounded-full bg-parchment-low text-ink/50 dark:bg-dark-surface dark:text-dark-text/50"
                 >
-                  {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam })}
-                </p>
-                {showTransliteration && actionLine.transliteration && (
-                  <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">
-                    {actionLine.transliteration}
-                  </p>
-                )}
-                {actionMeaning && (
-                  <p className={`mt-2 text-sm text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                    {actionMeaning}
-                  </p>
-                )}
+                  <IconClose size={16} />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={closeActionSheet}
-                aria-label="Dismiss verse actions"
-                className="flex min-h-[36px] min-w-[36px] items-center justify-center rounded-full bg-parchment-low text-ink/50 dark:bg-dark-surface dark:text-dark-text/50"
-              >
-                <IconClose size={16} />
-              </button>
-            </div>
 
-            <div className="space-y-2">
-              <LineActionItem
-                label={isPhraseSaved?.(actionLine, entry) ? 'Phrase Saved' : 'Save Phrase'}
-                onClick={() => handleLineAction(actionLine, onSavePhrase)}
-                active={Boolean(isPhraseSaved?.(actionLine, entry))}
-              />
-              <LineActionItem
-                label="Copy"
-                onClick={() => handleLineAction(actionLine, onCopyLine)}
-              />
-              <LineActionItem
-                label="Share"
-                onClick={() => handleLineAction(actionLine, onShareLine)}
-                icon={<IconShare size={16} />}
-              />
-              <LineActionItem
-                label={isLineBookmarked?.(actionLine, entry) ? 'Bookmarked' : 'Bookmark'}
-                onClick={() => handleLineAction(actionLine, onBookmarkLine)}
-                active={Boolean(isLineBookmarked?.(actionLine, entry))}
-                icon={isLineBookmarked?.(actionLine, entry) ? <IconBookmarkFilled size={16} /> : <IconBookmark size={16} />}
-              />
+              <div className="space-y-2">
+                <LineActionItem
+                  label={isPhraseSaved?.(actionLine, entry) ? 'Phrase Saved' : 'Save Phrase'}
+                  onClick={() => handleLineAction(actionLine, onSavePhrase)}
+                  active={Boolean(isPhraseSaved?.(actionLine, entry))}
+                />
+                <LineActionItem
+                  label="Copy"
+                  onClick={() => handleLineAction(actionLine, onCopyLine)}
+                />
+                <LineActionItem
+                  label="Share"
+                  onClick={() => handleLineAction(actionLine, onShareLine)}
+                  icon={<IconShare size={16} />}
+                />
+                <LineActionItem
+                  label={isLineBookmarked?.(actionLine, entry) ? 'Bookmarked' : 'Bookmark'}
+                  onClick={() => handleLineAction(actionLine, onBookmarkLine)}
+                  active={Boolean(isLineBookmarked?.(actionLine, entry))}
+                  icon={isLineBookmarked?.(actionLine, entry) ? <IconBookmarkFilled size={16} /> : <IconBookmark size={16} />}
+                />
+              </div>
             </div>
           </div>
         </div>

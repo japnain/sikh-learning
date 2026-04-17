@@ -15,8 +15,8 @@ import StreakBadge from '../components/StreakBadge'
 import { useHukamnama } from '../hooks/useHukamnama'
 import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
 import { useCurrentTime } from '../hooks/useCurrentTime'
-import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
-import { useFavoritesStore, type FavoriteItem } from '../store/favorites'
+import { useBookmarksStore } from '../store/bookmarks'
+import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
@@ -37,6 +37,7 @@ import { toLocalDayStamp } from '../utils/learnDates'
 import { getLearnItemLabel } from '../utils/learnExperience'
 import { getLearnHomeSavedItems, getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
+import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getEditorialCopy } from '../content/editorialCopy'
 
 const READ_TODAY_HIGHLIGHT_CLASSES = [
@@ -99,18 +100,6 @@ const HOME_SAVED_PREVIEW_APPEARANCE: Record<
 function formatSavedPassageReference(source: string, ang: number, verseId?: number): string {
   const sourceLabel = SOURCE_SHORT_NAME[source] ?? source.toUpperCase()
   return verseId ? `${sourceLabel} · Ang ${ang} · Verse ${verseId}` : `${sourceLabel} · Ang ${ang}`
-}
-
-function buildSavedPassagePath(item: Bookmark | FavoriteItem): string {
-  if ('verseId' in item && item.verseId && item.shabadId) {
-    return `/study?shabadId=${item.shabadId}&verseId=${item.verseId}`
-  }
-
-  if (item.shabadId) {
-    return `/study?shabadId=${item.shabadId}`
-  }
-
-  return `/study?source=${item.source}&ang=${item.ang}`
 }
 
 function compareSavedAtDesc(
@@ -543,7 +532,7 @@ export default function Home() {
           latestSavedPassage.item.ang,
           'verseId' in latestSavedPassage.item ? latestSavedPassage.item.verseId : undefined
         ),
-        path: buildSavedPassagePath(latestSavedPassage.item),
+        path: buildSavedStudyPath(latestSavedPassage.item),
       })
     }
 
