@@ -28,6 +28,7 @@ beforeEach(() => {
 
 test('renders page heading', () => {
   renderBanis()
+  expect(screen.getByTestId('page-banis')).toHaveClass('page-shell')
   expect(screen.getByRole('heading', { level: 1, name: /move directly into gurbani/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /refine/i })).toBeInTheDocument()
   expect(screen.getByText(/^Auto$/i)).toBeInTheDocument()
@@ -333,4 +334,21 @@ test('highlights matching terms inside read search results', async () => {
 
   const inAppResults = await screen.findByTestId('banis-search-app-results')
   expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()
+})
+
+test('keeps the nav-safe page shell while lower sections still open after other expansions', async () => {
+  renderBanis()
+
+  expect(screen.getByTestId('page-banis')).toHaveClass('page-shell')
+
+  fireEvent.click(screen.getByText(/Sundar Gutka/i))
+  await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Nitnem'))
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getByText('Raag Sections'))
+  fireEvent.click(screen.getByText('Amrit Keertan'))
+
+  await waitFor(() => {
+    expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument()
+  })
 })

@@ -116,18 +116,24 @@ test("highlights matching terms inside learn topic results", async () => {
   })
 })
 
-test("topic search keeps the literal query in both inputs and the url", async () => {
+test("topic search keeps the literal query in both inputs and the url while typing", async () => {
   renderLearnRoute("/learn?tab=topics")
 
-  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
-    target: { value: "anxiety" },
-  })
+  const topicSearch = await screen.findByLabelText(/Search topic guides/i)
+  const archiveSearch = screen.getByRole("searchbox", { name: /Search the Learn archive/i })
+  const querySteps = ["a", "an", "anx", "anxi", "anxie", "anxiet", "anxiety"]
 
-  await waitFor(() => {
-    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn?tab=topics&query=anxiety")
-    expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toHaveValue("anxiety")
-    expect(screen.getByRole("searchbox", { name: /Search topic guides/i })).toHaveValue("anxiety")
-  })
+  for (const query of querySteps) {
+    fireEvent.change(topicSearch, {
+      target: { value: query },
+    })
+
+    await waitFor(() => {
+      expect(screen.getByTestId("location-display")).toHaveTextContent(`/learn?tab=topics&query=${query}`)
+      expect(archiveSearch).toHaveValue(query)
+      expect(topicSearch).toHaveValue(query)
+    })
+  }
 })
 
 test("topics tab shows canonical topic cards instead of flat scenario variants", async () => {

@@ -123,18 +123,20 @@ function getMeaningPreview(locale: UiLocale, meaningLanguage: MeaningLanguage, e
 
 function getPrimaryActionLabel(
   learningGoal: LearningGoal,
+  meaningLanguage: MeaningLanguage,
   copy: ReturnType<typeof getUiCopy>['onboarding']
 ) {
-  if (learningGoal === 'understand') return copy.openWithMeaning
+  if (learningGoal === 'understand') return meaningLanguage === 'none' ? copy.openReader : copy.openWithMeaning
   if (learningGoal === 'habit') return copy.startToday
   return copy.openReader
 }
 
 function getRouteSummary(
   learningGoal: LearningGoal,
+  meaningLanguage: MeaningLanguage,
   copy: ReturnType<typeof getUiCopy>['onboarding']
 ) {
-  if (learningGoal === 'understand') return copy.routeUnderstand
+  if (learningGoal === 'understand') return meaningLanguage === 'none' ? copy.routeRead : copy.routeUnderstand
   if (learningGoal === 'habit') return copy.routeHabit
   return copy.routeRead
 }
@@ -371,8 +373,8 @@ export default function OnboardingSheet({
     [englishSource, locale, meaningLanguage]
   )
   const routeSummary = useMemo(
-    () => getRouteSummary(learningGoal, copy.onboarding),
-    [copy.onboarding, learningGoal]
+    () => getRouteSummary(learningGoal, meaningLanguage, copy.onboarding),
+    [copy.onboarding, learningGoal, meaningLanguage]
   )
   const supportedProviders = useMemo(
     () => ONBOARDING_PROVIDER_ORDER.filter(provider => availableProviders.includes(provider)),
@@ -524,7 +526,7 @@ export default function OnboardingSheet({
                 {copy.onboarding.previewEyebrow}
               </p>
               <p className="mt-1 font-display text-2xl text-ink dark:text-dark-text">
-                {getPrimaryActionLabel(learningGoal, copy.onboarding)}
+                {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
               </p>
             </div>
             <span className="rounded-full border border-gold/25 bg-white/65 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-gold dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
@@ -818,7 +820,7 @@ export default function OnboardingSheet({
                     data-ai-action="complete-onboarding"
                     className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {getPrimaryActionLabel(learningGoal, copy.onboarding)}
+                    {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
                   </button>
                 ) : (
                   <>

@@ -41,7 +41,7 @@ afterEach(() => {
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
   render(<App />)
 
-  expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '#main-content')
+  expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
   expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
   expect(screen.queryByRole('heading', { level: 1, name: /satshriakaal/i })).not.toBeInTheDocument()
@@ -76,6 +76,47 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   expect(await screen.findByRole('main')).toBeInTheDocument()
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+})
+
+test('refreshes the skip link target on each route and focuses current main content on activation', async () => {
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: true,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  const skipLink = screen.getByTestId('skip-to-content')
+  const mainContent = screen.getByTestId('main-content')
+
+  const navigateTo = async (path: string) => {
+    window.history.pushState({}, '', path)
+    window.dispatchEvent(new PopStateEvent('popstate'))
+
+    await waitFor(() => {
+      expect(skipLink).toHaveAttribute('href', `${path}#main-content`)
+    })
+  }
+
+  await waitFor(() => {
+    expect(skipLink).toHaveAttribute('href', '/#main-content')
+  })
+
+  await navigateTo('/study?source=G&ang=1')
+  await navigateTo('/learn?tab=topics')
+  await navigateTo('/library')
+  await navigateTo('/more')
+  await navigateTo('/')
+
+  fireEvent.click(skipLink)
+
+  await waitFor(() => {
+    expect(mainContent).toHaveFocus()
+  })
 })
 
 test('habit onboarding completion returns home and highlights today’s path', async () => {

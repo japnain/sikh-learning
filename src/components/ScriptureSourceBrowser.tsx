@@ -45,7 +45,7 @@ function AngPageBrowser({ source, totalAngs }: { source: string; totalAngs: numb
           <Link
             key={ang}
             to={`/study?source=${source}&ang=${ang}`}
-            className="section-shell interactive-focus interactive-card-link min-h-[44px] rounded-2xl py-2 font-sans text-sm text-ink hover:text-gold dark:text-dark-text dark:hover:text-gold-light"
+            className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-2xl py-2 text-center font-sans text-sm text-ink hover:text-gold dark:text-dark-text dark:hover:text-gold-light"
           >
             {ang}
           </Link>
@@ -90,7 +90,7 @@ export default function ScriptureSourceBrowser({
   const sections = useMemo(() => SCRIPTURE_SOURCE_SECTIONS, [])
 
   return (
-    <div className="space-y-3" data-testid={dataTestId}>
+    <div className="space-y-3" data-component="scripture-source-browser" data-testid={dataTestId}>
       {sections.map(section => {
         const isOpen = Boolean(expanded[section.id])
         const panelId = `${dataTestId ?? 'scripture-source'}-${section.id}`

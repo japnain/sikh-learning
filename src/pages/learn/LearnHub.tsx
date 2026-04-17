@@ -1,4 +1,4 @@
-import { startTransition, useDeferredValue, useEffect, useMemo, useRef } from "react"
+import { startTransition, useDeferredValue, useEffect, useMemo, useRef, useState } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import SurfaceStateCard from "../../components/SurfaceStateCard"
 import { getEditorialCopy } from "../../content/editorialCopy"
@@ -102,7 +102,9 @@ export default function LearnHub() {
   const tabParam = searchParams.get("tab")
   const activeTab: LearnTab = isLearnTab(tabParam) ? tabParam : "today"
   const pageCopy = getPageCopy(editorial)[activeTab]
-  const deferredQuery = useDeferredValue(searchParams.get("query") ?? "")
+  const queryParam = searchParams.get("query") ?? ""
+  const [queryDraft, setQueryDraft] = useState(queryParam)
+  const deferredQuery = useDeferredValue(queryDraft)
   const shabadThemes = catalog?.manifest.filters.shabadThemes ?? []
   const shabadGurus = catalog?.manifest.filters.shabadGurus ?? []
   const shabadRaags = catalog?.manifest.filters.shabadRaags ?? []
@@ -216,7 +218,7 @@ export default function LearnHub() {
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
   const continueCardClass = "section-shell-quiet relative isolate block w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
 
-  function setParams(updates: Record<string, string | null>) {
+  function setParams(updates: Record<string, string | null>, options: { replace?: boolean } = {}) {
     const next = new URLSearchParams(searchParams)
     Object.entries(updates).forEach(([key, value]) => {
       if (!value) {
@@ -227,7 +229,7 @@ export default function LearnHub() {
     })
 
     startTransition(() => {
-      setSearchParams(next)
+      setSearchParams(next, { replace: options.replace ?? false })
     })
   }
 
@@ -246,6 +248,7 @@ export default function LearnHub() {
   }
 
   function handleHeroSearchChange(value: string) {
+    setQueryDraft(value)
     setParams({
       tab: value ? "topics" : "today",
       query: value || null,
@@ -260,8 +263,14 @@ export default function LearnHub() {
       length: null,
       savedOnly: null,
       completedOnly: null,
-    })
+    }, { replace: true })
   }
+
+  useEffect(() => {
+    if (queryParam !== queryDraft) {
+      setQueryDraft(queryParam)
+    }
+  }, [queryDraft, queryParam])
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" })
@@ -394,7 +403,7 @@ export default function LearnHub() {
             spellCheck={false}
             enterKeyHint="search"
             inputMode="search"
-            value={searchParams.get("query") ?? ""}
+            value={queryDraft}
             onChange={event => handleHeroSearchChange(event.target.value)}
             placeholder={editorial?.learn.heroSearchPlaceholder ?? "Search the archive by question, feeling, or theme…"}
             className="min-w-0 flex-1 bg-transparent font-sans text-sm text-ink outline-none placeholder:text-ink/40 dark:text-dark-text dark:placeholder:text-dark-text/40"
@@ -750,7 +759,7 @@ export default function LearnHub() {
                 spellCheck={false}
                 enterKeyHint="search"
                 inputMode="search"
-                value={searchParams.get("query") ?? ""}
+                value={queryDraft}
                 onChange={event => setParams({
                   tab: "topics",
                   query: event.target.value || null,

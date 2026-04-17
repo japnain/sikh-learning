@@ -613,7 +613,7 @@ export default function Banis() {
 
   return (
     <div
-      className="p-4 max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
+      className="page-shell max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
       data-testid="page-banis"
       data-page="banis"
       data-ai-surface="read"

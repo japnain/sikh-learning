@@ -109,6 +109,25 @@ test('quiet preset keeps the preview text-first', () => {
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
 })
 
+test('turning meaning off updates the preview summary and action copy for understand mode', async () => {
+  render(<Harness />)
+
+  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+
+  expect(await screen.findByText(/Open with meaning/i)).toBeInTheDocument()
+  expect(screen.getByText(/You will open with meaning close/i)).toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: /fine tune reader/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^Off$/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
+    expect(screen.getByText(/Open my reader/i)).toBeInTheDocument()
+    expect(screen.getByText(/You will land in a cleaner reader/i)).toBeInTheDocument()
+  })
+})
+
 test('first-run onboarding does not lock document scrolling', () => {
   render(<Harness presentation="first-run" />)
 

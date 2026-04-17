@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, within } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Library from './Library'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -7,6 +7,22 @@ import { useProgressStore } from '../store/progress'
 import { useLearningStore } from '../store/learning'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useVocabStore } from '../store/vocab'
+
+function LocationSpy() {
+  const location = useLocation()
+  return <div data-testid="location">{`${location.pathname}${location.search}`}</div>
+}
+
+function renderLibraryRoutes() {
+  return render(
+    <MemoryRouter initialEntries={['/library']}>
+      <Routes>
+        <Route path="/library" element={<><Library /><LocationSpy /></>} />
+        <Route path="/study" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
+}
 
 describe('Library bookmarks section', () => {
   beforeEach(() => {
@@ -91,6 +107,50 @@ describe('Library bookmarks section', () => {
     expect(useLearningStore.getState().learnState.savedItemIds).toEqual([])
   })
 
+  test('favorites reopen broken partial saved routes on canonical ang paths', async () => {
+    useFavoritesStore.setState({
+      favorites: [{
+        id: 'favorite-1',
+        title: 'Ang 2 favorite',
+        source: 'G',
+        ang: 2,
+        shabadId: 50,
+        type: 'shabad',
+        savedAt: new Date().toISOString(),
+      }],
+    })
+
+    renderLibraryRoutes()
+
+    fireEvent.click(within(screen.getByTestId('library-favorites')).getByRole('link'))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=2')
+    })
+  })
+
+  test('bookmarks reopen broken partial saved routes on canonical ang paths', async () => {
+    useBookmarksStore.setState({
+      bookmarks: [{
+        id: 'bookmark-1',
+        type: 'shabad',
+        title: 'Ang 2 bookmark',
+        source: 'G',
+        ang: 2,
+        shabadId: 50,
+        savedAt: new Date().toISOString(),
+      }],
+    })
+
+    renderLibraryRoutes()
+
+    fireEvent.click(within(screen.getByTestId('library-bookmarks')).getByRole('link'))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toBe('/study?source=G&ang=2')
+    })
+  })
+
   test('library snapshot reflects the latest saved learn item inline', async () => {
     useLearningStore.setState(state => ({
       learnState: {
@@ -142,6 +202,7 @@ describe('Library removed sections', () => {
   it('shows the remaining scripture sections without Amrit Keertan', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
     fireEvent.click(screen.getByRole('button', { name: /source browsing/i }))
+    expect(screen.getByTestId('library-source-browser-shared')).toHaveAttribute('data-component', 'scripture-source-browser')
     expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
     expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
     expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
