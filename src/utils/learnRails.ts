@@ -38,6 +38,7 @@ export const LEARN_SUBSECTION_RAILS: Record<LearnTab, LearnRailChip[]> = {
 export const LEARN_DETAIL_RAILS = {
   'today-guidance': [
     { id: 'today-guidance-excerpt', label: 'Excerpt', targetId: 'learn-detail-guidance-excerpt' },
+    { id: 'today-guidance-shabad', label: 'Shabad', targetId: 'learn-detail-guidance-shabad' },
     { id: 'today-guidance-takeaway', label: 'Takeaway', targetId: 'learn-detail-guidance-takeaway' },
     { id: 'today-guidance-life', label: 'Life', targetId: 'learn-detail-guidance-life' },
   ],

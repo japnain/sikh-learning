@@ -2,7 +2,7 @@ import { afterEach, beforeEach, expect, test, vi } from "vitest"
 import { fireEvent, screen, waitFor } from "@testing-library/react"
 import { loadLearnCatalog } from "../../data/learnRepository"
 import { createDefaultLearnState, renderLearnRoute, resetLearnTestState } from "./testUtils"
-import { getTodayLearnSurface } from "../../utils/learnExperience"
+import { getTodayLearnSurface, resolveLineReference } from "../../utils/learnExperience"
 
 beforeEach(() => {
   vi.useFakeTimers({ shouldAdvanceTime: true })
@@ -37,6 +37,19 @@ test("guidance detail reflects saved context in its local navigation", async () 
 
   expect(await screen.findByRole("button", { name: /Back to Saved/i })).toBeInTheDocument()
   expect(screen.getByRole("navigation", { name: /Saved detail navigation/i })).toBeInTheDocument()
+})
+
+test("guidance detail surfaces inline shabad depth for the related passage", async () => {
+  const catalog = await loadLearnCatalog()
+  const guidance = catalog.dailyGuidanceById["guidance-sweet-speech-humble-walk"]
+  const excerpt = resolveLineReference(catalog, guidance.source)
+
+  renderLearnRoute("/learn/guidance/guidance-sweet-speech-humble-walk?from=today")
+
+  expect(await screen.findByRole("heading", { level: 1, name: new RegExp(guidance.title, "i") })).toBeInTheDocument()
+  expect(screen.getByRole("heading", { level: 2, name: new RegExp(excerpt.deepDive.title, "i") })).toBeInTheDocument()
+  expect(screen.getByText(excerpt.deepDive.whyItMatters)).toBeInTheDocument()
+  expect(screen.getByText(excerpt.deepDive.structure[0]!)).toBeInTheDocument()
 })
 
 test("collection-linked guidance back button returns to the collection overview instead of prior step history", async () => {

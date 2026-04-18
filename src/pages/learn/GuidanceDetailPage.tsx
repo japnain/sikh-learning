@@ -100,6 +100,48 @@ export default function GuidanceDetailPage() {
         </div>
       </section>
 
+      <section
+        className={`section-shell p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        id="learn-detail-guidance-shabad"
+        data-ai-anchor="guidance-shabad"
+      >
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="eyebrow">Shabad Depth</p>
+            <h2 className="mt-2 font-display text-2xl leading-tight text-ink dark:text-dark-text">
+              {excerpt.deepDive.title}
+            </h2>
+          </div>
+          <Link
+            to={buildLearnDetailPath("shabad-deep-dive", guidance.relatedShabadIds[0] ?? excerpt.deepDive.id, from)}
+            className="inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light touch-manipulation"
+          >
+            Open the full shabad <IconArrowRight size={16} />
+          </Link>
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="section-shell-quiet p-4">
+            <p className="eyebrow">Whole Shabad</p>
+            <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.deepDive.summary}</p>
+          </div>
+          <div className="section-shell-quiet p-4">
+            <p className="eyebrow">Why It Matters</p>
+            <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.deepDive.whyItMatters}</p>
+            <p className="mt-3 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">{excerpt.deepDive.takeaway}</p>
+          </div>
+        </div>
+
+        <div className="mt-4 section-shell-quiet p-4">
+          <p className="eyebrow">Movement Through the Shabad</p>
+          <div className="mt-3 space-y-3">
+            {excerpt.deepDive.structure.map(item => (
+              <p key={item} className="font-sans text-sm leading-6 text-ink dark:text-dark-text">{item}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="grid gap-4 md:grid-cols-2">
         <section
           className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
@@ -118,16 +160,6 @@ export default function GuidanceDetailPage() {
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{guidance.lifeApplication}</p>
         </section>
       </div>
-
-      <section className="section-shell-quiet p-4">
-        <p className="eyebrow">Go Deeper</p>
-        <Link
-          to={buildLearnDetailPath("shabad-deep-dive", guidance.relatedShabadIds[0] ?? excerpt.deepDive.id, from)}
-          className="mt-3 inline-flex min-h-[42px] items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light touch-manipulation"
-        >
-          Open the full shabad <IconArrowRight size={16} />
-        </Link>
-      </section>
     </LearnDetailShell>
   )
 }
