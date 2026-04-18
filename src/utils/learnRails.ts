@@ -17,6 +17,7 @@ export const LEARN_SUBSECTION_RAILS: Record<LearnTab, LearnRailChip[]> = {
   today: [
     { id: 'today-continue', label: 'Continue', targetId: 'learn-today-continue' },
     { id: 'today-surface', label: 'Today', targetId: 'learn-today-surface' },
+    { id: 'today-fresh-guidance', label: 'Fresh', targetId: 'learn-today-fresh-guidance' },
     { id: 'today-doors', label: 'Doors', targetId: 'learn-today-doors' },
     { id: 'today-paths', label: 'Paths', targetId: 'learn-today-paths' },
   ],

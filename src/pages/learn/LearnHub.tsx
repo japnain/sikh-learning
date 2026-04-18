@@ -1,4 +1,4 @@
-import { startTransition, useDeferredValue, useEffect, useMemo, useRef, useState } from "react"
+import { startTransition, useDeferredValue, useEffect, useMemo, useRef } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import SurfaceStateCard from "../../components/SurfaceStateCard"
 import { getEditorialCopy } from "../../content/editorialCopy"
@@ -78,6 +78,14 @@ function getCollectionProgressText(
   return `${completed} of ${collection.items.length} completed`
 }
 
+function formatGuidanceThemeLabel(theme: string) {
+  return theme
+    .split(/[-\s]+/)
+    .filter(Boolean)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ")
+}
+
 export default function LearnHub() {
   const location = useLocation()
   const navigate = useNavigate()
@@ -103,8 +111,7 @@ export default function LearnHub() {
   const activeTab: LearnTab = isLearnTab(tabParam) ? tabParam : "today"
   const pageCopy = getPageCopy(editorial)[activeTab]
   const queryParam = searchParams.get("query") ?? ""
-  const [queryDraft, setQueryDraft] = useState(queryParam)
-  const deferredQuery = useDeferredValue(queryDraft)
+  const deferredQuery = useDeferredValue(queryParam)
   const shabadThemes = catalog?.manifest.filters.shabadThemes ?? []
   const shabadGurus = catalog?.manifest.filters.shabadGurus ?? []
   const shabadRaags = catalog?.manifest.filters.shabadRaags ?? []
@@ -152,6 +159,20 @@ export default function LearnHub() {
   const viewedIds = useMemo(() => new Set(viewedItems.map(item => item.itemId)), [viewedItems])
   const savedItems = useMemo(() => (catalog ? getLearnSavedItems(catalog, savedItemIds) : []), [catalog, savedItemIds])
   const continueLearning = todaySurface?.continueLearning ?? null
+  const freshGuidanceItems = useMemo(() => {
+    if (!catalog) return []
+
+    return [...catalog.dailyGuidance]
+      .filter(item => item.rotation.freshnessTier === "fresh")
+      .sort((left, right) => {
+        if (right.rotation.priority !== left.rotation.priority) {
+          return right.rotation.priority - left.rotation.priority
+        }
+
+        return left.title.localeCompare(right.title)
+      })
+      .slice(0, 6)
+  }, [catalog])
 
   const shabadThemeFilter = searchParams.get("theme") ?? ""
   const shabadGuruFilter = searchParams.get("guru") ?? ""
@@ -248,7 +269,6 @@ export default function LearnHub() {
   }
 
   function handleHeroSearchChange(value: string) {
-    setQueryDraft(value)
     setParams({
       tab: value ? "topics" : "today",
       query: value || null,
@@ -265,12 +285,6 @@ export default function LearnHub() {
       completedOnly: null,
     }, { replace: true })
   }
-
-  useEffect(() => {
-    if (queryParam !== queryDraft) {
-      setQueryDraft(queryParam)
-    }
-  }, [queryDraft, queryParam])
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" })
@@ -403,7 +417,7 @@ export default function LearnHub() {
             spellCheck={false}
             enterKeyHint="search"
             inputMode="search"
-            value={queryDraft}
+            value={queryParam}
             onChange={event => handleHeroSearchChange(event.target.value)}
             placeholder={editorial?.learn.heroSearchPlaceholder ?? "Search the archive by question, feeling, or theme…"}
             className="min-w-0 flex-1 bg-transparent font-sans text-sm text-ink outline-none placeholder:text-ink/40 dark:text-dark-text dark:placeholder:text-dark-text/40"
@@ -692,6 +706,36 @@ export default function LearnHub() {
             </div>
           </section>
 
+          {freshGuidanceItems.length ? (
+            <section className="section-shell mt-5 p-5">
+              <div
+                id="learn-today-fresh-guidance"
+                className={LEARN_ANCHOR_OFFSET_CLASS}
+                data-learn-anchor
+                data-learn-section-anchor="true"
+              >
+                <SectionHeader
+                  eyebrow="Fresh Guidance"
+                  title="New daily guidance now visible in the archive."
+                  body="Recently added reviewed guidance stays visible here so people can open what is new without waiting for the daily rotation to land on it."
+                />
+                <div className="grid gap-3 lg:grid-cols-2 xl:grid-cols-3" data-testid="learn-fresh-guidance-grid">
+                  {freshGuidanceItems.map(item => (
+                    <SpotlightButton
+                      key={item.id}
+                      eyebrow={`Fresh theme: ${formatGuidanceThemeLabel(item.rotation.theme)}`}
+                      title={item.title}
+                      body={item.summary}
+                      active={false}
+                      viewed={viewedIds.has(item.id)}
+                      to={buildLearnDetailPath("daily-guidance", item.id, "today")}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : null}
+
           <section className="section-shell mt-5 p-5">
             <div className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
               <div className={`min-w-0 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-today-doors" data-learn-anchor data-learn-section-anchor="true">
@@ -759,7 +803,7 @@ export default function LearnHub() {
                 spellCheck={false}
                 enterKeyHint="search"
                 inputMode="search"
-                value={queryDraft}
+                value={queryParam}
                 onChange={event => setParams({
                   tab: "topics",
                   query: event.target.value || null,

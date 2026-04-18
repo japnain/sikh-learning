@@ -77,6 +77,32 @@ test("learn today keeps inventory and reading depth compact before the archive d
   expect(screen.getByRole("button", { name: /Deep/i })).toBeInTheDocument()
 })
 
+test("today surface exposes fresh daily guidance entries from the published archive", async () => {
+  const catalog = await loadLearnCatalog()
+  const expectedFreshTitles = [...catalog.dailyGuidance]
+    .filter(item => item.rotation.freshnessTier === "fresh")
+    .sort((left, right) => {
+      if (right.rotation.priority !== left.rotation.priority) {
+        return right.rotation.priority - left.rotation.priority
+      }
+
+      return left.title.localeCompare(right.title)
+    })
+    .slice(0, 6)
+    .map(item => item.title)
+
+  renderLearnRoute()
+
+  expect(await screen.findByText(/Fresh guidance/i)).toBeInTheDocument()
+  const freshGrid = screen.getByTestId("learn-fresh-guidance-grid")
+  expect(screen.getByTestId("today-fresh-guidance")).toBeInTheDocument()
+  expect(within(freshGrid).getAllByRole("link")).toHaveLength(expectedFreshTitles.length)
+
+  for (const title of expectedFreshTitles) {
+    expect(within(freshGrid).getByText(title)).toBeInTheDocument()
+  }
+})
+
 test("uses stable search input attributes for the archive search", async () => {
   renderLearnRoute()
 
