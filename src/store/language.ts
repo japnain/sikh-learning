@@ -1,6 +1,15 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { EnglishSource, MeaningLanguage, ReaderAlignment, ReaderLineSpacing, ScriptMode } from '../types'
+import type {
+  EnglishSource,
+  HindiSource,
+  MeaningLanguage,
+  PunjabiSource,
+  ReaderAlignment,
+  ReaderLineSpacing,
+  ScriptMode,
+  VisraamSource,
+} from '../types'
 
 interface LanguageState {
   scriptMode: ScriptMode
@@ -23,6 +32,12 @@ interface LanguageState {
   setFontSize: (n: number) => void
   englishSource: EnglishSource
   setEnglishSource: (source: EnglishSource) => void
+  punjabiSource: PunjabiSource
+  setPunjabiSource: (source: PunjabiSource) => void
+  hindiSource: HindiSource
+  setHindiSource: (source: HindiSource) => void
+  visraamSource: VisraamSource
+  setVisraamSource: (source: VisraamSource) => void
 }
 
 export const useLanguageStore = create<LanguageState>()(
@@ -48,6 +63,12 @@ export const useLanguageStore = create<LanguageState>()(
       setFontSize: (n) => set({ fontSize: n }),
       englishSource: 'bdb',
       setEnglishSource: (englishSource) => set({ englishSource }),
+      punjabiSource: 'ss',
+      setPunjabiSource: (punjabiSource) => set({ punjabiSource }),
+      hindiSource: 'ss',
+      setHindiSource: (hindiSource) => set({ hindiSource }),
+      visraamSource: 'sttm',
+      setVisraamSource: (visraamSource) => set({ visraamSource }),
     }),
     { name: 'sikh-language' }
   )

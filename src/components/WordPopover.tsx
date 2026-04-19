@@ -4,6 +4,7 @@ import useMilestoneCheck from '../hooks/useMilestoneCheck'
 import { useLanguageStore } from '../store/language'
 import { useVocabStore } from '../store/vocab'
 import { renderScriptText } from '../utils/readerDisplay'
+import { useBanidbKosh } from '../hooks/useBanidbKosh'
 import { useMahanKosh } from '../hooks/useMahanKosh'
 import { buildMahanKoshUrl } from '../utils/wordLookup'
 import { IconArrowRight, IconCheck } from './icons'
@@ -36,7 +37,13 @@ export default function WordPopover({
   const isSaved = vocab.some(v => v.word === word.gurmukhi)
   const wordFamily = getWordFamilyForWord(word.gurmukhi)
   const { entries, loading, error, normalizedWord } = useMahanKosh(word.gurmukhi)
+  const {
+    entries: banidbKoshEntries,
+    loading: banidbKoshLoading,
+    error: banidbKoshError,
+  } = useBanidbKosh(word.gurmukhi)
   const visibleEntries = entries.slice(0, 3)
+  const visibleBanidbKoshEntries = banidbKoshEntries.slice(0, 3)
   const fullLookupUrl = visibleEntries[0]?.sourceUrl ?? buildMahanKoshUrl(normalizedWord || word.gurmukhi)
 
   const handleSave = () => {
@@ -65,8 +72,9 @@ export default function WordPopover({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center pb-20 bg-ink/20 dark:bg-black/40 popover-overlay"
+      className="fixed inset-0 z-[70] flex items-end justify-center bg-ink/20 dark:bg-black/40 popover-overlay"
       onClick={onClose}
+      style={{ paddingBottom: 'calc(var(--nav-stack-height, 0px) + 1rem + env(safe-area-inset-bottom))' }}
       data-ai-surface="word-popover"
       data-ai-state="ready"
     >
@@ -192,6 +200,64 @@ export default function WordPopover({
                     {entry.description_hi && (
                       <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed">
                         {entry.description_hi}
+                      </p>
+                    )}
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+
+          <section
+            className="mt-5 rounded-[24px] border border-sand/15 dark:border-gold/10 bg-parchment-low/80 dark:bg-dark-surface/70 px-4 py-4"
+            data-ai-surface="banidb-kosh-popover"
+            data-ai-state={banidbKoshLoading ? 'loading' : banidbKoshError ? 'degraded' : visibleBanidbKoshEntries.length === 0 ? 'empty' : 'ready'}
+            data-ai-error={banidbKoshError ?? undefined}
+          >
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <div>
+                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  BaniDB Kosh
+                </p>
+                <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55 mt-1">
+                  Secondary word reference layered into the same lookup flow
+                </p>
+              </div>
+            </div>
+
+            {banidbKoshLoading && (
+              <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">
+                Loading BaniDB Kosh...
+              </p>
+            )}
+
+            {!banidbKoshLoading && banidbKoshError && (
+              <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">
+                BaniDB Kosh is unavailable right now. Mahankosh stays available above.
+              </p>
+            )}
+
+            {!banidbKoshLoading && !banidbKoshError && visibleBanidbKoshEntries.length === 0 && (
+              <p className="font-sans text-sm text-ink/55 dark:text-dark-text/55">
+                No BaniDB Kosh entry found for this word yet.
+              </p>
+            )}
+
+            {!banidbKoshLoading && !banidbKoshError && visibleBanidbKoshEntries.length > 0 && (
+              <div className="space-y-3">
+                {visibleBanidbKoshEntries.map(entry => (
+                  <article key={entry.id} className="rounded-[20px] border border-sand/10 dark:border-gold/10 bg-white/55 dark:bg-dark-card/55 px-4 py-3">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-lg text-ink dark:text-dark-text`}>
+                        {renderScriptText(entry.wordUni || entry.word, scriptMode)}
+                      </p>
+                    </div>
+                    <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-sm text-ink dark:text-dark-text leading-relaxed`}>
+                      {renderScriptText(entry.definitionUni || entry.definition, scriptMode)}
+                    </p>
+                    {entry.definition && entry.definitionUni !== entry.definition && (
+                      <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed">
+                        {entry.definition}
                       </p>
                     )}
                   </article>

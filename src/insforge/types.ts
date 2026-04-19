@@ -1,14 +1,17 @@
 import type {
   EnglishSource,
+  HindiSource,
   LearningGoal,
   LearningLevel,
   MeaningLanguage,
   OnboardingAudience,
+  PunjabiSource,
   ReaderAlignment,
   ReaderLineSpacing,
   ScriptMode,
   SundarGutkaLength,
   UiLocale,
+  VisraamSource,
   VocabEntry,
 } from '../types'
 
@@ -33,6 +36,9 @@ export interface CloudProfileRecord extends CloudSyncMetadata {
     textAlign: ReaderAlignment
     fontSize: number
     englishSource: EnglishSource
+    punjabiSource: PunjabiSource
+    hindiSource: HindiSource
+    visraamSource: VisraamSource
     sundarGutkaLengths: Record<string, SundarGutkaLength>
   }
   onboarding: {

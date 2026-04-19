@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import More from './More'
 import { UI_DISCLOSURE_STORAGE_KEY } from '../hooks/usePersistentDisclosure'
@@ -19,6 +19,9 @@ beforeEach(() => {
     textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
+    punjabiSource: 'ss',
+    hindiSource: 'ss',
+    visraamSource: 'sttm',
   })
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
@@ -39,19 +42,30 @@ function openMoreSection(name: RegExp) {
   fireEvent.click(screen.getByRole('button', { name }))
 }
 
+function getTranslationSourceGroup(label: string) {
+  const translationSourceSection = screen.getByTestId('more-translation-source')
+  const heading = within(translationSourceSection).getByText(new RegExp(`^${label}$`, 'i'))
+  const group = heading.nextElementSibling
+  if (!(group instanceof HTMLElement)) {
+    throw new Error(`Missing translation source group for ${label}`)
+  }
+  return within(group)
+}
+
 test('renders English translation source controls', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Reader Defaults/i)
+  const englishSources = getTranslationSourceGroup('English translation')
   expect(screen.getByText(/^English translation$/i)).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Standard/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Manmohan Singh/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /Sant Singh Khalsa/i })).toBeInTheDocument()
+  expect(englishSources.getByRole('button', { name: /Standard/i })).toBeInTheDocument()
+  expect(englishSources.getByRole('button', { name: /Manmohan Singh/i })).toBeInTheDocument()
+  expect(englishSources.getByRole('button', { name: /Sant Singh Khalsa/i })).toBeInTheDocument()
 })
 
 test('persists selected English source', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Reader Defaults/i)
-  fireEvent.click(screen.getByRole('button', { name: /Manmohan Singh/i }))
+  fireEvent.click(getTranslationSourceGroup('English translation').getByRole('button', { name: /Manmohan Singh/i }))
   expect(useLanguageStore.getState().englishSource).toBe('ms')
 })
 

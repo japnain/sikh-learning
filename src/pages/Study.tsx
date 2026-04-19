@@ -16,7 +16,17 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { LEARN_MODULE_BY_ID, LEARN_PROGRAMS } from '../data/learningCurriculum'
 import type { ScriptureEntry, ScriptureLine, SundarGutkaLength, UiLocale } from '../types'
-import { getLineSpacingLabels, getMeaningLanguageLabels, getScriptModeLabels, getTextAlignmentLabels } from '../utils/translations'
+import {
+  getHindiSourceLabel,
+  getHindiSourceLabels,
+  getLineSpacingLabels,
+  getMeaningLanguageLabels,
+  getPunjabiSourceLabel,
+  getPunjabiSourceLabels,
+  getScriptModeLabels,
+  getTextAlignmentLabels,
+  getVisraamSourceLabels,
+} from '../utils/translations'
 import { useLanguageStore } from '../store/language'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
@@ -189,8 +199,11 @@ export default function Study() {
   const studyCopy = copy.study
   const lineSpacingLabels = getLineSpacingLabels(locale)
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
+  const punjabiSourceLabels = getPunjabiSourceLabels(locale)
+  const hindiSourceLabels = getHindiSourceLabels(locale)
   const scriptModeLabels = getScriptModeLabels(locale)
   const textAlignmentLabels = getTextAlignmentLabels(locale)
+  const visraamSourceLabels = getVisraamSourceLabels(locale)
 
   let source = searchParams.get('source') as BaniSource | null
   let angParam = Number(searchParams.get('ang')) || null
@@ -372,6 +385,10 @@ export default function Study() {
   const currentSource = (currentEntry?.source ?? source ?? 'G') as BaniSource
   const currentShabadId = currentEntry ? (parseShabadId(currentEntry) ?? undefined) : undefined
   const englishSource = useLanguageStore(s => s.englishSource)
+  const punjabiSource = useLanguageStore(s => s.punjabiSource)
+  const setPunjabiSource = useLanguageStore(s => s.setPunjabiSource)
+  const hindiSource = useLanguageStore(s => s.hindiSource)
+  const setHindiSource = useLanguageStore(s => s.setHindiSource)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const setScriptMode = useLanguageStore(s => s.setScriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
@@ -382,6 +399,8 @@ export default function Study() {
   const setLarivaar = useLanguageStore(s => s.setLarivaar)
   const showVishraam = useLanguageStore(s => s.showVishraam)
   const setShowVishraam = useLanguageStore(s => s.setShowVishraam)
+  const visraamSource = useLanguageStore(s => s.visraamSource)
+  const setVisraamSource = useLanguageStore(s => s.setVisraamSource)
   const lineSpacing = useLanguageStore(s => s.lineSpacing)
   const setLineSpacing = useLanguageStore(s => s.setLineSpacing)
   const textAlign = useLanguageStore(s => s.textAlign)
@@ -1187,7 +1206,12 @@ export default function Study() {
           <div className="text-left">
             <p className="eyebrow">{studyCopy.readerControls}</p>
             <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">
-              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ` : ''}{scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]} · {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
+              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ` : ''}{scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]}
+              {meaningLanguage === 'pa' ? ` · ${getPunjabiSourceLabel(locale, punjabiSource)}` : ''}
+              {meaningLanguage === 'hi' ? ` · ${getHindiSourceLabel(locale, hindiSource)}` : ''}
+              {showVishraam ? ` · ${visraamSourceLabels[visraamSource]}` : ''}
+              {' · '}
+              {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
             </p>
           </div>
           <span className="text-gold dark:text-gold-light">
@@ -1322,6 +1346,66 @@ export default function Study() {
             })}
             </div>
           </div>
+
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              {Object.entries(punjabiSourceLabels).map(([key, label]) => {
+                const selected = punjabiSource === key
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setPunjabiSource(key as typeof punjabiSource)}
+                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                      selected
+                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              {Object.entries(hindiSourceLabels).map(([key, label]) => {
+                const selected = hindiSource === key
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setHindiSource(key as typeof hindiSource)}
+                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                      selected
+                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              {Object.entries(visraamSourceLabels).map(([key, label]) => {
+                const selected = visraamSource === key
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setVisraamSource(key as typeof visraamSource)}
+                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
+                      selected
+                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
 
             <div className="grid grid-cols-2 gap-2">
           {(['left', 'center'] as const).map(option => {

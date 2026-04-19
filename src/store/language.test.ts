@@ -13,6 +13,9 @@ beforeEach(() => {
     textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
+    punjabiSource: 'ss',
+    hindiSource: 'ss',
+    visraamSource: 'sttm',
   })
 })
 
@@ -25,6 +28,9 @@ test('persists reader preference state updates', () => {
   useLanguageStore.getState().setShowVishraam(false)
   useLanguageStore.getState().setLineSpacing('compact')
   useLanguageStore.getState().setTextAlign('center')
+  useLanguageStore.getState().setPunjabiSource('ft')
+  useLanguageStore.getState().setHindiSource('sts')
+  useLanguageStore.getState().setVisraamSource('igurbani')
 
   const state = useLanguageStore.getState()
   expect(state.scriptMode).toBe('devanagari')
@@ -35,4 +41,7 @@ test('persists reader preference state updates', () => {
   expect(state.showVishraam).toBe(false)
   expect(state.lineSpacing).toBe('compact')
   expect(state.textAlign).toBe('center')
+  expect(state.punjabiSource).toBe('ft')
+  expect(state.hindiSource).toBe('sts')
+  expect(state.visraamSource).toBe('igurbani')
 })

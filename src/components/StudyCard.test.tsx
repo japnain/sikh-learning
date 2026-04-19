@@ -16,6 +16,7 @@ const entry: ScriptureEntry = {
       shabadId: 1,
       ang: 1,
       gurmukhi: 'ੴ ਸਤਿ',
+      larivaar: 'ੴ-ਸਤਿ',
       transliteration: 'Ik Oankaar Sat',
       translation_en: 'One Creator Truth',
       translations_en: {
@@ -24,7 +25,20 @@ const entry: ScriptureEntry = {
         ssk: 'One Creator Truth',
       },
       translation_hi: 'एक ओंकार सत्य',
+      translations_hi: {
+        ss: 'एक ओंकार सत्य',
+        sts: 'एकंकार सत',
+      },
       translation_pa: 'ਇੱਕ ਅਕਾਲ ਸੱਚ',
+      translations_pa: {
+        ss: 'ਇੱਕ ਅਕਾਲ ਸੱਚ',
+        ft: 'ਇਕ ਅਕਾਲ ਸਤਿ',
+      },
+      visraam: {
+        sttm: [{ p: 1, t: 'v' }],
+        igurbani: [{ p: 2, t: 'v' }],
+        sttm2: [{ p: 3, t: 'v' }],
+      },
     },
   ],
   words: [
@@ -70,6 +84,11 @@ beforeEach(() => {
     meaningLanguage: 'en',
     fontSize: 22,
     englishSource: 'bdb',
+    punjabiSource: 'ss',
+    hindiSource: 'ss',
+    visraamSource: 'sttm',
+    larivaar: false,
+    showVishraam: true,
   })
 })
 
@@ -98,10 +117,24 @@ test('shows transliteration when enabled', () => {
 })
 
 test('switches meaning language to Punjabi', () => {
-  useLanguageStore.setState({ meaningLanguage: 'pa' })
+  useLanguageStore.setState({ meaningLanguage: 'pa', punjabiSource: 'ft' })
   render(<StudyCard entry={entry} />)
-  expect(screen.getByText('ਇੱਕ ਅਕਾਲ ਸੱਚ')).toBeInTheDocument()
+  expect(screen.getByText('ਇਕ ਅਕਾਲ ਸਤਿ')).toBeInTheDocument()
   expect(screen.queryByText('One Creator Truth')).not.toBeInTheDocument()
+})
+
+test('switches meaning language to Hindi with the selected source', () => {
+  useLanguageStore.setState({ meaningLanguage: 'hi', hindiSource: 'sts' })
+  render(<StudyCard entry={entry} />)
+  expect(screen.getByText('एकंकार सत')).toBeInTheDocument()
+  expect(screen.queryByText('One Creator Truth')).not.toBeInTheDocument()
+})
+
+test('uses the provided larivaar text when larivaar is enabled', () => {
+  useLanguageStore.setState({ larivaar: true })
+  render(<StudyCard entry={entry} />)
+  expect(screen.getByText('ੴ-ਸਤਿ')).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: 'ੴ' })).not.toBeInTheDocument()
 })
 
 test('opens word popover on word tap and shows Mahankosh context', async () => {
@@ -110,6 +143,18 @@ test('opens word popover on word tap and shows Mahankosh context', async () => {
   expect(screen.getByText('One Creator')).toBeInTheDocument()
   expect(await screen.findByText('Mahankosh')).toBeInTheDocument()
   expect(await screen.findByText('ਇੱਕ ਅਕਾਲ ਪੁਰਖ.')).toBeInTheDocument()
+  expect(await screen.findByText('BaniDB Kosh')).toBeInTheDocument()
+  expect(await screen.findByText('ਇੱਕ ਕਰਤਾ ਪੁਰਖ')).toBeInTheDocument()
+})
+
+test('expands a line to show alternate translation and visraam sources', async () => {
+  render(<StudyCard entry={entry} />)
+  fireEvent.click(screen.getByRole('button', { name: /show source layers/i }))
+
+  expect(await screen.findByText('Faridkot')).toBeInTheDocument()
+  expect(screen.getByText('STS')).toBeInTheDocument()
+  expect(screen.getByText('iGurbani · 1')).toBeInTheDocument()
+  expect(screen.getAllByText('Selected').length).toBeGreaterThan(0)
 })
 
 test('can hide non-header lines for devotional readers like Ardaas', () => {

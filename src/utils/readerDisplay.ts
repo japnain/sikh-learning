@@ -1,3 +1,4 @@
+import { useLanguageStore } from '../store/language'
 import type { EnglishSource, MeaningLanguage, ScriptureEntry, ScriptureLine } from '../types'
 import { gurmukhiToHindi } from './gurmukhiToHindi'
 import { getEntryEnglishText, getLineEnglishText } from './translations'
@@ -12,16 +13,17 @@ export function formatGurbaniText(
     scriptMode: 'gurmukhi' | 'devanagari'
     larivaar?: boolean
     showVishraam?: boolean
+    larivaarText?: string
   }
 ): string {
-  const { scriptMode, larivaar = false, showVishraam = true } = options
+  const { scriptMode, larivaar = false, showVishraam = true, larivaarText } = options
 
   let next = text
   if (!showVishraam) {
     next = next.replace(/[।॥]/g, '').replace(/\s+/g, ' ').trim()
   }
   if (larivaar) {
-    next = next.replace(/\s+/g, '')
+    next = (larivaarText || next).replace(/\s+/g, '')
   }
 
   return renderScriptText(next, scriptMode)
@@ -51,6 +53,31 @@ export function isStructuralTitleLine(text: string): boolean {
   return /^(ਪਉੜੀ|ਸਲੋਕ|ਮਹਲਾ|ਮਃ|ਰਹਾਉ|ਚਉਪਈ|ਚੌਪਈ|ਦੋਹਰਾ|ਸਵਈਆ|ਸਵੈਯਾ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ)\b/.test(compact)
 }
 
+function getPreferredMappedText(
+  translations: Record<string, string> | undefined,
+  preferred: string,
+  fallback: string
+) {
+  if (translations?.[preferred]) return translations[preferred]
+
+  const next = Object.values(translations ?? {}).find(Boolean)
+  return next ?? fallback
+}
+
+export function getLinePunjabiText(
+  line: ScriptureLine,
+  preferred = useLanguageStore.getState().punjabiSource
+): string {
+  return getPreferredMappedText(line.translations_pa, preferred, line.translation_pa)
+}
+
+export function getLineHindiText(
+  line: ScriptureLine,
+  preferred = useLanguageStore.getState().hindiSource
+): string {
+  return getPreferredMappedText(line.translations_hi, preferred, line.translation_hi)
+}
+
 export function getEntryMeaningText(
   entry: ScriptureEntry,
   meaningLanguage: MeaningLanguage,
@@ -58,8 +85,17 @@ export function getEntryMeaningText(
 ): string {
   if (meaningLanguage === 'none') return ''
   if (meaningLanguage === 'en') return getEntryEnglishText(entry, englishSource)
-  if (meaningLanguage === 'hi') return entry.translation_hi
-  return entry.translation_pa
+  if (meaningLanguage === 'hi') {
+    const lines = entry.lines ?? []
+    return lines.length > 0
+      ? lines.map(line => getLineHindiText(line)).filter(Boolean).join(' ')
+      : entry.translation_hi
+  }
+
+  const lines = entry.lines ?? []
+  return lines.length > 0
+    ? lines.map(line => getLinePunjabiText(line)).filter(Boolean).join(' ')
+    : entry.translation_pa
 }
 
 export function getLineMeaningText(
@@ -69,8 +105,8 @@ export function getLineMeaningText(
 ): string {
   if (meaningLanguage === 'none') return ''
   if (meaningLanguage === 'en') return getLineEnglishText(line, englishSource)
-  if (meaningLanguage === 'hi') return line.translation_hi
-  return line.translation_pa
+  if (meaningLanguage === 'hi') return getLineHindiText(line)
+  return getLinePunjabiText(line)
 }
 
 export function isScriptureMeaningLanguage(value: MeaningLanguage): value is 'pa' | 'hi' {

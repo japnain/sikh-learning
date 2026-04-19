@@ -134,6 +134,9 @@ function extractProfileRecord(metadata: SnapshotMetadataMap): CloudProfileRecord
     textAlign: language.textAlign,
     fontSize: language.fontSize,
     englishSource: language.englishSource,
+    punjabiSource: language.punjabiSource,
+    hindiSource: language.hindiSource,
+    visraamSource: language.visraamSource,
     sundarGutkaLengths,
   }
   const onboardingState = {
@@ -377,6 +380,9 @@ function applyProfileRecord(profile: CloudProfileRecord | null | undefined) {
     textAlign: profile.reader.textAlign,
     fontSize: profile.reader.fontSize,
     englishSource: profile.reader.englishSource,
+    punjabiSource: profile.reader.punjabiSource ?? 'ss',
+    hindiSource: profile.reader.hindiSource ?? 'ss',
+    visraamSource: profile.reader.visraamSource ?? 'sttm',
   })
   useSundarGutkaLengthStore.setState({
     lengths: {

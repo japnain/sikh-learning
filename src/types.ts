@@ -33,6 +33,9 @@ export interface MahanKoshEnglishGloss {
 }
 
 export type EnglishSource = 'bdb' | 'ms' | 'ssk'
+export type PunjabiSource = 'ss' | 'ft' | 'bdb' | 'ms' | 'pss' | (string & {})
+export type HindiSource = 'ss' | 'sts' | (string & {})
+export type VisraamSource = 'sttm' | 'igurbani' | 'sttm2'
 export type ScriptMode = 'gurmukhi' | 'devanagari'
 export type MeaningLanguage = 'none' | 'en' | 'pa' | 'hi'
 export type ReaderLineSpacing = 'compact' | 'relaxed'
@@ -71,6 +74,39 @@ export interface EnglishTranslations {
   ssk?: string
 }
 
+export type PunjabiTranslations = Record<string, string>
+export type HindiTranslations = Record<string, string>
+
+export interface ScriptureVisraamMarker {
+  p: number
+  t: string
+}
+
+export type ScriptureVisraamSets = Partial<Record<VisraamSource, ScriptureVisraamMarker[]>>
+
+export interface ScriptureSourceMeta {
+  sourceId?: string | null
+  gurmukhi?: string
+  unicode?: string
+  english?: string
+  pageNo?: number | null
+}
+
+export interface ScriptureRaagMeta {
+  raagId?: number | null
+  gurmukhi?: string
+  unicode?: string
+  english?: string
+  raagWithPage?: string
+}
+
+export interface ScriptureWriterMeta {
+  writerId?: number | null
+  gurmukhi?: string
+  unicode?: string
+  english?: string
+}
+
 export interface ScriptureLine {
   verseId: number
   shabadId: number
@@ -78,11 +114,15 @@ export interface ScriptureLine {
   originalAng?: number | null
   isHeader?: boolean
   gurmukhi: string
+  larivaar?: string
   transliteration: string
   translation_en: string
   translations_en: EnglishTranslations
   translation_hi: string
+  translations_hi?: HindiTranslations
   translation_pa: string
+  translations_pa?: PunjabiTranslations
+  visraam?: ScriptureVisraamSets
 }
 
 export interface ScriptureEntry {
@@ -93,8 +133,11 @@ export interface ScriptureEntry {
   shabadId?: number
   verseIds?: number[]
   sourceName?: string
+  sourceMeta?: ScriptureSourceMeta | null
   raag?: string
+  raagMeta?: ScriptureRaagMeta | null
   writer?: string
+  writerMeta?: ScriptureWriterMeta | null
   hukamnamaDate?: string
   lines?: ScriptureLine[]
   gurmukhi: string
@@ -129,6 +172,37 @@ export interface Scripture {
   name: string
   shortName: string
   sourceId: 'G' | 'D' | 'B' | 'A'
+}
+
+export interface BanidbKoshWord {
+  id: number
+  word: string
+  wordUni: string
+}
+
+export interface BanidbKoshDefinition extends BanidbKoshWord {
+  definition: string
+  definitionUni: string
+}
+
+export interface RehatSummary {
+  rehatId: number
+  rehatName: string
+  alphabet: string
+}
+
+export interface RehatChapterSummary {
+  chapterId: number
+  chapterName: string
+  alphabet: string
+}
+
+export interface RehatChapterContent {
+  rehatId: number
+  chapterId: number
+  chapterName: string
+  chapterContent: string
+  alphabet: string
 }
 
 export interface VocabContext {
