@@ -24,7 +24,7 @@ const VocabPage = lazy(() => import('./pages/Vocab'))
 function SkeletonBlock({ className }: { className: string }) {
   return (
     <div
-      className={`rounded-full bg-white/60 dark:bg-dark-text/10 ${className}`}
+      className={`rounded-full bg-parchment-card/72 dark:bg-dark-text/10 ${className}`}
       aria-hidden="true"
     />
   )
@@ -45,7 +45,7 @@ function RouteFallback() {
         <div className="flex items-center justify-between px-1">
           <SkeletonBlock className="h-3 w-20 bg-gold/15 dark:bg-gold/10" />
           <div
-            className="h-10 w-10 rounded-full border border-sand/15 bg-white/55 dark:border-dark-text/10 dark:bg-dark-surface/75"
+            className="h-10 w-10 rounded-full border border-sand/15 bg-parchment-card/80 dark:border-dark-text/10 dark:bg-dark-surface/75"
             aria-hidden="true"
           />
         </div>
@@ -54,15 +54,15 @@ function RouteFallback() {
           <div className="space-y-3">
             <SkeletonBlock className="h-3 w-14 bg-gold/15 dark:bg-gold/10" />
             <SkeletonBlock className="h-10 w-[76%] rounded-[24px]" />
-            <SkeletonBlock className="h-4 w-[48%] bg-white/45 dark:bg-dark-text/8" />
+            <SkeletonBlock className="h-4 w-[48%] bg-parchment-card/60 dark:bg-dark-text/8" />
           </div>
         </section>
 
         <section className="section-shell-quiet p-4">
           <div className="space-y-3">
             <SkeletonBlock className="h-3 w-24 bg-gold/12 dark:bg-gold/8" />
-            <SkeletonBlock className="h-4 w-[88%] bg-white/48 dark:bg-dark-text/8" />
-            <SkeletonBlock className="h-4 w-[68%] bg-white/42 dark:bg-dark-text/7" />
+            <SkeletonBlock className="h-4 w-[88%] bg-parchment-card/62 dark:bg-dark-text/8" />
+            <SkeletonBlock className="h-4 w-[68%] bg-parchment-card/58 dark:bg-dark-text/7" />
           </div>
         </section>
 
@@ -71,7 +71,7 @@ function RouteFallback() {
             <div className="space-y-3">
               <SkeletonBlock className="h-3 w-16 bg-gold/12 dark:bg-gold/8" />
               <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
-              <SkeletonBlock className="h-3 w-20 bg-white/42 dark:bg-dark-text/7" />
+              <SkeletonBlock className="h-3 w-20 bg-parchment-card/58 dark:bg-dark-text/7" />
             </div>
           </section>
 
@@ -79,7 +79,7 @@ function RouteFallback() {
             <div className="space-y-3">
               <SkeletonBlock className="h-3 w-20 bg-gold/12 dark:bg-gold/8" />
               <SkeletonBlock className="h-9 w-12 rounded-[20px]" />
-              <SkeletonBlock className="h-3 w-16 bg-white/42 dark:bg-dark-text/7" />
+              <SkeletonBlock className="h-3 w-16 bg-parchment-card/58 dark:bg-dark-text/7" />
             </div>
           </section>
         </div>
@@ -136,7 +136,7 @@ function AppShell() {
     document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
 
     const themeColorMeta = document.querySelector('meta[name="theme-color"]')
-    themeColorMeta?.setAttribute('content', dark ? '#0f0a1e' : '#fbf3e4')
+    themeColorMeta?.setAttribute('content', dark ? '#0f0a1e' : '#f7ecd8')
   }, [dark, displayMode])
 
   async function handleOnboardingComplete() {
@@ -182,7 +182,7 @@ function AppShell() {
         key={skipToContentHref}
         href={skipToContentHref}
         onClick={handleSkipToContent}
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-medium focus:text-ink dark:focus:bg-dark-card dark:focus:text-dark-text"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:rounded-full focus:bg-parchment-card focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-medium focus:text-ink dark:focus:bg-dark-card dark:focus:text-dark-text"
         data-testid="skip-to-content"
       >
         Skip to main content
