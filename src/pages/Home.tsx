@@ -80,19 +80,19 @@ const HOME_SAVED_PREVIEW_APPEARANCE: Record<
   learn: {
     icon: IconLibrary,
     badgeClassName: 'bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light',
-    surfaceClassName: 'border-gold/16 bg-[linear-gradient(180deg,rgba(255,248,237,0.88),rgba(249,239,221,0.76))] dark:border-gold/16 dark:bg-[linear-gradient(180deg,rgba(42,31,57,0.96),rgba(28,21,40,0.92))]',
+    surfaceClassName: 'border-gold/16 bg-[linear-gradient(180deg,rgba(255,250,241,0.94),rgba(244,230,205,0.84))] dark:border-gold/16 dark:bg-[linear-gradient(180deg,rgba(42,31,57,0.96),rgba(28,21,40,0.92))]',
     detailClassName: 'text-ink/66 dark:text-dark-text/70',
   },
   passage: {
     icon: IconBookmarkFilled,
     badgeClassName: 'bg-saffron/12 text-saffron dark:bg-saffron/12 dark:text-saffron-light',
-    surfaceClassName: 'border-saffron/14 bg-[linear-gradient(180deg,rgba(255,250,242,0.92),rgba(250,240,227,0.8))] dark:border-saffron/18 dark:bg-[linear-gradient(180deg,rgba(40,29,55,0.96),rgba(24,19,36,0.92))]',
+    surfaceClassName: 'border-saffron/14 bg-[linear-gradient(180deg,rgba(255,249,238,0.96),rgba(246,232,208,0.84))] dark:border-saffron/18 dark:bg-[linear-gradient(180deg,rgba(40,29,55,0.96),rgba(24,19,36,0.92))]',
     detailClassName: 'text-saffron dark:text-saffron-light',
   },
   vocab: {
     icon: IconCheck,
     badgeClassName: 'bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/14 dark:text-emerald-300',
-    surfaceClassName: 'border-emerald-500/14 bg-[linear-gradient(180deg,rgba(248,252,246,0.94),rgba(239,247,237,0.82))] dark:border-emerald-500/20 dark:bg-[linear-gradient(180deg,rgba(31,39,42,0.96),rgba(20,28,30,0.92))]',
+    surfaceClassName: 'border-emerald-500/14 bg-[linear-gradient(180deg,rgba(249,252,246,0.96),rgba(238,245,236,0.86))] dark:border-emerald-500/20 dark:bg-[linear-gradient(180deg,rgba(31,39,42,0.96),rgba(20,28,30,0.92))]',
     detailClassName: 'text-ink/70 dark:text-dark-text/72',
   },
 }
@@ -736,7 +736,7 @@ export default function Home() {
               </p>
               <Link
                 to="/banis"
-                className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-full border border-sand/15 bg-white/70 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
+                className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-full border border-sand/15 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text"
                 data-ai-action="browse-read"
               >
                 Browse Read
@@ -795,7 +795,7 @@ export default function Home() {
       </section>
 
       <section
-        className="mb-5 rounded-[30px] border border-sand/15 bg-[linear-gradient(180deg,rgba(255,252,247,0.97),rgba(248,240,228,0.9))] px-5 py-6 shadow-[0_14px_40px_rgba(64,42,16,0.06)] animate-slide-up stagger-3 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(29,23,37,0.96),rgba(20,16,29,0.92))] dark:shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
+        className="surface-spotlight mb-5 px-5 py-6 animate-slide-up stagger-3 dark:border-dark-text/10"
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
@@ -806,7 +806,7 @@ export default function Home() {
           >
             {homeMessages.dailyNitnem}
           </p>
-          <span className="shrink-0 rounded-full border border-sand/16 bg-white/58 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
+          <span className="shrink-0 rounded-full border border-sand/16 bg-parchment-card/78 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
             {selectedNitnemOptions.length > 0
               ? nitnemRemainingCount > 0
                 ? homeMessages.nitnemRemaining(nitnemRemainingCount)
@@ -873,7 +873,7 @@ export default function Home() {
                     className={`relative min-w-full snap-center overflow-hidden rounded-[30px] border px-5 py-5 transition-all duration-300 ${
                       isActive
                         ? 'border-gold/22 bg-[linear-gradient(180deg,rgba(255,254,250,0.97),rgba(248,241,230,0.9))] shadow-[0_18px_34px_rgba(77,53,19,0.08)] dark:border-gold/20 dark:bg-[linear-gradient(180deg,rgba(35,28,46,0.98),rgba(24,19,34,0.94))]'
-                        : 'border-sand/12 bg-[rgba(255,250,242,0.78)] opacity-92 dark:border-dark-text/8 dark:bg-[rgba(28,22,37,0.8)]'
+                        : 'border-sand/12 bg-[rgba(255,249,238,0.86)] opacity-92 dark:border-dark-text/8 dark:bg-[rgba(28,22,37,0.8)]'
                     }`}
                     aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                     data-testid={isActive ? 'home-nitnem-active-card' : undefined}
@@ -906,7 +906,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <div className="rounded-[20px] border border-sand/14 bg-white/46 px-4 py-4 dark:border-dark-text/10 dark:bg-white/5">
+                        <div className="rounded-[20px] border border-sand/14 bg-parchment-card/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/5">
                           <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
                             Ritual Note
                           </p>
@@ -937,7 +937,7 @@ export default function Home() {
                           className={`min-h-[50px] rounded-full border px-5 font-sans text-sm font-medium transition-colors duration-300 ${
                             done
                               ? 'border-gold/18 bg-gold/10 text-gold dark:border-gold/24 dark:bg-gold/12 dark:text-gold-light'
-                              : 'border-sand/16 bg-white/55 text-ink/82 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/78'
+                              : 'border-sand/16 bg-parchment-card/72 text-ink/82 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/78'
                           }`}
                         >
                           <span className="inline-flex items-center gap-2">
@@ -990,7 +990,7 @@ export default function Home() {
             <button
               type="button"
               onClick={handleNitnemCustomizeToggle}
-              className="flex shrink-0 items-center gap-2 rounded-full border border-sand/16 bg-white/50 px-3 py-2 text-ink/72 transition-colors duration-300 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/74"
+              className="flex shrink-0 items-center gap-2 rounded-full border border-sand/16 bg-parchment-card/70 px-3 py-2 text-ink/72 transition-colors duration-300 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/74"
               aria-expanded={nitnemOpen}
               aria-controls="home-nitnem-panel"
             >
@@ -1006,7 +1006,7 @@ export default function Home() {
           {nitnemOpen ? (
             <div
               id="home-nitnem-panel"
-              className="mt-4 space-y-4 rounded-[24px] border border-sand/12 bg-white/36 px-4 py-4 dark:border-dark-text/10 dark:bg-white/4"
+              className="mt-4 space-y-4 rounded-[24px] border border-sand/12 bg-parchment-card/56 px-4 py-4 dark:border-dark-text/10 dark:bg-white/4"
             >
               <div className="flex items-center justify-between gap-3">
                 <p className="font-sans text-xs text-ink/55 dark:text-dark-text/58">
@@ -1041,7 +1041,7 @@ export default function Home() {
                             className={`w-full rounded-[22px] border px-3 py-3 text-left transition-colors duration-300 ${
                               selected
                                 ? 'border-gold/24 bg-[linear-gradient(180deg,rgba(250,241,222,0.9),rgba(246,235,214,0.82))] text-ink dark:border-gold/26 dark:bg-[linear-gradient(180deg,rgba(54,41,63,0.96),rgba(38,29,47,0.92))] dark:text-dark-text'
-                                : 'border-sand/15 bg-white/58 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text'
+                                : 'border-sand/15 bg-parchment-card/72 text-ink dark:border-dark-text/10 dark:bg-dark-card/72 dark:text-dark-text'
                             }`}
                           >
                             <div className="flex items-start justify-between gap-3">

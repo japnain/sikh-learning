@@ -179,7 +179,7 @@ export default function Library() {
               </Link>
               <Link
                 to="/banis"
-                className="interactive-focus interactive-pill-link rounded-full border border-sand/18 bg-white/76 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+                className="interactive-focus interactive-pill-link rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               >
                 Browse Read
               </Link>
@@ -190,7 +190,7 @@ export default function Library() {
 
       {favorites.length > 0 && (
         <section
-          className="section-shell p-4 mb-5 border border-saffron/15 bg-gradient-to-br from-saffron/6 via-white/70 to-white/95 dark:border-saffron/20 dark:from-saffron/10 dark:via-dark-card dark:to-dark-surface"
+          className="surface-spotlight p-4 mb-5 border border-saffron/18 dark:border-saffron/20"
           aria-labelledby="library-favorites-title"
           data-testid="library-favorites"
         >
