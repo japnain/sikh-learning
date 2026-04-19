@@ -1,5 +1,20 @@
 import { describe, it, expect, vi } from 'vitest'
-import { fetchAng, fetchBani, fetchShabadWords, fetchShabad, fetchShabadVerses, fetchBanisIndex, fetchAmritKeertanIndex, fetchAmritKeertanShabads, fetchHukamnama, fetchSearch } from './banidb'
+import {
+  fetchAng,
+  fetchBani,
+  fetchShabadWords,
+  fetchShabad,
+  fetchShabadVerses,
+  fetchBanisIndex,
+  fetchAmritKeertanIndex,
+  fetchAmritKeertanShabads,
+  fetchHukamnama,
+  fetchKoshEntries,
+  fetchRehats,
+  fetchRehatChapters,
+  fetchRehatChapter,
+  fetchSearch,
+} from './banidb'
 import type { ScriptureEntry } from '../types'
 
 function firstVisibleLine(entries: ScriptureEntry[]) {
@@ -44,6 +59,13 @@ describe('fetchAng', () => {
     expect(entries[0].words).toEqual([])
     expect(entries[0].lines).toHaveLength(2)
     expect(entries[0].lines?.[0].translations_en.ms).toContain('There is but One God')
+    expect(entries[0].lines?.[0].translations_hi?.sts).toContain('सत्य नाम')
+    expect(entries[0].lines?.[0].translations_pa?.ft).toContain('ਇਕ ਅਕਾਲ ਪੁਰਖ')
+    expect(entries[0].lines?.[0].larivaar).toBe('ੴਸਤਿਨਾਮੁਕਰਤਾਪੁਰਖੁ')
+    expect(entries[0].lines?.[0].visraam?.sttm).toHaveLength(1)
+    expect(entries[0].sourceMeta?.english).toBe('Sri Guru Granth Sahib Ji')
+    expect(entries[0].raagMeta?.english).toBe('Jap')
+    expect(entries[0].writerMeta?.english).toBe('Guru Nanak Dev Ji')
   })
 
   it('concatenates multiple verses in same shabadId', async () => {
@@ -98,6 +120,8 @@ describe('fetchShabad', () => {
     expect(entry?.gurmukhi).toContain('ੴ')
     expect(entry?.lines).toHaveLength(2)
     expect(entry?.writer).toBe('Guru Nanak Dev Ji')
+    expect(entry?.lines?.[0].visraam?.igurbani).toHaveLength(1)
+    expect(entry?.lines?.[0].translations_pa?.ft).toContain('ਇਕ ਅਕਾਲ ਪੁਰਖ')
   })
 })
 
@@ -114,8 +138,12 @@ describe('fetchShabadVerses', () => {
 describe('fetchSearch', () => {
   it('returns richer result metadata for Banis search', async () => {
     const results = await fetchSearch('waheguru', 3, 'all')
-    expect(results[0].sourceName).toBe('SGGS')
+    expect(results[0].sourceName).toBe('Sri Guru Granth Sahib Ji')
     expect(results[0].translation_en).toContain('Waaheguru')
+    expect(results[0].sourceMeta?.english).toBe('Sri Guru Granth Sahib Ji')
+    expect(results[0].raagMeta?.english).toBe('Raag Asa')
+    expect(results[0].writerMeta?.english).toBe('Guru Arjan Dev Ji')
+    expect(results[0].larivaar).toBe('ਵਾਹਿਗੁਰੂਵਾਹਿਗੁਰੂ')
   })
 })
 
@@ -142,6 +170,56 @@ describe('index fetchers', () => {
     const shabads = await fetchAmritKeertanShabads(1)
     expect(shabads[0].shabadId).toBe(816)
     expect(shabads[0].gurmukhi).toContain('ਡੰਡਉਤਿ')
+    expect(shabads[0].sourceMeta?.sourceId).toBe('G')
+    expect(shabads[0].sourceMeta?.english).toBe('Sri Guru Granth Sahib Ji')
+    expect(shabads[0].raagMeta?.english).toBe('Raag Gauree')
+  })
+})
+
+describe('reference fetchers', () => {
+  it('loads BaniDB kosh definitions', async () => {
+    const entries = await fetchKoshEntries('ੴ')
+    expect(entries).toEqual([
+      {
+        id: 1,
+        word: 'ik oankar',
+        wordUni: 'ੴ',
+        definition: 'One Creator',
+        definitionUni: 'ਇੱਕ ਕਰਤਾ ਪੁਰਖ',
+      },
+    ])
+  })
+
+  it('loads rehats, chapters, and chapter content', async () => {
+    const rehats = await fetchRehats()
+    expect(rehats[0]).toEqual({
+      rehatId: 1,
+      rehatName: 'Sikh Rehat Maryada',
+      alphabet: 'S',
+    })
+
+    const chapters = await fetchRehatChapters(1)
+    expect(chapters).toEqual([
+      {
+        chapterId: 11,
+        chapterName: 'Daily Discipline',
+        alphabet: 'D',
+      },
+      {
+        chapterId: 12,
+        chapterName: 'Shared Conduct',
+        alphabet: 'S',
+      },
+    ])
+
+    const chapter = await fetchRehatChapter(1, 11)
+    expect(chapter).toEqual({
+      rehatId: 1,
+      chapterId: 11,
+      chapterName: 'Daily Discipline',
+      chapterContent: '<p>Amritvela, nitnem, seva, and simran remain central.</p>',
+      alphabet: 'D',
+    })
   })
 })
 

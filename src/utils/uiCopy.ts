@@ -126,6 +126,9 @@ type LocaleCopy = {
     translationSourceTitle: string
     translationSourceDescription: string
     englishTranslation: string
+    punjabiTranslation: string
+    hindiTranslation: string
+    visraamSource: string
     profileLanguage: string
     appLanguageTitle: string
     appLanguageDescription: string
@@ -301,8 +304,11 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       vishraam: 'Vishraam',
       meaningLanguage: 'Meaning language',
       translationSourceTitle: 'Translation Source',
-      translationSourceDescription: 'Keep one English source selected so the reader stays consistent.',
+      translationSourceDescription: 'Choose one default source for each layer so the reader stays consistent while alternate sources remain available when you expand a line.',
       englishTranslation: 'English translation',
+      punjabiTranslation: 'Punjabi translation',
+      hindiTranslation: 'Hindi translation',
+      visraamSource: 'Visraam source',
       profileLanguage: 'Profile & App Language',
       appLanguageTitle: 'App Language',
       appLanguageDescription: 'This changes the app chrome and guidance copy, not the scripture text itself.',
@@ -476,8 +482,11 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       vishraam: 'ਵਿਸ਼ਰਾਮ',
       meaningLanguage: 'ਅਰਥ ਦੀ ਭਾਸ਼ਾ',
       translationSourceTitle: 'ਅਨੁਵਾਦ ਸਰੋਤ',
-      translationSourceDescription: 'ਇੱਕ ਅੰਗਰੇਜ਼ੀ ਸਰੋਤ ਚੁਣ ਕੇ ਰੱਖੋ ਤਾਂ ਜੋ ਪਾਠਕ ਇਕਸਾਰ ਰਹੇ।',
+      translationSourceDescription: 'ਹਰ ਪਰਤ ਲਈ ਇੱਕ ਮੂਲ ਸਰੋਤ ਚੁਣੋ ਤਾਂ ਜੋ ਪਾਠਕ ਇਕਸਾਰ ਰਹੇ ਅਤੇ ਪੰਕਤੀ ਖੋਲ੍ਹਣ ਤੇ ਹੋਰ ਸਰੋਤ ਵੀ ਉਪਲਬਧ ਰਹਿਣ।',
       englishTranslation: 'ਅੰਗਰੇਜ਼ੀ ਅਨੁਵਾਦ',
+      punjabiTranslation: 'ਪੰਜਾਬੀ ਅਨੁਵਾਦ',
+      hindiTranslation: 'ਹਿੰਦੀ ਅਨੁਵਾਦ',
+      visraamSource: 'ਵਿਸ਼ਰਾਮ ਸਰੋਤ',
       profileLanguage: 'ਪ੍ਰੋਫ਼ਾਈਲ ਅਤੇ ਐਪ ਭਾਸ਼ਾ',
       appLanguageTitle: 'ਐਪ ਭਾਸ਼ਾ',
       appLanguageDescription: 'ਇਹ ਐਪ ਦੇ ਬਾਹਰੀ ਲੇਬਲ ਅਤੇ ਮਾਰਗਦਰਸ਼ਕ ਲਿਖਤ ਨੂੰ ਬਦਲਦਾ ਹੈ, ਗੁਰਬਾਣੀ ਦੇ ਮੂਲ ਪਾਠ ਨੂੰ ਨਹੀਂ।',
@@ -651,8 +660,11 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       vishraam: 'विश्राम',
       meaningLanguage: 'अर्थ की भाषा',
       translationSourceTitle: 'अनुवाद स्रोत',
-      translationSourceDescription: 'एक अंग्रेज़ी स्रोत चुना रखें ताकि रीडर एकसार रहे।',
+      translationSourceDescription: 'हर परत के लिए एक डिफॉल्ट स्रोत चुनिए ताकि रीडर एकसार रहे और पंक्ति खोलने पर बाकी स्रोत भी उपलब्ध रहें।',
       englishTranslation: 'अंग्रेज़ी अनुवाद',
+      punjabiTranslation: 'पंजाबी अनुवाद',
+      hindiTranslation: 'हिंदी अनुवाद',
+      visraamSource: 'विश्राम स्रोत',
       profileLanguage: 'प्रोफ़ाइल और ऐप भाषा',
       appLanguageTitle: 'ऐप भाषा',
       appLanguageDescription: 'यह ऐप के बाहरी लेबल और मार्गदर्शक कॉपी को बदलता है, मूल गुरबाणी पाठ को नहीं।',

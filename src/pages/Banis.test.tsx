@@ -64,11 +64,12 @@ test('hydrates the read search from the url so home can hand off the same query'
   expect(searchInput?.value).toBe('Japji Sahib')
 })
 
-test('renders the four main content sections', () => {
+test('renders the main content sections including Rehat', () => {
   renderBanis()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).length).toBeGreaterThan(0)
   expect(screen.getByText(/Dasam Granth/i)).toBeInTheDocument()
+  expect(screen.getByText('Rehat')).toBeInTheDocument()
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
@@ -264,6 +265,35 @@ test('loads Amrit Keertan into a focused chapter view', async () => {
   expect(screen.getAllByText('Sri Guru Granth Sahib Ji').length).toBeGreaterThan(0)
   expect(screen.getByText('Raag Gauree')).toBeInTheDocument()
   expect(screen.getByText('Ang 65')).toBeInTheDocument()
+})
+
+test('loads Rehat lists, chapters, and chapter content inside Read', async () => {
+  renderBanis()
+  fireEvent.click(screen.getByText('Rehat'))
+
+  await waitFor(() => expect(screen.getByText('Sikh Rehat Maryada')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Sikh Rehat Maryada'))
+
+  await waitFor(() => expect(screen.getByText('Daily Discipline')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Daily Discipline'))
+
+  await waitFor(() => {
+    expect(screen.getByText('Amritvela, nitnem, seva, and simran remain central.')).toBeInTheDocument()
+  })
+})
+
+test('filters Rehat chapter names before opening a chapter', async () => {
+  renderBanis()
+  fireEvent.click(screen.getByText('Rehat'))
+
+  await waitFor(() => expect(screen.getByText('Sikh Rehat Maryada')).toBeInTheDocument())
+  fireEvent.click(screen.getByText('Sikh Rehat Maryada'))
+
+  await waitFor(() => expect(screen.getByPlaceholderText(/search chapters/i)).toBeInTheDocument())
+  fireEvent.change(screen.getByPlaceholderText(/search chapters/i), { target: { value: 'Shared' } })
+
+  expect(screen.getByText('Shared Conduct')).toBeInTheDocument()
+  expect(screen.queryByText('Daily Discipline')).not.toBeInTheDocument()
 })
 
 test('supports searching within an Amrit Keertan chapter', async () => {

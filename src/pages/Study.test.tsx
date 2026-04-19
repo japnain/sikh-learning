@@ -53,6 +53,9 @@ beforeEach(() => {
     textAlign: 'left',
     fontSize: 22,
     englishSource: 'bdb',
+    punjabiSource: 'ss',
+    hindiSource: 'ss',
+    visraamSource: 'sttm',
   })
   useSundarGutkaLengthStore.setState({
     lengths: {
@@ -100,7 +103,7 @@ describe('Study bookmark button', () => {
     const bookmarkInput = within(bookmarkForm).getByLabelText('Bookmark note')
 
     expect(bookmarkForm).toBeVisible()
-    expect(within(bookmarkForm).getByText('Save Bookmark')).toBeInTheDocument()
+    expect(within(bookmarkForm).getByRole('button', { name: 'Save Bookmark' })).toBeInTheDocument()
     await waitFor(() => {
       expect(bookmarkInput).toHaveFocus()
       expect(scrollSpy).toHaveBeenCalled()

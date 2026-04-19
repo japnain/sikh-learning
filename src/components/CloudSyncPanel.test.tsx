@@ -79,20 +79,20 @@ beforeEach(() => {
 })
 
 describe('CloudSyncPanel truth model', () => {
-  test('shows supported providers with a degraded runtime badge after bootstrap failure', () => {
+  test('keeps guest bootstrap failures in the backup-optional state while preserving the notice text', () => {
     renderPanel({
       status: 'error',
       currentUser: null,
       lastError: 'Bootstrap failed',
     }, 2)
 
-    expect(getTopStatus()).toHaveTextContent('Needs attention')
+    expect(getTopStatus()).toHaveTextContent('Backup optional')
     expect(screen.getByText('Bootstrap failed')).toBeInTheDocument()
     expect(screen.getByText('2')).toBeInTheDocument()
 
     const googleCard = getProviderCard('google')
     expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Needs attention')).toBeInTheDocument()
+    expect(within(googleCard).getByText('Backup optional')).toBeInTheDocument()
   })
 
   test('keeps configured signed-out providers aligned with the backup-optional badge', () => {

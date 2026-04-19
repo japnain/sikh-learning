@@ -183,7 +183,7 @@ function getStatusView({
     }
   }
 
-  if (lastError || status === 'error') {
+  if (currentUser && (lastError || status === 'error')) {
     return {
       label: copy.errorStatus,
       className: 'bg-[#b4553d]/12 text-[#b4553d] dark:bg-[#ffb29d]/12 dark:text-[#ffb29d]',
@@ -241,7 +241,7 @@ function getCloudSyncSurfaceState({
     return 'loading'
   }
 
-  if (offline || lastError || status === 'error') {
+  if (currentUser && (offline || lastError || status === 'error')) {
     return 'degraded'
   }
 
@@ -263,8 +263,8 @@ function getCloudSyncErrorCode({
   lastError: string | null
   offline: boolean
 }) {
-  if (!(offline || lastError || status === 'error')) return null
-  return currentUser ? 'cloud-sync' : 'insforge-bootstrap'
+  if (!currentUser || !(offline || lastError || status === 'error')) return null
+  return 'cloud-sync'
 }
 
 function getProviderAvailabilityView({

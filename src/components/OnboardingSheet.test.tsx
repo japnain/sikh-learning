@@ -115,7 +115,7 @@ test('turning meaning off updates the preview summary and action copy for unders
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
-  expect(await screen.findByText(/Open with meaning/i)).toBeInTheDocument()
+  expect(await screen.findByText(/^Open with meaning$/i)).toBeInTheDocument()
   expect(screen.getByText(/You will open with meaning close/i)).toBeInTheDocument()
 
   fireEvent.click(screen.getByRole('button', { name: /fine tune reader/i }))
@@ -123,7 +123,7 @@ test('turning meaning off updates the preview summary and action copy for unders
 
   await waitFor(() => {
     expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-    expect(screen.getByText(/Open my reader/i)).toBeInTheDocument()
+    expect(screen.getByText(/^Open my reader$/i)).toBeInTheDocument()
     expect(screen.getByText(/You will land in a cleaner reader/i)).toBeInTheDocument()
   })
 })
@@ -178,4 +178,29 @@ test('preview step offers guest plus configured sign-in providers', async () => 
     expect(onComplete).toHaveBeenCalledTimes(1)
     expect(signInWithProviderMock).toHaveBeenCalledWith('google')
   })
+})
+
+test('guest bootstrap issues stay in the optional backup state during onboarding', () => {
+  useCloudSyncStore.setState({
+    configured: true,
+    status: 'error',
+    currentUser: null,
+    availableProviders: [],
+    lastSyncedAt: null,
+    lastError: 'Backup is unavailable right now. You can keep reading on this device and sign in later.',
+    syncQueued: false,
+  })
+
+  render(<Harness />)
+
+  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
+  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+
+  const authSurface = document.querySelector('[data-ai-surface="onboarding-auth"]')
+
+  expect(authSurface).not.toBeNull()
+  expect(authSurface).toHaveAttribute('data-ai-state', 'empty')
+  expect(authSurface).not.toHaveAttribute('data-ai-error')
+  expect(screen.getByText(/backup is unavailable right now/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
 })

@@ -1,10 +1,12 @@
 import type {
   EnglishSource,
   EnglishTranslations,
+  HindiSource,
   LearningGoal,
   LearningLevel,
   OnboardingAudience,
   MeaningLanguage,
+  PunjabiSource,
   ReaderAlignment,
   ReaderLineSpacing,
   SearchMode,
@@ -12,10 +14,14 @@ import type {
   ScriptureLine,
   ScriptMode,
   UiLocale,
+  VisraamSource,
 } from '../types'
 
 type LocaleLabelMaps = {
   englishSources: Record<EnglishSource, string>
+  punjabiSources: Record<string, string>
+  hindiSources: Record<string, string>
+  visraamSources: Record<VisraamSource, string>
   scriptModes: Record<ScriptMode, string>
   meaningLanguages: Record<MeaningLanguage, string>
   lineSpacing: Record<ReaderLineSpacing, string>
@@ -33,6 +39,22 @@ const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
       bdb: 'Standard',
       ms: 'Manmohan Singh',
       ssk: 'Sant Singh Khalsa',
+    },
+    punjabiSources: {
+      ss: 'Steek',
+      ft: 'Faridkot',
+      bdb: 'BaniDB',
+      ms: 'Manmohan Singh',
+      pss: 'PSS',
+    },
+    hindiSources: {
+      ss: 'Steek',
+      sts: 'STS',
+    },
+    visraamSources: {
+      sttm: 'STTM',
+      igurbani: 'iGurbani',
+      sttm2: 'STTM 2',
     },
     scriptModes: {
       gurmukhi: 'Gurmukhi',
@@ -88,6 +110,22 @@ const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
       ms: 'ਮਨਮੋਹਨ ਸਿੰਘ',
       ssk: 'ਸੰਤ ਸਿੰਘ ਖਾਲਸਾ',
     },
+    punjabiSources: {
+      ss: 'ਟੀਕਾ',
+      ft: 'ਫਰੀਦਕੋਟ',
+      bdb: 'ਬਾਣੀ ਡੀਬੀ',
+      ms: 'ਮਨਮੋਹਨ ਸਿੰਘ',
+      pss: 'ਪੀ.ਐੱਸ.ਐੱਸ.',
+    },
+    hindiSources: {
+      ss: 'ਟੀਕਾ',
+      sts: 'ਐਸ.ਟੀ.ਐੱਸ.',
+    },
+    visraamSources: {
+      sttm: 'ਐਸ.ਟੀ.ਟੀ.ਐਮ.',
+      igurbani: 'ਆਈ ਗੁਰਬਾਣੀ',
+      sttm2: 'ਐਸ.ਟੀ.ਟੀ.ਐਮ. ੨',
+    },
     scriptModes: {
       gurmukhi: 'ਗੁਰਮੁਖੀ',
       devanagari: 'ਹਿੰਦੀ',
@@ -141,6 +179,22 @@ const LABELS_BY_LOCALE: Record<UiLocale, LocaleLabelMaps> = {
       bdb: 'मानक',
       ms: 'मनमोहन सिंह',
       ssk: 'संत सिंह खालसा',
+    },
+    punjabiSources: {
+      ss: 'टीका',
+      ft: 'फरीदकोट',
+      bdb: 'बानीडीबी',
+      ms: 'मनमोहन सिंह',
+      pss: 'पीएसएस',
+    },
+    hindiSources: {
+      ss: 'टीका',
+      sts: 'एसटीएस',
+    },
+    visraamSources: {
+      sttm: 'एसटीटीएम',
+      igurbani: 'आईगुरबानी',
+      sttm2: 'एसटीटीएम 2',
     },
     scriptModes: {
       gurmukhi: 'गुरमुखी',
@@ -207,6 +261,18 @@ export function getEnglishSourceLabels(locale: UiLocale): Record<EnglishSource, 
   return LABELS_BY_LOCALE[locale].englishSources
 }
 
+export function getPunjabiSourceLabels(locale: UiLocale): Record<string, string> {
+  return LABELS_BY_LOCALE[locale].punjabiSources
+}
+
+export function getHindiSourceLabels(locale: UiLocale): Record<string, string> {
+  return LABELS_BY_LOCALE[locale].hindiSources
+}
+
+export function getVisraamSourceLabels(locale: UiLocale): Record<VisraamSource, string> {
+  return LABELS_BY_LOCALE[locale].visraamSources
+}
+
 export function getScriptModeLabels(locale: UiLocale): Record<ScriptMode, string> {
   return LABELS_BY_LOCALE[locale].scriptModes
 }
@@ -241,6 +307,14 @@ export function getLearningGoalLabels(locale: UiLocale): Record<LearningGoal, st
 
 export function getSearchModeLabels(locale: UiLocale): Record<SearchMode, string> {
   return LABELS_BY_LOCALE[locale].searchModes
+}
+
+export function getPunjabiSourceLabel(locale: UiLocale, source: PunjabiSource): string {
+  return LABELS_BY_LOCALE[locale].punjabiSources[source] ?? source.toUpperCase()
+}
+
+export function getHindiSourceLabel(locale: UiLocale, source: HindiSource): string {
+  return LABELS_BY_LOCALE[locale].hindiSources[source] ?? source.toUpperCase()
 }
 
 export function getPreferredEnglishText(

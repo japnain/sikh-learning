@@ -1,7 +1,9 @@
 import { useMemo, useState, type MouseEvent, type ReactNode } from 'react'
 import type { ScriptureEntry, ScriptureLine, Word } from '../types'
 import { useLanguageStore } from '../store/language'
+import { useLocaleStore } from '../store/locale'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
+import { getHindiSourceLabels, getPunjabiSourceLabels, getVisraamSourceLabels } from '../utils/translations'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
 import { IconBookmark, IconBookmarkFilled, IconClose, IconMoreHorizontal, IconShare } from './icons'
@@ -32,8 +34,28 @@ function fallbackLine(entry: ScriptureEntry): ScriptureLine {
     translation_en: entry.translation_en,
     translations_en: { bdb: entry.translation_en },
     translation_hi: entry.translation_hi,
+    translations_hi: { ss: entry.translation_hi },
     translation_pa: entry.translation_pa,
+    translations_pa: { ss: entry.translation_pa },
   }
+}
+
+function ReaderChip({
+  children,
+  active = false,
+}: {
+  children: ReactNode
+  active?: boolean
+}) {
+  return (
+    <span className={`rounded-full border px-2.5 py-1 font-sans text-[10px] ${
+      active
+        ? 'border-saffron/25 bg-saffron/10 text-saffron dark:border-saffron/25 dark:bg-saffron/10 dark:text-saffron-light'
+        : 'border-sand/12 bg-parchment-low/80 text-ink/55 dark:border-dark-text/10 dark:bg-dark-surface/70 dark:text-dark-text/58'
+    }`}>
+      {children}
+    </span>
+  )
 }
 
 function LineActionItem({
@@ -83,15 +105,23 @@ export default function StudyCard({
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
+  const [expandedLines, setExpandedLines] = useState<Record<string, boolean>>({})
+  const locale = useLocaleStore(s => s.locale)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const fontSize = useLanguageStore(s => s.fontSize)
   const englishSource = useLanguageStore(s => s.englishSource)
+  const punjabiSource = useLanguageStore(s => s.punjabiSource)
+  const hindiSource = useLanguageStore(s => s.hindiSource)
   const larivaar = useLanguageStore(s => s.larivaar)
   const showVishraam = useLanguageStore(s => s.showVishraam)
+  const visraamSource = useLanguageStore(s => s.visraamSource)
   const lineSpacing = useLanguageStore(s => s.lineSpacing)
   const textAlign = useLanguageStore(s => s.textAlign)
+  const punjabiSourceLabels = getPunjabiSourceLabels(locale)
+  const hindiSourceLabels = getHindiSourceLabels(locale)
+  const visraamSourceLabels = getVisraamSourceLabels(locale)
 
   const lines = useMemo(
     () => (entry.lines && entry.lines.length > 0 ? entry.lines : [fallbackLine(entry)]),
@@ -113,6 +143,11 @@ export default function StudyCard({
   const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
   const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
+
+  const toggleExpandedLine = (line: ScriptureLine, index: number) => {
+    const key = `${line.verseId || line.shabadId}-${index}`
+    setExpandedLines(current => ({ ...current, [key]: !current[key] }))
+  }
 
   const handleWordTap = (
     event: MouseEvent<HTMLButtonElement>,
@@ -171,9 +206,11 @@ export default function StudyCard({
             {entry.scripture} · {entry.scripture === 'SGGS' || entry.scripture === 'DG' ? 'Ang' : 'Page'} {entry.ang}
           </p>
           {(entry.raag || entry.writer || entry.sourceName) && (
-            <p className="font-sans text-xs text-ink/45 dark:text-dark-text/45 mt-1 leading-5">
-              {[entry.raag, entry.writer, entry.sourceName].filter(Boolean).join(' · ')}
-            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {entry.sourceName ? <ReaderChip>{entry.sourceName}</ReaderChip> : null}
+              {entry.raag ? <ReaderChip>{entry.raag}</ReaderChip> : null}
+              {entry.writer ? <ReaderChip>{entry.writer}</ReaderChip> : null}
+            </div>
           )}
         </div>
 
@@ -195,7 +232,7 @@ export default function StudyCard({
                       className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
                       style={{ fontSize: `${fontSize}px` }}
                     >
-                      {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam })}
+                      {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: line.larivaar })}
                     </p>
                     {showTransliteration && line.transliteration && (
                       <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
@@ -225,6 +262,12 @@ export default function StudyCard({
             <div className="space-y-0">
               {visibleMainLines.map((line, index) => {
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
+                const lineKey = `${line.verseId || line.shabadId}-${index}`
+                const isExpanded = Boolean(expandedLines[lineKey])
+                const punjabiVariants = Object.entries(line.translations_pa ?? {}).filter(([, value]) => value)
+                const hindiVariants = Object.entries(line.translations_hi ?? {}).filter(([, value]) => value)
+                const visraamVariants = Object.entries(line.visraam ?? {}).filter(([, markers]) => Array.isArray(markers) && markers.length > 0)
+                const hasExpandedSurface = punjabiVariants.length > 1 || hindiVariants.length > 1 || visraamVariants.length > 0
 
                 return (
                   <article
@@ -244,21 +287,31 @@ export default function StudyCard({
                       <IconMoreHorizontal size={16} />
                     </button>
 
-                    <div className={`flex flex-wrap ${larivaar ? 'gap-x-0 gap-y-2' : 'gap-x-2 gap-y-3'} ${scriptAlignmentClass}`}>
-                      {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
-                        <button
-                          key={`${line.verseId}-${wordIndex}`}
-                          type="button"
-                          lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                          className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 ${larivaar ? '' : 'mr-[0.1em]'} text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
-                          style={{ fontSize: `${fontSize}px` }}
-                          onPointerDown={event => event.stopPropagation()}
-                          onClick={event => handleWordTap(event, word, line)}
-                        >
-                          {formatGurbaniWord(word, { scriptMode, showVishraam })}
-                        </button>
-                      ))}
-                    </div>
+                    {larivaar ? (
+                      <p
+                        lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                        className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
+                        style={{ fontSize: `${fontSize}px` }}
+                      >
+                        {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar: true, showVishraam, larivaarText: line.larivaar })}
+                      </p>
+                    ) : (
+                      <div className={`flex flex-wrap gap-x-2 gap-y-3 ${scriptAlignmentClass}`}>
+                        {line.gurmukhi.split(' ').filter(Boolean).map((word, wordIndex) => (
+                          <button
+                            key={`${line.verseId}-${wordIndex}`}
+                            type="button"
+                            lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                            className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 mr-[0.1em] text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                            style={{ fontSize: `${fontSize}px` }}
+                            onPointerDown={event => event.stopPropagation()}
+                            onClick={event => handleWordTap(event, word, line)}
+                          >
+                            {formatGurbaniWord(word, { scriptMode, showVishraam })}
+                          </button>
+                        ))}
+                      </div>
+                    )}
 
                     {showTransliteration && line.transliteration && (
                       <p className={`font-sans text-sm italic text-ink/60 dark:text-dark-text/60 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
@@ -277,6 +330,83 @@ export default function StudyCard({
                         </p>
                       )
                     )}
+
+                    {hasExpandedSurface ? (
+                      <div className={`mt-4 ${meaningAlignmentClass}`}>
+                        <button
+                          type="button"
+                          onClick={() => toggleExpandedLine(line, index)}
+                          className="rounded-full border border-sand/15 px-3 py-1.5 font-sans text-[11px] text-ink/60 transition-colors duration-300 hover:text-saffron dark:border-dark-text/10 dark:text-dark-text/60 dark:hover:text-saffron-light"
+                        >
+                          {isExpanded ? 'Hide source layers' : 'Show source layers'}
+                        </button>
+
+                        {isExpanded ? (
+                          <div className="mt-3 space-y-3 rounded-[22px] border border-sand/12 bg-parchment-low/75 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-surface/70">
+                            {punjabiVariants.length > 0 ? (
+                              <div>
+                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                                  Punjabi
+                                </p>
+                                <div className="space-y-2">
+                                  {punjabiVariants.map(([sourceKey, text]) => (
+                                    <div key={`pa-${sourceKey}`} className="rounded-[18px] border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
+                                      <div className="mb-2 flex flex-wrap gap-1.5">
+                                        <ReaderChip active={sourceKey === punjabiSource}>
+                                          {punjabiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
+                                        </ReaderChip>
+                                        {sourceKey === punjabiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                                      </div>
+                                      <p lang="pa-Guru" className="font-gurmukhi text-sm leading-relaxed text-ink dark:text-dark-text">
+                                        {text}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            {hindiVariants.length > 0 ? (
+                              <div>
+                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                                  Hindi
+                                </p>
+                                <div className="space-y-2">
+                                  {hindiVariants.map(([sourceKey, text]) => (
+                                    <div key={`hi-${sourceKey}`} className="rounded-[18px] border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
+                                      <div className="mb-2 flex flex-wrap gap-1.5">
+                                        <ReaderChip active={sourceKey === hindiSource}>
+                                          {hindiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
+                                        </ReaderChip>
+                                        {sourceKey === hindiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                                      </div>
+                                      <p className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">
+                                        {text}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            {visraamVariants.length > 0 ? (
+                              <div>
+                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
+                                  Visraam Sets
+                                </p>
+                                <div className="flex flex-wrap gap-2">
+                                  {visraamVariants.map(([sourceKey, markers]) => (
+                                    <ReaderChip key={`visraam-${sourceKey}`} active={sourceKey === visraamSource}>
+                                      {(visraamSourceLabels[sourceKey as keyof typeof visraamSourceLabels] ?? sourceKey.toUpperCase())} · {markers.length}
+                                    </ReaderChip>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
 
                   </article>
                 )
@@ -335,7 +465,7 @@ export default function StudyCard({
                     lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
                     className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
                   >
-                    {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam })}
+                    {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: actionLine.larivaar })}
                   </p>
                   {showTransliteration && actionLine.transliteration && (
                     <p className="mt-2 font-sans text-sm italic text-ink/55 dark:text-dark-text/55">

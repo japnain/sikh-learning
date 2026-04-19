@@ -30,7 +30,7 @@ type CloudSyncFailureKind = 'bootstrap' | 'sync' | 'auth' | 'account'
 
 function getCloudSyncFailureMessage(kind: CloudSyncFailureKind) {
   if (kind === 'bootstrap') {
-    return 'Cloud sync is unavailable right now. Local reading still works on this device.'
+    return 'Backup is unavailable right now. You can keep reading on this device and sign in later.'
   }
 
   if (kind === 'auth') {

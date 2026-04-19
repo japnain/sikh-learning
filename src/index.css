@@ -10,31 +10,31 @@
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --safe-area-left: env(safe-area-inset-left, 0px);
 
-    --theme-color: #f1e9d9;
+    --theme-color: #f7ecd8;
 
-    --color-bg: 241 233 217;
-    --color-surface: 255 250 241;
-    --color-surface-muted: 247 237 219;
-    --color-surface-elevated: 232 215 188;
-    --color-text: 34 24 16;
-    --color-text-muted: 98 78 57;
-    --color-accent: 156 88 38;
-    --color-accent-strong: 211 154 77;
+    --color-bg: 247 236 216;
+    --color-surface: 255 249 238;
+    --color-surface-muted: 244 230 205;
+    --color-surface-elevated: 228 204 166;
+    --color-text: 44 30 18;
+    --color-text-muted: 111 81 54;
+    --color-accent: 155 79 31;
+    --color-accent-strong: 221 169 90;
     --color-success: 66 109 71;
-    --color-warning: 151 112 47;
-    --color-danger: 181 82 59;
-    --color-border: 201 172 132;
-    --color-focus: 214 157 80;
+    --color-warning: 159 111 43;
+    --color-danger: 183 78 51;
+    --color-border: 197 157 104;
+    --color-focus: 223 167 82;
 
-    --color-overlay: rgba(255, 250, 241, 0.8);
-    --color-scrim: rgba(27, 20, 15, 0.18);
+    --color-overlay: rgba(255, 249, 238, 0.84);
+    --color-scrim: rgba(35, 24, 16, 0.22);
 
-    --shadow-soft: 0 22px 52px rgba(72, 49, 23, 0.11);
-    --shadow-elevated: 0 32px 72px rgba(72, 49, 23, 0.16);
-    --shadow-glow: 0 18px 42px rgba(156, 88, 38, 0.18);
+    --shadow-soft: 0 24px 56px rgba(84, 53, 24, 0.13);
+    --shadow-elevated: 0 34px 78px rgba(84, 53, 24, 0.18);
+    --shadow-glow: 0 20px 46px rgba(155, 79, 31, 0.2);
     --shadow-glow-strong:
-      0 0 0 1px rgba(211, 154, 77, 0.18),
-      0 22px 48px rgba(156, 88, 38, 0.24);
+      0 0 0 1px rgba(221, 169, 90, 0.18),
+      0 24px 58px rgba(155, 79, 31, 0.26);
 
     --motion-duration-sm: 180ms;
     --motion-duration-md: 260ms;
@@ -97,9 +97,10 @@
     min-height: 100dvh;
     overflow-x: hidden;
     background:
-      radial-gradient(circle at 18% 0%, rgb(var(--color-accent-strong) / 0.18), transparent 28%),
-      radial-gradient(circle at 88% 8%, rgb(var(--color-accent) / 0.12), transparent 24%),
-      linear-gradient(180deg, rgb(var(--color-bg)) 0%, rgb(var(--color-surface-muted)) 52%, rgb(var(--color-bg)) 100%);
+      radial-gradient(circle at 14% -6%, rgb(var(--color-accent-strong) / 0.3), transparent 26%),
+      radial-gradient(circle at 88% 6%, rgb(var(--color-accent) / 0.16), transparent 22%),
+      radial-gradient(circle at 50% 42%, rgb(var(--color-surface-elevated) / 0.18), transparent 42%),
+      linear-gradient(180deg, rgb(var(--color-bg)) 0%, rgb(var(--color-surface)) 24%, rgb(var(--color-surface-muted)) 62%, rgb(var(--color-bg)) 100%);
     color: rgb(var(--color-text));
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 16px;
@@ -130,7 +131,7 @@
     overflow-x: hidden;
     padding-top: calc(var(--safe-area-top) + 1rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
-    padding-bottom: calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 1rem);
+    padding-bottom: calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 1.75rem);
     padding-left: max(1rem, calc(var(--safe-area-left) + 1rem));
   }
 
@@ -141,10 +142,10 @@
     overflow-x: hidden;
     padding-bottom: 0;
     background:
-      radial-gradient(circle at top center, rgb(var(--color-accent-strong) / 0.16), transparent 22rem),
-      radial-gradient(circle at 86% 10%, rgb(var(--color-accent) / 0.11), transparent 18rem),
-      radial-gradient(circle at 12% 22%, rgb(var(--color-surface-elevated) / 0.18), transparent 18rem),
-      linear-gradient(180deg, rgb(var(--color-bg)) 0%, rgb(var(--color-surface-muted)) 58%, rgb(var(--color-bg)) 100%);
+      radial-gradient(circle at top center, rgb(var(--color-accent-strong) / 0.24), transparent 22rem),
+      radial-gradient(circle at 88% 8%, rgb(var(--color-accent) / 0.15), transparent 18rem),
+      radial-gradient(circle at 12% 18%, rgb(var(--color-surface-elevated) / 0.24), transparent 19rem),
+      linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-surface-muted)) 58%, rgb(var(--color-bg)) 100%);
   }
 
   .app-shell::before {
@@ -153,9 +154,9 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(circle at 18% 18%, rgb(var(--color-surface-elevated) / 0.34), transparent 16rem),
-      radial-gradient(circle at 82% 0%, rgb(var(--color-accent) / 0.1), transparent 18rem),
-      linear-gradient(180deg, rgb(255 255 255 / 0.04), transparent 26%);
+      radial-gradient(circle at 18% 18%, rgb(var(--color-surface-elevated) / 0.36), transparent 16rem),
+      radial-gradient(circle at 82% 0%, rgb(var(--color-accent) / 0.12), transparent 18rem),
+      linear-gradient(180deg, rgb(255 255 255 / 0.08), transparent 26%);
     z-index: 0;
   }
 
@@ -174,12 +175,13 @@
     @apply rounded-[28px] border text-text backdrop-blur-md;
     border-color: rgb(var(--color-border) / 0.82);
     background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.2), transparent 42%),
-      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.5), transparent 58%),
-      linear-gradient(180deg, rgb(var(--color-surface) / 0.99), rgb(var(--color-surface-muted) / 0.93));
+      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.22), transparent 42%),
+      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.52), transparent 58%),
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.995), rgb(var(--color-surface-muted) / 0.94));
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.5),
-      0 3px 10px rgb(54 35 14 / 0.06),
+      inset 0 1px 0 rgb(255 255 255 / 0.56),
+      inset 0 -1px 0 rgb(var(--color-accent) / 0.04),
+      0 3px 10px rgb(54 35 14 / 0.07),
       var(--shadow-soft);
   }
 
@@ -188,12 +190,13 @@
     @apply rounded-[24px] border text-text;
     border-color: rgb(var(--color-border) / 0.72);
     background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.13), transparent 48%),
-      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.34), transparent 60%),
-      linear-gradient(180deg, rgb(var(--color-surface-muted) / 0.95), rgb(var(--color-surface) / 0.88));
+      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.16), transparent 48%),
+      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.38), transparent 60%),
+      linear-gradient(180deg, rgb(var(--color-surface-muted) / 0.96), rgb(var(--color-surface) / 0.9));
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.48),
-      0 16px 32px rgb(72 49 23 / 0.08);
+      inset 0 1px 0 rgb(255 255 255 / 0.54),
+      inset 0 -1px 0 rgb(var(--color-accent) / 0.03),
+      0 16px 34px rgb(72 49 23 / 0.09);
   }
 
   .surface-hero,
@@ -201,22 +204,35 @@
     @apply rounded-[32px] border text-text;
     border-color: rgb(var(--color-accent) / 0.28);
     background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.24), transparent 40%),
-      radial-gradient(circle at top left, rgb(var(--color-accent) / 0.16), transparent 34%),
-      radial-gradient(circle at bottom center, rgb(var(--color-surface-elevated) / 0.48), transparent 62%),
+      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.28), transparent 40%),
+      radial-gradient(circle at top left, rgb(var(--color-accent) / 0.2), transparent 34%),
+      radial-gradient(circle at bottom center, rgb(var(--color-surface-elevated) / 0.52), transparent 62%),
       linear-gradient(140deg, rgb(var(--color-surface)) 0%, rgb(var(--color-surface-muted)) 52%, rgb(var(--color-surface-elevated)) 100%);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.42),
+      inset 0 1px 0 rgb(255 255 255 / 0.48),
+      var(--shadow-elevated);
+  }
+
+  .surface-spotlight {
+    @apply rounded-[30px] border text-text;
+    border-color: rgb(var(--color-accent) / 0.2);
+    background:
+      radial-gradient(circle at top left, rgb(var(--color-accent-strong) / 0.24), transparent 34%),
+      radial-gradient(circle at bottom right, rgb(var(--color-surface-elevated) / 0.46), transparent 58%),
+      linear-gradient(160deg, rgb(var(--color-surface) / 0.985), rgb(var(--color-surface-muted) / 0.94) 54%, rgb(var(--color-surface)) 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.56),
+      inset 0 -1px 0 rgb(var(--color-accent) / 0.04),
       var(--shadow-elevated);
   }
 
   .metric-tile {
     @apply rounded-[22px] border px-3 py-3;
     border-color: rgb(var(--color-border) / 0.6);
-    background-color: rgb(var(--color-surface) / 0.84);
+    background-color: rgb(var(--color-surface) / 0.88);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.38),
-      0 10px 22px rgb(72 49 23 / 0.06);
+      inset 0 1px 0 rgb(255 255 255 / 0.44),
+      0 10px 24px rgb(72 49 23 / 0.07);
   }
 
   .status-badge,
@@ -320,11 +336,11 @@
     @apply flex items-center justify-center rounded-full border text-text transition-all duration-200;
     border-color: rgb(var(--color-border) / 0.82);
     background:
-      radial-gradient(circle at top, rgb(var(--color-accent-strong) / 0.12), transparent 58%),
-      linear-gradient(180deg, rgb(var(--color-surface) / 0.96), rgb(var(--color-surface-muted) / 0.84));
+      radial-gradient(circle at top, rgb(var(--color-accent-strong) / 0.16), transparent 58%),
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.97), rgb(var(--color-surface-muted) / 0.86));
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.46),
-      0 14px 30px rgb(72 49 23 / 0.1);
+      inset 0 1px 0 rgb(255 255 255 / 0.5),
+      0 14px 30px rgb(72 49 23 / 0.11);
   }
 
   .interactive-focus {
@@ -494,7 +510,7 @@
 
 [data-learn-anchor] {
   scroll-margin-top: 1rem;
-  scroll-margin-bottom: calc(var(--nav-stack-height, 7rem) + 1rem);
+  scroll-margin-bottom: calc(var(--nav-stack-height, 7rem) + 1.75rem);
 }
 
 .ornate-top {

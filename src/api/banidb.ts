@@ -1,4 +1,23 @@
-import type { EnglishTranslations, ScriptureEntry, ScriptureLine, SundarGutkaLength, Word } from '../types'
+import type {
+  BanidbKoshDefinition,
+  BanidbKoshWord,
+  EnglishTranslations,
+  HindiTranslations,
+  PunjabiTranslations,
+  RehatChapterContent,
+  RehatChapterSummary,
+  RehatSummary,
+  ScriptureEntry,
+  ScriptureLine,
+  ScriptureRaagMeta,
+  ScriptureSourceMeta,
+  ScriptureVisraamMarker,
+  ScriptureVisraamSets,
+  ScriptureWriterMeta,
+  SundarGutkaLength,
+  VisraamSource,
+  Word,
+} from '../types'
 import { requestBanidb } from '../insforge/banidb'
 import { withQaControl } from '../qa/runtime'
 import {
@@ -12,32 +31,89 @@ import {
 const API_PREFIX = '/v2'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
+type SearchSource = BaniSource | 'R' | 'all'
 
 interface BaniVerse {
   verseId: number
   shabadId: number
-  verse: { unicode: string }
-  transliteration: { english: string }
+  verse: { gurmukhi?: string; unicode?: string }
+  larivaar?: { gurmukhi?: string; unicode?: string }
+  transliteration: {
+    english?: string
+    en?: string
+    hindi?: string
+    hi?: string
+  }
   translation: Record<string, Record<string, string | Record<string, string>>>
+  visraam?: Partial<Record<VisraamSource, Array<{ p?: number; t?: string }>>>
   pageNo: number
-  source?: { id: BaniSource }
-  raag?: { english?: string }
-  writer?: { english?: string }
+  source?: {
+    id?: BaniSource
+    sourceId?: BaniSource
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    pageNo?: number | null
+  }
+  raag?: {
+    raagId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    raagWithPage?: string
+  }
+  writer?: {
+    writerId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+  }
 }
 
 interface BaniWord {
   word: { unicode: string }
-  transliteration: { english: string }
+  transliteration: {
+    english?: string
+    en?: string
+  }
   translation: Record<string, Record<string, string | Record<string, string>>>
 }
 
 interface BaniShabadVerse {
   verseId?: number
   shabadId?: number
-  verse?: { unicode: string }
-  transliteration?: { english: string }
+  verse?: { gurmukhi?: string; unicode?: string }
+  larivaar?: { gurmukhi?: string; unicode?: string }
+  transliteration?: {
+    english?: string
+    en?: string
+    hindi?: string
+    hi?: string
+  }
   translation?: Record<string, Record<string, string | Record<string, string>>>
+  visraam?: Partial<Record<VisraamSource, Array<{ p?: number; t?: string }>>>
   pageNo?: number
+  source?: {
+    id?: BaniSource
+    sourceId?: BaniSource
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    pageNo?: number | null
+  }
+  raag?: {
+    raagId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    raagWithPage?: string
+  }
+  writer?: {
+    writerId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+  }
   words: BaniWord[]
 }
 
@@ -54,9 +130,13 @@ interface BaniResponseVerse {
     shabadId?: number
     pageNo?: number | null
     source?: { id?: BaniSource }
+    raag?: ShabadInfo['raag']
+    writer?: ShabadInfo['writer']
   }
   pageNo?: number | null
   source?: { id?: BaniSource }
+  raag?: ShabadInfo['raag']
+  writer?: ShabadInfo['writer']
 }
 
 interface ShabadInfo {
@@ -65,12 +145,22 @@ interface ShabadInfo {
   ang?: { ang?: number }
   source?: {
     sourceId?: BaniSource
+    gurmukhi?: string
+    unicode?: string
     english?: string
+    pageNo?: number | null
   }
   raag?: {
+    raagId?: number | null
+    gurmukhi?: string
+    unicode?: string
     english?: string
+    raagWithPage?: string
   }
   writer?: {
+    writerId?: number | null
+    gurmukhi?: string
+    unicode?: string
     english?: string
   }
 }
@@ -101,8 +191,34 @@ interface AmritKeertanIndexResponse {
     english?: string
   }
   SourceEnglish?: string
+  SourceID?: string
   RaagEnglish?: string
+  RaagID?: number
   PageNo?: number
+}
+
+interface BanidbKoshWordResponse {
+  id: number
+  word: string
+  wordUni: string
+}
+
+interface BanidbKoshDefinitionResponse extends BanidbKoshWordResponse {
+  definition: string
+  definitionUni: string
+}
+
+interface RehatSummaryResponse {
+  rehatID: number
+  rehatName: string
+  alphabet: string
+}
+
+interface RehatChapterResponse {
+  chapterID: number
+  chapterName: string
+  chapterContent?: string
+  alphabet: string
 }
 
 export interface HukamnamaResult {
@@ -119,11 +235,15 @@ export interface SearchResult {
   source: string
   pageNo: number | null
   sourceName: string
+  sourceMeta?: ScriptureSourceMeta | null
   gurmukhi: string
+  larivaar?: string
   transliteration: string
   translation_en: string
   raag: string
+  raagMeta?: ScriptureRaagMeta | null
   writer: string
+  writerMeta?: ScriptureWriterMeta | null
 }
 
 export interface BaniIndexItem {
@@ -143,7 +263,9 @@ export interface AmritKeertanShabad {
   gurmukhi: string
   transliteration: string
   source: string
+  sourceMeta?: ScriptureSourceMeta | null
   raag: string
+  raagMeta?: ScriptureRaagMeta | null
   pageNo: number
 }
 
@@ -165,41 +287,182 @@ function safeText(val: unknown): string {
   return ''
 }
 
+function safeNestedText(val: unknown): string {
+  if (typeof val === 'string') return val
+  if (!val || typeof val !== 'object') return ''
+
+  const record = val as Record<string, unknown>
+  return safeText(record.unicode ?? record.gurmukhi ?? record.english ?? record.en ?? record.hi)
+}
+
 function getEnglishTransliteration(val: unknown): string {
   if (!val || typeof val !== 'object') return ''
   const record = val as Record<string, unknown>
   return safeText(record.english ?? record.en)
 }
 
+function getVerseText(value: unknown): string {
+  return safeNestedText(value)
+}
+
+function normalizeTranslationSourceMap(value: unknown): Record<string, string> {
+  if (!value || typeof value !== 'object') return {}
+
+  const next: Record<string, string> = {}
+  for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+    const text = safeNestedText(entry)
+    if (text) next[key] = text
+  }
+  return next
+}
+
+function pickPreferredTranslation(
+  map: Record<string, string>,
+  preferredKeys: string[]
+): string {
+  for (const key of preferredKeys) {
+    if (map[key]) return map[key]
+  }
+
+  return Object.values(map)[0] ?? ''
+}
+
 function getEnglishTranslations(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): EnglishTranslations {
-  if (!t?.en) return {}
-  const en = t.en as Record<string, unknown>
+  const en = normalizeTranslationSourceMap(t?.en)
   return {
-    bdb: safeText(en.bdb),
-    ms: safeText(en.ms),
-    ssk: safeText(en.ssk),
+    bdb: en.bdb,
+    ms: en.ms,
+    ssk: en.ssk,
   }
 }
 
+function getHindiTranslations(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): HindiTranslations {
+  return normalizeTranslationSourceMap(t?.hi)
+}
+
 function getHindi(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
-  if (!t?.hi) return ''
-  const hi = t.hi as Record<string, unknown>
-  // BaniDB may return hi.ss as string or hi.ss.unicode as string
-  if (typeof hi.ss === 'string') return hi.ss
-  if (hi.ss && typeof (hi.ss as Record<string, string>).unicode === 'string') return (hi.ss as Record<string, string>).unicode
-  return ''
+  return pickPreferredTranslation(getHindiTranslations(t), ['ss', 'sts'])
 }
 
 function getEnglish(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
   return getEnglishTranslations(t).bdb ?? ''
 }
 
+function getPunjabiTranslations(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): PunjabiTranslations {
+  return normalizeTranslationSourceMap(t?.pu)
+}
+
 function getPunjabi(t: BaniVerse['translation'] | BaniShabadVerse['translation'] | undefined): string {
-  if (!t?.pu) return ''
-  const pu = t.pu as Record<string, unknown>
-  if (typeof pu.ss === 'string') return pu.ss
-  if (pu.ss && typeof (pu.ss as Record<string, string>).unicode === 'string') return (pu.ss as Record<string, string>).unicode
-  return ''
+  return pickPreferredTranslation(getPunjabiTranslations(t), ['ss', 'ft', 'bdb', 'ms', 'pss'])
+}
+
+function normalizeVisraam(val: unknown): ScriptureVisraamSets {
+  if (!val || typeof val !== 'object') return {}
+
+  const next: ScriptureVisraamSets = {}
+  for (const key of ['sttm', 'igurbani', 'sttm2'] as VisraamSource[]) {
+    const rawMarkers = (val as Record<string, unknown>)[key]
+    if (!Array.isArray(rawMarkers)) continue
+
+    const markers = rawMarkers
+      .map((marker): ScriptureVisraamMarker | null => {
+        if (!marker || typeof marker !== 'object') return null
+        const record = marker as Record<string, unknown>
+        const p = typeof record.p === 'number' ? record.p : Number(record.p)
+        const t = safeText(record.t)
+
+        if (!Number.isFinite(p) || !t) return null
+        return { p, t }
+      })
+      .filter((marker): marker is ScriptureVisraamMarker => Boolean(marker))
+
+    if (markers.length > 0) next[key] = markers
+  }
+
+  return next
+}
+
+function normalizeSourceMeta(value: unknown): ScriptureSourceMeta | null {
+  if (!value || typeof value !== 'object') return null
+
+  const record = value as Record<string, unknown>
+  const pageNo = typeof record.pageNo === 'number'
+    ? record.pageNo
+    : record.pageNo == null
+      ? null
+      : Number(record.pageNo)
+  const next: ScriptureSourceMeta = {
+    sourceId: safeText(record.sourceId ?? record.id) || null,
+    gurmukhi: safeText(record.gurmukhi),
+    unicode: safeText(record.unicode),
+    english: safeText(record.english),
+    pageNo: Number.isFinite(pageNo) ? pageNo : null,
+  }
+
+  if (!next.sourceId && !next.gurmukhi && !next.unicode && !next.english && next.pageNo == null) {
+    return null
+  }
+
+  return next
+}
+
+function normalizeRaagMeta(value: unknown): ScriptureRaagMeta | null {
+  if (!value || typeof value !== 'object') return null
+
+  const record = value as Record<string, unknown>
+  const raagId = typeof record.raagId === 'number'
+    ? record.raagId
+    : record.raagId == null
+      ? null
+      : Number(record.raagId)
+  const next: ScriptureRaagMeta = {
+    raagId: Number.isFinite(raagId) ? raagId : null,
+    gurmukhi: safeText(record.gurmukhi),
+    unicode: safeText(record.unicode),
+    english: safeText(record.english),
+    raagWithPage: safeText(record.raagWithPage),
+  }
+
+  if (next.raagId == null && !next.gurmukhi && !next.unicode && !next.english && !next.raagWithPage) {
+    return null
+  }
+
+  return next
+}
+
+function normalizeWriterMeta(value: unknown): ScriptureWriterMeta | null {
+  if (!value || typeof value !== 'object') return null
+
+  const record = value as Record<string, unknown>
+  const writerId = typeof record.writerId === 'number'
+    ? record.writerId
+    : record.writerId == null
+      ? null
+      : Number(record.writerId)
+  const next: ScriptureWriterMeta = {
+    writerId: Number.isFinite(writerId) ? writerId : null,
+    gurmukhi: safeText(record.gurmukhi),
+    unicode: safeText(record.unicode),
+    english: safeText(record.english),
+  }
+
+  if (next.writerId == null && !next.gurmukhi && !next.unicode && !next.english) {
+    return null
+  }
+
+  return next
+}
+
+function getSourceDisplay(meta: ScriptureSourceMeta | null | undefined, fallback: string): string {
+  return meta?.english || meta?.unicode || meta?.gurmukhi || fallback
+}
+
+function getRaagDisplay(meta: ScriptureRaagMeta | null | undefined, fallback = ''): string {
+  return meta?.english || meta?.raagWithPage || meta?.unicode || meta?.gurmukhi || fallback
+}
+
+function getWriterDisplay(meta: ScriptureWriterMeta | null | undefined, fallback = ''): string {
+  return meta?.english || meta?.unicode || meta?.gurmukhi || fallback
 }
 
 function buildLine(
@@ -212,6 +475,9 @@ function buildLine(
   const verseId = verse.verseId ?? 0
   const shabadId = verse.shabadId ?? fallbackShabadId
   const translations_en = getEnglishTranslations(verse.translation)
+  const translations_hi = getHindiTranslations(verse.translation)
+  const translations_pa = getPunjabiTranslations(verse.translation)
+  const visraam = normalizeVisraam(verse.visraam)
 
   return {
     verseId,
@@ -219,12 +485,16 @@ function buildLine(
     ang,
     originalAng,
     isHeader: 'isHeader' in verse ? Boolean(verse.isHeader) : originalAng === null,
-    gurmukhi: safeText(verse.verse?.unicode),
-    transliteration: safeText(verse.transliteration?.english),
+    gurmukhi: getVerseText(verse.verse),
+    larivaar: getVerseText(verse.larivaar),
+    transliteration: getEnglishTransliteration(verse.transliteration),
     translation_en: translations_en.bdb ?? '',
     translations_en,
-    translation_hi: getHindi(verse.translation),
-    translation_pa: getPunjabi(verse.translation),
+    translation_hi: pickPreferredTranslation(translations_hi, ['ss', 'sts']),
+    translations_hi,
+    translation_pa: pickPreferredTranslation(translations_pa, ['ss', 'ft', 'bdb', 'ms', 'pss']),
+    translations_pa,
+    visraam,
   }
 }
 
@@ -236,8 +506,11 @@ function buildEntry({
   shabadId,
   verses,
   sourceName,
+  sourceMeta,
   raag,
+  raagMeta,
   writer,
+  writerMeta,
   hukamnamaDate,
 }: {
   id: string
@@ -247,12 +520,19 @@ function buildEntry({
   shabadId?: number
   verses: Array<BaniVerse | BaniFlatVerse | BaniShabadVerse>
   sourceName?: string
+  sourceMeta?: ScriptureSourceMeta | null
   raag?: string
+  raagMeta?: ScriptureRaagMeta | null
   writer?: string
+  writerMeta?: ScriptureWriterMeta | null
   hukamnamaDate?: string
 }): ScriptureEntry {
   const resolvedAng = verses.find(verse => verse.pageNo !== null && verse.pageNo !== undefined)?.pageNo ?? ang
   const lines = verses.map(verse => buildLine(verse, resolvedAng, shabadId ?? verse.shabadId ?? 0))
+  const firstVerse = verses[0]
+  const resolvedSourceMeta = sourceMeta ?? normalizeSourceMeta(firstVerse?.source)
+  const resolvedRaagMeta = raagMeta ?? normalizeRaagMeta(firstVerse?.raag)
+  const resolvedWriterMeta = writerMeta ?? normalizeWriterMeta(firstVerse?.writer)
 
   return {
     id,
@@ -261,9 +541,12 @@ function buildEntry({
     source,
     shabadId,
     verseIds: lines.map(line => line.verseId).filter(Boolean),
-    sourceName,
-    raag,
-    writer,
+    sourceName: sourceName ?? getSourceDisplay(resolvedSourceMeta, scripture),
+    sourceMeta: resolvedSourceMeta,
+    raag: raag ?? getRaagDisplay(resolvedRaagMeta),
+    raagMeta: resolvedRaagMeta,
+    writer: writer ?? getWriterDisplay(resolvedWriterMeta),
+    writerMeta: resolvedWriterMeta,
     hukamnamaDate,
     lines,
     gurmukhi: lines.map(line => line.gurmukhi).join(' '),
@@ -336,12 +619,39 @@ export async function fetchShabadWords(shabadId: number): Promise<Word[]> {
 interface BaniFlatVerse {
   verseId: number
   shabadId: number
-  verse: { unicode: string }
-  transliteration: { english: string }
+  verse: { gurmukhi?: string; unicode?: string }
+  larivaar?: { gurmukhi?: string; unicode?: string }
+  transliteration: {
+    english?: string
+    en?: string
+    hindi?: string
+    hi?: string
+  }
   translation: Record<string, Record<string, string | Record<string, string>>>
+  visraam?: Partial<Record<VisraamSource, Array<{ p?: number; t?: string }>>>
   pageNo: number | null
   originalPageNo?: number | null
-  source: { id: string }
+  source: {
+    id?: string
+    sourceId?: string
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    pageNo?: number | null
+  }
+  raag?: {
+    raagId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+    raagWithPage?: string
+  }
+  writer?: {
+    writerId?: number | null
+    gurmukhi?: string
+    unicode?: string
+    english?: string
+  }
   isHeader?: boolean
 }
 
@@ -505,11 +815,15 @@ export async function fetchBani(
         verseId: inner.verseId ?? 0,
         shabadId: inner.shabadId ?? 0,
         verse: inner.verse ?? { unicode: '' },
+        larivaar: inner.larivaar,
         transliteration: inner.transliteration ?? { english: '' },
         translation: (inner.translation ?? {}) as BaniFlatVerse['translation'],
+        visraam: inner.visraam,
         pageNo,
         originalPageNo: pageNo,
-        source: (inner.source ?? item.source ?? { id: 'G' }) as { id: string },
+        source: (inner.source ?? item.source ?? { id: 'G' }) as BaniFlatVerse['source'],
+        raag: (inner.raag ?? item.raag) as BaniFlatVerse['raag'],
+        writer: (inner.writer ?? item.writer) as BaniFlatVerse['writer'],
         isHeader: Boolean(item.header) || pageNo === null,
       }
 
@@ -560,7 +874,10 @@ export async function fetchBani(
           source: (srcId as BaniSource) ?? 'G',
           shabadId: verses[0]?.shabadId,
           verses,
-          sourceName: sourceMap[srcId] ?? 'SGGS',
+          sourceMeta: normalizeSourceMeta(verses[0]?.source),
+          sourceName: getSourceDisplay(normalizeSourceMeta(verses[0]?.source), sourceMap[srcId] ?? 'SGGS'),
+          raagMeta: normalizeRaagMeta(verses[0]?.raag),
+          writerMeta: normalizeWriterMeta(verses[0]?.writer),
         })
       }),
       availableLengths,
@@ -578,7 +895,7 @@ export async function fetchBani(
 export async function fetchSearch(
   query: string,
   searchType: number = 0,
-  source: BaniSource | 'all' = 'all',
+  source: SearchSource = 'all',
   context: 'home-search' | 'read-search' = 'read-search'
 ): Promise<SearchResult[]> {
   return withQaControl(context, async () => {
@@ -595,12 +912,16 @@ export async function fetchSearch(
       verseId: v.verseId,
       source: ((v as unknown as Record<string, unknown>).source as Record<string, string>)?.id ?? 'G',
       pageNo: v.pageNo ?? null,
-      sourceName: safeText(((v.source as { english?: string } | undefined)?.english)) || (v.source?.id ? toScripture(v.source.id) : ''),
-      gurmukhi: safeText(v.verse?.unicode),
-      transliteration: safeText(v.transliteration?.english),
+      sourceName: getSourceDisplay(normalizeSourceMeta(v.source), v.source?.id ? toScripture(v.source.id) : ''),
+      sourceMeta: normalizeSourceMeta(v.source),
+      gurmukhi: getVerseText(v.verse),
+      larivaar: getVerseText(v.larivaar),
+      transliteration: getEnglishTransliteration(v.transliteration),
       translation_en: getEnglish(v.translation),
-      raag: safeText(v.raag?.english),
-      writer: safeText(v.writer?.english),
+      raag: getRaagDisplay(normalizeRaagMeta(v.raag)),
+      raagMeta: normalizeRaagMeta(v.raag),
+      writer: getWriterDisplay(normalizeWriterMeta(v.writer)),
+      writerMeta: normalizeWriterMeta(v.writer),
     }))
   }, {
     emptyValue: [],
@@ -630,9 +951,12 @@ export async function fetchShabad(shabadId: number): Promise<ScriptureEntry | nu
       source,
       shabadId: resolvedShabadId,
       verses,
-      sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
-      raag: safeText(data.shabadInfo?.raag?.english),
-      writer: safeText(data.shabadInfo?.writer?.english),
+      sourceMeta: normalizeSourceMeta(data.shabadInfo?.source),
+      sourceName: getSourceDisplay(normalizeSourceMeta(data.shabadInfo?.source), toScripture(source)),
+      raagMeta: normalizeRaagMeta(data.shabadInfo?.raag),
+      raag: getRaagDisplay(normalizeRaagMeta(data.shabadInfo?.raag)),
+      writerMeta: normalizeWriterMeta(data.shabadInfo?.writer),
+      writer: getWriterDisplay(normalizeWriterMeta(data.shabadInfo?.writer)),
     })
   }, {
     emptyValue: null,
@@ -658,9 +982,12 @@ export async function fetchShabadVerses(shabadId: number): Promise<ScriptureEntr
       source,
       shabadId: resolvedShabadId,
       verses: [verse],
-      sourceName: safeText(data.shabadInfo?.source?.english) || toScripture(source),
-      raag: safeText(data.shabadInfo?.raag?.english),
-      writer: safeText(data.shabadInfo?.writer?.english),
+      sourceMeta: normalizeSourceMeta(data.shabadInfo?.source),
+      sourceName: getSourceDisplay(normalizeSourceMeta(data.shabadInfo?.source), toScripture(source)),
+      raagMeta: normalizeRaagMeta(data.shabadInfo?.raag),
+      raag: getRaagDisplay(normalizeRaagMeta(data.shabadInfo?.raag)),
+      writerMeta: normalizeWriterMeta(data.shabadInfo?.writer),
+      writer: getWriterDisplay(normalizeWriterMeta(data.shabadInfo?.writer)),
     })
   )
 }
@@ -696,7 +1023,20 @@ export async function fetchAmritKeertanShabads(headerId: number): Promise<AmritK
     gurmukhi: item.GurmukhiUni,
     transliteration: getEnglishTransliteration(item.Transliterations),
     source: safeText(item.SourceEnglish),
+    sourceMeta: item.SourceEnglish || item.SourceID
+      ? {
+          sourceId: safeText(item.SourceID) || null,
+          english: safeText(item.SourceEnglish),
+          pageNo: item.PageNo ?? null,
+        }
+      : null,
     raag: safeText(item.RaagEnglish),
+    raagMeta: item.RaagEnglish || item.RaagID
+      ? {
+          raagId: item.RaagID ?? null,
+          english: safeText(item.RaagEnglish),
+        }
+      : null,
     pageNo: item.PageNo ?? 0,
   }))
 }
@@ -783,12 +1123,87 @@ export async function fetchHukamnama(date?: string): Promise<HukamnamaResult> {
       source: sourceId,
       shabadId,
       verses: allVerses,
-      sourceName: safeText(shabadInfo?.source?.english) || toScripture(sourceId),
-      raag: safeText(shabadInfo?.raag?.english),
-      writer: safeText(shabadInfo?.writer?.english),
+      sourceMeta: normalizeSourceMeta(shabadInfo?.source),
+      sourceName: getSourceDisplay(normalizeSourceMeta(shabadInfo?.source), toScripture(sourceId)),
+      raagMeta: normalizeRaagMeta(shabadInfo?.raag),
+      raag: getRaagDisplay(normalizeRaagMeta(shabadInfo?.raag)),
+      writerMeta: normalizeWriterMeta(shabadInfo?.writer),
+      writer: getWriterDisplay(normalizeWriterMeta(shabadInfo?.writer)),
       hukamnamaDate: dateString,
     })
 
     return { date: dateString, entry, ang, source: sourceId, shabadId }
   })
+}
+
+export async function fetchKoshSuggestions(query: string): Promise<BanidbKoshWord[]> {
+  const encoded = encodeURIComponent(query.trim())
+  if (!encoded) return []
+
+  const { response: res, data } = await requestBanidb<BanidbKoshWordResponse[]>(`${API_PREFIX}/kosh/${encoded}`)
+  if (!res.ok) throw new Error(`BaniDB /kosh error: ${res.status}`)
+
+  return data.map(item => ({
+    id: item.id,
+    word: item.word,
+    wordUni: item.wordUni,
+  }))
+}
+
+export async function fetchKoshEntries(query: string): Promise<BanidbKoshDefinition[]> {
+  const encoded = encodeURIComponent(query.trim())
+  if (!encoded) return []
+
+  const { response: res, data } = await requestBanidb<BanidbKoshDefinitionResponse[]>(`${API_PREFIX}/kosh/search/${encoded}`)
+  if (!res.ok) throw new Error(`BaniDB /kosh/search error: ${res.status}`)
+
+  return data.map(item => ({
+    id: item.id,
+    word: item.word,
+    wordUni: item.wordUni,
+    definition: item.definition,
+    definitionUni: item.definitionUni,
+  }))
+}
+
+export async function fetchRehats(): Promise<RehatSummary[]> {
+  const { response: res, data } = await requestBanidb<{ maryadas?: RehatSummaryResponse[] }>(`${API_PREFIX}/rehats`)
+  if (!res.ok) throw new Error(`BaniDB /rehats error: ${res.status}`)
+
+  return (data.maryadas ?? []).map(item => ({
+    rehatId: item.rehatID,
+    rehatName: item.rehatName,
+    alphabet: item.alphabet,
+  }))
+}
+
+export async function fetchRehatChapters(rehatId: number): Promise<RehatChapterSummary[]> {
+  const { response: res, data } = await requestBanidb<{ chapters?: RehatChapterResponse[] }>(`${API_PREFIX}/rehats/${rehatId}`)
+  if (!res.ok) throw new Error(`BaniDB /rehats/:rehatId error: ${res.status}`)
+
+  return (data.chapters ?? []).map(item => ({
+    chapterId: item.chapterID,
+    chapterName: item.chapterName,
+    alphabet: item.alphabet,
+  }))
+}
+
+export async function fetchRehatChapter(rehatId: number, chapterId: number): Promise<RehatChapterContent | null> {
+  const { response: res, data } = await requestBanidb<{ chapters?: RehatChapterResponse[] }>(`${API_PREFIX}/rehats/${rehatId}/chapters/${chapterId}`)
+  if (!res.ok) throw new Error(`BaniDB /rehats/:rehatId/chapters/:chapterId error: ${res.status}`)
+
+  const chapter = data.chapters?.[0]
+  if (!chapter) return null
+
+  return {
+    rehatId,
+    chapterId: chapter.chapterID,
+    chapterName: chapter.chapterName,
+    chapterContent: chapter.chapterContent ?? '',
+    alphabet: chapter.alphabet,
+  }
+}
+
+export async function fetchRehatSearch(query: string): Promise<SearchResult[]> {
+  return fetchSearch(query, 3, 'R', 'read-search')
 }

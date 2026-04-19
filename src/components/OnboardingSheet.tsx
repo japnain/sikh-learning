@@ -383,14 +383,15 @@ export default function OnboardingSheet({
   const isCloudBusy = cloudStatus === 'booting' || cloudStatus === 'authenticating' || cloudStatus === 'syncing'
   const isProviderLoading = configured && !currentUser && supportedProviders.length === 0 && isCloudBusy
   const connectedLabel = currentUser?.email ?? currentUser?.name ?? null
+  const hasSignedInCloudIssue = Boolean(currentUser && lastError)
   const onboardingAuthState = isCloudBusy
     ? 'loading'
-    : lastError
+    : hasSignedInCloudIssue
       ? 'degraded'
       : currentUser
         ? 'ready'
         : 'empty'
-  const onboardingErrorCode = lastError ? (currentUser ? 'cloud-sync' : 'insforge-bootstrap') : null
+  const onboardingErrorCode = hasSignedInCloudIssue ? 'cloud-sync' : null
 
   useEffect(() => {
     if (presentation !== 'overlay') return
@@ -806,7 +807,7 @@ export default function OnboardingSheet({
               )}
 
               {lastError && !currentUser && (
-                <p className="mt-3 rounded-[18px] border border-[#b4553d]/20 bg-[#b4553d]/8 px-3 py-2 text-xs leading-5 text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
+                <p className="mt-3 rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
                   {lastError}
                 </p>
               )}

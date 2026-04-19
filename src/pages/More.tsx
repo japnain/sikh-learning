@@ -8,14 +8,17 @@ import { useLocaleStore } from '../store/locale'
 import { useOnboardingStore } from '../store/onboarding'
 import {
   getEnglishSourceLabels,
+  getHindiSourceLabels,
   getLearningGoalLabels,
   getLearningLevelLabels,
   getLineSpacingLabels,
   getMeaningLanguageLabels,
   getOnboardingAudienceLabels,
+  getPunjabiSourceLabels,
   getScriptModeLabels,
   getTextAlignmentLabels,
   getUiLocaleLabels,
+  getVisraamSourceLabels,
 } from '../utils/translations'
 import { renderScriptText } from '../utils/readerDisplay'
 import { IconArrowRight } from '../components/icons'
@@ -37,7 +40,7 @@ function SettingsBlock({
 }) {
   return (
     <div
-      className="section-shell bg-white/55 dark:bg-dark-card/60 px-4 py-4"
+      className="section-shell px-4 py-4"
       aria-labelledby={headingId}
       data-testid={testId}
     >
@@ -65,6 +68,12 @@ export default function More() {
     setFontSize,
     englishSource,
     setEnglishSource,
+    punjabiSource,
+    setPunjabiSource,
+    hindiSource,
+    setHindiSource,
+    visraamSource,
+    setVisraamSource,
     larivaar,
     setLarivaar,
     showVishraam,
@@ -89,6 +98,9 @@ export default function More() {
   const commonCopy = copy.common
   const moreCopy = copy.more
   const englishSourceLabels = getEnglishSourceLabels(locale)
+  const punjabiSourceLabels = getPunjabiSourceLabels(locale)
+  const hindiSourceLabels = getHindiSourceLabels(locale)
+  const visraamSourceLabels = getVisraamSourceLabels(locale)
   const learningGoalLabels = getLearningGoalLabels(locale)
   const learningLevelLabels = getLearningLevelLabels(locale)
   const lineSpacingLabels = getLineSpacingLabels(locale)
@@ -328,6 +340,69 @@ export default function More() {
                   <span className="font-sans text-[10px] uppercase tracking-[0.18em] opacity-70">
                     {selected ? commonCopy.selected : commonCopy.tapToUse}
                   </span>
+                </button>
+              )
+            })}
+          </div>
+
+          <p className="font-sans text-sm text-ink dark:text-dark-text mt-4 mb-2">{moreCopy.punjabiTranslation}</p>
+          <div className="grid grid-cols-2 gap-2">
+            {Object.entries(punjabiSourceLabels).map(([key, label]) => {
+              const selected = punjabiSource === key
+              return (
+                <button
+                  key={key}
+                  onClick={() => setPunjabiSource(key as typeof punjabiSource)}
+                  aria-pressed={selected}
+                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                    selected
+                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
+
+          <p className="font-sans text-sm text-ink dark:text-dark-text mt-4 mb-2">{moreCopy.hindiTranslation}</p>
+          <div className="grid grid-cols-2 gap-2">
+            {Object.entries(hindiSourceLabels).map(([key, label]) => {
+              const selected = hindiSource === key
+              return (
+                <button
+                  key={key}
+                  onClick={() => setHindiSource(key as typeof hindiSource)}
+                  aria-pressed={selected}
+                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                    selected
+                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
+
+          <p className="font-sans text-sm text-ink dark:text-dark-text mt-4 mb-2">{moreCopy.visraamSource}</p>
+          <div className="grid grid-cols-3 gap-2">
+            {Object.entries(visraamSourceLabels).map(([key, label]) => {
+              const selected = visraamSource === key
+              return (
+                <button
+                  key={key}
+                  onClick={() => setVisraamSource(key as typeof visraamSource)}
+                  aria-pressed={selected}
+                  className={`rounded-2xl px-3 py-3 border min-h-[48px] font-sans text-xs font-medium ${
+                    selected
+                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white border-saffron'
+                      : 'bg-white/70 dark:bg-dark-card border-sand/15 dark:border-dark-text/10 text-ink dark:text-dark-text'
+                  }`}
+                >
+                  {label}
                 </button>
               )
             })}

@@ -1,9 +1,33 @@
 import { http, HttpResponse } from 'msw'
 
+function buildSource(id: 'G' | 'D' | 'R', english: string, pageNo: number | null = null) {
+  return {
+    id,
+    sourceId: id,
+    english,
+    pageNo,
+  }
+}
+
+function buildRaag(english: string, raagId = 1) {
+  return {
+    raagId,
+    english,
+  }
+}
+
+function buildWriter(english: string, writerId = 1) {
+  return {
+    writerId,
+    english,
+  }
+}
+
 const MOCK_VERSE_1 = {
   verseId: 1,
   shabadId: 1,
   verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' },
+  larivaar: { unicode: 'ੴਸਤਿਨਾਮੁਕਰਤਾਪੁਰਖੁ' },
   transliteration: { english: 'ikOankaar sat naam kartaa purakh' },
   translation: {
     en: {
@@ -11,18 +35,31 @@ const MOCK_VERSE_1 = {
       ms: 'There is but One God. True is His Name.',
       ssk: 'One Universal Creator God. The Name Is Truth.',
     },
-    hi: { ss: 'एक ओंकार सतिनाम करता पुरख' },
-    pu: { ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' } },
+    hi: {
+      ss: 'एक ओंकार सतिनाम करता पुरख',
+      sts: 'एक ओंकार सत्य नाम करता पुरख',
+    },
+    pu: {
+      ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' },
+      ft: { unicode: 'ਇਕ ਅਕਾਲ ਪੁਰਖ ਹੈ ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' },
+    },
+  },
+  visraam: {
+    sttm: [{ p: 1, t: 'v' }],
+    igurbani: [{ p: 2, t: 'v' }],
+    sttm2: [{ p: 3, t: 'v' }],
   },
   pageNo: 1,
-  raag: { english: 'Jap' },
-  writer: { english: 'Guru Nanak Dev Ji' },
+  source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+  raag: buildRaag('Jap', 10),
+  writer: buildWriter('Guru Nanak Dev Ji', 100),
 }
 
 const MOCK_VERSE_2 = {
   verseId: 2,
   shabadId: 1,
   verse: { unicode: 'ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ' },
+  larivaar: { unicode: 'ਨਿਰਭਉਨਿਰਵੈਰੁਅਕਾਲਮੂਰਤਿ' },
   transliteration: { english: 'nirbhau nirvair akaal moorat' },
   translation: {
     en: {
@@ -30,18 +67,30 @@ const MOCK_VERSE_2 = {
       ms: 'Fearless and without hate, immortal in form.',
       ssk: 'No Fear. No Hatred. Image Of The Undying.',
     },
-    hi: { ss: 'निर्भय निर्वैर अकाल मूरत' },
-    pu: { ss: { unicode: 'ਨਿਡਰ, ਵੈਰ ਰਹਿਤ, ਅਕਾਲ ਦੀ ਮੂਰਤ' } },
+    hi: {
+      ss: 'निर्भय निर्वैर अकाल मूरत',
+      sts: 'निर्भउ निरवैर अकाल मूरत',
+    },
+    pu: {
+      ss: { unicode: 'ਨਿਡਰ, ਵੈਰ ਰਹਿਤ, ਅਕਾਲ ਦੀ ਮੂਰਤ' },
+      ft: { unicode: 'ਨਿਡਰ ਅਤੇ ਵੈਰ ਰਹਿਤ, ਅਕਾਲ ਦੀ ਮੂਰਤ' },
+    },
+  },
+  visraam: {
+    sttm: [{ p: 1, t: 'v' }],
+    sttm2: [{ p: 2, t: 'v' }],
   },
   pageNo: 1,
-  raag: { english: 'Jap' },
-  writer: { english: 'Guru Nanak Dev Ji' },
+  source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+  raag: buildRaag('Jap', 10),
+  writer: buildWriter('Guru Nanak Dev Ji', 100),
 }
 
 const MOCK_VERSE_3 = {
   verseId: 3,
   shabadId: 2,
   verse: { unicode: 'ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ' },
+  larivaar: { unicode: 'ਸੋਚੈਸੋਚਿਨਹੋਵਈ' },
   transliteration: { english: 'sochai soch na hovee' },
   translation: {
     en: {
@@ -49,12 +98,22 @@ const MOCK_VERSE_3 = {
       ms: 'By thought one can think Him not.',
       ssk: 'By thinking, He cannot be reduced to thought.',
     },
-    hi: { ss: 'सोचने से वह सोचा नहीं जा सकता' },
-    pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
+    hi: {
+      ss: 'सोचने से वह सोचा नहीं जा सकता',
+      sts: 'सोच से वह जाना नहीं जाता',
+    },
+    pu: {
+      ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' },
+      ft: { unicode: 'ਸੋਚ ਨਾਲ ਉਹ ਸਮਝਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' },
+    },
+  },
+  visraam: {
+    igurbani: [{ p: 1, t: 'v' }],
   },
   pageNo: 1,
-  raag: { english: 'Jap' },
-  writer: { english: 'Guru Nanak Dev Ji' },
+  source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+  raag: buildRaag('Jap', 10),
+  writer: buildWriter('Guru Nanak Dev Ji', 100),
 }
 
 export const MOCK_ANG_PAGE = [MOCK_VERSE_1, MOCK_VERSE_2, MOCK_VERSE_3]
@@ -73,6 +132,7 @@ export const MOCK_SHABAD_RESPONSE = {
       shabadId: 1,
       pageNo: 1,
       verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ' },
+      larivaar: { unicode: 'ੴਸਤਿਨਾਮੁ' },
       transliteration: { english: 'ikOankaar sat naam' },
       translation: {
         en: {
@@ -80,19 +140,40 @@ export const MOCK_SHABAD_RESPONSE = {
           ms: 'There is but One God. Truth.',
           ssk: 'One Universal Creator God. Truth.',
         },
-        hi: { ss: 'एक ओंकार सतिनाम' },
-        pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚ।' } },
+        hi: {
+          ss: 'एक ओंकार सतिनाम',
+          sts: 'एक ओंकार सत्य नाम',
+        },
+        pu: {
+          ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚ।' },
+          ft: { unicode: 'ਇਕ ਅਕਾਲ ਪੁਰਖ। ਸੱਚ।' },
+        },
       },
+      visraam: {
+        sttm: [{ p: 1, t: 'v' }],
+        igurbani: [{ p: 2, t: 'v' }],
+      },
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+      raag: buildRaag('Jap', 10),
+      writer: buildWriter('Guru Nanak Dev Ji', 100),
       words: [
         {
           word: { unicode: 'ੴ' },
           transliteration: { english: 'ikOankaar' },
-          translation: { en: { bdb: 'One Universal Creator' }, hi: { ss: 'एक ओंकार' }, pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ' } } },
+          translation: {
+            en: { bdb: 'One Universal Creator' },
+            hi: { ss: 'एक ओंकार', sts: 'एकंकार' },
+            pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ' }, ft: { unicode: 'ਇਕ ਅਕਾਲ ਪੁਰਖ' } },
+          },
         },
         {
           word: { unicode: 'ਸਤਿ' },
           transliteration: { english: 'sat' },
-          translation: { en: { bdb: 'Truth' }, hi: { ss: 'सत्य' }, pu: { ss: { unicode: 'ਸੱਚ' } } },
+          translation: {
+            en: { bdb: 'Truth' },
+            hi: { ss: 'सत्य', sts: 'सत' },
+            pu: { ss: { unicode: 'ਸੱਚ' }, ft: { unicode: 'ਸਤਿ' } },
+          },
         },
       ],
     },
@@ -101,6 +182,7 @@ export const MOCK_SHABAD_RESPONSE = {
       shabadId: 1,
       pageNo: 1,
       verse: { unicode: 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ' },
+      larivaar: { unicode: 'ਕਰਤਾਪੁਰਖੁਨਿਰਭਉ' },
       transliteration: { english: 'karataa purakh nirabhau' },
       translation: {
         en: {
@@ -108,9 +190,21 @@ export const MOCK_SHABAD_RESPONSE = {
           ms: 'Creative being, beyond fear.',
           ssk: 'Creative Being. No Fear.',
         },
-        hi: { ss: 'करता पुरख निर्भउ' },
-        pu: { ss: { unicode: 'ਕਰਤਾ ਪੁਰਖ। ਨਿਰਭਉ।' } },
+        hi: {
+          ss: 'करता पुरख निर्भउ',
+          sts: 'कर्ता पुरुष निर्भउ',
+        },
+        pu: {
+          ss: { unicode: 'ਕਰਤਾ ਪੁਰਖ। ਨਿਰਭਉ।' },
+          ft: { unicode: 'ਕਰਤਾ ਪੁਰਖ। ਨਿਡਰ।' },
+        },
       },
+      visraam: {
+        sttm2: [{ p: 1, t: 'v' }],
+      },
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+      raag: buildRaag('Jap', 10),
+      writer: buildWriter('Guru Nanak Dev Ji', 100),
       words: [],
     },
   ],
@@ -121,11 +215,18 @@ export const MOCK_SEARCH_RESPONSE = {
     {
       verseId: 100,
       shabadId: 50,
-      source: { id: 'G' },
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1402),
       verse: { unicode: 'ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ' },
+      larivaar: { unicode: 'ਵਾਹਿਗੁਰੂਵਾਹਿਗੁਰੂ' },
       transliteration: { english: 'vaahiguroo vaahiguroo' },
-      translation: { en: { bdb: 'Waaheguru, Waaheguru' }, pu: { ss: { unicode: '' } } },
+      translation: {
+        en: { bdb: 'Waaheguru, Waaheguru' },
+        hi: { ss: 'वाहेगुरु वाहेगुरु' },
+        pu: { ss: { unicode: 'ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ' } },
+      },
       pageNo: 1402,
+      raag: buildRaag('Raag Asa', 31),
+      writer: buildWriter('Guru Arjan Dev Ji', 501),
     },
   ],
 }
@@ -153,6 +254,7 @@ export const MOCK_BANI_RESPONSE = {
       verseId: 1,
       shabadId: 1,
       verse: { unicode: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ' },
+      larivaar: { unicode: 'ੴਸਤਿਨਾਮੁਕਰਤਾਪੁਰਖੁ' },
       transliteration: { english: 'ikOankaar sat naam kartaa purakh' },
       translation: {
         en: {
@@ -160,16 +262,29 @@ export const MOCK_BANI_RESPONSE = {
           ms: 'There is but One God. True is His Name.',
           ssk: 'One Universal Creator God. The Name Is Truth.',
         },
-        hi: { ss: 'एक ओंकार सतिनाम करता पुरख' },
-        pu: { ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' } },
+        hi: {
+          ss: 'एक ओंकार सतिनाम करता पुरख',
+          sts: 'एक ओंकार सत्य नाम करता पुरख',
+        },
+        pu: {
+          ss: { unicode: 'ਅਕਾਲ ਪੁਰਖ ਇੱਕ ਹੈ, ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' },
+          ft: { unicode: 'ਇਕ ਅਕਾਲ ਪੁਰਖ ਹੈ ਜਿਸ ਦਾ ਨਾਮ ਸੱਚ ਹੈ' },
+        },
+      },
+      visraam: {
+        sttm: [{ p: 1, t: 'v' }],
+        igurbani: [{ p: 2, t: 'v' }],
       },
       pageNo: 1,
-      source: { id: 'G' },
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 1),
+      raag: buildRaag('Jap', 10),
+      writer: buildWriter('Guru Nanak Dev Ji', 100),
     },
     {
       verseId: 2,
       shabadId: 2,
       verse: { unicode: 'ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ' },
+      larivaar: { unicode: 'ਸੋਚੈਸੋਚਿਨਹੋਵਈ' },
       transliteration: { english: 'sochai soch na hovee' },
       translation: {
         en: {
@@ -177,11 +292,22 @@ export const MOCK_BANI_RESPONSE = {
           ms: 'By thought one can think Him not.',
           ssk: 'By thinking, He cannot be reduced to thought.',
         },
-        hi: { ss: 'सोचने से वह सोचा नहीं जा सकता' },
-        pu: { ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' } },
+        hi: {
+          ss: 'सोचने से वह सोचा नहीं जा सकता',
+          sts: 'सोच से वह जाना नहीं जाता',
+        },
+        pu: {
+          ss: { unicode: 'ਸੋਚਣ ਨਾਲ ਉਹ ਸੋਚਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' },
+          ft: { unicode: 'ਸੋਚ ਨਾਲ ਉਹ ਸਮਝਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ' },
+        },
+      },
+      visraam: {
+        sttm2: [{ p: 1, t: 'v' }],
       },
       pageNo: 2,
-      source: { id: 'G' },
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 2),
+      raag: buildRaag('Jap', 10),
+      writer: buildWriter('Guru Nanak Dev Ji', 100),
     },
   ],
 }
@@ -193,8 +319,11 @@ function createBaniTranslation(label: string) {
       ms: label,
       ssk: label,
     },
-    hi: { ss: label },
-    pu: { ss: { unicode: label } },
+    hi: { ss: label, sts: `${label} (STS)` },
+    pu: {
+      ss: { unicode: label },
+      ft: { unicode: `${label} (FT)` },
+    },
   }
 }
 
@@ -233,10 +362,13 @@ function createStructuredBaniVerse({
       verseId,
       shabadId,
       verse: { unicode },
+      larivaar: { unicode: unicode.replace(/\s+/g, '') },
       transliteration: { english: transliteration },
       translation: createBaniTranslation(unicode),
       pageNo,
-      source: { id: source },
+      source: buildSource(source, source === 'G' ? 'Sri Guru Granth Sahib Ji' : 'Dasam Granth', pageNo),
+      raag: buildRaag(source === 'G' ? 'Raag Asa' : 'Dasam Bani', source === 'G' ? 31 : 201),
+      writer: buildWriter(source === 'G' ? 'Guru Arjan Dev Ji' : 'Guru Gobind Singh Ji', source === 'G' ? 501 : 701),
     },
   }
 }
@@ -546,7 +678,9 @@ export const MOCK_AMRIT_HEADER_RESPONSE = {
       GurmukhiUni: 'ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥',
       Transliterations: { en: 'dda(n)ddaut ba(n)dhan anik baar sarab kalaa samarath ||' },
       SourceEnglish: 'Sri Guru Granth Sahib Ji',
+      SourceID: 'G',
       RaagEnglish: 'Raag Gauree',
+      RaagID: 17,
       PageNo: 65,
     },
   ],
@@ -705,6 +839,28 @@ function getMockBanidbResponse(url: URL) {
   }
 
   if (url.pathname.startsWith('/v2/search/')) {
+    if (url.searchParams.get('source') === 'R') {
+      return HttpResponse.json({
+        verses: [
+          {
+            verseId: 9100,
+            shabadId: 1,
+            source: buildSource('R', 'Rehat', null),
+            verse: { unicode: 'ਸੇਵਾ ਅਤੇ ਸਿਮਰਨ' },
+            transliteration: { english: 'sevaa ate simaran' },
+            translation: {
+              en: { bdb: 'Service and remembrance' },
+              hi: { ss: 'सेवा और सिमरन' },
+              pu: { ss: { unicode: 'ਸੇਵਾ ਅਤੇ ਸਿਮਰਨ' } },
+            },
+            pageNo: null,
+            raag: buildRaag('Rehat Search', 0),
+            writer: buildWriter('Sikh Rehat Maryada', 0),
+          },
+        ],
+      })
+    }
+
     return HttpResponse.json(MOCK_SEARCH_RESPONSE)
   }
 
@@ -721,6 +877,73 @@ function getMockBanidbResponse(url: URL) {
 
   if (url.pathname.startsWith('/v2/amritkeertan/index/')) {
     return HttpResponse.json(MOCK_AMRIT_HEADER_RESPONSE)
+  }
+
+  const koshSearchMatch = url.pathname.match(/^\/v2\/kosh\/search\/(.+)$/)
+  if (koshSearchMatch) {
+    const [, query] = koshSearchMatch
+    const normalized = decodeURIComponent(query)
+    const entries = normalized === 'ੴ'
+      ? [{
+          id: 1,
+          word: 'ik oankar',
+          wordUni: 'ੴ',
+          definition: 'One Creator',
+          definitionUni: 'ਇੱਕ ਕਰਤਾ ਪੁਰਖ',
+        }]
+      : []
+    return HttpResponse.json(entries)
+  }
+
+  const koshMatch = url.pathname.match(/^\/v2\/kosh\/(.+)$/)
+  if (koshMatch) {
+    const [, query] = koshMatch
+    const normalized = decodeURIComponent(query)
+    const entries = normalized === 'ੴ'
+      ? [{ id: 1, word: 'ik oankar', wordUni: 'ੴ' }]
+      : []
+    return HttpResponse.json(entries)
+  }
+
+  if (url.pathname === '/v2/rehats') {
+    return HttpResponse.json({
+      maryadas: [
+        { rehatID: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' },
+        { rehatID: 2, rehatName: 'Tankhah Nama', alphabet: 'T' },
+      ],
+    })
+  }
+
+  const rehatChapterContentMatch = url.pathname.match(/^\/v2\/rehats\/(\d+)\/chapters\/(\d+)$/)
+  if (rehatChapterContentMatch) {
+    const [, rehatId, chapterId] = rehatChapterContentMatch
+    return HttpResponse.json({
+      chapters: [
+        {
+          chapterID: Number(chapterId),
+          chapterName: Number(chapterId) === 11 ? 'Daily Discipline' : 'Shared Conduct',
+          chapterContent: Number(rehatId) === 1
+            ? '<p>Amritvela, nitnem, seva, and simran remain central.</p>'
+            : '<p>Sangat discipline and shared conduct are expected.</p>',
+          alphabet: 'D',
+        },
+      ],
+    })
+  }
+
+  const rehatChaptersMatch = url.pathname.match(/^\/v2\/rehats\/(\d+)$/)
+  if (rehatChaptersMatch) {
+    const [, rehatId] = rehatChaptersMatch
+    return HttpResponse.json({
+      chapters: Number(rehatId) === 1
+        ? [
+            { chapterID: 11, chapterName: 'Daily Discipline', alphabet: 'D' },
+            { chapterID: 12, chapterName: 'Shared Conduct', alphabet: 'S' },
+          ]
+        : [
+            { chapterID: 21, chapterName: 'Tankhah Guidance', alphabet: 'T' },
+          ],
+    })
   }
 
   const datedHukamnamaMatch = url.pathname.match(/^\/v2\/hukamnamas\/\d{4}\/\d{2}\/\d{2}$/)

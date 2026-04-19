@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useScriptureCacheStore } from './scriptureCache'
-import type { MahanKoshEntry, ScriptureEntry, Word } from '../types'
+import type { BanidbKoshDefinition, MahanKoshEntry, RehatChapterContent, RehatChapterSummary, RehatSummary, ScriptureEntry, Word } from '../types'
 
 const mockEntry: ScriptureEntry = {
   id: 'G-1-1', scripture: 'SGGS', ang: 1,
@@ -23,6 +23,30 @@ const mockMahanKoshEntry: MahanKoshEntry = {
   description_hi: 'एक ओंकार',
   exactMatch: true,
   sourceUrl: 'https://example.com',
+}
+
+const mockBanidbKoshEntry: BanidbKoshDefinition = {
+  id: 1,
+  word: 'ik oankar',
+  wordUni: 'ੴ',
+  definition: 'One Creator',
+  definitionUni: 'ਇੱਕ ਕਰਤਾ ਪੁਰਖ',
+}
+
+const mockRehats: RehatSummary[] = [
+  { rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' },
+]
+
+const mockRehatChapters: RehatChapterSummary[] = [
+  { chapterId: 11, chapterName: 'Daily Discipline', alphabet: 'D' },
+]
+
+const mockRehatChapter: RehatChapterContent = {
+  rehatId: 1,
+  chapterId: 11,
+  chapterName: 'Daily Discipline',
+  chapterContent: '<p>Amritvela and nitnem.</p>',
+  alphabet: 'D',
 }
 
 beforeEach(() => { useScriptureCacheStore.getState().clearAll() })
@@ -54,6 +78,30 @@ describe('scriptureCache', () => {
     const s = useScriptureCacheStore.getState()
     s.setMahanKosh('ੴ', [mockMahanKoshEntry])
     expect(s.getMahanKosh('ੴ')).toEqual([mockMahanKoshEntry])
+  })
+
+  it('sets and gets BaniDB kosh data', () => {
+    const s = useScriptureCacheStore.getState()
+    s.setBanidbKosh('ੴ', [mockBanidbKoshEntry])
+    expect(s.getBanidbKosh('ੴ')).toEqual([mockBanidbKoshEntry])
+  })
+
+  it('sets and gets rehat list data', () => {
+    const s = useScriptureCacheStore.getState()
+    s.setRehats(mockRehats)
+    expect(s.getRehats()).toEqual(mockRehats)
+  })
+
+  it('sets and gets rehat chapter lists', () => {
+    const s = useScriptureCacheStore.getState()
+    s.setRehatChapters(1, mockRehatChapters)
+    expect(s.getRehatChapters(1)).toEqual(mockRehatChapters)
+  })
+
+  it('sets and gets rehat chapter content', () => {
+    const s = useScriptureCacheStore.getState()
+    s.setRehatChapter(1, mockRehatChapter)
+    expect(s.getRehatChapter(1, 11)).toEqual(mockRehatChapter)
   })
 
   it('returns undefined for uncached words', () => {
