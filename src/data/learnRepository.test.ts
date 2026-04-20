@@ -244,6 +244,30 @@ test("published learn catalog no longer uses generated ids for canonical guidanc
   }
 })
 
+test("learn excerpt surfaces use multi-verse references instead of one-line fragments", async () => {
+  const catalog = await loadLearnCatalog()
+
+  for (const guidance of catalog.dailyGuidance) {
+    expect(guidance.source.verseIds.length).toBeGreaterThanOrEqual(2)
+  }
+
+  for (const topic of catalog.topicGuides) {
+    for (const excerpt of topic.excerpts) {
+      expect(excerpt.source.verseIds.length).toBeGreaterThanOrEqual(2)
+    }
+
+    for (const scenarioKey of topic.scenarioOrder) {
+      for (const excerpt of topic.scenarios[scenarioKey].excerpts) {
+        expect(excerpt.source.verseIds.length).toBeGreaterThanOrEqual(2)
+      }
+    }
+  }
+
+  for (const collection of catalog.collections) {
+    expect(collection.heroSource.verseIds.length).toBeGreaterThanOrEqual(2)
+  }
+})
+
 test("legacy generated learn ids still resolve through catalog indexes", async () => {
   const catalog = await loadLearnCatalog()
 

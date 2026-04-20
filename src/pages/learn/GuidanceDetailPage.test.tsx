@@ -50,6 +50,9 @@ test("guidance detail surfaces inline shabad depth for the related passage", asy
   expect(screen.getByRole("heading", { level: 2, name: new RegExp(excerpt.deepDive.title, "i") })).toBeInTheDocument()
   expect(screen.getByText(excerpt.deepDive.whyItMatters)).toBeInTheDocument()
   expect(screen.getByText(excerpt.deepDive.structure[0]!)).toBeInTheDocument()
+  expect(screen.getByText(/Deeper Meaning/i)).toBeInTheDocument()
+  expect(screen.getByText(/Live This/i)).toBeInTheDocument()
+  expect(excerpt.lines.length).toBeGreaterThanOrEqual(2)
 })
 
 test("collection-linked guidance back button returns to the collection overview instead of prior step history", async () => {
