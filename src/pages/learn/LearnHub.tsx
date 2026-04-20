@@ -215,13 +215,13 @@ export default function LearnHub() {
 
   const activeDepthOption = DEPTH_OPTIONS.find(option => option.id === depthPreference) ?? DEPTH_OPTIONS[1]
   const compactTodayPageBody = locale === "en" && activeTab === "today"
-    ? "One question, one shabad, one next step."
+    ? "One real need, one substantial passage, one next act of return."
     : pageCopy.body
   const compactTodayHeroBody = locale === "en" && activeTab === "today"
-    ? "Search the need plainly. One trustworthy guide stays central, with the full shabad and the next faithful paths close."
+    ? "Search the need plainly. One trustworthy guide stays central, with deeper verses and the next faithful paths close."
     : editorial?.learn.heroBody
   const compactTodayHeroHint = locale === "en" && activeTab === "today"
-    ? "Start with the clearest guide, then follow the scenario and shabad without losing the thread."
+    ? "Start with the clearest guide, then follow the scenario and the deeper verses without losing the thread."
     : editorial?.learn.heroSearchHint
   const hasActiveShabadFilters = Boolean(
     shabadThemeFilter

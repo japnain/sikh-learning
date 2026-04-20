@@ -22,9 +22,9 @@ test("renders the learn hub with the today-first archive structure", async () =>
   renderLearnRoute()
 
   expect(await screen.findByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
-  expect(screen.getByText(/Find the guide that meets the question/i)).toBeInTheDocument()
+  expect(screen.getByText(/Find the guide that can actually bear the question/i)).toBeInTheDocument()
   expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toBeInTheDocument()
-  expect(screen.getByText(/The archive is meant to be used, not merely announced\./i)).toBeInTheDocument()
+  expect(screen.getByText(/This archive is here to carry real return, not to perform volume\./i)).toBeInTheDocument()
   expect(screen.getByTestId("learn-surface-rail")).toBeInTheDocument()
   expect(screen.getByTestId("learn-subsection-rail")).toBeInTheDocument()
   expect(screen.getByTestId("learn-today-support-row")).toBeInTheDocument()
@@ -42,7 +42,7 @@ test("learn shell copy reflects the reviewed archive instead of public-growth fr
   renderLearnRoute()
 
   expect(await screen.findByText(/Search the need plainly\./i)).toBeInTheDocument()
-  expect(screen.getByText(/The archive is meant to be used, not merely announced\./i)).toBeInTheDocument()
+  expect(screen.getByText(/This archive is here to carry real return, not to perform volume\./i)).toBeInTheDocument()
   expect(screen.queryByText(/The library is growing in public\./i)).not.toBeInTheDocument()
 })
 

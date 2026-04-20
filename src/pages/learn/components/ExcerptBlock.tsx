@@ -27,11 +27,11 @@ export default function ExcerptBlock({
       </div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         <div className="section-shell px-4 py-4">
-          <p className="eyebrow">Meaning</p>
+          <p className="eyebrow">Deeper Meaning</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.shortMeaning}</p>
         </div>
         <div className="section-shell px-4 py-4">
-          <p className="eyebrow">Life Application</p>
+          <p className="eyebrow">Live This</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.lifeApplication}</p>
         </div>
       </div>
