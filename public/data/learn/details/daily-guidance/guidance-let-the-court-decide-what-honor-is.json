@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-the-court-decide-what-honor-is",
+  "title": "Let the Court decide what honor is",
+  "summary": "Love-filled service is what the Lord's Court honors. Stand where grace holds you, not where status ranks you.",
+  "takeaway": "Stand where grace holds you, not where status ranks you.",
+  "lifeApplication": "At the mirror, after the silence, or before the proving message, speak to the Lord as one already being held.",
+  "source": {
+    "deepDiveId": "shabad-humble-company-ends-the-fight-underneath-the-fight",
+    "verseIds": [
+      2107,
+      2108
+    ],
+    "shortMeaning": "Love-filled service is what the Lord's Court honors.",
+    "lifeApplication": "Before angling for credit, do one loving act no one can repay."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-humble-company-ends-the-fight-underneath-the-fight"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Love-filled service is what the Lord's Court honors.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Hold onto this: move toward the humble until fear loses its command.",
+      "practicalImplication": "At the mirror, after the silence, or before the proving message, speak to the Lord as one already being held.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.26,
+      "beauty": 4.37,
+      "overall": 4.3
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

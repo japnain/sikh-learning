@@ -1,0 +1,64 @@
+{
+  "id": "guidance-let-service-make-your-life-weighty",
+  "title": "Let service make your life weighty",
+  "summary": "Service becomes fruitful when the whole life is offered through it. Serve in a way that leaves the self quieter.",
+  "takeaway": "Serve in a way that leaves the self quieter.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+  "source": {
+    "deepDiveId": "shabad-fruitful-service-gives-the-life-a-path",
+    "verseIds": [
+      3452
+    ],
+    "shortMeaning": "Service becomes fruitful when the whole life is offered through it.",
+    "lifeApplication": "When the day feels thin, do the next task as service."
+  },
+  "relatedTopicIds": [
+    "topic-purpose"
+  ],
+  "relatedShabadIds": [
+    "shabad-fruitful-service-gives-the-life-a-path"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Service becomes fruitful when the whole life is offered through it.",
+      "emotionalState": "directionless, numb, adrift",
+      "turn": "Remember this: the path becomes visible when service turns fruitful.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.69,
+      "overall": 4.35
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

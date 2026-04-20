@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-naam-swallow-the-smaller-fears",
+  "title": "Let Naam swallow the smaller fears",
+  "summary": "Absorption in Naam makes the lesser fears fall away. Let mercy become more believable than the threat.",
+  "takeaway": "Let mercy become more believable than the threat.",
+  "lifeApplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+  "source": {
+    "deepDiveId": "shabad-deeper-fearlessness-comes-by-tasting-naam",
+    "verseIds": [
+      6405,
+      6406
+    ],
+    "shortMeaning": "Absorption in Naam makes the lesser fears fall away.",
+    "lifeApplication": "When smaller fears multiply, return to Naam until they lose force."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-deeper-fearlessness-comes-by-tasting-naam"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Absorption in Naam makes the lesser fears fall away.",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Carry this with you: taste Naam deeply enough that lesser fears stop governing you.",
+      "practicalImplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.69,
+      "overall": 4.41
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

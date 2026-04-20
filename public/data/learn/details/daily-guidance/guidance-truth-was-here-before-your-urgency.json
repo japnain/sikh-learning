@@ -1,0 +1,64 @@
+{
+  "id": "guidance-truth-was-here-before-your-urgency",
+  "title": "Truth was here before your urgency",
+  "summary": "Truth precedes the fear trying to rule this moment. Return the hand to trust before it closes again.",
+  "takeaway": "Return the hand to trust before it closes again.",
+  "lifeApplication": "Before tightening around the outcome again, stop, name what is already here, and release one demand you cannot faithfully carry.",
+  "source": {
+    "deepDiveId": "shabad-truth-before-beginning-truth-through-time",
+    "verseIds": [
+      3
+    ],
+    "shortMeaning": "Truth precedes the fear trying to rule this moment.",
+    "lifeApplication": "Before reacting, remember that Truth did not begin with this scene."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-truth-before-beginning-truth-through-time"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "control",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Truth precedes the fear trying to rule this moment.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Carry this with you: truth is not won by pressure or wit, but by walking in Hukam.",
+      "practicalImplication": "Before tightening around the outcome again, stop, name what is already here, and release one demand you cannot faithfully carry.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.94,
+      "beauty": 4.53,
+      "overall": 4.45
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

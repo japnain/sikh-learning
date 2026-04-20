@@ -1,0 +1,65 @@
+{
+  "id": "guidance-choose-settlement-over-motion",
+  "title": "Choose settlement over motion",
+  "summary": "Better company teaches the wandering mind how to settle. Return the mind to better company before it scatters again.",
+  "takeaway": "Return the mind to better company before it scatters again.",
+  "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+  "source": {
+    "deepDiveId": "shabad-fresh-naam-enters-the-mind",
+    "verseIds": [
+      2771,
+      2772
+    ],
+    "shortMeaning": "Better company teaches the wandering mind how to settle.",
+    "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-fresh-naam-enters-the-mind"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Better company teaches the wandering mind how to settle.",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Carry this with you: stay still long enough for fresh Naam to settle.",
+      "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 4.04,
+      "beauty": 4.25,
+      "overall": 4.28
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-the-guru-s-goad-train-the-wild-mind",
+  "title": "Let the Guru's goad train the wild mind",
+  "summary": "The Guru's Shabad trains the wild mind and guards the inner treasure. Choose the practice that leaves the heart steadier, not louder.",
+  "takeaway": "Choose the practice that leaves the heart steadier, not louder.",
+  "lifeApplication": "Before you let impulse lead the room, straighten the posture and pause. Ask what the Guru's Shabad would place in your hand right now.",
+  "source": {
+    "deepDiveId": "shabad-when-the-shabad-takes-the-mind-in-hand",
+    "verseIds": [
+      9473,
+      9474
+    ],
+    "shortMeaning": "The Guru's Shabad trains the wild mind and guards the inner treasure.",
+    "lifeApplication": "When impulse surges, take the Guru's discipline before taking the next step."
+  },
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-when-the-shabad-takes-the-mind-in-hand"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The Guru's Shabad trains the wild mind and guards the inner treasure.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Let this stay with you: let the Guru's Shabad govern the mind before cleverness does.",
+      "practicalImplication": "Before you let impulse lead the room, straighten the posture and pause. Ask what the Guru's Shabad would place in your hand right now.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.8,
+      "beauty": 3.95,
+      "overall": 4.3
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

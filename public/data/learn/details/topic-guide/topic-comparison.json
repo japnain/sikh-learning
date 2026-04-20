@@ -55,7 +55,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-64",
+        "deepDiveId": "shabad-fear-leaves-when-schemes-do",
         "verseIds": [
           749,
           750,
@@ -83,7 +83,7 @@
       "label": "Daily",
       "title": "When comparison starts steering the day",
       "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. In small routines, sideways measurement can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. The daily work is to keep your sight in your own lane before envy becomes the atmosphere.",
       "practicalReflection": "Comparison becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
       "actionPrompt": "Today, before you name someone else's advantage again, bless their portion once and return to the work already entrusted to you.",
       "searchTerms": [
@@ -120,7 +120,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-64",
+            "deepDiveId": "shabad-fear-leaves-when-schemes-do",
             "verseIds": [
               749,
               750,
@@ -167,11 +167,11 @@
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When comparison keeps stealing steadiness and the room gets tight",
-      "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. Under strain, sideways measurement starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, bless their portion once and return to the work already entrusted to you.",
+      "title": "When pressure makes another person’s portion feel like your verdict",
+      "issueStatement": "The strain is already high, and now someone else’s success, peace, beauty, or progress enters the room. Under pressure, comparison turns another person’s portion into evidence against your own life.",
+      "centralInsight": "Gurbani breaks comparison by restoring right proportion. Another person’s portion is not an accusation from the Guru. Pressure must not be allowed to turn borrowed measurements into identity.",
+      "practicalReflection": "Comparison under pressure is especially dangerous because the heart is already tender and defensive. Envy then sounds less like theft and more like honest reporting.",
+      "actionPrompt": "When another person’s portion unsettles you, bless it once, then return your eyes to the duty the Guru has actually placed in your hands.",
       "searchTerms": [
         "comparison",
         "jealousy",
@@ -189,13 +189,13 @@
               9414
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to your entrusted work.",
-            "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "When another person’s portion unsettles you, bless it once, then return your eyes to the duty the Guru has actually placed in your hands."
           },
           "explanation": "Under pressure, this excerpt interrupts sideways measurement before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               765,
               766,
@@ -207,25 +207,25 @@
               772
             ],
             "shortMeaning": "This line steadies the reflex before comparison can rule the moment.",
-            "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "When another person’s portion unsettles you, bless it once, then return your eyes to the duty the Guru has actually placed in your hands."
           },
           "explanation": "The passage refuses to let strain turn comparison into the only voice in the room."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-107",
+            "deepDiveId": "shabad-ask-the-guru-before-you-multiply-the-questions",
             "verseIds": [
               1420
             ],
             "shortMeaning": "Comparison is answered here through praise, duty, and contentment.",
-            "lifeApplication": "When the room tightens, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "When another person’s portion unsettles you, bless it once, then return your eyes to the duty the Guru has actually placed in your hands."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward praise, duty, and contentment."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-comparison:pressure",
         "evidence": {
@@ -249,17 +249,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "When comparison keeps stealing steadiness after the slip",
-      "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
-      "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
-      "actionPrompt": "After the slip is visible, bless their portion once and return to the work already entrusted to you.",
+      "title": "When comparison has already soured the heart",
+      "issueStatement": "The envy has already entered. Someone else’s joy, recognition, or steadiness has left a bitter taste, and now the heart wants either distance, dismissal, or self-contempt.",
+      "centralInsight": "Gurbani repairs comparison by leading the heart back through gratitude and rightful labor. The way out is not pretending envy was never there, but refusing to feed it once it has been exposed.",
+      "practicalReflection": "Repair begins the moment you stop treating envy as private truth. What is confessed can be redirected; what is secretly admired becomes a ruling lens.",
+      "actionPrompt": "Repair comparison by naming the envy before God, then do one grateful and concrete thing with your own portion today.",
       "searchTerms": [
         "comparison",
         "jealousy",
@@ -270,7 +270,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-64",
+            "deepDiveId": "shabad-fear-leaves-when-schemes-do",
             "verseIds": [
               749,
               750,
@@ -280,36 +280,36 @@
               754
             ],
             "shortMeaning": "Repair begins when the heart returns to praise, duty, and contentment instead of performance.",
-            "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "Repair comparison by naming the envy before God, then do one grateful and concrete thing with your own portion today."
           },
           "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               766
             ],
             "shortMeaning": "Comparison is not allowed to become identity here.",
-            "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "Repair comparison by naming the envy before God, then do one grateful and concrete thing with your own portion today."
           },
           "explanation": "The passage keeps comparison from hardening into identity by pointing the heart back to your entrusted work."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-299",
+            "deepDiveId": "shabad-the-lord-s-bani-cools-what-is-burning",
             "verseIds": [
               4119
             ],
             "shortMeaning": "This passage opens a clean way back through your entrusted work.",
-            "lifeApplication": "After the slip is visible, bless their portion once and return to the work already entrusted to you."
+            "lifeApplication": "Repair comparison by naming the envy before God, then do one grateful and concrete thing with your own portion today."
           },
           "explanation": "Repair becomes possible here because the line refuses both excuse and despair."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-comparison:repair",
         "evidence": {
@@ -333,7 +333,7 @@
           "faithfulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "practice": {
@@ -342,7 +342,7 @@
       "title": "When comparison needs a repeatable shape",
       "issueStatement": "Another person's portion keeps entering the room before your own duty does, and your life starts feeling large or small by borrowed measures. Inspiration is not the main need now; a repeatable return is.",
       "centralInsight": "Gurbani breaks comparison by returning the eyes to praise, the hands to duty, and worth to the One who gives every portion. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "practicalReflection": "Comparison weakens when gratitude and duty are practiced before the mind can wander sideways. The heart becomes freer by rehearsing its own portion until borrowed measures lose their glamour.",
       "actionPrompt": "For the next seven days at the same cue, bless their portion once and return to the work already entrusted to you.",
       "searchTerms": [
         "comparison",
@@ -364,7 +364,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-107",
+            "deepDiveId": "shabad-ask-the-guru-before-you-multiply-the-questions",
             "verseIds": [
               1420
             ],
@@ -388,7 +388,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-299",
+            "deepDiveId": "shabad-the-lord-s-bani-cools-what-is-burning",
             "verseIds": [
               4119,
               4120
@@ -432,10 +432,10 @@
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
     "shabad-detached-and-steady",
-    "shabad-generated-64",
-    "shabad-generated-65",
-    "shabad-generated-107",
-    "shabad-generated-299"
+    "shabad-fear-leaves-when-schemes-do",
+    "shabad-praise-melts-what-comparison-hardens",
+    "shabad-ask-the-guru-before-you-multiply-the-questions",
+    "shabad-the-lord-s-bani-cools-what-is-burning"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

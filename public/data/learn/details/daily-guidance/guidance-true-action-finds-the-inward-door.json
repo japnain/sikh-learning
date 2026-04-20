@@ -1,0 +1,65 @@
+{
+  "id": "guidance-true-action-finds-the-inward-door",
+  "title": "True action finds the inward door",
+  "summary": "This body is gained for true action that opens the way home within. Use this day for what can still remain.",
+  "takeaway": "Use this day for what can still remain.",
+  "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity for meeting, service, or honest return.",
+  "source": {
+    "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
+    "verseIds": [
+      771,
+      772
+    ],
+    "shortMeaning": "This body is gained for true action that opens the way home within.",
+    "lifeApplication": "Before speaking about vision again, stop and do one true act with the body you have."
+  },
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-praise-melts-what-comparison-hardens"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "This body is gained for true action that opens the way home within.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Let this stay with you: let praise, saintly company, and true action soften the self into homecoming.",
+      "practicalImplication": "Before drifting into another task, choose one act that treats life as opportunity for meeting, service, or honest return.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.8,
+      "beauty": 4.37,
+      "overall": 4.35
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

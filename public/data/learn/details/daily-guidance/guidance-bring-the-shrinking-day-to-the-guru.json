@@ -1,0 +1,65 @@
+{
+  "id": "guidance-bring-the-shrinking-day-to-the-guru",
+  "title": "Bring the shrinking day to the Guru",
+  "summary": "The shrinking day needs the Guru more than another postponement. Use this day for what can still remain.",
+  "takeaway": "Use this day for what can still remain.",
+  "lifeApplication": "Before drifting into another task, choose one act that treats life as opportunity for meeting, service, or honest return.",
+  "source": {
+    "deepDiveId": "shabad-the-day-is-shrinking-spend-it-well",
+    "verseIds": [
+      8834,
+      8835
+    ],
+    "shortMeaning": "The shrinking day needs the Guru more than another postponement.",
+    "lifeApplication": "Before another day disappears, take the unresolved thing to the Guru first."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-the-day-is-shrinking-spend-it-well"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "purpose",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The shrinking day needs the Guru more than another postponement.",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Keep this in front of you: choose the remaining day for the profit of Naam.",
+      "practicalImplication": "Before drifting into another task, choose one act that treats life as opportunity for meeting, service, or honest return.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.8,
+      "beauty": 4.21,
+      "overall": 4.33
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

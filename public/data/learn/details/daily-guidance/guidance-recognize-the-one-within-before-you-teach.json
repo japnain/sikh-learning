@@ -1,0 +1,65 @@
+{
+  "id": "guidance-recognize-the-one-within-before-you-teach",
+  "title": "Recognize the One within before you teach",
+  "summary": "Knowledge ripens only when the One is recognized within. Say the cleaner thing and keep it.",
+  "takeaway": "Say the cleaner thing and keep it.",
+  "lifeApplication": "Before correcting someone, posting the quote, or giving the lesson, touch the chest and ask if the line has entered your own conduct. Do not use sacred language to stay unexamined.",
+  "source": {
+    "deepDiveId": "shabad-learning-without-inward-turning-stays-trapped-in-maya",
+    "verseIds": [
+      3442,
+      3443
+    ],
+    "shortMeaning": "Knowledge ripens only when the One is recognized within.",
+    "lifeApplication": "Before teaching, ask whether the truth has already changed your own heart."
+  },
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-learning-without-inward-turning-stays-trapped-in-maya"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "honesty",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Knowledge ripens only when the One is recognized within.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Hold onto this: knowledge without inward freedom still serves attachment.",
+      "practicalImplication": "Before correcting someone, posting the quote, or giving the lesson, touch the chest and ask if the line has entered your own conduct. Do not use sacred language to stay unexamined.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.05,
+      "overall": 4.39
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

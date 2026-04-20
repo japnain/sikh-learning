@@ -204,7 +204,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-66",
+            "deepDiveId": "shabad-duality-makes-decoration-hollow",
             "verseIds": [
               782
             ],
@@ -290,7 +290,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-107",
+            "deepDiveId": "shabad-ask-the-guru-before-you-multiply-the-questions",
             "verseIds": [
               1411
             ],
@@ -348,7 +348,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-66",
+            "deepDiveId": "shabad-duality-makes-decoration-hollow",
             "verseIds": [
               782
             ],
@@ -370,7 +370,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-107",
+            "deepDiveId": "shabad-ask-the-guru-before-you-multiply-the-questions",
             "verseIds": [
               1411,
               1412,
@@ -419,8 +419,8 @@
     "shabad-suffering-as-medicine",
     "shabad-steadied-by-creator",
     "shabad-remembrance-brings-peace",
-    "shabad-generated-66",
-    "shabad-generated-107"
+    "shabad-duality-makes-decoration-hollow",
+    "shabad-ask-the-guru-before-you-multiply-the-questions"
   ],
   "relatedTopicIds": [
     "topic-anger",

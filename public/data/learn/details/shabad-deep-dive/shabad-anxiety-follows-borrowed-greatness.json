@@ -1,0 +1,162 @@
+{
+  "id": "shabad-anxiety-follows-borrowed-greatness",
+  "title": "Anxiety follows borrowed greatness",
+  "subtitle": "Raag Gauree · Ang 188",
+  "summary": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
+  "whyItMatters": "This one meets the person pulled into status, land, ownership, or the need to look weighty. Kept near, it changes the measure of greatness from possession to devotion.",
+  "takeaway": "Let this stay with you: choose the Lord's measure of greatness and refuse Maya's scale.",
+  "themes": [
+    "attachment",
+    "doubt",
+    "loneliness"
+  ],
+  "emotionalStates": [
+    "clingy",
+    "possessive",
+    "afraid-to-lose"
+  ],
+  "difficulty": "beginner",
+  "estimatedMinutes": 6,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 564,
+    "ang": 188,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      9
+    ],
+    "verse_ids": [
+      7968,
+      7969,
+      7970,
+      7971,
+      7972,
+      7973,
+      7974,
+      7975,
+      7976
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 7968,
+      "gurmukhi": "ਗਉੜੀ ਮਹਲਾ ੫ ॥",
+      "transliteration": "gauRee mahalaa panjavaa ||",
+      "translation": "Gauree, Fifth Mehla:"
+    },
+    {
+      "verseId": 7969,
+      "gurmukhi": "ਵਡੇ ਵਡੇ ਜੋ ਦੀਸਹਿ ਲੋਗ ॥",
+      "transliteration": "vadde vadde jo dheeseh log ||",
+      "translation": "Those who seem to be great and powerful,"
+    },
+    {
+      "verseId": 7970,
+      "gurmukhi": "ਤਿਨ ਕਉ ਬਿਆਪੈ ਚਿੰਤਾ ਰੋਗ ॥੧॥",
+      "transliteration": "tin kau biaapai chi(n)taa rog ||1||",
+      "translation": "are afflicted by the disease of anxiety. ||1||"
+    },
+    {
+      "verseId": 7971,
+      "gurmukhi": "ਕਉਨ ਵਡਾ ਮਾਇਆ ਵਡਿਆਈ ॥",
+      "transliteration": "kaun vaddaa maiaa vaddiaaiee ||",
+      "translation": "Who is great by the greatness of Maya?"
+    },
+    {
+      "verseId": 7972,
+      "gurmukhi": "ਸੋ ਵਡਾ ਜਿਨਿ ਰਾਮ ਲਿਵ ਲਾਈ ॥੧॥ ਰਹਾਉ ॥",
+      "transliteration": "so vaddaa jin raam liv laiee ||1|| rahaau ||",
+      "translation": "They alone are great, who are lovingly attached to the Lord. ||1||Pause||"
+    },
+    {
+      "verseId": 7973,
+      "gurmukhi": "ਭੂਮੀਆ ਭੂਮਿ ਊਪਰਿ ਨਿਤ ਲੁਝੈ ॥",
+      "transliteration": "bhoomeeaa bhoom uoopar nit lujhai ||",
+      "translation": "The landlord fights over his land each day."
+    },
+    {
+      "verseId": 7974,
+      "gurmukhi": "ਛੋਡਿ ਚਲੈ ਤ੍ਰਿਸਨਾ ਨਹੀ ਬੁਝੈ ॥੨॥",
+      "transliteration": "chhodd chalai tirasanaa nahee bujhai ||2||",
+      "translation": "He shall have to leave it in the end, and yet his desire is still not satisfied. ||2||"
+    },
+    {
+      "verseId": 7975,
+      "gurmukhi": "ਕਹੁ ਨਾਨਕ ਇਹੁ ਤਤੁ ਬੀਚਾਰਾ ॥",
+      "transliteration": "kahu naanak ih tat beechaaraa ||",
+      "translation": "Says Nanak, this is the essence of Truth:"
+    },
+    {
+      "verseId": 7976,
+      "gurmukhi": "ਬਿਨੁ ਹਰਿ ਭਜਨ ਨਾਹੀ ਛੁਟਕਾਰਾ ॥੩॥੪੪॥੧੧੩॥",
+      "transliteration": "bin har bhajan naahee chhuTakaaraa ||3||44||113||",
+      "translation": "without the Lord's meditation, there is no salvation. ||3||44||113||"
+    }
+  ],
+  "structure": [
+    "First, it begins by exposing the anxiety hidden inside visible greatness.",
+    "Then, it shows desire still raging even in the one who appears established and secure.",
+    "Finally, it ends in essence: without devotion to the Lord, there is no real release."
+  ],
+  "keyVerseIds": [
+    7969,
+    7972,
+    7974,
+    7976
+  ],
+  "relatedGuidanceIds": [
+    "guidance-seeming-great-is-not-being-great",
+    "guidance-measure-greatness-by-what-the-heart-clings-to"
+  ],
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey",
+    "collection-attachment-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "The shabad opens by stripping the glamour from worldly greatness and naming its hidden disease: anxiety. It then asks what greatness means at all and answers with loving attachment to the Lord.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Then, it shows desire still raging even in the one who appears established and secure.",
+      "practicalImplication": "This one meets the person pulled into status, land, ownership, or the need to look weighty. Kept near, it changes the measure of greatness from possession to devotion. Let this stay with you: choose the Lord's measure of greatness and refuse Maya's scale.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.72,
+      "beauty": 4.05,
+      "overall": 4.29
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

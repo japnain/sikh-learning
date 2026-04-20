@@ -218,10 +218,10 @@ export default function LearnHub() {
     ? "One question, one shabad, one next step."
     : pageCopy.body
   const compactTodayHeroBody = locale === "en" && activeTab === "today"
-    ? "Search plainly. One reviewed guide stays central, with the full shabad and the next faithful paths close."
+    ? "Search the need plainly. One trustworthy guide stays central, with the full shabad and the next faithful paths close."
     : editorial?.learn.heroBody
   const compactTodayHeroHint = locale === "en" && activeTab === "today"
-    ? "The strongest reviewed guide opens first."
+    ? "Start with the clearest guide, then follow the scenario and shabad without losing the thread."
     : editorial?.learn.heroSearchHint
   const hasActiveShabadFilters = Boolean(
     shabadThemeFilter

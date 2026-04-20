@@ -1,0 +1,64 @@
+{
+  "id": "guidance-guard-one-real-instant-of-remembrance",
+  "title": "Guard one real instant of remembrance",
+  "summary": "One moment of true remembrance steadies more than endless drift. Choose the practice that leaves the heart steadier, not louder.",
+  "takeaway": "Choose the practice that leaves the heart steadier, not louder.",
+  "lifeApplication": "Before the next app, errand, or anxious leap, close the lips and give one unbroken instant to Naam. Let one true pause interrupt the drift.",
+  "source": {
+    "deepDiveId": "shabad-one-instant-of-remembrance-outweighs-drift",
+    "verseIds": [
+      10398
+    ],
+    "shortMeaning": "One moment of true remembrance steadies more than endless drift.",
+    "lifeApplication": "Break the drift with one whole instant of remembrance before moving again."
+  },
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedShabadIds": [
+    "shabad-one-instant-of-remembrance-outweighs-drift"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "One moment of true remembrance steadies more than endless drift.",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Remember this: guard one true instant of simran against a thousand distracted ones.",
+      "practicalImplication": "Before the next app, errand, or anxious leap, close the lips and give one unbroken instant to Naam. Let one true pause interrupt the drift.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.8,
+      "beauty": 4.05,
+      "overall": 4.31
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

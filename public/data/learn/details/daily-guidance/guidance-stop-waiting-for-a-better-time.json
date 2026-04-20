@@ -1,0 +1,65 @@
+{
+  "id": "guidance-stop-waiting-for-a-better-time",
+  "title": "Stop waiting for a better time",
+  "summary": "Remembrance becomes true when it stops waiting for a better hour. Let contentment prove your discipline.",
+  "takeaway": "Let contentment prove your discipline.",
+  "lifeApplication": "At the moment you say 'later,' catch it in the throat and interrupt it. Take the Name before the next task teaches you to postpone again.",
+  "source": {
+    "deepDiveId": "shabad-do-not-postpone-remembrance",
+    "verseIds": [
+      1430,
+      1431
+    ],
+    "shortMeaning": "Remembrance becomes true when it stops waiting for a better hour.",
+    "lifeApplication": "When you say 'later,' take one breath and remember now."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-do-not-postpone-remembrance"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Remembrance becomes true when it stops waiting for a better hour.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Carry this with you: remembrance becomes true when it stops waiting for later.",
+      "practicalImplication": "At the moment you say 'later,' catch it in the throat and interrupt it. Take the Name before the next task teaches you to postpone again.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.23,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 5,
+      "beauty": 4.17,
+      "overall": 4.3
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

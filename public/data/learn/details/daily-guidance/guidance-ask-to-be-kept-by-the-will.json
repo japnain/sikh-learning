@@ -1,0 +1,65 @@
+{
+  "id": "guidance-ask-to-be-kept-by-the-will",
+  "title": "Ask to be kept by the Will",
+  "summary": "Peace begins when the self asks to be kept by Hukam. Return to Hukam before the self starts arguing again.",
+  "takeaway": "Return to Hukam before the self starts arguing again.",
+  "lifeApplication": "Before arguing with the moment again, stop, name what is already here, and let one resistance fall away.",
+  "source": {
+    "deepDiveId": "shabad-peace-comes-through-serving-the-true-guru",
+    "verseIds": [
+      3433,
+      3434
+    ],
+    "shortMeaning": "Peace begins when the self asks to be kept by Hukam.",
+    "lifeApplication": "When pride hardens, ask to be held by the Will before you act."
+  },
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-peace-comes-through-serving-the-true-guru"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "hukam",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Peace begins when the self asks to be kept by Hukam.",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Hold onto this: serve first, and let peace expose the self.",
+      "practicalImplication": "Before arguing with the moment again, stop, name what is already here, and let one resistance fall away.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.94,
+      "beauty": 4.37,
+      "overall": 4.4
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

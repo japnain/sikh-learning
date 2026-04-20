@@ -10,6 +10,40 @@ import {
   resetLearnRepositoryCache,
 } from "./learnRepository"
 
+const LOW_SCORING_TOPIC_SCENARIOS = [
+  ["topic-purpose", "pressure"],
+  ["topic-speech", "pressure"],
+  ["topic-softness", "pressure"],
+  ["topic-softness", "repair"],
+  ["topic-sangat", "pressure"],
+  ["topic-shame", "practice"],
+  ["topic-conduct", "pressure"],
+  ["topic-sangat", "repair"],
+  ["topic-self-worth", "practice"],
+  ["topic-shame", "pressure"],
+  ["topic-anger", "pressure"],
+  ["topic-purpose", "repair"],
+  ["topic-speech", "practice"],
+  ["topic-control", "pressure"],
+  ["topic-comparison", "pressure"],
+  ["topic-sangat", "daily"],
+  ["topic-self-worth", "pressure"],
+  ["topic-softness", "practice"],
+  ["topic-comparison", "repair"],
+  ["topic-shame", "daily"],
+  ["topic-fear", "pressure"],
+  ["topic-conduct", "repair"],
+  ["topic-anger", "daily"],
+  ["topic-control", "daily"],
+] as const
+
+const GENERIC_SCENARIO_PHRASES = [
+  "The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+  "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
+  "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+  "A kept rule is gentler than a burst of intensity and usually more transformative.",
+]
+
 const ORDINAL_MEHLA_PATTERN = "(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)"
 const HEADING_ONLY_PATTERN = new RegExp(
   `^\\s*(?:raag\\s+)?[a-z][a-z' -]+,\\s*${ORDINAL_MEHLA_PATTERN}\\s+mehla:?\\s*$`,
@@ -136,4 +170,85 @@ test("published learn catalog does not leak structural heading text into public 
     expect(hasStructuralHeadingLeak(collection.title)).toBe(false)
     expect(hasStructuralHeadingLeak(collection.heroSource.shortMeaning)).toBe(false)
   }
+})
+
+test("published learn collections only reference valid topic ids", async () => {
+  const catalog = await loadLearnCatalog()
+  const topicIds = new Set(catalog.topicGuides.map(topic => topic.id))
+
+  for (const collection of catalog.collections) {
+    for (const topicId of collection.relatedTopicIds) {
+      expect(topicId).toMatch(/^topic-/)
+      expect(topicIds.has(topicId)).toBe(true)
+    }
+  }
+})
+
+test("low-scoring topic scenarios are manually reviewed before they remain in the archive", async () => {
+  for (const [topicId, scenarioKey] of LOW_SCORING_TOPIC_SCENARIOS) {
+    const topic = await loadLearnDetail("topic-guide", topicId)
+    expect(topic).not.toBeNull()
+    expect(topic?.scenarios?.[scenarioKey]?.editorial?.reviewedByHuman).toBe(true)
+  }
+})
+
+test("priority topic scenarios do not keep the old generic template lines", async () => {
+  const topicIds = Array.from(new Set(LOW_SCORING_TOPIC_SCENARIOS.map(([topicId]) => topicId)))
+
+  for (const topicId of topicIds) {
+    const topic = await loadLearnDetail("topic-guide", topicId)
+    expect(topic).not.toBeNull()
+
+    for (const scenarioKey of topic!.scenarioOrder) {
+      const scenario = topic!.scenarios[scenarioKey]
+      for (const phrase of GENERIC_SCENARIO_PHRASES) {
+        expect(scenario.issueStatement).not.toContain(phrase)
+        expect(scenario.centralInsight).not.toContain(phrase)
+        expect(scenario.practicalReflection).not.toContain(phrase)
+      }
+    }
+  }
+})
+
+test("published daily guidance summaries are distinct and avoid repeated exhortation scaffolds", async () => {
+  const catalog = await loadLearnCatalog()
+  const seenSummaries = new Map<string, string>()
+  const repeatedSummaryPhrases = [
+    "keep this close",
+    "let this stay with you",
+    "hold onto this",
+    "carry this with you",
+    "do not let the day outrun this",
+  ]
+
+  for (const guidance of catalog.dailyGuidance) {
+    const normalizedSummary = guidance.summary.trim().toLowerCase()
+    expect(seenSummaries.has(normalizedSummary)).toBe(false)
+    seenSummaries.set(normalizedSummary, guidance.id)
+
+    for (const phrase of repeatedSummaryPhrases) {
+      expect(normalizedSummary).not.toContain(phrase)
+    }
+  }
+})
+
+test("published learn catalog no longer uses generated ids for canonical guidance or shabads", async () => {
+  const catalog = await loadLearnCatalog()
+
+  for (const guidance of catalog.dailyGuidance) {
+    expect(guidance.id).not.toContain("generated-")
+  }
+
+  for (const shabad of catalog.shabadDeepDives) {
+    expect(shabad.id).not.toContain("generated-")
+  }
+})
+
+test("legacy generated learn ids still resolve through catalog indexes", async () => {
+  const catalog = await loadLearnCatalog()
+
+  expect(catalog.dailyGuidanceById["guidance-generated-178-1"]?.id).toBeTruthy()
+  expect(catalog.dailyGuidanceById["guidance-generated-178-1"]?.id).not.toBe("guidance-generated-178-1")
+  expect(catalog.shabadDeepDiveById["shabad-generated-818"]?.id).toBeTruthy()
+  expect(catalog.shabadDeepDiveById["shabad-generated-818"]?.id).not.toBe("shabad-generated-818")
 })

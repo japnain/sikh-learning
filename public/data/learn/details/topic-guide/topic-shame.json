@@ -19,7 +19,7 @@
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-generated-150",
+        "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
         "verseIds": [
           2088
         ],
@@ -30,7 +30,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-153",
+        "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
         "verseIds": [
           2133,
           2134,
@@ -44,7 +44,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-736",
+        "deepDiveId": "shabad-the-powerful-cannot-do-your-inner-work",
         "verseIds": [
           10381,
           10382,
@@ -78,11 +78,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "When shame keeps closing the heart before the day gets away from you",
-      "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. In small routines, turning failure into identity can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
-      "practicalReflection": "Shame becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
-      "actionPrompt": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return.",
+      "title": "When shame quietly shapes the ordinary day",
+      "issueStatement": "Nothing dramatic may be happening, yet shame is still choosing your posture, your silence, and how little of yourself you allow to stand in the room.",
+      "centralInsight": "Gurbani loosens shame by restoring rightful standing before the Guru. The ordinary day becomes livable again when the heart stops asking failure to define its place.",
+      "practicalReflection": "Daily shame is dangerous because it looks modest. It can shrink prayer, service, and speech until hiding starts masquerading as humility.",
+      "actionPrompt": "Today, refuse one small act of shrinking: stand, speak, pray, or serve where shame told you to stay hidden.",
       "searchTerms": [
         "shame",
         "guilt",
@@ -93,18 +93,18 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-150",
+            "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
             "verseIds": [
               2088
             ],
             "shortMeaning": "The day steadies when shame is met with forgiveness, nearness, and belonging.",
-            "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
+            "lifeApplication": "Today, refuse one small act of shrinking: stand, speak, pray, or serve where shame told you to stay hidden."
           },
           "explanation": "In the daily rhythm, this excerpt interrupts turning failure into identity before it becomes the mood of the whole day."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2133,
               2134,
@@ -112,13 +112,13 @@
               2136
             ],
             "shortMeaning": "Ordinary moments change when the mind returns to clean return instead of turning failure into identity.",
-            "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
+            "lifeApplication": "Today, refuse one small act of shrinking: stand, speak, pray, or serve where shame told you to stay hidden."
           },
           "explanation": "The passage pulls the heart back from turning failure into identity and into clean return."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-736",
+            "deepDiveId": "shabad-the-powerful-cannot-do-your-inner-work",
             "verseIds": [
               10381,
               10382,
@@ -136,14 +136,14 @@
               10394
             ],
             "shortMeaning": "This excerpt restores proportion before shame takes over the tone of the day.",
-            "lifeApplication": "Today, when shame starts narrating finality, answer it with one line of Bani and one act of return."
+            "lifeApplication": "Today, refuse one small act of shrinking: stand, speak, pray, or serve where shame told you to stay hidden."
           },
           "explanation": "This keeps the next ordinary moment from being governed by shame."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-shame:daily",
         "evidence": {
@@ -167,17 +167,17 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When shame keeps closing the heart and the room gets tight",
-      "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. Under strain, turning failure into identity starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, answer it with one line of Bani and one act of return.",
+      "title": "When pressure makes shame sound like self-knowledge",
+      "issueStatement": "The room tightens and shame starts narrating your weakness before anyone else can. Under pressure, self-accusation begins to feel wiser than hope.",
+      "centralInsight": "Gurbani does not confuse shame with humility. Humility keeps a way back open; shame closes the door and then calls the darkness honesty.",
+      "practicalReflection": "Pressure makes shame persuasive because it sounds severe, and severity often feels truthful. But the Guru does not heal by teaching you to agree with your own rejection.",
+      "actionPrompt": "When shame gets loud, answer it with one truthful line from Gurbani before you agree with its version of you.",
       "searchTerms": [
         "shame",
         "guilt",
@@ -188,7 +188,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2133,
               2134,
@@ -196,37 +196,37 @@
               2136
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to clean return.",
-            "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
+            "lifeApplication": "When shame gets loud, answer it with one truthful line from Gurbani before you agree with its version of you."
           },
           "explanation": "Under pressure, this excerpt interrupts turning failure into identity before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-817",
+            "deepDiveId": "shabad-this-is-not-your-lasting-home",
             "verseIds": [
               11174,
               11175
             ],
             "shortMeaning": "This line steadies the reflex before shame can rule the moment.",
-            "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
+            "lifeApplication": "When shame gets loud, answer it with one truthful line from Gurbani before you agree with its version of you."
           },
           "explanation": "The passage refuses to let strain turn shame into the only voice in the room."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1046",
+            "deepDiveId": "shabad-do-not-forget-the-one-who-never-forgets-you",
             "verseIds": [
               13132
             ],
             "shortMeaning": "Shame is answered here through forgiveness, nearness, and belonging.",
-            "lifeApplication": "When the room tightens, answer it with one line of Bani and one act of return."
+            "lifeApplication": "When shame gets loud, answer it with one truthful line from Gurbani before you agree with its version of you."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward forgiveness, nearness, and belonging."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-shame:pressure",
         "evidence": {
@@ -250,7 +250,7 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
@@ -259,7 +259,7 @@
       "title": "When shame has already run ahead of truth",
       "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
       "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "practicalReflection": "Repair after shame begins when you stop cooperating with disappearance. The soul heals as it returns in truth, lets itself be seen again, and refuses to make hiding its form of penance.",
       "actionPrompt": "After the slip is visible, answer it with one line of Bani and one act of return.",
       "searchTerms": [
         "shame",
@@ -271,7 +271,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-736",
+            "deepDiveId": "shabad-the-powerful-cannot-do-your-inner-work",
             "verseIds": [
               10381,
               10382,
@@ -295,7 +295,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-817",
+            "deepDiveId": "shabad-this-is-not-your-lasting-home",
             "verseIds": [
               11172
             ],
@@ -306,7 +306,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1049",
+            "deepDiveId": "shabad-the-forgiving-lord-shelters-the-lowly",
             "verseIds": [
               13157
             ],
@@ -348,11 +348,11 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "When shame needs a repeatable shape",
-      "issueStatement": "You have taken one failure, wound, or pattern and started treating it as the whole meaning of yourself. Inspiration is not the main need now; a repeatable return is.",
-      "centralInsight": "Guru answers shame with forgiveness, nearness, and belonging. The self is corrected, but it is not abandoned. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
-      "actionPrompt": "For the next seven days at the same cue, answer it with one line of Bani and one act of return.",
+      "title": "When shame needs a practice of coming back into the light",
+      "issueStatement": "Shame keeps shrinking the soul even when no one is accusing you out loud. Without a repeated return, the inner story keeps teaching you to hide from mercy.",
+      "centralInsight": "Gurbani does not heal shame by flattering the self. It heals by bringing the person back into truthful nearness, where dignity is received from the Guru instead of negotiated from failure.",
+      "practicalReflection": "Shame grows in secrecy and weakens in honest repetition. A small practiced return can do more than waiting for one overwhelming breakthrough of self-acceptance.",
+      "actionPrompt": "For the next seven days, answer shame with one small open act: bow, read aloud, ask for help, or return visibly instead of disappearing.",
       "searchTerms": [
         "shame",
         "guilt",
@@ -363,29 +363,29 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-1046",
+            "deepDiveId": "shabad-do-not-forget-the-one-who-never-forgets-you",
             "verseIds": [
               13132
             ],
             "shortMeaning": "Shame is retrained through repeated return to clean return.",
-            "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
+            "lifeApplication": "For the next seven days, answer shame with one small open act: bow, read aloud, ask for help, or return visibly instead of disappearing."
           },
           "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-150",
+            "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
             "verseIds": [
               2088
             ],
             "shortMeaning": "This excerpt gives the heart a keepable pattern of forgiveness, nearness, and belonging.",
-            "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
+            "lifeApplication": "For the next seven days, answer shame with one small open act: bow, read aloud, ask for help, or return visibly instead of disappearing."
           },
           "explanation": "The passage gives shame a repeatable interruption through forgiveness, nearness, and belonging."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1049",
+            "deepDiveId": "shabad-the-forgiving-lord-shelters-the-lowly",
             "verseIds": [
               13157,
               13158,
@@ -393,14 +393,14 @@
               13160
             ],
             "shortMeaning": "A steady practice weakens turning failure into identity over time.",
-            "lifeApplication": "For the next seven days at the same cue, answer it with one line of Bani and one act of return."
+            "lifeApplication": "For the next seven days, answer shame with one small open act: bow, read aloud, ask for help, or return visibly instead of disappearing."
           },
           "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-shame:practice",
         "evidence": {
@@ -424,17 +424,17 @@
           "faithfulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     }
   },
   "relatedShabadIds": [
-    "shabad-generated-150",
-    "shabad-generated-153",
-    "shabad-generated-736",
-    "shabad-generated-817",
-    "shabad-generated-1046",
-    "shabad-generated-1049"
+    "shabad-mercy-lets-the-child-tell-the-truth",
+    "shabad-release-arrives-where-seeking-kneels-into-service",
+    "shabad-the-powerful-cannot-do-your-inner-work",
+    "shabad-this-is-not-your-lasting-home",
+    "shabad-do-not-forget-the-one-who-never-forgets-you",
+    "shabad-the-forgiving-lord-shelters-the-lowly"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

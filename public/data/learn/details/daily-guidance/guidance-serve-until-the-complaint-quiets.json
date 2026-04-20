@@ -1,0 +1,64 @@
+{
+  "id": "guidance-serve-until-the-complaint-quiets",
+  "title": "Serve until the complaint quiets",
+  "summary": "Service ripens into Naam and quiets inner complaint. Gather the mind before you call it service.",
+  "takeaway": "Gather the mind before you call it service.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+  "source": {
+    "deepDiveId": "shabad-those-who-serve-the-true-guru-receive-the-name",
+    "verseIds": [
+      3447
+    ],
+    "shortMeaning": "Service ripens into Naam and quiets inner complaint.",
+    "lifeApplication": "Before asking for more clarity, answer one need and stay with it."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-those-who-serve-the-true-guru-receive-the-name"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Service ripens into Naam and quiets inner complaint.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Keep this in front of you: serve the Guru until complaint thins and love for the Beloved rises.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 4.95,
+      "overall": 4.41
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -31,7 +31,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-109",
+        "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
         "verseIds": [
           1449,
           1450,
@@ -53,7 +53,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-153",
+        "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
         "verseIds": [
           2138,
           2139,
@@ -108,7 +108,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1449,
               1450,
@@ -130,7 +130,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2138,
               2139,
@@ -195,7 +195,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1449,
               1450,
@@ -217,7 +217,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-178",
+            "deepDiveId": "shabad-fresh-naam-enters-the-mind",
             "verseIds": [
               2781,
               2782,
@@ -231,7 +231,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-227",
+            "deepDiveId": "shabad-all-belong-to-the-one-who-belongs-to-all",
             "verseIds": [
               3438
             ],
@@ -288,7 +288,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2138,
               2139,
@@ -307,7 +307,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-178",
+            "deepDiveId": "shabad-fresh-naam-enters-the-mind",
             "verseIds": [
               2777
             ],
@@ -318,7 +318,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-229",
+            "deepDiveId": "shabad-those-who-serve-the-true-guru-receive-the-name",
             "verseIds": [
               3447
             ],
@@ -375,7 +375,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-227",
+            "deepDiveId": "shabad-all-belong-to-the-one-who-belongs-to-all",
             "verseIds": [
               3438
             ],
@@ -397,7 +397,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-229",
+            "deepDiveId": "shabad-those-who-serve-the-true-guru-receive-the-name",
             "verseIds": [
               3447,
               3448
@@ -440,11 +440,11 @@
   },
   "relatedShabadIds": [
     "shabad-search-ends-in-saint-company",
-    "shabad-generated-109",
-    "shabad-generated-153",
-    "shabad-generated-178",
-    "shabad-generated-227",
-    "shabad-generated-229"
+    "shabad-the-shabad-clears-the-double-mind",
+    "shabad-release-arrives-where-seeking-kneels-into-service",
+    "shabad-fresh-naam-enters-the-mind",
+    "shabad-all-belong-to-the-one-who-belongs-to-all",
+    "shabad-those-who-serve-the-true-guru-receive-the-name"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

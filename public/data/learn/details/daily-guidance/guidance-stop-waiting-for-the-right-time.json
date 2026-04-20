@@ -1,0 +1,64 @@
+{
+  "id": "guidance-stop-waiting-for-the-right-time",
+  "title": "Stop waiting for the right time",
+  "summary": "The right time appears only when remembrance begins now. Choose the practice that leaves the heart steadier, not louder.",
+  "takeaway": "Choose the practice that leaves the heart steadier, not louder.",
+  "lifeApplication": "At the fixed cue you can actually keep, return to one line before adding anything new.",
+  "source": {
+    "deepDiveId": "shabad-do-not-postpone-remembrance",
+    "verseIds": [
+      1430
+    ],
+    "shortMeaning": "The right time appears only when remembrance begins now.",
+    "lifeApplication": "When you postpone practice, start with one faithful minute before planning more."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-do-not-postpone-remembrance"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "discipline",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The right time appears only when remembrance begins now.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Carry this with you: remembrance becomes true when it stops waiting for later.",
+      "practicalImplication": "At the fixed cue you can actually keep, return to one line before adding anything new.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.04,
+      "beauty": 4.21,
+      "overall": 4.22
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

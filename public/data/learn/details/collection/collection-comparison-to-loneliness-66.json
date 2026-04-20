@@ -9,7 +9,7 @@
     "loneliness"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-65",
+    "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
     "verseIds": [
       759
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-65-1"
+      "id": "guidance-melt-the-self-into-praise"
     },
     {
       "kind": "topic-guide",
@@ -46,14 +46,13 @@
   ],
   "relatedTopicIds": [
     "topic-comparison",
-    "topic-loneliness",
-    "t"
+    "topic-loneliness"
   ],
   "relatedShabadIds": [
     "shabad-conquer-the-mind",
     "shabad-child-of-grace",
     "shabad-detached-and-steady",
-    "shabad-generated-152"
+    "shabad-love-the-guru-with-mind-and-body"
   ],
   "editorial": {
     "status": "approved",

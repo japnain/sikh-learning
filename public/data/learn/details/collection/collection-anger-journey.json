@@ -9,7 +9,7 @@
     "speech"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-1",
+    "deepDiveId": "shabad-truth-before-beginning-truth-through-time",
     "verseIds": [
       3
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-1-1"
+      "id": "guidance-truth-was-here-before-your-urgency"
     },
     {
       "kind": "topic-guide",
@@ -32,7 +32,7 @@
     },
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-1-2"
+      "id": "guidance-piling-up-will-not-satisfy-hunger"
     },
     {
       "kind": "shabad-deep-dive",
@@ -41,7 +41,7 @@
   ],
   "relatedTopicIds": [
     "topic-anger",
-    "t"
+    "topic-speech"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",

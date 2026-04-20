@@ -1,0 +1,64 @@
+{
+  "id": "guidance-ownership-fails-at-the-first-question",
+  "title": "Ownership fails at the first question",
+  "summary": "The first questions of grief already loosen the claim of ownership. Receive the gift without claiming the outcome.",
+  "takeaway": "Receive the gift without claiming the outcome.",
+  "lifeApplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
+  "source": {
+    "deepDiveId": "shabad-the-soul-was-never-yours-to-keep",
+    "verseIds": [
+      7958
+    ],
+    "shortMeaning": "The first questions of grief already loosen the claim of ownership.",
+    "lifeApplication": "When you tighten around what is yours, ask whose it finally is."
+  },
+  "relatedTopicIds": [
+    "topic-doubt"
+  ],
+  "relatedShabadIds": [
+    "shabad-the-soul-was-never-yours-to-keep"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-doubt-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The first questions of grief already loosen the claim of ownership.",
+      "emotionalState": "foggy, uncertain, hesitant",
+      "turn": "Let this stay with you: let grief answer to Hukam instead of ownership.",
+      "practicalImplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 4.37,
+      "overall": 4.32
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

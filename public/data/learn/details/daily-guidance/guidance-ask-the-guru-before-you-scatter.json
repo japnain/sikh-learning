@@ -1,0 +1,64 @@
+{
+  "id": "guidance-ask-the-guru-before-you-scatter",
+  "title": "Ask the Guru before you scatter",
+  "summary": "The seeking heart becomes clear when it takes its question to the Guru. Do not let the search outrun shelter.",
+  "takeaway": "Do not let the search outrun shelter.",
+  "lifeApplication": "Before starting one more search, stay with the shelter already in front of you and keep one line there.",
+  "source": {
+    "deepDiveId": "shabad-ask-the-guru-before-you-multiply-the-questions",
+    "verseIds": [
+      1411
+    ],
+    "shortMeaning": "The seeking heart becomes clear when it takes its question to the Guru.",
+    "lifeApplication": "When uncertainty spreads, ask the Guru before you ask the crowd."
+  },
+  "relatedTopicIds": [
+    "topic-anxiety"
+  ],
+  "relatedShabadIds": [
+    "shabad-ask-the-guru-before-you-multiply-the-questions"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-to-trust",
+    "collection-anxiety-journey"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The seeking heart becomes clear when it takes its question to the Guru.",
+      "emotionalState": "restless, uncertain, fearful",
+      "turn": "Carry this with you: clarity begins when the question is taken to the Guru.",
+      "practicalImplication": "Before starting one more search, stay with the shelter already in front of you and keep one line there.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.42,
+      "beauty": 4.53,
+      "overall": 4.35
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

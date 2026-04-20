@@ -9,7 +9,7 @@
     "discipline"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-1",
+    "deepDiveId": "shabad-truth-before-beginning-truth-through-time",
     "verseIds": [
       3
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-1-1"
+      "id": "guidance-truth-was-here-before-your-urgency"
     },
     {
       "kind": "topic-guide",
@@ -46,8 +46,7 @@
   ],
   "relatedTopicIds": [
     "topic-anger",
-    "topic-discipline",
-    "t"
+    "topic-discipline"
   ],
   "relatedShabadIds": [
     "shabad-ego-is-disease",

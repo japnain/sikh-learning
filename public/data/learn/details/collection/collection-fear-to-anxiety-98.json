@@ -9,7 +9,7 @@
     "anxiety"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-300",
+    "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
     "verseIds": [
       4132
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-300-1"
+      "id": "guidance-let-shelter-be-personal-again"
     },
     {
       "kind": "topic-guide",
@@ -46,13 +46,12 @@
   ],
   "relatedTopicIds": [
     "topic-fear",
-    "topic-anxiety",
-    "t"
+    "topic-anxiety"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
     "shabad-hukam-inside-everything",
-    "shabad-generated-178",
+    "shabad-fresh-naam-enters-the-mind",
     "shabad-suffering-as-medicine"
   ],
   "editorial": {

@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-truth-give-your-heart-its-place",
+  "title": "Let Truth give your heart its place",
+  "summary": "The Shabad steadies worth by revealing Truth within the heart. Receive the dignity already being given.",
+  "takeaway": "Receive the dignity already being given.",
+  "lifeApplication": "Before checking the reply, the numbers, or the room's reaction, touch the center of the chest and say the line once. Let inner sight steady you before outer feedback arrives.",
+  "source": {
+    "deepDiveId": "shabad-truth-gives-the-heart-a-steadier-worth",
+    "verseIds": [
+      4852,
+      4853
+    ],
+    "shortMeaning": "The Shabad steadies worth by revealing Truth within the heart.",
+    "lifeApplication": "When approval tempts you, let Truth settle the heart before the room does."
+  },
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
+  "relatedShabadIds": [
+    "shabad-truth-gives-the-heart-a-steadier-worth"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The Shabad steadies worth by revealing Truth within the heart.",
+      "emotionalState": "unworthy, rejected, fragile",
+      "turn": "Keep this in front of you: let Truth, not applause, give the heart its place.",
+      "practicalImplication": "Before checking the reply, the numbers, or the room's reaction, touch the center of the chest and say the line once. Let inner sight steady you before outer feedback arrives.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.86,
+      "beauty": 4.69,
+      "overall": 4.44
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

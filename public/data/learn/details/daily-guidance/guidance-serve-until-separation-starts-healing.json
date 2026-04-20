@@ -1,0 +1,64 @@
+{
+  "id": "guidance-serve-until-separation-starts-healing",
+  "title": "Serve until separation starts healing",
+  "summary": "Steady service and remembrance begin healing long separation. Do not let the search outrun shelter.",
+  "takeaway": "Do not let the search outrun shelter.",
+  "lifeApplication": "Before starting one more search, stay with the shelter already in front of you and keep one line there.",
+  "source": {
+    "deepDiveId": "shabad-steady-service-begins-healing-long-separation",
+    "verseIds": [
+      5553
+    ],
+    "shortMeaning": "Steady service and remembrance begin healing long separation.",
+    "lifeApplication": "When distance hurts, keep serving through the day and night instead of dramatizing it."
+  },
+  "relatedTopicIds": [
+    "topic-mercy"
+  ],
+  "relatedShabadIds": [
+    "shabad-steady-service-begins-healing-long-separation"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Steady service and remembrance begin healing long separation.",
+      "emotionalState": "unworthy, guarded, hard-on-self",
+      "turn": "Carry this with you: stay in service and remembrance until separation begins healing.",
+      "practicalImplication": "Before starting one more search, stay with the shelter already in front of you and keep one line there.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.42,
+      "beauty": 4.69,
+      "overall": 4.4
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

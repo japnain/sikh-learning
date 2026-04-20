@@ -44,7 +44,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-3",
+        "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
         "verseIds": [
           29,
           30
@@ -105,7 +105,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-3",
+            "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
             "verseIds": [
               29,
               30
@@ -176,7 +176,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-150",
+            "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
             "verseIds": [
               2092,
               2093,
@@ -192,7 +192,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-560",
+            "deepDiveId": "shabad-what-the-beloved-does-i-accept",
             "verseIds": [
               7930
             ],
@@ -249,7 +249,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-3",
+            "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
             "verseIds": [
               29,
               30
@@ -261,7 +261,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-150",
+            "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
             "verseIds": [
               2093
             ],
@@ -272,7 +272,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-563",
+            "deepDiveId": "shabad-the-soul-was-never-yours-to-keep",
             "verseIds": [
               7958
             ],
@@ -329,7 +329,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-560",
+            "deepDiveId": "shabad-what-the-beloved-does-i-accept",
             "verseIds": [
               7930
             ],
@@ -351,7 +351,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-563",
+            "deepDiveId": "shabad-the-soul-was-never-yours-to-keep",
             "verseIds": [
               7958,
               7959,
@@ -396,10 +396,10 @@
   "relatedShabadIds": [
     "shabad-hukam-inside-everything",
     "shabad-what-pleases-you-comes-to-pass",
-    "shabad-generated-3",
-    "shabad-generated-150",
-    "shabad-generated-560",
-    "shabad-generated-563"
+    "shabad-praise-breaks-the-illusion-of-mastery",
+    "shabad-mercy-lets-the-child-tell-the-truth",
+    "shabad-what-the-beloved-does-i-accept",
+    "shabad-the-soul-was-never-yours-to-keep"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

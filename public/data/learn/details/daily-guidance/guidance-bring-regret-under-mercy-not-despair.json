@@ -1,0 +1,64 @@
+{
+  "id": "guidance-bring-regret-under-mercy-not-despair",
+  "title": "Bring regret under mercy, not despair",
+  "summary": "Past actions remain real, but mercy and the Name are still larger. Receive mercy before measuring worth.",
+  "takeaway": "Receive mercy before measuring worth.",
+  "lifeApplication": "When the old mistake returns, stop before turning it into an identity. Bring the regret under God's Name and ask what faithfulness looks like now.",
+  "source": {
+    "deepDiveId": "shabad-what-comes-to-pass-is-not-outside-the-doer",
+    "verseIds": [
+      6386
+    ],
+    "shortMeaning": "Past actions remain real, but mercy and the Name are still larger.",
+    "lifeApplication": "When regret revisits, take refuge in the Name before self-condemnation expands."
+  },
+  "relatedTopicIds": [
+    "topic-mercy"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-comes-to-pass-is-not-outside-the-doer"
+  ],
+  "relatedCollectionIds": [
+    "collection-mercy-and-fearlessness",
+    "collection-mercy-journey"
+  ],
+  "rotation": {
+    "theme": "mercy",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Past actions remain real, but mercy and the Name are still larger.",
+      "emotionalState": "unworthy, guarded, hard-on-self",
+      "turn": "Let this stay with you: regret quiets when the heart returns the moment to Hukam.",
+      "practicalImplication": "When the old mistake returns, stop before turning it into an identity. Bring the regret under God's Name and ask what faithfulness looks like now.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.94,
+      "beauty": 4.95,
+      "overall": 4.51
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

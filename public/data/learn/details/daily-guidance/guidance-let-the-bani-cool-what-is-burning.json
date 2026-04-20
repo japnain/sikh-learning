@@ -1,0 +1,64 @@
+{
+  "id": "guidance-let-the-bani-cool-what-is-burning",
+  "title": "Let the Bani cool what is burning",
+  "summary": "The Lord's Bani cools the heart like nectar taken in again. Return the tired body to refuge before asking more of it.",
+  "takeaway": "Return the tired body to refuge before asking more of it.",
+  "lifeApplication": "Before pushing harder, name what this body can honestly carry today and receive the help already near.",
+  "source": {
+    "deepDiveId": "shabad-the-lord-s-bani-cools-what-is-burning",
+    "verseIds": [
+      4119
+    ],
+    "shortMeaning": "The Lord's Bani cools the heart like nectar taken in again.",
+    "lifeApplication": "When the inside is burning, take the line in again before reaching elsewhere."
+  },
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-the-lord-s-bani-cools-what-is-burning"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "exhaustion",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The Lord's Bani cools the heart like nectar taken in again.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Hold onto this: read the Bani again until the inner heat cools.",
+      "practicalImplication": "Before pushing harder, name what this body can honestly carry today and receive the help already near.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.72,
+      "usefulness": 5,
+      "beauty": 4.69,
+      "overall": 4.51
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "guidance-do-not-spend-the-passing-day-in-gossip",
+  "title": "Do not spend the passing day in gossip",
+  "summary": "A passing life is squandered when the tongue feeds on gossip. Return the mouth to praise before it carries hurt.",
+  "takeaway": "Return the mouth to praise before it carries hurt.",
+  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+  "source": {
+    "deepDiveId": "shabad-a-passing-life-is-too-small-for-gossip",
+    "verseIds": [
+      6434,
+      6435
+    ],
+    "shortMeaning": "A passing life is squandered when the tongue feeds on gossip.",
+    "lifeApplication": "When gossip feels easy, remember how quickly the body passes."
+  },
+  "relatedTopicIds": [
+    "topic-restlessness"
+  ],
+  "relatedShabadIds": [
+    "shabad-a-passing-life-is-too-small-for-gossip"
+  ],
+  "relatedCollectionIds": [
+    "collection-restlessness-to-stillness",
+    "collection-restlessness-journey"
+  ],
+  "rotation": {
+    "theme": "speech",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "A passing life is squandered when the tongue feeds on gossip.",
+      "emotionalState": "scattered, unsettled, wandering",
+      "turn": "Carry this with you: remember the shortness of life before you spend it in gossip.",
+      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.85,
+      "overall": 4.44
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

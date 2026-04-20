@@ -1,0 +1,65 @@
+{
+  "id": "guidance-name-the-house-duality-built",
+  "title": "Name the house duality built",
+  "summary": "Duality builds a whole inner house for ego to inhabit. Treat ego as illness, not identity.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+  "source": {
+    "deepDiveId": "shabad-the-split-mind-becomes-one-through-surrender",
+    "verseIds": [
+      9499,
+      9500
+    ],
+    "shortMeaning": "Duality builds a whole inner house for ego to inhabit.",
+    "lifeApplication": "When you feel divided, name the second allegiance before it starts feeling normal."
+  },
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-the-split-mind-becomes-one-through-surrender"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Duality builds a whole inner house for ego to inhabit.",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Let this stay with you: the mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.26
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

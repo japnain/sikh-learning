@@ -8,7 +8,7 @@
     "control"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-3",
+    "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
     "verseIds": [
       17
     ],
@@ -18,7 +18,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-3-1"
+      "id": "guidance-let-praise-loosen-your-need-to-grasp"
     },
     {
       "kind": "topic-guide",
@@ -27,16 +27,15 @@
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-3"
+      "id": "shabad-praise-breaks-the-illusion-of-mastery"
     }
   ],
   "relatedTopicIds": [
-    "topic-control",
-    "t"
+    "topic-control"
   ],
   "relatedShabadIds": [
-    "shabad-generated-3",
-    "shabad-generated-942"
+    "shabad-praise-breaks-the-illusion-of-mastery",
+    "shabad-recognize-greatness-by-the-shelter-it-offers"
   ],
   "editorial": {
     "status": "approved",

@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-praise-become-the-place-you-live",
+  "title": "Let praise become the place you live",
+  "summary": "Peace deepens when praise, service, and Shabad replace self-importance. Serve and let praise house the heart.",
+  "takeaway": "Serve and let praise house the heart",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+  "source": {
+    "deepDiveId": "shabad-peace-comes-through-serving-the-true-guru",
+    "verseIds": [
+      3427,
+      3428
+    ],
+    "shortMeaning": "Peace deepens when praise, service, and Shabad replace self-importance.",
+    "lifeApplication": "When ego reaches for the center, move into service and praise instead."
+  },
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-peace-comes-through-serving-the-true-guru"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Peace deepens when praise, service, and Shabad replace self-importance.",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Hold onto this: serve first, and let peace expose the self.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.37,
+      "overall": 4.29
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

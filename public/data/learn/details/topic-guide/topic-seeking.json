@@ -127,7 +127,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-108",
+            "deepDiveId": "shabad-do-not-postpone-remembrance",
             "verseIds": [
               1430
             ],
@@ -138,7 +138,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1449,
               1450,
@@ -160,7 +160,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2138,
               2139,
@@ -225,7 +225,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1449,
               1450,
@@ -247,7 +247,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-359",
+            "deepDiveId": "shabad-steady-service-begins-healing-long-separation",
             "verseIds": [
               5559,
               5560,
@@ -266,7 +266,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-461",
+            "deepDiveId": "shabad-the-deeper-union-is-not-found-by-roaming",
             "verseIds": [
               6424
             ],
@@ -323,7 +323,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-153",
+            "deepDiveId": "shabad-release-arrives-where-seeking-kneels-into-service",
             "verseIds": [
               2138,
               2139,
@@ -342,7 +342,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-359",
+            "deepDiveId": "shabad-steady-service-begins-healing-long-separation",
             "verseIds": [
               5570
             ],
@@ -353,7 +353,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-644",
+            "deepDiveId": "shabad-the-day-is-shrinking-spend-it-well",
             "verseIds": [
               8834
             ],
@@ -422,7 +422,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-461",
+            "deepDiveId": "shabad-the-deeper-union-is-not-found-by-roaming",
             "verseIds": [
               6424
             ],
@@ -433,7 +433,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-108",
+            "deepDiveId": "shabad-do-not-postpone-remembrance",
             "verseIds": [
               1430
             ],
@@ -444,7 +444,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-644",
+            "deepDiveId": "shabad-the-day-is-shrinking-spend-it-well",
             "verseIds": [
               8834,
               8835
@@ -489,12 +489,12 @@
     "shabad-search-ends-in-saint-company",
     "shabad-child-of-grace",
     "shabad-extinguish-the-fire-of-doubt",
-    "shabad-generated-108",
-    "shabad-generated-109",
-    "shabad-generated-153",
-    "shabad-generated-359",
-    "shabad-generated-461",
-    "shabad-generated-644"
+    "shabad-do-not-postpone-remembrance",
+    "shabad-the-shabad-clears-the-double-mind",
+    "shabad-release-arrives-where-seeking-kneels-into-service",
+    "shabad-steady-service-begins-healing-long-separation",
+    "shabad-the-deeper-union-is-not-found-by-roaming",
+    "shabad-the-day-is-shrinking-spend-it-well"
   ],
   "relatedTopicIds": [
     "topic-attachment",

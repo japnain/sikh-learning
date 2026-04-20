@@ -85,11 +85,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "When sangat starts steering the day",
-      "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. In small routines, being shaped by noisy or empty company can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
-      "practicalReflection": "Company becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
-      "actionPrompt": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness.",
+      "title": "When ordinary life keeps deciding your company for you",
+      "issueStatement": "The day fills itself with noise, errands, feeds, and passing conversations, yet little of it leaves the soul better held. Without intention, the ordinary day can make shallow company feel normal.",
+      "centralInsight": "Gurbani treats company as formation. The heart slowly becomes like what it regularly sits under, listens to, laughs with, and lets shape its imagination.",
+      "practicalReflection": "Daily sangat is not only where you go physically; it is also what voices are allowed to educate your inner life all day long.",
+      "actionPrompt": "Before the day drifts further, choose one daily company that strengthens remembrance and one company you need to loosen today.",
       "searchTerms": [
         "sangat",
         "community",
@@ -105,7 +105,7 @@
               524
             ],
             "shortMeaning": "The day steadies when company is met with sangat, truthful presence, and Naam.",
-            "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day drifts further, choose one daily company that strengthens remembrance and one company you need to loosen today."
           },
           "explanation": "In the daily rhythm, this excerpt interrupts being shaped by noisy or empty company before it becomes the mood of the whole day."
         },
@@ -119,7 +119,7 @@
               3760
             ],
             "shortMeaning": "Ordinary moments change when the mind returns to steady company instead of being shaped by noisy or empty company.",
-            "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day drifts further, choose one daily company that strengthens remembrance and one company you need to loosen today."
           },
           "explanation": "The passage pulls the heart back from being shaped by noisy or empty company and into steady company."
         },
@@ -131,14 +131,14 @@
               925
             ],
             "shortMeaning": "This excerpt restores proportion before company takes over the tone of the day.",
-            "lifeApplication": "Today, before the next hard moment, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day drifts further, choose one daily company that strengthens remembrance and one company you need to loosen today."
           },
           "explanation": "This keeps the next ordinary moment from being governed by company."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-sangat:daily",
         "evidence": {
@@ -162,17 +162,17 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When pressure exposes what sangat reaches for",
-      "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. Under strain, being shaped by noisy or empty company starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness.",
+      "title": "When pressure makes you leave good company first",
+      "issueStatement": "The strain is rising, and instead of moving toward help, the heart wants privacy, distance, and self-management. Under pressure, isolation starts masquerading as maturity.",
+      "centralInsight": "Gurbani makes sangat essential exactly when the self wants to close. Holy company is not a decorative support for calmer days; it is part of how the soul stays cool when its own thoughts become a furnace.",
+      "practicalReflection": "Pressure often reveals whether you trust your own closed loop more than the cooling presence of the Guru in sangat. Left alone long enough, the mind starts appointing itself guide.",
+      "actionPrompt": "Before the day closes in around you, move toward one person, space, or sangat rhythm that genuinely steadies your remembrance.",
       "searchTerms": [
         "sangat",
         "community",
@@ -191,7 +191,7 @@
               3760
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to steady company.",
-            "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day closes in around you, move toward one person, space, or sangat rhythm that genuinely steadies your remembrance."
           },
           "explanation": "Under pressure, this excerpt interrupts being shaped by noisy or empty company before it reaches the tongue, body, or imagination."
         },
@@ -204,7 +204,7 @@
               1296
             ],
             "shortMeaning": "This line steadies the reflex before company can rule the moment.",
-            "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day closes in around you, move toward one person, space, or sangat rhythm that genuinely steadies your remembrance."
           },
           "explanation": "The passage refuses to let strain turn company into the only voice in the room."
         },
@@ -215,14 +215,14 @@
               3896
             ],
             "shortMeaning": "Company is answered here through sangat, truthful presence, and Naam.",
-            "lifeApplication": "When the room tightens, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Before the day closes in around you, move toward one person, space, or sangat rhythm that genuinely steadies your remembrance."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward sangat, truthful presence, and Naam."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-sangat:pressure",
         "evidence": {
@@ -246,17 +246,17 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
       "key": "repair",
       "label": "After the Slip",
-      "title": "When sangat has already run ahead of truth",
-      "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
-      "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
-      "actionPrompt": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness.",
+      "title": "When you need to return after pulling away from sangat",
+      "issueStatement": "Distance has already grown. Maybe offense, shame, fatigue, or pride pulled you away, and now even the thought of returning feels heavy or exposed.",
+      "centralInsight": "Gurbani does not ask you to rebuild belonging through performance. It asks for a return honest enough to step back into company before your moods decide you no longer belong there.",
+      "practicalReflection": "Repairing distance from sangat is often less dramatic than the mind imagines. The largest barrier is usually the ego that wants to come back strong instead of simply coming back.",
+      "actionPrompt": "Repair the distance by making one concrete return today: go, call, bow, sit, or show up before the excuse grows another hour.",
       "searchTerms": [
         "sangat",
         "community",
@@ -273,7 +273,7 @@
               925
             ],
             "shortMeaning": "Repair begins when the heart returns to sangat, truthful presence, and Naam instead of performance.",
-            "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Repair the distance by making one concrete return today: go, call, bow, sit, or show up before the excuse grows another hour."
           },
           "explanation": "After the slip, this excerpt makes room for truthful return without denial or self-punishment."
         },
@@ -284,7 +284,7 @@
               1291
             ],
             "shortMeaning": "Company is not allowed to become identity here.",
-            "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Repair the distance by making one concrete return today: go, call, bow, sit, or show up before the excuse grows another hour."
           },
           "explanation": "The passage keeps company from hardening into identity by pointing the heart back to steady company."
         },
@@ -295,14 +295,14 @@
               11239
             ],
             "shortMeaning": "This passage opens a clean way back through steady company.",
-            "lifeApplication": "After the slip is visible, move toward the company that steadies you and away from the company that feeds forgetfulness."
+            "lifeApplication": "Repair the distance by making one concrete return today: go, call, bow, sit, or show up before the excuse grows another hour."
           },
           "explanation": "Repair becomes possible here because the line refuses both excuse and despair."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-sangat:repair",
         "evidence": {
@@ -326,7 +326,7 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "practice": {
@@ -335,7 +335,7 @@
       "title": "When the teaching has to become a practice, not a mood",
       "issueStatement": "Left alone, the mind keeps recycling itself. In the wrong company, it grows louder, sharper, and more forgetful of what it needs. Inspiration is not the main need now; a repeatable return is.",
       "centralInsight": "Gurbani treats sangat as placement, not generic belonging. Right company changes the inner climate so truth becomes speakable and Naam feels near. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "practicalReflection": "Sangat becomes transformative when it is kept as a rhythm instead of visited only when the heart is desperate. Steady nearness trains belonging more deeply than occasional rescue does.",
       "actionPrompt": "For the next seven days at the same cue, move toward the company that steadies you and away from the company that feeds forgetfulness.",
       "searchTerms": [
         "sangat",

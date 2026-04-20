@@ -1,0 +1,166 @@
+{
+  "id": "shabad-make-naam-the-work-of-your-life",
+  "title": "Make Naam the work of your life",
+  "subtitle": "Raag Gauree · Ang 290",
+  "summary": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+  "whyItMatters": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline.",
+  "takeaway": "Let Naam become the work that orders everything else.",
+  "themes": [
+    "seeking",
+    "exhaustion",
+    "anxiety"
+  ],
+  "emotionalStates": [
+    "searching",
+    "hungry",
+    "unsettled"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 1047,
+    "ang": 290,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      10
+    ],
+    "verse_ids": [
+      13137,
+      13138,
+      13139,
+      13140,
+      13141,
+      13142,
+      13143,
+      13144,
+      13145,
+      13146
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 13137,
+      "gurmukhi": "ਸਾਜਨ ਸੰਤ ਕਰਹੁ ਇਹੁ ਕਾਮੁ ॥",
+      "transliteration": "saajan sa(n)t karahu ih kaam ||",
+      "translation": "O friends, O Saints, make this your work."
+    },
+    {
+      "verseId": 13138,
+      "gurmukhi": "ਆਨ ਤਿਆਗਿ ਜਪਹੁ ਹਰਿ ਨਾਮੁ ॥",
+      "transliteration": "aan tiaag japahu har naam ||",
+      "translation": "Renounce everything else, and chant the Name of the Lord."
+    },
+    {
+      "verseId": 13139,
+      "gurmukhi": "ਸਿਮਰਿ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖ ਪਾਵਹੁ ॥",
+      "transliteration": "simar simar simar sukh paavahu ||",
+      "translation": "Meditate, meditate, meditate in remembrance of Him, and find peace."
+    },
+    {
+      "verseId": 13140,
+      "gurmukhi": "ਆਪਿ ਜਪਹੁ ਅਵਰਹ ਨਾਮੁ ਜਪਾਵਹੁ ॥",
+      "transliteration": "aap japahu avareh naam japaavahu ||",
+      "translation": "Chant the Naam yourself, and inspire others to chant it."
+    },
+    {
+      "verseId": 13141,
+      "gurmukhi": "ਭਗਤਿ ਭਾਇ ਤਰੀਐ ਸੰਸਾਰੁ ॥",
+      "transliteration": "bhagat bhai tareeaai sa(n)saar ||",
+      "translation": "By loving devotional worship, you shall cross over the world-ocean."
+    },
+    {
+      "verseId": 13142,
+      "gurmukhi": "ਬਿਨੁ ਭਗਤੀ ਤਨੁ ਹੋਸੀ ਛਾਰੁ ॥",
+      "transliteration": "bin bhagatee tan hosee chhaar ||",
+      "translation": "Without devotional meditation, the body will be just ashes."
+    },
+    {
+      "verseId": 13143,
+      "gurmukhi": "ਸਰਬ ਕਲਿਆਣ ਸੂਖ ਨਿਧਿ ਨਾਮੁ ॥",
+      "transliteration": "sarab kaliaan sookh nidh naam ||",
+      "translation": "All joys and comforts are in the treasure of the Naam."
+    },
+    {
+      "verseId": 13144,
+      "gurmukhi": "ਬੂਡਤ ਜਾਤ ਪਾਏ ਬਿਸ੍ਰਾਮੁ ॥",
+      "transliteration": "booddat jaat paae bisraam ||",
+      "translation": "Even the drowning can reach the place of rest and safety."
+    },
+    {
+      "verseId": 13145,
+      "gurmukhi": "ਸਗਲ ਦੂਖ ਕਾ ਹੋਵਤ ਨਾਸੁ ॥",
+      "transliteration": "sagal dhookh kaa hovat naas ||",
+      "translation": "All sorrows shall vanish."
+    },
+    {
+      "verseId": 13146,
+      "gurmukhi": "ਨਾਨਕ ਨਾਮੁ ਜਪਹੁ ਗੁਨਤਾਸੁ ॥੫॥",
+      "transliteration": "naanak naam japahu gunataas ||5||",
+      "translation": "O Nanak, chant the Naam, the treasure of excellence. ||5||"
+    }
+  ],
+  "structure": [
+    "First, it names the central task without hesitation: chant the Lord's Name.",
+    "Then, it says to practice it personally and help others into the same remembrance.",
+    "Finally, it promises rest, joy, and the ending of sorrow in the treasure of Naam."
+  ],
+  "keyVerseIds": [
+    13137,
+    13140,
+    13143,
+    13146
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-seeking"
+  ],
+  "relatedCollectionIds": [
+    "collection-seeking-journey",
+    "collection-seeking-bundle",
+    "collection-greed-to-seeking-93"
+  ],
+  "rotation": {
+    "theme": "seeking",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+      "emotionalState": "searching, hungry, unsettled",
+      "turn": "Then, it says to practice it personally and help others into the same remembrance.",
+      "practicalImplication": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline. Let Naam become the work that orders everything else.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.2,
+      "beauty": 4.05,
+      "overall": 4.24
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

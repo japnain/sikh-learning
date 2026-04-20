@@ -42,7 +42,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-178",
+        "deepDiveId": "shabad-fresh-naam-enters-the-mind",
         "verseIds": [
           2771,
           2772,
@@ -58,7 +58,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-300",
+        "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
         "verseIds": [
           4138,
           4139,
@@ -86,7 +86,7 @@
       "label": "Daily",
       "title": "When fear keeps shrinking the field of vision inside the ordinary day",
       "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. In small routines, letting dread write the script can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "centralInsight": "Gurbani does not shame fear or ask the body to pretend it is untroubled. It trains the heart to answer fear sooner with remembrance, obedience, and trusted nearness before dread starts arranging the day.",
       "practicalReflection": "Fear becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
       "actionPrompt": "Today, when fear rises, read one line aloud before you plan your defense.",
       "searchTerms": [
@@ -110,7 +110,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-178",
+            "deepDiveId": "shabad-fresh-naam-enters-the-mind",
             "verseIds": [
               2771,
               2772,
@@ -126,7 +126,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-300",
+            "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
             "verseIds": [
               4138,
               4139,
@@ -173,11 +173,11 @@
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When fear tightens under pressure",
-      "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Under strain, letting dread write the script starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, read one line aloud before you plan your defense.",
+      "title": "When fear writes the script before faith can answer",
+      "issueStatement": "The pressure is high enough that fear has moved from warning to authorship. It is no longer only alerting you to danger; it is now deciding what the whole moment means and what you are allowed to become inside it.",
+      "centralInsight": "Gurbani does not shame fear, but it refuses to crown it. In pressure, fear must be answered quickly with remembrance, obedience, and one next act that proves dread is not the only voice with authority.",
+      "practicalReflection": "Fear grows fastest when imagination outruns obedience. The soul steadies not when every threat disappears, but when one faithful step is taken before the whole future is solved.",
+      "actionPrompt": "When fear starts narrating everything, interrupt it with one line of Gurbani and one obedient act that can be done in the next ten minutes.",
       "searchTerms": [
         "fear",
         "afraid",
@@ -188,7 +188,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-178",
+            "deepDiveId": "shabad-fresh-naam-enters-the-mind",
             "verseIds": [
               2771,
               2772,
@@ -198,37 +198,37 @@
               2776
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to courage under care.",
-            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
+            "lifeApplication": "When fear starts narrating everything, interrupt it with one line of Gurbani and one obedient act that can be done in the next ten minutes."
           },
           "explanation": "Under pressure, this excerpt interrupts letting dread write the script before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-460",
+            "deepDiveId": "shabad-deeper-fearlessness-comes-by-tasting-naam",
             "verseIds": [
               6412,
               6413
             ],
             "shortMeaning": "This line steadies the reflex before fear can rule the moment.",
-            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
+            "lifeApplication": "When fear starts narrating everything, interrupt it with one line of Gurbani and one obedient act that can be done in the next ten minutes."
           },
           "explanation": "The passage refuses to let strain turn fear into the only voice in the room."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-510",
+            "deepDiveId": "shabad-holy-company-breaks-the-crowded-heat-inside",
             "verseIds": [
               7122
             ],
             "shortMeaning": "Fear is answered here through reverence, Hukam, and divine nearness.",
-            "lifeApplication": "When the room tightens, read one line aloud before you plan your defense."
+            "lifeApplication": "When fear starts narrating everything, interrupt it with one line of Gurbani and one obedient act that can be done in the next ten minutes."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward reverence, Hukam, and divine nearness."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-fear:pressure",
         "evidence": {
@@ -252,7 +252,7 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
@@ -261,7 +261,7 @@
       "title": "When repair has to begin after the mind has wandered",
       "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
       "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "practicalReflection": "Repair begins when fear is no longer allowed to narrate what the whole failure means. The way back is usually one act of trust after the panic, not one more round of rehearsing what went wrong.",
       "actionPrompt": "After the slip is visible, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
@@ -273,7 +273,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-300",
+            "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
             "verseIds": [
               4138,
               4139,
@@ -289,7 +289,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-460",
+            "deepDiveId": "shabad-deeper-fearlessness-comes-by-tasting-naam",
             "verseIds": [
               6409
             ],
@@ -300,7 +300,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-645",
+            "deepDiveId": "shabad-sanctuary-for-a-mind-under-assault",
             "verseIds": [
               8845
             ],
@@ -345,7 +345,7 @@
       "title": "When fear keeps shrinking the field of vision as a practice that survives the week",
       "issueStatement": "Fear keeps deciding what will happen, who will leave, and what disaster you must defend against. Inspiration is not the main need now; a repeatable return is.",
       "centralInsight": "Gurbani does not build fearlessness out of bravado. Fear loosens through reverence, Hukam, forgiveness, and the nearness of the One already holding the moment. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "practicalReflection": "Fear becomes less ruling when the heart keeps one practiced answer ready. Repeated obedience in small frightened moments slowly teaches the body that dread does not get final authorship.",
       "actionPrompt": "For the next seven days at the same cue, read one line aloud before you plan your defense.",
       "searchTerms": [
         "fear",
@@ -369,7 +369,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-510",
+            "deepDiveId": "shabad-holy-company-breaks-the-crowded-heat-inside",
             "verseIds": [
               7122
             ],
@@ -391,7 +391,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-645",
+            "deepDiveId": "shabad-sanctuary-for-a-mind-under-assault",
             "verseIds": [
               8845,
               8846,
@@ -437,11 +437,11 @@
   },
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
-    "shabad-generated-178",
-    "shabad-generated-300",
-    "shabad-generated-460",
-    "shabad-generated-510",
-    "shabad-generated-645"
+    "shabad-fresh-naam-enters-the-mind",
+    "shabad-you-are-family-wherever-fear-tries-to-exile-me",
+    "shabad-deeper-fearlessness-comes-by-tasting-naam",
+    "shabad-holy-company-breaks-the-crowded-heat-inside",
+    "shabad-sanctuary-for-a-mind-under-assault"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

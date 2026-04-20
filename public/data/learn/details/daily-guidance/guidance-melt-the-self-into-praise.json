@@ -1,0 +1,64 @@
+{
+  "id": "guidance-melt-the-self-into-praise",
+  "title": "Melt the self into praise",
+  "summary": "In praise, the separate self softens and begins to merge with the Lord. Move toward the company that steadies the heart.",
+  "takeaway": "Move toward the company that steadies the heart.",
+  "lifeApplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
+  "source": {
+    "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
+    "verseIds": [
+      759
+    ],
+    "shortMeaning": "In praise, the separate self softens and begins to merge with the Lord.",
+    "lifeApplication": "When the mind hardens, stay with praise until the edge begins to soften."
+  },
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-praise-melts-what-comparison-hardens"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "In praise, the separate self softens and begins to merge with the Lord.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Let this stay with you: let praise, saintly company, and true action soften the self into homecoming.",
+      "practicalImplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 3.82,
+      "beauty": 4.85,
+      "overall": 4.27
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

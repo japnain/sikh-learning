@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-the-filled-heart-leave-doubt-behind",
+  "title": "Let the filled heart leave doubt behind",
+  "summary": "A heart filled with the Lord is made whole, and doubt falls away. Bring the mind back to what is clear enough to keep.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "When uncertainty returns at night, at the sink, or before the message, stay with remembrance until the heart feels full again. Do not restart the argument while the line is still doing its work.",
+  "source": {
+    "deepDiveId": "shabad-deeper-fearlessness-comes-by-tasting-naam",
+    "verseIds": [
+      6412,
+      6413
+    ],
+    "shortMeaning": "A heart filled with the Lord is made whole, and doubt falls away.",
+    "lifeApplication": "When uncertainty returns, keep the line in the body instead of restarting the argument."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-deeper-fearlessness-comes-by-tasting-naam"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "A heart filled with the Lord is made whole, and doubt falls away.",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Carry this with you: taste Naam deeply enough that lesser fears stop governing you.",
+      "practicalImplication": "When uncertainty returns at night, at the sink, or before the message, stay with remembrance until the heart feels full again. Do not restart the argument while the line is still doing its work.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.9,
+      "usefulness": 5,
+      "beauty": 4.21,
+      "overall": 4.47
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

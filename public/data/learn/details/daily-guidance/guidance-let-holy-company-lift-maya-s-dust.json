@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-holy-company-lift-maya-s-dust",
+  "title": "Let holy company lift Maya's dust",
+  "summary": "Love for the Guru and holy company clear Maya's dust. Move toward the company that steadies the heart.",
+  "takeaway": "Move toward the company that steadies the heart.",
+  "lifeApplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
+  "source": {
+    "deepDiveId": "shabad-love-the-guru-with-mind-and-body",
+    "verseIds": [
+      2114,
+      2115
+    ],
+    "shortMeaning": "Love for the Guru and holy company clear Maya's dust.",
+    "lifeApplication": "When craving gets sticky, step toward the place where love for the Guru gets cleaner."
+  },
+  "relatedTopicIds": [
+    "topic-sangat"
+  ],
+  "relatedShabadIds": [
+    "shabad-love-the-guru-with-mind-and-body"
+  ],
+  "relatedCollectionIds": [
+    "collection-doubt-to-clarity",
+    "collection-sangat-and-belonging"
+  ],
+  "rotation": {
+    "theme": "sangat",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "seva"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Love for the Guru and holy company clear Maya's dust.",
+      "emotionalState": "isolated, impressionable, needing-company",
+      "turn": "Hold onto this: let love, company, and conduct gather under the Guru until forgetfulness weakens.",
+      "practicalImplication": "Before starting one more private search, step into sangat, kirtan, or one truthful conversation.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 3.82,
+      "beauty": 4.69,
+      "overall": 4.28
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -8,7 +8,7 @@
     "fear"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-300",
+    "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
     "verseIds": [
       4132
     ],
@@ -18,7 +18,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-300-1"
+      "id": "guidance-let-shelter-be-personal-again"
     },
     {
       "kind": "topic-guide",
@@ -31,12 +31,11 @@
     }
   ],
   "relatedTopicIds": [
-    "topic-fear",
-    "t"
+    "topic-fear"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
-    "shabad-generated-178"
+    "shabad-fresh-naam-enters-the-mind"
   ],
   "editorial": {
     "status": "approved",

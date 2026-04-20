@@ -1,0 +1,65 @@
+{
+  "id": "guidance-without-the-beloved-decoration-stays-hollow",
+  "title": "Without the Beloved, decoration stays hollow",
+  "summary": "Without the Beloved, decoration cannot cover a heart split by duality. Receive the gift without claiming the outcome.",
+  "takeaway": "Receive the gift without claiming the outcome.",
+  "lifeApplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
+  "source": {
+    "deepDiveId": "shabad-duality-makes-decoration-hollow",
+    "verseIds": [
+      774,
+      775
+    ],
+    "shortMeaning": "Without the Beloved, decoration cannot cover a heart split by duality.",
+    "lifeApplication": "Before fixing the outside, ask whether the heart is still living in duality."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-duality-makes-decoration-hollow"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "attachment",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Without the Beloved, decoration cannot cover a heart split by duality.",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Let this stay with you: without the Beloved and the Shabad, surface beauty stays false.",
+      "practicalImplication": "Before grasping harder, pause with one hand open and let refuge matter more than possession.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.49,
+      "overall": 4.31
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}
