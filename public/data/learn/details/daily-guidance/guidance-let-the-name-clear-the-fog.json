@@ -1,0 +1,64 @@
+{
+  "id": "guidance-let-the-name-clear-the-fog",
+  "title": "Let the Name clear the fog",
+  "summary": "The Guru plants Naam so doubt gives way to light and direction. Bring the mind back to what is clear enough to keep.",
+  "takeaway": "Bring the mind back to what is clear enough to keep.",
+  "lifeApplication": "Before chasing another explanation, return to the line and sing one praise. Stay with the light already given until the next step is visible.",
+  "source": {
+    "deepDiveId": "shabad-naam-planted-within-clears-the-inner-fog",
+    "verseIds": [
+      3467
+    ],
+    "shortMeaning": "The Guru plants Naam so doubt gives way to light and direction.",
+    "lifeApplication": "Before reaching for another answer, stay with the Name until the path brightens."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-naam-planted-within-clears-the-inner-fog"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "doubt",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The Guru plants Naam so doubt gives way to light and direction.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Remember this: when Naam is planted within, doubt loses its house.",
+      "practicalImplication": "Before chasing another explanation, return to the line and sing one praise. Stay with the light already given until the next step is visible.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.37,
+      "overall": 4.44
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

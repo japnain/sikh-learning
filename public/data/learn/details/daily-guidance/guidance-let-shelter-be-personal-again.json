@@ -1,0 +1,64 @@
+{
+  "id": "guidance-let-shelter-be-personal-again",
+  "title": "Let shelter be personal again",
+  "summary": "The Lord shelters the heart as parent, kin, and protector. Let mercy become more believable than the threat.",
+  "takeaway": "Let mercy become more believable than the threat.",
+  "lifeApplication": "When dread starts running ahead of the moment, place a hand on the chest and say the line slowly. Let relationship return before fear makes everything strange.",
+  "source": {
+    "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
+    "verseIds": [
+      4132
+    ],
+    "shortMeaning": "The Lord shelters the heart as parent, kin, and protector.",
+    "lifeApplication": "When fear rises, let the line restore nearness before the mind runs."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-you-are-family-wherever-fear-tries-to-exile-me"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "The Lord shelters the heart as parent, kin, and protector.",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Carry this with you: fear thins when shelter becomes personal again.",
+      "practicalImplication": "When dread starts running ahead of the moment, place a hand on the chest and say the line slowly. Let relationship return before fear makes everything strange.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 5,
+      "beauty": 4.81,
+      "overall": 4.47
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

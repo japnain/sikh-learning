@@ -9,7 +9,7 @@
     "restlessness"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-300",
+    "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
     "verseIds": [
       4132
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-300-1"
+      "id": "guidance-let-shelter-be-personal-again"
     },
     {
       "kind": "topic-guide",
@@ -32,22 +32,22 @@
     },
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-300-2"
+      "id": "guidance-let-protection-become-felt-not-recited"
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-178"
+      "id": "shabad-fresh-naam-enters-the-mind"
     }
   ],
   "relatedTopicIds": [
     "topic-fear",
-    "t"
+    "topic-restlessness"
   ],
   "relatedShabadIds": [
     "shabad-steadied-by-creator",
-    "shabad-generated-178",
+    "shabad-fresh-naam-enters-the-mind",
     "shabad-search-ends-in-saint-company",
-    "shabad-generated-109"
+    "shabad-the-shabad-clears-the-double-mind"
   ],
   "editorial": {
     "status": "approved",

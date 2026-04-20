@@ -1,0 +1,64 @@
+{
+  "id": "guidance-seeming-great-is-not-being-great",
+  "title": "Seeming great is not being great",
+  "summary": "What seems great can still be only seeming. Let contentment quiet the need to compare.",
+  "takeaway": "Let contentment quiet the need to compare.",
+  "lifeApplication": "When envy rises, step away from the screen and return the mind to one truthful task already in your hands today.",
+  "source": {
+    "deepDiveId": "shabad-anxiety-follows-borrowed-greatness",
+    "verseIds": [
+      7969
+    ],
+    "shortMeaning": "What seems great can still be only seeming.",
+    "lifeApplication": "When power dazzles you, interrupt the spell of seeming greatness."
+  },
+  "relatedTopicIds": [
+    "topic-attachment"
+  ],
+  "relatedShabadIds": [
+    "shabad-anxiety-follows-borrowed-greatness"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "beginner",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "What seems great can still be only seeming.",
+      "emotionalState": "clingy, possessive, afraid-to-lose",
+      "turn": "Let this stay with you: choose the Lord's measure of greatness and refuse Maya's scale.",
+      "practicalImplication": "When envy rises, step away from the screen and return the mind to one truthful task already in your hands today.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.9,
+      "usefulness": 5,
+      "beauty": 4.69,
+      "overall": 4.54
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

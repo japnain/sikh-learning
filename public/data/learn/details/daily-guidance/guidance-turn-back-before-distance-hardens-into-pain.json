@@ -1,0 +1,65 @@
+{
+  "id": "guidance-turn-back-before-distance-hardens-into-pain",
+  "title": "Turn back before distance hardens into pain",
+  "summary": "Distance deepens pain; Naam becomes the support for return. Choose settlement before more motion.",
+  "takeaway": "Choose settlement before more motion.",
+  "lifeApplication": "The moment you know you are drifting, stop, sit, breathe once, and return to Naam. Let support arrive before distance hardens into another wound.",
+  "source": {
+    "deepDiveId": "shabad-holy-company-breaks-the-crowded-heat-inside",
+    "verseIds": [
+      7125,
+      7126
+    ],
+    "shortMeaning": "Distance deepens pain; Naam becomes the support for return.",
+    "lifeApplication": "When you know you are drifting, stop and return to Naam before the wound deepens."
+  },
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-holy-company-breaks-the-crowded-heat-inside"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "restlessness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Distance deepens pain; Naam becomes the support for return.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Keep this in front of you: take the overheated self back from distance until Naam becomes support.",
+      "practicalImplication": "The moment you know you are drifting, stop, sit, breathe once, and return to Naam. Let support arrive before distance hardens into another wound.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.94,
+      "beauty": 4.33,
+      "overall": 4.38
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

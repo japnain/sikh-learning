@@ -177,7 +177,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-301",
+            "deepDiveId": "shabad-the-heart-lives-by-the-one-supporting-it",
             "verseIds": [
               4153,
               4154
@@ -256,7 +256,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-511",
+            "deepDiveId": "shabad-mercy-turns-bitter-into-sweet",
             "verseIds": [
               7135,
               7136
@@ -268,7 +268,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-818",
+            "deepDiveId": "shabad-where-saving-company-interrupts-judgment",
             "verseIds": [
               11176,
               11177,
@@ -338,7 +338,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-301",
+            "deepDiveId": "shabad-the-heart-lives-by-the-one-supporting-it",
             "verseIds": [
               4153,
               4154
@@ -350,7 +350,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-511",
+            "deepDiveId": "shabad-mercy-turns-bitter-into-sweet",
             "verseIds": [
               7132
             ],
@@ -361,7 +361,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1048",
+            "deepDiveId": "shabad-love-fills-the-minds-and-bodies-of-the-devoted",
             "verseIds": [
               13152,
               13153
@@ -429,7 +429,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-818",
+            "deepDiveId": "shabad-where-saving-company-interrupts-judgment",
             "verseIds": [
               11176,
               11177,
@@ -454,7 +454,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1048",
+            "deepDiveId": "shabad-love-fills-the-minds-and-bodies-of-the-devoted",
             "verseIds": [
               13156
             ],
@@ -498,10 +498,10 @@
     "shabad-forgiveness-becomes-fearless",
     "shabad-forgiveness-opens-lasting-peace",
     "shabad-ambrosial-speech-pure-conduct",
-    "shabad-generated-301",
-    "shabad-generated-511",
-    "shabad-generated-818",
-    "shabad-generated-1048"
+    "shabad-the-heart-lives-by-the-one-supporting-it",
+    "shabad-mercy-turns-bitter-into-sweet",
+    "shabad-where-saving-company-interrupts-judgment",
+    "shabad-love-fills-the-minds-and-bodies-of-the-devoted"
   ],
   "relatedTopicIds": [
     "topic-attachment",

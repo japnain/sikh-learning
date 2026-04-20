@@ -107,7 +107,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1",
+            "deepDiveId": "shabad-truth-before-beginning-truth-through-time",
             "verseIds": [
               8,
               9,
@@ -179,7 +179,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-63",
+            "deepDiveId": "shabad-remember-together-not-in-isolation",
             "verseIds": [
               740,
               741,
@@ -192,7 +192,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               766
             ],
@@ -249,7 +249,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-1",
+            "deepDiveId": "shabad-truth-before-beginning-truth-through-time",
             "verseIds": [
               8,
               9,
@@ -262,7 +262,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-63",
+            "deepDiveId": "shabad-remember-together-not-in-isolation",
             "verseIds": [
               736
             ],
@@ -273,7 +273,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-66",
+            "deepDiveId": "shabad-duality-makes-decoration-hollow",
             "verseIds": [
               774
             ],
@@ -330,7 +330,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               766
             ],
@@ -352,7 +352,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-66",
+            "deepDiveId": "shabad-duality-makes-decoration-hollow",
             "verseIds": [
               774,
               775,
@@ -399,10 +399,10 @@
     "shabad-suffering-as-medicine",
     "shabad-gratitude-restores-naam",
     "shabad-what-pleases-you-comes-to-pass",
-    "shabad-generated-1",
-    "shabad-generated-63",
-    "shabad-generated-65",
-    "shabad-generated-66"
+    "shabad-truth-before-beginning-truth-through-time",
+    "shabad-remember-together-not-in-isolation",
+    "shabad-praise-melts-what-comparison-hardens",
+    "shabad-duality-makes-decoration-hollow"
   ],
   "relatedTopicIds": [
     "topic-discipline",

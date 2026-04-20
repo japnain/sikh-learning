@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-service-make-room-for-the-lord",
+  "title": "Let service make room for the Lord",
+  "summary": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking. Treat ego as illness, not identity.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "At the next success, apology, or argument, listen, yield, or ask forgiveness before the self swells.",
+  "source": {
+    "deepDiveId": "shabad-truth-is-meant-to-occupy-the-whole-life",
+    "verseIds": [
+      2787,
+      2788
+    ],
+    "shortMeaning": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
+    "lifeApplication": "Before the next useful act, ask whether it makes room for the Lord or for your image."
+  },
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-truth-is-meant-to-occupy-the-whole-life"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Service becomes clean when it lets the Lord dwell within and keeps filth from sticking.",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Carry this with you: let the Guru's truth reach your food, speech, and shelter.",
+      "practicalImplication": "At the next success, apology, or argument, listen, yield, or ask forgiveness before the self swells.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.53,
+      "overall": 4.28
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

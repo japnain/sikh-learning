@@ -16,6 +16,11 @@ import { resolveAppPath } from "../utils/basePath"
 
 type LearnJsonLoader = <T>(path: string) => Promise<T>
 
+type LearnIdAliases = {
+  dailyGuidance?: Record<string, string>
+  shabadDeepDives?: Record<string, string>
+}
+
 type LearnDetailMap = {
   "daily-guidance": DailyGuidance
   "shabad-deep-dive": ShabadDeepDive
@@ -25,6 +30,24 @@ type LearnDetailMap = {
 
 const DEFAULT_MANIFEST_PATH = "/data/learn/manifest.json"
 const DEFAULT_HOME_SUMMARY_PATH = "/data/learn/home-summary.json"
+const DEFAULT_ID_ALIASES_PATH = "/data/learn/id-aliases.json"
+
+function applyAliasesToIndexMap<T extends { id: string }>(
+  items: T[],
+  aliases: Record<string, string> | undefined
+) {
+  const baseMap = createIndexMap(items)
+  if (!aliases) return baseMap
+
+  for (const [legacyId, canonicalId] of Object.entries(aliases)) {
+    const canonicalItem = baseMap[canonicalId]
+    if (canonicalItem) {
+      baseMap[legacyId] = canonicalItem
+    }
+  }
+
+  return baseMap
+}
 
 function resolveLearnAssetPath(path: string) {
   return resolveAppPath(path, import.meta.env.BASE_URL)
@@ -34,11 +57,11 @@ function createIndexMap<T extends { id: string }>(items: T[]) {
   return Object.fromEntries(items.map(item => [item.id, item] as const)) as Record<string, T>
 }
 
-function buildLearnHomeCatalog(summary: LearnHomeCatalogPayload): LearnHomeCatalog {
+function buildLearnHomeCatalog(summary: LearnHomeCatalogPayload, aliases: LearnIdAliases | null = null): LearnHomeCatalog {
   return {
     ...summary,
-    dailyGuidanceById: createIndexMap(summary.dailyGuidance),
-    shabadDeepDiveById: createIndexMap(summary.shabadDeepDives),
+    dailyGuidanceById: applyAliasesToIndexMap(summary.dailyGuidance, aliases?.dailyGuidance),
+    shabadDeepDiveById: applyAliasesToIndexMap(summary.shabadDeepDives, aliases?.shabadDeepDives),
     topicGuideById: createIndexMap(summary.topicGuides),
     collectionById: createIndexMap(summary.collections),
   }
@@ -72,6 +95,7 @@ function canRecoverHomeSummaryError(error: unknown) {
 let jsonLoader: LearnJsonLoader = defaultFetchJson
 let manifestPromise: Promise<LearnManifest> | null = null
 let searchIndexPromise: Promise<LearnSearchIndex> | null = null
+let idAliasesPromise: Promise<LearnIdAliases | null> | null = null
 let catalogPromise: Promise<LearnCatalog> | null = null
 let homeCatalogPromise: Promise<LearnHomeCatalog> | null = null
 const detailPromises = new Map<string, Promise<DailyGuidance | ShabadDeepDive | TopicGuide | Collection>>()
@@ -84,9 +108,19 @@ export function configureLearnRepositoryLoader(loader: LearnJsonLoader | null) {
 export function resetLearnRepositoryCache() {
   manifestPromise = null
   searchIndexPromise = null
+  idAliasesPromise = null
   catalogPromise = null
   homeCatalogPromise = null
   detailPromises.clear()
+}
+
+async function loadLearnIdAliases() {
+  if (!idAliasesPromise) {
+    idAliasesPromise = jsonLoader<LearnIdAliases>(DEFAULT_ID_ALIASES_PATH)
+      .catch(() => null)
+  }
+
+  return idAliasesPromise
 }
 
 export async function loadLearnManifest() {
@@ -107,9 +141,10 @@ export async function loadLearnSearchIndex() {
 export async function loadLearnCatalog() {
   if (!catalogPromise) {
     catalogPromise = withQaControl('learn-catalog', async () => {
-      const [manifest, searchIndex] = await Promise.all([
+      const [manifest, searchIndex, idAliases] = await Promise.all([
         loadLearnManifest(),
         loadLearnSearchIndex(),
+        loadLearnIdAliases(),
       ])
 
       const [dailyGuidance, shabadDeepDives, topicGuides, collections] = await Promise.all([
@@ -126,8 +161,8 @@ export async function loadLearnCatalog() {
         shabadDeepDives,
         topicGuides,
         collections,
-        dailyGuidanceById: createIndexMap(dailyGuidance),
-        shabadDeepDiveById: createIndexMap(shabadDeepDives),
+        dailyGuidanceById: applyAliasesToIndexMap(dailyGuidance, idAliases?.dailyGuidance),
+        shabadDeepDiveById: applyAliasesToIndexMap(shabadDeepDives, idAliases?.shabadDeepDives),
         topicGuideById: createIndexMap(topicGuides),
         collectionById: createIndexMap(collections),
       } satisfies LearnCatalog
@@ -140,9 +175,11 @@ export async function loadLearnCatalog() {
 export async function loadLearnHomeCatalog() {
   if (!homeCatalogPromise) {
     homeCatalogPromise = withQaControl('learn-catalog', async () => {
+      const idAliases = await loadLearnIdAliases()
+
       try {
         const summary = await jsonLoader<LearnHomeCatalogPayload>(DEFAULT_HOME_SUMMARY_PATH)
-        return buildLearnHomeCatalog(summary)
+        return buildLearnHomeCatalog(summary, idAliases)
       } catch (error) {
         if (!canRecoverHomeSummaryError(error)) {
           throw error
@@ -194,7 +231,7 @@ export async function loadLearnHomeCatalog() {
             relatedShabadIds: item.relatedShabadIds,
             itemCount: item.items.length,
           })),
-        })
+        }, idAliases)
       }
     })
   }

@@ -9,7 +9,7 @@
     "exhaustion"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-360",
+    "deepDiveId": "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter",
     "verseIds": [
       5589
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-360-1"
+      "id": "guidance-enter-the-teaching-as-given"
     },
     {
       "kind": "topic-guide",
@@ -28,24 +28,23 @@
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-360"
+      "id": "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter"
     },
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-360-2"
+      "id": "guidance-begin-under-the-name-before-anything-else"
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-643"
+      "id": "shabad-nearness-ends-the-frantic-search"
     }
   ],
   "relatedTopicIds": [
-    "topic-exhaustion",
-    "t"
+    "topic-exhaustion"
   ],
   "relatedShabadIds": [
-    "shabad-generated-360",
-    "shabad-generated-643"
+    "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter",
+    "shabad-nearness-ends-the-frantic-search"
   ],
   "editorial": {
     "status": "approved",

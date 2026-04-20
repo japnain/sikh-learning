@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-hope-outrank-the-world-s-reach",
+  "title": "Let hope outrank the world's reach",
+  "summary": "Hope in the Lord outranks the reach of the world. Serve in a way that leaves the self quieter.",
+  "takeaway": "Serve in a way that leaves the self quieter.",
+  "lifeApplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+  "source": {
+    "deepDiveId": "shabad-hope-in-the-lord-outlives-the-world-s-reach",
+    "verseIds": [
+      7944,
+      7945
+    ],
+    "shortMeaning": "Hope in the Lord outranks the reach of the world.",
+    "lifeApplication": "When pressure swells, remember what the world can reach and what it cannot."
+  },
+  "relatedTopicIds": [
+    "topic-seva"
+  ],
+  "relatedShabadIds": [
+    "shabad-hope-in-the-lord-outlives-the-world-s-reach"
+  ],
+  "relatedCollectionIds": [
+    "collection-service-and-purpose",
+    "collection-seva-journey"
+  ],
+  "rotation": {
+    "theme": "seva",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "discipline"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Hope in the Lord outranks the reach of the world.",
+      "emotionalState": "performing, transactional, dry",
+      "turn": "Let this stay with you: let hope in the Lord outrank the world's reach.",
+      "practicalImplication": "When service starts bargaining for notice, return it to hidden love and steady hands.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.17,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.42,
+      "beauty": 4.57,
+      "overall": 4.3
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

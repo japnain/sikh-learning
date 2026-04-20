@@ -1,0 +1,166 @@
+{
+  "id": "shabad-the-forgiving-lord-shelters-the-lowly",
+  "title": "The forgiving Lord shelters the lowly",
+  "subtitle": "Raag Gauree · Ang 290",
+  "summary": "The shabad begins by praising the Lord as forgiving, merciful, and tender toward the poor and unprotected. It keeps widening that refuge until the speaker can admit smallness without despair and enter sanctuary instead of comparison.",
+  "whyItMatters": "This one meets the person who feels envious, unsettled, or quietly beneath everyone else. Stayed with, it replaces comparison with refuge and makes humility safe because the Lord's mercy moves toward the lowly.",
+  "takeaway": "Bring your smallness into the Lord's shelter instead of hiding it.",
+  "themes": [
+    "comparison",
+    "attachment",
+    "shame"
+  ],
+  "emotionalStates": [
+    "envious",
+    "unsettled",
+    "small"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "medium",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 1049,
+    "ang": 290,
+    "guru": "Guru Arjan Dev Ji",
+    "raag": "Raag Gauree",
+    "line_range": [
+      1,
+      10
+    ],
+    "verse_ids": [
+      13157,
+      13158,
+      13159,
+      13160,
+      13161,
+      13162,
+      13163,
+      13164,
+      13165,
+      13166
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 13157,
+      "gurmukhi": "ਪ੍ਰਭ ਬਖਸੰਦ ਦੀਨ ਦਇਆਲ ॥",
+      "transliteration": "prabh bakhasa(n)dh dheen dhiaal ||",
+      "translation": "God, the Forgiving Lord, is kind to the poor."
+    },
+    {
+      "verseId": 13158,
+      "gurmukhi": "ਭਗਤਿ ਵਛਲ ਸਦਾ ਕਿਰਪਾਲ ॥",
+      "transliteration": "bhagat vachhal sadhaa kirapaal ||",
+      "translation": "He loves His devotees, and He is always merciful to them."
+    },
+    {
+      "verseId": 13159,
+      "gurmukhi": "ਅਨਾਥ ਨਾਥ ਗੋਬਿੰਦ ਗੁਪਾਲ ॥",
+      "transliteration": "anaath naath gobi(n)dh gupaal ||",
+      "translation": "The Patron of the patronless, the Lord of the Universe, the Sustainer of the world,"
+    },
+    {
+      "verseId": 13160,
+      "gurmukhi": "ਸਰਬ ਘਟਾ ਕਰਤ ਪ੍ਰਤਿਪਾਲ ॥",
+      "transliteration": "sarab ghaTaa karat pratipaal ||",
+      "translation": "the Nourisher of all beings."
+    },
+    {
+      "verseId": 13161,
+      "gurmukhi": "ਆਦਿ ਪੁਰਖ ਕਾਰਣ ਕਰਤਾਰ ॥",
+      "transliteration": "aadh purakh kaaran karataar ||",
+      "translation": "The Primal Being, the Creator of the Creation."
+    },
+    {
+      "verseId": 13162,
+      "gurmukhi": "ਭਗਤ ਜਨਾ ਕੇ ਪ੍ਰਾਨ ਅਧਾਰ ॥",
+      "transliteration": "bhagat janaa ke praan adhaar ||",
+      "translation": "The Support of the breath of life of His devotees."
+    },
+    {
+      "verseId": 13163,
+      "gurmukhi": "ਜੋ ਜੋ ਜਪੈ ਸੁ ਹੋਇ ਪੁਨੀਤ ॥",
+      "transliteration": "jo jo japai su hoi puneet ||",
+      "translation": "Whoever meditates on Him is sanctified,"
+    },
+    {
+      "verseId": 13164,
+      "gurmukhi": "ਭਗਤਿ ਭਾਇ ਲਾਵੈ ਮਨ ਹੀਤ ॥",
+      "transliteration": "bhagat bhai laavai man heet ||",
+      "translation": "focusing the mind in loving devotional worship."
+    },
+    {
+      "verseId": 13165,
+      "gurmukhi": "ਹਮ ਨਿਰਗੁਨੀਆਰ ਨੀਚ ਅਜਾਨ ॥",
+      "transliteration": "ham niraguneeaar neech ajaan ||",
+      "translation": "I am unworthy, lowly and ignorant."
+    },
+    {
+      "verseId": 13166,
+      "gurmukhi": "ਨਾਨਕ ਤੁਮਰੀ ਸਰਨਿ ਪੁਰਖ ਭਗਵਾਨ ॥੭॥",
+      "transliteration": "naanak tumaree saran purakh bhagavaan ||7||",
+      "translation": "Nanak has entered Your Sanctuary, O Supreme Lord God. ||7||"
+    }
+  ],
+  "structure": [
+    "First, it names the Lord as forgiving, compassionate, and protective of the poor.",
+    "Then, it praises the One who sustains all beings and supports the breath of devotees.",
+    "Finally, it lets the speaker confess lowliness and step fully into the Lord's sanctuary."
+  ],
+  "keyVerseIds": [
+    13157,
+    13160,
+    13162,
+    13166
+  ],
+  "relatedGuidanceIds": [],
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey",
+    "collection-comparison-bundle"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "The shabad begins by praising the Lord as forgiving, merciful, and tender toward the poor and unprotected. It keeps widening that refuge until the speaker can admit smallness without despair and enter sanctuary instead of comparison.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Then, it praises the One who sustains all beings and supports the breath of devotees.",
+      "practicalImplication": "This one meets the person who feels envious, unsettled, or quietly beneath everyone else. Stayed with, it replaces comparison with refuge and makes humility safe because the Lord's mercy moves toward the lowly. Bring your smallness into the Lord's shelter instead of hiding it.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 4.78,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.72,
+      "beauty": 4.89,
+      "overall": 4.43
+    },
+    "strengths": [
+      "beauty",
+      "specificity"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

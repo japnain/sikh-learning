@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-complaint-leave-the-mouth",
+  "title": "Let complaint leave the mouth",
+  "summary": "Service softens the mind until complaint no longer leads. Let tenderness stay strong.",
+  "takeaway": "Let tenderness stay strong.",
+  "lifeApplication": "When the heart hardens, lower the tone and tell the truth in a way the room can still receive.",
+  "source": {
+    "deepDiveId": "shabad-those-who-serve-the-true-guru-receive-the-name",
+    "verseIds": [
+      3447,
+      3448
+    ],
+    "shortMeaning": "Service softens the mind until complaint no longer leads.",
+    "lifeApplication": "When protest rises, serve first and let the mouth grow quieter."
+  },
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedShabadIds": [
+    "shabad-those-who-serve-the-true-guru-receive-the-name"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint"
+  ],
+  "rotation": {
+    "theme": "softness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 9,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Service softens the mind until complaint no longer leads.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Keep this in front of you: serve the Guru until complaint thins and love for the Beloved rises.",
+      "practicalImplication": "When the heart hardens, lower the tone and tell the truth in a way the room can still receive.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.26,
+      "beauty": 4.85,
+      "overall": 4.4
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

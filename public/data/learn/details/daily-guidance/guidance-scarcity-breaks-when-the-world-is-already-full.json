@@ -1,0 +1,65 @@
+{
+  "id": "guidance-scarcity-breaks-when-the-world-is-already-full",
+  "title": "Scarcity breaks when the world is already full",
+  "summary": "Comparison weakens when every form is seen as already filled. Let contentment quiet the need to compare.",
+  "takeaway": "Let contentment quiet the need to compare.",
+  "lifeApplication": "When envy rises, step away from the screen and return the mind to one truthful task already in your hands today.",
+  "source": {
+    "deepDiveId": "shabad-pervasiveness-cures-the-scarcity-behind-comparison",
+    "verseIds": [
+      4875,
+      4876
+    ],
+    "shortMeaning": "Comparison weakens when every form is seen as already filled.",
+    "lifeApplication": "When comparison narrows you, look again for the One already filling the scene."
+  },
+  "relatedTopicIds": [
+    "topic-comparison"
+  ],
+  "relatedShabadIds": [
+    "shabad-pervasiveness-cures-the-scarcity-behind-comparison"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-comparison-journey"
+  ],
+  "rotation": {
+    "theme": "comparison",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Comparison weakens when every form is seen as already filled.",
+      "emotionalState": "envious, unsettled, small",
+      "turn": "Keep this in front of you: comparison weakens when the world is seen as already filled.",
+      "practicalImplication": "When envy rises, step away from the screen and return the mind to one truthful task already in your hands today.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 5,
+      "beauty": 4.61,
+      "overall": 4.46
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

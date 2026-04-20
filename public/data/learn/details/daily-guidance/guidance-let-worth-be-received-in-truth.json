@@ -1,0 +1,64 @@
+{
+  "id": "guidance-let-worth-be-received-in-truth",
+  "title": "Let worth be received in truth",
+  "summary": "Worth steadies when the heart is attuned to Truth itself. Receive the dignity already being given.",
+  "takeaway": "Receive the dignity already being given.",
+  "lifeApplication": "Before defending your worth, stop and feel how much of it you are outsourcing. Let attunement to Truth arrive before the room's response does.",
+  "source": {
+    "deepDiveId": "shabad-truth-gives-the-heart-a-steadier-worth",
+    "verseIds": [
+      4852
+    ],
+    "shortMeaning": "Worth steadies when the heart is attuned to Truth itself.",
+    "lifeApplication": "When worth feels borrowed, return it to Truth before you defend it."
+  },
+  "relatedTopicIds": [
+    "topic-self-worth"
+  ],
+  "relatedShabadIds": [
+    "shabad-truth-gives-the-heart-a-steadier-worth"
+  ],
+  "relatedCollectionIds": [
+    "collection-self-worth-journey",
+    "collection-self-worth-bundle"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Worth steadies when the heart is attuned to Truth itself.",
+      "emotionalState": "unworthy, rejected, fragile",
+      "turn": "Keep this in front of you: let Truth, not applause, give the heart its place.",
+      "practicalImplication": "Before defending your worth, stop and feel how much of it you are outsourcing. Let attunement to Truth arrive before the room's response does.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.58,
+      "beauty": 4.53,
+      "overall": 4.37
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

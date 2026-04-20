@@ -1,0 +1,64 @@
+{
+  "id": "guidance-run-to-sanctuary-before-fear-hardens",
+  "title": "Run to sanctuary before fear hardens",
+  "summary": "Fear is met by sanctuary, not by pretending self-sufficiency. Let mercy become more believable than the threat.",
+  "takeaway": "Let mercy become more believable than the threat.",
+  "lifeApplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+  "source": {
+    "deepDiveId": "shabad-sanctuary-for-a-mind-under-assault",
+    "verseIds": [
+      8845
+    ],
+    "shortMeaning": "Fear is met by sanctuary, not by pretending self-sufficiency.",
+    "lifeApplication": "In the first surge of fear, ask for shelter before strategy takes over."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-sanctuary-for-a-mind-under-assault"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 10,
+    "freshnessTier": "fresh",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:1-line-window",
+    "evidence": {
+      "coreClaim": "Fear is met by sanctuary, not by pretending self-sufficiency.",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Keep this in front of you: call for shelter before fear becomes your only voice.",
+      "practicalImplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.95,
+      "overall": 4.45
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

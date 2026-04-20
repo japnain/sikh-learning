@@ -1,0 +1,65 @@
+{
+  "id": "guidance-the-battlefield-changes-when-the-guru-is-with-you",
+  "title": "The battlefield changes when the Guru is with you",
+  "summary": "The Guru turns life's hard field into a place of victory. Let mercy become more believable than the threat.",
+  "takeaway": "Let mercy become more believable than the threat.",
+  "lifeApplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+  "source": {
+    "deepDiveId": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
+    "verseIds": [
+      4142,
+      4143
+    ],
+    "shortMeaning": "The Guru turns life's hard field into a place of victory.",
+    "lifeApplication": "When fear makes life feel combative, ask for the Guru's nearness before reacting."
+  },
+  "relatedTopicIds": [
+    "topic-fear"
+  ],
+  "relatedShabadIds": [
+    "shabad-you-are-family-wherever-fear-tries-to-exile-me"
+  ],
+  "relatedCollectionIds": [
+    "collection-fear-journey",
+    "collection-fear-bundle"
+  ],
+  "rotation": {
+    "theme": "fear",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "The Guru turns life's hard field into a place of victory.",
+      "emotionalState": "afraid, guarded, dreading",
+      "turn": "Carry this with you: fear thins when shelter becomes personal again.",
+      "practicalImplication": "Before the next defensive move, bring the breath back under one line of refuge and mercy.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.86,
+      "beauty": 4.85,
+      "overall": 4.44
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

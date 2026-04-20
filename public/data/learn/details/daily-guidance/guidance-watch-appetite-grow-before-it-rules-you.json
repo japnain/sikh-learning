@@ -1,0 +1,65 @@
+{
+  "id": "guidance-watch-appetite-grow-before-it-rules-you",
+  "title": "Watch appetite grow before it rules you",
+  "summary": "Greed grows by stages until appetite starts running the life. Choose the profit that can still travel.",
+  "takeaway": "Choose the profit that can still travel.",
+  "lifeApplication": "When appetite starts calling itself need, stop with your hand on the card or screen and choose the quieter wealth.",
+  "source": {
+    "deepDiveId": "shabad-appetite-grows-in-stages-unless-it-is-taught-otherwise",
+    "verseIds": [
+      5595,
+      5596
+    ],
+    "shortMeaning": "Greed grows by stages until appetite starts running the life.",
+    "lifeApplication": "Catch the want early, before it settles in as identity."
+  },
+  "relatedTopicIds": [
+    "topic-greed"
+  ],
+  "relatedShabadIds": [
+    "shabad-appetite-grows-in-stages-unless-it-is-taught-otherwise"
+  ],
+  "relatedCollectionIds": [
+    "collection-speech-and-self-restraint",
+    "collection-truthful-wealth"
+  ],
+  "rotation": {
+    "theme": "greed",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Greed grows by stages until appetite starts running the life.",
+      "emotionalState": "hungry, never-enough, driven",
+      "turn": "Hold onto this: greed becomes easier to face when its growth is named.",
+      "practicalImplication": "When appetite starts calling itself need, stop with your hand on the card or screen and choose the quieter wealth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.64,
+      "beauty": 4.49,
+      "overall": 4.37
+    },
+    "strengths": [
+      "specificity",
+      "usefulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

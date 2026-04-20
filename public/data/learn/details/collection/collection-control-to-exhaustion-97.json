@@ -9,7 +9,7 @@
     "exhaustion"
   ],
   "heroSource": {
-    "deepDiveId": "shabad-generated-3",
+    "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
     "verseIds": [
       17
     ],
@@ -19,7 +19,7 @@
   "items": [
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-3-1"
+      "id": "guidance-let-praise-loosen-your-need-to-grasp"
     },
     {
       "kind": "topic-guide",
@@ -28,7 +28,7 @@
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-3"
+      "id": "shabad-praise-breaks-the-illusion-of-mastery"
     },
     {
       "kind": "topic-guide",
@@ -37,23 +37,22 @@
     },
     {
       "kind": "daily-guidance",
-      "id": "guidance-generated-360-1"
+      "id": "guidance-enter-the-teaching-as-given"
     },
     {
       "kind": "shabad-deep-dive",
-      "id": "shabad-generated-360"
+      "id": "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter"
     }
   ],
   "relatedTopicIds": [
     "topic-control",
-    "topic-exhaustion",
-    "t"
+    "topic-exhaustion"
   ],
   "relatedShabadIds": [
-    "shabad-generated-3",
-    "shabad-generated-360",
-    "shabad-generated-942",
-    "shabad-generated-643"
+    "shabad-praise-breaks-the-illusion-of-mastery",
+    "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter",
+    "shabad-recognize-greatness-by-the-shelter-it-offers",
+    "shabad-nearness-ends-the-frantic-search"
   ],
   "editorial": {
     "status": "approved",

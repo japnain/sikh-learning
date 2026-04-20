@@ -1,0 +1,65 @@
+{
+  "id": "guidance-serve-with-one-gathered-awareness",
+  "title": "Serve with one gathered awareness",
+  "summary": "Service becomes true when love is gathered toward the One. Treat ego as illness, not identity.",
+  "takeaway": "Treat ego as illness, not identity.",
+  "lifeApplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+  "source": {
+    "deepDiveId": "shabad-the-world-asks-for-peace-and-forgets-naam",
+    "verseIds": [
+      9557,
+      9558
+    ],
+    "shortMeaning": "Service becomes true when love is gathered toward the One.",
+    "lifeApplication": "Before seva, gather the mind and lower the self."
+  },
+  "relatedTopicIds": [
+    "topic-ego"
+  ],
+  "relatedShabadIds": [
+    "shabad-the-world-asks-for-peace-and-forgets-naam"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-ego-journey"
+  ],
+  "rotation": {
+    "theme": "ego",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "challenge"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "Service becomes true when love is gathered toward the One.",
+      "emotionalState": "inflated, defensive, self-protective",
+      "turn": "Let this stay with you: ego cannot make peace; Naam and service can.",
+      "practicalImplication": "When the face heats or the throat tightens, pause and refuse to grant ego the status of truth.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.2,
+      "beauty": 4.21,
+      "overall": 4.23
+    },
+    "strengths": [
+      "specificity",
+      "faithfulness"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -1691,7 +1691,10 @@ function wireRelationships(dataset) {
     const shabadIds = collection.items.filter(item => item.kind === "shabad-deep-dive").map(item => item.id)
     collection.relatedTopicIds = Array.from(new Set([
       ...topicIds,
-      ...collection.themes.flatMap(theme => (topicsByTheme.get(theme) ?? []).slice(0, 1)),
+      ...collection.themes.flatMap(theme => {
+        const topicId = topicsByTheme.get(theme)
+        return topicId ? [topicId] : []
+      }),
     ])).slice(0, 4)
     collection.relatedShabadIds = Array.from(new Set([
       ...shabadIds,

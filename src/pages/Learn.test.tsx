@@ -24,7 +24,7 @@ test("renders the learn hub with the today-first archive structure", async () =>
   expect(await screen.findByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
   expect(screen.getByText(/Find the guide that meets the question/i)).toBeInTheDocument()
   expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toBeInTheDocument()
-  expect(screen.getByText(/The library is growing in public\./i)).toBeInTheDocument()
+  expect(screen.getByText(/The archive is meant to be used, not merely announced\./i)).toBeInTheDocument()
   expect(screen.getByTestId("learn-surface-rail")).toBeInTheDocument()
   expect(screen.getByTestId("learn-subsection-rail")).toBeInTheDocument()
   expect(screen.getByTestId("learn-today-support-row")).toBeInTheDocument()
@@ -37,6 +37,14 @@ test("renders the learn hub with the today-first archive structure", async () =>
   expect(screen.getByText(/Open by State/i)).toBeInTheDocument()
   expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
 }, 10000)
+
+test("learn shell copy reflects the reviewed archive instead of public-growth framing", async () => {
+  renderLearnRoute()
+
+  expect(await screen.findByText(/Search the need plainly\./i)).toBeInTheDocument()
+  expect(screen.getByText(/The archive is meant to be used, not merely announced\./i)).toBeInTheDocument()
+  expect(screen.queryByText(/The library is growing in public\./i)).not.toBeInTheDocument()
+})
 
 test("learn hub card links render as block-level cards for stable mobile painting", async () => {
   renderLearnRoute()

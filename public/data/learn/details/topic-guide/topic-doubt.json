@@ -104,7 +104,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-63",
+            "deepDiveId": "shabad-remember-together-not-in-isolation",
             "verseIds": [
               729,
               730,
@@ -120,7 +120,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1461,
               1462,
@@ -181,7 +181,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-63",
+            "deepDiveId": "shabad-remember-together-not-in-isolation",
             "verseIds": [
               729,
               730,
@@ -197,7 +197,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-179",
+            "deepDiveId": "shabad-truth-is-meant-to-occupy-the-whole-life",
             "verseIds": [
               2798,
               2799,
@@ -222,7 +222,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-231",
+            "deepDiveId": "shabad-the-brave-war-is-the-one-against-inner-ego",
             "verseIds": [
               3462
             ],
@@ -279,7 +279,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-109",
+            "deepDiveId": "shabad-the-shabad-clears-the-double-mind",
             "verseIds": [
               1461,
               1462,
@@ -294,7 +294,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-179",
+            "deepDiveId": "shabad-truth-is-meant-to-occupy-the-whole-life",
             "verseIds": [
               2800
             ],
@@ -305,7 +305,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-509",
+            "deepDiveId": "shabad-restlessness-reveals-what-the-heart-still-loves",
             "verseIds": [
               7107
             ],
@@ -362,7 +362,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-231",
+            "deepDiveId": "shabad-the-brave-war-is-the-one-against-inner-ego",
             "verseIds": [
               3462
             ],
@@ -384,7 +384,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-509",
+            "deepDiveId": "shabad-restlessness-reveals-what-the-heart-still-loves",
             "verseIds": [
               7107,
               7108,
@@ -433,11 +433,11 @@
     "shabad-extinguish-the-fire-of-doubt",
     "shabad-child-of-grace",
     "shabad-steadied-by-creator",
-    "shabad-generated-63",
-    "shabad-generated-109",
-    "shabad-generated-179",
-    "shabad-generated-231",
-    "shabad-generated-509"
+    "shabad-remember-together-not-in-isolation",
+    "shabad-the-shabad-clears-the-double-mind",
+    "shabad-truth-is-meant-to-occupy-the-whole-life",
+    "shabad-the-brave-war-is-the-one-against-inner-ego",
+    "shabad-restlessness-reveals-what-the-heart-still-loves"
   ],
   "relatedTopicIds": [
     "topic-anxiety",

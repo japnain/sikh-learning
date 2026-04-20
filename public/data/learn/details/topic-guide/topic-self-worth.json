@@ -31,7 +31,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-65",
+        "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
         "verseIds": [
           759,
           760
@@ -43,7 +43,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-337",
+        "deepDiveId": "shabad-truth-gives-the-heart-a-steadier-worth",
         "verseIds": [
           4865,
           4866,
@@ -72,7 +72,7 @@
       "label": "Daily",
       "title": "When worth keeps feeling borrowed inside the ordinary day",
       "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. In small routines, checking dignity in other people can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
+      "centralInsight": "Gurbani roots worth in being addressed, held, and remembered by the One. The daily work is to keep standing there long enough that praise, silence, or failure do not keep renegotiating your place.",
       "practicalReflection": "Conditional worth becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
       "actionPrompt": "Today, receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
       "searchTerms": [
@@ -96,7 +96,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               759,
               760
@@ -108,7 +108,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-337",
+            "deepDiveId": "shabad-truth-gives-the-heart-a-steadier-worth",
             "verseIds": [
               4865,
               4866,
@@ -156,11 +156,11 @@
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When approval pressure starts deciding your worth",
-      "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. Under strain, checking dignity in other people starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
+      "title": "When pressure makes worth feel negotiable again",
+      "issueStatement": "The room tightens, the answer does not come, or the work is not received well, and suddenly worth feels like something you must win back before the day can continue.",
+      "centralInsight": "Gurbani does not let response, praise, or performance decide your standing. Under pressure, the test is whether the soul still remembers whose word gives it place.",
+      "practicalReflection": "Pressure makes worth feel transactional again. That is why the correction must be immediate: before rejection, silence, or criticism becomes a verdict on your existence.",
+      "actionPrompt": "When approval disappears, refuse to bargain for worth; return to one line that gives you place before anyone answers you well.",
       "searchTerms": [
         "self-worth",
         "not enough",
@@ -171,19 +171,19 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-65",
+            "deepDiveId": "shabad-praise-melts-what-comparison-hardens",
             "verseIds": [
               759,
               760
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to received dignity.",
-            "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "When approval disappears, refuse to bargain for worth; return to one line that gives you place before anyone answers you well."
           },
           "explanation": "Under pressure, this excerpt interrupts checking dignity in other people before it reaches the tongue, body, or imagination."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-704",
+            "deepDiveId": "shabad-the-split-mind-becomes-one-through-surrender",
             "verseIds": [
               9513,
               9514,
@@ -198,25 +198,25 @@
               9523
             ],
             "shortMeaning": "This line steadies the reflex before conditional worth can rule the moment.",
-            "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "When approval disappears, refuse to bargain for worth; return to one line that gives you place before anyone answers you well."
           },
           "explanation": "The passage refuses to let strain turn conditional worth into the only voice in the room."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-1046",
+            "deepDiveId": "shabad-do-not-forget-the-one-who-never-forgets-you",
             "verseIds": [
               13132
             ],
             "shortMeaning": "Conditional worth is answered here through grace, humility, and belonging.",
-            "lifeApplication": "When the room tightens, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "When approval disappears, refuse to bargain for worth; return to one line that gives you place before anyone answers you well."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward grace, humility, and belonging."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-self-worth:pressure",
         "evidence": {
@@ -240,7 +240,7 @@
           "usefulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
@@ -249,7 +249,7 @@
       "title": "When self-worth has already fallen into shame",
       "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
       "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "practicalReflection": "Repair begins when worth is taken back from the verdict that wounded it. The heart strengthens by returning to the place where it is received, instead of asking the injury to tell the final story.",
       "actionPrompt": "After the slip is visible, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
       "searchTerms": [
         "self-worth",
@@ -261,7 +261,7 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-337",
+            "deepDiveId": "shabad-truth-gives-the-heart-a-steadier-worth",
             "verseIds": [
               4865,
               4866,
@@ -278,7 +278,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-704",
+            "deepDiveId": "shabad-the-split-mind-becomes-one-through-surrender",
             "verseIds": [
               9511
             ],
@@ -331,11 +331,11 @@
     "practice": {
       "key": "practice",
       "label": "Steady Practice",
-      "title": "When dignity needs a practice, not a pep talk",
-      "issueStatement": "Approval, response, and success keep becoming the places where you check whether you are allowed to stand in dignity. Inspiration is not the main need now; a repeatable return is.",
-      "centralInsight": "Gurbani restores worth by placing identity inside grace, humility, and belonging to the One. Dignity is received before it is defended. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
-      "actionPrompt": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there.",
+      "title": "When worth needs a daily place to stand",
+      "issueStatement": "Even after insight, worth keeps drifting back into performance, response, and comparison. Without practice, the old bargain quietly returns.",
+      "centralInsight": "Gurbani roots worth in being held, called, and addressed by the One. The self becomes steadier when it is trained to receive its place from Naam rather than from applause or usefulness.",
+      "practicalReflection": "Worth rarely heals through argument alone. It deepens when the heart repeatedly stands where it can receive dignity without having to earn it first.",
+      "actionPrompt": "For the next seven days, begin one prayer or reading by naming yourself as received before you name anything you still need to prove.",
       "searchTerms": [
         "self-worth",
         "not enough",
@@ -346,12 +346,12 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-1046",
+            "deepDiveId": "shabad-do-not-forget-the-one-who-never-forgets-you",
             "verseIds": [
               13132
             ],
             "shortMeaning": "Conditional worth is retrained through repeated return to received dignity.",
-            "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "For the next seven days, begin one prayer or reading by naming yourself as received before you name anything you still need to prove."
           },
           "explanation": "Kept regularly, this excerpt trains a different first response before the old habit gets fluent."
         },
@@ -362,7 +362,7 @@
               37468
             ],
             "shortMeaning": "This excerpt gives the heart a keepable pattern of grace, humility, and belonging.",
-            "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "For the next seven days, begin one prayer or reading by naming yourself as received before you name anything you still need to prove."
           },
           "explanation": "The passage gives conditional worth a repeatable interruption through grace, humility, and belonging."
         },
@@ -377,14 +377,14 @@
               15
             ],
             "shortMeaning": "A steady practice weakens checking dignity in other people over time.",
-            "lifeApplication": "For the next seven days at the same cue, Receive one sign of being kept before you audit yourself again, and answer the next moment from there."
+            "lifeApplication": "For the next seven days, begin one prayer or reading by naming yourself as received before you name anything you still need to prove."
           },
           "explanation": "Practice becomes durable here because the same turn can be kept again tomorrow."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-self-worth:practice",
         "evidence": {
@@ -408,16 +408,16 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     }
   },
   "relatedShabadIds": [
     "shabad-lord-keeps-the-humble-close",
-    "shabad-generated-65",
-    "shabad-generated-337",
-    "shabad-generated-704",
-    "shabad-generated-1046",
+    "shabad-praise-melts-what-comparison-hardens",
+    "shabad-truth-gives-the-heart-a-steadier-worth",
+    "shabad-the-split-mind-becomes-one-through-surrender",
+    "shabad-do-not-forget-the-one-who-never-forgets-you",
     "shabad-hukam-inside-everything"
   ],
   "relatedTopicIds": [

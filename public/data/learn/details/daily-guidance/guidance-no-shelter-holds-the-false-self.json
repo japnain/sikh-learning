@@ -1,0 +1,65 @@
+{
+  "id": "guidance-no-shelter-holds-the-false-self",
+  "title": "No shelter holds the false self",
+  "summary": "False shelters collapse, but love of the Lord still holds. Receive the nearness already holding you.",
+  "takeaway": "Receive the nearness already holding you.",
+  "lifeApplication": "At the next quiet ache, place a hand on the chest and name the companionship being offered before the mind says alone.",
+  "source": {
+    "deepDiveId": "shabad-duality-makes-decoration-hollow",
+    "verseIds": [
+      789,
+      790
+    ],
+    "shortMeaning": "False shelters collapse, but love of the Lord still holds.",
+    "lifeApplication": "When you reach for a quick shelter, ask whether it can actually hold you."
+  },
+  "relatedTopicIds": [
+    "topic-gratitude"
+  ],
+  "relatedShabadIds": [
+    "shabad-duality-makes-decoration-hollow"
+  ],
+  "relatedCollectionIds": [
+    "collection-gratitude-and-contentment",
+    "collection-gratitude-journey"
+  ],
+  "rotation": {
+    "theme": "loneliness",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 7,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "gratitude"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "False shelters collapse, but love of the Lord still holds.",
+      "emotionalState": "dull, entitled, forgetful",
+      "turn": "Let this stay with you: without the Beloved and the Shabad, surface beauty stays false.",
+      "practicalImplication": "At the next quiet ache, place a hand on the chest and name the companionship being offered before the mind says alone.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.35,
+      "specificity": 5,
+      "emotionalHonesty": 3.54,
+      "usefulness": 4.48,
+      "beauty": 4.95,
+      "overall": 4.45
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

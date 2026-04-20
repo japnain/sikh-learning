@@ -1,0 +1,134 @@
+{
+  "id": "shabad-those-who-serve-the-true-guru-receive-the-name",
+  "title": "Those who serve the True Guru receive the Name",
+  "subtitle": "Siree Raag · Ang 86",
+  "summary": "The shabad starts with service to the True Guru and refuses to separate understanding from obedience. As it deepens, complaint quiets, ego is consumed, and liberation appears as love for the Beloved.",
+  "whyItMatters": "This one meets the person who keeps circling the issue but cannot settle the mind. Stayed with honestly, it changes reflection itself: insight stops being private theory and becomes something received through service, purity, and love.",
+  "takeaway": "Keep this in front of you: serve the Guru until complaint thins and love for the Beloved rises.",
+  "themes": [
+    "anger",
+    "discipline",
+    "restlessness"
+  ],
+  "emotionalStates": [
+    "reactive",
+    "heated",
+    "sharp"
+  ],
+  "difficulty": "growing",
+  "estimatedMinutes": 6,
+  "lengthBand": "short",
+  "citation": {
+    "scripture": "SGGS",
+    "shabad_id": 229,
+    "ang": 86,
+    "guru": "Guru Amar Daas Ji",
+    "raag": "Siree Raag",
+    "line_range": [
+      1,
+      5
+    ],
+    "verse_ids": [
+      3446,
+      3447,
+      3448,
+      3449,
+      3450
+    ],
+    "translator": "BaniDB English"
+  },
+  "lines": [
+    {
+      "verseId": 3446,
+      "gurmukhi": "ਮਃ ੩ ॥",
+      "transliteration": "mahalaa teejaa ||",
+      "translation": "Third Mehla:"
+    },
+    {
+      "verseId": 3447,
+      "gurmukhi": "ਜਿਨੀ ਸਤਿਗੁਰੁ ਸੇਵਿਆ ਤਿਨੀ ਨਾਉ ਪਾਇਆ ਬੂਝਹੁ ਕਰਿ ਬੀਚਾਰੁ ॥",
+      "transliteration": "jinee satigur seviaa tinee naau paiaa boojhahu kar beechaar ||",
+      "translation": "Those who serve the True Guru obtain the Name. Reflect on this and understand."
+    },
+    {
+      "verseId": 3448,
+      "gurmukhi": "ਸਦਾ ਸਾਂਤਿ ਸੁਖੁ ਮਨਿ ਵਸੈ ਚੂਕੈ ਕੂਕ ਪੁਕਾਰ ॥",
+      "transliteration": "sadhaa saa(n)t sukh man vasai chookai kook pukaar ||",
+      "translation": "Eternal peace and joy abide in their minds; they abandon their cries and complaints."
+    },
+    {
+      "verseId": 3449,
+      "gurmukhi": "ਆਪੈ ਨੋ ਆਪੁ ਖਾਇ ਮਨੁ ਨਿਰਮਲੁ ਹੋਵੈ ਗੁਰ ਸਬਦੀ ਵੀਚਾਰੁ ॥",
+      "transliteration": "aapai no aap khai man niramal hovai gur sabadhee veechaar ||",
+      "translation": "Their identity consumes their identical identity, and their minds become pure by contemplating the Word of the Guru's Shabad."
+    },
+    {
+      "verseId": 3450,
+      "gurmukhi": "ਨਾਨਕ ਸਬਦਿ ਰਤੇ ਸੇ ਮੁਕਤੁ ਹੈ ਹਰਿ ਜੀਉ ਹੇਤਿ ਪਿਆਰੁ ॥੨॥",
+      "transliteration": "naanak sabadh rate se mukat hai har jeeau het piaar ||2||",
+      "translation": "O Nanak, attuned to the Shabad, they are liberated. They love their Beloved Lord. ||2||"
+    }
+  ],
+  "structure": [
+    "First, it begins by joining service, Naam, and understanding in one movement.",
+    "Then, it shows the fruit of that service: peace settles in, complaint recedes, and self-importance is eaten away.",
+    "Finally, it ends with liberation as attachment to the Shabad and love for the Lord."
+  ],
+  "keyVerseIds": [
+    3447,
+    3448,
+    3449,
+    3450
+  ],
+  "relatedGuidanceIds": [
+    "guidance-serve-until-the-complaint-quiets",
+    "guidance-let-complaint-leave-the-mouth"
+  ],
+  "relatedTopicIds": [
+    "topic-anger"
+  ],
+  "relatedCollectionIds": [
+    "collection-ego-to-humility",
+    "collection-speech-and-self-restraint",
+    "collection-anger-journey"
+  ],
+  "rotation": {
+    "theme": "anger",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "reflection"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "shabad:generated",
+    "evidence": {
+      "coreClaim": "The shabad starts with service to the True Guru and refuses to separate understanding from obedience. As it deepens, complaint quiets, ego is consumed, and liberation appears as love for the Beloved.",
+      "emotionalState": "reactive, heated, sharp",
+      "turn": "Then, it shows the fruit of that service: peace settles in, complaint recedes, and self-importance is eaten away.",
+      "practicalImplication": "This one meets the person who keeps circling the issue but cannot settle the mind. Stayed with honestly, it changes reflection itself: insight stops being private theory and becomes something received through service, purity, and love. Keep this in front of you: serve the Guru until complaint thins and love for the Beloved rises.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.29,
+      "specificity": 4.96,
+      "emotionalHonesty": 3.18,
+      "usefulness": 4.58,
+      "beauty": 4.65,
+      "overall": 4.35
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "id": "guidance-let-service-steady-your-honor",
+  "title": "Let service steady your honor",
+  "summary": "A servant's honor rests with the Master, not the room. Receive the dignity already being given.",
+  "takeaway": "Receive the dignity already being given.",
+  "lifeApplication": "When pride starts arguing with the day, place a hand on the chest before the replay begins. Say, \"I am Yours,\" and let the Beloved's way steady your honor.",
+  "source": {
+    "deepDiveId": "shabad-what-the-beloved-does-i-accept",
+    "verseIds": [
+      7933,
+      7934
+    ],
+    "shortMeaning": "A servant's honor rests with the Master, not the room.",
+    "lifeApplication": "When bruised pride flares, hand your honor back to the One you serve."
+  },
+  "relatedTopicIds": [
+    "topic-loneliness"
+  ],
+  "relatedShabadIds": [
+    "shabad-what-the-beloved-does-i-accept"
+  ],
+  "relatedCollectionIds": [
+    "collection-sangat-and-belonging",
+    "collection-loneliness-journey"
+  ],
+  "rotation": {
+    "theme": "self-worth",
+    "depthLevel": "growing",
+    "cooldownWindowDays": 45,
+    "seasonality": [
+      "evergreen"
+    ],
+    "priority": 8,
+    "freshnessTier": "evergreen",
+    "balanceCategory": "comfort"
+  },
+  "editorial": {
+    "status": "approved",
+    "origin": "generated",
+    "voiceVersion": "sggs-editorial-v1",
+    "templateKey": "guidance:2-line-window",
+    "evidence": {
+      "coreClaim": "A servant's honor rests with the Master, not the room.",
+      "emotionalState": "alone, unseen, disconnected",
+      "turn": "Let this stay with you: let the Beloved's way grow dearer than the mind's protest.",
+      "practicalImplication": "When pride starts arguing with the day, place a hand on the chest before the replay begins. Say, \"I am Yours,\" and let the Beloved's way steady your honor.",
+      "bannedOverreach": []
+    },
+    "scores": {
+      "faithfulness": 4.4,
+      "clarity": 4.23,
+      "specificity": 5,
+      "emotionalHonesty": 3.36,
+      "usefulness": 4.48,
+      "beauty": 4.61,
+      "overall": 4.35
+    },
+    "strengths": [
+      "specificity",
+      "beauty"
+    ],
+    "issues": [],
+    "reviewedByHuman": true
+  }
+}

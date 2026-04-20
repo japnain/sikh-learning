@@ -32,7 +32,7 @@
   "excerpts": [
     {
       "source": {
-        "deepDiveId": "shabad-generated-3",
+        "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
         "verseIds": [
           17
         ],
@@ -43,7 +43,7 @@
     },
     {
       "source": {
-        "deepDiveId": "shabad-generated-942",
+        "deepDiveId": "shabad-recognize-greatness-by-the-shelter-it-offers",
         "verseIds": [
           12163,
           12164
@@ -77,11 +77,11 @@
     "daily": {
       "key": "daily",
       "label": "Daily",
-      "title": "When control starts steering the day",
-      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. In small routines, gripping for certainty can quietly become the tone of the next hour unless it is interrupted early.",
-      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. The ordinary day is where the heart learns whether it will keep returning or keep drifting.",
-      "practicalReflection": "Control becomes believable by repetition. The correction matters most before small moments harden into a pattern.",
-      "actionPrompt": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
+      "title": "When control quietly arranges the ordinary day",
+      "issueStatement": "The day may look orderly, but beneath the order is a tightening: over-managing people, rehearsing outcomes, resenting interruption, and feeling unsafe when things move unplanned.",
+      "centralInsight": "Gurbani loosens control by teaching faithful placement. Ordinary life becomes lighter when action stays honest but the soul stops insisting that peace requires total management.",
+      "practicalReflection": "Daily control is hard to detect because it often wears competence well. Its fruit, however, is usually strain, resentment, and a heart that never quite unclenches.",
+      "actionPrompt": "Today, release one unnecessary grip: let one person, timeline, or small outcome remain imperfect without trying to possess it.",
       "searchTerms": [
         "control",
         "controlling",
@@ -92,24 +92,24 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-3",
+            "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
             "verseIds": [
               17
             ],
             "shortMeaning": "The day steadies when control is met with response without authorship.",
-            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "Today, release one unnecessary grip: let one person, timeline, or small outcome remain imperfect without trying to possess it."
           },
           "explanation": "In the daily rhythm, this excerpt interrupts gripping for certainty before it becomes the mood of the whole day."
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-942",
+            "deepDiveId": "shabad-recognize-greatness-by-the-shelter-it-offers",
             "verseIds": [
               12163,
               12164
             ],
             "shortMeaning": "Ordinary moments change when the mind returns to a released grip instead of gripping for certainty.",
-            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "Today, release one unnecessary grip: let one person, timeline, or small outcome remain imperfect without trying to possess it."
           },
           "explanation": "The passage pulls the heart back from gripping for certainty and into a released grip."
         },
@@ -121,14 +121,14 @@
               16
             ],
             "shortMeaning": "This excerpt restores proportion before control takes over the tone of the day.",
-            "lifeApplication": "Today, release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "Today, release one unnecessary grip: let one person, timeline, or small outcome remain imperfect without trying to possess it."
           },
           "explanation": "This keeps the next ordinary moment from being governed by control."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:daily",
         "evidence": {
@@ -152,17 +152,17 @@
           "faithfulness"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "pressure": {
       "key": "pressure",
       "label": "Under Pressure",
-      "title": "When control is pretending to be safety and the room gets tight",
-      "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Under strain, gripping for certainty starts sounding urgent, necessary, and completely justified.",
-      "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. In pressure, the teaching has to reach the body before the old reflex reaches speech, imagination, or action.",
-      "practicalReflection": "Pressure reveals what the heart trusts first. That is why this moment needs remembrance more than speed.",
-      "actionPrompt": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
+      "title": "When pressure makes control feel holy",
+      "issueStatement": "The stakes feel high, and gripping starts calling itself responsibility. Under pressure, control can disguise itself as care while actually refusing trust, delegation, and Hukam.",
+      "centralInsight": "Gurbani does not ask you to become passive. It asks you to act faithfully without trying to become the maker of outcomes that belong to the Creator.",
+      "practicalReflection": "Pressure makes control feel virtuous because it promises certainty. But the soul grows harsh and exhausted when it keeps trying to occupy a throne it was never meant to hold.",
+      "actionPrompt": "When urgency rises, name what is yours to carry, what is someone else’s to carry, and what must be left in Hukam.",
       "searchTerms": [
         "control",
         "controlling",
@@ -173,13 +173,13 @@
       "excerpts": [
         {
           "source": {
-            "deepDiveId": "shabad-generated-942",
+            "deepDiveId": "shabad-recognize-greatness-by-the-shelter-it-offers",
             "verseIds": [
               12163,
               12164
             ],
             "shortMeaning": "Pressure loses some of its claim when the heart returns to a released grip.",
-            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "When urgency rises, name what is yours to carry, what is someone else’s to carry, and what must be left in Hukam."
           },
           "explanation": "Under pressure, this excerpt interrupts gripping for certainty before it reaches the tongue, body, or imagination."
         },
@@ -190,7 +190,7 @@
               292
             ],
             "shortMeaning": "This line steadies the reflex before control can rule the moment.",
-            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "When urgency rises, name what is yours to carry, what is someone else’s to carry, and what must be left in Hukam."
           },
           "explanation": "The passage refuses to let strain turn control into the only voice in the room."
         },
@@ -201,14 +201,14 @@
               529
             ],
             "shortMeaning": "Control is answered here through response without authorship.",
-            "lifeApplication": "When the room tightens, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have."
+            "lifeApplication": "When urgency rises, name what is yours to carry, what is someone else’s to carry, and what must be left in Hukam."
           },
           "explanation": "Pressure loosens here because the heart is pulled back toward response without authorship."
         }
       ],
       "editorial": {
         "status": "approved",
-        "origin": "generated",
+        "origin": "manual",
         "voiceVersion": "sggs-editorial-v2",
         "templateKey": "topic-control:pressure",
         "evidence": {
@@ -232,7 +232,7 @@
           "beauty"
         ],
         "issues": [],
-        "reviewedByHuman": false
+        "reviewedByHuman": true
       }
     },
     "repair": {
@@ -241,7 +241,7 @@
       "title": "When control is pretending to be safety after the slip",
       "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. The break has already happened, and now the temptation is to hide, explain, harden, or turn the miss into identity.",
       "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. After the miss, Gurbani keeps the way back near humility, truthfulness, and the next faithful act.",
-      "practicalReflection": "Repair is not self-theatre. It is the quiet refusal to let failure become your permanent story.",
+      "practicalReflection": "Repair begins when control is named as control rather than disguised as care. The heart relaxes again when it confesses what it has been gripping and learns to return action to rightful proportion.",
       "actionPrompt": "After the slip is visible, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
@@ -321,7 +321,7 @@
       "title": "When control needs a repeatable shape",
       "issueStatement": "The mind keeps tightening around outcomes because uncertainty feels unbearable, and the grip starts calling itself responsibility. Inspiration is not the main need now; a repeatable return is.",
       "centralInsight": "Guru separates response from authorship. Control weakens when the heart remembers it was never asked to manufacture every result. What is repeated with honesty begins to retrain the reflex itself.",
-      "practicalReflection": "A kept rule is gentler than a burst of intensity and usually more transformative. The aim is not to feel moved once, but to become more faithful in the next moment.",
+      "practicalReflection": "Control loosens through repeated acts of release. A small, honest relinquishment practiced daily can teach more trust than waiting for one heroic moment of surrender.",
       "actionPrompt": "For the next seven days at the same cue, Release one demand that peace must wait for a guaranteed result, and answer the situation you actually have.",
       "searchTerms": [
         "control",
@@ -356,7 +356,7 @@
         },
         {
           "source": {
-            "deepDiveId": "shabad-generated-3",
+            "deepDiveId": "shabad-praise-breaks-the-illusion-of-mastery",
             "verseIds": [
               17
             ],
@@ -412,8 +412,8 @@
     }
   },
   "relatedShabadIds": [
-    "shabad-generated-3",
-    "shabad-generated-942",
+    "shabad-praise-breaks-the-illusion-of-mastery",
+    "shabad-recognize-greatness-by-the-shelter-it-offers",
     "shabad-hukam-inside-everything",
     "shabad-conquer-the-mind",
     "shabad-human-birth-is-chance",
