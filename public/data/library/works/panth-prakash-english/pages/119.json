@@ -1,0 +1,222 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 119,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Episode About the Tenth Sikh Guru",
+  "blocks": [
+    {
+      "id": "manual-119-1",
+      "type": "paragraph",
+      "text": "Continuing the explanation, the poet says the Khalsa Panth was never hidden after its creation; it was formed openly by the Satguru and could not remain concealed once it had taken its own shape. (1, 6)"
+    },
+    {
+      "id": "manual-119-2",
+      "type": "paragraph",
+      "text": "The Mughal empire may have seemed vast, yet its commanders, populations, and informants failed to grasp in time how widely the Sikhs had spread, whether through ignorance, misreading, or political blindness. (2–5)"
+    },
+    {
+      "id": "manual-119-3",
+      "type": "paragraph",
+      "text": "The answer given is that the Khalsa was born for visible struggle: Singhs were armed from the beginning, marked by khande-di-pahul, steel, and martial bearing, and therefore the Panth announced itself publicly rather than surviving as a hidden sect. (7–8)"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "74 Sri Gur Panth Prakash"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "ag. du ymar"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "heading",
+      "text": "(...HTSH JR Hu Her...)"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "14. hôr parsnga"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "(...khalso hôvai khud khuda...)"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "cos: S8 Hd ufo H ad fea fe feo HJ mae |"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "Ue des TAH Afsag wie su fas ote IS |"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "dôhrâ: tau mari muhi sôn kahi phir bhinn bhinn môhi samjhâi."
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "panth rachi6 jim satigurâ aur bhayô kit dâi.1."
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "suet: at gga ot HS ufsAct | gen sofs SM HW wet |"
+    },
+    {
+      "id": "raw-line-11",
+      "type": "heading",
+      "text": "HU meg cn] WE | CUS UTE UTES Hè 121"
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "chaupaî: thî turkan ki bad patisâhî. hukam turti langh sâbg bâî."
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "madh samundar têpa ghanc. dakkhan pârab parbat sanc.2."
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "gas JS 9H 85 A | faH ad =u gm ffws und |"
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "gus 8o faH mot ge | fa ot Gr ad! at aet 131"
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "rayat hutô des un sârô. kim kar vadh gayô singhan pasârô."
+    },
+    {
+      "id": "raw-line-17",
+      "type": "line",
+      "text": "rayat un kim aki bhai. tin ki phauj kahan thi gaî.2."
+    },
+    {
+      "id": "raw-line-18",
+      "type": "line",
+      "text": "q Go fus vag or ure | a Zes TIME BT S TE |"
+    },
+    {
+      "id": "raw-line-19",
+      "type": "line",
+      "text": "a gas [Huno J ast Hm | à Bo rag Ue 5 Sh Ig |"
+    },
+    {
+      "id": "raw-line-20",
+      "type": "line",
+      "text": "kai un singhan khabar nâ pâî. kai turkan gurâan bair na thâî."
+    },
+    {
+      "id": "raw-line-21",
+      "type": "line",
+      "text": "kai turkan singhan hô gaî mîjâ. kai un jânyô panth na tîjâ.4."
+    },
+    {
+      "id": "raw-line-22",
+      "type": "line",
+      "text": "q 8o Ñ ag ae AWS 3 Go ord fus Js ues |"
+    },
+    {
+      "id": "raw-line-23",
+      "type": "line",
+      "text": "ot ÎH vad 5 oS USAT | A @ 3 Ue Su gad lu!"
+    },
+    {
+      "id": "raw-line-24",
+      "type": "line",
+      "text": "kai un main na thô kôâ sayânôn. tau un nâhi singhan hôt pachhânô."
+    },
+    {
+      "id": "raw-line-25",
+      "type": "line",
+      "text": "kai panth chakyô na dâvô patsâhî. kai un tai panth bhayô lukâhî.5."
+    },
+    {
+      "id": "raw-line-26",
+      "type": "line",
+      "text": "cus: fan fA 939 W eG Hô AG did TH |"
+    },
+    {
+      "id": "raw-line-27",
+      "type": "line",
+      "text": "TOHAS WAH 3 ŴH Ud es H&5 fA Hu fu le |"
+    },
+    {
+      "id": "raw-line-28",
+      "type": "line",
+      "text": "dôhrâ: jim tis uttar main dayô sunôn sôâ gur sikkha."
+    },
+    {
+      "id": "raw-line-29",
+      "type": "line",
+      "text": "janmati lukyô na panth yah dabh sâlan jiun mukh tikkha.6."
+    },
+    {
+      "id": "raw-line-30",
+      "type": "line",
+      "text": "dust: fur va ou ga feu Ou | Mus ve au ol Bau I"
+    },
+    {
+      "id": "raw-line-31",
+      "type": "line",
+      "text": "fus ue dd a sfe€ | Mus ASH Hd aago SÊG 121"
+    },
+    {
+      "id": "raw-line-32",
+      "type": "line",
+      "text": "chaupaî: singhan panth kab luk chhip hôyô. singhan panthu kab lukai lukôyô."
+    },
+    {
+      "id": "raw-line-33",
+      "type": "line",
+      "text": "singhan panth dangai kó bhaiô. singhan janam sang shastarn laiô.7."
+    },
+    {
+      "id": "raw-line-34",
+      "type": "line",
+      "text": "Thus urge us of eet | Mus ggs ua at wet |"
+    },
+    {
+      "id": "raw-line-35",
+      "type": "line",
+      "text": "Pa Rel ka ae =g Bat f ig ou NI"
+    },
+    {
+      "id": "raw-line-36",
+      "type": "line",
+      "text": "singhan pâhul khandg ki dai. singhan gurdhtî khandg ki lai."
+    },
+    {
+      "id": "raw-line-37",
+      "type": "line",
+      "text": "sir par chakkar kardain dhârain. kad vah lukain jim shçr nakh vârain.8."
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  },
+  "episode": {
+    "number": 13,
+    "title": "Episode About the Tenth Sikh Guru",
+    "startPage": 116,
+    "endPage": 119
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 45,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Transition into Episode One",
+  "blocks": [
+    {
+      "id": "manual-45-1",
+      "type": "paragraph",
+      "text": "This damaged page survives chiefly as a hinge between the prefatory defense and Episode 1 rather than as a fully legible narrative unit. Its position between the final claims about Sikh sovereignty and the invocation pages shows that the book is moving from justification into formal commencement."
+    },
+    {
+      "id": "manual-45-2",
+      "type": "paragraph",
+      "text": "The transition gathers the energy of the prologue and redirects it toward the sacred opening, where the work will invoke the divine name and begin recounting the origin of the Khalsa. Even in fragmentary form, the page still marks the deliberate shift from argument to scripture-framed storytelling."
+    },
+    {
+      "id": "manual-45-3",
+      "type": "paragraph",
+      "text": "For a modern reader, the safest editorial summary is to preserve that movement clearly. The page does not advance a new episode so much as prepare the threshold through which Episode 1 will formally begin."
+    }
+  ],
+  "rawBlocks": [],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}

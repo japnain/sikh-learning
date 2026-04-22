@@ -1,0 +1,12 @@
+{
+  "id": "panth-prakash-english",
+  "title": "Panth Prakash (English)",
+  "shortTitle": "Panth Prakash",
+  "description": "English translation of Sri Gur Panth Prakash by Rattan Singh Bhangoo, covering volumes 1 and 2.",
+  "language": "en",
+  "totalPages": 1417,
+  "pageIndexPath": "/data/library/works/panth-prakash-english/pages.json",
+  "provenancePath": "/data/library/works/panth-prakash-english/provenance.json",
+  "pagePathTemplate": "/data/library/works/panth-prakash-english/pages/:pageNumber.json",
+  "episodeIndexPath": "/data/library/works/panth-prakash-english/episodes.json"
+}

@@ -1,0 +1,121 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 2,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "KULWANT SINGH",
+  "blocks": [
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "text": "SRI GUR PANTH PRAKASH"
+    },
+    {
+      "id": "paragraph-1",
+      "type": "paragraph",
+      "text": "English Translation by"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "text": "KULWANT SINGH"
+    },
+    {
+      "id": "heading-3",
+      "type": "heading",
+      "text": "INSTITUTE OF SIKH STUDIES"
+    },
+    {
+      "id": "paragraph-2",
+      "type": "paragraph",
+      "text": "Gurdwara Singh Sabha, Kanthala,"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "ISBN: 81-85815-28-3"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "heading",
+      "text": "SRI GUR PANTH PRAKASH"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "English Translation by"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "heading",
+      "text": "KULWANT SINGH"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "2006/537 NS"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "Copies: 1000"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "Price: Rs. 400/-"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "Publishers"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "heading",
+      "text": "INSTITUTE OF SIKH STUDIES"
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "Gurdwara Singh Sabha, Kanthala,"
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "Indl Area Phase II, Chandigarh 160 002"
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "Phone 91 (172) 2642580, 2225570; Fax 91 (172) 2642581"
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "Web address: sikhstudies.org; e-mail: <ioss@satyam.net.in>"
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "Printers"
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "Sidharth Media Printers, 24/9, Industrial Area Phase II"
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "Chandigarh - 160 002"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}

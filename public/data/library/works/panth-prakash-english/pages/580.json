@@ -1,0 +1,102 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 580,
+  "volume": 2,
+  "sourcePageNumber": 0,
+  "title": "ACKNOWLEDGEMENT",
+  "blocks": [
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "text": "ACKNOWLEDGEMENT"
+    },
+    {
+      "id": "paragraph-1",
+      "type": "paragraph",
+      "text": "means worthy sons create worthy history. Keeping this noble tradition alive and being a true inheritor of the rich legacy of his illustrious ancestors and legendary Sikh warriors S Mehtab Singh Mirankot, S Sham Singh head of the Karoresinghia Misl and S Rai Singh, Rattan Singh Bhangoo had chronicled the Sikh history in his magnum opus Sri Gur Panth Prakash (1841)."
+    },
+    {
+      "id": "paragraph-2",
+      "type": "paragraph",
+      "text": "Following and furthering the same instinct, now the sixth generation descendents of S Rattan Singh Bhangoo settled mainly in the villages of Bhari, Saidpura, Kotla and Badla in district Fatehgarh Sahib as well as in distant foreign lands have jointly sponsored the publication of this volume of English translation of Rattan Singh Bhangoo's great epic. The Institute of Sikh Studies, Chandigarh acknowledges this contribution and thanks S Dildar Singh Bhangoo, Lt Col Daljit Singh Bhangoo, S Daljit Singh Bhangoo PCS and the entire Bhangoo dynasty for their spontaneous and gracious gesture in funding this project."
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "heading",
+      "text": "ACKNOWLEDGEMENT"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "Gurbani, states, Babania kahanian putt sputt karen (Guru Granth Sahib, p 951) which"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "means worthy sons create worthy history. Keeping this noble tradition alive and being a true"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "inheritor of the rich legacy of his illustrious ancestors and legendary Sikh warriors S Mehtab"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "Singh Mirankot, S Sham Singh head of the Karoresinghia Misl and S Rai Singh, Rattan Singh"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "Bhangoo had chronicled the Sikh history in his magnum opus Sri Gur Panth Prakash (1841)."
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "Following and furthering the same instinct, now the sixth generation descendents of S Rattan"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "Singh Bhangoo settled mainly in the villages of Bhari, Saidpura, Kotla and Badla in district"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "Fatehgarh Sahib as well as in distant foreign lands have jointly sponsored the publication of this"
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "volume of English translation of Rattan Singh Bhangoo's great epic. The Institute of Sikh"
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "Studies, Chandigarh acknowledges this contribution and thanks S Dildar Singh Bhangoo, Lt Col"
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "Daljit Singh Bhangoo, S Daljit Singh Bhangoo PCS and the entire Bhangoo dynasty for their"
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "spontaneous and gracious gesture in funding this project."
+    }
+  ],
+  "quality": "clean",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  },
+  "episode": {
+    "number": 123,
+    "title": "Episode About Ahmad Shah and Sukha Singh",
+    "startPage": 567,
+    "endPage": 1046
+  }
+}

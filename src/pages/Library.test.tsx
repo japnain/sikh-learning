@@ -19,6 +19,8 @@ function renderLibraryRoutes() {
       <Routes>
         <Route path="/library" element={<><Library /><LocationSpy /></>} />
         <Route path="/study" element={<LocationSpy />} />
+        <Route path="/library/:workId" element={<LocationSpy />} />
+        <Route path="/library/panth-prakash-english/page/:pageNumber" element={<LocationSpy />} />
       </Routes>
     </MemoryRouter>
   )
@@ -206,7 +208,20 @@ describe('Library removed sections', () => {
     expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
     expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
     expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
+    expect(screen.getByText('Panth Prakash (English)')).toBeInTheDocument()
     expect(screen.queryByText('Amrit Keertan')).not.toBeInTheDocument()
+  })
+
+  it('opens Panth Prakash source browsing on the library overview route', async () => {
+    renderLibraryRoutes()
+
+    fireEvent.click(screen.getByRole('button', { name: /source browsing/i }))
+    fireEvent.click(screen.getByRole('button', { name: 'Panth Prakash (English)' }))
+    fireEvent.click(screen.getByRole('link', { name: '1' }))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english/page/1')
+    })
   })
 
   it('does not show Panthic Sources or BNL', () => {

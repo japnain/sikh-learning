@@ -951,3 +951,81 @@ export interface LearnCatalog {
   topicGuideById: Record<string, TopicGuide>
   collectionById: Record<string, Collection>
 }
+
+export interface LibraryTextBlock {
+  id: string
+  type: 'line' | 'heading' | 'paragraph'
+  text: string
+}
+
+export type LibraryPageQuality = 'clean' | 'readable' | 'fragment' | 'unreadable'
+
+export interface LibraryPagePayload {
+  workId: string
+  pageNumber: number
+  volume: number
+  sourcePageNumber: number
+  title: string
+  blocks: LibraryTextBlock[]
+  rawBlocks?: LibraryTextBlock[]
+  quality?: LibraryPageQuality
+  sourceFile: string
+  review: {
+    status: 'ocr' | 'reviewed'
+  }
+  episode?: {
+    number: number
+    title: string
+    startPage: number
+    endPage: number
+  }
+}
+
+export interface LibraryPageIndexEntry {
+  pageNumber: number
+  volume: number
+  sourcePageNumber: number
+  title: string
+  path: string
+}
+
+export interface LibraryWork {
+  id: string
+  title: string
+  shortTitle: string
+  description: string
+  language: string
+  totalPages: number
+  pageIndexPath: string
+  provenancePath: string
+  pagePathTemplate: string
+  episodeIndexPath?: string
+}
+
+export interface LibrarySearchIndex {
+  works: Array<{
+    id: string
+    title: string
+    aliases: string[]
+  }>
+}
+
+export interface LibraryManifest {
+  version: string
+  generatedAt: string
+  workCatalogPath: string
+  searchIndexPath: string
+}
+
+export interface LibraryWorkCatalog {
+  works: LibraryWork[]
+  workById: Record<string, LibraryWork>
+}
+
+export interface LibraryEpisodeIndexEntry {
+  episodeNumber: number
+  title: string
+  startPage: number
+  endPage: number
+  volume: number
+}

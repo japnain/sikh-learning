@@ -1,0 +1,61 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 17,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Kirpal Singh, Dr Gurbakhsh Singh and Dr Birendra Kaur for the valuable help rendered by them",
+  "blocks": [
+    {
+      "id": "paragraph-1",
+      "type": "paragraph",
+      "text": "Kirpal Singh, Dr Gurbakhsh Singh and Dr Birendra Kaur for the valuable help rendered by them in this task. Dr Kirpal Singh has also contributed a scholarly note which highlights the importance of Gur Panth Parkash as a primary source of Sikh history."
+    },
+    {
+      "id": "paragraph-2",
+      "type": "paragraph",
+      "text": "October 10, 2006 Kharak Singh Sahibzada Ajit Singh Nagar"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash xi"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "Kirpal Singh, Dr Gurbakhsh Singh and Dr Birendra Kaur for the valuable help rendered by them"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "in this task. Dr Kirpal Singh has also contributed a scholarly note which highlights the importance"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "of Gur Panth Parkash as a primary source of Sikh history."
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "October 10, 2006 Kharak Singh"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "959, Sector 59, Convener, Research Committee"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "Sahibzada Ajit Singh Nagar"
+    }
+  ],
+  "quality": "clean",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}

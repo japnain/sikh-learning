@@ -1,0 +1,151 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 44,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Khalsa Sovereignty and the London Record",
+  "blocks": [
+    {
+      "id": "manual-44-1",
+      "type": "paragraph",
+      "text": "This prefatory page insists that Khalsa sovereignty is real and divinely grounded, not a fiction invented by admirers or enemies. The narrator frames the coming history as a truthful defense of Sikh authority and warns that hostile accounts have obscured what the Panth actually became."
+    },
+    {
+      "id": "manual-44-2",
+      "type": "paragraph",
+      "text": "The argument also turns outward toward imperial readers, repeating that the matter should be written carefully and sent onward as a reliable record. References to London and royal inquiry show that the book imagines Sikh history being judged far beyond Punjab itself."
+    },
+    {
+      "id": "manual-44-3",
+      "type": "paragraph",
+      "text": "As a result, the page functions as the last argumentative bridge before the formal opening. It closes the defense of Sikh legitimacy and prepares the reader for the invocation and first episode that follow."
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "bhalî bai ham likh na pathaî. bat hot ham landon jhuthai."
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "ham sabh khâd khôj lakhi liya. aur lôkan tg bhi sûn thîya.14."
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "fH 39 3H 3 OH Hol, Sat Sa ald ugrë gioìllaull (i use)"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "mâìsalmân ar hîndâ purânc. khâb tarâhn ham pâchh pachhânc."
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "Ug are â O uid Hd, AG Tes Ud FSH ua ZINALI (Ú: US) dhan gurâ tum dhan tum buddhi. kahî bât tum nai sabhi suddh. panth dâdhc kó hai yah sâchc. kio guran par zulam bad tâchc.16."
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "dôhrâ: _ tau maling phir. kahi sachch tum bat."
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "dillî vâlan thî kaî. bair bâd kî bât.13."
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "duet: sel set oH fed o uod, ws J3 IH Ses Zo"
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "JH Hg YA YA Sly Shr, vig Sao 3 st Ho Hill all"
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "chaupaî:"
+    },
+    {
+      "id": "raw-line-12",
+      "type": "heading",
+      "text": "HASHTE nid [Og YTS, UN Sgt TH Us UES!"
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "jimi taru tum tc ham suni. uhî taur kahin purâng gunî.15."
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "ú dg SH ús SH oft, adt ws 3H È HÍS HU"
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "edt: — 3HTAÌ gH H adu, dH SA ufzxrígi"
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "AG feu IH 37 O, Ses a uTSATIIIoll (Ú: us)"
+    },
+    {
+      "id": "raw-line-17",
+      "type": "line",
+      "text": "dôhrâ: tau mali ham sôn kahyô. ham bhayô patiyâhi."
+    },
+    {
+      "id": "raw-line-18",
+      "type": "line",
+      "text": "sôû likh ham bhçj hain. landan ke pâtshâhi.20."
+    },
+    {
+      "id": "raw-line-19",
+      "type": "line",
+      "text": "25 Jd: YÀ JÈ uv ud! faH yet HN yee"
+    },
+    {
+      "id": "raw-line-20",
+      "type": "line",
+      "text": "wi Ó HTS ro af, fea HO fas UrSHTÍOll3ull (d: 28)"
+    },
+    {
+      "id": "raw-line-21",
+      "type": "line",
+      "text": "dôhrâ:"
+    },
+    {
+      "id": "raw-line-22",
+      "type": "line",
+      "text": "khâlsô hôvai khud khudâ jim khâbî khâb khudâi."
+    },
+    {
+      "id": "raw-line-23",
+      "type": "line",
+      "text": "ân na manai an ki ik sachchg bin patishâhi.35."
+    },
+    {
+      "id": "raw-line-24",
+      "type": "line",
+      "text": "xlv"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 14,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "John Malcom, Religion of Sikhs, Calcutta, 1958, p. 85.",
+  "blocks": [
+    {
+      "id": "paragraph-1",
+      "type": "paragraph",
+      "text": "John Malcom, Religion of Sikhs, Calcutta, 1958, p. 85."
+    },
+    {
+      "id": "paragraph-2",
+      "type": "paragraph",
+      "text": "Jan Vasina, Oral History, A Study of Historical Methodology, London, 1963, p. ix."
+    },
+    {
+      "id": "paragraph-3",
+      "type": "paragraph",
+      "text": "Prachin Panth Prakash, Rattan Singh Bhangoo, edited by Bhai Vir Singh, Khalsa"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "xviii"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash References"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "1"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "+ Ç N Chandigarh,"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "John Malcom, Religion of Sikhs, Calcutta, 1958, p. 85."
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "Jan Vasina, Oral History, A Study of Historical Methodology, London, 1963, p. ix."
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "E.H. Can, What is History, Pelican Book, Middlesex, England, p. 123."
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "Prachin Panth Prakash, Rattan Singh Bhangoo, edited by Bhai Vir Singh, Khalsa"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "Samachar, Amritsar, pp. 220-224."
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "Ibid., p. 1."
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "Ibid., p. 213."
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "Ibid., p. 232."
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "Ibid., p. 358."
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "Ibid., pp. 5-6."
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "Ibid., p. 211."
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "Ibid., p. 213."
+    },
+    {
+      "id": "raw-line-17",
+      "type": "line",
+      "text": "Ibid., p. 178."
+    },
+    {
+      "id": "raw-line-18",
+      "type": "line",
+      "text": "Ibid., p. 231."
+    },
+    {
+      "id": "raw-line-19",
+      "type": "line",
+      "text": "Ibid., p. 232."
+    },
+    {
+      "id": "raw-line-20",
+      "type": "line",
+      "text": "Ibid., p. 307."
+    },
+    {
+      "id": "raw-line-21",
+      "type": "line",
+      "text": "Ibid., p. 358."
+    },
+    {
+      "id": "raw-line-22",
+      "type": "line",
+      "text": "Ibid., p.133."
+    },
+    {
+      "id": "raw-line-23",
+      "type": "line",
+      "text": "Ibid., p. 411,"
+    },
+    {
+      "id": "raw-line-24",
+      "type": "line",
+      "text": "Dr Kirpal Singh October 21, 2006 1288, Sector 15-B"
+    },
+    {
+      "id": "raw-line-25",
+      "type": "line",
+      "text": "Chandigarh"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}
