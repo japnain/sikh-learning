@@ -1,0 +1,46 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 579,
+  "volume": 2,
+  "sourcePageNumber": 0,
+  "title": "Dedication",
+  "blocks": [
+    {
+      "id": "manual-579-1",
+      "type": "paragraph",
+      "text": "This page is a dedication in the opening matter of Volume II rather than the start of the Ahmad Shah and Sukha Singh narrative. It is addressed plainly and reverently: Dedicated to Dr Kharak Singh."
+    },
+    {
+      "id": "manual-579-2",
+      "type": "paragraph",
+      "text": "The short dedication praises him as the guide and the guardian of the translator’s heart and soul. Instead of episode action, the page offers a compact statement of gratitude and moral indebtedness."
+    },
+    {
+      "id": "manual-579-3",
+      "type": "paragraph",
+      "text": "The repaired summary keeps that front-matter function explicit so the in-app reader does not mistake it for damaged narrative text. It should be read as a dedication page that honors Dr Kharak Singh before the volume proceeds into its contents and episodes."
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "D edicated to Dr Kharak Singh"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "The Guide, the guardian of my heart, and soul"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "Of all my moral being"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}

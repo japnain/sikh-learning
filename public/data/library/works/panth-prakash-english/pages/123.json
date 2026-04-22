@@ -1,0 +1,257 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 123,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Another Episode",
+  "blocks": [
+    {
+      "id": "manual-123-1",
+      "type": "paragraph",
+      "text": "The Guru’s reasoning turns explicitly toward the poor and marginalized communities: power should not be handed to those already enthroned, but to the neglected people whom the house of Nanak had always sheltered. (18–19)"
+    },
+    {
+      "id": "manual-123-2",
+      "type": "paragraph",
+      "text": "The passage lists peasants, artisans, laborers, service castes, traders, and other socially disregarded groups as the ones who would receive dignity, brotherhood, and a claim to sovereignty through the Guru’s favor. (20–22)"
+    },
+    {
+      "id": "manual-123-3",
+      "type": "paragraph",
+      "text": "When Guru Gobind Singh calls such followers to take up arms against the Mughals, many shrink back in fear before imperial power, still imagining themselves as sparrows and lambs before hawks and lions. (23–25)"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "78"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "ig"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "CT"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "dôhrâ"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "suet chaupaî:"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "aug"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "dohra"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "suet chaupaî:"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash"
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "ch patthar pâjak bhijj na nîrô. ôi adi akritghan ghar gur tîrô."
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "rajpât sadavain ap sipahi. 6i kahain kadôn gur dai patishahi."
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "ab dayau patshâhî garîban uthâi. vai jânai gur dai hai mâi.18."
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "gu ŵr vs ats a fa mits eQ mete |"
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "ufs SASS UT gig ol uid dle fora maae 1a |"
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "dayî chîj chahai garib kau kiun ati dayô akhâi."
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "yahi dayâvân ghar gurâ kô ar garîb nivâj akhvâi.19."
+    },
+    {
+      "id": "raw-line-17",
+      "type": "line",
+      "text": "HS HorÍS À asd AS | HT ôfd JAE at TS |"
+    },
+    {
+      "id": "raw-line-18",
+      "type": "line",
+      "text": "Wc yc ate [Hd Ha Hidl | dela Hors fags Bet ALTE 1201"
+    },
+    {
+      "id": "raw-line-19",
+      "type": "line",
+      "text": "sat sanati au barah jata. jan nahi rajnit ki bata."
+    },
+    {
+      "id": "raw-line-20",
+      "type": "line",
+      "text": "jatt bût kahin jinh jag manhi. banîg bakal kirard khattrî sadâî.20."
+    },
+    {
+      "id": "raw-line-21",
+      "type": "line",
+      "text": "BIT GUE JS WS aet | AU 5 ates A TUT att |"
+    },
+    {
+      "id": "raw-line-22",
+      "type": "line",
+      "text": "dag Pods GHATS | ose Has ae u= 5 AT 1291"
+    },
+    {
+      "id": "raw-line-23",
+      "type": "line",
+      "text": "luhar tarkhân hut jat Kamînî. chhîpô kalal nîchan pai karipa kini."
+    },
+    {
+      "id": "raw-line-24",
+      "type": "line",
+      "text": "gujjar gavâr hîr kamjâta. kambôi sidan kôi puchhai na bâta.21."
+    },
+    {
+      "id": "raw-line-25",
+      "type": "line",
+      "text": "Sted ore 33 fima | mEt Hfenrg gs ofr |"
+    },
+    {
+      "id": "raw-line-26",
+      "type": "line",
+      "text": "Sc YN TIHE JS Maes | TIS wwe vi Wing 1221"
+    },
+    {
+      "id": "raw-line-27",
+      "type": "line",
+      "text": "jhivar nai rôrdg ghumidra. sâinî suniârc chârdhg chamiara."
+    },
+    {
+      "id": "raw-line-28",
+      "type": "line",
+      "text": "bhatt au bahman hut¢ mangvâra. bahurâpîc lubang au ghumiâra.22."
+    },
+    {
+      "id": "raw-line-29",
+      "type": "line",
+      "text": "fes adtas gH eG u[SHTdÌ | È Wr ae THIT afer |"
+    },
+    {
+      "id": "raw-line-30",
+      "type": "line",
+      "text": "3 Afe Afsae ÍHH saad | SS HAS [5J 3Joô6 HÙ 1231"
+    },
+    {
+      "id": "raw-line-31",
+      "type": "line",
+      "text": "in gariban ham dayai patisâhî. ç yâd rakhain hamri guriâî."
+    },
+    {
+      "id": "raw-line-32",
+      "type": "line",
+      "text": "tau sadi satigur sikh lalkârc. phardô shastarn lihu turkan mârc.23."
+    },
+    {
+      "id": "raw-line-33",
+      "type": "line",
+      "text": "3 ada ffas ò aft Hau saa 3 He allo |"
+    },
+    {
+      "id": "raw-line-34",
+      "type": "line",
+      "text": "Go ufo ew nfs wat au es TH AHS 1281"
+    },
+    {
+      "id": "raw-line-35",
+      "type": "line",
+      "text": "tau garîb sikkhan nc nahin manyô turkan tc khauph kina."
+    },
+    {
+      "id": "raw-line-36",
+      "type": "line",
+      "text": "un pahi phaujain ati ghanî kab chhôdain râj jamîna.24."
+    },
+    {
+      "id": "raw-line-37",
+      "type": "line",
+      "text": "3 fHHo G Hal SS | JH Š 3ga oM HIAS |"
+    },
+    {
+      "id": "raw-line-38",
+      "type": "line",
+      "text": "wat fader Š me sr | JH BS Š MWS AH |2u |"
+    },
+    {
+      "id": "raw-line-39",
+      "type": "line",
+      "text": "tau sikkhan yau manni na bata. ham tç turak kab marc jata."
+    },
+    {
+      "id": "raw-line-40",
+      "type": "line",
+      "text": "asîn chirîâ vai sânî bâja. ham chhglai vai baghyârdan sâja.25."
+    },
+    {
+      "id": "raw-line-41",
+      "type": "line",
+      "text": "3H fha 3 fen Hd Here | ôSÌ a ural Hardt Ud VSS |"
+    },
+    {
+      "id": "raw-line-42",
+      "type": "line",
+      "text": "zg mire fHurdl Hams USS | JN Wc Ye oet SITE IRÉ |"
+    },
+    {
+      "id": "raw-line-43",
+      "type": "line",
+      "text": "tum marigan tç kim shcr marvâvô. lautî kô pani magri par chardhâvô."
+    },
+    {
+      "id": "raw-line-44",
+      "type": "line",
+      "text": "vahu âd sipâhî mugal pathâna. ham jatt bât nâî tarkhâna.26."
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  },
+  "episode": {
+    "number": 14,
+    "title": "Another Episode",
+    "startPage": 120,
+    "endPage": 127
+  }
+}

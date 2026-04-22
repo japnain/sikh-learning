@@ -11,8 +11,9 @@ import {
 type ScriptureSourceSection = {
   id: string
   name: string
-  source: string
+  source?: string
   totalAngs: number
+  pagePathTemplate?: string
 }
 
 type ScriptureSourceBrowserProps = {
@@ -25,18 +26,29 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
   { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
   { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
+  { id: 'panth-prakash-english', name: 'Panth Prakash (English)', totalAngs: 1417, pagePathTemplate: '/library/panth-prakash-english/page/:pageNumber' },
 ]
 
 const PAGE_SIZE = 50
 
-function angLabel(source: string) {
-  return source === 'G' || source === 'D' ? 'Ang' : 'Page'
+function angLabel(section: ScriptureSourceSection) {
+  return section.pagePathTemplate ? 'Page' : section.source === 'G' || section.source === 'D' ? 'Ang' : 'Page'
 }
 
-function AngPageBrowser({ source, totalAngs }: { source: string; totalAngs: number }) {
+function buildPagePath(section: ScriptureSourceSection, ang: number) {
+  if (section.pagePathTemplate) {
+    return section.pagePathTemplate.includes(':pageNumber')
+      ? section.pagePathTemplate.replace(':pageNumber', String(ang))
+      : section.pagePathTemplate
+  }
+
+  return `/study?source=${section.source}&ang=${ang}`
+}
+
+function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
   const [page, setPage] = useState(0)
   const start = page * PAGE_SIZE + 1
-  const end = Math.min(start + PAGE_SIZE - 1, totalAngs)
+  const end = Math.min(start + PAGE_SIZE - 1, section.totalAngs)
 
   return (
     <div>
@@ -44,7 +56,7 @@ function AngPageBrowser({ source, totalAngs }: { source: string; totalAngs: numb
         {Array.from({ length: end - start + 1 }, (_, index) => start + index).map(ang => (
           <Link
             key={ang}
-            to={`/study?source=${source}&ang=${ang}`}
+            to={buildPagePath(section, ang)}
             className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-2xl py-2 text-center font-sans text-sm text-ink hover:text-gold dark:text-dark-text dark:hover:text-gold-light"
           >
             {ang}
@@ -62,12 +74,12 @@ function AngPageBrowser({ source, totalAngs }: { source: string; totalAngs: numb
           Prev
         </button>
         <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">
-          {angLabel(source)} {start}–{end} of {totalAngs}
+          {angLabel(section)} {start}–{end} of {section.totalAngs}
         </span>
         <button
           type="button"
           onClick={() => setPage(current => current + 1)}
-          disabled={end >= totalAngs}
+          disabled={end >= section.totalAngs}
           className="flex min-h-[44px] items-center gap-1 px-3 font-sans text-sm text-gold disabled:opacity-30 dark:text-gold-light"
         >
           Next
@@ -111,7 +123,7 @@ export default function ScriptureSourceBrowser({
             </button>
             {isOpen ? (
               <div id={panelId} className="mt-4">
-                <AngPageBrowser source={section.source} totalAngs={section.totalAngs} />
+                <AngPageBrowser section={section} />
               </div>
             ) : null}
           </div>

@@ -1,0 +1,182 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 631,
+  "volume": 2,
+  "sourcePageNumber": 0,
+  "title": "Bibliographic Fragment / Citation Spillover",
+  "blocks": [
+    {
+      "id": "manual-631-1",
+      "type": "paragraph",
+      "text": "This damaged page does not preserve a continuous narrative scene, but it does retain enough detail to show that it belongs to a citation and editorial spillover rather than to the story proper. The surviving clues point away from battlefield action and toward source attribution."
+    },
+    {
+      "id": "manual-631-2",
+      "type": "paragraph",
+      "text": "The clearest signal is a Gurdit Singh Giani citation that appears alongside references to Singh Sabha Patrikam and related publication details. In editorial terms, the page is best understood as bibliographic residue carried into the OCR stream rather than as a recoverable prose episode."
+    },
+    {
+      "id": "manual-631-3",
+      "type": "paragraph",
+      "text": "For the in-app reader, the most faithful repair is to mark the fragment as citation material and preserve continuity without pretending the lost text can be confidently restored. That keeps the page readable while remaining honest about the source's condition."
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash li"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "uJdT: 3 ffu faz ye Ga Te HS vos TE |"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "line",
+      "text": "ma de mfe Gfo wat uesa SfE IE |"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "gu: = Se Ue ot AG | JH â BA HIEN BE |"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "line",
+      "text": "sufg Buss GA at AE | af H33 Seals 3 38 121"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "line",
+      "text": "mà Š sao Š 3 HfS | JÎH af 33 MA mfa |"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "line",
+      "text": "JH A Aru CA a od | JS afos 8 R EH md |C!"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "47 Gurdit Singh Giani: Sri Gur Panth Prakash, issue of Singh Sabha Patrikam, Vol. VIII,"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "Issue 3, published by Kendriya Singh Sabha, Amritsar, August 1978, pp. 11-12."
+    },
+    {
+      "id": "raw-line-10",
+      "type": "line",
+      "text": "aw- gg difde fiu fas o eps"
+    },
+    {
+      "id": "raw-line-11",
+      "type": "line",
+      "text": "Jà sent afe fsae, J33d H ad HSS 1 431"
+    },
+    {
+      "id": "raw-line-12",
+      "type": "line",
+      "text": "wg wg sae H Sd TSI STS Uw"
+    },
+    {
+      "id": "raw-line-13",
+      "type": "line",
+      "text": "fae ù Ho ufa ate ws g Tre | 381"
+    },
+    {
+      "id": "raw-line-14",
+      "type": "line",
+      "text": "f&urdì J3 JHd aì »îd al 3 mus |"
+    },
+    {
+      "id": "raw-line-15",
+      "type": "line",
+      "text": "ugs ua at cet HÌ Afsae fagara! qui"
+    },
+    {
+      "id": "raw-line-16",
+      "type": "line",
+      "text": "faq HIS H med BIS aH SATE"
+    },
+    {
+      "id": "raw-line-17",
+      "type": "line",
+      "text": "Has uq q fea fas Ble we dots! VE!"
+    },
+    {
+      "id": "raw-line-18",
+      "type": "line",
+      "text": "ago- fas fas at nas adi SEH gg gfe"
+    },
+    {
+      "id": "raw-line-19",
+      "type": "line",
+      "text": "dete Ae fw ge HTy'dÌ UTS 199 |"
+    },
+    {
+      "id": "raw-line-20",
+      "type": "line",
+      "text": "fae A qone 8 ufae tare gfJ oH"
+    },
+    {
+      "id": "raw-line-21",
+      "type": "line",
+      "text": "Hie oe H >r NHU es fA da ITH ati"
+    },
+    {
+      "id": "raw-line-22",
+      "type": "line",
+      "text": "faats usa ad MW, JHd AS H TSI"
+    },
+    {
+      "id": "raw-line-23",
+      "type": "line",
+      "text": "HITA fur A Usd afe fiw q STS Re |"
+    },
+    {
+      "id": "raw-line-24",
+      "type": "line",
+      "text": "W gag on us feH G8 H Te CaS |"
+    },
+    {
+      "id": "raw-line-25",
+      "type": "line",
+      "text": "À afago at ear 3 JN at së fsgrg RAI"
+    },
+    {
+      "id": "raw-line-26",
+      "type": "line",
+      "text": "(Jon's ated Hela Ta feus Her 3)"
+    },
+    {
+      "id": "raw-line-27",
+      "type": "line",
+      "text": "fen JOS Steg aa ë Start Aas cr gt AHS ffun 9:"
+    },
+    {
+      "id": "raw-line-28",
+      "type": "line",
+      "text": "nota À fearon fan end TS STI"
+    },
+    {
+      "id": "raw-line-29",
+      "type": "line",
+      "text": "Io fiw Gan atti I ae Sroa ugr fas UTd |S I"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  },
+  "episode": {
+    "number": 123,
+    "title": "Episode About Ahmad Shah and Sukha Singh",
+    "startPage": 567,
+    "endPage": 1046
+  }
+}

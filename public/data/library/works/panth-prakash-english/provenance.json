@@ -1,0 +1,9 @@
+{
+  "workId": "panth-prakash-english",
+  "sourceManifestPath": "/scripts/library/sources/panth-prakash-english.sources.json",
+  "generatedFrom": [
+    "scripts/library/normalized/panth-prakash-english/volume-1.raw.json",
+    "scripts/library/normalized/panth-prakash-english/volume-2.raw.json"
+  ],
+  "reviewStatus": "ocr"
+}

@@ -20,6 +20,8 @@ const BanisPage = lazy(() => import('./pages/Banis'))
 const MorePage = lazy(() => import('./pages/More'))
 const LearnPage = lazy(() => import('./pages/Learn'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
+const LibraryPageReader = lazy(() => import('./pages/library/LibraryPageReader'))
+const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
 
 function SkeletonBlock({ className }: { className: string }) {
   return (
@@ -234,6 +236,8 @@ function AppShell() {
                 <Route path="/study" element={<StudyPage />} />
                 <Route path="/study/:scriptureId" element={<StudyPage />} />
                 <Route path="/library" element={<LibraryPage />} />
+                <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
+                <Route path="/library/:workId/page/:pageNumber" element={<LibraryPageReader />} />
                 <Route path="/banis" element={<BanisPage />} />
                 <Route path="/more" element={<MorePage />} />
                 <Route path="/learn/*" element={<LearnPage />} />

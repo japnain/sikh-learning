@@ -1,0 +1,107 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 577,
+  "volume": 2,
+  "sourcePageNumber": 0,
+  "title": "(RATTAN SINGH BHANGOO)",
+  "blocks": [
+    {
+      "id": "heading-1",
+      "type": "heading",
+      "text": "SRI GUR PANTH PRAKASH"
+    },
+    {
+      "id": "heading-2",
+      "type": "heading",
+      "text": "(RATTAN SINGH BHANGOO)"
+    },
+    {
+      "id": "heading-3",
+      "type": "heading",
+      "text": "VOLUME II"
+    },
+    {
+      "id": "paragraph-1",
+      "type": "paragraph",
+      "text": "(Episodes 82 to 169)"
+    },
+    {
+      "id": "heading-4",
+      "type": "heading",
+      "text": "ENGLISH TRANSLATION BY"
+    },
+    {
+      "id": "heading-5",
+      "type": "heading",
+      "text": "KULWANT SINGH"
+    },
+    {
+      "id": "heading-6",
+      "type": "heading",
+      "text": "542 NANAKSHAHI (2010 CE)"
+    },
+    {
+      "id": "paragraph-2",
+      "type": "paragraph",
+      "text": "Institute of Sikh Studies"
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "heading",
+      "text": "SRI GUR PANTH PRAKASH"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "heading",
+      "text": "(RATTAN SINGH BHANGOO)"
+    },
+    {
+      "id": "raw-line-3",
+      "type": "heading",
+      "text": "VOLUME II"
+    },
+    {
+      "id": "raw-line-4",
+      "type": "line",
+      "text": "(Episodes 82 to 169)"
+    },
+    {
+      "id": "raw-line-5",
+      "type": "heading",
+      "text": "ENGLISH TRANSLATION BY"
+    },
+    {
+      "id": "raw-line-6",
+      "type": "heading",
+      "text": "KULWANT SINGH"
+    },
+    {
+      "id": "raw-line-7",
+      "type": "heading",
+      "text": "542 NANAKSHAHI (2010 CE)"
+    },
+    {
+      "id": "raw-line-8",
+      "type": "line",
+      "text": "Institute of Sikh Studies"
+    },
+    {
+      "id": "raw-line-9",
+      "type": "line",
+      "text": "Chandigarh"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  },
+  "episode": {
+    "number": 123,
+    "title": "Episode About Ahmad Shah and Sukha Singh",
+    "startPage": 567,
+    "endPage": 1046
+  }
+}

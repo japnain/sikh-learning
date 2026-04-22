@@ -1,0 +1,41 @@
+{
+  "workId": "panth-prakash-english",
+  "pageNumber": 46,
+  "volume": 1,
+  "sourcePageNumber": 0,
+  "title": "Invocation before Episode One",
+  "blocks": [
+    {
+      "id": "manual-46-1",
+      "type": "paragraph",
+      "text": "The invocation page restores the sacred opening formula that the neighboring readable page confirms in fuller form. It invokes Ik Onkar, celebrates Sri Waheguru Ji Ki Fateh, and names Sri Gur Panth Prakash as the work about to begin."
+    },
+    {
+      "id": "manual-46-2",
+      "type": "paragraph",
+      "text": "This is the ceremonial threshold into the first episode, where the narrative will turn from preliminaries to the origin and destiny of the Khalsa Panth. Its purpose is less argumentative than devotional, announcing that the history is being framed under divine remembrance and victory."
+    },
+    {
+      "id": "manual-46-3",
+      "type": "paragraph",
+      "text": "By preserving the invocation in readable prose, the page now does what the fragment could only suggest. It lets the reader feel the composed beginning that the surrounding pages clearly intend."
+    }
+  ],
+  "rawBlocks": [
+    {
+      "id": "raw-line-1",
+      "type": "line",
+      "text": "Sri Gur Panth Prakash"
+    },
+    {
+      "id": "raw-line-2",
+      "type": "line",
+      "text": "Hi dd Ŵg uama"
+    }
+  ],
+  "quality": "readable",
+  "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
+  "review": {
+    "status": "ocr"
+  }
+}
