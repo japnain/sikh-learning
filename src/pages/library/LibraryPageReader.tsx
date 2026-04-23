@@ -100,12 +100,25 @@ export default function LibraryPageReader() {
   })()
 
   const qualityLabel = currentPage.quality ?? 'readable'
+  const isContentsLikePage = (() => {
+    const headingCount = filteredBlocks.filter(block => block.type === 'heading').length
+    const episodeLikeCount = filteredBlocks.filter(block => /episode/i.test(block.text)).length
+    return /contents/i.test(currentPage.title)
+      || (headingCount >= 8 && episodeLikeCount >= 8)
+  })()
+  const isReferenceLikePage = /index|contents|preface|introduction|foreword|acknowledgement|references|dedication/i.test(currentPage.title)
+  const curatedNavigation = currentPage.editorialNavigation ?? []
   const qualityNote = ({
     clean: 'Editorial reading view with strong OCR cleanup.',
     readable: 'Readable OCR draft with light cleanup applied.',
     fragment: 'Complete coverage page: partial OCR survives, so rough fragments are shown instead of hiding the page.',
     unreadable: 'Complete coverage page: this OCR is currently too damaged for editorial reading, so a placeholder is shown while we repair it.',
   } as const)[qualityLabel]
+  const presentationNote = isContentsLikePage
+    ? 'This contents page is laid out as a browsable episode list so long OCR heading runs read more like an editorial table of contents.'
+    : isReferenceLikePage
+      ? 'This front or back matter page is laid out as documentary material rather than continuous narrative prose.'
+      : null
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -114,7 +127,11 @@ export default function LibraryPageReader() {
   }
 
   return (
-    <div className="page-shell animate-fade-in pb-10" data-testid="library-page-reader">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="library-page-reader"
+      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 4rem)' }}
+    >
       <div className="mb-4">
         <p className="eyebrow">Source Browsing</p>
         <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
@@ -182,20 +199,80 @@ export default function LibraryPageReader() {
             <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-provenance">
               OCR draft from the verified English archive source. {qualityNote}
             </p>
+            {presentationNote ? (
+              <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-presentation-note">
+                {presentationNote}
+              </p>
+            ) : null}
           </div>
 
-          <article className="space-y-4">
-            {filteredBlocks.map(block => (
-              <p
-                key={block.id}
-                className={block.type === 'heading'
-                  ? 'font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light'
-                  : 'font-sans text-[1.08rem] leading-8 text-ink dark:text-dark-text'}
-              >
-                {block.text}
-              </p>
-            ))}
-          </article>
+          {isContentsLikePage ? (
+            <article
+              className="space-y-4"
+              data-testid="library-page-contents-layout"
+              style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + 1.5rem)' }}
+            >
+              {curatedNavigation.length > 0 ? (
+                <nav
+                  aria-label="Curated contents navigation"
+                  className="rounded-[24px] border border-gold/14 bg-parchment-card/78 p-4 dark:border-gold/12 dark:bg-dark-card/72"
+                  data-testid="library-page-curated-navigation"
+                >
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                    Browse these sections
+                  </p>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {curatedNavigation.map(link => (
+                      <Link
+                        key={link.id}
+                        to={`/library/${work.id}/page/${link.pageNumber}`}
+                        className="interactive-focus rounded-[20px] border border-sand/18 bg-parchment-card px-4 py-3 text-left transition hover:border-gold/30 hover:bg-white/70 dark:border-dark-text/10 dark:bg-dark-card dark:hover:border-gold/20 dark:hover:bg-dark-card/86"
+                      >
+                        <p className="font-sans text-sm font-semibold leading-6 text-ink dark:text-dark-text">{link.label}</p>
+                        <p className="mt-1 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">{link.description}</p>
+                        <p className="mt-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:text-gold-light">
+                          Open at page {link.pageNumber}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </nav>
+              ) : null}
+              <ol className="space-y-3">
+                {filteredBlocks.map(block => (
+                  <li key={block.id} className={block.type === 'heading' ? 'list-decimal ml-5 pl-1' : 'list-none ml-3'}>
+                    <p
+                      className={block.type === 'heading'
+                        ? 'font-sans text-base font-semibold leading-7 text-ink dark:text-dark-text'
+                        : 'font-sans text-sm italic leading-6 text-ink/72 dark:text-dark-text/72'}
+                    >
+                      {block.text}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ) : (
+            <article className="space-y-4" style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + 1.5rem)' }}>
+              {filteredBlocks.map(block => (
+                block.type === 'heading' ? (
+                  <h2
+                    key={block.id}
+                    className="font-sans text-base font-semibold leading-7 tracking-[0.02em] text-gold-dark dark:text-gold-light"
+                  >
+                    {block.text}
+                  </h2>
+                ) : (
+                  <p
+                    key={block.id}
+                    className="font-sans text-[1.08rem] leading-8 text-ink dark:text-dark-text"
+                  >
+                    {block.text}
+                  </p>
+                )
+              ))}
+            </article>
+          )}
         </div>
       </section>
     </div>

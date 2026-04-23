@@ -3,147 +3,57 @@
   "pageNumber": 581,
   "volume": 2,
   "sourcePageNumber": 0,
-  "title": "CONTENTS",
+  "title": "Contents (Volume II)",
   "blocks": [
     {
-      "id": "heading-1",
+      "id": "manual-581-1",
       "type": "heading",
-      "text": "CONTENTS"
+      "text": "Contents · Volume II"
     },
     {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "Episode About Chandialias, Jandialas And those who harmed"
-    },
-    {
-      "id": "paragraph-1",
+      "id": "manual-581-2",
       "type": "paragraph",
-      "text": "The Guru's Cause and the Sikh Panth And those Given to Debauchery and Irascibility An Episode that is Shocking"
+      "text": "This first contents page for Volume II turns a dense OCR heading wall into a clearer guide to the early post-Banda episodes, from Chandialias and Tara Singh through Nawab Kapoor Singh, Bhai Mani Singh, Mehtab Singh, Sukha Singh, and Bhai Taru Singh."
     },
     {
-      "id": "heading-3",
+      "id": "manual-581-3",
       "type": "heading",
-      "text": "Episode About Tara Singh — The Mn"
+      "text": "Opening essays and the first cycle of warrior episodes"
     },
     {
-      "id": "heading-4",
-      "type": "heading",
-      "text": "Episode About how S. Tara Singh Attained Mantra ie"
-    },
-    {
-      "id": "heading-5",
-      "type": "heading",
-      "text": "Episode of Randhawas (Singhs) of Chamunday and Kairon Natigiian"
-    },
-    {
-      "id": "heading-6",
-      "type": "heading",
-      "text": "Episode About Nawab Kapoor Singh, The Nihang Chief"
-    },
-    {
-      "id": "heading-7",
-      "type": "heading",
-      "text": "Episode About Mulkhayan and Biwastay and Dinikhudian"
-    },
-    {
-      "id": "heading-8",
-      "type": "heading",
-      "text": "Episode About the Title of nawabship on S. Kapoor Singh"
-    },
-    {
-      "id": "heading-9",
-      "type": "heading",
-      "text": "Episode About Jassa Singh (Ahluwalia)"
-    },
-    {
-      "id": "heading-10",
-      "type": "heading",
-      "text": "Episode About Nawab Kapor Singh Bhujangi"
-    },
-    {
-      "id": "heading-11",
-      "type": "heading",
-      "text": "Episode About Nadar Shah"
-    },
-    {
-      "id": "heading-12",
-      "type": "heading",
-      "text": "Episode About Khalsa's Petition Being eae in the Divine Cups"
-    },
-    {
-      "id": "heading-13",
-      "type": "heading",
-      "text": "Episode About Mehtab Singh, Sukha Singh"
-    },
-    {
-      "id": "heading-14",
-      "type": "heading",
-      "text": "Episode About S. Bota Singh — Th Martyr"
-    },
-    {
-      "id": "heading-15",
-      "type": "heading",
-      "text": "Episode About Bravery of Bhai Sukha Singh"
-    },
-    {
-      "id": "paragraph-2",
+      "id": "manual-581-4",
       "type": "paragraph",
-      "text": "Another Episode About Sukha Singh Another Episode About Sukha Singh"
+      "text": "The page opens with Preface and Introduction, then lists the episode about Chandialias and Jandialas, those who harmed the Guru's cause and the Sikh Panth, those given to debauchery and irascibility, and a shocking companion episode."
     },
     {
-      "id": "heading-16",
+      "id": "manual-581-5",
       "type": "heading",
-      "text": "Episode About Mehtab Kot"
+      "text": "Tara Singh, Randhawas, and Nawab Kapoor Singh"
     },
     {
-      "id": "heading-17",
-      "type": "heading",
-      "text": "Episode About Khalsa's Conduct"
-    },
-    {
-      "id": "heading-18",
-      "type": "heading",
-      "text": "Episode About Subeg Singh Jambar"
-    },
-    {
-      "id": "heading-19",
-      "type": "heading",
-      "text": "Episode About Bhai Taru Singh — A Fearless Manyi"
-    },
-    {
-      "id": "heading-20",
-      "type": "heading",
-      "text": "Episode About Babur..."
-    },
-    {
-      "id": "heading-21",
-      "type": "heading",
-      "text": "Episode About Satguru (Guru Nanak)"
-    },
-    {
-      "id": "paragraph-3",
+      "id": "manual-581-6",
       "type": "paragraph",
-      "text": "Another Episode About (Taru Singh)"
+      "text": "The next run gathers Tara Singh, the Invasion of Moman Khan, the account of how S. Tara Singh attained mantra, the Randhawas of Chamunday and Kairon, Nawab Kapoor Singh the Nihang chief, Mulkhayan and Biwastay with Dinikhudian, the title of nawabship on S. Kapoor Singh, Jassa Singh Ahluwalia, Nawab Kapoor Singh Bhujangi, and Bhai Mani Singh's martyrdom."
     },
     {
-      "id": "heading-22",
+      "id": "manual-581-7",
       "type": "heading",
-      "text": "Episode About Mehtab Singh"
+      "text": "Nadar Shah, Zakaria Khan, Mehtab Singh, and Sukha Singh"
     },
     {
-      "id": "heading-23",
-      "type": "heading",
-      "text": "Episode About Bhai Taru Singh"
-    },
-    {
-      "id": "heading-24",
-      "type": "heading",
-      "text": "Episode About painful death of Nawab Khan Bahadur"
-    },
-    {
-      "id": "paragraph-4",
+      "id": "manual-581-8",
       "type": "paragraph",
-      "text": "Another Episode About the Nawab Khan Bahadur"
+      "text": "The middle sequence highlights Nadar Shah, Khalsa's petition being heard in the divine court, Khanu Nawab and Nawab Zakaria Khan, Mehtab Singh and Sukha Singh, Bota Singh the martyr, the bravery of Bhai Sukha Singh, another episode about Sukha Singh, another episode about Sukha Singh's brave deeds, Mehtab Kot, Khalsa's conduct, and Subeg Singh Jambar."
+    },
+    {
+      "id": "manual-581-9",
+      "type": "heading",
+      "text": "The Bhai Taru Singh cluster and the Nawab Khan Bahadur close"
+    },
+    {
+      "id": "manual-581-10",
+      "type": "paragraph",
+      "text": "The page closes with Bhai Taru Singh, a fearless martyr, Babur, Satguru Guru Nanak, another episode about Taru Singh, Mehtab Singh, Bhai Taru Singh again, the painful death of Nawab Khan Bahadur, and another episode about Nawab Khan Bahadur."
     }
   ],
   "rawBlocks": [
@@ -518,10 +428,30 @@
   "review": {
     "status": "ocr"
   },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
-  }
+  "editorialNavigation": [
+    {
+      "id": "nav-581-opening-essays",
+      "label": "Opening essays and the first cycle of warrior episodes",
+      "description": "Begin Volume II with its preface before moving into Chandialias, Jandialas, and allied opening episodes.",
+      "pageNumber": 584
+    },
+    {
+      "id": "nav-581-tara-singh",
+      "label": "Tara Singh, Randhawas, and Nawab Kapoor Singh",
+      "description": "Jump to the Tara Singh material and follow the rise of Nawab Kapoor Singh.",
+      "pageNumber": 657
+    },
+    {
+      "id": "nav-581-nadar-shah",
+      "label": "Nadar Shah, Zakaria Khan, Mehtab Singh, and Sukha Singh",
+      "description": "Open the central warrior cycle covering Nadar Shah, Zakaria Khan, Mehtab Singh, and Sukha Singh.",
+      "pageNumber": 759
+    },
+    {
+      "id": "nav-581-bhai-taru-singh",
+      "label": "The Bhai Taru Singh cluster and the Nawab Khan Bahadur close",
+      "description": "Move straight to the Bhai Taru Singh martyrdom cluster and its Nawab Khan Bahadur aftermath.",
+      "pageNumber": 871
+    }
+  ]
 }

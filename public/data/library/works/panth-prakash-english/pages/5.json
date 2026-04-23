@@ -3,137 +3,67 @@
   "pageNumber": 5,
   "volume": 1,
   "sourcePageNumber": 0,
-  "title": "WOON AU BWN RFP",
+  "title": "Contents (Volume I)",
   "blocks": [
     {
-      "id": "heading-1",
+      "id": "manual-5-1",
       "type": "heading",
-      "text": "WOON AU BWN RFP"
+      "text": "Contents · Volume I"
     },
     {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "CONTENTS"
-    },
-    {
-      "id": "paragraph-1",
+      "id": "manual-5-2",
       "type": "paragraph",
-      "text": "A Significant SaaS Source of Sikh History The Episode About the Origin of the Khalsa The Second Episode...; The Episode About the First Sikh Guni The Episode About the Dialogue Between Baba Nanak and Kaliyuga"
+      "text": "This opening contents page for Volume I gathers the foreword, preface, introduction, the early Guru-centred episodes, and the first Banda Bahadur arc into one browsable editorial outline."
     },
     {
-      "id": "heading-3",
+      "id": "manual-5-3",
       "type": "heading",
-      "text": "Episode About Udasi to the South"
+      "text": "Front matter and opening interpretive essays"
     },
     {
-      "id": "heading-4",
-      "type": "heading",
-      "text": "Episode About Udasi to the East"
-    },
-    {
-      "id": "heading-5",
-      "type": "heading",
-      "text": "Episode About Udasi to the West"
-    },
-    {
-      "id": "heading-6",
-      "type": "heading",
-      "text": "Episode About Udasi to the North"
-    },
-    {
-      "id": "heading-7",
-      "type": "heading",
-      "text": "Episode About the Delhi Emperor"
-    },
-    {
-      "id": "heading-8",
-      "type": "heading",
-      "text": "Episode About the Emperor Karon"
-    },
-    {
-      "id": "heading-9",
-      "type": "heading",
-      "text": "Episode About the Lineage of the Sikh Gurus"
-    },
-    {
-      "id": "heading-10",
-      "type": "heading",
-      "text": "Episode About Aurangzeb's Tyranny"
-    },
-    {
-      "id": "heading-11",
-      "type": "heading",
-      "text": "Episode About the Tenth Sikh Guru"
-    },
-    {
-      "id": "paragraph-2",
+      "id": "manual-5-4",
       "type": "paragraph",
-      "text": "Another Episode"
+      "text": "Foreword; Preface; A Significant Source of Sikh History; Introduction."
     },
     {
-      "id": "heading-12",
+      "id": "manual-5-5",
       "type": "heading",
-      "text": "Episode About the Creation the Khalsa Panth"
+      "text": "Origins, Guru Nanak, and the udasi journeys"
     },
     {
-      "id": "heading-13",
-      "type": "heading",
-      "text": "Episode About the Expansion of the Khalsa Panth"
-    },
-    {
-      "id": "heading-14",
-      "type": "heading",
-      "text": "Episode About Anandpur Sahib"
-    },
-    {
-      "id": "heading-15",
-      "type": "heading",
-      "text": "Episode About the Battle at Anandpur Sahib"
-    },
-    {
-      "id": "heading-16",
-      "type": "heading",
-      "text": "Episode About the Sacrifice of Elder Sahibzadas"
-    },
-    {
-      "id": "heading-17",
-      "type": "heading",
-      "text": "Episode About Machhiwara Nea"
-    },
-    {
-      "id": "heading-18",
-      "type": "heading",
-      "text": "Episode About Kangar, Tapa and Dina Villages Mm"
-    },
-    {
-      "id": "heading-19",
-      "type": "heading",
-      "text": "Episode About the Brass Near Jaal Piloo Forest"
-    },
-    {
-      "id": "heading-20",
-      "type": "heading",
-      "text": "Episode About Muktsar Sahib."
-    },
-    {
-      "id": "heading-21",
-      "type": "heading",
-      "text": "Episode About Sabo (Talwandi) Rènion (A Talwandi of Bras)"
-    },
-    {
-      "id": "paragraph-3",
+      "id": "manual-5-6",
       "type": "paragraph",
-      "text": "The Episode About Rain in Malwa Region The Episode About Guru Gobind Singh's Movement to the South."
+      "text": "The contents then move through the Origin of the Khalsa, the Second Episode, the First Sikh Guni, the Dialogue Between Baba Nanak and Kaliyuga, and the udasi journeys to the south, east, west, and north."
     },
     {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "The First Episode About Banda Bahadur The Second Episode About Banda Bahadur The Episode About Guru Gobind Singh's Encounter with Banda nd Prayer of the Khalsa..."
+      "id": "manual-5-7",
+      "type": "heading",
+      "text": "Imperial pressure and the rise of Guru Gobind Singh"
     },
     {
-      "id": "paragraph-5",
+      "id": "manual-5-8",
       "type": "paragraph",
-      "text": "Banda Singh's Faith (in the Guru)"
+      "text": "A later cluster highlights the Delhi Emperor, Emperor Karon, the Lineage of the Sikh Gurus, Aurangzeb's Tyranny, the Tenth Sikh Guru, another linked episode, the Creation of the Khalsa Panth, and the Expansion of the Khalsa Panth."
+    },
+    {
+      "id": "manual-5-9",
+      "type": "heading",
+      "text": "Anandpur, sacrifice, and the road south"
+    },
+    {
+      "id": "manual-5-10",
+      "type": "paragraph",
+      "text": "The outline continues through Anandpur Sahib, the Battle at Anandpur Sahib, the Sacrifice of the Elder Sahibzadas, Machhiwara, Kangar, Tapa, and Dina villages, the Jaal Piloo forest, Muktsar Sahib, Sabo Talwandi, Rain in the Malwa Region, and Guru Gobind Singh's Movement to the South."
+    },
+    {
+      "id": "manual-5-11",
+      "type": "heading",
+      "text": "The opening Banda Bahadur sequence"
+    },
+    {
+      "id": "manual-5-12",
+      "type": "paragraph",
+      "text": "The page closes by listing the First Episode About Banda Bahadur, the Second Episode About Banda Bahadur, Guru Gobind Singh's Encounter with Banda, the Prayer of the Khalsa, and Banda Singh's Faith in the Guru."
     }
   ],
   "rawBlocks": [
@@ -377,5 +307,37 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "ocr"
-  }
+  },
+  "editorialNavigation": [
+    {
+      "id": "nav-5-front-matter",
+      "label": "Front matter and opening interpretive essays",
+      "description": "Open the foreword, preface, and introduction sequence that frames Volume I.",
+      "pageNumber": 4
+    },
+    {
+      "id": "nav-5-origins",
+      "label": "Origins, Guru Nanak, and the udasi journeys",
+      "description": "Jump into the early Guru-centred episodes and the four udasi travel sequences.",
+      "pageNumber": 48
+    },
+    {
+      "id": "nav-5-imperial-pressure",
+      "label": "Imperial pressure and the rise of Guru Gobind Singh",
+      "description": "Browse the Delhi Emperor, Aurangzeb, and the run-up to the Khalsa’s formation.",
+      "pageNumber": 96
+    },
+    {
+      "id": "nav-5-anandpur",
+      "label": "Anandpur, sacrifice, and the road south",
+      "description": "Enter the Anandpur, Sahibzada, Machhiwara, Muktsar, and Malwa sequence.",
+      "pageNumber": 146
+    },
+    {
+      "id": "nav-5-banda",
+      "label": "The opening Banda Bahadur sequence",
+      "description": "Start the first Banda Bahadur arc and the Guru’s encounter with him.",
+      "pageNumber": 221
+    }
+  ]
 }
