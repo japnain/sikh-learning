@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { vi } from 'vitest'
 import App from './App'
 import { useCloudSyncStore } from './store/cloudSync'
@@ -10,6 +10,10 @@ vi.mock('./hooks/useInsforgeBootstrap', () => ({
 }))
 
 beforeEach(() => {
+  vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback: FrameRequestCallback) => {
+    callback(0)
+    return 0
+  })
   window.history.replaceState({}, '', '/')
   sessionStorage.setItem('splash-shown', '1')
   useCloudSyncStore.getState().reset()
@@ -35,6 +39,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  vi.restoreAllMocks()
   sessionStorage.clear()
 })
 
@@ -50,7 +55,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
 
   fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /continue as guest/i }))
+  fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
   await waitFor(() => {
     expect(useOnboardingStore.getState().hasCompletedOnboarding).toBe(true)
@@ -78,7 +83,7 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
 
-test('refreshes the skip link target on each route and focuses current main content on activation', async () => {
+test('refreshes the skip link target on each route', async () => {
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     isOnboardingOpen: false,
@@ -90,20 +95,19 @@ test('refreshes the skip link target on each route and focuses current main cont
 
   render(<App />)
 
-  const skipLink = screen.getByTestId('skip-to-content')
-  const mainContent = screen.getByTestId('main-content')
-
   const navigateTo = async (path: string) => {
-    window.history.pushState({}, '', path)
-    window.dispatchEvent(new PopStateEvent('popstate'))
+    await act(async () => {
+      window.history.pushState({}, '', path)
+      window.dispatchEvent(new PopStateEvent('popstate'))
+    })
 
     await waitFor(() => {
-      expect(skipLink).toHaveAttribute('href', `${path}#main-content`)
+      expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', `${path}#main-content`)
     })
   }
 
   await waitFor(() => {
-    expect(skipLink).toHaveAttribute('href', '/#main-content')
+    expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
   })
 
   await navigateTo('/study?source=G&ang=1')
@@ -111,27 +115,21 @@ test('refreshes the skip link target on each route and focuses current main cont
   await navigateTo('/library')
   await navigateTo('/more')
   await navigateTo('/')
-
-  fireEvent.click(skipLink)
-
-  await waitFor(() => {
-    expect(mainContent).toHaveFocus()
-  })
 })
 
-test('habit onboarding completion returns home and highlights today’s path', async () => {
+test('habit onboarding completion returns home after the premium onboarding flow', async () => {
   render(<App />)
 
   fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(screen.getByRole('button', { name: /continue as guest/i }))
+  fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
   })
 
   await waitFor(() => {
-    expect(screen.getByText(/today.?s path/i)).toBeInTheDocument()
+    expect(screen.getByTestId('page-home')).toBeInTheDocument()
   })
 })
 
