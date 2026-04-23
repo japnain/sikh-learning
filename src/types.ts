@@ -960,6 +960,13 @@ export interface LibraryTextBlock {
 
 export type LibraryPageQuality = 'clean' | 'readable' | 'fragment' | 'unreadable'
 
+export interface LibraryEditorialNavigationLink {
+  id: string
+  label: string
+  description: string
+  pageNumber: number
+}
+
 export interface LibraryPagePayload {
   workId: string
   pageNumber: number
@@ -968,6 +975,7 @@ export interface LibraryPagePayload {
   title: string
   blocks: LibraryTextBlock[]
   rawBlocks?: LibraryTextBlock[]
+  editorialNavigation?: LibraryEditorialNavigationLink[]
   quality?: LibraryPageQuality
   sourceFile: string
   review: {

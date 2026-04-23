@@ -2295,6 +2295,47 @@ test('wave 52 repaired pages keep readable editorial summaries for the closing i
   })
 })
 
+test('premium contents pages keep curated editorial outlines and browse links for both Panth Prakash volumes', async () => {
+  const pages = await Promise.all([
+    loadLibraryPage('panth-prakash-english', 5),
+    loadLibraryPage('panth-prakash-english', 581),
+    loadLibraryPage('panth-prakash-english', 582),
+  ])
+
+  const expectedTitles = [
+    'Contents (Volume I)',
+    'Contents (Volume II)',
+    'Contents (Volume II, continued)',
+  ]
+
+  const requiredPhrases = [
+    'Dialogue Between Baba Nanak and Kaliyuga',
+    'Invasion of Moman Khan',
+    'occupation and handing over of Sirhind',
+  ]
+
+  const requiredNavLabels = [
+    'The opening Banda Bahadur sequence',
+    'Nadar Shah, Zakaria Khan, Mehtab Singh, and Sukha Singh',
+    'Kasur, Dileramian, Doaba, Taruna Dal, and Sirhind',
+  ]
+
+  const requiredNavTargets = [221, 759, 1181]
+
+  pages.forEach((page, index) => {
+    expect(page).not.toBeNull()
+    expect(page?.title).toBe(expectedTitles[index])
+    expect(page?.quality).toBe('clean')
+    expect(page?.episode).toBeUndefined()
+    expect(page?.blocks.length).toBeGreaterThan(0)
+    expect(page?.blocks.some(block => block.id.startsWith(`manual-${page?.pageNumber}-`))).toBe(true)
+    expect(page?.blocks.some(block => block.type === 'heading')).toBe(true)
+    expect(page?.blocks.some(block => block.type === 'paragraph')).toBe(true)
+    expect(page?.blocks.some(block => block.text.includes(requiredPhrases[index]))).toBe(true)
+    expect(page?.editorialNavigation?.some(link => link.label === requiredNavLabels[index] && link.pageNumber === requiredNavTargets[index])).toBe(true)
+  })
+})
+
 test('can swap in a filesystem-backed loader for tests', async () => {
   configureLibraryRepositoryLoader(async (resourcePath) => readPublicLibraryJson(resourcePath))
   resetLibraryRepositoryCache()
