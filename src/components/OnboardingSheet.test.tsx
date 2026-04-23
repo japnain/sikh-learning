@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { useState } from 'react'
 import { beforeEach, expect, test, vi } from 'vitest'
 import type {
@@ -77,19 +77,56 @@ beforeEach(() => {
   useCloudSyncStore.getState().reset()
 })
 
-test('guided flow applies a supportive preset and keeps fine tuning available', () => {
+test('setup step keeps the chosen goal inline while elevating the reading atmosphere panel and sticky action shelf', () => {
+  render(<Harness />)
+
+  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
+
+  const helper = screen.getByTestId('onboarding-setup-helper')
+  const stylePanel = screen.getByTestId('onboarding-style-panel')
+  const actionBar = screen.getByTestId('onboarding-setup-action-bar')
+
+  expect(helper).toHaveTextContent(/i want to build habit/i)
+  expect(helper).toHaveTextContent(/keep the next step simple/i)
+  expect(stylePanel).toHaveTextContent(/recommended rhythm/i)
+  expect(stylePanel).toHaveTextContent(/reading \+ meaning/i)
+  expect(actionBar).toHaveTextContent(/selected/i)
+  expect(actionBar).toHaveTextContent(/reading \+ meaning/i)
+})
+
+test('guided flow keeps the hero dominant while secondary setup stays collapsed until requested', () => {
   render(<Harness />)
 
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
+  const previewHero = screen.getByTestId('onboarding-preview-hero')
+  const actionBar = screen.getByTestId('onboarding-preview-action-bar')
+
   expect(screen.getByText(/this is how your reader will open/i)).toBeInTheDocument()
-  expect(screen.getByText(/ik oankaar sat naam kartaa purakh/i)).toBeInTheDocument()
-  expect(screen.getByText(/One Universal Creator/i)).toBeInTheDocument()
+  expect(previewHero).toHaveTextContent(/open with meaning/i)
+  expect(previewHero).toHaveTextContent(/reading \+ meaning · gurmukhi · transliteration on/i)
+  expect(previewHero).toHaveTextContent(/ik oankaar sat naam kartaa purakh/i)
+  expect(previewHero).toHaveTextContent(/One Universal Creator/i)
+  expect(previewHero).not.toHaveTextContent(/you will open with meaning close/i)
+  expect(previewHero).not.toHaveTextContent(/continue as guest/i)
+  expect(previewHero).not.toHaveTextContent(/recommended/i)
+  expect(actionBar).toHaveTextContent(/refine setup later/i)
+  expect(actionBar).toHaveTextContent(/you will open with meaning close/i)
+  expect(within(actionBar).getByRole('button', { name: /^open with meaning$/i })).toBeInTheDocument()
+  expect(actionBar).toHaveTextContent(/fine tune reader/i)
+  expect(actionBar).toHaveTextContent(/open the lower-level choices only if you want to refine script, support, or profile details now/i)
+  expect(actionBar).not.toHaveTextContent(/backup later if you want it/i)
+  expect(actionBar).not.toHaveTextContent(/guest reading stays open on this device/i)
+  expect(actionBar).not.toHaveTextContent(/continue as guest/i)
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
   expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"understand"')
 
-  fireEvent.click(screen.getByRole('button', { name: /fine tune reader/i }))
+  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
+
+  expect(actionBar).toHaveTextContent(/backup later if you want it/i)
+  expect(actionBar).toHaveTextContent(/guest reading stays open on this device/i)
+
   fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
   fireEvent.click(screen.getByRole('button', { name: /teen/i }))
 
@@ -103,8 +140,10 @@ test('quiet preset keeps the preview text-first', () => {
   fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
-  expect(screen.getByText(/text-first reading stays active here/i)).toBeInTheDocument()
-  expect(screen.queryByText(/One Universal Creator/i)).not.toBeInTheDocument()
+  const previewHero = screen.getByTestId('onboarding-preview-hero')
+
+  expect(previewHero).toHaveTextContent(/text-first reading stays active here/i)
+  expect(previewHero).not.toHaveTextContent(/One Universal Creator/i)
   expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
 })
@@ -115,16 +154,16 @@ test('turning meaning off updates the preview summary and action copy for unders
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
-  expect(await screen.findByText(/^Open with meaning$/i)).toBeInTheDocument()
-  expect(screen.getByText(/You will open with meaning close/i)).toBeInTheDocument()
+  expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByRole('button', { name: /^open with meaning$/i })).toBeInTheDocument()
+  expect(screen.getAllByText(/You will open with meaning close/i)).toHaveLength(1)
 
-  fireEvent.click(screen.getByRole('button', { name: /fine tune reader/i }))
+  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
   fireEvent.click(screen.getByRole('button', { name: /^Off$/i }))
 
   await waitFor(() => {
     expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-    expect(screen.getByText(/^Open my reader$/i)).toBeInTheDocument()
-    expect(screen.getByText(/You will land in a cleaner reader/i)).toBeInTheDocument()
+    expect(within(screen.getByTestId('onboarding-preview-action-bar')).getByRole('button', { name: /^open my reader$/i })).toBeInTheDocument()
+    expect(screen.getAllByText(/You will land in a cleaner reader/i)).toHaveLength(1)
   })
 })
 
@@ -150,7 +189,7 @@ test('overlay onboarding still locks document scrolling and restores it on unmou
   expect(document.documentElement.style.overflow).toBe('')
 })
 
-test('preview step offers guest plus configured sign-in providers', async () => {
+test('preview step offers guest plus configured sign-in providers after secondary setup is expanded', async () => {
   const onComplete = vi.fn()
 
   useCloudSyncStore.setState({
@@ -167,6 +206,7 @@ test('preview step offers guest plus configured sign-in providers', async () => 
 
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
 
   expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /continue with google/i })).toBeInTheDocument()
@@ -195,6 +235,7 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
 
   fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
 
   const authSurface = document.querySelector('[data-ai-surface="onboarding-auth"]')
 

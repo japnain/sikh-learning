@@ -170,10 +170,10 @@ function SelectionCard({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group relative w-full overflow-hidden rounded-[22px] border px-4 py-3 text-left transition-[transform,border-color,background-color,color] duration-300 ${
+      className={`group relative w-full overflow-hidden rounded-[22px] border text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 ${
         selected
-          ? 'border-gold/55 bg-gradient-to-br from-saffron/90 via-saffron-light/85 to-gold/80 text-white shadow-gold-strong'
-          : 'border-sand/15 bg-parchment-low/95 text-ink hover:-translate-y-0.5 hover:border-gold/30 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-dark-card'
+          ? 'border-gold/55 bg-gradient-to-br from-saffron/90 via-saffron-light/85 to-gold/80 px-5 py-5 text-white shadow-[0_22px_48px_rgba(173,118,33,0.28)]'
+          : 'border-sand/15 bg-parchment-low/95 px-4 py-3 text-ink hover:-translate-y-0.5 hover:border-gold/30 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-dark-card'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -208,25 +208,45 @@ function SelectionCard({
 
 function GoalChoice({
   label,
+  body,
   selected,
   onClick,
+  selectedLabel,
+  idleLabel,
 }: {
   label: string
+  body: string
   selected: boolean
   onClick: () => void
+  selectedLabel: string
+  idleLabel: string
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`rounded-2xl border px-3 py-3 text-xs font-semibold transition-[border-color,background-color,color] duration-200 ${
+      className={`group flex min-h-[96px] w-full flex-col justify-between rounded-[24px] border px-4 py-4 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 ${
         selected
-          ? 'border-gold/50 bg-gradient-to-r from-saffron to-saffron-light text-white'
-          : 'border-sand/15 bg-parchment-low text-ink/75 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/75'
+          ? 'border-gold/45 bg-[linear-gradient(180deg,rgba(226,164,79,0.98),rgba(245,192,107,0.88))] text-white shadow-[0_18px_38px_rgba(173,118,33,0.24)]'
+          : 'border-sand/15 bg-white/72 text-ink/82 hover:-translate-y-0.5 hover:border-gold/28 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/78 dark:hover:border-gold/22 dark:hover:bg-dark-card'
       }`}
     >
-      {label}
+      <div className="flex items-start justify-between gap-3">
+        <p className={`font-display text-xl leading-tight ${selected ? 'text-white' : 'text-ink dark:text-dark-text'}`}>
+          {label}
+        </p>
+        <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+          selected
+            ? 'bg-white/20 text-white'
+            : 'bg-gold/10 text-gold dark:bg-gold/15 dark:text-gold-light'
+        }`}>
+          {selected ? selectedLabel : idleLabel}
+        </span>
+      </div>
+      <p className={`mt-3 text-sm leading-6 ${selected ? 'text-white/86' : 'text-ink/62 dark:text-dark-text/64'}`}>
+        {body}
+      </p>
     </button>
   )
 }
@@ -360,6 +380,11 @@ export default function OnboardingSheet({
 
   const selectedPreset = inferPreset(meaningLanguage, showTransliteration)
   const recommendedPreset = GOAL_TO_RECOMMENDED_PRESET[learningGoal]
+  const selectedPresetTitle = useMemo(() => {
+    if (selectedPreset === 'quiet') return copy.onboarding.styleQuiet
+    if (selectedPreset === 'guided') return copy.onboarding.styleGuided
+    return copy.onboarding.styleDeep
+  }, [copy.onboarding.styleDeep, copy.onboarding.styleGuided, copy.onboarding.styleQuiet, selectedPreset])
   const goalBody = useMemo(
     () => getGoalBody(learningGoal, copy.onboarding),
     [copy.onboarding, learningGoal]
@@ -444,253 +469,197 @@ export default function OnboardingSheet({
   }
 
   function renderSetupStep() {
-    return (
-      <div className="space-y-4">
-        <div>
-          <h3 className="font-display text-3xl leading-tight text-ink dark:text-dark-text">
-            {copy.onboarding.intentTitle}
-          </h3>
-          <p className="mt-2 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
-            {copy.onboarding.intentBody}
-          </p>
-        </div>
+    const orderedPresets = [
+      selectedPreset,
+      ...(['quiet', 'guided', 'deep'] as const).filter(preset => preset !== selectedPreset),
+    ]
 
-        <div className="grid grid-cols-3 gap-2">
-          {(['read', 'understand', 'habit'] as const).map(goal => (
-            <GoalChoice
-              key={goal}
-              label={learningGoalLabels[goal]}
-              selected={learningGoal === goal}
-              onClick={() => handleGoalSelection(goal)}
-            />
-          ))}
-        </div>
-
-        <div className="rounded-[22px] border border-sand/15 bg-parchment-low/90 p-4 dark:border-dark-text/10 dark:bg-dark-surface">
-          <p className="eyebrow">{learningGoalLabels[learningGoal]}</p>
-          <p className="mt-2 text-sm leading-5 text-ink/70 dark:text-dark-text/70">
-            {goalBody}
-          </p>
-        </div>
-
-        <div>
-          <h3 className="font-display text-3xl leading-tight text-ink dark:text-dark-text">
-            {copy.onboarding.styleTitle}
-          </h3>
-          <p className="mt-2 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
-            {copy.onboarding.styleBody}
-          </p>
-        </div>
-
-        <div className="space-y-3">
+    const renderPresetCard = (preset: ReadingPresetId) => {
+      if (preset === 'quiet') {
+        return (
           <SelectionCard
+            key={preset}
             title={copy.onboarding.styleQuiet}
             body={copy.onboarding.styleQuietBody}
-            selected={selectedPreset === 'quiet'}
-            onClick={() => handlePresetSelection('quiet')}
-            badge={recommendedPreset === 'quiet' ? copy.onboarding.recommended : undefined}
+            selected={selectedPreset === preset}
+            onClick={() => handlePresetSelection(preset)}
+            badge={recommendedPreset === preset ? copy.onboarding.recommended : undefined}
           />
+        )
+      }
+
+      if (preset === 'guided') {
+        return (
           <SelectionCard
+            key={preset}
             title={copy.onboarding.styleGuided}
             body={copy.onboarding.styleGuidedBody}
-            selected={selectedPreset === 'guided'}
-            onClick={() => handlePresetSelection('guided')}
-            badge={recommendedPreset === 'guided' ? copy.onboarding.recommended : undefined}
+            selected={selectedPreset === preset}
+            onClick={() => handlePresetSelection(preset)}
+            badge={recommendedPreset === preset ? copy.onboarding.recommended : undefined}
           />
-          <SelectionCard
-            title={copy.onboarding.styleDeep}
-            body={copy.onboarding.styleDeepBody}
-            selected={selectedPreset === 'deep'}
-            onClick={() => handlePresetSelection('deep')}
-          />
+        )
+      }
+
+      return (
+        <SelectionCard
+          key={preset}
+          title={copy.onboarding.styleDeep}
+          body={copy.onboarding.styleDeepBody}
+          selected={selectedPreset === preset}
+          onClick={() => handlePresetSelection(preset)}
+        />
+      )
+    }
+
+    return (
+      <div className="space-y-6">
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-display text-3xl leading-tight text-ink dark:text-dark-text">
+              {copy.onboarding.intentTitle}
+            </h3>
+            <p className="mt-2 max-w-[28rem] text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+              {copy.onboarding.intentBody}
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            {(['read', 'understand', 'habit'] as const).map(goal => (
+              <GoalChoice
+                key={goal}
+                label={learningGoalLabels[goal]}
+                body={getGoalBody(goal, copy.onboarding)}
+                selected={learningGoal === goal}
+                onClick={() => handleGoalSelection(goal)}
+                selectedLabel={copy.common.selected}
+                idleLabel={copy.common.tapToUse}
+              />
+            ))}
+          </div>
+
+          <div
+            className="flex items-start gap-3 px-1"
+            data-testid="onboarding-setup-helper"
+            data-ai-surface="onboarding-setup-helper"
+          >
+            <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_0_18px_rgba(224,154,70,0.45)]" />
+            <div className="min-w-0">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                {copy.onboarding.setupDirectionLabel} · {learningGoalLabels[learningGoal]}
+              </p>
+              <p className="mt-1 text-sm leading-6 text-ink/68 dark:text-dark-text/68">
+                {goalBody}
+              </p>
+            </div>
+          </div>
         </div>
+
+        <section
+          className="relative overflow-hidden rounded-[32px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(255,208,120,0.24),transparent_38%),linear-gradient(180deg,rgba(255,252,246,0.98),rgba(247,238,225,0.94))] p-5 shadow-[0_18px_42px_rgba(122,84,32,0.14)] dark:border-gold/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(240,171,48,0.18),transparent_34%),linear-gradient(180deg,rgba(38,33,27,0.97),rgba(28,24,20,0.98))] dark:shadow-[0_22px_48px_rgba(0,0,0,0.34)]"
+          data-testid="onboarding-style-panel"
+          data-ai-surface="onboarding-style-panel"
+        >
+          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-gold/20" />
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                {copy.onboarding.stylePanelEyebrow}
+              </p>
+              <h3 className="mt-2 font-display text-[2rem] leading-tight text-ink dark:text-dark-text">
+                {copy.onboarding.styleTitle}
+              </h3>
+              <p className="mt-2 max-w-[24rem] text-sm leading-6 text-ink/66 dark:text-dark-text/68">
+                {copy.onboarding.styleBody}
+              </p>
+            </div>
+            <span className="shrink-0 rounded-full border border-white/70 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/10 dark:bg-white/5 dark:text-gold-light">
+              {copy.onboarding.recommended}
+            </span>
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink/70 dark:text-dark-text/70">
+            <span className="rounded-full border border-sand/15 bg-white/72 px-3 py-1.5 dark:border-dark-text/10 dark:bg-white/5">
+              {learningGoalLabels[learningGoal]}
+            </span>
+            <span className="rounded-full border border-gold/18 bg-gold/10 px-3 py-1.5 text-gold-dark dark:border-gold/20 dark:bg-gold/10 dark:text-gold-light">
+              {selectedPresetTitle}
+            </span>
+          </div>
+
+          <div className="mt-5 space-y-3">
+            {orderedPresets.map(renderPresetCard)}
+          </div>
+        </section>
       </div>
     )
   }
 
   function renderPreviewStep() {
+    const previewSupportSummary = showTransliteration
+      ? `${copy.onboarding.transliteration} ${copy.common.on}`
+      : previewMeaning
+        ? meaningLanguageLabels[meaningLanguage]
+        : copy.onboarding.textFirstLabel
+    const previewSummaryLine = [selectedPresetTitle, scriptModeLabels[scriptMode], previewSupportSummary].join(' · ')
+    const primaryActionLabel = getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)
+
     return (
       <div className="space-y-4">
-        <div>
-          <h3 className="font-display text-3xl leading-tight text-ink dark:text-dark-text">
+        <div className="max-w-[27rem]">
+          <h3 className="font-display text-[1.85rem] leading-tight text-ink dark:text-dark-text">
             {copy.onboarding.previewTitle}
           </h3>
-          <p className="mt-2 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
+          <p className="mt-2 text-sm leading-5 text-ink/62 dark:text-dark-text/64">
             {copy.onboarding.previewBody}
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-[28px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.18),_transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.95),rgba(244,235,220,0.92))] p-4 shadow-gold-strong dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.18),_transparent_35%),linear-gradient(180deg,rgba(32,29,24,0.96),rgba(26,24,20,0.98))]">
-          <div className="flex items-center justify-between gap-3">
+        <div
+          className="overflow-hidden rounded-[32px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.24),_transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.97),rgba(244,235,220,0.94))] p-6 shadow-[0_30px_70px_rgba(122,84,32,0.16)] dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.18),_transparent_36%),linear-gradient(180deg,rgba(32,29,24,0.98),rgba(26,24,20,1))]"
+          data-testid="onboarding-preview-hero"
+          data-ai-surface="onboarding-preview-hero"
+        >
+          <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                 {copy.onboarding.previewEyebrow}
               </p>
-              <p className="mt-1 font-display text-2xl text-ink dark:text-dark-text">
-                {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
+              <p className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">
+                {primaryActionLabel}
+              </p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-ink/52 dark:text-dark-text/56">
+                {previewSummaryLine}
               </p>
             </div>
-            <span className="rounded-full border border-gold/25 bg-white/65 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-gold dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
+            <span className="rounded-full border border-gold/18 bg-white/65 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
               {copy.onboarding.ready}
             </span>
           </div>
 
-          <div className="mt-4 rounded-[24px] border border-white/70 bg-white/75 p-4 dark:border-white/5 dark:bg-black/20">
+          <div className="mt-6 rounded-[28px] bg-white/72 px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] dark:bg-black/20">
             <p
-              className={`text-[1.65rem] leading-relaxed text-ink dark:text-dark-text ${scriptMode === 'gurmukhi' ? 'font-gurmukhi' : 'font-sans'}`}
+              className={`text-[1.9rem] leading-relaxed text-ink dark:text-dark-text ${scriptMode === 'gurmukhi' ? 'font-gurmukhi' : 'font-sans'}`}
               lang={scriptMode === 'gurmukhi' ? 'pa-Guru' : 'hi'}
             >
               {previewScript}
             </p>
             {showTransliteration && (
-              <p className="mt-3 text-sm italic text-ink/60 dark:text-dark-text/60">
+              <p className="mt-3 text-sm italic text-ink/58 dark:text-dark-text/60">
                 {SAMPLE_LINE.transliteration}
               </p>
             )}
             {previewMeaning ? (
-              <p className={`mt-3 text-sm leading-6 text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+              <p className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/72 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
                 {previewMeaning}
               </p>
             ) : (
-              <p className="mt-3 text-sm leading-6 text-ink/55 dark:text-dark-text/55">
+              <p className="mt-4 text-sm leading-6 text-ink/55 dark:text-dark-text/55">
                 {copy.onboarding.textFirstBody}
               </p>
             )}
           </div>
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="rounded-full border border-sand/15 bg-white/70 px-3 py-1.5 text-xs text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
-              {scriptModeLabels[scriptMode]}
-            </span>
-            <span className="rounded-full border border-sand/15 bg-white/70 px-3 py-1.5 text-xs text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
-              {meaningLanguageLabels[meaningLanguage]}
-            </span>
-            <span className="rounded-full border border-sand/15 bg-white/70 px-3 py-1.5 text-xs text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
-              {copy.onboarding.transliteration} {showTransliteration ? copy.common.on : copy.common.off}
-            </span>
-            <span className="rounded-full border border-sand/15 bg-white/70 px-3 py-1.5 text-xs text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
-              {learningLevelLabels[learningLevel]}
-            </span>
-          </div>
-        </div>
-
-        <div className="rounded-[24px] border border-sand/15 bg-parchment-low/90 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-surface">
-          <button
-            type="button"
-            onClick={() => setShowFineTune(value => !value)}
-            className="flex w-full items-center justify-between gap-3 text-left"
-            aria-expanded={showFineTune}
-            aria-controls={fineTunePanelId}
-          >
-            <div>
-              <p className="font-display text-xl text-ink dark:text-dark-text">
-                {showFineTune ? copy.onboarding.hideTuning : copy.onboarding.tuneReader}
-              </p>
-              <p className="mt-1 text-sm leading-5 text-ink/60 dark:text-dark-text/60">
-                {copy.onboarding.fineTune}
-              </p>
-            </div>
-            <span className="rounded-full border border-gold/20 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-gold dark:text-gold-light">
-              {showFineTune ? copy.common.hide : copy.common.show}
-            </span>
-          </button>
-
-          {showFineTune && (
-            <div id={fineTunePanelId} className="mt-4 space-y-4 border-t border-sand/10 pt-4 dark:border-dark-text/10">
-              <div>
-                <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.readingScript}</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {(['gurmukhi', 'devanagari'] as const).map(mode => (
-                    <MiniChoice
-                      key={mode}
-                      label={scriptModeLabels[mode]}
-                      selected={scriptMode === mode}
-                      onClick={() => setScriptMode(mode)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.meaning}</p>
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  {(['none', 'en', 'pa', 'hi'] as const).map(option => (
-                    <MiniChoice
-                      key={option}
-                      label={meaningLanguageLabels[option]}
-                      selected={meaningLanguage === option}
-                      onClick={() => setMeaningLanguage(option)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {meaningLanguage === 'en' && (
-                <div>
-                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.englishSource}</p>
-                  <div className="grid gap-2">
-                    {Object.entries(englishSourceLabels).map(([key, label]) => (
-                      <MiniChoice
-                        key={key}
-                        label={label}
-                        selected={englishSource === key}
-                        onClick={() => setEnglishSource(key as EnglishSource)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-sm text-ink dark:text-dark-text">{copy.onboarding.transliteration}</p>
-                  <p className="mt-1 text-xs text-ink/55 dark:text-dark-text/55">
-                    {showTransliteration ? copy.common.on : copy.common.off}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowTransliteration(!showTransliteration)}
-                  aria-label="Toggle onboarding transliteration"
-                  className={`relative h-7 w-12 rounded-full transition-colors duration-300 ${
-                    showTransliteration ? 'bg-gold' : 'bg-sand/30 dark:bg-dark-text/20'
-                  }`}
-                >
-                  <span className={`absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-300 ${
-                    showTransliteration ? 'translate-x-5' : ''
-                  }`} />
-                </button>
-              </div>
-
-              <div>
-                <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.learningLevel}</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
-                    <MiniChoice
-                      key={level}
-                      label={learningLevelLabels[level]}
-                      selected={learningLevel === level}
-                      onClick={() => setLearningLevel(level)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.audience}</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {(['child', 'teen', 'adult'] as const).map(option => (
-                    <MiniChoice
-                      key={option}
-                      label={onboardingAudienceLabels[option]}
-                      selected={audience === option}
-                      onClick={() => setAudience(option)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     )
@@ -703,8 +672,10 @@ export default function OnboardingSheet({
 
   const chrome = (
     <div
-      className={`relative flex flex-col rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card ${
-        isOverlayPresentation ? 'h-full min-h-0 overflow-hidden' : 'overflow-visible'
+      className={`relative flex flex-col ${
+        isOverlayPresentation
+          ? 'h-full min-h-0 overflow-hidden rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card'
+          : 'min-h-0 flex-1 overflow-visible'
       }`}
       data-testid={isOverlayPresentation ? 'onboarding-dialog' : 'onboarding-first-run-panel'}
       data-ai-surface={isOverlayPresentation ? 'onboarding-overlay-panel' : 'onboarding-first-run-panel'}
@@ -713,7 +684,11 @@ export default function OnboardingSheet({
       <div className="pointer-events-none absolute -right-8 top-0 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-16 h-44 w-44 rounded-full bg-gold/15 blur-3xl" />
 
-      <div className="relative shrink-0 border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(37,33,28,0.96),rgba(30,27,23,0.88))]">
+      <div className={`relative shrink-0 ${
+        isOverlayPresentation
+          ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(37,33,28,0.96),rgba(30,27,23,0.88))]'
+          : 'px-1 pb-5 pt-4'
+      }`}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="mb-2 font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
@@ -733,13 +708,13 @@ export default function OnboardingSheet({
             </button>
           ) : null}
         </div>
-        <p id={descriptionId} className="mt-3 max-w-[28rem] text-sm leading-5 text-ink/65 dark:text-dark-text/65">
+        <p id={descriptionId} className="mt-3 max-w-[28rem] text-sm leading-6 text-ink/65 dark:text-dark-text/65">
           {editorial?.onboarding.brandBody ?? copy.onboarding.body}
         </p>
       </div>
 
-      <div className={`relative px-5 py-4 ${
-        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain' : ''
+      <div className={`relative ${
+        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4' : 'px-1'
       }`}>
         <div className="space-y-4">
           <StepIndicator currentStep={currentStep} locale={locale} />
@@ -758,101 +733,240 @@ export default function OnboardingSheet({
         </div>
       </div>
 
-      <div className="relative shrink-0 border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card">
+      <div className={`relative shrink-0 ${
+        isOverlayPresentation
+          ? 'border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
+          : currentStep === 'preview'
+            ? 'mt-4 px-1 pb-4'
+            : 'sticky bottom-0 z-10 mt-auto px-1 pb-4 pt-5'
+      }`}>
         {currentStep === 'setup' ? (
-          <button
-            type="button"
-            onClick={() => setCurrentStep('preview')}
-            className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
+          <div
+            className={isOverlayPresentation
+              ? 'space-y-0'
+              : 'rounded-[28px] border border-white/70 bg-[linear-gradient(180deg,rgba(255,249,239,0.9),rgba(244,235,220,0.98))] px-4 py-4 shadow-[0_-18px_36px_rgba(122,84,32,0.12)] backdrop-blur-xl dark:border-white/5 dark:bg-[linear-gradient(180deg,rgba(38,33,27,0.9),rgba(28,24,20,0.98))]'}
+            data-testid="onboarding-setup-action-bar"
+            data-ai-surface="onboarding-setup-action-bar"
           >
-            {copy.common.continueLabel}
-          </button>
-        ) : (
-          <>
-            <p className="mb-3 text-sm leading-5 text-ink/65 dark:text-dark-text/65">
-              {routeSummary}
-            </p>
-            <div
-              className="overflow-hidden rounded-[26px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.18),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.94),rgba(244,235,220,0.92))] p-4 dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(232,196,104,0.16),transparent_38%),linear-gradient(180deg,rgba(34,31,26,0.96),rgba(28,25,21,0.98))]"
-              data-ai-surface="onboarding-auth"
-              data-ai-state={onboardingAuthState}
-              data-ai-error={onboardingErrorCode ?? undefined}
+            {!isOverlayPresentation && (
+              <p className="mb-3 text-xs uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/55">
+                {copy.common.selected} · {selectedPresetTitle}
+              </p>
+            )}
+            <button
+              type="button"
+              onClick={() => setCurrentStep('preview')}
+              className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                    {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
-                  </p>
-                  <p className="mt-2 text-sm leading-5 text-ink/68 dark:text-dark-text/68">
-                    {currentUser
-                      ? copy.onboarding.authConnectedBody
-                      : isProviderLoading
-                        ? copy.onboarding.authChecking
-                        : copy.onboarding.authBody}
-                  </p>
-                </div>
-                <span className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
-                  currentUser
-                    ? 'bg-[#dfead8] text-[#3c6a3f] dark:bg-[#203224] dark:text-[#9fd8a3]'
-                    : 'bg-gold/12 text-gold-dark dark:bg-gold/12 dark:text-gold-light'
-                }`}>
-                  {currentUser ? copy.onboarding.ready : copy.onboarding.recommended}
-                </span>
+              {copy.common.continueLabel}
+            </button>
+          </div>
+        ) : (
+          <div
+            className={`${
+              isOverlayPresentation
+                ? 'border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
+                : 'sticky bottom-0 z-10 -mx-1 bg-[linear-gradient(180deg,rgba(255,249,239,0),rgba(255,249,239,0.78)_22%,rgba(244,235,220,0.98)_56%,rgba(244,235,220,1)_100%)] px-1 pb-4 pt-6 dark:bg-[linear-gradient(180deg,rgba(24,21,17,0),rgba(24,21,17,0.76)_20%,rgba(28,24,20,0.98)_54%,rgba(28,24,20,1)_100%)]'
+            }`}
+            data-testid="onboarding-preview-action-bar"
+            data-ai-surface="onboarding-preview-action-bar"
+          >
+            <div className="space-y-3">
+              <div className="max-w-[28rem] space-y-1">
+                <p className="text-[11px] tracking-[0.12em] text-ink/38 dark:text-dark-text/42">
+                  {copy.onboarding.previewSupportTitle}
+                </p>
+                <p className="text-sm leading-6 text-ink/70 dark:text-dark-text/72">
+                  {routeSummary}
+                </p>
               </div>
 
-              {connectedLabel && (
-                <p className="mt-3 rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/62 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/62">
-                  {connectedLabel}
-                </p>
-              )}
+              <button
+                type="button"
+                onClick={() => void onComplete()}
+                disabled={isCompleting || (!currentUser && isCloudBusy)}
+                data-ai-action={currentUser ? 'complete-onboarding' : 'continue-as-guest'}
+                className="w-full rounded-[22px] bg-gradient-to-r from-saffron to-saffron-light py-4 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
+              </button>
 
-              {lastError && !currentUser && (
-                <p className="mt-3 rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
-                  {lastError}
+              <div className="space-y-2" data-testid="onboarding-preview-tune-row">
+                <button
+                  type="button"
+                  onClick={() => setShowFineTune(value => !value)}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink/54 transition-colors duration-200 hover:text-ink/72 dark:text-dark-text/60 dark:hover:text-dark-text/82"
+                  aria-expanded={showFineTune}
+                  aria-controls={fineTunePanelId}
+                >
+                  <span>{showFineTune ? copy.onboarding.hideTuning : copy.onboarding.tuneReader}</span>
+                  <span className="rounded-full border border-sand/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink/44 dark:border-dark-text/14 dark:text-dark-text/48">
+                    {showFineTune ? copy.common.hide : copy.common.show}
+                  </span>
+                </button>
+                <p className="max-w-[28rem] text-xs leading-5 text-ink/56 dark:text-dark-text/58">
+                  {copy.onboarding.fineTune}
                 </p>
-              )}
+              </div>
+            </div>
 
-              <div className="mt-4 space-y-3">
-                {currentUser ? (
+            {showFineTune && (
+              <div
+                id={fineTunePanelId}
+                className="mt-4 space-y-4 rounded-[24px] border border-sand/15 bg-white/72 p-4 shadow-[0_18px_36px_rgba(122,84,32,0.12)] dark:border-dark-text/10 dark:bg-dark-surface"
+              >
+                <div>
+                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.readingScript}</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {(['gurmukhi', 'devanagari'] as const).map(mode => (
+                      <MiniChoice
+                        key={mode}
+                        label={scriptModeLabels[mode]}
+                        selected={scriptMode === mode}
+                        onClick={() => setScriptMode(mode)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.meaning}</p>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                    {(['none', 'en', 'pa', 'hi'] as const).map(option => (
+                      <MiniChoice
+                        key={option}
+                        label={meaningLanguageLabels[option]}
+                        selected={meaningLanguage === option}
+                        onClick={() => setMeaningLanguage(option)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {meaningLanguage === 'en' && (
+                  <div>
+                    <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.englishSource}</p>
+                    <div className="grid gap-2">
+                      {Object.entries(englishSourceLabels).map(([key, label]) => (
+                        <MiniChoice
+                          key={key}
+                          label={label}
+                          selected={englishSource === key}
+                          onClick={() => setEnglishSource(key as EnglishSource)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm text-ink dark:text-dark-text">{copy.onboarding.transliteration}</p>
+                    <p className="mt-1 text-xs text-ink/55 dark:text-dark-text/55">
+                      {showTransliteration ? copy.common.on : copy.common.off}
+                    </p>
+                  </div>
                   <button
                     type="button"
-                    onClick={() => void onComplete()}
-                    disabled={isCompleting}
-                    data-ai-action="complete-onboarding"
-                    className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                    onClick={() => setShowTransliteration(!showTransliteration)}
+                    aria-label="Toggle onboarding transliteration"
+                    className={`relative h-7 w-12 rounded-full transition-colors duration-300 ${
+                      showTransliteration ? 'bg-gold' : 'bg-sand/30 dark:bg-dark-text/20'
+                    }`}
                   >
-                    {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
+                    <span className={`absolute left-1 top-1 h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-300 ${
+                      showTransliteration ? 'translate-x-5' : ''
+                    }`} />
                   </button>
-                ) : (
-                  <>
+                </div>
+
+                <div>
+                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.learningLevel}</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
+                      <MiniChoice
+                        key={level}
+                        label={learningLevelLabels[level]}
+                        selected={learningLevel === level}
+                        onClick={() => setLearningLevel(level)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.audience}</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {(['child', 'teen', 'adult'] as const).map(option => (
+                      <MiniChoice
+                        key={option}
+                        label={onboardingAudienceLabels[option]}
+                        selected={audience === option}
+                        onClick={() => setAudience(option)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className="space-y-3 border-t border-sand/10 pt-4 dark:border-dark-text/10"
+                  data-ai-surface="onboarding-auth"
+                  data-ai-state={onboardingAuthState}
+                  data-ai-error={onboardingErrorCode ?? undefined}
+                >
+                  <div className="max-w-[28rem] space-y-2">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-ink/44 dark:text-dark-text/48">
+                      {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
+                    </p>
+                    <p className="text-sm leading-6 text-ink/58 dark:text-dark-text/60">
+                      {currentUser
+                        ? copy.onboarding.authConnectedBody
+                        : isProviderLoading
+                          ? copy.onboarding.authChecking
+                          : copy.onboarding.authBody}
+                    </p>
+                  </div>
+
+                  {connectedLabel && (
+                    <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/62 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/62">
+                      {connectedLabel}
+                    </p>
+                  )}
+
+                  {lastError && !currentUser && (
+                    <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
+                      {lastError}
+                    </p>
+                  )}
+
+                  {!currentUser && (
                     <button
                       type="button"
                       onClick={() => void onComplete()}
                       disabled={isCompleting || isCloudBusy}
-                      data-ai-action="continue-as-guest"
-                      className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                      className="w-full rounded-[20px] border border-sand/15 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:border-gold/25 hover:text-gold-dark disabled:cursor-not-allowed disabled:opacity-70 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text dark:hover:text-gold-light"
                     >
                       {copy.onboarding.authGuest}
                     </button>
+                  )}
 
-                    {supportedProviders.length > 0 && (
-                      <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
-                        {supportedProviders.map(provider => (
-                          <ProviderChoice
-                            key={provider}
-                            label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
-                            disabled={isCompleting || isCloudBusy}
-                            onClick={() => void handleProviderSignIn(provider)}
-                            dataAiAction={`onboarding-sign-in-${provider}`}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </>
-                )}
+                  {!currentUser && supportedProviders.length > 0 && (
+                    <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
+                      {supportedProviders.map(provider => (
+                        <ProviderChoice
+                          key={provider}
+                          label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
+                          disabled={isCompleting || isCloudBusy}
+                          onClick={() => void handleProviderSignIn(provider)}
+                          dataAiAction={`onboarding-sign-in-${provider}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </>
+            )}
+          </div>
         )}
       </div>
     </div>

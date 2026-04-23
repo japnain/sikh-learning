@@ -1,4 +1,4 @@
-import { lazy, Suspense, startTransition, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, startTransition, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
@@ -170,9 +170,13 @@ function AppShell() {
   const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
   const skipToContentHref = `${location.pathname}${location.search}#main-content`
 
-  function handleSkipToContent() {
+  function handleSkipToContent(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
+
     if (typeof window === 'undefined') return
 
+    window.history.replaceState(window.history.state, '', skipToContentHref)
+    mainContentRef.current?.focus()
     window.requestAnimationFrame(() => {
       mainContentRef.current?.focus()
     })
