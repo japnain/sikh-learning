@@ -623,6 +623,9 @@ export default function Home() {
     todayGuidance,
     todayGuidancePath,
   ])
+  const showNextBestAction = nextBestAction ? nextBestAction.path !== todayGuidancePath : false
+  const visibleNextBestAction = showNextBestAction ? nextBestAction : null
+
   const featuredShabadSupport = useMemo(() => {
     if (learnCatalogLoading) {
       return { state: 'loading' as const }
@@ -742,25 +745,25 @@ export default function Home() {
         </h1>
       </div>
 
-      {nextBestAction ? (
+      {visibleNextBestAction ? (
         <section className="section-shell p-5 mb-5 animate-slide-up stagger-1" data-testid="home-next-best-action">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="eyebrow">{nextBestAction.eyebrow}</p>
+              <p className="eyebrow">{visibleNextBestAction.eyebrow}</p>
               <h2 className="mt-2 font-display text-[1.9rem] leading-[1.02] text-ink dark:text-dark-text">
-                {nextBestAction.title}
+                {visibleNextBestAction.title}
               </h2>
-              {nextBestAction.meta ? <span className="chip-pill mt-3 inline-flex">{nextBestAction.meta}</span> : null}
+              {visibleNextBestAction.meta ? <span className="chip-pill mt-3 inline-flex">{visibleNextBestAction.meta}</span> : null}
               <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-                {nextBestAction.body}
+                {visibleNextBestAction.body}
               </p>
             </div>
             <Link
-              to={nextBestAction.path}
+              to={visibleNextBestAction.path}
               className="interactive-focus interactive-pill-link shrink-0 gap-2 self-start font-sans text-sm font-semibold text-gold dark:text-gold-light"
               data-testid="home-next-best-action-link"
             >
-              <span>{nextBestAction.actionLabel}</span>
+              <span>{visibleNextBestAction.actionLabel}</span>
               <IconArrowRight size={14} />
             </Link>
           </div>

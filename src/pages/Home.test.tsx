@@ -415,7 +415,7 @@ test('shows a saved revisit as the next best action when there is no session and
   expect(within(nextAction).getByTestId('home-next-best-action-link').getAttribute('href')).toMatch(/\/learn\/topics\/topic-anxiety\?from=saved/)
 })
 
-test('falls back to today’s guidance as the next best action when there is no session, review, or saved revisit', async () => {
+test('keeps guidance singular when it would otherwise duplicate the hero on home', async () => {
   useLearningStore.setState(state => ({
     ...state,
     learnState: {
@@ -425,11 +425,14 @@ test('falls back to today’s guidance as the next best action when there is no 
   }))
   useVocabStore.setState({ vocab: [] })
 
+  const todaySurface = await getTodaySurface()
+
   renderHome()
 
-  const nextAction = await screen.findByTestId('home-next-best-action')
-  expect(within(nextAction).getByText(/today in learn/i)).toBeInTheDocument()
-  expect(within(nextAction).getByTestId('home-next-best-action-link').getAttribute('href')).toMatch(/\/learn\/guidance\//)
+  expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
+  const guidanceHero = await screen.findByTestId('home-guidance-hero')
+  expect(within(guidanceHero).getByText(todaySurface.dailyGuidance.item.title)).toBeInTheDocument()
+  expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
 })
 
 test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama CTA when no session exists', async () => {

@@ -139,6 +139,7 @@ test('heavy More sections start collapsed while Grow and About stay visible', ()
   render(<MemoryRouter><More /></MemoryRouter>)
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.getByRole('button', { name: /keep naamras with you across devices/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByRole('button', { name: /reader defaults/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByRole('button', { name: /profile & app language/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.queryByText(/^English translation$/i)).not.toBeInTheDocument()

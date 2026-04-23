@@ -184,38 +184,48 @@ export default function NavBar() {
             title={tab.ariaLabel}
             data-testid={`nav-tab-${tab.id}`}
             data-ai-action={`nav-${tab.id}`}
-            className="group relative flex min-w-0 flex-1"
+            className={({ isActive }) => `group relative flex min-w-0 items-end justify-center transition-all duration-300 ${isActive ? 'flex-[1.7]' : 'flex-1'}`}
           >
             {({ isActive }) => (
               <span
-                className={`relative flex w-full min-w-0 flex-col items-center justify-center gap-1.5 rounded-[22px] px-1.5 py-2.5 transition-all duration-300 ${
+                className={`relative flex min-h-[64px] w-full min-w-0 items-center justify-center transition-all duration-300 ${
                   isActive
-                    ? `${tab.accent.activeText}`
-                    : 'text-ink/52 dark:text-dark-text/58 hover:text-ink/74 dark:hover:text-dark-text/78'
+                    ? `${tab.accent.activeText} rounded-[24px] px-4 py-2.5 gap-2.5 justify-start`
+                    : 'flex-col gap-1 rounded-[22px] px-1 py-2 text-ink/52 dark:text-dark-text/58 hover:text-ink/74 dark:hover:text-dark-text/78'
                 }`}
+                data-active={isActive}
               >
                 <span
-                  className={`absolute inset-0 rounded-[22px] transition-all duration-300 ${
+                  className={`absolute inset-0 transition-all duration-300 ${
                     isActive
-                      ? tab.accent.tile
-                      : 'bg-transparent'
+                      ? `rounded-[24px] border border-white/55 ${tab.accent.tile}`
+                      : 'rounded-[22px] border border-transparent bg-transparent'
                   }`}
                 />
+                {isActive ? (
+                  <>
+                    <span className={`absolute inset-x-3 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-white/25`} />
+                    <span className={`absolute inset-x-4 bottom-[6px] h-[3px] rounded-full bg-gradient-to-r ${tab.accent.pill} opacity-90 shadow-[0_0_18px_rgba(224,154,70,0.35)]`} />
+                  </>
+                ) : null}
                 <span
-                  className={`relative flex h-10 w-10 items-center justify-center rounded-[18px] transition-all duration-300 ${
+                  className={`relative flex shrink-0 items-center justify-center transition-all duration-300 ${
                     isActive
-                      ? `${tab.accent.badge} scale-[1.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]`
-                      : 'border border-black/[0.04] bg-white/[0.18] group-hover:bg-white/[0.26] dark:border-white/[0.04] dark:bg-white/[0.06] dark:group-hover:bg-white/[0.09]'
+                      ? `${tab.accent.badge} h-10 w-10 rounded-[18px] shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]`
+                      : 'h-11 w-11 rounded-[20px] border border-black/[0.04] bg-white/[0.18] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] group-hover:bg-white/[0.26] dark:border-white/[0.04] dark:bg-white/[0.06] dark:group-hover:bg-white/[0.09]'
                   }`}
                 >
                   <tab.Glyph active={isActive} />
                 </span>
-                <span className={`relative truncate font-sans text-[10px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-90'}`}>
+                <span
+                  className={`relative min-w-0 font-sans transition-all duration-300 ${
+                    isActive
+                      ? 'text-[11px] font-semibold uppercase tracking-[0.14em] opacity-100 whitespace-nowrap'
+                      : 'sr-only'
+                  }`}
+                >
                   {tab.label}
                 </span>
-                {isActive ? (
-                  <span className={`absolute bottom-[5px] h-1 w-7 rounded-full bg-gradient-to-r ${tab.accent.pill} shadow-[0_0_18px_rgba(224,154,70,0.45)]`} />
-                ) : null}
               </span>
             )}
           </NavLink>

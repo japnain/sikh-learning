@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import CloudSyncPanel from './CloudSyncPanel'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
@@ -19,21 +19,21 @@ const READY_USER: CloudUserSummary = {
   providers: ['google', 'apple'],
 }
 
-function getTopStatus() {
+function getPanelAnchor(anchor: string) {
   const panel = screen.getByTestId('more-cloud-sync')
-  const status = panel.querySelector('[data-ai-anchor="cloud-sync-status"]')
-  if (!(status instanceof HTMLElement)) {
-    throw new Error('Cloud sync top status badge was not rendered.')
+  const element = panel.querySelector(`[data-ai-anchor="${anchor}"]`)
+  if (!(element instanceof HTMLElement)) {
+    throw new Error(`Cloud sync anchor "${anchor}" was not rendered.`)
   }
-  return status
+  return element
+}
+
+function getTopStatus() {
+  return getPanelAnchor('cloud-sync-status')
 }
 
 function getProviderCard(providerId: 'google' | 'apple' | 'github') {
-  const panel = screen.getByTestId('more-cloud-sync')
-  const card = panel.querySelector(`[data-ai-anchor="cloud-provider-${providerId}"]`)
-  if (!(card instanceof HTMLElement)) {
-    throw new Error(`Cloud sync provider card "${providerId}" was not rendered.`)
-  }
+  const card = getPanelAnchor(`cloud-provider-${providerId}`)
   return card
 }
 
@@ -65,7 +65,9 @@ function renderPanel(
     })),
   })
 
-  return render(<CloudSyncPanel />)
+  const view = render(<CloudSyncPanel />)
+  fireEvent.click(screen.getByRole('button', { name: /keep naamras with you across devices/i }))
+  return view
 }
 
 beforeEach(() => {
@@ -88,7 +90,7 @@ describe('CloudSyncPanel truth model', () => {
 
     expect(getTopStatus()).toHaveTextContent('Backup optional')
     expect(screen.getByText('Bootstrap failed')).toBeInTheDocument()
-    expect(screen.getByText('2')).toBeInTheDocument()
+    expect(getPanelAnchor('cloud-sync-pending')).toHaveTextContent('2')
 
     const googleCard = getProviderCard('google')
     expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
