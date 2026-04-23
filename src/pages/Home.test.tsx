@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
 import * as learnRepository from '../data/learnRepository'
+import * as learnHomeCatalogHook from '../hooks/useLearnHomeCatalog'
 import * as hukamnamaHook from '../hooks/useHukamnama'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -34,6 +35,42 @@ function todayStamp() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
 }
 
+function buildReadyHukamnama(): ReturnType<typeof hukamnamaHook.useHukamnama> {
+  return {
+    data: {
+      date: '2026-04-11',
+      ang: 12,
+      source: 'G',
+      shabadId: 101,
+      entry: {
+        id: 'hukamnama-entry-1',
+        scripture: 'Sri Guru Granth Sahib Ji',
+        ang: 12,
+        raag: 'Raag Asa',
+        gurmukhi: 'ਹਉਮੈ ਨਾਵੈ ਨਾਲਿ ਵਿਰੋਧੁ ਹੈ ਦੁਇ ਨ ਵਸਹਿ ਇਕ ਠਾਇ ॥',
+        transliteration: 'haumai naavai naal virodh hai dui na vaseh ik thaai',
+        translation_en: 'Ego and the Naam cannot live together in the same place.',
+        translation_hi: 'हउमै और नाम एक ही स्थान में साथ नहीं रह सकते।',
+        translation_pa: 'ਹਉਮੈ ਅਤੇ ਨਾਮ ਇਕੋ ਥਾਂ ਇਕੱਠੇ ਨਹੀਂ ਵੱਸਦੇ।',
+        words: [],
+        lines: [{
+          id: 'hukamnama-line-1',
+          gurmukhi: 'ਹਉਮੈ ਨਾਵੈ ਨਾਲਿ ਵਿਰੋਧੁ ਹੈ ਦੁਇ ਨ ਵਸਹਿ ਇਕ ਠਾਇ ॥',
+          translation_en: 'Ego and the Naam cannot live together in the same place.',
+          translation_hi: 'हउमै और नाम एक ही स्थान में साथ नहीं रह सकते।',
+          translation_pa: 'ਹਉਮੈ ਅਤੇ ਨਾਮ ਇਕੋ ਥਾਂ ਇਕੱਠੇ ਨਹੀਂ ਵੱਸਦੇ।',
+          transliteration: 'haumai naavai naal virodh hai dui na vaseh ik thaai',
+          isHeader: false,
+        }],
+      },
+    },
+    status: 'ready',
+    issue: null,
+    loading: false,
+    error: null,
+  } as unknown as ReturnType<typeof hukamnamaHook.useHukamnama>
+}
+
 async function getTodaySurface() {
   const catalog = await learnRepository.loadLearnHomeCatalog()
   return getTodayLearnHomeSurface(catalog, todayStamp(), useLearningStore.getState().learnState)
@@ -45,7 +82,7 @@ afterEach(() => {
   document.documentElement.classList.remove('dark')
 })
 
-beforeEach(() => {
+beforeEach(async () => {
   vi.useFakeTimers({ shouldAdvanceTime: true })
   vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   localStorage.clear()
@@ -129,6 +166,15 @@ beforeEach(() => {
     audience: 'adult',
     learningGoal: 'read',
   })
+  const readyLearnHomeCatalog = await learnRepository.loadLearnHomeCatalog()
+  vi.spyOn(learnHomeCatalogHook, 'default').mockReturnValue({
+    catalog: readyLearnHomeCatalog,
+    status: 'ready',
+    issue: null,
+    loading: false,
+    error: null,
+  })
+  vi.spyOn(hukamnamaHook, 'useHukamnama').mockReturnValue(buildReadyHukamnama())
 })
 
 test('renders greeting', () => {
@@ -143,7 +189,7 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
-  expect(screen.getByTestId('home-guidance-skeleton')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-guidance-skeleton')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
   expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
   expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
@@ -152,14 +198,11 @@ test('shows the new hero shell immediately', () => {
 test('puts today’s hukamnama before today’s guidance in the home hero stack', async () => {
   renderHome()
 
-  await waitFor(() => {
-    expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-    expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
-  })
-
   const heroStack = screen.getByTestId('home-hero').querySelector('.grid')
   const [firstCard, secondCard] = Array.from(heroStack?.children ?? [])
 
+  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(firstCard).toBe(screen.getByTestId('home-hukamnama-card'))
   expect(secondCard).toBe(screen.getByTestId('home-guidance-hero'))
 })
@@ -176,8 +219,9 @@ test('renders the same daily guidance item that Learn resolves for the day', asy
     </MemoryRouter>
   )
 
-  expect(await screen.findByText(todaySurface.dailyGuidance.item.title)).toBeInTheDocument()
-  expect(screen.getByText(todaySurface.dailyGuidance.item.summary)).toBeInTheDocument()
+  const guidanceHero = screen.getByTestId('home-guidance-hero')
+  expect(await within(guidanceHero).findByText(todaySurface.dailyGuidance.item.title)).toBeInTheDocument()
+  expect(within(guidanceHero).getByText(todaySurface.dailyGuidance.item.summary)).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
 
   fireEvent.click(screen.getByTestId('home-hero-guidance-action'))
@@ -189,12 +233,20 @@ test('renders the same daily guidance item that Learn resolves for the day', asy
   })
 })
 
-test('keeps today’s guidance action only in the hero flow', async () => {
+test('keeps today’s guidance hero action singular when next best action points elsewhere', async () => {
+  useLearningStore.setState(state => ({
+    ...state,
+    learnState: {
+      ...state.learnState,
+      savedItemIds: ['topic-anxiety'],
+    },
+  }))
+
   renderHome()
 
   expect(await screen.findByTestId('home-hero-guidance-action')).toBeInTheDocument()
   expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
-  expect(screen.queryByTestId('home-next-guidance')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-next-best-action')).toHaveTextContent(/when the mind is anxious/i)
 })
 
 test('replaces the lower duplicate cards with one read-today source browser surface', async () => {
@@ -206,7 +258,7 @@ test('replaces the lower duplicate cards with one read-today source browser surf
   expect(screen.queryByTestId('home-next-source-browser')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-read')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-library')).not.toBeInTheDocument()
-  expect(screen.getByText(/source browsing/i)).toBeInTheDocument()
+  expect(screen.getByText(/browse by source/i)).toBeInTheDocument()
 })
 
 test('shows a featured shabad card from Learn inside read today', async () => {
@@ -274,9 +326,8 @@ test('keeps the lower home surface saved-only', () => {
 
 test('shows today’s hukamnama action', async () => {
   renderHome()
-  await waitFor(() => {
-    expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
-  })
+  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
 })
 
 test('shows inline fallback copy when hukamnama fails on home', () => {
@@ -302,16 +353,90 @@ test('hides preview meanings when meaning language is off', async () => {
   })
 })
 
-test('does not show continue reading when no session', () => {
+test('shows resume reading as the highest-priority next action when a session exists', async () => {
+  useProgressStore.setState({
+    currentSession: {
+      scriptureId: 'G-12',
+      resumePath: '/study?source=G&ang=12',
+      updatedAt: '2026-04-11T09:00:00.000Z',
+    }
+  })
+
   renderHome()
-  expect(screen.queryByText(/continue reading/i)).not.toBeInTheDocument()
+
+  const nextAction = await screen.findByTestId('home-next-best-action')
+  expect(within(nextAction).getByRole('heading', { name: /resume reading/i })).toBeInTheDocument()
+  expect(within(nextAction).getByTestId('home-next-best-action-link')).toHaveAttribute('href', '/study?source=G&ang=12')
+})
+
+test('shows review as the next best action when review items are due and no session exists', async () => {
+  useLearningStore.setState(state => ({
+    ...state,
+    learnState: {
+      ...state.learnState,
+      savedItemIds: [],
+    },
+  }))
+  useVocabStore.setState({
+    vocab: [{
+      word: 'ਸਬਰ',
+      transliteration: 'sabar',
+      meaning_en: 'patience',
+      meaning_hi: 'धैर्य',
+      meaning_pa: 'ਸਬਰ',
+      scripture: 'SGGS',
+      sourceId: 'G-1-100',
+      savedAt: '2026-04-11T11:00:00.000Z',
+    }],
+  })
+
+  renderHome()
+
+  const nextAction = await screen.findByTestId('home-next-best-action')
+  expect(within(nextAction).getByRole('heading', { name: /review bank/i })).toBeInTheDocument()
+  expect(within(nextAction).getByText(/1 review item due/i)).toBeInTheDocument()
+  expect(within(nextAction).getByTestId('home-next-best-action-link')).toHaveAttribute('href', '/vocab')
+})
+
+test('shows a saved revisit as the next best action when there is no session and nothing due for review', async () => {
+  useLearningStore.setState(state => ({
+    ...state,
+    learnState: {
+      ...state.learnState,
+      savedItemIds: ['topic-anxiety'],
+    },
+  }))
+  useVocabStore.setState({ vocab: [] })
+
+  renderHome()
+
+  const nextAction = await screen.findByTestId('home-next-best-action')
+  expect(within(nextAction).getByRole('heading', { name: /when the mind is anxious/i })).toBeInTheDocument()
+  expect(within(nextAction).getByTestId('home-next-best-action-link').getAttribute('href')).toMatch(/\/learn\/topics\/topic-anxiety\?from=saved/)
+})
+
+test('falls back to today’s guidance as the next best action when there is no session, review, or saved revisit', async () => {
+  useLearningStore.setState(state => ({
+    ...state,
+    learnState: {
+      ...state.learnState,
+      savedItemIds: [],
+    },
+  }))
+  useVocabStore.setState({ vocab: [] })
+
+  renderHome()
+
+  const nextAction = await screen.findByTestId('home-next-best-action')
+  expect(within(nextAction).getByText(/today in learn/i)).toBeInTheDocument()
+  expect(within(nextAction).getByTestId('home-next-best-action-link').getAttribute('href')).toMatch(/\/learn\/guidance\//)
 })
 
 test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama CTA when no session exists', async () => {
   renderHome()
 
   expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
-  expect(await screen.findByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
+  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
 })
 
 test('opens the Ardaas + Hukamnama devotional flow from read today when no session exists', async () => {
@@ -331,7 +456,7 @@ test('opens the Ardaas + Hukamnama devotional flow from read today when no sessi
   })
 })
 
-test('keeps Ardaas + Hukamnama in read today even when a session exists', () => {
+test('keeps Ardaas + Hukamnama in read today even when a session exists', async () => {
   useProgressStore.setState({
     currentSession: {
       scriptureId: 'G-12',
@@ -341,8 +466,9 @@ test('keeps Ardaas + Hukamnama in read today even when a session exists', () => 
   })
   renderHome()
   expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
-  expect(screen.queryByText(/resume reading/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
+  const nextAction = await screen.findByTestId('home-next-best-action')
+  expect(within(nextAction).getByRole('heading', { name: /resume reading/i })).toBeInTheDocument()
+  expect(within(nextAction).getByText(/Open the passage you were already working through/i)).toBeInTheDocument()
 })
 
 test('opens the Ardaas + Hukamnama devotional flow from read today even when a session exists', async () => {
@@ -577,7 +703,13 @@ test('shows length detail only for the four adjustable Nitnem banis and keeps th
 })
 
 test('falls back to the hukamnama-led hero when Learn fails to load', async () => {
-  vi.spyOn(learnRepository, 'loadLearnHomeCatalog').mockRejectedValue(new Error('offline'))
+  vi.spyOn(learnHomeCatalogHook, 'default').mockReturnValue({
+    catalog: null,
+    status: 'degraded',
+    issue: { code: 'offline', detail: 'offline' },
+    loading: false,
+    error: 'offline',
+  })
 
   renderHome()
 

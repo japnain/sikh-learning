@@ -68,6 +68,15 @@ type HomeSavedPreviewItem = {
   meta?: string
 }
 
+type HomeNextAction = {
+  eyebrow: string
+  title: string
+  body: string
+  path: string
+  actionLabel: string
+  meta?: string
+}
+
 const HOME_SAVED_PREVIEW_APPEARANCE: Record<
   HomeSavedPreviewItem['kind'],
   {
@@ -331,6 +340,7 @@ export default function Home() {
   const location = useLocation()
   const navigate = useNavigate()
   const streak = useProgressStore(state => state.streak)
+  const currentSession = useProgressStore(state => state.currentSession)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
   const englishSource = useLanguageStore(s => s.englishSource)
@@ -552,6 +562,67 @@ export default function Home() {
 
     return previewItems.slice(0, 3)
   }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, savedLearnItems, vocab])
+  const nextBestAction = useMemo<HomeNextAction | null>(() => {
+    if (currentSession?.resumePath) {
+      return {
+        eyebrow: homeMessages.resumeReading,
+        title: homeMessages.resumeReading,
+        body: homeMessages.resumeReadingBody,
+        path: currentSession.resumePath,
+        actionLabel: homeMessages.resumeReading,
+      }
+    }
+
+    if (savedReviewItems > 0) {
+      return {
+        eyebrow: libraryCopy.reviewBank,
+        title: libraryCopy.reviewBank,
+        body: homeMessages.reviewDue(savedReviewItems),
+        path: '/vocab',
+        actionLabel: homeCopy.doReviewStep,
+      }
+    }
+
+    const savedRevisit = savedPreviewItems.find(item => item.kind !== 'vocab')
+    if (savedRevisit) {
+      return {
+        eyebrow: homeCopy.savedEyebrow,
+        title: savedRevisit.title,
+        body: savedRevisit.detail,
+        path: savedRevisit.path,
+        actionLabel: homeCopy.openSaved,
+        meta: savedRevisit.meta,
+      }
+    }
+
+    if (todayGuidance && todayGuidancePath) {
+      return {
+        eyebrow: homeMessages.todayInLearn,
+        title: todayGuidance.title,
+        body: todayGuidance.summary,
+        path: todayGuidancePath,
+        actionLabel: homeMessages.openTodaysGuidance,
+        meta: todayGuidance.rotation.theme,
+      }
+    }
+
+    return null
+  }, [
+    currentSession?.resumePath,
+    homeCopy.doReviewStep,
+    homeCopy.openSaved,
+    homeCopy.savedEyebrow,
+    homeMessages.openTodaysGuidance,
+    homeMessages.resumeReading,
+    homeMessages.resumeReadingBody,
+    homeMessages.reviewDue,
+    homeMessages.todayInLearn,
+    libraryCopy.reviewBank,
+    savedPreviewItems,
+    savedReviewItems,
+    todayGuidance,
+    todayGuidancePath,
+  ])
   const featuredShabadSupport = useMemo(() => {
     if (learnCatalogLoading) {
       return { state: 'loading' as const }
@@ -670,6 +741,31 @@ export default function Home() {
           </span>
         </h1>
       </div>
+
+      {nextBestAction ? (
+        <section className="section-shell p-5 mb-5 animate-slide-up stagger-1" data-testid="home-next-best-action">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="eyebrow">{nextBestAction.eyebrow}</p>
+              <h2 className="mt-2 font-display text-[1.9rem] leading-[1.02] text-ink dark:text-dark-text">
+                {nextBestAction.title}
+              </h2>
+              {nextBestAction.meta ? <span className="chip-pill mt-3 inline-flex">{nextBestAction.meta}</span> : null}
+              <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
+                {nextBestAction.body}
+              </p>
+            </div>
+            <Link
+              to={nextBestAction.path}
+              className="interactive-focus interactive-pill-link shrink-0 gap-2 self-start font-sans text-sm font-semibold text-gold dark:text-gold-light"
+              data-testid="home-next-best-action-link"
+            >
+              <span>{nextBestAction.actionLabel}</span>
+              <IconArrowRight size={14} />
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       <section
         className="hero-surface ornate-top p-6 mb-5 animate-slide-up stagger-1"

@@ -203,7 +203,7 @@ describe('Library removed sections', () => {
 
   it('shows the remaining scripture sections without Amrit Keertan', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
-    fireEvent.click(screen.getByRole('button', { name: /source browsing/i }))
+    fireEvent.click(screen.getByRole('button', { name: /browse by source/i }))
     expect(screen.getByTestId('library-source-browser-shared')).toHaveAttribute('data-component', 'scripture-source-browser')
     expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
     expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
@@ -215,7 +215,7 @@ describe('Library removed sections', () => {
   it('opens Panth Prakash source browsing on the library overview route', async () => {
     renderLibraryRoutes()
 
-    fireEvent.click(screen.getByRole('button', { name: /source browsing/i }))
+    fireEvent.click(screen.getByRole('button', { name: /browse by source/i }))
     fireEvent.click(screen.getByRole('button', { name: 'Panth Prakash (English)' }))
     fireEvent.click(screen.getByRole('link', { name: '1' }))
 
