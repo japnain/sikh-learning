@@ -16,7 +16,10 @@ describe('LibraryPageReader', () => {
       expect(screen.getByText(/Panth Prakash/i)).toBeInTheDocument()
     })
 
-    expect(screen.getByText(/Page 1/i)).toBeInTheDocument()
+    const compass = screen.getByTestId('library-reading-compass')
+    expect(within(compass).getByText('Page')).toBeInTheDocument()
+    expect(within(compass).getByText('1')).toBeInTheDocument()
+    expect(within(compass).getByText(/of 1417/i)).toBeInTheDocument()
     expect(screen.getByText(/KULWANT SINGH/i)).toBeInTheDocument()
   })
 

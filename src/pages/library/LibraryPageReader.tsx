@@ -119,6 +119,13 @@ export default function LibraryPageReader() {
     : isReferenceLikePage
       ? 'This front or back matter page is laid out as documentary material rather than continuous narrative prose.'
       : null
+  const pageProgressPercent = Math.min(100, Math.max(0, (currentPage.pageNumber / currentWork.totalPages) * 100))
+  const pageContextLine = page.episode
+    ? `${page.episode.title} · episode ${page.episode.number}`
+    : isReferenceLikePage
+      ? 'Documentary front matter'
+      : 'Continuous narrative page'
+  const sourceContextLine = `Volume ${page.volume} · Source page ${page.sourcePageNumber} · ${qualityLabel} OCR`
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -132,71 +139,77 @@ export default function LibraryPageReader() {
       data-testid="library-page-reader"
       style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 4rem)' }}
     >
-      <div className="mb-4">
-        <p className="eyebrow">Source Browsing</p>
-        <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
-      </div>
-
-      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="library-page-meta">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="chip-pill">Page {page.pageNumber}</span>
-          <span className="chip-pill">Volume {page.volume}</span>
-          <span className="chip-pill">Source page {page.sourcePageNumber}</span>
-          <span className="chip-pill">{work.totalPages} total pages</span>
-          <span className="chip-pill">Quality {qualityLabel}</span>
-          {page.episode ? <span className="chip-pill">Episode {page.episode.number}</span> : null}
+      <section className="section-shell px-5 py-5 mb-5" data-testid="library-reading-compass">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="eyebrow">Reading Compass</p>
+            <h1 className="mt-2 font-display text-[2.25rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
+            <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
+              {pageContextLine}
+            </p>
+          </div>
+          <div className="shrink-0 rounded-[24px] border border-gold/16 bg-parchment-card/78 px-4 py-3 text-right dark:border-gold/12 dark:bg-dark-card/70">
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">Page</p>
+            <p className="mt-1 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{page.pageNumber}</p>
+            <p className="mt-1 font-sans text-[11px] text-ink/55 dark:text-dark-text/58">of {work.totalPages}</p>
+          </div>
         </div>
-        <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          A calmer reading view for Panth Prakash. Less chrome, tighter measure, and cleaner OCR lines where possible.
-        </p>
-        {page.episode ? (
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
-            {page.episode.title} · pages {page.episode.startPage}–{page.episode.endPage}
-          </p>
-        ) : null}
-      </section>
 
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <Link
-          to={`/library/${work.id}/page/${previousPage}`}
-          className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-        >
-          Prev page
-        </Link>
+        <div className="mt-5 h-2 overflow-hidden rounded-full bg-sand/15 dark:bg-dark-text/8" aria-hidden="true">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-gold to-saffron-light"
+            style={{ width: `${pageProgressPercent}%` }}
+          />
+        </div>
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/60" data-testid="library-page-meta">
+          <span>{sourceContextLine}</span>
+          <span>{page.episode ? `Episode pages ${page.episode.startPage}–${page.episode.endPage}` : 'Source context quiet until needed'}</span>
+        </div>
 
-        <form onSubmit={handlePageJumpSubmit} className="flex items-center gap-2">
-          <label htmlFor="library-page-jump" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
-            Jump to page
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <Link
+            to={`/library/${work.id}/page/${previousPage}`}
+            className="interactive-focus rounded-[22px] border border-sand/16 bg-parchment-card/82 px-4 py-3 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+          >
+            Prev page
+          </Link>
+          <Link
+            to={`/library/${work.id}/page/${nextPage}`}
+            className="interactive-focus rounded-[22px] bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
+          >
+            Next page
+          </Link>
+        </div>
+
+        <form onSubmit={handlePageJumpSubmit} className="mt-3 flex items-center gap-2 rounded-[22px] border border-sand/12 bg-parchment-card/62 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/56">
+          <label htmlFor="library-page-jump" className="shrink-0 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
+            Jump
           </label>
           <input
             id="library-page-jump"
+            aria-label="Jump to page"
             inputMode="numeric"
             pattern="[0-9]*"
             value={pageJumpValue}
             onChange={event => setPageJumpValue(event.target.value)}
-            className="w-24 rounded-full border border-sand/18 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+            className="min-w-0 flex-1 rounded-full border border-sand/18 bg-parchment-card px-3 py-2 font-sans text-sm text-ink outline-none ring-0 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
           />
           <button
             type="submit"
-            className="interactive-focus rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white"
+            aria-label="Go to page"
+            className="interactive-focus rounded-full border border-sand/14 bg-white/70 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-panel dark:text-dark-text"
           >
-            Go to page
+            Go
           </button>
         </form>
+      </section>
 
-        <Link
-          to={`/library/${work.id}/page/${nextPage}`}
-          className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
-        >
-          Next page
-        </Link>
-      </div>
-
-      <section className="hero-surface px-5 py-6">
+      <section className="hero-surface mt-56 px-5 py-6">
         <div className="mx-auto max-w-[38rem]">
-          <div className="mb-5 border-b border-gold/12 pb-4 dark:border-gold/10">
-            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">{page.title}</p>
-            <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-provenance">
+          <div className="mb-6 rounded-[24px] border border-gold/14 bg-parchment-card/62 px-4 py-4 dark:border-gold/10 dark:bg-dark-card/52">
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">Reading view</p>
+            <h2 className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{page.title}</h2>
+            <p className="mt-3 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-provenance">
               OCR draft from the verified English archive source. {qualityNote}
             </p>
             {presentationNote ? (
