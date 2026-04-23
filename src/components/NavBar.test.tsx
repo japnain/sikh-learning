@@ -10,11 +10,11 @@ test('renders the new 5-tab product nav', () => {
   expect(screen.getByTestId('nav-tab-learn')).toBeInTheDocument()
   expect(screen.getByTestId('nav-tab-saved')).toBeInTheDocument()
   expect(screen.getByTestId('nav-tab-more')).toBeInTheDocument()
-  expect(screen.getByText('Home')).toBeInTheDocument()
-  expect(screen.getByText('Read')).toBeInTheDocument()
-  expect(screen.getByText('Learn')).toBeInTheDocument()
-  expect(screen.getByText('Saved')).toBeInTheDocument()
-  expect(screen.getByText('More')).toBeInTheDocument()
+  expect(screen.getByLabelText('Home tab')).toBeInTheDocument()
+  expect(screen.getByLabelText('Read tab')).toBeInTheDocument()
+  expect(screen.getByLabelText('Learn tab')).toBeInTheDocument()
+  expect(screen.getByLabelText('Saved tab')).toBeInTheDocument()
+  expect(screen.getByLabelText('More tab and settings')).toBeInTheDocument()
 })
 
 test('keeps the Learn route limited to the shared product nav', () => {
