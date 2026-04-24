@@ -122,6 +122,35 @@
   ::selection {
     background: rgb(var(--color-accent) / 0.18);
   }
+
+  .splash-fade-out {
+    animation: splash-fade-out 180ms var(--motion-ease-standard) forwards;
+  }
+
+  .splash-glow {
+    filter: drop-shadow(0 0 18px rgb(227 181 102 / 0.42));
+  }
+
+  @keyframes splash-fade-out {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-fade-out,
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-scale-in,
+    .animate-glow-pulse {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 }
 
 @layer components {

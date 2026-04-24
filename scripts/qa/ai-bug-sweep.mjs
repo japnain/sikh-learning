@@ -9,6 +9,9 @@ import { chromium, devices } from 'playwright-core'
 const FIXED_APP_NOW = '2026-04-11T09:00:00.000Z'
 const FIXED_APP_DATE = '2026-04-11'
 const BASE_URL = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4173'
+const QA_INSFORGE_URL = 'https://naamras-qa.insforge.app'
+const QA_INSFORGE_FUNCTIONS_URL = 'https://naamras-qa.functions.insforge.app'
+const QA_BANIDB_PROXY_URL = `${QA_INSFORGE_FUNCTIONS_URL}/banidb-proxy`
 const REPORT_DATE = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Toronto',
   year: 'numeric',
@@ -35,6 +38,264 @@ const GENERIC_FAILURE_PATTERNS = [
   /QA (?:fail|empty|slow) fault injected/i,
   /BaniDB .* error/i,
 ]
+
+function buildSource(id, english, pageNo = null) {
+  return { id, sourceId: id, english, pageNo }
+}
+
+function buildRaag(english, raagId = 1) {
+  return { raagId, english }
+}
+
+function buildWriter(english, writerId = 1) {
+  return { writerId, english }
+}
+
+function createTranslation(english, gurmukhi = english) {
+  return {
+    en: {
+      bdb: english,
+      ms: english,
+      ssk: english,
+    },
+    hi: { ss: english },
+    pu: { ss: { unicode: gurmukhi }, ft: { unicode: gurmukhi } },
+  }
+}
+
+function createScriptureVerse({
+  verseId,
+  shabadId,
+  text,
+  pageNo,
+  translation,
+  transliteration = 'ik oa(n)kaar satigur prasaadh',
+  source = 'G',
+}) {
+  return {
+    verseId,
+    shabadId,
+    verse: { unicode: text },
+    larivaar: { unicode: text.replace(/\s+/g, '') },
+    transliteration: { english: transliteration },
+    translation: createTranslation(translation, text),
+    pageNo,
+    source: buildSource(source, source === 'D' ? 'Dasam Granth' : 'Sri Guru Granth Sahib Ji', pageNo),
+    raag: buildRaag(source === 'D' ? 'Dasam Bani' : 'Raag Asa', source === 'D' ? 201 : 31),
+    writer: buildWriter(source === 'D' ? 'Guru Gobind Singh Ji' : 'Guru Arjan Dev Ji', source === 'D' ? 701 : 501),
+  }
+}
+
+function createQaShabadResponse(shabadId = 544, pageNo = 183) {
+  return {
+    shabadInfo: {
+      shabadId,
+      pageNo,
+      source: { sourceId: 'G', english: 'Sri Guru Granth Sahib Ji', pageNo },
+      raag: { english: 'Raag Asa', raagId: 31 },
+      writer: { english: 'Guru Arjan Dev Ji', writerId: 501 },
+    },
+    verses: [
+      {
+        ...createScriptureVerse({
+          verseId: 7718,
+          shabadId,
+          text: 'ੴ ਸਤਿ ਨਾਮੁ',
+          pageNo,
+          translation: 'One Creator, the Name is Truth.',
+        }),
+        words: [
+          {
+            word: { unicode: 'ੴ' },
+            transliteration: { english: 'ikOankaar' },
+            translation: {
+              en: { bdb: 'One Universal Creator' },
+              hi: { ss: 'एक ओंकार' },
+              pu: { ss: { unicode: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ' }, ft: { unicode: 'ਇਕ ਅਕਾਲ ਪੁਰਖ' } },
+            },
+          },
+          {
+            word: { unicode: 'ਸਤਿ' },
+            transliteration: { english: 'sat' },
+            translation: {
+              en: { bdb: 'Truth' },
+              hi: { ss: 'सत्य' },
+              pu: { ss: { unicode: 'ਸੱਚ' }, ft: { unicode: 'ਸਤਿ' } },
+            },
+          },
+        ],
+      },
+      {
+        ...createScriptureVerse({
+          verseId: 7719,
+          shabadId,
+          text: 'ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ',
+          pageNo,
+          translation: 'Creative Being, without fear.',
+          transliteration: 'karataa purakh nirabhau',
+        }),
+        words: [],
+      },
+    ],
+  }
+}
+
+function getQaBanidbResponse(url) {
+  if (url.pathname === '/v2/banis') {
+    return [
+      { ID: 2, gurmukhiUni: 'ਜਪੁਜੀ ਸਾਹਿਬ', transliterations: { english: 'japujee saahib' } },
+      { ID: 21, gurmukhiUni: 'ਰਹਰਾਸਿ ਸਾਹਿਬ', transliterations: { english: 'raharaas saahib' } },
+      { ID: 22, gurmukhiUni: 'ਆਰਤੀ', transliterations: { english: 'aaratee' } },
+      { ID: 23, gurmukhiUni: 'ਸੋਹਿਲਾ ਸਾਹਿਬ', transliterations: { english: 'sohilaa saahib' } },
+      { ID: 24, gurmukhiUni: 'ਅਰਦਾਸ', transliterations: { english: 'aradhaas' } },
+    ]
+  }
+
+  if (url.pathname === '/v2/amritkeertan') {
+    return {
+      headers: [
+        {
+          HeaderID: 1,
+          GurmukhiUni: 'ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥',
+          Transliterations: { en: 'dhui kar joR karau aradhaas ||' },
+        },
+      ],
+    }
+  }
+
+  if (url.pathname.startsWith('/v2/amritkeertan/index/')) {
+    return {
+      index: [
+        {
+          ShabadID: 816,
+          GurmukhiUni: 'ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥',
+          Transliterations: { en: 'dda(n)ddaut ba(n)dhan anik baar sarab kalaa samarath ||' },
+          SourceEnglish: 'Sri Guru Granth Sahib Ji',
+          SourceID: 'G',
+          RaagEnglish: 'Raag Gauree',
+          RaagID: 17,
+          PageNo: 65,
+        },
+      ],
+    }
+  }
+
+  const angMatch = url.pathname.match(/^\/v2\/angs\/([^/]+)\/([^/]+)$/)
+  if (angMatch) {
+    const [, ang, source] = angMatch
+    const pageNo = Number(ang) || 1
+    return {
+      page: [
+        createScriptureVerse({
+          verseId: pageNo * 10 + 1,
+          shabadId: pageNo,
+          text: 'ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',
+          pageNo,
+          source,
+          translation: 'By the grace of the True Guru.',
+        }),
+        createScriptureVerse({
+          verseId: pageNo * 10 + 2,
+          shabadId: pageNo,
+          text: 'ਹਰਿ ਜੁਗੁ ਜੁਗੁ ਭਗਤ ਉਪਾਇਆ ਪੈਜ ਰਖਦਾ ਆਇਆ ਰਾਮ ਰਾਜੇ ॥',
+          pageNo,
+          source,
+          translation: 'The Divine protects devotion through every age.',
+          transliteration: 'har jug jug bhagat upaiaa',
+        }),
+      ],
+    }
+  }
+
+  const shabadMatch = url.pathname.match(/^\/v2\/shabads\/([^/]+)$/)
+  if (shabadMatch) {
+    return createQaShabadResponse(Number(shabadMatch[1]) || 544, 183)
+  }
+
+  if (url.pathname.startsWith('/v2/search/')) {
+    return {
+      verses: [
+        createScriptureVerse({
+          verseId: 100,
+          shabadId: 50,
+          text: 'ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ',
+          pageNo: 1402,
+          translation: 'Waaheguru, Waaheguru',
+          transliteration: 'vaahiguroo vaahiguroo',
+        }),
+      ],
+    }
+  }
+
+  const datedHukamnamaMatch = url.pathname.match(/^\/v2\/hukamnamas(?:\/\d{4}\/\d{2}\/\d{2})?$/)
+  if (datedHukamnamaMatch) {
+    return {
+      isLatest: true,
+      date: { gregorian: { year: 2026, month: 4, date: 5 } },
+      shabads: [
+        {
+          shabadInfo: {
+            shabadId: 2591,
+            pageNo: 680,
+            source: { sourceId: 'G', english: 'Sri Guru Granth Sahib Ji' },
+            raag: { english: 'Raag Dhanaasree' },
+            writer: { english: 'Guru Arjan Dev Ji' },
+          },
+          verses: [
+            createScriptureVerse({
+              verseId: 29344,
+              shabadId: 2591,
+              text: 'ਜਤਨ ਕਰੈ ਮਾਨੁਖ ਡਹਕਾਵੈ ਓਹੁ ਅੰਤਰਜਾਮੀ ਜਾਨੈ ॥',
+              pageNo: 680,
+              translation: 'People try to deceive others, but the Inner-knower knows everything.',
+              transliteration: 'jatan karai maanukh ddahakaavai',
+            }),
+          ],
+        },
+      ],
+    }
+  }
+
+  const koshSearchMatch = url.pathname.match(/^\/v2\/kosh\/search\/(.+)$/)
+  if (koshSearchMatch) {
+    const normalized = decodeURIComponent(koshSearchMatch[1])
+    return normalized === 'ੴ'
+      ? [{ id: 1, word: 'ik oankar', wordUni: 'ੴ', definition: 'One Creator', definitionUni: 'ਇੱਕ ਕਰਤਾ ਪੁਰਖ' }]
+      : []
+  }
+
+  const koshMatch = url.pathname.match(/^\/v2\/kosh\/(.+)$/)
+  if (koshMatch) {
+    const normalized = decodeURIComponent(koshMatch[1])
+    return normalized === 'ੴ'
+      ? [{ id: 1, word: 'ik oankar', wordUni: 'ੴ' }]
+      : []
+  }
+
+  if (url.pathname === '/v2/rehats') {
+    return { maryadas: [{ rehatID: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }] }
+  }
+
+  const rehatChapterContentMatch = url.pathname.match(/^\/v2\/rehats\/(\d+)\/chapters\/(\d+)$/)
+  if (rehatChapterContentMatch) {
+    return {
+      chapters: [
+        {
+          chapterID: Number(rehatChapterContentMatch[2]),
+          chapterName: 'Daily Discipline',
+          chapterContent: '<p>Amritvela, nitnem, seva, and simran remain central.</p>',
+          alphabet: 'D',
+        },
+      ],
+    }
+  }
+
+  if (/^\/v2\/rehats\/\d+$/.test(url.pathname)) {
+    return { chapters: [{ chapterID: 11, chapterName: 'Daily Discipline', alphabet: 'D' }] }
+  }
+
+  return null
+}
 
 function sanitizeFileName(value) {
   return value.replace(/[^a-z0-9-]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase()
@@ -150,6 +411,10 @@ async function startDevServer() {
     env: {
       ...process.env,
       FORCE_COLOR: '0',
+      VITE_INSFORGE_URL: QA_INSFORGE_URL,
+      VITE_INSFORGE_FUNCTIONS_URL: QA_INSFORGE_FUNCTIONS_URL,
+      VITE_INSFORGE_BANIDB_FUNCTION: 'banidb-proxy',
+      VITE_NAAMRAS_BANIDB_MOCK: 'true',
     },
     stdio: ['ignore', 'pipe', 'pipe'],
   })
@@ -187,6 +452,113 @@ async function waitForServer(url, child) {
 
 async function writeJson(filePath, value) {
   await fs.writeFile(filePath, JSON.stringify(value, null, 2))
+}
+
+async function fulfillJson(route, value, status = 200) {
+  await route.fulfill({
+    status,
+    contentType: 'application/json',
+    body: JSON.stringify(value),
+  })
+}
+
+async function installQaNetworkMocks(page) {
+  await page.route(`${QA_INSFORGE_URL}/api/auth/**`, async route => {
+    const request = route.request()
+    const url = new URL(request.url())
+
+    if (url.pathname === '/api/auth/public-config') {
+      await fulfillJson(route, { oAuthProviders: ['google', 'apple', 'github'] })
+      return
+    }
+
+    if (url.pathname === '/api/auth/refresh') {
+      await fulfillJson(route, {})
+      return
+    }
+
+    if (url.pathname === '/api/auth/sessions/current') {
+      await fulfillJson(route, { user: null })
+      return
+    }
+
+    if (url.pathname.startsWith('/api/auth/oauth/')) {
+      await fulfillJson(route, { authUrl: `${BASE_URL}/?qaOAuth=mock` })
+      return
+    }
+
+    if (url.pathname === '/api/auth/logout') {
+      await route.fulfill({ status: 204 })
+      return
+    }
+
+    await fulfillJson(route, { error: 'QA InsForge auth endpoint is not mocked.' }, 404)
+  })
+
+  await page.route(QA_BANIDB_PROXY_URL, async route => {
+    const request = route.request()
+    const body = request.postDataJSON()
+
+    if (!body || typeof body.path !== 'string') {
+      await route.fulfill({
+        status: 400,
+        contentType: 'application/json',
+        body: JSON.stringify({ error: 'Request body must include a string path.' }),
+      })
+      return
+    }
+
+    const url = new URL(body.path, 'https://api.banidb.com')
+    if (body.query && typeof body.query === 'object' && !Array.isArray(body.query)) {
+      for (const [key, value] of Object.entries(body.query)) {
+        if (value === undefined || value === null) continue
+        url.searchParams.set(key, String(value))
+      }
+    }
+
+    const data = getQaBanidbResponse(url)
+    await route.fulfill({
+      status: data ? 200 : 404,
+      contentType: 'application/json',
+      body: JSON.stringify(data ?? { error: 'Not found.' }),
+    })
+  })
+
+  await page.route(`${QA_INSFORGE_FUNCTIONS_URL}/merge-local-state`, async route => {
+    const request = route.request()
+    const body = request.postDataJSON()
+    await fulfillJson(route, {
+      mergedAt: FIXED_APP_NOW,
+      snapshot: body?.snapshot ?? null,
+      acknowledgedEventIds: [],
+    })
+  })
+
+  await page.route('https://backend.searchgurbani.com/api/res/mahan-kosh/view**', async route => {
+    const url = new URL(route.request().url())
+    const keyword = url.searchParams.get('keyword') ?? ''
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        lines: keyword === 'ੴ'
+          ? [
+              {
+                ID: 1,
+                srch: 'ੴ',
+                translit: 'ik oankaar',
+                word: 'ੴ',
+                roman: 'ik oankar',
+                hindi: 'इक ओंकार',
+                description: 'ਇੱਕ ਅਕਾਲ ਪੁਰਖ.',
+                roman_desc: 'ik akaal purakh.',
+                hindi_desc: 'एक अकाल पुरुष।',
+              },
+            ]
+          : [],
+      }),
+    })
+  })
 }
 
 function createAssertionError(message) {
@@ -274,6 +646,7 @@ async function runScenario(browser, scenario) {
   })
 
   const page = await context.newPage()
+  await installQaNetworkMocks(page)
   const consoleErrors = []
   const pageErrors = []
   const requestFailures = []

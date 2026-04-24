@@ -546,12 +546,30 @@ export function filterShabadDeepDives(
     learnState.depthPreference === "gentle"
       ? { beginner: 0, growing: 1, deep: 2 }
       : { deep: 0, growing: 1, beginner: 2 }
+  const deepBalanceOrder: Record<string, number> = {
+    reflection: 0,
+    challenge: 1,
+    discipline: 2,
+    hukam: 3,
+    seva: 4,
+    gratitude: 5,
+    comfort: 6,
+  }
 
   return filteredItems
     .map((item, index) => ({ item, index }))
     .sort((left, right) => {
       const priorityDiff = depthOrder[left.item.difficulty] - depthOrder[right.item.difficulty]
-      return priorityDiff || left.index - right.index
+      if (priorityDiff) return priorityDiff
+
+      if (learnState.depthPreference === "deep" && left.item.difficulty === "deep" && right.item.difficulty === "deep") {
+        const balanceDiff =
+          (deepBalanceOrder[left.item.rotation.balanceCategory] ?? 99)
+          - (deepBalanceOrder[right.item.rotation.balanceCategory] ?? 99)
+        if (balanceDiff) return balanceDiff
+      }
+
+      return left.index - right.index
     })
     .map(({ item }) => item)
 }

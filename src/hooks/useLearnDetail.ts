@@ -36,40 +36,44 @@ export default function useLearnDetail<K extends LearnContentKind>(
   })
 
   useEffect(() => {
-    if (!id) {
-      setState({
-        item: null,
-        status: 'empty',
-        issue: null,
-      })
-      return
-    }
-
     let cancelled = false
 
-    setState(current => ({
-      item: current.item,
-      status: 'loading',
-      issue: null,
-    }))
+    Promise.resolve().then(() => {
+      if (cancelled) return
 
-    loadLearnDetail(kind, id)
-      .then(item => {
-        if (cancelled) return
-        setState({
-          item: item as LearnDetailByKind[K] | null,
-          status: item ? 'ready' : 'empty',
-          issue: null,
-        })
-      })
-      .catch(error => {
-        if (cancelled) return
+      if (!id) {
         setState({
           item: null,
-          status: 'degraded',
-          issue: resolveAsyncIssue(error),
+          status: 'empty',
+          issue: null,
         })
-      })
+        return
+      }
+
+      setState(current => ({
+        item: current.item,
+        status: 'loading',
+        issue: null,
+      }))
+
+      loadLearnDetail(kind, id)
+        .then(item => {
+          if (cancelled) return
+          setState({
+            item: item as LearnDetailByKind[K] | null,
+            status: item ? 'ready' : 'empty',
+            issue: null,
+          })
+        })
+        .catch(error => {
+          if (cancelled) return
+          setState({
+            item: null,
+            status: 'degraded',
+            issue: resolveAsyncIssue(error),
+          })
+        })
+    })
 
     return () => {
       cancelled = true

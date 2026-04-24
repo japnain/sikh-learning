@@ -468,6 +468,67 @@ export default function OnboardingSheet({
     await signInWithProvider(provider)
   }
 
+  function renderAuthSection(className = '') {
+    return (
+      <div
+        className={`space-y-3 ${className}`}
+        data-ai-surface="onboarding-auth"
+        data-ai-state={onboardingAuthState}
+        data-ai-error={onboardingErrorCode ?? undefined}
+      >
+        <div className="max-w-[28rem] space-y-2">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-ink/58 dark:text-dark-text/64">
+            {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
+          </p>
+          <p className="text-sm leading-6 text-ink/66 dark:text-dark-text/68">
+            {currentUser
+              ? copy.onboarding.authConnectedBody
+              : isProviderLoading
+                ? copy.onboarding.authChecking
+                : copy.onboarding.authBody}
+          </p>
+        </div>
+
+        {connectedLabel && (
+          <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/68 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/70">
+            {connectedLabel}
+          </p>
+        )}
+
+        {lastError && !currentUser && (
+          <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/68 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
+            {lastError}
+          </p>
+        )}
+
+        {!currentUser && (
+          <button
+            type="button"
+            onClick={() => void onComplete()}
+            disabled={isCompleting || isCloudBusy}
+            className="w-full rounded-[20px] border border-sand/15 bg-white/78 px-4 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:border-gold/25 hover:text-gold-dark disabled:cursor-not-allowed disabled:opacity-70 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text dark:hover:text-gold-light"
+          >
+            {copy.onboarding.authGuest}
+          </button>
+        )}
+
+        {!currentUser && supportedProviders.length > 0 && (
+          <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
+            {supportedProviders.map(provider => (
+              <ProviderChoice
+                key={provider}
+                label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
+                disabled={isCompleting || isCloudBusy}
+                onClick={() => void handleProviderSignIn(provider)}
+                dataAiAction={`onboarding-sign-in-${provider}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+
   function renderSetupStep() {
     const orderedPresets = [
       selectedPreset,
@@ -791,6 +852,8 @@ export default function OnboardingSheet({
                 {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
               </button>
 
+              {renderAuthSection('rounded-[24px] border border-sand/15 bg-white/72 p-4 shadow-[0_18px_36px_rgba(122,84,32,0.1)] dark:border-dark-text/10 dark:bg-dark-surface')}
+
               <div className="space-y-2" data-testid="onboarding-preview-tune-row">
                 <button
                   type="button"
@@ -908,62 +971,6 @@ export default function OnboardingSheet({
                   </div>
                 </div>
 
-                <div
-                  className="space-y-3 border-t border-sand/10 pt-4 dark:border-dark-text/10"
-                  data-ai-surface="onboarding-auth"
-                  data-ai-state={onboardingAuthState}
-                  data-ai-error={onboardingErrorCode ?? undefined}
-                >
-                  <div className="max-w-[28rem] space-y-2">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-ink/44 dark:text-dark-text/48">
-                      {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
-                    </p>
-                    <p className="text-sm leading-6 text-ink/58 dark:text-dark-text/60">
-                      {currentUser
-                        ? copy.onboarding.authConnectedBody
-                        : isProviderLoading
-                          ? copy.onboarding.authChecking
-                          : copy.onboarding.authBody}
-                    </p>
-                  </div>
-
-                  {connectedLabel && (
-                    <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/62 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/62">
-                      {connectedLabel}
-                    </p>
-                  )}
-
-                  {lastError && !currentUser && (
-                    <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/62 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/62">
-                      {lastError}
-                    </p>
-                  )}
-
-                  {!currentUser && (
-                    <button
-                      type="button"
-                      onClick={() => void onComplete()}
-                      disabled={isCompleting || isCloudBusy}
-                      className="w-full rounded-[20px] border border-sand/15 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-colors duration-200 hover:border-gold/25 hover:text-gold-dark disabled:cursor-not-allowed disabled:opacity-70 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text dark:hover:text-gold-light"
-                    >
-                      {copy.onboarding.authGuest}
-                    </button>
-                  )}
-
-                  {!currentUser && supportedProviders.length > 0 && (
-                    <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
-                      {supportedProviders.map(provider => (
-                        <ProviderChoice
-                          key={provider}
-                          label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
-                          disabled={isCompleting || isCloudBusy}
-                          onClick={() => void handleProviderSignIn(provider)}
-                          dataAiAction={`onboarding-sign-in-${provider}`}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
             )}
           </div>

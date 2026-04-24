@@ -122,6 +122,41 @@ type DbActivityEventRow = {
   payload: JsonObject
 }
 
+type DatabaseError = {
+  message: string
+}
+
+type DatabaseResponse<T = unknown> = {
+  data?: T | null
+  error?: DatabaseError | null
+}
+
+type DatabaseQuery<T = unknown> = PromiseLike<DatabaseResponse<T>> & {
+  select: (columns: string) => DatabaseQuery<T>
+  eq: (column: string, value: unknown) => DatabaseQuery<T>
+  in: (column: string, values: unknown[]) => DatabaseQuery<T>
+  is: (column: string, value: unknown) => DatabaseQuery<T>
+  order: (column: string, options?: { ascending?: boolean }) => DatabaseQuery<T>
+  limit: (count: number) => DatabaseQuery<T>
+  maybeSingle: () => Promise<DatabaseResponse<T>>
+  insert: (row: Record<string, unknown>) => Promise<DatabaseResponse>
+  update: (row: Record<string, unknown>) => {
+    eq: (column: string, value: unknown) => Promise<DatabaseResponse>
+  }
+}
+
+type InsForgeClient = {
+  database: {
+    from: <T = unknown>(table: string) => DatabaseQuery<T>
+  }
+}
+
+type AuthenticatedClient = InsForgeClient & {
+  auth: {
+    getCurrentUser: () => Promise<DatabaseResponse<{ user?: { id: string } | null }>>
+  }
+}
+
 type MergeLocalStateResponse = {
   acknowledgedEventIds: string[]
   mergedAt: string
@@ -191,7 +226,7 @@ async function requireAuthenticatedClient(request: Request) {
     baseUrl: resolveInsForgeBaseUrl(request),
     edgeFunctionToken: token,
     isServerMode: true,
-  })
+  }) as AuthenticatedClient
 
   const { data, error } = await client.auth.getCurrentUser()
   const user = data?.user ?? null
@@ -411,10 +446,6 @@ function toActivityEventRecord(row: DbActivityEventRow): CloudActivityEvent {
   }
 }
 
-function getRecordTimestamp(record: { client_updated_at?: string; clientUpdatedAt?: string }) {
-  return record.client_updated_at ?? record.clientUpdatedAt ?? new Date(0).toISOString()
-}
-
 function createTombstoneId(userId: string, namespace: string, naturalKey: string) {
   return `${namespace}:${createStableHash(`${userId}:${naturalKey}`)}`
 }
@@ -556,7 +587,7 @@ function getDayStampFromEvent(event: DbActivityEventRow, preferredKey: string) {
   return event.occurred_at.slice(0, 10)
 }
 
-async function readProfile(client: any, userId: string) {
+async function readProfile(client: InsForgeClient, userId: string) {
   const { data } = await client.database
     .from('user_profiles')
     .select('*')
@@ -568,7 +599,7 @@ async function readProfile(client: any, userId: string) {
   return (data ?? null) as DbProfileRow | null
 }
 
-async function readSavedItems(client: any, userId: string, activeOnly = false) {
+async function readSavedItems(client: InsForgeClient, userId: string, activeOnly = false) {
   let query = client.database
     .from('saved_items')
     .select('*')
@@ -583,7 +614,7 @@ async function readSavedItems(client: any, userId: string, activeOnly = false) {
   return asArray(data as DbSavedItemRow[] | null)
 }
 
-async function readVocabEntries(client: any, userId: string, activeOnly = false) {
+async function readVocabEntries(client: InsForgeClient, userId: string, activeOnly = false) {
   let query = client.database
     .from('vocab_entries')
     .select('*')
@@ -598,7 +629,7 @@ async function readVocabEntries(client: any, userId: string, activeOnly = false)
   return asArray(data as DbVocabRow[] | null)
 }
 
-async function readLearningProgress(client: any, userId: string, activeOnly = false) {
+async function readLearningProgress(client: InsForgeClient, userId: string, activeOnly = false) {
   let query = client.database
     .from('learning_progress')
     .select('*')
@@ -613,7 +644,7 @@ async function readLearningProgress(client: any, userId: string, activeOnly = fa
   return asArray(data as DbLearningProgressRow[] | null)
 }
 
-async function readActivityEvents(client: any, userId: string, limit = 500) {
+async function readActivityEvents(client: InsForgeClient, userId: string, limit = 500) {
   const { data } = await client.database
     .from('activity_events')
     .select('*')
@@ -624,21 +655,21 @@ async function readActivityEvents(client: any, userId: string, limit = 500) {
   return asArray(data as DbActivityEventRow[] | null)
 }
 
-async function insertRow(client: any, table: string, row: Record<string, unknown>) {
+async function insertRow(client: InsForgeClient, table: string, row: Record<string, unknown>) {
   const { error } = await client.database.from(table).insert(row)
   if (error) {
     throw new Error(`${table} insert failed: ${error.message}`)
   }
 }
 
-async function updateRow(client: any, table: string, id: string, row: Record<string, unknown>) {
+async function updateRow(client: InsForgeClient, table: string, id: string, row: Record<string, unknown>) {
   const { error } = await client.database.from(table).update(row).eq('id', id)
   if (error) {
     throw new Error(`${table} update failed: ${error.message}`)
   }
 }
 
-async function mergeProfileRow(client: any, userId: string, profile: CloudProfileRecord | null | undefined) {
+async function mergeProfileRow(client: InsForgeClient, userId: string, profile: CloudProfileRecord | null | undefined) {
   if (!profile) return
 
   const existing = await readProfile(client, userId)
@@ -654,7 +685,7 @@ async function mergeProfileRow(client: any, userId: string, profile: CloudProfil
   }
 }
 
-async function mergeSavedItems(client: any, userId: string, incomingRecords: CloudSavedItemRecord[]) {
+async function mergeSavedItems(client: InsForgeClient, userId: string, incomingRecords: CloudSavedItemRecord[]) {
   const existingRows = await readSavedItems(client, userId)
   const rowByNaturalKey = new Map(existingRows.map(row => [row.natural_key, row] as const))
 
@@ -680,7 +711,7 @@ async function mergeSavedItems(client: any, userId: string, incomingRecords: Clo
   return rowByNaturalKey
 }
 
-async function mergeVocabEntries(client: any, userId: string, incomingRecords: CloudVocabRecord[]) {
+async function mergeVocabEntries(client: InsForgeClient, userId: string, incomingRecords: CloudVocabRecord[]) {
   const existingRows = await readVocabEntries(client, userId)
   const rowByNaturalKey = new Map(existingRows.map(row => [row.natural_key, row] as const))
 
@@ -706,7 +737,7 @@ async function mergeVocabEntries(client: any, userId: string, incomingRecords: C
   return rowByNaturalKey
 }
 
-async function mergeLearningProgress(client: any, userId: string, incomingRecords: CloudLearningProgressRecord[]) {
+async function mergeLearningProgress(client: InsForgeClient, userId: string, incomingRecords: CloudLearningProgressRecord[]) {
   const existingRows = await readLearningProgress(client, userId)
   const rowByScope = new Map(existingRows.map(row => [row.scope, row] as const))
 
@@ -732,7 +763,7 @@ async function mergeLearningProgress(client: any, userId: string, incomingRecord
   return rowByScope
 }
 
-async function insertMissingActivityEvents(client: any, userId: string, events: CloudActivityEvent[]) {
+async function insertMissingActivityEvents(client: InsForgeClient, userId: string, events: CloudActivityEvent[]) {
   if (events.length === 0) return []
 
   const eventIds = events.map(event => event.id)
@@ -752,7 +783,7 @@ async function insertMissingActivityEvents(client: any, userId: string, events: 
   return eventIds
 }
 
-async function applySavedItemDeletionEvents(client: any, tombstones: DbSavedItemRow[], existingRows: Map<string, DbSavedItemRow>) {
+async function applySavedItemDeletionEvents(client: InsForgeClient, tombstones: DbSavedItemRow[], existingRows: Map<string, DbSavedItemRow>) {
   for (const tombstone of tombstones) {
     const existing = existingRows.get(tombstone.natural_key)
 
@@ -777,7 +808,7 @@ async function applySavedItemDeletionEvents(client: any, tombstones: DbSavedItem
   }
 }
 
-async function applyVocabDeletionEvents(client: any, tombstones: DbVocabRow[], existingRows: Map<string, DbVocabRow>) {
+async function applyVocabDeletionEvents(client: InsForgeClient, tombstones: DbVocabRow[], existingRows: Map<string, DbVocabRow>) {
   for (const tombstone of tombstones) {
     const existing = existingRows.get(tombstone.natural_key)
 
@@ -802,7 +833,7 @@ async function applyVocabDeletionEvents(client: any, tombstones: DbVocabRow[], e
   }
 }
 
-async function applyDerivedProgressState(client: any, userId: string, mergedAt: string) {
+async function applyDerivedProgressState(client: InsForgeClient, userId: string, mergedAt: string) {
   const [learningProgressRows, activityEvents] = await Promise.all([
     readLearningProgress(client, userId),
     readActivityEvents(client, userId, 2000),
@@ -869,7 +900,7 @@ async function applyDerivedProgressState(client: any, userId: string, mergedAt: 
   }
 }
 
-async function readMergedSnapshot(client: any, userId: string) {
+async function readMergedSnapshot(client: InsForgeClient, userId: string) {
   const [profileRow, savedRows, vocabRows, learningRows, eventRows] = await Promise.all([
     readProfile(client, userId),
     readSavedItems(client, userId, true),

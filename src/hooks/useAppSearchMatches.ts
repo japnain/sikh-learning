@@ -11,20 +11,23 @@ export default function useAppSearchMatches(query: string, searchSource: SearchS
 
   useEffect(() => {
     let cancelled = false
+    const trimmedQuery = query.trim()
 
-    if (query.trim().length < 2) {
-      setMatches([])
+    if (trimmedQuery.length < 2) {
+      Promise.resolve().then(() => {
+        if (!cancelled) setMatches([])
+      })
       return
     }
 
     loadLearnSearchIndex()
       .then(searchIndex => {
         if (cancelled) return
-        setMatches(getAppSearchMatches(query, searchSource, searchIndex))
+        setMatches(getAppSearchMatches(trimmedQuery, searchSource, searchIndex))
       })
       .catch(() => {
         if (cancelled) return
-        setMatches(getAppSearchMatches(query, searchSource, null))
+        setMatches(getAppSearchMatches(trimmedQuery, searchSource, null))
       })
 
     return () => {

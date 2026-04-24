@@ -141,6 +141,14 @@ function AppShell() {
     themeColorMeta?.setAttribute('content', dark ? '#0f0a1e' : '#f7ecd8')
   }, [dark, displayMode])
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || location.hash) return
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    })
+  }, [location.hash, location.pathname])
+
   async function handleOnboardingComplete() {
     if (isCompletingOnboarding) return
 

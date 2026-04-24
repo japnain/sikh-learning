@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react"
+import { useMemo, useState, type ReactNode } from "react"
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useLearnCatalog from "../../hooks/useLearnCatalog"
 import { useLearningStore } from "../../store/learning"
@@ -140,21 +140,20 @@ export default function LearnDetailShell({
   const savedItemIds = useLearningStore(state => state.learnState.savedItemIds)
   const viewedItems = useLearningStore(state => state.learnState.viewedItems)
   const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
-  const [activeTargetId, setActiveTargetId] = useState<string | null>(rail[0]?.targetId ?? null)
+  const [selectedTargetId, setSelectedTargetId] = useState<string | null>(rail[0]?.targetId ?? null)
 
   const saved = savedItemIds.includes(itemId)
   const viewed = viewedItems.some(item => item.itemId === itemId)
   const recentlySaved = saved && lastSaved?.kind === "learn" && lastSaved.targetId === itemId
-  const collectionById = catalog?.collectionById ?? {}
+  const collectionById = useMemo(() => catalog?.collectionById ?? {}, [catalog?.collectionById])
   const backContext = getBackContext(collectionById, searchParams.get("from"), defaultFrom, sectionLabel, sectionTab)
   const collectionStepContext = useMemo(
     () => getCollectionStepContext(collectionById, backContext.resolvedFrom, itemKind, itemId),
     [backContext.resolvedFrom, collectionById, itemId, itemKind]
   )
-
-  useEffect(() => {
-    setActiveTargetId(rail[0]?.targetId ?? null)
-  }, [rail])
+  const activeTargetId = rail.some(item => item.targetId === selectedTargetId)
+    ? selectedTargetId
+    : rail[0]?.targetId ?? null
 
   function handleBack() {
     if (backContext.resolvedFrom.startsWith("collection-")) {
@@ -174,7 +173,7 @@ export default function LearnDetailShell({
     const target = rail.find(item => item.id === chipId)
     if (!target) return
 
-    setActiveTargetId(target.targetId)
+    setSelectedTargetId(target.targetId)
     document.getElementById(target.targetId)?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 

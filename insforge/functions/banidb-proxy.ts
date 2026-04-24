@@ -11,8 +11,6 @@ const DEFAULT_CACHE_TTL_MS = 5 * 60 * 1000
 const MAX_CACHE_TTL_MS = 24 * 60 * 60 * 1000
 const CACHED_HEADERS = ['content-type', 'cache-control', 'etag'] as const
 
-type ProxyQueryValue = string | number | boolean | null | undefined
-
 type ProxyRequestBody = {
   path?: unknown
   query?: unknown

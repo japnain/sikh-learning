@@ -37,6 +37,19 @@ type AIResponseShape = {
   reflectionPrompt?: string | null
 }
 
+type ChatCompletionTextPart = {
+  type?: unknown
+  text?: unknown
+}
+
+type ChatCompletionResponse = {
+  choices?: Array<{
+    message?: {
+      content?: string | ChatCompletionTextPart[]
+    }
+  }>
+}
+
 const STUDY_GUARDRAIL =
   'This is explanatory, non-canonical commentary grounded only in the scripture and context already shown in NaamRas.'
 
@@ -208,7 +221,7 @@ function buildPrompt(body: GenerateStudyRequest) {
   ].join('\n')
 }
 
-function extractResponseText(completion: any) {
+function extractResponseText(completion: ChatCompletionResponse) {
   const content = completion?.choices?.[0]?.message?.content
 
   if (typeof content === 'string') {

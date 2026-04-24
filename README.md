@@ -1,6 +1,6 @@
-# Nitnem
+# NaamRas
 
-Nitnem is a mobile-first Gurbani reading and learning app.
+NaamRas is a mobile-first Gurbani reading and learning app.
 
 Its product direction is simple:
 
@@ -8,7 +8,7 @@ Read Gurbani daily. Understand it better. Grow into it steadily.
 
 ## Product Shape
 
-Nitnem is designed around three connected pillars:
+NaamRas is designed around three connected pillars:
 
 - `Read`: Banis, hukamnama, scripture browsing, bookmarks, and a cleaner mobile reader
 - `Understand`: translation controls, transliteration, source context, word lookup, and saved phrases

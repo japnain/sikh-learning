@@ -20,23 +20,27 @@ export default function PanthPrakashLibraryHome() {
 
   useEffect(() => {
     let cancelled = false
-    setStatus('loading')
 
-    Promise.all([
-      loadLibraryWorkCatalog(),
-      loadLibraryPageIndex(workId),
-      loadLibraryEpisodeIndex(workId),
-    ])
-      .then(([catalog, pages, episodes]) => {
-        if (cancelled) return
-        setWork(catalog.workById[workId] ?? null)
-        setPageIndex(pages)
-        setEpisodeIndex(episodes)
-        setStatus(catalog.workById[workId] ? 'ready' : 'error')
-      })
-      .catch(() => {
-        if (cancelled) return
-        setStatus('error')
+    Promise.resolve().then(() => {
+      if (cancelled) return
+      setStatus('loading')
+
+      Promise.all([
+        loadLibraryWorkCatalog(),
+        loadLibraryPageIndex(workId),
+        loadLibraryEpisodeIndex(workId),
+      ])
+        .then(([catalog, pages, episodes]) => {
+          if (cancelled) return
+          setWork(catalog.workById[workId] ?? null)
+          setPageIndex(pages)
+          setEpisodeIndex(episodes)
+          setStatus(catalog.workById[workId] ? 'ready' : 'error')
+        })
+        .catch(() => {
+          if (cancelled) return
+          setStatus('error')
+        })
       })
 
     return () => {

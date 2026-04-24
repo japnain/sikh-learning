@@ -1,4 +1,5 @@
 import { getNaamrasInsforgeConfig, getNaamrasInsforgeFunctionUrl } from './config'
+import { getMockBanidbResponse } from './banidbMock'
 
 type BanidbProxyQueryValue = string | number | boolean | null | undefined
 
@@ -18,6 +19,19 @@ function normalizeQuery(query?: BanidbProxyQuery) {
 
 export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   const config = getNaamrasInsforgeConfig()
+  const normalizedQuery = normalizeQuery(query)
+
+  if (config.banidbMockEnabled) {
+    const data = getMockBanidbResponse(path, normalizedQuery)
+    return {
+      response: new Response(JSON.stringify(data ?? { error: 'Not found.' }), {
+        status: data ? 200 : 404,
+        headers: { 'content-type': 'application/json' },
+      }),
+      data: data as T,
+    }
+  }
+
   const endpoint = getNaamrasInsforgeFunctionUrl(config.banidbFunctionSlug)
 
   if (!config.enabled || !config.baseUrl || !endpoint) {
@@ -31,7 +45,7 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
     },
     body: JSON.stringify({
       path,
-      query: normalizeQuery(query),
+      query: normalizedQuery,
     }),
   })
 

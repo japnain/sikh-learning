@@ -159,8 +159,14 @@ Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
   value: () => {},
 })
 
+Object.defineProperty(window, 'scrollTo', {
+  configurable: true,
+  writable: true,
+  value: () => {},
+})
+
 class MockIntersectionObserver {
-  constructor(_callback: IntersectionObserverCallback) {}
+  constructor() {}
 
   disconnect() {}
   observe() {}
@@ -177,7 +183,7 @@ Object.defineProperty(globalThis, 'IntersectionObserver', {
 })
 
 class MockResizeObserver {
-  constructor(_callback: ResizeObserverCallback) {}
+  constructor() {}
 
   disconnect() {}
   observe() {}
