@@ -81,20 +81,22 @@ beforeEach(() => {
 })
 
 describe('CloudSyncPanel truth model', () => {
-  test('keeps guest bootstrap failures in the backup-optional state while preserving the notice text', () => {
+  test('surfaces guest bootstrap failures as a degraded bootstrap state while preserving the notice text', () => {
     renderPanel({
       status: 'error',
       currentUser: null,
       lastError: 'Bootstrap failed',
     }, 2)
 
-    expect(getTopStatus()).toHaveTextContent('Backup optional')
+    expect(screen.getByTestId('more-cloud-sync')).toHaveAttribute('data-ai-state', 'degraded')
+    expect(screen.getByTestId('more-cloud-sync')).toHaveAttribute('data-ai-error', 'insforge-bootstrap')
+    expect(getTopStatus()).toHaveTextContent('Needs attention')
     expect(screen.getByText('Bootstrap failed')).toBeInTheDocument()
     expect(getPanelAnchor('cloud-sync-pending')).toHaveTextContent('2')
 
     const googleCard = getProviderCard('google')
     expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Backup optional')).toBeInTheDocument()
+    expect(within(googleCard).getByText('Needs attention')).toBeInTheDocument()
   })
 
   test('keeps configured signed-out providers aligned with the backup-optional badge', () => {

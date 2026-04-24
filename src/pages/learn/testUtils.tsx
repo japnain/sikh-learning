@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react"
-import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom"
+import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { vi } from "vitest"
 import NavBar from "../../components/NavBar"
 import { UI_DISCLOSURE_STORAGE_KEY } from "../../hooks/usePersistentDisclosure"
 import Learn from "../Learn"
 import { useLearnRailStore } from "../../store/learnRail"
 import { useLearningStore } from "../../store/learning"
+import LocationSpy from "./LocationSpy.test-component"
 
 export function createDefaultLearnState() {
   return {
@@ -54,11 +55,6 @@ export function resetLearnTestState() {
     completedThemePathIds: [],
     learnState: createDefaultLearnState(),
   })
-}
-
-function LocationSpy() {
-  const location = useLocation()
-  return <div data-testid="location-display">{`${location.pathname}${location.search}`}</div>
 }
 
 export function renderLearnRoute(

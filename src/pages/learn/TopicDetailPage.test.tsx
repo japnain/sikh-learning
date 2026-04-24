@@ -45,7 +45,7 @@ test("topic detail opens the requested scenario on the canonical topic page", as
 
   expect(await screen.findByRole("heading", { level: 1, name: /When mercy tightens under pressure/i })).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Under Pressure/i })).toHaveAttribute("aria-current", "page")
-  expect(screen.getByText(/The heart keeps assuming kindness must first be earned/i)).toBeInTheDocument()
+  expect(screen.getByText(/You are still reading the day through debt, performance, or punishment/i)).toBeInTheDocument()
 })
 
 test("legacy flat topic ids redirect to the canonical topic route with the matching scenario", async () => {

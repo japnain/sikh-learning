@@ -27,7 +27,8 @@ import {
 } from '../utils/sundarGutkaLength'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
-import SearchHighlight, { hasSearchMatch } from '../components/SearchHighlight'
+import SearchHighlight from '../components/SearchHighlight'
+import { hasSearchMatch } from '../utils/searchHighlight'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
   getAngTargets,
@@ -323,10 +324,68 @@ function stripHtmlTags(value: string) {
     .trim()
 }
 
+const ALLOWED_REHAT_TAGS = new Set(['a', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'u', 'ul'])
+
+function isSafeRehatHref(value: string) {
+  try {
+    const url = new URL(value, window.location.origin)
+    return ['http:', 'https:', 'mailto:'].includes(url.protocol)
+  } catch {
+    return false
+  }
+}
+
 function sanitizeRehatHtml(value: string) {
-  return value
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
+  if (typeof window === 'undefined' || typeof window.DOMParser === 'undefined') {
+    return stripHtmlTags(value)
+  }
+
+  const parser = new window.DOMParser()
+  const document = parser.parseFromString(`<div>${value}</div>`, 'text/html')
+  const sourceRoot = document.body.firstElementChild
+  const outputRoot = document.createElement('div')
+
+  function sanitizeNode(node: Node): Node {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return document.createTextNode(node.textContent ?? '')
+    }
+
+    if (node.nodeType !== Node.ELEMENT_NODE) {
+      return document.createDocumentFragment()
+    }
+
+    const element = node as Element
+    const tagName = element.tagName.toLowerCase()
+
+    if (!ALLOWED_REHAT_TAGS.has(tagName)) {
+      const fragment = document.createDocumentFragment()
+      for (const child of Array.from(element.childNodes)) {
+        fragment.appendChild(sanitizeNode(child))
+      }
+      return fragment
+    }
+
+    const nextElement = document.createElement(tagName)
+    if (tagName === 'a') {
+      const href = element.getAttribute('href')
+      if (href && isSafeRehatHref(href)) {
+        nextElement.setAttribute('href', href)
+        nextElement.setAttribute('rel', 'noreferrer')
+      }
+    }
+
+    for (const child of Array.from(element.childNodes)) {
+      nextElement.appendChild(sanitizeNode(child))
+    }
+
+    return nextElement
+  }
+
+  for (const child of Array.from(sourceRoot?.childNodes ?? [])) {
+    outputRoot.appendChild(sanitizeNode(child))
+  }
+
+  return outputRoot.innerHTML
 }
 
 export default function Banis() {
@@ -468,21 +527,16 @@ export default function Banis() {
   }, [])
 
   useEffect(() => {
-    const nextQuery = searchParams.get('query') ?? ''
-    const nextModeParam = searchParams.get('mode')
-    const nextSourceParam = searchParams.get('source')
+    const params = new URLSearchParams(location.search)
+    const nextQuery = params.get('query') ?? ''
+    const nextModeParam = params.get('mode')
+    const nextSourceParam = params.get('source')
     const nextMode: SearchMode = isSearchModeParam(nextModeParam) ? nextModeParam : 'auto-detect'
     const nextSource: SearchSource = isSearchSourceParam(nextSourceParam) ? nextSourceParam : 'all'
 
-    if (searchQuery !== nextQuery) {
-      setSearchQuery(nextQuery)
-    }
-    if (searchMode !== nextMode) {
-      setSearchMode(nextMode)
-    }
-    if (searchSource !== nextSource) {
-      setSearchSource(nextSource)
-    }
+    setSearchQuery(current => current === nextQuery ? current : nextQuery)
+    setSearchMode(current => current === nextMode ? current : nextMode)
+    setSearchSource(current => current === nextSource ? current : nextSource)
   }, [location.search])
 
   useEffect(() => {

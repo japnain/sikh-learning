@@ -5,6 +5,7 @@ export interface NaamrasInsforgeConfig {
   functionsUrl?: string
   audioBucket?: string
   audioPrefix?: string
+  banidbMockEnabled: boolean
   banidbFunctionSlug: string
   mergeFunctionSlug: string
   studyFunctionSlug: string
@@ -38,6 +39,7 @@ function deriveFunctionsUrl(baseUrl: string) {
 export function getNaamrasInsforgeConfig(): NaamrasInsforgeConfig {
   if (cachedConfig) return cachedConfig
 
+  const banidbMockEnabled = normalizeOptionalValue(import.meta.env.VITE_NAAMRAS_BANIDB_MOCK) === 'true'
   const baseUrl = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_URL) ?? null
   const configuredFunctionsUrl = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_FUNCTIONS_URL)
   const studyEnabled = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_ENABLE_STUDY_AI) === 'true'
@@ -51,6 +53,7 @@ export function getNaamrasInsforgeConfig(): NaamrasInsforgeConfig {
       : (baseUrl ? deriveFunctionsUrl(baseUrl) : undefined),
     audioBucket: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_BUCKET) ?? 'soundscrape',
     audioPrefix: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_PREFIX) ?? 'ambient',
+    banidbMockEnabled,
     banidbFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_BANIDB_FUNCTION) ?? 'banidb-proxy',
     mergeFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_MERGE_FUNCTION) ?? 'merge-local-state',
     studyFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_STUDY_FUNCTION) ?? 'generate-study-response',

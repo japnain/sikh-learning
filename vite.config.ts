@@ -1,10 +1,16 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, defaultExclude } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    env: {
+      VITE_INSFORGE_URL: 'https://naamras-qa.insforge.app',
+      VITE_INSFORGE_FUNCTIONS_URL: 'https://naamras-qa.functions.insforge.app',
+      VITE_INSFORGE_BANIDB_FUNCTION: 'banidb-proxy',
+    },
+    exclude: [...defaultExclude, 'tmp/**'],
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
     server: {

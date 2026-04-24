@@ -60,7 +60,9 @@ export function usePersistentDisclosure(storageKey: string | null, defaultOpen =
       hasMountedRef.current = true
       return
     }
-    setOpen(getDisclosureValue(storageKey, defaultOpen))
+    Promise.resolve().then(() => {
+      setOpen(getDisclosureValue(storageKey, defaultOpen))
+    })
   }, [defaultOpen, storageKey])
 
   useEffect(() => {

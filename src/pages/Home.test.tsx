@@ -191,20 +191,21 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.queryByTestId('home-guidance-skeleton')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
-  expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
-  expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
+  expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
 })
 
-test('puts today’s hukamnama before today’s guidance in the home hero stack', async () => {
+test('composes hukam, meaning, and return inside the daily reading room', async () => {
   renderHome()
 
-  const heroStack = screen.getByTestId('home-hero').querySelector('.grid')
-  const [firstCard, secondCard] = Array.from(heroStack?.children ?? [])
+  const room = screen.getByTestId('home-daily-reading-room')
+  const hero = screen.getByTestId('home-hero')
 
-  expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
-  expect(firstCard).toBe(screen.getByTestId('home-hukamnama-card'))
-  expect(secondCard).toBe(screen.getByTestId('home-guidance-hero'))
+  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/hukam/i)
+  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/meaning/i)
+  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/return/i)
+  expect(within(room).getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(within(room).getByTestId('home-guidance-hero')).toBeInTheDocument()
 })
 
 test('renders the same daily guidance item that Learn resolves for the day', async () => {

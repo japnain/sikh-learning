@@ -1,30 +1,10 @@
 import { Fragment } from 'react'
+import { buildSearchHighlightPattern, getSearchHighlightTokens } from '../utils/searchHighlight'
 
 interface SearchHighlightProps {
   text: string
   query: string
   minimumTokenLength?: number
-}
-
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
-
-export function getSearchHighlightTokens(query: string, minimumTokenLength = 2) {
-  return [...new Set(
-    query
-      .split(/[\s,.;:!?()[\]{}"'“”‘’/\\|-]+/)
-      .map(token => token.trim())
-      .filter(token => token.length >= minimumTokenLength)
-  )].sort((left, right) => right.length - left.length)
-}
-
-export function hasSearchMatch(text: string, query: string, minimumTokenLength = 2) {
-  const tokens = getSearchHighlightTokens(query.trim(), minimumTokenLength)
-  if (!text || tokens.length === 0) return false
-
-  const lowerText = text.toLocaleLowerCase()
-  return tokens.some(token => lowerText.includes(token.toLocaleLowerCase()))
 }
 
 export default function SearchHighlight({
@@ -38,7 +18,7 @@ export default function SearchHighlight({
     return <>{text}</>
   }
 
-  const pattern = new RegExp(`(${tokens.map(escapeRegExp).join('|')})`, 'gi')
+  const pattern = buildSearchHighlightPattern(tokens)
   const parts = text.split(pattern)
 
   if (parts.length === 1) {

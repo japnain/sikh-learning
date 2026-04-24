@@ -13,13 +13,13 @@ export default function SplashScreen() {
   useEffect(() => {
     if (!visible) return
     sessionStorage.setItem('splash-shown', '1')
-    const timer = setTimeout(() => setExiting(true), 1500)
+    const timer = setTimeout(() => setExiting(true), 450)
     return () => clearTimeout(timer)
   }, [visible])
 
   useEffect(() => {
     if (!exiting) return
-    const timer = setTimeout(() => setVisible(false), 500)
+    const timer = setTimeout(() => setVisible(false), 180)
     return () => clearTimeout(timer)
   }, [exiting])
 
