@@ -138,6 +138,17 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
   expect(statusCopy).toBeInTheDocument()
 })
 
+test("topic search offers the same query in Read when Learn has no approved topic", async () => {
+  renderLearnRoute("/learn?tab=topics")
+
+  fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
+    target: { value: "death" },
+  })
+
+  const fallback = await screen.findByTestId("learn-read-search-fallback")
+  expect(fallback).toHaveAttribute("href", "/banis?query=death")
+})
+
 test("highlights matching terms inside learn topic results", async () => {
   renderLearnRoute("/learn?tab=topics")
 

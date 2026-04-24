@@ -72,6 +72,41 @@ const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   ang: 'Open an ang or page directly without running a word search.',
   'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
 }
+const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
+
+function getBackendSearchTypes(query: string, mode: SearchMode): number[] {
+  if (mode !== 'auto-detect') return [SEARCH_MODE_META[mode].type]
+
+  if (GURMUKHI_SEARCH_PATTERN.test(query)) {
+    return [
+      SEARCH_MODE_META.gurmukhi.type,
+      SEARCH_MODE_META['first-letters'].type,
+      SEARCH_MODE_META['first-letters-anywhere'].type,
+      SEARCH_MODE_META['auto-detect'].type,
+    ]
+  }
+
+  return [
+    SEARCH_MODE_META.english.type,
+    SEARCH_MODE_META.transliteration.type,
+    SEARCH_MODE_META['auto-detect'].type,
+  ]
+}
+
+function dedupeSearchResults(resultSets: SearchResult[][]): SearchResult[] {
+  const seen = new Map<string, SearchResult>()
+
+  for (const results of resultSets) {
+    for (const result of results) {
+      const key = `${result.source}-${result.shabadId}-${result.verseId}`
+      if (!seen.has(key)) {
+        seen.set(key, result)
+      }
+    }
+  }
+
+  return Array.from(seen.values())
+}
 
 function isSearchModeParam(value: string | null): value is SearchMode {
   return value !== null && value in SEARCH_MODE_META
@@ -592,7 +627,12 @@ export default function Banis() {
     setSearchIssue(null)
     debounceRef.current = setTimeout(async () => {
       try {
-        const results = await fetchSearch(trimmed, SEARCH_MODE_META[mode].type, source, 'read-search')
+        const resultSets = await Promise.all(
+          getBackendSearchTypes(trimmed, mode).map(searchType => (
+            fetchSearch(trimmed, searchType, source, 'read-search')
+          ))
+        )
+        const results = dedupeSearchResults(resultSets)
         setSearchResults(results)
         setSearchIssue(null)
         addRecent(trimmed, mode)

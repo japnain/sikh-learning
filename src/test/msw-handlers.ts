@@ -231,6 +231,27 @@ export const MOCK_SEARCH_RESPONSE = {
   ],
 }
 
+export const MOCK_ROMANIZED_SEARCH_RESPONSE = {
+  verses: [
+    {
+      verseId: 101,
+      shabadId: 51,
+      source: buildSource('G', 'Sri Guru Granth Sahib Ji', 935),
+      verse: { unicode: 'ਮਰਣੁ ਨ ਮੰਦਾ ਲੋਕਾ ਆਖੀਐ ਜੇ ਮਰਿ ਜਾਣੈ ਐਸਾ ਕੋਇ ॥' },
+      larivaar: { unicode: 'ਮਰਣੁਨਮੰਦਾਲੋਕਾਆਖੀਐਜੇਮਰਿਜਾਣੈਐਸਾਕੋਇ॥' },
+      transliteration: { english: 'maran na mandhaa lokaa aakheeai je mar jaanai aisaa koi' },
+      translation: {
+        en: { bdb: 'Death is not called bad when one knows how to die.' },
+        hi: { ss: 'मरण बुरा नहीं कहा जाता।' },
+        pu: { ss: { unicode: 'ਮਰਣਾ ਮੰਦਾ ਨਹੀਂ ਆਖਿਆ ਜਾਂਦਾ।' } },
+      },
+      pageNo: 935,
+      raag: buildRaag('Raag Raamkalee', 40),
+      writer: buildWriter('Guru Nanak Dev Ji', 100),
+    },
+  ],
+}
+
 export const MOCK_BANIS_INDEX = [
   { ID: 2, gurmukhiUni: 'ਜਪੁਜੀ ਸਾਹਿਬ', transliterations: { english: 'japujee saahib' } },
   { ID: 4, gurmukhiUni: 'ਜਾਪੁ ਸਾਹਿਬ', transliterations: { english: 'jaap saahib' } },
@@ -839,6 +860,9 @@ function getMockBanidbResponse(url: URL) {
   }
 
   if (url.pathname.startsWith('/v2/search/')) {
+    const query = decodeURIComponent(url.pathname.replace('/v2/search/', '')).toLowerCase()
+    const searchType = url.searchParams.get('searchtype')
+
     if (url.searchParams.get('source') === 'R') {
       return HttpResponse.json({
         verses: [
@@ -859,6 +883,14 @@ function getMockBanidbResponse(url: URL) {
           },
         ],
       })
+    }
+
+    if (query === 'death') {
+      return HttpResponse.json(
+        searchType === '3' || searchType === '4'
+          ? MOCK_ROMANIZED_SEARCH_RESPONSE
+          : { verses: [] }
+      )
     }
 
     return HttpResponse.json(MOCK_SEARCH_RESPONSE)
