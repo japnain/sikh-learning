@@ -26,6 +26,7 @@ import {
   LEARN_SUBSECTION_RAILS,
   LEARN_SURFACE_RAIL,
 } from "../../utils/learnRails"
+import { buildReadSearchPath } from "../../utils/searchRoutes"
 import CollectionCard from "./components/CollectionCard"
 import InlineRail from "./components/InlineRail"
 import InventoryMetric from "./components/InventoryMetric"
@@ -151,6 +152,9 @@ export default function LearnHub() {
     ?? queryResolution.scenarioKey
     ?? null
   ) as Exclude<TopicScenarioKey, "overview"> | null
+  const readSearchFallbackPath = deferredQuery.trim().length >= 2
+    ? buildReadSearchPath({ query: deferredQuery, mode: "auto-detect" })
+    : null
   const selectedCollection = catalog && todaySurface
     ? catalog.collectionById[searchParams.get("collection") ?? ""]
       ?? (activeCollectionId ? catalog.collectionById[activeCollectionId] : null)
@@ -817,34 +821,46 @@ export default function LearnHub() {
               />
             </label>
             {deferredQuery ? (
-              <p className="mt-3 font-sans text-sm text-ink/72 dark:text-dark-text/74">
-                {queryResolution.matchedBy === "synonym"
-                  ? (
-                      <>
-                        Showing the canonical approved guide for “
-                        <SearchHighlight text={deferredQuery} query={deferredQuery} />
-                        ”
-                        {selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}
-                      </>
-                    )
-                  : queryResolution.matchedBy === "no-match"
-                    ? "No matching topic found - showing today's spotlight."
-                    : queryResolution.matchedBy === "closest"
-                      ? (
-                          <>
-                            No exact approved page matched “
-                            <SearchHighlight text={deferredQuery} query={deferredQuery} />
-                            ”, so the nearest approved guide is shown.
-                          </>
-                        )
-                      : (
-                          <>
-                            Approved guide matched “
-                            <SearchHighlight text={deferredQuery} query={deferredQuery} />
-                            ”.
-                          </>
-                        )}
-              </p>
+              <div className="mt-3 space-y-3">
+                <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74">
+                  {queryResolution.matchedBy === "synonym"
+                    ? (
+                        <>
+                          Showing the canonical approved guide for “
+                          <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                          ”
+                          {selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}
+                        </>
+                      )
+                    : queryResolution.matchedBy === "no-match"
+                      ? "No matching topic found - try the same words against Gurbani lines in Read."
+                      : queryResolution.matchedBy === "closest"
+                        ? (
+                            <>
+                              No exact approved page matched “
+                              <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                              ”, so the nearest approved guide is shown.
+                            </>
+                          )
+                        : (
+                            <>
+                              Approved guide matched “
+                              <SearchHighlight text={deferredQuery} query={deferredQuery} />
+                              ”.
+                            </>
+                          )}
+                </p>
+                {queryResolution.matchedBy === "no-match" && readSearchFallbackPath ? (
+                  <Link
+                    to={readSearchFallbackPath}
+                    className="interactive-focus interactive-pill-link gap-2 rounded-full border border-saffron/18 bg-parchment-card px-4 py-2 font-sans text-xs font-semibold text-saffron transition-colors duration-300 dark:border-gold/16 dark:bg-dark-card dark:text-gold-light"
+                    data-testid="learn-read-search-fallback"
+                  >
+                    Search Gurbani lines in Read
+                    <IconArrowRight size={13} />
+                  </Link>
+                ) : null}
+              </div>
             ) : null}
             <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
               {catalog.topicGuides.map(topic => (

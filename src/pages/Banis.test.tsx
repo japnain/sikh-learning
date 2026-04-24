@@ -1,4 +1,4 @@
-import { beforeEach } from 'vitest'
+import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
@@ -355,6 +355,35 @@ test('surfaces learn topic destinations ahead of broader read search results', a
   const [firstResult] = within(inAppResults).getAllByRole('button')
   expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
   expect(within(firstResult).getByText(/^Learn$/i)).toBeInTheDocument()
+})
+
+test('auto search queries both English meanings and romanized text for Roman-letter terms', async () => {
+  const fetchSpy = vi.spyOn(globalThis, 'fetch')
+  renderBanis()
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'death' } })
+
+  await waitFor(() => {
+    const searchTypes = fetchSpy.mock.calls.flatMap(([, init]) => {
+      if (!init || typeof init.body !== 'string') return []
+
+      const body = JSON.parse(init.body) as {
+        path?: string
+        query?: { searchtype?: string }
+      }
+
+      return body.path === '/v2/search/death' && body.query?.searchtype
+        ? [body.query.searchtype]
+        : []
+    })
+
+    expect(searchTypes).toEqual(expect.arrayContaining(['3', '4']))
+  })
+  await waitFor(() => {
+    expect(screen.getByTestId('banis-search-gurbani-results')).toHaveTextContent('Death is not called bad')
+  })
+
+  fetchSpy.mockRestore()
 })
 
 test('highlights matching terms inside read search results', async () => {

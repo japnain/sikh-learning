@@ -8,18 +8,13 @@ import {
   IconChevronUp,
   IconLibrary,
   IconMoon,
-  IconSearch,
   IconSun,
 } from '../components/icons'
-import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import StreakBadge from '../components/StreakBadge'
 import { useHukamnama } from '../hooks/useHukamnama'
 import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
 import { useCurrentTime } from '../hooks/useCurrentTime'
-import { loadLearnSearchIndex } from '../data/learnRepository'
-import { resolveAsyncIssue } from '../qa/async'
-import { withQaControl } from '../qa/runtime'
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
@@ -32,7 +27,7 @@ import { useThemeStore } from '../store/theme'
 import { buildNitnemStudyPath, compareNitnemOptions, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
-import type { AsyncIssue, UiLocale, VocabEntry } from '../types'
+import type { UiLocale, VocabEntry } from '../types'
 import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getLearningLevelLabels } from '../utils/translations'
@@ -43,7 +38,6 @@ import { getLearnItemLabel } from '../utils/learnExperience'
 import { getLearnHomeSavedItems, getTodayLearnHomeSurface } from '../utils/learnHomeExperience'
 import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
-import { getAppSearchMatches, type AppSearchMatch } from '../utils/appSearch'
 import { getEditorialCopy } from '../content/editorialCopy'
 
 const READ_TODAY_HIGHLIGHT_CLASSES = [
@@ -133,9 +127,7 @@ function getVocabPreviewDetail(entry: VocabEntry, locale: UiLocale): string {
 }
 
 const HOME_MESSAGES: Record<UiLocale, {
-  resumeReading: string
   resumeStudyBody: string
-  resumeReadingBody: string
   openTodaysHukamnama: string
   todaysMeaningBody: string
   todaysReadingBody: string
@@ -185,9 +177,7 @@ const HOME_MESSAGES: Record<UiLocale, {
   reviewDue: (count: number) => string
 }> = {
   en: {
-    resumeReading: 'Resume Reading',
     resumeStudyBody: 'Return to the last passage you were studying so the context stays intact.',
-    resumeReadingBody: 'Open the passage you were already working through.',
     openTodaysHukamnama: 'Open Today’s Hukamnama',
     todaysMeaningBody: 'Start with the daily hukamnama and keep the meaning close.',
     todaysReadingBody: 'Start with the daily hukamnama and stay in a steady daily rhythm.',
@@ -237,9 +227,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     reviewDue: (count) => `${count} review item${count === 1 ? '' : 's'} due`,
   },
   pa: {
-    resumeReading: 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ',
     resumeStudyBody: 'ਜਿੱਥੇ ਤੁਸੀਂ ਅਖੀਰ ਵਾਰ ਅਰਥ ਨਾਲ ਪੜ੍ਹ ਰਹੇ ਸੀ, ਓਥੇ ਹੀ ਵਾਪਸ ਜਾਓ ਤਾਂ ਜੋ ਸੰਦਰਭ ਬਣਾ ਰਹੇ।',
-    resumeReadingBody: 'ਉਹੀ ਪੰਕਤੀ ਖੋਲ੍ਹੋ ਜਿਸ ਤੇ ਤੁਸੀਂ ਪਹਿਲਾਂ ਕੰਮ ਕਰ ਰਹੇ ਸੀ।',
     openTodaysHukamnama: 'ਅੱਜ ਦਾ ਹੁਕਮਨਾਮਾ ਖੋਲ੍ਹੋ',
     todaysMeaningBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਅਰਥ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।',
     todaysReadingBody: 'ਰੋਜ਼ਾਨਾ ਹੁਕਮਨਾਮੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਪਾਠ ਦੀ ਲਯ ਬਣਾਈ ਰੱਖੋ।',
@@ -289,9 +277,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     reviewDue: (count) => `${count} ਦੁਹਰਾਈ ਆਇਟਮ ਬਾਕੀ`,
   },
   hi: {
-    resumeReading: 'पढ़ना जारी रखें',
     resumeStudyBody: 'जिस अंश को आप अर्थ के साथ पढ़ रहे थे, वहीं लौटें ताकि संदर्भ बना रहे।',
-    resumeReadingBody: 'वही अंश खोलें जिस पर आप पहले काम कर रहे थे।',
     openTodaysHukamnama: 'आज का हुकमनामा खोलें',
     todaysMeaningBody: 'दैनिक हुकमनामे से शुरू करें और अर्थ को पास रखें।',
     todaysReadingBody: 'दैनिक हुकमनामे से शुरू करें और पढ़ने की लय बनाए रखें।',
@@ -378,10 +364,6 @@ export default function Home() {
   const [nitnemOpen, setNitnemOpen] = useState(false)
   const [activeNitnemIndex, setActiveNitnemIndex] = useState(0)
   const [confirmingNitnemReset, setConfirmingNitnemReset] = useState(false)
-  const [homeSearchQuery, setHomeSearchQuery] = useState('')
-  const [homeSearchMatches, setHomeSearchMatches] = useState<AppSearchMatch[]>([])
-  const [homeSearchLoading, setHomeSearchLoading] = useState(false)
-  const [homeSearchIssue, setHomeSearchIssue] = useState<AsyncIssue | null>(null)
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const readTodayRef = useRef<HTMLElement | null>(null)
   const nitnemResetConfirmRef = useRef<number | null>(null)
@@ -476,16 +458,6 @@ export default function Home() {
   const safeActiveNitnemIndex = selectedNitnemOptions.length > 0
     ? Math.min(activeNitnemIndex, selectedNitnemOptions.length - 1)
     : 0
-  const trimmedHomeSearchQuery = homeSearchQuery.trim()
-  const homeSearchState = homeSearchLoading
-    ? 'loading'
-    : homeSearchIssue
-      ? 'degraded'
-      : trimmedHomeSearchQuery.length < 2
-        ? 'empty'
-        : homeSearchMatches.length > 0
-          ? 'ready'
-          : 'empty'
   const savedLearnItems = useMemo(
     () => (learnCatalog ? getLearnHomeSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
     [learnCatalog, learnStateSnapshot.savedItemIds]
@@ -583,16 +555,6 @@ export default function Home() {
     return previewItems.slice(0, 3)
   }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, savedLearnItems, vocab])
   const nextBestAction = useMemo<HomeNextAction | null>(() => {
-    if (currentSession?.resumePath) {
-      return {
-        eyebrow: homeMessages.resumeReading,
-        title: homeMessages.resumeReading,
-        body: homeMessages.resumeReadingBody,
-        path: currentSession.resumePath,
-        actionLabel: homeMessages.resumeReading,
-      }
-    }
-
     if (savedReviewItems > 0) {
       return {
         eyebrow: libraryCopy.reviewBank,
@@ -628,7 +590,6 @@ export default function Home() {
 
     return null
   }, [
-    currentSession,
     homeCopy.doReviewStep,
     homeCopy.openSaved,
     homeCopy.savedEyebrow,
@@ -685,46 +646,6 @@ export default function Home() {
       slide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
     }
   }, [safeActiveNitnemIndex])
-
-  useEffect(() => {
-    let cancelled = false
-
-    if (trimmedHomeSearchQuery.length < 2) {
-      Promise.resolve().then(() => {
-        if (cancelled) return
-        setHomeSearchMatches([])
-        setHomeSearchIssue(null)
-        setHomeSearchLoading(false)
-      })
-      return () => {
-        cancelled = true
-      }
-    }
-
-    Promise.resolve().then(async () => {
-      if (cancelled) return
-      setHomeSearchLoading(true)
-      setHomeSearchIssue(null)
-
-      try {
-        const searchIndex = await withQaControl('home-search', () => loadLearnSearchIndex())
-        if (cancelled) return
-        setHomeSearchMatches(getAppSearchMatches(trimmedHomeSearchQuery, 'all', searchIndex).slice(0, 4))
-      } catch (error) {
-        if (cancelled) return
-        setHomeSearchMatches([])
-        setHomeSearchIssue(resolveAsyncIssue(error))
-      } finally {
-        if (!cancelled) {
-          setHomeSearchLoading(false)
-        }
-      }
-    })
-
-    return () => {
-      cancelled = true
-    }
-  }, [trimmedHomeSearchQuery])
 
   const handleNitnemCustomizeToggle = () => {
     setNitnemOpen(open => {
@@ -800,89 +721,6 @@ export default function Home() {
           </span>
         </h1>
       </div>
-
-      <section
-        className="section-shell-quiet mb-5 p-4 animate-slide-up stagger-1"
-        aria-labelledby="home-smart-search-title"
-        data-testid="home-smart-search"
-        data-ai-surface="home-smart-search"
-        data-ai-state={homeSearchState}
-        data-ai-error={homeSearchIssue ? 'home-search' : undefined}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p className="eyebrow">Quick Find</p>
-            <h2 id="home-smart-search-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
-              Find the next route from here.
-            </h2>
-          </div>
-          <Link
-            to="/banis"
-            className="interactive-focus interactive-pill-link shrink-0 gap-2 font-sans text-xs font-semibold text-gold dark:text-gold-light"
-          >
-            Read <IconArrowRight size={13} />
-          </Link>
-        </div>
-        <div className="relative mt-4">
-          <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/34 dark:text-dark-text/34" />
-          <input
-            type="search"
-            aria-label="Search paths, banis, topics, or angs"
-            autoCapitalize="none"
-            autoCorrect="off"
-            autoComplete="off"
-            spellCheck={false}
-            enterKeyHint="search"
-            inputMode="search"
-            value={homeSearchQuery}
-            onChange={event => setHomeSearchQuery(event.target.value)}
-            placeholder="Search banis, topics, or angs..."
-            className="w-full rounded-xl border border-sand/15 bg-parchment-card py-3 pl-9 pr-4 font-sans text-sm text-ink outline-none transition-colors duration-300 placeholder:text-ink/34 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text dark:placeholder:text-dark-text/34"
-            data-testid="home-smart-search-input"
-            data-ai-action="home-smart-search"
-          />
-        </div>
-        {homeSearchLoading ? (
-          <p className="mt-3 px-1 font-sans text-xs text-ink/45 dark:text-dark-text/48">Finding matching paths...</p>
-        ) : null}
-        {homeSearchIssue ? (
-          <div
-            className="mt-3 rounded-[20px] border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 font-sans text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]"
-            data-testid="home-smart-search-results"
-            data-ai-state="degraded"
-            data-ai-error="home-search"
-          >
-            Search is taking longer than usual. Open Read or Learn and try again in a moment.
-          </div>
-        ) : homeSearchMatches.length > 0 ? (
-          <div className="mt-3 space-y-2" data-testid="home-smart-search-results" data-ai-state="ready">
-            {homeSearchMatches.map(match => (
-              <button
-                key={match.key}
-                type="button"
-                onClick={() => navigate(match.path)}
-                className="w-full rounded-[22px] border border-saffron/18 bg-gradient-to-r from-saffron/8 to-gold/10 px-4 py-3 text-left transition-colors duration-300 active:scale-[0.99] dark:border-saffron/18 dark:from-saffron/12 dark:to-gold/12"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                      <SearchHighlight text={match.label} query={trimmedHomeSearchQuery} />
-                    </p>
-                    <p className="mt-1 font-sans text-xs text-ink/58 dark:text-dark-text/60">
-                      <SearchHighlight text={match.detail} query={trimmedHomeSearchQuery} />
-                    </p>
-                  </div>
-                  <span className="chip-pill shrink-0">{match.kind === 'learn-topic' ? 'Learn' : 'Read'}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        ) : trimmedHomeSearchQuery.length >= 2 ? (
-          <div className="mt-3 rounded-[20px] border border-sand/12 bg-parchment-card/70 px-4 py-3 font-sans text-sm text-ink/58 dark:border-dark-text/10 dark:bg-dark-card/70 dark:text-dark-text/60" data-testid="home-smart-search-results" data-ai-state="empty">
-            No matching route yet. Try a bani, topic, or ang number.
-          </div>
-        ) : null}
-      </section>
 
       {visibleNextBestAction ? (
         <section className="section-shell p-5 mb-5 animate-slide-up stagger-1" data-testid="home-next-best-action">

@@ -227,6 +227,26 @@ export function getMockBanidbResponse(path: string, query?: BanidbProxyQuery): u
   }
 
   if (url.pathname.startsWith('/v2/search/')) {
+    const searchQuery = decodeURIComponent(url.pathname.replace('/v2/search/', '')).toLowerCase()
+    const searchType = url.searchParams.get('searchtype')
+
+    if (searchQuery === 'death') {
+      return {
+        verses: searchType === '3' || searchType === '4'
+          ? [
+              createScriptureVerse({
+                verseId: 101,
+                shabadId: 51,
+                text: 'ਮਰਣੁ ਨ ਮੰਦਾ ਲੋਕਾ ਆਖੀਐ ਜੇ ਮਰਿ ਜਾਣੈ ਐਸਾ ਕੋਇ ॥',
+                pageNo: 935,
+                translation: 'Death is not called bad when one knows how to die.',
+                transliteration: 'maran na mandhaa lokaa aakheeai je mar jaanai aisaa koi',
+              }),
+            ]
+          : [],
+      }
+    }
+
     return {
       verses: [
         createScriptureVerse({

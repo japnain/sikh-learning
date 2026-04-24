@@ -191,8 +191,8 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.queryByTestId('home-guidance-skeleton')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
-  expect(screen.getByTestId('home-smart-search')).toBeInTheDocument()
-  expect(screen.getByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).toBeInTheDocument()
+  expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
+  expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
 })
 
 test('composes hukam, meaning, and return inside the daily reading room', async () => {
@@ -354,7 +354,7 @@ test('hides preview meanings when meaning language is off', async () => {
   })
 })
 
-test('shows resume reading as the highest-priority next action when a session exists', async () => {
+test('does not show a resume reading card when a session exists', async () => {
   useProgressStore.setState({
     currentSession: {
       scriptureId: 'G-12',
@@ -365,9 +365,8 @@ test('shows resume reading as the highest-priority next action when a session ex
 
   renderHome()
 
-  const nextAction = await screen.findByTestId('home-next-best-action')
-  expect(within(nextAction).getByRole('heading', { name: /resume reading/i })).toBeInTheDocument()
-  expect(within(nextAction).getByTestId('home-next-best-action-link')).toHaveAttribute('href', '/study?source=G&ang=12')
+  expect(screen.queryByRole('heading', { name: /resume reading/i })).not.toBeInTheDocument()
+  expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
 })
 
 test('shows review as the next best action when review items are due and no session exists', async () => {
@@ -470,9 +469,8 @@ test('keeps Ardaas + Hukamnama in read today even when a session exists', async 
   })
   renderHome()
   expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
-  const nextAction = await screen.findByTestId('home-next-best-action')
-  expect(within(nextAction).getByRole('heading', { name: /resume reading/i })).toBeInTheDocument()
-  expect(within(nextAction).getByText(/Open the passage you were already working through/i)).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: /resume reading/i })).not.toBeInTheDocument()
+  expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
 })
 
 test('opens the Ardaas + Hukamnama devotional flow from read today even when a session exists', async () => {

@@ -15,6 +15,8 @@ test('renders the new 5-tab product nav', () => {
   expect(screen.getByLabelText('Learn tab')).toBeInTheDocument()
   expect(screen.getByLabelText('Saved tab')).toBeInTheDocument()
   expect(screen.getByLabelText('More tab and settings')).toBeInTheDocument()
+  expect(screen.getByText(/^Home$/)).toHaveClass('sr-only')
+  expect(screen.getByText(/^Read$/)).toHaveClass('sr-only')
 })
 
 test('keeps the Learn route limited to the shared product nav', () => {

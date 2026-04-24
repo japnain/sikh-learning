@@ -7,13 +7,6 @@ type NavGlyphProps = {
   active: boolean
 }
 
-type NavAccent = {
-  activeText: string
-  badge: string
-  tile: string
-  pill: string
-}
-
 function HomeGlyph({ active }: NavGlyphProps) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="overflow-visible" aria-hidden="true">
@@ -78,7 +71,6 @@ export default function NavBar() {
     label: string
     ariaLabel: string
     Glyph: (props: NavGlyphProps) => ReactElement
-    accent: NavAccent
   }> = [
     {
       id: 'home',
@@ -86,12 +78,6 @@ export default function NavBar() {
       label: copy.nav.home,
       ariaLabel: `${copy.nav.home} tab`,
       Glyph: HomeGlyph,
-      accent: {
-        activeText: 'text-[#d95d56] dark:text-[#ff8f80]',
-        badge: 'bg-[radial-gradient(circle_at_30%_25%,rgba(255,160,140,0.5),transparent_55%),linear-gradient(135deg,rgba(217,93,86,0.22),rgba(255,125,84,0.2))] dark:bg-[radial-gradient(circle_at_30%_25%,rgba(255,176,150,0.25),transparent_55%),linear-gradient(135deg,rgba(217,93,86,0.25),rgba(255,125,84,0.12))]',
-        tile: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,247,244,0.88))] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_12px_28px_rgba(217,93,86,0.18)] dark:bg-[linear-gradient(180deg,rgba(35,24,44,0.96),rgba(26,18,39,0.94))] dark:shadow-[inset_0_1px_0_rgba(255,143,128,0.12),0_14px_28px_rgba(0,0,0,0.34)]',
-        pill: 'from-[#d95d56] to-[#ff8a5f]',
-      },
     },
     {
       id: 'read',
@@ -99,12 +85,6 @@ export default function NavBar() {
       label: copy.nav.read,
       ariaLabel: `${copy.nav.read} tab`,
       Glyph: ReadGlyph,
-      accent: {
-        activeText: 'text-[#3f76dc] dark:text-[#7bb8ff]',
-        badge: 'bg-[radial-gradient(circle_at_30%_25%,rgba(157,213,255,0.45),transparent_55%),linear-gradient(135deg,rgba(63,118,220,0.2),rgba(58,170,220,0.18))] dark:bg-[radial-gradient(circle_at_30%_25%,rgba(157,213,255,0.2),transparent_55%),linear-gradient(135deg,rgba(63,118,220,0.24),rgba(58,170,220,0.12))]',
-        tile: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(245,249,255,0.88))] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_12px_28px_rgba(63,118,220,0.18)] dark:bg-[linear-gradient(180deg,rgba(29,34,58,0.96),rgba(20,24,42,0.94))] dark:shadow-[inset_0_1px_0_rgba(123,184,255,0.12),0_14px_28px_rgba(0,0,0,0.34)]',
-        pill: 'from-[#3f76dc] to-[#38aadc]',
-      },
     },
     {
       id: 'learn',
@@ -112,12 +92,6 @@ export default function NavBar() {
       label: copy.nav.learn,
       ariaLabel: `${copy.nav.learn} tab`,
       Glyph: LearnGlyph,
-      accent: {
-        activeText: 'text-saffron dark:text-gold-light',
-        badge: 'bg-[radial-gradient(circle_at_30%_25%,rgba(255,223,153,0.46),transparent_55%),linear-gradient(135deg,rgba(224,154,70,0.22),rgba(255,201,89,0.16))] dark:bg-[radial-gradient(circle_at_30%_25%,rgba(255,223,153,0.2),transparent_55%),linear-gradient(135deg,rgba(224,154,70,0.25),rgba(255,201,89,0.1))]',
-        tile: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,251,243,0.88))] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_12px_28px_rgba(224,154,70,0.18)] dark:bg-[linear-gradient(180deg,rgba(36,29,51,0.96),rgba(23,18,36,0.94))] dark:shadow-[inset_0_1px_0_rgba(255,214,153,0.1),0_14px_28px_rgba(0,0,0,0.34)]',
-        pill: 'from-saffron to-gold-light',
-      },
     },
     {
       id: 'saved',
@@ -125,12 +99,6 @@ export default function NavBar() {
       label: copy.nav.saved,
       ariaLabel: `${copy.nav.saved} tab`,
       Glyph: SavedGlyph,
-      accent: {
-        activeText: 'text-[#1e9d74] dark:text-[#68e0ae]',
-        badge: 'bg-[radial-gradient(circle_at_30%_25%,rgba(171,255,222,0.45),transparent_55%),linear-gradient(135deg,rgba(30,157,116,0.22),rgba(70,200,138,0.18))] dark:bg-[radial-gradient(circle_at_30%_25%,rgba(171,255,222,0.2),transparent_55%),linear-gradient(135deg,rgba(30,157,116,0.24),rgba(70,200,138,0.1))]',
-        tile: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(244,255,249,0.88))] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_12px_28px_rgba(30,157,116,0.16)] dark:bg-[linear-gradient(180deg,rgba(28,43,44,0.96),rgba(19,33,35,0.94))] dark:shadow-[inset_0_1px_0_rgba(104,224,174,0.1),0_14px_28px_rgba(0,0,0,0.34)]',
-        pill: 'from-[#1e9d74] to-[#46c88a]',
-      },
     },
     {
       id: 'more',
@@ -138,12 +106,6 @@ export default function NavBar() {
       label: copy.nav.more,
       ariaLabel: `${copy.nav.more} tab and settings`,
       Glyph: MoreGlyph,
-      accent: {
-        activeText: 'text-[#8e58dc] dark:text-[#c3a0ff]',
-        badge: 'bg-[radial-gradient(circle_at_30%_25%,rgba(229,190,255,0.45),transparent_55%),linear-gradient(135deg,rgba(142,88,220,0.2),rgba(182,109,231,0.18))] dark:bg-[radial-gradient(circle_at_30%_25%,rgba(229,190,255,0.18),transparent_55%),linear-gradient(135deg,rgba(142,88,220,0.24),rgba(182,109,231,0.1))]',
-        tile: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(251,246,255,0.88))] shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_12px_28px_rgba(142,88,220,0.18)] dark:bg-[linear-gradient(180deg,rgba(39,29,56,0.96),rgba(27,19,41,0.94))] dark:shadow-[inset_0_1px_0_rgba(195,160,255,0.1),0_14px_28px_rgba(0,0,0,0.34)]',
-        pill: 'from-[#8e58dc] to-[#c388ff]',
-      },
     },
   ]
 
@@ -169,12 +131,11 @@ export default function NavBar() {
   return (
     <div className="app-nav-stack z-50" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
       <nav
-        className="app-nav flex items-center rounded-[30px] border border-white/42 bg-parchment-card/28 px-2 py-2 shadow-[0_20px_42px_rgba(77,53,22,0.18)] backdrop-blur-[30px] transition-colors duration-300 dark:border-gold/12 dark:bg-dark-panel/24 dark:shadow-[0_24px_48px_rgba(0,0,0,0.45)]"
+        className="app-nav flex items-center rounded-full border px-2 py-2 transition-colors duration-300"
         aria-label="Primary navigation"
         data-testid="primary-nav"
         data-ai-surface="primary-nav"
       >
-        <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-gold/20" />
         {tabs.map(tab => (
           <NavLink
             key={tab.to}
@@ -184,48 +145,30 @@ export default function NavBar() {
             title={tab.ariaLabel}
             data-testid={`nav-tab-${tab.id}`}
             data-ai-action={`nav-${tab.id}`}
-            className={({ isActive }) => `group relative flex min-w-0 items-end justify-center transition-all duration-300 ${isActive ? 'flex-[1.7]' : 'flex-1'}`}
+            className="group relative flex min-w-0 flex-1 items-center justify-center"
           >
             {({ isActive }) => (
               <span
-                className={`relative flex min-h-[64px] w-full min-w-0 items-center justify-center transition-all duration-300 ${
+                className={`relative flex min-h-[56px] w-full min-w-0 items-center justify-center rounded-full px-1 transition-colors duration-200 ${
                   isActive
-                    ? `${tab.accent.activeText} rounded-[24px] px-4 py-2.5 gap-2.5 justify-start`
-                    : 'flex-col gap-1 rounded-[22px] px-1 py-2 text-ink/52 dark:text-dark-text/58 hover:text-ink/74 dark:hover:text-dark-text/78'
+                    ? 'text-saffron dark:text-gold-light'
+                    : 'text-ink/54 hover:text-ink/76 dark:text-dark-text/58 dark:hover:text-dark-text/78'
                 }`}
                 data-active={isActive}
               >
                 <span
-                  className={`absolute inset-0 transition-all duration-300 ${
-                    isActive
-                      ? `rounded-[24px] border border-white/55 ${tab.accent.tile}`
-                      : 'rounded-[22px] border border-transparent bg-transparent'
-                  }`}
+                  className="absolute inset-1 rounded-full border border-transparent transition-colors duration-200 group-hover:bg-ink/[0.03] dark:group-hover:bg-dark-text/[0.04]"
                 />
-                {isActive ? (
-                  <>
-                    <span className={`absolute inset-x-3 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-white/25`} />
-                    <span className={`absolute inset-x-4 bottom-[6px] h-[3px] rounded-full bg-gradient-to-r ${tab.accent.pill} opacity-90 shadow-[0_0_18px_rgba(224,154,70,0.35)]`} />
-                  </>
-                ) : null}
                 <span
-                  className={`relative flex shrink-0 items-center justify-center transition-all duration-300 ${
+                  className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
                     isActive
-                      ? `${tab.accent.badge} h-10 w-10 rounded-[18px] shadow-[inset_0_1px_0_rgba(255,255,255,0.48)]`
-                      : 'h-11 w-11 rounded-[20px] border border-black/[0.04] bg-white/[0.18] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] group-hover:bg-white/[0.26] dark:border-white/[0.04] dark:bg-white/[0.06] dark:group-hover:bg-white/[0.09]'
+                      ? 'border-saffron/18 bg-saffron/9 dark:border-gold/16 dark:bg-gold/10'
+                      : 'border-transparent bg-transparent'
                   }`}
                 >
                   <tab.Glyph active={isActive} />
                 </span>
-                <span
-                  className={`relative min-w-0 font-sans transition-all duration-300 ${
-                    isActive
-                      ? 'text-[11px] font-semibold uppercase tracking-[0.14em] opacity-100 whitespace-nowrap'
-                      : 'sr-only'
-                  }`}
-                >
-                  {tab.label}
-                </span>
+                <span className="sr-only">{tab.label}</span>
               </span>
             )}
           </NavLink>

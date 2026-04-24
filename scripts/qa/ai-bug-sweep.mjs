@@ -213,6 +213,26 @@ function getQaBanidbResponse(url) {
   }
 
   if (url.pathname.startsWith('/v2/search/')) {
+    const searchQuery = decodeURIComponent(url.pathname.replace('/v2/search/', '')).toLowerCase()
+    const searchType = url.searchParams.get('searchtype')
+
+    if (searchQuery === 'death') {
+      return {
+        verses: searchType === '3' || searchType === '4'
+          ? [
+              createScriptureVerse({
+                verseId: 101,
+                shabadId: 51,
+                text: 'ਮਰਣੁ ਨ ਮੰਦਾ ਲੋਕਾ ਆਖੀਐ ਜੇ ਮਰਿ ਜਾਣੈ ਐਸਾ ਕੋਇ ॥',
+                pageNo: 935,
+                translation: 'Death is not called bad when one knows how to die.',
+                transliteration: 'maran na mandhaa lokaa aakheeai je mar jaanai aisaa koi',
+              }),
+            ]
+          : [],
+      }
+    }
+
     return {
       verses: [
         createScriptureVerse({
@@ -804,16 +824,19 @@ async function main() {
       },
     },
     {
-      id: 'home-search-failure',
-      title: 'Home smart search degraded state',
+      id: 'home-quiet-start',
+      title: 'Home quiet start without route cards',
       viewport: 'desktop',
       path: '/',
-      qaControls: { fail: ['home-search'] },
       run: async ({ page, notes }) => {
-        notes.push('Expected Home smart search to degrade cleanly without raw error text.')
+        notes.push('Expected Home to keep search/resume cards out of the first reading path.')
         await ensureVisible(page, '[data-page="home"]', 'the Home page shell')
-        await page.getByTestId('home-smart-search-input').fill('stress')
-        await ensureVisible(page, '[data-testid="home-smart-search-results"][data-ai-state="degraded"][data-ai-error="home-search"]', 'the Home smart-search degraded state')
+        if (await page.getByTestId('home-smart-search').count() > 0) {
+          throw createAssertionError('Home smart-search card should not render.')
+        }
+        if (await page.getByText('Resume Reading', { exact: true }).count() > 0) {
+          throw createAssertionError('Home resume-reading card should not render.')
+        }
       },
     },
     {
@@ -825,6 +848,18 @@ async function main() {
         notes.push('Expected the Read route shell and quick-find surface to load.')
         await ensureVisible(page, '[data-page="banis"][data-ai-state="ready"]', 'the Read page shell')
         await ensureVisible(page, '[data-ai-surface="read-smart-search"]', 'the Read smart-search surface')
+      },
+    },
+    {
+      id: 'read-auto-romanized',
+      title: 'Read auto search includes romanized text',
+      viewport: 'desktop',
+      path: '/banis',
+      run: async ({ page, notes }) => {
+        notes.push('Expected Auto search to find Roman-letter meaning/transliteration matches without opening Refine.')
+        await ensureVisible(page, '[data-page="banis"]', 'the Read page shell')
+        await page.locator('#banis-search').fill('death')
+        await ensureVisible(page, 'text=Death is not called bad', 'the auto-search Roman-letter result')
       },
     },
     {
