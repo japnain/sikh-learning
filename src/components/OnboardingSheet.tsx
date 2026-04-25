@@ -226,7 +226,7 @@ function GoalChoice({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group flex min-h-[96px] w-full flex-col justify-between rounded-[24px] border px-4 py-4 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 ${
+      className={`group flex min-h-[72px] w-full flex-col justify-between rounded-[22px] border px-4 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 sm:min-h-[96px] sm:py-4 ${
         selected
           ? 'border-gold/45 bg-[linear-gradient(180deg,rgba(226,164,79,0.98),rgba(245,192,107,0.88))] text-white shadow-[0_18px_38px_rgba(173,118,33,0.24)]'
           : 'border-sand/15 bg-white/72 text-ink/82 hover:-translate-y-0.5 hover:border-gold/28 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/78 dark:hover:border-gold/22 dark:hover:bg-dark-card'
@@ -244,7 +244,7 @@ function GoalChoice({
           {selected ? selectedLabel : idleLabel}
         </span>
       </div>
-      <p className={`mt-3 text-sm leading-6 ${selected ? 'text-white/86' : 'text-ink/62 dark:text-dark-text/64'}`}>
+      <p className={`mt-2 hidden text-sm leading-6 sm:block ${selected ? 'text-white/86' : 'text-ink/62 dark:text-dark-text/64'}`}>
         {body}
       </p>
     </button>
@@ -585,6 +585,26 @@ export default function OnboardingSheet({
             </p>
           </div>
 
+          <section
+            className="grid grid-cols-3 gap-2 rounded-[24px] border border-sand/14 bg-white/58 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.52),0_14px_34px_rgba(92,61,26,0.08)] dark:border-dark-text/10 dark:bg-white/[0.05]"
+            data-testid="onboarding-session-brief"
+          >
+            {[
+              [copy.onboarding.setupDirectionLabel, learningGoalLabels[learningGoal]],
+              [copy.onboarding.stylePanelEyebrow, selectedPresetTitle],
+              [copy.onboarding.previewEyebrow, routeSummary],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-[18px] border border-sand/12 bg-parchment-low/70 px-2.5 py-2.5 dark:border-dark-text/10 dark:bg-dark-surface/80">
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
+                  {label}
+                </p>
+                <p className="mt-1.5 line-clamp-3 font-sans text-[11px] leading-4 text-ink/72 dark:text-dark-text/74">
+                  {value}
+                </p>
+              </div>
+            ))}
+          </section>
+
           <div className="grid gap-3 sm:grid-cols-3">
             {(['read', 'understand', 'habit'] as const).map(goal => (
               <GoalChoice
@@ -742,9 +762,6 @@ export default function OnboardingSheet({
       data-ai-surface={isOverlayPresentation ? 'onboarding-overlay-panel' : 'onboarding-first-run-panel'}
       data-ai-state="ready"
     >
-      <div className="pointer-events-none absolute -right-8 top-0 h-48 w-48 rounded-full bg-saffron/20 blur-3xl" />
-      <div className="pointer-events-none absolute -left-10 bottom-16 h-44 w-44 rounded-full bg-gold/15 blur-3xl" />
-
       <div className={`relative shrink-0 ${
         isOverlayPresentation
           ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(37,33,28,0.96),rgba(30,27,23,0.88))]'
@@ -775,7 +792,7 @@ export default function OnboardingSheet({
       </div>
 
       <div className={`relative ${
-        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4' : 'px-1'
+        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4' : 'px-1 pb-28'
       }`}>
         <div className="space-y-4">
           <StepIndicator currentStep={currentStep} locale={locale} />
@@ -794,12 +811,12 @@ export default function OnboardingSheet({
         </div>
       </div>
 
-      <div className={`relative shrink-0 ${
+      <div className={`shrink-0 ${
         isOverlayPresentation
-          ? 'border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
+          ? 'relative border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
           : currentStep === 'preview'
-            ? 'mt-4 px-1 pb-4'
-            : 'sticky bottom-0 z-10 mt-auto px-1 pb-4 pt-5'
+            ? 'relative mt-4 px-1 pb-4'
+            : 'fixed inset-x-4 bottom-[calc(var(--safe-area-bottom)+1rem)] z-[80] mx-auto max-w-md px-0'
       }`}>
         {currentStep === 'setup' ? (
           <div
@@ -1022,12 +1039,15 @@ export default function OnboardingSheet({
           paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)',
         }}
       >
-        <div className="flex items-center justify-center py-4">
-          <div className="text-center">
-            <p className="font-display text-4xl leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
-            <p className="mt-2 text-sm text-ink/55 dark:text-dark-text/55">{editorial?.brand.promise ?? copy.home.promise}</p>
+        <header className="flex items-center justify-between gap-3 py-4">
+          <div className="min-w-0">
+            <p className="font-display text-[2.55rem] leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
+            <p className="mt-2 max-w-[22rem] text-sm leading-5 text-ink/58 dark:text-dark-text/60">{editorial?.brand.promise ?? copy.home.promise}</p>
           </div>
-        </div>
+          <span className="shrink-0 rounded-full border border-sand/18 bg-white/62 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-gold-light">
+            {copy.onboarding.ready}
+          </span>
+        </header>
         <div className="pb-4">
           {chrome}
         </div>
