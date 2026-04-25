@@ -143,10 +143,11 @@ export default function LearnHub() {
     ),
     [catalog, deferredQuery]
   )
-  const selectedTopic = catalog
-    ? catalog.topicGuideById[searchParams.get("topic") ?? ""]
-    ?? (deferredQuery ? queryResolution.topic : null)
-    : null
+    const selectedTopic = catalog
+      ? catalog.topicGuideById[searchParams.get("topic") ?? ""]
+      ?? (deferredQuery ? queryResolution.topic : null)
+      : null
+    const topicNoMatch = queryResolution.matchedBy === "no-match"
   const selectedScenarioKey = (
     searchParams.get("scenario")
     ?? queryResolution.scenarioKey
@@ -832,8 +833,8 @@ export default function LearnHub() {
                           {selectedScenarioKey ? ` with the ${selectedScenarioKey} scenario ready.` : "."}
                         </>
                       )
-                    : queryResolution.matchedBy === "no-match"
-                      ? "No matching topic found - try the same words against Gurbani lines in Read."
+                      : topicNoMatch
+                        ? "No matching topic found. Try the same words against Gurbani lines in Read, or browse all approved topics."
                       : queryResolution.matchedBy === "closest"
                         ? (
                             <>
@@ -850,65 +851,87 @@ export default function LearnHub() {
                             </>
                           )}
                 </p>
-                {queryResolution.matchedBy === "no-match" && readSearchFallbackPath ? (
-                  <Link
-                    to={readSearchFallbackPath}
-                    className="interactive-focus interactive-pill-link gap-2 rounded-full border border-saffron/18 bg-parchment-card px-4 py-2 font-sans text-xs font-semibold text-saffron transition-colors duration-300 dark:border-gold/16 dark:bg-dark-card dark:text-gold-light"
-                    data-testid="learn-read-search-fallback"
-                  >
-                    Search Gurbani lines in Read
-                    <IconArrowRight size={13} />
-                  </Link>
+                {topicNoMatch ? (
+                  <div className="flex flex-wrap gap-2">
+                    {readSearchFallbackPath ? (
+                      <Link
+                        to={readSearchFallbackPath}
+                        className="interactive-focus interactive-pill-link min-h-[44px] gap-2 rounded-full border border-saffron/18 bg-parchment-card px-4 py-2 font-sans text-xs font-semibold text-saffron transition-colors duration-300 dark:border-gold/16 dark:bg-dark-card dark:text-gold-light"
+                        data-testid="learn-read-search-fallback"
+                      >
+                        Search Gurbani lines in Read
+                        <IconArrowRight size={13} />
+                      </Link>
+                    ) : null}
+                    <button
+                      type="button"
+                      onClick={() => setParams({
+                        query: null,
+                        topic: null,
+                        shabad: null,
+                        collection: null,
+                        detail: null,
+                        scenario: null,
+                      }, { replace: true })}
+                      className="interactive-focus min-h-[44px] rounded-full border border-sand/18 bg-parchment-card px-4 py-2 font-sans text-xs font-semibold text-ink/72 transition-colors duration-300 dark:border-dark-text/12 dark:bg-dark-card dark:text-dark-text/72"
+                      data-testid="learn-browse-all-topics"
+                    >
+                      Browse all topics
+                    </button>
+                  </div>
                 ) : null}
-              </div>
-            ) : null}
-            <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
-              {catalog.topicGuides.map(topic => (
-                <Link
-                  key={topic.id}
-                  to={buildLearnDetailPath(
-                    "topic-guide",
-                    topic.id,
-                    "topics",
-                    topic.id === selectedTopic?.id ? selectedScenarioKey : null
-                  )}
-                  className={`shrink-0 rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
-                    selectedTopic?.id === topic.id
-                      ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
-                      : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
-                  } touch-manipulation`}
-                >
-                  <SearchHighlight text={topic.shortTitle} query={deferredQuery} />
-                </Link>
-              ))}
-            </div>
-          </section>
+                </div>
+              ) : null}
+              {!topicNoMatch ? (
+                <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
+                  {catalog.topicGuides.map(topic => (
+                    <Link
+                      key={topic.id}
+                      to={buildLearnDetailPath(
+                        "topic-guide",
+                        topic.id,
+                        "topics",
+                        topic.id === selectedTopic?.id ? selectedScenarioKey : null
+                      )}
+                      className={`min-h-[44px] shrink-0 rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
+                        selectedTopic?.id === topic.id
+                          ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
+                          : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
+                      } touch-manipulation`}
+                    >
+                      <SearchHighlight text={topic.shortTitle} query={deferredQuery} />
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </section>
 
-          <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
-            {catalog.topicGuides.map(topic => (
-              <TopicCard
-                key={topic.id}
-                topic={topic}
-                active={selectedTopic?.id === topic.id}
-                query={deferredQuery}
-                viewed={viewedIds.has(topic.id)}
-                to={buildLearnDetailPath(
-                  "topic-guide",
-                  topic.id,
-                  "topics",
-                  topic.id === selectedTopic?.id ? selectedScenarioKey : null
-                )}
-              />
-            ))}
-            {queryResolution.matchedBy === "no-match" ? (
-              <div className="section-shell-quiet rounded-[28px] p-5">
-                <p className="eyebrow">No matching topic yet</p>
-                <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
-                  No approved topic guide matched the current search. The spotlight and full topic library are still available below.
-                </p>
-              </div>
-            ) : null}
-          </section>
+            <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
+              {topicNoMatch ? (
+                <div className="section-shell-quiet rounded-[28px] p-5" data-testid="learn-topic-no-match">
+                  <p className="eyebrow">No matching topic yet</p>
+                  <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
+                    No approved topic guide matched the current search. Clear the search to browse the full approved topic library.
+                  </p>
+                </div>
+              ) : (
+                catalog.topicGuides.map(topic => (
+                  <TopicCard
+                    key={topic.id}
+                    topic={topic}
+                    active={selectedTopic?.id === topic.id}
+                    query={deferredQuery}
+                    viewed={viewedIds.has(topic.id)}
+                    to={buildLearnDetailPath(
+                      "topic-guide",
+                      topic.id,
+                      "topics",
+                      topic.id === selectedTopic?.id ? selectedScenarioKey : null
+                    )}
+                  />
+                ))
+              )}
+            </section>
         </>
       ) : null}
 

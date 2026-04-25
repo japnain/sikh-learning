@@ -1,4 +1,4 @@
-import { lazy, Suspense, startTransition, useEffect, useRef, useState, type MouseEvent } from 'react'
+import { lazy, Suspense, startTransition, useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import MusicControllerBridge from './components/MusicControllerBridge'
@@ -128,6 +128,9 @@ function AppShell() {
   const closeOnboarding = useOnboardingStore(s => s.closeOnboarding)
   const locale = useLocaleStore(s => s.locale)
   const [isCompletingOnboarding, setIsCompletingOnboarding] = useState(false)
+  const [pendingOnboardingViewportReset, setPendingOnboardingViewportReset] = useState(false)
+  const showFirstRun = !hasCompletedOnboarding && presentationMode === 'first-run'
+  const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
 
   useNitemOfflineCache()
   useInsforgeBootstrap()
@@ -146,8 +149,27 @@ function AppShell() {
 
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      mainContentRef.current?.focus({ preventScroll: true })
     })
   }, [location.hash, location.pathname])
+
+  const resetViewportAfterOnboarding = useCallback(() => {
+    if (typeof window === 'undefined') return
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+        mainContentRef.current?.focus({ preventScroll: true })
+      })
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!pendingOnboardingViewportReset || showFirstRun) return
+
+    resetViewportAfterOnboarding()
+    setPendingOnboardingViewportReset(false)
+  }, [pendingOnboardingViewportReset, resetViewportAfterOnboarding, showFirstRun])
 
   async function handleOnboardingComplete() {
     if (isCompletingOnboarding) return
@@ -169,13 +191,12 @@ function AppShell() {
           state: learningGoal === 'habit' ? { highlightTodayPath: true } : null,
         })
       })
+      setPendingOnboardingViewportReset(true)
     } finally {
       setIsCompletingOnboarding(false)
     }
   }
 
-  const showFirstRun = !hasCompletedOnboarding && presentationMode === 'first-run'
-  const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
   const skipToContentHref = `${location.pathname}${location.search}#main-content`
 
   function handleSkipToContent(event: MouseEvent<HTMLAnchorElement>) {
