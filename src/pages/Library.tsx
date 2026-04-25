@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { BANIS } from '../data/banis'
 import { useBookmarksStore, type Bookmark } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
@@ -65,7 +64,6 @@ export default function Library() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
     learnSaves: savedLearnItemIds.length > 0,
-    library: false,
   }))
 
   const words = vocab.filter(item => (item.kind ?? 'word') === 'word')
@@ -446,34 +444,6 @@ export default function Library() {
           </div>
         </section>
       )}
-
-      <section
-        className="section-shell-quiet p-4 mb-5"
-        aria-labelledby="library-source-browser-title"
-        data-testid="library-source-browser"
-      >
-        <button
-          onClick={() => toggle('library')}
-          className="w-full flex justify-between items-center gap-3"
-          aria-expanded={Boolean(expanded.library)}
-          aria-controls="library-source-browser-panel"
-        >
-          <div className="text-left">
-            <p id="library-source-browser-title" className="eyebrow">{libraryCopy.sourceBrowsing}</p>
-            <p className="font-sans text-sm text-ink dark:text-dark-text mt-1">{libraryCopy.sourceBrowsingBody}</p>
-          </div>
-          <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.library ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-        </button>
-
-        {expanded.library && (
-          <div id="library-source-browser-panel" className="mt-4 space-y-3">
-            <ScriptureSourceBrowser
-              dataTestId="library-source-browser-shared"
-              sectionClassName="section-shell px-4 py-4"
-            />
-          </div>
-        )}
-      </section>
 
     </div>
   )

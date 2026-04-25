@@ -3,6 +3,15 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/__banidb': {
+        target: 'https://api.banidb.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/__banidb/, ''),
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     env: {

@@ -335,7 +335,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     study: {
       eyebrow: 'Read',
-      introBody: 'Comfortable reading first. Controls stay close, the text stays primary, and audio remains clearly marked until it is real.',
+      introBody: 'Comfortable reading first. Controls stay close, source layers stay tucked away, and the text stays primary.',
       learnContext: 'Learn Context',
       returnToLearn: 'Return to Learn',
       readerControls: 'Reader Controls',
@@ -518,7 +518,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     study: {
       eyebrow: 'ਪੜ੍ਹੋ',
-      introBody: 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਆਰਾਮਦਾਇਕ ਪਾਠ। ਨਿਯੰਤਰਣ ਨੇੜੇ ਰਹਿੰਦੇ ਹਨ, ਪਾਠ ਕੇਂਦਰ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਆਡੀਓ ਸਪਸ਼ਟ ਤੌਰ ਤੇ ਅਲੱਗ ਚਿੰਨ੍ਹਿਤ ਰਹਿੰਦਾ ਹੈ ਜਦ ਤੱਕ ਉਹ ਸੱਚਮੁੱਚ ਤਿਆਰ ਨਹੀਂ ਹੁੰਦਾ।',
+      introBody: 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਆਰਾਮਦਾਇਕ ਪਾਠ। ਨਿਯੰਤਰਣ ਨੇੜੇ ਰਹਿੰਦੇ ਹਨ, ਸਰੋਤ ਪਰਤਾਂ ਲੋੜ ਪੈਣ ਤੇ ਖੁੱਲਦੀਆਂ ਹਨ, ਅਤੇ ਪਾਠ ਕੇਂਦਰ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ।',
       learnContext: 'ਸਿੱਖਣ ਸੰਦਰਭ',
       returnToLearn: 'ਸਿੱਖੋ ਵੱਲ ਵਾਪਸ',
       readerControls: 'ਪਾਠਕ ਨਿਯੰਤਰਣ',
@@ -701,7 +701,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     },
     study: {
       eyebrow: 'पढ़ें',
-      introBody: 'सबसे पहले आरामदायक पढ़ना। नियंत्रण पास रहते हैं, पाठ केंद्र में रहता है और ऑडियो तब तक अलग चिन्हित रहता है जब तक वह वास्तव में तैयार न हो।',
+      introBody: 'सबसे पहले आरामदायक पढ़ना। नियंत्रण पास रहते हैं, स्रोत परतें ज़रूरत पर खुलती हैं, और पाठ केंद्र में रहता है।',
       learnContext: 'सीखने का संदर्भ',
       returnToLearn: 'लर्न पर वापस जाएँ',
       readerControls: 'रीडर नियंत्रण',

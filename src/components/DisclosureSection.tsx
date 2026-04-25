@@ -34,7 +34,7 @@ export default function DisclosureSection({
   const panelId = sectionId ? `${sectionId}-panel` : undefined
 
   return (
-    <section className={className} aria-labelledby={headingId} data-testid={testId} data-state={open ? "open" : "closed"}>
+    <section id={sectionId} className={className} aria-labelledby={headingId} data-testid={testId} data-state={open ? "open" : "closed"}>
       <button
         type="button"
         onClick={() => setOpen(current => !current)}

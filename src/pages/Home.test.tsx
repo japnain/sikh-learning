@@ -98,6 +98,7 @@ beforeEach(async () => {
     completedDate: todayStamp(),
     completedIds: [],
     selectedIds: [...DEFAULT_NITNEM_OPTION_IDS],
+    completionTrackingEnabled: false,
   })
   useLearningStore.setState({
     masteredSymbols: [],
@@ -195,17 +196,20 @@ test('shows the new hero shell immediately', () => {
   expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
 })
 
-test('composes hukam, meaning, and return inside the daily reading room', async () => {
+test('composes the daily ritual surface with compact action rail', async () => {
   renderHome()
 
   const room = screen.getByTestId('home-daily-reading-room')
   const hero = screen.getByTestId('home-hero')
+  const rail = within(hero).getByTestId('home-reading-room-path')
 
-  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/hukam/i)
-  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/meaning/i)
-  expect(within(hero).getByTestId('home-reading-room-path')).toHaveTextContent(/return/i)
+  expect(within(hero).getByText(/^NaamRas$/)).toBeInTheDocument()
+  expect(within(rail).getByText(/^Read$/i)).toBeInTheDocument()
+  expect(within(rail).getByText(/^Learn$/i)).toBeInTheDocument()
+  expect(within(rail).getByText(/^Nitnem$/i)).toBeInTheDocument()
   expect(within(room).getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(within(room).getByTestId('home-guidance-hero')).toBeInTheDocument()
+  expect(within(room).queryByTestId('home-guidance-hero')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
 })
 
 test('renders the same daily guidance item that Learn resolves for the day', async () => {
@@ -246,7 +250,8 @@ test('keeps saved content out of the home top action area', async () => {
   renderHome()
 
   expect(await screen.findByTestId('home-hero-guidance-action')).toBeInTheDocument()
-  expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
+  expect(within(screen.getByTestId('home-hero')).queryByText(/when the mind is anxious/i)).not.toBeInTheDocument()
+  expect(within(screen.getByTestId('home-hero')).queryByTestId(/home-saved-preview/i)).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
 })
 
@@ -277,26 +282,28 @@ test('renders nitnem above the unified read today surface', () => {
 
   expect(nitnem.compareDocumentPosition(readToday) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   expect(screen.queryByTestId('home-nitnem-progress')).not.toBeInTheDocument()
-  expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-nitnem-carousel')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-primary-action')).toBeInTheDocument()
+  expect(screen.queryByText(/daily banis complete/i)).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /mark as complete/i })).not.toBeInTheDocument()
 })
 
 test('starts the active nitnem card on Japji Sahib in the default daily order', () => {
   renderHome()
 
   const activeCard = screen.getByTestId('home-nitnem-active-card')
-  expect(within(activeCard).getByText(/Japji Sahib/i)).toBeInTheDocument()
-  expect(within(activeCard).queryByText(/Jaap Sahib/i)).not.toBeInTheDocument()
+  expect(within(activeCard).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Japji+Sahib'))
 })
 
-test('keeps the active nitnem card on Japji Sahib after marking it complete', () => {
+test('keeps Daily Nitnem completion controls out of Home', () => {
   renderHome()
 
   const activeCard = screen.getByTestId('home-nitnem-active-card')
-  fireEvent.click(within(activeCard).getByRole('button', { name: /mark as complete/i }))
-
-  const updatedActiveCard = screen.getByTestId('home-nitnem-active-card')
-  expect(within(updatedActiveCard).getByText(/Japji Sahib/i)).toBeInTheDocument()
-  expect(within(updatedActiveCard).getByRole('button', { name: /mark as incomplete/i })).toBeInTheDocument()
+  expect(within(activeCard).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
+  expect(within(activeCard).queryByRole('button', { name: /mark as complete/i })).not.toBeInTheDocument()
+  expect(within(activeCard).queryByText(/0 \/ 7/i)).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/more#daily-nitnem')
 })
 
 test('rebuilds read today around one live reading and discovery surface', () => {
@@ -431,7 +438,7 @@ test('keeps guidance singular when it would otherwise duplicate the hero on home
   expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
   const guidanceHero = await screen.findByTestId('home-guidance-hero')
   expect(within(guidanceHero).getByText(todaySurface.dailyGuidance.item.title)).toBeInTheDocument()
-  expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
+  expect(screen.getAllByTestId('home-hero-guidance-action')).toHaveLength(1)
 })
 
 test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama CTA when no session exists', async () => {
@@ -648,7 +655,7 @@ test('keeps the new hero and read-today surfaces visible in dark mode', async ()
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
   expect(screen.getByTestId('home-theme-toggle')).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /customize daily nitnem|hide nitnem options/i })).toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-manage')).toBeInTheDocument()
 })
 
 test('does not embed onboarding inside the home page anymore', () => {
@@ -684,22 +691,12 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
   })
 })
 
-test('shows length detail only for the four adjustable Nitnem banis and keeps the additional group clean', () => {
+test('moves Daily Nitnem customization out of Home', () => {
   renderHome()
 
-  fireEvent.click(screen.getByRole('button', { name: /customize daily nitnem/i }))
-
-  const nitnemSection = screen.getByTestId('home-nitnem-spotlight')
-  const customizePanel = nitnemSection.querySelector('#home-nitnem-panel')
-  expect(customizePanel).not.toBeNull()
-
-  const panel = customizePanel as HTMLElement
-  expect(within(panel).getByText('Additional')).toBeInTheDocument()
-  expect(within(panel).getAllByText('Length · Short')).toHaveLength(4)
-  expect(within(panel).getByText('Salok Mahalla 9')).toBeInTheDocument()
-  expect(within(panel).getByText('Aarti')).toBeInTheDocument()
-  expect(within(panel).getByRole('button', { name: /Salok Mahalla 9/i }).textContent).not.toMatch(/Length/i)
-  expect(within(panel).getByRole('button', { name: /Aarti/i }).textContent).toMatch(/Length · Short/)
+  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/more#daily-nitnem')
+  expect(document.querySelector('#home-nitnem-panel')).toBeNull()
+  expect(screen.queryByTestId('home-nitnem-reset')).not.toBeInTheDocument()
   expect(screen.queryByText(/BaniDB|STTM|API/i)).not.toBeInTheDocument()
 })
 
@@ -723,7 +720,7 @@ test('falls back to the hukamnama-led hero when Learn fails to load', async () =
   expect(screen.queryByTestId('home-hero-guidance-action')).not.toBeInTheDocument()
 })
 
-test('requires a second tap before resetting Nitnem selections', () => {
+test('Home does not own Daily Nitnem reset controls', () => {
   useNitemStore.setState({
     completedDate: todayStamp(),
     completedIds: [],
@@ -732,13 +729,7 @@ test('requires a second tap before resetting Nitnem selections', () => {
 
   renderHome()
 
-  fireEvent.click(screen.getByRole('button', { name: /customize daily nitnem/i }))
-  fireEvent.click(screen.getByTestId('home-nitnem-reset'))
-
-  expect(screen.getByRole('button', { name: /tap again to reset/i })).toBeInTheDocument()
+  expect(screen.queryByTestId('home-nitnem-reset')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-manage')).toBeInTheDocument()
   expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib'])
-
-  fireEvent.click(screen.getByRole('button', { name: /tap again to reset/i }))
-
-  expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
 })

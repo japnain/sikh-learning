@@ -182,28 +182,17 @@ describe('Study bookmark button', () => {
 })
 
 describe('Study source browsing', () => {
-  test('keeps source browsing as a collapsed dropdown at the bottom of Read', async () => {
+  test('does not render source browsing inside reader routes', async () => {
     render(
       <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
       </MemoryRouter>
     )
 
-    const entryList = await screen.findByTestId('study-entry-list')
-    const sourceBrowserShell = await screen.findByTestId('study-source-browser-shell')
-    const sourceBrowser = within(sourceBrowserShell).getByTestId('study-source-browser')
+    await screen.findByTestId('study-entry-list')
 
-    expect(sourceBrowser).toHaveAttribute('data-component', 'scripture-source-browser')
-    expect(entryList.compareDocumentPosition(sourceBrowserShell) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-
-    const sggsDropdown = within(sourceBrowser).getByRole('button', { name: /sri guru granth sahib ji/i })
-    expect(sggsDropdown).toHaveAttribute('aria-expanded', 'false')
-    expect(document.getElementById('study-source-browser-sggs')).toBeNull()
-
-    fireEvent.click(sggsDropdown)
-
-    expect(sggsDropdown).toHaveAttribute('aria-expanded', 'true')
-    expect(document.getElementById('study-source-browser-sggs')).not.toBeNull()
+    expect(screen.queryByTestId('study-source-browser-shell')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('study-source-browser')).not.toBeInTheDocument()
   })
 })
 
@@ -513,8 +502,8 @@ describe('Study soundscapes and tracking', () => {
         expect(screen.getByText('Hukamnama after Ardaas')).toBeInTheDocument()
       })
 
-      expect(screen.getByText(/Randomly selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
-      expect(screen.getByText('This opens the first shabad found on the selected ang.')).toBeInTheDocument()
+      expect(screen.getByText(/Selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
+      expect(screen.getByText(/The reader opens the full shabad and scrolls to the selected verse/i)).toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
       expect(screen.queryByText('Hukamnama begins here')).not.toBeInTheDocument()
       expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
