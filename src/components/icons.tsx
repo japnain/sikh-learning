@@ -245,6 +245,29 @@ export function IconHeartFilled({ className = '', size = 24 }: IconProps) {
   )
 }
 
+// Leaf / growth
+export function IconLeaf({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M5 19c9 0 14-5 14-14-9 0-14 5-14 14z" />
+      <path d="M5 19c3-5 7-8 14-14" />
+      <path d="M9 15H5v4" />
+    </svg>
+  )
+}
+
+// Community / guided learning
+export function IconUsers({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3.5 19c.8-3 2.7-5 5.5-5s4.7 2 5.5 5" />
+      <path d="M16 11a2.7 2.7 0 0 0 0-5" />
+      <path d="M17 14c2 .6 3.2 2.3 3.7 5" />
+    </svg>
+  )
+}
+
 // Trash / Remove
 export function IconTrash({ className = '', size = 24 }: IconProps) {
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import type {
   EnglishSource,
   LearningGoal,
@@ -22,10 +22,27 @@ import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { signInWithProvider } from '../insforge/runtime'
 import { useCloudSyncStore } from '../store/cloudSync'
+import NaamRasLogoMark from './NaamRasLogoMark'
+import { IconHeart, IconLeaf, IconLibrary, IconStar, IconUsers } from './icons'
 
 type OnboardingStep = 'setup' | 'preview'
 type ReadingPresetId = 'quiet' | 'guided' | 'deep'
 type OnboardingProvider = 'google' | 'github' | 'apple'
+type OnboardingIntentId = 'habit' | 'peace' | 'grow' | 'understand' | 'explore'
+type IntentIcon = (props: { className?: string; size?: number }) => ReactNode
+
+interface OnboardingIntentChoice {
+  id: OnboardingIntentId
+  title: string
+  body: string
+  goal: LearningGoal
+  preset: ReadingPresetId
+  learningLevel: LearningLevel
+  audience: OnboardingAudience
+  icon: IntentIcon
+  tone: 'gold' | 'terracotta' | 'sage' | 'mauve' | 'slate'
+  legacyLabel?: string
+}
 
 interface Props {
   presentation: OnboardingPresentationMode
@@ -64,12 +81,6 @@ const SAMPLE_LINE = {
 const STEP_INDEX: Record<OnboardingStep, number> = {
   setup: 1,
   preview: 2,
-}
-
-const GOAL_TO_RECOMMENDED_PRESET: Record<LearningGoal, ReadingPresetId> = {
-  read: 'quiet',
-  understand: 'guided',
-  habit: 'guided',
 }
 
 const ONBOARDING_PROVIDER_ORDER: OnboardingProvider[] = ['google', 'github', 'apple']
@@ -150,103 +161,93 @@ function getGoalBody(
   return copy.goalReadBody
 }
 
-function SelectionCard({
-  eyebrow,
-  title,
-  body,
-  selected,
-  onClick,
-  badge,
-}: {
-  eyebrow?: string
-  title: string
-  body: string
-  selected?: boolean
-  onClick: () => void
-  badge?: string
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={selected}
-      className={`group relative w-full overflow-hidden rounded-lg border text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
-        selected
-          ? 'border-gold/45 bg-gold/12 px-4 py-3 text-ink shadow-[inset_3px_0_0_rgba(142,76,32,0.72)] dark:bg-gold/12 dark:text-dark-text'
-          : 'border-sand/20 bg-parchment-card/72 px-4 py-3 text-ink hover:border-gold/30 hover:bg-white dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text dark:hover:border-gold/25'
-      }`}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          {eyebrow && (
-            <p className={`mb-1 text-[11px] uppercase tracking-[0.18em] ${
-              selected ? 'text-gold-dark dark:text-gold-light' : 'text-gold dark:text-gold-light'
-            }`}>
-              {eyebrow}
-            </p>
-          )}
-          <p className="font-sans text-sm font-semibold leading-tight">{title}</p>
-        </div>
-        {badge && (
-          <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
-            selected
-              ? 'bg-gold/16 text-gold-dark dark:bg-gold/16 dark:text-gold-light'
-              : 'bg-gold/10 text-gold dark:bg-gold/15 dark:text-gold-light'
-          }`}>
-            {badge}
-          </span>
-        )}
-      </div>
-      <p className={`mt-2 text-xs leading-5 ${
-        selected ? 'text-ink/70 dark:text-dark-text/70' : 'text-ink/60 dark:text-dark-text/65'
-      }`}>
-        {body}
-      </p>
-    </button>
-  )
+function getPresetTitle(preset: ReadingPresetId, copy: ReturnType<typeof getUiCopy>['onboarding']) {
+  if (preset === 'quiet') return copy.styleQuiet
+  if (preset === 'guided') return copy.styleGuided
+  return copy.styleDeep
 }
 
-function GoalChoice({
-  label,
-  body,
+function getDefaultIntentId(learningGoal: LearningGoal, presentation: OnboardingPresentationMode): OnboardingIntentId {
+  if (learningGoal === 'understand') return 'understand'
+  if (learningGoal === 'habit') return 'habit'
+  return presentation === 'first-run' ? 'habit' : 'peace'
+}
+
+function getIntentToneClasses(tone: OnboardingIntentChoice['tone'], selected: boolean) {
+  const tones = {
+    gold: selected
+      ? 'border-gold/42 bg-gold/14 text-gold-dark dark:border-gold/38 dark:bg-gold/16 dark:text-gold-light'
+      : 'border-gold/18 bg-gold/10 text-gold-dark dark:border-gold/24 dark:bg-gold/12 dark:text-gold-light',
+    terracotta: selected
+      ? 'border-[#c97a5d]/42 bg-[#c97a5d]/14 text-[#9d4e35] dark:border-[#df987f]/38 dark:bg-[#c97a5d]/18 dark:text-[#f0b39d]'
+      : 'border-[#c97a5d]/16 bg-[#c97a5d]/10 text-[#a9573d] dark:border-[#df987f]/22 dark:bg-[#c97a5d]/12 dark:text-[#efb29d]',
+    sage: selected
+      ? 'border-[#7a8f6d]/42 bg-[#7a8f6d]/16 text-[#4d704f] dark:border-[#a8c29a]/38 dark:bg-[#7a8f6d]/20 dark:text-[#bfd4b4]'
+      : 'border-[#7a8f6d]/18 bg-[#7a8f6d]/10 text-[#557456] dark:border-[#a8c29a]/22 dark:bg-[#7a8f6d]/12 dark:text-[#bfd4b4]',
+    mauve: selected
+      ? 'border-[#8e7ab5]/42 bg-[#8e7ab5]/16 text-[#66518f] dark:border-[#b3a1dd]/38 dark:bg-[#8e7ab5]/20 dark:text-[#c8b9ee]'
+      : 'border-[#8e7ab5]/18 bg-[#8e7ab5]/10 text-[#6d5795] dark:border-[#b3a1dd]/22 dark:bg-[#8e7ab5]/12 dark:text-[#c8b9ee]',
+    slate: selected
+      ? 'border-[#6c7b8a]/42 bg-[#6c7b8a]/14 text-[#465765] dark:border-[#9aa8b5]/35 dark:bg-[#6c7b8a]/18 dark:text-[#c3ccd5]'
+      : 'border-[#6c7b8a]/16 bg-[#6c7b8a]/9 text-[#536473] dark:border-[#9aa8b5]/22 dark:bg-[#6c7b8a]/12 dark:text-[#c3ccd5]',
+  }
+
+  return tones[tone]
+}
+
+function IntentChoice({
+  choice,
   selected,
   onClick,
+  presetLabel,
   selectedLabel,
-  idleLabel,
 }: {
-  label: string
-  body: string
+  choice: OnboardingIntentChoice
   selected: boolean
   onClick: () => void
+  presetLabel: string
   selectedLabel: string
-  idleLabel: string
 }) {
+  const Icon = choice.icon
+
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group flex min-h-[64px] w-full flex-col justify-between rounded-lg border px-4 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
+      className={`group flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
         selected
-          ? 'border-gold/45 bg-gold/12 text-ink shadow-[inset_3px_0_0_rgba(142,76,32,0.72)] dark:bg-gold/12 dark:text-dark-text'
-          : 'border-sand/18 bg-white/70 text-ink/85 hover:border-gold/28 hover:bg-white dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/75 dark:hover:border-gold/22'
+          ? 'border-gold/46 bg-[linear-gradient(180deg,rgba(255,250,241,0.98),rgba(247,237,219,0.94))] text-ink shadow-[0_12px_26px_rgba(122,84,32,0.12),inset_0_0_0_1px_rgba(155,99,40,0.14)] dark:border-gold/38 dark:bg-[linear-gradient(180deg,rgba(46,35,55,0.98),rgba(28,22,38,0.94))] dark:text-dark-text'
+          : 'border-sand/20 bg-white/64 text-ink/82 hover:border-gold/30 hover:bg-white/82 dark:border-dark-text/10 dark:bg-white/[0.045] dark:text-dark-text/76 dark:hover:border-gold/22'
       }`}
+      data-testid={`onboarding-intent-${choice.id}`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-sans text-sm font-semibold leading-tight text-ink dark:text-dark-text">
-          {label}
-        </p>
-        <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
+      <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${getIntentToneClasses(choice.tone, selected)}`}>
+        <Icon size={21} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-sans text-sm font-semibold leading-tight text-ink dark:text-dark-text">
+          {choice.title}
+        </span>
+        <span className="mt-1 block text-xs leading-5 text-ink/60 dark:text-dark-text/65">
+          {choice.body}
+        </span>
+        <span className={`mt-2 inline-flex rounded-full px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] ${
           selected
             ? 'bg-gold/16 text-gold-dark dark:bg-gold/16 dark:text-gold-light'
-            : 'bg-gold/10 text-gold dark:bg-gold/15 dark:text-gold-light'
+            : 'bg-gold/8 text-gold dark:bg-gold/12 dark:text-gold-light'
         }`}>
-          {selected ? selectedLabel : idleLabel}
+          {selected ? `${selectedLabel} · ${presetLabel}` : presetLabel}
         </span>
-      </div>
-      <p className={`mt-2 text-xs leading-5 ${selected ? 'text-ink/70 dark:text-dark-text/70' : 'text-ink/60 dark:text-dark-text/65'}`}>
-        {body}
-      </p>
+        {choice.legacyLabel ? <span className="sr-only">{choice.legacyLabel}</span> : null}
+      </span>
+      <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${
+        selected
+          ? 'border-gold bg-gold text-white dark:border-gold-light dark:bg-gold-light dark:text-dark-bg'
+          : 'border-sand/35 bg-white/40 text-transparent dark:border-dark-text/25 dark:bg-white/5'
+      }`}>
+        <span className="h-2.5 w-2.5 rounded-full bg-current" />
+      </span>
     </button>
   )
 }
@@ -378,9 +379,71 @@ export default function OnboardingSheet({
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
   const onboardingAudienceLabels = getOnboardingAudienceLabels(locale)
   const scriptModeLabels = getScriptModeLabels(locale)
+  const intentChoices = useMemo<OnboardingIntentChoice[]>(() => [
+    {
+      id: 'habit',
+      title: 'Build a daily reading habit',
+      body: 'Stay consistent with scripture',
+      goal: 'habit',
+      preset: 'guided',
+      learningLevel: 'beginner',
+      audience: 'adult',
+      icon: IconLibrary,
+      tone: 'gold',
+      legacyLabel: learningGoalLabels.habit,
+    },
+    {
+      id: 'peace',
+      title: 'Find peace and clarity',
+      body: 'Calm my mind, center my heart',
+      goal: 'read',
+      preset: 'quiet',
+      learningLevel: 'beginner',
+      audience: 'adult',
+      icon: IconHeart,
+      tone: 'terracotta',
+      legacyLabel: learningGoalLabels.read,
+    },
+    {
+      id: 'grow',
+      title: 'Grow spiritually',
+      body: 'Deepen my connection',
+      goal: 'habit',
+      preset: 'deep',
+      learningLevel: 'daily-reader',
+      audience: 'adult',
+      icon: IconLeaf,
+      tone: 'sage',
+    },
+    {
+      id: 'understand',
+      title: 'Understand scripture',
+      body: 'Learn with meaning and context',
+      goal: 'understand',
+      preset: 'guided',
+      learningLevel: 'familiar',
+      audience: 'adult',
+      icon: IconUsers,
+      tone: 'mauve',
+      legacyLabel: learningGoalLabels.understand,
+    },
+    {
+      id: 'explore',
+      title: 'Just exploring',
+      body: 'I am not sure yet',
+      goal: 'read',
+      preset: 'guided',
+      learningLevel: 'beginner',
+      audience: 'adult',
+      icon: IconStar,
+      tone: 'slate',
+    },
+  ], [learningGoalLabels.habit, learningGoalLabels.read, learningGoalLabels.understand])
+  const [selectedIntentId, setSelectedIntentId] = useState<OnboardingIntentId>(() => getDefaultIntentId(learningGoal, presentation))
+  const selectedIntent = intentChoices.find(choice => choice.id === selectedIntentId) ?? intentChoices[0]
+  const initialIntentAppliedRef = useRef(false)
 
   const selectedPreset = inferPreset(meaningLanguage, showTransliteration)
-  const recommendedPreset = GOAL_TO_RECOMMENDED_PRESET[learningGoal]
   const selectedPresetTitle = useMemo(() => {
     if (selectedPreset === 'quiet') return copy.onboarding.styleQuiet
     if (selectedPreset === 'guided') return copy.onboarding.styleGuided
@@ -438,28 +501,43 @@ export default function OnboardingSheet({
   }, [presentation])
 
   useEffect(() => {
-    if (presentation !== 'first-run') return
+    if (presentation !== 'first-run' || initialIntentAppliedRef.current) return
 
+    initialIntentAppliedRef.current = true
+    setLearningGoal(selectedIntent.goal)
+    setLearningLevel(selectedIntent.learningLevel)
+    setAudience(selectedIntent.audience)
     applyPreset(
-      GOAL_TO_RECOMMENDED_PRESET[learningGoal],
+      selectedIntent.preset,
       locale,
       setMeaningLanguage,
       setShowTransliteration
     )
-  }, [learningGoal, locale, presentation, setMeaningLanguage, setShowTransliteration])
+  }, [
+    locale,
+    presentation,
+    selectedIntent.audience,
+    selectedIntent.goal,
+    selectedIntent.learningLevel,
+    selectedIntent.preset,
+    setAudience,
+    setLearningGoal,
+    setLearningLevel,
+    setMeaningLanguage,
+    setShowTransliteration,
+  ])
 
-  function handleGoalSelection(goal: LearningGoal) {
-    setLearningGoal(goal)
+  function handleIntentSelection(choice: OnboardingIntentChoice) {
+    setSelectedIntentId(choice.id)
+    setLearningGoal(choice.goal)
+    setLearningLevel(choice.learningLevel)
+    setAudience(choice.audience)
     applyPreset(
-      GOAL_TO_RECOMMENDED_PRESET[goal],
+      choice.preset,
       locale,
       setMeaningLanguage,
       setShowTransliteration
     )
-  }
-
-  function handlePresetSelection(preset: ReadingPresetId) {
-    applyPreset(preset, locale, setMeaningLanguage, setShowTransliteration)
   }
 
   async function handleProviderSignIn(provider: OnboardingProvider) {
@@ -531,67 +609,30 @@ export default function OnboardingSheet({
   }
 
   function renderSetupStep() {
-    const orderedPresets = [
-      selectedPreset,
-      ...(['quiet', 'guided', 'deep'] as const).filter(preset => preset !== selectedPreset),
-    ]
-
-    const renderPresetCard = (preset: ReadingPresetId) => {
-      if (preset === 'quiet') {
-        return (
-          <SelectionCard
-            key={preset}
-            title={copy.onboarding.styleQuiet}
-            body={copy.onboarding.styleQuietBody}
-            selected={selectedPreset === preset}
-            onClick={() => handlePresetSelection(preset)}
-            badge={recommendedPreset === preset ? copy.onboarding.recommended : undefined}
-          />
-        )
-      }
-
-      if (preset === 'guided') {
-        return (
-          <SelectionCard
-            key={preset}
-            title={copy.onboarding.styleGuided}
-            body={copy.onboarding.styleGuidedBody}
-            selected={selectedPreset === preset}
-            onClick={() => handlePresetSelection(preset)}
-            badge={recommendedPreset === preset ? copy.onboarding.recommended : undefined}
-          />
-        )
-      }
-
-      return (
-        <SelectionCard
-          key={preset}
-          title={copy.onboarding.styleDeep}
-          body={copy.onboarding.styleDeepBody}
-          selected={selectedPreset === preset}
-          onClick={() => handlePresetSelection(preset)}
-        />
-      )
-    }
-
     return (
       <div className="space-y-4">
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-display text-[1.65rem] leading-tight text-ink dark:text-dark-text">
-              {copy.onboarding.intentTitle}
+        <div className="space-y-4">
+          <div className="text-center">
+            <NaamRasLogoMark
+              size={54}
+              seal
+              className="mx-auto drop-shadow-[0_10px_22px_rgba(122,84,32,0.14)]"
+              testId="onboarding-brand-mark"
+            />
+            <h3 className="mt-3 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+              Welcome to NaamRas
             </h3>
-            <p className="mt-1.5 max-w-[28rem] text-xs leading-5 text-ink/65 dark:text-dark-text/65">
-              {copy.onboarding.intentBody}
+            <p className="mx-auto mt-2 max-w-[18rem] text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              Begin your journey with a simple intention.
             </p>
           </div>
 
           <section
-            className="grid grid-cols-3 gap-2 rounded-lg border border-sand/18 bg-white/58 p-2 dark:border-dark-text/10 dark:bg-white/[0.04]"
+            className="sr-only"
             data-testid="onboarding-session-brief"
           >
             {[
-              [copy.onboarding.setupDirectionLabel, learningGoalLabels[learningGoal]],
+              [copy.onboarding.setupDirectionLabel, selectedIntent.title],
               [copy.onboarding.stylePanelEyebrow, selectedPresetTitle],
               [copy.onboarding.previewEyebrow, routeSummary],
             ].map(([label, value]) => (
@@ -606,71 +647,70 @@ export default function OnboardingSheet({
             ))}
           </section>
 
-          <div className="grid gap-2">
-            {(['read', 'understand', 'habit'] as const).map(goal => (
-              <GoalChoice
-                key={goal}
-                label={learningGoalLabels[goal]}
-                body={getGoalBody(goal, copy.onboarding)}
-                selected={learningGoal === goal}
-                onClick={() => handleGoalSelection(goal)}
-                selectedLabel={copy.common.selected}
-                idleLabel={copy.common.tapToUse}
-              />
-            ))}
+          <div>
+            <p className="mb-3 font-display text-[1.35rem] leading-none text-ink dark:text-dark-text">
+              I&apos;m here to...
+            </p>
+            <div className="grid gap-2">
+              {intentChoices.map(choice => (
+                <IntentChoice
+                  key={choice.id}
+                  choice={choice}
+                  selected={selectedIntentId === choice.id}
+                  onClick={() => handleIntentSelection(choice)}
+                  selectedLabel={copy.common.selected}
+                  presetLabel={getPresetTitle(choice.preset, copy.onboarding)}
+                />
+              ))}
+            </div>
           </div>
 
           <div
-            className="flex items-start gap-3 px-1"
+            className="sr-only"
             data-testid="onboarding-setup-helper"
             data-ai-surface="onboarding-setup-helper"
           >
-            <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_0_18px_rgba(224,154,70,0.45)]" />
-            <div className="min-w-0">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                {copy.onboarding.setupDirectionLabel} · {learningGoalLabels[learningGoal]}
-              </p>
-              <p className="mt-1 text-sm leading-6 text-ink/70 dark:text-dark-text/70">
-                {goalBody}
-              </p>
+            <div className="flex items-start gap-3">
+              <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-gradient-to-br from-saffron to-gold shadow-[0_0_18px_rgba(224,154,70,0.45)]" />
+              <div className="min-w-0">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                  Curated setup · {getPresetTitle(selectedIntent.preset, copy.onboarding)}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-ink/70 dark:text-dark-text/70">
+                  {goalBody}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {[
+                    learningGoalLabels[selectedIntent.goal],
+                    learningLevelLabels[selectedIntent.learningLevel],
+                    onboardingAudienceLabels[selectedIntent.audience],
+                  ].map(label => (
+                    <span
+                      key={label}
+                      className="rounded-full border border-sand/15 bg-white/58 px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink/55 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/62"
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="sr-only">
+            {(['read', 'understand', 'habit'] as const).map(goal => (
+              <span key={goal}>
+                {goal === selectedIntent.goal ? learningGoalLabels[goal] : null}
+              </span>
+            ))}
           </div>
         </div>
 
-        <section
-          className="section-shell-quiet p-4"
-          data-testid="onboarding-style-panel"
-          data-ai-surface="onboarding-style-panel"
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                {copy.onboarding.stylePanelEyebrow}
-              </p>
-              <h3 className="mt-2 font-display text-[1.55rem] leading-tight text-ink dark:text-dark-text">
-                {copy.onboarding.styleTitle}
-              </h3>
-              <p className="mt-2 max-w-[24rem] text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                {copy.onboarding.styleBody}
-              </p>
-            </div>
-            <span className="shrink-0 rounded-full border border-sand/16 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold dark:border-white/10 dark:bg-white/5 dark:text-gold-light">
-              {copy.onboarding.recommended}
-            </span>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2 text-xs text-ink/70 dark:text-dark-text/70">
-            <span className="rounded-full border border-sand/15 bg-white/72 px-3 py-1.5 dark:border-dark-text/10 dark:bg-white/5">
-              {learningGoalLabels[learningGoal]}
-            </span>
-            <span className="rounded-full border border-gold/18 bg-gold/10 px-3 py-1.5 text-gold-dark dark:border-gold/20 dark:bg-gold/10 dark:text-gold-light">
-              {selectedPresetTitle}
-            </span>
-          </div>
-
-          <div className="mt-4 grid gap-2">
-            {orderedPresets.map(renderPresetCard)}
-          </div>
+        <section className="sr-only" aria-label={copy.onboarding.stylePanelEyebrow} data-testid="onboarding-style-panel">
+          <p>{copy.onboarding.styleTitle}</p>
+          <p>{copy.onboarding.styleBody}</p>
+          <p>{copy.onboarding.recommended}</p>
+          <p>{selectedPresetTitle}</p>
         </section>
       </div>
     )
@@ -763,7 +803,7 @@ export default function OnboardingSheet({
       data-ai-state="ready"
     >
       <div className={`relative shrink-0 ${
-        !isOverlayPresentation && currentStep === 'preview'
+        !isOverlayPresentation
           ? 'sr-only'
           : isOverlayPresentation
           ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.96),rgba(25,20,34,0.88))]'
@@ -1069,7 +1109,7 @@ export default function OnboardingSheet({
           paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)',
         }}
       >
-        <header className="flex items-center justify-between gap-3 py-2">
+        <header className="sr-only">
           <div className="min-w-0">
             <p className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
             <p className="mt-1 max-w-[22rem] text-xs leading-4 text-ink/60 dark:text-dark-text/60">{editorial?.brand.promise ?? copy.home.promise}</p>

@@ -288,33 +288,23 @@ test('links Amrit Keertan to its directory page instead of opening a dropdown pa
   expect(screen.getByTestId('location').textContent).toBe('/banis/amrit-keertan')
 })
 
-test('loads Rehat lists, chapters, and chapter content inside Read', async () => {
-  renderBanis()
-  fireEvent.click(screen.getByText('Rehat'))
+test('links Rehat to its route-driven reader instead of opening a dropdown panel', () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/banis/rehat" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
 
-  await waitFor(() => expect(screen.getByText('Sikh Rehat Maryada')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('Sikh Rehat Maryada'))
+  const link = screen.getByTestId('banis-open-rehat')
+  expect(link).toHaveAttribute('href', '/banis/rehat')
+  expect(document.querySelector('#banis-rehat-panel')).toBeNull()
 
-  await waitFor(() => expect(screen.getByText('Daily Discipline')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('Daily Discipline'))
+  fireEvent.click(link)
 
-  await waitFor(() => {
-    expect(screen.getByText('Amritvela, nitnem, seva, and simran remain central.')).toBeInTheDocument()
-  })
-})
-
-test('filters Rehat chapter names before opening a chapter', async () => {
-  renderBanis()
-  fireEvent.click(screen.getByText('Rehat'))
-
-  await waitFor(() => expect(screen.getByText('Sikh Rehat Maryada')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('Sikh Rehat Maryada'))
-
-  await waitFor(() => expect(screen.getByPlaceholderText(/search chapters/i)).toBeInTheDocument())
-  fireEvent.change(screen.getByPlaceholderText(/search chapters/i), { target: { value: 'Shared' } })
-
-  expect(screen.getByText('Shared Conduct')).toBeInTheDocument()
-  expect(screen.queryByText('Daily Discipline')).not.toBeInTheDocument()
+  expect(screen.getByTestId('location').textContent).toBe('/banis/rehat')
 })
 
 test('supports direct ang lookup mode', async () => {

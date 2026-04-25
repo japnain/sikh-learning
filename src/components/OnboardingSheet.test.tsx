@@ -77,28 +77,34 @@ beforeEach(() => {
   useCloudSyncStore.getState().reset()
 })
 
-test('setup step keeps the chosen goal inline while elevating the reading atmosphere panel and sticky action shelf', () => {
+test('setup step presents visual intent choices that curate the reader and sticky action shelf', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
+  fireEvent.click(screen.getByRole('button', { name: /build a daily reading habit/i }))
 
   const helper = screen.getByTestId('onboarding-setup-helper')
-  const stylePanel = screen.getByTestId('onboarding-style-panel')
   const actionBar = screen.getByTestId('onboarding-setup-action-bar')
 
-  expect(helper).toHaveTextContent(/i want to build habit/i)
+  expect(screen.getByText(/welcome to naamras/i)).toBeInTheDocument()
+  expect(screen.getByText(/i'm here to/i)).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /find peace and clarity/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /grow spiritually/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /just exploring/i })).toBeInTheDocument()
+  expect(helper).toHaveTextContent(/curated setup/i)
   expect(helper).toHaveTextContent(/keep the next step simple/i)
-  expect(stylePanel).toHaveTextContent(/recommended rhythm/i)
-  expect(stylePanel).toHaveTextContent(/reading \+ meaning/i)
+  expect(helper).toHaveTextContent(/reading \+ meaning/i)
   expect(actionBar).toHaveTextContent(/selected/i)
   expect(actionBar).toHaveTextContent(/reading \+ meaning/i)
+  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"habit"')
+  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
+  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
   expect(screen.getByTestId('onboarding-setup-primary-action')).toBeInTheDocument()
 })
 
 test('guided flow keeps the hero dominant while secondary setup stays collapsed until requested', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
@@ -136,10 +142,28 @@ test('guided flow keeps the hero dominant while secondary setup stays collapsed 
   expect(screen.getByTestId('state').textContent).toContain('"audience":"teen"')
 })
 
+test('intent buttons apply distinct reader and profile curation', () => {
+  render(<Harness />)
+
+  fireEvent.click(screen.getByRole('button', { name: /grow spiritually/i }))
+
+  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"habit"')
+  expect(screen.getByTestId('state').textContent).toContain('"learningLevel":"daily-reader"')
+  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
+  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":false')
+
+  fireEvent.click(screen.getByRole('button', { name: /just exploring/i }))
+
+  expect(screen.getByTestId('state').textContent).toContain('"learningGoal":"read"')
+  expect(screen.getByTestId('state').textContent).toContain('"learningLevel":"beginner"')
+  expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"en"')
+  expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
+})
+
 test('quiet preset keeps the preview text-first', () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
+  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
@@ -153,7 +177,7 @@ test('quiet preset keeps the preview text-first', () => {
 test('turning meaning off updates the preview summary and action copy for understand mode', async () => {
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
   expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
@@ -206,7 +230,7 @@ test('preview step offers guest plus configured sign-in providers only after bac
 
   render(<Harness onComplete={onComplete} />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
+  fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
   expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
@@ -237,7 +261,7 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
 
   render(<Harness />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
+  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
   fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
