@@ -181,6 +181,32 @@ describe('Study bookmark button', () => {
   })
 })
 
+describe('Study source browsing', () => {
+  test('keeps source browsing as a collapsed dropdown at the bottom of Read', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const entryList = await screen.findByTestId('study-entry-list')
+    const sourceBrowserShell = await screen.findByTestId('study-source-browser-shell')
+    const sourceBrowser = within(sourceBrowserShell).getByTestId('study-source-browser')
+
+    expect(sourceBrowser).toHaveAttribute('data-component', 'scripture-source-browser')
+    expect(entryList.compareDocumentPosition(sourceBrowserShell) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+
+    const sggsDropdown = within(sourceBrowser).getByRole('button', { name: /sri guru granth sahib ji/i })
+    expect(sggsDropdown).toHaveAttribute('aria-expanded', 'false')
+    expect(document.getElementById('study-source-browser-sggs')).toBeNull()
+
+    fireEvent.click(sggsDropdown)
+
+    expect(sggsDropdown).toHaveAttribute('aria-expanded', 'true')
+    expect(document.getElementById('study-source-browser-sggs')).not.toBeNull()
+  })
+})
+
 describe('Study renders all shabads on an ang', () => {
   it('keeps the on-this-ang outline collapsed by default until expanded', async () => {
     render(
