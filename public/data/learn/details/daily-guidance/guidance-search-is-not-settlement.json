@@ -1,9 +1,9 @@
 {
   "id": "guidance-search-is-not-settlement",
-  "title": "Choose settlement over motion",
-  "summary": "Better company teaches the wandering mind how to settle. Return the mind to better company before it scatters again. The emphasis here is choose settlement over motion.",
-  "takeaway": "Return the mind to better company before it scatters again.",
-  "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+  "title": "Let the search cool in saintly company",
+  "summary": "The shabad names the exhaustion of forests, philosophies, rituals, postures, and repeated rising without peace. Let the search cool where mercy brings holy company.",
+  "takeaway": "Bring the search to the company where mind and body can cool.",
+  "lifeApplication": "Before changing methods again, choose one steady place of sangat or Bani and let the restless body remain there without bargaining.",
   "source": {
     "deepDiveId": "shabad-search-ends-in-saint-company",
     "verseIds": [
@@ -11,8 +11,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Better company teaches the wandering mind how to settle.",
-    "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+    "shortMeaning": "Restless searching cools only when mercy brings the seeker into holy company.",
+    "lifeApplication": "Before changing methods again, stay with one true company long enough for the body to cool."
   },
   "relatedTopicIds": [
     "topic-restlessness"
@@ -37,15 +37,15 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Better company teaches the wandering mind how to settle.",
+      "coreClaim": "Restless searching cools only when mercy brings the seeker into holy company.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "Bring your searching to holy company and let it cool there.",
-      "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+      "turn": "The shabad exhausts spiritual roaming and then lets mercy, sangat, and patience become the place of arrival.",
+      "practicalImplication": "Before changing methods again, choose one steady place of sangat or Bani and let the restless body remain there without bargaining.",
       "bannedOverreach": []
     },
     "scores": {

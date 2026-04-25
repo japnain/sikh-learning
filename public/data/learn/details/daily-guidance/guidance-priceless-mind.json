@@ -1,17 +1,17 @@
 {
   "id": "guidance-priceless-mind",
-  "title": "Return before reopening every question",
-  "summary": "Clarity returns when the mind stays with one clear line. Let trust return before inquiry multiplies again.",
-  "takeaway": "Let trust return before inquiry multiplies again.",
-  "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
+  "title": "Do not trade the jewel-mind for doubt",
+  "summary": "The mind is called a priceless jewel, not a debating room to be spent cheaply. Place it in Naam and sangat before doubt bargains away its honor.",
+  "takeaway": "Treat the mind as a jewel by placing it in Naam and sangat.",
+  "lifeApplication": "When inquiry becomes agitation, stop and ask whether this question is preserving the jewel-mind or spending it for a shell.",
   "source": {
     "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
     "verseIds": [
       923,
       924
     ],
-    "shortMeaning": "Clarity returns when the mind stays with one clear line.",
-    "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+    "shortMeaning": "The priceless mind receives honor through Naam and finds the Lord in true sangat.",
+    "lifeApplication": "When doubt cheapens the mind, return it to Naam and the company that honors it."
   },
   "relatedTopicIds": [
     "topic-doubt"
@@ -36,15 +36,15 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "Clarity returns when the mind stays with one clear line.",
+      "coreClaim": "The priceless mind receives honor through Naam and finds the Lord in true sangat.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "Doubt clears when the Guru's word outlasts wandering.",
-      "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
+      "turn": "The shabad refuses to let the jewel of consciousness be traded for wandering doubt or cheap distraction.",
+      "practicalImplication": "When inquiry becomes agitation, stop and ask whether this question is preserving the jewel-mind or spending it for a shell.",
       "bannedOverreach": []
     },
     "scores": {

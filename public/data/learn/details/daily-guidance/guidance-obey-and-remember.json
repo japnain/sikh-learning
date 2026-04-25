@@ -36,8 +36,8 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "guidance:3-line-window",
     "evidence": {

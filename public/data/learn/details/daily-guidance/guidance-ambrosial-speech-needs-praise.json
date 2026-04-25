@@ -1,17 +1,17 @@
 {
   "id": "guidance-ambrosial-speech-needs-praise",
-  "title": "Give the tongue a truer master",
-  "summary": "The tongue is corrected by praise, restraint, and truth. Return the mouth to praise before it carries hurt.",
-  "takeaway": "Return the mouth to praise before it carries hurt.",
-  "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+  "title": "Let praise discipline the tongue",
+  "summary": "Ambrosial speech is not merely gentle tone; it is the tongue brought under the Lord’s praise. Let praise train the mouth before sharpness takes the room.",
+  "takeaway": "Let praise train the tongue before sharpness takes the room.",
+  "lifeApplication": "Before the next sentence leaves you, let one line of praise pass through the mind and choose the words that can stand beside it.",
   "source": {
     "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
     "verseIds": [
       11748,
       11749
     ],
-    "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
-    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    "shortMeaning": "The highest speech is the tongue that hears and utters the Lord’s praise.",
+    "lifeApplication": "Let praise interrupt the sentence before harshness gives it a shape."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -36,15 +36,15 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "guidance:2-line-window",
     "evidence": {
-      "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
+      "coreClaim": "The highest speech is the tongue that hears and utters the Lord’s praise.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "The truest religion is clean conduct sustained by Naam.",
-      "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+      "turn": "The shabad measures speech by whether it has been cleansed into praise, not by whether it sounds controlled.",
+      "practicalImplication": "Before the next sentence leaves you, let one line of praise pass through the mind and choose the words that can stand beside it.",
       "bannedOverreach": []
     },
     "scores": {
