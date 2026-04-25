@@ -2,6 +2,7 @@ import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
+import { sanitizeRehatHtml } from '../utils/rehatHtml'
 import Study from './Study'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
@@ -384,6 +385,43 @@ test('auto search queries both English meanings and romanized text for Roman-let
   })
 
   fetchSpy.mockRestore()
+})
+
+test('auto search keeps Latin and Gurmukhi search modes for mixed-script queries', async () => {
+  const fetchSpy = vi.spyOn(globalThis, 'fetch')
+  renderBanis()
+
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'death ਵਾਹਿਗੁਰੂ' } })
+
+  await waitFor(() => {
+    const searchTypes = fetchSpy.mock.calls.flatMap(([, init]) => {
+      if (!init || typeof init.body !== 'string') return []
+
+      const body = JSON.parse(init.body) as {
+        path?: string
+        query?: { searchtype?: string }
+      }
+
+      return body.path?.startsWith('/v2/search/') && body.query?.searchtype
+        ? [body.query.searchtype]
+        : []
+    })
+
+    expect(searchTypes).toEqual(expect.arrayContaining(['0', '1', '2', '3', '4', '8']))
+  })
+
+  fetchSpy.mockRestore()
+})
+
+test('sanitizes Rehat chapter HTML before rendering it through innerHTML', () => {
+  const sanitized = sanitizeRehatHtml('<p>Keep <strong>seva</strong><script>alert(1)</script><a href="javascript:alert(1)" onclick="bad()">unsafe</a><a href="https://example.com" onclick="bad()">safe</a></p>')
+
+  expect(sanitized).toContain('<strong>seva</strong>')
+  expect(sanitized).not.toContain('<script')
+  expect(sanitized).not.toContain('javascript:')
+  expect(sanitized).not.toContain('onclick')
+  expect(sanitized).toContain('<a>unsafe</a>')
+  expect(sanitized).toContain('<a href="https://example.com" rel="noreferrer">safe</a>')
 })
 
 test('highlights matching terms inside read search results', async () => {

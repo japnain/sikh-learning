@@ -4,6 +4,7 @@ import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
 import { useActivityEventsStore } from '../store/activityEvents'
+import { getNaamrasInsforgeConfig } from '../insforge/config'
 
 const CLOUD_COPY = {
   en: {
@@ -35,6 +36,10 @@ const CLOUD_COPY = {
     featureMerge: 'Offline queue with merge replay',
     mergeHint: 'First sign-in merges this device into your account before syncing future changes.',
     localOnlyStatus: 'Local only',
+    scriptureData: 'Scripture data',
+    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureFallbackReady: 'Public BaniDB fallback ready',
+    scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'Backup optional',
     readyStatus: 'Cloud connected',
     syncingStatus: 'Syncing now',
@@ -72,6 +77,10 @@ const CLOUD_COPY = {
     featureMerge: 'Offline queue ਅਤੇ merge replay',
     mergeHint: 'ਪਹਿਲੀ sign-in ਇਸ ਡਿਵਾਈਸ ਦਾ ਡਾਟਾ ਤੁਹਾਡੇ account ਨਾਲ merge ਕਰਦੀ ਹੈ, ਫਿਰ ਅੱਗੇ sync ਹੁੰਦਾ ਹੈ।',
     localOnlyStatus: 'ਸਿਰਫ਼ local',
+    scriptureData: 'Scripture data',
+    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureFallbackReady: 'Public BaniDB fallback ready',
+    scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'ਬੈਕਅੱਪ ਚੋਣਵਾਂ',
     readyStatus: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
     syncingStatus: 'ਹੁਣੇ sync ਹੋ ਰਿਹਾ',
@@ -109,6 +118,10 @@ const CLOUD_COPY = {
     featureMerge: 'Offline queue और merge replay',
     mergeHint: 'पहली sign-in इस डिवाइस के डेटा को आपके account के साथ merge करती है, फिर आगे sync चलता है।',
     localOnlyStatus: 'केवल local',
+    scriptureData: 'Scripture data',
+    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureFallbackReady: 'Public BaniDB fallback ready',
+    scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'बैकअप वैकल्पिक',
     readyStatus: 'क्लाउड जुड़ा हुआ',
     syncingStatus: 'अभी sync हो रहा है',
@@ -286,7 +299,7 @@ function getCloudSyncSummary({
   pendingEventsCount: number
 }) {
   if (!configured) {
-    return 'Local only. Backup can stay optional until cloud continuity is ready.'
+    return 'Backup is local-only in this build. Scripture data is reported separately below.'
   }
 
   if (!currentUser) {
@@ -338,6 +351,20 @@ function getProviderAvailabilityView({
     statusClassName: statusView.className,
     className: 'text-ink dark:text-dark-text',
   }
+}
+
+function getScriptureDataStatus(copy: CloudCopy) {
+  const config = getNaamrasInsforgeConfig()
+
+  if (config.enabled && config.functionsUrl) {
+    return copy.scriptureProxyReady
+  }
+
+  if (config.banidbDirectFallbackEnabled) {
+    return copy.scriptureFallbackReady
+  }
+
+  return copy.scriptureUnavailable
 }
 
 export default function CloudSyncPanel() {
@@ -393,6 +420,7 @@ export default function CloudSyncPanel() {
     lastError,
     pendingEventsCount,
   })
+  const scriptureDataStatus = getScriptureDataStatus(copy)
   const panelId = 'more-cloud-sync-panel'
 
   return (
@@ -447,6 +475,7 @@ export default function CloudSyncPanel() {
                     ? 'First backup ahead'
                     : 'Not backed up yet'}
               </span>
+              <span data-ai-anchor="scripture-data-status">{copy.scriptureData}: {scriptureDataStatus}</span>
             </div>
           </div>
           <span
@@ -465,6 +494,7 @@ export default function CloudSyncPanel() {
           {!configured ? (
             <div className="hero-surface px-4 py-4" data-ai-surface="cloud-sync-local-only" data-ai-state="empty">
               <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/72">{copy.notConfigured}</p>
+              <p className="mt-3 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.scriptureData}: {scriptureDataStatus}</p>
               <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink/55 dark:text-dark-text/55">
                 <span className="chip-pill">{copy.featureGuest}</span>
                 <span className="chip-pill">{copy.featureLibrary}</span>

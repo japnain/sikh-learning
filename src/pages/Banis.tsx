@@ -30,6 +30,7 @@ import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDo
 import SearchHighlight from '../components/SearchHighlight'
 import { hasSearchMatch } from '../utils/searchHighlight'
 import { getEditorialCopy } from '../content/editorialCopy'
+import { sanitizeRehatHtml, stripHtmlTags } from '../utils/rehatHtml'
 import {
   getAngTargets,
   getAvailableSearchMeta,
@@ -73,24 +74,33 @@ const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   'auto-detect': 'Let the app read what you typed and choose the most likely search style.',
 }
 const GURMUKHI_SEARCH_PATTERN = /[\u0A00-\u0A7F]/
+const LATIN_SEARCH_PATTERN = /[A-Za-z]/
 
 function getBackendSearchTypes(query: string, mode: SearchMode): number[] {
   if (mode !== 'auto-detect') return [SEARCH_MODE_META[mode].type]
 
-  if (GURMUKHI_SEARCH_PATTERN.test(query)) {
-    return [
+  const hasGurmukhi = GURMUKHI_SEARCH_PATTERN.test(query)
+  const hasLatin = LATIN_SEARCH_PATTERN.test(query)
+  const searchTypes = new Set<number>()
+
+  if (hasGurmukhi) {
+    [
       SEARCH_MODE_META.gurmukhi.type,
       SEARCH_MODE_META['first-letters'].type,
       SEARCH_MODE_META['first-letters-anywhere'].type,
       SEARCH_MODE_META['auto-detect'].type,
-    ]
+    ].forEach(type => searchTypes.add(type))
   }
 
-  return [
-    SEARCH_MODE_META.english.type,
-    SEARCH_MODE_META.transliteration.type,
-    SEARCH_MODE_META['auto-detect'].type,
-  ]
+  if (hasLatin || !hasGurmukhi) {
+    [
+      SEARCH_MODE_META.english.type,
+      SEARCH_MODE_META.transliteration.type,
+      SEARCH_MODE_META['auto-detect'].type,
+    ].forEach(type => searchTypes.add(type))
+  }
+
+  return Array.from(searchTypes)
 }
 
 function dedupeSearchResults(resultSets: SearchResult[][]): SearchResult[] {
@@ -350,77 +360,18 @@ function MetadataChip({
   )
 }
 
-function stripHtmlTags(value: string) {
-  return value
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-const ALLOWED_REHAT_TAGS = new Set(['a', 'b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'u', 'ul'])
-
-function isSafeRehatHref(value: string) {
-  try {
-    const url = new URL(value, window.location.origin)
-    return ['http:', 'https:', 'mailto:'].includes(url.protocol)
-  } catch {
-    return false
+function getSearchIssueCopy(issue: AsyncIssueCode) {
+  switch (issue) {
+    case 'offline':
+      return 'Read search is offline right now. Browse a bani directly or try again when the connection returns.'
+    case 'missing':
+      return 'That Read source could not be found. Switch modes, browse a bani directly, or try another query.'
+    case 'qa-fault':
+      return 'Read search is showing the test degraded state. Browse a bani directly or try again.'
+    case 'unavailable':
+    default:
+      return 'Read search is unavailable right now. Browse a bani directly, switch modes, or try again shortly.'
   }
-}
-
-function sanitizeRehatHtml(value: string) {
-  if (typeof window === 'undefined' || typeof window.DOMParser === 'undefined') {
-    return stripHtmlTags(value)
-  }
-
-  const parser = new window.DOMParser()
-  const document = parser.parseFromString(`<div>${value}</div>`, 'text/html')
-  const sourceRoot = document.body.firstElementChild
-  const outputRoot = document.createElement('div')
-
-  function sanitizeNode(node: Node): Node {
-    if (node.nodeType === Node.TEXT_NODE) {
-      return document.createTextNode(node.textContent ?? '')
-    }
-
-    if (node.nodeType !== Node.ELEMENT_NODE) {
-      return document.createDocumentFragment()
-    }
-
-    const element = node as Element
-    const tagName = element.tagName.toLowerCase()
-
-    if (!ALLOWED_REHAT_TAGS.has(tagName)) {
-      const fragment = document.createDocumentFragment()
-      for (const child of Array.from(element.childNodes)) {
-        fragment.appendChild(sanitizeNode(child))
-      }
-      return fragment
-    }
-
-    const nextElement = document.createElement(tagName)
-    if (tagName === 'a') {
-      const href = element.getAttribute('href')
-      if (href && isSafeRehatHref(href)) {
-        nextElement.setAttribute('href', href)
-        nextElement.setAttribute('rel', 'noreferrer')
-      }
-    }
-
-    for (const child of Array.from(element.childNodes)) {
-      nextElement.appendChild(sanitizeNode(child))
-    }
-
-    return nextElement
-  }
-
-  for (const child of Array.from(sourceRoot?.childNodes ?? [])) {
-    outputRoot.appendChild(sanitizeNode(child))
-  }
-
-  return outputRoot.innerHTML
 }
 
 export default function Banis() {
@@ -478,6 +429,10 @@ export default function Banis() {
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
+  const searchFeedbackRef = useRef<HTMLElement | null>(null)
+  const setSearchFeedbackElement = useCallback((element: HTMLElement | null) => {
+    searchFeedbackRef.current = element
+  }, [])
 
   const scheduleSectionReveal = useCallback((getElement: () => HTMLDivElement | null) => {
     if (typeof window === 'undefined') return
@@ -497,6 +452,40 @@ export default function Banis() {
         if (elementBottom > visibleBottom || nextElement.getBoundingClientRect().top < 16) {
           window.scrollTo({
             top: Math.max(elementTop - 16, 0),
+            behavior: 'auto',
+          })
+        }
+      })
+    })
+  }, [])
+
+  const revealSearchFeedback = useCallback(() => {
+    if (typeof window === 'undefined') return
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const element = searchFeedbackRef.current
+        if (!element) return
+
+        const navHeight = Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue('--nav-stack-height')
+        ) || 0
+        const rect = element.getBoundingClientRect()
+        const visibleTop = 18
+        const visibleBottom = window.innerHeight - navHeight - 26
+        let nextScrollY = window.scrollY
+
+        if (rect.bottom > visibleBottom) {
+          nextScrollY += rect.bottom - visibleBottom
+        }
+
+        if (rect.top < visibleTop) {
+          nextScrollY += rect.top - visibleTop
+        }
+
+        if (Math.abs(nextScrollY - window.scrollY) > 1) {
+          window.scrollTo({
+            top: Math.max(nextScrollY, 0),
             behavior: 'auto',
           })
         }
@@ -636,14 +625,15 @@ export default function Banis() {
         setSearchResults(results)
         setSearchIssue(null)
         addRecent(trimmed, mode)
-      } catch (error) {
-        setSearchResults([])
-        setSearchIssue(resolveAsyncIssue(error).code)
-      } finally {
-        setSearching(false)
-      }
-    }, 300)
-  }, [addRecent, searchMode, searchSource])
+        } catch (error) {
+          setSearchResults([])
+          setSearchIssue(resolveAsyncIssue(error).code)
+        } finally {
+          setSearching(false)
+          revealSearchFeedback()
+        }
+      }, 300)
+    }, [addRecent, revealSearchFeedback, searchMode, searchSource])
 
   useEffect(() => {
     if (searchQuery.trim().length >= 2) {
@@ -989,14 +979,14 @@ export default function Banis() {
               {(Object.entries(SEARCH_MODE_META) as Array<[SearchMode, typeof SEARCH_MODE_META[SearchMode]]>).map(([mode]) => {
                 const selected = searchMode === mode
                 return (
-                  <button
-                    key={mode}
-                    onClick={() => setSearchMode(mode)}
-                    aria-pressed={selected}
-                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                      selected
-                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
+                    <button
+                      key={mode}
+                      onClick={() => setSearchMode(mode)}
+                      aria-pressed={selected}
+                      className={`min-h-[44px] rounded-xl px-3 py-2 font-sans text-xs font-medium transition-all duration-300 ${
+                        selected
+                          ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                          : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
                     {SEARCH_MODE_LABELS[mode]}
@@ -1008,14 +998,14 @@ export default function Banis() {
               {Object.entries(SEARCH_SOURCE_LABELS).map(([value, label]) => {
                 const selected = searchSource === value
                 return (
-                  <button
-                    key={value}
-                    onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
-                    aria-pressed={selected}
-                    className={`rounded-full px-3 py-1.5 font-sans text-[11px] border transition-all duration-300 ${
-                      selected
-                        ? 'bg-saffron text-white border-saffron'
-                        : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
+                    <button
+                      key={value}
+                      onClick={() => setSearchSource(value as keyof typeof SEARCH_SOURCE_LABELS)}
+                      aria-pressed={selected}
+                      className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border transition-all duration-300 ${
+                        selected
+                          ? 'bg-saffron text-white border-saffron'
+                          : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'
                     }`}
                   >
                     {label}
@@ -1024,9 +1014,9 @@ export default function Banis() {
               })}
             </div>
           </div>
-        )}
-        {searchMode === 'ang' && searchQuery.trim() && (
-          <div className="mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
+          )}
+          {searchMode === 'ang' && searchQuery.trim() && (
+            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-ang-results" data-ai-result-group="ang">
             {angTargets.length > 0 ? angTargets.map(target => (
               <button
                 key={target.source}
@@ -1048,15 +1038,15 @@ export default function Banis() {
               <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No matching source can open that ang/page.</p>
             )}
           </div>
-        )}
-        {searching && <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
-        {searchIssue && !searching && searchMode !== 'ang' && (
-          <div className="mt-3 rounded-[20px] border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
-            Read search is taking longer than usual. You can switch modes, browse a bani directly, or try again in a moment.
-          </div>
-        )}
-        {appSearchMatches.length > 0 && searchMode !== 'ang' && (
-          <div className="mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
+          )}
+          {searching && <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">Searching exact results...</p>}
+          {searchIssue && !searching && searchMode !== 'ang' && (
+            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 rounded-[20px] border border-[#b4553d]/18 bg-[#b4553d]/8 px-4 py-3 text-sm text-[#8d3a24] dark:border-[#ffb29d]/18 dark:bg-[#ffb29d]/8 dark:text-[#ffb29d]">
+              {getSearchIssueCopy(searchIssue)}
+            </div>
+          )}
+          {appSearchMatches.length > 0 && searchMode !== 'ang' && (
+            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-3 space-y-2" data-testid="banis-search-app-results" data-ai-result-group="in-app">
             <div className="flex items-center justify-between gap-3 px-1">
               <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
                 In the app
@@ -1098,27 +1088,27 @@ export default function Banis() {
                 )
               })()
             ))}
-          </div>
-        )}
-        {searchResults.length > 0 && searchMode !== 'ang' && (
-          <div className="mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
+            </div>
+          )}
+          {searchResults.length > 0 && searchMode !== 'ang' && (
+            <div ref={setSearchFeedbackElement} className="nav-safe-results mt-2 space-y-1" data-testid="banis-search-gurbani-results" data-ai-result-group="gurbani">
             {(availableRaags.length > 0 || availableWriters.length > 0) && (
               <div className="space-y-2 pb-2">
                 {availableRaags.length > 0 && (
                   <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => setRaagFilter('all')}
-                      aria-pressed={raagFilter === 'all'}
-                      className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                      <button
+                        onClick={() => setRaagFilter('all')}
+                        aria-pressed={raagFilter === 'all'}
+                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Raags
                     </button>
                     {availableRaags.map(raag => (
                       <button
-                        key={raag}
-                        onClick={() => setRaagFilter(raag)}
-                        aria-pressed={raagFilter === raag}
-                        className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                          key={raag}
+                          onClick={() => setRaagFilter(raag)}
+                          aria-pressed={raagFilter === raag}
+                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${raagFilter === raag ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {raag}
                       </button>
@@ -1127,19 +1117,19 @@ export default function Banis() {
                 )}
                 {availableWriters.length > 0 && (
                   <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => setWriterFilter('all')}
-                      aria-pressed={writerFilter === 'all'}
-                      className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                      <button
+                        onClick={() => setWriterFilter('all')}
+                        aria-pressed={writerFilter === 'all'}
+                        className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === 'all' ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                     >
                       All Writers
                     </button>
                     {availableWriters.map(writer => (
                       <button
-                        key={writer}
-                        onClick={() => setWriterFilter(writer)}
-                        aria-pressed={writerFilter === writer}
-                        className={`rounded-full px-3 py-1.5 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
+                          key={writer}
+                          onClick={() => setWriterFilter(writer)}
+                          aria-pressed={writerFilter === writer}
+                          className={`min-h-[44px] rounded-full px-3 py-2 font-sans text-[11px] border ${writerFilter === writer ? 'bg-saffron text-white border-saffron' : 'bg-parchment-card dark:bg-dark-card text-ink/60 dark:text-dark-text/60 border-sand/15 dark:border-dark-text/10'}`}
                       >
                         {writer}
                       </button>
@@ -1176,7 +1166,7 @@ export default function Banis() {
           </div>
         )}
         {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && !searching && !searchIssue && searchResults.length === 0 && appSearchMatches.length === 0 && searchMode !== 'ang' && (
-          <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
+            <p ref={setSearchFeedbackElement} className="nav-safe-results font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-2 ml-1">No results found</p>
         )}
         {!searchQuery && recent.length > 0 && (
           <div className="mt-2">

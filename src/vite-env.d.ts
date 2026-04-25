@@ -11,6 +11,8 @@ interface ImportMetaEnv {
   readonly VITE_INSFORGE_AUDIO_BUCKET?: string
   readonly VITE_INSFORGE_AUDIO_PREFIX?: string
   readonly VITE_NAAMRAS_BANIDB_MOCK?: string
+  readonly VITE_NAAMRAS_BANIDB_DIRECT_FALLBACK?: string
+  readonly VITE_NAAMRAS_BANIDB_PUBLIC_ORIGIN?: string
 }
 
 interface ImportMeta {

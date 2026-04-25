@@ -17,6 +17,31 @@ function normalizeQuery(query?: BanidbProxyQuery) {
     : undefined
 }
 
+function parseResponseData<T>(text: string) {
+  if (!text) return null as T
+
+  try {
+    return JSON.parse(text) as T
+  } catch {
+    return text as T
+  }
+}
+
+function buildPublicBanidbUrl(origin: string, path: string, query?: Record<string, string>) {
+  if (!path.startsWith('/v2/')) {
+    throw new Error('Only BaniDB v2 read paths can use the public fallback.')
+  }
+
+  const url = new URL(path, origin)
+  if (query) {
+    for (const [key, value] of Object.entries(query)) {
+      url.searchParams.set(key, value)
+    }
+  }
+
+  return url
+}
+
 export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   const config = getNaamrasInsforgeConfig()
   const normalizedQuery = normalizeQuery(query)
@@ -35,7 +60,16 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   const endpoint = getNaamrasInsforgeFunctionUrl(config.banidbFunctionSlug)
 
   if (!config.enabled || !config.baseUrl || !endpoint) {
-    throw new Error('InsForge is not configured for BaniDB requests.')
+    if (!config.banidbDirectFallbackEnabled) {
+      throw new Error('BaniDB requests need either InsForge or the public BaniDB fallback enabled.')
+    }
+
+    const response = await fetch(buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery).toString())
+    const text = await response.text()
+    return {
+      response,
+      data: parseResponseData<T>(text),
+    }
   }
 
   const response = await fetch(endpoint, {
@@ -50,15 +84,6 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   })
 
   const text = await response.text()
-  let data = null as T
 
-  if (text) {
-    try {
-      data = JSON.parse(text) as T
-    } catch {
-      data = text as T
-    }
-  }
-
-  return { response, data }
+  return { response, data: parseResponseData<T>(text) }
 }

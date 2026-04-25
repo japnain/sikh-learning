@@ -6,6 +6,8 @@ export interface NaamrasInsforgeConfig {
   audioBucket?: string
   audioPrefix?: string
   banidbMockEnabled: boolean
+  banidbDirectFallbackEnabled: boolean
+  banidbPublicOrigin: string
   banidbFunctionSlug: string
   mergeFunctionSlug: string
   studyFunctionSlug: string
@@ -40,6 +42,7 @@ export function getNaamrasInsforgeConfig(): NaamrasInsforgeConfig {
   if (cachedConfig) return cachedConfig
 
   const banidbMockEnabled = normalizeOptionalValue(import.meta.env.VITE_NAAMRAS_BANIDB_MOCK) === 'true'
+  const banidbDirectFallbackEnabled = normalizeOptionalValue(import.meta.env.VITE_NAAMRAS_BANIDB_DIRECT_FALLBACK) !== 'false'
   const baseUrl = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_URL) ?? null
   const configuredFunctionsUrl = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_FUNCTIONS_URL)
   const studyEnabled = normalizeOptionalValue(import.meta.env.VITE_INSFORGE_ENABLE_STUDY_AI) === 'true'
@@ -54,6 +57,10 @@ export function getNaamrasInsforgeConfig(): NaamrasInsforgeConfig {
     audioBucket: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_BUCKET) ?? 'soundscrape',
     audioPrefix: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_AUDIO_PREFIX) ?? 'ambient',
     banidbMockEnabled,
+    banidbDirectFallbackEnabled,
+    banidbPublicOrigin: trimTrailingSlashes(
+      normalizeOptionalValue(import.meta.env.VITE_NAAMRAS_BANIDB_PUBLIC_ORIGIN) ?? 'https://api.banidb.com'
+    ),
     banidbFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_BANIDB_FUNCTION) ?? 'banidb-proxy',
     mergeFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_MERGE_FUNCTION) ?? 'merge-local-state',
     studyFunctionSlug: normalizeOptionalValue(import.meta.env.VITE_INSFORGE_STUDY_FUNCTION) ?? 'generate-study-response',

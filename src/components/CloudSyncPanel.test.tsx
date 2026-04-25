@@ -113,6 +113,18 @@ describe('CloudSyncPanel truth model', () => {
     expect(within(googleCard).getByText('Backup optional')).toBeInTheDocument()
   })
 
+  test('separates cloud backup status from scripture data readiness', () => {
+    renderPanel({
+      configured: false,
+      status: 'signed-out',
+      currentUser: null,
+      lastSyncedAt: null,
+    })
+
+    expect(screen.getByText(/Backup is local-only in this build/i)).toBeInTheDocument()
+    expect(getPanelAnchor('scripture-data-status')).toHaveTextContent(/Scripture data: InsForge BaniDB proxy ready/i)
+  })
+
   test('shows ready provider rows from the same runtime truth as the top badge', () => {
     renderPanel()
 

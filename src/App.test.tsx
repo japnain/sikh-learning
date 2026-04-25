@@ -44,6 +44,7 @@ afterEach(() => {
 })
 
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
+  const scrollToSpy = vi.spyOn(window, 'scrollTo')
   render(<App />)
 
   expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
@@ -63,6 +64,11 @@ test('shows onboarding above the app shell and lands home after first-run setup'
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
+  })
+
+  await waitFor(() => {
+    expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
+    expect(screen.getByTestId('main-content')).toHaveFocus()
   })
 })
 

@@ -249,19 +249,22 @@ test("legacy flat topic urls redirect to the canonical topic route with the scen
   })
 })
 
-test("choosing a topic chip clears a stale no-match message and opens the topic page", async () => {
+test("no-match topic search stays focused until the user browses all topics", async () => {
   renderLearnRoute("/learn?tab=topics")
 
   fireEvent.change(await screen.findByLabelText(/Search topic guides/i), {
     target: { value: "tomato" },
   })
   expect(screen.getByText(/No matching topic found/i)).toBeInTheDocument()
+  expect(screen.getByTestId("learn-topic-no-match")).toBeInTheDocument()
+  expect(screen.queryByRole("link", { name: /^Anger$/i })).not.toBeInTheDocument()
 
-  fireEvent.click(screen.getByRole("link", { name: /^Anger$/i }))
+  fireEvent.click(screen.getByTestId("learn-browse-all-topics"))
 
   await waitFor(() => {
     expect(screen.queryByText(/No matching topic found/i)).not.toBeInTheDocument()
-    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-anger?from=topics")
+    expect(screen.getByRole("link", { name: /^Anger$/i })).toBeInTheDocument()
+    expect(screen.getByTestId("location-display")).toHaveTextContent("/learn?tab=topics")
   })
 })
 
