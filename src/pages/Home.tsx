@@ -10,7 +10,6 @@ import {
   IconMoon,
   IconSun,
 } from '../components/icons'
-import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import StreakBadge from '../components/StreakBadge'
 import { useHukamnama } from '../hooks/useHukamnama'
 import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
@@ -1267,28 +1266,6 @@ export default function Home() {
               )}
             </div>
 
-            <div
-              className="section-shell-quiet p-4"
-              data-testid="home-read-today-source-browser-shell"
-              data-ai-surface="home-read-today-source-browser"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="eyebrow">{libraryCopy.sourceBrowsing}</p>
-                  <p className="mt-2 max-w-[32ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
-                    {libraryCopy.sourceBrowsingBody}
-                  </p>
-                </div>
-                <span className="chip-pill shrink-0">{homeCopy.read}</span>
-              </div>
-
-              <div className="mt-4">
-                <ScriptureSourceBrowser
-                  dataTestId="home-read-today-source-browser"
-                  sectionClassName="surface-primary px-4 py-4"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

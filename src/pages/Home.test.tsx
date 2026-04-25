@@ -250,16 +250,15 @@ test('keeps today’s guidance hero action singular when next best action points
   expect(screen.getByTestId('home-next-best-action')).toHaveTextContent(/when the mind is anxious/i)
 })
 
-test('replaces the lower duplicate cards with one read-today source browser surface', async () => {
+test('keeps source browsing off home so Read owns the bottom source dropdown', async () => {
   renderHome()
 
-  expect(screen.getByTestId('home-read-today-source-browser-shell')).toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today-source-browser')).toHaveAttribute('data-component', 'scripture-source-browser')
+  expect(screen.queryByTestId('home-read-today-source-browser-shell')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today-source-browser')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-guidance')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-source-browser')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-read')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-next-library')).not.toBeInTheDocument()
-  expect(screen.getByText(/browse by source/i)).toBeInTheDocument()
 })
 
 test('shows a featured shabad card from Learn inside read today', async () => {
@@ -305,7 +304,7 @@ test('rebuilds read today around one live reading and discovery surface', () => 
 
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
   expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today-source-browser')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today-source-browser')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/ardaas \+ hukamnama/i)
   expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/today in learn/i)).not.toBeInTheDocument()
