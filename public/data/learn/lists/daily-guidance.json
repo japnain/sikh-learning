@@ -37,7 +37,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -102,7 +102,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -168,8 +168,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -198,18 +198,18 @@
   },
   {
     "id": "guidance-ambrosial-speech-needs-praise",
-    "title": "Give the tongue a truer master",
-    "summary": "The tongue is corrected by praise, restraint, and truth. Return the mouth to praise before it carries hurt.",
-    "takeaway": "Return the mouth to praise before it carries hurt.",
-    "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+    "title": "Let praise discipline the tongue",
+    "summary": "Ambrosial speech is not merely gentle tone; it is the tongue brought under the Lord’s praise. Let praise train the mouth before sharpness takes the room.",
+    "takeaway": "Let praise train the tongue before sharpness takes the room.",
+    "lifeApplication": "Before the next sentence leaves you, let one line of praise pass through the mind and choose the words that can stand beside it.",
     "source": {
       "deepDiveId": "shabad-ambrosial-speech-pure-conduct",
       "verseIds": [
         11748,
         11749
       ],
-      "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
-      "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+      "shortMeaning": "The highest speech is the tongue that hears and utters the Lord’s praise.",
+      "lifeApplication": "Let praise interrupt the sentence before harshness gives it a shape."
     },
     "relatedTopicIds": [
       "topic-speech"
@@ -234,15 +234,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
+        "coreClaim": "The highest speech is the tongue that hears and utters the Lord’s praise.",
         "emotionalState": "performing, harsh, scattered",
-        "turn": "The truest religion is clean conduct sustained by Naam.",
-        "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+        "turn": "The shabad measures speech by whether it has been cleansed into praise, not by whether it sounds controlled.",
+        "practicalImplication": "Before the next sentence leaves you, let one line of praise pass through the mind and choose the words that can stand beside it.",
         "bannedOverreach": []
       },
       "scores": {
@@ -300,7 +300,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -365,7 +365,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -430,7 +430,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -495,7 +495,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -560,7 +560,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -625,7 +625,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -690,7 +690,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -755,7 +755,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -820,7 +820,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -885,7 +885,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -950,7 +950,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -1015,7 +1015,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1145,7 +1145,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1210,7 +1210,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1276,7 +1276,7 @@
       ]
     },
     "editorial": {
-      "status": "locked",
+      "status": "approved",
       "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
@@ -1342,7 +1342,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1407,7 +1407,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -1472,8 +1472,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -1538,8 +1538,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -1604,7 +1604,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -1669,7 +1669,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1734,7 +1734,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1763,18 +1763,18 @@
   },
   {
     "id": "guidance-choose-settlement-over-motion",
-    "title": "Choose settlement over motion",
-    "summary": "Better company teaches the wandering mind how to settle. Return the mind to better company before it scatters again.",
-    "takeaway": "Return the mind to better company before it scatters again.",
-    "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+    "title": "Make room for fresh Naam to settle",
+    "summary": "Freshness does not come from more movement; it comes when the mind is joined to the True Guru and Naam abides within. Let the mind stay long enough for the newness to come from inside.",
+    "takeaway": "Let the True Guru hold the mind long enough for Naam to arrive fresh.",
+    "lifeApplication": "Before adding another stimulation or plan, sit with one line of Bani until the hunger for novelty starts to lose authority.",
     "source": {
       "deepDiveId": "shabad-fresh-naam-enters-the-mind",
       "verseIds": [
         2771,
         2772
       ],
-      "shortMeaning": "Better company teaches the wandering mind how to settle.",
-      "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+      "shortMeaning": "The True Guru breaks old cycles and lets the ever-fresh Naam abide within the mind.",
+      "lifeApplication": "Stay with the Guru’s word before reaching for novelty; let freshness come from Naam rather than motion."
     },
     "relatedTopicIds": [
       "topic-restlessness"
@@ -1799,14 +1799,14 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v1",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "Better company teaches the wandering mind how to settle.",
+        "coreClaim": "The True Guru breaks old cycles and lets the ever-fresh Naam abide within the mind.",
         "emotionalState": "scattered, unsettled, wandering",
-        "turn": "Stay still long enough for fresh Naam to settle.",
-        "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+        "turn": "The shabad redirects restlessness away from novelty and toward the Shabad that lets Naam settle inside.",
+        "practicalImplication": "Before adding another stimulation or plan, sit with one line of Bani until the hunger for novelty starts to lose authority.",
         "bannedOverreach": []
       },
       "scores": {
@@ -1864,7 +1864,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -1929,7 +1929,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -1994,7 +1994,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2059,7 +2059,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2124,7 +2124,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2189,7 +2189,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2254,7 +2254,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2319,7 +2319,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2384,7 +2384,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2449,7 +2449,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2514,7 +2514,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2543,10 +2543,10 @@
   },
   {
     "id": "guidance-doubt-cut-from-within",
-    "title": "Return before reopening every question",
-    "summary": "Doubt weakens when lived remembrance outruns inner argument. Stay with one clear line until doubt loses room.",
-    "takeaway": "Stay with one clear line until doubt loses room.",
-    "lifeApplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
+    "title": "Let the Guru’s word steady the doubt",
+    "summary": "Doubt loses force when the Guru’s word is allowed to govern the mind longer than argument does. Let one trusted instruction outlast the next inner objection.",
+    "takeaway": "Let the instruction you already trust outlast the next argument.",
+    "lifeApplication": "When the mind starts circling, return to one line you already trust and obey it in one small act before seeking another answer.",
     "source": {
       "deepDiveId": "shabad-sweet-speech-humble-walk",
       "verseIds": [
@@ -2554,8 +2554,8 @@
         1294,
         1295
       ],
-      "shortMeaning": "Doubt weakens when lived remembrance outruns inner argument.",
-      "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows."
+      "shortMeaning": "Peace grows as the Guru’s word is lived and doubt stops ruling the mind.",
+      "lifeApplication": "Let one trusted line become action before reopening the whole debate."
     },
     "relatedTopicIds": [
       "topic-speech"
@@ -2580,15 +2580,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:3-line-window",
       "evidence": {
-        "coreClaim": "Doubt weakens when lived remembrance outruns inner argument.",
+        "coreClaim": "Peace grows as the Guru’s word is lived and doubt stops ruling the mind.",
         "emotionalState": "sharp, performing, defensive",
-        "turn": "When remembrance is real, it reaches the mouth and the walk.",
-        "practicalImplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
+        "turn": "In this window, doubt is answered by walking in the Guru’s Will until peace becomes practical.",
+        "practicalImplication": "When the mind starts circling, return to one line you already trust and obey it in one small act before seeking another answer.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2646,7 +2646,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2711,7 +2711,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2775,8 +2775,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2841,7 +2841,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -2906,7 +2906,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -2971,7 +2971,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -3036,7 +3036,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -3101,7 +3101,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -3166,7 +3166,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3231,7 +3231,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3297,8 +3297,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -3364,8 +3364,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -3429,8 +3429,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3496,8 +3496,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -3562,7 +3562,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3627,7 +3627,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3692,7 +3692,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -3757,7 +3757,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -3823,8 +3823,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -3889,7 +3889,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -3954,7 +3954,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4019,7 +4019,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4085,8 +4085,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -4151,7 +4151,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4216,7 +4216,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4281,7 +4281,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4346,7 +4346,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4411,7 +4411,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4476,7 +4476,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4541,7 +4541,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4606,7 +4606,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4672,8 +4672,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -4738,7 +4738,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4803,7 +4803,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -4868,8 +4868,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -4934,7 +4934,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -4999,8 +4999,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5065,7 +5065,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5130,8 +5130,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5197,8 +5197,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -5263,8 +5263,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -5324,8 +5324,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -5385,7 +5385,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -5445,7 +5445,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5510,7 +5510,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -5539,18 +5539,18 @@
   },
   {
     "id": "guidance-hukam-inside-everything-2",
-    "title": "Stop arguing with what already stands",
-    "summary": "Peace begins where argument with Hukam starts ending. Let quiet trust outrun resistance. The emphasis here is stop arguing with what already stands.",
-    "takeaway": "Let quiet trust outrun resistance.",
-    "lifeApplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+    "title": "See everything standing inside Hukam",
+    "summary": "Bodies, souls, status, pain, blessing, and wandering all stand inside Hukam. Let that wideness leave ego with less to say.",
+    "takeaway": "Let the wideness of Hukam leave ego with less to say.",
+    "lifeApplication": "When resistance rises, name one part of this moment you did not author and let humility answer before complaint does.",
     "source": {
       "deepDiveId": "shabad-hukam-inside-everything",
       "verseIds": [
         11,
         12
       ],
-      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
-      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+      "shortMeaning": "Everything stands within Hukam, and understanding this leaves ego with less to say.",
+      "lifeApplication": "Name what is already inside Hukam before the ego begins its complaint."
     },
     "relatedTopicIds": [
       "topic-hukam"
@@ -5575,14 +5575,14 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v1",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "Peace begins where argument with Hukam starts ending.",
+        "coreClaim": "Everything stands within Hukam, and understanding this leaves ego with less to say.",
         "emotionalState": "restless, controlling, uncertain",
-        "turn": "Everything stands within Hukam, and ego thins when this is seen.",
-        "practicalImplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+        "turn": "The pauree widens reality until no condition remains outside Command and self-importance has no clean place to stand.",
+        "practicalImplication": "When resistance rises, name one part of this moment you did not author and let humility answer before complaint does.",
         "bannedOverreach": []
       },
       "scores": {
@@ -5639,8 +5639,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -5705,7 +5705,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -5770,7 +5770,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5834,8 +5834,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5900,7 +5900,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -5965,7 +5965,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -6030,7 +6030,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6095,7 +6095,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6160,7 +6160,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6225,7 +6225,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -6290,7 +6290,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6355,7 +6355,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6420,7 +6420,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6485,7 +6485,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6550,7 +6550,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6615,7 +6615,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6680,7 +6680,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -6745,7 +6745,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6810,7 +6810,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -6875,7 +6875,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -6940,7 +6940,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7005,7 +7005,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7070,7 +7070,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7135,7 +7135,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7200,7 +7200,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7265,7 +7265,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7330,7 +7330,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7395,7 +7395,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7460,7 +7460,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7525,7 +7525,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7590,7 +7590,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7655,7 +7655,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7720,7 +7720,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -7785,7 +7785,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7850,7 +7850,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7915,7 +7915,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -7980,7 +7980,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8045,7 +8045,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8110,7 +8110,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8175,7 +8175,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8240,7 +8240,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8305,7 +8305,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8370,7 +8370,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8435,7 +8435,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8500,7 +8500,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8565,7 +8565,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8630,7 +8630,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8695,7 +8695,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8760,7 +8760,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -8825,7 +8825,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8890,7 +8890,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -8955,7 +8955,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -9020,7 +9020,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9085,8 +9085,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9151,7 +9151,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9215,8 +9215,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -9282,8 +9282,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -9348,7 +9348,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9413,8 +9413,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9479,7 +9479,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9544,7 +9544,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -9609,8 +9609,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -9676,8 +9676,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -9742,7 +9742,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -9807,7 +9807,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -9873,8 +9873,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -9939,8 +9939,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10005,7 +10005,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10070,7 +10070,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10135,7 +10135,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10200,7 +10200,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10264,8 +10264,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10294,18 +10294,18 @@
   },
   {
     "id": "guidance-priceless-mind",
-    "title": "Return before reopening every question",
-    "summary": "Clarity returns when the mind stays with one clear line. Let trust return before inquiry multiplies again.",
-    "takeaway": "Let trust return before inquiry multiplies again.",
-    "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
+    "title": "Do not trade the jewel-mind for doubt",
+    "summary": "The mind is called a priceless jewel, not a debating room to be spent cheaply. Place it in Naam and sangat before doubt bargains away its honor.",
+    "takeaway": "Treat the mind as a jewel by placing it in Naam and sangat.",
+    "lifeApplication": "When inquiry becomes agitation, stop and ask whether this question is preserving the jewel-mind or spending it for a shell.",
     "source": {
       "deepDiveId": "shabad-extinguish-the-fire-of-doubt",
       "verseIds": [
         923,
         924
       ],
-      "shortMeaning": "Clarity returns when the mind stays with one clear line.",
-      "lifeApplication": "Before reopening every question, return to one clear line and stay with it."
+      "shortMeaning": "The priceless mind receives honor through Naam and finds the Lord in true sangat.",
+      "lifeApplication": "When doubt cheapens the mind, return it to Naam and the company that honors it."
     },
     "relatedTopicIds": [
       "topic-doubt"
@@ -10330,15 +10330,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "Clarity returns when the mind stays with one clear line.",
+        "coreClaim": "The priceless mind receives honor through Naam and finds the Lord in true sangat.",
         "emotionalState": "confused, restless, skeptical",
-        "turn": "Doubt clears when the Guru's word outlasts wandering.",
-        "practicalImplication": "Before researching one more answer, repeat the clearest line you already trust until the breathing slows.",
+        "turn": "The shabad refuses to let the jewel of consciousness be traded for wandering doubt or cheap distraction.",
+        "practicalImplication": "When inquiry becomes agitation, stop and ask whether this question is preserving the jewel-mind or spending it for a shell.",
         "bannedOverreach": []
       },
       "scores": {
@@ -10397,7 +10397,7 @@
       ]
     },
     "editorial": {
-      "status": "locked",
+      "status": "approved",
       "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
@@ -10465,8 +10465,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:4-line-window",
       "evidence": {
@@ -10531,7 +10531,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10596,7 +10596,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10661,7 +10661,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10725,8 +10725,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10791,7 +10791,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10856,7 +10856,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -10921,7 +10921,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -10986,7 +10986,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11051,7 +11051,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11116,7 +11116,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11180,8 +11180,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11246,7 +11246,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11311,7 +11311,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11376,7 +11376,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11441,7 +11441,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11470,10 +11470,10 @@
   },
   {
     "id": "guidance-search-is-not-settlement",
-    "title": "Choose settlement over motion",
-    "summary": "Better company teaches the wandering mind how to settle. Return the mind to better company before it scatters again. The emphasis here is choose settlement over motion.",
-    "takeaway": "Return the mind to better company before it scatters again.",
-    "lifeApplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+    "title": "Let the search cool in saintly company",
+    "summary": "The shabad names the exhaustion of forests, philosophies, rituals, postures, and repeated rising without peace. Let the search cool where mercy brings holy company.",
+    "takeaway": "Bring the search to the company where mind and body can cool.",
+    "lifeApplication": "Before changing methods again, choose one steady place of sangat or Bani and let the restless body remain there without bargaining.",
     "source": {
       "deepDiveId": "shabad-search-ends-in-saint-company",
       "verseIds": [
@@ -11481,8 +11481,8 @@
         3899,
         3900
       ],
-      "shortMeaning": "Better company teaches the wandering mind how to settle.",
-      "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+      "shortMeaning": "Restless searching cools only when mercy brings the seeker into holy company.",
+      "lifeApplication": "Before changing methods again, stay with one true company long enough for the body to cool."
     },
     "relatedTopicIds": [
       "topic-restlessness"
@@ -11507,15 +11507,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:3-line-window",
       "evidence": {
-        "coreClaim": "Better company teaches the wandering mind how to settle.",
+        "coreClaim": "Restless searching cools only when mercy brings the seeker into holy company.",
         "emotionalState": "wandering, exhausted, seeking",
-        "turn": "Bring your searching to holy company and let it cool there.",
-        "practicalImplication": "Before adding another plan, give the restless heart one quiet place to stay.",
+        "turn": "The shabad exhausts spiritual roaming and then lets mercy, sangat, and patience become the place of arrival.",
+        "practicalImplication": "Before changing methods again, choose one steady place of sangat or Bani and let the restless body remain there without bargaining.",
         "bannedOverreach": []
       },
       "scores": {
@@ -11573,7 +11573,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11638,7 +11638,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11703,7 +11703,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11768,7 +11768,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11833,7 +11833,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -11897,8 +11897,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -11963,7 +11963,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12028,7 +12028,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12093,7 +12093,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12158,7 +12158,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12223,7 +12223,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12289,8 +12289,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -12355,7 +12355,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12420,8 +12420,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12486,7 +12486,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12551,7 +12551,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12616,7 +12616,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12681,7 +12681,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12746,7 +12746,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12812,8 +12812,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:3-line-window",
       "evidence": {
@@ -12878,7 +12878,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -12943,7 +12943,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -12972,18 +12972,18 @@
   },
   {
     "id": "guidance-stop-arguing-with-what-already-stands",
-    "title": "Stop arguing with what already stands",
-    "summary": "Peace begins where argument with Hukam starts ending. Let quiet trust outrun resistance.",
-    "takeaway": "Let quiet trust outrun resistance.",
-    "lifeApplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+    "title": "Accept the difficult sweetness of Hukam",
+    "summary": "This source admits that speaking is easy while accepting Hukam is difficult. Tell the truth like a child, then practice receiving the Will you cannot manage.",
+    "takeaway": "Tell the truth like a child, then practice accepting the Will you cannot manage.",
+    "lifeApplication": "When you want to argue with what happened, begin with one honest childlike sentence before the Beloved and ask to accept one piece of it cleanly.",
     "source": {
       "deepDiveId": "shabad-mercy-lets-the-child-tell-the-truth",
       "verseIds": [
         2096,
         2097
       ],
-      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
-      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+      "shortMeaning": "The child can admit mistakes before the Merciful One, even while accepting Hukam remains difficult.",
+      "lifeApplication": "Bring resistance into honest prayer instead of dressing it as control."
     },
     "relatedTopicIds": [
       "topic-hukam"
@@ -13008,14 +13008,14 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
-      "voiceVersion": "sggs-editorial-v1",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "Peace begins where argument with Hukam starts ending.",
+        "coreClaim": "The child can admit mistakes before the Merciful One, even while accepting Hukam remains difficult.",
         "emotionalState": "resisting, controlling, argumentative",
-        "turn": "Bring the truth about failure into the Lord's mercy.",
-        "practicalImplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+        "turn": "The shabad holds mercy and difficulty together: confession becomes possible before the Will that cannot be mastered.",
+        "practicalImplication": "When you want to argue with what happened, begin with one honest childlike sentence before the Beloved and ask to accept one piece of it cleanly.",
         "bannedOverreach": []
       },
       "scores": {
@@ -13073,7 +13073,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13138,7 +13138,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13203,7 +13203,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13268,7 +13268,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13333,7 +13333,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13398,7 +13398,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13463,7 +13463,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13526,7 +13526,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13589,7 +13589,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13652,7 +13652,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13714,8 +13714,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13780,7 +13780,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -13845,7 +13845,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -13874,18 +13874,18 @@
   },
   {
     "id": "guidance-sweet-speech-humble-walk",
-    "title": "Give the tongue a truer master",
-    "summary": "The tongue is corrected by praise, restraint, and truth. Return the mouth to praise before it carries hurt. The emphasis here is give the tongue a truer master.",
-    "takeaway": "Return the mouth to praise before it carries hurt.",
-    "lifeApplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+    "title": "Let remembrance soften the walk",
+    "summary": "Here sweetness of speech is the fruit of sangat, one-pointed Naam, and humility in the body. Let remembrance reach the tone, the pace, and the way you enter the room.",
+    "takeaway": "Let Naam reach the tone, the pace, and the way you enter the room.",
+    "lifeApplication": "Before answering, lower the speed of the body first; let the next words come from the peace you are willing to walk in.",
     "source": {
       "deepDiveId": "shabad-sweet-speech-humble-walk",
       "verseIds": [
         1288,
         1289
       ],
-      "shortMeaning": "The tongue is corrected by praise, restraint, and truth.",
-      "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+      "shortMeaning": "Sweet speech and humble walking arise when Naam is kept in the heart through sangat.",
+      "lifeApplication": "Slow the body before answering so remembrance can shape both tone and posture."
     },
     "relatedTopicIds": [
       "topic-speech"
@@ -13910,15 +13910,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "The tongue is corrected by praise, restraint, and truth.",
+        "coreClaim": "Sweet speech and humble walking arise when Naam is kept in the heart through sangat.",
         "emotionalState": "sharp, performing, defensive",
-        "turn": "When remembrance is real, it reaches the mouth and the walk.",
-        "practicalImplication": "Before the next message leaves your mouth, pause with one breath and choose the sentence that can still be honored tonight.",
+        "turn": "The shabad moves from performative religion to embodied peace: the mouth sweetens because the heart is held by Naam.",
+        "practicalImplication": "Before answering, lower the speed of the body first; let the next words come from the peace you are willing to walk in.",
         "bannedOverreach": []
       },
       "scores": {
@@ -13976,7 +13976,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14041,7 +14041,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -14106,7 +14106,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14171,7 +14171,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14236,7 +14236,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -14265,10 +14265,10 @@
   },
   {
     "id": "guidance-the-creator-acts",
-    "title": "Stop arguing with what already stands",
-    "summary": "The Creator acts everywhere; peace begins when the self stops claiming private authorship. Peace begins where argument with Hukam starts ending.",
-    "takeaway": "Peace begins where argument with Hukam starts ending.",
-    "lifeApplication": "Before arguing with the moment again, stop, name what is already here, and let one resistance fall away.",
+    "title": "Return agency to the Creator",
+    "summary": "Pain becomes medicine when it exposes the false claim that the self is in charge. Return agency to the Creator whose light and work pervade everything.",
+    "takeaway": "Let pain loosen the claim that you are carrying reality alone.",
+    "lifeApplication": "When pain makes you clench for control, say plainly, “You are the Doer,” and release one outcome you were pretending to command.",
     "source": {
       "deepDiveId": "shabad-suffering-as-medicine",
       "verseIds": [
@@ -14276,8 +14276,8 @@
         21092,
         21093
       ],
-      "shortMeaning": "The Creator acts everywhere; peace begins when the self stops claiming private authorship.",
-      "lifeApplication": "Before resistance takes over the room, name what is already here and return the moment to the Creator's care."
+      "shortMeaning": "Suffering can reveal the truth that the Creator acts where self-effort cannot command reality.",
+      "lifeApplication": "Let pain uncover the false authorship you were trying to hold."
     },
     "relatedTopicIds": [],
     "relatedShabadIds": [
@@ -14299,15 +14299,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:3-line-window",
       "evidence": {
-        "coreClaim": "The Creator acts everywhere; peace begins when the self stops claiming private authorship.",
+        "coreClaim": "Suffering can reveal the truth that the Creator acts where self-effort cannot command reality.",
         "emotionalState": "hurting, resentful, confused",
-        "turn": "Let pain reveal what comfort keeps covering.",
-        "practicalImplication": "Before arguing with the moment again, stop, name what is already here, and let one resistance fall away.",
+        "turn": "The shabad turns pain from resentment into surrender by returning action, power, and praise to the Creator.",
+        "practicalImplication": "When pain makes you clench for control, say plainly, “You are the Doer,” and release one outcome you were pretending to command.",
         "bannedOverreach": []
       },
       "scores": {
@@ -14365,7 +14365,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14430,8 +14430,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14496,7 +14496,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14561,7 +14561,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -14626,7 +14626,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14691,7 +14691,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14756,8 +14756,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14822,7 +14822,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -14887,7 +14887,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -14952,7 +14952,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15017,7 +15017,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15046,18 +15046,18 @@
   },
   {
     "id": "guidance-what-pleases-you",
-    "title": "Stop arguing with what already stands",
-    "summary": "Peace begins where argument with Hukam starts ending. Receive what already stands before resistance starts rehearsing itself again.",
-    "takeaway": "Let quiet trust outrun resistance.",
-    "lifeApplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+    "title": "Receive what the Beloved gives",
+    "summary": "Whatever pleases the Beloved comes to pass, and what is given is what the soul receives. Receive the moment under the One who gives, separates, and reunites.",
+    "takeaway": "Receive the given moment under the One who gives and reunites.",
+    "lifeApplication": "Before resistance rehearses its case, name what has been given and answer it with one act of trust instead of another argument.",
     "source": {
       "deepDiveId": "shabad-what-pleases-you-comes-to-pass",
       "verseIds": [
         498,
         499
       ],
-      "shortMeaning": "Peace begins where argument with Hukam starts ending.",
-      "lifeApplication": "Before you argue with the moment again, stop and name what is already here."
+      "shortMeaning": "The soul receives under the Beloved’s pleasure, not under the ego’s demand for control.",
+      "lifeApplication": "Name what has been given before resistance turns it into an argument."
     },
     "relatedTopicIds": [
       "topic-hukam"
@@ -15082,15 +15082,15 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
-      "voiceVersion": "sggs-editorial-v1",
+      "status": "approved",
+      "origin": "manual",
+      "voiceVersion": "sggs-editorial-v2",
       "templateKey": "guidance:2-line-window",
       "evidence": {
-        "coreClaim": "Peace begins where argument with Hukam starts ending.",
+        "coreClaim": "The soul receives under the Beloved’s pleasure, not under the ego’s demand for control.",
         "emotionalState": "controlling, unsettled, lonely",
-        "turn": "Learn to receive under the Lord's pleasure rather than argue with it.",
-        "practicalImplication": "When the chest hardens against reality, return to Hukam before reaction chooses the tone.",
+        "turn": "The shabad places giving, receiving, separation, reunion, and service inside the Creator’s pleasure.",
+        "practicalImplication": "Before resistance rehearses its case, name what has been given and answer it with one act of trust instead of another argument.",
         "bannedOverreach": []
       },
       "scores": {
@@ -15148,7 +15148,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15213,7 +15213,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15278,7 +15278,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15342,8 +15342,8 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15408,7 +15408,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:1-line-window",
       "evidence": {
@@ -15473,7 +15473,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15538,7 +15538,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {
@@ -15603,7 +15603,7 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
       "templateKey": "guidance:2-line-window",
       "evidence": {

@@ -1,9 +1,9 @@
 {
   "id": "guidance-doubt-cut-from-within",
-  "title": "Return before reopening every question",
-  "summary": "Doubt weakens when lived remembrance outruns inner argument. Stay with one clear line until doubt loses room.",
-  "takeaway": "Stay with one clear line until doubt loses room.",
-  "lifeApplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
+  "title": "Let the Guru’s word steady the doubt",
+  "summary": "Doubt loses force when the Guru’s word is allowed to govern the mind longer than argument does. Let one trusted instruction outlast the next inner objection.",
+  "takeaway": "Let the instruction you already trust outlast the next argument.",
+  "lifeApplication": "When the mind starts circling, return to one line you already trust and obey it in one small act before seeking another answer.",
   "source": {
     "deepDiveId": "shabad-sweet-speech-humble-walk",
     "verseIds": [
@@ -11,8 +11,8 @@
       1294,
       1295
     ],
-    "shortMeaning": "Doubt weakens when lived remembrance outruns inner argument.",
-    "lifeApplication": "Before researching one more answer, repeat the clearest line you already trust until your breathing slows."
+    "shortMeaning": "Peace grows as the Guru’s word is lived and doubt stops ruling the mind.",
+    "lifeApplication": "Let one trusted line become action before reopening the whole debate."
   },
   "relatedTopicIds": [
     "topic-speech"
@@ -37,15 +37,15 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
-    "voiceVersion": "sggs-editorial-v1",
+    "status": "approved",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
     "templateKey": "guidance:3-line-window",
     "evidence": {
-      "coreClaim": "Doubt weakens when lived remembrance outruns inner argument.",
+      "coreClaim": "Peace grows as the Guru’s word is lived and doubt stops ruling the mind.",
       "emotionalState": "sharp, performing, defensive",
-      "turn": "When remembrance is real, it reaches the mouth and the walk.",
-      "practicalImplication": "When the mind starts circling again, write the one instruction you already know and keep it before asking another question.",
+      "turn": "In this window, doubt is answered by walking in the Guru’s Will until peace becomes practical.",
+      "practicalImplication": "When the mind starts circling, return to one line you already trust and obey it in one small act before seeking another answer.",
       "bannedOverreach": []
     },
     "scores": {
