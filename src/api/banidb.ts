@@ -184,16 +184,30 @@ interface AmritKeertanHeaderResponse {
 }
 
 interface AmritKeertanIndexResponse {
+  IndexID?: number
+  HeaderID?: number
   ShabadID: number
   GurmukhiUni: string
   Transliterations?: {
     en?: string
     english?: string
   }
+  Translations?: Record<string, Record<string, string | Record<string, string>>>
+  Ang?: number
+  LineNo?: number
   SourceEnglish?: string
   SourceID?: string
+  SourceGurmukhi?: string
+  SourceUnicode?: string
   RaagEnglish?: string
+  RaagGurmukhi?: string
+  RaagUnicode?: string
+  RaagWithPage?: string
   RaagID?: number
+  WriterID?: number
+  WriterEnglish?: string
+  WriterGurmukhi?: string
+  WriterUnicode?: string
   PageNo?: number
 }
 
@@ -259,13 +273,21 @@ export interface AmritKeertanHeader {
 }
 
 export interface AmritKeertanShabad {
+  indexId: number
+  headerId: number
   shabadId: number
   gurmukhi: string
   transliteration: string
+  translationEn: string
   source: string
   sourceMeta?: ScriptureSourceMeta | null
+  sourceAng: number | null
   raag: string
   raagMeta?: ScriptureRaagMeta | null
+  writer: string
+  writerMeta?: ScriptureWriterMeta | null
+  lineNo: number | null
+  amritPageNo: number
   pageNo: number
 }
 
@@ -283,7 +305,12 @@ function toScripture(source: BaniSource): string {
 }
 
 function safeText(val: unknown): string {
-  if (typeof val === 'string') return val
+  if (typeof val === 'string') {
+    return val
+      .replace(/<[^>]*>/g, '')
+      .replace(/<\/?[^>]*$/g, '')
+      .trim()
+  }
   return ''
 }
 
@@ -1019,24 +1046,44 @@ export async function fetchAmritKeertanShabads(headerId: number): Promise<AmritK
   if (!res.ok) throw new Error(`BaniDB /amritkeertan/index error: ${res.status}`)
 
   return (data.index ?? []).map(item => ({
+    indexId: item.IndexID ?? 0,
+    headerId: item.HeaderID ?? headerId,
     shabadId: item.ShabadID,
     gurmukhi: item.GurmukhiUni,
     transliteration: getEnglishTransliteration(item.Transliterations),
+    translationEn: getEnglish(item.Translations),
     source: safeText(item.SourceEnglish),
-    sourceMeta: item.SourceEnglish || item.SourceID
+    sourceMeta: item.SourceEnglish || item.SourceID || item.SourceGurmukhi || item.SourceUnicode || item.Ang
       ? {
           sourceId: safeText(item.SourceID) || null,
+          gurmukhi: safeText(item.SourceGurmukhi),
+          unicode: safeText(item.SourceUnicode),
           english: safeText(item.SourceEnglish),
-          pageNo: item.PageNo ?? null,
+          pageNo: item.Ang ?? null,
         }
       : null,
+    sourceAng: item.Ang ?? null,
     raag: safeText(item.RaagEnglish),
-    raagMeta: item.RaagEnglish || item.RaagID
+    raagMeta: item.RaagEnglish || item.RaagID || item.RaagGurmukhi || item.RaagUnicode || item.RaagWithPage
       ? {
           raagId: item.RaagID ?? null,
+          gurmukhi: safeText(item.RaagGurmukhi),
+          unicode: safeText(item.RaagUnicode),
           english: safeText(item.RaagEnglish),
+          raagWithPage: safeText(item.RaagWithPage),
         }
       : null,
+    writer: safeText(item.WriterEnglish),
+    writerMeta: item.WriterEnglish || item.WriterID || item.WriterGurmukhi || item.WriterUnicode
+      ? {
+          writerId: item.WriterID ?? null,
+          gurmukhi: safeText(item.WriterGurmukhi),
+          unicode: safeText(item.WriterUnicode),
+          english: safeText(item.WriterEnglish),
+        }
+      : null,
+    lineNo: item.LineNo ?? null,
+    amritPageNo: item.PageNo ?? 0,
     pageNo: item.PageNo ?? 0,
   }))
 }

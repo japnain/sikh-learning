@@ -268,19 +268,24 @@ test('opens Raag Gauri through an exact BaniDB route from the exhaustive SGGS li
   })
 })
 
-test('loads Amrit Keertan into a focused chapter view', async () => {
-  renderBanis()
-  fireEvent.click(screen.getByText('Amrit Keertan'))
+test('links Amrit Keertan to its directory page instead of opening a dropdown panel', () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<><Banis /><LocationSpy /></>} />
+        <Route path="/banis/amrit-keertan" element={<LocationSpy />} />
+      </Routes>
+    </MemoryRouter>
+  )
 
-  await waitFor(() => expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥'))
+  const link = screen.getByTestId('banis-open-amrit-keertan')
+  expect(link).toHaveAttribute('href', '/banis/amrit-keertan')
+  expect(screen.queryByText('Loading Amrit Keertan…')).not.toBeInTheDocument()
+  expect(document.querySelector('#banis-amrit-keertan-panel')).toBeNull()
 
-  await waitFor(() => expect(screen.getByRole('button', { name: /back to chapters/i })).toBeInTheDocument())
-  expect(screen.getByText(/Start from first shabad/i)).toBeInTheDocument()
-  expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
-  expect(screen.getAllByText('Sri Guru Granth Sahib Ji').length).toBeGreaterThan(0)
-  expect(screen.getByText('Raag Gauree')).toBeInTheDocument()
-  expect(screen.getByText('Ang 65')).toBeInTheDocument()
+  fireEvent.click(link)
+
+  expect(screen.getByTestId('location').textContent).toBe('/banis/amrit-keertan')
 })
 
 test('loads Rehat lists, chapters, and chapter content inside Read', async () => {
@@ -310,20 +315,6 @@ test('filters Rehat chapter names before opening a chapter', async () => {
 
   expect(screen.getByText('Shared Conduct')).toBeInTheDocument()
   expect(screen.queryByText('Daily Discipline')).not.toBeInTheDocument()
-})
-
-test('supports searching within an Amrit Keertan chapter', async () => {
-  renderBanis()
-  fireEvent.click(screen.getByText('Amrit Keertan'))
-
-  await waitFor(() => expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument())
-  fireEvent.click(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥'))
-
-  await waitFor(() => expect(screen.getByPlaceholderText(/search within this chapter/i)).toBeInTheDocument())
-  fireEvent.change(screen.getByPlaceholderText(/search within this chapter/i), { target: { value: 'ਡੰਡਉਤਿ' } })
-
-  expect(screen.getByText('ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥')).toBeInTheDocument()
-  expect(screen.queryByText('ਪ੍ਰਭ ਪਾਸਿ ਜਨ ਕੀ ਅਰਦਾਸਿ ਤੂ ਸਚਾ ਸਾਂਈ ॥')).not.toBeInTheDocument()
 })
 
 test('supports direct ang lookup mode', async () => {
@@ -458,9 +449,6 @@ test('keeps the nav-safe page shell while lower sections still open after other 
   fireEvent.click(screen.getByText('Nitnem'))
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Raag Sections'))
-  fireEvent.click(screen.getByText('Amrit Keertan'))
 
-  await waitFor(() => {
-    expect(screen.getByText('ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥')).toBeInTheDocument()
-  })
+  expect(screen.getByTestId('banis-open-amrit-keertan')).toHaveAttribute('href', '/banis/amrit-keertan')
 })

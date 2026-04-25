@@ -69,6 +69,29 @@ test('normalizes legacy focused selections onto the single supported bani route'
   expect(normalizePersistedNitnemIds(['rehras-sahib-focused', 'rehras-sahib'])).toEqual(['rehras-sahib'])
 })
 
+test('appends newly selected banis and preserves ritual order moves', () => {
+  useNitemStore.setState({
+    selectedIds: ['japji-sahib', 'rehras-sahib'],
+  })
+
+  useNitemStore.getState().toggleSelected('salok-mahalla-9')
+  expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib', 'rehras-sahib', 'salok-mahalla-9'])
+
+  useNitemStore.getState().moveSelected('salok-mahalla-9', 'up')
+  expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib', 'salok-mahalla-9', 'rehras-sahib'])
+
+  useNitemStore.getState().moveSelected('japji-sahib', 'up')
+  expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib', 'salok-mahalla-9', 'rehras-sahib'])
+})
+
+test('prevents removing the final selected bani', () => {
+  useNitemStore.setState({ selectedIds: ['japji-sahib'] })
+
+  useNitemStore.getState().toggleSelected('japji-sahib')
+
+  expect(useNitemStore.getState().selectedIds).toEqual(['japji-sahib'])
+})
+
 test('builds an exact study path with sgLength for adjustable Rehras Sahib', () => {
   const option = getNitnemOption('rehras-sahib')
   expect(option).not.toBeNull()

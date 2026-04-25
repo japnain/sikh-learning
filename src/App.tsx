@@ -17,6 +17,7 @@ const HomePage = lazy(() => import('./pages/Home'))
 const StudyPage = lazy(() => import('./pages/Study'))
 const LibraryPage = lazy(() => import('./pages/Library'))
 const BanisPage = lazy(() => import('./pages/Banis'))
+const AmritKeertanPage = lazy(() => import('./pages/AmritKeertan'))
 const MorePage = lazy(() => import('./pages/More'))
 const LearnPage = lazy(() => import('./pages/Learn'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
@@ -271,6 +272,8 @@ function AppShell() {
                 <Route path="/library" element={<LibraryPage />} />
                 <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
                 <Route path="/library/:workId/page/:pageNumber" element={<LibraryPageReader />} />
+                <Route path="/banis/amrit-keertan" element={<AmritKeertanPage />} />
+                <Route path="/banis/amrit-keertan/:headerId" element={<AmritKeertanPage />} />
                 <Route path="/banis" element={<BanisPage />} />
                 <Route path="/more" element={<MorePage />} />
                 <Route path="/learn/*" element={<LearnPage />} />

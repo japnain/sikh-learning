@@ -282,10 +282,28 @@ test('renders nitnem above the unified read today surface', () => {
 
   expect(nitnem.compareDocumentPosition(readToday) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   expect(screen.queryByTestId('home-nitnem-progress')).not.toBeInTheDocument()
-  expect(screen.queryByTestId('home-nitnem-carousel')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
+  expect(screen.getByTestId('home-nitnem-carousel-controls')).toBeInTheDocument()
   expect(screen.getByTestId('home-nitnem-primary-action')).toBeInTheDocument()
   expect(screen.queryByText(/daily banis complete/i)).not.toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /mark as complete/i })).not.toBeInTheDocument()
+})
+
+test('lets the daily nitnem carousel change the active bani', () => {
+  renderHome()
+
+  expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Japji+Sahib'))
+
+  fireEvent.click(screen.getByRole('button', { name: /next nitnem bani/i }))
+
+  expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Jaap Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Jaap+Sahib'))
+
+  fireEvent.click(screen.getByRole('button', { name: /show rehras sahib/i }))
+
+  expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Rehras Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Rehras+Sahib'))
 })
 
 test('starts the active nitnem card on Japji Sahib in the default daily order', () => {

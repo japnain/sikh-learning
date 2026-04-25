@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
@@ -21,7 +21,7 @@ import { useOnboardingStore } from '../store/onboarding'
 import { useProgressStore } from '../store/progress'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useThemeStore } from '../store/theme'
-import { buildNitnemStudyPath, compareNitnemOptions, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
+import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, useNitemStore } from '../store/nitnem'
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
 import type { UiLocale, VocabEntry } from '../types'
@@ -344,6 +344,8 @@ export default function Home() {
   const homeMessages = HOME_MESSAGES[locale]
   const learningLevelLabels = getLearningLevelLabels(locale)
   const readTodayRef = useRef<HTMLElement | null>(null)
+  const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
+  const nitnemScrollTimeoutRef = useRef<number | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
   const {
@@ -414,7 +416,6 @@ export default function Home() {
     return selectedIds
       .map(optionId => NITNEM_ROUTE_OPTIONS.find(option => option.id === optionId) ?? null)
       .filter((option): option is NitnemRouteOption => option !== null)
-      .sort(compareNitnemOptions)
   }, [selectedIds])
   const nitnemMoment = useMemo<NitnemRouteOption['group']>(() => {
     const hour = new Date(now).getHours()
@@ -422,12 +423,60 @@ export default function Home() {
     if (hour >= 16) return 'Evening'
     return 'Morning'
   }, [now])
-  const activeNitnemOption = useMemo(() => (
-    selectedNitnemOptions.find(option => option.group === nitnemMoment)
-      ?? selectedNitnemOptions[0]
-      ?? null
-  ), [nitnemMoment, selectedNitnemOptions])
-  const nitnemOrderPreview = selectedNitnemOptions.slice(0, 4)
+  const preferredNitnemIndex = useMemo(() => {
+    const momentIndex = selectedNitnemOptions.findIndex(option => option.group === nitnemMoment)
+    return momentIndex >= 0 ? momentIndex : 0
+  }, [nitnemMoment, selectedNitnemOptions])
+  const [activeNitnemIndex, setActiveNitnemIndex] = useState(preferredNitnemIndex)
+  const safeNitnemIndex = selectedNitnemOptions.length > 0
+    ? Math.max(0, Math.min(activeNitnemIndex, selectedNitnemOptions.length - 1))
+    : 0
+  const activeNitnemOption = selectedNitnemOptions[safeNitnemIndex]
+    ?? selectedNitnemOptions[preferredNitnemIndex]
+    ?? selectedNitnemOptions[0]
+    ?? null
+  const nitnemHasCarousel = selectedNitnemOptions.length > 1
+
+  const scrollNitnemCarouselTo = useCallback((index: number) => {
+    const carousel = nitnemCarouselRef.current
+    const target = carousel?.querySelector<HTMLElement>(`[data-nitnem-index="${index}"]`)
+    target?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
+  }, [])
+
+  const setNitnemCarouselIndex = useCallback((index: number) => {
+    if (selectedNitnemOptions.length === 0) return
+    const boundedIndex = Math.max(0, Math.min(index, selectedNitnemOptions.length - 1))
+    setActiveNitnemIndex(boundedIndex)
+    window.requestAnimationFrame(() => scrollNitnemCarouselTo(boundedIndex))
+  }, [scrollNitnemCarouselTo, selectedNitnemOptions.length])
+
+  useEffect(() => {
+    if (!nitnemHasCarousel) return undefined
+    const frame = window.requestAnimationFrame(() => scrollNitnemCarouselTo(safeNitnemIndex))
+    return () => window.cancelAnimationFrame(frame)
+  }, [nitnemHasCarousel, safeNitnemIndex, scrollNitnemCarouselTo])
+
+  useEffect(() => {
+    return () => {
+      if (nitnemScrollTimeoutRef.current) {
+        window.clearTimeout(nitnemScrollTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const handleNitnemCarouselScroll = () => {
+    const carousel = nitnemCarouselRef.current
+    if (!carousel || !nitnemHasCarousel) return
+
+    if (nitnemScrollTimeoutRef.current) {
+      window.clearTimeout(nitnemScrollTimeoutRef.current)
+    }
+
+    nitnemScrollTimeoutRef.current = window.setTimeout(() => {
+      const nextIndex = Math.round(carousel.scrollLeft / Math.max(carousel.clientWidth, 1))
+      setActiveNitnemIndex(Math.max(0, Math.min(nextIndex, selectedNitnemOptions.length - 1)))
+    }, 80)
+  }
   const savedLearnItems = useMemo(
     () => (learnCatalog ? getLearnHomeSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
     [learnCatalog, learnStateSnapshot.savedItemIds]
@@ -765,71 +814,113 @@ export default function Home() {
           </span>
         </div>
 
-        <article
-          className="mt-4 rounded-lg border border-gold/18 bg-[linear-gradient(180deg,rgba(255,254,250,0.96),rgba(248,240,226,0.88))] px-4 py-4 dark:border-gold/20 dark:bg-[linear-gradient(180deg,rgba(35,28,46,0.96),rgba(24,19,34,0.92))]"
-          data-testid="home-nitnem-active-card"
-        >
+        <div className="mt-4">
           {activeNitnemOption ? (
             <>
-              <div className="grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
-                <div className="min-w-0">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
-                    Today&apos;s Bani
-                  </p>
-                  <p lang="pa-Guru" className="mt-3 font-gurmukhi text-[2rem] leading-[1.05] text-ink dark:text-dark-text sm:text-[2.25rem]">
-                    {activeNitnemOption.gurmukhiTitle}
-                  </p>
-                  <p className="mt-3 font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-dark-text/75">
-                    {activeNitnemOption.romanizedTitle}
-                  </p>
-                </div>
+              <div
+                ref={nitnemCarouselRef}
+                onScroll={handleNitnemCarouselScroll}
+                className={`flex snap-x snap-mandatory gap-3 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${nitnemHasCarousel ? 'pb-1' : ''}`}
+                data-testid={nitnemHasCarousel ? 'home-nitnem-carousel' : undefined}
+                aria-label="Daily Nitnem selected banis"
+              >
+                {selectedNitnemOptions.map((option, index) => {
+                  const active = index === safeNitnemIndex
+                  return (
+                    <article
+                      key={`home-nitnem-card-${option.id}`}
+                      data-nitnem-index={index}
+                      data-testid={active ? 'home-nitnem-active-card' : undefined}
+                      aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
+                      aria-current={active ? 'true' : undefined}
+                      className="min-w-full snap-center rounded-lg border border-gold/18 bg-[linear-gradient(180deg,rgba(255,254,250,0.96),rgba(248,240,226,0.88))] px-4 py-4 dark:border-gold/20 dark:bg-[linear-gradient(180deg,rgba(35,28,46,0.96),rgba(24,19,34,0.92))]"
+                    >
+                      <div className="grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
+                              Today&apos;s Bani
+                            </p>
+                            <span className="rounded-full border border-sand/14 bg-parchment-card/62 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.14em] text-ink/52 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/55">
+                              {option.group}
+                            </span>
+                          </div>
+                          <p lang="pa-Guru" className="mt-3 font-gurmukhi text-[2rem] leading-[1.05] text-ink dark:text-dark-text sm:text-[2.25rem]">
+                            {option.gurmukhiTitle}
+                          </p>
+                          <p className="mt-3 font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-dark-text/75">
+                            {option.romanizedTitle}
+                          </p>
+                        </div>
 
-                <div className="rounded-lg border border-sand/14 bg-parchment-card/62 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
-                    Ritual Note
-                  </p>
-                  <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                    {getNitnemOptionDetail(activeNitnemOption)}
-                  </p>
-                </div>
+                        <div className="rounded-lg border border-sand/14 bg-parchment-card/62 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
+                          <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
+                            Ritual Note
+                          </p>
+                          <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+                            {getNitnemOptionDetail(option)}
+                          </p>
+                        </div>
+                      </div>
+
+                      <Link
+                        to={buildNitnemStudyPath(option)}
+                        className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+                        data-testid={active ? 'home-nitnem-primary-action' : undefined}
+                      >
+                        {homeMessages.beginNitnem}
+                      </Link>
+                    </article>
+                  )
+                })}
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2 border-t border-sand/12 pt-3 dark:border-dark-text/10" aria-label="Daily Nitnem order preview">
-                {nitnemOrderPreview.map(option => (
-                  <span
-                    key={`nitnem-preview-${option.id}`}
-                    className={`rounded-full border px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.14em] ${
-                      option.id === activeNitnemOption.id
-                        ? 'border-gold/22 bg-gold/12 text-gold dark:border-gold/24 dark:bg-gold/12 dark:text-gold-light'
-                        : 'border-sand/14 bg-parchment-card/62 text-ink/45 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/50'
-                    }`}
+              {nitnemHasCarousel ? (
+                <div className="mt-3 flex items-center justify-between gap-3" data-testid="home-nitnem-carousel-controls">
+                  <button
+                    type="button"
+                    onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
+                    disabled={safeNitnemIndex === 0}
+                    className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
+                    aria-label="Previous Nitnem bani"
                   >
-                    {option.romanizedTitle}
-                  </span>
-                ))}
-                {selectedNitnemOptions.length > nitnemOrderPreview.length ? (
-                  <span className="rounded-full border border-sand/14 bg-parchment-card/62 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.14em] text-ink/45 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/50">
-                    +{selectedNitnemOptions.length - nitnemOrderPreview.length}
-                  </span>
-                ) : null}
-              </div>
+                    <IconArrowRight size={16} className="rotate-180" />
+                  </button>
+                  <div className="flex flex-wrap justify-center gap-2" aria-label="Daily Nitnem carousel pages">
+                    {selectedNitnemOptions.map((option, index) => (
+                      <button
+                        key={`home-nitnem-dot-${option.id}`}
+                        type="button"
+                        onClick={() => setNitnemCarouselIndex(index)}
+                        aria-label={`Show ${option.romanizedTitle}`}
+                        aria-current={index === safeNitnemIndex ? 'true' : undefined}
+                        className={`h-2.5 rounded-full transition-all duration-200 ${
+                          index === safeNitnemIndex
+                            ? 'w-7 bg-gold dark:bg-gold-light'
+                            : 'w-2.5 bg-sand/28 dark:bg-dark-text/20'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
+                    disabled={safeNitnemIndex >= selectedNitnemOptions.length - 1}
+                    className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
+                    aria-label="Next Nitnem bani"
+                  >
+                    <IconArrowRight size={16} />
+                  </button>
+                </div>
+              ) : null}
 
-              <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-                <Link
-                  to={buildNitnemStudyPath(activeNitnemOption)}
-                  className="interactive-focus interactive-pill-link min-h-[48px] flex-1 rounded-lg bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
-                  data-testid="home-nitnem-primary-action"
-                >
-                  {homeMessages.beginNitnem}
-                </Link>
-                <Link
-                  to="/more#daily-nitnem"
-                  className="interactive-focus interactive-pill-link min-h-[48px] rounded-lg border border-sand/16 bg-parchment-card/72 px-5 font-sans text-sm font-medium text-ink/75 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/75"
-                  data-testid="home-nitnem-manage"
-                >
-                  {homeMessages.customizeNitnem}
-                </Link>
-              </div>
+              <Link
+                to="/more#daily-nitnem"
+                className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-parchment-card/72 px-5 font-sans text-sm font-medium text-ink/75 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/75"
+                data-testid="home-nitnem-manage"
+              >
+                {homeMessages.customizeNitnem}
+              </Link>
             </>
           ) : (
             <div className="rounded-lg border border-dashed border-sand/18 px-4 py-5 dark:border-dark-text/10">
@@ -845,7 +936,7 @@ export default function Home() {
               </Link>
             </div>
           )}
-        </article>
+        </div>
       </section>
 
       <section

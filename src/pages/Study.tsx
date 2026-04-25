@@ -221,6 +221,11 @@ export default function Study() {
   const randomHukamnamaAngParam = Number(searchParams.get('randomHukamnamaAng')) || null
   const learnProgramParam = searchParams.get('learnProgram')
   const learnModuleParam = searchParams.get('learnModule')
+  const fromParam = searchParams.get('from')
+  const akHeaderIdParam = Number(searchParams.get('akHeaderId')) || null
+  const akSectionParam = Number(searchParams.get('akSection')) || null
+  const akItemParam = Number(searchParams.get('akItem')) || null
+  const akPageParam = Number(searchParams.get('akPage')) || null
 
   if ((!source || !angParam) && scriptureId && !shabadIdParam && !baniDbIdParam) {
     const parts = scriptureId.split('-')
@@ -889,6 +894,12 @@ export default function Study() {
   const readerIntroBody = isHukamnamaMode
     ? studyExperienceCopy.hukamnamaBody
     : studyCopy.introBody
+  const isAmritKeertanContext = fromParam === 'amrit-keertan' && akHeaderIdParam !== null
+  const amritKeertanContextMeta = [
+    akSectionParam ? `Section ${akSectionParam}` : null,
+    akPageParam ? `AK Page ${akPageParam}` : null,
+    akItemParam ? `Item ${akItemParam}` : null,
+  ].filter(Boolean).join(' · ')
   const entryOutline = useMemo(() => entries.map((entry, index) => {
     const sectionId = `study-entry-${index + 1}`
     const detailBits = [entry.raag, entry.writer, entry.sourceName].filter(Boolean)
@@ -1128,6 +1139,29 @@ export default function Study() {
           {readerIntroBody}
         </p>
       </div>
+
+      {isAmritKeertanContext && (
+        <div className="section-shell-quiet px-4 py-4 mb-4" data-testid="study-amrit-keertan-context">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="eyebrow">From Amrit Keertan</p>
+              <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                {amritKeertanContextMeta || 'Book index'}
+              </p>
+              <p className="mt-1 font-sans text-xs leading-5 text-ink/60 dark:text-dark-text/66">
+                This shabad opened from the Amrit Keertan book order; source Ang below shows where the shabad appears in scripture.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate(`/banis/amrit-keertan/${akHeaderIdParam}`)}
+              className="interactive-focus rounded-full border border-gold/20 bg-gold/[0.08] px-4 py-2 font-sans text-xs font-semibold text-gold-dark dark:border-gold/25 dark:bg-gold/10 dark:text-gold-light"
+            >
+              Back to Section
+            </button>
+          </div>
+        </div>
+      )}
 
       {(learnProgram || learnModule) && (
         <div className="section-shell-quiet p-4 mb-4">
