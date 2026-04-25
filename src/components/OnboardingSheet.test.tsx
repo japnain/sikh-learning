@@ -92,6 +92,7 @@ test('setup step keeps the chosen goal inline while elevating the reading atmosp
   expect(stylePanel).toHaveTextContent(/reading \+ meaning/i)
   expect(actionBar).toHaveTextContent(/selected/i)
   expect(actionBar).toHaveTextContent(/reading \+ meaning/i)
+  expect(screen.getByTestId('onboarding-setup-primary-action')).toBeInTheDocument()
 })
 
 test('guided flow keeps the hero dominant while secondary setup stays collapsed until requested', () => {
@@ -113,10 +114,11 @@ test('guided flow keeps the hero dominant while secondary setup stays collapsed 
   expect(previewHero).not.toHaveTextContent(/recommended/i)
   expect(actionBar).toHaveTextContent(/refine setup later/i)
   expect(actionBar).toHaveTextContent(/you will open with meaning close/i)
-  expect(within(actionBar).getByRole('button', { name: /^open with meaning$/i })).toBeInTheDocument()
+  expect(within(actionBar).getByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
   expect(actionBar).toHaveTextContent(/backup later if you want it/i)
   expect(actionBar).toHaveTextContent(/guest reading stays open on this device/i)
-  expect(within(actionBar).getByRole('button', { name: /^continue as guest$/i })).toBeInTheDocument()
+  expect(within(actionBar).queryByRole('button', { name: /^continue as guest$/i })).not.toBeInTheDocument()
+  expect(document.querySelector('[data-ai-surface="onboarding-auth"]')).toBeNull()
   expect(actionBar).toHaveTextContent(/fine tune reader/i)
   expect(actionBar).toHaveTextContent(/open the lower-level choices only if you want to refine script, support, or profile details now/i)
   expect(screen.getByTestId('state').textContent).toContain('"showTransliteration":true')
@@ -154,7 +156,7 @@ test('turning meaning off updates the preview summary and action copy for unders
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
 
-  expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByRole('button', { name: /^open with meaning$/i })).toBeInTheDocument()
+  expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
   expect(screen.getAllByText(/You will open with meaning close/i)).toHaveLength(1)
 
   fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
@@ -162,7 +164,7 @@ test('turning meaning off updates the preview summary and action copy for unders
 
   await waitFor(() => {
     expect(screen.getByTestId('state').textContent).toContain('"meaningLanguage":"none"')
-    expect(within(screen.getByTestId('onboarding-preview-action-bar')).getByRole('button', { name: /^open my reader$/i })).toBeInTheDocument()
+    expect(within(screen.getByTestId('onboarding-preview-action-bar')).getByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open my reader$/i)
     expect(screen.getAllByText(/You will land in a cleaner reader/i)).toHaveLength(1)
   })
 })
@@ -189,7 +191,7 @@ test('overlay onboarding still locks document scrolling and restores it on unmou
   expect(document.documentElement.style.overflow).toBe('')
 })
 
-test('preview step offers guest plus configured sign-in providers after secondary setup is expanded', async () => {
+test('preview step offers guest plus configured sign-in providers only after backup drawer is expanded', async () => {
   const onComplete = vi.fn()
 
   useCloudSyncStore.setState({
@@ -206,7 +208,9 @@ test('preview step offers guest plus configured sign-in providers after secondar
 
   fireEvent.click(screen.getByRole('button', { name: /i want to understand/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
+
+  expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
+  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
   expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /continue with google/i })).toBeInTheDocument()
@@ -235,7 +239,7 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
 
   fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
-  fireEvent.click(within(screen.getByTestId('onboarding-preview-tune-row')).getByRole('button', { name: /fine tune reader/i }))
+  fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
   const authSurface = document.querySelector('[data-ai-surface="onboarding-auth"]')
 

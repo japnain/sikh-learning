@@ -5,7 +5,9 @@ import { UI_DISCLOSURE_STORAGE_KEY } from '../hooks/usePersistentDisclosure'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { useMusicStore } from '../store/music'
+import { DEFAULT_NITNEM_OPTION_IDS, useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
+import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
 beforeEach(() => {
   window.localStorage.removeItem(UI_DISCLOSURE_STORAGE_KEY)
@@ -35,6 +37,20 @@ beforeEach(() => {
     selectedSoundId: null,
     isPlaying: false,
     volume: 0.6,
+  })
+  useNitemStore.setState({
+    completedDate: '2026-04-11',
+    completedIds: [],
+    selectedIds: [...DEFAULT_NITNEM_OPTION_IDS],
+    completionTrackingEnabled: false,
+  })
+  useSundarGutkaLengthStore.setState({
+    lengths: {
+      'chaupai-sahib': 'short',
+      'rehras-sahib': 'short',
+      aarti: 'short',
+      'kirtan-sohila': 'short',
+    },
   })
 })
 
@@ -140,11 +156,47 @@ test('heavy More sections start collapsed while Grow and About stay visible', ()
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByRole('button', { name: /keep naamras with you across devices/i })).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.getByRole('button', { name: /daily nitnem/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByRole('button', { name: /reader defaults/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.getByRole('button', { name: /profile & app language/i })).toHaveAttribute('aria-expanded', 'false')
+  expect(screen.queryByTestId('more-nitnem-completion')).not.toBeInTheDocument()
   expect(screen.queryByText(/^English translation$/i)).not.toBeInTheDocument()
   expect(screen.getByText(/Open Learn/i)).toBeInTheDocument()
   expect(screen.getByTestId('more-about')).toBeInTheDocument()
+})
+
+test('Daily Nitnem settings keep completion tracking collapsed and optional', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Daily Nitnem/i)
+
+  expect(screen.getByTestId('more-nitnem-completion-toggle')).toHaveAttribute('aria-pressed', 'false')
+  expect(screen.queryByTestId('more-nitnem-completion-panel')).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByTestId('more-nitnem-completion-toggle'))
+
+  expect(useNitemStore.getState().completionTrackingEnabled).toBe(true)
+  expect(screen.getByTestId('more-nitnem-completion-panel')).toHaveTextContent('0 / 7 daily banis complete')
+  fireEvent.click(screen.getAllByRole('button', { name: /mark complete/i })[0])
+  expect(useNitemStore.getState().completedIds).toEqual(['japji-sahib'])
+})
+
+test('Daily Nitnem customization lives in More with reset confirmation', () => {
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Daily Nitnem/i)
+
+  const selection = screen.getByTestId('more-nitnem-selection')
+  expect(within(selection).getByText('Additional')).toBeInTheDocument()
+  expect(within(selection).getAllByText('Length · Short')).toHaveLength(4)
+  expect(within(selection).getByText('Salok Mahalla 9')).toBeInTheDocument()
+  expect(within(selection).getByText('Aarti')).toBeInTheDocument()
+
+  fireEvent.click(within(selection).getByRole('button', { name: /Salok Mahalla 9/i }))
+  expect(useNitemStore.getState().selectedIds).toContain('salok-mahalla-9')
+
+  fireEvent.click(screen.getByTestId('more-nitnem-reset'))
+  expect(screen.getByRole('button', { name: /tap again to reset/i })).toBeInTheDocument()
+  fireEvent.click(screen.getByRole('button', { name: /tap again to reset/i }))
+  expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
 })
 
 test('full soundscape library collapses without clearing playback state', () => {

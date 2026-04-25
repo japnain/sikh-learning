@@ -42,6 +42,20 @@ function buildPublicBanidbUrl(origin: string, path: string, query?: Record<strin
   return url
 }
 
+function buildDevProxyBanidbUrl(path: string, query?: Record<string, string>) {
+  if (import.meta.env.MODE !== 'development' || typeof window === 'undefined') return null
+  if (!path.startsWith('/v2/')) return null
+
+  const url = new URL(`/__banidb${path}`, window.location.origin)
+  if (query) {
+    for (const [key, value] of Object.entries(query)) {
+      url.searchParams.set(key, value)
+    }
+  }
+
+  return url
+}
+
 export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
   const config = getNaamrasInsforgeConfig()
   const normalizedQuery = normalizeQuery(query)
@@ -64,7 +78,9 @@ export async function requestBanidb<T>(path: string, query?: BanidbProxyQuery) {
       throw new Error('BaniDB requests need either InsForge or the public BaniDB fallback enabled.')
     }
 
-    const response = await fetch(buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery).toString())
+    const response = await fetch(
+      (buildDevProxyBanidbUrl(path, normalizedQuery) ?? buildPublicBanidbUrl(config.banidbPublicOrigin, path, normalizedQuery)).toString()
+    )
     const text = await response.text()
     return {
       response,

@@ -101,7 +101,7 @@ test('shows translation inline without flipping', () => {
   render(<StudyCard entry={entry} showAudioPlayer />)
   expect(screen.getByText('One Creator Truth')).toBeInTheDocument()
   expect(screen.queryByText('Ik Oankaar Sat')).not.toBeInTheDocument()
-  expect(screen.getByText(/recitation coming soon/i)).toBeInTheDocument()
+  expect(screen.queryByText(/recitation coming soon/i)).not.toBeInTheDocument()
 })
 
 test('switches to selected English source', () => {
@@ -147,8 +147,11 @@ test('opens word popover on word tap and shows Mahankosh context', async () => {
   expect(await screen.findByText('ਇੱਕ ਕਰਤਾ ਪੁਰਖ')).toBeInTheDocument()
 })
 
-test('expands a line to show alternate translation and visraam sources', async () => {
+test('opens source layers from the verse actions sheet', async () => {
   render(<StudyCard entry={entry} />)
+  expect(screen.queryByRole('button', { name: /show source layers/i })).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByLabelText(/open verse actions for line 1/i))
   fireEvent.click(screen.getByRole('button', { name: /show source layers/i }))
 
   expect(await screen.findByText('Faridkot')).toBeInTheDocument()

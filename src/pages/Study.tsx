@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo, useRef } from 'react'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import { fetchAng, fetchShabad } from '../api/banidb'
 import SurfaceStateCard from '../components/SurfaceStateCard'
-import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { useProgressStore } from '../store/progress'
 import { useAng } from '../hooks/useAng'
 import { useBani } from '../hooks/useBani'
@@ -198,7 +197,6 @@ export default function Study() {
   const editorial = getEditorialCopy(locale)
   const commonCopy = copy.common
   const studyCopy = copy.study
-  const libraryCopy = copy.library
   const lineSpacingLabels = getLineSpacingLabels(locale)
   const meaningLanguageLabels = getMeaningLanguageLabels(locale)
   const punjabiSourceLabels = getPunjabiSourceLabels(locale)
@@ -547,7 +545,7 @@ export default function Study() {
       const target = document.querySelector<HTMLElement>(`[data-verse-id="${resumeVerseIdParam}"]`)
       if (!target) return false
 
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      target.scrollIntoView({ behavior: 'auto', block: 'start' })
       return true
     }
 
@@ -838,7 +836,7 @@ export default function Study() {
       }
 
       navigate(
-        `/study?shabadId=${firstLine.shabadId}&flow=ardaas-hukamnama&randomHukamnamaAng=${randomAng}`
+        `/study?shabadId=${firstLine.shabadId}&flow=ardaas-hukamnama&randomHukamnamaAng=${randomAng}&resumeVerseId=${firstLine.verseId}`
       )
     } catch {
       navigate('/banis', { replace: true })
@@ -1108,15 +1106,15 @@ export default function Study() {
         ) : null}
       </div>
 
-      <div className="hero-surface p-5 mb-4" aria-labelledby="study-reader-title" data-testid="study-reader-header">
+      <div className="section-shell-quiet px-4 py-4 mb-4" aria-labelledby="study-reader-title" data-testid="study-reader-header">
         <p className="eyebrow mb-2">{isHukamnamaMode ? studyExperienceCopy.hukamnamaEyebrow : studyCopy.eyebrow}</p>
         <h1
           id="study-reader-title"
           lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
           className={`leading-tight text-ink dark:text-dark-text ${
             readerTitleUsesScript
-              ? `${scriptMode === 'devanagari' ? 'font-sans text-[2rem]' : 'font-gurmukhi text-[2.3rem]'}`
-              : 'font-display text-4xl'
+              ? `${scriptMode === 'devanagari' ? 'font-sans text-[1.75rem]' : 'font-gurmukhi text-[2.05rem]'}`
+              : 'font-display text-3xl'
           }`}
         >
           {readerTitle}
@@ -1196,7 +1194,7 @@ export default function Study() {
         <SoundscapeControls context="study" variant="compact" />
       </div>
 
-      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4 shadow-card" data-testid="study-reader-controls">
+      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4" data-testid="study-reader-controls">
         <button
           type="button"
           onClick={() => setControlsOpen(open => !open)}
@@ -1488,10 +1486,13 @@ export default function Study() {
             Hukamnama after Ardaas
           </p>
           <p className="font-sans text-ink/50 dark:text-dark-text/50 text-xs">
-            Randomly selected from Sri Guru Granth Sahib Ji · Ang {randomHukamnamaAngParam}
+            Selected from Sri Guru Granth Sahib Ji · Ang {randomHukamnamaAngParam}
+            {currentEntry.ang !== randomHukamnamaAngParam
+              ? `; this shabad begins on Ang ${currentEntry.ang}.`
+              : '.'}
           </p>
           <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
-            This opens the first shabad found on the selected ang.
+            The reader opens the full shabad and scrolls to the selected verse when it is present.
           </p>
         </div>
       )}
@@ -1580,28 +1581,6 @@ export default function Study() {
         </div>
       )}
 
-      <div
-        className="section-shell-quiet mt-5 p-4"
-        data-testid="study-source-browser-shell"
-        data-ai-surface="study-source-browser"
-      >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <p className="eyebrow">{libraryCopy.sourceBrowsing}</p>
-            <p className="mt-2 max-w-[32ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
-              {libraryCopy.sourceBrowsingBody}
-            </p>
-          </div>
-          <span className="chip-pill shrink-0">{copy.nav.read}</span>
-        </div>
-
-        <div className="mt-4">
-          <ScriptureSourceBrowser
-            dataTestId="study-source-browser"
-            sectionClassName="surface-primary px-4 py-4"
-          />
-        </div>
-      </div>
     </div>
   )
 }

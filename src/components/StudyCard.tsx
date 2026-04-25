@@ -1,5 +1,5 @@
 import { useMemo, useState, type MouseEvent, type ReactNode } from 'react'
-import type { ScriptureEntry, ScriptureLine, Word } from '../types'
+import type { ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
 import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
@@ -105,7 +105,7 @@ export default function StudyCard({
   const [activeWord, setActiveWord] = useState<Word | null>(null)
   const [activeLine, setActiveLine] = useState<ScriptureLine | null>(null)
   const [actionLine, setActionLine] = useState<ScriptureLine | null>(null)
-  const [expandedLines, setExpandedLines] = useState<Record<string, boolean>>({})
+  const [sourceLayersOpen, setSourceLayersOpen] = useState(false)
   const locale = useLocaleStore(s => s.locale)
   const scriptMode = useLanguageStore(s => s.scriptMode)
   const showTransliteration = useLanguageStore(s => s.showTransliteration)
@@ -143,11 +143,27 @@ export default function StudyCard({
   const meaningAlignmentClass = textAlign === 'center' ? 'text-center' : 'text-left'
   const lineSpacingClass = lineSpacing === 'relaxed' ? 'leading-[2.15]' : 'leading-[1.7]'
   const actionMeaning = actionLine ? getLineMeaningText(actionLine, meaningLanguage, englishSource) : ''
+  const actionSourceLayers = useMemo(() => {
+    if (!actionLine) {
+      return {
+        punjabiVariants: [] as Array<[string, string]>,
+        hindiVariants: [] as Array<[string, string]>,
+        visraamVariants: [] as Array<[string, ScriptureVisraamMarker[]]>,
+        hasExpandedSurface: false,
+      }
+    }
 
-  const toggleExpandedLine = (line: ScriptureLine, index: number) => {
-    const key = `${line.verseId || line.shabadId}-${index}`
-    setExpandedLines(current => ({ ...current, [key]: !current[key] }))
-  }
+    const punjabiVariants = Object.entries(actionLine.translations_pa ?? {}).filter((entry): entry is [string, string] => Boolean(entry[1]))
+    const hindiVariants = Object.entries(actionLine.translations_hi ?? {}).filter((entry): entry is [string, string] => Boolean(entry[1]))
+    const visraamVariants = Object.entries(actionLine.visraam ?? {}).filter((entry): entry is [string, ScriptureVisraamMarker[]] => Array.isArray(entry[1]) && entry[1].length > 0)
+
+    return {
+      punjabiVariants,
+      hindiVariants,
+      visraamVariants,
+      hasExpandedSurface: punjabiVariants.length > 1 || hindiVariants.length > 1 || visraamVariants.length > 0,
+    }
+  }, [actionLine])
 
   const handleWordTap = (
     event: MouseEvent<HTMLButtonElement>,
@@ -182,6 +198,7 @@ export default function StudyCard({
 
   const closeActionSheet = () => {
     setActionLine(null)
+    setSourceLayersOpen(false)
   }
 
   const handleLineAction = (line: ScriptureLine, action?: (line: ScriptureLine, entry: ScriptureEntry) => void) => {
@@ -194,7 +211,7 @@ export default function StudyCard({
       <section
         id={sectionId}
         data-testid="study-card"
-        className="animate-scale-in scroll-mt-24 ornate-top section-shell rounded-[30px] px-5 py-6"
+        className="animate-scale-in scroll-mt-24 section-shell rounded-xl px-4 py-5 sm:px-5"
       >
         <div className="mb-5">
           {sectionEyebrow ? (
@@ -221,7 +238,7 @@ export default function StudyCard({
         ) : null}
 
         {shouldRenderHeaderBlock && (
-          <div data-testid="study-header-block" className="mb-5 section-shell-quiet rounded-[24px] px-4 py-4">
+          <div data-testid="study-header-block" className="mb-5 section-shell-quiet rounded-lg px-4 py-4">
             <div className="space-y-3">
               {introLines.map((line, index) => {
                 const introMeaning = getLineMeaningText(line, meaningLanguage, englishSource)
@@ -262,12 +279,6 @@ export default function StudyCard({
             <div className="space-y-0">
               {visibleMainLines.map((line, index) => {
                 const meaningText = getLineMeaningText(line, meaningLanguage, englishSource)
-                const lineKey = `${line.verseId || line.shabadId}-${index}`
-                const isExpanded = Boolean(expandedLines[lineKey])
-                const punjabiVariants = Object.entries(line.translations_pa ?? {}).filter(([, value]) => value)
-                const hindiVariants = Object.entries(line.translations_hi ?? {}).filter(([, value]) => value)
-                const visraamVariants = Object.entries(line.visraam ?? {}).filter(([, markers]) => Array.isArray(markers) && markers.length > 0)
-                const hasExpandedSurface = punjabiVariants.length > 1 || hindiVariants.length > 1 || visraamVariants.length > 0
 
                 return (
                   <article
@@ -278,7 +289,10 @@ export default function StudyCard({
                   >
                     <button
                       type="button"
-                      onClick={() => setActionLine(line)}
+                      onClick={() => {
+                        setActionLine(line)
+                        setSourceLayersOpen(false)
+                      }}
                       aria-label={`Open verse actions for line ${index + 1}`}
                       className={`absolute right-0 top-4 flex min-h-[32px] min-w-[32px] items-center justify-center rounded-full border border-transparent text-ink/28 transition-colors duration-300 hover:border-sand/20 hover:text-ink/55 dark:text-dark-text/28 dark:hover:border-dark-text/10 dark:hover:text-dark-text/55 ${
                         isLineBookmarked?.(line, entry) ? 'text-saffron dark:text-saffron-light' : ''
@@ -331,90 +345,13 @@ export default function StudyCard({
                       )
                     )}
 
-                    {hasExpandedSurface ? (
-                      <div className={`mt-4 ${meaningAlignmentClass}`}>
-                        <button
-                          type="button"
-                          onClick={() => toggleExpandedLine(line, index)}
-                          className="rounded-full border border-sand/15 px-3 py-1.5 font-sans text-[11px] text-ink/60 transition-colors duration-300 hover:text-saffron dark:border-dark-text/10 dark:text-dark-text/60 dark:hover:text-saffron-light"
-                        >
-                          {isExpanded ? 'Hide source layers' : 'Show source layers'}
-                        </button>
-
-                        {isExpanded ? (
-                          <div className="mt-3 space-y-3 rounded-[22px] border border-sand/12 bg-parchment-low/75 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-surface/70">
-                            {punjabiVariants.length > 0 ? (
-                              <div>
-                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                                  Punjabi
-                                </p>
-                                <div className="space-y-2">
-                                  {punjabiVariants.map(([sourceKey, text]) => (
-                                    <div key={`pa-${sourceKey}`} className="rounded-[18px] border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
-                                      <div className="mb-2 flex flex-wrap gap-1.5">
-                                        <ReaderChip active={sourceKey === punjabiSource}>
-                                          {punjabiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
-                                        </ReaderChip>
-                                        {sourceKey === punjabiSource ? <ReaderChip active>Selected</ReaderChip> : null}
-                                      </div>
-                                      <p lang="pa-Guru" className="font-gurmukhi text-sm leading-relaxed text-ink dark:text-dark-text">
-                                        {text}
-                                      </p>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            ) : null}
-
-                            {hindiVariants.length > 0 ? (
-                              <div>
-                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                                  Hindi
-                                </p>
-                                <div className="space-y-2">
-                                  {hindiVariants.map(([sourceKey, text]) => (
-                                    <div key={`hi-${sourceKey}`} className="rounded-[18px] border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
-                                      <div className="mb-2 flex flex-wrap gap-1.5">
-                                        <ReaderChip active={sourceKey === hindiSource}>
-                                          {hindiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
-                                        </ReaderChip>
-                                        {sourceKey === hindiSource ? <ReaderChip active>Selected</ReaderChip> : null}
-                                      </div>
-                                      <p className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">
-                                        {text}
-                                      </p>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            ) : null}
-
-                            {visraamVariants.length > 0 ? (
-                              <div>
-                                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                                  Visraam Sets
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                  {visraamVariants.map(([sourceKey, markers]) => (
-                                    <ReaderChip key={`visraam-${sourceKey}`} active={sourceKey === visraamSource}>
-                                      {(visraamSourceLabels[sourceKey as keyof typeof visraamSourceLabels] ?? sourceKey.toUpperCase())} · {markers.length}
-                                    </ReaderChip>
-                                  ))}
-                                </div>
-                              </div>
-                            ) : null}
-                          </div>
-                        ) : null}
-                      </div>
-                    ) : null}
-
                   </article>
                 )
               })}
             </div>
 
             <p className={`font-sans text-ink/30 dark:text-dark-text/30 text-xs mt-5 ${meaningAlignmentClass}`}>
-              Tap any Gurbani word for meaning
+              Tap a Gurbani word for meaning. Use the verse menu for saving, sharing, and source layers.
             </p>
           </>
         )}
@@ -509,7 +446,82 @@ export default function StudyCard({
                   active={Boolean(isLineBookmarked?.(actionLine, entry))}
                   icon={isLineBookmarked?.(actionLine, entry) ? <IconBookmarkFilled size={16} /> : <IconBookmark size={16} />}
                 />
+                {actionSourceLayers.hasExpandedSurface ? (
+                  <LineActionItem
+                    label={sourceLayersOpen ? 'Hide Source Layers' : 'Show Source Layers'}
+                    onClick={() => setSourceLayersOpen(open => !open)}
+                    active={sourceLayersOpen}
+                  />
+                ) : null}
               </div>
+
+              {actionSourceLayers.hasExpandedSurface && sourceLayersOpen ? (
+                <div
+                  className="mt-3 space-y-3 rounded-lg border border-sand/12 bg-parchment-low/75 px-4 py-4 dark:border-dark-text/10 dark:bg-dark-surface/70"
+                  data-testid="study-source-layers-sheet"
+                >
+                  {actionSourceLayers.punjabiVariants.length > 0 ? (
+                    <div>
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        Punjabi
+                      </p>
+                      <div className="space-y-2">
+                        {actionSourceLayers.punjabiVariants.map(([sourceKey, text]) => (
+                          <div key={`pa-${sourceKey}`} className="rounded-lg border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
+                            <div className="mb-2 flex flex-wrap gap-1.5">
+                              <ReaderChip active={sourceKey === punjabiSource}>
+                                {punjabiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
+                              </ReaderChip>
+                              {sourceKey === punjabiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                            </div>
+                            <p lang="pa-Guru" className="font-gurmukhi text-sm leading-relaxed text-ink dark:text-dark-text">
+                              {text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {actionSourceLayers.hindiVariants.length > 0 ? (
+                    <div>
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        Hindi
+                      </p>
+                      <div className="space-y-2">
+                        {actionSourceLayers.hindiVariants.map(([sourceKey, text]) => (
+                          <div key={`hi-${sourceKey}`} className="rounded-lg border border-sand/10 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/55">
+                            <div className="mb-2 flex flex-wrap gap-1.5">
+                              <ReaderChip active={sourceKey === hindiSource}>
+                                {hindiSourceLabels[sourceKey] ?? sourceKey.toUpperCase()}
+                              </ReaderChip>
+                              {sourceKey === hindiSource ? <ReaderChip active>Selected</ReaderChip> : null}
+                            </div>
+                            <p className="font-sans text-sm leading-relaxed text-ink dark:text-dark-text">
+                              {text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {actionSourceLayers.visraamVariants.length > 0 ? (
+                    <div>
+                      <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+                        Visraam Sets
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {actionSourceLayers.visraamVariants.map(([sourceKey, markers]) => (
+                          <ReaderChip key={`visraam-${sourceKey}`} active={sourceKey === visraamSource}>
+                            {(visraamSourceLabels[sourceKey as keyof typeof visraamSourceLabels] ?? sourceKey.toUpperCase())} · {markers.length}
+                          </ReaderChip>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

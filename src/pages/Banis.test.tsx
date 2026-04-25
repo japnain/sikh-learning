@@ -69,14 +69,29 @@ test('renders the main content sections including Rehat', () => {
   renderBanis()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).length).toBeGreaterThan(0)
-  expect(screen.getByText(/Dasam Granth/i)).toBeInTheDocument()
+  expect(screen.getAllByText(/Dasam Granth/i).length).toBeGreaterThan(0)
   expect(screen.getByText('Rehat')).toBeInTheDocument()
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
+test('keeps source browsing at the bottom of Read', () => {
+  renderBanis()
+
+  const sourceBrowser = screen.getByTestId('read-source-browser-shared')
+  expect(sourceBrowser).toHaveAttribute('data-component', 'scripture-source-browser')
+  expect(screen.queryByTestId('study-source-browser')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
+
+  fireEvent.click(within(sourceBrowser).getByRole('button', { name: 'Panth Prakash (English)' }))
+  expect(within(sourceBrowser).getByRole('link', { name: '1' })).toHaveAttribute(
+    'href',
+    '/library/panth-prakash-english/page/1'
+  )
+})
+
 test('shows exact SGGS bani items after expanding SGGS section', () => {
   renderBanis()
-  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
 
   expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
@@ -88,7 +103,7 @@ test('shows exact SGGS bani items after expanding SGGS section', () => {
 
 test('shows exact-variant rows in the Dasam Granth section when BaniDB supports them', () => {
   renderBanis()
-  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getAllByText(/Dasam Granth/i)[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
 
   expect(screen.getByText('Tav Prasad Savaiye · Sraavag Suddh')).toBeInTheDocument()
@@ -98,7 +113,7 @@ test('shows exact-variant rows in the Dasam Granth section when BaniDB supports 
 
 test('shows both Sri Bhagauti Astotr exact variants in Dasam Granth supplemental banis', () => {
   renderBanis()
-  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getAllByText(/Dasam Granth/i)[0])
   fireEvent.click(screen.getByText('Supplemental Banis'))
 
   expect(screen.getByText('Sri Bhagauti Astotr · Panth Prakash')).toBeInTheDocument()
@@ -107,7 +122,7 @@ test('shows both Sri Bhagauti Astotr exact variants in Dasam Granth supplemental
 
 test('shows the exhaustive exact SGGS categories including raag sections', () => {
   renderBanis()
-  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
 
   expect(screen.getByText('Raag Sections')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Raag Sections'))
@@ -206,7 +221,7 @@ test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async 
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Long Compositions'))
   fireEvent.click(screen.getByText('Asa Di Var'))
 
@@ -225,7 +240,7 @@ test('opens the Dheenan Ki Savaiye variant through its exact BaniDB route', asyn
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getByText(/Dasam Granth/i))
+  fireEvent.click(screen.getAllByText(/Dasam Granth/i)[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
   fireEvent.click(screen.getByText('Tav Prasad Savaiye · Dheenan Ki'))
 
@@ -244,7 +259,7 @@ test('opens Raag Gauri through an exact BaniDB route from the exhaustive SGGS li
     </MemoryRouter>
   )
 
-  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Raag Sections'))
   fireEvent.click(screen.getByText('Raag Gauri'))
 
@@ -441,7 +456,7 @@ test('keeps the nav-safe page shell while lower sections still open after other 
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
   await waitFor(() => expect(screen.getByText('Nitnem')).toBeInTheDocument())
   fireEvent.click(screen.getByText('Nitnem'))
-  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).at(-1)!)
+  fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Raag Sections'))
   fireEvent.click(screen.getByText('Amrit Keertan'))
 

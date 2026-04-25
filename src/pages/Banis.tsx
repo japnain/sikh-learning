@@ -28,6 +28,7 @@ import {
 import { SEARCH_MODE_LABELS } from '../utils/translations'
 import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
+import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { hasSearchMatch } from '../utils/searchHighlight'
 import { getEditorialCopy } from '../content/editorialCopy'
 import { sanitizeRehatHtml, stripHtmlTags } from '../utils/rehatHtml'
@@ -1811,6 +1812,29 @@ export default function Banis() {
           </div>
         )}
       </div>
+
+      <section
+        className="section-shell-quiet p-4"
+        aria-labelledby="read-source-browser-title"
+        data-testid="read-source-browser"
+      >
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p id="read-source-browser-title" className="eyebrow">Browse by Source</p>
+            <p className="mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
+              Open a scripture source directly when you already know the ang, page, or section.
+            </p>
+          </div>
+          <span className="chip-pill shrink-0">Read</span>
+        </div>
+
+        <div className="mt-4">
+          <ScriptureSourceBrowser
+            dataTestId="read-source-browser-shared"
+            sectionClassName="surface-primary px-4 py-4"
+          />
+        </div>
+      </section>
     </div>
   )
 }

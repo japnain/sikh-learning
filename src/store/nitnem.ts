@@ -321,9 +321,11 @@ interface NitemState {
   completedDate: string
   completedIds: string[]
   selectedIds: string[]
+  completionTrackingEnabled: boolean
   markComplete: (id: string) => void
   unmarkComplete: (id: string) => void
   isComplete: (id: string) => boolean
+  setCompletionTrackingEnabled: (enabled: boolean) => void
   toggleSelected: (id: string) => void
   isSelected: (id: string) => boolean
   resetSelections: () => void
@@ -384,6 +386,7 @@ export const useNitemStore = create<NitemState>()(
       completedDate: todayStr(),
       completedIds: [],
       selectedIds: [...DEFAULT_NITNEM_OPTION_IDS],
+      completionTrackingEnabled: false,
 
       markComplete: (id) => {
         const today = todayStr()
@@ -406,6 +409,10 @@ export const useNitemStore = create<NitemState>()(
       isComplete: (id) => {
         const s = get()
         return s.completedDate === todayStr() && s.completedIds.includes(id)
+      },
+
+      setCompletionTrackingEnabled: (enabled) => {
+        set({ completionTrackingEnabled: enabled })
       },
 
       toggleSelected: (id) => {
@@ -450,13 +457,14 @@ export const useNitemStore = create<NitemState>()(
     }),
     {
       name: 'sikh-nitnem',
-      version: 3,
+      version: 4,
       migrate: (persisted) => {
         const state = (persisted ?? {}) as Partial<NitemState>
         return {
           completedDate: state.completedDate ?? todayStr(),
           completedIds: normalizePersistedNitnemIds(state.completedIds, false),
           selectedIds: normalizePersistedNitnemIds(state.selectedIds),
+          completionTrackingEnabled: state.completionTrackingEnabled ?? false,
         }
       },
     }

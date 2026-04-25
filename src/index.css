@@ -37,31 +37,31 @@
     --safe-area-left: env(safe-area-inset-left, 0px);
     --nav-stack-height: 8rem;
 
-    --theme-color: #f7ecd8;
+    --theme-color: #f8efe1;
 
-    --color-bg: 247 236 216;
-    --color-surface: 255 249 238;
-    --color-surface-muted: 244 230 205;
-    --color-surface-elevated: 228 204 166;
-    --color-text: 44 30 18;
-    --color-text-muted: 111 81 54;
-    --color-accent: 155 79 31;
-    --color-accent-strong: 221 169 90;
-    --color-success: 66 109 71;
-    --color-warning: 159 111 43;
-    --color-danger: 183 78 51;
-    --color-border: 197 157 104;
-    --color-focus: 223 167 82;
+    --color-bg: 248 241 229;
+    --color-surface: 255 252 245;
+    --color-surface-muted: 240 229 212;
+    --color-surface-elevated: 224 197 157;
+    --color-text: 43 31 23;
+    --color-text-muted: 101 78 58;
+    --color-accent: 142 76 32;
+    --color-accent-strong: 211 152 66;
+    --color-success: 76 119 91;
+    --color-warning: 164 104 38;
+    --color-danger: 178 74 50;
+    --color-border: 190 160 123;
+    --color-focus: 197 126 45;
 
-    --color-overlay: rgba(255, 249, 238, 0.84);
-    --color-scrim: rgba(35, 24, 16, 0.22);
+    --color-overlay: rgba(255, 252, 245, 0.9);
+    --color-scrim: rgba(37, 26, 18, 0.2);
 
-    --shadow-soft: 0 24px 56px rgba(84, 53, 24, 0.13);
-    --shadow-elevated: 0 34px 78px rgba(84, 53, 24, 0.18);
-    --shadow-glow: 0 20px 46px rgba(155, 79, 31, 0.2);
+    --shadow-soft: 0 10px 24px rgba(84, 53, 24, 0.08);
+    --shadow-elevated: 0 16px 36px rgba(84, 53, 24, 0.12);
+    --shadow-glow: 0 10px 22px rgba(142, 76, 32, 0.18);
     --shadow-glow-strong:
-      0 0 0 1px rgba(221, 169, 90, 0.18),
-      0 24px 58px rgba(155, 79, 31, 0.26);
+      0 0 0 1px rgba(211, 152, 66, 0.2),
+      0 14px 28px rgba(142, 76, 32, 0.22);
 
     --motion-duration-sm: 180ms;
     --motion-duration-md: 260ms;
@@ -70,36 +70,36 @@
     --motion-ease-emphasis: cubic-bezier(0.34, 1.22, 0.64, 1);
 
     color-scheme: light;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   html.dark,
   html[data-theme='dark'] {
-    --theme-color: #110f1d;
+    --theme-color: #15101d;
 
-    --color-bg: 17 14 29;
-    --color-surface: 31 24 45;
-    --color-surface-muted: 43 33 60;
-    --color-surface-elevated: 59 46 79;
-    --color-text: 246 236 220;
-    --color-text-muted: 191 177 158;
-    --color-accent: 210 167 94;
-    --color-accent-strong: 240 205 138;
-    --color-success: 159 216 163;
-    --color-warning: 239 196 118;
-    --color-danger: 255 178 157;
-    --color-border: 104 87 126;
-    --color-focus: 240 205 138;
+    --color-bg: 21 16 29;
+    --color-surface: 30 24 38;
+    --color-surface-muted: 39 31 48;
+    --color-surface-elevated: 57 43 62;
+    --color-text: 248 240 226;
+    --color-text-muted: 199 184 160;
+    --color-accent: 219 159 75;
+    --color-accent-strong: 242 199 119;
+    --color-success: 144 194 160;
+    --color-warning: 236 185 103;
+    --color-danger: 255 171 149;
+    --color-border: 99 82 107;
+    --color-focus: 242 199 119;
 
-    --color-overlay: rgba(26, 21, 39, 0.84);
-    --color-scrim: rgba(5, 3, 11, 0.54);
+    --color-overlay: rgba(27, 22, 35, 0.9);
+    --color-scrim: rgba(6, 4, 10, 0.58);
 
-    --shadow-soft: 0 24px 56px rgba(0, 0, 0, 0.38);
-    --shadow-elevated: 0 34px 76px rgba(0, 0, 0, 0.48);
-    --shadow-glow: 0 20px 44px rgba(210, 167, 94, 0.18);
+    --shadow-soft: 0 12px 26px rgba(0, 0, 0, 0.26);
+    --shadow-elevated: 0 18px 38px rgba(0, 0, 0, 0.34);
+    --shadow-glow: 0 10px 24px rgba(219, 159, 75, 0.18);
     --shadow-glow-strong:
-      0 0 0 1px rgba(240, 205, 138, 0.18),
-      0 22px 52px rgba(0, 0, 0, 0.5);
+      0 0 0 1px rgba(242, 199, 119, 0.18),
+      0 14px 30px rgba(0, 0, 0, 0.38);
 
     color-scheme: dark;
   }
@@ -124,10 +124,7 @@
     min-height: 100dvh;
     overflow-x: hidden;
     background:
-      radial-gradient(circle at 14% -6%, rgb(var(--color-accent-strong) / 0.3), transparent 26%),
-      radial-gradient(circle at 88% 6%, rgb(var(--color-accent) / 0.16), transparent 22%),
-      radial-gradient(circle at 50% 42%, rgb(var(--color-surface-elevated) / 0.18), transparent 42%),
-      linear-gradient(180deg, rgb(var(--color-bg)) 0%, rgb(var(--color-surface)) 24%, rgb(var(--color-surface-muted)) 62%, rgb(var(--color-bg)) 100%);
+      linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-bg)) 42%, rgb(var(--color-surface-muted)) 100%);
     color: rgb(var(--color-text));
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 16px;
@@ -185,9 +182,9 @@
     min-height: 100dvh;
     width: 100%;
     overflow-x: hidden;
-    padding-top: calc(var(--safe-area-top) + 1rem);
+    padding-top: calc(var(--safe-area-top) + 0.8rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
-    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 3rem);
+    padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
     padding-left: max(1rem, calc(var(--safe-area-left) + 1rem));
     scroll-padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
   }
@@ -199,10 +196,7 @@
     overflow-x: hidden;
     padding-bottom: 0;
     background:
-      radial-gradient(circle at top center, rgb(var(--color-accent-strong) / 0.24), transparent 22rem),
-      radial-gradient(circle at 88% 8%, rgb(var(--color-accent) / 0.15), transparent 18rem),
-      radial-gradient(circle at 12% 18%, rgb(var(--color-surface-elevated) / 0.24), transparent 19rem),
-      linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-surface-muted)) 58%, rgb(var(--color-bg)) 100%);
+      linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-bg)) 46%, rgb(var(--color-surface-muted)) 100%);
   }
 
   .app-shell::before {
@@ -211,9 +205,8 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(circle at 18% 18%, rgb(var(--color-surface-elevated) / 0.36), transparent 16rem),
-      radial-gradient(circle at 82% 0%, rgb(var(--color-accent) / 0.12), transparent 18rem),
-      linear-gradient(180deg, rgb(255 255 255 / 0.08), transparent 26%);
+      linear-gradient(90deg, rgb(var(--color-accent-strong) / 0.06), transparent 28%, transparent 72%, rgb(var(--color-success) / 0.045)),
+      linear-gradient(180deg, rgb(255 255 255 / 0.05), transparent 18rem);
     z-index: 0;
   }
 
@@ -229,67 +222,49 @@
 
   .surface-primary,
   .section-shell {
-    @apply rounded-[28px] border text-text backdrop-blur-md;
-    border-color: rgb(var(--color-border) / 0.82);
-    background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.22), transparent 42%),
-      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.52), transparent 58%),
-      linear-gradient(180deg, rgb(var(--color-surface) / 0.995), rgb(var(--color-surface-muted) / 0.94));
+    @apply rounded-xl border text-text;
+    border-color: rgb(var(--color-border) / 0.46);
+    background: rgb(var(--color-surface) / 0.94);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.56),
-      inset 0 -1px 0 rgb(var(--color-accent) / 0.04),
-      0 3px 10px rgb(54 35 14 / 0.07),
+      inset 0 1px 0 rgb(255 255 255 / 0.42),
       var(--shadow-soft);
   }
 
   .surface-quiet,
   .section-shell-quiet {
-    @apply rounded-[24px] border text-text;
-    border-color: rgb(var(--color-border) / 0.72);
-    background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.16), transparent 48%),
-      radial-gradient(circle at bottom left, rgb(var(--color-surface-elevated) / 0.38), transparent 60%),
-      linear-gradient(180deg, rgb(var(--color-surface-muted) / 0.96), rgb(var(--color-surface) / 0.9));
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.54),
-      inset 0 -1px 0 rgb(var(--color-accent) / 0.03),
-      0 16px 34px rgb(72 49 23 / 0.09);
+    @apply rounded-lg border text-text;
+    border-color: rgb(var(--color-border) / 0.42);
+    background: rgb(var(--color-surface) / 0.74);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32);
   }
 
   .surface-hero,
   .hero-surface {
-    @apply rounded-[32px] border text-text;
-    border-color: rgb(var(--color-accent) / 0.28);
+    @apply rounded-2xl border text-text;
+    border-color: rgb(var(--color-accent) / 0.3);
     background:
-      radial-gradient(circle at top right, rgb(var(--color-accent-strong) / 0.28), transparent 40%),
-      radial-gradient(circle at top left, rgb(var(--color-accent) / 0.2), transparent 34%),
-      radial-gradient(circle at bottom center, rgb(var(--color-surface-elevated) / 0.52), transparent 62%),
-      linear-gradient(140deg, rgb(var(--color-surface)) 0%, rgb(var(--color-surface-muted)) 52%, rgb(var(--color-surface-elevated)) 100%);
+      linear-gradient(135deg, rgb(var(--color-surface)) 0%, rgb(var(--color-surface-muted)) 58%, rgb(var(--color-surface-elevated) / 0.72) 100%);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.48),
+      inset 0 1px 0 rgb(255 255 255 / 0.42),
       var(--shadow-elevated);
   }
 
   .surface-spotlight {
-    @apply rounded-[30px] border text-text;
+    @apply rounded-xl border text-text;
     border-color: rgb(var(--color-accent) / 0.2);
-    background:
-      radial-gradient(circle at top left, rgb(var(--color-accent-strong) / 0.24), transparent 34%),
-      radial-gradient(circle at bottom right, rgb(var(--color-surface-elevated) / 0.46), transparent 58%),
-      linear-gradient(160deg, rgb(var(--color-surface) / 0.985), rgb(var(--color-surface-muted) / 0.94) 54%, rgb(var(--color-surface)) 100%);
+    background: rgb(var(--color-surface) / 0.88);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.56),
-      inset 0 -1px 0 rgb(var(--color-accent) / 0.04),
-      var(--shadow-elevated);
+      inset 0 1px 0 rgb(255 255 255 / 0.32),
+      var(--shadow-soft);
   }
 
   .metric-tile {
-    @apply rounded-[22px] border px-3 py-3;
+    @apply rounded-lg border px-3 py-3;
     border-color: rgb(var(--color-border) / 0.6);
     background-color: rgb(var(--color-surface) / 0.88);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.44),
-      0 10px 24px rgb(72 49 23 / 0.07);
+      inset 0 1px 0 rgb(255 255 255 / 0.34),
+      0 8px 16px rgb(72 49 23 / 0.05);
   }
 
   .status-badge,
@@ -372,7 +347,7 @@
   }
 
   .empty-state {
-    @apply rounded-[24px] border px-4 py-4 font-sans text-sm leading-6 text-text-muted;
+    @apply rounded-lg border px-4 py-4 font-sans text-sm leading-6 text-text-muted;
     border-color: rgb(var(--color-border) / 0.6);
     background-color: rgb(var(--color-surface) / 0.78);
   }
@@ -391,13 +366,11 @@
 
   .icon-surface {
     @apply flex items-center justify-center rounded-full border text-text transition-all duration-200;
-    border-color: rgb(var(--color-border) / 0.82);
-    background:
-      radial-gradient(circle at top, rgb(var(--color-accent-strong) / 0.16), transparent 58%),
-      linear-gradient(180deg, rgb(var(--color-surface) / 0.97), rgb(var(--color-surface-muted) / 0.86));
+    border-color: rgb(var(--color-border) / 0.58);
+    background: rgb(var(--color-surface) / 0.9);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.5),
-      0 14px 30px rgb(72 49 23 / 0.11);
+      inset 0 1px 0 rgb(255 255 255 / 0.38),
+      0 8px 18px rgb(72 49 23 / 0.06);
   }
 
   .interactive-focus {
@@ -462,10 +435,8 @@
     inset: -0.15rem 0.22rem 0;
     z-index: -1;
     border-radius: 999px;
-    background: rgb(var(--color-surface) / 0.58);
-    box-shadow: 0 10px 24px rgb(46 32 16 / 0.10);
-    backdrop-filter: blur(18px) saturate(1.08);
-    -webkit-backdrop-filter: blur(18px) saturate(1.08);
+    background: rgb(var(--color-surface) / 0.92);
+    box-shadow: 0 8px 18px rgb(46 32 16 / 0.08);
     pointer-events: none;
   }
 
@@ -474,9 +445,9 @@
   }
 
   .app-nav {
-    @apply relative flex items-center rounded-full border px-2 py-2 backdrop-blur-[18px];
+    @apply relative flex items-center rounded-full border px-2 py-2;
     border-color: rgb(var(--color-border) / 0.46);
-    background-color: rgb(var(--color-surface) / 0.74);
+    background-color: rgb(var(--color-surface) / 0.96);
     box-shadow: none;
   }
 

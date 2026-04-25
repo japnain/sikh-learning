@@ -102,7 +102,7 @@ describe('Library bookmarks section', () => {
 
     const learnSavesSection = await screen.findByTestId('library-learn-saves')
     expect(within(learnSavesSection).getByText('Learn Saves')).toBeInTheDocument()
-    expect(within(learnSavesSection).getByText('When the mind is anxious')).toBeInTheDocument()
+    expect(await within(learnSavesSection).findByText('When the mind is anxious')).toBeInTheDocument()
 
     fireEvent.click(screen.getByLabelText('Remove saved Learn item'))
 
@@ -201,27 +201,18 @@ describe('Library removed sections', () => {
     expect(screen.queryByText(/add new/i)).not.toBeInTheDocument()
   })
 
-  it('shows the remaining scripture sections without Amrit Keertan', () => {
+  it('does not duplicate source browsing inside Saved', () => {
     render(<MemoryRouter><Library /></MemoryRouter>)
-    fireEvent.click(screen.getByRole('button', { name: /browse by source/i }))
-    expect(screen.getByTestId('library-source-browser-shared')).toHaveAttribute('data-component', 'scripture-source-browser')
-    expect(screen.getByText('Sri Guru Granth Sahib Ji')).toBeInTheDocument()
-    expect(screen.getByText('Dasam Granth')).toBeInTheDocument()
-    expect(screen.getByText('Bhai Gurdas Ji Vaaran')).toBeInTheDocument()
-    expect(screen.getByText('Panth Prakash (English)')).toBeInTheDocument()
+    expect(screen.queryByTestId('library-source-browser')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
     expect(screen.queryByText('Amrit Keertan')).not.toBeInTheDocument()
   })
 
-  it('opens Panth Prakash source browsing on the library overview route', async () => {
+  it('does not show source browsing routes on the library overview route', async () => {
     renderLibraryRoutes()
 
-    fireEvent.click(screen.getByRole('button', { name: /browse by source/i }))
-    fireEvent.click(screen.getByRole('button', { name: 'Panth Prakash (English)' }))
-    fireEvent.click(screen.getByRole('link', { name: '1' }))
-
-    await waitFor(() => {
-      expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english/page/1')
-    })
+    expect(screen.queryByRole('button', { name: /browse by source/i })).not.toBeInTheDocument()
+    expect(screen.getByTestId('location').textContent).toBe('/library')
   })
 
   it('does not show Panthic Sources or BNL', () => {

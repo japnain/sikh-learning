@@ -170,35 +170,35 @@ function SelectionCard({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group relative w-full overflow-hidden rounded-[22px] border text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 ${
+      className={`group relative w-full overflow-hidden rounded-lg border text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
         selected
-          ? 'border-gold/55 bg-gradient-to-br from-saffron/90 via-saffron-light/85 to-gold/80 px-5 py-5 text-white shadow-[0_22px_48px_rgba(173,118,33,0.28)]'
-          : 'border-sand/15 bg-parchment-low/95 px-4 py-3 text-ink hover:-translate-y-0.5 hover:border-gold/30 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-dark-card'
+          ? 'border-gold/45 bg-gold/12 px-4 py-3 text-ink shadow-[inset_3px_0_0_rgba(142,76,32,0.72)] dark:bg-gold/12 dark:text-dark-text'
+          : 'border-sand/20 bg-parchment-card/72 px-4 py-3 text-ink hover:border-gold/30 hover:bg-white dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text dark:hover:border-gold/25'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           {eyebrow && (
             <p className={`mb-1 text-[11px] uppercase tracking-[0.18em] ${
-              selected ? 'text-white/80' : 'text-gold dark:text-gold-light'
+              selected ? 'text-gold-dark dark:text-gold-light' : 'text-gold dark:text-gold-light'
             }`}>
               {eyebrow}
             </p>
           )}
-          <p className="font-display text-xl leading-tight">{title}</p>
+          <p className="font-sans text-sm font-semibold leading-tight">{title}</p>
         </div>
         {badge && (
           <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
             selected
-              ? 'bg-white/20 text-white'
+              ? 'bg-gold/16 text-gold-dark dark:bg-gold/16 dark:text-gold-light'
               : 'bg-gold/10 text-gold dark:bg-gold/15 dark:text-gold-light'
           }`}>
             {badge}
           </span>
         )}
       </div>
-      <p className={`mt-2 text-sm leading-5 ${
-        selected ? 'text-white/85' : 'text-ink/65 dark:text-dark-text/70'
+      <p className={`mt-2 text-xs leading-5 ${
+        selected ? 'text-ink/70 dark:text-dark-text/70' : 'text-ink/60 dark:text-dark-text/65'
       }`}>
         {body}
       </p>
@@ -226,25 +226,25 @@ function GoalChoice({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`group flex min-h-[72px] w-full flex-col justify-between rounded-[22px] border px-4 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-300 sm:min-h-[96px] sm:py-4 ${
+      className={`group flex min-h-[64px] w-full flex-col justify-between rounded-lg border px-4 py-3 text-left transition-[transform,border-color,background-color,color,box-shadow] duration-200 ${
         selected
-          ? 'border-gold/45 bg-[linear-gradient(180deg,rgba(226,164,79,0.98),rgba(245,192,107,0.88))] text-white shadow-[0_18px_38px_rgba(173,118,33,0.24)]'
-          : 'border-sand/15 bg-white/72 text-ink/82 hover:-translate-y-0.5 hover:border-gold/28 hover:bg-white dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/78 dark:hover:border-gold/22 dark:hover:bg-dark-card'
+          ? 'border-gold/45 bg-gold/12 text-ink shadow-[inset_3px_0_0_rgba(142,76,32,0.72)] dark:bg-gold/12 dark:text-dark-text'
+          : 'border-sand/18 bg-white/70 text-ink/85 hover:border-gold/28 hover:bg-white dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/75 dark:hover:border-gold/22'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
-        <p className={`font-display text-xl leading-tight ${selected ? 'text-white' : 'text-ink dark:text-dark-text'}`}>
+        <p className="font-sans text-sm font-semibold leading-tight text-ink dark:text-dark-text">
           {label}
         </p>
         <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
           selected
-            ? 'bg-white/20 text-white'
+            ? 'bg-gold/16 text-gold-dark dark:bg-gold/16 dark:text-gold-light'
             : 'bg-gold/10 text-gold dark:bg-gold/15 dark:text-gold-light'
         }`}>
           {selected ? selectedLabel : idleLabel}
         </span>
       </div>
-      <p className={`mt-2 hidden text-sm leading-6 sm:block ${selected ? 'text-white/86' : 'text-ink/62 dark:text-dark-text/64'}`}>
+      <p className={`mt-2 text-xs leading-5 ${selected ? 'text-ink/70 dark:text-dark-text/70' : 'text-ink/60 dark:text-dark-text/65'}`}>
         {body}
       </p>
     </button>
@@ -265,10 +265,10 @@ function MiniChoice({
       type="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`rounded-2xl border px-3 py-2 text-xs font-medium transition-[border-color,background-color,color] duration-200 ${
+      className={`rounded-lg border px-3 py-2 text-xs font-medium transition-[border-color,background-color,color] duration-200 ${
         selected
-          ? 'border-gold/50 bg-gradient-to-r from-saffron to-saffron-light text-white'
-          : 'border-sand/15 bg-parchment-low text-ink/75 dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text/75'
+          ? 'border-gold/50 bg-gold/14 text-gold-dark dark:bg-gold/14 dark:text-gold-light'
+          : 'border-sand/18 bg-parchment-low text-ink/75 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/75'
       }`}
     >
       {label}
@@ -293,7 +293,7 @@ function ProviderChoice({
       onClick={onClick}
       disabled={disabled}
       data-ai-action={dataAiAction}
-      className="rounded-[20px] border border-sand/15 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-white/10"
+      className="rounded-lg border border-sand/18 bg-white/72 px-4 py-3 text-sm font-medium text-ink transition-[border-color,background-color] duration-200 hover:border-gold/35 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text dark:hover:border-gold/25 dark:hover:bg-white/10"
     >
       {label}
     </button>
@@ -361,6 +361,7 @@ export default function OnboardingSheet({
 }: Props) {
   const [currentStep, setCurrentStep] = useState<OnboardingStep>('setup')
   const [showFineTune, setShowFineTune] = useState(false)
+  const [showBackup, setShowBackup] = useState(false)
 
   const copy = getUiCopy(locale)
   const {
@@ -477,10 +478,10 @@ export default function OnboardingSheet({
         data-ai-error={onboardingErrorCode ?? undefined}
       >
         <div className="max-w-[28rem] space-y-2">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-ink/58 dark:text-dark-text/64">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/65">
             {currentUser ? copy.onboarding.authConnected : copy.onboarding.authTitle}
           </p>
-          <p className="text-sm leading-6 text-ink/66 dark:text-dark-text/68">
+          <p className="text-sm leading-6 text-ink/65 dark:text-dark-text/70">
             {currentUser
               ? copy.onboarding.authConnectedBody
               : isProviderLoading
@@ -490,13 +491,13 @@ export default function OnboardingSheet({
         </div>
 
         {connectedLabel && (
-          <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/68 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/70">
+          <p className="rounded-full border border-white/70 bg-white/72 px-3 py-1.5 text-xs text-ink/70 dark:border-white/5 dark:bg-black/15 dark:text-dark-text/70">
             {connectedLabel}
           </p>
         )}
 
         {lastError && !currentUser && (
-          <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/68 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
+          <p className="rounded-[18px] border border-sand/15 bg-white/72 px-3 py-2 text-xs leading-5 text-ink/70 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/70">
             {lastError}
           </p>
         )}
@@ -574,19 +575,19 @@ export default function OnboardingSheet({
     }
 
     return (
-      <div className="space-y-6">
-        <div className="space-y-4">
+      <div className="space-y-4">
+        <div className="space-y-3">
           <div>
-            <h3 className="font-display text-3xl leading-tight text-ink dark:text-dark-text">
+            <h3 className="font-display text-[1.65rem] leading-tight text-ink dark:text-dark-text">
               {copy.onboarding.intentTitle}
             </h3>
-            <p className="mt-2 max-w-[28rem] text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+            <p className="mt-1.5 max-w-[28rem] text-xs leading-5 text-ink/65 dark:text-dark-text/65">
               {copy.onboarding.intentBody}
             </p>
           </div>
 
           <section
-            className="grid grid-cols-3 gap-2 rounded-[24px] border border-sand/14 bg-white/58 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.52),0_14px_34px_rgba(92,61,26,0.08)] dark:border-dark-text/10 dark:bg-white/[0.05]"
+            className="grid grid-cols-3 gap-2 rounded-lg border border-sand/18 bg-white/58 p-2 dark:border-dark-text/10 dark:bg-white/[0.04]"
             data-testid="onboarding-session-brief"
           >
             {[
@@ -594,18 +595,18 @@ export default function OnboardingSheet({
               [copy.onboarding.stylePanelEyebrow, selectedPresetTitle],
               [copy.onboarding.previewEyebrow, routeSummary],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-[18px] border border-sand/12 bg-parchment-low/70 px-2.5 py-2.5 dark:border-dark-text/10 dark:bg-dark-surface/80">
+                <div key={label} className="rounded-md border border-sand/12 bg-parchment-low/70 px-2.5 py-2 dark:border-dark-text/10 dark:bg-white/[0.04]">
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
                   {label}
                 </p>
-                <p className="mt-1.5 line-clamp-3 font-sans text-[11px] leading-4 text-ink/72 dark:text-dark-text/74">
+                <p className="mt-1 line-clamp-2 font-sans text-[11px] leading-4 text-ink/70 dark:text-dark-text/75">
                   {value}
                 </p>
               </div>
             ))}
           </section>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-2">
             {(['read', 'understand', 'habit'] as const).map(goal => (
               <GoalChoice
                 key={goal}
@@ -629,7 +630,7 @@ export default function OnboardingSheet({
               <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                 {copy.onboarding.setupDirectionLabel} · {learningGoalLabels[learningGoal]}
               </p>
-              <p className="mt-1 text-sm leading-6 text-ink/68 dark:text-dark-text/68">
+              <p className="mt-1 text-sm leading-6 text-ink/70 dark:text-dark-text/70">
                 {goalBody}
               </p>
             </div>
@@ -637,24 +638,23 @@ export default function OnboardingSheet({
         </div>
 
         <section
-          className="relative overflow-hidden rounded-[32px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,rgba(255,208,120,0.24),transparent_38%),linear-gradient(180deg,rgba(255,252,246,0.98),rgba(247,238,225,0.94))] p-5 shadow-[0_18px_42px_rgba(122,84,32,0.14)] dark:border-gold/10 dark:bg-[radial-gradient(circle_at_top_right,rgba(240,171,48,0.18),transparent_34%),linear-gradient(180deg,rgba(38,33,27,0.97),rgba(28,24,20,0.98))] dark:shadow-[0_22px_48px_rgba(0,0,0,0.34)]"
+          className="section-shell-quiet p-4"
           data-testid="onboarding-style-panel"
           data-ai-surface="onboarding-style-panel"
         >
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent dark:via-gold/20" />
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                 {copy.onboarding.stylePanelEyebrow}
               </p>
-              <h3 className="mt-2 font-display text-[2rem] leading-tight text-ink dark:text-dark-text">
+              <h3 className="mt-2 font-display text-[1.55rem] leading-tight text-ink dark:text-dark-text">
                 {copy.onboarding.styleTitle}
               </h3>
-              <p className="mt-2 max-w-[24rem] text-sm leading-6 text-ink/66 dark:text-dark-text/68">
+              <p className="mt-2 max-w-[24rem] text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 {copy.onboarding.styleBody}
               </p>
             </div>
-            <span className="shrink-0 rounded-full border border-white/70 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/10 dark:bg-white/5 dark:text-gold-light">
+            <span className="shrink-0 rounded-full border border-sand/16 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold dark:border-white/10 dark:bg-white/5 dark:text-gold-light">
               {copy.onboarding.recommended}
             </span>
           </div>
@@ -668,7 +668,7 @@ export default function OnboardingSheet({
             </span>
           </div>
 
-          <div className="mt-5 space-y-3">
+          <div className="mt-4 grid gap-2">
             {orderedPresets.map(renderPresetCard)}
           </div>
         </section>
@@ -687,17 +687,17 @@ export default function OnboardingSheet({
 
     return (
       <div className="space-y-4">
-        <div className="max-w-[27rem]">
-          <h3 className="font-display text-[1.85rem] leading-tight text-ink dark:text-dark-text">
+        <div className={presentation === 'first-run' ? 'sr-only' : 'max-w-[27rem]'}>
+          <h3 className="font-display text-[1.8rem] leading-tight text-ink dark:text-dark-text">
             {copy.onboarding.previewTitle}
           </h3>
-          <p className="mt-2 text-sm leading-5 text-ink/62 dark:text-dark-text/64">
+          <p className="mt-2 text-sm leading-5 text-ink/60 dark:text-dark-text/65">
             {copy.onboarding.previewBody}
           </p>
         </div>
 
         <div
-          className="overflow-hidden rounded-[32px] border border-sand/15 bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.24),_transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.97),rgba(244,235,220,0.94))] p-6 shadow-[0_30px_70px_rgba(122,84,32,0.16)] dark:border-dark-text/10 dark:bg-[radial-gradient(circle_at_top_right,_rgba(240,171,48,0.18),_transparent_36%),linear-gradient(180deg,rgba(32,29,24,0.98),rgba(26,24,20,1))]"
+          className="overflow-hidden rounded-xl border border-gold/18 bg-[linear-gradient(180deg,rgba(255,252,246,0.98),rgba(244,235,220,0.9))] p-4 shadow-[0_12px_28px_rgba(122,84,32,0.10)] dark:border-gold/14 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.96),rgba(25,20,34,0.96))]"
           data-testid="onboarding-preview-hero"
           data-ai-surface="onboarding-preview-hero"
         >
@@ -706,32 +706,32 @@ export default function OnboardingSheet({
               <p className="text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                 {copy.onboarding.previewEyebrow}
               </p>
-              <p className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">
+              <p className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">
                 {primaryActionLabel}
               </p>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-ink/52 dark:text-dark-text/56">
+              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-ink/50 dark:text-dark-text/55">
                 {previewSummaryLine}
               </p>
             </div>
-            <span className="rounded-full border border-gold/18 bg-white/65 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
+            <span className="rounded-full border border-gold/18 bg-white/65 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold dark:border-gold/20 dark:bg-white/5 dark:text-gold-light">
               {copy.onboarding.ready}
             </span>
           </div>
 
-          <div className="mt-6 rounded-[28px] bg-white/72 px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] dark:bg-black/20">
+          <div className="mt-4 rounded-lg border border-sand/12 bg-white/72 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.32)] dark:border-dark-text/10 dark:bg-black/18">
             <p
-              className={`text-[1.9rem] leading-relaxed text-ink dark:text-dark-text ${scriptMode === 'gurmukhi' ? 'font-gurmukhi' : 'font-sans'}`}
+              className={`text-[1.72rem] leading-relaxed text-ink dark:text-dark-text ${scriptMode === 'gurmukhi' ? 'font-gurmukhi' : 'font-sans'}`}
               lang={scriptMode === 'gurmukhi' ? 'pa-Guru' : 'hi'}
             >
               {previewScript}
             </p>
             {showTransliteration && (
-              <p className="mt-3 text-sm italic text-ink/58 dark:text-dark-text/60">
+              <p className="mt-3 text-sm italic text-ink/60 dark:text-dark-text/60">
                 {SAMPLE_LINE.transliteration}
               </p>
             )}
             {previewMeaning ? (
-              <p className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/72 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+              <p className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
                 {previewMeaning}
               </p>
             ) : (
@@ -755,7 +755,7 @@ export default function OnboardingSheet({
     <div
       className={`relative flex flex-col ${
         isOverlayPresentation
-          ? 'h-full min-h-0 overflow-hidden rounded-[34px] border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card'
+          ? 'h-full min-h-0 overflow-hidden rounded-xl border border-sand/15 bg-parchment-card shadow-gold-strong dark:border-gold/10 dark:bg-dark-card'
           : 'min-h-0 flex-1 overflow-visible'
       }`}
       data-testid={isOverlayPresentation ? 'onboarding-dialog' : 'onboarding-first-run-panel'}
@@ -763,16 +763,18 @@ export default function OnboardingSheet({
       data-ai-state="ready"
     >
       <div className={`relative shrink-0 ${
-        isOverlayPresentation
-          ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(37,33,28,0.96),rgba(30,27,23,0.88))]'
-          : 'px-1 pb-5 pt-4'
+        !isOverlayPresentation && currentStep === 'preview'
+          ? 'sr-only'
+          : isOverlayPresentation
+          ? 'border-b border-sand/10 bg-[linear-gradient(180deg,rgba(255,249,239,0.92),rgba(244,235,220,0.8))] px-5 pb-4 pt-5 dark:border-dark-text/10 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.96),rgba(25,20,34,0.88))]'
+          : 'px-1 pb-3 pt-1'
       }`}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="mb-2 font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
+            <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
               {copy.onboarding.eyebrow}
             </p>
-            <h2 id={titleId} className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
+            <h2 id={titleId} className="font-display text-[1.55rem] leading-tight text-ink dark:text-dark-text">
               {copy.onboarding.title}
             </h2>
           </div>
@@ -786,13 +788,17 @@ export default function OnboardingSheet({
             </button>
           ) : null}
         </div>
-        <p id={descriptionId} className="mt-3 max-w-[28rem] text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+        <p id={descriptionId} className="mt-2 max-w-[28rem] text-xs leading-5 text-ink/65 dark:text-dark-text/65">
           {editorial?.onboarding.brandBody ?? copy.onboarding.body}
         </p>
       </div>
 
       <div className={`relative ${
-        isOverlayPresentation ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4' : 'px-1 pb-28'
+        isOverlayPresentation
+          ? 'min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4'
+          : currentStep === 'preview'
+            ? 'px-1 pb-80'
+            : 'px-1 pb-28'
       }`}>
         <div className="space-y-4">
           <StepIndicator currentStep={currentStep} locale={locale} />
@@ -815,14 +821,14 @@ export default function OnboardingSheet({
         isOverlayPresentation
           ? 'relative border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
           : currentStep === 'preview'
-            ? 'relative mt-4 px-1 pb-4'
+            ? 'fixed inset-x-4 bottom-[calc(var(--safe-area-bottom)+1rem)] z-[80] mx-auto max-w-md px-0'
             : 'fixed inset-x-4 bottom-[calc(var(--safe-area-bottom)+1rem)] z-[80] mx-auto max-w-md px-0'
       }`}>
         {currentStep === 'setup' ? (
           <div
             className={isOverlayPresentation
               ? 'space-y-0'
-              : 'rounded-[28px] border border-white/70 bg-[linear-gradient(180deg,rgba(255,249,239,0.9),rgba(244,235,220,0.98))] px-4 py-4 shadow-[0_-18px_36px_rgba(122,84,32,0.12)] backdrop-blur-xl dark:border-white/5 dark:bg-[linear-gradient(180deg,rgba(38,33,27,0.9),rgba(28,24,20,0.98))]'}
+              : 'rounded-xl border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'}
             data-testid="onboarding-setup-action-bar"
             data-ai-surface="onboarding-setup-action-bar"
           >
@@ -834,7 +840,8 @@ export default function OnboardingSheet({
             <button
               type="button"
               onClick={() => setCurrentStep('preview')}
-              className="w-full rounded-2xl bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
+              className="w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
+              data-testid="onboarding-setup-primary-action"
             >
               {copy.common.continueLabel}
             </button>
@@ -844,17 +851,17 @@ export default function OnboardingSheet({
             className={`${
               isOverlayPresentation
                 ? 'border-t border-sand/10 bg-parchment-card px-5 pb-5 pt-4 dark:border-dark-text/10 dark:bg-dark-card'
-                : 'sticky bottom-0 z-10 -mx-1 bg-[linear-gradient(180deg,rgba(255,249,239,0),rgba(255,249,239,0.78)_22%,rgba(244,235,220,0.98)_56%,rgba(244,235,220,1)_100%)] px-1 pb-4 pt-6 dark:bg-[linear-gradient(180deg,rgba(24,21,17,0),rgba(24,21,17,0.76)_20%,rgba(28,24,20,0.98)_54%,rgba(28,24,20,1)_100%)]'
+                : 'rounded-xl border border-sand/18 bg-parchment-card px-4 py-4 shadow-[0_-10px_24px_rgba(122,84,32,0.10)] dark:border-white/5 dark:bg-dark-card'
             }`}
             data-testid="onboarding-preview-action-bar"
             data-ai-surface="onboarding-preview-action-bar"
           >
             <div className="space-y-3">
               <div className="max-w-[28rem] space-y-1">
-                <p className="text-[11px] tracking-[0.12em] text-ink/38 dark:text-dark-text/42">
+                <p className="text-[11px] tracking-[0.12em] text-ink/40 dark:text-dark-text/40">
                   {copy.onboarding.previewSupportTitle}
                 </p>
-                <p className="text-sm leading-6 text-ink/70 dark:text-dark-text/72">
+                <p className="text-sm leading-6 text-ink/70 dark:text-dark-text/70">
                   {routeSummary}
                 </p>
               </div>
@@ -863,28 +870,51 @@ export default function OnboardingSheet({
                 type="button"
                 onClick={() => void onComplete()}
                 disabled={isCompleting || (!currentUser && isCloudBusy)}
-                data-ai-action={currentUser ? 'complete-onboarding' : 'continue-as-guest'}
-                className="w-full rounded-[22px] bg-gradient-to-r from-saffron to-saffron-light py-4 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
+                data-testid="onboarding-preview-primary-action"
+                data-ai-action="complete-onboarding"
+                className="w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light py-4 text-sm font-semibold text-white shadow-gold-strong disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {getPrimaryActionLabel(learningGoal, meaningLanguage, copy.onboarding)}
               </button>
 
-              {renderAuthSection('rounded-[24px] border border-sand/15 bg-white/72 p-4 shadow-[0_18px_36px_rgba(122,84,32,0.1)] dark:border-dark-text/10 dark:bg-dark-surface')}
+              <div className="rounded-lg border border-sand/18 bg-white/60 px-3 py-3 dark:border-dark-text/10 dark:bg-white/[0.04]">
+                <button
+                  type="button"
+                  onClick={() => setShowBackup(value => !value)}
+                  aria-expanded={showBackup}
+                  className="flex w-full items-center justify-between gap-3 text-left"
+                  data-testid="onboarding-backup-toggle"
+                >
+                  <span>
+                    <span className="block text-[11px] uppercase tracking-[0.16em] text-gold dark:text-gold-light">
+                      {copy.onboarding.authTitle}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-ink/60 dark:text-dark-text/60">
+                      {copy.onboarding.authBody}
+                    </span>
+                  </span>
+                  <span className="shrink-0 rounded-full border border-sand/20 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-ink/50 dark:border-dark-text/14 dark:text-dark-text/55">
+                    {showBackup ? copy.common.hide : copy.common.show}
+                  </span>
+                </button>
+
+                {showBackup ? renderAuthSection('mt-3 border-t border-sand/12 pt-3 dark:border-dark-text/10') : null}
+              </div>
 
               <div className="space-y-2" data-testid="onboarding-preview-tune-row">
                 <button
                   type="button"
                   onClick={() => setShowFineTune(value => !value)}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-ink/54 transition-colors duration-200 hover:text-ink/72 dark:text-dark-text/60 dark:hover:text-dark-text/82"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink/55 transition-colors duration-200 hover:text-ink/70 dark:text-dark-text/60 dark:hover:text-dark-text/85"
                   aria-expanded={showFineTune}
                   aria-controls={fineTunePanelId}
                 >
                   <span>{showFineTune ? copy.onboarding.hideTuning : copy.onboarding.tuneReader}</span>
-                  <span className="rounded-full border border-sand/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink/44 dark:border-dark-text/14 dark:text-dark-text/48">
+                  <span className="rounded-full border border-sand/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink/45 dark:border-dark-text/14 dark:text-dark-text/50">
                     {showFineTune ? copy.common.hide : copy.common.show}
                   </span>
                 </button>
-                <p className="max-w-[28rem] text-xs leading-5 text-ink/56 dark:text-dark-text/58">
+                <p className="max-w-[28rem] text-xs leading-5 text-ink/55 dark:text-dark-text/60">
                   {copy.onboarding.fineTune}
                 </p>
               </div>
@@ -893,7 +923,7 @@ export default function OnboardingSheet({
             {showFineTune && (
               <div
                 id={fineTunePanelId}
-                className="mt-4 space-y-4 rounded-[24px] border border-sand/15 bg-white/72 p-4 shadow-[0_18px_36px_rgba(122,84,32,0.12)] dark:border-dark-text/10 dark:bg-dark-surface"
+                className="mt-4 space-y-4 rounded-lg border border-sand/15 bg-white/72 p-4 shadow-[0_10px_22px_rgba(122,84,32,0.08)] dark:border-dark-text/10 dark:bg-white/[0.04]"
               >
                 <div>
                   <p className="mb-2 text-sm text-ink dark:text-dark-text">{copy.onboarding.readingScript}</p>
@@ -1039,10 +1069,10 @@ export default function OnboardingSheet({
           paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)',
         }}
       >
-        <header className="flex items-center justify-between gap-3 py-4">
+        <header className="flex items-center justify-between gap-3 py-2">
           <div className="min-w-0">
-            <p className="font-display text-[2.55rem] leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
-            <p className="mt-2 max-w-[22rem] text-sm leading-5 text-ink/58 dark:text-dark-text/60">{editorial?.brand.promise ?? copy.home.promise}</p>
+            <p className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{editorial?.brand.name ?? 'NaamRas'}</p>
+            <p className="mt-1 max-w-[22rem] text-xs leading-4 text-ink/60 dark:text-dark-text/60">{editorial?.brand.promise ?? copy.home.promise}</p>
           </div>
           <span className="shrink-0 rounded-full border border-sand/18 bg-white/62 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-gold-light">
             {copy.onboarding.ready}

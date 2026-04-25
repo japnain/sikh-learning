@@ -23,11 +23,18 @@ beforeEach(() => {
     completedDate: '2026-04-08',
     completedIds: [],
     selectedIds: [...DEFAULT_NITNEM_OPTION_IDS],
+    completionTrackingEnabled: false,
   })
 })
 
 test('keeps the default daily nitnem selection', () => {
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
+})
+
+test('keeps completion tracking optional by default', () => {
+  expect(useNitemStore.getState().completionTrackingEnabled).toBe(false)
+  useNitemStore.getState().setCompletionTrackingEnabled(true)
+  expect(useNitemStore.getState().completionTrackingEnabled).toBe(true)
 })
 
 test('keeps the additional banis grouped under Additional with clean card copy', () => {
