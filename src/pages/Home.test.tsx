@@ -188,6 +188,7 @@ test('renders greeting', () => {
 test('shows the new hero shell immediately', () => {
   renderHome()
   expect(screen.getByText(/^NaamRas$/)).toBeInTheDocument()
+  expect(screen.getByTestId('home-brand-mark')).toBeInTheDocument()
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.queryByTestId('home-guidance-skeleton')).not.toBeInTheDocument()
@@ -196,18 +197,19 @@ test('shows the new hero shell immediately', () => {
   expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
 })
 
-test('composes the daily ritual surface with compact action rail', async () => {
+test('composes the opening hero around the hukamnama CTA without the old action rail', async () => {
   renderHome()
 
   const room = screen.getByTestId('home-daily-reading-room')
   const hero = screen.getByTestId('home-hero')
-  const rail = within(hero).getByTestId('home-reading-room-path')
 
   expect(within(hero).getByText(/^NaamRas$/)).toBeInTheDocument()
-  expect(within(rail).getByText(/^Read$/i)).toBeInTheDocument()
-  expect(within(rail).getByText(/^Learn$/i)).toBeInTheDocument()
-  expect(within(rail).getByText(/^Nitnem$/i)).toBeInTheDocument()
+  expect(within(hero).queryByTestId('home-reading-room-path')).not.toBeInTheDocument()
+  expect(within(hero).queryByRole('link', { name: /^Read$/i })).not.toBeInTheDocument()
+  expect(within(hero).queryByRole('link', { name: /^Learn$/i })).not.toBeInTheDocument()
+  expect(within(hero).queryByRole('link', { name: /^Nitnem$/i })).not.toBeInTheDocument()
   expect(within(room).getByTestId('home-hukamnama-card')).toBeInTheDocument()
+  expect(within(room).getByTestId('home-hero-primary-action')).toHaveAttribute('href', '/study?hukamnamaDate=2026-04-11')
   expect(within(room).queryByTestId('home-guidance-hero')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
 })
@@ -321,7 +323,7 @@ test('keeps Daily Nitnem completion controls out of Home', () => {
   expect(within(activeCard).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
   expect(within(activeCard).queryByRole('button', { name: /mark as complete/i })).not.toBeInTheDocument()
   expect(within(activeCard).queryByText(/0 \/ 7/i)).not.toBeInTheDocument()
-  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/more#daily-nitnem')
+  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/nitnem/customize')
 })
 
 test('rebuilds read today around one live reading and discovery surface', () => {
@@ -352,7 +354,7 @@ test('keeps the lower home surface saved-only', () => {
 test('shows today’s hukamnama action', async () => {
   renderHome()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
-  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
+  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/read hukamnama/i)
 })
 
 test('shows inline fallback copy when hukamnama fails on home', () => {
@@ -463,7 +465,7 @@ test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama
   renderHome()
 
   expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
-  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/open today.?s hukamnama/i)
+  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/read hukamnama/i)
 })
 
 test('opens the Ardaas + Hukamnama devotional flow from read today when no session exists', async () => {
@@ -712,7 +714,7 @@ test('opens Nitnem banis through exact BaniDB routes', async () => {
 test('moves Daily Nitnem customization out of Home', () => {
   renderHome()
 
-  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/more#daily-nitnem')
+  expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/nitnem/customize')
   expect(document.querySelector('#home-nitnem-panel')).toBeNull()
   expect(screen.queryByTestId('home-nitnem-reset')).not.toBeInTheDocument()
   expect(screen.queryByText(/BaniDB|STTM|API/i)).not.toBeInTheDocument()

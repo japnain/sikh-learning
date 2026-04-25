@@ -54,7 +54,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to read/i }))
+  fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
   fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
@@ -126,7 +126,7 @@ test('refreshes the skip link target on each route', async () => {
 test('habit onboarding completion returns home after the premium onboarding flow', async () => {
   render(<App />)
 
-  fireEvent.click(screen.getByRole('button', { name: /i want to build habit/i }))
+  fireEvent.click(screen.getByRole('button', { name: /build a daily reading habit/i }))
   fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
   fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
@@ -159,7 +159,7 @@ test('reopening onboarding from more keeps the saved profile selections', async 
     expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
   })
 
-  expect(screen.getByRole('button', { name: /i want to understand/i })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: /understand scripture/i })).toHaveAttribute('aria-pressed', 'true')
   expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
   expect(useOnboardingStore.getState().audience).toBe('teen')
   expect(useOnboardingStore.getState().learningGoal).toBe('understand')

@@ -3,9 +3,6 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import {
   fetchSearch,
   fetchBanisIndex,
-  fetchRehats,
-  fetchRehatChapters,
-  fetchRehatChapter,
   type SearchResult,
   type BaniIndexItem,
 } from '../api/banidb'
@@ -13,21 +10,19 @@ import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, S
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { resolveAsyncIssue } from '../qa/async'
 import { useRecentSearchStore } from '../store/recentSearch'
-import { useScriptureCacheStore } from '../store/scriptureCache'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
-import type { AsyncIssueCode, RehatChapterContent, RehatChapterSummary, RehatSummary, SearchMode } from '../types'
+import type { AsyncIssueCode, SearchMode } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
 import {
   SUNDAR_GUTKA_SUPPORTED_BANIS,
   isSundarGutkaLengthSupportedBaniId,
 } from '../utils/sundarGutkaLength'
 import { SEARCH_MODE_LABELS } from '../utils/translations'
-import { IconArrowLeft, IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
+import { IconArrowRight, IconSearch, IconChevronUp, IconChevronDown, IconLibrary, IconSword, IconBookmark, IconBookmarkFilled } from '../components/icons'
 import SearchHighlight from '../components/SearchHighlight'
 import ScriptureSourceBrowser from '../components/ScriptureSourceBrowser'
 import { hasSearchMatch } from '../utils/searchHighlight'
 import { getEditorialCopy } from '../content/editorialCopy'
-import { sanitizeRehatHtml, stripHtmlTags } from '../utils/rehatHtml'
 import {
   getAngTargets,
   getAvailableSearchMeta,
@@ -392,26 +387,8 @@ export default function Banis() {
   const [writerFilter, setWriterFilter] = useState<string>('all')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
-  const {
-    getRehats: getCachedRehats,
-    setRehats: setCachedRehats,
-    getRehatChapters: getCachedRehatChapters,
-    setRehatChapters: setCachedRehatChapters,
-    getRehatChapter: getCachedRehatChapter,
-    setRehatChapter: setCachedRehatChapter,
-  } = useScriptureCacheStore()
-  const [rehats, setRehatsState] = useState<RehatSummary[]>(() => getCachedRehats())
-  const [loadingRehats, setLoadingRehats] = useState(() => getCachedRehats().length === 0)
-  const [rehatChaptersById, setRehatChaptersById] = useState<Record<number, RehatChapterSummary[]>>({})
-  const [loadingRehatId, setLoadingRehatId] = useState<number | null>(null)
-  const [selectedRehat, setSelectedRehat] = useState<RehatSummary | null>(null)
-  const [loadingRehatChapterKey, setLoadingRehatChapterKey] = useState<string | null>(null)
-  const [selectedRehatChapter, setSelectedRehatChapter] = useState<RehatChapterContent | null>(null)
-  const [rehatQuery, setRehatQuery] = useState('')
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
   const searchOptionsOpen = expanded['search-options'] ?? false
-  const rehatSectionRef = useRef<HTMLDivElement | null>(null)
-  const rehatContentRef = useRef<HTMLDivElement | null>(null)
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -419,31 +396,6 @@ export default function Banis() {
   const searchFeedbackRef = useRef<HTMLElement | null>(null)
   const setSearchFeedbackElement = useCallback((element: HTMLElement | null) => {
     searchFeedbackRef.current = element
-  }, [])
-
-  const scheduleSectionReveal = useCallback((getElement: () => HTMLDivElement | null) => {
-    if (typeof window === 'undefined') return
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        const nextElement = getElement()
-        if (!nextElement) return
-
-        const navHeight = Number.parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue('--nav-stack-height')
-        ) || 0
-        const elementTop = nextElement.getBoundingClientRect().top + window.scrollY
-        const elementBottom = nextElement.getBoundingClientRect().bottom + window.scrollY
-        const visibleBottom = window.scrollY + window.innerHeight - navHeight - 24
-
-        if (elementBottom > visibleBottom || nextElement.getBoundingClientRect().top < 16) {
-          window.scrollTo({
-            top: Math.max(elementTop - 16, 0),
-            behavior: 'auto',
-          })
-        }
-      })
-    })
   }, [])
 
   const revealSearchFeedback = useCallback(() => {
@@ -495,29 +447,10 @@ export default function Banis() {
         if (!cancelled) setLoadingSundarGutka(false)
       })
 
-    if (getCachedRehats().length === 0) {
-      setLoadingRehats(true)
-      fetchRehats()
-        .then(data => {
-          if (cancelled) return
-          setCachedRehats(data)
-          setRehatsState(data)
-        })
-        .catch(() => {
-          if (!cancelled) setRehatsState([])
-        })
-        .finally(() => {
-          if (!cancelled) setLoadingRehats(false)
-        })
-    } else {
-      setRehatsState(getCachedRehats())
-      setLoadingRehats(false)
-    }
-
     return () => {
       cancelled = true
     }
-  }, [getCachedRehats, setCachedRehats])
+  }, [])
 
   useEffect(() => {
     return () => {
@@ -638,60 +571,6 @@ export default function Banis() {
     navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
-  const openRehat = async (rehat: RehatSummary) => {
-    setSelectedRehat(rehat)
-    setSelectedRehatChapter(null)
-    setRehatQuery('')
-
-    const cachedChapters = getCachedRehatChapters(rehat.rehatId)
-    if (cachedChapters) {
-      setRehatChaptersById(current => ({ ...current, [rehat.rehatId]: cachedChapters }))
-      scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
-      return
-    }
-
-    setLoadingRehatId(rehat.rehatId)
-    try {
-      const chapters = await fetchRehatChapters(rehat.rehatId)
-      setCachedRehatChapters(rehat.rehatId, chapters)
-      setRehatChaptersById(current => ({ ...current, [rehat.rehatId]: chapters }))
-    } catch {
-      setRehatChaptersById(current => ({ ...current, [rehat.rehatId]: [] }))
-    } finally {
-      setLoadingRehatId(current => (current === rehat.rehatId ? null : current))
-      scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
-    }
-  }
-
-  const openRehatChapter = async (rehat: RehatSummary, chapter: RehatChapterSummary) => {
-    const chapterKey = `${rehat.rehatId}-${chapter.chapterId}`
-    setLoadingRehatChapterKey(chapterKey)
-    setRehatQuery('')
-
-    const cachedChapter = getCachedRehatChapter(rehat.rehatId, chapter.chapterId)
-    if (cachedChapter) {
-      setSelectedRehatChapter(cachedChapter)
-      setLoadingRehatChapterKey(null)
-      scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
-      return
-    }
-
-    try {
-      const nextChapter = await fetchRehatChapter(rehat.rehatId, chapter.chapterId)
-      if (nextChapter) {
-        setCachedRehatChapter(rehat.rehatId, nextChapter)
-        setSelectedRehatChapter(nextChapter)
-      } else {
-        setSelectedRehatChapter(null)
-      }
-    } catch {
-      setSelectedRehatChapter(null)
-    } finally {
-      setLoadingRehatChapterKey(current => (current === chapterKey ? null : current))
-      scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
-    }
-  }
-
   const sundarGutkaGroups = useMemo(() => {
     const nitnem = sundarGutkaBanis.filter(item => {
       const canonicalId = getCanonicalSundarGutkaBani(item)?.id
@@ -733,41 +612,6 @@ export default function Banis() {
       DG: [],
     })
   }, [])
-
-  const selectedRehatChapters = useMemo(
-    () => selectedRehat ? (rehatChaptersById[selectedRehat.rehatId] ?? getCachedRehatChapters(selectedRehat.rehatId) ?? []) : [],
-    [getCachedRehatChapters, rehatChaptersById, selectedRehat]
-  )
-  const normalizedRehatQuery = rehatQuery.trim().toLowerCase()
-  const filteredRehats = useMemo(() => {
-    if (!normalizedRehatQuery) return rehats
-    return rehats.filter(rehat => rehat.rehatName.toLowerCase().includes(normalizedRehatQuery))
-  }, [normalizedRehatQuery, rehats])
-  const filteredRehatChapters = useMemo(() => {
-    if (!normalizedRehatQuery) return selectedRehatChapters
-    return selectedRehatChapters.filter(chapter => chapter.chapterName.toLowerCase().includes(normalizedRehatQuery))
-  }, [normalizedRehatQuery, selectedRehatChapters])
-  const selectedRehatChapterText = useMemo(
-    () => stripHtmlTags(selectedRehatChapter?.chapterContent ?? ''),
-    [selectedRehatChapter?.chapterContent]
-  )
-  const rehatChapterHasMatch = useMemo(
-    () => !normalizedRehatQuery || selectedRehatChapterText.toLowerCase().includes(normalizedRehatQuery),
-    [normalizedRehatQuery, selectedRehatChapterText]
-  )
-
-  const handleToggleRehat = () => {
-    const nextIsOpen = !expanded.rehat
-    if (expanded.rehat) {
-      setSelectedRehat(null)
-      setSelectedRehatChapter(null)
-      setRehatQuery('')
-    }
-    toggle('rehat')
-    if (nextIsOpen) {
-      scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
-    }
-  }
 
   const groupedSearchResults = useMemo(
     () => groupSearchResults(searchResults, { raag: raagFilter, writer: writerFilter }),
@@ -1275,262 +1119,21 @@ export default function Banis() {
         )
       })}
 
-      <div className="mb-4" ref={rehatSectionRef}>
-        <button
-          onClick={handleToggleRehat}
-          className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
-          aria-expanded={Boolean(expanded.rehat)}
-          aria-controls="banis-rehat-panel"
-        >
-          <div className="text-left">
-            <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</p>
-          </div>
-          <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['rehat'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
-        </button>
-
-        {expanded['rehat'] && (
-          <div id="banis-rehat-panel" ref={rehatContentRef} className="mt-2 ml-2">
-            {loadingRehats ? (
-              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading rehats…</p>
-            ) : selectedRehatChapter && selectedRehat ? (
-              <div className="space-y-3">
-                <div className="section-shell rounded-[26px] p-4">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedRehatChapter(null)
-                        setRehatQuery('')
-                      }}
-                      className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
-                    >
-                      <IconArrowLeft size={14} />
-                      Back to chapters
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedRehat(null)
-                        setSelectedRehatChapter(null)
-                        setRehatQuery('')
-                      }}
-                      className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
-                    >
-                      <IconArrowLeft size={14} />
-                      Back to rehats
-                    </button>
-                  </div>
-                  <p className="eyebrow mb-2">Rehat Chapter</p>
-                  <p className="font-display text-2xl leading-tight text-ink dark:text-dark-text">
-                    {selectedRehatChapter.chapterName}
-                  </p>
-                  <p className="mt-2 font-sans text-sm text-ink/55 dark:text-dark-text/55">
-                    {selectedRehat.rehatName}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    <MetadataChip>{selectedRehatChapter.alphabet}</MetadataChip>
-                    <MetadataChip>{selectedRehatChapterText.split(' ').filter(Boolean).length} words</MetadataChip>
-                  </div>
-                </div>
-
-                <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="eyebrow">Chapter search</p>
-                      <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-                        Search inside this chapter without leaving the Rehat flow.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative mt-3">
-                    <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
-                    <input
-                      type="search"
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      autoComplete="off"
-                      spellCheck={false}
-                      enterKeyHint="search"
-                      inputMode="search"
-                      value={rehatQuery}
-                      onChange={event => setRehatQuery(event.target.value)}
-                      placeholder="Search inside this chapter..."
-                      className="w-full rounded-2xl border border-sand/15 bg-parchment-card pl-9 pr-4 py-3 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                    />
-                  </div>
-                </div>
-
-                {!rehatChapterHasMatch ? (
-                  <div className="section-shell-quiet rounded-[24px] px-4 py-5">
-                    <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                      No matching text found in this chapter.
-                    </p>
-                  </div>
-                ) : (
-                  <article className="section-shell rounded-[26px] p-5">
-                    <div
-                      className="font-sans text-sm leading-7 text-ink dark:text-dark-text [&_p]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5"
-                      dangerouslySetInnerHTML={{ __html: sanitizeRehatHtml(selectedRehatChapter.chapterContent) }}
-                    />
-                  </article>
-                )}
-              </div>
-            ) : selectedRehat ? (
-              <div className="space-y-3">
-                <div className="section-shell rounded-[26px] p-4">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSelectedRehat(null)
-                      setSelectedRehatChapter(null)
-                      setRehatQuery('')
-                    }}
-                    className="mb-4 inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
-                  >
-                    <IconArrowLeft size={14} />
-                    Back to rehats
-                  </button>
-                  <p className="eyebrow mb-2">Rehat</p>
-                  <p className="font-display text-2xl leading-tight text-ink dark:text-dark-text">
-                    {selectedRehat.rehatName}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    <MetadataChip>{selectedRehat.alphabet}</MetadataChip>
-                    <MetadataChip>{selectedRehatChapters.length} chapters</MetadataChip>
-                  </div>
-                </div>
-
-                <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="eyebrow">Chapter search</p>
-                      <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-                        Filter chapter names before opening the text.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative mt-3">
-                    <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
-                    <input
-                      type="search"
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      autoComplete="off"
-                      spellCheck={false}
-                      enterKeyHint="search"
-                      inputMode="search"
-                      value={rehatQuery}
-                      onChange={event => setRehatQuery(event.target.value)}
-                      placeholder="Search chapters..."
-                      className="w-full rounded-2xl border border-sand/15 bg-parchment-card pl-9 pr-4 py-3 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                    />
-                  </div>
-                </div>
-
-                {loadingRehatId === selectedRehat.rehatId ? (
-                  <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading chapters…</p>
-                ) : filteredRehatChapters.length === 0 ? (
-                  <div className="section-shell-quiet rounded-[24px] px-4 py-5">
-                    <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                      No chapters match this search yet.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    {filteredRehatChapters.map(chapter => {
-                      const chapterKey = `${selectedRehat.rehatId}-${chapter.chapterId}`
-                      const opening = loadingRehatChapterKey === chapterKey
-                      return (
-                        <button
-                          key={chapterKey}
-                          onClick={() => void openRehatChapter(selectedRehat, chapter)}
-                          className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">
-                                {chapter.chapterName}
-                              </p>
-                              <div className="mt-2 flex flex-wrap gap-1.5">
-                                <MetadataChip>{chapter.alphabet}</MetadataChip>
-                              </div>
-                            </div>
-                            <span className="mt-1 font-sans text-xs text-gold dark:text-gold-light">
-                              {opening ? 'Opening…' : 'Open'}
-                            </span>
-                          </div>
-                        </button>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="eyebrow">Rehat search</p>
-                      <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-                        Keep Rehat inside Read and open a chapter only when you need the detail.
-                      </p>
-                    </div>
-                    <MetadataChip>{rehats.length} rehats</MetadataChip>
-                  </div>
-                  <div className="relative mt-3">
-                    <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
-                    <input
-                      type="search"
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      autoComplete="off"
-                      spellCheck={false}
-                      enterKeyHint="search"
-                      inputMode="search"
-                      value={rehatQuery}
-                      onChange={event => setRehatQuery(event.target.value)}
-                      placeholder="Search rehats..."
-                      className="w-full rounded-2xl border border-sand/15 bg-parchment-card pl-9 pr-4 py-3 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                    />
-                  </div>
-                </div>
-
-                {filteredRehats.length === 0 ? (
-                  <div className="section-shell-quiet rounded-[24px] px-4 py-5">
-                    <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                      No rehats match this search yet.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    {filteredRehats.map(rehat => (
-                      <button
-                        key={rehat.rehatId}
-                        onClick={() => void openRehat(rehat)}
-                        className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <p className="font-sans text-base font-semibold text-ink dark:text-dark-text">
-                              {rehat.rehatName}
-                            </p>
-                            <div className="mt-2 flex flex-wrap gap-1.5">
-                              <MetadataChip>{rehat.alphabet}</MetadataChip>
-                            </div>
-                          </div>
-                          <span className="mt-1 font-sans text-xs text-gold dark:text-gold-light">
-                            Open
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      <Link
+        to="/banis/rehat"
+        className="mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        data-testid="banis-open-rehat"
+      >
+        <span className="min-w-0">
+          <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
+          <span className="mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/68">
+            Open the Rehat reader with list search, chapter filtering, source context, and chapter text search.
+          </span>
+        </span>
+        <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
+          <IconArrowRight size={15} />
+        </span>
+      </Link>
 
       <Link
         to="/banis/amrit-keertan"

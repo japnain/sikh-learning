@@ -2,12 +2,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
+  IconBookmark,
   IconBookmarkFilled,
   IconCheck,
   IconLibrary,
   IconMoon,
   IconSun,
 } from '../components/icons'
+import NaamRasLogoMark from '../components/NaamRasLogoMark'
 import StreakBadge from '../components/StreakBadge'
 import { useHukamnama } from '../hooks/useHukamnama'
 import useLearnHomeCatalog from '../hooks/useLearnHomeCatalog'
@@ -178,7 +180,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     pickUpPausedTitle: 'Pick up exactly where you paused.',
     nitnemImmediateBody: 'Nitnem should feel immediate. Resume your last reading without hunting through the library.',
     dailyNitnem: 'Daily Nitnem',
-    nitnemHeroTitle: 'Move through Nitnem one bani at a time.',
+    nitnemHeroTitle: 'Anchor the day in Nitnem.',
     nitnemHeroBody: 'A calm ritual card for the next bani that matters now, with the rest tucked behind it until you need it.',
     nitnemRemaining: (count) => `${count} remaining today`,
     nitnemCompleteToday: 'Complete for today',
@@ -228,7 +230,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     pickUpPausedTitle: 'ਜਿੱਥੇ ਰੁਕੇ ਸੀ ਓਥੇ ਹੀ ਤੋਂ ਚੁੱਕੋ।',
     nitnemImmediateBody: 'ਨਿਤਨੇਮ ਤੁਰੰਤ ਮਹਿਸੂਸ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਲੱਭਣ ਤੋਂ ਬਿਨਾਂ ਆਪਣਾ ਪਿਛਲਾ ਪਾਠ ਜਾਰੀ ਰੱਖੋ।',
     dailyNitnem: 'ਰੋਜ਼ਾਨਾ ਨਿਤਨੇਮ',
-    nitnemHeroTitle: 'ਨਿਤਨੇਮ ਨੂੰ ਇੱਕ ਵਾਰ ਵਿੱਚ ਇੱਕ ਬਾਣੀ ਨਾਲ ਨੇੜੇ ਰੱਖੋ।',
+    nitnemHeroTitle: 'ਨਿਤਨੇਮ ਨਾਲ ਦਿਨ ਨੂੰ ਅਡੋਲ ਕਰੋ।',
     nitnemHeroBody: 'ਅਗਲੀ ਜ਼ਰੂਰੀ ਬਾਣੀ ਪਹਿਲਾਂ ਦਿਖੇ, ਬਾਕੀ ਚੋਣਾਂ ਸਿਰਫ਼ ਲੋੜ ਪੈਣ ਤੇ ਖੁੱਲਣ।',
     nitnemRemaining: (count) => `ਅੱਜ ਲਈ ${count} ਬਾਕੀ`,
     nitnemCompleteToday: 'ਅੱਜ ਲਈ ਪੂਰਾ',
@@ -278,7 +280,7 @@ const HOME_MESSAGES: Record<UiLocale, {
     pickUpPausedTitle: 'जहाँ रुके थे, वहीं से आगे बढ़ें।',
     nitnemImmediateBody: 'नितनेम तुरंत उपलब्ध लगना चाहिए। लाइब्रेरी में खोजे बिना अपना पिछला पाठ जारी रखें।',
     dailyNitnem: 'दैनिक नितनेम',
-    nitnemHeroTitle: 'नितनेम को एक समय में एक बानी के साथ पास रखें।',
+    nitnemHeroTitle: 'नितनेम से दिन को स्थिर करो।',
     nitnemHeroBody: 'अगली ज़रूरी बानी सामने रहे, बाकी विकल्प तभी खुलें जब आप उन्हें सच में चाहें।',
     nitnemRemaining: (count) => `आज ${count} बाकी`,
     nitnemCompleteToday: 'आज के लिए पूरा',
@@ -348,6 +350,12 @@ export default function Home() {
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
+  const homeNow = useMemo(() => new Date(now), [now])
+  const homeDateLabel = useMemo(() => formatUiDate(locale, homeNow), [homeNow, locale])
+  const homeTimeLabel = useMemo(() => {
+    const localeCode = locale === 'pa' ? 'pa-IN' : locale === 'hi' ? 'hi-IN' : 'en-US'
+    return new Intl.DateTimeFormat(localeCode, { hour: 'numeric', minute: '2-digit' }).format(homeNow)
+  }, [homeNow, locale])
   const {
     catalog: learnCatalog,
     loading: learnCatalogLoading,
@@ -520,6 +528,15 @@ export default function Home() {
     }
     return getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
   }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
+  const hukamnamaTransliterationPreview = useMemo(() => {
+    if (!hukamnama) return ''
+    return hukamnamaPreviewLine?.transliteration || hukamnama.entry.transliteration
+  }, [hukamnama, hukamnamaPreviewLine?.transliteration])
+  const hukamnamaSourceLabel = useMemo(() => {
+    if (!hukamnama) return ''
+    const writer = hukamnama.entry.writer ? `${hukamnama.entry.writer} · ` : ''
+    return `${writer}${hukamnama.entry.scripture} Ang ${hukamnama.ang}`
+  }, [hukamnama])
   const savedPreviewItems = useMemo<HomeSavedPreviewItem[]>(() => {
     const previewItems: HomeSavedPreviewItem[] = []
     const latestLearnSave = savedLearnItems[0]
@@ -610,135 +627,150 @@ export default function Home() {
   return (
     <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
-        className="hero-surface mb-4 overflow-hidden px-4 py-4 animate-slide-up stagger-1"
+        className="mb-4 overflow-hidden rounded-[1.35rem] border border-sand/28 bg-[linear-gradient(180deg,rgba(255,252,246,0.96),rgba(248,239,224,0.88))] px-5 py-4 shadow-[0_18px_38px_rgba(74,47,25,0.10),inset_0_1px_0_rgba(255,255,255,0.52)] animate-slide-up stagger-1 dark:border-gold/12 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.97),rgba(24,19,34,0.94))]"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
         data-ai-surface="daily-reading-room"
       >
-        <div>
-          <div className="flex items-start justify-between gap-3">
+        <header className="flex items-center justify-between gap-4" data-testid="home-brand-header">
+          <div className="flex min-w-0 items-center gap-3">
+            <NaamRasLogoMark
+              size={50}
+              className="shrink-0 drop-shadow-[0_8px_14px_rgba(122,84,32,0.18)]"
+              testId="home-brand-mark"
+            />
             <div className="min-w-0">
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-dark/80 dark:text-gold-light">
-                {editorial?.brand.domain ?? 'Naamras.xyz'} · {formatUiDate(locale)}
-              </p>
-              <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+              <p className="font-display text-[2.05rem] leading-none text-ink dark:text-dark-text">
                 {editorial?.brand.name ?? 'NaamRas'}
               </p>
+              <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark/70 dark:text-gold-light">
+                Daily · Divine · You
+              </p>
             </div>
-            <div className="flex shrink-0 items-center gap-2">
-              <button
-                type="button"
-                onClick={toggleTheme}
-                aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
-                className="icon-surface interactive-focus touch-target h-11 w-11 text-ink dark:text-dark-text"
-                data-testid="home-theme-toggle"
-              >
-                {isDarkTheme ? <IconSun size={17} /> : <IconMoon size={17} />}
-              </button>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <Link
+              to="/library"
+              aria-label="Open saved library"
+              className="interactive-focus flex h-11 w-11 items-center justify-center rounded-full border border-sand/24 bg-white/56 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] transition-colors duration-300 dark:border-dark-text/14 dark:bg-white/[0.045] dark:text-dark-text"
+              data-testid="home-header-saved"
+            >
+              <IconBookmark size={19} />
+            </Link>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="interactive-focus flex h-11 w-11 items-center justify-center rounded-full border border-sand/24 bg-white/56 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] transition-colors duration-300 dark:border-dark-text/14 dark:bg-white/[0.045] dark:text-dark-text"
+              data-testid="home-theme-toggle"
+            >
+              {isDarkTheme ? <IconSun size={17} /> : <IconMoon size={17} />}
+            </button>
+          </div>
+        </header>
+
+        <div className="mt-3 border-y border-sand/20 py-2.5 dark:border-dark-text/10">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="font-display text-[1.05rem] leading-none text-ink/78 dark:text-dark-text/82">
+              {homeDateLabel}
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="chip-pill">{learningLevelLabels[learningLevel]}</span>
               <StreakBadge streak={streak} />
             </div>
           </div>
+        </div>
 
-          <div className="mt-4 flex items-end justify-between gap-3">
-            <h1 id="home-hero-title" className="max-w-[11ch] font-display text-[2.28rem] leading-[0.9] text-ink dark:text-dark-text">
-              {copy.home.greetingPrimary}
+        <div className="mt-4 flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h1 id="home-hero-title" className="font-display text-[1.62rem] leading-[1.08] text-ink dark:text-dark-text">
+              Waheguru Ji Ka Khalsa,<br />Waheguru Ji Ki Fateh.
             </h1>
-            <span className="chip-pill shrink-0">{learningLevelLabels[learningLevel]}</span>
+            <p className="mt-2 font-sans text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-gold-dark/72 dark:text-gold-light/84">
+              {copy.home.greetingSecondary}
+            </p>
           </div>
-          <p className="mt-2 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-gold-dark/78 dark:text-gold-light/88">
-            {copy.home.greetingSecondary}
-          </p>
+          <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#5a7c6e]/10 px-2.5 py-1.5 font-sans text-[11px] font-semibold text-[#416554] dark:bg-[#7fa68e]/15 dark:text-[#b9d5c5]">
+            <IconSun size={14} />
+            {homeTimeLabel}
+          </span>
+        </div>
 
-          <div className="mt-4 grid gap-3" data-testid="home-daily-reading-room">
-            {hukamnamaLoading ? (
-              <div className="rounded-xl border border-sand/20 bg-white/58 p-4 animate-pulse dark:border-dark-text/10 dark:bg-white/[0.04]" data-testid="home-hukamnama-card">
-                <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28 mb-3" />
-                <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-40" />
-                <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
-                <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-                <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-              </div>
-            ) : hukamnama ? (
-              <div
-                className="rounded-xl border border-gold/22 bg-white/64 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.38)] dark:border-gold/18 dark:bg-white/[0.055]"
-                data-testid="home-hukamnama-card"
-                data-ai-surface="home-hukamnama"
-                data-ai-state="ready"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="eyebrow">{homeCopy.todaysHukamnama}</p>
-                  <p className="font-sans text-[11px] text-ink/55 dark:text-dark-text/60">
-                    {hukamnama.entry.raag ? `${hukamnama.entry.raag} · ` : ''}
-                    {hukamnama.entry.scripture} · Ang {hukamnama.ang}
-                  </p>
-                </div>
-                <p
-                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-3 text-[1.9rem] leading-[1.16] text-ink dark:text-dark-text line-clamp-3`}
-                >
-                  {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+        <div className="mt-4" data-testid="home-daily-reading-room">
+          {hukamnamaLoading ? (
+            <div className="animate-pulse border-t border-sand/20 pt-4 dark:border-dark-text/10" data-testid="home-hukamnama-card">
+              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
+              <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
+              <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+              <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+              <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
+            </div>
+          ) : hukamnama ? (
+            <div
+              className="border-t border-sand/20 pt-4 dark:border-dark-text/10"
+              data-testid="home-hukamnama-card"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="ready"
+            >
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                <p className="font-sans text-[11px] font-bold uppercase leading-5 tracking-[0.2em] text-saffron dark:text-gold-light">
+                  {homeCopy.todaysHukamnama}
                 </p>
-                {hukamnamaMeaningPreview ? (
-                  <p className={`mt-3 text-sm leading-6 text-ink/70 dark:text-dark-text/70 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
-                    {hukamnamaMeaningPreview}
-                  </p>
-                ) : null}
-                <Link
-                  to={`/study?hukamnamaDate=${hukamnama.date}`}
-                  className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
-                  data-testid="home-hero-primary-action"
-                  data-ai-action="open-hukamnama"
-                >
-                  <span>Open Today&apos;s Hukamnama</span>
-                  <IconArrowRight size={14} />
-                </Link>
+                <span className="inline-flex max-w-[11rem] items-center gap-1.5 truncate rounded-full border border-[#5a7c6e]/15 bg-[#5a7c6e]/10 px-2.5 py-1 font-sans text-[11px] font-medium text-[#416554] dark:border-[#7fa68e]/20 dark:bg-[#7fa68e]/12 dark:text-[#b9d5c5]">
+                  {hukamnama.entry.raag || 'Sri Darbar Sahib'}
+                </span>
               </div>
-            ) : (
-              <div
-                className="rounded-xl border border-sand/20 bg-white/58 p-4 dark:border-dark-text/10 dark:bg-white/[0.04]"
-                data-testid="home-hukamnama-error"
-                data-ai-surface="home-hukamnama"
-                data-ai-state="degraded"
-                data-ai-error="study-hukamnama"
+              <p
+                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-3 text-[clamp(2.05rem,10.2vw,2.58rem)] leading-[1.18] text-ink [overflow-wrap:anywhere] dark:text-dark-text line-clamp-4`}
               >
-                <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-                <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
-                  Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+                {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+              </p>
+              {hukamnamaTransliterationPreview ? (
+                <p className="mt-4 font-display text-[1.22rem] italic leading-7 text-ink/76 dark:text-dark-text/80 line-clamp-2">
+                  {hukamnamaTransliterationPreview}
                 </p>
-                <Link
-                  to="/banis"
-                  className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-lg border border-sand/20 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text"
-                  data-ai-action="browse-read"
-                >
-                  Browse Read
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-3 grid grid-cols-3 gap-2" data-testid="home-reading-room-path">
-            <Link
-              to="/banis"
-              className="interactive-focus rounded-lg border border-gold/18 bg-white/46 px-3 py-3 text-left font-sans text-xs font-semibold text-ink transition-colors duration-200 hover:border-gold/32 dark:border-gold/14 dark:bg-white/[0.04] dark:text-dark-text"
-              data-ai-action="home-rail-read"
+              ) : null}
+              {hukamnamaMeaningPreview ? (
+                <p className={`mt-4 border-t border-sand/18 pt-4 text-[1.05rem] leading-7 text-ink/76 dark:border-dark-text/10 dark:text-dark-text/78 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-display'}`}>
+                  {hukamnamaMeaningPreview}
+                </p>
+              ) : null}
+              <p className="mt-2 font-sans text-xs font-medium text-[#416554] dark:text-[#b9d5c5]">
+                {hukamnamaSourceLabel}
+              </p>
+              <Link
+                to={`/study?hukamnamaDate=${hukamnama.date}`}
+                className="interactive-focus interactive-pill-link mt-4 min-h-[50px] w-full gap-3 rounded-xl bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-bold uppercase tracking-[0.12em] active:scale-95 transition-transform duration-150"
+                data-testid="home-hero-primary-action"
+                data-ai-action="open-hukamnama"
+              >
+                <IconLibrary size={20} />
+                <span>Read Hukamnama</span>
+                <IconArrowRight size={16} />
+              </Link>
+            </div>
+          ) : (
+            <div
+              className="border-t border-sand/20 pt-4 dark:border-dark-text/10"
+              data-testid="home-hukamnama-error"
+              data-ai-surface="home-hukamnama"
+              data-ai-state="degraded"
+              data-ai-error="study-hukamnama"
             >
-              Read
-            </Link>
-            <Link
-              to={todayGuidancePath ?? '/learn'}
-              className="interactive-focus rounded-lg border border-gold/18 bg-white/46 px-3 py-3 text-left font-sans text-xs font-semibold text-ink transition-colors duration-200 hover:border-gold/32 dark:border-gold/14 dark:bg-white/[0.04] dark:text-dark-text"
-              data-ai-action="home-rail-learn"
-            >
-              Learn
-            </Link>
-            <Link
-              to={activeNitnemOption ? buildNitnemStudyPath(activeNitnemOption) : '/banis'}
-              className="interactive-focus rounded-lg border border-gold/18 bg-white/46 px-3 py-3 text-left font-sans text-xs font-semibold text-ink transition-colors duration-200 hover:border-gold/32 dark:border-gold/14 dark:bg-white/[0.04] dark:text-dark-text"
-              data-ai-action="home-rail-nitnem"
-            >
-              Nitnem
-            </Link>
-          </div>
+              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+                Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+              </p>
+              <Link
+                to="/banis"
+                className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-lg border border-sand/20 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text"
+                data-ai-action="browse-read"
+              >
+                Browse Read
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
@@ -806,7 +838,7 @@ export default function Home() {
               {homeMessages.dailyNitnem}
             </p>
             <h2 className="mt-2 max-w-[18ch] font-display text-[1.75rem] leading-[0.98] text-ink dark:text-dark-text sm:max-w-none">
-              {activeNitnemOption ? 'Next bani for now.' : homeMessages.nitnemHeroTitle}
+              {homeMessages.nitnemHeroTitle}
             </h2>
           </div>
           <span className="shrink-0 rounded-full border border-sand/16 bg-parchment-card/78 px-3 py-1.5 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/60">
@@ -915,7 +947,7 @@ export default function Home() {
               ) : null}
 
               <Link
-                to="/more#daily-nitnem"
+                to="/nitnem/customize"
                 className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-parchment-card/72 px-5 font-sans text-sm font-medium text-ink/75 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/75"
                 data-testid="home-nitnem-manage"
               >
@@ -928,7 +960,7 @@ export default function Home() {
                 {homeMessages.chooseNitnemBody}
               </p>
               <Link
-                to="/more#daily-nitnem"
+                to="/nitnem/customize"
                 className="interactive-focus interactive-pill-link mt-4 min-h-[48px] rounded-lg bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
                 data-testid="home-nitnem-manage"
               >

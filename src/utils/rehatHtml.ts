@@ -40,6 +40,10 @@ export function sanitizeRehatHtml(value: string) {
     const element = node as Element
     const tagName = element.tagName.toLowerCase()
 
+    if (tagName === 'script' || tagName === 'style') {
+      return document.createDocumentFragment()
+    }
+
     if (!ALLOWED_REHAT_TAGS.has(tagName)) {
       const fragment = document.createDocumentFragment()
       for (const child of Array.from(element.childNodes)) {
