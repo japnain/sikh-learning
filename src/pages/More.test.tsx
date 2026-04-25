@@ -184,19 +184,46 @@ test('Daily Nitnem customization lives in More with reset confirmation', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Daily Nitnem/i)
 
+  const ritualOrder = screen.getByTestId('more-nitnem-ritual-order')
+  expect(within(ritualOrder).getAllByTestId('more-nitnem-ritual-item')).toHaveLength(DEFAULT_NITNEM_OPTION_IDS.length)
+  expect(within(ritualOrder).getByRole('button', { name: /move japji sahib up/i })).toBeDisabled()
+
   const selection = screen.getByTestId('more-nitnem-selection')
   expect(within(selection).getByText('Additional')).toBeInTheDocument()
   expect(within(selection).getAllByText('Length · Short')).toHaveLength(4)
   expect(within(selection).getByText('Salok Mahalla 9')).toBeInTheDocument()
   expect(within(selection).getByText('Aarti')).toBeInTheDocument()
 
-  fireEvent.click(within(selection).getByRole('button', { name: /Salok Mahalla 9/i }))
+  fireEvent.click(within(selection).getByRole('button', { name: /add salok mahalla 9/i }))
   expect(useNitemStore.getState().selectedIds).toContain('salok-mahalla-9')
+  expect(useNitemStore.getState().selectedIds.at(-1)).toBe('salok-mahalla-9')
 
   fireEvent.click(screen.getByTestId('more-nitnem-reset'))
   expect(screen.getByRole('button', { name: /tap again to reset/i })).toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: /tap again to reset/i }))
   expect(useNitemStore.getState().selectedIds).toEqual([...DEFAULT_NITNEM_OPTION_IDS])
+})
+
+test('Daily Nitnem ritual order can move and remove banis while keeping one selected', () => {
+  useNitemStore.setState({
+    selectedIds: ['japji-sahib', 'rehras-sahib'],
+    completionTrackingEnabled: false,
+    completedIds: [],
+    completedDate: '2026-04-11',
+  })
+
+  render(<MemoryRouter><More /></MemoryRouter>)
+  openMoreSection(/Daily Nitnem/i)
+
+  fireEvent.click(screen.getByRole('button', { name: /move rehras sahib up/i }))
+  expect(useNitemStore.getState().selectedIds).toEqual(['rehras-sahib', 'japji-sahib'])
+
+  fireEvent.click(screen.getByRole('button', { name: /remove japji sahib from home/i }))
+  expect(useNitemStore.getState().selectedIds).toEqual(['rehras-sahib'])
+  expect(screen.getByRole('button', { name: /remove rehras sahib from home/i })).toBeDisabled()
+
+  fireEvent.click(screen.getByRole('button', { name: /remove rehras sahib from home/i }))
+  expect(useNitemStore.getState().selectedIds).toEqual(['rehras-sahib'])
 })
 
 test('full soundscape library collapses without clearing playback state', () => {

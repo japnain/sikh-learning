@@ -23,6 +23,23 @@ function buildWriter(english: string, writerId = 1) {
   }
 }
 
+function createTranslation(english: string, gurmukhi = english) {
+  return {
+    en: {
+      bdb: english,
+      ms: english,
+      ssk: english,
+    },
+    hi: {
+      ss: english,
+    },
+    pu: {
+      ss: { unicode: gurmukhi },
+      ft: { unicode: gurmukhi },
+    },
+  }
+}
+
 const MOCK_VERSE_1 = {
   verseId: 1,
   shabadId: 1,
@@ -689,20 +706,85 @@ export const MOCK_AMRIT_HEADERS = {
       GurmukhiUni: 'ਦੁਇ ਕਰ ਜੋੜਿ ਕਰਉ ਅਰਦਾਸਿ ॥',
       Transliterations: { en: 'dhui kar joR karau aradhaas ||' },
     },
+    {
+      HeaderID: 2,
+      GurmukhiUni: 'ਢਾਢੀ ਦਰਿ ਪ੍ਰਭ ਮੰਗਣਾ ॥',
+      Transliterations: { en: 'ddaaddee dhar prabh ma(n)ganaa ||' },
+    },
   ],
 }
 
 export const MOCK_AMRIT_HEADER_RESPONSE = {
   index: [
     {
+      IndexID: 1001,
+      HeaderID: 1,
       ShabadID: 816,
       GurmukhiUni: 'ਡੰਡਉਤਿ ਬੰਦਨ ਅਨਿਕ ਬਾਰ ਸਰਬ ਕਲਾ ਸਮਰਥ ॥',
       Transliterations: { en: 'dda(n)ddaut ba(n)dhan anik baar sarab kalaa samarath ||' },
+      Translations: createTranslation('I bow and offer countless salutations to the All-powerful One.'),
+      Ang: 256,
+      LineNo: 4,
       SourceEnglish: 'Sri Guru Granth Sahib Ji',
       SourceID: 'G',
+      SourceGurmukhi: 'ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ',
+      SourceUnicode: 'ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ',
       RaagEnglish: 'Raag Gauree',
+      RaagGurmukhi: 'ਰਾਗੁ ਗਉੜੀ',
+      RaagUnicode: 'ਰਾਗੁ ਗਉੜੀ',
+      RaagWithPage: 'Raag Gauree (151-346)',
       RaagID: 17,
+      WriterID: 5,
+      WriterEnglish: 'Guru Arjan Dev Ji',
+      WriterGurmukhi: 'ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ',
+      WriterUnicode: 'ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ',
       PageNo: 65,
+    },
+    {
+      IndexID: 1002,
+      HeaderID: 1,
+      ShabadID: 817,
+      GurmukhiUni: 'ਪ੍ਰਭ ਪਾਸਿ ਜਨ ਕੀ ਅਰਦਾਸਿ ਤੂ ਸਚਾ ਸਾਂਈ ॥',
+      Transliterations: { en: 'prabh paas jan kee aradhaas too sachaa saa(n)ee ||' },
+      Translations: createTranslation('The servant offers this prayer to God: You are the True Master.'),
+      Ang: 517,
+      LineNo: 6,
+      SourceEnglish: 'Sri Guru Granth Sahib Ji',
+      SourceID: 'G',
+      SourceGurmukhi: 'ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ',
+      SourceUnicode: 'ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਜੀ',
+      RaagEnglish: 'Raag Gujri',
+      RaagGurmukhi: 'ਰਾਗੁ ਗੂਜਰੀ',
+      RaagUnicode: 'ਰਾਗੁ ਗੂਜਰੀ',
+      RaagWithPage: 'Raag Gujri (489-526)</',
+      RaagID: 27,
+      WriterID: 3,
+      WriterEnglish: 'Guru Amar Daas Ji',
+      WriterGurmukhi: 'ਗੁਰੂ ਅਮਰ ਦਾਸ ਜੀ',
+      WriterUnicode: 'ਗੁਰੂ ਅਮਰ ਦਾਸ ਜੀ',
+      PageNo: 65,
+    },
+  ],
+}
+
+export const MOCK_AMRIT_SECOND_HEADER_RESPONSE = {
+  index: [
+    {
+      IndexID: 2001,
+      HeaderID: 2,
+      ShabadID: 901,
+      GurmukhiUni: 'ਹਉ ਢਾਢੀ ਵੇਕਾਰੁ ਕਾਰੈ ਲਾਇਆ ॥',
+      Transliterations: { en: 'hau ddaaddee vekaar kaarai laiaa ||' },
+      Translations: createTranslation('I was an unemployed minstrel; the Lord gave me work.'),
+      Ang: 150,
+      LineNo: 1,
+      SourceEnglish: 'Sri Guru Granth Sahib Ji',
+      SourceID: 'G',
+      RaagEnglish: 'Raag Maajh',
+      RaagID: 12,
+      WriterID: 4,
+      WriterEnglish: 'Guru Raam Daas Ji',
+      PageNo: 66,
     },
   ],
 }
@@ -908,6 +990,7 @@ function getMockBanidbResponse(url: URL) {
   }
 
   if (url.pathname.startsWith('/v2/amritkeertan/index/')) {
+    if (url.pathname.endsWith('/2')) return HttpResponse.json(MOCK_AMRIT_SECOND_HEADER_RESPONSE)
     return HttpResponse.json(MOCK_AMRIT_HEADER_RESPONSE)
   }
 

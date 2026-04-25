@@ -1,17 +1,13 @@
 import { useState, useCallback, useRef, useEffect, useMemo, type ReactNode } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import {
   fetchSearch,
   fetchBanisIndex,
-  fetchAmritKeertanIndex,
-  fetchAmritKeertanShabads,
   fetchRehats,
   fetchRehatChapters,
   fetchRehatChapter,
   type SearchResult,
   type BaniIndexItem,
-  type AmritKeertanHeader,
-  type AmritKeertanShabad,
 } from '../api/banidb'
 import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
@@ -55,7 +51,6 @@ const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; catego
   DG: { label: 'Dasam Granth', icon: <IconSword size={18} />, categoryOrder: DG_CATEGORY_ORDER },
 }
 
-const AMRIT_KEERTAN_PAGE_SIZE = 12
 const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; minLength: number }> = {
   'first-letters': { type: 0, placeholder: 'Search first letters in Gurmukhi...', minLength: 2 },
   'first-letters-anywhere': { type: 1, placeholder: 'Search first letters anywhere in the line...', minLength: 2 },
@@ -397,13 +392,6 @@ export default function Banis() {
   const [writerFilter, setWriterFilter] = useState<string>('all')
   const [sundarGutkaBanis, setSundarGutkaBanis] = useState<BaniIndexItem[]>([])
   const [loadingSundarGutka, setLoadingSundarGutka] = useState(true)
-  const [amritHeaders, setAmritHeaders] = useState<AmritKeertanHeader[]>([])
-  const [loadingAmritHeaders, setLoadingAmritHeaders] = useState(true)
-  const [amritShabadsByHeader, setAmritShabadsByHeader] = useState<Record<number, AmritKeertanShabad[]>>({})
-  const [loadingAmritHeader, setLoadingAmritHeader] = useState<number | null>(null)
-  const [selectedAmritHeaderId, setSelectedAmritHeaderId] = useState<number | null>(null)
-  const [amritChapterQuery, setAmritChapterQuery] = useState('')
-  const [visibleAmritCount, setVisibleAmritCount] = useState(AMRIT_KEERTAN_PAGE_SIZE)
   const {
     getRehats: getCachedRehats,
     setRehats: setCachedRehats,
@@ -423,9 +411,7 @@ export default function Banis() {
   const toggle = (key: string) => setExpanded(e => ({ ...e, [key]: !e[key] }))
   const searchOptionsOpen = expanded['search-options'] ?? false
   const rehatSectionRef = useRef<HTMLDivElement | null>(null)
-  const amritSectionRef = useRef<HTMLDivElement | null>(null)
   const rehatContentRef = useRef<HTMLDivElement | null>(null)
-  const amritContentRef = useRef<HTMLDivElement | null>(null)
 
   const { recent, addRecent, togglePinned, clearRecent } = useRecentSearchStore()
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -507,18 +493,6 @@ export default function Banis() {
       })
       .finally(() => {
         if (!cancelled) setLoadingSundarGutka(false)
-      })
-
-    setLoadingAmritHeaders(true)
-    fetchAmritKeertanIndex()
-      .then(data => {
-        if (!cancelled) setAmritHeaders(data)
-      })
-      .catch(() => {
-        if (!cancelled) setAmritHeaders([])
-      })
-      .finally(() => {
-        if (!cancelled) setLoadingAmritHeaders(false)
       })
 
     if (getCachedRehats().length === 0) {
@@ -664,19 +638,6 @@ export default function Banis() {
     navigate(`/study?baniDbId=${item.id}&bani=${encodeURIComponent(name)}`)
   }
 
-  const loadAmritHeader = async (headerId: number) => {
-    if (amritShabadsByHeader[headerId] || loadingAmritHeader === headerId) return
-    setLoadingAmritHeader(headerId)
-    try {
-      const shabads = await fetchAmritKeertanShabads(headerId)
-      setAmritShabadsByHeader(current => ({ ...current, [headerId]: shabads }))
-    } catch {
-      setAmritShabadsByHeader(current => ({ ...current, [headerId]: [] }))
-    } finally {
-      setLoadingAmritHeader(current => (current === headerId ? null : current))
-    }
-  }
-
   const openRehat = async (rehat: RehatSummary) => {
     setSelectedRehat(rehat)
     setSelectedRehatChapter(null)
@@ -773,37 +734,6 @@ export default function Banis() {
     })
   }, [])
 
-  const selectedAmritHeader = useMemo(
-    () => amritHeaders.find(header => header.headerId === selectedAmritHeaderId) ?? null,
-    [amritHeaders, selectedAmritHeaderId]
-  )
-  const selectedAmritShabads = useMemo(
-    () => selectedAmritHeaderId ? (amritShabadsByHeader[selectedAmritHeaderId] ?? []) : [],
-    [amritShabadsByHeader, selectedAmritHeaderId]
-  )
-  const normalizedAmritChapterQuery = amritChapterQuery.trim().toLowerCase()
-  const filteredAmritShabads = useMemo(() => {
-    if (!normalizedAmritChapterQuery) return selectedAmritShabads
-
-    return selectedAmritShabads.filter(shabad => {
-      const searchable = [
-        shabad.gurmukhi,
-        shabad.transliteration,
-        shabad.source,
-        shabad.raag,
-        String(shabad.pageNo || ''),
-      ]
-        .join(' ')
-        .toLowerCase()
-
-      return searchable.includes(normalizedAmritChapterQuery)
-    })
-  }, [normalizedAmritChapterQuery, selectedAmritShabads])
-  const visibleAmritShabads = useMemo(
-    () => filteredAmritShabads.slice(0, visibleAmritCount),
-    [filteredAmritShabads, visibleAmritCount]
-  )
-  const hasMoreAmritShabads = visibleAmritShabads.length < filteredAmritShabads.length
   const selectedRehatChapters = useMemo(
     () => selectedRehat ? (rehatChaptersById[selectedRehat.rehatId] ?? getCachedRehatChapters(selectedRehat.rehatId) ?? []) : [],
     [getCachedRehatChapters, rehatChaptersById, selectedRehat]
@@ -826,19 +756,6 @@ export default function Banis() {
     [normalizedRehatQuery, selectedRehatChapterText]
   )
 
-  const handleToggleAmritKeertan = () => {
-    const nextIsOpen = !expanded.ak
-    if (expanded.ak) {
-      setSelectedAmritHeaderId(null)
-      setAmritChapterQuery('')
-      setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
-    }
-    toggle('ak')
-    if (nextIsOpen) {
-      scheduleSectionReveal(() => amritContentRef.current ?? amritSectionRef.current)
-    }
-  }
-
   const handleToggleRehat = () => {
     const nextIsOpen = !expanded.rehat
     if (expanded.rehat) {
@@ -850,18 +767,6 @@ export default function Banis() {
     if (nextIsOpen) {
       scheduleSectionReveal(() => rehatContentRef.current ?? rehatSectionRef.current)
     }
-  }
-
-  const openAmritHeader = async (header: AmritKeertanHeader) => {
-    setSelectedAmritHeaderId(header.headerId)
-    setAmritChapterQuery('')
-    setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
-    await loadAmritHeader(header.headerId)
-    scheduleSectionReveal(() => amritContentRef.current ?? amritSectionRef.current)
-  }
-
-  const openAmritShabad = (shabadId: number) => {
-    navigate(`/study?shabadId=${shabadId}`)
   }
 
   const groupedSearchResults = useMemo(
@@ -1627,191 +1532,21 @@ export default function Banis() {
         )}
       </div>
 
-      <div className="mb-4" ref={amritSectionRef}>
-        <button
-          onClick={handleToggleAmritKeertan}
-          className="w-full flex justify-between items-center bg-parchment-low dark:bg-dark-surface border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
-          aria-expanded={Boolean(expanded.ak)}
-          aria-controls="banis-amrit-keertan-panel"
-        >
-          <div className="text-left">
-            <p className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</p>
-          </div>
-          <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['ak'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
-        </button>
-
-        {expanded['ak'] && (
-          <div id="banis-amrit-keertan-panel" ref={amritContentRef} className="mt-2 ml-2">
-            {loadingAmritHeaders ? (
-              <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading Amrit Keertan…</p>
-            ) : selectedAmritHeader ? (
-              <div className="space-y-3">
-                <div className="section-shell rounded-[26px] p-4">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSelectedAmritHeaderId(null)
-                      setAmritChapterQuery('')
-                      setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
-                    }}
-                    className="mb-4 inline-flex min-h-[40px] items-center gap-2 rounded-full bg-parchment-low px-3 py-2 font-sans text-xs font-medium text-ink/65 transition-colors duration-300 active:scale-95 dark:bg-dark-surface dark:text-dark-text/65"
-                  >
-                    <IconArrowLeft size={14} />
-                    Back to chapters
-                  </button>
-                  <p className="eyebrow mb-2">Amrit Keertan Chapter</p>
-                  <p lang="pa-Guru" className="font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
-                    {selectedAmritHeader.gurmukhi}
-                  </p>
-                  {selectedAmritHeader.transliteration && (
-                    <p className="mt-2 font-sans text-sm italic text-ink/50 dark:text-dark-text/50">
-                      {selectedAmritHeader.transliteration}
-                    </p>
-                  )}
-                  <div className="mt-4 flex flex-wrap items-center gap-2">
-                    <MetadataChip>{selectedAmritShabads.length} shabads</MetadataChip>
-                    {normalizedAmritChapterQuery ? (
-                      <MetadataChip>{filteredAmritShabads.length} matching</MetadataChip>
-                    ) : null}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (selectedAmritShabads[0]) {
-                          openAmritShabad(selectedAmritShabads[0].shabadId)
-                        }
-                      }}
-                      disabled={selectedAmritShabads.length === 0}
-                      className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      Start from first shabad
-                      <IconArrowRight size={14} />
-                    </button>
-                  </div>
-                </div>
-
-                {loadingAmritHeader === selectedAmritHeader.headerId && selectedAmritShabads.length === 0 ? (
-                  <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 px-2 py-3">Loading shabads…</p>
-                ) : (
-                  <div className="space-y-3">
-                    <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="eyebrow">Chapter search</p>
-                          <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60 mt-1">
-                            Search by line opening, transliteration, raag, source, or ang.
-                          </p>
-                        </div>
-                        <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/40 dark:text-dark-text/40">
-                          Showing {visibleAmritShabads.length} of {filteredAmritShabads.length}
-                        </p>
-                      </div>
-                      <div className="relative mt-3">
-                        <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
-                        <input
-                          id="banis-chapter-search"
-                          name="banis-chapter-search"
-                          type="search"
-                          autoCapitalize="none"
-                          autoCorrect="off"
-                          autoComplete="off"
-                          spellCheck={false}
-                          enterKeyHint="search"
-                          inputMode="search"
-                          value={amritChapterQuery}
-                          onChange={event => {
-                            setAmritChapterQuery(event.target.value)
-                            setVisibleAmritCount(AMRIT_KEERTAN_PAGE_SIZE)
-                          }}
-                          placeholder="Search within this chapter..."
-                          className="w-full rounded-2xl border border-sand/15 bg-parchment-card pl-9 pr-4 py-3 font-sans text-sm text-ink outline-none transition-colors duration-300 focus:border-saffron/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
-                        />
-                      </div>
-                    </div>
-
-                    {visibleAmritShabads.length === 0 ? (
-                      <div className="section-shell-quiet rounded-[24px] px-4 py-5">
-                        <p className="font-sans text-sm text-ink/60 dark:text-dark-text/60">
-                          No shabads match this chapter search yet.
-                        </p>
-                      </div>
-                    ) : null}
-
-                    {visibleAmritShabads.map((shabad, index) => (
-                      <div
-                        key={`${selectedAmritHeader.headerId}-${shabad.shabadId}-${index}`}
-                        className="rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => openAmritShabad(shabad.shabadId)}
-                          className="w-full text-left"
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text">
-                                {shabad.gurmukhi}
-                              </p>
-                              {shabad.transliteration && shabad.transliteration.length <= 80 && (
-                                <p className="mt-2 font-sans text-sm italic text-ink/45 dark:text-dark-text/45">
-                                  {shabad.transliteration}
-                                </p>
-                              )}
-                            </div>
-                            <span className="font-sans text-xs text-ink/30 dark:text-dark-text/30">
-                              {index + 1}
-                            </span>
-                          </div>
-                        </button>
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          {shabad.source ? <MetadataChip onClick={() => setAmritChapterQuery(shabad.source)}>{shabad.source}</MetadataChip> : null}
-                          {shabad.raag ? <MetadataChip onClick={() => setAmritChapterQuery(shabad.raag)}>{shabad.raag}</MetadataChip> : null}
-                          {shabad.pageNo ? <MetadataChip onClick={() => setAmritChapterQuery(String(shabad.pageNo))}>{`Ang ${shabad.pageNo}`}</MetadataChip> : null}
-                        </div>
-                      </div>
-                    ))}
-
-                    {hasMoreAmritShabads ? (
-                      <button
-                        type="button"
-                        onClick={() => setVisibleAmritCount(count => count + AMRIT_KEERTAN_PAGE_SIZE)}
-                        className="w-full rounded-2xl border border-sand/15 bg-parchment-low px-4 py-3 font-sans text-sm font-medium text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface dark:text-dark-text"
-                      >
-                        Show {Math.min(AMRIT_KEERTAN_PAGE_SIZE, filteredAmritShabads.length - visibleAmritShabads.length)} more shabads
-                      </button>
-                    ) : null}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {amritHeaders.map(header => (
-                  <button
-                    key={header.headerId}
-                    onClick={() => void openAmritHeader(header)}
-                    className="w-full text-left rounded-[24px] bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 px-4 py-4 transition-colors duration-300 active:scale-[0.99] transition-transform duration-150"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p lang="pa-Guru" className="font-gurmukhi text-base leading-relaxed text-ink dark:text-dark-text">
-                          {header.gurmukhi}
-                        </p>
-                        {header.transliteration && (
-                          <p className="mt-1 font-sans text-xs italic text-ink/40 dark:text-dark-text/40">
-                            {header.transliteration}
-                          </p>
-                        )}
-                      </div>
-                      <span className="mt-1 font-sans text-xs text-gold dark:text-gold-light">
-                        Open
-                      </span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      <Link
+        to="/banis/amrit-keertan"
+        className="mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        data-testid="banis-open-amrit-keertan"
+      >
+        <span className="min-w-0">
+          <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
+          <span className="mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/68">
+            Open the Amrit Keertan directory with section search, source metadata, English, and page navigation.
+          </span>
+        </span>
+        <span className="icon-surface h-9 w-9 shrink-0 text-saffron dark:text-gold-light">
+          <IconArrowRight size={15} />
+        </span>
+      </Link>
 
       <section
         className="section-shell-quiet p-4"

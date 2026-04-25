@@ -327,6 +327,7 @@ interface NitemState {
   isComplete: (id: string) => boolean
   setCompletionTrackingEnabled: (enabled: boolean) => void
   toggleSelected: (id: string) => void
+  moveSelected: (id: string, direction: 'up' | 'down') => void
   isSelected: (id: string) => boolean
   resetSelections: () => void
   resetIfNewDay: () => void
@@ -432,12 +433,22 @@ export const useNitemStore = create<NitemState>()(
         }
 
         const nextIds = [...state.selectedIds, id]
-        const nextOptions = nextIds
-          .map(entryId => getNitnemOption(entryId))
-          .filter((entry): entry is NitnemRouteOption => entry !== null)
-          .sort(compareNitnemOptions)
 
-        set({ selectedIds: nextOptions.map(entry => entry.id) })
+        set({ selectedIds: nextIds })
+      },
+
+      moveSelected: (id, direction) => {
+        const state = get()
+        const currentIndex = state.selectedIds.indexOf(id)
+        if (currentIndex === -1) return
+
+        const nextIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1
+        if (nextIndex < 0 || nextIndex >= state.selectedIds.length) return
+
+        const nextIds = [...state.selectedIds]
+        const [movedId] = nextIds.splice(currentIndex, 1)
+        nextIds.splice(nextIndex, 0, movedId)
+        set({ selectedIds: nextIds })
       },
 
       isSelected: (id) => {

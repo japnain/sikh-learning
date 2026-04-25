@@ -552,6 +552,29 @@ describe('Study exact shabad mode', () => {
     })
   })
 
+  it('shows Amrit Keertan source context when opened from the directory', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?shabadId=817&from=amrit-keertan&akHeaderId=1&akSection=1&akItem=2&akPage=65']}>
+        <Routes>
+          <Route path="/study" element={<Study />} />
+          <Route path="/banis/amrit-keertan/:headerId" element={<LocationSpy />} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    const context = await screen.findByTestId('study-amrit-keertan-context')
+
+    expect(within(context).getByText('From Amrit Keertan')).toBeInTheDocument()
+    expect(within(context).getByText('Section 1 · AK Page 65 · Item 2')).toBeInTheDocument()
+    expect(within(context).getByText(/opened from the Amrit Keertan book order/i)).toBeInTheDocument()
+
+    fireEvent.click(within(context).getByRole('button', { name: /back to section/i }))
+
+    await waitFor(() => {
+      expect(screen.getByTestId('location').textContent).toBe('/banis/amrit-keertan/1')
+    })
+  })
+
   it('renders a focused exact search result view', async () => {
     render(
       <MemoryRouter initialEntries={['/study?shabadId=50&verseId=100']}>
