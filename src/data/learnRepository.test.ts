@@ -44,6 +44,18 @@ const GENERIC_SCENARIO_PHRASES = [
   "A kept rule is gentler than a burst of intensity and usually more transformative.",
 ]
 
+const GENERATED_LEARN_COPY_PATTERNS = [
+  /\bfeels trying to feel\b/i,
+  /\bthis is for anyone who feels\b/i,
+  /\blet this stay with you:/i,
+  /\bhold onto this:/i,
+  /\bcarry this with you:/i,
+  /\bquestion appetite avoids\b/i,
+  /\bprofit that can follow you\b/i,
+]
+
+const FORMULAIC_SHABAD_STRUCTURE_PATTERN = /^(First|Then|Finally), it\b/i
+
 const ORDINAL_MEHLA_PATTERN = "(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)"
 const HEADING_ONLY_PATTERN = new RegExp(
   `^\\s*(?:raag\\s+)?[a-z][a-z' -]+,\\s*${ORDINAL_MEHLA_PATTERN}\\s+mehla:?\\s*$`,
@@ -228,6 +240,36 @@ test("published daily guidance summaries are distinct and avoid repeated exhorta
 
     for (const phrase of repeatedSummaryPhrases) {
       expect(normalizedSummary).not.toContain(phrase)
+    }
+  }
+})
+
+test("published learn copy avoids generated scaffolding that does not survive human reading", async () => {
+  const catalog = await loadLearnCatalog()
+
+  for (const shabad of catalog.shabadDeepDives) {
+    const shabadCopy = [
+      shabad.title,
+      shabad.summary,
+      shabad.whyItMatters,
+      shabad.takeaway,
+      ...(shabad.structure ?? []),
+    ].join("\n")
+
+    for (const pattern of GENERATED_LEARN_COPY_PATTERNS) {
+      expect(shabadCopy).not.toMatch(pattern)
+    }
+
+    for (const movement of shabad.structure ?? []) {
+      expect(movement).not.toMatch(FORMULAIC_SHABAD_STRUCTURE_PATTERN)
+    }
+  }
+
+  for (const guidance of catalog.dailyGuidance) {
+    const guidanceCopy = [guidance.title, guidance.summary, guidance.takeaway].join("\n")
+
+    for (const pattern of GENERATED_LEARN_COPY_PATTERNS) {
+      expect(guidanceCopy).not.toMatch(pattern)
     }
   }
 })

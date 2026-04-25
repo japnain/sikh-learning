@@ -1,10 +1,10 @@
 {
   "id": "shabad-appetite-grows-in-stages-unless-it-is-taught-otherwise",
-  "title": "Appetite grows in stages unless it is taught otherwise",
+  "title": "Appetite grows into a life unless the Guru interrupts it",
   "subtitle": "Raag Maajh · Ang 137",
-  "summary": "The shabad begins by tracing desire through the stages of life: milk, family, play, food, sexuality, wealth. It shows how attachment matures into a governing pattern unless the soul is reoriented.",
-  "whyItMatters": "This is for anyone who treats craving as natural simply because it has been familiar for a long time. Kept close, it gives appetite a history and makes early truthfulness possible.",
-  "takeaway": "Hold onto this: greed becomes easier to face when its growth is named.",
+  "summary": "This shabad traces craving from infancy to death with unsentimental precision: milk, family, play, food, sexual desire, wealth, anger, decline, cremation. The pattern is not harmless just because it is familiar; without the Guru, the soul is left asking where to go as the world drowns.",
+  "whyItMatters": "Craving often feels like personality because it has been rehearsed for so long. This shabad gives appetite a biography, showing how small loves harden into a whole direction unless the Guru teaches the soul another way to live.",
+  "takeaway": "Name appetite early, before it names the whole life.",
   "themes": [
     "greed",
     "attachment",
@@ -154,9 +154,9 @@
     }
   ],
   "structure": [
-    "First, it begins by watching love and appetite grow in recognizable stages from the beginning of life.",
-    "Then, it shows desire thickening into habit, possession, and a governing pattern.",
-    "Finally, it ends by revealing how lost the soul becomes when the Guru is absent from that growth."
+    "The shabad follows desire through the ordinary stages of life, refusing to romanticize how attachment grows.",
+    "It shows appetite maturing into possession, anger, bodily decline, death, and the soul’s disoriented departure.",
+    "It closes with the sharp diagnosis: without the Guru, the world’s familiar loves still leave it drowning."
   ],
   "keyVerseIds": [
     5595,
@@ -190,14 +190,14 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual-full-v1",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad begins by tracing desire through the stages of life: milk, family, play, food, sexuality, wealth. It shows how attachment matures into a governing pattern unless the soul is reoriented.",
+      "coreClaim": "The shabad maps the lifelong growth of appetite and attachment, ending with the soul lost without the Guru.",
       "emotionalState": "hungry, never-enough, driven",
-      "turn": "Then, it shows desire thickening into habit, possession, and a governing pattern.",
-      "practicalImplication": "This is for anyone who treats craving as natural simply because it has been familiar for a long time. Kept close, it gives appetite a history and makes early truthfulness possible. Hold onto this: greed becomes easier to face when its growth is named.",
+      "turn": "The sequence turns ordinary development into moral revelation: what begins as natural appetite can become a drowning life when no Guru interrupts it.",
+      "practicalImplication": "Do not excuse a craving because it has a long history. Bring it under the Guru’s teaching while there is still time to redirect the life.",
       "bannedOverreach": []
     },
     "scores": {

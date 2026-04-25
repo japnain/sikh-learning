@@ -1,10 +1,10 @@
 {
   "id": "shabad-a-rare-human-life-should-not-be-spent-asleep",
-  "title": "A rare human life should not be spent asleep",
+  "title": "Do not murder the soul by wasting a rare life",
   "subtitle": "Raag Gauree · Ang 188",
-  "summary": "The shabad opens by calling human birth rare fortune, then asks what life is worth without Naam. It leans harder past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
-  "whyItMatters": "This is for anyone who feels drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic.",
-  "takeaway": "Let this stay with you: treat this life as rare enough to center it on Naam.",
+  "summary": "This shabad treats human birth as a rare trust, not a casual backdrop for entertainment. Without Naam, eating, laughing, showing off, and even staying alive become hollow; with the GurMantra planted inside, the heart finally holds what the life was given for.",
+  "whyItMatters": "The shabad is severe because the opportunity is precious. It cuts through the lie that distraction is harmless and asks whether the day is feeding the soul or quietly helping it disappear.",
+  "takeaway": "Use the rare human life for Naam before distraction spends it for you.",
   "themes": [
     "patience",
     "anger",
@@ -112,9 +112,9 @@
     }
   ],
   "structure": [
-    "First, it begins by calling human birth rare and refusing to treat it casually.",
-    "Then, it strips away the glamour of eating, laughing, and display without remembrance.",
-    "Finally, it ends with the GurMantra implanted and the heart occupied by Naam alone."
+    "The shabad opens by calling the human body difficult to obtain and therefore impossible to treat casually.",
+    "It confronts the life without Naam as self-harm, stripping pleasure, display, and noise of their borrowed importance.",
+    "It comes to rest with GurMantra implanted within and the Name occupying the heart as the life’s true center."
   ],
   "keyVerseIds": [
     7947,
@@ -147,14 +147,14 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual-full-v1",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by calling human birth rare fortune, then asks what life is worth without Naam. It leans harder past entertainment and display until the GurMantra is planted and the Name alone fills the heart.",
+      "coreClaim": "A rare human life is spiritually wasted when Naam is absent; the shabad presses the listener toward GurMantra and inward remembrance.",
       "emotionalState": "impatient, tense, agitated",
-      "turn": "Then, it strips away the glamour of eating, laughing, and display without remembrance.",
-      "practicalImplication": "This is for anyone who feels drifting through a precious life as though there will always be more time. Hold this shabad when the day is dissolving into appetite or distraction, and it restores seriousness without panic. Let this stay with you: treat this life as rare enough to center it on Naam.",
+      "turn": "After naming human birth as rare, the shabad moves from warning to contrast: pleasure and display cannot replace the Name in the heart.",
+      "practicalImplication": "Treat the day as entrusted, not disposable. Put remembrance before appetite, performance, and drift have spent the best strength of the life.",
       "bannedOverreach": []
     },
     "scores": {

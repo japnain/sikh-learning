@@ -1,10 +1,10 @@
 {
   "id": "shabad-all-belong-to-the-one-who-belongs-to-all",
-  "title": "All belong to the One who belongs to all",
+  "title": "Belonging is not private property",
   "subtitle": "Siree Raag · Ang 86",
-  "summary": "The shabad opens by overturning private ownership: all are Yours, and You belong to all. It broadens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
-  "whyItMatters": "This speaks to the person shrinking worth into possession, status, or exclusivity. Kept close, it changes the emotional climate from scarcity to shared dependence and from ego to belonging.",
-  "takeaway": "Hold onto this: belonging is received from the One who holds everyone.",
+  "summary": "This pauree breaks open the possessive mind. All are Yours, You belong to all, and everyone begs from the same inexhaustible Source. The ego has no independent ground to stand on; even the place from which it asks is given by the One it depends on.",
+  "whyItMatters": "When belonging becomes a competition, people turn insecure, territorial, and cruel. This shabad restores scale: no one owns the Divine, no one is self-supplied, and the enlightened door is reached through shared dependence rather than private claim.",
+  "takeaway": "Receive belonging from the One who holds everyone.",
   "themes": [
     "ego",
     "restlessness",
@@ -77,9 +77,9 @@
     }
   ],
   "structure": [
-    "First, it begins by taking ownership language and breaking it open into universal belonging.",
-    "Then, it shows every life begging, praying, and receiving from the same Source.",
-    "Finally, it ends by revealing how little ground ego had to stand on without the Lord."
+    "The pauree begins by overturning ownership itself: the Lord belongs to all because all already belong to the Lord.",
+    "It gathers every prayer and every need back to the same Source, exposing dependence as universal rather than shameful.",
+    "It closes at the Lord’s Door, where the Gurmukh is enlightened by praise instead of defended by possession."
   ],
   "keyVerseIds": [
     3436,
@@ -112,14 +112,14 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual-full-v1",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:generated",
     "evidence": {
-      "coreClaim": "The shabad opens by overturning private ownership: all are Yours, and You belong to all. It broadens into dependence, prayer, nearness, and the recognition that without the Lord there is not even a place to stand.",
+      "coreClaim": "The pauree teaches universal dependence on the Lord: all belong to the One, all beg from the One, and no ego has ground apart from the One.",
       "emotionalState": "inflated, defensive, self-protective",
-      "turn": "Then, it shows every life begging, praying, and receiving from the same Source.",
-      "practicalImplication": "This speaks to the person shrinking worth into possession, status, or exclusivity. Kept close, it changes the emotional climate from scarcity to shared dependence and from ego to belonging. Hold onto this: belonging is received from the One who holds everyone.",
+      "turn": "The language moves from belonging to begging to praise, showing that dependence is not humiliation but the truth that opens the Door.",
+      "practicalImplication": "Stop making love, status, or spiritual access into private property. Pray from the same ground as everyone else and let praise widen the heart.",
       "bannedOverreach": []
     },
     "scores": {
