@@ -1,10 +1,10 @@
 {
   "id": "shabad-buy-what-goes-with-you",
-  "title": "Trade for what can follow you",
+  "title": "Choose the wealth that endures",
   "subtitle": "Siree Raag · Ang 22",
-  "summary": "The shabad begins with market language and turns it against ordinary appetite: buy what can go with you. It measures profit by praise, truth, and the wealth the Divine Merchant will still receive.",
-  "whyItMatters": "This is for anyone who feels trying to feel safe through buying, upgrading, or being seen as successful. Bring this shabad to the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you?",
-  "takeaway": "Let this stay with you: pause the deal and choose the profit that can follow you.",
+  "summary": "Guru Nanak turns the language of trade toward the soul: not every profit is worth carrying. Praise, truth, and Naam are the wealth that remains when false dealing falls away.",
+  "whyItMatters": "This shabad challenges the part of us that tries to buy safety through possessions, upgrades, or visible success. It asks the harder question: after the deal is done, has the heart gained truth, or only another weight to carry?",
+  "takeaway": "Before the next purchase, chase, or status move, ask whether it adds truth to the heart or only weight to the mind.",
   "themes": [
     "discipline",
     "purpose",
@@ -140,9 +140,9 @@
     }
   ],
   "structure": [
-    "First, it opens like a merchant's lesson and asks what lasts beyond the visible deal.",
-    "Then, it identifies praise and Naam as the goods worth taking with you.",
-    "Finally, it ends by placing approval with the Divine Merchant instead of the crowd."
+    "Guru Nanak opens with the language of traders and merchandise, asking what kind of wealth can cross the final threshold.",
+    "The rahao names that wealth clearly: the Lord's praise, carried with focused consciousness.",
+    "The later verses expose false dealing as counterfeit, then return the mind to the Guru's Shabad, Naam, and fearless profit."
   ],
   "keyVerseIds": [
     934,
@@ -178,14 +178,14 @@
   },
   "editorial": {
     "status": "locked",
-    "origin": "legacy",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
     "templateKey": "shabad:legacy",
     "evidence": {
-      "coreClaim": "The shabad begins with market language and turns it against ordinary appetite: buy what can go with you. It measures profit by praise, truth, and the wealth the Divine Merchant will still receive.",
+      "coreClaim": "Guru Nanak turns trade language toward the soul: praise, truth, and Naam are the only wealth that can endure beyond false dealing.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "Then, it identifies praise and Naam as the goods worth taking with you.",
-      "practicalImplication": "This is for anyone who feels trying to feel safe through buying, upgrading, or being seen as successful. Bring this shabad to the checkout screen, with the card in your hand, or before the monthly budget meeting, and let it ask the question appetite avoids: what here can still follow you? Let this stay with you: pause the deal and choose the profit that can follow you.",
+      "turn": "The rahao names the merchandise worth carrying: the Lord's praise held with focused consciousness.",
+      "practicalImplication": "Before the next purchase, chase, or status move, ask whether it adds truth to the heart or only weight to the mind.",
       "bannedOverreach": []
     },
     "scores": {
