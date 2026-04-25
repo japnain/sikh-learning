@@ -234,7 +234,7 @@ test('renders the same daily guidance item that Learn resolves for the day', asy
   })
 })
 
-test('keeps today’s guidance hero action singular when next best action points elsewhere', async () => {
+test('keeps saved content out of the home top action area', async () => {
   useLearningStore.setState(state => ({
     ...state,
     learnState: {
@@ -247,7 +247,7 @@ test('keeps today’s guidance hero action singular when next best action points
 
   expect(await screen.findByTestId('home-hero-guidance-action')).toBeInTheDocument()
   expect(screen.getAllByText(/open today.?s guidance/i)).toHaveLength(1)
-  expect(screen.getByTestId('home-next-best-action')).toHaveTextContent(/when the mind is anxious/i)
+  expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
 })
 
 test('keeps source browsing off home so Read owns the bottom source dropdown', async () => {
@@ -368,7 +368,7 @@ test('does not show a resume reading card when a session exists', async () => {
   expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
 })
 
-test('shows review as the next best action when review items are due and no session exists', async () => {
+test('keeps review items out of the top action area while preserving the saved shelf', async () => {
   useLearningStore.setState(state => ({
     ...state,
     learnState: {
@@ -391,13 +391,12 @@ test('shows review as the next best action when review items are due and no sess
 
   renderHome()
 
-  const nextAction = await screen.findByTestId('home-next-best-action')
-  expect(within(nextAction).getByRole('heading', { name: /review bank/i })).toBeInTheDocument()
-  expect(within(nextAction).getByText(/1 review item due/i)).toBeInTheDocument()
-  expect(within(nextAction).getByTestId('home-next-best-action-link')).toHaveAttribute('href', '/vocab')
+  expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
+  expect(await screen.findByTestId('home-saved-overview')).toBeInTheDocument()
+  expect(screen.getByTestId('home-saved-preview-vocab')).toHaveAttribute('href', '/vocab')
 })
 
-test('shows a saved revisit as the next best action when there is no session and nothing due for review', async () => {
+test('does not promote saved revisits into the top home surface', async () => {
   useLearningStore.setState(state => ({
     ...state,
     learnState: {
@@ -409,9 +408,10 @@ test('shows a saved revisit as the next best action when there is no session and
 
   renderHome()
 
-  const nextAction = await screen.findByTestId('home-next-best-action')
-  expect(within(nextAction).getByRole('heading', { name: /when the mind is anxious/i })).toBeInTheDocument()
-  expect(within(nextAction).getByTestId('home-next-best-action-link').getAttribute('href')).toMatch(/\/learn\/topics\/topic-anxiety\?from=saved/)
+  expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
+  const savedPreview = await screen.findByTestId('home-saved-preview-learn')
+  expect(savedPreview).toHaveTextContent(/when the mind is anxious/i)
+  expect(savedPreview.getAttribute('href')).toMatch(/\/learn\/topics\/topic-anxiety\?from=saved/)
 })
 
 test('keeps guidance singular when it would otherwise duplicate the hero on home', async () => {

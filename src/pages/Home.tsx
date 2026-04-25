@@ -67,15 +67,6 @@ type HomeSavedPreviewItem = {
   meta?: string
 }
 
-type HomeNextAction = {
-  eyebrow: string
-  title: string
-  body: string
-  path: string
-  actionLabel: string
-  meta?: string
-}
-
 const HOME_SAVED_PREVIEW_APPEARANCE: Record<
   HomeSavedPreviewItem['kind'],
   {
@@ -553,55 +544,6 @@ export default function Home() {
 
     return previewItems.slice(0, 3)
   }, [bookmarks, favorites, homeCopy.phrases, homeCopy.words, libraryCopy.bookmarks, libraryCopy.favorites, libraryCopy.reviewBank, locale, savedLearnItems, vocab])
-  const nextBestAction = useMemo<HomeNextAction | null>(() => {
-    if (savedReviewItems > 0) {
-      return {
-        eyebrow: libraryCopy.reviewBank,
-        title: libraryCopy.reviewBank,
-        body: homeMessages.reviewDue(savedReviewItems),
-        path: '/vocab',
-        actionLabel: homeCopy.doReviewStep,
-      }
-    }
-
-    const savedRevisit = savedPreviewItems.find(item => item.kind !== 'vocab')
-    if (savedRevisit) {
-      return {
-        eyebrow: homeCopy.savedEyebrow,
-        title: savedRevisit.title,
-        body: savedRevisit.detail,
-        path: savedRevisit.path,
-        actionLabel: homeCopy.openSaved,
-        meta: savedRevisit.meta,
-      }
-    }
-
-    if (todayGuidance && todayGuidancePath) {
-      return {
-        eyebrow: homeMessages.todayInLearn,
-        title: todayGuidance.title,
-        body: todayGuidance.summary,
-        path: todayGuidancePath,
-        actionLabel: homeMessages.openTodaysGuidance,
-        meta: todayGuidance.rotation.theme,
-      }
-    }
-
-    return null
-  }, [
-    homeCopy.doReviewStep,
-    homeCopy.openSaved,
-    homeCopy.savedEyebrow,
-    homeMessages,
-    libraryCopy.reviewBank,
-    savedPreviewItems,
-    savedReviewItems,
-    todayGuidance,
-    todayGuidancePath,
-  ])
-  const showNextBestAction = nextBestAction ? nextBestAction.path !== todayGuidancePath : false
-  const visibleNextBestAction = showNextBestAction ? nextBestAction : null
-
   const featuredShabadSupport = useMemo(() => {
     if (learnCatalogLoading) {
       return { state: 'loading' as const }
@@ -685,14 +627,11 @@ export default function Home() {
 
   return (
     <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
-      <div className="flex justify-between items-start gap-3 mb-5">
-        <div>
+      <header className="mb-4 flex items-center justify-between gap-3">
+        <div className="min-w-0">
           <p className="eyebrow">{editorial?.brand.domain ?? 'Naamras.xyz'}</p>
-          <p className="font-display text-[3.1rem] text-ink dark:text-dark-text leading-none mt-2">
+          <p className="mt-1 font-display text-[2.65rem] leading-none text-ink dark:text-dark-text">
             {editorial?.brand.name ?? 'NaamRas'}
-          </p>
-          <p className="font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62 mt-3 max-w-[26ch]">
-            {editorial?.brand.promise ?? copy.home.promise}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -707,87 +646,51 @@ export default function Home() {
           </button>
           <StreakBadge streak={streak} />
         </div>
-      </div>
-
-      <div className="mb-4">
-        <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-          {formatUiDate(locale)}
-        </p>
-        <h1 className="font-display text-[1.8rem] leading-none text-ink dark:text-dark-text mt-2">
-          <span className="block">{copy.home.greetingPrimary}</span>
-          <span className="mt-2 block font-sans text-[0.85rem] font-medium uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-            {copy.home.greetingSecondary}
-          </span>
-        </h1>
-      </div>
-
-      {visibleNextBestAction ? (
-        <section className="section-shell p-5 mb-5 animate-slide-up stagger-1" data-testid="home-next-best-action">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="eyebrow">{visibleNextBestAction.eyebrow}</p>
-              <h2 className="mt-2 font-display text-[1.9rem] leading-[1.02] text-ink dark:text-dark-text">
-                {visibleNextBestAction.title}
-              </h2>
-              {visibleNextBestAction.meta ? <span className="chip-pill mt-3 inline-flex">{visibleNextBestAction.meta}</span> : null}
-              <p className="mt-3 max-w-[36ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
-                {visibleNextBestAction.body}
-              </p>
-            </div>
-            <Link
-              to={visibleNextBestAction.path}
-              className="interactive-focus interactive-pill-link shrink-0 gap-2 self-start font-sans text-sm font-semibold text-gold dark:text-gold-light"
-              data-testid="home-next-best-action-link"
-            >
-              <span>{visibleNextBestAction.actionLabel}</span>
-              <IconArrowRight size={14} />
-            </Link>
-          </div>
-        </section>
-      ) : null}
+      </header>
 
       <section
-        className="hero-surface ornate-top overflow-hidden px-5 py-6 mb-5 animate-slide-up stagger-1"
+        className="hero-surface overflow-hidden px-5 py-5 mb-5 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
         data-ai-surface="daily-reading-room"
       >
-        <div className="relative">
-          <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-gold/12 blur-3xl dark:bg-gold/10" />
-          <div className="pointer-events-none absolute -left-14 top-24 h-40 w-40 rounded-full bg-saffron/10 blur-3xl dark:bg-saffron/8" />
-
-          <div className="relative flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <p className="eyebrow">Daily Reading Room</p>
-              <h2 id="home-hero-title" className="mt-2 max-w-[10ch] font-display text-[2.35rem] leading-[0.9] tracking-[-0.03em] text-ink dark:text-dark-text">
-                Read. Reflect. Return.
-              </h2>
+        <div>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-dark/80 dark:text-gold-light">
+                {formatUiDate(locale)}
+              </p>
+              <h1 id="home-hero-title" className="mt-3 font-display text-[2.35rem] leading-[0.92] text-ink dark:text-dark-text">
+                <span className="block">{copy.home.greetingPrimary}</span>
+                <span className="mt-3 block font-sans text-[0.78rem] font-semibold uppercase tracking-[0.2em] text-gold-dark/78 dark:text-gold-light/88">
+                  {copy.home.greetingSecondary}
+                </span>
+              </h1>
             </div>
             <span className="chip-pill shrink-0">{learningLevelLabels[learningLevel]}</span>
           </div>
 
-          <div className="relative mt-6 rounded-[30px] border border-gold/18 bg-parchment-card/70 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] dark:border-gold/12 dark:bg-dark-card/60" data-testid="home-reading-room-path">
-            <div className="absolute left-[17%] right-[17%] top-8 h-px bg-gradient-to-r from-gold/0 via-gold/40 to-gold/0" aria-hidden="true" />
-            <div className="relative grid grid-cols-3 gap-2 text-center">
+          <p className="mt-4 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
+            {editorial?.brand.promise ?? copy.home.promise}
+          </p>
+
+          <div className="mt-5 grid grid-cols-3 gap-2" data-testid="home-reading-room-path">
+            <div className="sr-only">Daily Reading Room</div>
               {[
                 ['Hukam', hukamnama ? 'Today’s line' : hukamnamaLoading ? 'Loading' : 'Read stays open'],
                 ['Meaning', todayGuidance ? 'Guidance ready' : learnCatalogLoading ? 'Preparing' : 'Quiet support'],
                 ['Return', currentSession?.resumePath ? 'Resume close' : nitnemRemainingCount > 0 ? 'Ritual waiting' : 'Come back calm'],
               ].map(([label, detail]) => (
-                <div key={label} className="space-y-2">
-                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-gold/20 bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.28),rgba(255,250,241,0.88))] font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-dark shadow-[0_10px_24px_rgba(105,75,31,0.12)] dark:border-gold/14 dark:bg-[radial-gradient(circle_at_top,rgba(232,196,104,0.16),rgba(36,28,49,0.92))] dark:text-gold-light">
-                    {label.slice(0, 1)}
-                  </div>
+                <div key={label} className="rounded-[20px] border border-gold/16 bg-white/44 px-3 py-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] dark:border-gold/12 dark:bg-white/[0.05]">
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/64">{label}</p>
-                  <p className="font-sans text-[11px] leading-4 text-ink/50 dark:text-dark-text/52">{detail}</p>
+                  <p className="mt-2 font-sans text-[11px] leading-4 text-ink/50 dark:text-dark-text/52">{detail}</p>
                 </div>
               ))}
-            </div>
           </div>
 
-          <div className="relative mt-5 grid gap-4" data-testid="home-daily-reading-room">
+          <div className="mt-4 grid gap-3" data-testid="home-daily-reading-room">
             {hukamnamaLoading ? (
-              <div className="rounded-[28px] border border-sand/12 bg-white/50 p-5 animate-pulse dark:border-dark-text/10 dark:bg-dark-card/48" data-testid="home-hukamnama-card">
+              <div className="rounded-[24px] border border-sand/12 bg-white/50 p-5 animate-pulse dark:border-dark-text/10 dark:bg-dark-card/48" data-testid="home-hukamnama-card">
                 <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28 mb-3" />
                 <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-40" />
                 <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
@@ -796,7 +699,7 @@ export default function Home() {
               </div>
             ) : hukamnama ? (
               <div
-                className="rounded-[30px] border border-gold/16 bg-[linear-gradient(180deg,rgba(255,250,241,0.94),rgba(246,232,208,0.78))] p-5 dark:border-gold/12 dark:bg-[linear-gradient(180deg,rgba(42,31,57,0.9),rgba(28,21,40,0.82))]"
+                className="rounded-[24px] border border-gold/18 bg-white/58 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] dark:border-gold/12 dark:bg-white/[0.06]"
                 data-testid="home-hukamnama-card"
                 data-ai-surface="home-hukamnama"
                 data-ai-state="ready"
@@ -810,7 +713,7 @@ export default function Home() {
                 </div>
                 <p
                   lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-5 text-[2.35rem] leading-[1.15] text-ink dark:text-dark-text line-clamp-3`}
+                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-4 text-[2.15rem] leading-[1.15] text-ink dark:text-dark-text line-clamp-3`}
                 >
                   {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
                 </p>
@@ -821,16 +724,17 @@ export default function Home() {
                 ) : null}
                 <Link
                   to={`/study?hukamnamaDate=${hukamnama.date}`}
-                  className="interactive-focus interactive-pill-link mt-5 min-h-[46px] rounded-full border border-gold/20 bg-white/68 px-5 text-ink font-sans text-sm font-semibold active:scale-95 transition-transform duration-150 dark:border-gold/14 dark:bg-dark-panel/70 dark:text-dark-text"
+                  className="interactive-focus interactive-pill-link mt-5 min-h-[48px] gap-2 rounded-full bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-semibold active:scale-95 transition-transform duration-150"
                   data-testid="home-hero-primary-action"
                   data-ai-action="open-hukamnama"
                 >
-                  Open Today&apos;s Hukamnama
+                  <span>Open Today&apos;s Hukamnama</span>
+                  <IconArrowRight size={14} />
                 </Link>
               </div>
             ) : (
               <div
-                className="rounded-[30px] border border-sand/12 bg-white/50 p-5 dark:border-dark-text/10 dark:bg-dark-card/48"
+                className="rounded-[24px] border border-sand/12 bg-white/50 p-5 dark:border-dark-text/10 dark:bg-dark-card/48"
                 data-testid="home-hukamnama-error"
                 data-ai-surface="home-hukamnama"
                 data-ai-state="degraded"
@@ -851,7 +755,7 @@ export default function Home() {
             )}
 
             <div
-              className="rounded-[28px] border border-gold/14 bg-[linear-gradient(180deg,rgba(247,236,216,0.74),rgba(255,250,241,0.52))] p-5 dark:border-gold/10 dark:bg-[linear-gradient(180deg,rgba(36,28,49,0.78),rgba(24,19,36,0.68))]"
+              className="rounded-[24px] border border-emerald-700/12 bg-white/42 p-5 dark:border-emerald-300/12 dark:bg-white/[0.04]"
               data-testid="home-guidance-hero"
               data-ai-surface="home-guidance"
               data-ai-state={learnCatalogLoading ? 'loading' : learnCatalogError ? 'degraded' : todayGuidance && todayGuidancePath ? 'ready' : 'empty'}
