@@ -441,21 +441,22 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run eliminated all duplicate daily-guidance titles, normalized all 240 reviewed daily guidance entries to manual/approved metadata, and left the remaining premium-polish focus on duplicate takeaways."
+    "summary": "This run rewrote the restlessness/searching duplicate-takeaway cluster (6 daily guidance entries), synced daily list/home mirrors, and reduced duplicate daily takeaways from 39 groups to 38."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/TS files",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/TS files after restlessness/searching takeaway batch",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "39 remaining after title/metadata polish batch",
+    "duplicateDailyGuidanceTakeaways": "38 remaining after restlessness/searching takeaway polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --testTimeout=15000 passed (37 tests)",
-    "representativeDiffReview": "completed for rewritten title clusters: speech, restlessness, doubt, and hukam/acceptance daily guidance prose",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --testTimeout=15000 passed (37 tests) after restlessness/searching takeaway batch",
+    "representativeDiffReview": "completed for restlessness/searching daily guidance prose: passing-drama mortality/gossip, devotion/novelty, fresh Naam, restless love, Darshan in sangat, and body-cooling holy company",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at c20d519051394ac66ab3e1bfb27f7248b6e05bf3",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 39."
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 38.",
+    "dailyMirrorScan": "changed daily guidance details match lists/daily-guidance.json and home-summary mirrored fields after restlessness/searching batch"
   },
   "blockers": [],
   "remainingQueue": [
@@ -465,5 +466,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "c20d519051394ac66ab3e1bfb27f7248b6e05bf3",
-  "updatedAt": "2026-04-25T22:57:43Z"
+  "updatedAt": "2026-04-25T23:34:09Z"
 }
