@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the mercy duplicate-takeaway trio (guidance-bring-regret-under-mercy-not-despair, guidance-cherish-the-lord-by-relying-on-mercy, guidance-mercy-brings-the-name-home), separating regret under Hukam, childlike confession before Father/Mother, and Naam entering the mind by the Master’s mercy; daily list/home mirrors were synced and duplicate daily takeaways dropped from 33 groups to 32."
+    "summary": "This run rewrote the nearness duplicate-takeaway trio (guidance-child-of-grace-1, guidance-no-shelter-holds-the-false-self, guidance-give-longing-to-service-not-performance), separating guided longing through sangat, Shabad-pierced freedom from false shelter, and day-and-night service as the discipline for separation; daily list/home mirrors were synced and duplicate daily takeaways dropped from 32 groups to 31."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged mercy daily JSON/list/home/state files",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged nearness daily JSON/list/home/state files",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "32 remaining after mercy duplicate-takeaway trio polish batch",
+    "duplicateDailyGuidanceTakeaways": "31 remaining after nearness duplicate-takeaway trio polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after mercy duplicate-takeaway trio batch",
-    "representativeDiffReview": "completed for mercy duplicate-takeaway trio: verses 6386-6387 now name regret becoming honest under Hukam; verses 2088-2089 now name childlike confession before Father/Mother; verses 4153-4154 now name Naam coming home by the Master’s mercy.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after nearness duplicate-takeaway trio batch",
+    "representativeDiffReview": "completed for nearness duplicate-takeaway trio: verses 3757-3758 now name longing asking saintly company for the way; verses 789-790 now name Shabad-pierced beauty instead of false shelter; verses 5553-5554 now name service, simran, surrender, and sweet speech as the discipline for separation.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at 97c8f4d30030eb5e52b3dcadbdb00010f8083b03",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 32.",
-    "dailyMirrorScan": "changed mercy daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=32; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 31.",
+    "dailyMirrorScan": "changed nearness daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=31; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
