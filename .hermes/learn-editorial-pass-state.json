@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the nine-item conduct duplicate-takeaway cluster, reducing daily duplicate-takeaway groups from 30 to 29 by separating pure conduct, embodied devotion, the heart as Naam dwelling, true praise coloring action, honorable hands/feet, Guru-centered service, equality in speech, and Guru Nanak’s test of honest labor and generosity; daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote two duplicate-takeaway clusters: four ego-disease guidance entries and four fear/remembrance guidance entries, reducing daily duplicate-takeaway groups from 29 to 27. The copy now distinguishes ego's exposed voice, ego questioned under hukam, grace turning diagnosis into Shabad-practice, feverish selfhood refused as identity, Creator-protection answering fear, remembrance governing the spiral, Naam reaching bodily anxiety, and mercy speaking before disaster stories; daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged conduct/equality daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged ego disease and fear/remembrance daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "29 remaining after nine-item conduct duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "27 remaining after ego disease and fear/remembrance duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after nine-item conduct duplicate-takeaway cluster batch",
-    "representativeDiffReview": "completed for nine-item conduct duplicate-takeaway cluster: inspected staged prose for Naam joined to pure conduct (verses 11742-11743), the heart as Naam dwelling (11750-11751), praise as crimson truth-dye (759-760), hands/feet serving praise and the Lord’s path (4110-4111), Guru-centered service cleansing mind/body (2787-2788), Guru Nanak’s rebuttal of contempt toward women (21284-21285), and honest labor/generosity over religious pose (53369-53372).",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after ego disease and fear/remembrance duplicate-takeaway cluster batch",
+    "representativeDiffReview": "completed for ego disease and fear/remembrance clusters: inspected prose grounded in verses 20961-20964 around ego as question, hukam, disease/cure, grace and Guru Shabad; verses 30985-30989 around mercy/protection/support; verses 11502-11503 and 11510-11511 around remembrance bringing peace and dispelling bodily anguish.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at a6c0dd00677f1d96e30ac60050cfffca96e1ca62",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 29.",
-    "dailyMirrorScan": "changed conduct/equality daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=29; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 27.",
+    "dailyMirrorScan": "changed ego disease and fear/remembrance daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=27; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "a6c0dd00677f1d96e30ac60050cfffca96e1ca62",
-  "updatedAt": "2026-04-26T19:36:58Z"
+  "updatedAt": "2026-04-26T21:02:59Z"
 }
