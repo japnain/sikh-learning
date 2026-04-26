@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
+  IconBanis,
   IconBookmark,
   IconBookmarkFilled,
   IconCheck,
@@ -627,7 +628,7 @@ export default function Home() {
   return (
     <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
-        className="mb-4 overflow-hidden rounded-[1.35rem] border border-sand/28 bg-[linear-gradient(180deg,rgba(255,252,246,0.96),rgba(248,239,224,0.88))] px-5 py-4 shadow-[0_18px_38px_rgba(74,47,25,0.10),inset_0_1px_0_rgba(255,255,255,0.52)] animate-slide-up stagger-1 dark:border-gold/12 dark:bg-[linear-gradient(180deg,rgba(35,28,45,0.97),rgba(24,19,34,0.94))]"
+        className="home-door-shell mb-4 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
         data-ai-surface="daily-reading-room"
@@ -652,7 +653,7 @@ export default function Home() {
             <Link
               to="/library"
               aria-label="Open saved library"
-              className="interactive-focus flex h-11 w-11 items-center justify-center rounded-full border border-sand/24 bg-white/56 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] transition-colors duration-300 dark:border-dark-text/14 dark:bg-white/[0.045] dark:text-dark-text"
+              className="home-door-icon-button"
               data-testid="home-header-saved"
             >
               <IconBookmark size={19} />
@@ -661,7 +662,7 @@ export default function Home() {
               type="button"
               onClick={toggleTheme}
               aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="interactive-focus flex h-11 w-11 items-center justify-center rounded-full border border-sand/24 bg-white/56 text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] transition-colors duration-300 dark:border-dark-text/14 dark:bg-white/[0.045] dark:text-dark-text"
+              className="home-door-icon-button"
               data-testid="home-theme-toggle"
             >
               {isDarkTheme ? <IconSun size={17} /> : <IconMoon size={17} />}
@@ -681,101 +682,110 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-4 flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <h1 id="home-hero-title" className="font-display text-[1.62rem] leading-[1.08] text-ink dark:text-dark-text">
-              Waheguru Ji Ka Khalsa,<br />Waheguru Ji Ki Fateh.
-            </h1>
-            <p className="mt-2 font-sans text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-gold-dark/72 dark:text-gold-light/84">
-              {copy.home.greetingSecondary}
-            </p>
-          </div>
-          <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#5a7c6e]/10 px-2.5 py-1.5 font-sans text-[11px] font-semibold text-[#416554] dark:bg-[#7fa68e]/15 dark:text-[#b9d5c5]">
-            <IconSun size={14} />
-            {homeTimeLabel}
-          </span>
-        </div>
+        <div className="home-door-frame" aria-label="Daily reading room">
+          <span className="home-door-stone-arch" aria-hidden="true" />
+          <span className="home-door-wood-arch" aria-hidden="true" />
+          <span className="home-door-post home-door-post-left" aria-hidden="true" />
+          <span className="home-door-post home-door-post-right" aria-hidden="true" />
+          <div className="home-door-content">
+            <div className="mx-auto max-w-[19rem] text-center">
+              <span className="home-door-mark" aria-hidden="true">
+                <IconBanis size={28} />
+              </span>
+              <p className="mt-2 font-sans text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold-dark/72 dark:text-gold-light/84">
+                {copy.home.greetingSecondary}
+              </p>
+              <h1 id="home-hero-title" className="mt-2 font-display text-[1.06rem] leading-[1.16] text-ink dark:text-dark-text">
+                Waheguru Ji Ka Khalsa,<br />Waheguru Ji Ki Fateh.
+              </h1>
+              <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#5a7c6e]/10 px-2.5 py-1.5 font-sans text-[10px] font-semibold text-[#416554] dark:bg-[#7fa68e]/15 dark:text-[#b9d5c5]">
+                <IconSun size={14} />
+                {homeTimeLabel}
+              </span>
+            </div>
 
-        <div className="mt-4" data-testid="home-daily-reading-room">
-          {hukamnamaLoading ? (
-            <div className="animate-pulse border-t border-sand/20 pt-4 dark:border-dark-text/10" data-testid="home-hukamnama-card">
-              <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
-              <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
-              <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-              <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-              <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
+            <div className="mt-4" data-testid="home-daily-reading-room">
+              {hukamnamaLoading ? (
+                <div className="home-hukam-card animate-pulse px-3.5 py-3.5" data-testid="home-hukamnama-card">
+                  <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
+                  <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
+                  <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+                  <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+                  <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
+                </div>
+              ) : hukamnama ? (
+                <div
+                  className="home-hukam-card px-3.5 py-3.5"
+                  data-testid="home-hukamnama-card"
+                  data-ai-surface="home-hukamnama"
+                  data-ai-state="ready"
+                >
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                    <p className="font-sans text-[10px] font-bold uppercase leading-5 tracking-[0.2em] text-saffron dark:text-gold-light">
+                      {homeCopy.todaysHukamnama}
+                    </p>
+                    <span className="inline-flex max-w-[7.4rem] items-center gap-1.5 truncate rounded-full border border-[#5a7c6e]/15 bg-[#5a7c6e]/10 px-2 py-1 font-sans text-[10px] font-medium text-[#416554] dark:border-[#7fa68e]/20 dark:bg-[#7fa68e]/12 dark:text-[#b9d5c5]">
+                      {hukamnama.entry.raag || 'Sri Darbar Sahib'}
+                    </span>
+                  </div>
+                  <p
+                    lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                    className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-[clamp(1.55rem,7.9vw,2.02rem)] leading-[1.16] text-ink [overflow-wrap:anywhere] dark:text-dark-text line-clamp-4`}
+                  >
+                    {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+                  </p>
+                  {hukamnamaTransliterationPreview ? (
+                    <p className="mt-3 font-display text-[0.98rem] italic leading-6 text-ink/76 dark:text-dark-text/80 line-clamp-2">
+                      {hukamnamaTransliterationPreview}
+                    </p>
+                  ) : null}
+                  {hukamnamaMeaningPreview ? (
+                    <p className={`mt-3 border-t border-sand/18 pt-3 text-[0.95rem] leading-6 text-ink/76 dark:border-dark-text/10 dark:text-dark-text/78 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-display'}`}>
+                      {hukamnamaMeaningPreview}
+                    </p>
+                  ) : null}
+                  <p className="mt-2 font-sans text-[11px] font-medium text-[#416554] dark:text-[#b9d5c5]">
+                    {hukamnamaSourceLabel}
+                  </p>
+                  <Link
+                    to={`/study?hukamnamaDate=${hukamnama.date}`}
+                    className="interactive-focus interactive-pill-link mt-3 min-h-[46px] w-full gap-2 rounded-xl bg-gradient-to-r from-saffron to-saffron-light px-3.5 text-white font-sans text-[11px] font-bold uppercase tracking-[0.08em] active:scale-95 transition-transform duration-150"
+                    data-testid="home-hero-primary-action"
+                    data-ai-action="open-hukamnama"
+                  >
+                    <IconLibrary size={17} />
+                    <span className="whitespace-nowrap">Read Hukamnama</span>
+                    <IconArrowRight size={15} />
+                  </Link>
+                </div>
+              ) : (
+                <div
+                  className="home-hukam-card px-3.5 py-3.5"
+                  data-testid="home-hukamnama-error"
+                  data-ai-surface="home-hukamnama"
+                  data-ai-state="degraded"
+                  data-ai-error="study-hukamnama"
+                >
+                  <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
+                  <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+                    Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+                  </p>
+                  <Link
+                    to="/banis"
+                    className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-lg border border-sand/20 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text"
+                    data-ai-action="browse-read"
+                  >
+                    Browse Read
+                  </Link>
+                </div>
+              )}
             </div>
-          ) : hukamnama ? (
-            <div
-              className="border-t border-sand/20 pt-4 dark:border-dark-text/10"
-              data-testid="home-hukamnama-card"
-              data-ai-surface="home-hukamnama"
-              data-ai-state="ready"
-            >
-              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                <p className="font-sans text-[11px] font-bold uppercase leading-5 tracking-[0.2em] text-saffron dark:text-gold-light">
-                  {homeCopy.todaysHukamnama}
-                </p>
-                <span className="inline-flex max-w-[11rem] items-center gap-1.5 truncate rounded-full border border-[#5a7c6e]/15 bg-[#5a7c6e]/10 px-2.5 py-1 font-sans text-[11px] font-medium text-[#416554] dark:border-[#7fa68e]/20 dark:bg-[#7fa68e]/12 dark:text-[#b9d5c5]">
-                  {hukamnama.entry.raag || 'Sri Darbar Sahib'}
-                </span>
-              </div>
-              <p
-                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-3 text-[clamp(2.05rem,10.2vw,2.58rem)] leading-[1.18] text-ink [overflow-wrap:anywhere] dark:text-dark-text line-clamp-4`}
-              >
-                {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
-              </p>
-              {hukamnamaTransliterationPreview ? (
-                <p className="mt-4 font-display text-[1.22rem] italic leading-7 text-ink/76 dark:text-dark-text/80 line-clamp-2">
-                  {hukamnamaTransliterationPreview}
-                </p>
-              ) : null}
-              {hukamnamaMeaningPreview ? (
-                <p className={`mt-4 border-t border-sand/18 pt-4 text-[1.05rem] leading-7 text-ink/76 dark:border-dark-text/10 dark:text-dark-text/78 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-display'}`}>
-                  {hukamnamaMeaningPreview}
-                </p>
-              ) : null}
-              <p className="mt-2 font-sans text-xs font-medium text-[#416554] dark:text-[#b9d5c5]">
-                {hukamnamaSourceLabel}
-              </p>
-              <Link
-                to={`/study?hukamnamaDate=${hukamnama.date}`}
-                className="interactive-focus interactive-pill-link mt-4 min-h-[50px] w-full gap-3 rounded-xl bg-gradient-to-r from-saffron to-saffron-light px-5 text-white font-sans text-sm font-bold uppercase tracking-[0.12em] active:scale-95 transition-transform duration-150"
-                data-testid="home-hero-primary-action"
-                data-ai-action="open-hukamnama"
-              >
-                <IconLibrary size={20} />
-                <span>Read Hukamnama</span>
-                <IconArrowRight size={16} />
-              </Link>
-            </div>
-          ) : (
-            <div
-              className="border-t border-sand/20 pt-4 dark:border-dark-text/10"
-              data-testid="home-hukamnama-error"
-              data-ai-surface="home-hukamnama"
-              data-ai-state="degraded"
-              data-ai-error="study-hukamnama"
-            >
-              <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-              <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
-                Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
-              </p>
-              <Link
-                to="/banis"
-                className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-lg border border-sand/20 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text"
-                data-ai-action="browse-read"
-              >
-                Browse Read
-              </Link>
-            </div>
-          )}
+          </div>
         </div>
       </section>
 
       <section
-        className="section-shell-quiet mb-4 px-4 py-4 animate-slide-up stagger-2"
+        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-2"
         aria-label="Today's Guidance"
         data-testid="home-guidance-hero"
         data-ai-surface="home-guidance"
@@ -801,7 +811,7 @@ export default function Home() {
             </div>
             <Link
               to={todayGuidancePath}
-              className="interactive-focus interactive-pill-link shrink-0 gap-1 rounded-lg border border-gold/20 bg-gold/10 px-3 py-2 font-sans text-xs font-semibold text-gold-dark dark:border-gold/20 dark:bg-gold/10 dark:text-gold-light"
+              className="interactive-focus interactive-pill-link shrink-0 gap-1 rounded-lg border border-gold/20 bg-parchment-card/72 px-3 py-2 font-sans text-xs font-semibold text-gold-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] dark:border-gold/20 dark:bg-white/[0.045] dark:text-gold-light"
               data-testid="home-hero-guidance-action"
               data-ai-action="open-todays-guidance"
             >
@@ -825,7 +835,7 @@ export default function Home() {
       </section>
 
       <section
-        className="surface-spotlight mb-4 px-4 py-4 animate-slide-up stagger-3 dark:border-dark-text/10"
+        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-3"
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
@@ -865,7 +875,7 @@ export default function Home() {
                       data-testid={active ? 'home-nitnem-active-card' : undefined}
                       aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                       aria-current={active ? 'true' : undefined}
-                      className="min-w-full snap-center rounded-lg border border-gold/18 bg-[linear-gradient(180deg,rgba(255,254,250,0.96),rgba(248,240,226,0.88))] px-4 py-4 dark:border-gold/20 dark:bg-[linear-gradient(180deg,rgba(35,28,46,0.96),rgba(24,19,34,0.92))]"
+                      className="home-quiet-card min-w-full snap-center px-4 py-4"
                     >
                       <div className="grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
                         <div className="min-w-0">
@@ -885,7 +895,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg border border-sand/14 bg-parchment-card/62 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
+                        <div className="rounded-lg border border-sand/14 bg-parchment-card/50 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
                           <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
                             Ritual Note
                           </p>
@@ -897,7 +907,7 @@ export default function Home() {
 
                       <Link
                         to={buildNitnemStudyPath(option)}
-                        className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg bg-ink px-5 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+                        className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-sand/18 bg-parchment-card/72 px-5 font-sans text-sm font-semibold text-ink/78 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/78"
                         data-testid={active ? 'home-nitnem-primary-action' : undefined}
                       >
                         {homeMessages.beginNitnem}
@@ -948,7 +958,7 @@ export default function Home() {
 
               <Link
                 to="/nitnem/customize"
-                className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-parchment-card/72 px-5 font-sans text-sm font-medium text-ink/75 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/75"
+                className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-transparent px-5 font-sans text-sm font-medium text-ink/65 dark:border-dark-text/10 dark:text-dark-text/70"
                 data-testid="home-nitnem-manage"
               >
                 {homeMessages.customizeNitnem}
@@ -974,7 +984,7 @@ export default function Home() {
       <section
         ref={readTodayRef}
         tabIndex={-1}
-        className="mb-4 px-0 py-1 animate-slide-up stagger-4 transition-[box-shadow,transform,border-color] duration-500"
+        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-4 transition-[box-shadow,transform,border-color] duration-500"
         aria-labelledby="home-read-today-title"
         data-testid="home-read-today"
       >
@@ -986,9 +996,9 @@ export default function Home() {
           {homeMessages.readTodayBody}
         </p>
         <div className="mt-4 grid gap-3">
-          <div className="section-shell-quiet p-4">
+          <div className="home-quiet-card p-4">
             <p className="eyebrow">{homeCopy.read}</p>
-            <h3 className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+            <h3 className="mt-2 font-display text-[1.72rem] leading-none text-ink dark:text-dark-text">
               {devotionalReadAction.title}
             </h3>
             <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/75">
@@ -996,7 +1006,7 @@ export default function Home() {
             </p>
             <Link
               to={devotionalReadAction.path}
-              className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light px-4 font-sans text-sm font-semibold text-white"
+              className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 font-sans text-sm font-semibold text-saffron dark:border-gold/18 dark:bg-gold/10 dark:text-gold-light"
               data-testid="home-read-today-action"
             >
               {devotionalReadAction.title}
@@ -1005,7 +1015,7 @@ export default function Home() {
 
           <div className="grid gap-3">
             <div
-              className="section-shell-quiet p-4"
+              className="home-quiet-card p-4"
               data-testid="home-read-today-featured-shabad"
             >
               {featuredShabadSupport.state === 'loading' ? (
@@ -1060,7 +1070,7 @@ export default function Home() {
       </section>
 
       <section
-        className="section-shell p-4 mb-5 animate-slide-up stagger-4"
+        className="home-shelf-section p-4 mb-5 animate-slide-up stagger-4"
         aria-labelledby="home-saved-title"
         data-testid="home-saved-overview"
       >
@@ -1073,7 +1083,7 @@ export default function Home() {
           </div>
           <Link
             to="/library"
-            className="interactive-focus inline-flex items-center gap-1 font-sans text-sm text-gold dark:text-gold-light"
+            className="interactive-focus inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-sans text-sm text-gold dark:text-gold-light"
           >
             {homeCopy.openSaved} <IconArrowRight size={14} />
           </Link>
@@ -1086,19 +1096,19 @@ export default function Home() {
           </div>
         ) : null}
         <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4" data-testid="home-saved-metrics">
-          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
+          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{learnStateSnapshot.savedItemIds.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.learnSaves}</p>
           </div>
-          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
+          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.bookmarks}</p>
           </div>
-          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
+          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedFavorites}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.favorites}</p>
           </div>
-          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
+          <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedReviewItems}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.reviewBank}</p>
           </div>
@@ -1146,7 +1156,7 @@ export default function Home() {
               </Link>
             )})
           ) : (
-            <div className="section-shell-quiet px-4 py-4">
+            <div className="home-quiet-card px-4 py-4">
               <p className="eyebrow">Saved Preview</p>
               <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 Learn saves, bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
