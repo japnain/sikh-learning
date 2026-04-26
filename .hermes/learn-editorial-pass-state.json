@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the seven-item 'Do not let the search outrun shelter.' duplicate-takeaway cluster, reducing daily duplicate-takeaway groups from 24 to 23. The copy now distinguishes asking the Guru before the crowd multiplies a question, seeking kneeling into service and Naam, roaming ending at the doorway the Guru opened, separation carried through steady service and sweet speech, stubbornness yielding to grace, the running mind dwelling in Sangat, and appetite being interrupted by the Guru's direction. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the four-item 'Choose settlement before more motion.' duplicate-takeaway cluster, giving distinct source-grounded turns for the Guru's mantra quieting the scattered mind, praise answering the One who carries the breath, devotion and Guru-service carrying the seeker across, and meek return to Naam before distance hardens into pain. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged search/shelter daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged settlement/motion daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "23 remaining after search/shelter duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "22 remaining after settlement/motion duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after search/shelter duplicate-takeaway cluster batch",
-    "representativeDiffReview": "completed before editing/staging for search/shelter cluster: inspected verses 1411-1412 around asking the Guru and accepting hukam; 2133-2134 around release through the True Name and Guru's feet; 6418-6419 around union through the Guru, devotion, and service; 5553-5554 around day-and-night service, sanctuary, and sweet speech; 3455-3456 around stubbornness failing and grace attaching the seeker; 11239-11240 around wanderings ceasing in Sangat; 5609-5610 around the world drowning without the Guru after craving's life arc.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after settlement/motion duplicate-takeaway cluster batch",
+    "representativeDiffReview": "completed before editing/staging for settlement/motion cluster: inspected verses 7107-7108 around the ten-direction restless mind quieted by the Guru's mantra; 4145-4146 around God as breath/support and devotees living by praise; 6418-6419 around the fourth state known through the True Guru and crossed by devotion/service; 7125-7126 around meek belonging, rescue, Naam as support, and peace.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at cbd976a05fed5a62aad8ae7c78a1cbc98a7c8da4",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 23.",
-    "dailyMirrorScan": "changed search/shelter daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=23; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 22.",
+    "dailyMirrorScan": "changed settlement/motion daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=22; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "cbd976a05fed5a62aad8ae7c78a1cbc98a7c8da4",
-  "updatedAt": "2026-04-26T22:23:44Z"
+  "updatedAt": "2026-04-26T22:41:45Z"
 }
