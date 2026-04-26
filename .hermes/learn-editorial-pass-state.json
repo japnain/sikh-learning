@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the nine-item 'Take the question into sangat' duplicate-takeaway cluster, reducing daily duplicate-takeaway groups from 25 to 24. The copy now distinguishes asking past ego's curtain, longing held in shared remembrance, holy friendship guiding searching, humble company lowering fear, saintly darshan cleansing ego, cleansing turning into Naam, companions teaching love through stories of the Beloved, rare life spent in Naam-bearing company, and Sat Sangat dissolving selfishness into peace. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the seven-item 'Do not let the search outrun shelter.' duplicate-takeaway cluster, reducing daily duplicate-takeaway groups from 24 to 23. The copy now distinguishes asking the Guru before the crowd multiplies a question, seeking kneeling into service and Naam, roaming ending at the doorway the Guru opened, separation carried through steady service and sweet speech, stubbornness yielding to grace, the running mind dwelling in Sangat, and appetite being interrupted by the Guru's direction. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged sangat daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged search/shelter daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "24 remaining after sangat duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "23 remaining after search/shelter duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after sangat duplicate-takeaway cluster batch",
-    "representativeDiffReview": "completed for sangat cluster before staging: inspected prose grounded in verses 8811-8812 around asking for a saint to show the way through ego's curtain; 729-730 around companions drawing close to speak of the Beloved; 3757-3758 around a friendly saint guiding an exhausted search; 2099-2100 around humble company conquering death's messenger; 7991-7992 around saintly darshan as cleansing and Naam through saints' grace; 527-528 around Saadh Sangat/Naam as the work of crossing; 924-926 around Sat Sangat dissolving selfishness into peace.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after search/shelter duplicate-takeaway cluster batch",
+    "representativeDiffReview": "completed before editing/staging for search/shelter cluster: inspected verses 1411-1412 around asking the Guru and accepting hukam; 2133-2134 around release through the True Name and Guru's feet; 6418-6419 around union through the Guru, devotion, and service; 5553-5554 around day-and-night service, sanctuary, and sweet speech; 3455-3456 around stubbornness failing and grace attaching the seeker; 11239-11240 around wanderings ceasing in Sangat; 5609-5610 around the world drowning without the Guru after craving's life arc.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at a4be311f6261425a8a5f45ec13317e8c17328b32",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 24.",
-    "dailyMirrorScan": "changed sangat daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=24; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 23.",
+    "dailyMirrorScan": "changed search/shelter daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=23; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "a4be311f6261425a8a5f45ec13317e8c17328b32",
-  "updatedAt": "2026-04-26T22:04:05Z"
+  "updatedAt": "2026-04-26T22:24:10Z"
 }
