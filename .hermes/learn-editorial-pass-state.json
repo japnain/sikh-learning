@@ -454,7 +454,7 @@
     "representativeDiffReview": "completed for discipline/procrastination pair: Japji verses 290-291 now name inward signs of renunciation (contentment, humility, meditation, mortality, purity, trust); Siree Raag verses 1430-1431 now names starting remembrance before the next excuse becomes the teacher.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "Content batch pushed to origin master at a020e8cbbbcfab4cc1281cdd0ac7c686641c5239",
+    "lastPushRecord": "Content batch pushed to origin master at 569b400698d816f0af2331b4febb3c1d56a87991",
     "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 30.",
     "dailyMirrorScan": "changed discipline/procrastination daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=30; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "a020e8cbbbcfab4cc1281cdd0ac7c686641c5239",
-  "updatedAt": "2026-04-26T19:36:27Z"
+  "lastPushedCommitSha": "569b400698d816f0af2331b4febb3c1d56a87991",
+  "updatedAt": "2026-04-26T19:36:58Z"
 }
