@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the four-item 'Choose settlement before more motion.' duplicate-takeaway cluster, giving distinct source-grounded turns for the Guru's mantra quieting the scattered mind, praise answering the One who carries the breath, devotion and Guru-service carrying the seeker across, and meek return to Naam before distance hardens into pain. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the five-item 'Stand where grace holds you, not where status ranks you.' duplicate-takeaway cluster, creating distinct source-grounded turns for shared dependence before the One, being clasped to the Lord's heart, Court-defined honor through loving faith, Naam as the soul's received life, and praise held closer than craving. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged settlement/motion daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged belonging/status daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "22 remaining after settlement/motion duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "21 remaining after belonging/status duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after settlement/motion duplicate-takeaway cluster batch",
-    "representativeDiffReview": "completed before editing/staging for settlement/motion cluster: inspected verses 7107-7108 around the ten-direction restless mind quieted by the Guru's mantra; 4145-4146 around God as breath/support and devotees living by praise; 6418-6419 around the fourth state known through the True Guru and crossed by devotion/service; 7125-7126 around meek belonging, rescue, Naam as support, and peace.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after belonging/status duplicate-takeaway cluster batch",
+    "representativeDiffReview": "completed before editing/staging for belonging/status cluster: inspected verses 3436-3437 around all belonging to the One and all praying from shared dependence; 37476-37477 around the humble servant clasped to the Lord's heart and cherished as child; 2107-2108 around meeting the Guru in loving faith and receiving Court honor; 37468-37469 around the Guru planting the Lord in the heart and granting soul-life through Naam; 37473-37474 around the begging hand of craving contrasted with praise clasped to the heart.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at b373a5703d7e9275f7c5da315c1093654cf8b8d9",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 22.",
-    "dailyMirrorScan": "changed settlement/motion daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=22; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 21.",
+    "dailyMirrorScan": "changed belonging/status daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=21; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "b373a5703d7e9275f7c5da315c1093654cf8b8d9",
-  "updatedAt": "2026-04-26T22:41:45Z"
+  "updatedAt": "2026-04-26T23:05:00Z"
 }
