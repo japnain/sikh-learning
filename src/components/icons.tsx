@@ -33,11 +33,16 @@ export function IconLibrary({ className = '', size = 24 }: IconProps) {
 // Simplified Khanda
 export function IconBanis({ className = '', size = 24 }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="12" r="4" />
-      <line x1="12" y1="2" x2="12" y2="22" />
-      <path d="M7 4c0 0 2 3 5 3s5-3 5-3" />
-      <path d="M7 20c0 0 2-3 5-3s5 3 5 3" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M12 2.25v19.5" />
+      <path d="M10.7 4.15 12 2.05l1.3 2.1" />
+      <circle cx="12" cy="12" r="3.85" />
+      <path d="M8.95 6.05c-2.3 2.28-2.3 9.62 0 11.9" />
+      <path d="M15.05 6.05c2.3 2.28 2.3 9.62 0 11.9" />
+      <path d="M6.75 7.35c1.02 2.62 1.02 6.68 0 9.3" />
+      <path d="M17.25 7.35c-1.02 2.62-1.02 6.68 0 9.3" />
+      <path d="M10.55 17.35h2.9" />
+      <path d="M9.8 20.05h4.4" />
     </svg>
   )
 }

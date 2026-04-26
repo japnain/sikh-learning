@@ -10,6 +10,7 @@ vi.mock('./hooks/useInsforgeBootstrap', () => ({
 }))
 
 beforeEach(() => {
+  window.history.replaceState({}, '', '/')
   vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback: FrameRequestCallback) => {
     callback(0)
     return 0
@@ -85,6 +86,23 @@ test('wraps routed content in the main landmark once onboarding is complete', as
   render(<App />)
 
   expect(await screen.findByRole('main')).toBeInTheDocument()
+  expect(screen.getByTestId('main-content')).toBeInTheDocument()
+  expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
+})
+
+test('keeps the bottom nav visible when the main app shell renders with stale onboarding state', async () => {
+  useOnboardingStore.setState({
+    hasCompletedOnboarding: false,
+    isOnboardingOpen: false,
+    presentationMode: 'overlay',
+    learningLevel: 'beginner',
+    audience: 'adult',
+    learningGoal: 'read',
+  })
+
+  render(<App />)
+
+  expect(await screen.findByTestId('page-home')).toBeInTheDocument()
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })

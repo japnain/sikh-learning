@@ -313,7 +313,7 @@ function AppShell() {
             />
           )}
 
-          {hasCompletedOnboarding && <NavBar />}
+          <NavBar />
         </div>
       )}
     </>

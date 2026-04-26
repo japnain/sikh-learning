@@ -258,6 +258,267 @@
       var(--shadow-soft);
   }
 
+  .home-door-shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.55rem;
+    border: 1px solid rgb(var(--color-border) / 0.32);
+    background:
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.98), rgb(var(--color-bg) / 0.9) 54%, rgb(var(--color-surface-muted) / 0.72));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.54),
+      0 20px 42px rgb(74 47 25 / 0.11);
+  }
+
+  .home-door-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgb(255 255 255 / 0.62), transparent 36%),
+      linear-gradient(90deg, rgb(var(--color-accent-strong) / 0.06), transparent 30%, transparent 70%, rgb(65 101 84 / 0.06));
+    opacity: 0.82;
+  }
+
+  .home-door-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home-door-icon-button {
+    @apply interactive-focus flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-300;
+    border: 1px solid rgb(var(--color-border) / 0.24);
+    background: rgb(var(--color-surface) / 0.58);
+    color: rgb(var(--color-text));
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.42);
+  }
+
+  .home-door-frame {
+    position: relative;
+    margin-top: 1.15rem;
+    overflow: hidden;
+    border: 1px solid rgb(var(--color-border) / 0.24);
+    border-radius: 1.08rem;
+    background:
+      linear-gradient(180deg, rgb(255 252 245 / 0.96), rgb(var(--color-bg) / 0.86) 38%, rgb(var(--color-surface-muted) / 0.76));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.46),
+      inset 0 -18px 28px rgb(113 75 34 / 0.12),
+      0 14px 28px rgb(84 53 24 / 0.08);
+  }
+
+  .home-door-frame::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 2.6rem;
+    right: 3.18rem;
+    bottom: 1.02rem;
+    left: 3.18rem;
+    pointer-events: none;
+    border-radius: 6.2rem 6.2rem 0.38rem 0.38rem / 4.35rem 4.35rem 0.38rem 0.38rem;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgb(255 255 255 / 0.74), transparent 54%),
+      linear-gradient(90deg, rgb(132 85 43 / 0.12), transparent 24%, transparent 76%, rgb(132 85 43 / 0.12)),
+      linear-gradient(180deg, rgb(255 252 244 / 0.92), rgb(248 239 224 / 0.76));
+    box-shadow: inset 0 0 28px rgb(99 62 30 / 0.08);
+  }
+
+  .home-door-frame::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    right: 1rem;
+    bottom: 0.76rem;
+    left: 1rem;
+    height: 0.58rem;
+    pointer-events: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgb(96 57 28 / 0.18), transparent);
+    filter: blur(1px);
+  }
+
+  .home-door-stone-arch,
+  .home-door-wood-arch,
+  .home-door-post {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .home-door-stone-arch {
+    z-index: 0;
+    top: 0.42rem;
+    right: 0.48rem;
+    bottom: 0.42rem;
+    left: 0.48rem;
+    border: 15px solid rgb(221 198 166 / 0.72);
+    border-bottom-width: 14px;
+    border-radius: 8.2rem 8.2rem 0.54rem 0.54rem / 5.38rem 5.38rem 0.54rem 0.54rem;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.38),
+      0 8px 20px rgb(84 53 24 / 0.08);
+  }
+
+  .home-door-wood-arch {
+    z-index: 1;
+    top: 1.05rem;
+    right: 1.25rem;
+    left: 1.25rem;
+    height: 11.05rem;
+    border: 18px solid rgb(126 76 40 / 0.96);
+    border-bottom: 0;
+    border-radius: 7.1rem 7.1rem 0 0 / 4.72rem 4.72rem 0 0;
+    background: transparent;
+    box-shadow:
+      inset 0 1px 0 rgb(241 194 126 / 0.32),
+      inset 0 -8px 14px rgb(54 31 15 / 0.18),
+      0 1px 0 rgb(255 255 255 / 0.18),
+      0 8px 20px rgb(84 53 24 / 0.12);
+  }
+
+  .home-door-wood-arch::before {
+    content: '';
+    position: absolute;
+    inset: -9px;
+    border: 5px solid rgb(173 111 58 / 0.48);
+    border-bottom: 0;
+    border-radius: 7rem 7rem 0 0 / 4.55rem 4.55rem 0 0;
+    box-shadow:
+      inset 0 1px 0 rgb(255 225 171 / 0.18),
+      0 1px 0 rgb(67 37 18 / 0.2);
+  }
+
+  .home-door-wood-arch::after {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border-radius: 7.18rem 7.18rem 0 0 / 4.72rem 4.72rem 0 0;
+    background:
+      repeating-radial-gradient(ellipse at 50% 0%, rgb(255 230 180 / 0.08) 0 1px, transparent 1px 10px),
+      linear-gradient(90deg, rgb(54 31 15 / 0.18), transparent 18%, transparent 82%, rgb(54 31 15 / 0.18));
+    mix-blend-mode: multiply;
+  }
+
+  .home-door-post {
+    z-index: 1;
+    top: 5.95rem;
+    bottom: 0.82rem;
+    width: 1.68rem;
+    border: 1px solid rgb(83 46 22 / 0.28);
+    background:
+      linear-gradient(90deg, rgb(69 39 18 / 0.42), transparent 18%, rgb(255 218 154 / 0.16) 48%, transparent 76%, rgb(58 33 16 / 0.38)),
+      repeating-linear-gradient(90deg, rgb(255 228 179 / 0.09) 0 1px, transparent 1px 7px),
+      linear-gradient(180deg, rgb(153 94 48 / 0.96), rgb(112 67 35 / 0.98) 54%, rgb(92 52 26 / 0.98));
+    box-shadow:
+      inset 0 1px 0 rgb(255 224 168 / 0.2),
+      inset 0 -1px 0 rgb(54 31 15 / 0.22),
+      0 10px 18px rgb(84 53 24 / 0.1);
+  }
+
+  .home-door-post::before {
+    content: '';
+    position: absolute;
+    inset: 0.76rem 0.28rem;
+    border-top: 1px solid rgb(255 222 163 / 0.18);
+    border-bottom: 1px solid rgb(43 25 12 / 0.2);
+    background:
+      linear-gradient(180deg, transparent 0 18%, rgb(43 25 12 / 0.16) 18% calc(18% + 1px), transparent calc(18% + 1px) 49%, rgb(43 25 12 / 0.16) 49% calc(49% + 1px), transparent calc(49% + 1px) 78%, rgb(43 25 12 / 0.16) 78% calc(78% + 1px), transparent calc(78% + 1px)),
+      linear-gradient(90deg, rgb(255 222 163 / 0.12), transparent 28%, transparent 72%, rgb(43 25 12 / 0.14));
+    box-shadow:
+      inset 0 0 0 1px rgb(43 25 12 / 0.18),
+      inset 0.18rem 0 0 rgb(255 222 163 / 0.08),
+      inset -0.18rem 0 0 rgb(43 25 12 / 0.12);
+  }
+
+  .home-door-post::after {
+    content: '';
+    position: absolute;
+    top: 46%;
+    right: 0.18rem;
+    left: 0.18rem;
+    height: 1px;
+    background: rgb(43 25 12 / 0.24);
+    box-shadow: 0 0.28rem 0 rgb(255 220 160 / 0.08);
+  }
+
+  .home-door-post-left {
+    left: 0.7rem;
+    border-radius: 0.28rem 0.1rem 0.12rem 0.34rem;
+  }
+
+  .home-door-post-right {
+    right: 0.7rem;
+    border-radius: 0.1rem 0.28rem 0.34rem 0.12rem;
+  }
+
+  .home-door-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(132 85 43 / 0.76);
+    filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.34));
+  }
+
+  .home-door-content {
+    position: relative;
+    z-index: 2;
+    padding: 2.16rem 2.28rem 1.22rem;
+  }
+
+  .home-hukam-card {
+    width: min(100%, 14.7rem);
+    margin-inline: auto;
+    border-radius: 1rem;
+    border: 1px solid rgb(var(--color-border) / 0.28);
+    background:
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.98), rgb(var(--color-bg) / 0.92));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.48),
+      0 16px 30px rgb(84 53 24 / 0.1);
+  }
+
+  .home-continuation-section {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.15rem;
+    border: 1px solid rgb(var(--color-border) / 0.38);
+    background:
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.9), rgb(var(--color-bg) / 0.72));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.38),
+      0 14px 30px rgb(74 47 25 / 0.07);
+  }
+
+  .home-continuation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(var(--color-accent) / 0.28), transparent);
+  }
+
+  .home-quiet-card {
+    border-radius: 0.95rem;
+    border: 1px solid rgb(var(--color-border) / 0.26);
+    background: rgb(var(--color-surface) / 0.64);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+  }
+
+  .home-shelf-section {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.15rem;
+    border: 1px solid rgb(var(--color-border) / 0.38);
+    background:
+      linear-gradient(180deg, rgb(var(--color-surface) / 0.92), rgb(var(--color-surface-muted) / 0.58));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.36),
+      0 14px 28px rgb(74 47 25 / 0.08);
+  }
+
   .metric-tile {
     @apply rounded-lg border px-3 py-3;
     border-color: rgb(var(--color-border) / 0.6);
@@ -534,4 +795,132 @@ html[data-motion='reduce'] *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 1ms !important;
   scroll-behavior: auto !important;
+}
+
+html.dark .home-door-shell,
+html[data-theme='dark'] .home-door-shell {
+  border-color: rgb(var(--color-accent) / 0.2);
+  background:
+    linear-gradient(180deg, rgb(var(--color-surface) / 0.98), rgb(var(--color-bg) / 0.96) 54%, rgb(var(--color-surface-muted) / 0.7));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 20px 42px rgb(0 0 0 / 0.28);
+}
+
+html.dark .home-door-shell::before,
+html[data-theme='dark'] .home-door-shell::before {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgb(var(--color-accent-strong) / 0.08), transparent 38%),
+    linear-gradient(90deg, rgb(var(--color-accent) / 0.08), transparent 30%, transparent 70%, rgb(127 166 142 / 0.06));
+  opacity: 1;
+}
+
+html.dark .home-door-icon-button,
+html[data-theme='dark'] .home-door-icon-button {
+  border-color: rgb(var(--color-text) / 0.14);
+  background: rgb(255 255 255 / 0.045);
+  color: rgb(var(--color-text));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+html.dark .home-door-frame,
+html[data-theme='dark'] .home-door-frame {
+  border-color: rgb(var(--color-accent) / 0.18);
+  background:
+    linear-gradient(180deg, rgb(var(--color-surface-muted) / 0.48), rgb(var(--color-bg) / 0.76) 42%, rgb(var(--color-surface) / 0.86));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.05),
+    inset 0 -18px 34px rgb(0 0 0 / 0.18),
+    0 14px 28px rgb(0 0 0 / 0.22);
+}
+
+html.dark .home-door-frame::before,
+html[data-theme='dark'] .home-door-frame::before {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(var(--color-accent-strong) / 0.06), transparent 56%),
+    linear-gradient(90deg, rgb(var(--color-accent) / 0.08), transparent 24%, transparent 76%, rgb(var(--color-accent) / 0.08)),
+    linear-gradient(180deg, rgb(var(--color-bg) / 0.78), rgb(var(--color-surface) / 0.7));
+  box-shadow: inset 0 0 28px rgb(0 0 0 / 0.16);
+}
+
+html.dark .home-door-frame::after,
+html[data-theme='dark'] .home-door-frame::after {
+  background: linear-gradient(90deg, transparent, rgb(0 0 0 / 0.28), transparent);
+}
+
+html.dark .home-door-stone-arch,
+html[data-theme='dark'] .home-door-stone-arch {
+  border-color: rgb(var(--color-accent) / 0.16);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.04),
+    0 8px 20px rgb(0 0 0 / 0.18);
+}
+
+html.dark .home-door-wood-arch,
+html[data-theme='dark'] .home-door-wood-arch {
+  border-color: rgb(126 76 40 / 0.64);
+  box-shadow:
+    inset 0 1px 0 rgb(255 224 168 / 0.08),
+    inset 0 -8px 14px rgb(0 0 0 / 0.24),
+    0 8px 20px rgb(0 0 0 / 0.2);
+}
+
+html.dark .home-door-wood-arch::before,
+html[data-theme='dark'] .home-door-wood-arch::before {
+  border-color: rgb(173 111 58 / 0.24);
+}
+
+html.dark .home-door-wood-arch::after,
+html[data-theme='dark'] .home-door-wood-arch::after {
+  background:
+    repeating-radial-gradient(ellipse at 50% 0%, rgb(255 230 180 / 0.035) 0 1px, transparent 1px 10px),
+    linear-gradient(90deg, rgb(0 0 0 / 0.18), transparent 18%, transparent 82%, rgb(0 0 0 / 0.18));
+}
+
+html.dark .home-door-post,
+html[data-theme='dark'] .home-door-post {
+  border-color: rgb(var(--color-accent) / 0.12);
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.36), transparent 18%, rgb(255 218 154 / 0.06) 48%, transparent 76%, rgb(0 0 0 / 0.34)),
+    repeating-linear-gradient(90deg, rgb(255 228 179 / 0.04) 0 1px, transparent 1px 7px),
+    linear-gradient(180deg, rgb(116 72 40 / 0.7), rgb(83 51 30 / 0.74) 54%, rgb(63 39 24 / 0.78));
+  box-shadow:
+    inset 0 1px 0 rgb(255 224 168 / 0.06),
+    inset 0 -1px 0 rgb(0 0 0 / 0.22),
+    0 10px 18px rgb(0 0 0 / 0.18);
+}
+
+html.dark .home-door-mark,
+html[data-theme='dark'] .home-door-mark {
+  color: rgb(210 151 72 / 0.84);
+  filter: drop-shadow(0 1px 0 rgb(0 0 0 / 0.28));
+}
+
+html.dark .home-hukam-card,
+html[data-theme='dark'] .home-hukam-card {
+  border-color: rgb(var(--color-accent) / 0.18);
+  background:
+    linear-gradient(180deg, rgb(var(--color-surface) / 0.98), rgb(var(--color-bg) / 0.94));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 16px 30px rgb(0 0 0 / 0.22);
+}
+
+html.dark .home-continuation-section,
+html[data-theme='dark'] .home-continuation-section,
+html.dark .home-shelf-section,
+html[data-theme='dark'] .home-shelf-section {
+  border-color: rgb(var(--color-text) / 0.1);
+  background:
+    linear-gradient(180deg, rgb(var(--color-surface) / 0.94), rgb(var(--color-bg) / 0.86));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.05),
+    0 14px 30px rgb(0 0 0 / 0.2);
+}
+
+html.dark .home-quiet-card,
+html[data-theme='dark'] .home-quiet-card {
+  border-color: rgb(var(--color-text) / 0.1);
+  background: rgb(255 255 255 / 0.045);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
 }
