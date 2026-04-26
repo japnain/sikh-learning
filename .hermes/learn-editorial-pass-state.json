@@ -454,7 +454,7 @@
     "representativeDiffReview": "completed for mercy duplicate-takeaway trio: verses 6386-6387 now name regret becoming honest under Hukam; verses 2088-2089 now name childlike confession before Father/Mother; verses 4153-4154 now name Naam coming home by the Master’s mercy.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "Content batch pushed to origin master at 015eea48013a28262d73c9a5b594cdb8d5f08252",
+    "lastPushRecord": "Content batch pushed to origin master at 97c8f4d30030eb5e52b3dcadbdb00010f8083b03",
     "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 32.",
     "dailyMirrorScan": "changed mercy daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=32; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/approved; touched mirrors ok"
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "015eea48013a28262d73c9a5b594cdb8d5f08252",
-  "updatedAt": "2026-04-26T18:27:05Z"
+  "lastPushedCommitSha": "97c8f4d30030eb5e52b3dcadbdb00010f8083b03",
+  "updatedAt": "2026-04-26T18:28:00Z"
 }
