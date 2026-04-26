@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote two duplicate-takeaway clusters: four ego-disease guidance entries and four fear/remembrance guidance entries, reducing daily duplicate-takeaway groups from 29 to 27. The copy now distinguishes ego's exposed voice, ego questioned under hukam, grace turning diagnosis into Shabad-practice, feverish selfhood refused as identity, Creator-protection answering fear, remembrance governing the spiral, Naam reaching bodily anxiety, and mercy speaking before disaster stories; daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the five-item exhaustion/cooling duplicate-takeaway cluster, reducing daily duplicate-takeaway groups from 27 to 26. The copy now distinguishes beginning under Ik Oankar before exhaustion gives orders, receiving the doorway of the teaching as grace, letting repeated Bani-hearing cool inner fire, letting pain uncover truthful dependence answered by praise, and trusting the Guru as cooling shelter and lasting wealth. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged ego disease and fear/remembrance daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged exhaustion/cooling daily JSON/list/home/state files; app-authored direct daily scan found 0 daily banned hits",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "27 remaining after ego disease and fear/remembrance duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "26 remaining after exhaustion/cooling duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after ego disease and fear/remembrance duplicate-takeaway cluster batch",
-    "representativeDiffReview": "completed for ego disease and fear/remembrance clusters: inspected prose grounded in verses 20961-20964 around ego as question, hukam, disease/cure, grace and Guru Shabad; verses 30985-30989 around mercy/protection/support; verses 11502-11503 and 11510-11511 around remembrance bringing peace and dispelling bodily anguish.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after exhaustion/cooling duplicate-takeaway cluster batch",
+    "representativeDiffReview": "completed for exhaustion/cooling cluster: inspected prose grounded in verses 5589-5590 around Ik Oankar, received teaching, Truth, and Guru grace; verses 5592-5593 around Guru as giver, cooling house, light, lasting wealth, and peace through trust; verses 4119-4121 around Bani as nectar, repeated hearing, burning extinguished, and the mind cooled; verses 21094-21095 around the Creator's light in beings and praise carrying across.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at 5896c203e5e09e74a2591a940e1fbfaa72bc7dce",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 27.",
-    "dailyMirrorScan": "changed ego disease and fear/remembrance daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=27; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 26.",
+    "dailyMirrorScan": "changed exhaustion/cooling daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=26; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "5896c203e5e09e74a2591a940e1fbfaa72bc7dce",
-  "updatedAt": "2026-04-26T21:03:39Z"
+  "updatedAt": "2026-04-26T21:21:30Z"
 }
