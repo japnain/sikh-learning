@@ -454,7 +454,7 @@
     "representativeDiffReview": "completed before editing/staging for search/shelter cluster: inspected verses 1411-1412 around asking the Guru and accepting hukam; 2133-2134 around release through the True Name and Guru's feet; 6418-6419 around union through the Guru, devotion, and service; 5553-5554 around day-and-night service, sanctuary, and sweet speech; 3455-3456 around stubbornness failing and grace attaching the seeker; 11239-11240 around wanderings ceasing in Sangat; 5609-5610 around the world drowning without the Guru after craving's life arc.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "Content batch pushed to origin master at a4be311f6261425a8a5f45ec13317e8c17328b32",
+    "lastPushRecord": "Content batch pushed to origin master at cbd976a05fed5a62aad8ae7c78a1cbc98a7c8da4",
     "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 23.",
     "dailyMirrorScan": "changed search/shelter daily guidance details match lists/daily-guidance.json and home-summary mirrored fields",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=23; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "a4be311f6261425a8a5f45ec13317e8c17328b32",
-  "updatedAt": "2026-04-26T22:24:10Z"
+  "lastPushedCommitSha": "cbd976a05fed5a62aad8ae7c78a1cbc98a7c8da4",
+  "updatedAt": "2026-04-26T22:23:44Z"
 }
