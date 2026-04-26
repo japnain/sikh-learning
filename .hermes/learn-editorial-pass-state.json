@@ -441,22 +441,22 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the Hukam/receiving duplicate-takeaway cluster (9 daily guidance entries), synced daily list/home mirrors, and reduced duplicate daily takeaways from 38 groups to 37."
+    "summary": "This run rewrote the grace/mercy duplicate-takeaway pair (guidance-grace-settles-what-you-cannot and guidance-do-not-mistake-nearness-for-taste), synced daily list/home mirrors, and reduced duplicate daily takeaways from 37 groups to 36."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/state files after Hukam/receiving takeaway batch",
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/state files after grace/mercy duplicate-takeaway batch",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "37 remaining after Hukam/receiving takeaway polish batch",
+    "duplicateDailyGuidanceTakeaways": "36 remaining after grace/mercy takeaway polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --testTimeout=15000 passed (37 tests) after Hukam/receiving takeaway batch",
-    "representativeDiffReview": "completed for Hukam/receiving daily guidance prose: Beloved/Friend acceptance, protected-by-Will humility, possessive grief, whole-field Hukam, regret under the Doer, and receiving/reunion under the Creator",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after grace/mercy takeaway batch",
+    "representativeDiffReview": "completed for grace/mercy daily guidance prose: Perfect Guru forgiveness widening into Bani/Naam, and body-fortress nearness needing mercy and Shabad to become tasted sweetness",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at 771ac3cacebfecba678654f29ba09922816b3f15",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 37.",
-    "dailyMirrorScan": "changed Hukam/receiving daily guidance details match lists/daily-guidance.json and home-summary mirrored fields"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 36.",
+    "dailyMirrorScan": "changed grace/mercy daily guidance details match lists/daily-guidance.json and home-summary mirrored fields"
   },
   "blockers": [],
   "remainingQueue": [
@@ -466,5 +466,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "7c1d4963f50113cc17a119f56520923600bf8482",
-  "updatedAt": "2026-04-26T01:26:18Z"
+  "updatedAt": "2026-04-26T05:47:12Z"
 }
