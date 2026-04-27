@@ -458,7 +458,7 @@
     "representativeDiffReview": "Reviewed intended topic-attachment prose before commit: overview now grounds attachment in gifts received under Hukam rather than possessed; daily names checking/reassurance loops and answers them with one breath of Naam; pressure refuses panic as wisdom; repair names harm caused by the grip and sends it toward truthful repair, sangat/prayer, and Naam; practice gives a seven-day sentence, as You give, so I receive.",
     "topicGuideBatch": "topic-attachment passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, and full Learn repository/page Vitest.",
     "topicMirrorReviewScan": "topic-attachment detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 0a9b2ef6a5f86623504876533bdf0891eecdb478",
+    "lastPushRecord": "Content batch pushed to origin master at f3aa25dd9732b3b7a43cdee5ac7bed0fd8b6606b",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-attachment batch.",
@@ -470,6 +470,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "0a9b2ef6a5f86623504876533bdf0891eecdb478",
+  "lastPushedCommitSha": "f3aa25dd9732b3b7a43cdee5ac7bed0fd8b6606b",
   "updatedAt": "2026-04-27T05:44:25Z"
 }
