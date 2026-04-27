@@ -427,12 +427,13 @@
       ]
     },
     "topic-guide": {
-      "count": 4,
+      "count": 5,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
         "topic-guide:topic-control",
-        "topic-guide:topic-anger"
+        "topic-guide:topic-anger",
+        "topic-guide:topic-anxiety"
       ]
     },
     "collection": {
@@ -442,8 +443,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-anger-verified-ready-to-ship",
-    "summary": "Completed topic-anger top-level guide and all four nested scenarios. Copy now distinguishes ordinary irritation becoming the room's weather, pressure seeking permission to wound, repair after scorched speech, and a seven-day practiced brake. Sources reviewed: ego as chronic disease/cure (20961-20963), Truth/Hukam and cleverness that cannot travel (8-10), day-and-night Naam and Shabad-shaped speech (1439-1447), humble company and the Guru's gift of the soul (2106-2107), honorable speech, conquering the mind/contentment, and peace through serving the True Guru (3427-3431)."
+    "status": "topic-anxiety-verified-ready-to-ship",
+    "summary": "Completed topic-anxiety top-level guide and all four nested scenarios. Copy now distinguishes ordinary worry entering the hour first, pressure promoting panic into command, repair after anxiety has over-managed or accused, and a seven-day kept doorway back to Hukam, Naam, and the Guru’s Shabad. Sources reviewed: Hukam creating bodies/souls (11-12), suffering as medicine and Creator agency (21090-21091), the Creator protecting and cherishing the wavering mortal (30988-30994), remembrance dispelling worry in the body (11503-11511), duality/Naam-forgetfulness (782-783), and asking the Guru before scattered questions multiply (1411-1415)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -451,15 +452,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/verify_daily_snapshot.py passed; python3 .hermes/scripts/verify_topic_anger.py passed; npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended topic-anger prose before commit: overview now diagnoses anger as ego seeking authority; repair requires truthful harm-naming without self-defense; practice ties the brake to the Guru-given soul, ego diagnosis, service, and Shabad-shaped peace.",
-    "topicGuideBatch": "topic-anger passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, targeted topic/daily Vitest, full Learn repository/page Vitest, and daily premium snapshot retained 0 duplicates.",
-    "topicMirrorReviewScan": "topic-anger detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/verify_topic_anxiety.py passed; python3 .hermes/scripts/verify_daily_snapshot.py passed; npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended topic-anxiety prose before commit: overview names worry as false ownership of the next hour; pressure delays panic’s command through Naam; repair names anxious harm without self-defense; practice creates a kept doorway to Hukam, Naam, and the Guru’s Shabad.",
+    "topicGuideBatch": "topic-anxiety passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and updated Learn search test expectation for the new approved anxiety title.",
+    "topicMirrorReviewScan": "topic-anxiety detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at ac42fc73ab716b70a5e09f0fc7863ea2276d3d51",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-anger batch.",
-    "bannedPhraseScan": "direct app-authored topic-anger scan passed before staging; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-anxiety batch.",
+    "bannedPhraseScan": "direct app-authored topic-anxiety scan passed before staging; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -468,5 +469,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "ac42fc73ab716b70a5e09f0fc7863ea2276d3d51",
-  "updatedAt": "2026-04-27T04:42:35Z"
+  "updatedAt": "2026-04-27T05:02:24Z"
 }
