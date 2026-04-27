@@ -492,8 +492,8 @@
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "second-five-journey-collections-verified-pending-ship",
-    "summary": "Completed and verified source-grounded manual rewrites for five generated journey collections: discipline, doubt, ego, exhaustion, and fear. The batch grounds discipline in inward conquest and shared human brotherhood, doubt in the Guru’s word cooling the inner fire, ego in grace and the Shabad as the cure inside the disease, exhaustion in beginning under Ik Oankar before effort, and fear in divine kinship as Father, Mother, relative, brother, and shelter."
+    "status": "second-five-journey-collections-shipped",
+    "summary": "Completed, verified, and pushed source-grounded manual rewrites for five generated journey collections: discipline, doubt, ego, exhaustion, and fear. The batch grounds discipline in inward conquest and shared human brotherhood, doubt in the Guru’s word cooling the inner fire, ego in grace and the Shabad as the cure inside the disease, exhaustion in beginning under Ik Oankar before effort, and fear in divine kinship as Father, Mother, relative, brother, and shelter."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -505,7 +505,7 @@
     "representativeDiffReview": "Reviewed intended prose diff for the second journey-collection batch: discipline now bows before conquering the mind and sees one brotherhood; doubt is cooled by the Guru’s word rather than private roaming; ego names disease and cure through grace/Shabad; exhaustion begins under Ik Oankar before effort; fear is answered by Father/Mother/kinship language instead of generic steadiness.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Collection journey content batch pushed to origin master at 078bcca1fbaabfb2e81a9892d5cebe6a0dea5abb; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Collection journey content batch pushed to origin master at eb85c4156b80534d56a634bea0120aeb508d4a48; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; direct cron scan rechecked this run before collection work.",
@@ -519,6 +519,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "078bcca1fbaabfb2e81a9892d5cebe6a0dea5abb",
-  "updatedAt": "2026-04-27T13:18:50Z"
+  "lastPushedCommitSha": "eb85c4156b80534d56a634bea0120aeb508d4a48",
+  "updatedAt": "2026-04-27T13:19:58Z"
 }
