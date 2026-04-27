@@ -453,7 +453,7 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-hukam-topic-gratitude-verified-pending-push",
+    "status": "topic-hukam-topic-gratitude-shipped",
     "summary": "Completed a manual source-grounded rewrite of topic-hukam and topic-gratitude top-level copy plus daily/pressure/repair/practice scenarios. Hukam now distinguishes ordinary reopening of the argument, pressure making refusal sound responsible, repair after refusal becomes the mistake, and a seven-day practiced doorway of receiving. Gratitude now distinguishes unnoticed ordinary mercy, pressure turning mercy into complaint, repair through confessed entitlement, and a daily confession rhythm that answers mercy with praise and generosity. Sources reviewed included Hukam forming bodies and souls (11-12), what pleases You comes to pass and mercy gives Naam (499-501), the Commander leading the path (29-30), the merciful Father freeing possessiveness (2092-2097), Beloved acceptance and the Inner-knower (7930-7931), suffering as medicine and dependence on the Creator (21090-21091), overlooked mercy becoming Naam (60338-60340), truth walking in Hukam (8-10), holy company and the Guru Shabad (736-742), anxiety-producing action under the three qualities (766-767), and duality crumbling without the Beloved (774-777)."
   },
   "verificationStatus": {
@@ -466,7 +466,7 @@
     "representativeDiffReview": "Reviewed intended prose diff before commit: topic-hukam now grounds acceptance in body/soul/honor formed by Command, receiving what pleases the Lord, mercy freeing possessiveness, and the Inner-knowing Friend; scenarios separate ordinary reopening of complaint, pressured refusal, repair after resistance, and repeated receiving practice. topic-gratitude now grounds gratitude in suffering as medicine, confessed overlooked mercy becoming Naam, truth walking in Hukam, holy company, anxiety-producing action, and hollow decoration without the Beloved; scenarios separate unnoticed daily mercy, pressure turning mercy into complaint, repair through confessed entitlement, and a seven-day confession/praise rhythm.",
     "topicGuideBatch": "topic-hukam and topic-gratitude passed: pre-edit touched-topic verifier failed for generated metadata/unreviewed scenarios and old template lines, source-grounded prose rewrite completed for top-level and all four scenarios on each topic, detail/list/home mirrors synced, touched-topic verifier passed, direct Learn quality scan passed, and targeted topic/daily Vitest passed before staging.",
     "topicMirrorReviewScan": "topic-hukam and topic-gratitude detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 853d502d72eca2d2f7932d4ca67ac734defab953",
+    "lastPushRecord": "Content batch pushed to origin master at 1e773b1a048269f3f4f14b79b67a999320b9eb00",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
@@ -478,6 +478,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "853d502d72eca2d2f7932d4ca67ac734defab953",
-  "updatedAt": "2026-04-27T07:32:07Z"
+  "lastPushedCommitSha": "1e773b1a048269f3f4f14b79b67a999320b9eb00",
+  "updatedAt": "2026-04-27T07:34:12Z"
 }
