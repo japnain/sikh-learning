@@ -1762,9 +1762,9 @@
   },
   {
     "id": "collection-discipline-journey",
-    "title": "From Discipline to steadier practice",
-    "subtitle": "For when discipline keeps steering the day",
-    "description": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
+    "title": "Discipline that bows before it conquers",
+    "subtitle": "For when discipline is becoming control instead of contentment",
+    "description": "Move from outward rigor into the harder discipline Guru Nanak names: contentment, humility, shared belonging, and the mind conquered before the world is judged.",
     "durationLabel": "5-step journey",
     "themes": [
       "discipline",
@@ -1776,8 +1776,8 @@
         292,
         293
       ],
-      "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
-      "lifeApplication": "Return your attention from other people to the state of your own mind."
+      "shortMeaning": "The real ascetic work is not display but a mind brought under truth, humble enough to see all people as one brotherhood.",
+      "lifeApplication": "Before tightening another rule, ask whether it is making the mind humbler, more content, and less eager to defeat someone else."
     },
     "items": [
       {
@@ -1813,14 +1813,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:journey",
+      "templateKey": "collection:journey:manual",
       "evidence": {
-        "coreClaim": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
+        "coreClaim": "This journey begins where visible discipline can still leave the ego intact and follows the shabad toward contentment, humility, and the inward conquest that changes how the whole world is seen.",
         "emotionalState": "reactive, performing, scattered",
-        "turn": "For when discipline keeps steering the day",
-        "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+        "turn": "Discipline becomes holy when it bows, gathers the human family into view, and turns its first strength against the restless mind.",
+        "practicalImplication": "Use the five steps to test whether your rule is producing humility and remembrance, then let one concrete act of contentment matter more than appearing spiritually severe.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2084,9 +2084,9 @@
   },
   {
     "id": "collection-doubt-journey",
-    "title": "From Doubt to steadier practice",
-    "subtitle": "For when doubt keeps steering the day",
-    "description": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
+    "title": "When doubt is cooled by the Guru’s word",
+    "subtitle": "For when the mind keeps searching but the fire keeps burning",
+    "description": "Follow doubt out of roaming and into the Guru’s teaching, where the mind receives words strong enough to kill ego’s thirst and cool the inner blaze.",
     "durationLabel": "5-step journey",
     "themes": [
       "doubt",
@@ -2099,8 +2099,8 @@
         921,
         922
       ],
-      "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-      "lifeApplication": "Move from circling to obedience."
+      "shortMeaning": "The shabad does not treat doubt as a puzzle to outthink; it calls the mind to become Gurmukh and let the Guru’s words extinguish the fire within.",
+      "lifeApplication": "When argument starts multiplying, stop feeding the blaze and repeat the line or teaching that asks ego and craving to loosen their claim."
     },
     "items": [
       {
@@ -2137,14 +2137,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:journey",
+      "templateKey": "collection:journey:manual",
       "evidence": {
-        "coreClaim": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
+        "coreClaim": "This journey is built around the shabad’s turn from wandering to instruction, where devotional life becomes possible through the True Guru’s teaching and doubt loses heat as ego and desire are answered.",
         "emotionalState": "confused, restless, skeptical",
-        "turn": "For when doubt keeps steering the day",
-        "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+        "turn": "Doubt is not shamed here; it is led away from private wandering and placed under words that can actually cool the mind.",
+        "practicalImplication": "Let each step interrupt one loop of mental roaming with received guidance, saintly company, or a small surrender of the craving that keeps the question inflamed.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2495,9 +2495,9 @@
   },
   {
     "id": "collection-ego-journey",
-    "title": "From Ego to steadier practice",
-    "subtitle": "For when ego keeps steering the day",
-    "description": "Track haumai from self-protection into self-importance, then let humility, service, and truth lower the center of gravity again.",
+    "title": "The cure hidden inside ego’s illness",
+    "subtitle": "For when self-importance keeps returning after every insight",
+    "description": "Begin with Guru Angad’s unsparing diagnosis of ego as a chronic disease, then follow the cure that appears through grace and lived obedience to the Guru’s Shabad.",
     "durationLabel": "5-step journey",
     "themes": [
       "ego",
@@ -2509,8 +2509,8 @@
         20963,
         20964
       ],
-      "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-      "lifeApplication": "Move from self-justification toward teachability."
+      "shortMeaning": "Ego is named as a deep disease, yet the shabad refuses despair because grace gives the cure through the Guru’s teaching practiced in the life.",
+      "lifeApplication": "When ego asks to be defended, name it as illness rather than identity and choose one action that obeys the Shabad instead of the self-image."
     },
     "items": [
       {
@@ -2546,14 +2546,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:journey",
+      "templateKey": "collection:journey:manual",
       "evidence": {
-        "coreClaim": "Track haumai from self-protection into self-importance, then let humility, service, and truth lower the center of gravity again.",
+        "coreClaim": "This journey keeps ego from becoming either a brand or a hopeless verdict by grounding the whole movement in Guru Angad’s diagnosis and the grace-given medicine of practiced Shabad.",
         "emotionalState": "defensive, offended, self-important",
-        "turn": "For when ego keeps steering the day",
-        "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+        "turn": "The self is not improved by being admired; it is healed when grace makes the Guru’s word something the body actually does.",
+        "practicalImplication": "Use the sequence to catch ego in a specific reaction, refuse to make it your name, and practice one humble obedience before explaining yourself.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2898,9 +2898,9 @@
   },
   {
     "id": "collection-exhaustion-journey",
-    "title": "From Exhaustion to steadier practice",
-    "subtitle": "For when exhaustion keeps steering the day",
-    "description": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
+    "title": "Begin the tired day under Ik Oankar",
+    "subtitle": "For when exhaustion needs grace before effort",
+    "description": "Let the journey start where the cited shabad starts: not with more force, but with Ik Oankar, Truth, the Creator’s presence, and the Guru’s grace before any next step is demanded.",
     "durationLabel": "5-step journey",
     "themes": [
       "exhaustion",
@@ -2912,8 +2912,8 @@
         5589,
         5590
       ],
-      "shortMeaning": "Exhaustion eases when honesty replaces the performance of strength.",
-      "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+      "shortMeaning": "The opening places the tired mind under the One, the True Name, the Creator, and Guru’s grace before it asks the self to produce strength.",
+      "lifeApplication": "When weariness makes even practice feel heavy, begin by receiving the Mool Mantar slowly before deciding what obedience is possible today."
     },
     "items": [
       {
@@ -2947,14 +2947,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:journey",
+      "templateKey": "collection:journey:manual",
       "evidence": {
-        "coreClaim": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
+        "coreClaim": "This journey refuses to make exhaustion solve itself; it begins under Ik Oankar and Guru’s grace, then lets the following steps move from received ground into a gentler, truer practice.",
         "emotionalState": "tired, drained, worn-down",
-        "turn": "For when exhaustion keeps steering the day",
-        "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+        "turn": "The first mercy for exhaustion is not a demand for stamina but a place to stand: One, Truth, Creator, grace.",
+        "practicalImplication": "Use the five steps to start with received Naam rather than self-pressure, then choose the smallest faithful act that can be carried without pretending to be strong.",
         "bannedOverreach": []
       },
       "scores": {
@@ -3045,9 +3045,9 @@
   },
   {
     "id": "collection-fear-journey",
-    "title": "From Fear to steadier practice",
-    "subtitle": "For when fear keeps steering the day",
-    "description": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
+    "title": "When fear is answered by kinship with the One",
+    "subtitle": "For when the world feels hostile and the heart feels alone",
+    "description": "Move from fear’s exile into the shabad’s intimate names for God: Father, Mother, relative, brother, protector, and shelter close enough to restore courage.",
     "durationLabel": "5-step journey",
     "themes": [
       "fear",
@@ -3059,8 +3059,8 @@
         4132,
         4133
       ],
-      "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
-      "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+      "shortMeaning": "The shabad answers fear by naming the Lord as every needed relation, making divine protection personal before the frightened mind can feel abandoned.",
+      "lifeApplication": "When fear isolates you, speak the relationships named in the shabad and let one decision come from being accompanied rather than cornered."
     },
     "items": [
       {
@@ -3097,14 +3097,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:journey",
+      "templateKey": "collection:journey:manual",
       "evidence": {
-        "coreClaim": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
+        "coreClaim": "This journey begins with the shabad’s family language because fear often works by exile; the collection then follows protection, trust, and remembrance back into a life that is no longer alone against the world.",
         "emotionalState": "afraid, guarded, dreading",
-        "turn": "For when fear keeps steering the day",
-        "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+        "turn": "Fear loses some authority when the One is not only powerful but near as parent, kin, brother, and shelter.",
+        "practicalImplication": "Let each step replace an isolated reaction with a remembered relationship, then act from the protection the shabad names rather than the threat fear magnifies.",
         "bannedOverreach": []
       },
       "scores": {

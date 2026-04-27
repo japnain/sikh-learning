@@ -1,8 +1,8 @@
 {
   "id": "collection-discipline-journey",
-  "title": "From Discipline to steadier practice",
-  "subtitle": "For when discipline keeps steering the day",
-  "description": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
+  "title": "Discipline that bows before it conquers",
+  "subtitle": "For when discipline is becoming control instead of contentment",
+  "description": "Move from outward rigor into the harder discipline Guru Nanak names: contentment, humility, shared belonging, and the mind conquered before the world is judged.",
   "durationLabel": "5-step journey",
   "themes": [
     "discipline",
@@ -14,8 +14,8 @@
       292,
       293
     ],
-    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
-    "lifeApplication": "Return your attention from other people to the state of your own mind."
+    "shortMeaning": "The real ascetic work is not display but a mind brought under truth, humble enough to see all people as one brotherhood.",
+    "lifeApplication": "Before tightening another rule, ask whether it is making the mind humbler, more content, and less eager to defeat someone else."
   },
   "items": [
     {
@@ -51,14 +51,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:journey:manual",
     "evidence": {
-      "coreClaim": "Build discipline where remembrance, restraint, and inner honesty matter more than image. This path gives intention a body it can actually keep.",
+      "coreClaim": "This journey begins where visible discipline can still leave the ego intact and follows the shabad toward contentment, humility, and the inward conquest that changes how the whole world is seen.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "For when discipline keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Discipline becomes holy when it bows, gathers the human family into view, and turns its first strength against the restless mind.",
+      "practicalImplication": "Use the five steps to test whether your rule is producing humility and remembrance, then let one concrete act of contentment matter more than appearing spiritually severe.",
       "bannedOverreach": []
     },
     "scores": {

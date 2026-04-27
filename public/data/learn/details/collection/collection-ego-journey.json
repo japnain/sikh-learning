@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-journey",
-  "title": "From Ego to steadier practice",
-  "subtitle": "For when ego keeps steering the day",
-  "description": "Track haumai from self-protection into self-importance, then let humility, service, and truth lower the center of gravity again.",
+  "title": "The cure hidden inside ego’s illness",
+  "subtitle": "For when self-importance keeps returning after every insight",
+  "description": "Begin with Guru Angad’s unsparing diagnosis of ego as a chronic disease, then follow the cure that appears through grace and lived obedience to the Guru’s Shabad.",
   "durationLabel": "5-step journey",
   "themes": [
     "ego",
@@ -14,8 +14,8 @@
       20963,
       20964
     ],
-    "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-    "lifeApplication": "Move from self-justification toward teachability."
+    "shortMeaning": "Ego is named as a deep disease, yet the shabad refuses despair because grace gives the cure through the Guru’s teaching practiced in the life.",
+    "lifeApplication": "When ego asks to be defended, name it as illness rather than identity and choose one action that obeys the Shabad instead of the self-image."
   },
   "items": [
     {
@@ -51,14 +51,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:journey:manual",
     "evidence": {
-      "coreClaim": "Track haumai from self-protection into self-importance, then let humility, service, and truth lower the center of gravity again.",
+      "coreClaim": "This journey keeps ego from becoming either a brand or a hopeless verdict by grounding the whole movement in Guru Angad’s diagnosis and the grace-given medicine of practiced Shabad.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "For when ego keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The self is not improved by being admired; it is healed when grace makes the Guru’s word something the body actually does.",
+      "practicalImplication": "Use the sequence to catch ego in a specific reaction, refuse to make it your name, and practice one humble obedience before explaining yourself.",
       "bannedOverreach": []
     },
     "scores": {

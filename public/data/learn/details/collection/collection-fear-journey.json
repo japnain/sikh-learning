@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-journey",
-  "title": "From Fear to steadier practice",
-  "subtitle": "For when fear keeps steering the day",
-  "description": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
+  "title": "When fear is answered by kinship with the One",
+  "subtitle": "For when the world feels hostile and the heart feels alone",
+  "description": "Move from fear’s exile into the shabad’s intimate names for God: Father, Mother, relative, brother, protector, and shelter close enough to restore courage.",
   "durationLabel": "5-step journey",
   "themes": [
     "fear",
@@ -14,8 +14,8 @@
       4132,
       4133
     ],
-    "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
-    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+    "shortMeaning": "The shabad answers fear by naming the Lord as every needed relation, making divine protection personal before the frightened mind can feel abandoned.",
+    "lifeApplication": "When fear isolates you, speak the relationships named in the shabad and let one decision come from being accompanied rather than cornered."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:journey:manual",
     "evidence": {
-      "coreClaim": "Start where fear seizes the body, then stay until care and remembrance sound truer than threat.",
+      "coreClaim": "This journey begins with the shabad’s family language because fear often works by exile; the collection then follows protection, trust, and remembrance back into a life that is no longer alone against the world.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "For when fear keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Fear loses some authority when the One is not only powerful but near as parent, kin, brother, and shelter.",
+      "practicalImplication": "Let each step replace an isolated reaction with a remembered relationship, then act from the protection the shabad names rather than the threat fear magnifies.",
       "bannedOverreach": []
     },
     "scores": {
