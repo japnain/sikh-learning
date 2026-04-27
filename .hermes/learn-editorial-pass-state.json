@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 12,
+      "count": 13,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -440,7 +440,8 @@
         "topic-guide:topic-conduct",
         "topic-guide:topic-doubt",
         "topic-guide:topic-ego",
-        "topic-guide:topic-exhaustion"
+        "topic-guide:topic-exhaustion",
+        "topic-guide:topic-fear"
       ]
     },
     "collection": {
@@ -450,8 +451,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-exhaustion-verified-ready-to-ship",
-    "summary": "Completed a manual source-grounded rewrite of topic-exhaustion top-level copy plus daily/pressure/repair/practice scenarios. The batch now distinguishes ordinary inward running for relief, pressured bargaining with urgency, repair after tired avoidance or snapping, and a seven-day Naam/Hukam practice. Sources reviewed included restless roaming cooled by holy company (3898-3900), Guru as mother/father watering the heart (3762-3763), Creator care answering wavering (30988-30994), Beloved nearness by grace (8823-8825), humble dust at the Saints feet (8842-8843), offering body/mind/wealth toward union (11201-11202), Naam as the treasure of comfort (13142-13143), and Hukam containing bodies, souls, pain, pleasure, blessing, and wandering (11-15)."
+    "status": "topic-fear-verified-ready-to-ship",
+    "summary": "Completed a manual source-grounded rewrite of topic-fear top-level copy plus daily/pressure/repair/practice scenarios. The batch distinguishes ordinary dread arranging the day, pressured alarm posing as wisdom, repair after fear-led hiding, and a seven-day practiced doorway into shelter. Sources reviewed included the Merciful Master answering wavering (30985-30986), fresh Naam entering the mind and sanctuary (2771-2776), divine belonging and Naam cooling the mind (4138-4143), lesser fears dissolving through Naam and the Guru Shabad (6409-6413), holy company breaking ego’s thorn and death-fear (7122-7123), and sanctuary/mantra for a mind under assault (8845-8849)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -459,15 +460,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-exhaustion failed before edits for generated metadata and old template lines, then passed after the source-grounded rewrite and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, topic scenarios manual-reviewed=60/112; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended exhaustion prose before commit: top-level copy now grounds exhaustion in restless searching cooled by holy company, Guru-given kinship, and Creator care; daily names inward running for relief; pressure distinguishes urgency from nearness/Naam; repair returns tired avoidance to humility, offering, and Hukam; practice gives a keepable seven-day Naam/Hukam rhythm.",
-    "topicGuideBatch": "topic-exhaustion passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and staged banned-phrase checker pending final staged run.",
-    "topicMirrorReviewScan": "topic-exhaustion detail JSON equals public/data/learn/lists/topic-guides.json entry; home-summary compact topic mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-fear failed before edits for generated metadata and an old template line, then passed after the source-grounded rewrite and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, topic scenarios manual-reviewed=63/112, topic mirror errors=0; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed staged topic-fear prose before commit: top-level copy now grounds fear in merciful keeping, Naam cooling, holy company, and the Guru’s Shabad; daily names ordinary dread arranging the day; pressure separates alarm from Naam-shaped authority; repair returns fear-led hiding to shelter and truth; practice gives a seven-day embodied doorway of bowing, sanctuary, and trust-shaped action.",
+    "topicGuideBatch": "topic-fear passed: pre-edit touched-topic verifier failed for generated metadata/old template line, source-grounded prose rewrite completed, detail/list/home mirrors synced, app-authored banned/template scan passed, daily premium snapshot passed, targeted topic/daily Vitest passed, full Learn repository/page Vitest passed, staged banned-phrase checker passed, and representative staged prose review completed.",
+    "topicMirrorReviewScan": "topic-fear detail JSON equals public/data/learn/lists/topic-guides.json entry; home-summary compact topic mirror synced for topic-fear plus previously stale topic-purpose/topic-speech/topic-control title/centralInsight mirrors; top-level and all four topic-fear scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 9cf3f34cc718fabb7a20dd93f9c39256ef58c3d1",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass after topic-comparison/topic-conduct batch.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-exhaustion; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
+    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-fear; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -476,5 +477,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "9cf3f34cc718fabb7a20dd93f9c39256ef58c3d1",
-  "updatedAt": "2026-04-27T07:18:00Z"
+  "updatedAt": "2026-04-27T07:08:35Z"
 }
