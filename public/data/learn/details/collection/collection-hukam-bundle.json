@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-bundle",
-  "title": "Hukam in one shorter sitting",
-  "subtitle": "A shorter sitting for when hukam is already close",
-  "description": "A brief return for the hour when reality is refusing your script. It helps the heart receive the day before fighting it.",
+  "title": "When Hukam leaves ego nowhere to stand",
+  "subtitle": "For the hour when reality refuses your preferred script",
+  "description": "A concise return to the Command that holds everyone and everything. It helps the heart stop arguing from the outside and receive the day from within Hukam.",
   "durationLabel": "3-step bundle",
   "themes": [
     "hukam"
@@ -13,8 +13,8 @@
       15,
       16
     ],
-    "shortMeaning": "Everything stands inside Hukam, not outside it.",
-    "lifeApplication": "Release the demand that peace must wait for total control."
+    "shortMeaning": "No one stands outside Hukam; seeing this makes ego’s speech grow quiet.",
+    "lifeApplication": "Before correcting the whole day, name what is already inside Hukam and let ego lose the first word."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A brief return for the hour when reality is refusing your script. It helps the heart receive the day before fighting it.",
+      "coreClaim": "This bundle rests on the shabad’s uncompromising claim that all are within Hukam and ego thins when this is understood.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "A shorter sitting for when hukam is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "For when control is trying to make peace conditional on getting its way",
+      "practicalImplication": "Let the guidance, practice, and shabad move you from resistance into a quieter obedience to what the Command has placed before you.",
       "bannedOverreach": []
     },
     "scores": {

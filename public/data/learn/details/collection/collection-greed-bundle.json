@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-bundle",
-  "title": "Greed in one shorter sitting",
-  "subtitle": "A shorter sitting for when greed is already close",
-  "description": "A short return for the hour when appetite is outrunning breath. It brings desire back under truthful measure.",
+  "title": "When appetite leaves no room for Naam",
+  "subtitle": "For the hour when pleasure starts occupying the whole heart",
+  "description": "A short bundle for the crowded interior: gold, comfort, taste, and craving all asking to be obeyed. It clears space for Naam before desire names itself as need.",
   "durationLabel": "3-step bundle",
   "themes": [
     "greed"
@@ -14,8 +14,8 @@
       640,
       641
     ],
-    "shortMeaning": "Unexamined appetite crowds out remembrance.",
-    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+    "shortMeaning": "The shabad lists the body’s many pleasures, then asks how Naam can dwell in a heart already crowded by them.",
+    "lifeApplication": "Interrupt one appetite before it becomes automatic, and make that cleared space a place for remembrance."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when appetite is outrunning breath. It brings desire back under truthful measure.",
+      "coreClaim": "This bundle names greed as crowded attention, not merely wanting too much, and returns that attention to Naam.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A shorter sitting for when greed is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "For when the next taste, purchase, or comfort is beginning to command the room",
+      "practicalImplication": "Use the three linked steps to slow the appetite, examine what it is occupying, and give the heart back to remembrance.",
       "bannedOverreach": []
     },
     "scores": {
