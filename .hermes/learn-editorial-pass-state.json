@@ -457,7 +457,7 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-greed-topic-honesty-verified-pending-push",
+    "status": "topic-greed-topic-honesty-shipped",
     "summary": "Completed a manual source-grounded rewrite of topic-greed and topic-honesty top-level copy plus daily/pressure/repair/practice scenarios. Greed now distinguishes ordinary small wanting crowding Naam, pressure where scarcity makes grasping sound responsible, repair after taking more than love allowed, and a seven-day trade in true wealth through praise, restraint, and generosity. Honesty now distinguishes ordinary small edits before visible lying, pressured truth under Hukam, repair after a false version has been spoken, and a repeatable practice of honest work, unadvertised service, and plain correction. Sources reviewed included greed as degrading appetite before honorable speech (634-641), choosing the wealth that travels with the soul (934-946), honest labor and sharing as the path (53369-53372), true bankers trading in Naam (11241-11244), received mercy under Hukam (499-503), the humble servant kept close (37473-37477), Naam joined to pure conduct and ambrosial speech (11743-11748), Hukam containing all outcomes (11-15), conquering the mind (292-293), human birth not wasted in Maya (524-530), selfless service without reward (12946-12947), and ego as disease with the Guru’s cure (20961-20963)."
   },
   "verificationStatus": {
@@ -470,7 +470,7 @@
     "representativeDiffReview": "Reviewed intended prose diff before commit: topic-greed now grounds desire in greed as degrading appetite, false trade, praise/truth/Naam as lasting wealth, honest work and sharing, true bankers trading in Naam, and the humble servant held close; scenarios separate small daily wanting, scarcity pressure, repair after taking more than love allowed, and seven-day generosity/restraint practice. topic-honesty now grounds truth in Naam joined to pure conduct, washed mind in Sangat, honest labor and sharing, sweet speech/humble walking, Hukam under pressure, mind-conquest, selfless service, and ego’s disease/cure; scenarios separate small edits before visible lying, pressured truth, concrete correction after false speech, and repeatable unadvertised truthful practice.",
     "topicGuideBatch": "topic-greed and topic-honesty passed: pre-edit touched-topic verifier failed for locked/generated metadata, unreviewed scenarios, and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
     "topicMirrorReviewScan": "topic-greed and topic-honesty detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
+    "lastPushRecord": "Content batch pushed to origin master at edd91a9bf97020446d3286f23843a63d8acf5c06",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
@@ -482,6 +482,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
-  "updatedAt": "2026-04-27T08:22:00Z"
+  "lastPushedCommitSha": "edd91a9bf97020446d3286f23843a63d8acf5c06",
+  "updatedAt": "2026-04-27T08:22:29Z"
 }
