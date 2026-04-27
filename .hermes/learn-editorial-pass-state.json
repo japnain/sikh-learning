@@ -453,7 +453,7 @@
     "representativeDiffReview": "source review completed for doubt cluster: inspected verses 9617-9619 (One within/outside, self recognized through Shabad, Truth as court-insignia), 1449-1450 (Guru Shabad awakens reverence and Sat Sangat dwells on True One), and 9499-9500 (duality mastered through surrender into One).",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "Content batch pushed to origin master at 0c210a02fc496b9c687db590395a5691c804f762",
+    "lastPushRecord": "Content batch pushed to origin master at 2542cb6cc26548c2c4e3f015a4b4e246a05d0aba",
     "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 15.",
     "dailyMirrorScan": "changed doubt daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields were synced for touched IDs",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=15; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors ok for daily corpus; final-premium duplicate-takeaway cleanup still in progress",
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "0c210a02fc496b9c687db590395a5691c804f762",
-  "updatedAt": "2026-04-27T00:41:48Z"
+  "lastPushedCommitSha": "2542cb6cc26548c2c4e3f015a4b4e246a05d0aba",
+  "updatedAt": "2026-04-27T00:45:13Z"
 }
