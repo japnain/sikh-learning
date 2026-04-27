@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 17,
+      "count": 19,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -445,7 +445,9 @@
         "topic-guide:topic-hukam",
         "topic-guide:topic-gratitude",
         "topic-guide:topic-forgiveness",
-        "topic-guide:topic-mercy"
+        "topic-guide:topic-mercy",
+        "topic-guide:topic-greed",
+        "topic-guide:topic-honesty"
       ]
     },
     "collection": {
@@ -455,8 +457,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-forgiveness-topic-mercy-shipped",
-    "summary": "Completed a manual source-grounded rewrite of topic-forgiveness and topic-mercy top-level copy plus daily/pressure/repair/practice scenarios. Forgiveness now distinguishes ordinary replay of hurt, pressured retaliation at the tongue, repair after bitterness has already spoken, and a seven-day discipline of serving the Fearless Naam instead of the wound. Mercy now distinguishes ordinary self-audit, pressure that treats mercy as irresponsible, repair after failure through humility rather than self-punishment, and repeated receiving under Hukam and the Creator’s care. Sources reviewed included forgiveness/conduct/contentment becoming fearless (9600-9614), received forgiveness opening peace (27259-27265), Naam making conduct and speech clean (11743-11749), bitter becoming sweet in Sangat (7132-7136), saving company interrupting judgment (11176-11178), mercy giving Naam under Hukam (499-503), longing led through Sat Sangat (3757-3763), the humble servant kept close (37473-37477), remembrance dispelling bodily anguish (11502-11503), the Creator nourishing and protecting (30988-30994), and restless searching cooled through holy company (3898-3900)."
+    "status": "topic-greed-topic-honesty-verified-pending-push",
+    "summary": "Completed a manual source-grounded rewrite of topic-greed and topic-honesty top-level copy plus daily/pressure/repair/practice scenarios. Greed now distinguishes ordinary small wanting crowding Naam, pressure where scarcity makes grasping sound responsible, repair after taking more than love allowed, and a seven-day trade in true wealth through praise, restraint, and generosity. Honesty now distinguishes ordinary small edits before visible lying, pressured truth under Hukam, repair after a false version has been spoken, and a repeatable practice of honest work, unadvertised service, and plain correction. Sources reviewed included greed as degrading appetite before honorable speech (634-641), choosing the wealth that travels with the soul (934-946), honest labor and sharing as the path (53369-53372), true bankers trading in Naam (11241-11244), received mercy under Hukam (499-503), the humble servant kept close (37473-37477), Naam joined to pure conduct and ambrosial speech (11743-11748), Hukam containing all outcomes (11-15), conquering the mind (292-293), human birth not wasted in Maya (524-530), selfless service without reward (12946-12947), and ego as disease with the Guru’s cure (20961-20963)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -464,15 +466,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/topic_tools.py verify topic-hukam topic-gratitude failed before edits for generated metadata, unreviewed scenarios, and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=15/28, topic scenarios manual-reviewed=71/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-forgiveness now grounds release in forgiveness as true fast, conduct/contentment, received forgiveness, clean speech, Sangat, and Fearless Naam; scenarios separate ordinary memory replay, pressured retaliation, repair after bitterness spoke, and repeated discipline. topic-mercy now grounds mercy in Hukam as gift, Naam received by grace, guidance through Sat Sangat, the cherished humble servant, remembrance settling bodily anguish, and the Creator’s continuing care; scenarios separate self-audit, pressure/panic, failure repair, and daily receiving practice.",
-    "topicGuideBatch": "topic-forgiveness and topic-mercy passed: pre-edit touched-topic verifier failed for locked/unreviewed metadata and old scenario template lines, source-grounded prose rewrite completed for top-level and all four scenarios on each topic, detail/list/home mirrors synced, touched-topic verifier passed, targeted topic/daily Vitest passed, and full learnRepository/Learn page Vitest passed after updating the mercy UI expectation to the new approved title.",
-    "topicMirrorReviewScan": "topic-forgiveness and topic-mercy detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/topic_verify.py topic-greed topic-honesty failed before edits for locked/generated metadata, unreviewed scenarios, and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=19/28, topic scenarios manual-reviewed=87/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-greed now grounds desire in greed as degrading appetite, false trade, praise/truth/Naam as lasting wealth, honest work and sharing, true bankers trading in Naam, and the humble servant held close; scenarios separate small daily wanting, scarcity pressure, repair after taking more than love allowed, and seven-day generosity/restraint practice. topic-honesty now grounds truth in Naam joined to pure conduct, washed mind in Sangat, honest labor and sharing, sweet speech/humble walking, Hukam under pressure, mind-conquest, selfless service, and ego’s disease/cure; scenarios separate small edits before visible lying, pressured truth, concrete correction after false speech, and repeatable unadvertised truthful practice.",
+    "topicGuideBatch": "topic-greed and topic-honesty passed: pre-edit touched-topic verifier failed for locked/generated metadata, unreviewed scenarios, and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
+    "topicMirrorReviewScan": "topic-greed and topic-honesty detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-fear; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-greed/topic-honesty; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -481,5 +483,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
-  "updatedAt": "2026-04-27T07:57:58Z"
+  "updatedAt": "2026-04-27T08:22:00Z"
 }
