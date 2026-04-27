@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote two four-item duplicate-takeaway clusters: 'Let mercy become more believable than the threat.' and 'Return the hand to trust before it closes again.' The fear/mercy entries now distinguish Naam swallowing lesser fears, divine kinship answering loneliness, sanctuary before fear hardens, and praise cooling the battlefield. The control/grip entries now distinguish praise opening the clenched hand, the Guru's Shabad reining the elephant-mind, vastness humbling one-angle control, and primal Truth outranking urgency. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote two duplicate-takeaway clusters: the six-item speech/mouth cluster formerly sharing 'Return the mouth to praise before it carries hurt.' and the five-item dignity/worth cluster formerly sharing 'Receive the dignity already being given.' Speech entries now distinguish a passing life burdened by gossip, speech accepted at the Door, slander as filth in the mouth, anger as mouth-fire, sangat shaping tone, and the Guru's Will emptying ego from speech. Dignity entries now distinguish servant-honor returned to the Master, Naam making the heart whole, Truth seen before feedback, the heart dyed in Truth rather than flattered, and the Guru planting soul-life within. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "11 remaining after fear/mercy and control/grip duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "9 remaining after speech/mouth and dignity/worth duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after fear/mercy and control/grip duplicate-takeaway cluster batch",
-    "representativeDiffReview": "source review completed for fear/mercy cluster: inspected verses 6405-6406 (Unspoken nectar and other fears forgotten in Naam), 4132-4133 and 4142-4143 (Lord as family; praise cooling the mind and Guru-given victory), and 8845-8846 (direct cry for Fatherly rescue and all virtues belonging to God). Source review completed for control/grip cluster: inspected verses 17-18 (singing divine power and gifts), 9473-9474 (Guru's goad/Shabad mark over the elephant-mind; cleverness cannot know), and 3-4 (Truth before beginning and forever). Representative staged git diff reviewed before commit.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after speech/mouth and dignity/worth duplicate-takeaway cluster batch",
+    "representativeDiffReview": "source review completed for speech/mouth cluster: inspected verses 6434-6435 (passing world drama and burdens of greed/falsehood), 642-643 (speech that brings honor and harsh words grieving the foolish mind), 634-635 (greed/falsehood/slander as filth and anger as cremation-ground fire), 1288-1289 (sangat, Naam, peace, Beloved held in the heart), and 1295-1296 (nectar in Guru's Will and ego removed). Source review completed for dignity/worth cluster: inspected verses 7933-7934 (servant honor belongs to the Master), 7978-7979 (Naam in the heart making everything whole), 4852-4853 (heart dyed in Truth and seeing Truth everywhere), and 37468-37469 (True Guru enshrining the Lord and granting soul-life). Representative staged git diff reviewed before commit.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at dc10e6b0487473e532053331dada1b9ca272c8fb",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 11.",
-    "dailyMirrorScan": "changed fear/mercy and control/grip daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields synced for touched IDs; full daily list/home mirror scan passed",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=11; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors ok for daily corpus; final-premium duplicate-takeaway cleanup still in progress",
-    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after fear/mercy and control/grip duplicate-takeaway cluster polish; staged check-banned-phrases.mjs passed before commit"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 9.",
+    "dailyMirrorScan": "changed speech/mouth and dignity/worth daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields synced for touched IDs; full daily list/home mirror scan passed",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=9; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors ok for daily corpus; final-premium duplicate-takeaway cleanup still in progress",
+    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after speech/mouth and dignity/worth duplicate-takeaway cluster polish; staged check-banned-phrases.mjs passed before commit"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "dc10e6b0487473e532053331dada1b9ca272c8fb",
-  "updatedAt": "2026-04-27T01:50:37Z"
+  "updatedAt": "2026-04-27T02:10:10Z"
 }
