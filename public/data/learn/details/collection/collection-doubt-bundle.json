@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-bundle",
-  "title": "Doubt in one shorter sitting",
-  "subtitle": "A shorter sitting for when doubt is already close",
-  "description": "A short return for the hour when second-guessing is wearing down obedience. It restores one clear word before the fog multiplies.",
+  "title": "When doubt keeps circling the fire",
+  "subtitle": "Let the Guru's word outlast the argument",
+  "description": "A three-step bundle for the hour when second-guessing is feeding its own heat. It brings the mind from wandering argument into the Guru-word that kills ego and thirst at the root.",
   "durationLabel": "3-step bundle",
   "themes": [
     "doubt"
@@ -14,8 +14,8 @@
       921,
       922
     ],
-    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-    "lifeApplication": "Move from circling to obedience."
+    "shortMeaning": "The shabad says doubt is an inner fire, and the Guru’s teaching is the way devotion becomes possible again.",
+    "lifeApplication": "Stop giving the argument another lap; place one Guru-given word inside the mind and let it answer the heat directly."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when second-guessing is wearing down obedience. It restores one clear word before the fog multiplies.",
+      "coreClaim": "This bundle treats doubt as fire rather than intelligence. It asks the mind to become Gurmukh enough to let the Guru’s words live where ego and thirst have been speaking.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "A shorter sitting for when doubt is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Let one received teaching become stronger than another round of private argument.",
+      "practicalImplication": "Move through the steps by naming the fire, choosing one line of obedience, and refusing to feed the doubt with more wandering.",
       "bannedOverreach": []
     },
     "scores": {

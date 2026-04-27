@@ -1,8 +1,8 @@
 {
   "id": "collection-discipline-bundle",
-  "title": "Discipline in one shorter sitting",
-  "subtitle": "A shorter sitting for when discipline is already close",
-  "description": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
+  "title": "When discipline turns inward first",
+  "subtitle": "Conquer the mind before trying to command the room",
+  "description": "A three-step bundle for the moment discipline starts looking outward for something to control. It returns the work to contentment, brotherhood, and the bowed mind that can be governed from within.",
   "durationLabel": "3-step bundle",
   "themes": [
     "discipline"
@@ -13,8 +13,8 @@
       292,
       293
     ],
-    "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
-    "lifeApplication": "Return your attention from other people to the state of your own mind."
+    "shortMeaning": "The shabad names the real conquest as the mind, not other people or the visible world.",
+    "lifeApplication": "Before correcting the room, gather the mind, see the shared humanity in front of you, and bow the will back under the One."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
+      "coreClaim": "This bundle begins where discipline becomes honest. The will stops performing control and accepts the harder victory of governing its own mind.",
       "emotionalState": "reactive, performing, scattered",
-      "turn": "A shorter sitting for when discipline is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Let discipline become inward conquest before it becomes outward pressure.",
+      "practicalImplication": "Use the sequence to pause the controlling impulse, recognize the sangat-like brotherhood of the moment, and choose the one action a steadier mind can keep.",
       "bannedOverreach": []
     },
     "scores": {

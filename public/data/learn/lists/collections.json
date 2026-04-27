@@ -1693,9 +1693,9 @@
   },
   {
     "id": "collection-discipline-bundle",
-    "title": "Discipline in one shorter sitting",
-    "subtitle": "A shorter sitting for when discipline is already close",
-    "description": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
+    "title": "When discipline turns inward first",
+    "subtitle": "Conquer the mind before trying to command the room",
+    "description": "A three-step bundle for the moment discipline starts looking outward for something to control. It returns the work to contentment, brotherhood, and the bowed mind that can be governed from within.",
     "durationLabel": "3-step bundle",
     "themes": [
       "discipline"
@@ -1706,8 +1706,8 @@
         292,
         293
       ],
-      "shortMeaning": "Conquering the mind matters more than conquering the world around you.",
-      "lifeApplication": "Return your attention from other people to the state of your own mind."
+      "shortMeaning": "The shabad names the real conquest as the mind, not other people or the visible world.",
+      "lifeApplication": "Before correcting the room, gather the mind, see the shared humanity in front of you, and bow the will back under the One."
     },
     "items": [
       {
@@ -1733,14 +1733,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:bundle",
+      "templateKey": "collection:manual",
       "evidence": {
-        "coreClaim": "A short rule for the hour when the will is sincere but unstable. It turns intention into something the body can actually keep.",
+        "coreClaim": "This bundle begins where discipline becomes honest. The will stops performing control and accepts the harder victory of governing its own mind.",
         "emotionalState": "reactive, performing, scattered",
-        "turn": "A shorter sitting for when discipline is already close",
-        "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+        "turn": "Let discipline become inward conquest before it becomes outward pressure.",
+        "practicalImplication": "Use the sequence to pause the controlling impulse, recognize the sangat-like brotherhood of the moment, and choose the one action a steadier mind can keep.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2014,9 +2014,9 @@
   },
   {
     "id": "collection-doubt-bundle",
-    "title": "Doubt in one shorter sitting",
-    "subtitle": "A shorter sitting for when doubt is already close",
-    "description": "A short return for the hour when second-guessing is wearing down obedience. It restores one clear word before the fog multiplies.",
+    "title": "When doubt keeps circling the fire",
+    "subtitle": "Let the Guru's word outlast the argument",
+    "description": "A three-step bundle for the hour when second-guessing is feeding its own heat. It brings the mind from wandering argument into the Guru-word that kills ego and thirst at the root.",
     "durationLabel": "3-step bundle",
     "themes": [
       "doubt"
@@ -2028,8 +2028,8 @@
         921,
         922
       ],
-      "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-      "lifeApplication": "Move from circling to obedience."
+      "shortMeaning": "The shabad says doubt is an inner fire, and the Guru’s teaching is the way devotion becomes possible again.",
+      "lifeApplication": "Stop giving the argument another lap; place one Guru-given word inside the mind and let it answer the heat directly."
     },
     "items": [
       {
@@ -2055,14 +2055,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:bundle",
+      "templateKey": "collection:manual",
       "evidence": {
-        "coreClaim": "A short return for the hour when second-guessing is wearing down obedience. It restores one clear word before the fog multiplies.",
+        "coreClaim": "This bundle treats doubt as fire rather than intelligence. It asks the mind to become Gurmukh enough to let the Guru’s words live where ego and thirst have been speaking.",
         "emotionalState": "confused, restless, skeptical",
-        "turn": "A shorter sitting for when doubt is already close",
-        "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+        "turn": "Let one received teaching become stronger than another round of private argument.",
+        "practicalImplication": "Move through the steps by naming the fire, choosing one line of obedience, and refusing to feed the doubt with more wandering.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2426,9 +2426,9 @@
   },
   {
     "id": "collection-ego-bundle",
-    "title": "Ego in one shorter sitting",
-    "subtitle": "A shorter sitting for when ego is already close",
-    "description": "A short correction for the hour when the self is filling the room. It lowers the center of gravity before ego starts naming reality.",
+    "title": "When the self fills the room",
+    "subtitle": "Receive the cure hidden inside the illness",
+    "description": "A three-step bundle for the moment self-importance starts naming reality for everyone else. It treats ego as a chronic disease and turns the body back toward the Shabad that grace makes possible.",
     "durationLabel": "3-step bundle",
     "themes": [
       "ego"
@@ -2439,8 +2439,8 @@
         20963,
         20964
       ],
-      "shortMeaning": "Ego is a chronic disease, and Guru's Shabad becomes the cure through grace.",
-      "lifeApplication": "Move from self-justification toward teachability."
+      "shortMeaning": "Ego is not a personality quirk in this shabad; it is a long illness whose cure comes by grace through the Guru’s Shabad.",
+      "lifeApplication": "When defensiveness rises, stop defending the self as if it were truth; become teachable enough to act from the Guru’s word."
     },
     "items": [
       {
@@ -2466,14 +2466,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:bundle",
+      "templateKey": "collection:manual",
       "evidence": {
-        "coreClaim": "A short correction for the hour when the self is filling the room. It lowers the center of gravity before ego starts naming reality.",
+        "coreClaim": "This bundle lowers the center of gravity when ego starts occupying the whole room. The cure is not self-improvement theater but grace received as obedience to the Shabad.",
         "emotionalState": "defensive, offended, self-important",
-        "turn": "A shorter sitting for when ego is already close",
-        "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+        "turn": "Let the diagnosis of ego make you teachable instead of ashamed or proud.",
+        "practicalImplication": "Use the steps to name the self-claim, soften the defense, and choose one Shabad-shaped action before the ego writes the story.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2829,9 +2829,9 @@
   },
   {
     "id": "collection-exhaustion-bundle",
-    "title": "Exhaustion in one shorter sitting",
-    "subtitle": "A shorter sitting for when exhaustion is already close",
-    "description": "A short return for the hour when strength is already thinning. It keeps exhaustion from turning into performance, numbness, or despair.",
+    "title": "When exhaustion needs a true beginning",
+    "subtitle": "Start again under the One, not under your own force",
+    "description": "A three-step bundle for the hour when strength is too thin to perform. It lets the opening truth of Ik Oankar, Sat Naam, and Guru’s grace become the first ground beneath the tired mind.",
     "durationLabel": "3-step bundle",
     "themes": [
       "exhaustion"
@@ -2842,8 +2842,8 @@
         5589,
         5590
       ],
-      "shortMeaning": "Exhaustion eases when honesty replaces the performance of strength.",
-      "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+      "shortMeaning": "The cited opening does not ask the exhausted mind to manufacture power; it begins with the One Creator, Truth as Name, and grace as the doorway.",
+      "lifeApplication": "When force is failing, begin again by naming what is already true before you measure what you can still produce."
     },
     "items": [
       {
@@ -2869,14 +2869,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:bundle",
+      "templateKey": "collection:manual",
       "evidence": {
-        "coreClaim": "A short return for the hour when strength is already thinning. It keeps exhaustion from turning into performance, numbness, or despair.",
+        "coreClaim": "This bundle gives exhaustion a truer starting place than self-command. The tired body is invited to stand under the One and receive the next step through grace.",
         "emotionalState": "tired, drained, worn-down",
-        "turn": "A shorter sitting for when exhaustion is already close",
-        "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+        "turn": "Let the first truth carry the first step when your own strength cannot.",
+        "practicalImplication": "Move through the sequence by stopping the performance of strength, returning to Ik Oankar, and taking only the next action that can be held under grace.",
         "bannedOverreach": []
       },
       "scores": {
@@ -2976,9 +2976,9 @@
   },
   {
     "id": "collection-fear-bundle",
-    "title": "Fear in one shorter sitting",
-    "subtitle": "A shorter sitting for when fear is already close",
-    "description": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
+    "title": "When fear feels like exile",
+    "subtitle": "Name the One as family again",
+    "description": "A three-step bundle for the hour when fear makes the world feel hostile and the body feel alone. It returns to the shabad’s intimate names — Father, Mother, relative, brother — until shelter becomes personal again.",
     "durationLabel": "3-step bundle",
     "themes": [
       "fear"
@@ -2989,8 +2989,8 @@
         4132,
         4133
       ],
-      "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
-      "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+      "shortMeaning": "Fear loses some of its authority when the One is remembered as the nearest family, not a distant idea.",
+      "lifeApplication": "When fear starts isolating you, name the One as Father, Mother, relative, and brother before you obey the story of exile."
     },
     "items": [
       {
@@ -3016,14 +3016,14 @@
     ],
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "collection:bundle",
+      "templateKey": "collection:manual",
       "evidence": {
-        "coreClaim": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
+        "coreClaim": "This bundle answers fear with kinship. The frightened body is not argued out of fear; it is brought back into the nearness of the One who is named as family.",
         "emotionalState": "afraid, guarded, dreading",
-        "turn": "A shorter sitting for when fear is already close",
-        "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+        "turn": "Let fear hear the names of shelter before it decides where you belong.",
+        "practicalImplication": "Use the steps to stand still, speak the intimate names of the One, and take the next action from shelter rather than exile.",
         "bannedOverreach": []
       },
       "scores": {
