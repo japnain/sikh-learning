@@ -482,7 +482,7 @@
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "third-five-short-bundles-verified-awaiting-commit",
+    "status": "third-five-short-bundles-shipped",
     "summary": "Completed source-grounded manual rewrites for five more generated short collection bundles: forgiveness, gratitude, greed, hukam, and loneliness. The batch now names fearlessness in the Presence within and outside the house, mercy that makes gratitude honest, bodily appetite crowding out Naam, Hukam quieting ego, and the True Guru parenting the lonely heart."
   },
   "verificationStatus": {
@@ -495,7 +495,7 @@
     "representativeDiffReview": "Reviewed intended prose diff for the third collection short-bundle batch: forgiveness moves from release language into fearless Presence within and outside the house; gratitude begins with confessed unworthiness and mercy; greed names bodily pleasures crowding out Naam; Hukam places control inside Command until ego loses the first word; loneliness receives the True Guru as protector, mother, father, and living water.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Collection content batch pushed to origin master at f46d129ffd7e7783a73530408208fbea6969c576; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Collection content batch pushed to origin master at f23c0420259216a23d0da3eca83de93833a59c54; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; direct cron scan rechecked this run.",
@@ -509,6 +509,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "f46d129ffd7e7783a73530408208fbea6969c576",
-  "updatedAt": "2026-04-27T12:36:38Z"
+  "lastPushedCommitSha": "f23c0420259216a23d0da3eca83de93833a59c54",
+  "updatedAt": "2026-04-27T12:38:15Z"
 }
