@@ -454,7 +454,7 @@
     "representativeDiffReview": "Reviewed topic-control staged/intended prose for source-grounding before commit: overview, repair, and practice copy now ties control to Hukam, humility/contentment, sung Divine power/gift, and selfless service rather than repeated generated release phrasing.",
     "topicGuideBatch": "topic-control passed: source-grounded prose review, detail/list mirror scan, app-authored banned-phrase scan, targeted topic Vitest, full Learn repository/page Vitest, and daily premium snapshot retained 0 duplicates.",
     "topicMirrorReviewScan": "topic-control detail equals public/data/learn/lists/topic-guides.json entry; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 5750a6bd9fc51a35ec23cd2dcb4b29614046ed6f",
+    "lastPushRecord": "Content batch pushed to origin master at 4450b53ca6ec846a862fa7427552c69513b696a5",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-control batch.",
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "5750a6bd9fc51a35ec23cd2dcb4b29614046ed6f",
-  "updatedAt": "2026-04-27T04:20:08Z"
+  "lastPushedCommitSha": "4450b53ca6ec846a862fa7427552c69513b696a5",
+  "updatedAt": "2026-04-27T04:21:28Z"
 }
