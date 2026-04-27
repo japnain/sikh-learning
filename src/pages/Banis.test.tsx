@@ -5,6 +5,7 @@ import Banis from './Banis'
 import { sanitizeRehatHtml } from '../utils/rehatHtml'
 import Study from './Study'
 import LibraryPageReader from './library/LibraryPageReader'
+import PanthPrakashLibraryHome from './library/PanthPrakashLibraryHome'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
 function renderBanis() {
@@ -75,7 +76,7 @@ test('renders the main content sections including Rehat', () => {
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
-test('keeps source browsing at the bottom of Read', () => {
+test('keeps source browsing at the bottom of Read while featuring Panth Prakash as a dedicated browse page', () => {
   renderBanis()
 
   const sourceBrowser = screen.getByTestId('read-source-browser-shared')
@@ -83,14 +84,48 @@ test('keeps source browsing at the bottom of Read', () => {
   expect(screen.queryByTestId('study-source-browser')).not.toBeInTheDocument()
   expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
 
-  fireEvent.click(within(sourceBrowser).getByRole('button', { name: 'Panth Prakash (English)' }))
-  expect(within(sourceBrowser).getByRole('link', { name: /^open panth prakash page 1$/i })).toHaveAttribute(
+  const panthCard = within(sourceBrowser).getByTestId('panth-prakash-source-card')
+  expect(within(panthCard).getByRole('link', { name: /browse panth prakash episodes/i })).toHaveAttribute(
+    'href',
+    '/library/panth-prakash-english'
+  )
+  expect(panthCard).toHaveTextContent(/separate reading page/i)
+  expect(panthCard).toHaveTextContent(/source scan mapping/i)
+  expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
+
+  fireEvent.click(within(panthCard).getByRole('button', { name: /show quick page numbers/i }))
+  expect(within(panthCard).getByRole('link', { name: /^open panth prakash page 1$/i })).toHaveAttribute(
     'href',
     '/library/panth-prakash-english/page/1'
   )
 })
 
-test('opens Panth Prakash from Read source browsing into its own reader page with navigation breadcrumbs', async () => {
+test('opens the Panth Prakash Read card into the dedicated browse page before entering page reader', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<Banis />} />
+        <Route path="/library/:workId" element={<><PanthPrakashLibraryHome /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  const sourceBrowser = screen.getByTestId('read-source-browser-shared')
+  fireEvent.click(within(sourceBrowser).getByRole('link', { name: /browse panth prakash episodes/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english')
+  })
+  await waitFor(() => {
+    expect(screen.getByTestId('panth-library-home')).toBeInTheDocument()
+  })
+
+  expect(screen.getByRole('heading', { name: /Panth Prakash/i })).toBeInTheDocument()
+  expect(screen.getByLabelText(/search episodes/i)).toBeInTheDocument()
+  expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
+})
+
+test('still allows optional quick Panth Prakash page numbers to open the reader with navigation breadcrumbs', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -101,8 +136,9 @@ test('opens Panth Prakash from Read source browsing into its own reader page wit
   )
 
   const sourceBrowser = screen.getByTestId('read-source-browser-shared')
-  fireEvent.click(within(sourceBrowser).getByRole('button', { name: 'Panth Prakash (English)' }))
-  fireEvent.click(within(sourceBrowser).getByRole('link', { name: /^open panth prakash page 1$/i }))
+  const panthCard = within(sourceBrowser).getByTestId('panth-prakash-source-card')
+  fireEvent.click(within(panthCard).getByRole('button', { name: /show quick page numbers/i }))
+  fireEvent.click(within(panthCard).getByRole('link', { name: /^open panth prakash page 1$/i }))
 
   await waitFor(() => {
     expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english/page/1')
