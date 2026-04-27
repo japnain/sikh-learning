@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 15,
+      "count": 17,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -443,7 +443,9 @@
         "topic-guide:topic-exhaustion",
         "topic-guide:topic-fear",
         "topic-guide:topic-hukam",
-        "topic-guide:topic-gratitude"
+        "topic-guide:topic-gratitude",
+        "topic-guide:topic-forgiveness",
+        "topic-guide:topic-mercy"
       ]
     },
     "collection": {
@@ -453,8 +455,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-hukam-topic-gratitude-shipped",
-    "summary": "Completed a manual source-grounded rewrite of topic-hukam and topic-gratitude top-level copy plus daily/pressure/repair/practice scenarios. Hukam now distinguishes ordinary reopening of the argument, pressure making refusal sound responsible, repair after refusal becomes the mistake, and a seven-day practiced doorway of receiving. Gratitude now distinguishes unnoticed ordinary mercy, pressure turning mercy into complaint, repair through confessed entitlement, and a daily confession rhythm that answers mercy with praise and generosity. Sources reviewed included Hukam forming bodies and souls (11-12), what pleases You comes to pass and mercy gives Naam (499-501), the Commander leading the path (29-30), the merciful Father freeing possessiveness (2092-2097), Beloved acceptance and the Inner-knower (7930-7931), suffering as medicine and dependence on the Creator (21090-21091), overlooked mercy becoming Naam (60338-60340), truth walking in Hukam (8-10), holy company and the Guru Shabad (736-742), anxiety-producing action under the three qualities (766-767), and duality crumbling without the Beloved (774-777)."
+    "status": "topic-forgiveness-topic-mercy-verified-pending-commit",
+    "summary": "Completed a manual source-grounded rewrite of topic-forgiveness and topic-mercy top-level copy plus daily/pressure/repair/practice scenarios. Forgiveness now distinguishes ordinary replay of hurt, pressured retaliation at the tongue, repair after bitterness has already spoken, and a seven-day discipline of serving the Fearless Naam instead of the wound. Mercy now distinguishes ordinary self-audit, pressure that treats mercy as irresponsible, repair after failure through humility rather than self-punishment, and repeated receiving under Hukam and the Creator’s care. Sources reviewed included forgiveness/conduct/contentment becoming fearless (9600-9614), received forgiveness opening peace (27259-27265), Naam making conduct and speech clean (11743-11749), bitter becoming sweet in Sangat (7132-7136), saving company interrupting judgment (11176-11178), mercy giving Naam under Hukam (499-503), longing led through Sat Sangat (3757-3763), the humble servant kept close (37473-37477), remembrance dispelling bodily anguish (11502-11503), the Creator nourishing and protecting (30988-30994), and restless searching cooled through holy company (3898-3900)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -463,9 +465,9 @@
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
     "vitest": "python3 .hermes/scripts/topic_tools.py verify topic-hukam topic-gratitude failed before edits for generated metadata, unreviewed scenarios, and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=15/28, topic scenarios manual-reviewed=71/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-hukam now grounds acceptance in body/soul/honor formed by Command, receiving what pleases the Lord, mercy freeing possessiveness, and the Inner-knowing Friend; scenarios separate ordinary reopening of complaint, pressured refusal, repair after resistance, and repeated receiving practice. topic-gratitude now grounds gratitude in suffering as medicine, confessed overlooked mercy becoming Naam, truth walking in Hukam, holy company, anxiety-producing action, and hollow decoration without the Beloved; scenarios separate unnoticed daily mercy, pressure turning mercy into complaint, repair through confessed entitlement, and a seven-day confession/praise rhythm.",
-    "topicGuideBatch": "topic-hukam and topic-gratitude passed: pre-edit touched-topic verifier failed for generated metadata/unreviewed scenarios and old template lines, source-grounded prose rewrite completed for top-level and all four scenarios on each topic, detail/list/home mirrors synced, touched-topic verifier passed, direct Learn quality scan passed, and targeted topic/daily Vitest passed before staging.",
-    "topicMirrorReviewScan": "topic-hukam and topic-gratitude detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-forgiveness now grounds release in forgiveness as true fast, conduct/contentment, received forgiveness, clean speech, Sangat, and Fearless Naam; scenarios separate ordinary memory replay, pressured retaliation, repair after bitterness spoke, and repeated discipline. topic-mercy now grounds mercy in Hukam as gift, Naam received by grace, guidance through Sat Sangat, the cherished humble servant, remembrance settling bodily anguish, and the Creator’s continuing care; scenarios separate self-audit, pressure/panic, failure repair, and daily receiving practice.",
+    "topicGuideBatch": "topic-forgiveness and topic-mercy passed: pre-edit touched-topic verifier failed for locked/unreviewed metadata and old scenario template lines, source-grounded prose rewrite completed for top-level and all four scenarios on each topic, detail/list/home mirrors synced, touched-topic verifier passed, targeted topic/daily Vitest passed, and full learnRepository/Learn page Vitest passed after updating the mercy UI expectation to the new approved title.",
+    "topicMirrorReviewScan": "topic-forgiveness and topic-mercy detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 1e773b1a048269f3f4f14b79b67a999320b9eb00",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
@@ -479,5 +481,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "1e773b1a048269f3f4f14b79b67a999320b9eb00",
-  "updatedAt": "2026-04-27T07:34:12Z"
+  "updatedAt": "2026-04-27T07:56:45Z"
 }
