@@ -1,8 +1,8 @@
 {
   "id": "collection-attachment-journey",
-  "title": "From Attachment to steadier practice",
-  "subtitle": "For when attachment keeps steering the day",
-  "description": "Follow desire to the point where love starts acting like ownership. These readings loosen the grip without hardening the heart.",
+  "title": "Attachment without the chain",
+  "subtitle": "For love, praise, and pain that keep binding the heart",
+  "description": "Begin where praise and slander, pleasure and pain have too much authority. This path loosens attachment without making the heart cold, returning desire to the Guru until love can stay tender and free.",
   "durationLabel": "5-step journey",
   "themes": [
     "attachment",
@@ -14,8 +14,8 @@
       9416,
       9417
     ],
-    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
-    "lifeApplication": "Let feedback inform you without governing your worth."
+    "shortMeaning": "The wise one is not bound by praise, slander, greed, attachment, pleasure, or pain.",
+    "lifeApplication": "Notice which reaction is trying to bind you today, then refuse to let it become the measure of your worth or love."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
-    "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow desire to the point where love starts acting like ownership. These readings loosen the grip without hardening the heart.",
+      "coreClaim": "The journey takes its shape from the shabad's equalizing of praise and blame, where attachment loses the power to govern the self.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "For when attachment keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "For attachment that needs tenderness without bondage",
+      "practicalImplication": "Use the five steps to name the hook clearly, loosen its authority, and return the heart to love that is not possession.",
       "bannedOverreach": []
     },
     "scores": {

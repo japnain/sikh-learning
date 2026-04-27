@@ -1,8 +1,8 @@
 {
   "id": "collection-control-journey",
-  "title": "From Control to steadier practice",
-  "subtitle": "For when control keeps steering the day",
-  "description": "Follow the grip from hand and jaw back to the fear beneath it, then stay until control gives way to trustful action.",
+  "title": "Control undone by vast praise",
+  "subtitle": "For the hand that keeps tightening around outcomes",
+  "description": "Begin among the many voices singing divine power, gifts, beauty, and command. The path widens the mind until control looks too small for reality and action can become obedient rather than possessive.",
   "durationLabel": "5-step journey",
   "themes": [
     "control",
@@ -14,8 +14,8 @@
       17,
       18
     ],
-    "shortMeaning": "The grip loosens when reality is received instead of managed.",
-    "lifeApplication": "Before tightening around the outcome, loosen the grip and let reality be larger than you."
+    "shortMeaning": "The shabad opens a world where every power and gift belongs to the One being praised.",
+    "lifeApplication": "When the hand tightens around an outcome, name one gift or power that was never yours to own."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
-    "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow the grip from hand and jaw back to the fear beneath it, then stay until control gives way to trustful action.",
+      "coreClaim": "This journey places the controlling self inside a vast chorus of praise where mastery gives way to received power and gift.",
       "emotionalState": "gripping, controlling, tense",
-      "turn": "For when control keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "For control that needs to become obedient action",
+      "practicalImplication": "Move through the five steps by releasing one managed outcome, then act from the gift you have been given rather than the power you are trying to seize.",
       "bannedOverreach": []
     },
     "scores": {

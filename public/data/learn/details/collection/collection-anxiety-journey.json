@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-journey",
-  "title": "From Anxiety to steadier practice",
-  "subtitle": "For when anxiety keeps steering the day",
-  "description": "Start where panic narrows the chest. These readings widen the field until fear stops narrating the whole day and the heart can receive care, Hukam, and breath again.",
+  "title": "Anxiety held by the Creator",
+  "subtitle": "For fear that forgets who gives support",
+  "description": "Start with the question the shabad asks the wavering heart: why shake when the One who made you still gives support? The readings move fear from private weather into remembered care, Hukam, and prayerful dependence.",
   "durationLabel": "5-step journey",
   "themes": [
     "anxiety",
@@ -14,8 +14,8 @@
       30988,
       30989
     ],
-    "shortMeaning": "The Creator who formed you remains your support.",
-    "lifeApplication": "Answer fear with remembrance before strategy."
+    "shortMeaning": "The Creator who formed the life also promises protection and daily support.",
+    "lifeApplication": "Before fear begins its calculations, let the first response be remembrance of the One already holding the life."
   },
   "items": [
     {
@@ -49,14 +49,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
-    "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Start where panic narrows the chest. These readings widen the field until fear stops narrating the whole day and the heart can receive care, Hukam, and breath again.",
+      "coreClaim": "This journey begins where anxiety wavers and lets the Creator's protection become the first fact again.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "For when anxiety keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "For fear that needs to be answered by remembered support",
+      "practicalImplication": "Move through the five steps slowly enough for strategy to lose the first word and trust in the Creator to regain it.",
       "bannedOverreach": []
     },
     "scores": {
