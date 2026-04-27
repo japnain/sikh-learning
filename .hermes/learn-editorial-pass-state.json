@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 21,
+      "count": 23,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -449,7 +449,9 @@
         "topic-guide:topic-greed",
         "topic-guide:topic-honesty",
         "topic-guide:topic-loneliness",
-        "topic-guide:topic-patience"
+        "topic-guide:topic-patience",
+        "topic-guide:topic-restlessness",
+        "topic-guide:topic-seeking"
       ]
     },
     "collection": {
@@ -459,8 +461,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-loneliness-topic-patience-verified-ready-to-ship",
-    "summary": "Completed a source-grounded manual rewrite of topic-loneliness and topic-patience top-level copy plus daily/pressure/repair/practice scenarios. Loneliness now moves from private ache into saintly company, Sat Sangat where the Lord abides, the Lord holding the humble close, repair after withdrawal, and a seven-day rhythm of ardas/shabad/contact. Patience now distinguishes small delays spending attention, pressured urgency sacrificing tone, repair after sharp impatience, and a kept waiting practice grounded in true bankers trading Naam, simran cooling the body, holy company bringing composure, and the Creator steadying the wavering mortal."
+    "status": "topic-restlessness-topic-seeking-verified-ready-to-ship",
+    "summary": "Completed a source-grounded manual rewrite of topic-restlessness and topic-seeking top-level copy plus daily/pressure/repair/practice scenarios. Restlessness now moves from restless motion into Shabad-centered dwelling, Sat Sangat, Naam, and service; its scenarios separate ordinary one-more-search habits, pressure-driven rescue motion, repair after a wasted hour, and a seven-day kept return. Seeking now moves from repeated questioning into Sat Sangat, Guru instruction, remembrance without postponement, and humble service; its scenarios distinguish daily delay, pressured escape, repair after using search as delay, and a rule of dwelling."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -468,15 +470,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/topic_verify.py topic-loneliness topic-patience failed before edits for locked/unreviewed metadata and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=21/28, topic scenarios manual-reviewed=95/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-loneliness now grounds loneliness in the seeker asking saintly company to show the Beloved, Sat Sangat where the Lord abides, the Lord keeping the humble close, human birth as the chance to meet the Lord through Naam and Sangat, the Creator sustaining the wavering mortal, and Hukam holding separation/reunion. Scenarios separate ordinary lonely narration, pressure-driven withdrawal, repair after disappearing, and a seven-day ardas/shabad/contact rhythm. topic-patience now grounds waiting in mind-wandering ceasing in Sangat, true bankers trading in Naam, simran cooling the body, saintly company giving composure, and the Creator steadying urgency. Scenarios separate small delays spending attention, pressured urgency sacrificing tone, repair after sharp impatience, and a kept waiting practice.",
-    "topicGuideBatch": "topic-loneliness and topic-patience passed: pre-edit touched-topic verifier failed for locked/unreviewed metadata and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
-    "topicMirrorReviewScan": "topic-loneliness and topic-patience detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/topic_verify.py topic-restlessness topic-seeking failed before edits for generated/unreviewed metadata and old template lines, then passed after source-grounded rewrites and mirror sync; direct quality scan confirmed daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, topic guides manual-reviewed=23/28, topic scenarios manual-reviewed=103/112, topic list mirror pass; remaining broad scan hits are in the unfinished topic queue or previously approved structural-explanation cleanup outside this touched batch; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-restlessness now grounds searching in Darshan, Shabad-cleared duality, Sat Sangat, breath-by-breath remembrance, belonging under the One, and Guru-service. Scenarios separate ordinary one-more-search habits, pressure-driven rescue motion, repair after a wasted hour, and a seven-day cue of shabad/ardas/service. topic-seeking now grounds longing in Sat Sangat where the Lord abides, the Guru word extinguishing doubt, non-postponed remembrance, humble service, and the shrinking day. Scenarios separate daily postponement, urgency as escape, repair after using search as delay, and a rule of dwelling.",
+    "topicGuideBatch": "topic-restlessness and topic-seeking passed: pre-edit touched-topic verifier failed for generated/unreviewed metadata and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
+    "topicMirrorReviewScan": "topic-restlessness and topic-seeking detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at f7fd3349b77bffa380073893ba68acbd29145647",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-loneliness/topic-patience and whole Learn details; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
+    "bannedPhraseScan": "Touched-topic verifier passed with no hard-banned/template hits for topic-restlessness/topic-seeking; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -485,5 +487,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "f7fd3349b77bffa380073893ba68acbd29145647",
-  "updatedAt": "2026-04-27T09:15:00Z"
+  "updatedAt": "2026-04-27T10:12:00Z"
 }
