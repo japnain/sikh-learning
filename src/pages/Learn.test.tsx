@@ -130,7 +130,7 @@ test("searching stress resolves to the approved anxiety guide on the topics hub"
     target: { value: "stress" },
   })
 
-  expect(screen.getAllByText(/When the mind is anxious/i).length).toBeGreaterThan(0)
+  expect(screen.getAllByText(/When worry must remember who is carrying the breath/i).length).toBeGreaterThan(0)
   const [statusCopy] = screen.getAllByText((_, element) => (
     element?.tagName.toLowerCase() === 'p'
     && (element.textContent?.includes('Showing the canonical approved guide for “stress”') ?? false)
