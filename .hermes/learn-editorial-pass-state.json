@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 11,
+      "count": 12,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -439,7 +439,8 @@
         "topic-guide:topic-comparison",
         "topic-guide:topic-conduct",
         "topic-guide:topic-doubt",
-        "topic-guide:topic-ego"
+        "topic-guide:topic-ego",
+        "topic-guide:topic-exhaustion"
       ]
     },
     "collection": {
@@ -449,8 +450,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-doubt-ego-verified-ready-to-ship",
-    "summary": "Completed manual source-grounded rewrites of topic-doubt and topic-ego top-level copy plus all daily/pressure/repair/practice scenarios. Doubt now distinguishes roaming questions in ordinary hours, pressure making doubt demand the room, repair after a slip turns into fog, and a seven-day return practice. Ego now distinguishes ordinary scorekeeping for credit, pressure making defense feel necessary, repair after pride has spoken, and hidden clean-conduct/service practice. Sources reviewed included doubt as unquenched fire and Guru-word medicine (918-922), Sat Sangat guiding the search (729-734, 3757-3760), Creator care answering wavering (30988-30994), Truth implanted in conduct under pressure (2798-2812), restless mind quieted by the Guru’s Mantra (7107-7112), ego as chronic illness with cure in Shabad (20961-20964), sweet speech and humble walk (1288-1296), honest labor/open-handed giving (53369-53372), hidden service (12942-12944), and Naam joined to pure conduct (11743-11748)."
+    "status": "topic-exhaustion-verified-ready-to-ship",
+    "summary": "Completed a manual source-grounded rewrite of topic-exhaustion top-level copy plus daily/pressure/repair/practice scenarios. The batch now distinguishes ordinary inward running for relief, pressured bargaining with urgency, repair after tired avoidance or snapping, and a seven-day Naam/Hukam practice. Sources reviewed included restless roaming cooled by holy company (3898-3900), Guru as mother/father watering the heart (3762-3763), Creator care answering wavering (30988-30994), Beloved nearness by grace (8823-8825), humble dust at the Saints feet (8842-8843), offering body/mind/wealth toward union (11201-11202), Naam as the treasure of comfort (13142-13143), and Hukam containing bodies, souls, pain, pleasure, blessing, and wandering (11-15)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -458,15 +459,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-doubt topic-ego passed after an intentional pre-edit RED failure; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, topic scenarios manual-reviewed=56/112; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended doubt/ego prose before commit: doubt now grounds ordinary roaming in doubt as unquenched fire, Sat Sangat as shared seeking, Creator care for wavering, Truth under pressure, and Guru-given quiet for the restless mind; ego now grounds daily scorekeeping, pressure defense, repair after pride, and hidden practice in haumai as chronic illness, sweet speech/humble walk, honest work/giving, hidden service, and Naam joined to clean conduct.",
-    "topicGuideBatch": "topic-doubt and topic-ego passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and staged banned-phrase checker pending final staged run.",
-    "topicMirrorReviewScan": "topic-doubt and topic-ego detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-exhaustion failed before edits for generated metadata and old template lines, then passed after the source-grounded rewrite and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, topic scenarios manual-reviewed=60/112; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended exhaustion prose before commit: top-level copy now grounds exhaustion in restless searching cooled by holy company, Guru-given kinship, and Creator care; daily names inward running for relief; pressure distinguishes urgency from nearness/Naam; repair returns tired avoidance to humility, offering, and Hukam; practice gives a keepable seven-day Naam/Hukam rhythm.",
+    "topicGuideBatch": "topic-exhaustion passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and staged banned-phrase checker pending final staged run.",
+    "topicMirrorReviewScan": "topic-exhaustion detail JSON equals public/data/learn/lists/topic-guides.json entry; home-summary compact topic mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 2a84bfbb3a7550e6c1f8add450f954e141dcfd91",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass after topic-comparison/topic-conduct batch.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-doubt/topic-ego; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-exhaustion; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -475,5 +476,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "0060db2c63951b432d6b736874c5aaeb1a313b01",
-  "updatedAt": "2026-04-27T06:27:17Z"
+  "updatedAt": "2026-04-27T07:11:00Z"
 }
