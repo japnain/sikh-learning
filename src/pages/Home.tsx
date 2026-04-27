@@ -349,6 +349,7 @@ export default function Home() {
   const readTodayRef = useRef<HTMLElement | null>(null)
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
+  const nitnemMomentSyncedRef = useRef(false)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
   const homeNow = useMemo(() => new Date(now), [now])
@@ -446,10 +447,29 @@ export default function Home() {
     ?? null
   const nitnemHasCarousel = selectedNitnemOptions.length > 1
 
+  useEffect(() => {
+    if (selectedNitnemOptions.length === 0) return
+
+    setActiveNitnemIndex(currentIndex => {
+      if (!nitnemMomentSyncedRef.current) {
+        nitnemMomentSyncedRef.current = true
+        return preferredNitnemIndex
+      }
+
+      return Math.max(0, Math.min(currentIndex, selectedNitnemOptions.length - 1))
+    })
+  }, [preferredNitnemIndex, selectedNitnemOptions.length])
+
   const scrollNitnemCarouselTo = useCallback((index: number) => {
     const carousel = nitnemCarouselRef.current
     const target = carousel?.querySelector<HTMLElement>(`[data-nitnem-index="${index}"]`)
-    target?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' })
+    if (!carousel || !target) return
+    const left = target.offsetLeft - carousel.offsetLeft
+    if (typeof carousel.scrollTo === 'function') {
+      carousel.scrollTo({ left, behavior: 'auto' })
+      return
+    }
+    carousel.scrollLeft = left
   }, [])
 
   const setNitnemCarouselIndex = useCallback((index: number) => {
@@ -626,9 +646,9 @@ export default function Home() {
     learnCatalogLoading,
   ])
   return (
-    <div className="page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
+    <div className="home-stack page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
-        className="home-door-shell mb-4 px-5 py-4 animate-slide-up stagger-1"
+        className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
         data-ai-surface="daily-reading-room"
@@ -687,6 +707,7 @@ export default function Home() {
           <span className="home-door-wood-arch" aria-hidden="true" />
           <span className="home-door-post home-door-post-left" aria-hidden="true" />
           <span className="home-door-post home-door-post-right" aria-hidden="true" />
+          <span className="home-door-sill" aria-hidden="true" />
           <div className="home-door-content">
             <div className="mx-auto max-w-[19rem] text-center">
               <span className="home-door-mark" aria-hidden="true">
@@ -785,13 +806,15 @@ export default function Home() {
       </section>
 
       <section
-        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-2"
+        className="home-guidance-note mb-4 py-4 pl-10 pr-4 animate-slide-up stagger-2"
         aria-label="Today's Guidance"
         data-testid="home-guidance-hero"
         data-ai-surface="home-guidance"
         data-ai-state={learnCatalogLoading ? 'loading' : learnCatalogError ? 'degraded' : todayGuidance && todayGuidancePath ? 'ready' : 'empty'}
         data-ai-error={learnCatalogError ? 'learn-catalog' : undefined}
       >
+        <span className="home-note-pin" aria-hidden="true" />
+        <span className="home-sprig" aria-hidden="true" />
         {learnCatalogLoading ? (
           <div className="animate-pulse" data-testid="home-guidance-skeleton">
             <div className="h-3 w-28 rounded bg-sand/20 dark:bg-dark-text/10" />
@@ -835,11 +858,16 @@ export default function Home() {
       </section>
 
       <section
-        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-3"
+        className="home-nitnem-tray mb-4 px-4 py-4 animate-slide-up stagger-3"
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
-        <div className="flex flex-wrap items-start justify-between gap-3">
+        <span className="home-tray-emblem" aria-hidden="true">
+          <IconBanis size={28} />
+        </span>
+        <span className="home-tray-corner home-tray-corner-left" aria-hidden="true" />
+        <span className="home-tray-corner home-tray-corner-right" aria-hidden="true" />
+        <div className="home-nitnem-heading flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <p
               id="home-nitnem-title"
@@ -875,9 +903,9 @@ export default function Home() {
                       data-testid={active ? 'home-nitnem-active-card' : undefined}
                       aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                       aria-current={active ? 'true' : undefined}
-                      className="home-quiet-card min-w-full snap-center px-4 py-4"
+                      className="home-nitnem-card min-w-full snap-center px-4 py-4"
                     >
-                      <div className="grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
+                      <div className="home-nitnem-card-grid grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
                             <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
@@ -895,7 +923,7 @@ export default function Home() {
                           </p>
                         </div>
 
-                        <div className="rounded-lg border border-sand/14 bg-parchment-card/50 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
+                        <div className="home-ritual-note rounded-lg border border-sand/14 bg-parchment-card/50 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
                           <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
                             Ritual Note
                           </p>
@@ -907,7 +935,7 @@ export default function Home() {
 
                       <Link
                         to={buildNitnemStudyPath(option)}
-                        className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-sand/18 bg-parchment-card/72 px-5 font-sans text-sm font-semibold text-ink/78 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/78"
+                        className="home-primary-amber interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-sand/18 bg-parchment-card/72 px-5 font-sans text-sm font-semibold text-ink/78 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/78"
                         data-testid={active ? 'home-nitnem-primary-action' : undefined}
                       >
                         {homeMessages.beginNitnem}
@@ -958,7 +986,7 @@ export default function Home() {
 
               <Link
                 to="/nitnem/customize"
-                className="interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-transparent px-5 font-sans text-sm font-medium text-ink/65 dark:border-dark-text/10 dark:text-dark-text/70"
+                className="home-outline-action interactive-focus interactive-pill-link mt-3 min-h-[48px] w-full rounded-lg border border-sand/16 bg-transparent px-5 font-sans text-sm font-medium text-ink/65 dark:border-dark-text/10 dark:text-dark-text/70"
                 data-testid="home-nitnem-manage"
               >
                 {homeMessages.customizeNitnem}
@@ -984,10 +1012,11 @@ export default function Home() {
       <section
         ref={readTodayRef}
         tabIndex={-1}
-        className="home-continuation-section mb-4 px-4 py-4 animate-slide-up stagger-4 transition-[box-shadow,transform,border-color] duration-500"
+        className="home-read-sheet mb-4 px-4 py-4 animate-slide-up stagger-4 transition-[box-shadow,transform,border-color] duration-500"
         aria-labelledby="home-read-today-title"
         data-testid="home-read-today"
       >
+        <span className="home-book-mark" aria-hidden="true" />
         <p id="home-read-today-title" className="eyebrow">{homeMessages.readTodayEyebrow}</p>
         <h2 className="mt-2 font-display text-[1.7rem] leading-[0.98] text-ink dark:text-dark-text">
           {homeMessages.readTodayTitle}
@@ -995,8 +1024,8 @@ export default function Home() {
         <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
           {homeMessages.readTodayBody}
         </p>
-        <div className="mt-4 grid gap-3">
-          <div className="home-quiet-card p-4">
+        <div className="home-read-grid mt-4 grid gap-3">
+          <div className="home-read-action-card home-quiet-card p-4">
             <p className="eyebrow">{homeCopy.read}</p>
             <h3 className="mt-2 font-display text-[1.72rem] leading-none text-ink dark:text-dark-text">
               {devotionalReadAction.title}
@@ -1006,71 +1035,68 @@ export default function Home() {
             </p>
             <Link
               to={devotionalReadAction.path}
-              className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 font-sans text-sm font-semibold text-saffron dark:border-gold/18 dark:bg-gold/10 dark:text-gold-light"
+              className="home-outline-action interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 font-sans text-sm font-semibold text-saffron dark:border-gold/18 dark:bg-gold/10 dark:text-gold-light"
               data-testid="home-read-today-action"
             >
               {devotionalReadAction.title}
             </Link>
           </div>
-
-          <div className="grid gap-3">
-            <div
-              className="home-quiet-card p-4"
-              data-testid="home-read-today-featured-shabad"
-            >
-              {featuredShabadSupport.state === 'loading' ? (
-                <div className="animate-pulse" data-testid="home-read-today-featured-shabad-loading">
-                  <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
-                  <div className="mt-4 h-8 rounded bg-sand/20 dark:bg-dark-text/10" />
-                  <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-                  <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-                </div>
-              ) : featuredShabadSupport.state === 'ready' ? (
-                <>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
-                      <h3 className="mt-2 font-display text-[1.5rem] leading-[1.02] text-ink dark:text-dark-text">
-                        {featuredShabadSupport.title}
-                      </h3>
-                      <p className="mt-2 font-sans text-sm font-semibold text-ink/70 dark:text-dark-text/75">
-                        {featuredShabadSupport.summary}
-                      </p>
-                    </div>
-                    <span className="chip-pill">{featuredShabadSupport.meta}</span>
-                  </div>
-
-                  <p className="mt-3 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                    {featuredShabadSupport.body}
-                  </p>
-                  <Link
-                    to={featuredShabadSupport.path}
-                    className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
-                    data-testid="home-open-featured-shabad"
-                  >
-                    <span>{featuredShabadSupport.actionLabel}</span>
-                    <IconArrowRight size={14} />
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
-                  <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
-                    {featuredShabadSupport.title}
-                  </p>
-                  <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                    {featuredShabadSupport.body}
-                  </p>
-                </>
-              )}
-            </div>
-
-          </div>
         </div>
       </section>
 
       <section
-        className="home-shelf-section p-4 mb-5 animate-slide-up stagger-4"
+        className="home-featured-slip home-quiet-card mb-4 p-4 animate-slide-up stagger-4"
+        data-testid="home-read-today-featured-shabad"
+      >
+        {featuredShabadSupport.state === 'loading' ? (
+          <div className="animate-pulse" data-testid="home-read-today-featured-shabad-loading">
+            <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
+            <div className="mt-4 h-8 rounded bg-sand/20 dark:bg-dark-text/10" />
+            <div className="mt-3 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+            <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+          </div>
+        ) : featuredShabadSupport.state === 'ready' ? (
+          <>
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
+                <h3 className="mt-2 font-display text-[1.5rem] leading-[1.02] text-ink dark:text-dark-text">
+                  {featuredShabadSupport.title}
+                </h3>
+                <p className="mt-2 font-sans text-sm font-semibold text-ink/70 dark:text-dark-text/75">
+                  {featuredShabadSupport.summary}
+                </p>
+              </div>
+              <span className="chip-pill">{featuredShabadSupport.meta}</span>
+            </div>
+
+            <p className="mt-3 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              {featuredShabadSupport.body}
+            </p>
+            <Link
+              to={featuredShabadSupport.path}
+              className="interactive-focus interactive-pill-link mt-4 min-h-[42px] gap-2 font-sans text-sm font-semibold text-gold dark:text-gold-light"
+              data-testid="home-open-featured-shabad"
+            >
+              <span>{featuredShabadSupport.actionLabel}</span>
+              <IconArrowRight size={14} />
+            </Link>
+          </>
+        ) : (
+          <>
+            <p className="eyebrow">{featuredShabadSupport.eyebrow}</p>
+            <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+              {featuredShabadSupport.title}
+            </p>
+            <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
+              {featuredShabadSupport.body}
+            </p>
+          </>
+        )}
+      </section>
+
+      <section
+        className="home-saved-cabinet p-4 mb-5 animate-slide-up stagger-4"
         aria-labelledby="home-saved-title"
         data-testid="home-saved-overview"
       >
