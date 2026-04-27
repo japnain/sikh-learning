@@ -477,7 +477,7 @@
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "second-five-short-bundles-shipped-pending-push-record",
+    "status": "second-five-short-bundles-shipped",
     "summary": "Completed and verified source-grounded manual rewrites for five generated short collection bundles: discipline, doubt, ego, exhaustion, and fear. Each bundle now names its cited shabad image directly: inward conquest, the fire of doubt, ego as disease with Shabad as cure, Ik Oankar as the tired mind’s beginning, and the One as family when fear feels like exile."
   },
   "verificationStatus": {
@@ -490,7 +490,7 @@
     "representativeDiffReview": "Reviewed intended prose diff for the second collection short-bundle batch: discipline turns control inward toward mind-conquest and brotherhood; doubt answers the inner fire with the Guru-word; ego names chronic disease and grace-given Shabad cure; exhaustion begins under Ik Oankar/Sat Naam/Guru grace rather than self-force; fear returns from exile into the One named as Father, Mother, relative, and brother.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Collection content batch pushed to origin master at b776fc92abcdbee202f8cd28984d3b7864ccbd42; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Collection content batch pushed to origin master at f46d129ffd7e7783a73530408208fbea6969c576; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
@@ -504,6 +504,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "b776fc92abcdbee202f8cd28984d3b7864ccbd42",
-  "updatedAt": "2026-04-27T12:16:08Z"
+  "lastPushedCommitSha": "f46d129ffd7e7783a73530408208fbea6969c576",
+  "updatedAt": "2026-04-27T12:16:37Z"
 }
