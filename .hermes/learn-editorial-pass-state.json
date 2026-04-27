@@ -474,7 +474,7 @@
     "representativeDiffReview": "Reviewed intended prose diff before commit: topic-restlessness now grounds searching in Darshan, Shabad-cleared duality, Sat Sangat, breath-by-breath remembrance, belonging under the One, and Guru-service. Scenarios separate ordinary one-more-search habits, pressure-driven rescue motion, repair after a wasted hour, and a seven-day cue of shabad/ardas/service. topic-seeking now grounds longing in Sat Sangat where the Lord abides, the Guru word extinguishing doubt, non-postponed remembrance, humble service, and the shrinking day. Scenarios separate daily postponement, urgency as escape, repair after using search as delay, and a rule of dwelling.",
     "topicGuideBatch": "topic-restlessness and topic-seeking passed: pre-edit touched-topic verifier failed for generated/unreviewed metadata and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
     "topicMirrorReviewScan": "topic-restlessness and topic-seeking detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at f7fd3349b77bffa380073893ba68acbd29145647",
+    "lastPushRecord": "Content batch pushed to origin master at 5515dd4dcebfb0e490d0ad29982a808a2f2794c3",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
@@ -486,6 +486,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "f7fd3349b77bffa380073893ba68acbd29145647",
+  "lastPushedCommitSha": "5515dd4dcebfb0e490d0ad29982a808a2f2794c3",
   "updatedAt": "2026-04-27T10:12:00Z"
 }
