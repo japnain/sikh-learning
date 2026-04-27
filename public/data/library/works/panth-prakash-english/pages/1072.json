@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1072,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 497,
   "title": "Sikh Ascendancy and the Opening of Sadiq Beg’s Betrayal",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 125,

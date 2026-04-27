@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1379,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 804,
   "title": "That organisation had three Misls of equal strength,",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 163,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1023,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 448,
   "title": "Though least scared of death while fighting a battle,",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 120,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 556,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 556,
   "title": "EPISODE 37 1 Banur: Situated on Chandigarh Rajpura Road at a distance of 30 kms from Chandigarh. It was",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 37,

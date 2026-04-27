@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 27,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 27,
   "title": "and demi-gods than exceptional visionaries, steadfast leaders of men, and real flesh and blood",
   "blocks": [
     {
@@ -236,6 +236,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

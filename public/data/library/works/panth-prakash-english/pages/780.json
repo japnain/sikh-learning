@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 780,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 205,
   "title": "Informers Name Mehtab Singh and the Village Is Besieged",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 97,

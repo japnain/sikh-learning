@@ -2336,6 +2336,44 @@ test('premium contents pages keep curated editorial outlines and browse links fo
   })
 })
 
+test('remaining Panth Prakash front matter and episode-boundary pages do not carry misleading stale episode context', async () => {
+  const page538 = await loadLibraryPage('panth-prakash-english', 538)
+  const page580 = await loadLibraryPage('panth-prakash-english', 580)
+  const page586 = await loadLibraryPage('panth-prakash-english', 586)
+  const page616 = await loadLibraryPage('panth-prakash-english', 616)
+
+  expect(page538?.title).toBe('References (Volume I)')
+  expect(page538?.episode).toBeUndefined()
+  expect(page580?.title).toBe('Acknowledgement (Volume II)')
+  expect(page580?.episode).toBeUndefined()
+  expect(page586?.title).toBe('Introduction (Volume II)')
+  expect(page586?.episode).toBeUndefined()
+  expect(page616?.title).toBe('Translator’s Closing Note and References')
+  expect(page616?.episode).toBeUndefined()
+})
+
+test('remaining Panth Prakash OCR-garbled page titles are replaced with readable episode-boundary labels', async () => {
+  const page1032 = await loadLibraryPage('panth-prakash-english', 1032)
+  const page1262 = await loadLibraryPage('panth-prakash-english', 1262)
+
+  expect(page1032?.title).toBe('Close of Shah Nawaz and Opening of Sri Amritsar')
+  expect(page1032?.blocks.some(block => /Shah Nawaz|Sri Amritsar/.test(block.text))).toBe(true)
+  expect(page1262?.title).toBe('Opening of Nihang Gurbakhsh Singh')
+  expect(page1262?.blocks.some(block => /Nihang Gurbakhsh Singh/.test(block.text))).toBe(true)
+})
+
+test('Panth Prakash page index mirrors remaining cleaned titles', () => {
+  const pageIndex = readPublicLibraryJson('/data/library/works/panth-prakash-english/pages.json') as Array<{ pageNumber: number; title: string }>
+  const titles = new Map(pageIndex.map(page => [page.pageNumber, page.title]))
+
+  expect(titles.get(538)).toBe('References (Volume I)')
+  expect(titles.get(580)).toBe('Acknowledgement (Volume II)')
+  expect(titles.get(586)).toBe('Introduction (Volume II)')
+  expect(titles.get(616)).toBe('Translator’s Closing Note and References')
+  expect(titles.get(1032)).toBe('Close of Shah Nawaz and Opening of Sri Amritsar')
+  expect(titles.get(1262)).toBe('Opening of Nihang Gurbakhsh Singh')
+})
+
 test('can swap in a filesystem-backed loader for tests', async () => {
   configureLibraryRepositoryLoader(async (resourcePath) => readPublicLibraryJson(resourcePath))
   resetLibraryRepositoryCache()

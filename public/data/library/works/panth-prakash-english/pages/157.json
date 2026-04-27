@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 157,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 157,
   "title": "Episode About the Battle at Anandpur Sahib",
   "blocks": [
     {
@@ -206,7 +206,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 18,

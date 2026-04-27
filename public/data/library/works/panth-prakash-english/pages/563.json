@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 563,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 563,
   "title": "platform in the open court. Whosoever picked up the sword and put the beetal nut packing in",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 60,

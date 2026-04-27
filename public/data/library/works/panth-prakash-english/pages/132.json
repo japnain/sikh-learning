@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 132,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 132,
   "title": "He instructed them to discard the four distinctions of caste,",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 15,

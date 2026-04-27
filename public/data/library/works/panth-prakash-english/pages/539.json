@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 539,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 539,
   "title": "capture the Delhi throne in 1707, after his victory over his brother prince Alam Shah.",
   "blocks": [
     {
@@ -316,7 +316,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 2,

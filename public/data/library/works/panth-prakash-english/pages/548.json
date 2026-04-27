@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 548,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 548,
   "title": "actual year of initiation of Khalsa Panth by Guru Gobind Singh is supposed to be 1756 in",
   "blocks": [
     {
@@ -281,7 +281,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 81,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 908,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 333,
   "title": "The Mughal line breaks Babur's covenant with Guru Nanak",
   "blocks": [
     {
@@ -191,7 +191,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 108,

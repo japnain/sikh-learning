@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 550,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 550,
   "title": "warrior, Arjuna who killed son of their main enemy Duryodhna in the war of Mahabharta and",
   "blocks": [
     {
@@ -311,7 +311,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 20,

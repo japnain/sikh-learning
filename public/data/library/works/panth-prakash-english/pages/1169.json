@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1169,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 594,
   "title": "S. Jassa Singh Ahluwalia wished to put it off for the time being,",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 140,

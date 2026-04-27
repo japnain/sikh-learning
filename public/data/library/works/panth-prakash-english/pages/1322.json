@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1322,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 747,
   "title": "Karora Singh Strengthens the Misl and Baghel Singh Succeeds",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 160,

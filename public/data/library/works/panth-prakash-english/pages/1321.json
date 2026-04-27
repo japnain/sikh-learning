@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1321,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 746,
   "title": "Those Singhs who travelled from the Majha region,",
   "blocks": [
     {
@@ -251,7 +251,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 160,

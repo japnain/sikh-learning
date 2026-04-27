@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1099,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 524,
   "title": "Declaring someone as his sister and someone his daughter,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 134,

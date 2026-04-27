@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 407,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 407,
   "title": "(The emperor) asked him to imagine the dipping of one's arm in oil,",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 61,

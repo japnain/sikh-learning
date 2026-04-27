@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 906,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 331,
   "title": "Guru Nanak warns Babur that a boon can be withdrawn",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 108,

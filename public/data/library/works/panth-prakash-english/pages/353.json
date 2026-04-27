@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 353,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 353,
   "title": "The people replied that he was a camp follower of Guru Gobind Singh.",
   "blocks": [
     {
@@ -246,7 +246,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 54,

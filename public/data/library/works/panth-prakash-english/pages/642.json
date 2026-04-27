@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 642,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 67,
   "title": "Episode 83 Ends; Episode 84 Begins — From Sharan Dass to Tara Singh",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 83,

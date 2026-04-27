@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1297,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 722,
   "title": "A new strategy must he (Rohilla) devise at the moment,",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 157,

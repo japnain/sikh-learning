@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 905,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 330,
   "title": "Claiming to repose complete faith in Nanak's Divinity,",
   "blocks": [
     {
@@ -271,7 +271,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 108,

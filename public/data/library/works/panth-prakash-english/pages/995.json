@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 995,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 420,
   "title": "Thereupon, Sukha Singh did make a declaration,",
   "blocks": [
     {
@@ -241,7 +241,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 116,

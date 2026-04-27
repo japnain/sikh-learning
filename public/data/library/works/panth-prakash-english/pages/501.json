@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 501,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 501,
   "title": "The Episode About the Guruship of Gulab Rai...",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 75,

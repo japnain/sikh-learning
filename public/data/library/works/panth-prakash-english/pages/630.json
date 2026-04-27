@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 630,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 55,
   "title": "43 Grewal J.S., Valorizing the Tradition: Bhangoo's Guru Granth Prakash in the Khalsa",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 88,

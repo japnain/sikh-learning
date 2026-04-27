@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 635,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 60,
   "title": "The Guru's Cause and the Sikh Panth And those Given to Debauchery and Irascibility",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 83,

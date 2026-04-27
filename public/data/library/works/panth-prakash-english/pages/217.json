@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 217,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 217,
   "title": "The Episode About Guru Gobind Singh's Movement to the South.",
   "blocks": [
     {
@@ -186,7 +186,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 26,

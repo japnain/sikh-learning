@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1281,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 706,
   "title": "With the spears was Singhs body pressed down,",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 156,

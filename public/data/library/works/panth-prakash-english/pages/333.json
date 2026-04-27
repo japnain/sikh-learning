@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 333,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 333,
   "title": "Whosoever professed to be his follower had to make a token payment,",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 49,

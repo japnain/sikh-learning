@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 404,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 404,
   "title": "Estrangement Between Banda Singh And Tat Khalsa",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 60,

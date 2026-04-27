@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 34,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 34,
   "title": "writer and a zealous inheritor of Sikh heritage of the dignified struggle and defiance against",
   "blocks": [
     {
@@ -241,6 +241,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

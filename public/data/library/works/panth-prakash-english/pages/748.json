@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 748,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 173,
   "title": "The Poem Exalts Mani Singh Above Earlier Martyrs",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 93,

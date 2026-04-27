@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 754,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 179,
   "title": "The Khalsa Reads the Invasion as a Divinely Timed Opening",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 94,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 815,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 240,
   "title": "He challenged that let any Singh come armed with a sword, dagger and knife,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 100,

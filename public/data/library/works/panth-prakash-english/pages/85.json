@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 85,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 85,
   "title": "Episode About Udasi to the East",
   "blocks": [
     {
@@ -191,7 +191,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 6,

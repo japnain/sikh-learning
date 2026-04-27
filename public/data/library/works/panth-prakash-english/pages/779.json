@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 779,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 204,
   "title": "As the din and noise continued for a long time,",
   "blocks": [
     {
@@ -241,7 +241,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 97,

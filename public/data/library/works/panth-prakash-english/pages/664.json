@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 664,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 89,
   "title": "The Pathan Warning and Tara Singh’s Refusal to Hide",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 86,

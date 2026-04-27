@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 3,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 3,
   "title": "SPECIAL ACKNOWLEDGEMENT",
   "blocks": [
     {
@@ -61,6 +61,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

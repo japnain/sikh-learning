@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1292,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 717,
   "title": "Abdali Is Alarmed by the Khalsa-Jat Alliance",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 157,

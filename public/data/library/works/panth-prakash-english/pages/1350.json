@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1350,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 775,
   "title": "The Rescued Girl Is Received as the Khalsa’s Daughter",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 161,

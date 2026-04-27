@@ -45,6 +45,11 @@ function buildPagePath(section: ScriptureSourceSection, ang: number) {
   return `/study?source=${section.source}&ang=${ang}`
 }
 
+function buildPageLinkLabel(section: ScriptureSourceSection, ang: number) {
+  const label = angLabel(section).toLowerCase()
+  return `Open ${section.name.replace(' (English)', '')} ${label} ${ang}`
+}
+
 function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
   const [page, setPage] = useState(0)
   const start = page * PAGE_SIZE + 1
@@ -57,6 +62,7 @@ function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
           <Link
             key={ang}
             to={buildPagePath(section, ang)}
+            aria-label={buildPageLinkLabel(section, ang)}
             className="section-shell interactive-focus interactive-card-link flex min-h-[44px] items-center justify-center rounded-2xl py-2 text-center font-sans text-sm text-ink hover:text-gold dark:text-dark-text dark:hover:text-gold-light"
           >
             {ang}

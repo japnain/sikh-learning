@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 457,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 457,
   "title": "They stood still even after climbing upto his room,",
   "blocks": [
     {
@@ -251,7 +251,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 67,

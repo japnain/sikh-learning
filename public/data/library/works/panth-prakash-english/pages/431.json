@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 431,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 431,
   "title": "The Episode About Mughal's Attack (on Paid, Singh S Fort)",
   "blocks": [
     {
@@ -236,7 +236,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 64,

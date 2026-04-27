@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 325,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 325,
   "title": "Thereafter, the Hill chief of Kahloor issued such orders,",
   "blocks": [
     {
@@ -196,7 +196,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 48,

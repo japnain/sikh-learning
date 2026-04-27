@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 568,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 568,
   "title": "Tat Khalsa: The mainstream Khalsa who defected from Banda Ssingh and adhered to the basic",
   "blocks": [
     {
@@ -276,7 +276,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 72,

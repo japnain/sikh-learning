@@ -2,18 +2,23 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1032,
   "volume": 2,
-  "sourcePageNumber": 0,
-  "title": "(fea fea U8 35 dId AS a6 vs asta)",
+  "sourcePageNumber": 457,
+  "title": "Close of Shah Nawaz and Opening of Sri Amritsar",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-1032-1",
       "type": "paragraph",
-      "text": "(fea fea U8 35 dId AS a6 vs asta)"
+      "text": "This boundary page closes the account of Shah Nawaz: the battle ends, Shah Nawaz falls, and Rattan Singh signals that he has narrated the account as he received it."
     },
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "şo TAMI AS AIS | Td gos ug SIX OUTS FI"
+      "id": "manual-1032-2",
+      "type": "paragraph",
+      "text": "The page then turns toward the next episode, opening the account of Sri Amritsar and the Khalsa’s recurring gatherings at the sacred centre."
+    },
+    {
+      "id": "manual-1032-3",
+      "type": "paragraph",
+      "text": "The retained raw OCR preserves the verse markers and damaged transliteration, while the readable text names the hinge between Shah Nawaz and Sri Amritsar for safer navigation."
     }
   ],
   "rawBlocks": [
@@ -206,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 121,
