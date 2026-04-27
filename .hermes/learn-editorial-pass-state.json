@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote the eight-item forgiveness/fearlessness duplicate-takeaway cluster formerly sharing 'Release becomes possible when return matters more than replay.' The entries now distinguish reverent service becoming fearlessness, forgiveness as a true fast, the guarded wound losing command, the Lord present inside/outside/among trees and homes, received forgiveness becoming stewarded peace, Naam ripening relief, peace widening through the room, and Bani keeping mercy audible. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the eight-item day-urgency/human-birth duplicate-takeaway cluster formerly sharing 'Use this day for what can still remain.' The entries now distinguish the shrinking day brought to the Guru, rare birth awakened to Naam, great fortune answered by remembrance, the body as doorway to meeting Gobind, crossing the world-ocean instead of circling in Maya, fruitful service led into Naam, the remaining day used for Naam's profit, and the One Shabad gathering scattered hopes. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "7 remaining after forgiveness/fearlessness duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "6 remaining after day-urgency/human-birth duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after forgiveness/fearlessness duplicate-takeaway cluster batch",
-    "representativeDiffReview": "source review completed for forgiveness/fearlessness cluster: inspected verses 9611-9613 (serving the True Guru and becoming fearless through reverent fear), 9600-9601 (forgiveness/conduct/contentment as the true fast), 9603-9605 (the Fearless Lord inside, outside, among trees and household), 27259-27261 (forgiveness given, lasting peace, every place dwelling in peace), and 27263-27266 (Perfect Guru's rare grace, singing Gurbani, Naam meditation). Representative staged git diff reviewed before commit.",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts -t \"published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed; npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after day-urgency/human-birth duplicate-takeaway cluster batch",
+    "representativeDiffReview": "source review completed for day-urgency/human-birth cluster: inspected verses 8834-8835 (life diminishing day/night and affairs resolved by meeting the Guru), 7947-7948 (rare body and Naam as protection from soul-harm), 524-525 (human body as chance to meet Gobind), 528-529 (effort to cross the world-ocean instead of wasting life in Maya), 3452-3453 (fruitful service, meeting the Guru, Naam meditation), and 771-772 (One Shabad, abandoned hopes, helping others behold). Representative staged git diff reviewed before commit.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
     "lastPushRecord": "Content batch pushed to origin master at f4270f9b803f3a3a1d3d5636975fe91e7106f273",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 7.",
-    "dailyMirrorScan": "changed forgiveness/fearlessness daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields synced for touched IDs; full daily mirror scan passed",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=7; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium duplicate-takeaway cleanup still in progress",
-    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after forgiveness/fearlessness cluster polish; staged check-banned-phrases.mjs passed before commit"
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 6.",
+    "dailyMirrorScan": "changed day-urgency/human-birth daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/rotation fields synced for touched IDs; touched daily mirror scan passed",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=6; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium duplicate-takeaway cleanup still in progress",
+    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after day-urgency/human-birth cluster polish; node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/TS files before commit"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "ba0525a6683d79da5824318e35593858df3a3700",
-  "updatedAt": "2026-04-27T02:56:22Z"
+  "updatedAt": "2026-04-27T03:15:45Z"
 }
