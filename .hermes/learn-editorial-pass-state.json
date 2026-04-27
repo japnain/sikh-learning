@@ -455,7 +455,7 @@
     "representativeDiffReview": "Reviewed intended topic-anger prose before commit: overview now diagnoses anger as ego seeking authority; repair requires truthful harm-naming without self-defense; practice ties the brake to the Guru-given soul, ego diagnosis, service, and Shabad-shaped peace.",
     "topicGuideBatch": "topic-anger passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, targeted topic/daily Vitest, full Learn repository/page Vitest, and daily premium snapshot retained 0 duplicates.",
     "topicMirrorReviewScan": "topic-anger detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 4450b53ca6ec846a862fa7427552c69513b696a5",
+    "lastPushRecord": "Content batch pushed to origin master at ac42fc73ab716b70a5e09f0fc7863ea2276d3d51",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-anger batch.",
@@ -467,6 +467,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "4450b53ca6ec846a862fa7427552c69513b696a5",
-  "updatedAt": "2026-04-27T04:21:28Z"
+  "lastPushedCommitSha": "ac42fc73ab716b70a5e09f0fc7863ea2276d3d51",
+  "updatedAt": "2026-04-27T04:42:35Z"
 }
