@@ -211,12 +211,12 @@ test("searching mercy under pressure opens the canonical mercy page with the pre
     target: { value: "mercy under pressure" },
   })
 
-  fireEvent.click(screen.getByRole("link", { name: /When mercy has to be received before it can be trusted/i }))
+  fireEvent.click(screen.getByRole("link", { name: /When mercy is steadier than your self-judgment/i }))
 
   await waitFor(() => {
     expect(screen.getByTestId("location-display")).toHaveTextContent("/learn/topics/topic-mercy?from=topics&scenario=pressure")
   })
-  expect(await screen.findByRole("heading", { level: 1, name: /When mercy tightens under pressure/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /When pressure makes mercy feel irresponsible/i })).toBeInTheDocument()
 })
 
 test("clicking today's guidance opens a real detail route", async () => {
