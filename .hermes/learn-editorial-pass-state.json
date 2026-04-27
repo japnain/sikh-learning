@@ -441,23 +441,23 @@
   "currentBatchStatus": {
     "wave": "daily-guidance final polish",
     "status": "in-progress-before-continuing-topic-guides",
-    "summary": "This run rewrote two duplicate-takeaway clusters: 'Let tenderness stay strong.' and 'Quiet the spiral before it sounds like wisdom.' The service/complaint item now distinguishes Naam quieting protest through service; the suffering item now widens pain into praise of the unknowable One Light; the support/remembrance items now separate breath-supported reliance from body-settling simran. Daily detail/list/home mirrors were synced."
+    "summary": "This run rewrote the duplicate-takeaway appetite/profit cluster: 'Choose the profit that can still travel.' Four daily guidance entries now distinguish bodily pleasures crowding out Naam, early craving becoming a road, timeless Truth judging accumulation, and appetite becoming identity unless submitted to the Guru. Daily detail/list/home mirrors were synced."
   },
   "verificationStatus": {
-    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after tenderness/support duplicate-takeaway clusters; staged check-banned-phrases.mjs passed before commit",
+    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits after appetite/profit duplicate-takeaway cluster polish; staged check-banned-phrases.mjs passed before commit",
     "duplicateDailyGuidanceSummaries": "0",
     "duplicateDailyGuidanceTitles": "0",
-    "duplicateDailyGuidanceTakeaways": "18 remaining after tenderness/support duplicate-takeaway cluster polish batch",
+    "duplicateDailyGuidanceTakeaways": "17 remaining after appetite/profit duplicate-takeaway cluster polish batch",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after tenderness/support duplicate-takeaway cluster batch",
-    "representativeDiffReview": "source review completed before staging for tenderness/support clusters: inspected verses 3447-3448 (service to the True Guru receives Naam until complaint ceases), 21093-21094 (the One Light pervades creatures beyond measure), 4145-4146 (God as breath/support and praise as life), and 11502-11503 (repeated remembrance brings peace and dispels bodily worry).",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after appetite/profit duplicate-takeaway cluster batch",
+    "representativeDiffReview": "source review completed for appetite/profit cluster: inspected verses 639-641 (bodily pleasures crowd Naam out of the heart), 5595-5596 (appetite begins in early attachments before becoming a life-pattern), and 3-4 (Truth before and beyond time judges accumulation).",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "Content batch pushed to origin master at 70a1bdd8be3e5a3b11852aca0edcedf20fb80924",
-    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 18.",
-    "dailyMirrorScan": "changed tenderness/support daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields were synced for touched IDs",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=18; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; touched mirrors ok"
+    "lastPushRecord": "pending push for appetite/profit duplicate-takeaway cluster batch",
+    "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 17.",
+    "dailyMirrorScan": "changed appetite/profit daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields were synced for touched IDs",
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=17; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors ok for daily corpus; final-premium duplicate-takeaway cleanup still in progress"
   },
   "blockers": [],
   "remainingQueue": [
@@ -467,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "70a1bdd8be3e5a3b11852aca0edcedf20fb80924",
-  "updatedAt": "2026-04-26T23:44:36Z"
+  "updatedAt": "2026-04-27T00:04:16Z"
 }
