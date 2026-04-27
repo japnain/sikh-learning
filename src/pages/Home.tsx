@@ -464,7 +464,7 @@ export default function Home() {
     const carousel = nitnemCarouselRef.current
     const target = carousel?.querySelector<HTMLElement>(`[data-nitnem-index="${index}"]`)
     if (!carousel || !target) return
-    const left = target.offsetLeft - carousel.offsetLeft
+    const left = target.offsetLeft
     if (typeof carousel.scrollTo === 'function') {
       carousel.scrollTo({ left, behavior: 'auto' })
       return
@@ -502,7 +502,14 @@ export default function Home() {
     }
 
     nitnemScrollTimeoutRef.current = window.setTimeout(() => {
-      const nextIndex = Math.round(carousel.scrollLeft / Math.max(carousel.clientWidth, 1))
+      const cards = Array.from(carousel.querySelectorAll<HTMLElement>('[data-nitnem-index]'))
+      const nearestCard = cards.reduce<HTMLElement | null>((nearest, card) => {
+        if (!nearest) return card
+        return Math.abs(card.offsetLeft - carousel.scrollLeft) < Math.abs(nearest.offsetLeft - carousel.scrollLeft)
+          ? card
+          : nearest
+      }, null)
+      const nextIndex = Number(nearestCard?.dataset.nitnemIndex ?? 0)
       setActiveNitnemIndex(Math.max(0, Math.min(nextIndex, selectedNitnemOptions.length - 1)))
     }, 80)
   }
