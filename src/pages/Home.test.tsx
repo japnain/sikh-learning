@@ -442,7 +442,7 @@ test('does not promote saved revisits into the top home surface', async () => {
 
   expect(screen.queryByTestId('home-next-best-action')).not.toBeInTheDocument()
   const savedPreview = await screen.findByTestId('home-saved-preview-learn')
-  expect(savedPreview).toHaveTextContent(/when the mind is anxious/i)
+  expect(savedPreview).toHaveTextContent(/when worry must remember who is carrying the breath/i)
   expect(savedPreview.getAttribute('href')).toMatch(/\/learn\/topics\/topic-anxiety\?from=saved/)
 })
 
@@ -565,7 +565,7 @@ test('shows real saved preview rows on home instead of vocab-only counts', async
   renderHome()
 
   const previewList = await screen.findByTestId('home-saved-preview-list')
-  expect(within(previewList).getByText('When the mind is anxious')).toBeInTheDocument()
+  expect(within(previewList).getByText('When worry must remember who is carrying the breath')).toBeInTheDocument()
   expect(within(previewList).getByText('Japji Sahib')).toBeInTheDocument()
   expect(within(previewList).getByText('ਸਬਰ')).toBeInTheDocument()
   expect(screen.getByTestId('home-saved-preview-learn')).toBeInTheDocument()
