@@ -466,7 +466,7 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-seva-topic-shame-topic-softness-verified-pending-push",
+    "status": "topic-seva-topic-shame-topic-softness-shipped",
     "summary": "Completed source-grounded manual rewrites for the final three topic guides needing review. Seva now distinguishes hidden service under the Guru from visible self-display across ordinary, pressure, repair, and practice states. Shame now moves from failure-as-name into mercy, truthful return, Lord’s shelter, and visible repair. Softness now grounds gentle speech in Naam, Hukam, humility, conquest of the mind, and truth delivered after ego is lowered."
   },
   "verificationStatus": {
@@ -479,7 +479,7 @@
     "representativeDiffReview": "Reviewed intended prose diff before commit: topic-seva now grounds service in hidden obedience, Naam, mind sold to the True Guru, honest labor/giving, and rewardless practice; scenarios separate ordinary credit-seeking, pressure as indispensable self-display, repair after service becomes a debt, and a hidden seven-day seva rule. topic-shame now grounds return in childlike confession under Father/Mother mercy, Lord’s service beyond worldly rankings, true dwelling by grace, and the Forgiving Lord’s shelter; repair now distinguishes visible return from disappearance. topic-softness now grounds gentle speech in Naam, sweet speech, humble walking, Hukam, conquest of the mind, and truth delivered after ego is lowered; daily softness now starts before the first clipped correction. Also repaired 12 structural-heading explanation leaks in previously completed topic guides.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Content batch pushed to origin master at f3ea78c9118e2bbf9ec7761c6fb2447ad6e10f40; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Content batch pushed to origin master at 8f97e4939ff522aa2bf873bb1c0cadb1829ef119; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
@@ -490,6 +490,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "f3ea78c9118e2bbf9ec7761c6fb2447ad6e10f40",
-  "updatedAt": "2026-04-27T09:52:36Z"
+  "lastPushedCommitSha": "8f97e4939ff522aa2bf873bb1c0cadb1829ef119",
+  "updatedAt": "2026-04-27T09:53:58Z"
 }
