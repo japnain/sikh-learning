@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-bundle",
-  "title": "Fear in one shorter sitting",
-  "subtitle": "A shorter sitting for when fear is already close",
-  "description": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
+  "title": "When fear feels like exile",
+  "subtitle": "Name the One as family again",
+  "description": "A three-step bundle for the hour when fear makes the world feel hostile and the body feel alone. It returns to the shabad’s intimate names — Father, Mother, relative, brother — until shelter becomes personal again.",
   "durationLabel": "3-step bundle",
   "themes": [
     "fear"
@@ -13,8 +13,8 @@
       4132,
       4133
     ],
-    "shortMeaning": "Fear loses authority when care and remembrance regain the body.",
-    "lifeApplication": "When fear starts ruling the body, stand still long enough to remember what holds you."
+    "shortMeaning": "Fear loses some of its authority when the One is remembered as the nearest family, not a distant idea.",
+    "lifeApplication": "When fear starts isolating you, name the One as Father, Mother, relative, and brother before you obey the story of exile."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when the body is already braced. It steadies fear before it becomes the weather of the whole room.",
+      "coreClaim": "This bundle answers fear with kinship. The frightened body is not argued out of fear; it is brought back into the nearness of the One who is named as family.",
       "emotionalState": "afraid, guarded, dreading",
-      "turn": "A shorter sitting for when fear is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Let fear hear the names of shelter before it decides where you belong.",
+      "practicalImplication": "Use the steps to stand still, speak the intimate names of the One, and take the next action from shelter rather than exile.",
       "bannedOverreach": []
     },
     "scores": {

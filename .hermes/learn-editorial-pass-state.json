@@ -460,20 +460,25 @@
       ]
     },
     "collection": {
-      "count": 5,
+      "count": 10,
       "ids": [
         "collection:collection-anger-bundle",
         "collection:collection-anxiety-bundle",
         "collection:collection-attachment-bundle",
         "collection:collection-comparison-bundle",
-        "collection:collection-control-bundle"
+        "collection:collection-control-bundle",
+        "collection:collection-discipline-bundle",
+        "collection:collection-doubt-bundle",
+        "collection:collection-ego-bundle",
+        "collection:collection-exhaustion-bundle",
+        "collection:collection-fear-bundle"
       ]
     }
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "first-five-short-bundles-shipped",
-    "summary": "Completed source-grounded manual rewrites for the first five generated short collection bundles: anger, anxiety, attachment, comparison, and control. Each bundle now names the cited shabad image or movement directly rather than using generic shorter-sitting scaffolds."
+    "status": "second-five-short-bundles-shipped-pending-push-record",
+    "summary": "Completed and verified source-grounded manual rewrites for five generated short collection bundles: discipline, doubt, ego, exhaustion, and fear. Each bundle now names its cited shabad image directly: inward conquest, the fire of doubt, ego as disease with Shabad as cure, Ik Oankar as the tired mind’s beginning, and the One as family when fear feels like exile."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -482,17 +487,17 @@
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
     "vitest": "python3 .hermes/scripts/topic_verify.py topic-seva topic-shame topic-softness failed before edits for unreviewed/generated/locked metadata and old template lines, then passed after source-grounded rewrites and mirror sync; broad scan confirmed daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed/manual/approved=240/240/240, daily home mirrors=240, topic guides manual-reviewed=28/28, topic scenarios manual-reviewed=112/112, topic list/home mirrors pass, daily/topic app-authored banned and structural heading hits=0; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff for the collection batch: anger begins under Truth before the flare-up and asks Hukam to shrink the reply; anxiety answers wavering with the Creator who protects and nourishes; attachment rests in sanctuary until praise/blame lose authority; comparison uses metal merging and crimson Truth to melt ranking into praise; control lets many songs of Jap widen the room until praise replaces management.",
+    "representativeDiffReview": "Reviewed intended prose diff for the second collection short-bundle batch: discipline turns control inward toward mind-conquest and brotherhood; doubt answers the inner fire with the Guru-word; ego names chronic disease and grace-given Shabad cure; exhaustion begins under Ik Oankar/Sat Naam/Guru grace rather than self-force; fear returns from exile into the One named as Father, Mother, relative, and brother.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
     "lastPushRecord": "Collection content batch pushed to origin master at b776fc92abcdbee202f8cd28984d3b7864ccbd42; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
-    "bannedPhraseScan": "direct broad daily/topic app-authored scan passed with banned/template/structural heading hits=0; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files.",
-    "collectionBatch": "collection-anger-bundle, collection-anxiety-bundle, collection-attachment-bundle, collection-comparison-bundle, and collection-control-bundle selected from live generated-origin inventory; pre-edit verifier failed for generated origin metadata, then passed after source-grounded prose rewrite and detail/list/home mirror sync.",
-    "collectionBroadScan": "collections=100; reviewed=100/100; manual=14/100 after this batch; generated remaining=81; locked legacy/manual=14; detail/list/home mirrors pass; app-authored banned and structural heading hits=0.",
-    "collectionVitest": "npx vitest run src/data/learnRepository.test.ts -t \"published learn collections only reference valid topic ids\" --test-timeout=15000 passed (1 test); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests)."
+    "bannedPhraseScan": "node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files for the second collection batch; broad collection app-authored scan also found banned/template/structural heading hits=0.",
+    "collectionBatch": "collection-discipline-bundle, collection-doubt-bundle, collection-ego-bundle, collection-exhaustion-bundle, and collection-fear-bundle selected from live generated-origin inventory; pre-edit verifier failed for generated origin metadata; cited hero shabad lines were read before manual prose rewrite; detail/list/home mirrors synced for verification.",
+    "collectionBroadScan": "collections=100; reviewed=100/100; manual=19/100 after this batch; generated remaining=76; legacy=5; locked statuses=14; detail/list/home mirrors pass; app-authored banned and structural heading hits=0.",
+    "collectionVitest": "Touched verifier passed after rewrite; broad collection scan passed; targeted npx vitest run src/data/learnRepository.test.ts -t \"published learn collections only reference valid topic ids\" --test-timeout=15000 passed (1 test); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests)."
   },
   "blockers": [],
   "remainingQueue": [
@@ -500,5 +505,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "b776fc92abcdbee202f8cd28984d3b7864ccbd42",
-  "updatedAt": "2026-04-27T11:55:50Z"
+  "updatedAt": "2026-04-27T12:16:08Z"
 }
