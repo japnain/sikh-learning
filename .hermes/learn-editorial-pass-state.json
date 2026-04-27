@@ -427,10 +427,11 @@
       ]
     },
     "topic-guide": {
-      "count": 2,
+      "count": 3,
       "ids": [
         "topic-guide:topic-purpose",
-        "topic-guide:topic-speech"
+        "topic-guide:topic-speech",
+        "topic-guide:topic-control"
       ]
     },
     "collection": {
@@ -439,9 +440,9 @@
     }
   },
   "currentBatchStatus": {
-    "wave": "daily-guidance final polish",
-    "status": "complete-ready-to-continue-topic-guides",
-    "summary": "This run completed the remaining five duplicate-takeaway groups across 51 daily guidance entries: ego illness, steady practice, received gift/non-attachment, doubt clarity, and selfless service. Each touched item now has a source-specific takeaway and practical implication grounded in its cited verse window; daily detail/list/home mirrors were synced. Daily guidance now meets final premium uniqueness gates: 0 duplicate titles, summaries, or takeaways."
+    "wave": "topic-guide editorial rewrite",
+    "status": "topic-control-verified-ready-to-ship",
+    "summary": "Completed topic-control top-level guide and all four nested scenarios. Copy now distinguishes daily over-management, pressure taking the throne, repair through returned grip, and steady seven-day practice. Sources reviewed: sung Divine power/gift (17-18), God-conscious liberation (12163-12164), Hukam and ego (15-16), conquering the mind/contentment (290-293), rare life/discipline (529-530), and selfless service/Naam (12943-12947)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -449,15 +450,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "npx vitest run src/data/learnRepository.test.ts -t \"published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed; npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests) after final daily duplicate-takeaway cleanup",
-    "representativeDiffReview": "source review completed for the final daily duplicate-takeaway groups: inspected cited verse windows for ego/courage (3458-3459, 3464-3465, 9525-9526, 744-745, 9499-9500), practice/remembrance (290-293, 10398-10399, 4119-4120, 9473-9474, 1430-1431), non-attachment/gift (9412-9417, 774-775, 2114-2115, 3442-3443, 21090-21091), doubt (918-925, 6412-6413, 3467-3468, 8811-8812), and service (7138-7139, 12943-12947, 53368-53372). Representative staged diff reviewed before commit.",
-    "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
-    "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
+    "vitest": "npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines\" --test-timeout=15000 passed (2 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed topic-control staged/intended prose for source-grounding before commit: overview, repair, and practice copy now ties control to Hukam, humility/contentment, sung Divine power/gift, and selfless service rather than repeated generated release phrasing.",
+    "topicGuideBatch": "topic-control passed: source-grounded prose review, detail/list mirror scan, app-authored banned-phrase scan, targeted topic Vitest, full Learn repository/page Vitest, and daily premium snapshot retained 0 duplicates.",
+    "topicMirrorReviewScan": "topic-control detail equals public/data/learn/lists/topic-guides.json entry; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 5750a6bd9fc51a35ec23cd2dcb4b29614046ed6f",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness complete",
-    "bannedPhraseScan": "app-authored direct daily scan found 0 daily banned hits; node scripts/learn/review/check-banned-phrases.mjs passed on staged JSON/TS files before commit"
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-control batch.",
+    "bannedPhraseScan": "direct app-authored topic-control scan passed before staging; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -466,5 +467,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "5750a6bd9fc51a35ec23cd2dcb4b29614046ed6f",
-  "updatedAt": "2026-04-27T04:00:28Z"
+  "updatedAt": "2026-04-27T04:20:08Z"
 }
