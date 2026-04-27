@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { PointerEvent as ReactPointerEvent } from 'react'
+import type { TouchEvent as ReactTouchEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRight,
@@ -350,6 +352,7 @@ export default function Home() {
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
   const nitnemMomentSyncedRef = useRef(false)
+  const nitnemSwipeRef = useRef<{ pointerId: number; startX: number; startY: number; handled: boolean } | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
   const homeNow = useMemo(() => new Date(now), [now])
@@ -474,7 +477,7 @@ export default function Home() {
 
   const setNitnemCarouselIndex = useCallback((index: number) => {
     if (selectedNitnemOptions.length === 0) return
-    const boundedIndex = Math.max(0, Math.min(index, selectedNitnemOptions.length - 1))
+    const boundedIndex = ((index % selectedNitnemOptions.length) + selectedNitnemOptions.length) % selectedNitnemOptions.length
     setActiveNitnemIndex(boundedIndex)
     window.requestAnimationFrame(() => scrollNitnemCarouselTo(boundedIndex))
   }, [scrollNitnemCarouselTo, selectedNitnemOptions.length])
@@ -513,6 +516,88 @@ export default function Home() {
       setActiveNitnemIndex(Math.max(0, Math.min(nextIndex, selectedNitnemOptions.length - 1)))
     }, 80)
   }
+
+  const handleNitnemPointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!nitnemHasCarousel) return
+    if (event.pointerType === 'mouse' && event.button !== 0) return
+
+    nitnemSwipeRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      handled: false,
+    }
+    event.currentTarget.setPointerCapture?.(event.pointerId)
+  }, [nitnemHasCarousel])
+
+  const completeNitnemSwipeFromPoint = useCallback((clientX: number, clientY: number) => {
+    const swipe = nitnemSwipeRef.current
+    if (!swipe || swipe.handled) return false
+
+    const deltaX = clientX - swipe.startX
+    const deltaY = clientY - swipe.startY
+    if (Math.abs(deltaX) < 36 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.2) return false
+
+    swipe.handled = true
+    setNitnemCarouselIndex(safeNitnemIndex + (deltaX < 0 ? 1 : -1))
+    return true
+  }, [safeNitnemIndex, setNitnemCarouselIndex])
+
+  const handleNitnemPointerMove = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    const swipe = nitnemSwipeRef.current
+    if (!swipe || swipe.pointerId !== event.pointerId) return
+    if (completeNitnemSwipeFromPoint(event.clientX, event.clientY)) {
+      event.preventDefault()
+    }
+  }, [completeNitnemSwipeFromPoint])
+
+  const handleNitnemPointerUp = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    const swipe = nitnemSwipeRef.current
+    if (swipe?.pointerId === event.pointerId && completeNitnemSwipeFromPoint(event.clientX, event.clientY)) {
+      event.preventDefault()
+    }
+    if (nitnemSwipeRef.current?.pointerId === event.pointerId) {
+      nitnemSwipeRef.current = null
+      event.currentTarget.releasePointerCapture?.(event.pointerId)
+    }
+  }, [completeNitnemSwipeFromPoint])
+
+  const handleNitnemPointerCancel = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    const swipe = nitnemSwipeRef.current
+    if (swipe?.pointerId === event.pointerId) {
+      nitnemSwipeRef.current = null
+    }
+  }, [])
+
+  const handleNitnemTouchStart = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
+    if (!nitnemHasCarousel) return
+    const touch = event.touches[0]
+    if (!touch) return
+    nitnemSwipeRef.current = {
+      pointerId: -1,
+      startX: touch.clientX,
+      startY: touch.clientY,
+      handled: false,
+    }
+  }, [nitnemHasCarousel])
+
+  const handleNitnemTouchMove = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0]
+    if (!touch || nitnemSwipeRef.current?.pointerId !== -1) return
+    if (completeNitnemSwipeFromPoint(touch.clientX, touch.clientY)) {
+      event.preventDefault()
+    }
+  }, [completeNitnemSwipeFromPoint])
+
+  const handleNitnemTouchEnd = useCallback((event: ReactTouchEvent<HTMLDivElement>) => {
+    const touch = event.changedTouches[0]
+    if (touch && nitnemSwipeRef.current?.pointerId === -1 && completeNitnemSwipeFromPoint(touch.clientX, touch.clientY)) {
+      event.preventDefault()
+    }
+    if (nitnemSwipeRef.current?.pointerId === -1) {
+      nitnemSwipeRef.current = null
+    }
+  }, [completeNitnemSwipeFromPoint])
   const savedLearnItems = useMemo(
     () => (learnCatalog ? getLearnHomeSavedItems(learnCatalog, learnStateSnapshot.savedItemIds) : []),
     [learnCatalog, learnStateSnapshot.savedItemIds]
@@ -897,6 +982,13 @@ export default function Home() {
               <div
                 ref={nitnemCarouselRef}
                 onScroll={handleNitnemCarouselScroll}
+                onPointerDown={handleNitnemPointerDown}
+                onPointerMove={handleNitnemPointerMove}
+                onPointerUp={handleNitnemPointerUp}
+                onPointerCancel={handleNitnemPointerCancel}
+                onTouchStart={handleNitnemTouchStart}
+                onTouchMove={handleNitnemTouchMove}
+                onTouchEnd={handleNitnemTouchEnd}
                 className={`flex snap-x snap-mandatory gap-3 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${nitnemHasCarousel ? 'pb-1' : ''}`}
                 data-testid={nitnemHasCarousel ? 'home-nitnem-carousel' : undefined}
                 aria-label="Daily Nitnem selected banis"
@@ -957,7 +1049,6 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setNitnemCarouselIndex(safeNitnemIndex - 1)}
-                    disabled={safeNitnemIndex === 0}
                     className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
                     aria-label="Previous Nitnem bani"
                   >
@@ -982,7 +1073,6 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setNitnemCarouselIndex(safeNitnemIndex + 1)}
-                    disabled={safeNitnemIndex >= selectedNitnemOptions.length - 1}
                     className="interactive-focus icon-surface h-10 w-10 disabled:opacity-40"
                     aria-label="Next Nitnem bani"
                   >

@@ -1698,8 +1698,9 @@ html[data-theme='dark'] .home-door-frame::before {
 
 .home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] {
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 0.42rem !important;
+  margin-top: 0.36rem !important;
 }
 
 .home-nitnem-tray [data-testid='home-nitnem-carousel'] {
@@ -1708,17 +1709,30 @@ html[data-theme='dark'] .home-door-frame::before {
   overflow-y: hidden !important;
   clip-path: inset(0 round 0.85rem);
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.home-nitnem-tray [data-testid='home-nitnem-carousel']:active {
+  cursor: grabbing;
 }
 
 .home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] button {
-  width: 1.45rem !important;
-  height: 1.45rem !important;
+  width: 1.55rem !important;
+  height: 1.55rem !important;
 }
 
 .home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] > button {
-  display: none;
+  display: inline-flex;
+  border-color: rgb(164 115 57 / 0.22);
+  background: rgb(255 252 245 / 0.44);
+  color: rgb(123 70 30);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.36);
+}
+
+.home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] > button:disabled {
+  opacity: 0.3;
 }
 
 .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] {
@@ -1727,8 +1741,15 @@ html[data-theme='dark'] .home-door-frame::before {
 
 .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button {
   height: 0.42rem !important;
+  width: 0.42rem !important;
   min-height: 0.42rem !important;
   border-radius: 999px;
+  background: rgb(139 88 35 / 0.22) !important;
+}
+
+.home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button[aria-current='true'] {
+  width: 1.35rem !important;
+  background: rgb(156 87 32) !important;
 }
 
 .home-nitnem-tray .home-outline-action {
@@ -1995,6 +2016,24 @@ html.dark .home-saved-cabinet .home-quiet-card,
 html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   background: rgb(255 255 255 / 0.045);
   box-shadow: none;
+}
+
+html.dark .home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] > button,
+html[data-theme='dark'] .home-nitnem-tray [data-testid='home-nitnem-carousel-controls'] > button {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.045);
+  color: rgb(248 202 119);
+  box-shadow: none;
+}
+
+html.dark .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button,
+html[data-theme='dark'] .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button {
+  background: rgb(255 255 255 / 0.18) !important;
+}
+
+html.dark .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button[aria-current='true'],
+html[data-theme='dark'] .home-nitnem-tray [aria-label='Daily Nitnem carousel pages'] button[aria-current='true'] {
+  background: rgb(248 202 119) !important;
 }
 
 html.dark .home-saved-cabinet [data-testid='home-saved-preview-list'] > *,
