@@ -453,7 +453,7 @@
     "representativeDiffReview": "source review completed for shelter/mercy cluster: inspected verses 7939-7940 (world cannot touch the heart holding the Lord), 8823-8824 (grace and the True Guru reveal intimate nearness), and 30985-30986 (the Lord Master repeated as merciful); representative git diff reviewed before staging.",
     "topicGuideBatch": "passed for topic-purpose and topic-speech: source-grounded prose review, staged banned-phrase scan, mirror/review scan, targeted topic vitest, and full Learn repository/page vitest",
     "topicMirrorReviewScan": "python mirror/review/banned scan passed for topic-purpose and topic-speech",
-    "lastPushRecord": "pending push for shelter/mercy duplicate-takeaway cluster batch",
+    "lastPushRecord": "Content batch pushed to origin master at 4225de1533e3d812e1085ddab01a3ae052c05f99",
     "dailyGuidanceFinalPolishRequired": "partially complete: duplicate titles are 0, duplicate summaries are 0, banned hits are 0, reviewed metadata is normalized to manual/approved; remaining blocker before topic guides is duplicate takeaways = 14.",
     "dailyMirrorScan": "changed shelter/mercy daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary fields were synced for touched IDs",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=14; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors ok for daily corpus; final-premium duplicate-takeaway cleanup still in progress",
@@ -466,6 +466,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "2542cb6cc26548c2c4e3f015a4b4e246a05d0aba",
-  "updatedAt": "2026-04-27T01:02:24Z"
+  "lastPushedCommitSha": "4225de1533e3d812e1085ddab01a3ae052c05f99",
+  "updatedAt": "2026-04-27T01:05:13Z"
 }
