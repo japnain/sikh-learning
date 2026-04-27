@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1289,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 714,
   "title": "Episode About Ahmed Shah Abdali, Jawahar Mal of Bhara And Najib Khan Rohilla",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 157,

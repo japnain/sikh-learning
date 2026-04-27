@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1175,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 600,
   "title": "Then did S. Charat Singh make a bold declaration,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 140,

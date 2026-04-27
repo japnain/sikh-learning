@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 674,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 99,
   "title": "Episode 87 — The Randhawas Join the Khalsa",
   "blocks": [
     {
@@ -201,7 +201,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 87,

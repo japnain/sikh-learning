@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 570,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 570,
   "title": "Punjab by Guru Gobind Singh from Nander (Maharashtra) to guide and assist Banda Singh",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 75,

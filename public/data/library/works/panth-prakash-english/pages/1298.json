@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1298,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 723,
   "title": "Jawahar Mal Rejects a Cash Settlement and Demands Honor",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 158,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 572,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 572,
   "title": "of Gurbani text in the court of Aurangzeb for which he was excommunicated from the Sikh",
   "blocks": [
     {
@@ -161,7 +161,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 81,

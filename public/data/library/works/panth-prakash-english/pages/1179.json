@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1179,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 604,
   "title": "Episode About the Robbing of Luxmi Narayan Kshiriyg yes",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 141,

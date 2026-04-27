@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1178,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 603,
   "title": "Morinda Closes and the Lakhmi Narayan Episode Opens",
   "blocks": [
     {
@@ -206,7 +206,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 140,

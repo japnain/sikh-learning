@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 632,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 57,
   "title": "Episode About Chandialias, Jandialas, and Those Who Harmed the Guru and the Panth",
   "blocks": [
     {
@@ -196,7 +196,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 82,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 359,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 359,
   "title": "Whether he possessed the power to summon the captive spirits,",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 54,

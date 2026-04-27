@@ -2,18 +2,23 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1262,
   "volume": 2,
-  "sourcePageNumber": 0,
-  "title": "qué. met foda snot dIdHHH fur nde At at",
+  "sourcePageNumber": 687,
+  "title": "Opening of Nihang Gurbakhsh Singh",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-1262-1",
       "type": "paragraph",
-      "text": "qué. met foda snot dIdHHH fur nde At at"
+      "text": "This page opens the episode of Nihang Gurbakhsh Singh Shahid, introducing him through verse headings and the first lines of his sakhi."
     },
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "Hua Sd at UAT AT | SHAT Ad HAST SS 131"
+      "id": "manual-1262-2",
+      "type": "paragraph",
+      "text": "The narrative presents Nihang Gurbakhsh Singh at Amritsar as a blue-clad warrior of disciplined conduct, daily practice, and readiness for martyrdom."
+    },
+    {
+      "id": "manual-1262-3",
+      "type": "paragraph",
+      "text": "Because the OCR heading is badly damaged, the repaired title and summary preserve the episode boundary while keeping the raw transliteration available for source checking."
     }
   ],
   "rawBlocks": [
@@ -206,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 155,

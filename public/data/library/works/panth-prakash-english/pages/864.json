@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 864,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 289,
   "title": "Arrest of Bhai Taru Singh and the Bhardana Sikhs’ Rescue Plan",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 106,

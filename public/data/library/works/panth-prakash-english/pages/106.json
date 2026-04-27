@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 106,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 106,
   "title": "Thus these poorer Hindus got themselves absolved of this threat,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 12,

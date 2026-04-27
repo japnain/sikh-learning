@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1150,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 575,
   "title": "singh su untc talt¢ janhi. dôr and¢shi singh karahin.3.",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 137,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 19,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 19,
   "title": "Northern India. The British were now on the verge of having an encounter with the Sikhs",
   "blocks": [
     {
@@ -251,6 +251,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 576,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 1,
   "title": "(RATTAN SINGH BHANGOO)",
   "blocks": [
     {
@@ -51,7 +51,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 123,

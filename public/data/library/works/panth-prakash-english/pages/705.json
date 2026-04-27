@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 705,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 130,
   "title": "(After this defeat), Nawab of Lahore, Aslam Khan's mind,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 90,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 758,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 183,
   "title": "The Scale of Plunder and Slaughter in Delhi",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 94,

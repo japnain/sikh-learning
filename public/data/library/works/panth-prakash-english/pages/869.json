@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 869,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 294,
   "title": "The Guru sacrificed his sons at the altar of Goddess of war,",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 106,

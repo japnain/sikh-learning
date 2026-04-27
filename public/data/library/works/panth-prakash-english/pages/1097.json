@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1097,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 522,
   "title": "As well as their larger contingents from the vanguard and the rearguard. (3)",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 134,

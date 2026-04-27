@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 350,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 350,
   "title": "Banda’s Stay in Chamba and Reports to Bahadur Shah",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 53,

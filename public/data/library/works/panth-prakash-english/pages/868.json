@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 868,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 293,
   "title": "Bhai Taru Singh Explains Why the Guru’s Vow Cannot Be Undone",
   "blocks": [
     {
@@ -201,7 +201,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 106,

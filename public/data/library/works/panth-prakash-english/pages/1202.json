@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1202,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 627,
   "title": "The Ramgharias and Ghanaiyas Hunt Dileram's Hidden Wealth",
   "blocks": [
     {
@@ -221,7 +221,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 144,

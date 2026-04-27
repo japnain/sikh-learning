@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1295,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 720,
   "title": "The war-drum did he order to be beaten for launching an attack.",
   "blocks": [
     {
@@ -236,7 +236,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 157,

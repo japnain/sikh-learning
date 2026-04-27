@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 622,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 47,
   "title": "Khalsa Authority Compared to Guru Nanak Establishing Angad",
   "blocks": [
     {
@@ -236,7 +236,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 123,

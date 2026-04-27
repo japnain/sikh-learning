@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 43,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 43,
   "title": "Hukamnamas, edited by Dr Ganda Singh, Punjabi University, Patiala.",
   "blocks": [
     {
@@ -276,6 +276,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

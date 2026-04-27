@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 840,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 265,
   "title": "The Lion Cave Is Betrayed to the Mughals",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 104,

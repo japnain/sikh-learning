@@ -979,7 +979,7 @@ export interface LibraryPagePayload {
   quality?: LibraryPageQuality
   sourceFile: string
   review: {
-    status: 'ocr' | 'reviewed'
+    status: 'ocr' | 'machine-cleaned' | 'reviewed'
   }
   episode?: {
     number: number

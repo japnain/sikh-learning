@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 20,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 20,
   "title": "Sahib. For recording these prominent historical events of Sikh history, he travelled extensively",
   "blocks": [
     {
@@ -236,6 +236,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

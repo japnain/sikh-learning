@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 579,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 4,
   "title": "Dedication",
   "blocks": [
     {
@@ -41,6 +41,6 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

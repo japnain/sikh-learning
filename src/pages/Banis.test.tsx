@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Banis from './Banis'
 import { sanitizeRehatHtml } from '../utils/rehatHtml'
 import Study from './Study'
+import LibraryPageReader from './library/LibraryPageReader'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 
 function renderBanis() {
@@ -83,10 +84,36 @@ test('keeps source browsing at the bottom of Read', () => {
   expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
 
   fireEvent.click(within(sourceBrowser).getByRole('button', { name: 'Panth Prakash (English)' }))
-  expect(within(sourceBrowser).getByRole('link', { name: '1' })).toHaveAttribute(
+  expect(within(sourceBrowser).getByRole('link', { name: /^open panth prakash page 1$/i })).toHaveAttribute(
     'href',
     '/library/panth-prakash-english/page/1'
   )
+})
+
+test('opens Panth Prakash from Read source browsing into its own reader page with navigation breadcrumbs', async () => {
+  render(
+    <MemoryRouter initialEntries={['/banis']}>
+      <Routes>
+        <Route path="/banis" element={<Banis />} />
+        <Route path="/library/:workId/page/:pageNumber" element={<><LibraryPageReader /><LocationSpy /></>} />
+      </Routes>
+    </MemoryRouter>
+  )
+
+  const sourceBrowser = screen.getByTestId('read-source-browser-shared')
+  fireEvent.click(within(sourceBrowser).getByRole('button', { name: 'Panth Prakash (English)' }))
+  fireEvent.click(within(sourceBrowser).getByRole('link', { name: /^open panth prakash page 1$/i }))
+
+  await waitFor(() => {
+    expect(screen.getByTestId('location').textContent).toBe('/library/panth-prakash-english/page/1')
+  })
+  await waitFor(() => {
+    expect(screen.getByTestId('library-page-reader')).toBeInTheDocument()
+  })
+
+  expect(screen.getByTestId('library-breadcrumb')).toHaveTextContent(/Read/i)
+  expect(screen.getByRole('link', { name: /next page/i })).toHaveAttribute('href', '/library/panth-prakash-english/page/2')
+  expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
 })
 
 test('shows exact SGGS bani items after expanding SGGS section', () => {

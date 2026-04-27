@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1300,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 725,
   "title": "Najib-ud-Daula Pays Tribute and Receives Authority",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 158,

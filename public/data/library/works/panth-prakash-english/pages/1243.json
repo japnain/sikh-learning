@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1243,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 668,
   "title": "For many a day did the Singhs picket outside Sirhind,",
   "blocks": [
     {
@@ -216,7 +216,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 151,

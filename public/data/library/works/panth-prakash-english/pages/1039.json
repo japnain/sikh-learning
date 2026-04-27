@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1039,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 464,
   "title": "Thereafter, the Singhs having held an assembly,",
   "blocks": [
     {
@@ -251,7 +251,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 123,

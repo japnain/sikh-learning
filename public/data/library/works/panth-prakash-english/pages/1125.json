@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1125,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 550,
   "title": "After fighting a fierce battle with the Gilja Pathans.",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 136,

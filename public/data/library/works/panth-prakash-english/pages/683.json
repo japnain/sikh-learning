@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 683,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 108,
   "title": "Swearing an oath on the holy Koran? time and again,",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 88,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 24,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 24,
   "title": "Sri Gur Panth Prakash XXV And how had the mere Sikh subjects, timid like sparrows and lambs, had torn out the mighty Mughals as brave and ferocious as lions and the falcons?",
   "blocks": [
     {
@@ -241,6 +241,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   }
 }

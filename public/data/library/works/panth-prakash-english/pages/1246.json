@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1246,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 671,
   "title": "A Memorial Is Proposed at the Precise Martyrdom Site",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 152,

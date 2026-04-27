@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1028,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 453,
   "title": "From Ram Rauni’s Battle to the Valour of Kaura Mal",
   "blocks": [
     {
@@ -206,7 +206,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 120,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 733,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 158,
   "title": "As Guru's prophetic words would prove to be true,",
   "blocks": [
     {
@@ -226,7 +226,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 92,

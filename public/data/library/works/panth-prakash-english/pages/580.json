@@ -2,8 +2,8 @@
   "workId": "panth-prakash-english",
   "pageNumber": 580,
   "volume": 2,
-  "sourcePageNumber": 0,
-  "title": "ACKNOWLEDGEMENT",
+  "sourcePageNumber": 5,
+  "title": "Acknowledgement (Volume II)",
   "blocks": [
     {
       "id": "heading-1",
@@ -91,12 +91,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
+    "status": "machine-cleaned"
   }
 }

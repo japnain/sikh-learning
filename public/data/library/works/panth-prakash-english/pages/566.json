@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 566,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 566,
   "title": "defeating the God Indira. Lord Vishnu, on the appeal of defeated gods, appeared in the guise",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 66,

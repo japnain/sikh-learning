@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1077,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 502,
   "title": "As well as the vetran Singh chiefs of Shaheedi Misl of Singhs.",
   "blocks": [
     {
@@ -266,7 +266,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 126,

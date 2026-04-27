@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 518,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 518,
   "title": "Episode 79 — The Guru Tests the Congregation",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 79,

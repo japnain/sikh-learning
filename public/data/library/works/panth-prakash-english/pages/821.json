@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 821,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 246,
   "title": "Dohra: With such mighty strokes from both the sides,",
   "blocks": [
     {
@@ -246,7 +246,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 100,

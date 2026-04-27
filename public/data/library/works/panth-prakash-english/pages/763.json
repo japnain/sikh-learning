@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 763,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 188,
   "title": "Episode About Khalsa's Petition Being eae in the Divine Cups",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 96,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1049,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 474,
   "title": "As he failed to recover his territory without any definite strategy.",
   "blocks": [
     {
@@ -256,7 +256,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 124,

@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1412,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 837,
   "title": "Biru Singh Defects Briefly and Returns to the Panth",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 169,

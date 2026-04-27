@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 534,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 534,
   "title": "Gangu Shah’s Service at the Baoli, Rise as a Hundiwal, and Request for Power",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 81,

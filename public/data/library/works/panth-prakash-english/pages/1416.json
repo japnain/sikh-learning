@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1416,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 841,
   "title": "Gur Panth Prakash Closes With Devotional Assurance",
   "blocks": [
     {
@@ -181,7 +181,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 169,

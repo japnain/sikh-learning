@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 522,
   "volume": 1,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 522,
   "title": "Episode 79 Conclusion and Episode 80 Opening — Mehar Singh and Gangu Shah’s Followers",
   "blocks": [
     {
@@ -231,7 +231,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 79,

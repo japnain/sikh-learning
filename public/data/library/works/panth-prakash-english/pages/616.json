@@ -2,13 +2,23 @@
   "workId": "panth-prakash-english",
   "pageNumber": 616,
   "volume": 2,
-  "sourcePageNumber": 0,
-  "title": "XXXVi for providing him with the sponsorship for undertaking this work. For consistent discussion, explanation and exposition of several references in the body of this work, I remain indebted to the scholarly guidance of Dr Kharak Singh. Thanks are also due to Bhai Ashok Singh Bagrian and Dr Kirpal Singh for their inspiring support. Mr. Ramesh Kumar, who typed the entire manuscript, did all the type setting and compilation of the whole book in Punjabi, English and Roman script, deserves my grateful thanks. With the completion of this second volume the complete Sri Gur Panth Prakash has been translated into English. Any suggestions, amendments and relevant observations will be welcomed for incorporation in the second edition of one of the primary sources of Sikh history. I hope this humble endeavour will meet the long-felt need of",
+  "sourcePageNumber": 41,
+  "title": "Translator’s Closing Note and References",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-616-1",
       "type": "paragraph",
-      "text": "XXXVi for providing him with the sponsorship for undertaking this work. For consistent discussion, explanation and exposition of several references in the body of this work, I remain indebted to the scholarly guidance of Dr Kharak Singh. Thanks are also due to Bhai Ashok Singh Bagrian and Dr Kirpal Singh for their inspiring support. Mr. Ramesh Kumar, who typed the entire manuscript, did all the type setting and compilation of the whole book in Punjabi, English and Roman script, deserves my grateful thanks. With the completion of this second volume the complete Sri Gur Panth Prakash has been translated into English. Any suggestions, amendments and relevant observations will be welcomed for incorporation in the second edition of one of the primary sources of Sikh history. I hope this humble endeavour will meet the long-felt need of Sri Gur Panth Prakash English knowing readers interested in the subject. S.A.S. Nagar (Mohali) Kulwant Singh Cell. 98150 47866 References: All the quotations from the text both in Punjabi and English are from the translated version of Sri Gur Panth Prakash (SGPP) Vol. I & II translated by Kulwant Singh, published by Institute of Sikh Studies, Chandigarh (First edition 2007-2008)"
+      "text": "Kulwant Singh closes the translator’s prefatory material by thanking the scholars and helpers who supported the English rendering of Sri Gur Panth Prakash."
+    },
+    {
+      "id": "manual-616-2",
+      "type": "paragraph",
+      "text": "The note records that both volumes now make the complete work available to English-reading students of Sikh history, while inviting corrections and observations for a future edition."
+    },
+    {
+      "id": "manual-616-3",
+      "type": "paragraph",
+      "text": "The page then begins a references note identifying the Kulwant Singh translation of Sri Gur Panth Prakash, Volumes I and II, as the source for the quoted Punjabi and English text."
     }
   ],
   "rawBlocks": [
@@ -141,12 +151,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
+    "status": "machine-cleaned"
   }
 }

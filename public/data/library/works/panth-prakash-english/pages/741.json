@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 741,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 166,
   "title": "Diwali congregation was allowed to be held on Diwali,",
   "blocks": [
     {
@@ -246,7 +246,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 93,

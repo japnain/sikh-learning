@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1324,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 749,
   "title": "Amar Singh Mobilizes a Coalition Against Baghel Singh",
   "blocks": [
     {
@@ -211,7 +211,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 160,

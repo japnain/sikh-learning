@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 679,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 104,
   "title": "As he had been planted as an informer by the Mughals,",
   "blocks": [
     {
@@ -261,7 +261,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 87,

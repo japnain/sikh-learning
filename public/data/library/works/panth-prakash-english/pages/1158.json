@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1158,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 583,
   "title": "The Brars Return by Night and Plot a Pathan Disguise",
   "blocks": [
     {
@@ -201,7 +201,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 137,

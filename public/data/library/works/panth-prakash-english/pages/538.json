@@ -2,8 +2,8 @@
   "workId": "panth-prakash-english",
   "pageNumber": 538,
   "volume": 1,
-  "sourcePageNumber": 0,
-  "title": "REFERENCES",
+  "sourcePageNumber": 538,
+  "title": "References (Volume I)",
   "blocks": [
     {
       "id": "heading-1",
@@ -286,12 +286,6 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
-  },
-  "episode": {
-    "number": 81,
-    "title": "The Episode About the Origin of Gangushahian Sect",
-    "startPage": 531,
-    "endPage": 574
+    "status": "machine-cleaned"
   }
 }

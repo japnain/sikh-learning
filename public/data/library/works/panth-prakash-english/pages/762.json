@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 762,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 187,
   "title": "After Nadir Leaves, Zakariya Khan Turns Again on the Singhs",
   "blocks": [
     {
@@ -201,7 +201,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 95,

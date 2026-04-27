@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 1133,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 558,
   "title": "Chaupai: At this stage, S. Jassa Singh (Ahluwalia) taking up a very stubbom stand,",
   "blocks": [
     {
@@ -241,7 +241,7 @@
   "quality": "clean",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 136,

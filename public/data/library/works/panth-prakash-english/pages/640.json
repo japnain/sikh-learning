@@ -2,7 +2,7 @@
   "workId": "panth-prakash-english",
   "pageNumber": 640,
   "volume": 2,
-  "sourcePageNumber": 0,
+  "sourcePageNumber": 65,
   "title": "HASHES H Add serfs | Aaso A of fle WAÉ 1291",
   "blocks": [
     {
@@ -196,7 +196,7 @@
   "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
-    "status": "ocr"
+    "status": "machine-cleaned"
   },
   "episode": {
     "number": 83,
