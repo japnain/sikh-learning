@@ -1,8 +1,8 @@
 {
   "id": "collection-attachment-bundle",
-  "title": "Attachment in one shorter sitting",
-  "subtitle": "A shorter sitting for when attachment is already close",
-  "description": "A quick reset for the hour when grasping has already entered the chest. It reorders love, loss, and refuge before clinging speaks.",
+  "title": "When praise and blame start pulling you",
+  "subtitle": "A shorter sitting for attachment before it names your worth",
+  "description": "Rest in the Lord’s sanctuary until praise, slander, pleasure, and pain lose the authority to drag the heart around.",
   "durationLabel": "3-step bundle",
   "themes": [
     "attachment"
@@ -13,8 +13,8 @@
       9416,
       9417
     ],
-    "shortMeaning": "Steadiness is seen in not being bound by praise, blame, pleasure, or pain.",
-    "lifeApplication": "Let feedback inform you without governing your worth."
+    "shortMeaning": "The wise are not bound by praise, slander, pleasure, or pain because their rest is in the Lord’s sanctuary.",
+    "lifeApplication": "Let the compliment or criticism arrive without handing it the right to decide who you are."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A quick reset for the hour when grasping has already entered the chest. It reorders love, loss, and refuge before clinging speaks.",
+      "coreClaim": "This bundle begins where attachment usually tightens and the heart gives feedback, possession, or loss the power to name reality. Guru Tegh Bahaadur Ji’s shabad answers by placing rest in sanctuary and making praise and slander equal.",
       "emotionalState": "hooked, needy, easily-shaken",
-      "turn": "A shorter sitting for when attachment is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "From being pulled by response into sanctuary-based steadiness.",
+      "practicalImplication": "Move through the three steps when approval or loss starts governing the body: receive the detached-and-steady word, practice the attachment turn, then stay with the full shabad until the opposites lose force.",
       "bannedOverreach": []
     },
     "scores": {
