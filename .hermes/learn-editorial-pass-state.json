@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 23,
+      "count": 25,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -451,7 +451,9 @@
         "topic-guide:topic-loneliness",
         "topic-guide:topic-patience",
         "topic-guide:topic-restlessness",
-        "topic-guide:topic-seeking"
+        "topic-guide:topic-seeking",
+        "topic-guide:topic-sangat",
+        "topic-guide:topic-self-worth"
       ]
     },
     "collection": {
@@ -461,8 +463,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-restlessness-topic-seeking-verified-ready-to-ship",
-    "summary": "Completed a source-grounded manual rewrite of topic-restlessness and topic-seeking top-level copy plus daily/pressure/repair/practice scenarios. Restlessness now moves from restless motion into Shabad-centered dwelling, Sat Sangat, Naam, and service; its scenarios separate ordinary one-more-search habits, pressure-driven rescue motion, repair after a wasted hour, and a seven-day kept return. Seeking now moves from repeated questioning into Sat Sangat, Guru instruction, remembrance without postponement, and humble service; its scenarios distinguish daily delay, pressured escape, repair after using search as delay, and a rule of dwelling."
+    "status": "topic-sangat-topic-self-worth-verified-ready-to-ship",
+    "summary": "Completed a source-grounded manual rewrite of topic-sangat and topic-self-worth top-level copy plus daily/pressure/repair/practice scenarios. Sangat now moves from formation by ordinary company into Sat Sangat, Guru-guided asking, ego loosening, cooling, and a kept rhythm of holy nearness. Self-worth now moves from response/status-based verdicts into Guru-given Naam, Hukam, Truth, Shabad-understanding, and remembered dignity before the world votes."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -470,15 +472,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/topic_verify.py topic-restlessness topic-seeking failed before edits for generated/unreviewed metadata and old template lines, then passed after source-grounded rewrites and mirror sync; direct quality scan confirmed daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, topic guides manual-reviewed=23/28, topic scenarios manual-reviewed=103/112, topic list mirror pass; remaining broad scan hits are in the unfinished topic queue or previously approved structural-explanation cleanup outside this touched batch; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-restlessness now grounds searching in Darshan, Shabad-cleared duality, Sat Sangat, breath-by-breath remembrance, belonging under the One, and Guru-service. Scenarios separate ordinary one-more-search habits, pressure-driven rescue motion, repair after a wasted hour, and a seven-day cue of shabad/ardas/service. topic-seeking now grounds longing in Sat Sangat where the Lord abides, the Guru word extinguishing doubt, non-postponed remembrance, humble service, and the shrinking day. Scenarios separate daily postponement, urgency as escape, repair after using search as delay, and a rule of dwelling.",
-    "topicGuideBatch": "topic-restlessness and topic-seeking passed: pre-edit touched-topic verifier failed for generated/unreviewed metadata and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
-    "topicMirrorReviewScan": "topic-restlessness and topic-seeking detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/topic_verify.py topic-sangat topic-self-worth failed before edits for generated/unreviewed metadata and old template lines, then passed after source-grounded rewrites and mirror sync; direct broad scan confirmed daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, topic guides manual-reviewed=25/28, topic scenarios manual-reviewed=106/112, topic list/home mirrors pass, daily/topic app-authored banned hits=0; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-sangat now grounds holy company in Sat Sangat where the Lord abides, the Guru will, mercy-given saintly meeting, ego loosening, and a seven-day rhythm of holy nearness. Scenarios separate ordinary company forming the heart, pressure making isolation sound wise, repair after distance from sangat, and practice as a kept rhythm. topic-self-worth now grounds dignity in Guru-given soul-life, Naam, Hukam, Truth, Shabad-understanding, and remembrance before approval or failure defines the heart. Scenarios separate daily proof-seeking, pressure selling worth to approval, repair after failure becomes identity, and morning practice before the old courtroom opens.",
+    "topicGuideBatch": "topic-sangat and topic-self-worth passed: pre-edit touched-topic verifier failed for generated/unreviewed metadata and old template lines; source lines were read from cited shabad deep dives; top-level and all eight scenarios were manually rewritten; detail/list/home mirrors synced; touched-topic verifier passed.",
+    "topicMirrorReviewScan": "topic-sangat and topic-self-worth detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 5515dd4dcebfb0e490d0ad29982a808a2f2794c3",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
-    "bannedPhraseScan": "Touched-topic verifier passed with no hard-banned/template hits for topic-restlessness/topic-seeking; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "bannedPhraseScan": "Touched-topic verifier and broad daily/topic scan passed with no hard-banned/template hits for topic-sangat/topic-self-worth; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -487,5 +489,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "5515dd4dcebfb0e490d0ad29982a808a2f2794c3",
-  "updatedAt": "2026-04-27T10:12:00Z"
+  "updatedAt": "2026-04-27T09:29:10Z"
 }
