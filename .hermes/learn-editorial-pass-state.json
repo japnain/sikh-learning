@@ -455,7 +455,7 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-forgiveness-topic-mercy-verified-pending-commit",
+    "status": "topic-forgiveness-topic-mercy-shipped",
     "summary": "Completed a manual source-grounded rewrite of topic-forgiveness and topic-mercy top-level copy plus daily/pressure/repair/practice scenarios. Forgiveness now distinguishes ordinary replay of hurt, pressured retaliation at the tongue, repair after bitterness has already spoken, and a seven-day discipline of serving the Fearless Naam instead of the wound. Mercy now distinguishes ordinary self-audit, pressure that treats mercy as irresponsible, repair after failure through humility rather than self-punishment, and repeated receiving under Hukam and the Creator’s care. Sources reviewed included forgiveness/conduct/contentment becoming fearless (9600-9614), received forgiveness opening peace (27259-27265), Naam making conduct and speech clean (11743-11749), bitter becoming sweet in Sangat (7132-7136), saving company interrupting judgment (11176-11178), mercy giving Naam under Hukam (499-503), longing led through Sat Sangat (3757-3763), the humble servant kept close (37473-37477), remembrance dispelling bodily anguish (11502-11503), the Creator nourishing and protecting (30988-30994), and restless searching cooled through holy company (3898-3900)."
   },
   "verificationStatus": {
@@ -468,7 +468,7 @@
     "representativeDiffReview": "Reviewed intended prose diff before commit: topic-forgiveness now grounds release in forgiveness as true fast, conduct/contentment, received forgiveness, clean speech, Sangat, and Fearless Naam; scenarios separate ordinary memory replay, pressured retaliation, repair after bitterness spoke, and repeated discipline. topic-mercy now grounds mercy in Hukam as gift, Naam received by grace, guidance through Sat Sangat, the cherished humble servant, remembrance settling bodily anguish, and the Creator’s continuing care; scenarios separate self-audit, pressure/panic, failure repair, and daily receiving practice.",
     "topicGuideBatch": "topic-forgiveness and topic-mercy passed: pre-edit touched-topic verifier failed for locked/unreviewed metadata and old scenario template lines, source-grounded prose rewrite completed for top-level and all four scenarios on each topic, detail/list/home mirrors synced, touched-topic verifier passed, targeted topic/daily Vitest passed, and full learnRepository/Learn page Vitest passed after updating the mercy UI expectation to the new approved title.",
     "topicMirrorReviewScan": "topic-forgiveness and topic-mercy detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 1e773b1a048269f3f4f14b79b67a999320b9eb00",
+    "lastPushRecord": "Content batch pushed to origin master at 2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
@@ -480,6 +480,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "1e773b1a048269f3f4f14b79b67a999320b9eb00",
-  "updatedAt": "2026-04-27T07:56:45Z"
+  "lastPushedCommitSha": "2cbf0f4d8733f5e1dfac9fb8be1fb1ce5104d243",
+  "updatedAt": "2026-04-27T07:57:58Z"
 }
