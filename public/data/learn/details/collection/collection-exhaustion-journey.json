@@ -1,8 +1,8 @@
 {
   "id": "collection-exhaustion-journey",
-  "title": "From Exhaustion to steadier practice",
-  "subtitle": "For when exhaustion keeps steering the day",
-  "description": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
+  "title": "Begin the tired day under Ik Oankar",
+  "subtitle": "For when exhaustion needs grace before effort",
+  "description": "Let the journey start where the cited shabad starts: not with more force, but with Ik Oankar, Truth, the Creator’s presence, and the Guru’s grace before any next step is demanded.",
   "durationLabel": "5-step journey",
   "themes": [
     "exhaustion",
@@ -14,8 +14,8 @@
       5589,
       5590
     ],
-    "shortMeaning": "Exhaustion eases when honesty replaces the performance of strength.",
-    "lifeApplication": "When force is failing, stop performing strength and let the line carry the next step."
+    "shortMeaning": "The opening places the tired mind under the One, the True Name, the Creator, and Guru’s grace before it asks the self to produce strength.",
+    "lifeApplication": "When weariness makes even practice feel heavy, begin by receiving the Mool Mantar slowly before deciding what obedience is possible today."
   },
   "items": [
     {
@@ -49,14 +49,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:journey:manual",
     "evidence": {
-      "coreClaim": "Start where force is failing, then move toward gentler obedience, honest limits, and the kind of rest that restores without asking you to perform.",
+      "coreClaim": "This journey refuses to make exhaustion solve itself; it begins under Ik Oankar and Guru’s grace, then lets the following steps move from received ground into a gentler, truer practice.",
       "emotionalState": "tired, drained, worn-down",
-      "turn": "For when exhaustion keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The first mercy for exhaustion is not a demand for stamina but a place to stand: One, Truth, Creator, grace.",
+      "practicalImplication": "Use the five steps to start with received Naam rather than self-pressure, then choose the smallest faithful act that can be carried without pretending to be strong.",
       "bannedOverreach": []
     },
     "scores": {

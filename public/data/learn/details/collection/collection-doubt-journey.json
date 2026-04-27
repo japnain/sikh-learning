@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-journey",
-  "title": "From Doubt to steadier practice",
-  "subtitle": "For when doubt keeps steering the day",
-  "description": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
+  "title": "When doubt is cooled by the Guru’s word",
+  "subtitle": "For when the mind keeps searching but the fire keeps burning",
+  "description": "Follow doubt out of roaming and into the Guru’s teaching, where the mind receives words strong enough to kill ego’s thirst and cool the inner blaze.",
   "durationLabel": "5-step journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       921,
       922
     ],
-    "shortMeaning": "The fire is inside, and the Guru-word is meant to address the inside first.",
-    "lifeApplication": "Move from circling to obedience."
+    "shortMeaning": "The shabad does not treat doubt as a puzzle to outthink; it calls the mind to become Gurmukh and let the Guru’s words extinguish the fire within.",
+    "lifeApplication": "When argument starts multiplying, stop feeding the blaze and repeat the line or teaching that asks ego and craving to loosen their claim."
   },
   "items": [
     {
@@ -53,14 +53,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:journey:manual",
     "evidence": {
-      "coreClaim": "Take doubt out of endless inner debate and back into one kept word. These readings restore trust through clarity, obedience, and repetition.",
+      "coreClaim": "This journey is built around the shabad’s turn from wandering to instruction, where devotional life becomes possible through the True Guru’s teaching and doubt loses heat as ego and desire are answered.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "For when doubt keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Doubt is not shamed here; it is led away from private wandering and placed under words that can actually cool the mind.",
+      "practicalImplication": "Let each step interrupt one loop of mental roaming with received guidance, saintly company, or a small surrender of the craving that keeps the question inflamed.",
       "bannedOverreach": []
     },
     "scores": {
