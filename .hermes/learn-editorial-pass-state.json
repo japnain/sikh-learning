@@ -487,7 +487,7 @@
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "first-five-journey-collections-verified-ready-to-ship",
+    "status": "first-five-journey-collections-shipped",
     "summary": "Completed and verified source-grounded manual rewrites for five generated journey collections: anger, anxiety, attachment, comparison, and control. The batch grounds anger under Mool Mantar Truth, anxiety in the Creator's support, attachment in freedom from praise/blame and pleasure/pain, comparison in praise that dyes the life truthful, and control in the vast chorus of divine power and gifts."
   },
   "verificationStatus": {
@@ -500,7 +500,7 @@
     "representativeDiffReview": "Reviewed intended prose diff for the first journey-collection batch: anger now starts under Truth before/now/beyond the argument; anxiety answers wavering with the Creator who created and supports; attachment names praise/blame and pleasure/pain as bindings; comparison follows metal merging and truthful color into praise; control is widened by the chorus of divine power and gifts.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Collection content batch pushed to origin master at f23c0420259216a23d0da3eca83de93833a59c54; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Collection journey content batch pushed to origin master at 078bcca1fbaabfb2e81a9892d5cebe6a0dea5abb; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; direct cron scan rechecked this run.",
@@ -514,6 +514,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "f23c0420259216a23d0da3eca83de93833a59c54",
-  "updatedAt": "2026-04-27T12:58:24Z"
+  "lastPushedCommitSha": "078bcca1fbaabfb2e81a9892d5cebe6a0dea5abb",
+  "updatedAt": "2026-04-27T12:58:43Z"
 }
