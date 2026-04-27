@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 19,
+      "count": 21,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -447,7 +447,9 @@
         "topic-guide:topic-forgiveness",
         "topic-guide:topic-mercy",
         "topic-guide:topic-greed",
-        "topic-guide:topic-honesty"
+        "topic-guide:topic-honesty",
+        "topic-guide:topic-loneliness",
+        "topic-guide:topic-patience"
       ]
     },
     "collection": {
@@ -457,8 +459,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-greed-topic-honesty-shipped",
-    "summary": "Completed a manual source-grounded rewrite of topic-greed and topic-honesty top-level copy plus daily/pressure/repair/practice scenarios. Greed now distinguishes ordinary small wanting crowding Naam, pressure where scarcity makes grasping sound responsible, repair after taking more than love allowed, and a seven-day trade in true wealth through praise, restraint, and generosity. Honesty now distinguishes ordinary small edits before visible lying, pressured truth under Hukam, repair after a false version has been spoken, and a repeatable practice of honest work, unadvertised service, and plain correction. Sources reviewed included greed as degrading appetite before honorable speech (634-641), choosing the wealth that travels with the soul (934-946), honest labor and sharing as the path (53369-53372), true bankers trading in Naam (11241-11244), received mercy under Hukam (499-503), the humble servant kept close (37473-37477), Naam joined to pure conduct and ambrosial speech (11743-11748), Hukam containing all outcomes (11-15), conquering the mind (292-293), human birth not wasted in Maya (524-530), selfless service without reward (12946-12947), and ego as disease with the Guru’s cure (20961-20963)."
+    "status": "topic-loneliness-topic-patience-verified-ready-to-ship",
+    "summary": "Completed a source-grounded manual rewrite of topic-loneliness and topic-patience top-level copy plus daily/pressure/repair/practice scenarios. Loneliness now moves from private ache into saintly company, Sat Sangat where the Lord abides, the Lord holding the humble close, repair after withdrawal, and a seven-day rhythm of ardas/shabad/contact. Patience now distinguishes small delays spending attention, pressured urgency sacrificing tone, repair after sharp impatience, and a kept waiting practice grounded in true bankers trading Naam, simran cooling the body, holy company bringing composure, and the Creator steadying the wavering mortal."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -466,15 +468,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/topic_verify.py topic-greed topic-honesty failed before edits for locked/generated metadata, unreviewed scenarios, and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=19/28, topic scenarios manual-reviewed=87/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-greed now grounds desire in greed as degrading appetite, false trade, praise/truth/Naam as lasting wealth, honest work and sharing, true bankers trading in Naam, and the humble servant held close; scenarios separate small daily wanting, scarcity pressure, repair after taking more than love allowed, and seven-day generosity/restraint practice. topic-honesty now grounds truth in Naam joined to pure conduct, washed mind in Sangat, honest labor and sharing, sweet speech/humble walking, Hukam under pressure, mind-conquest, selfless service, and ego’s disease/cure; scenarios separate small edits before visible lying, pressured truth, concrete correction after false speech, and repeatable unadvertised truthful practice.",
-    "topicGuideBatch": "topic-greed and topic-honesty passed: pre-edit touched-topic verifier failed for locked/generated metadata, unreviewed scenarios, and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
-    "topicMirrorReviewScan": "topic-greed and topic-honesty detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/topic_verify.py topic-loneliness topic-patience failed before edits for locked/unreviewed metadata and old template lines, then passed after source-grounded rewrites and mirror sync; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, daily mirrors pass, topic guides manual-reviewed=21/28, topic scenarios manual-reviewed=95/112, topic list mirror pass; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended prose diff before commit: topic-loneliness now grounds loneliness in the seeker asking saintly company to show the Beloved, Sat Sangat where the Lord abides, the Lord keeping the humble close, human birth as the chance to meet the Lord through Naam and Sangat, the Creator sustaining the wavering mortal, and Hukam holding separation/reunion. Scenarios separate ordinary lonely narration, pressure-driven withdrawal, repair after disappearing, and a seven-day ardas/shabad/contact rhythm. topic-patience now grounds waiting in mind-wandering ceasing in Sangat, true bankers trading in Naam, simran cooling the body, saintly company giving composure, and the Creator steadying urgency. Scenarios separate small delays spending attention, pressured urgency sacrificing tone, repair after sharp impatience, and a kept waiting practice.",
+    "topicGuideBatch": "topic-loneliness and topic-patience passed: pre-edit touched-topic verifier failed for locked/unreviewed metadata and old scenario template lines; source-grounded prose rewrite completed for top-level and all four scenarios on each topic; detail/list/home mirrors synced; touched-topic verifier passed.",
+    "topicMirrorReviewScan": "topic-loneliness and topic-patience detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; touched-topic app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at edd91a9bf97020446d3286f23843a63d8acf5c06",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-greed/topic-honesty; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-loneliness/topic-patience and whole Learn details; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -483,5 +485,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "edd91a9bf97020446d3286f23843a63d8acf5c06",
-  "updatedAt": "2026-04-27T08:22:29Z"
+  "updatedAt": "2026-04-27T09:15:00Z"
 }
