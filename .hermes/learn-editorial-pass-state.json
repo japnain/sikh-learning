@@ -472,7 +472,7 @@
   },
   "currentBatchStatus": {
     "wave": "collection editorial rewrite",
-    "status": "first-five-short-bundles-verified",
+    "status": "first-five-short-bundles-shipped",
     "summary": "Completed source-grounded manual rewrites for the first five generated short collection bundles: anger, anxiety, attachment, comparison, and control. Each bundle now names the cited shabad image or movement directly rather than using generic shorter-sitting scaffolds."
   },
   "verificationStatus": {
@@ -485,7 +485,7 @@
     "representativeDiffReview": "Reviewed intended prose diff for the collection batch: anger begins under Truth before the flare-up and asks Hukam to shrink the reply; anxiety answers wavering with the Creator who protects and nourishes; attachment rests in sanctuary until praise/blame lose authority; comparison uses metal merging and crimson Truth to melt ranking into praise; control lets many songs of Jap widen the room until praise replaces management.",
     "topicGuideBatch": "topic-seva, topic-shame, and topic-softness selected from live inventory; pre-edit touched-topic verifier failed for unreviewed/generated/locked metadata and old template lines; cited shabad lines were read before prose edits; top-level fields and incomplete/stale scenarios were manually rewritten or refreshed; detail/list/home mirrors synced.",
     "topicMirrorReviewScan": "topic-seva, topic-shame, and topic-softness detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact mirrors match title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; all 28 topics pass full detail/list/home mirror scan; top-level topic guides are 28/28 manual-approved and nested scenarios are 112/112 manual-approved.",
-    "lastPushRecord": "Content batch pushed to origin master at 8f97e4939ff522aa2bf873bb1c0cadb1829ef119; this state-only follow-up records that pushed content SHA.",
+    "lastPushRecord": "Collection content batch pushed to origin master at b776fc92abcdbee202f8cd28984d3b7864ccbd42; this state-only follow-up records that pushed content SHA.",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list mirrors pass.",
@@ -499,6 +499,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "8f97e4939ff522aa2bf873bb1c0cadb1829ef119",
-  "updatedAt": "2026-04-27T10:35:00Z"
+  "lastPushedCommitSha": "b776fc92abcdbee202f8cd28984d3b7864ccbd42",
+  "updatedAt": "2026-04-27T11:55:50Z"
 }
