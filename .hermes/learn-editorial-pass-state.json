@@ -451,7 +451,7 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-fear-verified-ready-to-ship",
+    "status": "topic-fear-shipped",
     "summary": "Completed a manual source-grounded rewrite of topic-fear top-level copy plus daily/pressure/repair/practice scenarios. The batch distinguishes ordinary dread arranging the day, pressured alarm posing as wisdom, repair after fear-led hiding, and a seven-day practiced doorway into shelter. Sources reviewed included the Merciful Master answering wavering (30985-30986), fresh Naam entering the mind and sanctuary (2771-2776), divine belonging and Naam cooling the mind (4138-4143), lesser fears dissolving through Naam and the Guru Shabad (6409-6413), holy company breaking ego’s thorn and death-fear (7122-7123), and sanctuary/mantra for a mind under assault (8845-8849)."
   },
   "verificationStatus": {
@@ -464,7 +464,7 @@
     "representativeDiffReview": "Reviewed staged topic-fear prose before commit: top-level copy now grounds fear in merciful keeping, Naam cooling, holy company, and the Guru’s Shabad; daily names ordinary dread arranging the day; pressure separates alarm from Naam-shaped authority; repair returns fear-led hiding to shelter and truth; practice gives a seven-day embodied doorway of bowing, sanctuary, and trust-shaped action.",
     "topicGuideBatch": "topic-fear passed: pre-edit touched-topic verifier failed for generated metadata/old template line, source-grounded prose rewrite completed, detail/list/home mirrors synced, app-authored banned/template scan passed, daily premium snapshot passed, targeted topic/daily Vitest passed, full Learn repository/page Vitest passed, staged banned-phrase checker passed, and representative staged prose review completed.",
     "topicMirrorReviewScan": "topic-fear detail JSON equals public/data/learn/lists/topic-guides.json entry; home-summary compact topic mirror synced for topic-fear plus previously stale topic-purpose/topic-speech/topic-control title/centralInsight mirrors; top-level and all four topic-fear scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
-    "lastPushRecord": "Content batch pushed to origin master at 9cf3f34cc718fabb7a20dd93f9c39256ef58c3d1",
+    "lastPushRecord": "Content batch pushed to origin master at 853d502d72eca2d2f7932d4ca67ac734defab953",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass.",
@@ -476,6 +476,6 @@
     "collection app-authored blurbs and evidence copy",
     "final corpus scans and representative route spot-checks after all waves"
   ],
-  "lastPushedCommitSha": "9cf3f34cc718fabb7a20dd93f9c39256ef58c3d1",
-  "updatedAt": "2026-04-27T07:08:35Z"
+  "lastPushedCommitSha": "853d502d72eca2d2f7932d4ca67ac734defab953",
+  "updatedAt": "2026-04-27T07:11:25Z"
 }
