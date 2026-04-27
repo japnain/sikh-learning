@@ -427,7 +427,7 @@
       ]
     },
     "topic-guide": {
-      "count": 9,
+      "count": 11,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
@@ -437,7 +437,9 @@
         "topic-guide:topic-discipline",
         "topic-guide:topic-attachment",
         "topic-guide:topic-comparison",
-        "topic-guide:topic-conduct"
+        "topic-guide:topic-conduct",
+        "topic-guide:topic-doubt",
+        "topic-guide:topic-ego"
       ]
     },
     "collection": {
@@ -447,8 +449,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-comparison-conduct-verified-ready-to-ship",
-    "summary": "Completed manual source-grounded rewrites of topic-comparison and topic-conduct top-level copy plus all daily/pressure/repair/practice scenarios. Comparison now distinguishes ordinary sideways scrolling, pressure turning another person’s portion into a verdict, repair after envy has soured the heart, and a seven-day contentment/Bani discipline. Conduct now distinguishes unnoticed-hour integrity, pressure asking for an exemption, repair after conduct contradicts the path, and a keepable hidden rule. Sources reviewed included contentment as inward discipline (290-293), rest in the Lord sanctuary beyond gain/loss (9412-9414), the One Giver and brief staged play under Hukam (749-754), Guru-trained mind and true action (765-772), repeated Bani cooling heat (4119-4120), Naam joined to pure conduct and ambrosial speech (11743-11748), honest labor and open-handed giving (53369-53372), rewardless service (12942-12947), humility as dust of all (12112-12113), Hukam surrounding every condition (11-15), rare human life urgency (527-530), and ego as illness with medicine near (20961-20963)."
+    "status": "topic-doubt-ego-verified-ready-to-ship",
+    "summary": "Completed manual source-grounded rewrites of topic-doubt and topic-ego top-level copy plus all daily/pressure/repair/practice scenarios. Doubt now distinguishes roaming questions in ordinary hours, pressure making doubt demand the room, repair after a slip turns into fog, and a seven-day return practice. Ego now distinguishes ordinary scorekeeping for credit, pressure making defense feel necessary, repair after pride has spoken, and hidden clean-conduct/service practice. Sources reviewed included doubt as unquenched fire and Guru-word medicine (918-922), Sat Sangat guiding the search (729-734, 3757-3760), Creator care answering wavering (30988-30994), Truth implanted in conduct under pressure (2798-2812), restless mind quieted by the Guru’s Mantra (7107-7112), ego as chronic illness with cure in Shabad (20961-20964), sweet speech and humble walk (1288-1296), honest labor/open-handed giving (53369-53372), hidden service (12942-12944), and Naam joined to pure conduct (11743-11748)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -456,15 +458,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-comparison topic-conduct passed; python3 .hermes/scripts/verify_daily_snapshot.py passed; npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended comparison/conduct prose before commit: comparison now grounds envy in forgetting the One Giver, contentment as inward clothing, sanctuary beyond gain/loss, and Bani cooling envy; conduct now grounds integrity in Naam joined to pure conduct, honest labor/open-handed giving, hidden obedience, rewardless service, humility, and ego medicine.",
-    "topicGuideBatch": "topic-comparison and topic-conduct passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and staged banned-phrase checker.",
-    "topicMirrorReviewScan": "topic-comparison and topic-conduct detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/verify_touched_topics.py topic-doubt topic-ego passed after an intentional pre-edit RED failure; python3 .hermes/scripts/scan_learn_quality.py passed with daily count=240, duplicate titles=0, summaries=0, takeaways=0, reviewed=240/240, origins/manual=240, statuses/approved=240, app-authored banned hits=0, topic scenarios manual-reviewed=56/112; targeted npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); full npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended doubt/ego prose before commit: doubt now grounds ordinary roaming in doubt as unquenched fire, Sat Sangat as shared seeking, Creator care for wavering, Truth under pressure, and Guru-given quiet for the restless mind; ego now grounds daily scorekeeping, pressure defense, repair after pride, and hidden practice in haumai as chronic illness, sweet speech/humble walk, honest work/giving, hidden service, and Naam joined to clean conduct.",
+    "topicGuideBatch": "topic-doubt and topic-ego passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, full Learn repository/page Vitest, and staged banned-phrase checker pending final staged run.",
+    "topicMirrorReviewScan": "topic-doubt and topic-ego detail JSON equals public/data/learn/lists/topic-guides.json entries; home-summary compact topic mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all eight scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 2a84bfbb3a7550e6c1f8add450f954e141dcfd91",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
     "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; list/home mirrors pass after topic-comparison/topic-conduct batch.",
-    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-comparison/topic-conduct; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "bannedPhraseScan": "Direct app-authored scan passed before staging for topic-doubt/topic-ego; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -473,5 +475,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "2a84bfbb3a7550e6c1f8add450f954e141dcfd91",
-  "updatedAt": "2026-04-27T06:06:52Z"
+  "updatedAt": "2026-04-27T06:27:17Z"
 }
