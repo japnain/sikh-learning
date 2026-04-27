@@ -6,6 +6,8 @@ import {
   IconArrowRight,
   IconChevronDown,
   IconChevronUp,
+  IconLibrary,
+  IconSearch,
 } from './icons'
 
 type ScriptureSourceSection = {
@@ -14,6 +16,11 @@ type ScriptureSourceSection = {
   source?: string
   totalAngs: number
   pagePathTemplate?: string
+  overviewPath?: string
+  overviewEyebrow?: string
+  overviewDescription?: string
+  overviewStats?: string[]
+  quickBrowseLabel?: string
 }
 
 type ScriptureSourceBrowserProps = {
@@ -26,7 +33,18 @@ const SCRIPTURE_SOURCE_SECTIONS: ScriptureSourceSection[] = [
   { id: 'sggs', name: 'Sri Guru Granth Sahib Ji', source: 'G', totalAngs: SGGS_ANG_COUNT },
   { id: 'dasam-granth', name: 'Dasam Granth', source: 'D', totalAngs: DG_ANG_COUNT },
   { id: 'bhai-gurdas-vaaran', name: 'Bhai Gurdas Ji Vaaran', source: 'B', totalAngs: 628 },
-  { id: 'panth-prakash-english', name: 'Panth Prakash (English)', totalAngs: 1417, pagePathTemplate: '/library/panth-prakash-english/page/:pageNumber' },
+  {
+    id: 'panth-prakash-english',
+    name: 'Panth Prakash (English)',
+    totalAngs: 1417,
+    pagePathTemplate: '/library/panth-prakash-english/page/:pageNumber',
+    overviewPath: '/library/panth-prakash-english',
+    overviewEyebrow: 'Historical reading edition',
+    overviewDescription:
+      'Open the separate reading page for chapter-style episode browsing, full-text search, source scan mapping, and honest review status before jumping into a page.',
+    overviewStats: ['169 episodes', '1417 pages', 'source scan mapping', 'machine-cleaned'],
+    quickBrowseLabel: 'Show quick page numbers',
+  },
 ]
 
 const PAGE_SIZE = 50
@@ -48,6 +66,82 @@ function buildPagePath(section: ScriptureSourceSection, ang: number) {
 function buildPageLinkLabel(section: ScriptureSourceSection, ang: number) {
   const label = angLabel(section).toLowerCase()
   return `Open ${section.name.replace(' (English)', '')} ${label} ${ang}`
+}
+
+function SourceOverviewCard({
+  section,
+  isOpen,
+  onToggleQuickPages,
+  panelId,
+}: {
+  section: ScriptureSourceSection
+  isOpen: boolean
+  onToggleQuickPages: () => void
+  panelId: string
+}) {
+  return (
+    <div
+      className="relative overflow-hidden rounded-[1.75rem] border border-gold/25 bg-gradient-to-br from-gold/15 via-white/90 to-cream/80 p-4 shadow-[0_20px_60px_rgba(87,64,25,0.12)] dark:border-gold-light/25 dark:from-gold/15 dark:via-dark-surface/95 dark:to-dark-bg"
+    >
+      <div className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full bg-gold/20 blur-3xl dark:bg-gold-light/10" />
+      <div className="relative space-y-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <p className="font-sans text-[0.68rem] font-bold uppercase tracking-[0.24em] text-gold dark:text-gold-light">
+              {section.overviewEyebrow ?? 'Source edition'}
+            </p>
+            <div>
+              <h3 className="font-serif text-2xl font-semibold leading-tight text-ink dark:text-dark-text">{section.name}</h3>
+              {section.overviewDescription ? (
+                <p className="mt-2 max-w-2xl font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
+                  {section.overviewDescription}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <span className="icon-surface shrink-0 text-gold dark:text-gold-light" aria-hidden="true">
+            <IconLibrary size={20} />
+          </span>
+        </div>
+
+        {section.overviewStats?.length ? (
+          <div className="flex flex-wrap gap-2" aria-label={`${section.name} edition details`}>
+            {section.overviewStats.map(stat => (
+              <span
+                key={stat}
+                className="rounded-full border border-gold/20 bg-white/70 px-3 py-1 font-sans text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink/65 dark:border-gold-light/20 dark:bg-white/5 dark:text-dark-text/65"
+              >
+                {stat}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
+        <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+          {section.overviewPath ? (
+            <Link
+              to={section.overviewPath}
+              className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
+            >
+              Browse Panth Prakash episodes
+              <IconArrowRight size={16} />
+            </Link>
+          ) : null}
+
+          <button
+            type="button"
+            onClick={onToggleQuickPages}
+            className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
+            aria-expanded={isOpen}
+            aria-controls={panelId}
+          >
+            <IconSearch size={15} />
+            {isOpen ? 'Hide quick page numbers' : section.quickBrowseLabel ?? 'Show quick page numbers'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function AngPageBrowser({ section }: { section: ScriptureSourceSection }) {
@@ -112,6 +206,28 @@ export default function ScriptureSourceBrowser({
       {sections.map(section => {
         const isOpen = Boolean(expanded[section.id])
         const panelId = `${dataTestId ?? 'scripture-source'}-${section.id}`
+
+        if (section.overviewPath) {
+          return (
+            <div
+              key={section.id}
+              className={sectionClassName}
+              data-testid={`${section.id.replace('-english', '')}-source-card`}
+            >
+              <SourceOverviewCard
+                section={section}
+                isOpen={isOpen}
+                onToggleQuickPages={() => setExpanded(current => ({ ...current, [section.id]: !current[section.id] }))}
+                panelId={panelId}
+              />
+              {isOpen ? (
+                <div id={panelId} className="mt-4">
+                  <AngPageBrowser section={section} />
+                </div>
+              ) : null}
+            </div>
+          )
+        }
 
         return (
           <div key={section.id} className={sectionClassName}>
