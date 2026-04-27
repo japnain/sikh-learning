@@ -427,14 +427,15 @@
       ]
     },
     "topic-guide": {
-      "count": 6,
+      "count": 7,
       "ids": [
         "topic-guide:topic-purpose",
         "topic-guide:topic-speech",
         "topic-guide:topic-control",
         "topic-guide:topic-anger",
         "topic-guide:topic-anxiety",
-        "topic-guide:topic-discipline"
+        "topic-guide:topic-discipline",
+        "topic-guide:topic-attachment"
       ]
     },
     "collection": {
@@ -444,8 +445,8 @@
   },
   "currentBatchStatus": {
     "wave": "topic-guide editorial rewrite",
-    "status": "topic-discipline-verified-ready-to-ship",
-    "summary": "Completed a manual source-grounded rewrite of topic-discipline top-level copy and all four scenarios. The batch distinguishes ordinary midday bargaining, pressure treating practice as optional, repair after a broken pattern, and a seven-day durable practice rooted in Naam, honest work, hidden service, and conquering the mind. Sources reviewed: inward yogic marks and conquering the mind (290-292), Naam joined to pure conduct (11742-11748), lasting spiritual wealth/truth (934-946), honest labor and giving (53369-53372), rare human birth (524-533), remembrance settling the body (11502-11503), and hidden selfless service (12942-12950)."
+    "status": "topic-attachment-verified-ready-to-ship",
+    "summary": "Completed a manual source-grounded rewrite of topic-attachment top-level copy and all four scenarios. The batch distinguishes daily checking and reassurance loops, pressure-driven panic that tries to secure the gift, repair after possessive harm, and a seven-day open-handed cue practice. Sources reviewed: rest in the Lord sanctuary and equanimity toward praise/blame/gain/loss (9412-9416), receiving under Hukam (499-503), Hukam surrounding all created forms (11-15), rare human birth and sanctuary (524-533), childlike protection by the Guru (3762-3763), the Creator who sustains the wavering mortal (30988-30994), cooling in saintly company (3898-3900), and the humble servant kept near the Lord heart (37474-37477)."
   },
   "verificationStatus": {
     "duplicateDailyGuidanceSummaries": "0",
@@ -453,15 +454,15 @@
     "duplicateDailyGuidanceTakeaways": "0 after completing the remaining five duplicate-takeaway groups across 51 entries",
     "dailyGuidanceReviewedByHuman": "240/240 true",
     "dailyGuidanceMetadata": "240 manual origin / 240 approved status",
-    "vitest": "python3 .hermes/scripts/verify_topic_discipline.py passed; python3 .hermes/scripts/verify_daily_snapshot.py passed; npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
-    "representativeDiffReview": "Reviewed intended topic-discipline prose before commit: overview now grounds discipline in contentment worn inwardly, Naam in the heart, honest work, and truth carried as durable wealth; daily resists midday bargaining; pressure refuses to make remembrance optional; repair names false trade and honest return; practice builds a seven-day cue around Naam, honest action, or quiet service.",
-    "topicGuideBatch": "topic-discipline passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, and full Learn repository/page Vitest.",
-    "topicMirrorReviewScan": "topic-discipline detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
+    "vitest": "python3 .hermes/scripts/verify_topic_attachment.py passed; python3 .hermes/scripts/verify_daily_snapshot.py passed; npx vitest run src/data/learnRepository.test.ts -t \"low-scoring topic scenarios are manually reviewed before they remain in the archive|priority topic scenarios do not keep the old generic template lines|published daily guidance summaries are distinct and avoid repeated exhortation scaffolds\" --test-timeout=15000 passed (3 tests); npx vitest run src/data/learnRepository.test.ts src/pages/Learn.test.tsx --test-timeout=15000 passed (37 tests).",
+    "representativeDiffReview": "Reviewed intended topic-attachment prose before commit: overview now grounds attachment in gifts received under Hukam rather than possessed; daily names checking/reassurance loops and answers them with one breath of Naam; pressure refuses panic as wisdom; repair names harm caused by the grip and sends it toward truthful repair, sangat/prayer, and Naam; practice gives a seven-day sentence, as You give, so I receive.",
+    "topicGuideBatch": "topic-attachment passed: source-grounded prose review, detail/list/home mirror scan, app-authored banned/template scan, daily premium snapshot, targeted topic/daily Vitest, and full Learn repository/page Vitest.",
+    "topicMirrorReviewScan": "topic-attachment detail equals public/data/learn/lists/topic-guides.json entry; home-summary topicGuides mirror synced for title/shortTitle/category/centralInsight/searchTerms/relationships/rotation; top-level and all four scenarios are reviewedByHuman=true, origin=manual, status=approved, issues=[]; app-authored banned/template hits=0.",
     "lastPushRecord": "Content batch pushed to origin master at 0a9b2ef6a5f86623504876533bdf0891eecdb478",
     "dailyGuidanceFinalPolishRequired": "complete: duplicate titles=0, duplicate summaries=0, duplicate takeaways=0, banned hits=0, reviewed metadata normalized to manual/approved; topic-guide wave can resume next.",
     "dailyMirrorScan": "all 240 daily guidance details match lists/daily-guidance.json; home-summary mirrored title/summary/relationship/rotation fields checked for 240 daily mirrors; errors=0",
-    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-discipline batch.",
-    "bannedPhraseScan": "direct app-authored topic-discipline scan passed before staging; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
+    "dailyFinalPolishScan": "count=240; duplicate summaries=0; duplicate titles=0; duplicate takeaways=0; banned hits=0; reviewedByHuman=240/240; origin/status=240 manual/240 approved; final-premium daily guidance uniqueness remains complete after topic-attachment batch.",
+    "bannedPhraseScan": "direct app-authored topic-attachment scan passed before staging; node scripts/learn/review/check-banned-phrases.mjs passed after staging intended Learn/state files."
   },
   "blockers": [],
   "remainingQueue": [
@@ -470,5 +471,5 @@
     "final corpus scans and representative route spot-checks after all waves"
   ],
   "lastPushedCommitSha": "0a9b2ef6a5f86623504876533bdf0891eecdb478",
-  "updatedAt": "2026-04-27T05:24:38Z"
+  "updatedAt": "2026-04-27T05:44:25Z"
 }
