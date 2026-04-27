@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-bundle",
-  "title": "Loneliness in one shorter sitting",
-  "subtitle": "A shorter sitting for when loneliness is already close",
-  "description": "A quiet return for the hour when isolation has already tightened. It turns the ache toward company, remembrance, and the One who has not stepped away.",
+  "title": "When the Guru parents the lonely heart",
+  "subtitle": "For the hour when dependence feels embarrassing",
+  "description": "A quiet bundle for bringing loneliness into prayer without shame. It follows the helpless child toward the True Guru as protector, mother, father, and living water for the heart.",
   "durationLabel": "3-step bundle",
   "themes": [
     "loneliness"
@@ -14,8 +14,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "The Guru is named as protector, mother, and father.",
-    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+    "shortMeaning": "The shabad lets the soul come as a helpless child to the True Guru, protector, mother, and father.",
+    "lifeApplication": "Let loneliness speak plainly in prayer, then receive dependence as the place where the heart can blossom."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A quiet return for the hour when isolation has already tightened. It turns the ache toward company, remembrance, and the One who has not stepped away.",
+      "coreClaim": "This bundle answers isolation with the shabad’s family language, where the True Guru protects and cherishes the helpless child.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "A shorter sitting for when loneliness is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "For when being needy feels like failure instead of the beginning of prayer",
+      "practicalImplication": "Move through the linked steps by naming the ache, seeking holy company, and letting the Guru’s care become more concrete than isolation.",
       "bannedOverreach": []
     },
     "scores": {

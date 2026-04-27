@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-bundle",
-  "title": "Gratitude in one shorter sitting",
-  "subtitle": "A shorter sitting for when gratitude is already close",
-  "description": "A quick return for the hour when lack sounds louder than gift. It reopens the eye before appetite takes over again.",
+  "title": "When mercy makes gratitude honest",
+  "subtitle": "For the hour when gift is near but entitlement speaks first",
+  "description": "A brief return to the confession that grace was already working before you noticed it. It lets gratitude become humility, not self-congratulation.",
   "durationLabel": "3-step bundle",
   "themes": [
     "gratitude"
@@ -14,8 +14,8 @@
       60339,
       60340
     ],
-    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
-    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+    "shortMeaning": "Gratitude begins by admitting unworthiness and recognizing the pity that brought the True Guru near.",
+    "lifeApplication": "Name one mercy you did not earn, then let that remembrance make the next act gentler."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A quick return for the hour when lack sounds louder than gift. It reopens the eye before appetite takes over again.",
+      "coreClaim": "This bundle begins where the shabad begins, with the heart confessing it did not appreciate what the Lord had already done.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "A shorter sitting for when gratitude is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "For when lack is louder than the mercy that has been carrying you",
+      "practicalImplication": "Move from honest confession into practice and shabad so thankfulness becomes received humility instead of a mood.",
       "bannedOverreach": []
     },
     "scores": {
