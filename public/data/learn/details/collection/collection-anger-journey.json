@@ -1,8 +1,8 @@
 {
   "id": "collection-anger-journey",
-  "title": "From Anger to steadier practice",
-  "subtitle": "For when anger keeps steering the day",
-  "description": "Follow heat from the mouth back to the wound beneath it, then stay long enough for force to give way to steadier truth.",
+  "title": "Anger under the Truth that Outlasts It",
+  "subtitle": "For heat that needs a truer measure than the moment",
+  "description": "Begin with Truth that stands before and beyond the flare-up. This path lets anger lose its claim to be final, then walks the tongue back toward Hukam, truthful speech, and steadier service.",
   "durationLabel": "5-step journey",
   "themes": [
     "anger",
@@ -14,8 +14,8 @@
       3,
       4
     ],
-    "shortMeaning": "Anger is met at the mouth and turned back toward steadiness.",
-    "lifeApplication": "Before the next hard reply, slow the tongue and give the heat one more breath."
+    "shortMeaning": "The Mool Mantar places the heated moment inside Truth that was before it and remains after it.",
+    "lifeApplication": "When anger insists that this moment is everything, answer it by returning to what is true before, now, and beyond the argument."
   },
   "items": [
     {
@@ -51,14 +51,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
-    "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow heat from the mouth back to the wound beneath it, then stay long enough for force to give way to steadier truth.",
+      "coreClaim": "The journey starts under the Mool Mantar's enduring Truth so anger is no longer allowed to define reality for the tongue.",
       "emotionalState": "reactive, heated, sharp",
-      "turn": "For when anger keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "For heat that needs to become accountable to Truth",
+      "practicalImplication": "Move from the first surge of anger into one truthful pause, then let the next reading teach the mouth how to serve instead of scorch.",
       "bannedOverreach": []
     },
     "scores": {

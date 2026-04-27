@@ -1,8 +1,8 @@
 {
   "id": "collection-comparison-journey",
-  "title": "From Comparison to steadier practice",
-  "subtitle": "For when comparison keeps steering the day",
-  "description": "Begin where envy steals the gaze, then return to duty, gratitude, and the clean relief of staying in your own lane before the Guru.",
+  "title": "Comparison melted into praise",
+  "subtitle": "For the gaze that needs to be dyed in something truer",
+  "description": "Start with the shabad's image of metal merging with metal and praise absorbed into the Praiseworthy One. These readings lead envy away from ranking and toward saintly company, true action, and the crimson color of Truth.",
   "durationLabel": "5-step journey",
   "themes": [
     "comparison",
@@ -14,8 +14,8 @@
       759,
       760
     ],
-    "shortMeaning": "Envy loosens when the gaze returns to duty and praise.",
-    "lifeApplication": "Before naming another person's advantage again, name your own duty out loud."
+    "shortMeaning": "Praise absorbs the self into the Praiseworthy Lord and dyes the life in truthful color.",
+    "lifeApplication": "When comparison hardens the gaze, turn one concrete act of praise into your way back home."
   },
   "items": [
     {
@@ -51,14 +51,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
-    "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "origin": "manual",
+    "voiceVersion": "sggs-editorial-v2",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Begin where envy steals the gaze, then return to duty, gratitude, and the clean relief of staying in your own lane before the Guru.",
+      "coreClaim": "The journey begins with praise as absorption, not performance, so comparison can melt instead of merely being managed.",
       "emotionalState": "envious, unsettled, small",
-      "turn": "For when comparison keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "For envy that needs to be recolored by praise",
+      "practicalImplication": "Follow the five steps from ranking into praise, then let duty and sangat keep the heart from reopening the contest.",
       "bannedOverreach": []
     },
     "scores": {
