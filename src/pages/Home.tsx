@@ -85,16 +85,19 @@ type HomeHeroRevealStyle = CSSProperties & {
   '--home-hero-parallax-x': string
   '--home-hero-landscape-offset': string
   '--home-hero-content-offset': string
+  '--home-hero-image-lock': string
   '--home-hero-image-scale': string
   '--home-hero-image-y': string
 }
 
 const HOME_HERO_CONTENT_OFFSET_REM = 36
-const HOME_HERO_REVEAL_DISTANCE_PX = 170
+const HOME_HERO_REVEAL_DISTANCE_PX = 250
 
 function useHomeHeroReveal() {
   const rootRef = useRef<HTMLElement | null>(null)
+  const landscapeRef = useRef<HTMLSpanElement | null>(null)
   const frameRef = useRef<number | null>(null)
+  const initialLandscapeTopRef = useRef<number | null>(null)
   const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
   const [style, setStyle] = useState<HomeHeroRevealStyle>({
     '--home-hero-reveal': '0',
@@ -103,6 +106,7 @@ function useHomeHeroReveal() {
     '--home-hero-parallax-x': '0rem',
     '--home-hero-landscape-offset': '0.4rem',
     '--home-hero-content-offset': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
+    '--home-hero-image-lock': '0px',
     '--home-hero-image-scale': '1',
     '--home-hero-image-y': '0rem',
   })
@@ -110,15 +114,21 @@ function useHomeHeroReveal() {
   const applyStyle = useCallback(() => {
     frameRef.current = null
     const inverseReveal = 1 - valuesRef.current.reveal
+    const scrollY = window.scrollY
+    if (scrollY < 2 || initialLandscapeTopRef.current === null) {
+      initialLandscapeTopRef.current = landscapeRef.current?.getBoundingClientRect().top ?? 0
+    }
+    const imageLock = Math.max(0, scrollY - initialLandscapeTopRef.current)
     const next: HomeHeroRevealStyle = {
       '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
       '--home-hero-pointer-x': valuesRef.current.pointerX.toFixed(3),
       '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
       '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
-      '--home-hero-landscape-offset': `${(inverseReveal * 0.4).toFixed(3)}rem`,
+      '--home-hero-landscape-offset': '0.4rem',
       '--home-hero-content-offset': `${(inverseReveal * HOME_HERO_CONTENT_OFFSET_REM).toFixed(3)}rem`,
-      '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.075).toFixed(3)}`,
-      '--home-hero-image-y': `${(-valuesRef.current.reveal * 1.05).toFixed(3)}rem`,
+      '--home-hero-image-lock': `${imageLock.toFixed(1)}px`,
+      '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.12).toFixed(3)}`,
+      '--home-hero-image-y': '0rem',
     }
     setStyle(current => (
       current['--home-hero-reveal'] === next['--home-hero-reveal']
@@ -127,6 +137,7 @@ function useHomeHeroReveal() {
       && current['--home-hero-parallax-x'] === next['--home-hero-parallax-x']
       && current['--home-hero-landscape-offset'] === next['--home-hero-landscape-offset']
       && current['--home-hero-content-offset'] === next['--home-hero-content-offset']
+      && current['--home-hero-image-lock'] === next['--home-hero-image-lock']
       && current['--home-hero-image-scale'] === next['--home-hero-image-scale']
       && current['--home-hero-image-y'] === next['--home-hero-image-y']
         ? current
@@ -143,7 +154,7 @@ function useHomeHeroReveal() {
     const root = rootRef.current
     const rootTop = root?.getBoundingClientRect().top ?? 0
     const rawReveal = Math.max(0, Math.min(1, -rootTop / HOME_HERO_REVEAL_DISTANCE_PX))
-    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 2.45)
+    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 1.85)
     scheduleStyle()
   }, [scheduleStyle])
 
@@ -158,11 +169,15 @@ function useHomeHeroReveal() {
     }
 
     updateReveal()
+    const handleResize = () => {
+      initialLandscapeTopRef.current = null
+      updateReveal()
+    }
     window.addEventListener('scroll', updateReveal, { passive: true })
-    window.addEventListener('resize', updateReveal)
+    window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('scroll', updateReveal)
-      window.removeEventListener('resize', updateReveal)
+      window.removeEventListener('resize', handleResize)
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current)
         frameRef.current = null
@@ -195,6 +210,7 @@ function useHomeHeroReveal() {
 
   return {
     rootRef,
+    landscapeRef,
     style,
     handlePointerMove,
     handlePointerLeave,
@@ -870,7 +886,6 @@ export default function Home() {
         style={homeHeroReveal.style}
         onPointerMove={homeHeroReveal.handlePointerMove}
         onPointerLeave={homeHeroReveal.handlePointerLeave}
-        onTouchMove={homeHeroReveal.handleTouchMove}
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
@@ -926,7 +941,7 @@ export default function Home() {
         </div>
 
         <div className="home-door-frame" aria-label="Daily reading room">
-          <span className="home-landscape-reveal" aria-hidden="true" />
+          <span ref={homeHeroReveal.landscapeRef} className="home-landscape-reveal" aria-hidden="true" />
           <h1 id="home-hero-title" className="sr-only">
             NaamRas home
           </h1>
