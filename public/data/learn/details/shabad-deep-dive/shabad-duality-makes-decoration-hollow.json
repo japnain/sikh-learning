@@ -197,9 +197,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by calling the life deceived by duality cursed and unstable like a wall of sand. It travels through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
       "emotionalState": "dull, entitled, forgetful",

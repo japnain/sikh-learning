@@ -1,8 +1,8 @@
 {
   "id": "collection-seeking-bundle",
-  "title": "Seeking in one shorter sitting",
-  "subtitle": "A shorter sitting for when seeking is already close",
-  "description": "A short return for the hour when spiritual hunger starts feeding on novelty. It turns search back toward depth, dwelling, and obedience.",
+  "title": "Seeking that learns to dwell",
+  "subtitle": "A short return when holy hunger is turning into novelty",
+  "description": "A brief path for bringing the search back to sangat, Naam, and obedience before spiritual hunger becomes another appetite.",
   "durationLabel": "3-step bundle",
   "themes": [
     "seeking"
@@ -13,8 +13,8 @@
       11239,
       11240
     ],
-    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
-    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+    "shortMeaning": "The wandering mind settles in the Society of the Saints, where mercy begins to enlighten the search.",
+    "lifeApplication": "Stay with one true instruction long enough for seeking to become practice."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when spiritual hunger starts feeding on novelty. It turns search back toward depth, dwelling, and obedience.",
+      "coreClaim": "This bundle separates holy hunger from restless consumption.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "A shorter sitting for when seeking is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Seeking deepens when it stops collecting and begins dwelling.",
+      "practicalImplication": "Keep one teaching today instead of hunting for a new one.",
       "bannedOverreach": []
     },
     "scores": {

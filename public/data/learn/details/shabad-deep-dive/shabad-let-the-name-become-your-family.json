@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
       "emotionalState": "isolated, impressionable, needing-company",

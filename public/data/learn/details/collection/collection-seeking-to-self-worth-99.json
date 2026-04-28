@@ -1,8 +1,8 @@
 {
   "id": "collection-seeking-to-self-worth-99",
-  "title": "When seeking is really a wound of worth",
-  "subtitle": "When searching is trying to prove you are enough",
-  "description": "These readings separate honest seeking from the ache to justify yourself, then return the heart to given dignity.",
+  "title": "When searching is trying to prove enoughness",
+  "subtitle": "For the quest that is secretly asking to be validated",
+  "description": "These readings separate honest seeking from the ache to justify yourself, then return dignity to grace and true wealth.",
   "durationLabel": "6-step journey",
   "themes": [
     "seeking",
@@ -14,8 +14,8 @@
       11239,
       11240
     ],
-    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
-    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+    "shortMeaning": "The mind’s wandering can hide a wound of worth; Naam gives the search a truer treasure.",
+    "lifeApplication": "Seek because truth is worthy, not because you must prove you are."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings separate honest seeking from the ache to justify yourself, then return the heart to given dignity.",
+      "coreClaim": "This path exposes the self-worth wound that can hide inside constant seeking.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "When searching is trying to prove you are enough",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The search becomes freer when it no longer has to manufacture dignity.",
+      "practicalImplication": "Let one act of remembrance be enough without turning it into evidence for your value.",
       "bannedOverreach": []
     },
     "scores": {

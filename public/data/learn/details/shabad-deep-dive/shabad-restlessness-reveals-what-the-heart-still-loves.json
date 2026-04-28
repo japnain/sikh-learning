@@ -140,9 +140,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with a mind that will not stay still for an instant. It turns through the Guru's gift of Naam and quiet, then exposes false aims in hearts lacking love for the Lord.",
       "emotionalState": "scattered, unsettled, wandering",

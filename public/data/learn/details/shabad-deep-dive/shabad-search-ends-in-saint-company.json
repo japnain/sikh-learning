@@ -163,10 +163,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy brings true company, and then the mind and body finally cool.",
       "emotionalState": "wandering, exhausted, seeking",

@@ -133,9 +133,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
       "emotionalState": "hard, sharp, protective",

@@ -133,10 +133,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
       "emotionalState": "pretending, unclear, performing",

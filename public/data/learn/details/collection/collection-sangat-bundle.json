@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-bundle",
-  "title": "Sangat, when you need it now",
-  "subtitle": "For when you need better company before better thinking",
-  "description": "A shorter sitting that gets the heart back into sangat before private weather takes over.",
+  "title": "Better company before better thinking",
+  "subtitle": "A short return when the mind needs a different atmosphere",
+  "description": "A brief path for the hour when private thinking has gone stale and the heart needs sangat to remember what it is for.",
   "durationLabel": "3-step bundle",
   "themes": [
     "sangat"
@@ -13,8 +13,8 @@
       527,
       528
     ],
-    "shortMeaning": "Holy company does for the heart what private effort cannot.",
-    "lifeApplication": "When you start wandering alone, move toward the company that steadies you."
+    "shortMeaning": "Human life answers its chance through Naam and sangat, not isolated effort alone.",
+    "lifeApplication": "Change the company around the thought before demanding the thought change by itself."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A shorter sitting that gets the heart back into sangat before private weather takes over.",
+      "coreClaim": "This bundle gives the mind a cleaner atmosphere before it tries to solve itself.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "For when you need better company before better thinking",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Sangat becomes the practical medicine for a heart stuck in its own air.",
+      "practicalImplication": "Move toward one person, place, or practice that makes remembrance more likely.",
       "bannedOverreach": []
     },
     "scores": {

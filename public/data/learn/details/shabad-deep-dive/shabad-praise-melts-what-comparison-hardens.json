@@ -176,9 +176,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It carries the listener through saintly dust, true action, and the home of the self being found within.",
       "emotionalState": "envious, unsettled, small",

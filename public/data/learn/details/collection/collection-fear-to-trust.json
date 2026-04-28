@@ -1,8 +1,8 @@
 {
   "id": "collection-fear-to-trust",
-  "title": "From Vigilance to Trust",
-  "subtitle": "For the heart that keeps calling vigilance wisdom",
-  "description": "Move from fear toward trust by receiving Hukam and the care already here.",
+  "title": "Let vigilance become trust",
+  "subtitle": "For the heart that keeps calling fear wisdom",
+  "description": "These readings do not shame vigilance; they place it under the Merciful Creator until protection is no longer confused with constant bracing.",
   "durationLabel": "5-day journey",
   "themes": [
     "anxiety",
@@ -15,8 +15,8 @@
       30988,
       30989
     ],
-    "shortMeaning": "Fear loosens when the heart receives care instead of rehearsing threat.",
-    "lifeApplication": "When vigilance spikes, read the line aloud and let the body soften before planning more."
+    "shortMeaning": "The Creator who forms, nourishes, and cherishes the mortal is a truer shelter than fear’s watchtower.",
+    "lifeApplication": "Keep the needed care, but release the extra bracing that has become your false refuge."
   },
   "items": [
     {
@@ -51,15 +51,15 @@
     "shabad-suffering-as-medicine"
   ],
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Move from fear toward trust by receiving Hukam and the care already here.",
+      "coreClaim": "This path converts vigilance into trust by returning protection to the One who actually sustains life.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "For the heart that keeps calling vigilance wisdom",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Trust begins when fear stops being treated as the only responsible voice.",
+      "practicalImplication": "Do the prudent thing once; then refuse to rehearse the danger as devotion.",
       "bannedOverreach": []
     },
     "scores": {

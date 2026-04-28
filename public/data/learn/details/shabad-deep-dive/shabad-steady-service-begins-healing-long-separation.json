@@ -336,9 +336,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with day-and-night service, remembrance, and sweet speech offered from sanctuary. It travels through the sorrow of separation, the need for mercy, and ends with the yearning to be united with the Lord through the Guru's feet.",
       "emotionalState": "unworthy, guarded, hard-on-self",

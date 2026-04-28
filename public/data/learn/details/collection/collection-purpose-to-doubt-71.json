@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-to-doubt-71",
-  "title": "When purpose dissolves into doubt",
-  "subtitle": "When calling starts blurring into second-guessing",
-  "description": "These readings keep vocation from dissolving into endless reconsideration by fastening the heart to one entrusted act.",
+  "title": "When calling blurs into second-guessing",
+  "subtitle": "For purpose that loses courage under too many questions",
+  "description": "These readings bring the rare human chance back into view when doubt starts dissolving the next faithful step.",
   "durationLabel": "6-step journey",
   "themes": [
     "purpose",
@@ -14,8 +14,8 @@
       524,
       525
     ],
-    "shortMeaning": "Purpose survives when one entrusted act is kept longer than the doubt around it.",
-    "lifeApplication": "When the mind reopens everything, keep the clearest duty until the fog loses authority."
+    "shortMeaning": "The gift of human birth is clear enough to require response even when every detail is not settled.",
+    "lifeApplication": "Do the next true thing before doubt demands a complete map."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings keep vocation from dissolving into endless reconsideration by fastening the heart to one entrusted act.",
+      "coreClaim": "This path keeps purpose from being smothered by endless review.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "When calling starts blurring into second-guessing",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Doubt becomes smaller when the chance itself is honored with action.",
+      "practicalImplication": "Choose one step that serves meeting, remembrance, or seva, and take it without reopening the whole calling.",
       "bannedOverreach": []
     },
     "scores": {

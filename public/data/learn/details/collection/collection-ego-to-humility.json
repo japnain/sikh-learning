@@ -1,8 +1,8 @@
 {
   "id": "collection-ego-to-humility",
-  "title": "From Ego to Humility",
-  "subtitle": "For the self that keeps sneaking back to center",
-  "description": "Stay with these readings until ego is exposed, lowered, and made useful through humility.",
+  "title": "Let the self step down from the center",
+  "subtitle": "For the ego that keeps returning in spiritual clothing",
+  "description": "Walk through the diagnosis of haumai until humility becomes less like self-hatred and more like receiving the cure.",
   "durationLabel": "5-day journey",
   "themes": [
     "ego",
@@ -15,8 +15,8 @@
       20963,
       20964
     ],
-    "shortMeaning": "The line catches ego before it can rename itself sincerity.",
-    "lifeApplication": "Before defending yourself, ask where the self wants the line to confirm it."
+    "shortMeaning": "Ego is disease, but the Shabad carries the medicine that grace places inside the wound.",
+    "lifeApplication": "Do not perform smallness; let grace make you truthful about dependence."
   },
   "items": [
     {
@@ -52,15 +52,15 @@
     "shabad-speak-what-brings-honor"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Stay with these readings until ego is exposed, lowered, and made useful through humility.",
+      "coreClaim": "This path moves ego toward humility by naming both the sickness and the given cure.",
       "emotionalState": "defensive, offended, self-important",
-      "turn": "For the self that keeps sneaking back to center",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Humility begins when the self stops pretending it can heal itself.",
+      "practicalImplication": "Choose one hidden act that does not improve your image and does not need to.",
       "bannedOverreach": []
     },
     "scores": {

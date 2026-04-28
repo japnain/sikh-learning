@@ -134,9 +134,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by joining service, peace, and the treasure of the True Name. It deepens through self-recognition, inner light, truthfulness, and praise that returns body and soul to the Lord.",
       "emotionalState": "inflated, defensive, self-protective",

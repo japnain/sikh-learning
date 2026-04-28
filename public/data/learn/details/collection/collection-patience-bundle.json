@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-bundle",
-  "title": "Patience in one shorter sitting",
-  "subtitle": "A shorter sitting for when patience is already close",
-  "description": "A short return for the hour when delay is turning bitter. It teaches waiting to soften instead of sour.",
+  "title": "Patience in saintly company",
+  "subtitle": "A short return when waiting has become agitation",
+  "description": "A brief path that places impatience near sangat, mercy, and listening until waiting becomes less lonely and more luminous.",
   "durationLabel": "3-step bundle",
   "themes": [
     "patience"
@@ -14,8 +14,8 @@
       3900,
       3901
     ],
-    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
-    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+    "shortMeaning": "The mind’s wanderings cease in the Society of the Saints, where mercy begins to enlighten the mind.",
+    "lifeApplication": "Do not wait alone inside your own weather; stand near the company that teaches steadiness."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when delay is turning bitter. It teaches waiting to soften instead of sour.",
+      "coreClaim": "This bundle gives impatience a better place to dwell.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A shorter sitting for when patience is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Patience ripens where the mind stops roaming by itself.",
+      "practicalImplication": "Before forcing the timeline, return to one practice or person that helps you listen.",
       "bannedOverreach": []
     },
     "scores": {

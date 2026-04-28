@@ -238,13 +238,13 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "manual-full-v1",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad warns that gossip, falsehood, hoarding, and sensual display collapse at death, while truthful deeds and Naam remain meaningful.",
       "emotionalState": "scattered, unsettled, wandering",
-      "turn": "The address shifts from bodily comfort to moral inventory: what has the tongue done, what has the hand taken, what can the soul carry?",
+      "turn": "The address shifts from bodily comfort to moral inventory — what has the tongue done, what has the hand taken, what can the soul carry?",
       "practicalImplication": "Before speaking or grasping, remember that this chance will not return. Choose deeds and words that can stand when comfort, wealth, and image are gone.",
       "bannedOverreach": []
     },

@@ -1,8 +1,8 @@
 {
   "id": "collection-self-worth-journey",
-  "title": "From Self-Worth to steadier practice",
-  "subtitle": "For when self-worth keeps steering the day",
-  "description": "These readings return dignity to grace, humility, and belonging to the One, where opinion and response can no longer set the price.",
+  "title": "Self-worth received, not performed",
+  "subtitle": "For the heart priced too often by response",
+  "description": "These readings return dignity to the Guru’s gift, the Lord’s nearness, and the humble place where the soul is held without performance.",
   "durationLabel": "5-step journey",
   "themes": [
     "self-worth",
@@ -14,8 +14,8 @@
       37476,
       37477
     ],
-    "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
-    "lifeApplication": "You do not need status to be held close."
+    "shortMeaning": "The Guru plants the Lord within the heart and the humble servant is kept close like a cherished child.",
+    "lifeApplication": "Do not ask response, success, or attention to price what grace has already held."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings return dignity to grace, humility, and belonging to the One, where opinion and response can no longer set the price.",
+      "coreClaim": "This journey relocates worth from performance into received nearness.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "For when self-worth keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The self becomes quieter when dignity is treated as given by grace.",
+      "practicalImplication": "Take one action from being held, not from trying to become visible.",
       "bannedOverreach": []
     },
     "scores": {

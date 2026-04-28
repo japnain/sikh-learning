@@ -204,10 +204,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by placing all becoming, giving, and receiving in the Lord's pleasure. It opens further through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
       "emotionalState": "controlling, unsettled, lonely",

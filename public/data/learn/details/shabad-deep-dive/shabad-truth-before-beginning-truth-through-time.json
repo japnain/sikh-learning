@@ -141,9 +141,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, before coming to rest in the question of how falsehood breaks: by walking in Hukam.",
       "emotionalState": "reactive, heated, sharp",

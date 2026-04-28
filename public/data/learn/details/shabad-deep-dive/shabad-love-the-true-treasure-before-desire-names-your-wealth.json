@@ -130,9 +130,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The pauree opens by commanding love for the Lord as the true treasure. It answers desire, fear, and the fantasy of lasting wealth by saying the Name alone accompanies and enlightens.",
       "emotionalState": "hungry, never-enough, driven",

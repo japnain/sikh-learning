@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-journey",
-  "title": "From Hukam to steadier practice",
-  "subtitle": "For when hukam keeps steering the day",
-  "description": "Follow resistance until it meets the command already holding everything. These readings teach the heart to receive the day before arguing with it.",
+  "title": "Hukam inside the ordinary day",
+  "subtitle": "For acceptance that must become lived trust",
+  "description": "These readings bring Hukam out of concept and into receiving, acting, and surrendering without arguing with the shape of the day.",
   "durationLabel": "5-step journey",
   "themes": [
     "hukam",
@@ -14,8 +14,8 @@
       15,
       16
     ],
-    "shortMeaning": "Everything stands inside Hukam, not outside it.",
-    "lifeApplication": "Release the demand that peace must wait for total control."
+    "shortMeaning": "Hukam is not a theory beside life; it is the order within which giving, receiving, loss, and action happen.",
+    "lifeApplication": "Receive the next circumstance as something to meet faithfully, not as a verdict against you."
   },
   "items": [
     {
@@ -49,14 +49,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow resistance until it meets the command already holding everything. These readings teach the heart to receive the day before arguing with it.",
+      "coreClaim": "This journey teaches acceptance as lived obedience under Hukam.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "For when hukam keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The day becomes less hostile when it is met inside divine order rather than private resistance.",
+      "practicalImplication": "Name what has been given, then choose the faithful action available inside it.",
       "bannedOverreach": []
     },
     "scores": {

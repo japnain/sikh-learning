@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-and-belonging",
-  "title": "Sangat and Belonging",
-  "subtitle": "For the heart that needs nearness without performance",
-  "description": "Move through these readings until belonging stops depending on mood and starts resting in holy company.",
+  "title": "Belonging without performance",
+  "subtitle": "For the heart that needs nearness, not another stage",
+  "description": "These readings bring the lonely or self-conscious heart into sangat where belonging is learned through remembrance, humility, and shared direction.",
   "durationLabel": "6-day journey",
   "themes": [
     "sangat",
@@ -15,8 +15,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Belonging becomes real where remembrance is shared, not performed.",
-    "lifeApplication": "When the mind starts wandering alone, move toward the company that steadies it."
+    "shortMeaning": "Sangat gives the heart a place to be turned toward Naam without performing worthiness.",
+    "lifeApplication": "Seek company that makes remembrance easier and self-display less necessary."
   },
   "items": [
     {
@@ -55,15 +55,15 @@
     "shabad-love-the-guru-with-mind-and-body"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Move through these readings until belonging stops depending on mood and starts resting in holy company.",
+      "coreClaim": "This path frames belonging as nearness that forms the heart, not attention that flatters it.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For the heart that needs nearness without performance",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The heart belongs more deeply when it is allowed to remember with others.",
+      "practicalImplication": "Choose one gathering, call, or shared practice that turns you toward Naam.",
       "bannedOverreach": []
     },
     "scores": {

@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-bundle",
-  "title": "Mercy in one shorter sitting",
-  "subtitle": "A shorter sitting for when mercy is already close",
-  "description": "A short return for the hour when kindness still feels undeserved. It teaches the heart to receive mercy before trying to earn it.",
+  "title": "Mercy for the undeserving hour",
+  "subtitle": "A short return when kindness feels too generous to receive",
+  "description": "A brief path for receiving mercy before the heart tries to earn, explain, or control its way back.",
   "durationLabel": "3-step bundle",
   "themes": [
     "mercy"
@@ -13,8 +13,8 @@
       501,
       502
     ],
-    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
-    "lifeApplication": "Return is possible because grace precedes your recovery."
+    "shortMeaning": "Mercy gives Naam and gathers what has wandered; return begins before you can manufacture it.",
+    "lifeApplication": "Receive the mercy that reaches first, then answer it with one honest turn back."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when kindness still feels undeserved. It teaches the heart to receive mercy before trying to earn it.",
+      "coreClaim": "This bundle teaches the heart to receive mercy before trying to deserve it.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "A shorter sitting for when mercy is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Mercy is already close enough to begin the return.",
+      "practicalImplication": "Stop bargaining with unworthiness and make one clean movement back toward Naam.",
       "bannedOverreach": []
     },
     "scores": {

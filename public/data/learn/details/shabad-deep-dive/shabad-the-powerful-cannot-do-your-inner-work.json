@@ -316,9 +316,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
       "emotionalState": "inflated, defensive, self-protective",

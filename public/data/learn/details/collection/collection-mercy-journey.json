@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-journey",
-  "title": "From Mercy to steadier practice",
-  "subtitle": "For when mercy keeps steering the day",
-  "description": "Move through gift, nearness, and return until mercy stops feeling abstract and starts becoming the climate of the heart.",
+  "title": "Mercy that teaches the return",
+  "subtitle": "For the day that must be received before it can be repaired",
+  "description": "These readings follow mercy from gift to return, showing how grace gives the heart a way back without making excuses for distance.",
   "durationLabel": "5-step journey",
   "themes": [
     "mercy",
@@ -14,8 +14,8 @@
       501,
       502
     ],
-    "shortMeaning": "Mercy gives Naam and even reunites what has wandered.",
-    "lifeApplication": "Return is possible because grace precedes your recovery."
+    "shortMeaning": "The Lord’s pleasure, giving, separation, and reunion all live inside mercy’s larger movement.",
+    "lifeApplication": "Let mercy make return possible without pretending there was no wandering."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Move through gift, nearness, and return until mercy stops feeling abstract and starts becoming the climate of the heart.",
+      "coreClaim": "This journey frames mercy as the power that both receives and redirects the wandering heart.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "For when mercy keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Return becomes possible because grace is prior to recovery.",
+      "practicalImplication": "Admit the distance, receive mercy, and take the next obedient step.",
       "bannedOverreach": []
     },
     "scores": {

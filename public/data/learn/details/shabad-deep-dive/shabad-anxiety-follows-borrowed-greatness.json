@@ -133,9 +133,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "manual-full-v1",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad teaches that worldly greatness is diseased by anxiety and impermanence, while true greatness is loving attachment to the Lord.",
       "emotionalState": "clingy, possessive, afraid-to-lose",

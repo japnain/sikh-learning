@@ -153,10 +153,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
       "emotionalState": "afraid, shaken, alone",

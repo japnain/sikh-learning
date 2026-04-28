@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-to-purpose-68",
-  "title": "When loneliness becomes a question of purpose",
-  "subtitle": "When isolation starts draining the day of meaning",
-  "description": "These readings answer isolation with entrusted work, so the empty room stops being the only thing speaking.",
+  "title": "When loneliness drains the day of purpose",
+  "subtitle": "For isolation that makes the breath feel unused",
+  "description": "These readings reconnect loneliness to the rare human chance, so the day is not measured only by who noticed you.",
   "durationLabel": "6-step journey",
   "themes": [
     "loneliness",
@@ -15,8 +15,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "Loneliness thins when the day answers back through entrusted work.",
-    "lifeApplication": "When the room goes hollow, do the next given duty before the ache names the whole day."
+    "shortMeaning": "Grace gives the lonely heart a calling larger than being seen by others.",
+    "lifeApplication": "Let one meaningful act answer the day before loneliness names it empty."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings answer isolation with entrusted work, so the empty room stops being the only thing speaking.",
+      "coreClaim": "This path restores purpose when isolation has made life feel weightless.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "When isolation starts draining the day of meaning",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Purpose returns when the day is offered, not merely evaluated for attention.",
+      "practicalImplication": "Do one act of remembrance or service that would matter even if nobody sees it.",
       "bannedOverreach": []
     },
     "scores": {

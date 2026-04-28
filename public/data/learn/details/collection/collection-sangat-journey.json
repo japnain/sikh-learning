@@ -1,8 +1,8 @@
 {
   "id": "collection-sangat-journey",
-  "title": "From Sangat to steadier practice",
-  "subtitle": "For when sangat keeps steering the day",
-  "description": "Enter the medicine of better company. These readings show how atmosphere, placement, and shared remembrance change what the heart can become.",
+  "title": "Sangat that teaches the life what to become",
+  "subtitle": "For the day that needs better company to keep its purpose",
+  "description": "These readings show how atmosphere, placement, and shared remembrance help the rare human chance become a lived answer.",
   "durationLabel": "5-step journey",
   "themes": [
     "sangat",
@@ -14,8 +14,8 @@
       527,
       528
     ],
-    "shortMeaning": "Sangat and Naam are not extras; they are the practical path.",
-    "lifeApplication": "Seek support that turns you toward remembrance, not just distraction."
+    "shortMeaning": "The chance of human birth is protected by Naam and sangat, where direction is reinforced in company.",
+    "lifeApplication": "Choose support that turns you toward meeting the Lord, not merely away from discomfort."
   },
   "items": [
     {
@@ -51,14 +51,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Enter the medicine of better company. These readings show how atmosphere, placement, and shared remembrance change what the heart can become.",
+      "coreClaim": "This journey treats sangat as formation, not social comfort alone.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "For when sangat keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Company changes what the heart can become by changing what it repeatedly remembers.",
+      "practicalImplication": "Place yourself today where remembrance is easier and waste is harder.",
       "bannedOverreach": []
     },
     "scores": {

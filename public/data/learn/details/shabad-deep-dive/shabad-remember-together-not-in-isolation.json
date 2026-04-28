@@ -175,9 +175,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by calling spiritual companions close and asking them to speak of the Lord together. It carries the listener through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
       "emotionalState": "dull, entitled, forgetful",

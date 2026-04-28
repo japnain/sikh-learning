@@ -259,9 +259,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and comes to rest in understanding received through the Guru.",
       "emotionalState": "envious, unsettled, small",

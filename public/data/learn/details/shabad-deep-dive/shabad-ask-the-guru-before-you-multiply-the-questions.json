@@ -2,7 +2,7 @@
   "id": "shabad-ask-the-guru-before-you-multiply-the-questions",
   "title": "Take the scattered question to the Guru",
   "subtitle": "Siree Raag · Ang 34",
-  "summary": "This shabad begins with honest confusion: whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
+  "summary": "This shabad begins with honest confusion — whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
   "whyItMatters": "When the mind is anxious, it multiplies options until practice becomes another form of wandering. This shabad gives confusion a disciplined path: ask the Guru, stay awake, protect the crop, and let ego be pulled out by the root.",
   "takeaway": "Clarity comes when the restless search submits to the Guru’s Shabad.",
   "themes": [
@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "manual-full-v1",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad turns spiritual confusion toward the Guru, where hukam, service, Naam, wakefulness, and Shabad replace ego-driven wandering.",
       "emotionalState": "restless, uncertain, fearful",

@@ -86,9 +86,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This shabad opens inside the place where the Holy keep singing the Lord's praises. It turns the heart toward a sanctuary even fear and death do not rule.",
       "emotionalState": "sharp, loose-tongued, careless",

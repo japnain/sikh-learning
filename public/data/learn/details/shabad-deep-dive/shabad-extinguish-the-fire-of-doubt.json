@@ -177,10 +177,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
       "emotionalState": "confused, restless, skeptical",

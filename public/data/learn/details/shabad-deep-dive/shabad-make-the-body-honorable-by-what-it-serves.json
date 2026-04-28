@@ -161,9 +161,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It closes with a prayer that even a sinking stone be lifted by mercy.",
       "emotionalState": "unworthy, guarded, hard-on-self",

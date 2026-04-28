@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-journey",
-  "title": "From Patience to steadier practice",
-  "subtitle": "For when patience keeps steering the day",
-  "description": "These readings teach waiting to listen long enough for honor, steadiness, and mercy to arrive instead of resentment.",
+  "title": "Patience that ripens into honor",
+  "subtitle": "For waiting that needs more than endurance",
+  "description": "These readings move waiting from frustration into saintly company, mercy, Naam, and the quiet honor of listening well.",
   "durationLabel": "5-step journey",
   "themes": [
     "patience",
@@ -15,8 +15,8 @@
       3900,
       3901
     ],
-    "shortMeaning": "Mercy, saint company, and patience are arranged together here.",
-    "lifeApplication": "Receive help instead of treating patience as solitary heroism."
+    "shortMeaning": "True wealth, patience, and honor ripen as the wandering mind settles in sangat and Naam.",
+    "lifeApplication": "Let waiting become a place of listening instead of a room for complaint."
   },
   "items": [
     {
@@ -50,14 +50,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings teach waiting to listen long enough for honor, steadiness, and mercy to arrive instead of resentment.",
+      "coreClaim": "This journey teaches patience as a fruit of better company and truer wealth.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For when patience keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Waiting changes when the heart trades hurry for Naam.",
+      "practicalImplication": "Use the delay to listen, serve, or remember rather than to rehearse frustration.",
       "bannedOverreach": []
     },
     "scores": {

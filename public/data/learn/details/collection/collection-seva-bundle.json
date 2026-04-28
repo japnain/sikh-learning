@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-bundle",
-  "title": "Seva, stripped back to honesty",
-  "subtitle": "For when service needs to get honest again",
-  "description": "A short sitting that clears service of image and hurry until the hands can do honest good without asking to be seen.",
+  "title": "Seva without a witness",
+  "subtitle": "A short return when service needs honesty again",
+  "description": "A brief path that clears service of image, hurry, and self-display until the hands can do quiet good.",
   "durationLabel": "3-step bundle",
   "themes": [
     "seva"
@@ -13,8 +13,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "Seva is clean when the hands finish the work without carrying applause back home.",
-    "lifeApplication": "Do the needed thing quietly, then refuse to rehearse it afterward."
+    "shortMeaning": "The Guru’s servant obeys with the whole mind and does not call attention to the self.",
+    "lifeApplication": "Do the needed thing quietly and refuse to carry applause home afterward."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short sitting that clears service of image and hurry until the hands can do honest good without asking to be seen.",
+      "coreClaim": "This bundle strips seva back to obedience and hidden usefulness.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "For when service needs to get honest again",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Service becomes clean when it stops building a servant-image.",
+      "practicalImplication": "Complete one useful act today without mentioning it unless practical need requires it.",
       "bannedOverreach": []
     },
     "scores": {

@@ -1,8 +1,8 @@
 {
   "id": "collection-anxiety-to-gratitude-63",
-  "title": "When anxiety is turned toward gratitude",
-  "subtitle": "When anxiety makes mercy harder to notice",
-  "description": "These readings interrupt the forecast by forcing the eye back onto the mercy already in the room.",
+  "title": "When worry must be interrupted by mercy",
+  "subtitle": "For the forecast that cannot see what has already been given",
+  "description": "These readings pull anxiety away from imagined loss and make it count the mercies already carrying the day.",
   "durationLabel": "6-step journey",
   "themes": [
     "anxiety",
@@ -14,8 +14,8 @@
       30988,
       30989
     ],
-    "shortMeaning": "Gratitude interrupts anxiety when mercy is named before imagined danger.",
-    "lifeApplication": "When forecasting starts, name one mercy already present before planning more."
+    "shortMeaning": "The Merciful Creator is not absent from the hour anxiety is trying to forecast.",
+    "lifeApplication": "Before planning against every danger, name one mercy already sustaining you."
   },
   "items": [
     {
@@ -56,14 +56,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings interrupt the forecast by forcing the eye back onto the mercy already in the room.",
+      "coreClaim": "This path turns anxiety toward gratitude by making mercy visible before fear finishes its argument.",
       "emotionalState": "afraid, shaken, alone",
-      "turn": "When anxiety makes mercy harder to notice",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Gratitude interrupts the forecast because it gives the heart evidence of care already received.",
+      "practicalImplication": "Write down the provision already present, then take only the next faithful step.",
       "bannedOverreach": []
     },
     "scores": {

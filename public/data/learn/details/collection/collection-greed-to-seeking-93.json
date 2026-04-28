@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-to-seeking-93",
-  "title": "When appetite disguises itself as seeking",
-  "subtitle": "When hunger starts calling itself a spiritual search",
-  "description": "This path separates holy hunger from spiritualized appetite, so desire stops dressing itself in sacred language.",
+  "title": "When appetite calls itself seeking",
+  "subtitle": "For spiritual hunger that is actually consumption",
+  "description": "These readings separate holy seeking from the appetite that wants another insight, another experience, another thing to own.",
   "durationLabel": "6-step journey",
   "themes": [
     "greed",
@@ -15,8 +15,8 @@
       640,
       641
     ],
-    "shortMeaning": "Appetite can borrow sacred language without becoming holy.",
-    "lifeApplication": "When the hunger sounds holy, ask whether it is depth or appetite."
+    "shortMeaning": "Greed can borrow religious language; honorable speech tells the truth about the hunger underneath.",
+    "lifeApplication": "Ask whether your search is making you obedient or just more entertained."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "This path separates holy hunger from spiritualized appetite, so desire stops dressing itself in sacred language.",
+      "coreClaim": "This path unmasks the consumer impulse hiding inside spiritual seeking.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "When hunger starts calling itself a spiritual search",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Seeking becomes clean when it stops feeding novelty and starts obeying truth.",
+      "practicalImplication": "Keep one teaching you already have before looking for another.",
       "bannedOverreach": []
     },
     "scores": {

@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-to-patience-86",
-  "title": "When the tongue learns to wait",
-  "subtitle": "When the tongue outruns the slower wisdom of waiting",
-  "description": "These readings teach the tongue to arrive after wisdom, so waiting changes the sentence before it leaves the mouth.",
+  "title": "Let the tongue arrive after wisdom",
+  "subtitle": "For replies that need to wait long enough to become clean",
+  "description": "These readings teach speech to wait until patience changes the sentence before it leaves the mouth.",
   "durationLabel": "6-step journey",
   "themes": [
     "speech",
@@ -14,8 +14,8 @@
       642,
       643
     ],
-    "shortMeaning": "Patience makes the mouth wiser by arriving first.",
-    "lifeApplication": "Before the next reply, let one full breath pass and see what no longer needs to be said."
+    "shortMeaning": "The question of honorable speech requires the mouth to move slower than anger and appetite.",
+    "lifeApplication": "Let one full breath pass before the reply decides who you are becoming."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings teach the tongue to arrive after wisdom, so waiting changes the sentence before it leaves the mouth.",
+      "coreClaim": "This path makes patience the gatekeeper of speech.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "When the tongue outruns the slower wisdom of waiting",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The tongue becomes wiser when waiting arrives first.",
+      "practicalImplication": "Delay one reply until the harmful part falls away.",
       "bannedOverreach": []
     },
     "scores": {

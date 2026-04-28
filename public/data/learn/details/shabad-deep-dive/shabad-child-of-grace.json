@@ -162,10 +162,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens in aching longing for the Beloved and admits it cannot find the way alone. It searches mind and body, turns toward saintly company, and keeps asking to be brought near.",
       "emotionalState": "alone, yearning, dependent",

@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-bundle",
-  "title": "Restlessness in one shorter sitting",
-  "subtitle": "A shorter sitting for when restlessness is already close",
-  "description": "A short return for the hour when movement keeps impersonating clarity. It slows the body until truth can catch up.",
+  "title": "Restlessness brought into company",
+  "subtitle": "A short return when motion is pretending to guide you",
+  "description": "A brief path that stops the wandering mind long enough to find mercy, saintly company, and a truer place to dwell.",
   "durationLabel": "3-step bundle",
   "themes": [
     "restlessness"
@@ -14,8 +14,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Searching and ritual are not identical with peace.",
-    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+    "shortMeaning": "The mind’s wanderings cease where the Society of the Saints becomes home.",
+    "lifeApplication": "Restlessness needs better placement before it needs more options."
   },
   "items": [
     {
@@ -41,14 +41,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when movement keeps impersonating clarity. It slows the body until truth can catch up.",
+      "coreClaim": "This bundle treats motion as a sign that the heart needs holy company, not more stimulation.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A shorter sitting for when restlessness is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "The search begins to rest when it is placed near sangat and Naam.",
+      "practicalImplication": "Stop adding choices; move toward one practice or person that quiets the wandering.",
       "bannedOverreach": []
     },
     "scores": {

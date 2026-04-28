@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by calling God the breath of life and the support of the mind. It opens further through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
       "emotionalState": "resentful, hurt, stuck",

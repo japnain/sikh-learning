@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-journey",
-  "title": "From Gratitude to steadier practice",
-  "subtitle": "For when gratitude keeps steering the day",
-  "description": "These readings retrain the eye that notices lack first. They lead the heart from appetite back to mercy, contentment, and praise.",
+  "title": "Gratitude that returns the heart to Naam",
+  "subtitle": "For the day that needs mercy noticed again",
+  "description": "These readings move gratitude from mood to remembrance, until the heart sees mercy as a summons back to Naam.",
   "durationLabel": "5-step journey",
   "themes": [
     "gratitude",
@@ -15,8 +15,8 @@
       60339,
       60340
     ],
-    "shortMeaning": "Gratitude grows when the heart admits both unworthiness and mercy.",
-    "lifeApplication": "Let thankfulness soften you instead of making you self-satisfied."
+    "shortMeaning": "Gratitude is not self-improvement; it is the recognition that mercy has already been at work.",
+    "lifeApplication": "Let one noticed mercy turn into simran rather than a passing good feeling."
   },
   "items": [
     {
@@ -50,14 +50,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings retrain the eye that notices lack first. They lead the heart from appetite back to mercy, contentment, and praise.",
+      "coreClaim": "This journey makes gratitude a doorway back to Naam.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "For when gratitude keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The heart becomes steadier when thanks becomes remembrance.",
+      "practicalImplication": "Name the mercy, say Waheguru, and let the gift change the next action.",
       "bannedOverreach": []
     },
     "scores": {

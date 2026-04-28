@@ -119,9 +119,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It travels through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
       "emotionalState": "reactive, heated, sharp",

@@ -175,9 +175,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with rescue arriving alongside subdued ego. It travels through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
       "emotionalState": "inflated, defensive, self-protective",

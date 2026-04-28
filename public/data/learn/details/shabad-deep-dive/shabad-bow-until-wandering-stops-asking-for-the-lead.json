@@ -86,9 +86,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This brief shabad begins in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
       "emotionalState": "performing, transactional, dry",

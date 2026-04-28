@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-journey",
-  "title": "From Greed to steadier practice",
-  "subtitle": "For when greed keeps steering the day",
-  "description": "Follow appetite until it is exposed as false wealth. These readings redirect desire toward what can still travel with the soul.",
+  "title": "Greed brought under honorable speech",
+  "subtitle": "For appetite that has started talking through the mouth",
+  "description": "The shabad names greed, falsehood, slander, and anger with unsparing force. These readings bring appetite under the question of what speech can stand at the Lord’s Door.",
   "durationLabel": "5-step journey",
   "themes": [
     "greed",
@@ -15,8 +15,8 @@
       640,
       641
     ],
-    "shortMeaning": "Unexamined appetite crowds out remembrance.",
-    "lifeApplication": "Make room for Naam by interrupting one cycle of automatic consumption."
+    "shortMeaning": "Greed degrades the mouth when appetite is allowed to become language.",
+    "lifeApplication": "Before wanting speaks, ask whether the sentence would bring honor before the Lord."
   },
   "items": [
     {
@@ -53,14 +53,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow appetite until it is exposed as false wealth. These readings redirect desire toward what can still travel with the soul.",
+      "coreClaim": "This journey confronts greed where it becomes speech, justification, and appetite with a voice.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "For when greed keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Greed weakens when the mouth is made answerable to honor.",
+      "practicalImplication": "Refuse one sentence that flatters appetite, and speak one sentence that restores truth.",
       "bannedOverreach": []
     },
     "scores": {

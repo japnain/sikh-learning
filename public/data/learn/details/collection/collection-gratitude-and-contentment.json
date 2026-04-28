@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-and-contentment",
-  "title": "Enoughness and Gratitude",
+  "title": "Enoughness learned through gratitude",
   "subtitle": "For the appetite that notices lack faster than mercy",
-  "description": "Move from grasping toward gratitude and contentment by naming what is already given.",
+  "description": "These readings train the eye to see given mercy before the appetite can rename life as shortage.",
   "durationLabel": "5-day journey",
   "themes": [
     "gratitude",
@@ -15,8 +15,8 @@
       60338,
       60339
     ],
-    "shortMeaning": "Enoughness becomes believable when mercy is named before lack.",
-    "lifeApplication": "Before reaching for more, name one gift already resting in your hands."
+    "shortMeaning": "Gratitude restores Naam by teaching the heart to recognize gift before complaint.",
+    "lifeApplication": "Count a mercy slowly enough that wanting loses its first word."
   },
   "items": [
     {
@@ -51,15 +51,15 @@
     "shabad-love-the-guru-with-mind-and-body"
   ],
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Move from grasping toward gratitude and contentment by naming what is already given.",
+      "coreClaim": "This path joins gratitude and contentment so lack no longer gets to narrate the whole day.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "For the appetite that notices lack faster than mercy",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Enoughness becomes believable when mercy is noticed as received, not imagined as missing.",
+      "practicalImplication": "Before asking for more, honor one gift with attention and restraint.",
       "bannedOverreach": []
     },
     "scores": {

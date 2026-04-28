@@ -142,10 +142,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "manual-full-v1",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad defines the highest religion as Naam embodied through pure conduct, cleansed mind, truthful praise, and a heart where the Name abides.",
       "emotionalState": "performing, harsh, scattered",

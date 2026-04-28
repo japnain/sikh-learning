@@ -177,10 +177,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It directs the heart toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
       "emotionalState": "sharp, performing, defensive",

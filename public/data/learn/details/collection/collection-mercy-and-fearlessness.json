@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-and-fearlessness",
-  "title": "Mercy and Fearlessness",
-  "subtitle": "A path out of hardness and self-protection",
-  "description": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
+  "title": "Mercy that makes courage possible",
+  "subtitle": "For the heart leaving hardness and self-protection",
+  "description": "These readings show mercy not as softness alone, but as the force that lets the heart stop living behind armor.",
   "durationLabel": "6-day journey",
   "themes": [
     "mercy",
@@ -15,8 +15,8 @@
       9600,
       9612
     ],
-    "shortMeaning": "Forgiveness and reverence mature into fearlessness.",
-    "lifeApplication": "Let mercy become stronger than your armor."
+    "shortMeaning": "Received mercy can make forgiveness fearless because the self no longer has to defend every wound alone.",
+    "lifeApplication": "Let mercy lower one defense before fear turns it into hardness."
   },
   "items": [
     {
@@ -55,15 +55,15 @@
     "shabad-forgiveness-opens-lasting-peace"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
+      "coreClaim": "This path links mercy and fearlessness where self-protection has become a habit.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "A path out of hardness and self-protection",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Courage appears when mercy becomes more trustworthy than armor.",
+      "practicalImplication": "Choose one truthful, merciful response where fear would prefer hardness.",
       "bannedOverreach": []
     },
     "scores": {

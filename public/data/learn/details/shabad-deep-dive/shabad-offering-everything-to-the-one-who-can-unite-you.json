@@ -86,9 +86,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It closes with fear losing its final authority.",
       "emotionalState": "afraid, guarded, dreading",

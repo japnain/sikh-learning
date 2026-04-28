@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
       "emotionalState": "foggy, uncertain, hesitant",

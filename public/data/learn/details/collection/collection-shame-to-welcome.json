@@ -1,8 +1,8 @@
 {
   "id": "collection-shame-to-welcome",
-  "title": "From Shame to Welcome",
+  "title": "Welcome stronger than shame",
   "subtitle": "For the heart that keeps shrinking from mercy",
-  "description": "These readings walk shame toward dignity, welcome, and a way back that does not depend on pretending.",
+  "description": "These readings bring shame toward the Lord who holds the humble close, so return no longer depends on pretending you were never wounded or wrong.",
   "durationLabel": "5-step arc",
   "themes": [
     "shame",
@@ -15,8 +15,8 @@
       37476,
       37477
     ],
-    "shortMeaning": "The humble servant is held close, and the child is cherished.",
-    "lifeApplication": "Welcome begins where nearness becomes more believable than shame."
+    "shortMeaning": "The humble servant is cherished close; shame is not the deepest name over the soul.",
+    "lifeApplication": "Let nearness become more believable than the shrinking story shame keeps telling."
   },
   "items": [
     {
@@ -60,15 +60,15 @@
     "shabad-mercy-lets-the-child-tell-the-truth"
   ],
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings walk shame toward dignity, welcome, and a way back that does not depend on pretending.",
+      "coreClaim": "This path walks shame toward received welcome and truthful return.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "For the heart that keeps shrinking from mercy",
-      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "turn": "Shame loosens when the heart trusts being held more than being exposed.",
+      "practicalImplication": "Tell the truth about what hurts or failed, then take one step toward mercy instead of hiding.",
       "bannedOverreach": []
     },
     "scores": {

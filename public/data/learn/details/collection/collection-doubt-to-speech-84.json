@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-speech-84",
-  "title": "When doubt reaches the tongue",
-  "subtitle": "When uncertainty starts leaking into the tongue",
-  "description": "Keep doubt from becoming speech by returning to one clearer word first.",
+  "title": "When uncertainty reaches the tongue",
+  "subtitle": "For speech that spreads the fog before seeking light",
+  "description": "These readings slow the mouth before doubt turns into needless suspicion, complaint, or confusion handed to others.",
   "durationLabel": "6-step journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       921,
       922
     ],
-    "shortMeaning": "Confusion often reaches the mouth before it clears.",
-    "lifeApplication": "When you are unsure, let the tongue wait for a clearer word."
+    "shortMeaning": "The Guru’s word cools doubt before the tongue multiplies it.",
+    "lifeApplication": "If you are not clear, speak humbly enough that your uncertainty does not become another person’s burden."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Keep doubt from becoming speech by returning to one clearer word first.",
+      "coreClaim": "This path catches doubt at the point where inner fog becomes public speech.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "When uncertainty starts leaking into the tongue",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Speech becomes safer when it waits for the Guru’s word to steady it.",
+      "practicalImplication": "Say what you know, admit what you do not, and refuse to decorate uncertainty as wisdom.",
       "bannedOverreach": []
     },
     "scores": {

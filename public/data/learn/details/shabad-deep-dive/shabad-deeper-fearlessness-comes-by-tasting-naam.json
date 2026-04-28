@@ -141,9 +141,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with the strange claim that speaking the Unspoken becomes nectar. It carries the listener through lesser fears falling away, recognition through the Guru's Shabad, and hearts filled with the Lord's essence.",
       "emotionalState": "dull, entitled, forgetful",
