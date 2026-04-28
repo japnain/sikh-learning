@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import type { TouchEvent as ReactTouchEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -8,7 +9,10 @@ import {
   IconBookmark,
   IconBookmarkFilled,
   IconCheck,
+  IconHeart,
   IconLibrary,
+  IconLayers,
+  IconLeaf,
   IconMoon,
   IconSun,
 } from '../components/icons'
@@ -30,7 +34,7 @@ import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, use
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
 import type { UiLocale, VocabEntry } from '../types'
-import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
@@ -41,6 +45,10 @@ import { getLearnHomeSavedItems, getTodayLearnHomeSurface } from '../utils/learn
 import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getEditorialCopy } from '../content/editorialCopy'
+import featuredInstrumentSrc from '../assets/home-calm/featured-instrument.webp'
+import ardaasHukamnamaPixelMotifSrc from '../assets/home-calm/ardaas-hukamnama-pixel-motif.webp'
+import guidancePixelMotifSrc from '../assets/home-calm/guidance-pixel-motif.webp'
+import nitnemPixelMotifSrc from '../assets/home-calm/nitnem-pixel-motif.webp'
 
 const READ_TODAY_HIGHLIGHT_CLASSES = [
   'border-gold/45',
@@ -68,6 +76,130 @@ type HomeSavedPreviewItem = {
   detail: string
   path: string
   meta?: string
+}
+
+type HomeHeroRevealStyle = CSSProperties & {
+  '--home-hero-reveal': string
+  '--home-hero-pointer-x': string
+  '--home-hero-pointer-y': string
+  '--home-hero-parallax-x': string
+  '--home-hero-landscape-offset': string
+  '--home-hero-content-offset': string
+  '--home-hero-image-scale': string
+  '--home-hero-image-y': string
+}
+
+const HOME_HERO_CONTENT_OFFSET_REM = 36
+const HOME_HERO_REVEAL_DISTANCE_PX = 170
+
+function useHomeHeroReveal() {
+  const rootRef = useRef<HTMLElement | null>(null)
+  const frameRef = useRef<number | null>(null)
+  const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
+  const [style, setStyle] = useState<HomeHeroRevealStyle>({
+    '--home-hero-reveal': '0',
+    '--home-hero-pointer-x': '0',
+    '--home-hero-pointer-y': '0',
+    '--home-hero-parallax-x': '0rem',
+    '--home-hero-landscape-offset': '0.4rem',
+    '--home-hero-content-offset': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
+    '--home-hero-image-scale': '1',
+    '--home-hero-image-y': '0rem',
+  })
+
+  const applyStyle = useCallback(() => {
+    frameRef.current = null
+    const inverseReveal = 1 - valuesRef.current.reveal
+    const next: HomeHeroRevealStyle = {
+      '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
+      '--home-hero-pointer-x': valuesRef.current.pointerX.toFixed(3),
+      '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
+      '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
+      '--home-hero-landscape-offset': `${(inverseReveal * 0.4).toFixed(3)}rem`,
+      '--home-hero-content-offset': `${(inverseReveal * HOME_HERO_CONTENT_OFFSET_REM).toFixed(3)}rem`,
+      '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.075).toFixed(3)}`,
+      '--home-hero-image-y': `${(-valuesRef.current.reveal * 1.05).toFixed(3)}rem`,
+    }
+    setStyle(current => (
+      current['--home-hero-reveal'] === next['--home-hero-reveal']
+      && current['--home-hero-pointer-x'] === next['--home-hero-pointer-x']
+      && current['--home-hero-pointer-y'] === next['--home-hero-pointer-y']
+      && current['--home-hero-parallax-x'] === next['--home-hero-parallax-x']
+      && current['--home-hero-landscape-offset'] === next['--home-hero-landscape-offset']
+      && current['--home-hero-content-offset'] === next['--home-hero-content-offset']
+      && current['--home-hero-image-scale'] === next['--home-hero-image-scale']
+      && current['--home-hero-image-y'] === next['--home-hero-image-y']
+        ? current
+        : next
+    ))
+  }, [])
+
+  const scheduleStyle = useCallback(() => {
+    if (frameRef.current !== null) return
+    frameRef.current = window.requestAnimationFrame(applyStyle)
+  }, [applyStyle])
+
+  const updateReveal = useCallback(() => {
+    const root = rootRef.current
+    const rootTop = root?.getBoundingClientRect().top ?? 0
+    const rawReveal = Math.max(0, Math.min(1, -rootTop / HOME_HERO_REVEAL_DISTANCE_PX))
+    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 2.45)
+    scheduleStyle()
+  }, [scheduleStyle])
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (reduceMotion.matches) {
+      valuesRef.current.reveal = 1
+      valuesRef.current.pointerX = 0
+      valuesRef.current.pointerY = 0
+      scheduleStyle()
+      return undefined
+    }
+
+    updateReveal()
+    window.addEventListener('scroll', updateReveal, { passive: true })
+    window.addEventListener('resize', updateReveal)
+    return () => {
+      window.removeEventListener('scroll', updateReveal)
+      window.removeEventListener('resize', updateReveal)
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current)
+        frameRef.current = null
+      }
+    }
+  }, [scheduleStyle, updateReveal])
+
+  const updatePointer = useCallback((clientX: number, clientY: number, target: HTMLElement) => {
+    const rect = target.getBoundingClientRect()
+    valuesRef.current.pointerX = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width - 0.5) * 2))
+    valuesRef.current.pointerY = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height - 0.5) * 2))
+    scheduleStyle()
+  }, [scheduleStyle])
+
+  const handlePointerMove = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    updatePointer(event.clientX, event.clientY, event.currentTarget)
+  }, [updatePointer])
+
+  const handlePointerLeave = useCallback(() => {
+    valuesRef.current.pointerX = 0
+    valuesRef.current.pointerY = 0
+    scheduleStyle()
+  }, [scheduleStyle])
+
+  const handleTouchMove = useCallback((event: ReactTouchEvent<HTMLElement>) => {
+    const touch = event.touches[0]
+    if (!touch) return
+    updatePointer(touch.clientX, touch.clientY, event.currentTarget)
+  }, [updatePointer])
+
+  return {
+    rootRef,
+    style,
+    handlePointerMove,
+    handlePointerLeave,
+    handleTouchMove,
+  }
 }
 
 const HOME_SAVED_PREVIEW_APPEARANCE: Record<
@@ -326,8 +458,6 @@ export default function Home() {
   const navigate = useNavigate()
   const streak = useProgressStore(state => state.streak)
   const scriptMode = useLanguageStore(s => s.scriptMode)
-  const meaningLanguage = useLanguageStore(s => s.meaningLanguage)
-  const englishSource = useLanguageStore(s => s.englishSource)
   const locale = useLocaleStore(s => s.locale)
   const {
     selectedIds,
@@ -352,6 +482,7 @@ export default function Home() {
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
   const nitnemMomentSyncedRef = useRef(false)
+  const nitnemUserScrollRef = useRef(false)
   const nitnemSwipeRef = useRef<{ pointerId: number; startX: number; startY: number; handled: boolean } | null>(null)
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
   const now = useCurrentTime()
@@ -463,13 +594,13 @@ export default function Home() {
     })
   }, [preferredNitnemIndex, selectedNitnemOptions.length])
 
-  const scrollNitnemCarouselTo = useCallback((index: number) => {
+  const scrollNitnemCarouselTo = useCallback((index: number, behavior: ScrollBehavior = 'auto') => {
     const carousel = nitnemCarouselRef.current
     const target = carousel?.querySelector<HTMLElement>(`[data-nitnem-index="${index}"]`)
     if (!carousel || !target) return
     const left = target.offsetLeft
     if (typeof carousel.scrollTo === 'function') {
-      carousel.scrollTo({ left, behavior: 'auto' })
+      carousel.scrollTo({ left, behavior })
       return
     }
     carousel.scrollLeft = left
@@ -478,13 +609,19 @@ export default function Home() {
   const setNitnemCarouselIndex = useCallback((index: number) => {
     if (selectedNitnemOptions.length === 0) return
     const boundedIndex = ((index % selectedNitnemOptions.length) + selectedNitnemOptions.length) % selectedNitnemOptions.length
+    if (boundedIndex === safeNitnemIndex) {
+      window.requestAnimationFrame(() => scrollNitnemCarouselTo(boundedIndex, 'smooth'))
+      return
+    }
+    nitnemUserScrollRef.current = true
     setActiveNitnemIndex(boundedIndex)
-    window.requestAnimationFrame(() => scrollNitnemCarouselTo(boundedIndex))
-  }, [scrollNitnemCarouselTo, selectedNitnemOptions.length])
+  }, [safeNitnemIndex, scrollNitnemCarouselTo, selectedNitnemOptions.length])
 
   useEffect(() => {
     if (!nitnemHasCarousel) return undefined
-    const frame = window.requestAnimationFrame(() => scrollNitnemCarouselTo(safeNitnemIndex))
+    const behavior: ScrollBehavior = nitnemUserScrollRef.current ? 'smooth' : 'auto'
+    nitnemUserScrollRef.current = false
+    const frame = window.requestAnimationFrame(() => scrollNitnemCarouselTo(safeNitnemIndex, behavior))
     return () => window.cancelAnimationFrame(frame)
   }, [nitnemHasCarousel, safeNitnemIndex, scrollNitnemCarouselTo])
 
@@ -607,6 +744,7 @@ export default function Home() {
   const savedReviewItems = vocab.length
   const isDarkTheme = useThemeStore(s => s.dark)
   const toggleTheme = useThemeStore(s => s.toggle)
+  const homeHeroReveal = useHomeHeroReveal()
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
       case 'learn':
@@ -634,22 +772,10 @@ export default function Home() {
       ?? hukamnama.entry.lines?.find(line => line.gurmukhi.trim())
       ?? null
   }, [hukamnama])
-  const hukamnamaMeaningPreview = useMemo(() => {
-    if (!hukamnama || meaningLanguage === 'none') return ''
-    if (hukamnamaPreviewLine) {
-      return getLineMeaningText(hukamnamaPreviewLine, meaningLanguage, englishSource)
-    }
-    return getEntryMeaningText(hukamnama.entry, meaningLanguage, englishSource)
-  }, [englishSource, hukamnama, hukamnamaPreviewLine, meaningLanguage])
   const hukamnamaTransliterationPreview = useMemo(() => {
     if (!hukamnama) return ''
     return hukamnamaPreviewLine?.transliteration || hukamnama.entry.transliteration
   }, [hukamnama, hukamnamaPreviewLine?.transliteration])
-  const hukamnamaSourceLabel = useMemo(() => {
-    if (!hukamnama) return ''
-    const writer = hukamnama.entry.writer ? `${hukamnama.entry.writer} · ` : ''
-    return `${writer}${hukamnama.entry.scripture} Ang ${hukamnama.ang}`
-  }, [hukamnama])
   const savedPreviewItems = useMemo<HomeSavedPreviewItem[]>(() => {
     const previewItems: HomeSavedPreviewItem[] = []
     const latestLearnSave = savedLearnItems[0]
@@ -740,6 +866,11 @@ export default function Home() {
   return (
     <div className="home-stack page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
+        ref={homeHeroReveal.rootRef}
+        style={homeHeroReveal.style}
+        onPointerMove={homeHeroReveal.handlePointerMove}
+        onPointerLeave={homeHeroReveal.handlePointerLeave}
+        onTouchMove={homeHeroReveal.handleTouchMove}
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
@@ -795,104 +926,83 @@ export default function Home() {
         </div>
 
         <div className="home-door-frame" aria-label="Daily reading room">
-          <span className="home-door-stone-arch" aria-hidden="true" />
-          <span className="home-door-wood-arch" aria-hidden="true" />
-          <span className="home-door-post home-door-post-left" aria-hidden="true" />
-          <span className="home-door-post home-door-post-right" aria-hidden="true" />
-          <span className="home-door-sill" aria-hidden="true" />
-          <div className="home-door-content">
-            <div className="mx-auto max-w-[19rem] text-center">
-              <span className="home-door-mark" aria-hidden="true">
-                <IconBanis size={28} />
-              </span>
-              <p className="mt-2 font-sans text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-gold-dark/72 dark:text-gold-light/84">
-                {copy.home.greetingSecondary}
-              </p>
-              <h1 id="home-hero-title" className="mt-2 font-display text-[1.06rem] leading-[1.16] text-ink dark:text-dark-text">
-                Waheguru Ji Ka Khalsa,<br />Waheguru Ji Ki Fateh.
-              </h1>
-              <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#5a7c6e]/10 px-2.5 py-1.5 font-sans text-[10px] font-semibold text-[#416554] dark:bg-[#7fa68e]/15 dark:text-[#b9d5c5]">
-                <IconSun size={14} />
-                {homeTimeLabel}
-              </span>
-            </div>
+          <span className="home-landscape-reveal" aria-hidden="true" />
+          <h1 id="home-hero-title" className="sr-only">
+            NaamRas home
+          </h1>
 
-            <div className="mt-4" data-testid="home-daily-reading-room">
-              {hukamnamaLoading ? (
-                <div className="home-hukam-card animate-pulse px-3.5 py-3.5" data-testid="home-hukamnama-card">
-                  <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
-                  <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
-                  <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
-                  <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
-                  <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
-                </div>
-              ) : hukamnama ? (
-                <div
-                  className="home-hukam-card px-3.5 py-3.5"
-                  data-testid="home-hukamnama-card"
-                  data-ai-surface="home-hukamnama"
-                  data-ai-state="ready"
-                >
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                    <p className="font-sans text-[10px] font-bold uppercase leading-5 tracking-[0.2em] text-saffron dark:text-gold-light">
-                      {homeCopy.todaysHukamnama}
-                    </p>
-                    <span className="inline-flex max-w-[7.4rem] items-center gap-1.5 truncate rounded-full border border-[#5a7c6e]/15 bg-[#5a7c6e]/10 px-2 py-1 font-sans text-[10px] font-medium text-[#416554] dark:border-[#7fa68e]/20 dark:bg-[#7fa68e]/12 dark:text-[#b9d5c5]">
-                      {hukamnama.entry.raag || 'Sri Darbar Sahib'}
-                    </span>
-                  </div>
-                  <p
-                    lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                    className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-[clamp(1.55rem,7.9vw,2.02rem)] leading-[1.16] text-ink [overflow-wrap:anywhere] dark:text-dark-text line-clamp-4`}
-                  >
-                    {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+          <div className="home-door-content" data-testid="home-daily-reading-room">
+            {hukamnamaLoading ? (
+              <div className="home-hukam-card animate-pulse px-3.5 py-3.5" data-testid="home-hukamnama-card">
+                <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-32 mb-4" />
+                <div className="h-16 rounded bg-sand/20 dark:bg-dark-text/10" />
+                <div className="mt-4 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-4/5" />
+                <div className="mt-2 h-4 rounded bg-sand/20 dark:bg-dark-text/10 w-3/5" />
+                <div className="mt-4 h-12 rounded bg-sand/20 dark:bg-dark-text/10" />
+              </div>
+            ) : hukamnama ? (
+              <div
+                className="home-hukam-card px-3.5 py-3.5"
+                data-testid="home-hukamnama-card"
+                data-ai-surface="home-hukamnama"
+                data-ai-state="ready"
+              >
+                <div className="home-card-heading-row">
+                  <p className="home-section-label">
+                    {homeCopy.todaysHukamnama}
                   </p>
+                  <span className="home-soft-pill home-raag-pill">
+                      {renderScriptText(hukamnama.entry.raag || 'Sri Darbar Sahib', scriptMode)}
+</span>
+                </div>
+                <p
+                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
+                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} home-hukam-line`}
+                >
+                  {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
+                </p>
+                <div className="home-hukam-meta-row">
                   {hukamnamaTransliterationPreview ? (
-                    <p className="mt-3 font-display text-[0.98rem] italic leading-6 text-ink/76 dark:text-dark-text/80 line-clamp-2">
+                    <p className="home-hukam-transliteration">
                       {hukamnamaTransliterationPreview}
                     </p>
-                  ) : null}
-                  {hukamnamaMeaningPreview ? (
-                    <p className={`mt-3 border-t border-sand/18 pt-3 text-[0.95rem] leading-6 text-ink/76 dark:border-dark-text/10 dark:text-dark-text/78 line-clamp-3 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-display'}`}>
-                      {hukamnamaMeaningPreview}
-                    </p>
-                  ) : null}
-                  <p className="mt-2 font-sans text-[11px] font-medium text-[#416554] dark:text-[#b9d5c5]">
-                    {hukamnamaSourceLabel}
-                  </p>
-                  <Link
-                    to={`/study?hukamnamaDate=${hukamnama.date}`}
-                    className="interactive-focus interactive-pill-link mt-3 min-h-[46px] w-full gap-2 rounded-xl bg-gradient-to-r from-saffron to-saffron-light px-3.5 text-white font-sans text-[11px] font-bold uppercase tracking-[0.08em] active:scale-95 transition-transform duration-150"
-                    data-testid="home-hero-primary-action"
-                    data-ai-action="open-hukamnama"
-                  >
-                    <IconLibrary size={17} />
-                    <span className="whitespace-nowrap">Read Hukamnama</span>
-                    <IconArrowRight size={15} />
-                  </Link>
+                  ) : <span />}
+                  <span className="home-hukam-time">
+                    <IconSun size={15} />
+                    {homeTimeLabel}
+                  </span>
                 </div>
-              ) : (
-                <div
-                  className="home-hukam-card px-3.5 py-3.5"
-                  data-testid="home-hukamnama-error"
-                  data-ai-surface="home-hukamnama"
-                  data-ai-state="degraded"
-                  data-ai-error="study-hukamnama"
+                <Link
+                  to={`/study?hukamnamaDate=${hukamnama.date}`}
+                  className="home-primary-action interactive-focus interactive-pill-link"
+                  data-testid="home-hero-primary-action"
+                  data-ai-action="open-hukamnama"
                 >
-                  <p className="eyebrow mb-2">{homeCopy.todaysHukamnama}</p>
-                  <p className="font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
-                    Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
-                  </p>
-                  <Link
-                    to="/banis"
-                    className="interactive-focus interactive-pill-link mt-4 min-h-[46px] rounded-lg border border-sand/20 bg-parchment-card/82 px-4 text-ink font-sans text-sm font-medium dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text"
-                    data-ai-action="browse-read"
-                  >
-                    Browse Read
-                  </Link>
-                </div>
-              )}
-            </div>
+                  <IconLibrary size={20} />
+                  <span>Read Hukamnama</span>
+                </Link>
+              </div>
+            ) : (
+              <div
+                className="home-hukam-card px-3.5 py-3.5"
+                data-testid="home-hukamnama-error"
+                data-ai-surface="home-hukamnama"
+                data-ai-state="degraded"
+                data-ai-error="study-hukamnama"
+              >
+                <p className="home-section-label">{homeCopy.todaysHukamnama}</p>
+                <p className="mt-3 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+                  Couldn&apos;t load today&apos;s hukamnama right now. You can still continue into Read.
+                </p>
+                <Link
+                  to="/banis"
+                  className="home-primary-action interactive-focus interactive-pill-link mt-4"
+                  data-ai-action="browse-read"
+                >
+                  Browse Read
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -907,6 +1017,12 @@ export default function Home() {
       >
         <span className="home-note-pin" aria-hidden="true" />
         <span className="home-sprig" aria-hidden="true" />
+        <img
+          src={guidancePixelMotifSrc}
+          alt=""
+          aria-hidden="true"
+          className="home-guidance-motif"
+        />
         {learnCatalogLoading ? (
           <div className="animate-pulse" data-testid="home-guidance-skeleton">
             <div className="h-3 w-28 rounded bg-sand/20 dark:bg-dark-text/10" />
@@ -954,6 +1070,12 @@ export default function Home() {
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
+        <img
+          src={nitnemPixelMotifSrc}
+          alt=""
+          aria-hidden="true"
+          className="home-nitnem-motif"
+        />
         <span className="home-tray-emblem" aria-hidden="true">
           <IconBanis size={28} />
         </span>
@@ -989,8 +1111,8 @@ export default function Home() {
                 onTouchStart={handleNitnemTouchStart}
                 onTouchMove={handleNitnemTouchMove}
                 onTouchEnd={handleNitnemTouchEnd}
-                className={`flex snap-x snap-mandatory gap-3 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${nitnemHasCarousel ? 'pb-1' : ''}`}
-                data-testid={nitnemHasCarousel ? 'home-nitnem-carousel' : undefined}
+                className="home-nitnem-carousel"
+                data-testid="home-nitnem-carousel"
                 aria-label="Daily Nitnem selected banis"
               >
                 {selectedNitnemOptions.map((option, index) => {
@@ -1002,40 +1124,24 @@ export default function Home() {
                       data-testid={active ? 'home-nitnem-active-card' : undefined}
                       aria-label={homeMessages.nitnemCarouselLabel(index + 1, selectedNitnemOptions.length)}
                       aria-current={active ? 'true' : undefined}
-                      className="home-nitnem-card min-w-full snap-center px-4 py-4"
+                      className="home-nitnem-card"
                     >
-                      <div className="home-nitnem-card-grid grid gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-end">
-                        <div className="min-w-0">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
-                              Today&apos;s Bani
-                            </p>
-                            <span className="rounded-full border border-sand/14 bg-parchment-card/62 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.14em] text-ink/52 dark:border-dark-text/10 dark:bg-white/5 dark:text-dark-text/55">
-                              {option.group}
-                            </span>
-                          </div>
-                          <p lang="pa-Guru" className="mt-3 font-gurmukhi text-[2rem] leading-[1.05] text-ink dark:text-dark-text sm:text-[2.25rem]">
-                            {option.gurmukhiTitle}
-                          </p>
-                          <p className="mt-3 font-sans text-[12px] font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-dark-text/75">
-                            {option.romanizedTitle}
-                          </p>
-                        </div>
-
-                        <div className="home-ritual-note rounded-lg border border-sand/14 bg-parchment-card/50 px-3 py-3 dark:border-dark-text/10 dark:bg-white/5">
-                          <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold dark:text-gold-light">
-                            Ritual Note
-                          </p>
-                          <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
-                            {getNitnemOptionDetail(option)}
-                          </p>
+                      <div className="home-nitnem-card-grid">
+                        <p className="home-section-label">Today&apos;s Bani</p>
+                        <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'}>
+                          {renderScriptText(option.gurmukhiTitle, scriptMode)}
+                        </p>
+                        <p>{option.romanizedTitle}</p>
+                        <div className="home-ritual-note">
+                          {getNitnemOptionDetail(option)}
                         </div>
                       </div>
 
                       <Link
                         to={buildNitnemStudyPath(option)}
-                        className="home-primary-amber interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-sand/18 bg-parchment-card/72 px-5 font-sans text-sm font-semibold text-ink/78 dark:border-dark-text/10 dark:bg-white/[0.05] dark:text-dark-text/78"
+                        className="home-primary-action interactive-focus interactive-pill-link"
                         data-testid={active ? 'home-nitnem-primary-action' : undefined}
+                        tabIndex={active ? undefined : -1}
                       >
                         {homeMessages.beginNitnem}
                       </Link>
@@ -1114,6 +1220,12 @@ export default function Home() {
         data-testid="home-read-today"
       >
         <span className="home-book-mark" aria-hidden="true" />
+        <img
+          src={ardaasHukamnamaPixelMotifSrc}
+          alt=""
+          aria-hidden="true"
+          className="home-read-motif"
+        />
         <p id="home-read-today-title" className="eyebrow">{homeMessages.readTodayEyebrow}</p>
         <h2 className="mt-2 font-display text-[1.7rem] leading-[0.98] text-ink dark:text-dark-text">
           {homeMessages.readTodayTitle}
@@ -1145,6 +1257,13 @@ export default function Home() {
         className="home-featured-slip home-quiet-card mb-4 p-4 animate-slide-up stagger-4"
         data-testid="home-read-today-featured-shabad"
       >
+        <img
+          src={featuredInstrumentSrc}
+          alt=""
+          aria-hidden="true"
+          data-testid="home-featured-instrument"
+          className="home-featured-instrument"
+        />
         {featuredShabadSupport.state === 'loading' ? (
           <div className="animate-pulse" data-testid="home-read-today-featured-shabad-loading">
             <div className="h-3 rounded bg-sand/20 dark:bg-dark-text/10 w-28" />
@@ -1220,18 +1339,22 @@ export default function Home() {
         ) : null}
         <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4" data-testid="home-saved-metrics">
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
+            <IconLeaf className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{learnStateSnapshot.savedItemIds.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.learnSaves}</p>
           </div>
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
+            <IconLibrary className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedBookmarks}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.bookmarks}</p>
           </div>
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'favorite' ? 'saved-feedback-highlight' : ''}`}>
+            <IconHeart className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedFavorites}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.favorites}</p>
           </div>
           <div className={`home-quiet-card px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'review' ? 'saved-feedback-highlight' : ''}`}>
+            <IconLayers className="home-saved-metric-icon" size={20} />
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedReviewItems}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/60 dark:text-dark-text/60 mt-1">{libraryCopy.reviewBank}</p>
           </div>
@@ -1279,7 +1402,7 @@ export default function Home() {
               </Link>
             )})
           ) : (
-            <div className="home-quiet-card px-4 py-4">
+            <div className="home-quiet-card home-saved-empty-preview px-4 py-4">
               <p className="eyebrow">Saved Preview</p>
               <p className="mt-2 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/70">
                 Learn saves, bookmarked passages, favorites, and review items will appear here once you start keeping pieces close.
