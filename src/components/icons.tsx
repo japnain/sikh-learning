@@ -261,6 +261,17 @@ export function IconLeaf({ className = '', size = 24 }: IconProps) {
   )
 }
 
+// Stacked layers / review bank
+export function IconLayers({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M12 3.4 21 8.1 12 12.8 3 8.1 12 3.4Z" />
+      <path d="m5.2 11.3 6.8 3.5 6.8-3.5" />
+      <path d="m5.2 15 6.8 3.6 6.8-3.6" />
+    </svg>
+  )
+}
+
 // Community / guided learning
 export function IconUsers({ className = '', size = 24 }: IconProps) {
   return (

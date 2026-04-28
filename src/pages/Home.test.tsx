@@ -278,7 +278,9 @@ test('shows a featured shabad card from Learn inside read today', async () => {
   await waitFor(() => {
     expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
     expect(screen.getByTestId('home-open-featured-shabad')).toBeInTheDocument()
+    expect(screen.getByTestId('home-featured-instrument')).toBeInTheDocument()
   })
+  expect(screen.getAllByTestId('home-open-featured-shabad')).toHaveLength(1)
 })
 
 test('renders nitnem above the unified read today surface', () => {
@@ -296,21 +298,37 @@ test('renders nitnem above the unified read today surface', () => {
   expect(screen.queryByRole('button', { name: /mark as complete/i })).not.toBeInTheDocument()
 })
 
-test('lets the daily nitnem carousel change the active bani', () => {
+test('lets the daily nitnem carousel arrows change the active bani', () => {
   renderHome()
 
   expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Japji+Sahib'))
+  expect(screen.getAllByTestId('home-nitnem-primary-action')).toHaveLength(1)
 
   fireEvent.click(screen.getByRole('button', { name: /next nitnem bani/i }))
 
   expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Jaap Sahib/i).length).toBeGreaterThan(0)
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Jaap+Sahib'))
 
+  fireEvent.click(screen.getByRole('button', { name: /previous nitnem bani/i }))
+
+  expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Japji Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Japji+Sahib'))
+})
+
+test('lets daily nitnem dot clicks change the active bani and CTA route', () => {
+  renderHome()
+
   fireEvent.click(screen.getByRole('button', { name: /show rehras sahib/i }))
 
   expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Rehras Sahib/i).length).toBeGreaterThan(0)
   expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Rehras+Sahib'))
+
+  fireEvent.click(screen.getByRole('button', { name: /previous nitnem bani/i }))
+
+  expect(within(screen.getByTestId('home-nitnem-active-card')).getAllByText(/Anand Sahib/i).length).toBeGreaterThan(0)
+  expect(screen.getByTestId('home-nitnem-primary-action')).toHaveAttribute('href', expect.stringContaining('bani=Anand+Sahib'))
+  expect(screen.getAllByTestId('home-nitnem-primary-action')).toHaveLength(1)
 })
 
 test('starts the active nitnem card on Japji Sahib in the default daily order', () => {
