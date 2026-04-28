@@ -113,16 +113,18 @@
   #root {
     min-height: 100dvh;
     width: 100%;
-    overflow-x: hidden;
   }
 
   html {
+    overflow-x: hidden;
+    overflow-y: auto;
     background: rgb(var(--color-bg));
   }
 
   body {
     min-height: 100dvh;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     background:
       linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-bg)) 42%, rgb(var(--color-surface-muted)) 100%);
     color: rgb(var(--color-text));
@@ -136,6 +138,11 @@
     transition:
       background-color var(--motion-duration-md) var(--motion-ease-standard),
       color var(--motion-duration-sm) var(--motion-ease-standard);
+  }
+
+  #root {
+    overflow-x: clip;
+    overflow-y: visible;
   }
 
   a {
@@ -181,7 +188,8 @@
     @apply mx-auto max-w-md;
     min-height: 100dvh;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     padding-top: calc(var(--safe-area-top) + 0.8rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
     padding-bottom: calc(var(--nav-stack-height) + var(--safe-area-bottom) + 2rem);
@@ -193,7 +201,8 @@
     position: relative;
     isolation: isolate;
     min-height: 100dvh;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     padding-bottom: 0;
     background:
       linear-gradient(180deg, rgb(var(--color-surface)) 0%, rgb(var(--color-bg)) 46%, rgb(var(--color-surface-muted)) 100%);
@@ -2727,6 +2736,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   position: relative;
   isolation: isolate;
   --home-hero-content-offset: 36rem;
+  --home-hero-image-lock: 0px;
   --home-hero-image-scale: 1;
   --home-hero-image-y: 0rem;
 }
@@ -2770,7 +2780,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   background-size: cover;
   transform:
     translateX(calc(-50% + var(--home-hero-parallax-x)))
-    translateY(calc(var(--home-hero-landscape-offset) + var(--home-hero-image-y)))
+    translateY(calc(var(--home-hero-image-lock) + var(--home-hero-landscape-offset) + var(--home-hero-image-y)))
     scale(var(--home-hero-image-scale));
   transform-origin: center top;
 }
@@ -3227,9 +3237,8 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .
   right: auto;
   left: auto;
   width: auto;
-  transition:
-    opacity 90ms linear,
-    transform 120ms cubic-bezier(0.2, 0.82, 0.22, 1);
+  transition: none;
+  will-change: opacity, transform;
 }
 
 @media (min-width: 400px) {
