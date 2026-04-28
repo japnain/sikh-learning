@@ -1,8 +1,8 @@
 {
   "id": "collection-greed-to-restlessness-92",
-  "title": "When greed becomes restless motion",
-  "subtitle": "When wanting becomes motion",
-  "description": "These readings expose how appetite speeds the body up until craving becomes the rhythm of the whole day.",
+  "title": "When wanting becomes motion",
+  "subtitle": "For appetite that cannot sit still",
+  "description": "These readings expose the restlessness that greed produces when the heart keeps moving because wanting has no end.",
   "durationLabel": "6-step journey",
   "themes": [
     "greed",
@@ -15,8 +15,8 @@
       640,
       641
     ],
-    "shortMeaning": "Greed turns restless the moment wanting starts choosing the pace of the day.",
-    "lifeApplication": "When wanting makes you reach faster, stop the body before the next grasp."
+    "shortMeaning": "Greed agitates the mouth and the body until the heart mistakes motion for need.",
+    "lifeApplication": "When wanting starts moving your body, stop before the next click, errand, or demand."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings expose how appetite speeds the body up until craving becomes the rhythm of the whole day.",
+      "coreClaim": "This path names restlessness as greed in motion.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "When wanting becomes motion",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Stillness begins when appetite is no longer allowed to call every impulse necessary.",
+      "practicalImplication": "Pause the chase and let one desire pass without being fed.",
       "bannedOverreach": []
     },
     "scores": {

@@ -177,14 +177,14 @@
     ]
   },
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "Guru Nanak turns trade language toward the soul: praise, truth, and Naam are the only wealth that can endure beyond false dealing.",
       "emotionalState": "distracted, ambitious, grasping",
-      "turn": "The rahao names the merchandise worth carrying: the Lord's praise held with focused consciousness.",
+      "turn": "The rahao names the merchandise worth carrying — the Lord's praise held with focused consciousness.",
       "practicalImplication": "Before the next purchase, chase, or status move, ask whether it adds truth to the heart or only weight to the mind.",
       "bannedOverreach": []
     },

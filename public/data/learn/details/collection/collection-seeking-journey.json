@@ -1,8 +1,8 @@
 {
   "id": "collection-seeking-journey",
-  "title": "From Seeking to steadier practice",
-  "subtitle": "For when seeking keeps steering the day",
-  "description": "These readings separate holy hunger from restless novelty and teach the search how to dwell, obey, and finally land.",
+  "title": "Seeking that lands in Naam",
+  "subtitle": "For the search that needs depth more than novelty",
+  "description": "These readings guide spiritual hunger away from constant motion and into the wealth of Naam, patient listening, and saintly company.",
   "durationLabel": "5-step journey",
   "themes": [
     "seeking",
@@ -14,8 +14,8 @@
       11239,
       11240
     ],
-    "shortMeaning": "Wandering eases where Sangat and mercy begin enlightening the mind.",
-    "lifeApplication": "Restlessness often needs better placement before it needs more explanation."
+    "shortMeaning": "True bankers trade in Naam; the search becomes wealthy when wandering ceases in sangat.",
+    "lifeApplication": "Let the search become obedience before it becomes another tour of ideas."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings separate holy hunger from restless novelty and teach the search how to dwell, obey, and finally land.",
+      "coreClaim": "This journey turns seeking into a life that dwells with the Name.",
       "emotionalState": "restless, impatient, seeking",
-      "turn": "For when seeking keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The search finds dignity when it trades novelty for Naam.",
+      "practicalImplication": "Choose one practice of listening and remain with it after curiosity wants to move on.",
       "bannedOverreach": []
     },
     "scores": {

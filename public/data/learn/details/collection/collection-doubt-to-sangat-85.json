@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-sangat-85",
-  "title": "When doubt needs better company",
-  "subtitle": "When questions multiply faster than trust",
-  "description": "These readings take the question out of private weather and place it among people whose peace has survived contact with life.",
+  "title": "Take the question into better company",
+  "subtitle": "For doubts that multiply in private weather",
+  "description": "These readings move the question from isolation into sangat, where peace has a living witness and the mind no longer argues alone.",
   "durationLabel": "6-step journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       921,
       922
     ],
-    "shortMeaning": "Doubt weakens in company that already knows how to keep peace.",
-    "lifeApplication": "Take the question to the person or sangat living more peace than you."
+    "shortMeaning": "The fire of doubt cools near the Guru’s word and the company of those who live it.",
+    "lifeApplication": "Bring the question to someone whose life shows more peace than your private loop can produce."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings take the question out of private weather and place it among people whose peace has survived contact with life.",
+      "coreClaim": "This path refuses to let doubt remain its own only counselor.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "When questions multiply faster than trust",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Sangat does not erase honest questions; it changes the atmosphere in which they are carried.",
+      "practicalImplication": "Ask for company before asking for another theory.",
       "bannedOverreach": []
     },
     "scores": {

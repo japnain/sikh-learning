@@ -1,8 +1,8 @@
 {
   "id": "collection-tired-heart-to-rest",
-  "title": "From a Tired Heart to Rest",
-  "subtitle": "A slower path for the overused inner life",
-  "description": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
+  "title": "Rest for the overused inner life",
+  "subtitle": "For the heart worn thin by searching alone",
+  "description": "These readings begin in exhaustion and move toward mercy, holy company, and remembrance that cools the mind and body instead of merely distracting them.",
   "durationLabel": "4-step arc",
   "themes": [
     "exhaustion",
@@ -16,8 +16,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Search ends in mercy and saint company; the body cools where the right company is found.",
-    "lifeApplication": "Rest arrives less by escape than by better placement."
+    "shortMeaning": "Roaming through every forest and method ends only when mercy brings true company and the body cools.",
+    "lifeApplication": "Seek rest by better placement, not by another escape that leaves the heart alone."
   },
   "items": [
     {
@@ -61,15 +61,15 @@
     "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
+      "coreClaim": "This path gives the tired heart a route from roaming into cooling company.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "A slower path for the overused inner life",
-      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "turn": "Rest arrives when the search is received by mercy and placed near the holy.",
+      "practicalImplication": "Stop one exhausting search and go where remembrance can cool you.",
       "bannedOverreach": []
     },
     "scores": {

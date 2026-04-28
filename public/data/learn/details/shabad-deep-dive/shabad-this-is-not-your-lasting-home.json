@@ -130,9 +130,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The pauree begins by stripping this passing world of final status. It teaches that the way to the true dwelling is known through the Guru's Shabad, and that stable belonging is found in the company of the holy rather than in what cannot go with you.",
       "emotionalState": "isolated, impressionable, needing-company",

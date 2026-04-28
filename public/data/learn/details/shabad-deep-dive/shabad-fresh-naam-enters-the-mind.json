@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
       "emotionalState": "scattered, unsettled, wandering",

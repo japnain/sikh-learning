@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "manual-full-v1",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The Brahm Giani cannot be priced, described, bounded, or spiritually audited; the shabad turns evaluation into reverence.",
       "emotionalState": "inflated, defensive, self-protective",

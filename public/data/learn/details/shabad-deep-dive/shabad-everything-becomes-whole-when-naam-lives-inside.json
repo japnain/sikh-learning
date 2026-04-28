@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
       "emotionalState": "envious, unsettled, small",

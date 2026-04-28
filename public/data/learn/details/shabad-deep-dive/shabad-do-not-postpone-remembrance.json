@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It responds with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
       "emotionalState": "reactive, heated, sharp",

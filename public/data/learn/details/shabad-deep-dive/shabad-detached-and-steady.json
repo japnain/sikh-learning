@@ -126,10 +126,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
       "emotionalState": "hooked, needy, easily-shaken",

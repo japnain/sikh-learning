@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-bundle",
-  "title": "Speech in one shorter sitting",
-  "subtitle": "A shorter sitting for when speech is already close",
-  "description": "A short correction for the hour when the mouth is moving faster than the heart. It cleans the sentence before it hardens into harm.",
+  "title": "Clean the sentence before it hardens",
+  "subtitle": "A short return when the mouth is moving faster than the heart",
+  "description": "A brief path that slows speech under truth, restraint, and honor before words become damage.",
   "durationLabel": "3-step bundle",
   "themes": [
     "speech"
@@ -13,8 +13,8 @@
       642,
       643
     ],
-    "shortMeaning": "Speak what carries honor, not just what releases heat.",
-    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+    "shortMeaning": "The mouth must not become a carrier of greed, falsehood, slander, or anger.",
+    "lifeApplication": "Let restraint become the most truthful sentence available."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short correction for the hour when the mouth is moving faster than the heart. It cleans the sentence before it hardens into harm.",
+      "coreClaim": "This bundle gives the tongue a quick way back to honor.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "A shorter sitting for when speech is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Speech changes when the heart remembers where the words must answer.",
+      "practicalImplication": "Delay the reply, remove the filth, and speak only what can remain clean.",
       "bannedOverreach": []
     },
     "scores": {

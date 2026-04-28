@@ -316,9 +316,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by saying egotism cannot produce peace. It broadens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
       "emotionalState": "inflated, defensive, self-protective",

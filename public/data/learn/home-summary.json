@@ -2264,8 +2264,8 @@
     },
     {
       "id": "guidance-human-birth-is-chance-1",
-      "title": "Do not waste a body built for meeting",
-      "summary": "This body has been given for meeting the Lord of the Universe. Let the day become an answer to that invitation.",
+      "title": "Treat this human birth as an invitation",
+      "summary": "The verse does not flatter the body; it gives it a purpose. Spend today as someone invited to meet the Lord while breath is still here.",
       "relatedTopicIds": [
         "topic-purpose"
       ],
@@ -3149,7 +3149,7 @@
     {
       "id": "guidance-let-the-heart-be-kept-in-what-is-complete",
       "title": "Let Naam answer the ache of incompletion",
-      "summary": "The shabad answers lack by placing Naam in the heart: the path, cleansing, and honor become whole under the Perfect One's shelter.",
+      "summary": "The shabad answers lack by placing Naam in the heart — the path, cleansing, and honor become whole under the Perfect One's shelter.",
       "relatedTopicIds": [
         "topic-comparison"
       ],
@@ -3331,7 +3331,7 @@
     {
       "id": "guidance-let-truth-give-your-heart-its-place",
       "title": "Let Truth be seen before feedback arrives",
-      "summary": "The shabad steadies the heart by widening its sight: those attuned to Truth see the True One everywhere. Worth stops shrinking when the room is no longer the largest reality.",
+      "summary": "The shabad steadies the heart by widening its sight — those attuned to Truth see the True One everywhere. Worth stops shrinking when the room is no longer the largest reality.",
       "relatedTopicIds": [
         "topic-self-worth"
       ],
@@ -3461,7 +3461,7 @@
     {
       "id": "guidance-lord-keeps-the-humble-close-2",
       "title": "Measure greatness by the Life the Guru plants within",
-      "summary": "The shabad measures greatness by gift: meeting the True Guru enshrines the Lord in the heart, and the Perfect Guru grants the life of the soul. Dignity begins as received life, not public size.",
+      "summary": "The shabad measures greatness by gift — meeting the True Guru enshrines the Lord in the heart, and the Perfect Guru grants the life of the soul. Dignity begins as received life, not public size.",
       "relatedTopicIds": [
         "topic-self-worth"
       ],
@@ -4432,7 +4432,7 @@
     {
       "id": "guidance-run-to-sanctuary-before-fear-hardens",
       "title": "Run to sanctuary before fear hardens",
-      "summary": "The shabad begins with an unguarded cry: save me, Father; all virtues are Yours. Fear softens when it reaches sanctuary before it builds a self-protective shell.",
+      "summary": "The shabad begins with an unguarded cry — save me, Father; all virtues are Yours. Fear softens when it reaches sanctuary before it builds a self-protective shell.",
       "relatedTopicIds": [
         "topic-fear"
       ],
@@ -4981,7 +4981,7 @@
     {
       "id": "guidance-speak-what-brings-honor-1",
       "title": "Refuse to feed the mouth with slander’s filth",
-      "summary": "The shabad uses startling images for corrupt speech: greed as a dog, falsehood as filth, slander as another person’s dirt placed in your own mouth. The mouth is protected by refusing that meal.",
+      "summary": "The shabad uses startling images for corrupt speech — greed as a dog, falsehood as filth, slander as another person’s dirt placed in your own mouth. The mouth is protected by refusing that meal.",
       "relatedTopicIds": [
         "topic-speech"
       ],
@@ -5268,7 +5268,7 @@
     {
       "id": "guidance-stop-exhausting-yourself-before-prayer",
       "title": "Stop exhausting yourself before prayer",
-      "summary": "The prayer begins where self-rescue has run out: Save me, Father; all virtues are Yours. Let helplessness become honest prayer instead of another performance.",
+      "summary": "The prayer begins where self-rescue has run out — Save me, Father; all virtues are Yours. Let helplessness become honest prayer instead of another performance.",
       "relatedTopicIds": [
         "topic-fear"
       ],
@@ -5832,7 +5832,7 @@
     {
       "id": "guidance-turn-back-before-distance-hardens-into-pain",
       "title": "Turn back before distance hardens into pain",
-      "summary": "The prayer becomes poor, meek, and direct: save me, because I am Yours. Naam is not decoration here; it is the support that keeps distance from hardening into another wound.",
+      "summary": "The prayer becomes poor, meek, and direct — save me, because I am Yours. Naam is not decoration here; it is the support that keeps distance from hardening into another wound.",
       "relatedTopicIds": [
         "topic-comparison"
       ],
@@ -6279,7 +6279,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Stop measuring what the Guru teaches you to revere."
     },
     {
       "id": "shabad-a-passing-life-is-too-small-for-gossip",
@@ -6314,7 +6315,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Let mortality make your speech cleaner and your deeds worth carrying."
     },
     {
       "id": "shabad-a-rare-human-life-should-not-be-spent-asleep",
@@ -6349,7 +6351,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Use the rare human life for Naam before distraction spends it for you."
     },
     {
       "id": "shabad-all-belong-to-the-one-who-belongs-to-all",
@@ -6384,7 +6387,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Receive belonging from the One who holds everyone."
     },
     {
       "id": "shabad-ambrosial-speech-pure-conduct",
@@ -6421,7 +6425,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Let Naam clean the conduct, the company, the tongue, and the heart."
     },
     {
       "id": "shabad-anxiety-follows-borrowed-greatness",
@@ -6456,13 +6461,14 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Measure greatness by devotion, not by what anxiety is guarding."
     },
     {
       "id": "shabad-appetite-grows-in-stages-unless-it-is-taught-otherwise",
       "title": "Appetite grows into a life unless the Guru interrupts it",
       "subtitle": "Raag Maajh · Ang 137",
-      "summary": "This shabad traces craving from infancy to death with unsentimental precision: milk, family, play, food, sexual desire, wealth, anger, decline, cremation. The pattern is not harmless just because it is familiar; without the Guru, the soul is left asking where to go as the world drowns.",
+      "summary": "This shabad traces craving from infancy to death with unsentimental precision — milk, family, play, food, sexual desire, wealth, anger, decline, cremation. The pattern is not harmless just because it is familiar; without the Guru, the soul is left asking where to go as the world drowns.",
       "whyItMatters": "Craving often feels like personality because it has been rehearsed for so long. This shabad gives appetite a biography, showing how small loves harden into a whole direction unless the Guru teaches the soul another way to live.",
       "themes": [
         "greed",
@@ -6492,13 +6498,14 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Name appetite early, before it names the whole life."
     },
     {
       "id": "shabad-ask-the-guru-before-you-multiply-the-questions",
       "title": "Take the scattered question to the Guru",
       "subtitle": "Siree Raag · Ang 34",
-      "summary": "This shabad begins with honest confusion: whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
+      "summary": "This shabad begins with honest confusion — whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
       "whyItMatters": "When the mind is anxious, it multiplies options until practice becomes another form of wandering. This shabad gives confusion a disciplined path: ask the Guru, stay awake, protect the crop, and let ego be pulled out by the root.",
       "themes": [
         "anxiety",
@@ -6527,7 +6534,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Clarity comes when the restless search submits to the Guru’s Shabad."
     },
     {
       "id": "shabad-bow-until-wandering-stops-asking-for-the-lead",
@@ -6559,7 +6567,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Let prayer become a real request for rescue."
     },
     {
       "id": "shabad-buy-what-goes-with-you",
@@ -6596,7 +6605,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Before the next purchase, chase, or status move, ask whether it adds truth to the heart or only weight to the mind."
     },
     {
       "id": "shabad-center-hope-where-the-wandering-mind-cannot-rule",
@@ -6628,7 +6638,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Hope steadies when it is centered in the One."
     },
     {
       "id": "shabad-child-of-grace",
@@ -6665,7 +6676,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Longing ripens when saintly company shows the way."
     },
     {
       "id": "shabad-cling-to-the-one-until-the-mind-cools",
@@ -6697,13 +6709,14 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Let one true hold replace the many false ones."
     },
     {
       "id": "shabad-conquer-the-mind",
       "title": "Wear contentment before you speak of conquest",
       "subtitle": "Japji Sahib, Pauri 28",
-      "summary": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
+      "summary": "The shabad starts by taking visible yogic marks and turning them inward — contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
       "whyItMatters": "This shabad speaks to the part of us that is tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
       "themes": [
         "discipline",
@@ -6733,7 +6746,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Conquer the mind before trying to conquer the world."
     },
     {
       "id": "shabad-conquer-the-self-before-you-fight-the-world",
@@ -6765,7 +6779,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Self-conquest is the way peace enters conduct."
     },
     {
       "id": "shabad-deeper-fearlessness-comes-by-tasting-naam",
@@ -6801,7 +6816,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "gratitude"
-      }
+      },
+      "takeaway": "Taste Naam deeply enough that lesser fears stop governing you."
     },
     {
       "id": "shabad-detached-and-steady",
@@ -6837,13 +6853,14 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Keep this in front of you: steadiness grows where attachment loses its authority."
     },
     {
       "id": "shabad-do-not-forget-the-one-who-never-forgets-you",
       "title": "Do not forget the One who never forgets you",
       "subtitle": "Raag Gauree · Ang 289",
-      "summary": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
+      "summary": "The shabad begins with a repeated question — why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
       "whyItMatters": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding.",
       "themes": [
         "seva",
@@ -6869,7 +6886,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Remember the Giver before you start measuring your effort."
     },
     {
       "id": "shabad-do-not-postpone-remembrance",
@@ -6904,7 +6922,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Remembrance becomes true when it stops waiting for later."
     },
     {
       "id": "shabad-duality-makes-decoration-hollow",
@@ -6940,7 +6959,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "gratitude"
-      }
+      },
+      "takeaway": "Without the Beloved and the Shabad, surface beauty stays false."
     },
     {
       "id": "shabad-ego-is-disease",
@@ -6977,7 +6997,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Treat ego as illness and keep the Guru's medicine near."
     },
     {
       "id": "shabad-everything-becomes-whole-when-naam-lives-inside",
@@ -7013,7 +7034,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Wholeness begins when the Name is kept in the heart."
     },
     {
       "id": "shabad-extinguish-the-fire-of-doubt",
@@ -7050,7 +7072,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Doubt clears when the Guru's word outlasts wandering."
     },
     {
       "id": "shabad-fear-leaves-when-schemes-do",
@@ -7085,7 +7108,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Let ego and scheming fall so fear can leave with them."
     },
     {
       "id": "shabad-forgiveness-becomes-fearless",
@@ -7122,13 +7146,14 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Remember this: forgiveness, conduct, and contentment free the heart from fear."
     },
     {
       "id": "shabad-forgiveness-opens-lasting-peace",
       "title": "Forgiveness settles into lasting peace",
       "subtitle": "Raag Sorath · Ang 628",
-      "summary": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
+      "summary": "The shabad begins with the Perfect Guru's completed work — forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
       "whyItMatters": "This one meets the person who has tasted relief but does not yet know how to live from it. Stayed with, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere.",
       "themes": [
         "forgiveness",
@@ -7159,7 +7184,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Remember this: received forgiveness becomes lasting peace when it ripens into Naam."
     },
     {
       "id": "shabad-fresh-naam-enters-the-mind",
@@ -7194,7 +7220,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Stay still long enough for fresh Naam to settle."
     },
     {
       "id": "shabad-fruitful-service-gives-the-life-a-path",
@@ -7230,7 +7257,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Remember this: the path becomes visible when service turns fruitful."
     },
     {
       "id": "shabad-god-consciousness-is-received-not-staged",
@@ -7262,13 +7290,14 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Keep this in front of you: let God, not image, decide what greatness is."
     },
     {
       "id": "shabad-gratitude-restores-naam",
       "title": "Mercy remembered becomes living Naam",
       "subtitle": "Mundhaavanee Fifth Mehl",
-      "summary": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
+      "summary": "The shabad opens in confession — I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
       "whyItMatters": "This one meets the person who has gone numb to mercy or embarrassed by their own ingratitude. Stayed with honestly, it turns shame into gratitude and gratitude into renewed life in Naam.",
       "themes": [
         "gratitude",
@@ -7298,7 +7327,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Keep this in front of you: honest gratitude becomes the doorway to mercy and Naam."
     },
     {
       "id": "shabad-holy-company-breaks-the-crowded-heat-inside",
@@ -7334,7 +7364,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Keep this in front of you: take the overheated self back from distance until Naam becomes support."
     },
     {
       "id": "shabad-holy-company-washes-deeper-than-self-scrubbing",
@@ -7370,7 +7401,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Seek the company that washes the heart and turns it toward Naam."
     },
     {
       "id": "shabad-honor-women",
@@ -7400,7 +7432,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Keep this in front of you: refuse to despise the one through whom human life comes."
     },
     {
       "id": "shabad-hope-in-the-lord-outlives-the-world-s-reach",
@@ -7436,7 +7469,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Let hope in the Lord outrank the world's reach."
     },
     {
       "id": "shabad-hukam-inside-everything",
@@ -7472,7 +7506,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Everything stands within Hukam, and ego thins when this is seen."
     },
     {
       "id": "shabad-human-birth-is-chance",
@@ -7509,7 +7544,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Treat this life as a meeting, not an endless postponement."
     },
     {
       "id": "shabad-humble-company-ends-the-fight-underneath-the-fight",
@@ -7545,7 +7581,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Move toward the humble until fear loses its command."
     },
     {
       "id": "shabad-learning-without-inward-turning-stays-trapped-in-maya",
@@ -7580,7 +7617,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Knowledge without inward freedom still serves attachment."
     },
     {
       "id": "shabad-let-humility-become-the-strength-that-does-no-harm",
@@ -7608,7 +7646,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Call humble the one from whom no harm comes."
     },
     {
       "id": "shabad-let-the-name-become-your-family",
@@ -7640,7 +7679,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Take the Name as support, family, and lasting nearness."
     },
     {
       "id": "shabad-lord-keeps-the-humble-close",
@@ -7677,7 +7717,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Stay humble enough to be kept close and cherished by the Lord."
     },
     {
       "id": "shabad-love-fills-the-minds-and-bodies-of-the-devoted",
@@ -7709,7 +7750,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Ask for the grace to remember, and let love soften the guarded heart."
     },
     {
       "id": "shabad-love-the-guru-with-mind-and-body",
@@ -7744,7 +7786,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Let love, company, and conduct gather under the Guru until forgetfulness weakens."
     },
     {
       "id": "shabad-love-the-true-treasure-before-desire-names-your-wealth",
@@ -7776,13 +7819,14 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Keep this in front of you: love the true treasure before desire names your wealth."
     },
     {
       "id": "shabad-make-naam-the-work-of-your-life",
       "title": "Make Naam the work of your life",
       "subtitle": "Raag Gauree · Ang 290",
-      "summary": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+      "summary": "The shabad begins by giving the saints a clear assignment — let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
       "whyItMatters": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline.",
       "themes": [
         "seeking",
@@ -7808,7 +7852,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Let Naam become the work that orders everything else."
     },
     {
       "id": "shabad-make-the-body-honorable-by-what-it-serves",
@@ -7843,13 +7888,14 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Let speech, sight, hands, and feet become honorable through praise."
     },
     {
       "id": "shabad-mercy-lets-the-child-tell-the-truth",
       "title": "Mercy lets the child tell the truth",
       "subtitle": "Siree Raag · Ang 51",
-      "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
+      "summary": "The shabad opens in tenderness and dependence — the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
       "whyItMatters": "This shabad speaks to the part of us that is stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike.",
       "themes": [
         "hukam",
@@ -7879,7 +7925,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "hukam"
-      }
+      },
+      "takeaway": "Bring the truth about failure into the Lord's mercy."
     },
     {
       "id": "shabad-mercy-turns-bitter-into-sweet",
@@ -7915,7 +7962,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Keep this in front of you: ask for the mercy that turns nearness into tasted sweetness."
     },
     {
       "id": "shabad-naam-planted-within-clears-the-inner-fog",
@@ -7950,13 +7998,14 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Remember this: when Naam is planted within, doubt loses its house."
     },
     {
       "id": "shabad-nearness-ends-the-frantic-search",
       "title": "Nearness ends the frantic search",
       "subtitle": "Raag Gauree · Ang 205",
-      "summary": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
+      "summary": "The shabad opens in astonished intimacy — the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
       "whyItMatters": "This one meets the person worn out by searching, petitioning, and looking elsewhere for relief. Kept near, it teaches rest by revealing the nearness that restless effort keeps missing.",
       "themes": [
         "exhaustion",
@@ -7985,7 +8034,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Let grace make the Lord near enough to stop the chase."
     },
     {
       "id": "shabad-offering-everything-to-the-one-who-can-unite-you",
@@ -8017,7 +8067,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Fear loosens when the heart is brought near to the One it was made for."
     },
     {
       "id": "shabad-one-instant-of-remembrance-outweighs-drift",
@@ -8052,7 +8103,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Remember this: guard one true instant of simran against a thousand distracted ones."
     },
     {
       "id": "shabad-patience-ripens-into-honor",
@@ -8089,7 +8141,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Trade in Naam, and let patience ripen into honor."
     },
     {
       "id": "shabad-peace-comes-through-serving-the-true-guru",
@@ -8125,7 +8178,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Serve first, and let peace expose the self."
     },
     {
       "id": "shabad-pervasiveness-cures-the-scarcity-behind-comparison",
@@ -8160,7 +8214,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Keep this in front of you: comparison weakens when the world is seen as already filled."
     },
     {
       "id": "shabad-place-the-tired-mind-in-the-guru-s-cooling-shelter",
@@ -8196,7 +8251,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Place the mind's trust in the Guru as cooling shelter."
     },
     {
       "id": "shabad-praise-breaks-the-illusion-of-mastery",
@@ -8231,7 +8287,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "hukam"
-      }
+      },
+      "takeaway": "The proper response to vastness is praise, not possession."
     },
     {
       "id": "shabad-praise-melts-what-comparison-hardens",
@@ -8267,7 +8324,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Let praise, saintly company, and true action soften the self into homecoming."
     },
     {
       "id": "shabad-recognize-greatness-by-the-shelter-it-offers",
@@ -8299,7 +8357,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Keep this in front of you: test greatness by the shelter it gives away."
     },
     {
       "id": "shabad-release-arrives-where-seeking-kneels-into-service",
@@ -8334,7 +8393,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Keep this in front of you: seeking matures when it bows into the Name and service."
     },
     {
       "id": "shabad-remember-the-guru-with-every-breath",
@@ -8366,7 +8426,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Keep returning to the Guru as breath, wealth, and shelter."
     },
     {
       "id": "shabad-remember-together-not-in-isolation",
@@ -8401,7 +8462,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "gratitude"
-      }
+      },
+      "takeaway": "Holy company teaches the heart how to remember well."
     },
     {
       "id": "shabad-remembrance-brings-peace",
@@ -8437,7 +8499,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Carry remembrance into the body before worry settles there."
     },
     {
       "id": "shabad-restlessness-reveals-what-the-heart-still-loves",
@@ -8472,7 +8535,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Love for the Lord gathers what distraction keeps scattering."
     },
     {
       "id": "shabad-sanctuary-for-a-mind-under-assault",
@@ -8508,7 +8572,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Keep this in front of you: call for shelter before fear becomes your only voice."
     },
     {
       "id": "shabad-search-ends-in-saint-company",
@@ -8545,13 +8610,14 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Bring your searching to holy company and let it cool there."
     },
     {
       "id": "shabad-selfless-service",
       "title": "Service without reward reaches the Master",
       "subtitle": "Raag Gauree",
-      "summary": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+      "summary": "The shabad starts by defining the servant who lives in the Guru's household — obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
       "whyItMatters": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center.",
       "themes": [
         "seva",
@@ -8582,7 +8648,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Service becomes true when the self stops asking to be seen."
     },
     {
       "id": "shabad-speak-what-brings-honor",
@@ -8619,7 +8686,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Keep only the speech that can stand at God's Door."
     },
     {
       "id": "shabad-steadied-by-creator",
@@ -8655,7 +8723,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "The Creator's mercy is steadier than your wavering."
     },
     {
       "id": "shabad-steady-service-begins-healing-long-separation",
@@ -8690,7 +8759,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Stay in service and remembrance until separation begins healing."
     },
     {
       "id": "shabad-stop-roaming-where-the-one-is-already-near",
@@ -8722,13 +8792,14 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Search inwardly and let Sangat tear down the proud mound."
     },
     {
       "id": "shabad-suffering-as-medicine",
       "title": "Pain tells the truth comfort hides",
       "subtitle": "Raag Aasaa",
-      "summary": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+      "summary": "The shabad begins by reversing ordinary judgment — suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
       "whyItMatters": "This shabad speaks to the part of us that clings to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
       "themes": [
         "reflection",
@@ -8756,7 +8827,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Let pain reveal what comfort keeps covering."
     },
     {
       "id": "shabad-sweet-speech-humble-walk",
@@ -8793,13 +8865,14 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "When remembrance is real, it reaches the mouth and the walk."
     },
     {
       "id": "shabad-the-brave-war-is-the-one-against-inner-ego",
       "title": "The brave war is the one against inner ego",
       "subtitle": "Siree Raag · Ang 86",
-      "summary": "The shabad opens by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
+      "summary": "The shabad opens by redefining courage — the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
       "whyItMatters": "This speaks to the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy.",
       "themes": [
         "ego",
@@ -8829,7 +8902,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Remember this: measure courage by how deeply ego is subdued."
     },
     {
       "id": "shabad-the-day-is-shrinking-spend-it-well",
@@ -8864,7 +8938,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Keep this in front of you: choose the remaining day for the profit of Naam."
     },
     {
       "id": "shabad-the-deeper-union-is-not-found-by-roaming",
@@ -8900,7 +8975,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Roaming ends when the Guru reveals the deeper union."
     },
     {
       "id": "shabad-the-forgiving-lord-shelters-the-lowly",
@@ -8932,13 +9008,14 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Bring your smallness into the Lord's shelter instead of hiding it."
     },
     {
       "id": "shabad-the-guru-asks-for-more-than-admiration",
       "title": "The Guru asks for more than admiration",
       "subtitle": "Raag Gauree · Ang 171",
-      "summary": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
+      "summary": "The shabad opens with startling surrender — the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
       "whyItMatters": "This speaks to the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender.",
       "themes": [
         "ego",
@@ -8967,13 +9044,14 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Keep this in front of you: let surrender reach the body before the ego performs again."
     },
     {
       "id": "shabad-the-guru-s-word-raises-the-soul-into-real-stature",
       "title": "The Guru's word raises the soul into real stature",
       "subtitle": "Raag Gauree · Ang 239",
-      "summary": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
+      "summary": "The shabad keeps returning to what the Guru's word does from the inside — it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
       "whyItMatters": "This shabad speaks to the part of us that chases improvement, image, or spiritual status without steady submission to the Guru's word. Taken seriously, it turns attainment from display into inward settlement.",
       "themes": [
         "patience",
@@ -9001,7 +9079,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Remember this: let the Guru's word define attainment."
     },
     {
       "id": "shabad-the-heart-lives-by-the-one-supporting-it",
@@ -9037,7 +9116,8 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Let the mind rest on the One already carrying its life."
     },
     {
       "id": "shabad-the-key-is-handed-to-the-guru",
@@ -9072,7 +9152,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Ask for the guidance that can lead you through ego's curtain."
     },
     {
       "id": "shabad-the-lord-s-bani-cools-what-is-burning",
@@ -9107,7 +9188,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Read the Bani again until the inner heat cools."
     },
     {
       "id": "shabad-the-powerful-cannot-do-your-inner-work",
@@ -9143,7 +9225,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Remember this: seek the humble servant, not the world's impressive names."
     },
     {
       "id": "shabad-the-shabad-clears-the-double-mind",
@@ -9178,13 +9261,14 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Stay with the Shabad until duality loses its grip."
     },
     {
       "id": "shabad-the-soul-was-never-yours-to-keep",
       "title": "The soul was never yours to keep",
       "subtitle": "Raag Gauree · Ang 188",
-      "summary": "The shabad begins by unsettling possessive grief: relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
+      "summary": "The shabad begins by unsettling possessive grief — relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
       "whyItMatters": "This speaks to the person overwhelmed by loss, panic, or the cry of mine. Taken seriously, it does not belittle sorrow, but it stops grief from turning into possession.",
       "themes": [
         "doubt",
@@ -9213,13 +9297,14 @@
         "priority": 9,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Let grief answer to Hukam instead of ownership."
     },
     {
       "id": "shabad-the-split-mind-becomes-one-through-surrender",
       "title": "The split mind becomes one through surrender",
       "subtitle": "Raag Gauree · Ang 222",
-      "summary": "The shabad starts by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
+      "summary": "The shabad starts by naming the problem sharply — the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
       "whyItMatters": "This shabad speaks to the part of us that is mentally scattered, morally divided, and unable to stay steady. Kept close, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can.",
       "themes": [
         "ego",
@@ -9248,7 +9333,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "The mind's problem is divided allegiance, and the Guru teaches surrender into the One."
     },
     {
       "id": "shabad-the-world-asks-for-peace-and-forgets-naam",
@@ -9284,7 +9370,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Ego cannot make peace; Naam and service can."
     },
     {
       "id": "shabad-this-is-not-your-lasting-home",
@@ -9316,7 +9403,8 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "seva"
-      }
+      },
+      "takeaway": "Do not mistake the temporary camp for your true home."
     },
     {
       "id": "shabad-those-who-serve-the-true-guru-receive-the-name",
@@ -9351,7 +9439,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Keep this in front of you: serve the Guru until complaint thins and love for the Beloved rises."
     },
     {
       "id": "shabad-truth-before-beginning-truth-through-time",
@@ -9387,7 +9476,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Truth is not won by pressure or wit, but by walking in Hukam."
     },
     {
       "id": "shabad-truth-gives-the-heart-a-steadier-worth",
@@ -9422,7 +9512,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Keep this in front of you: let Truth, not applause, give the heart its place."
     },
     {
       "id": "shabad-truth-is-meant-to-occupy-the-whole-life",
@@ -9457,7 +9548,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "challenge"
-      }
+      },
+      "takeaway": "Let the Guru's truth reach your food, speech, and shelter."
     },
     {
       "id": "shabad-what-comes-to-pass-is-not-outside-the-doer",
@@ -9492,7 +9584,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Regret quiets when the heart returns the moment to Hukam."
     },
     {
       "id": "shabad-what-pleases-you-comes-to-pass",
@@ -9529,7 +9622,8 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Learn to receive under the Lord's pleasure rather than argue with it."
     },
     {
       "id": "shabad-what-the-beloved-does-i-accept",
@@ -9565,13 +9659,14 @@
         "priority": 6,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Let the Beloved's way grow dearer than the mind's protest."
     },
     {
       "id": "shabad-when-the-shabad-takes-the-mind-in-hand",
       "title": "When the Shabad takes the mind in hand",
       "subtitle": "Raag Gauree · Ang 221",
-      "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+      "summary": "The shabad begins with a startling image — the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
       "whyItMatters": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
       "themes": [
         "attachment",
@@ -9600,7 +9695,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "reflection"
-      }
+      },
+      "takeaway": "Let the Guru's Shabad govern the mind before cleverness does."
     },
     {
       "id": "shabad-where-praise-makes-death-keep-its-distance",
@@ -9632,7 +9728,8 @@
         "priority": 10,
         "freshnessTier": "evergreen",
         "balanceCategory": "discipline"
-      }
+      },
+      "takeaway": "Keep company with praise until fear stops ruling the room."
     },
     {
       "id": "shabad-where-saving-company-interrupts-judgment",
@@ -9664,7 +9761,8 @@
         "priority": 7,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Holy company keeps judgment from having the final word."
     },
     {
       "id": "shabad-work-give-know-the-path",
@@ -9701,13 +9799,14 @@
         "seasonality": [
           "evergreen"
         ]
-      }
+      },
+      "takeaway": "Honest labor and sharing reveal the path better than costume."
     },
     {
       "id": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
       "title": "You are family wherever fear tries to exile me",
       "subtitle": "Raag Maajh · Ang 103",
-      "summary": "The shabad begins with intimate naming: Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
+      "summary": "The shabad begins with intimate naming — Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
       "whyItMatters": "This speaks to the person frightened, exposed, or emotionally orphaned by circumstances. Held tenderly, it makes divine nearness personal enough to change how fear occupies the body.",
       "themes": [
         "fear",
@@ -9737,7 +9836,8 @@
         "priority": 8,
         "freshnessTier": "evergreen",
         "balanceCategory": "comfort"
-      }
+      },
+      "takeaway": "Fear thins when shelter becomes personal again."
     }
   ],
   "topicGuides": [
@@ -11601,9 +11701,9 @@
     },
     {
       "id": "collection-anger-to-comparison-64",
-      "title": "When anger turns into comparison",
-      "subtitle": "When anger starts measuring and ranking everyone",
-      "description": "These readings catch the moment hurt stops burning inward and starts grading everybody else.",
+      "title": "When anger starts keeping score",
+      "subtitle": "For the hurt that wants to rank everyone else",
+      "description": "Begin with Truth that stands before every injury. These readings help anger stop building a courtroom out of comparison.",
       "durationLabel": "6-step journey",
       "themes": [
         "anger",
@@ -11623,9 +11723,9 @@
     },
     {
       "id": "collection-anger-to-discipline-65",
-      "title": "When anger dresses itself as discipline",
-      "subtitle": "When anger disguises itself as seriousness",
-      "description": "Hold anger beside discipline until you can hear the difference between governed strength and heat wearing a moral face.",
+      "title": "When anger borrows discipline’s clothes",
+      "subtitle": "For the seriousness that is really heat",
+      "description": "Hold anger under the Mool Mantar until discipline can be separated from the need to punish, control, or sound righteous.",
       "durationLabel": "6-step journey",
       "themes": [
         "anger",
@@ -11682,9 +11782,9 @@
     },
     {
       "id": "collection-anxiety-to-anger-62",
-      "title": "When anxiety hardens into anger",
-      "subtitle": "When fear starts recruiting anger as protection",
-      "description": "Track how anxiety hardens into anger, then cool the fear before it borrows your mouth.",
+      "title": "When fear hardens into anger",
+      "subtitle": "For the body that attacks because it feels unsafe",
+      "description": "Start with the Merciful Creator who nourishes what He creates. These readings cool anxiety before it recruits anger as armor.",
       "durationLabel": "6-step journey",
       "themes": [
         "anxiety",
@@ -11704,9 +11804,9 @@
     },
     {
       "id": "collection-anxiety-to-gratitude-63",
-      "title": "When anxiety is turned toward gratitude",
-      "subtitle": "When anxiety makes mercy harder to notice",
-      "description": "These readings interrupt the forecast by forcing the eye back onto the mercy already in the room.",
+      "title": "When worry must be interrupted by mercy",
+      "subtitle": "For the forecast that cannot see what has already been given",
+      "description": "These readings pull anxiety away from imagined loss and make it count the mercies already carrying the day.",
       "durationLabel": "6-step journey",
       "themes": [
         "anxiety",
@@ -11765,9 +11865,9 @@
     },
     {
       "id": "collection-attachment-to-ego-72",
-      "title": "When attachment starts becoming ego",
-      "subtitle": "When desire starts building a self around itself",
-      "description": "These readings expose the moment desire stops loving and starts building a throne around itself.",
+      "title": "When clinging builds a throne",
+      "subtitle": "For desire that is becoming identity",
+      "description": "The shabad equalizes pleasure and pain, gold and copper, praise and slander. This path lets attachment lose the power to crown the self.",
       "durationLabel": "6-step journey",
       "themes": [
         "attachment",
@@ -11787,9 +11887,9 @@
     },
     {
       "id": "collection-attachment-to-speech-73",
-      "title": "When attachment reaches the tongue",
-      "subtitle": "When clinging starts talking through you",
-      "description": "Slow the sentence before wanting starts furnishing the room with pressure, tone, and the need to be obeyed.",
+      "title": "When clinging starts speaking for you",
+      "subtitle": "For the sentence shaped by wanting",
+      "description": "These readings slow the tongue before attachment turns desire into pressure, bargaining, or command.",
       "durationLabel": "6-step journey",
       "themes": [
         "attachment",
@@ -11848,9 +11948,9 @@
     },
     {
       "id": "collection-comparison-to-loneliness-66",
-      "title": "When comparison leaves the heart alone",
-      "subtitle": "When measuring leaves you cut off from everyone",
-      "description": "Watch comparison ripen into loneliness, then return to company before exile starts sounding true.",
+      "title": "When comparison exiles the heart",
+      "subtitle": "For measuring that leaves you alone",
+      "description": "Begin with praise melting into the Praiseworthy One. These readings return the comparing heart to shared devotion before envy becomes exile.",
       "durationLabel": "6-step journey",
       "themes": [
         "comparison",
@@ -11870,9 +11970,9 @@
     },
     {
       "id": "collection-comparison-to-seva-67",
-      "title": "When comparison is interrupted by service",
-      "subtitle": "When envy needs something cleaner to do",
-      "description": "These readings break envy by giving the heart a better use for its energy: relieve something real instead of measuring another life.",
+      "title": "When envy needs useful hands",
+      "subtitle": "For the heart that must stop measuring and start serving",
+      "description": "These readings interrupt comparison by sending its restless energy into seva, where another person’s need becomes more important than your rank.",
       "durationLabel": "6-step journey",
       "themes": [
         "comparison",
@@ -11892,9 +11992,9 @@
     },
     {
       "id": "collection-conduct-and-clean-speech",
-      "title": "Conduct and Clean Speech",
-      "subtitle": "For the mouth that must answer to the heart",
-      "description": "These readings hold speech beside conduct until words stop asking for exemption and start carrying weight.",
+      "title": "Let conduct stand behind the mouth",
+      "subtitle": "For words that must answer to the life beneath them",
+      "description": "These readings keep speech beside conduct until the tongue stops seeking exemption from the heart’s condition.",
       "durationLabel": "5-step arc",
       "themes": [
         "speech",
@@ -11957,9 +12057,9 @@
     },
     {
       "id": "collection-control-to-exhaustion-97",
-      "title": "When control empties the body",
-      "subtitle": "When gripping outcomes empties the body",
-      "description": "These readings show the bill control sends to the body when every outcome is gripped as if it depends on you alone.",
+      "title": "When control sends the body its bill",
+      "subtitle": "For the grip that has started costing your breath",
+      "description": "The shabad opens the field of divine power, gifts, making, and unmaking until control looks too small to carry the world.",
       "durationLabel": "6-step journey",
       "themes": [
         "control",
@@ -11979,9 +12079,9 @@
     },
     {
       "id": "collection-control-to-release",
-      "title": "From Control to Release",
-      "subtitle": "For the mind that grips too hard",
-      "description": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
+      "title": "Release the hand without abandoning the task",
+      "subtitle": "For the mind that confuses faithfulness with control",
+      "description": "Begin where the Lord’s pleasure governs giving and receiving. These readings teach action that is obedient without pretending to author the outcome.",
       "durationLabel": "4-step arc",
       "themes": [
         "control",
@@ -12041,9 +12141,9 @@
     },
     {
       "id": "collection-discipline-to-forgiveness-79",
-      "title": "When discipline learns to release",
-      "subtitle": "When discipline has gone hard around the wound",
-      "description": "These readings break the hard link between obedience and punishment before pain starts calling itself principle.",
+      "title": "When discipline has gone hard around pain",
+      "subtitle": "For rules that need mercy to stay clean",
+      "description": "These readings let inward discipline meet forgiveness before principle becomes punishment wearing a sacred name.",
       "durationLabel": "6-step journey",
       "themes": [
         "discipline",
@@ -12063,9 +12163,9 @@
     },
     {
       "id": "collection-discipline-to-seva-78",
-      "title": "When discipline turns outward into seva",
-      "subtitle": "When discipline needs to become service",
-      "description": "These readings rescue discipline from self-improvement and spend it on service that makes another life lighter.",
+      "title": "When discipline becomes useful to someone else",
+      "subtitle": "For strength that must leave the mirror",
+      "description": "These readings move discipline beyond self-improvement and spend practiced strength on a burden that can actually be lightened.",
       "durationLabel": "6-step journey",
       "themes": [
         "discipline",
@@ -12125,9 +12225,9 @@
     },
     {
       "id": "collection-doubt-to-clarity",
-      "title": "From Doubt to Clarity",
-      "subtitle": "For the mind that keeps reopening what was already clear",
-      "description": "Stay near the Guru's word, holy company, and practiced obedience until the fog stops sounding authoritative.",
+      "title": "Let the Guru’s word outlast the fog",
+      "subtitle": "For the mind that keeps reopening what grace already made clear",
+      "description": "Stay near the Guru’s word and saintly company until wandering loses its authority and clarity becomes a practiced dwelling.",
       "durationLabel": "6-day journey",
       "themes": [
         "doubt",
@@ -12149,9 +12249,9 @@
     },
     {
       "id": "collection-doubt-to-sangat-85",
-      "title": "When doubt needs better company",
-      "subtitle": "When questions multiply faster than trust",
-      "description": "These readings take the question out of private weather and place it among people whose peace has survived contact with life.",
+      "title": "Take the question into better company",
+      "subtitle": "For doubts that multiply in private weather",
+      "description": "These readings move the question from isolation into sangat, where peace has a living witness and the mind no longer argues alone.",
       "durationLabel": "6-step journey",
       "themes": [
         "doubt",
@@ -12171,9 +12271,9 @@
     },
     {
       "id": "collection-doubt-to-speech-84",
-      "title": "When doubt reaches the tongue",
-      "subtitle": "When uncertainty starts leaking into the tongue",
-      "description": "Keep doubt from becoming speech by returning to one clearer word first.",
+      "title": "When uncertainty reaches the tongue",
+      "subtitle": "For speech that spreads the fog before seeking light",
+      "description": "These readings slow the mouth before doubt turns into needless suspicion, complaint, or confusion handed to others.",
       "durationLabel": "6-step journey",
       "themes": [
         "doubt",
@@ -12232,9 +12332,9 @@
     },
     {
       "id": "collection-ego-to-gratitude-74",
-      "title": "When ego is broken open by gratitude",
-      "subtitle": "When self-importance needs to be broken open by mercy",
-      "description": "Break ego open with gratitude before even gift gets turned into self-congratulation.",
+      "title": "Let gratitude break the self open",
+      "subtitle": "For importance that has forgotten mercy",
+      "description": "The shabad names ego as disease and grace as cure. These readings let gratitude expose what self-importance cannot heal.",
       "durationLabel": "6-step journey",
       "themes": [
         "ego",
@@ -12254,9 +12354,9 @@
     },
     {
       "id": "collection-ego-to-humility",
-      "title": "From Ego to Humility",
-      "subtitle": "For the self that keeps sneaking back to center",
-      "description": "Stay with these readings until ego is exposed, lowered, and made useful through humility.",
+      "title": "Let the self step down from the center",
+      "subtitle": "For the ego that keeps returning in spiritual clothing",
+      "description": "Walk through the diagnosis of haumai until humility becomes less like self-hatred and more like receiving the cure.",
       "durationLabel": "5-day journey",
       "themes": [
         "ego",
@@ -12278,9 +12378,9 @@
     },
     {
       "id": "collection-ego-to-patience-75",
-      "title": "When waiting humbles the ego",
-      "subtitle": "When waiting reveals how important the self still feels",
-      "description": "Let waiting humble the ego instead of making the self feel more central.",
+      "title": "When waiting exposes the ego",
+      "subtitle": "For the self that feels insulted by delay",
+      "description": "These readings let delay reveal the ego’s demand to be served now, then teach the heart to wait under grace instead.",
       "durationLabel": "6-step journey",
       "themes": [
         "ego",
@@ -12377,9 +12477,9 @@
     },
     {
       "id": "collection-fear-to-anxiety-98",
-      "title": "When fear becomes the climate",
-      "subtitle": "When one tremor becomes a climate",
-      "description": "Catch the first tremor before fear spreads through the whole day and starts feeling like climate instead of episode.",
+      "title": "When one fear becomes the climate",
+      "subtitle": "For the tremor that starts occupying the whole day",
+      "description": "The shabad answers exile by naming divine kinship as Father, Mother, relative, brother, and shelter. These readings keep fear from becoming the whole atmosphere.",
       "durationLabel": "6-step journey",
       "themes": [
         "fear",
@@ -12399,9 +12499,9 @@
     },
     {
       "id": "collection-fear-to-trust",
-      "title": "From Vigilance to Trust",
-      "subtitle": "For the heart that keeps calling vigilance wisdom",
-      "description": "Move from fear toward trust by receiving Hukam and the care already here.",
+      "title": "Let vigilance become trust",
+      "subtitle": "For the heart that keeps calling fear wisdom",
+      "description": "These readings do not shame vigilance; they place it under the Merciful Creator until protection is no longer confused with constant bracing.",
       "durationLabel": "5-day journey",
       "themes": [
         "anxiety",
@@ -12440,9 +12540,9 @@
     },
     {
       "id": "collection-forgiveness-journey",
-      "title": "From Forgiveness to steadier practice",
-      "subtitle": "For when forgiveness keeps steering the day",
-      "description": "These readings lead the wound from replay toward release, fearless return, and the quieter air that follows real forgiveness.",
+      "title": "Forgiveness that becomes fearlessness",
+      "subtitle": "For the wound that needs release without denial",
+      "description": "Follow forgiveness from received mercy into courage, so the heart can stop guarding the wound as if bitterness were protection.",
       "durationLabel": "5-step journey",
       "themes": [
         "forgiveness",
@@ -12459,9 +12559,9 @@
     },
     {
       "id": "collection-forgiveness-to-greed-91",
-      "title": "When even release becomes appetite",
-      "subtitle": "When release itself becomes another appetite",
-      "description": "These readings guard release from becoming a moral asset, so forgiveness is not hoarded, displayed, or spent for leverage.",
+      "title": "When release becomes another appetite",
+      "subtitle": "For forgiveness that still wants to collect something back",
+      "description": "These readings guard forgiveness from becoming a new form of bargaining, credit, or moral ownership.",
       "durationLabel": "6-step journey",
       "themes": [
         "forgiveness",
@@ -12481,9 +12581,9 @@
     },
     {
       "id": "collection-gratitude-and-contentment",
-      "title": "Enoughness and Gratitude",
+      "title": "Enoughness learned through gratitude",
       "subtitle": "For the appetite that notices lack faster than mercy",
-      "description": "Move from grasping toward gratitude and contentment by naming what is already given.",
+      "description": "These readings train the eye to see given mercy before the appetite can rename life as shortage.",
       "durationLabel": "5-day journey",
       "themes": [
         "gratitude",
@@ -12522,9 +12622,9 @@
     },
     {
       "id": "collection-gratitude-journey",
-      "title": "From Gratitude to steadier practice",
-      "subtitle": "For when gratitude keeps steering the day",
-      "description": "These readings retrain the eye that notices lack first. They lead the heart from appetite back to mercy, contentment, and praise.",
+      "title": "Gratitude that returns the heart to Naam",
+      "subtitle": "For the day that needs mercy noticed again",
+      "description": "These readings move gratitude from mood to remembrance, until the heart sees mercy as a summons back to Naam.",
       "durationLabel": "5-step journey",
       "themes": [
         "gratitude",
@@ -12541,9 +12641,9 @@
     },
     {
       "id": "collection-gratitude-to-discipline-76",
-      "title": "When gratitude becomes discipline",
-      "subtitle": "When thankful feeling needs a spine",
-      "description": "Give gratitude a backbone before thankfulness fades into sentiment and never reaches the body.",
+      "title": "When thanks needs a spine",
+      "subtitle": "For gratitude that must become a kept practice",
+      "description": "These readings let gratitude mature beyond feeling into discipline that honors the gift by how the day is lived.",
       "durationLabel": "6-step journey",
       "themes": [
         "gratitude",
@@ -12563,9 +12663,9 @@
     },
     {
       "id": "collection-gratitude-to-mercy-77",
-      "title": "When gratitude deepens into mercy",
-      "subtitle": "When gratitude deepens into dependence",
-      "description": "These readings deepen gratitude past manners until every gift starts being received as unearned mercy.",
+      "title": "When gratitude becomes dependence",
+      "subtitle": "For thanks that opens into mercy",
+      "description": "These readings let gratitude deepen until the heart stops admiring its own thankfulness and begins depending on mercy.",
       "durationLabel": "6-step journey",
       "themes": [
         "gratitude",
@@ -12587,7 +12687,7 @@
       "id": "collection-greed-bundle",
       "title": "When appetite leaves no room for Naam",
       "subtitle": "For the hour when pleasure starts occupying the whole heart",
-      "description": "A short bundle for the crowded interior: gold, comfort, taste, and craving all asking to be obeyed. It clears space for Naam before desire names itself as need.",
+      "description": "A short bundle for the crowded interior where gold, comfort, taste, and craving all ask to be obeyed. It clears space for Naam before desire names itself as need.",
       "durationLabel": "3-step bundle",
       "themes": [
         "greed"
@@ -12603,9 +12703,9 @@
     },
     {
       "id": "collection-greed-journey",
-      "title": "From Greed to steadier practice",
-      "subtitle": "For when greed keeps steering the day",
-      "description": "Follow appetite until it is exposed as false wealth. These readings redirect desire toward what can still travel with the soul.",
+      "title": "Greed brought under honorable speech",
+      "subtitle": "For appetite that has started talking through the mouth",
+      "description": "The shabad names greed, falsehood, slander, and anger with unsparing force. These readings bring appetite under the question of what speech can stand at the Lord’s Door.",
       "durationLabel": "5-step journey",
       "themes": [
         "greed",
@@ -12625,9 +12725,9 @@
     },
     {
       "id": "collection-greed-to-restlessness-92",
-      "title": "When greed becomes restless motion",
-      "subtitle": "When wanting becomes motion",
-      "description": "These readings expose how appetite speeds the body up until craving becomes the rhythm of the whole day.",
+      "title": "When wanting becomes motion",
+      "subtitle": "For appetite that cannot sit still",
+      "description": "These readings expose the restlessness that greed produces when the heart keeps moving because wanting has no end.",
       "durationLabel": "6-step journey",
       "themes": [
         "greed",
@@ -12647,9 +12747,9 @@
     },
     {
       "id": "collection-greed-to-seeking-93",
-      "title": "When appetite disguises itself as seeking",
-      "subtitle": "When hunger starts calling itself a spiritual search",
-      "description": "This path separates holy hunger from spiritualized appetite, so desire stops dressing itself in sacred language.",
+      "title": "When appetite calls itself seeking",
+      "subtitle": "For spiritual hunger that is actually consumption",
+      "description": "These readings separate holy seeking from the appetite that wants another insight, another experience, another thing to own.",
       "durationLabel": "6-step journey",
       "themes": [
         "greed",
@@ -12687,9 +12787,9 @@
     },
     {
       "id": "collection-hukam-journey",
-      "title": "From Hukam to steadier practice",
-      "subtitle": "For when hukam keeps steering the day",
-      "description": "Follow resistance until it meets the command already holding everything. These readings teach the heart to receive the day before arguing with it.",
+      "title": "Hukam inside the ordinary day",
+      "subtitle": "For acceptance that must become lived trust",
+      "description": "These readings bring Hukam out of concept and into receiving, acting, and surrendering without arguing with the shape of the day.",
       "durationLabel": "5-step journey",
       "themes": [
         "hukam",
@@ -12707,8 +12807,8 @@
     {
       "id": "collection-hukam-to-doubt-82",
       "title": "When acceptance slips back into doubt",
-      "subtitle": "When acceptance starts slipping back into questioning",
-      "description": "Return to what has already been given before acceptance slips back into the old habit of cross-examination.",
+      "subtitle": "For the heart that keeps cross-examining what it has received",
+      "description": "These readings catch the slide from Hukam into suspicion and bring the mind back before doubt can reopen every door.",
       "durationLabel": "6-step journey",
       "themes": [
         "hukam",
@@ -12728,9 +12828,9 @@
     },
     {
       "id": "collection-hukam-to-restlessness-83",
-      "title": "When acceptance is abandoned for motion",
-      "subtitle": "When receiving less still feels too still",
-      "description": "These readings catch the heart abandoning consent for motion, proving that movement can be another way of refusing what is here.",
+      "title": "When receiving feels too still",
+      "subtitle": "For acceptance abandoned for motion",
+      "description": "These readings reveal the moment the heart leaves Hukam because stillness feels too vulnerable, then call it back to faithful presence.",
       "durationLabel": "6-step journey",
       "themes": [
         "hukam",
@@ -12768,9 +12868,9 @@
     },
     {
       "id": "collection-loneliness-journey",
-      "title": "From Loneliness to steadier practice",
-      "subtitle": "For when loneliness keeps steering the day",
-      "description": "These readings lead isolation toward company, remembrance, and the nearness that does not depend on being noticed.",
+      "title": "Loneliness answered by being held",
+      "subtitle": "For the heart that feels unseen inside the day",
+      "description": "These readings move loneliness toward grace, nearness, and belonging that does not depend on being impressive.",
       "durationLabel": "5-step journey",
       "themes": [
         "loneliness",
@@ -12789,9 +12889,9 @@
     },
     {
       "id": "collection-loneliness-to-hukam-69",
-      "title": "When loneliness is brought under Hukam",
-      "subtitle": "When loneliness starts arguing with reality",
-      "description": "These readings take private ache out of prosecution and teach the heart to receive the day it did not choose.",
+      "title": "When loneliness argues with reality",
+      "subtitle": "For isolation that has started resisting the given day",
+      "description": "These readings bring loneliness under Hukam so the ache can be held without turning the whole day into protest.",
       "durationLabel": "6-step journey",
       "themes": [
         "loneliness",
@@ -12811,9 +12911,9 @@
     },
     {
       "id": "collection-loneliness-to-purpose-68",
-      "title": "When loneliness becomes a question of purpose",
-      "subtitle": "When isolation starts draining the day of meaning",
-      "description": "These readings answer isolation with entrusted work, so the empty room stops being the only thing speaking.",
+      "title": "When loneliness drains the day of purpose",
+      "subtitle": "For isolation that makes the breath feel unused",
+      "description": "These readings reconnect loneliness to the rare human chance, so the day is not measured only by who noticed you.",
       "durationLabel": "6-step journey",
       "themes": [
         "loneliness",
@@ -12833,9 +12933,9 @@
     },
     {
       "id": "collection-mercy-and-fearlessness",
-      "title": "Mercy and Fearlessness",
-      "subtitle": "A path out of hardness and self-protection",
-      "description": "Move from grace into forgiveness and fearless steadiness. The path softens the heart without making it weak.",
+      "title": "Mercy that makes courage possible",
+      "subtitle": "For the heart leaving hardness and self-protection",
+      "description": "These readings show mercy not as softness alone, but as the force that lets the heart stop living behind armor.",
       "durationLabel": "6-day journey",
       "themes": [
         "mercy",
@@ -12856,9 +12956,9 @@
     },
     {
       "id": "collection-mercy-bundle",
-      "title": "Mercy in one shorter sitting",
-      "subtitle": "A shorter sitting for when mercy is already close",
-      "description": "A short return for the hour when kindness still feels undeserved. It teaches the heart to receive mercy before trying to earn it.",
+      "title": "Mercy for the undeserving hour",
+      "subtitle": "A short return when kindness feels too generous to receive",
+      "description": "A brief path for receiving mercy before the heart tries to earn, explain, or control its way back.",
       "durationLabel": "3-step bundle",
       "themes": [
         "mercy"
@@ -12874,9 +12974,9 @@
     },
     {
       "id": "collection-mercy-journey",
-      "title": "From Mercy to steadier practice",
-      "subtitle": "For when mercy keeps steering the day",
-      "description": "Move through gift, nearness, and return until mercy stops feeling abstract and starts becoming the climate of the heart.",
+      "title": "Mercy that teaches the return",
+      "subtitle": "For the day that must be received before it can be repaired",
+      "description": "These readings follow mercy from gift to return, showing how grace gives the heart a way back without making excuses for distance.",
       "durationLabel": "5-step journey",
       "themes": [
         "mercy",
@@ -12896,9 +12996,9 @@
     },
     {
       "id": "collection-mercy-to-fear-90",
-      "title": "When mercy quiets a frightened body",
-      "subtitle": "When mercy needs to quiet a frightened body",
-      "description": "Receive mercy until fear stops acting like the only honest voice in the room.",
+      "title": "When mercy quiets the frightened body",
+      "subtitle": "For fear that needs tenderness before instruction",
+      "description": "These readings bring fear close to mercy until the body can stop bracing long enough to hear what is true.",
       "durationLabel": "6-step journey",
       "themes": [
         "mercy",
@@ -12918,9 +13018,9 @@
     },
     {
       "id": "collection-mercy-to-forgiveness-89",
-      "title": "When mercy opens the hand",
-      "subtitle": "When received mercy starts opening the hand",
-      "description": "These readings move received mercy into the hand until release becomes the only honest continuation of what you were given.",
+      "title": "When received mercy opens the hand",
+      "subtitle": "For the heart learning to release because it has been received",
+      "description": "These readings move from mercy received to forgiveness given, without letting the gift become sentiment only.",
       "durationLabel": "6-step journey",
       "themes": [
         "mercy",
@@ -12940,9 +13040,9 @@
     },
     {
       "id": "collection-patience-bundle",
-      "title": "Patience in one shorter sitting",
-      "subtitle": "A shorter sitting for when patience is already close",
-      "description": "A short return for the hour when delay is turning bitter. It teaches waiting to soften instead of sour.",
+      "title": "Patience in saintly company",
+      "subtitle": "A short return when waiting has become agitation",
+      "description": "A brief path that places impatience near sangat, mercy, and listening until waiting becomes less lonely and more luminous.",
       "durationLabel": "3-step bundle",
       "themes": [
         "patience"
@@ -12958,9 +13058,9 @@
     },
     {
       "id": "collection-patience-journey",
-      "title": "From Patience to steadier practice",
-      "subtitle": "For when patience keeps steering the day",
-      "description": "These readings teach waiting to listen long enough for honor, steadiness, and mercy to arrive instead of resentment.",
+      "title": "Patience that ripens into honor",
+      "subtitle": "For waiting that needs more than endurance",
+      "description": "These readings move waiting from frustration into saintly company, mercy, Naam, and the quiet honor of listening well.",
       "durationLabel": "5-step journey",
       "themes": [
         "patience",
@@ -12977,9 +13077,9 @@
     },
     {
       "id": "collection-patience-to-mercy-88",
-      "title": "When patience softens into mercy",
-      "subtitle": "When waiting ripens into a softer judgment",
-      "description": "These readings keep waiting from hardening into grievance until delay starts making the heart gentler, not harsher.",
+      "title": "When waiting softens judgment",
+      "subtitle": "For patience that must become merciful",
+      "description": "These readings let patience ripen beyond restraint into a softer judgment of others and of the self.",
       "durationLabel": "6-step journey",
       "themes": [
         "patience",
@@ -12999,9 +13099,9 @@
     },
     {
       "id": "collection-purpose-bundle",
-      "title": "Purpose in one shorter sitting",
-      "subtitle": "A shorter sitting for when purpose is already close",
-      "description": "A short sitting for the day that feels full but hollow. It puts service and calling back inside ordinary work.",
+      "title": "Purpose before the day is spent",
+      "subtitle": "A short return to the rare chance of this breath",
+      "description": "A brief path for remembering that human life is not filler; it is a chance to meet the Lord while the body is still here.",
       "durationLabel": "3-step bundle",
       "themes": [
         "purpose"
@@ -13017,9 +13117,9 @@
     },
     {
       "id": "collection-purpose-journey",
-      "title": "From Purpose to steadier practice",
-      "subtitle": "For when purpose keeps steering the day",
-      "description": "Move from drift into answered life. These readings reconnect ordinary duty to service, meeting, and the chance hidden inside this human birth.",
+      "title": "Purpose that answers the gift of birth",
+      "subtitle": "For the life that must not sleep through its chance",
+      "description": "These readings follow the rare human chance into Naam, sangat, service, and the urgency of meeting the Lord while there is still time.",
       "durationLabel": "5-step journey",
       "themes": [
         "purpose",
@@ -13039,8 +13139,8 @@
     {
       "id": "collection-purpose-to-attachment-70",
       "title": "When calling becomes something to possess",
-      "subtitle": "When service starts asking to be owned, defended, and admired",
-      "description": "These readings catch holy work at the instant it stops being offering and starts becoming private property.",
+      "subtitle": "For service that wants ownership, defense, and admiration",
+      "description": "These readings protect purpose from attachment, where a sacred task quietly becomes a private throne.",
       "durationLabel": "6-step journey",
       "themes": [
         "purpose",
@@ -13060,9 +13160,9 @@
     },
     {
       "id": "collection-purpose-to-doubt-71",
-      "title": "When purpose dissolves into doubt",
-      "subtitle": "When calling starts blurring into second-guessing",
-      "description": "These readings keep vocation from dissolving into endless reconsideration by fastening the heart to one entrusted act.",
+      "title": "When calling blurs into second-guessing",
+      "subtitle": "For purpose that loses courage under too many questions",
+      "description": "These readings bring the rare human chance back into view when doubt starts dissolving the next faithful step.",
       "durationLabel": "6-step journey",
       "themes": [
         "purpose",
@@ -13082,9 +13182,9 @@
     },
     {
       "id": "collection-restlessness-bundle",
-      "title": "Restlessness in one shorter sitting",
-      "subtitle": "A shorter sitting for when restlessness is already close",
-      "description": "A short return for the hour when movement keeps impersonating clarity. It slows the body until truth can catch up.",
+      "title": "Restlessness brought into company",
+      "subtitle": "A short return when motion is pretending to guide you",
+      "description": "A brief path that stops the wandering mind long enough to find mercy, saintly company, and a truer place to dwell.",
       "durationLabel": "3-step bundle",
       "themes": [
         "restlessness"
@@ -13100,9 +13200,9 @@
     },
     {
       "id": "collection-restlessness-journey",
-      "title": "From Restlessness to steadier practice",
-      "subtitle": "For when restlessness keeps steering the day",
-      "description": "These readings catch wandering before it passes for wisdom and lead it toward saintly company, listening, and honest stillness.",
+      "title": "Restlessness that learns to dwell",
+      "subtitle": "For the search that must stop feeding on motion",
+      "description": "These readings separate holy seeking from agitation and teach the mind to dwell where mercy, sangat, and Naam can actually work on it.",
       "durationLabel": "5-step journey",
       "themes": [
         "restlessness",
@@ -13123,8 +13223,8 @@
     {
       "id": "collection-restlessness-to-sangat-94",
       "title": "When motion needs holy company",
-      "subtitle": "When motion starts dressing up as guidance",
-      "description": "These readings take motion out of private weather and place it among people whose steadiness has already survived the same urge.",
+      "subtitle": "For guidance-seeking that is really agitation",
+      "description": "These readings bring restless motion into sangat, where the heart can be steadied by more than its own urgency.",
       "durationLabel": "6-step journey",
       "themes": [
         "restlessness",
@@ -13144,9 +13244,9 @@
     },
     {
       "id": "collection-restlessness-to-self-worth-95",
-      "title": "When motion is hiding a wound of worth",
-      "subtitle": "When restlessness is trying to outrun not-enoughness",
-      "description": "These readings uncover the self-doubt underneath constant motion and lead it toward steadier belonging.",
+      "title": "When motion hides a wound of worth",
+      "subtitle": "For the search that is trying to outrun not-enoughness",
+      "description": "These readings uncover the ache beneath constant motion and return worth to grace rather than achievement.",
       "durationLabel": "6-step journey",
       "themes": [
         "restlessness",
@@ -13166,9 +13266,9 @@
     },
     {
       "id": "collection-restlessness-to-stillness",
-      "title": "From Restlessness to Stillness",
+      "title": "Stillness after the false urgency passes",
       "subtitle": "For the mind that keeps mistaking motion for clarity",
-      "description": "These readings slow the day by moving from scattered motion into listening, company, and inward rest.",
+      "description": "These readings bring the overactive search into mercy and saintly company until stillness becomes trustworthy again.",
       "durationLabel": "6-day journey",
       "themes": [
         "restlessness",
@@ -13190,9 +13290,9 @@
     },
     {
       "id": "collection-sangat-and-belonging",
-      "title": "Sangat and Belonging",
-      "subtitle": "For the heart that needs nearness without performance",
-      "description": "Move through these readings until belonging stops depending on mood and starts resting in holy company.",
+      "title": "Belonging without performance",
+      "subtitle": "For the heart that needs nearness, not another stage",
+      "description": "These readings bring the lonely or self-conscious heart into sangat where belonging is learned through remembrance, humility, and shared direction.",
       "durationLabel": "6-day journey",
       "themes": [
         "sangat",
@@ -13213,9 +13313,9 @@
     },
     {
       "id": "collection-sangat-bundle",
-      "title": "Sangat, when you need it now",
-      "subtitle": "For when you need better company before better thinking",
-      "description": "A shorter sitting that gets the heart back into sangat before private weather takes over.",
+      "title": "Better company before better thinking",
+      "subtitle": "A short return when the mind needs a different atmosphere",
+      "description": "A brief path for the hour when private thinking has gone stale and the heart needs sangat to remember what it is for.",
       "durationLabel": "3-step bundle",
       "themes": [
         "sangat"
@@ -13231,9 +13331,9 @@
     },
     {
       "id": "collection-sangat-journey",
-      "title": "From Sangat to steadier practice",
-      "subtitle": "For when sangat keeps steering the day",
-      "description": "Enter the medicine of better company. These readings show how atmosphere, placement, and shared remembrance change what the heart can become.",
+      "title": "Sangat that teaches the life what to become",
+      "subtitle": "For the day that needs better company to keep its purpose",
+      "description": "These readings show how atmosphere, placement, and shared remembrance help the rare human chance become a lived answer.",
       "durationLabel": "5-step journey",
       "themes": [
         "sangat",
@@ -13253,8 +13353,8 @@
     {
       "id": "collection-sangat-to-control-96",
       "title": "When belonging becomes management",
-      "subtitle": "When even good company becomes another room to manage",
-      "description": "These readings warn that even holy company can be used as a room to manage, correct, and quietly dominate.",
+      "subtitle": "For the urge to run even the room that helps you",
+      "description": "These readings warn that even good company can be turned into a project for control if the self refuses to be corrected.",
       "durationLabel": "6-step journey",
       "themes": [
         "sangat",
@@ -13274,9 +13374,9 @@
     },
     {
       "id": "collection-seeking-bundle",
-      "title": "Seeking in one shorter sitting",
-      "subtitle": "A shorter sitting for when seeking is already close",
-      "description": "A short return for the hour when spiritual hunger starts feeding on novelty. It turns search back toward depth, dwelling, and obedience.",
+      "title": "Seeking that learns to dwell",
+      "subtitle": "A short return when holy hunger is turning into novelty",
+      "description": "A brief path for bringing the search back to sangat, Naam, and obedience before spiritual hunger becomes another appetite.",
       "durationLabel": "3-step bundle",
       "themes": [
         "seeking"
@@ -13292,9 +13392,9 @@
     },
     {
       "id": "collection-seeking-journey",
-      "title": "From Seeking to steadier practice",
-      "subtitle": "For when seeking keeps steering the day",
-      "description": "These readings separate holy hunger from restless novelty and teach the search how to dwell, obey, and finally land.",
+      "title": "Seeking that lands in Naam",
+      "subtitle": "For the search that needs depth more than novelty",
+      "description": "These readings guide spiritual hunger away from constant motion and into the wealth of Naam, patient listening, and saintly company.",
       "durationLabel": "5-step journey",
       "themes": [
         "seeking",
@@ -13314,9 +13414,9 @@
     },
     {
       "id": "collection-seeking-to-self-worth-99",
-      "title": "When seeking is really a wound of worth",
-      "subtitle": "When searching is trying to prove you are enough",
-      "description": "These readings separate honest seeking from the ache to justify yourself, then return the heart to given dignity.",
+      "title": "When searching is trying to prove enoughness",
+      "subtitle": "For the quest that is secretly asking to be validated",
+      "description": "These readings separate honest seeking from the ache to justify yourself, then return dignity to grace and true wealth.",
       "durationLabel": "6-step journey",
       "themes": [
         "seeking",
@@ -13336,9 +13436,9 @@
     },
     {
       "id": "collection-self-worth-bundle",
-      "title": "Self-Worth in one shorter sitting",
-      "subtitle": "A shorter sitting for when self-worth is already close",
-      "description": "A short return for the hour when dignity has been outsourced to response and success. It returns worth to grace and belonging.",
+      "title": "Worth held close by grace",
+      "subtitle": "A short return when dignity has been outsourced",
+      "description": "A brief path that brings worth back from response, status, and success into the nearness of the Lord who holds the humble close.",
       "durationLabel": "3-step bundle",
       "themes": [
         "self-worth"
@@ -13354,9 +13454,9 @@
     },
     {
       "id": "collection-self-worth-journey",
-      "title": "From Self-Worth to steadier practice",
-      "subtitle": "For when self-worth keeps steering the day",
-      "description": "These readings return dignity to grace, humility, and belonging to the One, where opinion and response can no longer set the price.",
+      "title": "Self-worth received, not performed",
+      "subtitle": "For the heart priced too often by response",
+      "description": "These readings return dignity to the Guru’s gift, the Lord’s nearness, and the humble place where the soul is held without performance.",
       "durationLabel": "5-step journey",
       "themes": [
         "self-worth",
@@ -13376,9 +13476,9 @@
     },
     {
       "id": "collection-service-and-purpose",
-      "title": "Service and Purpose",
+      "title": "Purpose spent in service",
       "subtitle": "For the life that needs a task worthy of its breath",
-      "description": "These readings take purpose out of self-concern and put it back into service that leaves the room lighter than it found it.",
+      "description": "These readings take purpose out of self-concern and spend it on service that makes the room lighter than it found it.",
       "durationLabel": "6-day journey",
       "themes": [
         "purpose",
@@ -13400,9 +13500,9 @@
     },
     {
       "id": "collection-seva-bundle",
-      "title": "Seva, stripped back to honesty",
-      "subtitle": "For when service needs to get honest again",
-      "description": "A short sitting that clears service of image and hurry until the hands can do honest good without asking to be seen.",
+      "title": "Seva without a witness",
+      "subtitle": "A short return when service needs honesty again",
+      "description": "A brief path that clears service of image, hurry, and self-display until the hands can do quiet good.",
       "durationLabel": "3-step bundle",
       "themes": [
         "seva"
@@ -13418,9 +13518,9 @@
     },
     {
       "id": "collection-seva-journey",
-      "title": "From Seva to steadier practice",
-      "subtitle": "For when seva keeps steering the day",
-      "description": "These readings strip service of display and return it to humility, honest labor, and offering that leaves no monument to the self.",
+      "title": "Seva that leaves no monument to the self",
+      "subtitle": "For service that must remain offering, not display",
+      "description": "These readings move seva through humility, obedience, honest labor, and rewardless offering until the work reaches beyond self-image.",
       "durationLabel": "5-step journey",
       "themes": [
         "seva",
@@ -13437,9 +13537,9 @@
     },
     {
       "id": "collection-seva-to-greed-81",
-      "title": "When seva starts asking to be paid",
-      "subtitle": "When service starts asking to be paid back",
-      "description": "Guard seva from becoming greed, credit, or quiet entitlement.",
+      "title": "When service asks to be paid back",
+      "subtitle": "For seva tempted by credit, return, or entitlement",
+      "description": "These readings guard service at the moment it begins collecting receipts from the people it helped.",
       "durationLabel": "6-step journey",
       "themes": [
         "seva",
@@ -13459,9 +13559,9 @@
     },
     {
       "id": "collection-seva-to-hukam-80",
-      "title": "When seva ripens into Hukam",
-      "subtitle": "When service starts teaching acceptance",
-      "description": "These readings show how hidden service tutors the heart in consent, until obedience becomes acceptance of what was not chosen.",
+      "title": "When service teaches acceptance",
+      "subtitle": "For obedience that ripens into Hukam",
+      "description": "These readings show hidden service training the heart to receive what is given without making every task a negotiation.",
       "durationLabel": "6-step journey",
       "themes": [
         "seva",
@@ -13481,9 +13581,9 @@
     },
     {
       "id": "collection-shame-to-welcome",
-      "title": "From Shame to Welcome",
+      "title": "Welcome stronger than shame",
       "subtitle": "For the heart that keeps shrinking from mercy",
-      "description": "These readings walk shame toward dignity, welcome, and a way back that does not depend on pretending.",
+      "description": "These readings bring shame toward the Lord who holds the humble close, so return no longer depends on pretending you were never wounded or wrong.",
       "durationLabel": "5-step arc",
       "themes": [
         "shame",
@@ -13505,9 +13605,9 @@
     },
     {
       "id": "collection-speech-and-self-restraint",
-      "title": "A Rule for Tongue and Appetite",
+      "title": "A rule for tongue and appetite",
       "subtitle": "For the mouth that moves before the heart is clean",
-      "description": "Bring speech and self-restraint under one rule until the tongue starts serving truth.",
+      "description": "These readings bring speech and appetite under one discipline until the tongue stops carrying greed, slander, and heat.",
       "durationLabel": "6-day journey",
       "themes": [
         "speech",
@@ -13530,9 +13630,9 @@
     },
     {
       "id": "collection-speech-bundle",
-      "title": "Speech in one shorter sitting",
-      "subtitle": "A shorter sitting for when speech is already close",
-      "description": "A short correction for the hour when the mouth is moving faster than the heart. It cleans the sentence before it hardens into harm.",
+      "title": "Clean the sentence before it hardens",
+      "subtitle": "A short return when the mouth is moving faster than the heart",
+      "description": "A brief path that slows speech under truth, restraint, and honor before words become damage.",
       "durationLabel": "3-step bundle",
       "themes": [
         "speech"
@@ -13548,9 +13648,9 @@
     },
     {
       "id": "collection-speech-journey",
-      "title": "From Speech to steadier practice",
-      "subtitle": "For when speech keeps steering the day",
-      "description": "Follow speech back to the heart that formed it. These readings put the tongue under praise, restraint, and truth before damage hardens.",
+      "title": "Speech brought back to the Lord’s Door",
+      "subtitle": "For the day when words keep steering the heart",
+      "description": "These readings follow speech back to appetite, anger, slander, and truth, then place the tongue under the question of honor.",
       "durationLabel": "5-step journey",
       "themes": [
         "speech",
@@ -13567,9 +13667,9 @@
     },
     {
       "id": "collection-speech-to-control-87",
-      "title": "When control starts in speech",
-      "subtitle": "When control starts in the tongue",
-      "description": "These readings expose management at the level of voice before it grows into pressure, domination, and the need to rule the room.",
+      "title": "When control enters through the tongue",
+      "subtitle": "For the sentence that tries to rule the room",
+      "description": "These readings expose domination at the level of tone, correction, and pressure before it becomes a whole pattern of control.",
       "durationLabel": "6-step journey",
       "themes": [
         "speech",
@@ -13589,9 +13689,9 @@
     },
     {
       "id": "collection-speech-to-patience-86",
-      "title": "When the tongue learns to wait",
-      "subtitle": "When the tongue outruns the slower wisdom of waiting",
-      "description": "These readings teach the tongue to arrive after wisdom, so waiting changes the sentence before it leaves the mouth.",
+      "title": "Let the tongue arrive after wisdom",
+      "subtitle": "For replies that need to wait long enough to become clean",
+      "description": "These readings teach speech to wait until patience changes the sentence before it leaves the mouth.",
       "durationLabel": "6-step journey",
       "themes": [
         "speech",
@@ -13611,9 +13711,9 @@
     },
     {
       "id": "collection-tired-heart-to-rest",
-      "title": "From a Tired Heart to Rest",
-      "subtitle": "A slower path for the overused inner life",
-      "description": "Start where the heart is worn thin. Then move toward company, patient listening, and remembrance that actually gives rest.",
+      "title": "Rest for the overused inner life",
+      "subtitle": "For the heart worn thin by searching alone",
+      "description": "These readings begin in exhaustion and move toward mercy, holy company, and remembrance that cools the mind and body instead of merely distracting them.",
       "durationLabel": "4-step arc",
       "themes": [
         "exhaustion",
@@ -13635,9 +13735,9 @@
     },
     {
       "id": "collection-truthful-wealth",
-      "title": "Truthful Wealth",
-      "subtitle": "For the one who wants gain that can survive loss",
-      "description": "Follow this path until profit is measured by what deepens the soul, not by what decorates the self.",
+      "title": "Buy what can go with you",
+      "subtitle": "For the one who wants gain that survives loss",
+      "description": "These readings turn trade language toward the soul, teaching the heart to invest in praise, truth, and Naam rather than what cannot travel.",
       "durationLabel": "6-day journey",
       "themes": [
         "purpose",

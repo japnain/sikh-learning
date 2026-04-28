@@ -1,8 +1,8 @@
 {
   "id": "collection-conduct-and-clean-speech",
-  "title": "Conduct and Clean Speech",
-  "subtitle": "For the mouth that must answer to the heart",
-  "description": "These readings hold speech beside conduct until words stop asking for exemption and start carrying weight.",
+  "title": "Let conduct stand behind the mouth",
+  "subtitle": "For words that must answer to the life beneath them",
+  "description": "These readings keep speech beside conduct until the tongue stops seeking exemption from the heart’s condition.",
   "durationLabel": "5-step arc",
   "themes": [
     "speech",
@@ -17,8 +17,8 @@
       11748,
       11749
     ],
-    "shortMeaning": "Speech is only clean when conduct can stand behind it.",
-    "lifeApplication": "Before the next message or sentence leaves you, ask if it can still be honored tonight."
+    "shortMeaning": "The highest religion joins Naam to pure conduct; sweet speech cannot be separated from the life carrying it.",
+    "lifeApplication": "Before speaking, ask whether your conduct can stand beside the sentence without shame."
   },
   "items": [
     {
@@ -63,15 +63,15 @@
     "shabad-let-humility-become-the-strength-that-does-no-harm"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings hold speech beside conduct until words stop asking for exemption and start carrying weight.",
+      "coreClaim": "This path refuses to let language look cleaner than the person using it.",
       "emotionalState": "performing, harsh, scattered",
-      "turn": "For the mouth that must answer to the heart",
-      "practicalImplication": "Move through 7 linked steps without dropping the thread.",
+      "turn": "Speech gains weight when conduct becomes its witness.",
+      "practicalImplication": "Choose the sentence your evening self could still honor.",
       "bannedOverreach": []
     },
     "scores": {

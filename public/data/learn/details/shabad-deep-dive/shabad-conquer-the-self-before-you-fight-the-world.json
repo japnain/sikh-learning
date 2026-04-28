@@ -130,9 +130,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This shabad opens by naming the true battlefield as the soul itself. It directs the heart toward Hukam, inner victory, and the peace that follows self-conquest.",
       "emotionalState": "reactive, heated, sharp",

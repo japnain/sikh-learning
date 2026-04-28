@@ -1,8 +1,8 @@
 {
   "id": "collection-hukam-to-restlessness-83",
-  "title": "When acceptance is abandoned for motion",
-  "subtitle": "When receiving less still feels too still",
-  "description": "These readings catch the heart abandoning consent for motion, proving that movement can be another way of refusing what is here.",
+  "title": "When receiving feels too still",
+  "subtitle": "For acceptance abandoned for motion",
+  "description": "These readings reveal the moment the heart leaves Hukam because stillness feels too vulnerable, then call it back to faithful presence.",
   "durationLabel": "6-step journey",
   "themes": [
     "hukam",
@@ -14,8 +14,8 @@
       15,
       16
     ],
-    "shortMeaning": "Restlessness begins when received reality is traded back in for movement.",
-    "lifeApplication": "When stillness starts itching, stay with what has already been given before reaching for more."
+    "shortMeaning": "Hukam asks the heart to receive before it escapes into unnecessary movement.",
+    "lifeApplication": "Do not rush just to avoid the humility of receiving what is here."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings catch the heart abandoning consent for motion, proving that movement can be another way of refusing what is here.",
+      "coreClaim": "This path treats restlessness as a flight from acceptance.",
       "emotionalState": "restless, controlling, uncertain",
-      "turn": "When receiving less still feels too still",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Stillness becomes possible when Hukam is trusted more than motion.",
+      "practicalImplication": "Stay with the given circumstance for one more breath before adding another task.",
       "bannedOverreach": []
     },
     "scores": {

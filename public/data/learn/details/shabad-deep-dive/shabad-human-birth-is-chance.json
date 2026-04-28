@@ -148,10 +148,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad refuses to flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
       "emotionalState": "directionless, numb, wasting-time",

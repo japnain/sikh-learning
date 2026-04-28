@@ -105,9 +105,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts with service to the True Guru and refuses to separate understanding from obedience. As it deepens, complaint quiets, ego is consumed, and liberation appears as love for the Beloved.",
       "emotionalState": "reactive, heated, sharp",

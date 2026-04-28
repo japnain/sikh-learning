@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-journey",
-  "title": "From Speech to steadier practice",
-  "subtitle": "For when speech keeps steering the day",
-  "description": "Follow speech back to the heart that formed it. These readings put the tongue under praise, restraint, and truth before damage hardens.",
+  "title": "Speech brought back to the Lord’s Door",
+  "subtitle": "For the day when words keep steering the heart",
+  "description": "These readings follow speech back to appetite, anger, slander, and truth, then place the tongue under the question of honor.",
   "durationLabel": "5-step journey",
   "themes": [
     "speech",
@@ -14,8 +14,8 @@
       642,
       643
     ],
-    "shortMeaning": "Speak what carries honor, not just what releases heat.",
-    "lifeApplication": "Restraint is sometimes the most truthful form of speech."
+    "shortMeaning": "The shabad asks what words bring honor before the Lord, after naming what degrades the mouth.",
+    "lifeApplication": "Make each sentence answer to truth rather than to heat."
   },
   "items": [
     {
@@ -49,14 +49,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Follow speech back to the heart that formed it. These readings put the tongue under praise, restraint, and truth before damage hardens.",
+      "coreClaim": "This journey reforms speech by making it accountable before the Lord’s Door.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "For when speech keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The tongue is freed when it stops serving the hungers that dirty it.",
+      "practicalImplication": "Practice one day of fewer, cleaner words.",
       "bannedOverreach": []
     },
     "scores": {

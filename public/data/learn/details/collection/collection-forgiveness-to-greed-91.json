@@ -1,8 +1,8 @@
 {
   "id": "collection-forgiveness-to-greed-91",
-  "title": "When even release becomes appetite",
-  "subtitle": "When release itself becomes another appetite",
-  "description": "These readings guard release from becoming a moral asset, so forgiveness is not hoarded, displayed, or spent for leverage.",
+  "title": "When release becomes another appetite",
+  "subtitle": "For forgiveness that still wants to collect something back",
+  "description": "These readings guard forgiveness from becoming a new form of bargaining, credit, or moral ownership.",
   "durationLabel": "6-step journey",
   "themes": [
     "forgiveness",
@@ -15,8 +15,8 @@
       9604,
       9605
     ],
-    "shortMeaning": "Forgiveness turns greedy the moment release is hoarded for leverage.",
-    "lifeApplication": "Let forgiveness stay free; do not turn it into a badge or bargain."
+    "shortMeaning": "Fearless forgiveness cannot be turned into a possession without losing its freedom.",
+    "lifeApplication": "After releasing the debt, refuse to make your release another thing the other person owes you."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings guard release from becoming a moral asset, so forgiveness is not hoarded, displayed, or spent for leverage.",
+      "coreClaim": "This path catches the appetite that can hide inside even a generous act.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "When release itself becomes another appetite",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Forgiveness stays clean when it does not demand payment for being merciful.",
+      "practicalImplication": "Forgive without staging the receipt.",
       "bannedOverreach": []
     },
     "scores": {

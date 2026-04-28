@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and ends in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
       "emotionalState": "unworthy, guarded, hard-on-self",

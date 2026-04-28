@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-journey",
-  "title": "From Seva to steadier practice",
-  "subtitle": "For when seva keeps steering the day",
-  "description": "These readings strip service of display and return it to humility, honest labor, and offering that leaves no monument to the self.",
+  "title": "Seva that leaves no monument to the self",
+  "subtitle": "For service that must remain offering, not display",
+  "description": "These readings move seva through humility, obedience, honest labor, and rewardless offering until the work reaches beyond self-image.",
   "durationLabel": "5-step journey",
   "themes": [
     "seva",
@@ -14,8 +14,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "Selfless service becomes a way of union, not a way of building a self-image.",
-    "lifeApplication": "Serve without building a story about being the servant."
+    "shortMeaning": "Selfless service without reward reaches the Master because the servant is absorbed in command, not applause.",
+    "lifeApplication": "Serve without composing a story about being the servant."
   },
   "items": [
     {
@@ -49,14 +49,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings strip service of display and return it to humility, honest labor, and offering that leaves no monument to the self.",
+      "coreClaim": "This journey keeps seva from becoming a performance of goodness.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "For when seva keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Service becomes worship when reward and self-display fall away.",
+      "practicalImplication": "Do the work, accept no inner trophy, and return the attention to Naam.",
       "bannedOverreach": []
     },
     "scores": {

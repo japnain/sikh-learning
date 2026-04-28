@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
       "emotionalState": "alone, unseen, disconnected",

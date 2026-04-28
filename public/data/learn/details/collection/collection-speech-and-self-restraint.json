@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-and-self-restraint",
-  "title": "A Rule for Tongue and Appetite",
+  "title": "A rule for tongue and appetite",
   "subtitle": "For the mouth that moves before the heart is clean",
-  "description": "Bring speech and self-restraint under one rule until the tongue starts serving truth.",
+  "description": "These readings bring speech and appetite under one discipline until the tongue stops carrying greed, slander, and heat.",
   "durationLabel": "6-day journey",
   "themes": [
     "speech",
@@ -16,8 +16,8 @@
       642,
       643
     ],
-    "shortMeaning": "The tongue comes under rule when the heart returns to truth.",
-    "lifeApplication": "Before the next sentence, ask if it deserves to be spoken tonight."
+    "shortMeaning": "The shabad names greed, falsehood, slander, and anger as filth the mouth must not carry.",
+    "lifeApplication": "Before speaking, ask whether the sentence would bring honor at the Lord’s Door."
   },
   "items": [
     {
@@ -58,15 +58,15 @@
     "shabad-buy-what-goes-with-you"
   ],
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Bring speech and self-restraint under one rule until the tongue starts serving truth.",
+      "coreClaim": "This path binds speech to self-restraint so appetite cannot use the mouth unchecked.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "For the mouth that moves before the heart is clean",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The tongue becomes truthful when it is no longer ruled by hunger.",
+      "practicalImplication": "Refuse the sentence that merely releases heat; choose the one that can stand in honor.",
       "bannedOverreach": []
     },
     "scores": {

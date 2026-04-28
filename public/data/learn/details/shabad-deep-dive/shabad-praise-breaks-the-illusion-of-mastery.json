@@ -168,9 +168,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with many voices singing different dimensions of the Lord's power, gifts, beauty, knowledge, making, and unmaking. It opens the field so wide that control, ownership, and single-angle thinking start to look small.",
       "emotionalState": "gripping, controlling, tense",

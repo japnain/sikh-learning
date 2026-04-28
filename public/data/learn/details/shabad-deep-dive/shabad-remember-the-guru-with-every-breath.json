@@ -200,9 +200,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with breath-by-breath remembrance of the Guru as life and wealth. It moves through service, the washing of ego, rescue from inner fire, and finally rests in the certainty that the Guru is powerful enough to carry the soul.",
       "emotionalState": "restless, uncertain, fearful",

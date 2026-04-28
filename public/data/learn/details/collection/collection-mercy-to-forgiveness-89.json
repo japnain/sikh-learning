@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-to-forgiveness-89",
-  "title": "When mercy opens the hand",
-  "subtitle": "When received mercy starts opening the hand",
-  "description": "These readings move received mercy into the hand until release becomes the only honest continuation of what you were given.",
+  "title": "When received mercy opens the hand",
+  "subtitle": "For the heart learning to release because it has been received",
+  "description": "These readings move from mercy received to forgiveness given, without letting the gift become sentiment only.",
   "durationLabel": "6-step journey",
   "themes": [
     "mercy",
@@ -14,8 +14,8 @@
       501,
       502
     ],
-    "shortMeaning": "Mercy becomes forgiveness when what spared you begins loosening your grip on others.",
-    "lifeApplication": "When the debt comes back to mind, remember how you were spared before you hold them again."
+    "shortMeaning": "The mercy that gathers the wandering heart teaches the hand how to unclench toward others.",
+    "lifeApplication": "Forgive from received mercy, not from pressure to look generous."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings move received mercy into the hand until release becomes the only honest continuation of what you were given.",
+      "coreClaim": "This path makes forgiveness the outward shape of mercy received inwardly.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "When received mercy starts opening the hand",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The hand opens more honestly when it remembers how much mercy has already opened toward it.",
+      "practicalImplication": "Release one claim to repayment because you have not lived by repayment alone.",
       "bannedOverreach": []
     },
     "scores": {

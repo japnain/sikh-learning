@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
       "emotionalState": "performing, transactional, dry",

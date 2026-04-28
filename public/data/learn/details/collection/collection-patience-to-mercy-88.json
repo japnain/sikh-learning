@@ -1,8 +1,8 @@
 {
   "id": "collection-patience-to-mercy-88",
-  "title": "When patience softens into mercy",
-  "subtitle": "When waiting ripens into a softer judgment",
-  "description": "These readings keep waiting from hardening into grievance until delay starts making the heart gentler, not harsher.",
+  "title": "When waiting softens judgment",
+  "subtitle": "For patience that must become merciful",
+  "description": "These readings let patience ripen beyond restraint into a softer judgment of others and of the self.",
   "durationLabel": "6-step journey",
   "themes": [
     "patience",
@@ -15,8 +15,8 @@
       3900,
       3901
     ],
-    "shortMeaning": "Patience ripens into mercy when delay softens judgment instead of sharpening it.",
-    "lifeApplication": "Let the next delay lower your verdict before it lengthens your complaint."
+    "shortMeaning": "The mind enlightened by mercy learns to wait without turning hard.",
+    "lifeApplication": "Let the delay make you gentler, not more convinced of your superiority."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings keep waiting from hardening into grievance until delay starts making the heart gentler, not harsher.",
+      "coreClaim": "This path carries patience into mercy instead of mere endurance.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "When waiting ripens into a softer judgment",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Waiting is spiritually fruitful when it softens the eye.",
+      "practicalImplication": "Give someone the room you wish time would give you.",
       "bannedOverreach": []
     },
     "scores": {

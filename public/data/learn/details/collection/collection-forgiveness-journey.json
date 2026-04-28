@@ -1,8 +1,8 @@
 {
   "id": "collection-forgiveness-journey",
-  "title": "From Forgiveness to steadier practice",
-  "subtitle": "For when forgiveness keeps steering the day",
-  "description": "These readings lead the wound from replay toward release, fearless return, and the quieter air that follows real forgiveness.",
+  "title": "Forgiveness that becomes fearlessness",
+  "subtitle": "For the wound that needs release without denial",
+  "description": "Follow forgiveness from received mercy into courage, so the heart can stop guarding the wound as if bitterness were protection.",
   "durationLabel": "5-step journey",
   "themes": [
     "forgiveness",
@@ -15,8 +15,8 @@
       9604,
       9605
     ],
-    "shortMeaning": "Forgiveness is not weakness here; it is the doorway into fearlessness.",
-    "lifeApplication": "Choose the discipline that purifies the heart, not merely the schedule."
+    "shortMeaning": "Forgiveness becomes fearless when mercy loosens the self-protection built around injury.",
+    "lifeApplication": "Release one claim to retaliation while still telling the truth about what happened."
   },
   "items": [
     {
@@ -50,14 +50,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings lead the wound from replay toward release, fearless return, and the quieter air that follows real forgiveness.",
+      "coreClaim": "This journey frames forgiveness as courage born from mercy, not as pretending the wound was small.",
       "emotionalState": "afraid, bitter, guarded",
-      "turn": "For when forgiveness keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Fear loosens when mercy makes the heart less dependent on bitterness for safety.",
+      "practicalImplication": "Name the harm truthfully, then lay down one rehearsed punishment you keep carrying.",
       "bannedOverreach": []
     },
     "scores": {

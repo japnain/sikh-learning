@@ -1,8 +1,8 @@
 {
   "id": "collection-purpose-bundle",
-  "title": "Purpose in one shorter sitting",
-  "subtitle": "A shorter sitting for when purpose is already close",
-  "description": "A short sitting for the day that feels full but hollow. It puts service and calling back inside ordinary work.",
+  "title": "Purpose before the day is spent",
+  "subtitle": "A short return to the rare chance of this breath",
+  "description": "A brief path for remembering that human life is not filler; it is a chance to meet the Lord while the body is still here.",
   "durationLabel": "3-step bundle",
   "themes": [
     "purpose"
@@ -13,8 +13,8 @@
       524,
       525
     ],
-    "shortMeaning": "Human birth is given as the chance to meet the Divine.",
-    "lifeApplication": "Let one part of the day answer that opportunity directly."
+    "shortMeaning": "The human body is given as a chance to meet Gobind, not as an ornament for distraction.",
+    "lifeApplication": "Spend one part of the day on meeting, remembrance, or service before maintenance consumes it."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short sitting for the day that feels full but hollow. It puts service and calling back inside ordinary work.",
+      "coreClaim": "This bundle restores urgency to the gift of human birth.",
       "emotionalState": "directionless, numb, wasting-time",
-      "turn": "A shorter sitting for when purpose is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Purpose becomes clear when the body is treated as an invitation, not a possession.",
+      "practicalImplication": "Choose one embodied act that answers why this breath was given.",
       "bannedOverreach": []
     },
     "scores": {

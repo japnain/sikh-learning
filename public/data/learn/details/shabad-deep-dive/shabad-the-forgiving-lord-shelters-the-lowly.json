@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by praising the Lord as forgiving, merciful, and tender toward the poor and unprotected. It keeps widening that refuge until the speaker can admit smallness without despair and enter sanctuary instead of comparison.",
       "emotionalState": "envious, unsettled, small",

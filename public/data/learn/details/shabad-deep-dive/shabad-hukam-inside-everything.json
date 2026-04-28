@@ -111,10 +111,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by placing form, life, greatness, pain, blessing, and wandering inside Hukam. It keeps widening that field until nothing stands outside the Command and ego has nowhere left to boast.",
       "emotionalState": "restless, controlling, uncertain",

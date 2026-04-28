@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
       "emotionalState": "clingy, possessive, afraid-to-lose",

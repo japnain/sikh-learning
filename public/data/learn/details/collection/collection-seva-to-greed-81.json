@@ -1,8 +1,8 @@
 {
   "id": "collection-seva-to-greed-81",
-  "title": "When seva starts asking to be paid",
-  "subtitle": "When service starts asking to be paid back",
-  "description": "Guard seva from becoming greed, credit, or quiet entitlement.",
+  "title": "When service asks to be paid back",
+  "subtitle": "For seva tempted by credit, return, or entitlement",
+  "description": "These readings guard service at the moment it begins collecting receipts from the people it helped.",
   "durationLabel": "6-step journey",
   "themes": [
     "seva",
@@ -14,8 +14,8 @@
       12947,
       12948
     ],
-    "shortMeaning": "Service decays when it starts expecting return.",
-    "lifeApplication": "When seva wants credit, give again without collecting the result."
+    "shortMeaning": "Selfless service is spoiled when the hidden hand starts counting reward.",
+    "lifeApplication": "When seva wants credit, give the act back to the Guru before it becomes a debt."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Guard seva from becoming greed, credit, or quiet entitlement.",
+      "coreClaim": "This path catches greed as it enters service through expectation.",
       "emotionalState": "self-conscious, performing, eager-to-be-seen",
-      "turn": "When service starts asking to be paid back",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Seva stays clean when it refuses to turn help into currency.",
+      "practicalImplication": "Let one act remain unpaid, unadvertised, and inwardly released.",
       "bannedOverreach": []
     },
     "scores": {

@@ -130,9 +130,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The pauree begins by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
       "emotionalState": "isolated, impressionable, needing-company",

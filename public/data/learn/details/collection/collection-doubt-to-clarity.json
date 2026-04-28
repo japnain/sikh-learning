@@ -1,8 +1,8 @@
 {
   "id": "collection-doubt-to-clarity",
-  "title": "From Doubt to Clarity",
-  "subtitle": "For the mind that keeps reopening what was already clear",
-  "description": "Stay near the Guru's word, holy company, and practiced obedience until the fog stops sounding authoritative.",
+  "title": "Let the Guru’s word outlast the fog",
+  "subtitle": "For the mind that keeps reopening what grace already made clear",
+  "description": "Stay near the Guru’s word and saintly company until wandering loses its authority and clarity becomes a practiced dwelling.",
   "durationLabel": "6-day journey",
   "themes": [
     "doubt",
@@ -15,8 +15,8 @@
       918,
       922
     ],
-    "shortMeaning": "Clarity returns through company, obedience, and one kept word.",
-    "lifeApplication": "When the fog reopens, return to one clear line before another explanation."
+    "shortMeaning": "Doubt is not extinguished by roaming; the Guru’s word and holy company cool what wandering cannot.",
+    "lifeApplication": "Return to one clear line and one trustworthy company before asking for another explanation."
   },
   "items": [
     {
@@ -56,15 +56,15 @@
     "shabad-remember-together-not-in-isolation"
   ],
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Stay near the Guru's word, holy company, and practiced obedience until the fog stops sounding authoritative.",
+      "coreClaim": "This path treats clarity as obedience practiced near the Guru’s word, not as endless private analysis.",
       "emotionalState": "confused, restless, skeptical",
-      "turn": "For the mind that keeps reopening what was already clear",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The fog loses command when the heart stops wandering and dwells with what is already true.",
+      "practicalImplication": "Choose one instruction you already trust and keep it before reopening the argument.",
       "bannedOverreach": []
     },
     "scores": {

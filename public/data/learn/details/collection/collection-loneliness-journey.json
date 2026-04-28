@@ -1,8 +1,8 @@
 {
   "id": "collection-loneliness-journey",
-  "title": "From Loneliness to steadier practice",
-  "subtitle": "For when loneliness keeps steering the day",
-  "description": "These readings lead isolation toward company, remembrance, and the nearness that does not depend on being noticed.",
+  "title": "Loneliness answered by being held",
+  "subtitle": "For the heart that feels unseen inside the day",
+  "description": "These readings move loneliness toward grace, nearness, and belonging that does not depend on being impressive.",
   "durationLabel": "5-step journey",
   "themes": [
     "loneliness",
@@ -15,8 +15,8 @@
       3762,
       3763
     ],
-    "shortMeaning": "The Guru is named as protector, mother, and father.",
-    "lifeApplication": "Bring loneliness and dependence into prayer without embarrassment."
+    "shortMeaning": "The shabad’s child-of-grace movement gives loneliness a truer home than self-exile.",
+    "lifeApplication": "Let nearness to the Divine become more believable than the story that you are outside care."
   },
   "items": [
     {
@@ -52,14 +52,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings lead isolation toward company, remembrance, and the nearness that does not depend on being noticed.",
+      "coreClaim": "This journey answers loneliness with received belonging rather than performance.",
       "emotionalState": "alone, yearning, dependent",
-      "turn": "For when loneliness keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Isolation loosens when the heart accepts that grace has already moved toward it.",
+      "practicalImplication": "Reach for one practice and one person that bring you back into honest nearness.",
       "bannedOverreach": []
     },
     "scores": {

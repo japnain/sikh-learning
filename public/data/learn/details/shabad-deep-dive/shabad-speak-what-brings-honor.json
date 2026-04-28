@@ -176,10 +176,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
       "emotionalState": "reactive, hungry, resentful",

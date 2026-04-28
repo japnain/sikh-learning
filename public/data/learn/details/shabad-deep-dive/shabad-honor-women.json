@@ -126,10 +126,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
       "emotionalState": "dismissive, proud, habit-bound",

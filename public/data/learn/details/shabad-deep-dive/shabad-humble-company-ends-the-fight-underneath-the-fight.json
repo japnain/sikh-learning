@@ -176,9 +176,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by saying that meeting the humble defeats the messenger of death. It pushes deeper through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
       "emotionalState": "reactive, heated, sharp",

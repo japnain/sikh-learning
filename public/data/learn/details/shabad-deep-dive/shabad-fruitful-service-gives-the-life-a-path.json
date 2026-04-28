@@ -113,9 +113,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by calling service to the Lord fruitful and honorable. It travels through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
       "emotionalState": "directionless, numb, adrift",

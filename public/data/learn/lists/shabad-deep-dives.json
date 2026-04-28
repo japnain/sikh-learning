@@ -138,9 +138,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The Brahm Giani cannot be priced, described, bounded, or spiritually audited; the shabad turns evaluation into reverence.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -405,13 +405,13 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad warns that gossip, falsehood, hoarding, and sensual display collapse at death, while truthful deeds and Naam remain meaningful.",
         "emotionalState": "scattered, unsettled, wandering",
-        "turn": "The address shifts from bodily comfort to moral inventory: what has the tongue done, what has the hand taken, what can the soul carry?",
+        "turn": "The address shifts from bodily comfort to moral inventory — what has the tongue done, what has the hand taken, what can the soul carry?",
         "practicalImplication": "Before speaking or grasping, remember that this chance will not return. Choose deeds and words that can stand when comfort, wealth, and image are gone.",
         "bannedOverreach": []
       },
@@ -581,9 +581,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "A rare human life is spiritually wasted when Naam is absent; the shabad presses the listener toward GurMantra and inward remembrance.",
         "emotionalState": "impatient, tense, agitated",
@@ -722,11 +722,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The pauree teaches universal dependence on the Lord: all belong to the One, all beg from the One, and no ego has ground apart from the One.",
+        "coreClaim": "The pauree teaches universal dependence on the Lord — all belong to the One, all beg from the One, and no ego has ground apart from the One.",
         "emotionalState": "inflated, defensive, self-protective",
         "turn": "The language moves from belonging to begging to praise, showing that dependence is not humiliation but the truth that opens the Door.",
         "practicalImplication": "Stop making love, status, or spiritual access into private property. Pray from the same ground as everyone else and let praise widen the heart.",
@@ -893,10 +893,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "manual-full-v1",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad defines the highest religion as Naam embodied through pure conduct, cleansed mind, truthful praise, and a heart where the Name abides.",
         "emotionalState": "performing, harsh, scattered",
@@ -1056,9 +1056,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad teaches that worldly greatness is diseased by anxiety and impermanence, while true greatness is loving attachment to the Lord.",
         "emotionalState": "clingy, possessive, afraid-to-lose",
@@ -1087,7 +1087,7 @@
     "id": "shabad-appetite-grows-in-stages-unless-it-is-taught-otherwise",
     "title": "Appetite grows into a life unless the Guru interrupts it",
     "subtitle": "Raag Maajh · Ang 137",
-    "summary": "This shabad traces craving from infancy to death with unsentimental precision: milk, family, play, food, sexual desire, wealth, anger, decline, cremation. The pattern is not harmless just because it is familiar; without the Guru, the soul is left asking where to go as the world drowns.",
+    "summary": "This shabad traces craving from infancy to death with unsentimental precision — milk, family, play, food, sexual desire, wealth, anger, decline, cremation. The pattern is not harmless just because it is familiar; without the Guru, the soul is left asking where to go as the world drowns.",
     "whyItMatters": "Craving often feels like personality because it has been rehearsed for so long. This shabad gives appetite a biography, showing how small loves harden into a whole direction unless the Guru teaches the soul another way to live.",
     "takeaway": "Name appetite early, before it names the whole life.",
     "themes": [
@@ -1275,13 +1275,13 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad maps the lifelong growth of appetite and attachment, ending with the soul lost without the Guru.",
         "emotionalState": "hungry, never-enough, driven",
-        "turn": "The sequence turns ordinary development into moral revelation: what begins as natural appetite can become a drowning life when no Guru interrupts it.",
+        "turn": "The sequence turns ordinary development into moral revelation — what begins as natural appetite can become a drowning life when no Guru interrupts it.",
         "practicalImplication": "Do not excuse a craving because it has a long history. Bring it under the Guru’s teaching while there is still time to redirect the life.",
         "bannedOverreach": []
       },
@@ -1306,7 +1306,7 @@
     "id": "shabad-ask-the-guru-before-you-multiply-the-questions",
     "title": "Take the scattered question to the Guru",
     "subtitle": "Siree Raag · Ang 34",
-    "summary": "This shabad begins with honest confusion: whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
+    "summary": "This shabad begins with honest confusion — whom shall I serve, what shall I chant? The answer is not more spiritual shopping, but accepting the True Guru’s will, uprooting selfishness, guarding the field of the mind, and letting Naam and Shabad make peace real.",
     "whyItMatters": "When the mind is anxious, it multiplies options until practice becomes another form of wandering. This shabad gives confusion a disciplined path: ask the Guru, stay awake, protect the crop, and let ego be pulled out by the root.",
     "takeaway": "Clarity comes when the restless search submits to the Guru’s Shabad.",
     "themes": [
@@ -1507,9 +1507,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "manual-full-v1",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad turns spiritual confusion toward the Guru, where hukam, service, Naam, wakefulness, and Shabad replace ego-driven wandering.",
         "emotionalState": "restless, uncertain, fearful",
@@ -1622,9 +1622,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This brief shabad begins in full prostration before the All-powerful Lord. It does not stay ceremonial: the bow becomes a direct cry for protection from wandering and for the Lord's own hand.",
         "emotionalState": "performing, transactional, dry",
@@ -1828,14 +1828,14 @@
       ]
     },
     "editorial": {
-      "status": "locked",
+      "status": "approved",
       "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "Guru Nanak turns trade language toward the soul: praise, truth, and Naam are the only wealth that can endure beyond false dealing.",
         "emotionalState": "distracted, ambitious, grasping",
-        "turn": "The rahao names the merchandise worth carrying: the Lord's praise held with focused consciousness.",
+        "turn": "The rahao names the merchandise worth carrying — the Lord's praise held with focused consciousness.",
         "practicalImplication": "Before the next purchase, chase, or status move, ask whether it adds truth to the heart or only weight to the mind.",
         "bannedOverreach": []
       },
@@ -1995,9 +1995,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This shabad opens by showing the God-conscious being resting hope in the One alone. It turns the heart toward gathered hope, disciplined mind, and shared remembrance.",
         "emotionalState": "clingy, possessive, afraid-to-lose",
@@ -2186,10 +2186,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens in aching longing for the Beloved and admits it cannot find the way alone. It searches mind and body, turns toward saintly company, and keeps asking to be brought near.",
         "emotionalState": "alone, yearning, dependent",
@@ -2339,9 +2339,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The pauree begins by praising those who release every other hold and cling to the One alone. It sets side by side Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
         "emotionalState": "searching, hungry, unsettled",
@@ -2370,7 +2370,7 @@
     "id": "shabad-conquer-the-mind",
     "title": "Wear contentment before you speak of conquest",
     "subtitle": "Japji Sahib, Pauri 28",
-    "summary": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
+    "summary": "The shabad starts by taking visible yogic marks and turning them inward — contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
     "whyItMatters": "This shabad speaks to the part of us that is tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake.",
     "takeaway": "Conquer the mind before trying to conquer the world.",
     "themes": [
@@ -2471,12 +2471,12 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad starts by taking visible yogic marks and turning them inward: contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
+        "coreClaim": "The shabad starts by taking visible yogic marks and turning them inward — contentment, humility, meditation, remembrance. It opens into brotherhood and comes to rest where true conquest happens, in the mind rather than the room.",
         "emotionalState": "reactive, performing, scattered",
         "turn": "From there it widens the field into brotherhood and a different measure of strength.",
         "practicalImplication": "This shabad speaks to the part of us that is tempted by spiritual image, intensity, or performance. Taken seriously, it redirects discipline away from display and into a life that is humbler, steadier, and harder to fake. Conquer the mind before trying to conquer the world.",
@@ -2631,9 +2631,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This shabad opens by naming the true battlefield as the soul itself. It directs the heart toward Hukam, inner victory, and the peace that follows self-conquest.",
         "emotionalState": "reactive, heated, sharp",
@@ -2801,9 +2801,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with the strange claim that speaking the Unspoken becomes nectar. It carries the listener through lesser fears falling away, recognition through the Guru's Shabad, and hearts filled with the Lord's essence.",
         "emotionalState": "dull, entitled, forgetful",
@@ -2956,10 +2956,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by locating rest in the Lord's sanctuary. It then equalizes pleasure and pain, gold and copper, praise and slander, until attachment loses the right to name reality.",
         "emotionalState": "hooked, needy, easily-shaken",
@@ -2988,7 +2988,7 @@
     "id": "shabad-do-not-forget-the-one-who-never-forgets-you",
     "title": "Do not forget the One who never forgets you",
     "subtitle": "Raag Gauree · Ang 289",
-    "summary": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
+    "summary": "The shabad begins with a repeated question — why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
     "whyItMatters": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding.",
     "takeaway": "Remember the Giver before you start measuring your effort.",
     "themes": [
@@ -3123,11 +3123,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins with a repeated question: why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
+        "coreClaim": "The shabad begins with a repeated question — why forget the One who sees, gives, sustains, and rescues? It moves from gratitude into recognition, and ends with the humble servant holding remembrance instead of transactional effort.",
         "emotionalState": "performing, transactional, dry",
         "turn": "From there it names the Lord as giver, life-source, protector, and rescuer from corruption.",
         "practicalImplication": "This one speaks to the person whose service has become dry, performative, or quietly bargaining. Stayed with, it restores memory of grace and makes devotion less like proving and more like responding. Remember the Giver before you start measuring your effort.",
@@ -3355,9 +3355,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by exposing the delaying mind that keeps waiting for the right time to remember the Lord. It responds with day-and-night attunement and devotion that does not forget the Beloved even briefly.",
         "emotionalState": "reactive, heated, sharp",
@@ -3581,9 +3581,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by calling the life deceived by duality cursed and unstable like a wall of sand. It travels through the uselessness of decoration without the Beloved and ends where beauty becomes real only by being pierced with the Shabad.",
         "emotionalState": "dull, entitled, forgetful",
@@ -3736,10 +3736,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "Guru Angad does not flatter ego or mystify it. He names it as the pattern behind action and bondage, then says the cure appears through grace and the Guru's Shabad.",
         "emotionalState": "defensive, offended, self-important",
@@ -3914,9 +3914,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by calling the path and cleansing bath perfect when the Name is in the heart. It keeps extending that wholeness through peace, contentment, yoga, glory, and the Creator's presence.",
         "emotionalState": "envious, unsettled, small",
@@ -4120,10 +4120,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by saying the fire of doubt is not quenched by roaming. It turns the mind toward the Guru's word, saintly company, and the surrender of selfishness until peace merges like water in water.",
         "emotionalState": "confused, restless, skeptical",
@@ -4325,9 +4325,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with rescue arriving alongside subdued ego. It travels through useless plans being abandoned, fear leaving by meeting the True One, and ends in the genuine merchandise recognized through the Guru.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -4615,10 +4615,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by naming forgiveness, good conduct, and contentment as the real fast. It travels through release from disease and death-fear and comes to rest in the Lord already present within and without.",
         "emotionalState": "afraid, bitter, guarded",
@@ -4647,7 +4647,7 @@
     "id": "shabad-forgiveness-opens-lasting-peace",
     "title": "Forgiveness settles into lasting peace",
     "subtitle": "Raag Sorath · Ang 628",
-    "summary": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
+    "summary": "The shabad begins with the Perfect Guru's completed work — forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
     "whyItMatters": "This one meets the person who has tasted relief but does not yet know how to live from it. Stayed with, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere.",
     "takeaway": "Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
     "themes": [
@@ -4794,12 +4794,12 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins with the Perfect Guru's completed work: forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
+        "coreClaim": "The shabad begins with the Perfect Guru's completed work — forgiveness given, peace found. It opens wider into peace spreading everywhere and comes to rest in singing the Guru's Bani and meditating on Naam.",
         "emotionalState": "ashamed, heavy, bitter",
         "turn": "From there it lets that peace widen until it changes the whole atmosphere around the heart.",
         "practicalImplication": "This one meets the person who has tasted relief but does not yet know how to live from it. Stayed with, it keeps peace from becoming a passing feeling and turns it into praise, devotion, and a different atmosphere. Remember this: received forgiveness becomes lasting peace when it ripens into Naam.",
@@ -5027,9 +5027,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by promising freedom from the old cycle through meeting the True Guru. It moves through understanding given by the Shabad and rests in the ever-fresh Naam abiding within the mind.",
         "emotionalState": "scattered, unsettled, wandering",
@@ -5169,9 +5169,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by calling service to the Lord fruitful and honorable. It travels through meeting the Guru, finding the Lord through the Shabad, and rejecting stubbornness as a path to discovery.",
         "emotionalState": "directionless, numb, adrift",
@@ -5335,9 +5335,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
         "emotionalState": "alone, unseen, disconnected",
@@ -5366,7 +5366,7 @@
     "id": "shabad-gratitude-restores-naam",
     "title": "Mercy remembered becomes living Naam",
     "subtitle": "Mundhaavanee Fifth Mehl",
-    "summary": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
+    "summary": "The shabad opens in confession — I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
     "whyItMatters": "This one meets the person who has gone numb to mercy or embarrassed by their own ingratitude. Stayed with honestly, it turns shame into gratitude and gratitude into renewed life in Naam.",
     "takeaway": "Keep this in front of you: honest gratitude becomes the doorway to mercy and Naam.",
     "themes": [
@@ -5468,12 +5468,12 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad opens in confession: I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
+        "coreClaim": "The shabad opens in confession — I did not recognize what You did for me. It moves through unworthiness and pity received, then blooms when the True Guru is met and Naam makes body and mind green again.",
         "emotionalState": "thankful, softened, humbled",
         "turn": "From there it deepens into confessed unworthiness and the Lord's pity.",
         "practicalImplication": "This one meets the person who has gone numb to mercy or embarrassed by their own ingratitude. Stayed with honestly, it turns shame into gratitude and gratitude into renewed life in Naam. Keep this in front of you: honest gratitude becomes the doorway to mercy and Naam.",
@@ -5646,9 +5646,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with the body crowded by desire and anger, then shows what changes when the Holy Saint is actually met. It turns from the thorn of ego and wandering pain toward humility, sanctuary, and peace supported by Naam.",
         "emotionalState": "envious, unsettled, small",
@@ -5823,9 +5823,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It travels through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
         "emotionalState": "envious, unsettled, small",
@@ -5978,10 +5978,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by tracing birth, friendship, marriage, and lineage through woman. It then asks how she can be called bad when kings themselves are born from her, and ends in radiant mouths that praise the Lord.",
         "emotionalState": "dismissive, proud, habit-bound",
@@ -6156,9 +6156,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by describing the one held so closely by the Lord that stain and worldly pressure cannot settle. It moves through freedom from anxiety and pain, then ends in the Guru who shows the Perfect Lord.",
         "emotionalState": "performing, transactional, dry",
@@ -6296,10 +6296,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by placing form, life, greatness, pain, blessing, and wandering inside Hukam. It keeps widening that field until nothing stands outside the Command and ego has nowhere left to boast.",
         "emotionalState": "restless, controlling, uncertain",
@@ -6474,10 +6474,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad refuses to flatter human life; it names it as a rare opening to meet the Lord while breath is still here. It moves from opportunity to urgency, pressing the hearer toward Naam, sangat, and a life that answers the chance it was given.",
         "emotionalState": "directionless, numb, wasting-time",
@@ -6680,9 +6680,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by saying that meeting the humble defeats the messenger of death. It pushes deeper through the Lord dwelling in the mind, worldly entanglements ending, and the Guru's grace becoming ambrosial Naam.",
         "emotionalState": "reactive, heated, sharp",
@@ -6814,9 +6814,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
         "emotionalState": "clingy, possessive, afraid-to-lose",
@@ -6976,9 +6976,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This section keeps describing the God-conscious being as dust of all, kind to all, harmful to none, impartial, and nectar-bearing. It turns humility into a presence from which no injury comes.",
         "emotionalState": "hard, sharp, protective",
@@ -7142,9 +7142,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This section opens by describing the God-conscious being as one who loves the One alone and lives in that nearness. It keeps narrowing support down to Naam, until even family, wakefulness, and permanence are redefined by it.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -7319,10 +7319,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with the Guru as great giver, planting the Lord within the heart. It carries the listener through hearing the Guru's teaching, exposing lesser cravings, and ends with the Lord holding His humble servant close like a cherished child.",
         "emotionalState": "small, unwanted, afraid",
@@ -7486,9 +7486,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with love rising inside the mind and body as a real hunger for darshan and holy company. It asks for one mercy only, the grace to chant Naam, and ends by widening the heart into the Lord's presence everywhere.",
         "emotionalState": "unworthy, guarded, hard-on-self",
@@ -7718,9 +7718,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by fastening mind and body to the Guru in love. It broadens through obedience, Sangat, and the dust-like poverty of Maya-attachment, then ends in total remembrance: this life, body, and breath are Yours.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -7877,9 +7877,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The pauree opens by commanding love for the Lord as the true treasure. It answers desire, fear, and the fantasy of lasting wealth by saying the Name alone accompanies and enlightens.",
         "emotionalState": "hungry, never-enough, driven",
@@ -7908,7 +7908,7 @@
     "id": "shabad-make-naam-the-work-of-your-life",
     "title": "Make Naam the work of your life",
     "subtitle": "Raag Gauree · Ang 290",
-    "summary": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+    "summary": "The shabad begins by giving the saints a clear assignment — let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
     "whyItMatters": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline.",
     "takeaway": "Let Naam become the work that orders everything else.",
     "themes": [
@@ -8043,11 +8043,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins by giving the saints a clear assignment: let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
+        "coreClaim": "The shabad begins by giving the saints a clear assignment — let Naam be the real work. It presses past distraction, calling for remembrance, shared encouragement, and the peace that even the drowning can find in the treasure of the Name.",
         "emotionalState": "searching, hungry, unsettled",
         "turn": "From there it says to practice it personally and help others into the same remembrance.",
         "practicalImplication": "This one meets the person who is searching hard, exhausted, and still unconvinced that rest is possible. Taken seriously, it gathers scattered effort into one practice and turns private seeking into a shared, living discipline. Let Naam become the work that orders everything else.",
@@ -8233,9 +8233,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by blessing words that speak Naam, then blesses eyes, hands, and feet when they turn toward praise, darshan, and the Lord's path. It closes with a prayer that even a sinking stone be lifted by mercy.",
         "emotionalState": "unworthy, guarded, hard-on-self",
@@ -8264,7 +8264,7 @@
     "id": "shabad-mercy-lets-the-child-tell-the-truth",
     "title": "Mercy lets the child tell the truth",
     "subtitle": "Siree Raag · Ang 51",
-    "summary": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
+    "summary": "The shabad opens in tenderness and dependence — the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
     "whyItMatters": "This shabad speaks to the part of us that is stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike.",
     "takeaway": "Bring the truth about failure into the Lord's mercy.",
     "themes": [
@@ -8410,11 +8410,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad opens in tenderness and dependence: the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
+        "coreClaim": "The shabad opens in tenderness and dependence — the soul leans on the Lord's mercy and admits its mistakes as a child would. It then confesses how hard Hukam is to accept and ends in recognition of the Supreme Lord through the Guru.",
         "emotionalState": "resisting, controlling, argumentative",
         "turn": "From there it admits how easy speech is and how difficult it is to actually accept Hukam.",
         "practicalImplication": "This shabad speaks to the part of us that is stuck between shame and self-protection after failure. Stayed with sincerely, it makes confession safer and trust more childlike. Bring the truth about failure into the Lord's mercy.",
@@ -8580,9 +8580,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by saying the Lord already dwells in the body-fortress, even though stubbornness cannot taste Him. It travels through mercy, Guru-centered sweetness, and the hard-hearted poison of the manmukh before ending where bitter becomes sweet in Sangat.",
         "emotionalState": "unworthy, guarded, hard-on-self",
@@ -8728,9 +8728,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with the Perfect Guru implanting the Name and dispelling inner doubt. It travels through praise as light, ego conquered into one-pointedness, and ends where life itself depends on Naam.",
         "emotionalState": "reactive, heated, sharp",
@@ -8759,7 +8759,7 @@
     "id": "shabad-nearness-ends-the-frantic-search",
     "title": "Nearness ends the frantic search",
     "subtitle": "Raag Gauree · Ang 205",
-    "summary": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
+    "summary": "The shabad opens in astonished intimacy — the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
     "whyItMatters": "This one meets the person worn out by searching, petitioning, and looking elsewhere for relief. Kept near, it teaches rest by revealing the nearness that restless effort keeps missing.",
     "takeaway": "Let grace make the Lord near enough to stop the chase.",
     "themes": [
@@ -8904,11 +8904,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad opens in astonished intimacy: the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
+        "coreClaim": "The shabad opens in astonished intimacy — the Lord is no longer distant but known by grace. It carries the listener through anxiety cut away, pain and pleasure losing their tyranny, and ends with essence merging into Essence.",
         "emotionalState": "tired, drained, worn-down",
         "turn": "From there it loosens anxiety and the drama of pain and pleasure once the veil is removed.",
         "practicalImplication": "This one meets the person worn out by searching, petitioning, and looking elsewhere for relief. Kept near, it teaches rest by revealing the nearness that restless effort keeps missing. Let grace make the Lord near enough to stop the chase.",
@@ -9019,9 +9019,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This shabad begins by giving up private bargaining and asking to be brought near to the Divine. It closes with fear losing its final authority.",
         "emotionalState": "afraid, guarded, dreading",
@@ -9251,9 +9251,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by contrasting a life without remembrance with a life given even one true instant of simran. It then presses the contrast hard, exposing what drift becomes without the Name and where mercy finally leads.",
         "emotionalState": "searching, hungry, unsettled",
@@ -9414,10 +9414,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The pauree opens by saying the mind's wandering stops in the company of saints. It then names the true bankers as those whose wealth is the Name and whose patience, honor, and glory ripen from listening well.",
         "emotionalState": "restless, impatient, seeking",
@@ -9578,9 +9578,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by joining service, peace, and the treasure of the True Name. It deepens through self-recognition, inner light, truthfulness, and praise that returns body and soul to the Lord.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -9866,9 +9866,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by naming the Divine in all colors and forms. It then contrasts human cycling and change with the Eternal One and comes to rest in understanding received through the Guru.",
         "emotionalState": "envious, unsettled, small",
@@ -10001,9 +10001,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
         "emotionalState": "tired, drained, worn-down",
@@ -10198,9 +10198,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with many voices singing different dimensions of the Lord's power, gifts, beauty, knowledge, making, and unmaking. It opens the field so wide that control, ownership, and single-angle thinking start to look small.",
         "emotionalState": "gripping, controlling, tense",
@@ -10403,9 +10403,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with metal merging into metal and uses that image to describe praise absorbed into the Praiseworthy Lord. It carries the listener through saintly dust, true action, and the home of the self being found within.",
         "emotionalState": "envious, unsettled, small",
@@ -10569,9 +10569,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -10773,9 +10773,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by declaring that release comes only through the True Name. It turns seeking toward the Guru's feet, true service, and the hidden Lord found when the True Guru is pleased.",
         "emotionalState": "searching, hungry, unsettled",
@@ -11002,9 +11002,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with breath-by-breath remembrance of the Guru as life and wealth. It moves through service, the washing of ego, rescue from inner fire, and finally rests in the certainty that the Guru is powerful enough to carry the soul.",
         "emotionalState": "restless, uncertain, fearful",
@@ -11206,9 +11206,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by calling spiritual companions close and asking them to speak of the Lord together. It carries the listener through humility, sweet speech, and the Guru's Shabad, then ends with the True King drawing the heart into Himself.",
         "emotionalState": "dull, entitled, forgetful",
@@ -11381,10 +11381,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It broadens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
         "emotionalState": "overthinking, restless, drifting",
@@ -11551,9 +11551,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with a mind that will not stay still for an instant. It turns through the Guru's gift of Naam and quiet, then exposes false aims in hearts lacking love for the Lord.",
         "emotionalState": "scattered, unsettled, wandering",
@@ -11728,9 +11728,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with a direct cry to the Father God for rescue. It carries the listener through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
         "emotionalState": "afraid, guarded, dreading",
@@ -11920,10 +11920,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens in relentless searching through forests, philosophies, rituals, and yogic techniques. It turns only when mercy brings true company, and then the mind and body finally cool.",
         "emotionalState": "wandering, exhausted, seeking",
@@ -11952,7 +11952,7 @@
     "id": "shabad-selfless-service",
     "title": "Service without reward reaches the Master",
     "subtitle": "Raag Gauree",
-    "summary": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+    "summary": "The shabad starts by defining the servant who lives in the Guru's household — obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
     "whyItMatters": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center.",
     "takeaway": "Service becomes true when the self stops asking to be seen.",
     "themes": [
@@ -12090,12 +12090,12 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad starts by defining the servant who lives in the Guru's household: obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
+        "coreClaim": "The shabad starts by defining the servant who lives in the Guru's household — obedient, unadvertised, and absorbed in Naam. It comes to a sharp center where selfless service without reward reaches the Lord Himself.",
         "emotionalState": "self-conscious, performing, eager-to-be-seen",
         "turn": "From there it sells the mind to the Guru and lets affairs be resolved there instead of in self-importance.",
         "practicalImplication": "This one meets the person doing good while keeping one eye on recognition. Lived with faithfully, it purifies service by taking self-display and reward out of the center. Service becomes true when the self stops asking to be seen.",
@@ -12296,10 +12296,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by describing greed, falsehood, slander, and anger as degrading forms of speech and appetite. It then asks a harder question: what words actually bring honor at the Lord's Door?",
         "emotionalState": "reactive, hungry, resentful",
@@ -12479,10 +12479,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by naming the Lord's mercy twice and grounding life in His gifts. It then asks why the mortal wavers when the One who created also nourishes, protects, and cherishes every heart.",
         "emotionalState": "afraid, shaken, alone",
@@ -12845,9 +12845,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with day-and-night service, remembrance, and sweet speech offered from sanctuary. It travels through the sorrow of separation, the need for mercy, and ends with the yearning to be united with the Lord through the Guru's feet.",
         "emotionalState": "unworthy, guarded, hard-on-self",
@@ -13004,9 +13004,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The pauree begins by challenging the wandering search directly and turning the seeker inward. It then sends the heart into Saadh Sangat, where ego is torn down and peace becomes possible.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -13035,7 +13035,7 @@
     "id": "shabad-suffering-as-medicine",
     "title": "Pain tells the truth comfort hides",
     "subtitle": "Raag Aasaa",
-    "summary": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+    "summary": "The shabad begins by reversing ordinary judgment — suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
     "whyItMatters": "This shabad speaks to the part of us that clings to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher.",
     "takeaway": "Let pain reveal what comfort keeps covering.",
     "themes": [
@@ -13156,12 +13156,12 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins by reversing ordinary judgment: suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
+        "coreClaim": "The shabad begins by reversing ordinary judgment — suffering can be medicine, while pleasure can become disease when it dulls desire for God. It then yields agency back to the Creator and widens into praise of the One whose light fills everything.",
         "emotionalState": "hurting, resentful, confused",
         "turn": "From there it gives up control and admits the Creator's will is doing what your effort cannot.",
         "practicalImplication": "This shabad speaks to the part of us that clings to comfort, resenting pain, or numbing every discomfort on contact. Held wisely, it changes pain from meaningless interruption into an unwanted but revealing teacher. Let pain reveal what comfort keeps covering.",
@@ -13363,10 +13363,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by exposing ritual performed from self-will as the misery of an unwanted bride. It directs the heart toward saintly company and one-pointed Naam, then shows the fruit plainly: sweet speech, humble walking, and peace within.",
         "emotionalState": "sharp, performing, defensive",
@@ -13395,7 +13395,7 @@
     "id": "shabad-the-brave-war-is-the-one-against-inner-ego",
     "title": "The brave war is the one against inner ego",
     "subtitle": "Siree Raag · Ang 86",
-    "summary": "The shabad opens by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
+    "summary": "The shabad opens by redefining courage — the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
     "whyItMatters": "This speaks to the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy.",
     "takeaway": "Remember this: measure courage by how deeply ego is subdued.",
     "themes": [
@@ -13527,11 +13527,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad opens by redefining courage: the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
+        "coreClaim": "The shabad opens by redefining courage — the real warrior subdues the vicious ego within. It then contrasts that inward bravery with the ugliness of egotistical living and comes to rest in Naam as the difference between pain and a redeemed life.",
         "emotionalState": "inflated, defensive, self-protective",
         "turn": "From there it contrasts Gurmukh praise and liberation with the painful disfigurement of egotistical living.",
         "practicalImplication": "This speaks to the person who still calls aggression strength or mistakes self-protection for courage. Keep this shabad after conflict or self-inflation, and it will move the battle back to the actual enemy. Remember this: measure courage by how deeply ego is subdued.",
@@ -13703,9 +13703,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with time diminishing day and night and immediately urges the mind toward the Guru. It turns the shrinking day into an argument for serving saints, earning Naam, and buying what you came here to buy.",
         "emotionalState": "searching, hungry, unsettled",
@@ -13936,9 +13936,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by naming the ordinary states the mind circles within. It then declares that the fourth state, union with the Lord, is known only through the True Guru and crossed into by devotion and service.",
         "emotionalState": "scattered, unsettled, wandering",
@@ -14102,9 +14102,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by praising the Lord as forgiving, merciful, and tender toward the poor and unprotected. It keeps widening that refuge until the speaker can admit smallness without despair and enter sanctuary instead of comparison.",
         "emotionalState": "envious, unsettled, small",
@@ -14133,7 +14133,7 @@
     "id": "shabad-the-guru-asks-for-more-than-admiration",
     "title": "The Guru asks for more than admiration",
     "subtitle": "Raag Gauree · Ang 171",
-    "summary": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
+    "summary": "The shabad opens with startling surrender — the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
     "whyItMatters": "This speaks to the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender.",
     "takeaway": "Keep this in front of you: let surrender reach the body before the ego performs again.",
     "themes": [
@@ -14285,11 +14285,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad opens with startling surrender: the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
+        "coreClaim": "The shabad opens with startling surrender — the body itself is sold before the Perfect Guru for the Lord's sake. It develops through lamp-like wisdom, the dispersal of doubt and fear, and the final honor of having placed one's head before the True Guru.",
         "emotionalState": "inflated, defensive, self-protective",
         "turn": "From there it shows the Guru lighting wisdom, dispelling fear, and waking the mind to what is genuine.",
         "practicalImplication": "This speaks to the person who wants spiritual help without yielding the center seat. Keep this shabad near moments of image-protection or self-assertion, and it presses devotion past sentiment into surrender. Keep this in front of you: let surrender reach the body before the ego performs again.",
@@ -14316,7 +14316,7 @@
     "id": "shabad-the-guru-s-word-raises-the-soul-into-real-stature",
     "title": "The Guru's word raises the soul into real stature",
     "subtitle": "Raag Gauree · Ang 239",
-    "summary": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
+    "summary": "The shabad keeps returning to what the Guru's word does from the inside — it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
     "whyItMatters": "This shabad speaks to the part of us that chases improvement, image, or spiritual status without steady submission to the Guru's word. Taken seriously, it turns attainment from display into inward settlement.",
     "takeaway": "Remember this: let the Guru's word define attainment.",
     "themes": [
@@ -14516,11 +14516,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad keeps returning to what the Guru's word does from the inside: it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
+        "coreClaim": "The shabad keeps returning to what the Guru's word does from the inside — it lifts the seeker beyond self-made rank, steadies the mind, and joins the heart to the Supreme Lord. What looks like attainment from the outside is recast as what the Guru actually causes within.",
         "emotionalState": "impatient, tense, agitated",
         "turn": "From there it contrasts outer striving with the inward changes the Guru actually works.",
         "practicalImplication": "This shabad speaks to the part of us that chases improvement, image, or spiritual status without steady submission to the Guru's word. Taken seriously, it turns attainment from display into inward settlement. Remember this: let the Guru's word define attainment.",
@@ -14693,9 +14693,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by calling God the breath of life and the support of the mind. It opens further through praise, the peace of Naam, and the journey from restless desire into Saadh Sangat and Guru's vision.",
         "emotionalState": "resentful, hurt, stuck",
@@ -14890,9 +14890,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with an honest plea for the saint who can show the way to the Lord. It travels through ego's curtain, Maya's sleep, and the hidden substance within, before coming to rest in the Guru holding the key.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -15080,9 +15080,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by calling the Lord's Bani ambrosial nectar. It travels through repeated hearing, the inner burning extinguished, and the mind cooled in the Guru's presence.",
         "emotionalState": "clingy, possessive, afraid-to-lose",
@@ -15425,9 +15425,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins by fastening the mind to the Lord and declaring that nothing else is of real use. It then strips glamour from worldly greatness, lifts up the humble servant, and ends in work done for the Lord alone.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -15657,9 +15657,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens with contemplation of the Guru's word and the reverence it produces. It moves into abiding in true company, casting off duality, and ending in speech and mind made truthful by love.",
         "emotionalState": "foggy, uncertain, hesitant",
@@ -15688,7 +15688,7 @@
     "id": "shabad-the-soul-was-never-yours-to-keep",
     "title": "The soul was never yours to keep",
     "subtitle": "Raag Gauree · Ang 188",
-    "summary": "The shabad begins by unsettling possessive grief: relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
+    "summary": "The shabad begins by unsettling possessive grief — relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
     "whyItMatters": "This speaks to the person overwhelmed by loss, panic, or the cry of mine. Taken seriously, it does not belittle sorrow, but it stops grief from turning into possession.",
     "takeaway": "Let grief answer to Hukam instead of ownership.",
     "themes": [
@@ -15833,11 +15833,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins by unsettling possessive grief: relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
+        "coreClaim": "The shabad begins by unsettling possessive grief — relations are named, but ownership is false. It moves through Hukam, shared dust and breath, and ends when the Guru opens the shutters of doubt.",
         "emotionalState": "foggy, uncertain, hesitant",
         "turn": "From there it breaks the illusion further through one dust, one light, and one breath moving through all.",
         "practicalImplication": "This speaks to the person overwhelmed by loss, panic, or the cry of mine. Taken seriously, it does not belittle sorrow, but it stops grief from turning into possession. Let grief answer to Hukam instead of ownership.",
@@ -15864,7 +15864,7 @@
     "id": "shabad-the-split-mind-becomes-one-through-surrender",
     "title": "The split mind becomes one through surrender",
     "subtitle": "Raag Gauree · Ang 222",
-    "summary": "The shabad starts by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
+    "summary": "The shabad starts by naming the problem sharply — the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
     "whyItMatters": "This shabad speaks to the part of us that is mentally scattered, morally divided, and unable to stay steady. Kept close, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can.",
     "takeaway": "The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
     "themes": [
@@ -16121,11 +16121,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad starts by naming the problem sharply: the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
+        "coreClaim": "The shabad starts by naming the problem sharply — the mind is ruled by evil intellect and duality. It keeps tracing that divided life through Maya, craving, and anxious loss until peace appears only through surrender, Shabad, and Naam.",
         "emotionalState": "inflated, defensive, self-protective",
         "turn": "From there it follows that split mind into Maya, corruption, anxiety, and unending motion.",
         "practicalImplication": "This shabad speaks to the part of us that is mentally scattered, morally divided, and unable to stay steady. Kept close, it gives a truer diagnosis than busyness does and a truer treatment than willpower alone can. The mind's problem is divided allegiance, and the Guru teaches surrender into the One.",
@@ -16466,9 +16466,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by saying egotism cannot produce peace. It broadens into the world's false bargaining for comfort, then returns again and again to service, Shabad, Naam, and the Lord's Will.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -16625,9 +16625,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The pauree begins by stripping this passing world of final status. It teaches that the way to the true dwelling is known through the Guru's Shabad, and that stable belonging is found in the company of the holy rather than in what cannot go with you.",
         "emotionalState": "isolated, impressionable, needing-company",
@@ -16759,9 +16759,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts with service to the True Guru and refuses to separate understanding from obedience. As it deepens, complaint quiets, ego is consumed, and liberation appears as love for the Beloved.",
         "emotionalState": "reactive, heated, sharp",
@@ -16929,9 +16929,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by naming Truth before time, mood, or human history. It strips away silence, accumulation, and cleverness, before coming to rest in the question of how falsehood breaks: by walking in Hukam.",
         "emotionalState": "reactive, heated, sharp",
@@ -17217,9 +17217,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with those who please the Lord being linked to Truth. It grows into praise, sacrifice to such people, and the state of being absorbed into the Truest of the True.",
         "emotionalState": "unworthy, rejected, fragile",
@@ -17505,9 +17505,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by joining service to the True Guru with the cleansing of mind and body. Then it keeps widening truth until it touches food, speech, company, clothing, and shelter.",
         "emotionalState": "inflated, defensive, self-protective",
@@ -17737,9 +17737,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with the blunt fact that past actions cannot be erased. It moves through uncertainty about outcomes and ends in a harder peace: what pleases the Divine comes to pass, and there is no other Doer.",
         "emotionalState": "unworthy, guarded, hard-on-self",
@@ -17970,10 +17970,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad starts by placing all becoming, giving, and receiving in the Lord's pleasure. It opens further through separation and reunion, play and service, and ends where the Creator alone is doing all that happens.",
         "emotionalState": "controlling, unsettled, lonely",
@@ -18148,9 +18148,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad opens by yielding the argument with what the Beloved does. It moves into single-hearted reliance until even honor itself is handed back to the One who gave it.",
         "emotionalState": "alone, unseen, disconnected",
@@ -18179,7 +18179,7 @@
     "id": "shabad-when-the-shabad-takes-the-mind-in-hand",
     "title": "When the Shabad takes the mind in hand",
     "subtitle": "Raag Gauree · Ang 221",
-    "summary": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+    "summary": "The shabad begins with a startling image — the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
     "whyItMatters": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand.",
     "takeaway": "Let the Guru's Shabad govern the mind before cleverness does.",
     "themes": [
@@ -18429,11 +18429,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins with a startling image: the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
+        "coreClaim": "The shabad begins with a startling image — the mind as elephant, the Guru as goad, the Shabad as the mark that disciplines it. It carries the listener through the failure of cleverness and the growth of fearlessness, then settles in daily remembrance of the One already pervading everything.",
         "emotionalState": "clingy, possessive, afraid-to-lose",
         "turn": "From there it strips away cleverness and fear, teaching that freedom comes when the mind is no longer trying to rule itself.",
         "practicalImplication": "This one meets the person whose mind is strong, clever, and difficult to govern. Taken steadily, it changes what authority feels like: wit, image, and force stop leading, and the Guru's word takes the mind in hand. Let the Guru's Shabad govern the mind before cleverness does.",
@@ -18544,9 +18544,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "This shabad opens inside the place where the Holy keep singing the Lord's praises. It turns the heart toward a sanctuary even fear and death do not rule.",
         "emotionalState": "sharp, loose-tongued, careless",
@@ -18659,9 +18659,9 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The shabad begins with the fear of inescapable judgment. It directs the heart toward the saving nearness of Saadh Sangat and remembrance.",
         "emotionalState": "alone, unseen, disconnected",
@@ -18821,10 +18821,10 @@
       ]
     },
     "editorial": {
-      "status": "locked",
-      "origin": "legacy",
+      "status": "approved",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:legacy",
+      "templateKey": "shabad:manual",
       "evidence": {
         "coreClaim": "The piece opens by exposing religious pose without wisdom, labor, or integrity behind it. It comes to a clean test: the one who works for what they eat and gives some away is the one who knows the path.",
         "emotionalState": "pretending, unclear, performing",
@@ -18853,7 +18853,7 @@
     "id": "shabad-you-are-family-wherever-fear-tries-to-exile-me",
     "title": "You are family wherever fear tries to exile me",
     "subtitle": "Raag Maajh · Ang 103",
-    "summary": "The shabad begins with intimate naming: Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
+    "summary": "The shabad begins with intimate naming — Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
     "whyItMatters": "This speaks to the person frightened, exposed, or emotionally orphaned by circumstances. Held tenderly, it makes divine nearness personal enough to change how fear occupies the body.",
     "takeaway": "Fear thins when shelter becomes personal again.",
     "themes": [
@@ -19013,11 +19013,11 @@
     },
     "editorial": {
       "status": "approved",
-      "origin": "generated",
+      "origin": "manual",
       "voiceVersion": "sggs-editorial-v1",
-      "templateKey": "shabad:generated",
+      "templateKey": "shabad:manual",
       "evidence": {
-        "coreClaim": "The shabad begins with intimate naming: Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
+        "coreClaim": "The shabad begins with intimate naming — Father, Mother, relative, brother. It moves into protection, recognition by grace, and shelter that restores honor where fear had been making the world feel hostile.",
         "emotionalState": "afraid, guarded, dreading",
         "turn": "From there it lets protection and fearlessness grow out of that intimacy.",
         "practicalImplication": "This speaks to the person frightened, exposed, or emotionally orphaned by circumstances. Held tenderly, it makes divine nearness personal enough to change how fear occupies the body. Fear thins when shelter becomes personal again.",

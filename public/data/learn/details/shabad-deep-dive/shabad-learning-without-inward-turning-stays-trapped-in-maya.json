@@ -105,9 +105,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by criticizing scholars who read and shout while remaining attached to Maya. It pushes further by exposing teaching without contemplation and ends in the waste of a life spent repeating what was never inwardly recognized.",
       "emotionalState": "clingy, possessive, afraid-to-lose",

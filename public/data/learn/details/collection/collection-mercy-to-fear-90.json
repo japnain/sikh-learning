@@ -1,8 +1,8 @@
 {
   "id": "collection-mercy-to-fear-90",
-  "title": "When mercy quiets a frightened body",
-  "subtitle": "When mercy needs to quiet a frightened body",
-  "description": "Receive mercy until fear stops acting like the only honest voice in the room.",
+  "title": "When mercy quiets the frightened body",
+  "subtitle": "For fear that needs tenderness before instruction",
+  "description": "These readings bring fear close to mercy until the body can stop bracing long enough to hear what is true.",
   "durationLabel": "6-step journey",
   "themes": [
     "mercy",
@@ -14,8 +14,8 @@
       501,
       502
     ],
-    "shortMeaning": "Mercy can quiet a body fear has overtaken.",
-    "lifeApplication": "When fear takes the chest, receive one line as mercy before reacting."
+    "shortMeaning": "Mercy is not only pardon; it is shelter for the body that is afraid.",
+    "lifeApplication": "Let the frightened place be met by mercy before you demand courage from it."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Receive mercy until fear stops acting like the only honest voice in the room.",
+      "coreClaim": "This path lets mercy become the first answer to fear.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "When mercy needs to quiet a frightened body",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Fear softens when the body is not scolded but sheltered by grace.",
+      "practicalImplication": "Speak mercy to the fear, breathe, and then choose one faithful action.",
       "bannedOverreach": []
     },
     "scores": {

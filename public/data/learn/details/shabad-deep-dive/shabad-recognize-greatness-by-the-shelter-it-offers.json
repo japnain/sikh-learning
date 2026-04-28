@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This section refuses to let greatness stay abstract. The God-conscious being is described in vast terms, then recognized by what that vastness does: helps the helpless, extends a hand, and gives the way of liberation.",
       "emotionalState": "isolated, impressionable, needing-company",

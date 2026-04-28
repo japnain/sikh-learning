@@ -1,8 +1,8 @@
 {
   "id": "collection-gratitude-to-mercy-77",
-  "title": "When gratitude deepens into mercy",
-  "subtitle": "When gratitude deepens into dependence",
-  "description": "These readings deepen gratitude past manners until every gift starts being received as unearned mercy.",
+  "title": "When gratitude becomes dependence",
+  "subtitle": "For thanks that opens into mercy",
+  "description": "These readings let gratitude deepen until the heart stops admiring its own thankfulness and begins depending on mercy.",
   "durationLabel": "6-step journey",
   "themes": [
     "gratitude",
@@ -15,8 +15,8 @@
       60339,
       60340
     ],
-    "shortMeaning": "Gratitude deepens when gift is received as mercy, not merit.",
-    "lifeApplication": "When thankfulness feels thin, remember what you did not earn."
+    "shortMeaning": "Noticed gift points beyond itself to the Giver whose mercy keeps reaching first.",
+    "lifeApplication": "After giving thanks, ask for the mercy to live worthy of what was received."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings deepen gratitude past manners until every gift starts being received as unearned mercy.",
+      "coreClaim": "This path carries gratitude into humble dependence on mercy.",
       "emotionalState": "thankful, softened, humbled",
-      "turn": "When gratitude deepens into dependence",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "The gift is not finished when it is noticed; it becomes prayer.",
+      "practicalImplication": "Turn one thank-you into one request for grace and one act of mercy toward someone else.",
       "bannedOverreach": []
     },
     "scores": {

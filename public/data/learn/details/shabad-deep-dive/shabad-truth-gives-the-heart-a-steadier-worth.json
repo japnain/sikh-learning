@@ -259,9 +259,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with those who please the Lord being linked to Truth. It grows into praise, sacrifice to such people, and the state of being absorbed into the Truest of the True.",
       "emotionalState": "unworthy, rejected, fragile",

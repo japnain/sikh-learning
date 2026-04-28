@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with a direct cry to the Father God for rescue. It carries the listener through the five thieves attacking the being, the sanctuary of the Saadh Sangat, and ends when divine light dawns in the mind.",
       "emotionalState": "afraid, guarded, dreading",

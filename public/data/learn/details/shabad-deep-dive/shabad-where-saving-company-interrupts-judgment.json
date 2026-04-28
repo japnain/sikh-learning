@@ -86,9 +86,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with the fear of inescapable judgment. It directs the heart toward the saving nearness of Saadh Sangat and remembrance.",
       "emotionalState": "alone, unseen, disconnected",

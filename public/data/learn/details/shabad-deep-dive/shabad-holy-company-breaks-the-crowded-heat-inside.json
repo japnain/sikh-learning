@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with the body crowded by desire and anger, then shows what changes when the Holy Saint is actually met. It turns from the thorn of ego and wandering pain toward humility, sanctuary, and peace supported by Naam.",
       "emotionalState": "envious, unsettled, small",

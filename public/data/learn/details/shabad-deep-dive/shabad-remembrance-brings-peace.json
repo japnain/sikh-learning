@@ -146,10 +146,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The piece opens with remembrance repeated until peace reaches the body and anguish begins to loosen. It broadens into praise of the One Word behind scripture and ends by longing for the company of those who truly yearn for Darshan.",
       "emotionalState": "overthinking, restless, drifting",

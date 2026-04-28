@@ -148,9 +148,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by calling the sight of the saints a perfect cleansing bath. It travels through ego falling away, the One becoming visible everywhere, and the heart being irrigated with Naam.",
       "emotionalState": "envious, unsettled, small",

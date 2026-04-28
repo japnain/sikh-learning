@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-journey",
-  "title": "From Restlessness to steadier practice",
-  "subtitle": "For when restlessness keeps steering the day",
-  "description": "These readings catch wandering before it passes for wisdom and lead it toward saintly company, listening, and honest stillness.",
+  "title": "Restlessness that learns to dwell",
+  "subtitle": "For the search that must stop feeding on motion",
+  "description": "These readings separate holy seeking from agitation and teach the mind to dwell where mercy, sangat, and Naam can actually work on it.",
   "durationLabel": "5-step journey",
   "themes": [
     "restlessness",
@@ -15,8 +15,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Searching and ritual are not identical with peace.",
-    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+    "shortMeaning": "Wandering ceases when the heart comes to dwell in saintly company and receives mercy’s light.",
+    "lifeApplication": "Let the search land somewhere true long enough to be changed."
   },
   "items": [
     {
@@ -53,14 +53,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings catch wandering before it passes for wisdom and lead it toward saintly company, listening, and honest stillness.",
+      "coreClaim": "This journey moves restlessness from motion into dwelling.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For when restlessness keeps steering the day",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "The mind becomes teachable when it stops treating movement as proof of life.",
+      "practicalImplication": "Remain with one chosen practice today after the impulse to switch appears.",
       "bannedOverreach": []
     },
     "scores": {

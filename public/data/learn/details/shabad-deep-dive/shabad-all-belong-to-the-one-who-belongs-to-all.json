@@ -112,11 +112,11 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "manual-full-v1",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
-      "coreClaim": "The pauree teaches universal dependence on the Lord: all belong to the One, all beg from the One, and no ego has ground apart from the One.",
+      "coreClaim": "The pauree teaches universal dependence on the Lord — all belong to the One, all beg from the One, and no ego has ground apart from the One.",
       "emotionalState": "inflated, defensive, self-protective",
       "turn": "The language moves from belonging to begging to praise, showing that dependence is not humiliation but the truth that opens the Door.",
       "practicalImplication": "Stop making love, status, or spiritual access into private property. Pray from the same ground as everyone else and let praise widen the heart.",

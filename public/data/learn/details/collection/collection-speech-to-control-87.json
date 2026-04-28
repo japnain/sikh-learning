@@ -1,8 +1,8 @@
 {
   "id": "collection-speech-to-control-87",
-  "title": "When control starts in speech",
-  "subtitle": "When control starts in the tongue",
-  "description": "These readings expose management at the level of voice before it grows into pressure, domination, and the need to rule the room.",
+  "title": "When control enters through the tongue",
+  "subtitle": "For the sentence that tries to rule the room",
+  "description": "These readings expose domination at the level of tone, correction, and pressure before it becomes a whole pattern of control.",
   "durationLabel": "6-step journey",
   "themes": [
     "speech",
@@ -14,8 +14,8 @@
       642,
       643
     ],
-    "shortMeaning": "Control enters first through the mouth, long before it takes the room.",
-    "lifeApplication": "When you start managing the room, soften the sentence before it lands."
+    "shortMeaning": "A mouth ruled by appetite and anger can start managing others before the heart notices.",
+    "lifeApplication": "Soften the sentence before it becomes a handle on someone else."
   },
   "items": [
     {
@@ -57,14 +57,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings expose management at the level of voice before it grows into pressure, domination, and the need to rule the room.",
+      "coreClaim": "This path catches control where it first becomes audible.",
       "emotionalState": "reactive, hungry, resentful",
-      "turn": "When control starts in the tongue",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Speech becomes freer when it releases the need to run the room.",
+      "practicalImplication": "Say what is needed without tightening your voice around the outcome.",
       "bannedOverreach": []
     },
     "scores": {

@@ -1,8 +1,8 @@
 {
   "id": "collection-control-to-release",
-  "title": "From Control to Release",
-  "subtitle": "For the mind that grips too hard",
-  "description": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
+  "title": "Release the hand without abandoning the task",
+  "subtitle": "For the mind that confuses faithfulness with control",
+  "description": "Begin where the Lord’s pleasure governs giving and receiving. These readings teach action that is obedient without pretending to author the outcome.",
   "durationLabel": "4-step arc",
   "themes": [
     "control",
@@ -15,8 +15,8 @@
       499,
       512
     ],
-    "shortMeaning": "What pleases the Divine comes to pass; everything that happens is already within that doing.",
-    "lifeApplication": "Release becomes possible when authorship is remembered correctly."
+    "shortMeaning": "What pleases the Divine comes to pass; receiving becomes saner when authorship is remembered correctly.",
+    "lifeApplication": "Act faithfully, then stop gripping the result as if it proves your worth or power."
   },
   "items": [
     {
@@ -51,15 +51,15 @@
     "shabad-recognize-greatness-by-the-shelter-it-offers"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "Begin where fear tightens the hand. Then move through Hukam, trust, and grace until action stays faithful without pretending to be absolute.",
+      "coreClaim": "This path moves the controlling mind from authorship back to Hukam.",
       "emotionalState": "controlling, unsettled, lonely",
-      "turn": "For the mind that grips too hard",
-      "practicalImplication": "Move through 5 linked steps without dropping the thread.",
+      "turn": "Release is not passivity; it is action freed from the lie that everything depends on you.",
+      "practicalImplication": "Name the next duty, do it cleanly, and return the result to the One whose pleasure governs the day.",
       "bannedOverreach": []
     },
     "scores": {

@@ -147,9 +147,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens with time diminishing day and night and immediately urges the mind toward the Guru. It turns the shrinking day into an argument for serving saints, earning Naam, and buying what you came here to buy.",
       "emotionalState": "searching, hungry, unsettled",

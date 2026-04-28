@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins with love rising inside the mind and body as a real hunger for darshan and holy company. It asks for one mercy only, the grace to chant Naam, and ends by widening the heart into the Lord's presence everywhere.",
       "emotionalState": "unworthy, guarded, hard-on-self",

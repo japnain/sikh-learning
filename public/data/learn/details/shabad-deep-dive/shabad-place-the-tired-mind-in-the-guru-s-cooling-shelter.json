@@ -106,9 +106,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This tiny shabad wastes no movement. It names the Guru as giver, cooling house, and light of the three worlds, then lands on one instruction: place the mind's trust there and peace will come.",
       "emotionalState": "tired, drained, worn-down",

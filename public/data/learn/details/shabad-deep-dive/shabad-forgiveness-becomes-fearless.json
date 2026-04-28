@@ -261,10 +261,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad starts by naming forgiveness, good conduct, and contentment as the real fast. It travels through release from disease and death-fear and comes to rest in the Lord already present within and without.",
       "emotionalState": "afraid, bitter, guarded",

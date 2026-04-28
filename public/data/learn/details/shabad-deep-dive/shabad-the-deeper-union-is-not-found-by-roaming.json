@@ -204,9 +204,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad begins by naming the ordinary states the mind circles within. It then declares that the fourth state, union with the Lord, is known only through the True Guru and crossed into by devotion and service.",
       "emotionalState": "scattered, unsettled, wandering",

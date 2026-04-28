@@ -203,9 +203,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The shabad opens by contrasting a life without remembrance with a life given even one true instant of simran. It then presses the contrast hard, exposing what drift becomes without the Name and where mercy finally leads.",
       "emotionalState": "searching, hungry, unsettled",

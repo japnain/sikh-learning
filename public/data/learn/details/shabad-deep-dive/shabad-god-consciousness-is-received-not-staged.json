@@ -137,9 +137,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "This section opens by saying the God-conscious being knows God and loves the One alone. It keeps insisting that such stature is given by God Himself, which means greatness, purity, and fearlessness cannot be self-manufactured.",
       "emotionalState": "alone, unseen, disconnected",

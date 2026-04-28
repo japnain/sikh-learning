@@ -123,9 +123,9 @@
   },
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:generated",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The pauree begins by praising those who release every other hold and cling to the One alone. It sets side by side Maya-drunk unrest with the peace and sweetness that arise in saintly company and Naam.",
       "emotionalState": "searching, hungry, unsettled",

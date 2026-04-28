@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-stillness",
-  "title": "From Restlessness to Stillness",
+  "title": "Stillness after the false urgency passes",
   "subtitle": "For the mind that keeps mistaking motion for clarity",
-  "description": "These readings slow the day by moving from scattered motion into listening, company, and inward rest.",
+  "description": "These readings bring the overactive search into mercy and saintly company until stillness becomes trustworthy again.",
   "durationLabel": "6-day journey",
   "themes": [
     "restlessness",
@@ -16,8 +16,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Restlessness breaks when the heart accepts stillness as guidance.",
-    "lifeApplication": "At the threshold, choose better placement before choosing more movement."
+    "shortMeaning": "Roaming ends where holy company cools the mind and body.",
+    "lifeApplication": "Let rest come by better placement, not by another escape."
   },
   "items": [
     {
@@ -57,15 +57,15 @@
     "shabad-patience-ripens-into-honor"
   ],
   "editorial": {
-    "status": "locked",
+    "status": "approved",
     "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings slow the day by moving from scattered motion into listening, company, and inward rest.",
+      "coreClaim": "This path teaches stillness as the fruit of mercy, not as forced emptiness.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "For the mind that keeps mistaking motion for clarity",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Motion loses its glamour when the heart tastes the cooling of true company.",
+      "practicalImplication": "Put down the next search and sit with one line, one breath, and one remembered Name.",
       "bannedOverreach": []
     },
     "scores": {

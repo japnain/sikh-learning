@@ -72,8 +72,8 @@
       "key": "daily",
       "label": "Daily",
       "title": "When worry enters the ordinary hour first",
-      "issueStatement": "The morning begins with small forecasts: the message unanswered, the work unfinished, the person you cannot protect. Anxiety tries to become the weather before the day has even spoken.",
-      "centralInsight": "The first correction is Hukam: bodies, souls, and honor are not suspended from your private vigilance.",
+      "issueStatement": "The morning begins with small forecasts — the message unanswered, the work unfinished, the person you cannot protect. Anxiety tries to become the weather before the day has even spoken.",
+      "centralInsight": "The first correction is Hukam — bodies, souls, and honor are not suspended from your private vigilance.",
       "practicalReflection": "Ordinary worry weakens when the day is received as already inside the Creator’s command, not as raw material the mind must secure alone.",
       "actionPrompt": "Before checking the next signal, pause over the Hukam lines and release one forecast you have been treating as fact.",
       "searchTerms": [
@@ -133,9 +133,9 @@
         "voiceVersion": "sggs-editorial-v3",
         "templateKey": "topic-anxiety:daily",
         "evidence": {
-          "coreClaim": "The first correction is Hukam: bodies, souls, and honor are not suspended from your private vigilance.",
+          "coreClaim": "The first correction is Hukam — bodies, souls, and honor are not suspended from your private vigilance.",
           "emotionalState": "restless, braced, watchful",
-          "turn": "The morning begins with small forecasts: the message unanswered, the work unfinished, the person you cannot protect. Anxiety tries to become the weather before the day has even spoken.",
+          "turn": "The morning begins with small forecasts — the message unanswered, the work unfinished, the person you cannot protect. Anxiety tries to become the weather before the day has even spoken.",
           "practicalImplication": "Before checking the next signal, pause over the Hukam lines and release one forecast you have been treating as fact.",
           "bannedOverreach": []
         },

@@ -134,10 +134,10 @@
     ]
   },
   "editorial": {
-    "status": "locked",
-    "origin": "legacy",
+    "status": "approved",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "shabad:legacy",
+    "templateKey": "shabad:manual",
     "evidence": {
       "coreClaim": "The pauree opens by saying the mind's wandering stops in the company of saints. It then names the true bankers as those whose wealth is the Name and whose patience, honor, and glory ripen from listening well.",
       "emotionalState": "restless, impatient, seeking",

@@ -1,8 +1,8 @@
 {
   "id": "collection-restlessness-to-self-worth-95",
-  "title": "When motion is hiding a wound of worth",
-  "subtitle": "When restlessness is trying to outrun not-enoughness",
-  "description": "These readings uncover the self-doubt underneath constant motion and lead it toward steadier belonging.",
+  "title": "When motion hides a wound of worth",
+  "subtitle": "For the search that is trying to outrun not-enoughness",
+  "description": "These readings uncover the ache beneath constant motion and return worth to grace rather than achievement.",
   "durationLabel": "6-step journey",
   "themes": [
     "restlessness",
@@ -15,8 +15,8 @@
       3899,
       3900
     ],
-    "shortMeaning": "Searching and ritual are not identical with peace.",
-    "lifeApplication": "Do not confuse spiritual activity with inward arrival."
+    "shortMeaning": "The wandering mind often needs mercy’s light before it can stop proving itself.",
+    "lifeApplication": "Do not outrun the ache; bring it where grace can name you without performance."
   },
   "items": [
     {
@@ -58,14 +58,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:journey",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "These readings uncover the self-doubt underneath constant motion and lead it toward steadier belonging.",
+      "coreClaim": "This path reveals restlessness as a way of fleeing a wound in worth.",
       "emotionalState": "wandering, exhausted, seeking",
-      "turn": "When restlessness is trying to outrun not-enoughness",
-      "practicalImplication": "Move through 6 linked steps without dropping the thread.",
+      "turn": "Worth becomes steadier when the heart stops using movement as evidence that it deserves to exist.",
+      "practicalImplication": "Stay still with one prayer long enough to stop earning your place for a moment.",
       "bannedOverreach": []
     },
     "scores": {

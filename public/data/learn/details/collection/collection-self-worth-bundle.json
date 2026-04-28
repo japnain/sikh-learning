@@ -1,8 +1,8 @@
 {
   "id": "collection-self-worth-bundle",
-  "title": "Self-Worth in one shorter sitting",
-  "subtitle": "A shorter sitting for when self-worth is already close",
-  "description": "A short return for the hour when dignity has been outsourced to response and success. It returns worth to grace and belonging.",
+  "title": "Worth held close by grace",
+  "subtitle": "A short return when dignity has been outsourced",
+  "description": "A brief path that brings worth back from response, status, and success into the nearness of the Lord who holds the humble close.",
   "durationLabel": "3-step bundle",
   "themes": [
     "self-worth"
@@ -13,8 +13,8 @@
       37476,
       37477
     ],
-    "shortMeaning": "Praise and nearness belong together in the life of the humble servant.",
-    "lifeApplication": "You do not need status to be held close."
+    "shortMeaning": "The humble servant is cherished by the Lord; nearness is not awarded by status.",
+    "lifeApplication": "Let being held close matter more than being ranked high."
   },
   "items": [
     {
@@ -40,14 +40,14 @@
   ],
   "editorial": {
     "status": "approved",
-    "origin": "generated",
+    "origin": "manual",
     "voiceVersion": "sggs-editorial-v1",
-    "templateKey": "collection:bundle",
+    "templateKey": "collection:manual",
     "evidence": {
-      "coreClaim": "A short return for the hour when dignity has been outsourced to response and success. It returns worth to grace and belonging.",
+      "coreClaim": "This bundle returns dignity to grace and belonging.",
       "emotionalState": "small, unwanted, afraid",
-      "turn": "A shorter sitting for when self-worth is already close",
-      "practicalImplication": "Move through 3 linked steps without dropping the thread.",
+      "turn": "Worth steadies when it is received from nearness, not borrowed from applause.",
+      "practicalImplication": "Refuse one status-check and take one humble step under grace.",
       "bannedOverreach": []
     },
     "scores": {
