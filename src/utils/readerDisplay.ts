@@ -7,6 +7,14 @@ export function renderScriptText(text: string, scriptMode: 'gurmukhi' | 'devanag
   return scriptMode === 'devanagari' ? gurmukhiToHindi(text) : text
 }
 
+export function getScriptTextLang(scriptMode: 'gurmukhi' | 'devanagari'): 'pa-Guru' | 'hi' {
+  return scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'
+}
+
+export function getScriptTextFontClass(scriptMode: 'gurmukhi' | 'devanagari'): 'font-gurmukhi' | 'font-sans' {
+  return scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'
+}
+
 export function formatGurbaniText(
   text: string,
   options: {
