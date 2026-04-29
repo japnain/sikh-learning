@@ -85,18 +85,32 @@ type HomeHeroRevealStyle = CSSProperties & {
   '--home-hero-parallax-x': string
   '--home-hero-landscape-offset': string
   '--home-hero-content-offset': string
+  '--home-hero-content-reserve': string
   '--home-hero-image-lock': string
   '--home-hero-image-scale': string
   '--home-hero-image-y': string
 }
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
+const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 13.75
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
+const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
+
+function getHomeHeroContentOffsetRem(): number {
+  if (typeof window === 'undefined') return HOME_HERO_CONTENT_OFFSET_REM
+
+  const coarsePointer = window.matchMedia('(pointer: coarse)').matches
+  return coarsePointer && window.innerWidth <= 520
+    ? HOME_HERO_MOBILE_CONTENT_OFFSET_REM
+    : HOME_HERO_CONTENT_OFFSET_REM
+}
 
 function useHomeHeroReveal() {
   const rootRef = useRef<HTMLElement | null>(null)
   const landscapeRef = useRef<HTMLSpanElement | null>(null)
   const frameRef = useRef<number | null>(null)
+  const touchStartYRef = useRef<number | null>(null)
+  const touchRevealPxRef = useRef(0)
   const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
   const [style, setStyle] = useState<HomeHeroRevealStyle>({
     '--home-hero-reveal': '0',
@@ -105,6 +119,7 @@ function useHomeHeroReveal() {
     '--home-hero-parallax-x': '0rem',
     '--home-hero-landscape-offset': '0.4rem',
     '--home-hero-content-offset': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
+    '--home-hero-content-reserve': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
     '--home-hero-image-lock': '0px',
     '--home-hero-image-scale': '1',
     '--home-hero-image-y': '0rem',
@@ -114,6 +129,7 @@ function useHomeHeroReveal() {
     frameRef.current = null
     const inverseReveal = 1 - valuesRef.current.reveal
     const scrollY = window.scrollY
+    const contentOffsetRem = getHomeHeroContentOffsetRem()
     const imageLock = scrollY * (0.62 + valuesRef.current.reveal * 0.38)
     const next: HomeHeroRevealStyle = {
       '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
@@ -121,7 +137,8 @@ function useHomeHeroReveal() {
       '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
       '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
       '--home-hero-landscape-offset': '0.4rem',
-      '--home-hero-content-offset': `${(inverseReveal * HOME_HERO_CONTENT_OFFSET_REM).toFixed(3)}rem`,
+      '--home-hero-content-offset': `${(inverseReveal * contentOffsetRem).toFixed(3)}rem`,
+      '--home-hero-content-reserve': `${contentOffsetRem.toFixed(3)}rem`,
       '--home-hero-image-lock': `${imageLock.toFixed(1)}px`,
       '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.12).toFixed(3)}`,
       '--home-hero-image-y': '0rem',
@@ -133,6 +150,7 @@ function useHomeHeroReveal() {
       && current['--home-hero-parallax-x'] === next['--home-hero-parallax-x']
       && current['--home-hero-landscape-offset'] === next['--home-hero-landscape-offset']
       && current['--home-hero-content-offset'] === next['--home-hero-content-offset']
+      && current['--home-hero-content-reserve'] === next['--home-hero-content-reserve']
       && current['--home-hero-image-lock'] === next['--home-hero-image-lock']
       && current['--home-hero-image-scale'] === next['--home-hero-image-scale']
       && current['--home-hero-image-y'] === next['--home-hero-image-y']
@@ -146,10 +164,13 @@ function useHomeHeroReveal() {
     frameRef.current = window.requestAnimationFrame(applyStyle)
   }, [applyStyle])
 
-  const updateReveal = useCallback(() => {
-    const root = rootRef.current
-    const rootTop = root?.getBoundingClientRect().top ?? 0
-    const rawReveal = Math.max(0, Math.min(1, -rootTop / HOME_HERO_REVEAL_DISTANCE_PX))
+  const updateReveal = useCallback((gestureRevealPx = touchRevealPxRef.current) => {
+    const scrollY = window.scrollY
+    if (scrollY > 4) {
+      touchRevealPxRef.current = 0
+    }
+    const progressPx = scrollY + (scrollY <= 4 ? gestureRevealPx : 0)
+    const rawReveal = Math.max(0, Math.min(1, progressPx / HOME_HERO_REVEAL_DISTANCE_PX))
     valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 1.45)
     scheduleStyle()
   }, [scheduleStyle])
@@ -165,11 +186,12 @@ function useHomeHeroReveal() {
     }
 
     updateReveal()
+    const handleScroll = () => updateReveal()
     const handleResize = () => updateReveal()
-    window.addEventListener('scroll', updateReveal, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('scroll', updateReveal)
+      window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current)
@@ -199,7 +221,31 @@ function useHomeHeroReveal() {
     const touch = event.touches[0]
     if (!touch) return
     updatePointer(touch.clientX, touch.clientY, event.currentTarget)
-  }, [updatePointer])
+    if (touchStartYRef.current === null) return
+
+    const dragDistance = Math.max(0, touchStartYRef.current - touch.clientY)
+    if (window.scrollY <= 4 && dragDistance > 2) {
+      touchRevealPxRef.current = Math.min(dragDistance * 1.2, HOME_HERO_TOUCH_REVEAL_DISTANCE_PX)
+      updateReveal(touchRevealPxRef.current)
+      return
+    }
+
+    window.requestAnimationFrame(() => updateReveal())
+  }, [updatePointer, updateReveal])
+
+  const handleTouchStart = useCallback((event: ReactTouchEvent<HTMLElement>) => {
+    const touch = event.touches[0]
+    touchStartYRef.current = touch?.clientY ?? null
+    touchRevealPxRef.current = 0
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    touchStartYRef.current = null
+    if (window.scrollY > 4) {
+      touchRevealPxRef.current = 0
+    }
+    window.requestAnimationFrame(() => updateReveal())
+  }, [updateReveal])
 
   return {
     rootRef,
@@ -207,7 +253,9 @@ function useHomeHeroReveal() {
     style,
     handlePointerMove,
     handlePointerLeave,
+    handleTouchStart,
     handleTouchMove,
+    handleTouchEnd,
   }
 }
 
@@ -879,6 +927,10 @@ export default function Home() {
         style={homeHeroReveal.style}
         onPointerMove={homeHeroReveal.handlePointerMove}
         onPointerLeave={homeHeroReveal.handlePointerLeave}
+        onTouchStart={homeHeroReveal.handleTouchStart}
+        onTouchMove={homeHeroReveal.handleTouchMove}
+        onTouchEnd={homeHeroReveal.handleTouchEnd}
+        onTouchCancel={homeHeroReveal.handleTouchEnd}
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
