@@ -9,6 +9,8 @@ import { resolveLineReference } from "../../utils/learnExperience"
 import { buildLearnDetailPath, LEARN_DETAIL_RAILS } from "../../utils/learnRails"
 import LearnDetailShell from "./LearnDetailShell"
 import CitationLine from "./components/CitationLine"
+import { useLanguageStore } from "../../store/language"
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from "../../utils/readerDisplay"
 
 const LEARN_ANCHOR_OFFSET_CLASS = "scroll-mt-32 md:scroll-mt-36"
 
@@ -53,6 +55,7 @@ function MissingTopicDetail({
 }
 
 export default function TopicDetailPage() {
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const { topicId } = useParams<{ topicId: string }>()
   const [searchParams] = useSearchParams()
   const { catalog, error: catalogError, status: catalogStatus } = useLearnCatalog()
@@ -170,8 +173,8 @@ export default function TopicDetailPage() {
               <div className="mt-3 space-y-3">
                 {resolved.lines.map(line => (
                   <div key={line.verseId} className="reader-divider pb-3 last:pb-0">
-                    <p lang="pa-Guru" className="font-gurmukhi text-[1.65rem] leading-9 text-ink dark:text-dark-text">
-                      {line.gurmukhi}
+                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-[1.65rem] leading-9 text-ink dark:text-dark-text`}>
+                      {renderScriptText(line.gurmukhi, scriptMode)}
                     </p>
                     <p className="mt-2 font-sans text-xs leading-6 text-ink/55 dark:text-dark-text/55">
                       {line.transliteration}
