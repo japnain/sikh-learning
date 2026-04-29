@@ -9,6 +9,8 @@ import {
   useNitemStore,
 } from '../store/nitnem'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { useLanguageStore } from '../store/language'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 
 function SettingsBlock({
@@ -56,6 +58,7 @@ export default function NitnemCustomizePanel() {
     resetIfNewDay,
   } = useNitemStore()
   const sundarGutkaLengths = useSundarGutkaLengthStore(state => state.lengths)
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const [confirmingReset, setConfirmingReset] = useState(false)
   const resetConfirmRef = useRef<number | null>(null)
 
@@ -148,8 +151,8 @@ export default function NitnemCustomizePanel() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed">
-                        {option.gurmukhiTitle}
+                      <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed`}>
+                        {renderScriptText(option.gurmukhiTitle, scriptMode)}
                       </p>
                       <span className="rounded-full bg-ink/5 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-ink/55 dark:bg-white/10 dark:text-dark-text/60">
                         {option.group}
@@ -236,8 +239,8 @@ export default function NitnemCustomizePanel() {
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed">
-                              {option.gurmukhiTitle}
+                            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed`}>
+                              {renderScriptText(option.gurmukhiTitle, scriptMode)}
                             </p>
                             <p className={`mt-1 font-sans text-xs font-semibold ${selected ? 'text-ink/75 dark:text-dark-text/75' : 'text-ink/70 dark:text-dark-text/75'}`}>
                               {option.romanizedTitle}
@@ -332,8 +335,8 @@ export default function NitnemCustomizePanel() {
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p lang="pa-Guru" className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text">
-                          {option.gurmukhiTitle}
+                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}>
+                          {renderScriptText(option.gurmukhiTitle, scriptMode)}
                         </p>
                         <p className="mt-1 font-sans text-xs font-semibold text-ink/70 dark:text-dark-text/75">
                           {option.romanizedTitle}

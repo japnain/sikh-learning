@@ -102,7 +102,7 @@ describe('Library bookmarks section', () => {
 
     const learnSavesSection = await screen.findByTestId('library-learn-saves')
     expect(within(learnSavesSection).getByText('Learn Saves')).toBeInTheDocument()
-    expect(await within(learnSavesSection).findByText('When the mind is anxious')).toBeInTheDocument()
+    expect(await within(learnSavesSection).findByText('When worry must remember who is carrying the breath')).toBeInTheDocument()
 
     fireEvent.click(screen.getByLabelText('Remove saved Learn item'))
 
@@ -173,7 +173,7 @@ describe('Library bookmarks section', () => {
     expect(screen.getByRole('status')).toHaveTextContent(/Learn save added to Saved/i)
     const learnMetric = within(screen.getByTestId('library-snapshot')).getByText('1')
     expect(learnMetric.closest('.saved-feedback-highlight')).not.toBeNull()
-    expect((await screen.findByText('When the mind is anxious')).closest('.saved-feedback-highlight')).not.toBeNull()
+    expect((await screen.findByText('When worry must remember who is carrying the breath')).closest('.saved-feedback-highlight')).not.toBeNull()
   })
 })
 

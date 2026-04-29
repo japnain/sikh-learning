@@ -3,7 +3,7 @@ import { getWordFamilyForWord } from '../data/wordFamilies'
 import useMilestoneCheck from '../hooks/useMilestoneCheck'
 import { useLanguageStore } from '../store/language'
 import { useVocabStore } from '../store/vocab'
-import { renderScriptText } from '../utils/readerDisplay'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { useBanidbKosh } from '../hooks/useBanidbKosh'
 import { useMahanKosh } from '../hooks/useMahanKosh'
 import { buildMahanKoshUrl } from '../utils/wordLookup'
@@ -95,7 +95,7 @@ export default function WordPopover({
             <p className="font-sans text-ink/70 dark:text-dark-text/70 text-sm mb-4 leading-relaxed">{word.meaning_hi}</p>
           )}
           {meaningLanguage === 'pa' && word.meaning_pa && (
-            <p lang="pa-Guru" className="font-gurmukhi text-ink/70 dark:text-dark-text/70 text-sm mb-4 leading-relaxed">{word.meaning_pa}</p>
+            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-ink/70 dark:text-dark-text/70 text-sm mb-4 leading-relaxed`}>{renderScriptText(word.meaning_pa, scriptMode)}</p>
           )}
 
           {wordFamily ? (
@@ -104,7 +104,7 @@ export default function WordPopover({
                 Word Family
               </p>
               <p className="mt-2 font-sans text-sm text-ink dark:text-dark-text">
-                This word is in the <span lang="pa-Guru" className="font-gurmukhi">{wordFamily.root}</span> family.
+                This word is in the <span lang={getScriptTextLang(scriptMode)} className={getScriptTextFontClass(scriptMode)}>{renderScriptText(wordFamily.root, scriptMode)}</span> family.
               </p>
               <p className="mt-2 font-sans text-sm text-ink/60 dark:text-dark-text/60">
                 Root meaning: {wordFamily.rootMeaning}

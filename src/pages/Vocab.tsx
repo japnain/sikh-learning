@@ -4,7 +4,7 @@ import { useCurrentTime } from '../hooks/useCurrentTime'
 import { useVocabStore } from '../store/vocab'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
-import { renderScriptText } from '../utils/readerDisplay'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import type { UiLocale, VocabEntry } from '../types'
 
 type Mode = 'list' | 'flashcard' | 'review'
@@ -173,7 +173,7 @@ export default function Vocab() {
         <section className="hero-surface p-6 text-center" aria-labelledby="vocab-empty-title" data-testid="vocab-empty-state">
           <p className="eyebrow">{copy.savedShelfEyebrow}</p>
           <h1 id="vocab-empty-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">{copy.title}</h1>
-          <p lang="pa-Guru" className="mt-6 font-gurmukhi text-5xl text-ink/20 dark:text-dark-text/20">ਸ਼ਬਦ</p>
+          <p lang={getScriptTextLang(scriptMode)} className={`mt-6 ${getScriptTextFontClass(scriptMode)} text-5xl text-ink/20 dark:text-dark-text/20`}>{renderScriptText('ਸ਼ਬਦ', scriptMode)}</p>
           <p className="mt-4 font-sans text-base font-semibold text-ink dark:text-dark-text">{copy.emptyTitle}</p>
           <p className="mt-3 font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">{copy.emptyBody}</p>
         </section>
@@ -275,7 +275,7 @@ export default function Vocab() {
                     <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{activeCard.meaning_hi}</p>
                   )}
                   {meaningLanguage === 'pa' && activeCard.meaning_pa && (
-                    <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink/72 dark:text-dark-text/74 mt-1">{activeCard.meaning_pa}</p>
+                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/72 dark:text-dark-text/74 mt-1`}>{renderScriptText(activeCard.meaning_pa, scriptMode)}</p>
                   )}
                   <p className="font-sans text-xs text-gold dark:text-gold-light mt-3">
                     {activeCard.context?.scripture ?? activeCard.scripture}
@@ -349,7 +349,7 @@ export default function Vocab() {
                     <p className="font-sans text-xs text-ink/66 dark:text-dark-text/68">{entry.meaning_hi}</p>
                   )}
                   {meaningLanguage === 'pa' && entry.meaning_pa && (
-                    <p lang="pa-Guru" className="font-gurmukhi text-xs text-ink/66 dark:text-dark-text/68">{entry.meaning_pa}</p>
+                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xs text-ink/66 dark:text-dark-text/68`}>{renderScriptText(entry.meaning_pa, scriptMode)}</p>
                   )}
                   <p className="font-sans text-[10px] text-saffron dark:text-saffron-light mt-1">
                     {(entry.kind ?? 'word') === 'phrase' ? copy.phraseReview : copy.wordReview}

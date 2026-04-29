@@ -7,6 +7,8 @@ import {
   type AmritKeertanShabad,
 } from '../api/banidb'
 import { IconArrowLeft, IconArrowRight, IconSearch } from '../components/icons'
+import { useLanguageStore } from '../store/language'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 
 const AMRIT_KEERTAN_SECTION_COUNT = 113
 
@@ -155,6 +157,7 @@ function getCompactMeta(shabad: AmritKeertanShabad): string[] {
 }
 
 export default function AmritKeertan() {
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const navigate = useNavigate()
   const { headerId } = useParams()
   const selectedHeaderId = headerId ? Number(headerId) : null
@@ -364,8 +367,8 @@ export default function AmritKeertan() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="eyebrow">Keertan Section</p>
-                    <p lang="pa-Guru" className="mt-2 font-gurmukhi text-3xl leading-relaxed text-ink dark:text-dark-text">
-                      {selectedHeader.gurmukhi}
+                    <p lang={getScriptTextLang(scriptMode)} className={`mt-2 ${getScriptTextFontClass(scriptMode)} text-3xl leading-relaxed text-ink dark:text-dark-text`}>
+                      {renderScriptText(selectedHeader.gurmukhi, scriptMode)}
                     </p>
                     {selectedHeader.transliteration ? (
                       <p className="mt-2 font-sans text-sm italic text-ink/60 dark:text-dark-text/70">
@@ -494,8 +497,8 @@ export default function AmritKeertan() {
                               <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-dark dark:text-gold-light">
                                 {shabad.amritPageNo ? `AK Page ${shabad.amritPageNo}` : 'AK Page unknown'} · Item {bookPosition} of {selectedShabads.length}
                               </p>
-                              <p lang="pa-Guru" className="font-gurmukhi text-xl leading-relaxed text-ink dark:text-dark-text">
-                                {shabad.gurmukhi}
+                              <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl leading-relaxed text-ink dark:text-dark-text`}>
+                                {renderScriptText(shabad.gurmukhi, scriptMode)}
                               </p>
                               {shabad.transliteration ? (
                                 <p className="mt-2 font-sans text-sm italic text-ink/60 dark:text-dark-text/75">
@@ -593,8 +596,8 @@ export default function AmritKeertan() {
                       <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                         Section {sectionIndex + 1}
                       </p>
-                      <p lang="pa-Guru" className="mt-2 font-gurmukhi text-xl leading-relaxed text-ink dark:text-dark-text">
-                        {header.gurmukhi}
+                      <p lang={getScriptTextLang(scriptMode)} className={`mt-2 ${getScriptTextFontClass(scriptMode)} text-xl leading-relaxed text-ink dark:text-dark-text`}>
+                        {renderScriptText(header.gurmukhi, scriptMode)}
                       </p>
                       {header.transliteration ? (
                         <p className="mt-2 font-sans text-sm italic text-ink/60 dark:text-dark-text/75">

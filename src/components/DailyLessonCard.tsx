@@ -4,6 +4,8 @@ import { useLearningStore } from '../store/learning'
 import { useVocabStore } from '../store/vocab'
 import { toLocalDayStamp } from '../utils/learnDates'
 import useMilestoneCheck from '../hooks/useMilestoneCheck'
+import { useLanguageStore } from '../store/language'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 
 interface Props {
   lesson: DailyLesson
@@ -24,6 +26,7 @@ export default function DailyLessonCard({
   onOpenModule,
   onOpenStudy,
 }: Props) {
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const reviewWord = useVocabStore(state => state.reviewWord)
   const recordPracticeSession = useLearningStore(state => state.recordPracticeSession)
   const lastPracticedOn = useLearningStore(state => state.lastPracticedOn)
@@ -129,8 +132,11 @@ export default function DailyLessonCard({
             {currentStep.body}
           </p>
           {currentStep.gurmukhi ? (
-            <p lang="pa-Guru" className="mt-4 font-gurmukhi text-2xl leading-relaxed text-ink dark:text-dark-text">
-              {currentStep.gurmukhi}
+            <p
+              lang={getScriptTextLang(scriptMode)}
+              className={`mt-4 ${getScriptTextFontClass(scriptMode)} text-2xl leading-relaxed text-ink dark:text-dark-text`}
+            >
+              {renderScriptText(currentStep.gurmukhi, scriptMode)}
             </p>
           ) : null}
           {currentStep.transliteration ? (

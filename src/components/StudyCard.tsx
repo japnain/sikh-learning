@@ -2,7 +2,7 @@ import { useMemo, useState, type MouseEvent, type ReactNode } from 'react'
 import type { ScriptureEntry, ScriptureLine, ScriptureVisraamMarker, Word } from '../types'
 import { useLanguageStore } from '../store/language'
 import { useLocaleStore } from '../store/locale'
-import { formatGurbaniText, formatGurbaniWord, getLineMeaningText } from '../utils/readerDisplay'
+import { formatGurbaniText, formatGurbaniWord, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { getHindiSourceLabels, getPunjabiSourceLabels, getVisraamSourceLabels } from '../utils/translations'
 import WordPopover from './WordPopover'
 import AudioPlayer from './AudioPlayer'
@@ -258,8 +258,8 @@ export default function StudyCard({
                     )}
                     {introMeaning && (
                       meaningLanguage === 'pa' ? (
-                        <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
-                          {introMeaning}
+                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
+                          {renderScriptText(introMeaning, scriptMode)}
                         </p>
                       ) : (
                         <p className={`font-sans text-sm text-ink/75 dark:text-dark-text/75 mt-2 leading-relaxed ${meaningAlignmentClass}`}>
@@ -335,8 +335,8 @@ export default function StudyCard({
 
                     {meaningText && (
                       meaningLanguage === 'pa' ? (
-                        <p lang="pa-Guru" className={`font-gurmukhi text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
-                          {meaningText}
+                        <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink/75 dark:text-dark-text/75 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
+                          {renderScriptText(meaningText, scriptMode)}
                         </p>
                       ) : (
                         <p className={`font-sans text-sm text-ink/85 dark:text-dark-text/85 mt-3 leading-relaxed ${meaningAlignmentClass}`}>
@@ -474,8 +474,8 @@ export default function StudyCard({
                               </ReaderChip>
                               {sourceKey === punjabiSource ? <ReaderChip active>Selected</ReaderChip> : null}
                             </div>
-                            <p lang="pa-Guru" className="font-gurmukhi text-sm leading-relaxed text-ink dark:text-dark-text">
-                              {text}
+                            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm leading-relaxed text-ink dark:text-dark-text`}>
+                              {renderScriptText(text, scriptMode)}
                             </p>
                           </div>
                         ))}
