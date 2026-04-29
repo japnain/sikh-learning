@@ -90,14 +90,13 @@ type HomeHeroRevealStyle = CSSProperties & {
   '--home-hero-image-y': string
 }
 
-const HOME_HERO_CONTENT_OFFSET_REM = 36
-const HOME_HERO_REVEAL_DISTANCE_PX = 250
+const HOME_HERO_CONTENT_OFFSET_REM = 8.5
+const HOME_HERO_REVEAL_DISTANCE_PX = 380
 
 function useHomeHeroReveal() {
   const rootRef = useRef<HTMLElement | null>(null)
   const landscapeRef = useRef<HTMLSpanElement | null>(null)
   const frameRef = useRef<number | null>(null)
-  const initialLandscapeTopRef = useRef<number | null>(null)
   const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
   const [style, setStyle] = useState<HomeHeroRevealStyle>({
     '--home-hero-reveal': '0',
@@ -115,10 +114,7 @@ function useHomeHeroReveal() {
     frameRef.current = null
     const inverseReveal = 1 - valuesRef.current.reveal
     const scrollY = window.scrollY
-    if (scrollY < 2 || initialLandscapeTopRef.current === null) {
-      initialLandscapeTopRef.current = landscapeRef.current?.getBoundingClientRect().top ?? 0
-    }
-    const imageLock = Math.max(0, scrollY - initialLandscapeTopRef.current)
+    const imageLock = scrollY * (0.62 + valuesRef.current.reveal * 0.38)
     const next: HomeHeroRevealStyle = {
       '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
       '--home-hero-pointer-x': valuesRef.current.pointerX.toFixed(3),
@@ -154,7 +150,7 @@ function useHomeHeroReveal() {
     const root = rootRef.current
     const rootTop = root?.getBoundingClientRect().top ?? 0
     const rawReveal = Math.max(0, Math.min(1, -rootTop / HOME_HERO_REVEAL_DISTANCE_PX))
-    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 1.85)
+    valuesRef.current.reveal = 1 - Math.pow(1 - rawReveal, 1.45)
     scheduleStyle()
   }, [scheduleStyle])
 
@@ -169,10 +165,7 @@ function useHomeHeroReveal() {
     }
 
     updateReveal()
-    const handleResize = () => {
-      initialLandscapeTopRef.current = null
-      updateReveal()
-    }
+    const handleResize = () => updateReveal()
     window.addEventListener('scroll', updateReveal, { passive: true })
     window.addEventListener('resize', handleResize)
     return () => {
