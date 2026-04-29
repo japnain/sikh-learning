@@ -92,15 +92,14 @@ type HomeHeroRevealStyle = CSSProperties & {
 }
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
-const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 13.75
+const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
 const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
 
 function getHomeHeroContentOffsetRem(): number {
   if (typeof window === 'undefined') return HOME_HERO_CONTENT_OFFSET_REM
 
-  const coarsePointer = window.matchMedia('(pointer: coarse)').matches
-  return coarsePointer && window.innerWidth <= 520
+  return window.innerWidth <= 560
     ? HOME_HERO_MOBILE_CONTENT_OFFSET_REM
     : HOME_HERO_CONTENT_OFFSET_REM
 }
@@ -112,17 +111,20 @@ function useHomeHeroReveal() {
   const touchStartYRef = useRef<number | null>(null)
   const touchRevealPxRef = useRef(0)
   const valuesRef = useRef({ reveal: 0, pointerX: 0, pointerY: 0 })
-  const [style, setStyle] = useState<HomeHeroRevealStyle>({
-    '--home-hero-reveal': '0',
-    '--home-hero-pointer-x': '0',
-    '--home-hero-pointer-y': '0',
-    '--home-hero-parallax-x': '0rem',
-    '--home-hero-landscape-offset': '0.4rem',
-    '--home-hero-content-offset': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
-    '--home-hero-content-reserve': `${HOME_HERO_CONTENT_OFFSET_REM}rem`,
-    '--home-hero-image-lock': '0px',
-    '--home-hero-image-scale': '1',
-    '--home-hero-image-y': '0rem',
+  const [style, setStyle] = useState<HomeHeroRevealStyle>(() => {
+    const contentOffsetRem = getHomeHeroContentOffsetRem()
+    return {
+      '--home-hero-reveal': '0',
+      '--home-hero-pointer-x': '0',
+      '--home-hero-pointer-y': '0',
+      '--home-hero-parallax-x': '0rem',
+      '--home-hero-landscape-offset': '0.4rem',
+      '--home-hero-content-offset': `${contentOffsetRem}rem`,
+      '--home-hero-content-reserve': `${contentOffsetRem}rem`,
+      '--home-hero-image-lock': '0px',
+      '--home-hero-image-scale': '1',
+      '--home-hero-image-y': '0rem',
+    }
   })
 
   const applyStyle = useCallback(() => {
