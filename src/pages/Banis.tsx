@@ -10,6 +10,7 @@ import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, S
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { resolveAsyncIssue } from '../qa/async'
 import { useRecentSearchStore } from '../store/recentSearch'
+import { useLanguageStore } from '../store/language'
 import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS } from '../store/nitnem'
 import type { AsyncIssueCode, SearchMode } from '../types'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
@@ -32,6 +33,7 @@ import {
   type SearchSource,
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 
 type Scripture = 'SGGS' | 'DG'
 type ExactBani = Bani & { baniDbId: number }
@@ -366,6 +368,7 @@ function getSearchIssueCopy(issue: AsyncIssueCode) {
 }
 
 export default function Banis() {
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -898,7 +901,7 @@ export default function Banis() {
                   onClick={() => openSearchResult(r)}
                   className="w-full text-left"
                 >
-                  <p lang="pa-Guru" className="font-gurmukhi text-sm text-ink dark:text-dark-text"><SearchHighlight text={r.gurmukhi} query={searchQuery.trim()} /></p>
+                  <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink dark:text-dark-text`}><SearchHighlight text={renderScriptText(r.gurmukhi, scriptMode)} query={searchQuery.trim()} /></p>
                   <p className="font-sans text-xs text-ink/50 dark:text-dark-text/50 mt-0.5"><SearchHighlight text={r.transliteration} query={searchQuery.trim()} /></p>
                   <p className="font-sans text-xs text-ink/40 dark:text-dark-text/40 mt-0.5"><SearchHighlight text={r.translation_en} query={searchQuery.trim()} /></p>
                 </button>
@@ -981,7 +984,7 @@ export default function Banis() {
           aria-controls="banis-sundar-gutka-panel"
         >
           <div className="text-left">
-            <p className="font-sans font-semibold text-base text-saffron dark:text-saffron-light">ਸੁੰਦਰ ਗੁਟਕਾ · Sundar Gutka</p>
+            <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} font-semibold text-base text-saffron dark:text-saffron-light`}>{renderScriptText('ਸੁੰਦਰ ਗੁਟਕਾ', scriptMode)} · Sundar Gutka</p>
           </div>
           <span className="icon-surface h-8 w-8 text-saffron dark:text-gold-light">{expanded['sundar-gutka'] ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}</span>
         </button>
@@ -1014,10 +1017,10 @@ export default function Banis() {
                           return routeOptions.map(option => (
                             <IndexRow
                               key={`${item.id}-${option.id}`}
-                              label={option.gurmukhiTitle}
+                              label={renderScriptText(option.gurmukhiTitle, scriptMode)}
                               detail={option.romanizedTitle}
-                              labelLang="pa-Guru"
-                              labelClassName="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text"
+                              labelLang={getScriptTextLang(scriptMode)}
+                              labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
                               detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
                               onClick={() => navigate(buildNitnemStudyPath(option))}
                             />
@@ -1029,10 +1032,10 @@ export default function Banis() {
                         return (
                           <IndexRow
                             key={item.id}
-                            label={displayCopy.label}
+                            label={renderScriptText(displayCopy.label, scriptMode)}
                             detail={displayCopy.detail}
-                            labelLang="pa-Guru"
-                            labelClassName="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text"
+                            labelLang={getScriptTextLang(scriptMode)}
+                            labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
                             detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
                             onClick={() => openSundarGutkaBani(item)}
                           />

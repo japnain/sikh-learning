@@ -1,5 +1,7 @@
 import { createPortal } from 'react-dom'
 import type { Milestone } from '../types'
+import { useLanguageStore } from '../store/language'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 
 interface Props {
   milestone: Milestone
@@ -7,6 +9,7 @@ interface Props {
 }
 
 export default function MilestoneCelebration({ milestone, onDismiss }: Props) {
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   if (typeof document === 'undefined') {
     return null
   }
@@ -30,8 +33,11 @@ export default function MilestoneCelebration({ milestone, onDismiss }: Props) {
       >
         <p className="eyebrow">Milestone Earned</p>
         {milestone.gurmukhi ? (
-          <p lang="pa-Guru" className="mt-4 font-gurmukhi text-4xl leading-tight text-ink dark:text-dark-text">
-            {milestone.gurmukhi}
+          <p
+            lang={getScriptTextLang(scriptMode)}
+            className={`mt-4 ${getScriptTextFontClass(scriptMode)} text-4xl leading-tight text-ink dark:text-dark-text`}
+          >
+            {renderScriptText(milestone.gurmukhi, scriptMode)}
           </p>
         ) : null}
         <h2 className="mt-4 font-display text-3xl leading-none text-ink dark:text-dark-text">

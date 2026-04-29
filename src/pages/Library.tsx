@@ -8,6 +8,7 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
+import { useLanguageStore } from '../store/language'
 import { useLearningStore } from '../store/learning'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import useLearnCatalog from '../hooks/useLearnCatalog'
@@ -17,6 +18,7 @@ import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
   IconBookmarkFilled,
   IconChevronDown,
@@ -48,6 +50,7 @@ function formatSessionReference(scriptureId: string): string {
 
 export default function Library() {
   const locale = useLocaleStore(s => s.locale)
+  const scriptMode = useLanguageStore(state => state.scriptMode)
   const copy = getUiCopy(locale)
   const editorial = getEditorialCopy(locale)
   const libraryCopy = copy.library
@@ -436,8 +439,11 @@ export default function Library() {
                 <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
                   {entry!.scripture}
                 </p>
-                <p className="font-gurmukhi text-lg leading-relaxed text-ink dark:text-dark-text mt-2 line-clamp-2">
-                  {entry!.gurmukhi}
+                <p
+                  lang={getScriptTextLang(scriptMode)}
+                  className={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text mt-2 line-clamp-2`}
+                >
+                  {renderScriptText(entry!.gurmukhi, scriptMode)}
                 </p>
               </Link>
             ))}
