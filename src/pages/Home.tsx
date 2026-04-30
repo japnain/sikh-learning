@@ -132,6 +132,11 @@ function useHomeHeroReveal() {
     const inverseReveal = 1 - valuesRef.current.reveal
     const scrollY = window.scrollY
     const contentOffsetRem = getHomeHeroContentOffsetRem()
+    const revealedContentOffsetRem = contentOffsetRem === HOME_HERO_MOBILE_CONTENT_OFFSET_REM
+      ? HOME_HERO_CONTENT_OFFSET_REM
+      : 0
+    const currentContentOffsetRem = revealedContentOffsetRem
+      + (inverseReveal * (contentOffsetRem - revealedContentOffsetRem))
     const imageLock = scrollY * (0.62 + valuesRef.current.reveal * 0.38)
     const next: HomeHeroRevealStyle = {
       '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
@@ -139,8 +144,8 @@ function useHomeHeroReveal() {
       '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
       '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
       '--home-hero-landscape-offset': '0.4rem',
-      '--home-hero-content-offset': `${(inverseReveal * contentOffsetRem).toFixed(3)}rem`,
-      '--home-hero-content-reserve': `${contentOffsetRem.toFixed(3)}rem`,
+      '--home-hero-content-offset': `${currentContentOffsetRem.toFixed(3)}rem`,
+      '--home-hero-content-reserve': `${currentContentOffsetRem.toFixed(3)}rem`,
       '--home-hero-image-lock': `${imageLock.toFixed(1)}px`,
       '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.12).toFixed(3)}`,
       '--home-hero-image-y': '0rem',

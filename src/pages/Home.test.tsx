@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
@@ -217,6 +217,38 @@ test('composes the opening hero around the hukamnama CTA without the old action 
   expect(within(room).getByTestId('home-hero-primary-action')).toHaveAttribute('href', '/study?hukamnamaDate=2026-04-11')
   expect(within(room).queryByTestId('home-guidance-hero')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
+})
+
+test('keeps the mobile reveal card low while closing the space beneath it', async () => {
+  const originalInnerWidth = window.innerWidth
+  Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: 393 })
+  Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 })
+
+  try {
+    renderHome()
+
+    await act(async () => {
+      vi.advanceTimersByTime(20)
+    })
+
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 160 })
+
+    await act(async () => {
+      window.dispatchEvent(new Event('scroll'))
+      vi.advanceTimersByTime(20)
+    })
+
+    const hero = screen.getByTestId('home-hero')
+    const contentOffset = hero.style.getPropertyValue('--home-hero-content-offset')
+    const contentReserve = hero.style.getPropertyValue('--home-hero-content-reserve')
+
+    expect(contentReserve).toBe(contentOffset)
+    expect(parseFloat(contentOffset)).toBeGreaterThan(8.5)
+    expect(parseFloat(contentOffset)).toBeLessThan(16.25)
+  } finally {
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 })
+    Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: originalInnerWidth })
+  }
 })
 
 test('renders the same daily guidance item that Learn resolves for the day', async () => {
