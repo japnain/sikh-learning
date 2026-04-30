@@ -243,8 +243,8 @@ test('keeps the mobile reveal card low while closing the space beneath it', asyn
     const contentReserve = hero.style.getPropertyValue('--home-hero-content-reserve')
 
     expect(contentReserve).toBe(contentOffset)
-    expect(parseFloat(contentOffset)).toBeGreaterThan(8.5)
-    expect(parseFloat(contentOffset)).toBeLessThan(16.25)
+    expect(parseFloat(contentOffset)).toBeGreaterThan(15.75)
+    expect(parseFloat(contentOffset)).toBeLessThan(18.75)
   } finally {
     Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 })
     Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: originalInnerWidth })
