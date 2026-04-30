@@ -92,8 +92,9 @@ type HomeHeroRevealStyle = CSSProperties & {
 }
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
-const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 18.75
-const HOME_HERO_MOBILE_REVEALED_CONTENT_OFFSET_REM = 15.75
+const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
+const HOME_HERO_MOBILE_SCROLL_COMPENSATION = 0.45
+const HOME_HERO_MOBILE_MAX_SCROLL_COMPENSATION_REM = 7
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
 const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
 
@@ -133,11 +134,17 @@ function useHomeHeroReveal() {
     const inverseReveal = 1 - valuesRef.current.reveal
     const scrollY = window.scrollY
     const contentOffsetRem = getHomeHeroContentOffsetRem()
-    const revealedContentOffsetRem = contentOffsetRem === HOME_HERO_MOBILE_CONTENT_OFFSET_REM
-      ? HOME_HERO_MOBILE_REVEALED_CONTENT_OFFSET_REM
+    const isMobileHero = contentOffsetRem === HOME_HERO_MOBILE_CONTENT_OFFSET_REM
+    const rootFontSizePx = parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16
+    const mobileScrollCompensationRem = isMobileHero
+      ? Math.min(
+        (scrollY * HOME_HERO_MOBILE_SCROLL_COMPENSATION) / rootFontSizePx,
+        HOME_HERO_MOBILE_MAX_SCROLL_COMPENSATION_REM
+      )
       : 0
-    const currentContentOffsetRem = revealedContentOffsetRem
-      + (inverseReveal * (contentOffsetRem - revealedContentOffsetRem))
+    const currentContentOffsetRem = isMobileHero
+      ? contentOffsetRem + mobileScrollCompensationRem
+      : inverseReveal * contentOffsetRem
     const imageLock = scrollY * (0.62 + valuesRef.current.reveal * 0.38)
     const next: HomeHeroRevealStyle = {
       '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
