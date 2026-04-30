@@ -3361,6 +3361,6 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .
   }
 
   .home-door-content {
-    transform: none;
+    transform: translateY(var(--home-hero-content-offset));
   }
 }
