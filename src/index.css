@@ -2781,7 +2781,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   padding:
     clamp(12.2rem, 30vh, 14.7rem)
     max(1.25rem, calc(var(--safe-area-right) + 1.25rem))
-    calc(1.1rem + var(--home-hero-content-reserve))
+    calc(1.1rem + var(--home-hero-content-offset))
     max(1.25rem, calc(var(--safe-area-left) + 1.25rem));
 }
 
@@ -3298,7 +3298,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .
     margin-left: -1rem;
     padding-top: clamp(10.5rem, 28vh, 12.8rem);
     padding-right: max(1rem, calc(var(--safe-area-right) + 1rem));
-    padding-bottom: calc(1rem + var(--home-hero-content-reserve));
+    padding-bottom: calc(1rem + var(--home-hero-content-offset));
     padding-left: max(1rem, calc(var(--safe-area-left) + 1rem));
   }
 
