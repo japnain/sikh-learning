@@ -92,7 +92,8 @@ type HomeHeroRevealStyle = CSSProperties & {
 }
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
-const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
+const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 18.75
+const HOME_HERO_MOBILE_REVEALED_CONTENT_OFFSET_REM = 15.75
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
 const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
 
@@ -133,7 +134,7 @@ function useHomeHeroReveal() {
     const scrollY = window.scrollY
     const contentOffsetRem = getHomeHeroContentOffsetRem()
     const revealedContentOffsetRem = contentOffsetRem === HOME_HERO_MOBILE_CONTENT_OFFSET_REM
-      ? HOME_HERO_CONTENT_OFFSET_REM
+      ? HOME_HERO_MOBILE_REVEALED_CONTENT_OFFSET_REM
       : 0
     const currentContentOffsetRem = revealedContentOffsetRem
       + (inverseReveal * (contentOffsetRem - revealedContentOffsetRem))
