@@ -245,8 +245,8 @@ export default function StudyCard({
                 return (
                   <div key={`intro-${line.verseId}-${index}`}>
                     <p
-                      lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                      className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
+                      lang={getScriptTextLang(scriptMode)}
+                      className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
                       style={{ fontSize: `${fontSize}px` }}
                     >
                       {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: line.larivaar })}
@@ -303,8 +303,8 @@ export default function StudyCard({
 
                     {larivaar ? (
                       <p
-                        lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                        className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
+                        lang={getScriptTextLang(scriptMode)}
+                        className={`${getScriptTextFontClass(scriptMode)} text-ink dark:text-dark-text ${lineSpacingClass} ${meaningAlignmentClass}`}
                         style={{ fontSize: `${fontSize}px` }}
                       >
                         {formatGurbaniText(line.gurmukhi, { scriptMode, larivaar: true, showVishraam, larivaarText: line.larivaar })}
@@ -315,8 +315,8 @@ export default function StudyCard({
                           <button
                             key={`${line.verseId}-${wordIndex}`}
                             type="button"
-                            lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                            className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} bg-transparent border-0 p-0 mr-[0.1em] text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
+                            lang={getScriptTextLang(scriptMode)}
+                            className={`${getScriptTextFontClass(scriptMode)} bg-transparent border-0 p-0 mr-[0.1em] text-ink dark:text-dark-text ${lineSpacingClass} active:text-gold dark:active:text-gold-light hover:text-gold dark:hover:text-gold-light transition-colors duration-300`}
                             style={{ fontSize: `${fontSize}px` }}
                             onPointerDown={event => event.stopPropagation()}
                             onClick={event => handleWordTap(event, word, line)}
@@ -399,8 +399,8 @@ export default function StudyCard({
                     Verse Actions
                   </p>
                   <p
-                    lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                    className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
+                    lang={getScriptTextLang(scriptMode)}
+                    className={`${getScriptTextFontClass(scriptMode)} mt-2 text-xl leading-relaxed text-ink dark:text-dark-text`}
                   >
                     {formatGurbaniText(actionLine.gurmukhi, { scriptMode, larivaar, showVishraam, larivaarText: actionLine.larivaar })}
                   </p>
@@ -410,7 +410,12 @@ export default function StudyCard({
                     </p>
                   )}
                   {actionMeaning && (
-                    <p className={`mt-2 text-sm text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+                    <p
+                      lang={meaningLanguage === 'pa' ? getScriptTextLang('gurmukhi') : undefined}
+                      className={`mt-2 text-sm text-ink/70 dark:text-dark-text/70 ${
+                        meaningLanguage === 'pa' ? getScriptTextFontClass('gurmukhi') : 'font-sans'
+                      }`}
+                    >
                       {actionMeaning}
                     </p>
                   )}

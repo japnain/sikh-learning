@@ -83,7 +83,7 @@ export default function WordPopover({
         onClick={e => e.stopPropagation()}
       >
         <div className="overflow-y-auto px-6 pt-6">
-          <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-3xl text-ink dark:text-dark-text mb-1`}>
+          <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-3xl text-ink dark:text-dark-text mb-1`}>
             {renderScriptText(word.gurmukhi, scriptMode)}
           </p>
           {word.transliteration && <p className="font-sans text-ink/60 dark:text-dark-text/60 text-sm mb-1">{word.transliteration}</p>}
@@ -164,7 +164,7 @@ export default function WordPopover({
                 {visibleEntries.map(entry => (
                   <article key={entry.id} className="rounded-[20px] border border-sand/10 dark:border-gold/10 bg-white/55 dark:bg-dark-card/55 px-4 py-3">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-lg text-ink dark:text-dark-text`}>
+                      <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg text-ink dark:text-dark-text`}>
                         {renderScriptText(entry.word, scriptMode)}
                       </p>
                       {entry.exactMatch && (
@@ -193,7 +193,7 @@ export default function WordPopover({
                       </p>
                     )}
                     {entry.description && (
-                      <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-sm text-ink dark:text-dark-text leading-relaxed`}>
+                      <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink dark:text-dark-text leading-relaxed`}>
                         {renderScriptText(entry.description, scriptMode)}
                       </p>
                     )}
@@ -248,11 +248,11 @@ export default function WordPopover({
                 {visibleBanidbKoshEntries.map(entry => (
                   <article key={entry.id} className="rounded-[20px] border border-sand/10 dark:border-gold/10 bg-white/55 dark:bg-dark-card/55 px-4 py-3">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-lg text-ink dark:text-dark-text`}>
+                      <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-lg text-ink dark:text-dark-text`}>
                         {renderScriptText(entry.wordUni || entry.word, scriptMode)}
                       </p>
                     </div>
-                    <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-sm text-ink dark:text-dark-text leading-relaxed`}>
+                    <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-sm text-ink dark:text-dark-text leading-relaxed`}>
                       {renderScriptText(entry.definitionUni || entry.definition, scriptMode)}
                     </p>
                     {entry.definition && entry.definitionUni !== entry.definition && (

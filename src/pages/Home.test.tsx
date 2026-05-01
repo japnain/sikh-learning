@@ -206,6 +206,23 @@ test('home calm dark mode overrides light text colors for every visible card sur
   expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-metrics'\] p:last-of-type,[\s\S]*color: rgb\(248 240 226 \/ 0\.72\) !important;/)
 })
 
+test('home hukamnama script text has a safe line box so upper Gurmukhi and Devanagari marks do not clip', () => {
+  const css = readFileSync(`${process.cwd()}/src/index.css`, 'utf8')
+
+  expect(css).toMatch(/\.script-text-safe\s*{[\s\S]*padding-block: var\(--script-text-padding-block, 0\.12em\);/)
+  expect(css).toMatch(/\.font-gurmukhi,\s*\.font-devanagari\s*{[\s\S]*line-height: var\(--script-text-line-height, 1\.36\);/)
+  expect(css).toMatch(/\.home-hukam-line\s*{[\s\S]*line-height: 1\.34;/)
+  expect(css).toMatch(/\.home-hukam-line\s*{[\s\S]*--script-text-padding-block: 0\.16em;/)
+})
+
+test('renders the home hukamnama line with shared app-wide script-safe typography', () => {
+  renderHome()
+
+  const hukamnamaLine = within(screen.getByTestId('home-hukamnama-card')).getByText(/ਹਉਮੈ ਨਾਵੈ ਨਾਲਿ/)
+  expect(hukamnamaLine).toHaveClass('home-hukam-line', 'script-text-safe', 'font-gurmukhi')
+  expect(hukamnamaLine).toHaveAttribute('lang', 'pa-Guru')
+})
+
 test('composes the opening hero around the hukamnama CTA without the old action rail', async () => {
   renderHome()
 

@@ -34,7 +34,7 @@ import { buildNitnemStudyPath, NITNEM_ROUTE_OPTIONS, type NitnemRouteOption, use
 import { useVocabStore } from '../store/vocab'
 import { buildVocabFeedbackId, useSavedFeedbackStore, type SavedFeedbackKind } from '../store/savedFeedback'
 import type { UiLocale, VocabEntry } from '../types'
-import { isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { getSundarGutkaLengthDetail, isSundarGutkaLengthSupportedBaniId } from '../utils/sundarGutkaLength'
 import { getLearningLevelLabels } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
@@ -1060,8 +1060,8 @@ export default function Home() {
 </span>
                 </div>
                 <p
-                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                  className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} home-hukam-line`}
+                  lang={getScriptTextLang(scriptMode)}
+                  className={`${getScriptTextFontClass(scriptMode)} home-hukam-line`}
                 >
                   {renderScriptText(hukamnamaPreviewLine?.gurmukhi ?? hukamnama.entry.gurmukhi, scriptMode)}
                 </p>
@@ -1232,7 +1232,7 @@ export default function Home() {
                     >
                       <div className="home-nitnem-card-grid">
                         <p className="home-section-label">Today&apos;s Bani</p>
-                        <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'}>
+                        <p lang={getScriptTextLang(scriptMode)} className={getScriptTextFontClass(scriptMode)}>
                           {renderScriptText(option.gurmukhiTitle, scriptMode)}
                         </p>
                         <p>{option.romanizedTitle}</p>

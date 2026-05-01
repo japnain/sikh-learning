@@ -28,7 +28,7 @@ import {
   getVisraamSourceLabels,
 } from '../utils/translations'
 import { useLanguageStore } from '../store/language'
-import { getEntryMeaningText, getLineMeaningText, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
+import { getEntryMeaningText, getLineMeaningText, getScriptTextFontClass, getScriptTextLang, isStructuralTitleLine, renderScriptText } from '../utils/readerDisplay'
 import { findCanonicalBaniById } from '../utils/baniRouteResolver'
 import { IconArrowLeft, IconShare, IconBookmark, IconBookmarkFilled, IconHeart, IconHeartFilled } from '../components/icons'
 import { useVocabStore } from '../store/vocab'
@@ -36,6 +36,7 @@ import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import DisclosureSection from '../components/DisclosureSection'
+import { shareTextNatively } from '../native/capacitor'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -600,6 +601,15 @@ export default function Study() {
   }
 
   const shareTextWithFallback = async (text: string) => {
+    try {
+      if (await shareTextNatively(text)) {
+        announceAction(studyExperienceCopy.shareOpened)
+        return
+      }
+    } catch {
+      // Fall through to the browser share and clipboard paths.
+    }
+
     if (navigator.share) {
       try {
         await navigator.share({ text })
@@ -1121,11 +1131,11 @@ export default function Study() {
         <p className="eyebrow mb-2">{isHukamnamaMode ? studyExperienceCopy.hukamnamaEyebrow : studyCopy.eyebrow}</p>
         <h1
           id="study-reader-title"
-          lang={readerTitleUsesScript ? (scriptMode === 'devanagari' ? 'hi' : 'pa-Guru') : undefined}
-          className={`leading-tight text-ink dark:text-dark-text ${
+          lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
+          className={`text-ink dark:text-dark-text ${
             readerTitleUsesScript
-              ? `${scriptMode === 'devanagari' ? 'font-sans text-[1.75rem]' : 'font-gurmukhi text-[2.05rem]'}`
-              : 'font-display text-3xl'
+              ? `${getScriptTextFontClass(scriptMode)} ${scriptMode === 'devanagari' ? 'text-[1.75rem]' : 'text-[2.05rem]'}`
+              : 'font-display text-3xl leading-tight'
           }`}
         >
           {readerTitle}
@@ -1208,9 +1218,9 @@ export default function Study() {
               >
                 <p className="eyebrow">{item.eyebrow}</p>
                 <p
-                  lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                  className={`mt-2 leading-tight text-ink dark:text-dark-text ${
-                    scriptMode === 'devanagari' ? 'font-sans text-lg' : 'font-gurmukhi text-2xl'
+                  lang={getScriptTextLang(scriptMode)}
+                  className={`mt-2 leading-tight text-ink dark:text-dark-text ${getScriptTextFontClass(scriptMode)} ${
+                    scriptMode === 'devanagari' ? 'text-lg' : 'text-2xl'
                   }`}
                 >
                   {renderScriptText(item.title, scriptMode)}

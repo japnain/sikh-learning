@@ -21,7 +21,7 @@ import {
   getUiLocaleLabels,
   getVisraamSourceLabels,
 } from '../utils/translations'
-import { renderScriptText } from '../utils/readerDisplay'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import { IconArrowRight } from '../components/icons'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
@@ -233,8 +233,8 @@ export default function More() {
             <div className="flex justify-between mt-2">
               <span className="font-sans text-[10px] text-ink/40 dark:text-dark-text/40">{commonCopy.small}</span>
               <span
-                lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'}
-                className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-gold dark:text-gold-light`}
+                lang={getScriptTextLang(scriptMode)}
+                className={`${getScriptTextFontClass(scriptMode)} text-gold dark:text-gold-light`}
                 style={{ fontSize: `${fontSize}px` }}
               >
                 {renderScriptText('ੴ', scriptMode)}

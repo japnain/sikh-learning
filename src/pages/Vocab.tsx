@@ -261,7 +261,7 @@ export default function Vocab() {
               onClick={() => setRevealed(r => !r)}
               className="w-full section-shell rounded-[28px] p-8 flex flex-col items-center cursor-pointer min-h-[260px] justify-center gap-4 transition-colors duration-300"
             >
-              <p lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-5xl text-ink dark:text-dark-text text-center`}>
+              <p lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-5xl text-ink dark:text-dark-text text-center`}>
                 {renderScriptText(activeCard.word, scriptMode)}
               </p>
               <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
@@ -339,7 +339,7 @@ export default function Vocab() {
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2 mb-0.5">
-                    <span lang={scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'} className={`${scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'} text-xl text-ink dark:text-dark-text`}>
+                    <span lang={getScriptTextLang(scriptMode)} className={`${getScriptTextFontClass(scriptMode)} text-xl text-ink dark:text-dark-text`}>
                       {renderScriptText(entry.word, scriptMode)}
                     </span>
                     <span className="font-sans text-xs text-ink/50 dark:text-dark-text/50">{entry.transliteration}</span>

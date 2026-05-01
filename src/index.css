@@ -140,6 +140,19 @@
       color var(--motion-duration-sm) var(--motion-ease-standard);
   }
 
+  .script-text-safe {
+    padding-block: var(--script-text-padding-block, 0.12em);
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .font-gurmukhi,
+  .font-devanagari {
+    line-height: var(--script-text-line-height, 1.36);
+    font-variant-ligatures: common-ligatures;
+  }
+
   #root {
     overflow-x: clip;
     overflow-y: visible;
@@ -1763,11 +1776,12 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 
 .home-hukam-line {
   display: -webkit-box;
+  --script-text-padding-block: 0.16em;
   margin-top: 0.9rem;
   overflow: hidden;
   color: #1f1b17;
   font-size: clamp(1.1rem, 4.8vw, 1.34rem);
-  line-height: 1.08;
+  line-height: 1.34;
   overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
