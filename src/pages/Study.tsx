@@ -36,7 +36,6 @@ import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import DisclosureSection from '../components/DisclosureSection'
-import { shareTextNatively } from '../native/capacitor'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
   SUNDAR_GUTKA_LENGTH_ORDER,
@@ -601,15 +600,6 @@ export default function Study() {
   }
 
   const shareTextWithFallback = async (text: string) => {
-    try {
-      if (await shareTextNatively(text)) {
-        announceAction(studyExperienceCopy.shareOpened)
-        return
-      }
-    } catch {
-      // Fall through to the browser share and clipboard paths.
-    }
-
     if (navigator.share) {
       try {
         await navigator.share({ text })
