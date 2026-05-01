@@ -385,7 +385,7 @@ export default function LearnHub() {
 
   return (
     <div
-      className="page-shell animate-fade-in"
+      className="page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in"
       data-testid="page-learn"
       data-page="learn"
       data-ai-surface="learn-hub"
@@ -430,7 +430,7 @@ export default function LearnHub() {
             data-ai-action="learn-archive-search"
           />
         </label>
-        <p className="mt-2 font-sans text-[11px] leading-5 text-ink/60 dark:text-dark-text/62 sm:mt-3 sm:text-xs">
+        <p className="mt-2 font-sans text-[11px] leading-5 text-ink/68 dark:text-dark-text/78 sm:mt-3 sm:text-xs">
           {compactTodayHeroHint}
         </p>
       </section>
@@ -445,6 +445,7 @@ export default function LearnHub() {
         onSelect={chipId => navigateToLearnSurface(chipId.replace("learn-surface-", "") as LearnTab)}
         testId="learn-surface-rail"
         ariaLabel="Learn surface navigation"
+        className="mt-[calc(var(--nav-stack-height)+1rem)] flex flex-wrap gap-2 pb-3 pr-1"
       />
 
       {activeTab !== "today" ? (
@@ -465,7 +466,7 @@ export default function LearnHub() {
             <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
               {editorial?.learn.proofBody ?? inventorySummary}
             </p>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-3">
               <InventoryMetric
                 label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
                 value={todaySurface.inventory.dailyGuidance}
@@ -509,7 +510,7 @@ export default function LearnHub() {
             <p className="font-sans text-sm leading-6 text-ink/72 dark:text-dark-text/74">
               {activeDepthOption.detail}
             </p>
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3">
               {DEPTH_OPTIONS.map(option => (
                 <button
                   key={option.id}
@@ -549,7 +550,7 @@ export default function LearnHub() {
       {activeTab === "today" ? (
         <>
           <section className="section-shell mt-5 p-5">
-            <div className="grid gap-6 xl:grid-cols-[1.05fr,0.95fr]">
+            <div className="grid gap-6">
               <div id="learn-today-continue" className={LEARN_ANCHOR_OFFSET_CLASS} data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Continue Learning"
@@ -607,7 +608,7 @@ export default function LearnHub() {
                     viewed={viewedIds.has(todaySurface.dailyGuidance.item.id)}
                     to={buildLearnDetailPath("daily-guidance", todaySurface.dailyGuidance.item.id, "today")}
                   />
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-3">
                     <Link
                       to={buildLearnDetailPath("shabad-deep-dive", todaySurface.featuredShabad.item.id, "today")}
                       className="section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
@@ -644,7 +645,7 @@ export default function LearnHub() {
             </div>
           </section>
 
-          <section className="mt-5 grid gap-3 lg:grid-cols-[1.1fr,0.9fr]" data-testid="learn-today-support-row">
+          <section className="mt-5 grid gap-3" data-testid="learn-today-support-row">
             <div className="section-shell-quiet p-4" data-testid="learn-inventory-compact">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -658,7 +659,7 @@ export default function LearnHub() {
               <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
                 {editorial?.learn.proofBody ?? inventorySummary}
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              <div className="mt-4 grid grid-cols-1 gap-2">
                 <InventoryMetric
                   label={editorial?.learn.inventoryLabels.dailyGuidance ?? "Daily guidance entries"}
                   value={todaySurface.inventory.dailyGuidance}
@@ -724,7 +725,7 @@ export default function LearnHub() {
                   title="New daily guidance now visible in the archive."
                   body="Recently added reviewed guidance stays visible here so people can open what is new without waiting for the daily rotation to land on it."
                 />
-                <div className="grid gap-3 lg:grid-cols-2 xl:grid-cols-3" data-testid="learn-fresh-guidance-grid">
+                <div className="grid gap-3" data-testid="learn-fresh-guidance-grid">
                   {freshGuidanceItems.map(item => (
                     <SpotlightButton
                       key={item.id}
@@ -742,7 +743,7 @@ export default function LearnHub() {
           ) : null}
 
           <section className="section-shell mt-5 p-5">
-            <div className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
+            <div className="grid gap-6">
               <div className={`min-w-0 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-today-doors" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Open by State"
@@ -769,7 +770,7 @@ export default function LearnHub() {
                   title="Collections worth opening next."
                   body={editorial?.learn.compactCollectionsBody ?? "Structured paths that begin with short guidance and open into deeper study."}
                 />
-                <div className="min-w-0 snap-x snap-mandatory flex gap-4 overflow-x-auto pb-1 pr-1">
+                <div className="grid min-w-0 gap-3 pb-1 pr-1">
                   {todaySurface.featuredCollections.map(collection => (
                     <CollectionCard
                       key={collection.id}

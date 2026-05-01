@@ -55,6 +55,30 @@ test("learn hub card links render as block-level cards for stable mobile paintin
   expect(screen.getAllByRole("link", { name: /step/i })[0]).toHaveClass("block")
 })
 
+test("dark learn surfaces keep helper copy, rails, and archive metrics readable", async () => {
+  document.documentElement.classList.add("dark")
+  renderLearnRoute()
+
+  expect(await screen.findByTestId("page-learn")).toHaveClass(
+    "pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)]"
+  )
+  expect(screen.getByText(/Start with the clearest guide/i)).toHaveClass("dark:text-dark-text/78")
+
+  expect(screen.getByTestId("learn-surface-rail")).toHaveClass("pb-3")
+  expect(screen.getByTestId("learn-subsection-rail")).toHaveClass("pb-3")
+  expect(screen.getByTestId("learn-surface-topics")).toHaveClass("dark:text-dark-text/86")
+
+  const compactInventory = screen.getByTestId("learn-inventory-compact")
+  const firstMetricLabel = within(compactInventory).getByText(/Daily guidance entries/i)
+  const firstMetricCard = firstMetricLabel.closest("div")
+  expect(firstMetricCard).toHaveClass("min-w-0", "overflow-hidden")
+  expect(firstMetricLabel).toHaveClass("dark:text-dark-text/78")
+  expect(firstMetricLabel.nextElementSibling).toHaveClass("text-[1.75rem]", "sm:text-[2rem]")
+  expect(firstMetricCard?.parentElement).toHaveClass("grid-cols-1")
+  expect(firstMetricCard?.parentElement).not.toHaveClass("min-[430px]:grid-cols-2", "sm:grid-cols-4")
+  expect(screen.getByTestId("learn-today-support-row")).not.toHaveClass("lg:grid-cols-[1.1fr,0.9fr]")
+})
+
 test("shows live inventory proof instead of fixed launch claims", async () => {
   const catalog = await loadLearnCatalog()
   const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())

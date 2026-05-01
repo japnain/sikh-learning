@@ -2821,6 +2821,17 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   opacity: calc(0.88 + (var(--home-hero-reveal) * 0.12));
 }
 
+@media (max-height: 760px) {
+  .home-stack > .home-door-shell {
+    margin-bottom: calc(var(--nav-stack-height) + 0.25rem) !important;
+  }
+
+  .home-door-frame {
+    padding-top: clamp(7.7rem, 20vh, 8.4rem);
+    padding-bottom: calc(0.75rem + var(--home-hero-content-offset));
+  }
+}
+
 .home-guidance-note {
   min-height: 9.35rem;
   padding: 1.04rem 1.02rem 1.02rem !important;
@@ -3264,6 +3275,25 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] {
 html.dark .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card + .home-quiet-card,
 html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] .home-quiet-card + .home-quiet-card {
   border-left-color: rgb(244 207 137 / 0.08);
+}
+
+html.dark .home-read-sheet > h2 + p,
+html[data-theme='dark'] .home-read-sheet > h2 + p,
+html.dark .home-guidance-note p:not(.eyebrow),
+html[data-theme='dark'] .home-guidance-note p:not(.eyebrow),
+html.dark .home-featured-slip p:not(.eyebrow),
+html[data-theme='dark'] .home-featured-slip p:not(.eyebrow) {
+  color: rgb(248 240 226 / 0.78) !important;
+}
+
+html.dark .home-saved-cabinet > div:first-child a,
+html[data-theme='dark'] .home-saved-cabinet > div:first-child a {
+  color: #f3c66d !important;
+}
+
+html.dark .home-saved-cabinet [data-testid='home-saved-metrics'] p:last-of-type,
+html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p:last-of-type {
+  color: rgb(248 240 226 / 0.72) !important;
 }
 
 .home-door-content {
