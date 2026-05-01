@@ -37,7 +37,7 @@ export default function SpotlightButton({
         {viewed ? <span className="chip-pill">Viewed</span> : null}
       </div>
       <p id={titleId} className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">{title}</p>
-      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62">{body}</p>
+      <p id={bodyId} className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/74">{body}</p>
     </Link>
   )
 }

@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { readFileSync } from 'node:fs'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { vi } from 'vitest'
 import Home from './Home'
@@ -195,6 +196,14 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
   expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
   expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
+})
+
+test('home calm dark mode overrides light text colors for every visible card surface', () => {
+  const css = readFileSync(`${process.cwd()}/src/index.css`, 'utf8')
+
+  expect(css).toMatch(/html\.dark \.home-read-sheet > h2 \+ p,[\s\S]*color: rgb\(248 240 226 \/ 0\.78\) !important;/)
+  expect(css).toMatch(/html\.dark \.home-saved-cabinet > div:first-child a,[\s\S]*color: #f3c66d !important;/)
+  expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-metrics'\] p:last-of-type,[\s\S]*color: rgb\(248 240 226 \/ 0\.72\) !important;/)
 })
 
 test('composes the opening hero around the hukamnama CTA without the old action rail', async () => {

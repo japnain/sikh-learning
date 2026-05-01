@@ -6,11 +6,11 @@ export default function InventoryMetric({
   value: number
 }) {
   return (
-    <div className="section-shell-quiet rounded-[24px] px-4 py-4">
-      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/60 dark:text-dark-text/60">
+    <div className="section-shell-quiet min-w-0 overflow-hidden rounded-[24px] px-4 py-4">
+      <p className="break-words font-sans text-[11px] uppercase tracking-[0.12em] text-ink/68 dark:text-dark-text/78">
         {label}
       </p>
-      <p className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{value}</p>
+      <p className="mt-2 font-display text-[1.75rem] leading-none text-ink dark:text-dark-text sm:text-[2rem]">{value}</p>
     </div>
   )
 }

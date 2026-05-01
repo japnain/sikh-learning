@@ -93,6 +93,7 @@ type HomeHeroRevealStyle = CSSProperties & {
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
 const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
+const HOME_HERO_COMPACT_CONTENT_OFFSET_REM = 3.5
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
 const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
 
@@ -100,8 +101,14 @@ function isHomeHeroMobileViewport(): boolean {
   return typeof window !== 'undefined' && window.innerWidth <= 560
 }
 
+function isHomeHeroCompactViewport(): boolean {
+  return typeof window !== 'undefined' && window.innerHeight <= 760
+}
+
 function getHomeHeroContentOffsetRem(): number {
   if (typeof window === 'undefined') return HOME_HERO_CONTENT_OFFSET_REM
+
+  if (isHomeHeroCompactViewport()) return HOME_HERO_COMPACT_CONTENT_OFFSET_REM
 
   return isHomeHeroMobileViewport()
     ? HOME_HERO_MOBILE_CONTENT_OFFSET_REM
@@ -829,7 +836,16 @@ export default function Home() {
   const savedReviewItems = vocab.length
   const isDarkTheme = useThemeStore(s => s.dark)
   const toggleTheme = useThemeStore(s => s.toggle)
-  const homeHeroReveal = useHomeHeroReveal()
+  const {
+    rootRef: homeHeroRootRef,
+    landscapeRef: homeHeroLandscapeRef,
+    style: homeHeroStyle,
+    handlePointerMove: handleHomeHeroPointerMove,
+    handlePointerLeave: handleHomeHeroPointerLeave,
+    handleTouchStart: handleHomeHeroTouchStart,
+    handleTouchMove: handleHomeHeroTouchMove,
+    handleTouchEnd: handleHomeHeroTouchEnd,
+  } = useHomeHeroReveal()
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
       case 'learn':
@@ -949,16 +965,16 @@ export default function Home() {
     learnCatalogLoading,
   ])
   return (
-    <div className="home-stack page-shell animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
+    <div className="home-stack page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in" data-testid="page-home" data-page="home" data-ai-surface="home" data-ai-state="ready">
       <section
-        ref={homeHeroReveal.rootRef}
-        style={homeHeroReveal.style}
-        onPointerMove={homeHeroReveal.handlePointerMove}
-        onPointerLeave={homeHeroReveal.handlePointerLeave}
-        onTouchStart={homeHeroReveal.handleTouchStart}
-        onTouchMove={homeHeroReveal.handleTouchMove}
-        onTouchEnd={homeHeroReveal.handleTouchEnd}
-        onTouchCancel={homeHeroReveal.handleTouchEnd}
+        ref={homeHeroRootRef}
+        style={homeHeroStyle}
+        onPointerMove={handleHomeHeroPointerMove}
+        onPointerLeave={handleHomeHeroPointerLeave}
+        onTouchStart={handleHomeHeroTouchStart}
+        onTouchMove={handleHomeHeroTouchMove}
+        onTouchEnd={handleHomeHeroTouchEnd}
+        onTouchCancel={handleHomeHeroTouchEnd}
         className="home-door-shell mb-3 px-5 py-4 animate-slide-up stagger-1"
         aria-labelledby="home-hero-title"
         data-testid="home-hero"
@@ -1014,7 +1030,7 @@ export default function Home() {
         </div>
 
         <div className="home-door-frame" aria-label="Daily reading room">
-          <span ref={homeHeroReveal.landscapeRef} className="home-landscape-reveal" aria-hidden="true" />
+          <span ref={homeHeroLandscapeRef} className="home-landscape-reveal" aria-hidden="true" />
           <h1 id="home-hero-title" className="sr-only">
             NaamRas home
           </h1>
