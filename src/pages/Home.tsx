@@ -93,15 +93,17 @@ type HomeHeroRevealStyle = CSSProperties & {
 
 const HOME_HERO_CONTENT_OFFSET_REM = 8.5
 const HOME_HERO_MOBILE_CONTENT_OFFSET_REM = 16.25
-const HOME_HERO_MOBILE_SCROLL_COMPENSATION = 0.45
-const HOME_HERO_MOBILE_MAX_SCROLL_COMPENSATION_REM = 7
 const HOME_HERO_REVEAL_DISTANCE_PX = 380
 const HOME_HERO_TOUCH_REVEAL_DISTANCE_PX = 150
+
+function isHomeHeroMobileViewport(): boolean {
+  return typeof window !== 'undefined' && window.innerWidth <= 560
+}
 
 function getHomeHeroContentOffsetRem(): number {
   if (typeof window === 'undefined') return HOME_HERO_CONTENT_OFFSET_REM
 
-  return window.innerWidth <= 560
+  return isHomeHeroMobileViewport()
     ? HOME_HERO_MOBILE_CONTENT_OFFSET_REM
     : HOME_HERO_CONTENT_OFFSET_REM
 }
@@ -131,23 +133,17 @@ function useHomeHeroReveal() {
 
   const applyStyle = useCallback(() => {
     frameRef.current = null
-    const inverseReveal = 1 - valuesRef.current.reveal
     const scrollY = window.scrollY
     const contentOffsetRem = getHomeHeroContentOffsetRem()
-    const isMobileHero = contentOffsetRem === HOME_HERO_MOBILE_CONTENT_OFFSET_REM
-    const rootFontSizePx = parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16
-    const mobileScrollCompensationRem = isMobileHero
-      ? Math.min(
-        (scrollY * HOME_HERO_MOBILE_SCROLL_COMPENSATION) / rootFontSizePx,
-        HOME_HERO_MOBILE_MAX_SCROLL_COMPENSATION_REM
-      )
-      : 0
+    const isMobileHero = isHomeHeroMobileViewport()
+    const reveal = isMobileHero ? 1 : valuesRef.current.reveal
+    const inverseReveal = 1 - reveal
     const currentContentOffsetRem = isMobileHero
-      ? contentOffsetRem + mobileScrollCompensationRem
+      ? contentOffsetRem
       : inverseReveal * contentOffsetRem
-    const imageLock = scrollY * (0.62 + valuesRef.current.reveal * 0.38)
+    const imageLock = isMobileHero ? 0 : scrollY * (0.62 + reveal * 0.38)
     const next: HomeHeroRevealStyle = {
-      '--home-hero-reveal': valuesRef.current.reveal.toFixed(3),
+      '--home-hero-reveal': reveal.toFixed(3),
       '--home-hero-pointer-x': valuesRef.current.pointerX.toFixed(3),
       '--home-hero-pointer-y': valuesRef.current.pointerY.toFixed(3),
       '--home-hero-parallax-x': `${(-valuesRef.current.pointerX * 0.42).toFixed(3)}rem`,
@@ -155,7 +151,7 @@ function useHomeHeroReveal() {
       '--home-hero-content-offset': `${currentContentOffsetRem.toFixed(3)}rem`,
       '--home-hero-content-reserve': `${currentContentOffsetRem.toFixed(3)}rem`,
       '--home-hero-image-lock': `${imageLock.toFixed(1)}px`,
-      '--home-hero-image-scale': `${(1 + valuesRef.current.reveal * 0.12).toFixed(3)}`,
+      '--home-hero-image-scale': `${(isMobileHero ? 1 : 1 + reveal * 0.12).toFixed(3)}`,
       '--home-hero-image-y': '0rem',
     }
     setStyle(current => (
@@ -180,6 +176,15 @@ function useHomeHeroReveal() {
   }, [applyStyle])
 
   const updateReveal = useCallback((gestureRevealPx = touchRevealPxRef.current) => {
+    if (isHomeHeroMobileViewport()) {
+      touchRevealPxRef.current = 0
+      valuesRef.current.reveal = 1
+      valuesRef.current.pointerX = 0
+      valuesRef.current.pointerY = 0
+      scheduleStyle()
+      return
+    }
+
     const scrollY = window.scrollY
     if (scrollY > 4) {
       touchRevealPxRef.current = 0
@@ -216,6 +221,8 @@ function useHomeHeroReveal() {
   }, [scheduleStyle, updateReveal])
 
   const updatePointer = useCallback((clientX: number, clientY: number, target: HTMLElement) => {
+    if (isHomeHeroMobileViewport()) return
+
     const rect = target.getBoundingClientRect()
     valuesRef.current.pointerX = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width - 0.5) * 2))
     valuesRef.current.pointerY = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height - 0.5) * 2))
@@ -233,6 +240,8 @@ function useHomeHeroReveal() {
   }, [scheduleStyle])
 
   const handleTouchMove = useCallback((event: ReactTouchEvent<HTMLElement>) => {
+    if (isHomeHeroMobileViewport()) return
+
     const touch = event.touches[0]
     if (!touch) return
     updatePointer(touch.clientX, touch.clientY, event.currentTarget)
@@ -249,12 +258,16 @@ function useHomeHeroReveal() {
   }, [updatePointer, updateReveal])
 
   const handleTouchStart = useCallback((event: ReactTouchEvent<HTMLElement>) => {
+    if (isHomeHeroMobileViewport()) return
+
     const touch = event.touches[0]
     touchStartYRef.current = touch?.clientY ?? null
     touchRevealPxRef.current = 0
   }, [])
 
   const handleTouchEnd = useCallback(() => {
+    if (isHomeHeroMobileViewport()) return
+
     touchStartYRef.current = null
     if (window.scrollY > 4) {
       touchRevealPxRef.current = 0
