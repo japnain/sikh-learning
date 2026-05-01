@@ -9,7 +9,7 @@ import type {
   ScriptMode,
   UiLocale,
 } from '../types'
-import { renderScriptText } from '../utils/readerDisplay'
+import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
 import {
   getEnglishSourceLabels,
   getLearningGoalLabels,
@@ -760,8 +760,8 @@ export default function OnboardingSheet({
 
           <div className="mt-4 rounded-lg border border-sand/12 bg-white/72 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.32)] dark:border-dark-text/10 dark:bg-black/18">
             <p
-              className={`text-[1.72rem] leading-relaxed text-ink dark:text-dark-text ${scriptMode === 'gurmukhi' ? 'font-gurmukhi' : 'font-sans'}`}
-              lang={scriptMode === 'gurmukhi' ? 'pa-Guru' : 'hi'}
+              className={`text-[1.72rem] leading-relaxed text-ink dark:text-dark-text ${getScriptTextFontClass(scriptMode)}`}
+              lang={getScriptTextLang(scriptMode)}
             >
               {previewScript}
             </p>
@@ -771,7 +771,12 @@ export default function OnboardingSheet({
               </p>
             )}
             {previewMeaning ? (
-              <p className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/70 ${meaningLanguage === 'pa' ? 'font-gurmukhi' : 'font-sans'}`}>
+              <p
+                lang={meaningLanguage === 'pa' ? getScriptTextLang('gurmukhi') : undefined}
+                className={`mt-4 text-sm leading-6 text-ink/70 dark:text-dark-text/70 ${
+                  meaningLanguage === 'pa' ? getScriptTextFontClass('gurmukhi') : 'font-sans'
+                }`}
+              >
                 {previewMeaning}
               </p>
             ) : (

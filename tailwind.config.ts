@@ -27,6 +27,7 @@ export default {
       },
       fontFamily: {
         gurmukhi: ['Noto Serif Gurmukhi', 'serif'],
+        devanagari: ['Noto Serif Devanagari', 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Mangal', 'serif'],
         display: ['Cormorant Garamond', 'serif'],
         sans: ['Plus Jakarta Sans', 'sans-serif'],
       },

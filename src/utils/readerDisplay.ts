@@ -11,8 +11,10 @@ export function getScriptTextLang(scriptMode: 'gurmukhi' | 'devanagari'): 'pa-Gu
   return scriptMode === 'devanagari' ? 'hi' : 'pa-Guru'
 }
 
-export function getScriptTextFontClass(scriptMode: 'gurmukhi' | 'devanagari'): 'font-gurmukhi' | 'font-sans' {
-  return scriptMode === 'devanagari' ? 'font-sans' : 'font-gurmukhi'
+export function getScriptTextFontClass(scriptMode: 'gurmukhi' | 'devanagari'): string {
+  return scriptMode === 'devanagari'
+    ? 'script-text-safe font-devanagari'
+    : 'script-text-safe font-gurmukhi'
 }
 
 export function formatGurbaniText(
