@@ -1495,8 +1495,9 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 /* Calm home visual layer: the live UI carries the layout; one landscape carries atmosphere. */
 .app-shell {
   background:
-    radial-gradient(circle at 50% -8rem, rgb(255 255 255 / 0.74), transparent 30rem),
-    linear-gradient(180deg, #fffdf7 0%, #fbf5eb 54%, #f3eadc 100%);
+    radial-gradient(circle at 50% -8rem, rgb(255 255 255 / 0.58), transparent 30rem),
+    radial-gradient(circle at 18% 24rem, rgb(87 112 69 / 0.12), transparent 20rem),
+    linear-gradient(180deg, #f8f2e6 0%, #ebe5da 54%, #ddd6cf 100%);
 }
 
 .home-stack {
@@ -1578,13 +1579,13 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   height: 2.36rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(112 91 57 / 0.2);
+  border: 1px solid rgb(80 65 45 / 0.28);
   border-radius: 999px;
-  background: rgb(255 255 252 / 0.56);
-  color: #272520;
+  background: rgb(255 249 238 / 0.68);
+  color: #211d19;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.5),
-    0 8px 16px rgb(70 50 22 / 0.04);
+    inset 0 1px 0 rgb(255 255 255 / 0.56),
+    0 8px 16px rgb(54 39 24 / 0.08);
 }
 
 .home-door-shell > div:nth-of-type(1) {
@@ -1604,12 +1605,12 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 .home-door-shell .chip-pill,
 .home-door-shell > div:nth-of-type(1) .rounded-full {
   min-height: 1.58rem;
-  border: 1px solid rgb(112 91 57 / 0.12) !important;
+  border: 1px solid rgb(80 65 45 / 0.24) !important;
   border-radius: 999px;
-  background: rgb(255 255 252 / 0.46) !important;
+  background: rgb(255 249 238 / 0.66) !important;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.42),
-    0 6px 14px rgb(68 46 18 / 0.035);
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 6px 14px rgb(54 39 24 / 0.07);
 }
 
 .home-door-shell .chip-pill {
@@ -1691,14 +1692,15 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 .home-saved-cabinet {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgb(126 104 69 / 0.26);
+  border: 1px solid rgb(80 65 45 / 0.32);
   border-radius: 1.05rem;
   background:
-    linear-gradient(180deg, rgb(255 255 252 / 0.98), rgb(255 250 241 / 0.92));
-  color: #28251f;
+    radial-gradient(circle at 84% 8%, rgb(101 126 82 / 0.1), transparent 8rem),
+    linear-gradient(180deg, rgb(255 250 240 / 0.94), rgb(239 230 218 / 0.86));
+  color: #211d19;
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.92),
-    0 14px 30px rgb(67 48 22 / 0.105);
+    inset 0 1px 0 rgb(255 255 255 / 0.82),
+    0 14px 30px rgb(45 33 23 / 0.14);
 }
 
 .home-hukam-card {
@@ -1706,13 +1708,13 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   min-height: 10.45rem;
   padding: 0.95rem 1rem 0.88rem !important;
   border-radius: 1.18rem;
-  border-color: rgb(85 112 69 / 0.34);
+  border-color: rgb(74 96 57 / 0.44);
   background:
-    radial-gradient(circle at 86% 8%, rgb(102 135 83 / 0.12), transparent 7.6rem),
-    linear-gradient(180deg, rgb(255 255 252 / 0.99), rgb(255 249 237 / 0.95));
+    radial-gradient(circle at 86% 8%, rgb(101 126 82 / 0.16), transparent 7.6rem),
+    linear-gradient(180deg, rgb(255 250 240 / 0.96), rgb(239 230 218 / 0.9));
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.95),
-    0 18px 36px rgb(63 45 20 / 0.15);
+    inset 0 1px 0 rgb(255 255 255 / 0.84),
+    0 18px 36px rgb(45 33 23 / 0.18);
 }
 
 .home-card-heading-row {
@@ -1729,7 +1731,7 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 .home-featured-slip .eyebrow,
 .home-saved-cabinet .eyebrow {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #557045 !important;
+  color: #48673a !important;
   font-size: 0.7rem !important;
   font-weight: 700;
   line-height: 1.15;
@@ -1743,8 +1745,9 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   align-items: center;
   justify-content: center;
   border-radius: 0.72rem;
-  background: rgb(88 112 70 / 0.1);
-  color: #557045;
+  border: 1px solid rgb(74 96 57 / 0.18);
+  background: rgb(83 111 65 / 0.12);
+  color: #48673a;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
@@ -1762,7 +1765,7 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   display: -webkit-box;
   margin-top: 0.9rem;
   overflow: hidden;
-  color: #2b2a24;
+  color: #1f1b17;
   font-size: clamp(1.1rem, 4.8vw, 1.34rem);
   line-height: 1.08;
   overflow-wrap: anywhere;
@@ -1781,7 +1784,7 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
 .home-hukam-transliteration {
   display: -webkit-box;
   overflow: hidden;
-  color: #4b443b;
+  color: rgb(31 27 23 / 0.74);
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.98rem;
   font-style: italic;
@@ -1794,7 +1797,7 @@ html[data-theme='dark'] .home-saved-cabinet .home-quiet-card {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #557045;
+  color: #9a661d;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.86rem;
   font-weight: 700;
@@ -2737,8 +2740,9 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   width: 100vw;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 5.5rem, rgb(255 255 255 / 0.82), transparent 21rem),
-    linear-gradient(180deg, #fffdf8 0%, #f8f0e3 38%, #efe2d0 100%);
+    radial-gradient(circle at 50% 5.5rem, rgb(255 249 235 / 0.44), transparent 20rem),
+    radial-gradient(circle at 84% 17rem, rgb(86 111 74 / 0.12), transparent 17rem),
+    linear-gradient(180deg, #f6efe2 0%, #ebe3d6 38%, #ddd4ca 100%);
   transform: translateX(-50%);
 }
 
@@ -2768,7 +2772,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   height: calc(18rem + var(--home-hero-content-reserve));
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgb(255 253 248 / 0.98) 0%, rgb(246 236 221 / 0.82) 54%, rgb(246 236 221 / 0) 100%);
+    linear-gradient(180deg, rgb(246 237 220 / 0.58) 0%, rgb(230 221 207 / 0.34) 54%, rgb(230 221 207 / 0) 100%);
   transform: translateX(-50%);
 }
 
@@ -2790,7 +2794,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   width: 100vw;
   height: calc(100% + 3rem);
   overflow: hidden;
-  background-image: url('./assets/home-calm/landscape-light-reveal.jpg');
+  background-image: url('./assets/home-calm/landscape-light-generated.webp');
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2799,7 +2803,7 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
     translateY(calc(var(--home-hero-image-lock) + var(--home-hero-landscape-offset) + var(--home-hero-image-y)))
     scale(var(--home-hero-image-scale));
   transform-origin: center top;
-  filter: saturate(0.94) contrast(1.04) brightness(0.97);
+  filter: saturate(1.08) contrast(1.14) brightness(0.92);
 }
 
 .home-landscape-reveal::after {
@@ -2808,9 +2812,9 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-metrics'] p
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgb(255 253 248 / 0) 0%, rgb(255 253 248 / 0.12) 28%, rgb(246 236 221 / 0.56) 68%, rgb(246 236 221 / 0.96) 100%),
-    radial-gradient(ellipse at 50% 18%, rgb(255 255 255 / 0.2), transparent 42%),
-    linear-gradient(90deg, rgb(246 236 221 / 0.16), transparent 28%, transparent 72%, rgb(246 236 221 / 0.16));
+    linear-gradient(180deg, rgb(74 86 99 / 0.14) 0%, rgb(246 238 221 / 0.04) 30%, rgb(218 207 194 / 0.38) 72%, rgb(210 200 190 / 0.86) 100%),
+    radial-gradient(ellipse at 50% 15%, rgb(245 198 107 / 0.06), transparent 42%),
+    linear-gradient(90deg, rgb(214 203 192 / 0.14), transparent 28%, transparent 72%, rgb(214 203 192 / 0.14));
 }
 
 .home-door-content {
