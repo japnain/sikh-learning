@@ -80,7 +80,6 @@ type LearnCatalogData = Pick<
   | "collectionById"
   | "dailyGuidance"
   | "dailyGuidanceById"
-  | "manifest"
   | "searchIndex"
   | "shabadDeepDiveById"
   | "shabadDeepDives"
@@ -144,6 +143,63 @@ function getPeriodKey(dayStamp: string, slot: RotationSlot): string {
   const daysSinceStart = dayDiffLocal(ROTATION_START_STAMP, dayStamp)
   const periodIndex = Math.max(0, Math.floor(daysSinceStart / config.cadenceDays))
   return `${slot}:${periodIndex}`
+}
+
+const MIN_PREMIUM_DAILY_GUIDANCE_SUMMARY_WORDS = 24
+const MIN_PREMIUM_DAILY_GUIDANCE_RELATED_COLLECTIONS = 2
+const MIN_PREMIUM_COLLECTION_DESCRIPTION_WORDS = 24
+const MIN_PREMIUM_COLLECTION_SOURCE_WORDS = 12
+const MIN_PREMIUM_COLLECTION_ITEMS = 4
+
+function countWords(value: string) {
+  return value.trim().split(/\s+/).filter(Boolean).length
+}
+
+function isApprovedManualLearnItem(item: { editorial?: RotatingItem["editorial"] | Collection["editorial"] }) {
+  return (
+    item.editorial?.reviewedByHuman === true
+    && item.editorial.origin === "manual"
+    && item.editorial.status === "approved"
+  )
+}
+
+export function hasPremiumDailyGuidanceCardDepth(item: DailyGuidance) {
+  return (
+    countWords(item.summary) >= MIN_PREMIUM_DAILY_GUIDANCE_SUMMARY_WORDS
+    && item.relatedTopicIds.length >= 1
+    && item.relatedShabadIds.length >= 1
+    && item.relatedCollectionIds.length >= MIN_PREMIUM_DAILY_GUIDANCE_RELATED_COLLECTIONS
+  )
+}
+
+export function hasPremiumCollectionCardDepth(item: Collection) {
+  return (
+    isApprovedManualLearnItem(item)
+    && countWords(item.description) >= MIN_PREMIUM_COLLECTION_DESCRIPTION_WORDS
+    && countWords(item.heroSource.shortMeaning) >= MIN_PREMIUM_COLLECTION_SOURCE_WORDS
+    && countWords(item.heroSource.lifeApplication) >= MIN_PREMIUM_COLLECTION_SOURCE_WORDS
+    && item.items.length >= MIN_PREMIUM_COLLECTION_ITEMS
+    && item.relatedTopicIds.length >= 1
+    && item.relatedShabadIds.length >= 1
+  )
+}
+
+export function getPremiumFreshDailyGuidanceItems(items: DailyGuidance[], limit = 6) {
+  return [...items]
+    .filter(item => item.rotation.freshnessTier === "fresh")
+    .filter(hasPremiumDailyGuidanceCardDepth)
+    .sort((left, right) => {
+      if (right.rotation.priority !== left.rotation.priority) {
+        return right.rotation.priority - left.rotation.priority
+      }
+
+      return left.id.localeCompare(right.id)
+    })
+    .slice(0, limit)
+}
+
+export function getPremiumCollectionItems(items: Collection[]) {
+  return items.filter(hasPremiumCollectionCardDepth)
 }
 
 function selectItemForPeriod<T extends RotatingItem>(
@@ -415,11 +471,13 @@ function getContinueLearningCard(
 ): ContinueLearningCard {
   if (learnState.activeCollectionId && learnCatalog.collectionById[learnState.activeCollectionId]) {
     const collection = learnCatalog.collectionById[learnState.activeCollectionId]
-    return {
-      kind: "collection",
-      title: collection.title,
-      body: collection.description,
-      collection,
+    if (hasPremiumCollectionCardDepth(collection)) {
+      return {
+        kind: "collection",
+        title: collection.title,
+        body: collection.description,
+        collection,
+      }
     }
   }
 
@@ -491,7 +549,7 @@ function getExploreCollections(
   const savedThemes = new Set(getSavedThemes(learnCatalog, learnState.savedItemIds))
   const recentTopicIds = new Set(learnState.recentTopicIds)
 
-  return [...learnCatalog.collections].sort((left, right) => {
+  return getPremiumCollectionItems(learnCatalog.collections).sort((left, right) => {
     const leftScore =
       left.themes.filter(theme => savedThemes.has(theme)).length * 8
       + left.relatedTopicIds.filter(topicId => recentTopicIds.has(topicId)).length * 10
@@ -505,7 +563,7 @@ function getExploreCollections(
       + (right.items.length >= 6 ? 4 : 0)
       + (stableHash(`${dayStamp}:collection:${right.id}`) % 19)
 
-    return rightScore - leftScore || left.title.localeCompare(right.title)
+    return rightScore - leftScore || left.id.localeCompare(right.id)
   }).slice(0, 6)
 }
 
