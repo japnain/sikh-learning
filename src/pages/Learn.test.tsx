@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, test, vi } from "vitest"
 import { fireEvent, screen, waitFor, within } from "@testing-library/react"
 import { loadLearnCatalog } from "../data/learnRepository"
-import { getTodayLearnSurface } from "../utils/learnExperience"
+import { getPremiumCollectionItems, getPremiumFreshDailyGuidanceItems, getTodayLearnSurface } from "../utils/learnExperience"
 import { createDefaultLearnState, renderLearnRoute, resetLearnTestState } from "./learn/testUtils"
 import { useLearningStore } from "../store/learning"
 import { useSavedFeedbackStore } from "../store/savedFeedback"
@@ -109,29 +109,49 @@ test("learn today keeps inventory and reading depth compact before the archive d
   expect(screen.getByRole("button", { name: /Deep/i })).toBeInTheDocument()
 })
 
-test("today surface exposes fresh daily guidance entries from the published archive", async () => {
+test("today surface exposes only premium-depth fresh daily guidance entries", async () => {
   const catalog = await loadLearnCatalog()
-  const expectedFreshTitles = [...catalog.dailyGuidance]
+  const expectedFreshItems = getPremiumFreshDailyGuidanceItems(catalog.dailyGuidance)
+  const expectedFreshIds = new Set(expectedFreshItems.map(item => item.id))
+  const removedShallowFreshTitles = catalog.dailyGuidance
     .filter(item => item.rotation.freshnessTier === "fresh")
-    .sort((left, right) => {
-      if (right.rotation.priority !== left.rotation.priority) {
-        return right.rotation.priority - left.rotation.priority
-      }
-
-      return left.title.localeCompare(right.title)
-    })
-    .slice(0, 6)
+    .filter(item => !expectedFreshIds.has(item.id))
+    .filter(item => [
+      "guidance-ambrosial-speech-pure-conduct-1",
+      "guidance-buy-what-goes-with-you-1",
+      "guidance-honor-women-1",
+      "guidance-search-ends-in-saint-company-1",
+    ].includes(item.id))
     .map(item => item.title)
 
   renderLearnRoute()
 
   expect(await screen.findByText(/Fresh guidance/i)).toBeInTheDocument()
+  expect(screen.getByText(/Only substantial new guidance appears here\./i)).toBeInTheDocument()
+  expect(document.getElementById("learn-today-fresh-guidance")).toBeInTheDocument()
   const freshGrid = screen.getByTestId("learn-fresh-guidance-grid")
-  expect(screen.getByTestId("today-fresh-guidance")).toBeInTheDocument()
-  expect(within(freshGrid).getAllByRole("link")).toHaveLength(expectedFreshTitles.length)
+  expect(within(freshGrid).getAllByRole("link")).toHaveLength(expectedFreshItems.length)
 
-  for (const title of expectedFreshTitles) {
-    expect(within(freshGrid).getByText(title)).toBeInTheDocument()
+  for (const item of expectedFreshItems) {
+    expect(within(freshGrid).getByText(item.title)).toBeInTheDocument()
+  }
+
+  for (const title of removedShallowFreshTitles) {
+    expect(within(freshGrid).queryByText(title)).not.toBeInTheDocument()
+  }
+})
+
+test("today surface rotates only premium-depth collection cards", async () => {
+  const catalog = await loadLearnCatalog()
+  const premiumCollectionIds = new Set(getPremiumCollectionItems(catalog.collections).map(item => item.id))
+  const todaySurface = getTodayLearnSurface(catalog, "2026-04-11", createDefaultLearnState())
+
+  expect(todaySurface.featuredCollections.length).toBe(3)
+  for (const collection of todaySurface.featuredCollections) {
+    expect(premiumCollectionIds.has(collection.id)).toBe(true)
+    expect(collection.description.trim().split(/\s+/).filter(Boolean).length).toBeGreaterThanOrEqual(24)
+    expect(collection.heroSource.shortMeaning.trim().split(/\s+/).filter(Boolean).length).toBeGreaterThanOrEqual(12)
+    expect(collection.heroSource.lifeApplication.trim().split(/\s+/).filter(Boolean).length).toBeGreaterThanOrEqual(12)
   }
 })
 

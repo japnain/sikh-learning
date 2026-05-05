@@ -16,6 +16,7 @@ import {
   filterShabadDeepDives,
   getLearnItemLabel,
   getLearnSavedItems,
+  getPremiumFreshDailyGuidanceItems,
   getTodayLearnSurface,
   resolveTopicGuide,
 } from "../../utils/learnExperience"
@@ -167,16 +168,7 @@ export default function LearnHub() {
   const freshGuidanceItems = useMemo(() => {
     if (!catalog) return []
 
-    return [...catalog.dailyGuidance]
-      .filter(item => item.rotation.freshnessTier === "fresh")
-      .sort((left, right) => {
-        if (right.rotation.priority !== left.rotation.priority) {
-          return right.rotation.priority - left.rotation.priority
-        }
-
-        return left.title.localeCompare(right.title)
-      })
-      .slice(0, 6)
+    return getPremiumFreshDailyGuidanceItems(catalog.dailyGuidance)
   }, [catalog])
 
   const shabadThemeFilter = searchParams.get("theme") ?? ""
@@ -722,8 +714,8 @@ export default function LearnHub() {
               >
                 <SectionHeader
                   eyebrow="Fresh Guidance"
-                  title="New daily guidance now visible in the archive."
-                  body="Recently added reviewed guidance stays visible here so people can open what is new without waiting for the daily rotation to land on it."
+                  title="Only substantial new guidance appears here."
+                  body="Recently added guidance is filtered for enough source depth, cross-links, and authored context before it earns space on the first Learn screen."
                 />
                 <div className="grid gap-3" data-testid="learn-fresh-guidance-grid">
                   {freshGuidanceItems.map(item => (
