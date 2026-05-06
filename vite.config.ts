@@ -18,7 +18,6 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
-    watchExclude: ['dist/**', 'ios/**', 'node_modules/**'],
     env: {
       VITE_SUPABASE_URL: 'https://naamras-qa.supabase.co',
       VITE_SUPABASE_ANON_KEY: 'test-anon-key',
