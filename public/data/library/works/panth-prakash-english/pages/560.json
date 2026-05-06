@@ -232,11 +232,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 51,
-    "title": "Now Follows the Episode of Kullu",
-    "startPage": 339,
-    "endPage": 346
   }
 }

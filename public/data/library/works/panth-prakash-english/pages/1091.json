@@ -3,42 +3,22 @@
   "pageNumber": 1091,
   "volume": 2,
   "sourcePageNumber": 516,
-  "title": "Episode About Mit Singh — The Martyr",
+  "title": "Bangar Expedition and Mit Singh’s Proposal",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-1091-1",
       "type": "paragraph",
-      "text": "Among those Malwa chiefs were Bhai Alo Singh and Bhai Budho Singh, Bhai Gurbax Singh* being another among the invited. (2) Putting their representatives at the head of Khalsa Panth force, Bringing about settlements between Singhs and those others, They protected those whom they considered their own. (3) Bringing about settlement between Singhs and chiefs of Kaithal, Alo Singh saved eight villages from plunder by Khalsa Panth."
+      "text": "The page closes the Bangar expedition: Malwa chiefs such as Bhai Alo Singh, Bhai Budho Singh, and Bhai Gurbakhsh Singh helped lead the Khalsa force, arranged settlements, and protected those under their care. Alo Singh saved eight Kaithal villages, while chiefs at Jind and Safidon sent ransom through the Malwa Singhs."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-1091-2",
       "type": "paragraph",
-      "text": "Striking a deal with the chiefs of Jind* and Safidon after a raid, Some amount of ransom was sent to the Singhs through Malwa Singhs. (4) With a rush, did the Khalsa Panth ransack the distant Hansi°, They also plundered the more remote towns of Narnaul and Hissar, Thereafter, plundering the hill fort Kama at the hill top, Khalsa Panth forces sent a message about their arrival to the Jaipur ruler. (5) Thereafter, the Jaipur chief sent his representatives to the Singhs, Professing himself to be as devout a Sikh of the Gurus as the Singhs, When Guru Tegh Bahadur had conquered the southern region, The Rajput ruler had sought Guru Tegh Bahadur's protection. (6) Both Rajputs and Singhs, being followers of the same Guru, The Rajputs begged the Singhs to spare their territory from plunder."
+      "text": "The Khalsa then raided Hansi, Narnaul, Hissar, and the hill fort of Kama, after which Jaipur sent envoys asking to be spared as fellow followers of the Guru. The Singhs accepted the plea, turned back, and camped near the Yamuna."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-1091-3",
       "type": "paragraph",
-      "text": "Thereupon, the Singhs retracing their steps from there, They put up their camp in the vicinity of river Yamuna. (7)"
-    },
-    {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "Episode 133"
-    },
-    {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "Episode About Mit Singh — The Martyr"
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "(Mit Singh had made the Supreme Sacrifice in this way As he had put up a brave fight against Jahan khan's forces) There was one Singh known as Tara Singh (Gaiba), Who belonged the Khalsa Panth Mis! of Dalewalia."
-    },
-    {
-      "id": "paragraph-5",
-      "type": "paragraph",
-      "text": "There was also one Mit Singh (the rioteer in this Misl), Who arrived at an (independent) resolution of his own: (1) That ten thousand Singhs, having an independent mind, Overhearing this conversation did Tara Singh tell Mit Singh, That the latter alone was an egocentric among the Khalsa Panth. (2)"
+      "text": "Episode 133 begins by introducing Tara Singh Gaiba of the Dalewalia Misl and Mit Singh, who would become a martyr fighting Jahan Khan’s forces. Mit Singh proposed that ten thousand independent-minded Singhs should cross the Yamuna at dawn, but Tara Singh warned that Mit Singh was acting on his own."
     }
   ],
   "rawBlocks": [
@@ -233,7 +213,7 @@
       "text": "That the latter alone was an egocentric among the Khalsa Panth. (2)"
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"

@@ -959,6 +959,8 @@ export interface LibraryTextBlock {
 }
 
 export type LibraryPageQuality = 'clean' | 'readable' | 'fragment' | 'unreadable'
+export type LibraryPageReviewStatus = 'ocr' | 'machine-cleaned' | 'reviewed'
+export type LibraryPageTextState = 'source-translation' | 'cleaned-ocr' | 'editorial-reconstruction' | 'contents-navigation'
 
 export interface LibraryEditorialNavigationLink {
   id: string
@@ -979,7 +981,7 @@ export interface LibraryPagePayload {
   quality?: LibraryPageQuality
   sourceFile: string
   review: {
-    status: 'ocr' | 'machine-cleaned' | 'reviewed'
+    status: LibraryPageReviewStatus
   }
   episode?: {
     number: number
@@ -1010,12 +1012,61 @@ export interface LibraryWork {
   episodeIndexPath?: string
 }
 
+export interface LibrarySearchPageEntry {
+  workId: string
+  pageNumber: number
+  volume: number
+  sourcePageNumber: number
+  title: string
+  path: string
+  quality?: LibraryPageQuality
+  reviewStatus?: LibraryPageReviewStatus
+  textState: LibraryPageTextState
+  textStateLabel: string
+  rawSourceRetained: boolean
+  episodeNumber?: number
+  episodeTitle?: string
+  episodeDisplayTitle?: string
+  episodeStartPage?: number
+  episodeEndPage?: number
+  snippet: string
+  searchText: string
+}
+
+export interface LibrarySearchEpisodeEntry {
+  workId: string
+  episodeNumber: number
+  volume: number
+  title: string
+  displayTitle: string
+  summary: string
+  arcLabel: string
+  startPage: number
+  endPage: number
+  pageCount: number
+  searchText: string
+}
+
 export interface LibrarySearchIndex {
   works: Array<{
     id: string
     title: string
     aliases: string[]
   }>
+  pages?: LibrarySearchPageEntry[]
+  episodes?: LibrarySearchEpisodeEntry[]
+  metadata?: {
+    panthPrakash?: {
+      totalPages: number
+      totalEpisodes: number
+      pagesMissingSourceMapping: number
+      sourceBackedPages: number
+      editorialReconstructionPages: number
+      contentsNavigationPages: number
+      rawSourceRetainedPages: number
+      generatedAt: string
+    }
+  }
 }
 
 export interface LibraryManifest {

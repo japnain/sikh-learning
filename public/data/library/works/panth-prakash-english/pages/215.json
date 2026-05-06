@@ -3,17 +3,22 @@
   "pageNumber": 215,
   "volume": 1,
   "sourcePageNumber": 215,
-  "title": "(JH SH YATES HOTT...)",
+  "title": "Rain in Malwa: Source Verse Opening",
   "blocks": [
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "(JH SH YATES HOTT...)"
+      "id": "manual-215-1",
+      "type": "paragraph",
+      "text": "This source-facing page opens the rain-in-Malwa episode. The people of Malwa come to Guru Gobind Singh with folded hands because the dry country needs rain for its crops."
     },
     {
-      "id": "paragraph-1",
+      "id": "manual-215-2",
       "type": "paragraph",
-      "text": "2€. due a sad at Art"
+      "text": "The Guru prays, rain falls in abundance, and from Damdama he tells the people to look ahead: one day water will flow through this region and make Malwa fertile."
+    },
+    {
+      "id": "manual-215-3",
+      "type": "paragraph",
+      "text": "The page also preserves the Guru’s wish that Malwa grow sugarcane, wheat, and rice and become prosperous like Sirhind, even though Rai Dalla prefers the older dry crops of pulses and coarse grain."
     }
   ],
   "rawBlocks": [

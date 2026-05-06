@@ -3,22 +3,22 @@
   "pageNumber": 1222,
   "volume": 2,
   "sourcePageNumber": 647,
-  "title": "q82. At eA SJo Uw at vot",
+  "title": "Another Episode About the Taruna Dal",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-1222-1",
       "type": "paragraph",
-      "text": "q82. At eA SJo Uw at vot"
+      "text": "Episode 147 opens by turning to the Taruna Dal, which had grown wealthy after the sack of Kasur and then heard that Bishambhar Das had been killed and the Doaba occupied by the Buddha Dal. Since the Buddha Dal had taken Doaba alone, the Taruna Dal wondered whether to fight them as a united group or seek another opportunity elsewhere."
     },
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "CHJ HT5H cs SU gdJoô BU HJ TS)"
+      "id": "manual-1222-2",
+      "type": "paragraph",
+      "text": "Both factions envied the other’s gains, yet the narrative says each received what destiny gave. The Taruna Dal saw the region around Lahore lying open, sent three misls ahead and two toward Majha and the hills, and the Singhs of Majha began establishing control in their own villages."
     },
     {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "SATS FI SST | Yd HBA ANG Be wat 191"
+      "id": "manual-1222-3",
+      "type": "paragraph",
+      "text": "The Nakai contingent moved toward Nakka and the Bhangis toward Multan, while S. Charat Singh focused on Lahore’s outskirts. He occupied scattered pockets, placed a post at Gujranwala, and remained in long conflict with the Bhangi chiefs who held territory on both sides of the river."
     }
   ],
   "rawBlocks": [
@@ -216,7 +216,7 @@
   "episode": {
     "number": 146,
     "title": "Episode About Further Occupation of More Territory",
-    "startPage": 662,
+    "startPage": 1221,
     "endPage": 1222
   }
 }

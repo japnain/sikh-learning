@@ -3,32 +3,22 @@
   "pageNumber": 2,
   "volume": 1,
   "sourcePageNumber": 2,
-  "title": "KULWANT SINGH",
+  "title": "Publication Details and Imprint",
   "blocks": [
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "SRI GUR PANTH PRAKASH"
-    },
-    {
-      "id": "paragraph-1",
+      "id": "manual-2-1",
       "type": "paragraph",
-      "text": "English Translation by"
+      "text": "This publication page identifies Sri Gur Panth Prakash, Volume I, as the English translation by Kulwant Singh, issued in 2006 or 537 Nanakshahi under ISBN 81-85815-28-3."
     },
     {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "KULWANT SINGH"
-    },
-    {
-      "id": "heading-3",
-      "type": "heading",
-      "text": "INSTITUTE OF SIKH STUDIES"
-    },
-    {
-      "id": "paragraph-2",
+      "id": "manual-2-2",
       "type": "paragraph",
-      "text": "Gurdwara Singh Sabha, Kanthala,"
+      "text": "It records the edition details: one thousand copies were printed, the price was Rs. 400, and the publisher was the Institute of Sikh Studies at Gurdwara Singh Sabha, Kanthala, Industrial Area Phase II, Chandigarh."
+    },
+    {
+      "id": "manual-2-3",
+      "type": "paragraph",
+      "text": "The imprint also preserves the publisher contact details and names Sidharth Media Printers of Industrial Area Phase II, Chandigarh, as the printer. This page is publication data, not episode narrative."
     }
   ],
   "rawBlocks": [

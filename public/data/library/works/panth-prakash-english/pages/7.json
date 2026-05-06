@@ -3,27 +3,22 @@
   "pageNumber": 7,
   "volume": 1,
   "sourcePageNumber": 7,
-  "title": "The Episode About the Wrestling Bout Between",
+  "title": "Contents: Final Volume I Episodes",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-7-1",
       "type": "paragraph",
-      "text": "The Episode About the Wrestling Bout Between Miri Singh And Sangat Singh The Episode About Baba Binod Singh and Kahan. Singh Teh The Episode About the Guruship of Gulab Rai..."
+      "text": "This contents page completes the Volume I episode list. It points to the wrestling bout between Miri Singh and Sangat Singh, Baba Binod Singh and Kahan Singh, and the episodes about Gulab Rai."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-7-2",
       "type": "paragraph",
-      "text": "The Second Episode About Gulab Rai..."
+      "text": "The last narrative entries name Guru Gobind Singh, the Singhs who accepted martyrdom, the Tat Khalsa, Mehar Singh, Gangu Shah’s dynasty, Kharak Singh, and the origin of the Gangushahian sect."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-7-3",
       "type": "paragraph",
-      "text": "The Episode About Gulab Rai..."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "The Episode About Tenth Guru, Guru Gobind Singh The Episode About Singhs Who Accepted Martyrdom The Episode About the Tat Khalsa Mehar Singh, Gangu Shah's Dynasty and Kharak Singh The Episode About the Origin of Gangushahian Sect"
+      "text": "Because this is a table-of-contents page, its proper reader role is to help users navigate the closing episodes of Volume I rather than to continue any single scene."
     }
   ],
   "rawBlocks": [
@@ -143,7 +138,7 @@
       "text": "Index"
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
