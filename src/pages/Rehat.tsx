@@ -144,6 +144,92 @@ function SearchField({
   )
 }
 
+function RehatSectionNavCard({
+  chapter,
+  direction,
+  rehatId,
+}: {
+  chapter: RehatChapterSummary | null
+  direction: 'previous' | 'next'
+  rehatId: number
+}) {
+  const isPrevious = direction === 'previous'
+  const label = isPrevious ? 'Previous section' : 'Next section'
+  const emptyLabel = isPrevious ? 'Start of source' : 'End of source'
+  const icon = isPrevious ? <IconArrowLeft size={15} /> : <IconArrowRight size={15} />
+
+  if (!chapter) {
+    return (
+      <div
+        className="flex min-h-[72px] items-center gap-3 rounded-xl border border-dashed border-sand/15 bg-parchment-low/70 px-4 py-3 text-ink/42 dark:border-dark-text/15 dark:bg-white/[0.035] dark:text-dark-text/45"
+        aria-disabled="true"
+      >
+        <span className="icon-surface h-8 w-8 shrink-0 opacity-55">{icon}</span>
+        <div className="min-w-0">
+          <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em]">{label}</p>
+          <p className="mt-1 font-sans text-sm font-medium">{emptyLabel}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <Link
+      to={`/banis/rehat/${rehatId}/chapters/${chapter.chapterId}`}
+      aria-label={`${label}: ${chapter.chapterName}`}
+      className="interactive-focus flex min-h-[72px] items-center gap-3 rounded-xl border border-sand/15 bg-parchment-card px-4 py-3 text-left text-ink transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text"
+    >
+      {isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">{icon}</span> : null}
+      <div className="min-w-0 flex-1">
+        <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/48 dark:text-dark-text/58">
+          {label}
+        </p>
+        <p className="mt-1 truncate font-sans text-sm font-semibold text-ink dark:text-dark-text">
+          {chapter.chapterName}
+        </p>
+      </div>
+      {!isPrevious ? <span className="icon-surface h-8 w-8 shrink-0 text-saffron dark:text-gold-light">{icon}</span> : null}
+    </Link>
+  )
+}
+
+function RehatSectionNavigation({
+  rehatId,
+  previousChapter,
+  nextChapter,
+}: {
+  rehatId: number
+  previousChapter: RehatChapterSummary | null
+  nextChapter: RehatChapterSummary | null
+}) {
+  return (
+    <nav
+      className="section-shell space-y-4 px-4 py-4"
+      aria-label="Rehat section navigation"
+      data-testid="rehat-section-navigation"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="eyebrow">Continue reading</p>
+          <p className="mt-1 font-sans text-sm text-ink/58 dark:text-dark-text/68">
+            Move section by section without returning to the chapter list.
+          </p>
+        </div>
+        <Link
+          to={`/banis/rehat/${rehatId}`}
+          className="interactive-focus shrink-0 rounded-full border border-sand/15 bg-parchment-low px-3 py-2 font-sans text-xs font-semibold text-ink/65 dark:border-dark-text/20 dark:bg-white/[0.055] dark:text-dark-text/75"
+        >
+          Back to all sections
+        </Link>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <RehatSectionNavCard rehatId={rehatId} chapter={previousChapter} direction="previous" />
+        <RehatSectionNavCard rehatId={rehatId} chapter={nextChapter} direction="next" />
+      </div>
+    </nav>
+  )
+}
+
 export default function Rehat() {
   const { rehatId: rehatIdParam, chapterId: chapterIdParam } = useParams()
   const selectedRehatId = parseNumericParam(rehatIdParam)
@@ -249,6 +335,13 @@ export default function Rehat() {
     : null
   const selectedChapterSummary = selectedChapterId
     ? selectedChapters.find(chapter => chapter.chapterId === selectedChapterId) ?? null
+    : null
+  const selectedChapterIndex = selectedChapterId
+    ? selectedChapters.findIndex(chapter => chapter.chapterId === selectedChapterId)
+    : -1
+  const previousChapter = selectedChapterIndex > 0 ? selectedChapters[selectedChapterIndex - 1] : null
+  const nextChapter = selectedChapterIndex >= 0 && selectedChapterIndex < selectedChapters.length - 1
+    ? selectedChapters[selectedChapterIndex + 1]
     : null
   const breadcrumbChapter = selectedChapter ?? selectedChapterSummary
   const editorial = getRehatEditorial(selectedRehat)
@@ -413,6 +506,12 @@ export default function Rehat() {
                   />
                 </article>
               )}
+
+              <RehatSectionNavigation
+                rehatId={selectedRehatId}
+                previousChapter={previousChapter}
+                nextChapter={nextChapter}
+              />
             </>
           )}
         </section>
