@@ -6,7 +6,17 @@ import {
   type SearchResult,
   type BaniIndexItem,
 } from '../api/banidb'
-import { BANIS, DG_CATEGORY_ORDER, READ_EXACT_DG_BANIS, READ_EXACT_SGGS_BANIS, SGGS_CATEGORY_ORDER, type Bani } from '../data/banis'
+import {
+  BANIS,
+  DG_CATEGORY_ORDER,
+  READ_DIRECTORY_DG_BANIS,
+  READ_DIRECTORY_SGGS_BANIS,
+  READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS,
+  READ_EXACT_DG_BANIS,
+  READ_EXACT_SGGS_BANIS,
+  SGGS_CATEGORY_ORDER,
+  type Bani,
+} from '../data/banis'
 import useAppSearchMatches from '../hooks/useAppSearchMatches'
 import { resolveAsyncIssue } from '../qa/async'
 import { useRecentSearchStore } from '../store/recentSearch'
@@ -119,20 +129,8 @@ function isSearchSourceParam(value: string | null): value is SearchSource {
   return value !== null && value in SEARCH_SOURCE_LABELS
 }
 
-const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set([
-  'japji-sahib',
-  'jaap-sahib',
-  'tav-prasad-savaiye',
-  'chaupai-sahib',
-  'anand-sahib',
-  'rehras-sahib',
-  'kirtan-sohila',
-  'salok-mahalla-9',
-  'sukhmani-sahib',
-  'asa-di-var',
-  'aarti',
-  'laavan',
-])
+const CANONICAL_SUNDAR_GUTKA_BANI_IDS = new Set<string>(READ_DIRECTORY_SUNDAR_GUTKA_BANI_IDS)
+const SUNDAR_GUTKA_STANDALONE_BANIDB_IDS = new Set([24])
 
 const NITNEM_SUNDAR_GUTKA_BANI_IDS = new Set([
   'japji-sahib',
@@ -154,8 +152,8 @@ const POPULAR_SUNDAR_GUTKA_BANI_IDS = new Set([
 
 const CANONICAL_BANI_BY_ID = new Map(BANIS.map(bani => [bani.id, bani]))
 const EXACT_BANIS_BY_SCRIPTURE = {
-  SGGS: READ_EXACT_SGGS_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
-  DG: READ_EXACT_DG_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
+  SGGS: READ_DIRECTORY_SGGS_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
+  DG: READ_DIRECTORY_DG_BANIS.filter((bani): bani is ExactBani => typeof bani.baniDbId === 'number'),
 } satisfies Record<Scripture, ExactBani[]>
 
 const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_BANIS]
@@ -168,6 +166,15 @@ const EXACT_VARIANT_OPTIONS_BY_BASE_ID = [READ_EXACT_SGGS_BANIS, READ_EXACT_DG_B
     groups.set(baseId, list)
     return groups
   }, new Map())
+
+function getExactBaniRowLabel(bani: ExactBani) {
+  if (!bani.variantOf) return bani.name
+
+  const exactVariants = EXACT_VARIANT_OPTIONS_BY_BASE_ID.get(bani.variantOf) ?? []
+  const baseLabel = exactVariants.find(option => !option.variantOf)?.name ?? bani.name
+
+  return bani.variantLabel ? `${baseLabel} · ${bani.variantLabel}` : bani.name
+}
 
 function normalizeBaniLabel(value: string) {
   return value
@@ -583,12 +590,7 @@ export default function Banis() {
       const canonicalId = getCanonicalSundarGutkaBani(item)?.id
       return canonicalId ? POPULAR_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) : false
     })
-    const other = sundarGutkaBanis.filter(item => {
-      const canonicalId = getCanonicalSundarGutkaBani(item)?.id
-      return canonicalId
-        ? !NITNEM_SUNDAR_GUTKA_BANI_IDS.has(canonicalId) && !POPULAR_SUNDAR_GUTKA_BANI_IDS.has(canonicalId)
-        : true
-    })
+    const other = sundarGutkaBanis.filter(item => SUNDAR_GUTKA_STANDALONE_BANIDB_IDS.has(item.id))
 
     return [
       { key: 'nitnem', label: 'Nitnem', items: nitnem },
@@ -1115,7 +1117,16 @@ export default function Banis() {
                         <div id={`${groupKey}-panel`} className="mt-1 ml-2">
                           {group.items.flatMap(item => {
                             if (item.variantOf) {
-                              return []
+                              const baseItemVisible = group.items.some(candidate => !candidate.variantOf && candidate.id === item.variantOf)
+                              if (baseItemVisible) return []
+
+                              return (
+                                <IndexRow
+                                  key={item.id}
+                                  label={getExactBaniRowLabel(item)}
+                                  onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
+                                />
+                              )
                             }
 
                             const routeOptions = getExactRouteOptionsForBani(item)
@@ -1132,7 +1143,7 @@ export default function Banis() {
                             return (
                               <IndexRow
                                 key={item.id}
-                                label={item.name}
+                                label={getExactBaniRowLabel(item)}
                                 onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                               />
                             )

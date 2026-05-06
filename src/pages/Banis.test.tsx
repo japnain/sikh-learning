@@ -196,28 +196,31 @@ test('still allows optional quick Panth Prakash page numbers to open the reader 
   expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
 })
 
-test('shows exact SGGS bani items after expanding SGGS section', () => {
+test('keeps the SGGS directory free of Sundar Gutka duplicate rows while preserving source-only content', () => {
   renderBanis()
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
 
-  const japjiRow = screen.getByText('Japji Sahib').closest('button') as HTMLButtonElement
-  expect(japjiRow).toHaveClass('read-index-row')
-  expect(screen.getByText('Japji Sahib')).toHaveClass('read-index-row__title')
-  expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
+  const sodarRow = screen.getByText('Sodar').closest('button') as HTMLButtonElement
+  expect(sodarRow).toHaveClass('read-index-row')
+  expect(screen.getByText('Sodar')).toHaveClass('read-index-row__title')
+  expect(screen.queryByText('Japji Sahib')).not.toBeInTheDocument()
+  expect(screen.queryByText('Rehras Sahib')).not.toBeInTheDocument()
+  expect(screen.queryByText('Anand Sahib')).not.toBeInTheDocument()
   expect(screen.queryByText(/Adjustable length/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/BaniDB/i)).not.toBeInTheDocument()
   expect(screen.queryByText('Raag Sri')).not.toBeInTheDocument()
 })
 
-test('shows exact-variant rows in the Dasam Granth section when BaniDB supports them', () => {
+test('keeps the Dasam Granth directory free of Sundar Gutka duplicate rows while retaining distinct exact variants', () => {
   renderBanis()
   fireEvent.click(screen.getAllByText(/Dasam Granth/i)[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
 
-  expect(screen.getByText('Tav Prasad Savaiye · Sraavag Suddh')).toBeInTheDocument()
   expect(screen.getByText('Tav Prasad Savaiye · Dheenan Ki')).toBeInTheDocument()
-  expect(screen.getByText('Benati Chaupai Sahib')).toBeInTheDocument()
+  expect(screen.queryByText('Tav Prasad Savaiye · Sraavag Suddh')).not.toBeInTheDocument()
+  expect(screen.queryByText('Jaap Sahib')).not.toBeInTheDocument()
+  expect(screen.queryByText('Benati Chaupai Sahib')).not.toBeInTheDocument()
 })
 
 test('shows both Sri Bhagauti Astotr exact variants in Dasam Granth supplemental banis', () => {
@@ -238,7 +241,7 @@ test('shows the exhaustive exact SGGS categories including raag sections', () =>
   expect(screen.getByText('Raag Gauri')).toBeInTheDocument()
 })
 
-test('loads Sundar Gutka groups and items with bilingual labels', async () => {
+test('loads Sundar Gutka groups and items with bilingual labels without swallowing source catalog rows', async () => {
   renderBanis()
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
 
@@ -248,6 +251,12 @@ test('loads Sundar Gutka groups and items with bilingual labels', async () => {
   expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
   expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
   expect(screen.queryByText(/STTM|BaniDB|Adjustable length/i)).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByText('Other'))
+  expect(screen.getByText('ਅਰਦਾਸ')).toBeInTheDocument()
+  expect(screen.queryByText('Akal Ustat')).not.toBeInTheDocument()
+  expect(screen.queryByText('Raag Gauri')).not.toBeInTheDocument()
+  expect(screen.queryByText('Sri Bhagauti Astotr · Panth Prakash')).not.toBeInTheDocument()
 })
 
 test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other', async () => {
@@ -322,7 +331,7 @@ test('shows single clean Nitnem entries for adjustable Sundar Gutka banis', asyn
   expect(screen.queryByText(/Length ·|Adjustable/i)).not.toBeInTheDocument()
 })
 
-test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async () => {
+test('opens Bavan Akhri through an exact BaniDB route from the SGGS source-only list', async () => {
   render(
     <MemoryRouter initialEntries={['/banis']}>
       <Routes>
@@ -334,10 +343,10 @@ test('opens Asa Di Var through an exact BaniDB route from the SGGS list', async 
 
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Long Compositions'))
-  fireEvent.click(screen.getByText('Asa Di Var'))
+  fireEvent.click(screen.getByText('Bavan Akhri'))
 
   await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=462&startAng=462&endAng=475&bani=Asa+Di+Var&baniDbId=90&exactBani=1')
+    expect(screen.getByTestId('location').textContent).toContain('/study?source=G&ang=250&startAng=250&endAng=262&bani=Bavan+Akhri&baniDbId=33&exactBani=1')
   })
 })
 
