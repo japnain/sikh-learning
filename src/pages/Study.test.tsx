@@ -657,7 +657,7 @@ describe('Study exact shabad mode', () => {
 })
 
 describe('Study hukamnama mode', () => {
-  it('renders the normalized hukamnama reader view', async () => {
+  it('renders one editorial Daily Hukamnama hero with date, source metadata, and source shabad action', async () => {
     render(
       <MemoryRouter initialEntries={['/study?hukamnamaDate=2026-04-05']}>
         <Routes><Route path="/study" element={<Study />} /></Routes>
@@ -665,11 +665,54 @@ describe('Study hukamnama mode', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText(/Hukamnama · 2026-04-05/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/Daily Hukamnama Sri Harmandir Sahib, Amritsar/i)).toHaveLength(1)
+      expect(screen.getByText(/April 5, 2026/i)).toBeInTheDocument()
       expect(screen.getAllByText(/Raag Dhanaasree/i).length).toBeGreaterThan(0)
       expect(screen.getByText(/Go to source shabad/i)).toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
     })
+
+    expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
+  })
+
+  it('uses bani-specific editorial copy for Japji Sahib instead of generic reader product copy', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'Japji Sahib' })).toBeInTheDocument()
+      expect(screen.getByText(/opens Sri Guru Granth Sahib Ji on Ang 1/i)).toBeInTheDocument()
+      expect(screen.getByText(/Guru Nanak Sahib Ji/i)).toBeInTheDocument()
+    })
+
+    expect(screen.queryByText(/Comfortable reading first/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/controls stay close/i)).not.toBeInTheDocument()
+  })
+
+  it('groups expanded reader controls under stable editorial settings sections', async () => {
+    render(
+      <MemoryRouter initialEntries={['/study?source=G&ang=1&startAng=1&endAng=8&bani=Japji%20Sahib&baniDbId=2&exactBani=1&baniId=japji-sahib']}>
+        <Routes><Route path="/study" element={<Study />} /></Routes>
+      </MemoryRouter>
+    )
+
+    const controls = await screen.findByTestId('study-reader-controls')
+    expect(within(controls).getByText(/Reader settings/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Gurmukhi$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^English$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/Translit Off/i)).toBeInTheDocument()
+
+    fireEvent.click(within(controls).getByRole('button', { name: /show reader controls/i }))
+
+    expect(within(controls).getByText(/^Script$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Reading layers$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Meaning$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Punjabi teeka\/source$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Hindi source$/i)).toBeInTheDocument()
+    expect(within(controls).getByText(/^Layout$/i)).toBeInTheDocument()
   })
 
   it('renders short Rehras without the legacy extra intro block or Ang 0', async () => {
