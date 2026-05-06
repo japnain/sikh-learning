@@ -14,7 +14,7 @@ export default function ExcerptBlock({
   const scriptMode = useLanguageStore(state => state.scriptMode)
 
   return (
-    <div className="section-shell-quiet p-4">
+    <div className="section-shell-quiet learn-detail-excerpt-block p-4">
       <CitationLine shabad={shabad} />
       <div className="mt-3 space-y-3">
         {excerpt.lines.map(line => (
@@ -30,11 +30,11 @@ export default function ExcerptBlock({
         ))}
       </div>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
-        <div className="section-shell px-4 py-4">
+        <div className="section-shell learn-detail-info-card px-4 py-4">
           <p className="eyebrow">Deeper Meaning</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.shortMeaning}</p>
         </div>
-        <div className="section-shell px-4 py-4">
+        <div className="section-shell learn-detail-info-card px-4 py-4">
           <p className="eyebrow">Live This</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.lifeApplication}</p>
         </div>

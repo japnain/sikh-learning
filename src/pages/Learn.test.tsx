@@ -21,19 +21,25 @@ afterEach(() => {
 test("renders the learn hub with the today-first archive structure", async () => {
   renderLearnRoute()
 
-  expect(await screen.findByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
+  const learnPage = await screen.findByTestId("page-learn")
+  expect(learnPage).toHaveClass("learn-room-shell")
+  expect(screen.getByRole("heading", { level: 1, name: /^Today$/i })).toBeInTheDocument()
+  expect(screen.getByTestId("learn-hero")).toHaveClass("learn-room-hero")
   expect(screen.getByText(/Find the guide that can actually bear the question/i)).toBeInTheDocument()
   expect(screen.getByRole("searchbox", { name: /Search the Learn archive/i })).toBeInTheDocument()
   expect(screen.getByText(/This archive is here to carry real return, not to perform volume\./i)).toBeInTheDocument()
   expect(screen.getByTestId("learn-surface-rail")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-surface-rail").parentElement).toHaveClass("learn-surface-rail-wrap")
   expect(screen.getByTestId("learn-subsection-rail")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-subsection-rail").parentElement).toHaveClass("learn-section-rail-wrap")
   expect(screen.getByTestId("learn-today-support-row")).toBeInTheDocument()
-  expect(screen.getByTestId("learn-inventory-compact")).toBeInTheDocument()
-  expect(screen.getByTestId("learn-reading-depth-compact")).toBeInTheDocument()
-  expect(screen.getByRole("link", { name: /Today's Guidance/i })).toBeInTheDocument()
-  expect(screen.getByRole("link", { name: /Featured Shabad/i })).toBeInTheDocument()
-  expect(screen.getByRole("link", { name: /Topic Spotlight/i })).toBeInTheDocument()
+  expect(screen.getByTestId("learn-inventory-compact")).toHaveClass("learn-archive-proof-card")
+  expect(screen.getByTestId("learn-reading-depth-compact")).toHaveClass("learn-depth-card")
+  expect(screen.getByRole("link", { name: /Today's Guidance/i })).toHaveClass("learn-card")
+  expect(screen.getByRole("link", { name: /Featured Shabad/i })).toHaveClass("learn-card")
+  expect(screen.getByRole("link", { name: /Topic Spotlight/i })).toHaveClass("learn-card")
   expect(screen.getByText(/Continue Learning/i)).toBeInTheDocument()
+  expect(screen.getByRole("link", { name: /Continue collection:/i })).toHaveClass("learn-primary-path-card")
   expect(screen.getByText(/Open by State/i)).toBeInTheDocument()
   expect(screen.getByText(/Editor's Paths/i)).toBeInTheDocument()
 }, 10000)
@@ -60,12 +66,13 @@ test("dark learn surfaces keep helper copy, rails, and archive metrics readable"
   renderLearnRoute()
 
   expect(await screen.findByTestId("page-learn")).toHaveClass(
+    "learn-room-shell",
     "pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)]"
   )
-  expect(screen.getByText(/Start with the clearest guide/i)).toHaveClass("dark:text-dark-text/78")
+  expect(screen.getByText(/Start with the clearest guide/i)).toHaveClass("dark:text-dark-text/82")
 
-  expect(screen.getByTestId("learn-surface-rail")).toHaveClass("pb-3")
-  expect(screen.getByTestId("learn-subsection-rail")).toHaveClass("pb-3")
+  expect(screen.getByTestId("learn-surface-rail")).toHaveClass("learn-surface-rail")
+  expect(screen.getByTestId("learn-subsection-rail")).toHaveClass("learn-section-rail")
   expect(screen.getByTestId("learn-surface-topics")).toHaveClass("dark:text-dark-text/86")
 
   const compactInventory = screen.getByTestId("learn-inventory-compact")
@@ -313,9 +320,11 @@ test("no-match topic search stays focused until the user browses all topics", as
 })
 
 test("shabads tab shows an empty state instead of crashing when filters remove every deep dive", async () => {
-  renderLearnRoute("/learn?tab=shabads&theme=does-not-exist")
+  renderLearnRoute("/learn?tab=shabads&theme=does-not-exist&savedOnly=1&completedOnly=1")
 
-  expect(await screen.findByRole("button", { name: /Clear all filters/i })).toBeInTheDocument()
+  expect(await screen.findByRole("button", { name: /Clear all filters/i })).toHaveClass("learn-chip-button--clear")
+  expect(screen.getByRole("button", { name: /Saved only/i })).toHaveAttribute("aria-pressed", "true")
+  expect(screen.getByRole("button", { name: /Viewed only/i })).toHaveAttribute("aria-pressed", "true")
   expect(screen.getByText(/No deep dives match the current filters/i)).toBeInTheDocument()
 })
 

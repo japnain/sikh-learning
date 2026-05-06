@@ -116,7 +116,7 @@ export default function TopicDetailPage() {
       defaultFrom="topics"
     >
       <section
-        className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-topic-scenarios"
         data-ai-anchor="topic-scenarios"
       >
@@ -125,7 +125,7 @@ export default function TopicDetailPage() {
           <Link
             to={buildLearnDetailPath("topic-guide", topic.id, from)}
             aria-current={activeScenarioKey === "overview" ? "page" : undefined}
-            className={`rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
+            className={`learn-chip-button rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
               activeScenarioKey === "overview"
                 ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
                 : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
@@ -138,7 +138,7 @@ export default function TopicDetailPage() {
               key={scenarioKey}
               to={buildLearnDetailPath("topic-guide", topic.id, from, scenarioKey)}
               aria-current={activeScenarioKey === scenarioKey ? "page" : undefined}
-              className={`rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
+              className={`learn-chip-button rounded-full px-4 py-2 font-sans text-xs font-semibold transition-all duration-300 ${
                 activeScenarioKey === scenarioKey
                   ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg"
                   : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"
@@ -151,7 +151,7 @@ export default function TopicDetailPage() {
       </section>
 
       <section
-        className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-topic-insight"
         data-ai-anchor="topic-insight"
       >
@@ -160,7 +160,7 @@ export default function TopicDetailPage() {
       </section>
 
       <section
-        className={`space-y-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`learn-detail-section learn-detail-source-card space-y-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-topic-excerpts"
         data-ai-anchor="topic-excerpts"
       >
@@ -168,7 +168,7 @@ export default function TopicDetailPage() {
           const resolved = resolveLineReference(catalog, excerpt.source)
 
           return (
-            <div key={`${resolved.deepDive.id}:${excerpt.source.verseIds.join("-")}`} className="section-shell-quiet p-4">
+            <div key={`${resolved.deepDive.id}:${excerpt.source.verseIds.join("-")}`} className="section-shell-quiet learn-detail-info-card p-4">
               <CitationLine shabad={resolved.deepDive} />
               <div className="mt-3 space-y-3">
                 {resolved.lines.map(line => (
@@ -197,7 +197,7 @@ export default function TopicDetailPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <section
-          className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+          className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
           id="learn-detail-topic-reflection"
           data-ai-anchor="topic-reflection"
         >
@@ -205,7 +205,7 @@ export default function TopicDetailPage() {
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{activeReflection}</p>
         </section>
         <section
-          className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+          className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
           id="learn-detail-topic-action"
           data-ai-anchor="topic-action"
         >

@@ -90,7 +90,7 @@ export default function GuidanceDetailPage() {
       defaultFrom="today"
     >
       <section
-        className={`section-shell p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell learn-detail-section learn-detail-source-card p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-guidance-excerpt"
         data-ai-anchor="guidance-excerpt"
       >
@@ -101,7 +101,7 @@ export default function GuidanceDetailPage() {
       </section>
 
       <section
-        className={`section-shell p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell learn-detail-section learn-detail-source-card p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-guidance-shabad"
         data-ai-anchor="guidance-shabad"
       >
@@ -121,18 +121,18 @@ export default function GuidanceDetailPage() {
         </div>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <div className="section-shell-quiet p-4">
+          <div className="section-shell-quiet learn-detail-info-card p-4">
             <p className="eyebrow">Whole Shabad</p>
             <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.deepDive.summary}</p>
           </div>
-          <div className="section-shell-quiet p-4">
+          <div className="section-shell-quiet learn-detail-info-card p-4">
             <p className="eyebrow">Why It Matters</p>
             <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{excerpt.deepDive.whyItMatters}</p>
             <p className="mt-3 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">{excerpt.deepDive.takeaway}</p>
           </div>
         </div>
 
-        <div className="mt-4 section-shell-quiet p-4">
+        <div className="mt-4 section-shell-quiet learn-detail-info-card p-4">
           <p className="eyebrow">Movement Through the Shabad</p>
           <div className="mt-3 space-y-3">
             {excerpt.deepDive.structure.map(item => (
@@ -144,7 +144,7 @@ export default function GuidanceDetailPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <section
-          className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+          className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
           id="learn-detail-guidance-takeaway"
           data-ai-anchor="guidance-takeaway"
         >
@@ -152,7 +152,7 @@ export default function GuidanceDetailPage() {
           <p className="mt-2 font-sans text-base leading-7 text-ink dark:text-dark-text">{guidance.takeaway}</p>
         </section>
         <section
-          className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+          className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
           id="learn-detail-guidance-life"
           data-ai-anchor="guidance-life"
         >

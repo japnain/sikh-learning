@@ -19,7 +19,7 @@ function CollectionMetric({
   value: number
 }) {
   return (
-    <div className="section-shell-quiet rounded-[22px] px-4 py-4">
+    <div className="section-shell-quiet learn-detail-metric-card rounded-[22px] px-4 py-4">
       <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink/60 dark:text-dark-text/60">
         {label}
       </p>
@@ -161,7 +161,7 @@ export default function CollectionDetailPage() {
       defaultFrom="today"
     >
       <section
-        className={`grid gap-5 lg:grid-cols-[1.15fr,0.85fr] ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`learn-detail-section learn-detail-source-card grid gap-5 lg:grid-cols-[1.15fr,0.85fr] ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-collection-overview"
         data-ai-anchor="collection-overview"
       >
@@ -177,7 +177,7 @@ export default function CollectionDetailPage() {
         </div>
 
         <div className="space-y-4">
-          <div className="section-shell-quiet p-4">
+          <div className="section-shell-quiet learn-detail-info-card p-4">
             <p className="eyebrow">Progress</p>
             <p className="mt-2 font-display text-[1.7rem] leading-none text-ink dark:text-dark-text">
               {completedCount} of {collection.items.length} completed
@@ -204,11 +204,11 @@ export default function CollectionDetailPage() {
             ) : null}
           </div>
 
-          <div className="section-shell-quiet p-4">
+          <div className="section-shell-quiet learn-detail-info-card p-4">
             <p className="eyebrow">Themes</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {collection.themes.map(theme => (
-                <span key={theme} className="chip-pill">{theme}</span>
+                <span key={theme} className="learn-chip-static chip-pill">{theme}</span>
               ))}
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function CollectionDetailPage() {
         </div>
       </section>
 
-      <section className="section-shell p-5">
+      <section id="learn-detail-collection-steps" className="section-shell learn-detail-section p-5">
         <p className="eyebrow">Journey Steps</p>
         <div className="mt-4 space-y-3">
           {collection.items.map((item, index) => {
@@ -243,7 +243,7 @@ export default function CollectionDetailPage() {
               <div
                 key={`${item.kind}:${item.id}`}
                 id={sectionId}
-                className={`rounded-[24px] border px-4 py-4 transition-all duration-300 ${LEARN_ANCHOR_OFFSET_CLASS} ${
+                className={`learn-card learn-card--step rounded-[24px] border px-4 py-4 transition-all duration-300 ${LEARN_ANCHOR_OFFSET_CLASS} ${
                   isNext
                     ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
                     : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"

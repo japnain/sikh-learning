@@ -20,7 +20,10 @@ test("topic detail renders its own sticky rail and scrolls within the page", asy
 
   expect(await screen.findByRole("heading", { level: 1, name: /When worry must remember who is carrying the breath/i })).toBeInTheDocument()
   expect(screen.getByTestId("learn-detail-rail")).toBeInTheDocument()
+  expect(screen.getByTestId("learn-detail-rail").parentElement).toHaveClass("learn-detail-rail-wrap")
   expect(screen.getByTestId("topics-topic-action")).toBeInTheDocument()
+  expect(document.getElementById("learn-detail-topic-scenarios")).toHaveClass("learn-detail-section")
+  expect(document.getElementById("learn-detail-topic-excerpts")).toHaveClass("learn-detail-section", "learn-detail-source-card")
 
   fireEvent.click(screen.getByTestId("topics-topic-action"))
 

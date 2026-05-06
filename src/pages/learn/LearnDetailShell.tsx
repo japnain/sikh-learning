@@ -179,14 +179,14 @@ export default function LearnDetailShell({
 
   return (
     <div
-      className="page-shell animate-fade-in"
+      className="page-shell learn-detail-room-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in"
       data-testid="page-learn-detail"
       data-page="learn-detail"
       data-ai-surface="learn-detail-shell"
       data-ai-state="ready"
       data-ai-flow={sectionTab}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
+      <div className="learn-detail-topbar flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="eyebrow flex flex-wrap items-center gap-2">
             <Link to="/learn" className="hover:text-saffron dark:hover:text-gold-light">Learn</Link>
@@ -213,7 +213,7 @@ export default function LearnDetailShell({
         </div>
       ) : null}
 
-      <div className="mt-5 max-w-[48rem]">
+      <div className="learn-detail-hero mt-5 max-w-[48rem]" data-testid="learn-detail-hero">
         <h1 className="font-display text-[2.85rem] leading-none text-ink dark:text-dark-text">{title}</h1>
         {body ? (
           <p className="mt-3 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">{body}</p>
@@ -221,22 +221,22 @@ export default function LearnDetailShell({
       </div>
 
       {rail.length > 0 ? (
-        <div className="sticky top-[calc(var(--nav-stack-height,0px)+0.75rem)] z-20 mt-5 section-shell px-3 py-3 backdrop-blur-[20px]">
+        <div className="learn-detail-rail-wrap sticky top-[calc(var(--nav-stack-height,0px)+0.75rem)] z-20 mt-5 section-shell px-3 py-3 backdrop-blur-[20px]">
           <InlineRail
             chips={rail}
             activeTargetId={activeTargetId}
             onSelect={handleRailSelect}
             testId="learn-detail-rail"
             ariaLabel={`${backContext.breadcrumbLabel} detail navigation`}
-            className="flex flex-wrap gap-2 pb-1"
+            className="learn-detail-rail flex flex-wrap gap-2 pb-1"
           />
         </div>
       ) : null}
 
-      <div className={`mt-5 space-y-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}>{children}</div>
+      <div className={`learn-detail-content mt-5 space-y-5 ${LEARN_ANCHOR_OFFSET_CLASS}`}>{children}</div>
 
       {collectionStepContext ? (
-        <section className="section-shell mt-6 p-5" data-testid="learn-collection-step-footer">
+        <section className="section-shell learn-detail-next-step-card mt-6 p-5" data-testid="learn-collection-step-footer">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="eyebrow">Collection Step</p>

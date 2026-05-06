@@ -20,7 +20,7 @@ export default function ShabadCard({
   onToggleSave: () => void
 }) {
   return (
-    <div className={`rounded-[30px] border px-4 py-4 transition-all duration-300 ${active ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card" : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"}`}>
+    <div className={`learn-card learn-card--shabad rounded-[30px] border px-4 py-4 transition-all duration-300 ${active ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card" : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"}`}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <CitationLine shabad={shabad} />
@@ -35,7 +35,7 @@ export default function ShabadCard({
         <span className="chip-pill">{shabad.lengthBand}</span>
         {completed ? <span className="chip-pill">Viewed</span> : null}
         {shabad.themes.slice(0, 2).map(theme => (
-          <span key={theme} className="chip-pill">{theme}</span>
+          <span key={theme} className="learn-chip-static chip-pill">{theme}</span>
         ))}
       </div>
 

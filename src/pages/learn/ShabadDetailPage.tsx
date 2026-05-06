@@ -79,15 +79,15 @@ export default function ShabadDetailPage() {
       defaultFrom="shabads"
     >
       <section
-        className={`grid gap-4 md:grid-cols-2 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`learn-detail-section learn-detail-source-card grid gap-4 md:grid-cols-2 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-shabad-summary"
         data-ai-anchor="shabad-summary"
       >
-        <div className="section-shell-quiet p-4">
+        <div className="section-shell-quiet learn-detail-info-card p-4">
           <CitationLine shabad={shabad} />
           <p className="mt-3 font-sans text-sm leading-6 text-ink dark:text-dark-text">{shabad.summary}</p>
         </div>
-        <div className="section-shell-quiet p-4">
+        <div className="section-shell-quiet learn-detail-info-card p-4">
           <p className="eyebrow">Why It Matters</p>
           <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">{shabad.whyItMatters}</p>
           <p className="mt-3 font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">{shabad.takeaway}</p>
@@ -95,7 +95,7 @@ export default function ShabadDetailPage() {
       </section>
 
       <section
-        className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell-quiet learn-detail-section p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-shabad-structure"
         data-ai-anchor="shabad-structure"
       >
@@ -108,7 +108,7 @@ export default function ShabadDetailPage() {
       </section>
 
       <section
-        className={`section-shell-quiet p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
+        className={`section-shell-quiet learn-detail-section learn-detail-source-card p-4 ${LEARN_ANCHOR_OFFSET_CLASS}`}
         id="learn-detail-shabad-lines"
         data-ai-anchor="shabad-lines"
       >

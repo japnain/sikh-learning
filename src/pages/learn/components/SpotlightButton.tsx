@@ -26,7 +26,7 @@ export default function SpotlightButton({
       aria-current={active ? "page" : undefined}
       aria-labelledby={`${metaId} ${titleId}`}
       aria-describedby={bodyId}
-      className={`interactive-focus interactive-card-link block rounded-[28px] border px-4 py-4 text-left transition-all duration-300 ${
+      className={`learn-card learn-card--spotlight interactive-focus interactive-card-link block rounded-[28px] border px-4 py-4 text-left transition-all duration-300 ${
         active
           ? "border-saffron/30 bg-white shadow-soft dark:border-gold/25 dark:bg-dark-card"
           : "border-sand/12 bg-parchment-low/85 dark:border-dark-text/10 dark:!bg-dark-surface"
