@@ -95,6 +95,39 @@ test('supports direct Rehat chapter URLs, chapter text search, and sanitized ren
   expect(screen.getByText(/No matching text found/i)).toBeInTheDocument()
 })
 
+test('adds bottom previous and next section controls to Rehat chapter pages', () => {
+  const cache = useScriptureCacheStore.getState()
+  cache.setRehats([{ rehatId: 1, rehatName: 'Sikh Rehat Maryada', alphabet: 'S' }])
+  cache.setRehatChapters(1, [
+    { chapterId: 11, chapterName: 'Daily Discipline', alphabet: 'D' },
+    { chapterId: 12, chapterName: 'Individual Spirituality', alphabet: 'I' },
+    { chapterId: 13, chapterName: 'Shared Conduct', alphabet: 'S' },
+  ])
+  cache.setRehatChapter(1, {
+    rehatId: 1,
+    chapterId: 12,
+    chapterName: 'Individual Spirituality',
+    chapterContent: '<p>Keep the discipline connected from one section to the next.</p>',
+    alphabet: 'I',
+  })
+
+  renderRehat('/banis/rehat/1/chapters/12')
+
+  const navigation = screen.getByTestId('rehat-section-navigation')
+  expect(within(navigation).getByRole('link', { name: /Previous section: Daily Discipline/i })).toHaveAttribute(
+    'href',
+    '/banis/rehat/1/chapters/11'
+  )
+  expect(within(navigation).getByRole('link', { name: /Next section: Shared Conduct/i })).toHaveAttribute(
+    'href',
+    '/banis/rehat/1/chapters/13'
+  )
+  expect(within(navigation).getByRole('link', { name: /Back to all sections/i })).toHaveAttribute(
+    'href',
+    '/banis/rehat/1'
+  )
+})
+
 test('renders invalid route errors and dark mode', () => {
   document.documentElement.classList.add('dark')
 
