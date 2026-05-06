@@ -47,6 +47,8 @@ test("collection detail shows ordered journey progress and continues into the fi
 
   expect(await screen.findByRole("heading", { level: 1, name: new RegExp(collection.title, "i") })).toBeInTheDocument()
   expect(screen.getByText(new RegExp(`0 of ${collection.items.length} completed`, "i"))).toBeInTheDocument()
+  expect(document.getElementById("learn-detail-collection-overview")).toHaveClass("learn-detail-section", "learn-detail-source-card")
+  expect(document.getElementById("learn-detail-collection-steps")).toHaveClass("learn-detail-section")
   expect(screen.getByText(new RegExp(firstTitle ?? "", "i"))).toBeInTheDocument()
 
   fireEvent.click(screen.getByRole("link", { name: /Continue this journey/i }))
@@ -63,7 +65,7 @@ test("collection-linked detail pages show the step footer with next navigation",
 
   renderLearnRoute(buildCollectionStepPath(collection.id, firstItem))
 
-  expect(await screen.findByTestId("learn-collection-step-footer")).toBeInTheDocument()
+  expect(await screen.findByTestId("learn-collection-step-footer")).toHaveClass("learn-detail-next-step-card")
   expect(screen.getByText(new RegExp(`Step 1 of ${collection.items.length} in ${collection.title}`, "i"))).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Next/i })).toBeInTheDocument()
 })

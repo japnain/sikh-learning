@@ -47,6 +47,10 @@ test("guidance detail surfaces inline shabad depth for the related passage", asy
   renderLearnRoute("/learn/guidance/guidance-sweet-speech-humble-walk?from=today")
 
   expect(await screen.findByRole("heading", { level: 1, name: new RegExp(guidance.title, "i") })).toBeInTheDocument()
+  expect(screen.getByTestId("page-learn-detail")).toHaveClass("learn-detail-room-shell")
+  expect(screen.getByTestId("learn-detail-hero")).toHaveClass("learn-detail-hero")
+  expect(screen.getByTestId("learn-detail-rail").parentElement).toHaveClass("learn-detail-rail-wrap")
+  expect(document.getElementById("learn-detail-guidance-excerpt")).toHaveClass("learn-detail-section", "learn-detail-source-card")
   expect(screen.getByRole("heading", { level: 2, name: new RegExp(excerpt.deepDive.title, "i") })).toBeInTheDocument()
   expect(screen.getByText(excerpt.deepDive.whyItMatters)).toBeInTheDocument()
   expect(screen.getByText(excerpt.deepDive.structure[0]!)).toBeInTheDocument()

@@ -8,7 +8,7 @@ export default function SectionHeader({
   body?: string
 }) {
   return (
-    <div className="mb-3">
+    <div className="learn-section-header mb-3">
       <p className="eyebrow">{eyebrow}</p>
       <h2 className="mt-2 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{title}</h2>
       {body ? (

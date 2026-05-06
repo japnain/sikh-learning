@@ -234,7 +234,7 @@ export default function LearnHub() {
     : ""
   const activeSubsectionRail = LEARN_SUBSECTION_RAILS[activeTab]
   const showInlineSubsectionRail = activeTab !== "saved" && activeSubsectionRail.length > 0
-  const continueCardClass = "section-shell-quiet relative isolate block w-full rounded-[28px] px-5 py-5 text-left touch-manipulation"
+  const continueCardClass = "learn-card learn-card--primary learn-primary-path-card section-shell-quiet relative isolate block w-full rounded-[30px] px-5 py-5 text-left touch-manipulation"
 
   function setParams(updates: Record<string, string | null>, options: { replace?: boolean } = {}) {
     const next = new URLSearchParams(searchParams)
@@ -377,13 +377,13 @@ export default function LearnHub() {
 
   return (
     <div
-      className="page-shell pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in"
+      className="page-shell learn-room-shell learn-room-stack pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)] animate-fade-in"
       data-testid="page-learn"
       data-page="learn"
       data-ai-surface="learn-hub"
       data-ai-state="ready"
     >
-      <div className="mb-6">
+      <div className="learn-room-heading mb-6">
         <p className="eyebrow">{editorial?.learn.eyebrow ?? "Learn"}</p>
         <h1 className="mt-2 font-display text-5xl leading-none text-ink dark:text-dark-text">{pageCopy.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/76 dark:text-dark-text/78">
@@ -391,7 +391,7 @@ export default function LearnHub() {
         </p>
       </div>
 
-      <section className="hero-surface p-4 sm:p-5" aria-labelledby="learn-hero-title" data-testid="learn-hero">
+      <section className="hero-surface learn-room-hero p-4 sm:p-5" aria-labelledby="learn-hero-title" data-testid="learn-hero">
         <p className="eyebrow">{editorial?.learn.heroEyebrow ?? "Archive"}</p>
         <h2 id="learn-hero-title" className="mt-2 font-display text-[2.15rem] leading-none text-ink dark:text-dark-text sm:text-[2.45rem]">
           {editorial?.learn.heroTitle ?? "Find the guide that meets the question."}
@@ -400,7 +400,7 @@ export default function LearnHub() {
           {compactTodayHeroBody}
         </p>
 
-        <label className="section-shell mt-5 flex items-center gap-3 rounded-[26px] px-4 py-3 focus-within:ring-2 focus-within:ring-saffron/25 focus-within:ring-offset-2 focus-within:ring-offset-parchment dark:focus-within:ring-gold/30 dark:focus-within:ring-offset-dark-bg">
+        <label className="section-shell learn-search-card mt-5 flex items-center gap-3 rounded-[26px] px-4 py-3 focus-within:ring-2 focus-within:ring-saffron/25 focus-within:ring-offset-2 focus-within:ring-offset-parchment dark:focus-within:ring-gold/30 dark:focus-within:ring-offset-dark-bg">
           <IconSearch size={18} className="text-ink/60 dark:text-dark-text/60" />
           <input
             ref={topicSearchInputRef}
@@ -422,23 +422,25 @@ export default function LearnHub() {
             data-ai-action="learn-archive-search"
           />
         </label>
-        <p className="mt-2 font-sans text-[11px] leading-5 text-ink/68 dark:text-dark-text/78 sm:mt-3 sm:text-xs">
+        <p className="learn-hero-helper mt-2 font-sans text-[11px] leading-5 text-ink/72 dark:text-dark-text/82 sm:mt-3 sm:text-xs">
           {compactTodayHeroHint}
         </p>
       </section>
 
-      <InlineRail
-        chips={LEARN_SURFACE_RAIL.map(rail => ({
-          id: `learn-surface-${rail.id}`,
-          label: rail.label,
-          targetId: rail.id,
-        }))}
-        activeTargetId={activeTab}
-        onSelect={chipId => navigateToLearnSurface(chipId.replace("learn-surface-", "") as LearnTab)}
-        testId="learn-surface-rail"
-        ariaLabel="Learn surface navigation"
-        className="mt-[calc(var(--nav-stack-height)+1rem)] flex flex-wrap gap-2 pb-3 pr-1"
-      />
+      <div className="learn-surface-rail-wrap">
+        <InlineRail
+          chips={LEARN_SURFACE_RAIL.map(rail => ({
+            id: `learn-surface-${rail.id}`,
+            label: rail.label,
+            targetId: rail.id,
+          }))}
+          activeTargetId={activeTab}
+          onSelect={chipId => navigateToLearnSurface(chipId.replace("learn-surface-", "") as LearnTab)}
+          testId="learn-surface-rail"
+          ariaLabel="Learn surface navigation"
+          className="learn-surface-rail flex flex-wrap justify-center gap-2"
+        />
+      </div>
 
       {activeTab !== "today" ? (
         <>
@@ -525,23 +527,26 @@ export default function LearnHub() {
       ) : null}
 
       {showInlineSubsectionRail ? (
-        <InlineRail
-          chips={activeSubsectionRail}
-          activeTargetId={activeSectionId}
-          onSelect={chipId => {
-            const target = activeSubsectionRail.find(item => item.id === chipId)
-            if (target) {
-              scrollToAnchor(target.targetId)
-            }
-          }}
-          testId="learn-subsection-rail"
-          ariaLabel={`${pageCopy.title} section navigation`}
-        />
+        <div className="learn-section-rail-wrap">
+          <InlineRail
+            chips={activeSubsectionRail}
+            activeTargetId={activeSectionId}
+            onSelect={chipId => {
+              const target = activeSubsectionRail.find(item => item.id === chipId)
+              if (target) {
+                scrollToAnchor(target.targetId)
+              }
+            }}
+            testId="learn-subsection-rail"
+            ariaLabel={`${pageCopy.title} section navigation`}
+            className="learn-section-rail flex flex-wrap justify-center gap-2"
+          />
+        </div>
       ) : null}
 
       {activeTab === "today" ? (
         <>
-          <section className="section-shell mt-5 p-5">
+          <section className="section-shell learn-today-set mt-5 p-5">
             <div className="grid gap-6">
               <div id="learn-today-continue" className={LEARN_ANCHOR_OFFSET_CLASS} data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
@@ -564,9 +569,12 @@ export default function LearnHub() {
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {continueLearning.collection.themes.map(theme => (
-                        <span key={theme} className="chip-pill">{theme}</span>
+                        <span key={theme} className="learn-chip-static chip-pill">{theme}</span>
                       ))}
                     </div>
+                    <span className="learn-card__action mt-5 inline-flex items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light">
+                      Continue path <IconArrowRight size={16} />
+                    </span>
                   </Link>
                 ) : (
                   <Link
@@ -581,11 +589,14 @@ export default function LearnHub() {
                     <p className="mt-3 font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
                       {continueLearning.topic.centralInsight}
                     </p>
+                    <span className="learn-card__action mt-5 inline-flex items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light">
+                      Continue guide <IconArrowRight size={16} />
+                    </span>
                   </Link>
                 )}
               </div>
 
-              <div id="learn-today-surface" className={LEARN_ANCHOR_OFFSET_CLASS} data-learn-anchor data-learn-section-anchor="true">
+              <div id="learn-today-surface" className={`learn-today-set__daily ${LEARN_ANCHOR_OFFSET_CLASS}`} data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
                   eyebrow="Today in the archive"
                   title="Open one doorway, then go deep."
@@ -603,7 +614,7 @@ export default function LearnHub() {
                   <div className="grid gap-3">
                     <Link
                       to={buildLearnDetailPath("shabad-deep-dive", todaySurface.featuredShabad.item.id, "today")}
-                      className="section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
+                      className="learn-card learn-card--secondary section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <p className="eyebrow">Featured Shabad</p>
@@ -615,10 +626,13 @@ export default function LearnHub() {
                       <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62">
                         {editorial?.learn.compactShabadBody ?? todaySurface.featuredShabad.item.whyItMatters}
                       </p>
+                      <span className="learn-card__action mt-4 inline-flex items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light">
+                        Study shabad <IconArrowRight size={16} />
+                      </span>
                     </Link>
                     <Link
                       to={buildLearnDetailPath("topic-guide", todaySurface.topicSpotlight.item.id, "today")}
-                      className="section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
+                      className="learn-card learn-card--secondary section-shell-quiet interactive-focus interactive-card-link rounded-[24px] px-4 py-4 text-left"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <p className="eyebrow">Topic Spotlight</p>
@@ -630,6 +644,9 @@ export default function LearnHub() {
                       <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/62">
                         {editorial?.learn.compactTopicBody ?? todaySurface.topicSpotlight.item.centralInsight}
                       </p>
+                      <span className="learn-card__action mt-4 inline-flex items-center gap-2 font-sans text-sm font-semibold text-saffron dark:text-gold-light">
+                        Open topic <IconArrowRight size={16} />
+                      </span>
                     </Link>
                   </div>
                 </div>
@@ -637,8 +654,8 @@ export default function LearnHub() {
             </div>
           </section>
 
-          <section className="mt-5 grid gap-3" data-testid="learn-today-support-row">
-            <div className="section-shell-quiet p-4" data-testid="learn-inventory-compact">
+          <section className="learn-today-support-row mt-5 grid gap-3" data-testid="learn-today-support-row">
+            <div className="section-shell-quiet learn-archive-proof-card p-4" data-testid="learn-inventory-compact">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="eyebrow">{editorial?.learn.proofEyebrow ?? "Inventory"}</p>
@@ -671,7 +688,7 @@ export default function LearnHub() {
               </div>
             </div>
 
-            <div className="section-shell-quiet p-4" data-testid="learn-reading-depth-compact">
+            <div className="section-shell-quiet learn-depth-card p-4" data-testid="learn-reading-depth-compact">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="eyebrow">Reading Depth</p>
@@ -705,7 +722,7 @@ export default function LearnHub() {
           </section>
 
           {freshGuidanceItems.length ? (
-            <section className="section-shell mt-5 p-5">
+            <section className="section-shell learn-browse-section mt-5 p-5">
               <div
                 id="learn-today-fresh-guidance"
                 className={LEARN_ANCHOR_OFFSET_CLASS}
@@ -734,7 +751,7 @@ export default function LearnHub() {
             </section>
           ) : null}
 
-          <section className="section-shell mt-5 p-5">
+          <section className="section-shell learn-browse-section mt-5 p-5">
             <div className="grid gap-6">
               <div className={`min-w-0 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-today-doors" data-learn-anchor data-learn-section-anchor="true">
                 <SectionHeader
@@ -781,13 +798,13 @@ export default function LearnHub() {
 
       {activeTab === "topics" ? (
         <>
-          <section className={`section-shell mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-search" data-learn-anchor data-learn-section-anchor="true">
+          <section className={`section-shell learn-browse-section learn-topic-search-card mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-search" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Topics"
               title={editorial?.learn.topicsIntroTitle ?? "Find the approved guide"}
               body={editorial?.learn.topicsIntroBody ?? "Search modern struggles and land on canonical Gurbani-based topic pages, not improvised interpretation."}
             />
-            <label className="section-shell-quiet flex items-center gap-3 rounded-[24px] px-4 py-3 focus-within:ring-2 focus-within:ring-saffron/25 focus-within:ring-offset-2 focus-within:ring-offset-parchment dark:focus-within:ring-gold/30 dark:focus-within:ring-offset-dark-bg">
+            <label className="section-shell-quiet learn-search-card flex items-center gap-3 rounded-[24px] px-4 py-3 focus-within:ring-2 focus-within:ring-saffron/25 focus-within:ring-offset-2 focus-within:ring-offset-parchment dark:focus-within:ring-gold/30 dark:focus-within:ring-offset-dark-bg">
               <IconSearch size={18} className="text-ink/60 dark:text-dark-text/60" />
               <input
                 ref={topicSearchInputRef}
@@ -876,7 +893,7 @@ export default function LearnHub() {
                 </div>
               ) : null}
               {!topicNoMatch ? (
-                <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
+                <div className="learn-topic-rail mt-4 flex gap-3 overflow-x-auto pb-1">
                   {catalog.topicGuides.map(topic => (
                     <Link
                       key={topic.id}
@@ -899,9 +916,9 @@ export default function LearnHub() {
               ) : null}
             </section>
 
-            <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
+            <section className={`learn-card-grid mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-topics-all" data-learn-anchor data-learn-section-anchor="true">
               {topicNoMatch ? (
-                <div className="section-shell-quiet rounded-[28px] p-5" data-testid="learn-topic-no-match">
+                <div className="learn-card learn-card--quiet section-shell-quiet rounded-[28px] p-5" data-testid="learn-topic-no-match">
                   <p className="eyebrow">No matching topic yet</p>
                   <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
                     No approved topic guide matched the current search. Clear the search to browse the full approved topic library.
@@ -930,7 +947,7 @@ export default function LearnHub() {
 
       {activeTab === "shabads" ? (
         <>
-          <section className={`section-shell mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-shabads-filters" data-learn-anchor data-learn-section-anchor="true">
+          <section className={`section-shell learn-browse-section learn-filter-card mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-shabads-filters" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Shabads"
               title={editorial?.learn.shabadsIntroTitle ?? "Study the full context"}
@@ -942,7 +959,7 @@ export default function LearnHub() {
                 aria-label="Filter shabads by theme"
                 value={shabadThemeFilter}
                 onChange={event => setParams({ tab: "shabads", theme: event.target.value || null })}
-                className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
+                className="section-shell-quiet learn-form-control min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All themes</option>
                 {shabadThemes.map(theme => (
@@ -954,7 +971,7 @@ export default function LearnHub() {
                 aria-label="Filter shabads by Guru"
                 value={shabadGuruFilter}
                 onChange={event => setParams({ tab: "shabads", guru: event.target.value || null })}
-                className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
+                className="section-shell-quiet learn-form-control min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All Gurus</option>
                 {shabadGurus.map(guru => (
@@ -966,7 +983,7 @@ export default function LearnHub() {
                 aria-label="Filter shabads by raag"
                 value={shabadRaagFilter}
                 onChange={event => setParams({ tab: "shabads", raag: event.target.value || null })}
-                className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
+                className="section-shell-quiet learn-form-control min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
               >
                 <option value="">All raags</option>
                 {shabadRaags.map(raag => (
@@ -979,7 +996,7 @@ export default function LearnHub() {
                   aria-label="Filter shabads by difficulty"
                   value={shabadDifficultyFilter}
                   onChange={event => setParams({ tab: "shabads", difficulty: event.target.value || null })}
-                  className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
+                  className="section-shell-quiet learn-form-control min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
                 >
                   <option value="">All depth</option>
                   <option value="beginner">Beginner</option>
@@ -990,7 +1007,7 @@ export default function LearnHub() {
                   aria-label="Filter shabads by length"
                   value={shabadLengthFilter}
                   onChange={event => setParams({ tab: "shabads", length: event.target.value || null })}
-                  className="section-shell-quiet min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
+                  className="section-shell-quiet learn-form-control min-h-[48px] rounded-[20px] px-4 font-sans text-sm text-ink dark:bg-dark-surface dark:text-dark-text"
                 >
                   <option value="">All length</option>
                   <option value="short">Short</option>
@@ -1003,15 +1020,17 @@ export default function LearnHub() {
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 type="button"
+                aria-pressed={shabadSavedOnly}
                 onClick={() => setParams({ tab: "shabads", savedOnly: shabadSavedOnly ? null : "1" })}
-                className={`rounded-full px-4 py-2 font-sans text-xs font-semibold ${shabadSavedOnly ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg" : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"}`}
+                className={`learn-chip-button rounded-full px-4 py-2 font-sans text-xs font-semibold ${shabadSavedOnly ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg" : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"}`}
               >
                 Saved only
               </button>
               <button
                 type="button"
+                aria-pressed={shabadCompletedOnly}
                 onClick={() => setParams({ tab: "shabads", completedOnly: shabadCompletedOnly ? null : "1" })}
-                className={`rounded-full px-4 py-2 font-sans text-xs font-semibold ${shabadCompletedOnly ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg" : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"}`}
+                className={`learn-chip-button rounded-full px-4 py-2 font-sans text-xs font-semibold ${shabadCompletedOnly ? "bg-saffron text-white dark:bg-gold dark:text-dark-bg" : "bg-parchment-low text-ink/72 dark:bg-dark-surface dark:text-dark-text/72"}`}
               >
                 Viewed only
               </button>
@@ -1028,7 +1047,7 @@ export default function LearnHub() {
                     savedOnly: null,
                     completedOnly: null,
                   })}
-                  className="rounded-full px-4 py-2 font-sans text-xs font-semibold text-gold dark:text-gold-light underline underline-offset-2"
+                  className="learn-chip-button learn-chip-button--clear rounded-full px-4 py-2 font-sans text-xs font-semibold text-gold dark:text-gold-light underline underline-offset-2"
                 >
                   Clear all filters
                 </button>
@@ -1036,7 +1055,7 @@ export default function LearnHub() {
             </div>
           </section>
 
-          <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-shabads-all" data-learn-anchor data-learn-section-anchor="true">
+          <section className={`learn-card-grid mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-shabads-all" data-learn-anchor data-learn-section-anchor="true">
             {filteredShabads.map(shabad => (
               <ShabadCard
                 key={shabad.id}
@@ -1049,7 +1068,7 @@ export default function LearnHub() {
               />
             ))}
             {filteredShabads.length === 0 ? (
-              <div className="section-shell-quiet rounded-[28px] p-5">
+              <div className="learn-card learn-card--quiet section-shell-quiet rounded-[28px] p-5">
                 <p className="eyebrow">No blank shelves</p>
                 <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
                   No deep dives match the current filters. The approved library is still available if you widen the filters.
@@ -1062,7 +1081,7 @@ export default function LearnHub() {
 
       {activeTab === "saved" ? (
         <>
-          <section className={`section-shell mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-saved-overview" data-learn-anchor data-learn-section-anchor="true">
+          <section className={`section-shell learn-browse-section mt-5 p-5 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-saved-overview" data-learn-anchor data-learn-section-anchor="true">
             <SectionHeader
               eyebrow="Saved"
               title={editorial?.learn.savedIntroTitle ?? "Keep verses, topics, and shabads together"}
@@ -1077,9 +1096,9 @@ export default function LearnHub() {
             ) : null}
           </section>
 
-          <section className={`mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-saved-items" data-learn-anchor data-learn-section-anchor="true">
+          <section className={`learn-card-grid mt-5 grid gap-4 ${LEARN_ANCHOR_OFFSET_CLASS}`} id="learn-saved-items" data-learn-anchor data-learn-section-anchor="true">
             {savedItems.length === 0 ? (
-              <div className="section-shell-quiet rounded-[28px] p-5">
+              <div className="learn-card learn-card--quiet section-shell-quiet rounded-[28px] p-5">
                 <p className="eyebrow">Nothing saved yet</p>
                 <p className="mt-2 font-sans text-sm leading-6 text-ink dark:text-dark-text">
                   Save a daily guidance entry, topic guide, or shabad deep dive and it will appear here with its type clearly labelled.
@@ -1091,7 +1110,7 @@ export default function LearnHub() {
               const recentlySaved = lastSaved?.kind === "learn" && lastSaved.targetId === item.id
 
               return (
-              <div key={item.id} className={`section-shell rounded-[28px] p-4 transition-all duration-300 ${recentlySaved ? "saved-feedback-highlight" : ""}`}>
+              <div key={item.id} className={`learn-card learn-card--secondary section-shell rounded-[28px] p-4 transition-all duration-300 ${recentlySaved ? "saved-feedback-highlight" : ""}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="eyebrow">{getLearnItemLabel(item.kind)}</p>
@@ -1104,7 +1123,7 @@ export default function LearnHub() {
 
                 <div className="mt-4 flex items-center justify-between gap-3">
                   <div className="flex flex-wrap gap-2">
-                    <span className="chip-pill">{item.theme}</span>
+                    <span className="learn-chip-static chip-pill">{item.theme}</span>
                     {viewedIds.has(item.id) ? <span className="chip-pill">Viewed</span> : null}
                   </div>
                   <Link
