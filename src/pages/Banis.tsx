@@ -55,7 +55,7 @@ const SEARCH_MODE_META: Record<SearchMode, { type: number; placeholder: string; 
   english: { type: 3, placeholder: 'Search English meanings...', minLength: 2 },
   transliteration: { type: 4, placeholder: 'Search transliteration...', minLength: 2 },
   ang: { type: -1, placeholder: 'Open an ang or page directly...', minLength: 1 },
-  'auto-detect': { type: 8, placeholder: 'Let the app detect the search style...', minLength: 2 },
+  'auto-detect': { type: 8, placeholder: 'Type Gurbani, meaning, or ang...', minLength: 2 },
 }
 const SEARCH_OPTION_SUMMARY: Record<SearchMode, string> = {
   'first-letters': 'Search by first letters and slip into the right bani with less hunting.',
@@ -319,13 +319,13 @@ function IndexRow({
   return (
     <button
       onClick={onClick}
-      className="w-full text-left bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl px-3 py-3 mb-1 transition-colors duration-300 active:scale-95 transition-transform duration-150"
+      className="read-index-row w-full text-left active:scale-[0.99] transition-transform duration-150"
     >
-      <p lang={labelLang} className={labelClassName ?? 'font-sans text-sm text-ink dark:text-dark-text'}>
+      <p lang={labelLang} className={`read-index-row__title ${labelClassName ?? 'font-sans text-sm text-ink dark:text-dark-text'}`}>
         {label}
       </p>
       {detail ? (
-        <p className={detailClassName ?? 'font-sans text-xs text-gold dark:text-gold-light mt-0.5'}>
+        <p className={`read-index-row__detail ${detailClassName ?? 'font-sans text-xs text-gold dark:text-gold-light mt-0.5'}`}>
           {detail}
         </p>
       ) : null}
@@ -638,24 +638,26 @@ export default function Banis() {
 
   return (
     <div
-      className="page-shell max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
+      className="read-room-shell page-shell max-w-md mx-auto min-h-screen bg-parchment dark:bg-dark-bg transition-colors duration-300 animate-fade-in"
       data-testid="page-banis"
       data-page="banis"
       data-ai-surface="read"
       data-ai-state="ready"
     >
-      <div className="mb-6 mt-4">
-        <p className="eyebrow">{editorial?.read.eyebrow ?? 'Read'}</p>
-        <h1 className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
-          {editorial?.read.title ?? 'Move directly into Gurbani.'}
-        </h1>
-        <p className="mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-          {editorial?.read.body}
-        </p>
-      </div>
+      <div className="read-room-stack">
+        <section className="read-room-hero" aria-labelledby="read-room-title">
+          <div className="read-room-hero__copy">
+            <p className="eyebrow">{editorial?.read.eyebrow ?? 'Read'}</p>
+            <h1 id="read-room-title" className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
+              {editorial?.read.title ?? 'Move directly into Gurbani.'}
+            </h1>
+            <p className="read-room-hero__body mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
+              {editorial?.read.body}
+            </p>
+          </div>
 
-      <div
-        className="mb-6 section-shell-quiet p-4"
+          <div
+            className="read-quick-find-card"
         aria-labelledby="banis-quick-find-title"
         data-testid="banis-quick-find"
         data-ai-surface="read-smart-search"
@@ -680,7 +682,7 @@ export default function Banis() {
             <p id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
               {editorial?.read.quickFindTitle ?? 'Search by the shape you remember first.'}
             </p>
-            <p className="mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
+            <p className="read-quick-find-card__body mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
               {editorial?.read.quickFindBody ?? SEARCH_OPTION_SUMMARY[searchMode]}
             </p>
           </div>
@@ -692,12 +694,12 @@ export default function Banis() {
             aria-controls="banis-search-options-panel"
             data-ai-action="toggle-search-options"
           >
-            {searchOptionsOpen ? 'Simplify' : 'Refine'}
+            {searchOptionsOpen ? 'Simplify' : 'Refine search'}
           </button>
         </div>
 
-        <div className="relative mt-4" data-ai-search-shell="read-smart-search">
-          <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30 dark:text-dark-text/30" />
+        <div className="read-search-control relative mt-4" data-ai-search-shell="read-smart-search">
+          <IconSearch size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/32 dark:text-dark-text/34" />
           <input
             ref={searchInputRef}
             id="banis-search"
@@ -713,12 +715,12 @@ export default function Banis() {
             value={searchQuery}
             onChange={e => handleSearch(e.target.value)}
             placeholder={SEARCH_MODE_META[searchMode].placeholder}
-            className="w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl pl-9 pr-4 py-3 font-sans text-sm text-ink dark:text-dark-text placeholder:text-ink/30 dark:placeholder:text-dark-text/30 outline-none focus:border-saffron/40 transition-colors duration-300"
+            className="read-search-input w-full bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-2xl pl-11 pr-4 py-4 font-sans text-base text-ink dark:text-dark-text placeholder:text-ink/36 dark:placeholder:text-dark-text/38 outline-none focus:border-saffron/45 transition-colors duration-300"
             data-ai-action="read-smart-search"
           />
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <MetadataChip>{SEARCH_MODE_LABELS[searchMode]}</MetadataChip>
+          <MetadataChip>{searchMode === 'auto-detect' ? 'Auto detect' : SEARCH_MODE_LABELS[searchMode]}</MetadataChip>
           {searchSource !== 'all' && <MetadataChip>{SEARCH_SOURCE_LABELS[searchSource]}</MetadataChip>}
           {searchMode === 'ang' && <MetadataChip>Direct open</MetadataChip>}
           {searchQuery.trim().length >= SEARCH_MODE_META[searchMode].minLength && searchMode !== 'ang' && (
@@ -951,35 +953,56 @@ export default function Banis() {
             </div>
           </div>
         )}
-      </div>
+          </div>
+        </section>
 
-      <button
-        type="button"
-        onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
-        className="hero-surface mb-4 w-full p-5 text-left active:scale-[0.99] transition-transform duration-150"
-        data-testid="banis-featured-flow"
-        data-ai-action="open-ardaas-hukamnama-flow"
-      >
-        <p className="eyebrow">{editorial?.read.featuredFlowEyebrow ?? 'Featured Flow'}</p>
-        <div className="mt-3 flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">
-              Ardaas + Hukamnama
+        <button
+          type="button"
+          onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
+          className="read-featured-flow-card w-full text-left active:scale-[0.99] transition-transform duration-150"
+          data-testid="banis-featured-flow"
+          data-ai-action="open-ardaas-hukamnama-flow"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <p className="eyebrow">{editorial?.read.featuredFlowEyebrow ?? 'Featured Flow'}</p>
+            <span className="chip-pill shrink-0">Devotional flow</span>
+          </div>
+          <div className="mt-3 flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">
+                Ardaas + Hukamnama
+              </h2>
+              <p className="read-featured-flow-card__body mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
+                {editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.'}
+              </p>
+            </div>
+            <span className="read-featured-flow-card__action mt-1 shrink-0 text-gold dark:text-gold-light">
+              <IconArrowRight size={18} />
+            </span>
+          </div>
+          <span className="read-featured-flow-card__cta mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream dark:bg-gold-light dark:text-dark-bg">
+            Begin Ardaas flow
+            <IconArrowRight size={15} />
+          </span>
+        </button>
+
+        <section className="read-directory-section" aria-labelledby="read-directory-title">
+          <div className="read-section-header">
+            <p className="eyebrow">Browse</p>
+            <h2 id="read-directory-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+              Bani directories
             </h2>
-            <p className="mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-              {editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.'}
+            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/76">
+              Open named banis and daily prayers.
             </p>
           </div>
-          <span className="mt-1 shrink-0 text-gold dark:text-gold-light">
-            <IconArrowRight size={18} />
-          </span>
-        </div>
-      </button>
 
-      <div className="mb-4">
+          <div className="mt-4 space-y-3">
+            <div>
         <button
           onClick={() => toggle('sundar-gutka')}
-          className="w-full flex justify-between items-center bg-gradient-to-r from-saffron/10 to-saffron-light/10 dark:from-saffron/15 dark:to-saffron-light/15 border border-saffron/20 dark:border-saffron/20 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150"
+          className="read-directory-card read-directory-card--featured w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+          data-open={expanded['sundar-gutka'] ? 'true' : 'false'}
           aria-expanded={Boolean(expanded['sundar-gutka'])}
           aria-controls="banis-sundar-gutka-panel"
         >
@@ -999,7 +1022,8 @@ export default function Banis() {
                 <div key={group.key} className="mb-2">
                   <button
                     onClick={() => toggle(groupKey)}
-                    className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                    className="read-directory-card read-directory-card--nested w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+                    data-open={expanded[groupKey] ? 'true' : 'false'}
                     aria-expanded={Boolean(expanded[groupKey])}
                     aria-controls={`${groupKey}-panel`}
                   >
@@ -1057,10 +1081,11 @@ export default function Banis() {
         const groups = scriptureGroups[scripture]
 
         return (
-          <div key={scripture} className="mb-4">
+          <div key={scripture}>
             <button
               onClick={() => toggle(sectionKey)}
-              className={`w-full flex justify-between items-center ${scripture === 'SGGS' ? 'bg-parchment-card dark:bg-dark-card' : 'bg-parchment-low dark:bg-dark-surface'} border border-sand/15 dark:border-dark-text/10 rounded-2xl p-4 min-h-[44px] transition-colors duration-300 shadow-card active:scale-95 transition-transform duration-150`}
+              className="read-directory-card w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+              data-open={isOpen ? 'true' : 'false'}
               aria-expanded={Boolean(isOpen)}
               aria-controls={`banis-${sectionKey}-panel`}
             >
@@ -1078,7 +1103,8 @@ export default function Banis() {
                     <div key={group.category} className="mb-2">
                       <button
                         onClick={() => toggle(groupKey)}
-                        className="w-full flex justify-between items-center bg-parchment-card dark:bg-dark-card border border-sand/15 dark:border-dark-text/10 rounded-xl p-3 min-h-[44px] transition-colors duration-300 active:scale-95 transition-transform duration-150"
+                        className="read-directory-card read-directory-card--nested w-full flex justify-between items-center min-h-[44px] active:scale-[0.99] transition-transform duration-150"
+                        data-open={expanded[groupKey] ? 'true' : 'false'}
                         aria-expanded={Boolean(expanded[groupKey])}
                         aria-controls={`${groupKey}-panel`}
                       >
@@ -1121,10 +1147,24 @@ export default function Banis() {
           </div>
         )
       })}
+          </div>
+        </section>
 
+        <section className="read-companion-section" aria-labelledby="read-companion-title">
+          <div className="read-section-header">
+            <p className="eyebrow">Companion readers</p>
+            <h2 id="read-companion-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+              Source-backed companions
+            </h2>
+            <p className="read-section-copy mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/76">
+              Open complementary readers with search, source context, and page navigation.
+            </p>
+          </div>
+
+          <div className="mt-4 grid gap-3">
       <Link
         to="/banis/rehat"
-        className="read-extra-source-card mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-rehat"
       >
         <span className="min-w-0">
@@ -1140,7 +1180,7 @@ export default function Banis() {
 
       <Link
         to="/banis/amrit-keertan"
-        className="read-extra-source-card mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-amrit-keertan"
       >
         <span className="min-w-0">
@@ -1153,17 +1193,22 @@ export default function Banis() {
           <IconArrowRight size={15} />
         </span>
       </Link>
+          </div>
+        </section>
 
-      <section
-        className="section-shell-quiet p-4"
+        <section
+        className="read-source-section"
         aria-labelledby="read-source-browser-title"
         data-testid="read-source-browser"
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p id="read-source-browser-title" className="eyebrow">Browse by Source</p>
-            <p className="mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/68">
-              Open a scripture source directly when you already know the ang, page, or section.
+            <p className="eyebrow">Browse by source</p>
+            <h2 id="read-source-browser-title" className="mt-2 font-display text-3xl leading-none text-ink dark:text-dark-text">
+              Source / page browser
+            </h2>
+            <p className="read-section-copy mt-2 max-w-[34ch] font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/76">
+              Open by ang, page, or source edition.
             </p>
           </div>
           <span className="chip-pill shrink-0">Read</span>
@@ -1172,10 +1217,11 @@ export default function Banis() {
         <div className="mt-4">
           <ScriptureSourceBrowser
             dataTestId="read-source-browser-shared"
-            sectionClassName="surface-primary px-4 py-4"
+            sectionClassName="read-source-browser-card surface-primary px-4 py-4"
           />
         </div>
       </section>
+      </div>
     </div>
   )
 }

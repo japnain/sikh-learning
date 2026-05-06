@@ -31,10 +31,19 @@ beforeEach(() => {
 
 test('renders page heading', () => {
   renderBanis()
-  expect(screen.getByTestId('page-banis')).toHaveClass('page-shell')
+  const page = screen.getByTestId('page-banis')
+
+  expect(page).toHaveClass('page-shell', 'read-room-shell')
+  expect(page).toHaveAttribute('data-ai-surface', 'read')
+  expect(page.querySelector('.read-room-stack')).not.toBeNull()
+  expect(page.querySelector('.read-room-hero')).not.toBeNull()
+  expect(page.querySelector('.read-quick-find-card')).not.toBeNull()
+  expect(page.querySelector('.read-directory-section')).not.toBeNull()
+  expect(page.querySelector('.read-source-section')).not.toBeNull()
+  expect(page.querySelector('.read-companion-section')).not.toBeNull()
   expect(screen.getByRole('heading', { level: 1, name: /move directly into gurbani/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: /refine/i })).toBeInTheDocument()
-  expect(screen.getByText(/^Auto$/i)).toBeInTheDocument()
+  expect(screen.getByText(/^Auto detect$/i)).toBeInTheDocument()
   expect(screen.queryByRole('button', { name: /first letters/i })).not.toBeInTheDocument()
 
   fireEvent.click(screen.getByRole('button', { name: /refine/i }))
@@ -69,11 +78,28 @@ test('hydrates the read search from the url so home can hand off the same query'
 
 test('renders the main content sections including Rehat', () => {
   renderBanis()
+  expect(screen.getByRole('heading', { name: /Bani directories/i })).toBeInTheDocument()
+  expect(screen.getByText(/Open named banis and daily prayers/i)).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /Source \/ page browser/i })).toBeInTheDocument()
+  expect(screen.getByText(/Open by ang, page, or source edition/i)).toBeInTheDocument()
+  expect(screen.getByText(/Companion readers/i)).toBeInTheDocument()
   expect(screen.getByText(/Sundar Gutka/i)).toBeInTheDocument()
   expect(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i }).length).toBeGreaterThan(0)
   expect(screen.getAllByText(/Dasam Granth/i).length).toBeGreaterThan(0)
   expect(screen.getByText('Rehat')).toBeInTheDocument()
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
+})
+
+test('uses Read-specific directory cards with open-state hooks', () => {
+  renderBanis()
+
+  const sundarGutkaCard = screen.getByRole('button', { name: /Sundar Gutka/i })
+  expect(sundarGutkaCard).toHaveClass('read-directory-card')
+  expect(sundarGutkaCard).toHaveAttribute('data-open', 'false')
+
+  fireEvent.click(sundarGutkaCard)
+
+  expect(sundarGutkaCard).toHaveAttribute('data-open', 'true')
 })
 
 test('keeps secondary Read source cards readable in dark mode', () => {
@@ -175,7 +201,9 @@ test('shows exact SGGS bani items after expanding SGGS section', () => {
   fireEvent.click(screen.getAllByRole('button', { name: /Sri Guru Granth Sahib Ji/i })[0])
   fireEvent.click(screen.getByText('Daily Prayers'))
 
-  expect(screen.getByText('Japji Sahib')).toBeInTheDocument()
+  const japjiRow = screen.getByText('Japji Sahib').closest('button') as HTMLButtonElement
+  expect(japjiRow).toHaveClass('read-index-row')
+  expect(screen.getByText('Japji Sahib')).toHaveClass('read-index-row__title')
   expect(screen.getByText('Rehras Sahib')).toBeInTheDocument()
   expect(screen.queryByText(/Adjustable length/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/BaniDB/i)).not.toBeInTheDocument()
@@ -225,6 +253,8 @@ test('loads Sundar Gutka groups and items with bilingual labels', async () => {
 test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other', async () => {
   renderBanis()
 
+  const featuredFlow = screen.getByTestId('banis-featured-flow')
+  expect(featuredFlow).toHaveClass('read-featured-flow-card')
   expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
   expect(
     screen.getByText(/Move from Ardaas into a random Hukamnama/i)

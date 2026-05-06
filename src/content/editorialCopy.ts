@@ -169,7 +169,7 @@ const ENGLISH_EDITORIAL_COPY: EditorialCopy = {
     body: "Search first letters, transliteration, meaning, or exact ang and reach the text without decorative friction.",
     quickFindEyebrow: "Quick Find",
     quickFindTitle: "Search by the shape you remember first.",
-    quickFindBody: "Use first letters, English meaning, transliteration, or direct ang lookup according to what is already present in your mind.",
+    quickFindBody: "Use first letters, meaning, transliteration, or direct ang lookup.",
     featuredFlowEyebrow: "Featured Flow",
     featuredFlowBody: "Move from Ardaas into a random Hukamnama when you want the reading session to arrive as a received answer rather than a planned one.",
   },

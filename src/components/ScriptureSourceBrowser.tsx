@@ -117,13 +117,14 @@ function SourceOverviewCard({
           </div>
         ) : null}
 
-        <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+        <div className="flex flex-col gap-2">
           {section.overviewPath ? (
             <Link
               to={section.overviewPath}
-              className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
+              aria-label="Browse Panth Prakash episodes"
+              className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream shadow-lg shadow-ink/10 transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink dark:bg-gold-light dark:text-dark-bg dark:hover:bg-cream"
             >
-              Browse Panth Prakash episodes
+              Browse Panth Prakash
               <IconArrowRight size={16} />
             </Link>
           ) : null}
@@ -131,12 +132,13 @@ function SourceOverviewCard({
           <button
             type="button"
             onClick={onToggleQuickPages}
-            className="interactive-focus inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
+            className="interactive-focus inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-gold/25 bg-white/70 px-4 py-3 font-sans text-sm font-semibold text-ink transition hover:border-gold/50 hover:text-gold dark:border-gold-light/25 dark:bg-white/5 dark:text-dark-text dark:hover:text-gold-light"
+            aria-label={isOpen ? 'Hide quick page numbers' : 'Show quick page numbers'}
             aria-expanded={isOpen}
             aria-controls={panelId}
           >
             <IconSearch size={15} />
-            {isOpen ? 'Hide quick page numbers' : section.quickBrowseLabel ?? 'Show quick page numbers'}
+            {isOpen ? 'Hide quick pages' : 'Quick page numbers'}
           </button>
         </div>
       </div>
