@@ -3,32 +3,22 @@
   "pageNumber": 6,
   "volume": 1,
   "sourcePageNumber": 6,
-  "title": "Further Account of Baba Banda Singh",
+  "title": "Contents: Banda Bahadur and the Khalsa Struggle",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-6-1",
       "type": "paragraph",
-      "text": "Further Account of Baba Banda Singh The Episode About Village Seharkhand Ts The Episode About the Singhs of Village Salodi..."
+      "text": "This contents page continues the Volume I table of contents and functions as navigation metadata rather than narrative. It gathers the later Banda Bahadur sequence, beginning with Seharkhand, Salodi, Samana, Sadhaura, Wazir Khan, and Malerkotla."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-6-2",
       "type": "paragraph",
-      "text": "The Episode About the Town of Samana The Episode About Slaughter and Arson at Sadhaura The Episode About the Slaughter of Wazir Khan The Episode of Malerkotla's Pathan Khawaja Khijar And the Death of his two Brothers The Episode About War Preparations on both sided The Episode About Wazir Khan's Murder The Episode About Ram Rayyas And Bhujangis.."
+      "text": "The middle entries point readers toward Doaba, the Singhs of Salodi, Banda Singh blessing Deep Singh, Mughal anxiety at Banda Singh’s rise, and the hill-state episodes involving Kebloor, Mandi, Kullu, and Chamba."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-6-3",
       "type": "paragraph",
-      "text": "The Episode of Malerkotla The Episode About Doaba Region The Episode About Singhs of Salodi Village The Episode About Banda Singh's Blessing Deep Singh with Teeth The Mughals Feel Threatened at the Advent of Banda Singh The Episode About Hill States..."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "The Episode About the Hill chief of Kebloor The Episode About the Hill chief of Mandi Now Follows the Episode of Kullu Now Follows the Episode About Chamba The Episode About Baba Banda And Bahadur Shah S The Episode About Narrating the Names of (Mughal) Chistodians The Episode About the Death of Jaali Din The Episode About Shamas Khan and Baizid Khan Now I Narrate the Last Episode About Banda Singh Estrangement Between Banda Singh And Tat Khalsa The Mughals Conspiracy Against Banda Singh And their Eulogy of (Tat Khalsa) Singhs The Mughals Laying of Seige Around (Banda Singh) Banda Singh Launches on a Kahi The Episode About Mughal's Attack (on Paid, Singh S Fort) A Fierce Battle Ensued an The Episode About the (Goddess) Kali's s Sacrificial Offering The Episode About Banda Singh's Capture The Episode About Banda Singh's Death The Episode About the Disappearance of Banda Singh The Episode About the Manner of Farukhsiyar's Death..."
-    },
-    {
-      "id": "paragraph-5",
-      "type": "paragraph",
-      "text": "The Episode About the Khalsa.. U The Episode About the (Factional) Fight"
+      "text": "The final cluster lists the Bahadur Shah, Chistodian, Jaali Din, Shamas Khan, Baizid Khan, last Banda Singh, Tat Khalsa, Mughal conspiracy, Khalsa, and factional-fight episodes. The repair makes the contents page browsable without pretending it is story prose."
     }
   ],
   "rawBlocks": [
@@ -668,7 +658,7 @@
       "text": "439"
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"

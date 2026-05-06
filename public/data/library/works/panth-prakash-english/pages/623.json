@@ -3,27 +3,22 @@
   "pageNumber": 623,
   "volume": 2,
   "sourcePageNumber": 48,
-  "title": "17 GrewalJ.S.,Valorizing the Traditions: Bhangoo's Gur Panth Prakash in The Khalsa:",
+  "title": "Introduction Notes: Martyrdom Quotations and References",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-623-1",
       "type": "paragraph",
-      "text": "17 GrewalJ.S.,Valorizing the Traditions: Bhangoo's Gur Panth Prakash in The Khalsa:"
+      "text": "This is a damaged scholarly-notes page, not a story page. It gathers quoted verses where Sikh speakers reject dying in flight, remember sacrifice for the Panth, and praise those who gave their heads or families for Sikhi."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-623-2",
       "type": "paragraph",
-      "text": "19 Gupta HariRam: A History of the Sikhs (3 Vol.), Simla, 1952, p. 343."
+      "text": "The quoted examples honor Bhai Mani Singh, Bhai Dyal Singh, Subeg Singh, and Subeg Singh’s son as martyrs who kept faith under torture. Their function is to support the introduction’s argument about Panthic sovereignty and sacrificial responsibility."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-623-3",
       "type": "paragraph",
-      "text": "20 Dr Ganda Singh: Banda Singh Bahadur, Amritsar, 1935."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "pany, U.S.A., reprinted in India by Prism Books Pvt. Ltd., Bangalore."
+      "text": "The lower part records sources rather than episode action: J. S. Grewal’s Valorizing the Traditions, Karam Singh, Hari Ram Gupta, Ganda Singh, G. C. Narang, Indu Bhushan Banerjee, Sirdar Kapoor Singh, and M. H. Abrams are listed as references."
     }
   ],
   "rawBlocks": [
@@ -237,11 +232,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
   }
 }

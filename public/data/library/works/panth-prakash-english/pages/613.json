@@ -237,11 +237,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
   }
 }

@@ -3,32 +3,22 @@
   "pageNumber": 43,
   "volume": 1,
   "sourcePageNumber": 43,
-  "title": "Hukamnamas, edited by Dr Ganda Singh, Punjabi University, Patiala.",
+  "title": "Introduction References and Verse Notes",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-43-1",
       "type": "paragraph",
-      "text": "Hukamnamas, edited by Dr Ganda Singh, Punjabi University, Patiala."
+      "text": "This damaged prefatory page is a source-note page rather than a continuous episode. It names works used in the introduction, including Hukamnamas edited by Dr Ganda Singh, Dr Kirpal Singh’s History of the Sikhs and Their Religion, Dr M. S. Ahluwalia’s work, and Dr Balwant Singh Dhillon’s edition of Sri Gur Panth Prakash."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-43-2",
       "type": "paragraph",
-      "text": "Dr Kirpal Singh, History of the Sikhs and Their Religion, Vol. II."
+      "text": "The remaining lines preserve transliterated verse citations and dohra or chaupai fragments used by the editor to support the surrounding discussion about lineage, Panth, sovereignty, and the Guru’s purpose."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-43-3",
       "type": "paragraph",
-      "text": "Dr M.S. Ahluwalia, History of the Sikhs and Their Religion, Vol. II."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "Sri Gur Panth Prakash, edited by Dr Balwant Singh Dhillon, Singh Brothers, Amritsar."
-    },
-    {
-      "id": "paragraph-5",
-      "type": "paragraph",
-      "text": "feat eas of ael, âd are at asasi"
+      "text": "The repaired reader text therefore presents the page as citation apparatus: a mixture of bibliography and verse evidence that belongs to the introduction, not as a standalone historical scene."
     }
   ],
   "rawBlocks": [
@@ -273,7 +263,7 @@
       "text": "feat eas of ael, âd are at asasi"
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"

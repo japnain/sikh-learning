@@ -3,32 +3,22 @@
   "pageNumber": 578,
   "volume": 2,
   "sourcePageNumber": 3,
-  "title": "KULWANT SINGH",
+  "title": "Publication Details and Imprint",
   "blocks": [
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "SRI GUR PANTH PRAKASH"
-    },
-    {
-      "id": "paragraph-1",
+      "id": "manual-578-1",
       "type": "paragraph",
-      "text": "English Translation by"
+      "text": "This front-matter page identifies Sri Gur Panth Prakash, Volume II, as the English translation by Kulwant Singh, issued in 2010 or 542 Nanakshahi under ISBN 81-85815-31-3."
     },
     {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "KULWANT SINGH"
-    },
-    {
-      "id": "heading-3",
-      "type": "heading",
-      "text": "INSTITUTE OF SIKH STUDIES"
-    },
-    {
-      "id": "paragraph-2",
+      "id": "manual-578-2",
       "type": "paragraph",
-      "text": "Gurdwara Sri Guru Singh Sabha, Kanthala,"
+      "text": "It records the edition details: one thousand copies were printed, the price was Rs. 650, and the publisher was the Institute of Sikh Studies at Gurdwara Sri Guru Singh Sabha, Kanthala, Industrial Area Phase II, Chandigarh."
+    },
+    {
+      "id": "manual-578-3",
+      "type": "paragraph",
+      "text": "The imprint also gives phone, fax, website, and email contact details for the publisher, and names Sidharath Media Printers of Industrial Area Phase II, Chandigarh, as the printer. This page is publication data, not episode narrative."
     }
   ],
   "rawBlocks": [
@@ -122,11 +112,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
   }
 }

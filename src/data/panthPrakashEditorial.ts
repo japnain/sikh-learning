@@ -1,4 +1,4 @@
-import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibraryTextBlock } from '../types'
+import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibrarySearchIndex, LibraryTextBlock, LibraryPageTextState } from '../types'
 
 export type PanthPrakashArcId =
   | 'origins'
@@ -62,7 +62,7 @@ const EPISODE_OVERRIDES: Record<number, Partial<PanthPrakashEpisodeEditorial>> =
   },
   52: {
     displayTitle: 'The Chamba miracle and Banda Singh Bahadur’s reception',
-    summary: 'A short hinge episode where marvel, local reception, and alliance-building shift the Banda Singh Bahadur arc forward.',
+    summary: 'A short Chamba hinge episode where marvel, local reception, and alliance-building shift the Banda Singh Bahadur arc forward.',
     whyItMatters: 'The episode shows Banda Singh Bahadur’s campaign becoming a regional political force rather than only a military movement.',
     people: ['Banda Singh Bahadur'],
     places: ['Chamba'],
@@ -170,6 +170,7 @@ function cleanGeneratedEpisodeTitle(title: string, episodeNumber: number) {
   const normalized = title
     .replace(/\s+/g, ' ')
     .replace(/\.\s*;?$/, '')
+    .replace(/\.{2,}\s*$/g, '')
     .replace(/\s+\.\.\.?\s*$/g, '')
     .trim()
 
@@ -234,11 +235,29 @@ export interface PanthPrakashEditionDebtReport {
   totalPages: number
   pagesMissingSourceMapping: number
   reviewStatusLabel: string
+  secondaryStatusLabel?: string
   nextActions: string[]
 }
 
-export function buildPanthPrakashEditionDebtReport(pageIndex: LibraryPageIndexEntry[]): PanthPrakashEditionDebtReport {
-  const pagesMissingSourceMapping = pageIndex.filter(page => !page.sourcePageNumber || page.sourcePageNumber <= 0).length
+export function buildPanthPrakashEditionDebtReport(pageIndex: LibraryPageIndexEntry[], searchIndex?: LibrarySearchIndex): PanthPrakashEditionDebtReport {
+  const pagesMissingSourceMapping = searchIndex?.metadata?.panthPrakash?.pagesMissingSourceMapping
+    ?? pageIndex.filter(page => !page.sourcePageNumber || page.sourcePageNumber <= 0).length
+  const panthMetadata = searchIndex?.metadata?.panthPrakash
+
+  if (panthMetadata) {
+    return {
+      totalPages: panthMetadata.totalPages,
+      pagesMissingSourceMapping,
+      reviewStatusLabel: `${panthMetadata.editorialReconstructionPages} editorial reconstruction pages with raw source retained`,
+      secondaryStatusLabel: `${panthMetadata.sourceBackedPages} source-backed reading pages`,
+      nextActions: [
+        'Review reconstruction pages episode-by-episode against retained raw OCR/source scans',
+        'Promote source-backed pages to reviewed only after human spot-checking',
+        'Keep source-page chips and raw OCR available as the provenance layer behind the clean reader',
+      ],
+    }
+  }
+
   return {
     totalPages: pageIndex.length,
     pagesMissingSourceMapping,
@@ -251,12 +270,13 @@ export function buildPanthPrakashEditionDebtReport(pageIndex: LibraryPageIndexEn
   }
 }
 
-export type PanthPrakashTextState = 'source-translation' | 'cleaned-ocr' | 'editorial-reconstruction' | 'contents-navigation'
+export type PanthPrakashTextState = LibraryPageTextState
 
 export function getPanthPrakashTextState(page: LibraryPagePayload, blocks: LibraryTextBlock[]): PanthPrakashTextState {
   const joined = blocks.map(block => block.text).join(' ')
+  const hasManualBlocks = blocks.some(block => block.id.startsWith('manual-'))
   if (/contents/i.test(page.title)) return 'contents-navigation'
-  if (/This page|The page|This opening contents page|This first contents page|This continuation page/i.test(joined)) return 'editorial-reconstruction'
+  if (hasManualBlocks || /This page|The page|This opening contents page|This first contents page|This continuation page/i.test(joined)) return 'editorial-reconstruction'
   if (page.quality === 'clean') return 'cleaned-ocr'
   return 'source-translation'
 }

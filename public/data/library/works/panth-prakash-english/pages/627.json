@@ -3,17 +3,22 @@
   "pageNumber": 627,
   "volume": 2,
   "sourcePageNumber": 52,
-  "title": "Episode 158, Vol. II, p. 678",
+  "title": "Introduction Notes: Khalsa Authority and Kapoor Singh",
   "blocks": [
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "Episode 158, Vol. II, p. 678"
+      "id": "manual-627-1",
+      "type": "paragraph",
+      "text": "This damaged front-matter note preserves quoted evidence, not a direct page of narrative. Its first quotation describes a power that had devastated Delhi and names Nadir or Ahmad Shah as enemies, but says the Khalsa forced Ahmad Shah’s side to flee."
     },
     {
-      "id": "paragraph-1",
+      "id": "manual-627-2",
       "type": "paragraph",
-      "text": "ZIG HIS SAS MB A aS Aa furs 1991"
+      "text": "The second quotation turns to Kapoor Singh. It shows him humbly serving the Singhs, then records an Akal command received by the Panth to honor him with a robe of honor because his service had reached the proper station."
+    },
+    {
+      "id": "manual-627-3",
+      "type": "paragraph",
+      "text": "The fragment closes with another citation from Episode 90 about arranging five camps or standards and bringing Nishan flags from Sri Akal Bunga, so the page should read as a source-note cluster about Khalsa authority and recognition."
     }
   ],
   "rawBlocks": [
@@ -217,11 +222,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 158,
-    "title": "Another Episode About Ahmed Shah Ata Rohilla",
-    "startPage": 1298,
-    "endPage": 1312
   }
 }

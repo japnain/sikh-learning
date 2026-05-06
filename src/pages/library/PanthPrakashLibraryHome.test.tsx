@@ -35,6 +35,7 @@ describe('PanthPrakashLibraryHome', () => {
     expect(screen.getByText(/Volume 1 · 575 pages/i)).toBeInTheDocument()
     expect(screen.getByText(/Volume 2 · 842 pages/i)).toBeInTheDocument()
     expect(screen.getAllByText(/Episode 1/i).length).toBeGreaterThan(0)
+    expect(screen.getByRole('link', { name: /^Start episode 1:/i })).toHaveAttribute('href', '/library/panth-prakash-english/episode/1')
   })
 
   test('exposes the full 169-episode browser with volume tabs, search, filters, and load more', async () => {
@@ -63,7 +64,7 @@ describe('PanthPrakashLibraryHome', () => {
 
     await user.type(screen.getByLabelText(/search episodes/i), 'Bunga S. Sham Singh')
     expect(screen.getByText(/Showing 1 of 1 episodes/i)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Episode 169/i })).toHaveAttribute('href', '/library/panth-prakash-english/page/1412')
+    expect(screen.getByRole('link', { name: /Episode 169/i })).toHaveAttribute('href', '/library/panth-prakash-english/episode/169')
   })
 
   test('adds editorial arcs and cleaned display titles without changing the source episode index', async () => {
@@ -112,6 +113,7 @@ describe('PanthPrakashLibraryHome', () => {
       expect(screen.getByTestId('panth-full-text-results')).toHaveTextContent(/Sahibzada Jujhar Singh/i)
     })
     expect(screen.getByTestId('panth-full-text-results')).toHaveTextContent(/Page 169/i)
+    expect(screen.getByRole('link', { name: /Open episode 19/i })).toHaveAttribute('href', '/library/panth-prakash-english/episode/19')
     expect(screen.getByRole('link', { name: /Open page 169/i })).toHaveAttribute('href', '/library/panth-prakash-english/page/169')
   })
 
@@ -130,8 +132,9 @@ describe('PanthPrakashLibraryHome', () => {
 
     const trustDebt = screen.getByTestId('panth-edition-debt')
     expect(trustDebt).toHaveTextContent(/0 pages missing source mapping/i)
-    expect(trustDebt).toHaveTextContent(/1417 machine-cleaned pages awaiting human review/i)
-    expect(trustDebt).toHaveTextContent(/Human-review machine-cleaned pages/i)
+    expect(trustDebt).toHaveTextContent(/672 editorial reconstruction pages with raw source retained/i)
+    expect(trustDebt).toHaveTextContent(/745 source-backed reading pages/i)
+    expect(trustDebt).toHaveTextContent(/Review reconstruction pages episode-by-episode/i)
   })
 
   test('shows a continue reading card when the current session belongs to Panth Prakash', async () => {

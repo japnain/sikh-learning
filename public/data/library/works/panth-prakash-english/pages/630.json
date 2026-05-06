@@ -3,17 +3,22 @@
   "pageNumber": 630,
   "volume": 2,
   "sourcePageNumber": 55,
-  "title": "43 Grewal J.S., Valorizing the Tradition: Bhangoo's Guru Granth Prakash in the Khalsa",
+  "title": "Introduction Notes: Martyrdom and Citation Spillover",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-630-1",
       "type": "paragraph",
-      "text": "43 Grewal J.S., Valorizing the Tradition: Bhangoo's Guru Granth Prakash in the Khalsa"
+      "text": "This page is not continuous narrative; it is a citation spillover from the introduction and references. It quotes a short remembrance of Tara Singh’s martyrdom, saying his deed became famous and that he offered his head for the Guru without surrendering his Sikh resolve."
     },
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "Episode 88, Vol. II, p. 54"
+      "id": "manual-630-2",
+      "type": "paragraph",
+      "text": "The next citations collect casualty memories and anti-imperial praise: one reports enormous losses and a survivor’s family testimony, and another says the force that ravaged Delhi and was linked to Nadir or Ahmad Shah was eventually routed by the Khalsa."
+    },
+    {
+      "id": "manual-630-3",
+      "type": "paragraph",
+      "text": "The lower lines turn back to bibliography, naming J. S. Grewal’s edited Khalsa perspectives volume, another Ibid. note, an Episode 13 citation, and a Dhillon edition reference for Episode 82. The repair identifies this as scholarly notes rather than an episode."
     }
   ],
   "rawBlocks": [
@@ -232,11 +237,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 88,
-    "title": "Episode of Randhawas (Singhs) of Chamunday and Kairon Natigiian",
-    "startPage": 680,
-    "endPage": 686
   }
 }

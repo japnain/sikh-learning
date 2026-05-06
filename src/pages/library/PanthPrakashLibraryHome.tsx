@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibraryWork } from '../../types'
-import { loadLibraryEpisodeIndex, loadLibraryPage, loadLibraryPageIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
+import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibrarySearchIndex, LibrarySearchPageEntry, LibraryWork } from '../../types'
+import { loadLibraryEpisodeIndex, loadLibraryPage, loadLibraryPageIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
 import {
   buildPanthPrakashEditionDebtReport,
   getPanthPrakashArcOptions,
@@ -14,6 +14,8 @@ import { buildSessionResumePath, useProgressStore } from '../../store/progress'
 
 const DEFAULT_WORK_ID = 'panth-prakash-english'
 
+type PageSearchResult = Pick<LibrarySearchPageEntry, 'pageNumber' | 'title' | 'snippet' | 'episodeNumber' | 'episodeDisplayTitle' | 'sourcePageNumber'>
+
 export default function PanthPrakashLibraryHome() {
   const navigate = useNavigate()
   const { workId: routeWorkId } = useParams<{ workId: string }>()
@@ -22,6 +24,7 @@ export default function PanthPrakashLibraryHome() {
   const [work, setWork] = useState<LibraryWork | null>(null)
   const [pageIndex, setPageIndex] = useState<LibraryPageIndexEntry[]>([])
   const [episodeIndex, setEpisodeIndex] = useState<LibraryEpisodeIndexEntry[]>([])
+  const [searchIndex, setSearchIndex] = useState<LibrarySearchIndex | null>(null)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [pageJumpValue, setPageJumpValue] = useState('1')
   const [episodeSearch, setEpisodeSearch] = useState('')
@@ -30,7 +33,7 @@ export default function PanthPrakashLibraryHome() {
   const [visibleEpisodeWindow, setVisibleEpisodeWindow] = useState({ filterKey: '', count: 24 })
   const [pageSearchQuery, setPageSearchQuery] = useState('')
   const [pageSearchStatus, setPageSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty'>('idle')
-  const [pageSearchResults, setPageSearchResults] = useState<Array<{ page: LibraryPagePayload; snippet: string }>>([])
+  const [pageSearchResults, setPageSearchResults] = useState<PageSearchResult[]>([])
 
   useEffect(() => {
     let cancelled = false
@@ -43,12 +46,14 @@ export default function PanthPrakashLibraryHome() {
         loadLibraryWorkCatalog(),
         loadLibraryPageIndex(workId),
         loadLibraryEpisodeIndex(workId),
+        loadLibrarySearchIndex().catch(() => null),
       ])
-        .then(([catalog, pages, episodes]) => {
+        .then(([catalog, pages, episodes, loadedSearchIndex]) => {
           if (cancelled) return
           setWork(catalog.workById[workId] ?? null)
           setPageIndex(pages)
           setEpisodeIndex(episodes)
+          setSearchIndex(loadedSearchIndex)
           setStatus(catalog.workById[workId] ? 'ready' : 'error')
         })
         .catch(() => {
@@ -91,7 +96,7 @@ export default function PanthPrakashLibraryHome() {
     ? visibleEpisodeWindow.count
     : 24
   const visibleEpisodes = filteredEpisodes.slice(0, visibleEpisodeCount)
-  const editionDebtReport = useMemo(() => buildPanthPrakashEditionDebtReport(pageIndex), [pageIndex])
+  const editionDebtReport = useMemo(() => buildPanthPrakashEditionDebtReport(pageIndex, searchIndex ?? undefined), [pageIndex, searchIndex])
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -109,10 +114,45 @@ export default function PanthPrakashLibraryHome() {
     }
 
     setPageSearchStatus('searching')
+
+    const indexedPages = searchIndex?.pages?.filter(entry => entry.workId === workId)
+    if (indexedPages?.length) {
+      const rawMatches = indexedPages
+        .map<PageSearchResult | null>(entry => {
+          const normalizedHaystack = entry.searchText.toLowerCase()
+          const index = normalizedHaystack.indexOf(query)
+          if (index === -1) return null
+          const snippetStart = Math.max(0, index - 72)
+          const snippetEnd = Math.min(entry.searchText.length, index + pageSearchQuery.length + 112)
+          return {
+            pageNumber: entry.pageNumber,
+            title: entry.title,
+            sourcePageNumber: entry.sourcePageNumber,
+            episodeNumber: entry.episodeNumber,
+            episodeDisplayTitle: entry.episodeDisplayTitle,
+            snippet: entry.searchText.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
+          } satisfies PageSearchResult
+        })
+        .filter((result): result is PageSearchResult => Boolean(result))
+      const seenMatches = new Set<string>()
+      const matches = rawMatches
+        .filter(result => {
+          const key = result.episodeNumber ? `episode:${result.episodeNumber}` : `page:${result.pageNumber}`
+          if (seenMatches.has(key)) return false
+          seenMatches.add(key)
+          return true
+        })
+        .slice(0, 8)
+
+      setPageSearchResults(matches)
+      setPageSearchStatus(matches.length ? 'ready' : 'empty')
+      return
+    }
+
     const loadedPages = await Promise.all(pageIndex.map(entry => loadLibraryPage(workId, entry.pageNumber).catch(() => null)))
-    const matches = loadedPages
+    const rawFallbackMatches = loadedPages
       .filter((page): page is LibraryPagePayload => Boolean(page))
-      .map(page => {
+      .map<PageSearchResult | null>(page => {
         const haystack = [
           page.title,
           page.episode?.title ?? '',
@@ -125,11 +165,25 @@ export default function PanthPrakashLibraryHome() {
         const snippetStart = Math.max(0, index - 72)
         const snippetEnd = Math.min(haystack.length, index + pageSearchQuery.length + 112)
         return {
-          page,
+          pageNumber: page.pageNumber,
+          title: page.title,
+          sourcePageNumber: page.sourcePageNumber,
+          episodeNumber: page.episode?.number,
+          episodeDisplayTitle: page.episode
+            ? getPanthPrakashEpisodeDisplayTitle({ ...page.episode, episodeNumber: page.episode.number, volume: page.volume })
+            : undefined,
           snippet: haystack.slice(snippetStart, snippetEnd).replace(/\s+/g, ' ').trim(),
-        }
+        } satisfies PageSearchResult
       })
-      .filter((result): result is { page: LibraryPagePayload; snippet: string } => Boolean(result))
+      .filter((result): result is PageSearchResult => Boolean(result))
+    const fallbackSeenMatches = new Set<string>()
+    const matches = rawFallbackMatches
+      .filter(result => {
+        const key = result.episodeNumber ? `episode:${result.episodeNumber}` : `page:${result.pageNumber}`
+        if (fallbackSeenMatches.has(key)) return false
+        fallbackSeenMatches.add(key)
+        return true
+      })
       .slice(0, 8)
 
     setPageSearchResults(matches)
@@ -187,6 +241,7 @@ export default function PanthPrakashLibraryHome() {
         <div className="mt-3 flex flex-wrap gap-2">
           <span className="chip-pill">{editionDebtReport.pagesMissingSourceMapping} pages missing source mapping</span>
           <span className="chip-pill">{editionDebtReport.reviewStatusLabel}</span>
+          {editionDebtReport.secondaryStatusLabel ? <span className="chip-pill">{editionDebtReport.secondaryStatusLabel}</span> : null}
         </div>
         <ul className="mt-3 grid gap-2 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">
           {editionDebtReport.nextActions.map(action => <li key={action}>• {action}</li>)}
@@ -284,21 +339,36 @@ export default function PanthPrakashLibraryHome() {
           {pageSearchStatus === 'searching' ? <p className="font-sans text-sm text-ink/62 dark:text-dark-text/66">Searching page text…</p> : null}
           {pageSearchStatus === 'empty' ? <p className="font-sans text-sm text-ink/62 dark:text-dark-text/66">No page matches yet. Try a person, place, or exact OCR phrase.</p> : null}
           {pageSearchResults.map(result => {
-            const displayEpisode = result.page.episode
-              ? getPanthPrakashEpisodeDisplayTitle({ ...result.page.episode, episodeNumber: result.page.episode.number, volume: result.page.volume })
-              : null
+            const resultPath = result.episodeNumber
+              ? `/library/${work.id}/episode/${result.episodeNumber}`
+              : `/library/${work.id}/page/${result.pageNumber}`
+            const openLabel = result.episodeNumber ? `Open episode ${result.episodeNumber}` : `Open page ${result.pageNumber}`
             return (
-              <Link
-                key={result.page.pageNumber}
-                to={`/library/${work.id}/page/${result.page.pageNumber}`}
-                className="interactive-focus interactive-card-link block rounded-[22px] border border-sand/14 bg-parchment-card/72 px-4 py-3 text-left dark:border-dark-text/10 dark:bg-dark-card/62"
+              <div
+                key={result.pageNumber}
+                className="rounded-[22px] border border-sand/14 bg-parchment-card/72 px-4 py-3 text-left dark:border-dark-text/10 dark:bg-dark-card/62"
               >
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold dark:text-gold-light">
-                  Open page {result.page.pageNumber}
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    to={resultPath}
+                    className="interactive-focus rounded-full bg-gold/10 px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:bg-gold/12 dark:text-gold-light"
+                  >
+                    {openLabel}
+                  </Link>
+                  {result.episodeNumber ? (
+                    <Link
+                      to={`/library/${work.id}/page/${result.pageNumber}`}
+                      className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-3 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
+                    >
+                      Open page {result.pageNumber}
+                    </Link>
+                  ) : null}
+                </div>
+                <p className="mt-3 font-sans text-sm font-semibold text-ink dark:text-dark-text">
+                  Page {result.pageNumber}{result.episodeDisplayTitle ? ` · ${result.episodeDisplayTitle}` : ''}
                 </p>
-                <p className="mt-2 font-sans text-sm font-semibold text-ink dark:text-dark-text">Page {result.page.pageNumber}{displayEpisode ? ` · ${displayEpisode}` : ''}</p>
                 <p className="mt-1 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">{result.snippet}</p>
-              </Link>
+              </div>
             )
           })}
         </div>
@@ -375,7 +445,8 @@ export default function PanthPrakashLibraryHome() {
             return (
               <Link
                 key={episode.episodeNumber}
-                to={`/library/${work.id}/page/${episode.startPage}`}
+                to={`/library/${work.id}/episode/${episode.episodeNumber}`}
+                aria-label={`Start episode ${episode.episodeNumber}: ${displayTitle}`}
                 className="section-shell interactive-focus interactive-card-link px-4 py-4 text-left"
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">

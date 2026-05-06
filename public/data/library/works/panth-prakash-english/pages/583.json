@@ -3,52 +3,22 @@
   "pageNumber": 583,
   "volume": 2,
   "sourcePageNumber": 8,
-  "title": "Episode About Nihang Gurbakhsh Singh",
+  "title": "Contents: Episodes 156–169 and Back Matter",
   "blocks": [
     {
-      "id": "heading-1",
-      "type": "heading",
-      "text": "Episode About Nihang Gurbakhsh Singh"
-    },
-    {
-      "id": "heading-2",
-      "type": "heading",
-      "text": "Episode About Ahmed Shah Abdali, Jawahar Mal of Bhara"
-    },
-    {
-      "id": "paragraph-1",
+      "id": "manual-583-1",
       "type": "paragraph",
-      "text": "And Najib Khan Rohilla Another Episode Another Episode About S. Baghel Singh I"
+      "text": "This contents page completes the Volume II table of contents rather than telling an episode. It lists Episodes 156 through 169, beginning with Nihang Gurbakhsh Singh and the Ahmad Shah Abdali, Jawahar Mal, and Najib Khan Rohilla sequence."
     },
     {
-      "id": "heading-3",
-      "type": "heading",
-      "text": "Episode About Deegh, Ghumer And Bharatpur..."
-    },
-    {
-      "id": "heading-4",
-      "type": "heading",
-      "text": "Episode About the Malwa"
-    },
-    {
-      "id": "paragraph-2",
+      "id": "manual-583-2",
       "type": "paragraph",
-      "text": "Next Episode About the Malwa"
+      "text": "The middle entries point to later political and regional episodes: Ahmed Shah Ata Rohilla, S. Sham Singh’s misl, the Khalsa Panth, S. Baghel Singh, Deegh, Ghumer and Bharatpur, the Malwa, and the Phulkians."
     },
     {
-      "id": "heading-5",
-      "type": "heading",
-      "text": "Episode About the Phulkians"
-    },
-    {
-      "id": "paragraph-3",
+      "id": "manual-583-3",
       "type": "paragraph",
-      "text": "Another Episode About the Phulkians Another Episode About Malwa..."
-    },
-    {
-      "id": "heading-6",
-      "type": "heading",
-      "text": "Episode About Bunga S. Sham Singh"
+      "text": "The final lines place Episode 169, Bunga S. Sham Singh, before References, Quotable Quotes, and Index, with page numbers running from 631 through 846. This is navigation metadata for readers."
     }
   ],
   "rawBlocks": [
@@ -308,15 +278,9 @@
       "text": "846"
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-2/v2-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 123,
-    "title": "Episode About Ahmad Shah and Sukha Singh",
-    "startPage": 567,
-    "endPage": 1046
   }
 }

@@ -3,57 +3,22 @@
   "pageNumber": 573,
   "volume": 1,
   "sourcePageNumber": 573,
-  "title": "Aali Singh, 217, 219, 245, 259.",
+  "title": "Index: A–F",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-573-1",
       "type": "paragraph",
-      "text": "Aali Singh, 217, 219, 245, 259."
+      "text": "This page begins the Volume I index and is reference material rather than narrative. It opens under A with entries such as Aali Singh, Abhimanyu, Achal Batala, Ahmad Shah Abdali, Amritsar, Anandpur Sahib, and Aurangzeb."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-573-2",
       "type": "paragraph",
-      "text": "Baaj Singh, 197, 241, 245, 247, 305, 327, 329, Baba Kahan Singh, 353, 355, 439, 449, 453, Bachittar Singh, 139."
+      "text": "The B entries include Baaj Singh, Baba Kahan Singh, Babur, Bachittar Singh, Baghar Singh, Bahadur Shah, Baijid Khan, Banda Bahadur, Bedi, Bhagwati, Binod Singh, Bulaka Singh, and related references."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-573-3",
       "type": "paragraph",
-      "text": "Baghar Singh, 273, 275."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "Binod Singh, 453, 455."
-    },
-    {
-      "id": "paragraph-5",
-      "type": "paragraph",
-      "text": "Bulaka Singh, 247."
-    },
-    {
-      "id": "paragraph-6",
-      "type": "paragraph",
-      "text": "Daya Singh Sobti, 83."
-    },
-    {
-      "id": "paragraph-7",
-      "type": "paragraph",
-      "text": "Dayal Singh, 169."
-    },
-    {
-      "id": "paragraph-8",
-      "type": "paragraph",
-      "text": "Deep Singh, 261."
-    },
-    {
-      "id": "paragraph-9",
-      "type": "paragraph",
-      "text": "Dharam Singh, 83."
-    },
-    {
-      "id": "paragraph-10",
-      "type": "paragraph",
-      "text": "Fateh Singh, 169."
+      "text": "The page continues into later alphabetical entries such as Daya Singh Sobti, Dayal Singh, Deep Singh, Dharam Singh, Fateh Singh, and other names. Its purpose is to help readers locate people, places, and topics in Volume I."
     }
   ],
   "rawBlocks": [
@@ -442,11 +407,5 @@
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 81,
-    "title": "The Episode About the Origin of Gangushahian Sect",
-    "startPage": 531,
-    "endPage": 574
   }
 }

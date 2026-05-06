@@ -3,102 +3,22 @@
   "pageNumber": 574,
   "volume": 1,
   "sourcePageNumber": 574,
-  "title": "Guru Amardas, 55, 479, 489, 491.",
+  "title": "Index: G–K",
   "blocks": [
     {
-      "id": "paragraph-1",
+      "id": "manual-574-1",
       "type": "paragraph",
-      "text": "Guru Amardas, 55, 479, 489, 491."
+      "text": "This index page continues the Volume I reference list with entries under G, H, I, J, and K. It includes Gurbax Dass, Gurbilas, Gurdas Nangal, Guru Amar Das, Guru Angad Dev, Guru Arjan Dev, and Guru Gobind Singh."
     },
     {
-      "id": "paragraph-2",
+      "id": "manual-574-2",
       "type": "paragraph",
-      "text": "Guru Angad Dev, 55, 89, 129."
+      "text": "The entries also point to Guru Granth Sahib, Guru Hargobind, Guru Harkrishan, Guru Har Rai, Guru Nanak, Guru Ram Das, Guru Tegh Bahadur, Himmat Singh, Jiwan Singh Ranghreta, and Jujhar Singh."
     },
     {
-      "id": "paragraph-3",
+      "id": "manual-574-3",
       "type": "paragraph",
-      "text": "Guru Arjun Dev, 57."
-    },
-    {
-      "id": "paragraph-4",
-      "type": "paragraph",
-      "text": "Guru Gobind Singh, 3, 7, 57, 73, 77, 79, 81, Guru Granth Sahib, 35, 105, 443."
-    },
-    {
-      "id": "paragraph-5",
-      "type": "paragraph",
-      "text": "Guru Hargobind, 57."
-    },
-    {
-      "id": "paragraph-6",
-      "type": "paragraph",
-      "text": "Guru Harkrishan, 57."
-    },
-    {
-      "id": "paragraph-7",
-      "type": "paragraph",
-      "text": "Guru Harrai, 57."
-    },
-    {
-      "id": "paragraph-8",
-      "type": "paragraph",
-      "text": "Guru Nanak, 3, 7, 23, 25, 27, 29, 30, 39, 43, Guru Ramdas, 57."
-    },
-    {
-      "id": "paragraph-9",
-      "type": "paragraph",
-      "text": "Guru Tegh Bahadur, 57, 59, 61, 63, 65."
-    },
-    {
-      "id": "paragraph-10",
-      "type": "paragraph",
-      "text": "Himmat Singh, 83."
-    },
-    {
-      "id": "paragraph-11",
-      "type": "paragraph",
-      "text": "Jiwan Singh Ranghreta, 129."
-    },
-    {
-      "id": "paragraph-12",
-      "type": "paragraph",
-      "text": "Jujhar Singh, 105, 125."
-    },
-    {
-      "id": "paragraph-13",
-      "type": "paragraph",
-      "text": "Koer Singh, 245."
-    },
-    {
-      "id": "paragraph-14",
-      "type": "paragraph",
-      "text": "Lahora Singh, 449, 451."
-    },
-    {
-      "id": "paragraph-15",
-      "type": "paragraph",
-      "text": "Maharaja Ranjit Singh, 11."
-    },
-    {
-      "id": "paragraph-16",
-      "type": "paragraph",
-      "text": "Majhail Singh, 91, 155, 157, 159, 161, 197, Mani Singh, 451."
-    },
-    {
-      "id": "paragraph-17",
-      "type": "paragraph",
-      "text": "Mehar Singh, 477, 483."
-    },
-    {
-      "id": "paragraph-18",
-      "type": "paragraph",
-      "text": "Miri Singh 447, 449."
-    },
-    {
-      "id": "paragraph-19",
-      "type": "paragraph",
-      "text": "Mohkam Singh, 83."
+      "text": "The lower section begins the K entries, including Kaaba, Kabul, Kaithal, Kaliyuga, Kangar, Karnal, Kashi, and Kaur Singh. This page is a reference aid, not a continuation of Episode 81."
     }
   ],
   "rawBlocks": [
@@ -543,15 +463,9 @@
       "text": "Multan, 35."
     }
   ],
-  "quality": "clean",
+  "quality": "readable",
   "sourceFile": "scripts/library/raw/panth-prakash-english/volume-1/v1-ocr-hocr-html.html",
   "review": {
     "status": "machine-cleaned"
-  },
-  "episode": {
-    "number": 81,
-    "title": "The Episode About the Origin of Gangushahian Sect",
-    "startPage": 531,
-    "endPage": 574
   }
 }
