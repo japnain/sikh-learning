@@ -4505,20 +4505,26 @@ html[data-theme='dark'] .home-saved-cabinet [data-testid='home-saved-preview-lis
   left: 0;
   z-index: 0;
   display: block !important;
-  height: calc(var(--safe-area-bottom) + 7.25rem);
+  height: calc(var(--safe-area-bottom) + 4.65rem);
   background: linear-gradient(
     180deg,
-    rgb(var(--color-bg) / 0),
-    rgb(var(--color-bg) / 0.96) 18%,
-    rgb(var(--color-bg)) 52%,
-    rgb(var(--color-bg))
+    rgb(var(--color-bg) / 0) 0%,
+    rgb(var(--color-bg) / 0) 42%,
+    rgb(var(--color-bg) / 0.34) 80%,
+    rgb(var(--color-bg)) 100%
   );
   pointer-events: none;
 }
 
 html.dark .app-nav-stack::after,
 html[data-theme='dark'] .app-nav-stack::after {
-  background: linear-gradient(180deg, rgb(21 16 29 / 0), rgb(21 16 29 / 0.98) 18%, #15101d 52%, #15101d);
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-bg) / 0) 0%,
+    rgb(var(--color-bg) / 0) 42%,
+    rgb(var(--color-bg) / 0.34) 80%,
+    rgb(var(--color-bg)) 100%
+  );
 }
 
 .app-nav {
