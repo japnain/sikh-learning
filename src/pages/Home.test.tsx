@@ -203,7 +203,16 @@ test('home calm dark mode overrides light text colors for every visible card sur
 
   expect(css).toMatch(/html\.dark \.home-read-sheet > h2 \+ p,[\s\S]*color: rgb\(248 240 226 \/ 0\.78\) !important;/)
   expect(css).toMatch(/html\.dark \.home-saved-cabinet > div:first-child a,[\s\S]*color: #f3c66d !important;/)
-  expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-metrics'\] p:last-of-type,[\s\S]*color: rgb\(248 240 226 \/ 0\.72\) !important;/)
+  expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-metrics'\] p:last-of-type,[\s\S]*color: rgb\(248 240 226 \/ 0\.8\) !important;/)
+  expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-preview-list'\] > \*,[\s\S]*linear-gradient\(180deg, rgb\(34 27 44 \/ 0\.96\), rgb\(24 19 33 \/ 0\.94\)\) !important;/)
+  expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-preview-list'\] > \* p:not\(\.eyebrow\),[\s\S]*color: rgb\(248 240 226 \/ 0\.84\) !important;/)
+})
+
+test('tailwind config emits custom opacity modifiers used by dark mode tokens', () => {
+  const config = readFileSync(`${process.cwd()}/tailwind.config.ts`, 'utf8')
+
+  expect(config).toMatch(/Array\.from\(\{ length: 101 \}/)
+  expect(config).toMatch(/opacity: percentOpacity/)
 })
 
 test('home hukamnama script text has a safe line box so upper Gurmukhi and Devanagari marks do not clip', () => {
