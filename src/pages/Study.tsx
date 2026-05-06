@@ -36,6 +36,8 @@ import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
 import {
+  ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
+  DAILY_HUKAMNAMA_EDITORIAL_COPY,
   formatReaderEditorialDate,
   getReaderEditorialCopyForBani,
   getReaderEditorialCopyForBaniDbId,
@@ -907,15 +909,17 @@ export default function Study() {
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
     ?? ''
-  const readerEditorialCopy = !isHukamnamaMode
-    ? getReaderEditorialCopyForBani(baniIdParam) ?? getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource)
-    : null
+  const readerEditorialCopy = isHukamnamaMode || isRandomHukamnamaMode
+    ? DAILY_HUKAMNAMA_EDITORIAL_COPY
+    : isArdaasReaderFlow
+      ? ARDAAS_HUKAMNAMA_EDITORIAL_COPY
+      : getReaderEditorialCopyForBani(baniIdParam) ?? getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource)
   const hukamnamaDateLabel = isHukamnamaMode
     ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
     : null
   const readerTitleUsesScript = Boolean(titleLine) && !baniName && !isHukamnamaMode
   const readerTitle = isHukamnamaMode
-    ? 'Daily Hukamnama Sri Harmandir Sahib, Amritsar'
+    ? DAILY_HUKAMNAMA_EDITORIAL_COPY.title
     : readerTitleUsesScript
       ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
       : (readerEditorialCopy?.title ?? baniName ?? currentEntry?.scripture ?? 'Reader')
@@ -927,9 +931,7 @@ export default function Study() {
     currentEntry?.raag,
     currentEntry?.writer,
   ].filter(Boolean).join(' · ')
-  const readerIntroBody = isHukamnamaMode
-    ? 'Read today’s Hukamnama from Sri Harmandir Sahib, Amritsar; open the full source shabad when you want the wider context.'
-    : (readerEditorialCopy?.dek ?? studyCopy.introBody)
+  const readerIntroBody = readerEditorialCopy?.dek ?? studyCopy.introBody
   const readerControlSummaryChips = [
     currentSundarGutkaLengthLabel,
     scriptModeLabels[scriptMode],
@@ -1192,6 +1194,35 @@ export default function Study() {
         <p className="study-reader-hero__body">
           {readerIntroBody}
         </p>
+        {(readerEditorialCopy?.historicalNote || readerEditorialCopy?.practiceNote || readerEditorialCopy?.sourceRefs.length) ? (
+          <div className="mt-4 grid gap-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/72">
+            {readerEditorialCopy.historicalNote ? (
+              <p>
+                <span className="font-semibold text-ink dark:text-dark-text">Context: </span>
+                {readerEditorialCopy.historicalNote}
+              </p>
+            ) : null}
+            {readerEditorialCopy.practiceNote ? (
+              <p>
+                <span className="font-semibold text-ink dark:text-dark-text">Practice: </span>
+                {readerEditorialCopy.practiceNote}
+              </p>
+            ) : null}
+            {readerEditorialCopy.sourceRefs.length > 0 ? (
+              <div>
+                <p className="font-semibold text-ink dark:text-dark-text">Provenance</p>
+                <ul className="mt-1 list-disc space-y-1 pl-4">
+                  {readerEditorialCopy.sourceRefs.map(ref => (
+                    <li key={`${ref.label}-${ref.note}`}>
+                      <span className="font-medium">{ref.label}: </span>
+                      {ref.note}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
         {isHukamnamaMode && hukamnamaResult.data?.shabadId ? (
           <button
             onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
@@ -1503,7 +1534,7 @@ export default function Study() {
               : '.'}
           </p>
           <p className="mt-2 font-sans text-xs text-ink/60 dark:text-dark-text/60">
-            The reader opens the full shabad and scrolls to the selected verse when it is present.
+            {ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote}
           </p>
         </div>
       )}
@@ -1606,7 +1637,7 @@ export default function Study() {
         <div className="section-shell p-4 mt-4">
           <p className="eyebrow">Ardaas + Hukamnama</p>
           <p className="mt-2 font-sans text-sm text-ink/65 dark:text-dark-text/65">
-            After Ardaas, take a random Hukamnama from Sri Guru Granth Sahib Ji.
+            {ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote}
           </p>
           <button
             type="button"

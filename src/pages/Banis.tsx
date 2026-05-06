@@ -44,6 +44,10 @@ import {
 } from '../utils/appSearch'
 import { buildReadSearchPath } from '../utils/searchRoutes'
 import { getScriptTextFontClass, getScriptTextLang, renderScriptText } from '../utils/readerDisplay'
+import {
+  ARDAAS_HUKAMNAMA_EDITORIAL_COPY,
+  getReaderEditorialCopyForBani,
+} from '../content/readerEditorialCopy'
 
 type Scripture = 'SGGS' | 'DG'
 type ExactBani = Bani & { baniDbId: number }
@@ -51,6 +55,7 @@ interface ResolvedRouteOption {
   key: string
   label: string
   path: string
+  detail?: string
 }
 
 const SCRIPTURE_META: Record<Scripture, { label: string; icon: ReactNode; categoryOrder: readonly string[] }> = {
@@ -289,6 +294,7 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
         ? `${bani.name} · ${option.variantLabel}`
         : option.name,
       path: buildNitnemStudyPath(option),
+      detail: getReaderEditorialCopyForBani(option.id)?.dek,
     })) satisfies ResolvedRouteOption[]
   }
 
@@ -304,6 +310,7 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
         ? `${baseLabel} · ${option.variantLabel}`
         : option.name,
       path: buildCanonicalBaniStudyPath(option),
+      detail: getReaderEditorialCopyForBani(option.id)?.dek,
     } satisfies ResolvedRouteOption
   })
 }
@@ -311,21 +318,26 @@ function getExactRouteOptionsForBani(bani: ExactBani): ResolvedRouteOption[] {
 function IndexRow({
   label,
   detail,
+  supplementalDetail,
   onClick,
   labelClassName,
   detailClassName,
+  supplementalDetailClassName,
   labelLang,
 }: {
   label: string
   detail?: string
+  supplementalDetail?: string
   onClick: () => void
   labelClassName?: string
   detailClassName?: string
+  supplementalDetailClassName?: string
   labelLang?: string
 }) {
   return (
     <button
       onClick={onClick}
+      aria-label={label}
       className="read-index-row w-full text-left active:scale-[0.99] transition-transform duration-150"
     >
       <p lang={labelLang} className={`read-index-row__title ${labelClassName ?? 'font-sans text-sm text-ink dark:text-dark-text'}`}>
@@ -334,6 +346,11 @@ function IndexRow({
       {detail ? (
         <p className={`read-index-row__detail ${detailClassName ?? 'font-sans text-xs text-gold dark:text-gold-light mt-0.5'}`}>
           {detail}
+        </p>
+      ) : null}
+      {supplementalDetail ? (
+        <p className={`read-index-row__detail ${supplementalDetailClassName ?? 'font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1'}`}>
+          {supplementalDetail}
         </p>
       ) : null}
     </button>
@@ -961,6 +978,7 @@ export default function Banis() {
         <button
           type="button"
           onClick={() => navigate('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')}
+          aria-label="Ardaas + Hukamnama"
           className="read-featured-flow-card w-full text-left active:scale-[0.99] transition-transform duration-150"
           data-testid="banis-featured-flow"
           data-ai-action="open-ardaas-hukamnama-flow"
@@ -975,7 +993,7 @@ export default function Banis() {
                 Ardaas + Hukamnama
               </h2>
               <p className="read-featured-flow-card__body mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
-                {editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.'}
+                {ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek}
               </p>
             </div>
             <span className="read-featured-flow-card__action mt-1 shrink-0 text-gold dark:text-gold-light">
@@ -1045,6 +1063,7 @@ export default function Banis() {
                               key={`${item.id}-${option.id}`}
                               label={renderScriptText(option.gurmukhiTitle, scriptMode)}
                               detail={option.romanizedTitle}
+                              supplementalDetail={getReaderEditorialCopyForBani(option.id)?.dek}
                               labelLang={getScriptTextLang(scriptMode)}
                               labelClassName={`${getScriptTextFontClass(scriptMode)} text-lg leading-relaxed text-ink dark:text-dark-text`}
                               detailClassName="font-sans text-xs text-gold dark:text-gold-light mt-0.5"
@@ -1124,6 +1143,8 @@ export default function Banis() {
                                 <IndexRow
                                   key={item.id}
                                   label={getExactBaniRowLabel(item)}
+                                  detail={getReaderEditorialCopyForBani(item.id)?.dek}
+                                  detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
                                   onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                                 />
                               )
@@ -1135,6 +1156,8 @@ export default function Banis() {
                                 <IndexRow
                                   key={option.key}
                                   label={option.label}
+                                  detail={option.detail}
+                                  detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
                                   onClick={() => navigate(option.path)}
                                 />
                               ))
@@ -1144,6 +1167,8 @@ export default function Banis() {
                               <IndexRow
                                 key={item.id}
                                 label={getExactBaniRowLabel(item)}
+                                detail={getReaderEditorialCopyForBani(item.id)?.dek}
+                                detailClassName="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/70 mt-1"
                                 onClick={() => navigate(buildCanonicalBaniStudyPath(item))}
                               />
                             )
