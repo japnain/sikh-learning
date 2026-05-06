@@ -7,6 +7,7 @@ import Study from './Study'
 import LibraryPageReader from './library/LibraryPageReader'
 import PanthPrakashLibraryHome from './library/PanthPrakashLibraryHome'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
+import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
 
 function renderBanis() {
   return render(<MemoryRouter><Banis /></MemoryRouter>)
@@ -266,7 +267,7 @@ test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other
   expect(featuredFlow).toHaveClass('read-featured-flow-card')
   expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
   expect(
-    screen.getByText(/Move from Ardaas into a random Hukamnama/i)
+    screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek)
   ).toBeInTheDocument()
 
   fireEvent.click(screen.getByText(/Sundar Gutka/i))
@@ -290,7 +291,7 @@ test('featured Ardaas + Hukamnama card opens the devotional Study flow', async (
 
   await waitFor(() => {
     expect(screen.getByText('Take Hukamnama')).toBeInTheDocument()
-    expect(screen.getByText(/After Ardaas, take a random Hukamnama/i)).toBeInTheDocument()
+    expect(screen.getAllByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote!).length).toBeGreaterThan(0)
   })
 })
 

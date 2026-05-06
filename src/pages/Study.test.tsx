@@ -12,6 +12,7 @@ import { useReadingProgressStore } from '../store/readingProgress'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
 import { useSundarGutkaLengthStore } from '../store/sundarGutkaLength'
 import { useVocabStore } from '../store/vocab'
+import { ARDAAS_HUKAMNAMA_EDITORIAL_COPY } from '../content/readerEditorialCopy'
 
 function LocationSpy() {
   const location = useLocation()
@@ -503,7 +504,7 @@ describe('Study soundscapes and tracking', () => {
       })
 
       expect(screen.getByText(/Selected from Sri Guru Granth Sahib Ji · Ang 1/i)).toBeInTheDocument()
-      expect(screen.getByText(/The reader opens the full shabad and scrolls to the selected verse/i)).toBeInTheDocument()
+      expect(screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.practiceNote!)).toBeInTheDocument()
       expect(screen.getAllByTestId('study-line').length).toBeGreaterThan(1)
       expect(screen.queryByText('Hukamnama begins here')).not.toBeInTheDocument()
       expect(screen.queryByText(/Hukamnama · 2026-04-05/i)).not.toBeInTheDocument()
@@ -685,7 +686,7 @@ describe('Study hukamnama mode', () => {
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Japji Sahib' })).toBeInTheDocument()
       expect(screen.getByText(/opens Sri Guru Granth Sahib Ji on Ang 1/i)).toBeInTheDocument()
-      expect(screen.getByText(/Guru Nanak Sahib Ji/i)).toBeInTheDocument()
+      expect(screen.getAllByText(/Guru Nanak Sahib Ji/i).length).toBeGreaterThan(1)
     })
 
     expect(screen.queryByText(/Comfortable reading first/i)).not.toBeInTheDocument()
