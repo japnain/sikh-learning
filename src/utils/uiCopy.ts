@@ -65,9 +65,9 @@ type LocaleCopy = {
     authTitle: string
     authBody: string
     authGuest: string
-    authGoogle: string
-    authGithub: string
     authApple: string
+    authEmail: string
+    authEmailPlaceholder: string
     authChecking: string
     authConnected: string
     authConnectedBody: string
@@ -250,9 +250,9 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       authTitle: 'Backup later if you want it.',
       authBody: 'Guest reading stays open on this device. Sign in now only if you want backup and cross-device sync from the first session.',
       authGuest: 'Continue as Guest',
-      authGoogle: 'Continue with Google',
-      authGithub: 'Continue with GitHub',
       authApple: 'Continue with Apple',
+      authEmail: 'Send magic link',
+      authEmailPlaceholder: 'Email for magic link',
       authChecking: 'Checking sign-in options…',
       authConnected: 'Cloud connected',
       authConnectedBody: 'You are already signed in. Finish setup and open NaamRas with sync ready.',
@@ -433,9 +433,9 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       authTitle: 'ਜੇ ਚਾਹੋ ਤਾਂ backup ਬਾਅਦ ਵਿੱਚ ਵੀ ਜੋੜ ਸਕਦੇ ਹੋ।',
       authBody: 'Guest ਪੜ੍ਹਾਈ ਇਸ ਡਿਵਾਈਸ ‘ਤੇ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ। ਹੁਣੇ sign in ਸਿਰਫ਼ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਪਹਿਲੇ ਹੀ ਸੈਸ਼ਨ ਤੋਂ backup ਅਤੇ cross-device sync ਚਾਹੀਦਾ ਹੋਵੇ।',
       authGuest: 'Guest ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ',
-      authGoogle: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
-      authGithub: 'GitHub ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
       authApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+      authEmail: 'Magic link ਭੇਜੋ',
+      authEmailPlaceholder: 'Magic link ਲਈ email',
       authChecking: 'Sign-in ਚੋਣਾਂ ਵੇਖੀਆਂ ਜਾ ਰਹੀਆਂ ਹਨ…',
       authConnected: 'ਕਲਾਉਡ ਨਾਲ ਜੁੜਿਆ',
       authConnectedBody: 'ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ sign in ਹੋ। ਸੈੱਟਅੱਪ ਪੂਰਾ ਕਰੋ ਅਤੇ sync ਨਾਲ NaamRas ਖੋਲ੍ਹੋ।',
@@ -616,9 +616,9 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       authTitle: 'अगर चाहें तो backup बाद में भी जोड़ सकते हैं।',
       authBody: 'Guest reading इस डिवाइस पर खुली रहती है। अभी sign in तभी करें जब पहले ही session से backup और cross-device sync चाहिए।',
       authGuest: 'Guest के रूप में जारी रखें',
-      authGoogle: 'Google के साथ जारी रखें',
-      authGithub: 'GitHub के साथ जारी रखें',
       authApple: 'Apple के साथ जारी रखें',
+      authEmail: 'Magic link भेजें',
+      authEmailPlaceholder: 'Magic link के लिए email',
       authChecking: 'Sign-in विकल्प देखे जा रहे हैं…',
       authConnected: 'क्लाउड जुड़ा हुआ',
       authConnectedBody: 'आप पहले से sign in हैं। सेटअप पूरा करें और sync के साथ NaamRas खोलें।',

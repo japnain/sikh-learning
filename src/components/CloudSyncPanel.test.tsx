@@ -4,9 +4,10 @@ import CloudSyncPanel from './CloudSyncPanel'
 import { useActivityEventsStore } from '../store/activityEvents'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
-import type { CloudUserSummary } from '../insforge/types'
+import type { CloudUserSummary } from '../supabase/types'
 
-vi.mock('../insforge/runtime', () => ({
+vi.mock('../supabase/runtime', () => ({
+  sendMagicLink: vi.fn(),
   signInWithProvider: vi.fn(),
   signOutOfCloud: vi.fn(),
   syncNow: vi.fn(),
@@ -16,7 +17,7 @@ const READY_USER: CloudUserSummary = {
   id: 'user-1',
   email: 'simran@example.com',
   name: 'Simran',
-  providers: ['google', 'apple'],
+  providers: ['apple', 'email'],
 }
 
 function getPanelAnchor(anchor: string) {
@@ -32,7 +33,7 @@ function getTopStatus() {
   return getPanelAnchor('cloud-sync-status')
 }
 
-function getProviderCard(providerId: 'google' | 'apple' | 'github') {
+function getProviderCard(providerId: 'apple' | 'email') {
   const card = getPanelAnchor(`cloud-provider-${providerId}`)
   return card
 }
@@ -46,7 +47,7 @@ function renderPanel(
     configured: true,
     status: 'ready',
     currentUser: READY_USER,
-    availableProviders: ['google', 'apple'],
+    availableProviders: ['apple', 'email'],
     lastSyncedAt: '2026-04-17T14:00:00.000Z',
     lastError: null,
     syncQueued: false,
@@ -89,14 +90,14 @@ describe('CloudSyncPanel truth model', () => {
     }, 2)
 
     expect(screen.getByTestId('more-cloud-sync')).toHaveAttribute('data-ai-state', 'degraded')
-    expect(screen.getByTestId('more-cloud-sync')).toHaveAttribute('data-ai-error', 'insforge-bootstrap')
+    expect(screen.getByTestId('more-cloud-sync')).toHaveAttribute('data-ai-error', 'supabase-bootstrap')
     expect(getTopStatus()).toHaveTextContent('Needs attention')
     expect(screen.getByText('Bootstrap failed')).toBeInTheDocument()
     expect(getPanelAnchor('cloud-sync-pending')).toHaveTextContent('2')
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Needs attention')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Needs attention')).toBeInTheDocument()
   })
 
   test('keeps configured signed-out providers aligned with the backup-optional badge', () => {
@@ -108,9 +109,9 @@ describe('CloudSyncPanel truth model', () => {
 
     expect(getTopStatus()).toHaveTextContent('Backup optional')
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Backup optional')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Backup optional')).toBeInTheDocument()
   })
 
   test('separates cloud backup status from scripture data readiness', () => {
@@ -122,7 +123,7 @@ describe('CloudSyncPanel truth model', () => {
     })
 
     expect(screen.getByText(/Backup is local-only in this build/i)).toBeInTheDocument()
-    expect(getPanelAnchor('scripture-data-status')).toHaveTextContent(/Scripture data: InsForge BaniDB proxy ready/i)
+    expect(getPanelAnchor('scripture-data-status')).toHaveTextContent(/Scripture data: Supabase BaniDB proxy ready/i)
   })
 
   test('shows ready provider rows from the same runtime truth as the top badge', () => {
@@ -131,9 +132,9 @@ describe('CloudSyncPanel truth model', () => {
     expect(getTopStatus()).toHaveTextContent('Cloud connected')
     expect(screen.getByText('Simran')).toBeInTheDocument()
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Cloud connected')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Cloud connected')).toBeInTheDocument()
   })
 
   test('shows syncing consistently across the top badge and provider rows', () => {
@@ -143,9 +144,9 @@ describe('CloudSyncPanel truth model', () => {
 
     expect(getTopStatus()).toHaveTextContent('Syncing now')
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Syncing now')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Syncing now')).toBeInTheDocument()
   })
 
   test('shows offline consistently across the top badge, notice, and provider rows', () => {
@@ -156,9 +157,9 @@ describe('CloudSyncPanel truth model', () => {
     expect(getTopStatus()).toHaveTextContent('Offline')
     expect(screen.getByText('You are offline. Local changes are still safe on this device.')).toBeInTheDocument()
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Offline')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Offline')).toBeInTheDocument()
   })
 
   test('shows queued consistently across the top badge, notice, and provider rows', () => {
@@ -169,8 +170,8 @@ describe('CloudSyncPanel truth model', () => {
     expect(getTopStatus()).toHaveTextContent('Sync queued')
     expect(screen.getByText('Changes are queued and will sync on the next successful connection.')).toBeInTheDocument()
 
-    const googleCard = getProviderCard('google')
-    expect(within(googleCard).getByText('Supported')).toBeInTheDocument()
-    expect(within(googleCard).getByText('Sync queued')).toBeInTheDocument()
+    const appleCard = getProviderCard('apple')
+    expect(within(appleCard).getByText('Supported')).toBeInTheDocument()
+    expect(within(appleCard).getByText('Sync queued')).toBeInTheDocument()
   })
 })

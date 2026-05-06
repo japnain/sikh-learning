@@ -18,7 +18,7 @@ test("topic detail renders its own sticky rail and scrolls within the page", asy
 
   renderLearnRoute("/learn/topics/topic-anxiety?from=topics")
 
-  expect(await screen.findByRole("heading", { level: 1, name: /When the mind is anxious/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /When worry must remember who is carrying the breath/i })).toBeInTheDocument()
   expect(screen.getByTestId("learn-detail-rail")).toBeInTheDocument()
   expect(screen.getByTestId("topics-topic-action")).toBeInTheDocument()
 
@@ -43,9 +43,9 @@ test("topic detail back button falls back to the topics hub on direct entry", as
 test("topic detail opens the requested scenario on the canonical topic page", async () => {
   renderLearnRoute("/learn/topics/topic-mercy?from=topics&scenario=pressure")
 
-  expect(await screen.findByRole("heading", { level: 1, name: /When mercy tightens under pressure/i })).toBeInTheDocument()
+  expect(await screen.findByRole("heading", { level: 1, name: /When pressure makes mercy feel irresponsible/i })).toBeInTheDocument()
   expect(screen.getByRole("link", { name: /Under Pressure/i })).toHaveAttribute("aria-current", "page")
-  expect(screen.getByText(/You are still reading the day through debt, performance, or punishment/i)).toBeInTheDocument()
+  expect(screen.getByText(/A deadline, conflict, or fear tightens the body/i)).toBeInTheDocument()
 })
 
 test("legacy flat topic ids redirect to the canonical topic route with the matching scenario", async () => {

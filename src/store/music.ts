@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { getLocalAmbientSoundSrc, resolveAmbientSoundSrc } from '../insforge/audio'
+import { getLocalAmbientSoundSrc, resolveAmbientSoundSrc } from '../supabase/audio'
 import type {
   FocusContext,
   FocusPreset,

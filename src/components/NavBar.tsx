@@ -131,7 +131,7 @@ export default function NavBar() {
   return (
     <div className="app-nav-stack z-50" ref={stackRef} data-testid="nav-stack" data-ai-surface="nav-stack">
       <nav
-        className="app-nav flex items-center rounded-full border px-2 py-2 transition-colors duration-300"
+        className="app-nav"
         aria-label="Primary navigation"
         data-testid="primary-nav"
         data-ai-surface="primary-nav"
@@ -145,31 +145,16 @@ export default function NavBar() {
             title={tab.ariaLabel}
             data-testid={`nav-tab-${tab.id}`}
             data-ai-action={`nav-${tab.id}`}
-            className="group relative flex min-w-0 flex-1 items-center justify-center"
+            className={({ isActive }) => `app-nav-tab ${isActive ? 'is-active' : ''}`}
           >
             {({ isActive }) => (
-              <span
-                className={`relative flex min-h-[56px] w-full min-w-0 items-center justify-center rounded-full px-1 transition-colors duration-200 ${
-                  isActive
-                    ? 'text-saffron dark:text-gold-light'
-                    : 'text-ink/54 hover:text-ink/76 dark:text-dark-text/58 dark:hover:text-dark-text/78'
-                }`}
-                data-active={isActive}
-              >
-                <span
-                  className="absolute inset-1 rounded-full border border-transparent transition-colors duration-200 group-hover:bg-ink/[0.03] dark:group-hover:bg-dark-text/[0.04]"
-                />
-                <span
-                  className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
-                    isActive
-                      ? 'border-saffron/18 bg-saffron/9 dark:border-gold/16 dark:bg-gold/10'
-                      : 'border-transparent bg-transparent'
-                  }`}
-                >
+              <>
+                <span className="app-nav-tab__art" aria-hidden="true" />
+                <span className="app-nav-tab__icon" aria-hidden="true">
                   <tab.Glyph active={isActive} />
                 </span>
-                <span className="sr-only">{tab.label}</span>
-              </span>
+                <span className="app-nav-tab__label">{tab.label}</span>
+              </>
             )}
           </NavLink>
         ))}

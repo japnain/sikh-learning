@@ -30,6 +30,7 @@ The goal is not to copy every advanced desktop scripture tool. The goal is to be
 - Vite
 - Tailwind CSS
 - Zustand
+- Supabase Auth, Edge Functions, and Storage
 - BaniDB v2 API
 
 ## Local Development
@@ -44,7 +45,8 @@ npm run dev
 ```bash
 npm run build
 npx vitest run
-npm run insforge:smoke
+npm run native:generate-catalog
+npm run native:build
 ```
 
 ## Data

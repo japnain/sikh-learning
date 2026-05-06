@@ -884,20 +884,15 @@ function trimTrailingSlashes(value: string) {
 
 function deriveFunctionsUrl(baseUrl: string) {
   const url = new URL(baseUrl)
-  if (url.hostname.includes('.functions.insforge.app')) {
-    return trimTrailingSlashes(url.origin)
-  }
-
-  const [appKey] = url.hostname.split('.')
-  return `https://${appKey}.functions.insforge.app`
+  return `${trimTrailingSlashes(url.origin)}/functions/v1`
 }
 
-const INSFORGE_BASE_URL = import.meta.env.VITE_INSFORGE_URL?.trim() || 'https://epz3fhj8.us-east.insforge.app'
-const INSFORGE_FUNCTIONS_URL = trimTrailingSlashes(
-  import.meta.env.VITE_INSFORGE_FUNCTIONS_URL?.trim() || deriveFunctionsUrl(INSFORGE_BASE_URL)
+const SUPABASE_BASE_URL = import.meta.env.VITE_SUPABASE_URL?.trim() || 'https://naamras-qa.supabase.co'
+const SUPABASE_FUNCTIONS_URL = trimTrailingSlashes(
+  import.meta.env.VITE_SUPABASE_FUNCTIONS_URL?.trim() || deriveFunctionsUrl(SUPABASE_BASE_URL)
 )
-const BANIDB_FUNCTION_SLUG = import.meta.env.VITE_INSFORGE_BANIDB_FUNCTION?.trim() || 'banidb-proxy'
-const BANIDB_PROXY_URL = `${INSFORGE_FUNCTIONS_URL}/${BANIDB_FUNCTION_SLUG.replace(/^\/+/, '')}`
+const BANIDB_FUNCTION_SLUG = import.meta.env.VITE_SUPABASE_BANIDB_FUNCTION?.trim() || 'banidb-proxy'
+const BANIDB_PROXY_URL = `${SUPABASE_FUNCTIONS_URL}/${BANIDB_FUNCTION_SLUG.replace(/^\/+/, '')}`
 
 function getMockBanidbResponse(url: URL) {
   if (url.pathname === '/v2/banis') {

@@ -15,8 +15,8 @@ test('renders the new 5-tab product nav', () => {
   expect(screen.getByLabelText('Learn tab')).toBeInTheDocument()
   expect(screen.getByLabelText('Saved tab')).toBeInTheDocument()
   expect(screen.getByLabelText('More tab and settings')).toBeInTheDocument()
-  expect(screen.getByText(/^Home$/)).toHaveClass('sr-only')
-  expect(screen.getByText(/^Read$/)).toHaveClass('sr-only')
+  expect(screen.getByText(/^Home$/)).toHaveClass('app-nav-tab__label')
+  expect(screen.getByText(/^Read$/)).toHaveClass('app-nav-tab__label')
 })
 
 test('keeps the Learn route limited to the shared product nav', () => {
@@ -41,6 +41,16 @@ test('keeps the Learn nav tab active on nested learn routes', () => {
   )
 
   expect(screen.getByTestId('nav-tab-learn')).toHaveAttribute('aria-current', 'page')
+})
+
+test('keeps the Saved nav tab active on nested library routes', () => {
+  render(
+    <MemoryRouter initialEntries={['/library/panth-prakash/page/1']}>
+      <NavBar />
+    </MemoryRouter>
+  )
+
+  expect(screen.getByTestId('nav-tab-saved')).toHaveAttribute('aria-current', 'page')
 })
 
 test('does not render learn rails outside the learn route', () => {

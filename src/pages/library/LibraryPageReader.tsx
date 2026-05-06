@@ -139,7 +139,7 @@ export default function LibraryPageReader() {
     clean: 'Machine-cleaned OCR reading text; review status still needs human review before this should be treated as a fully verified edition.',
     readable: 'Machine-cleaned readable draft with OCR-derived evidence and light cleanup; review status still needs human review.',
     fragment: 'OCR-derived complete-coverage page: partial OCR survives, so rough fragments are shown instead of hiding the page.',
-    unreadable: 'OCR-derived complete-coverage page: this OCR is currently too damaged for editorial reading, so a placeholder is shown while we repair it.',
+    unreadable: 'OCR-derived complete-coverage page: this OCR is currently too damaged for editorial reading, so the page is marked for repair instead of presenting unreliable text.',
   } as const)[qualityLabel]
   const reviewStatusLabel = currentPage.review.status === 'reviewed'
     ? 'human reviewed'

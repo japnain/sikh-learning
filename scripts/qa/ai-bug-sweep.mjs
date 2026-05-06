@@ -9,9 +9,9 @@ import { chromium, devices } from 'playwright-core'
 const FIXED_APP_NOW = '2026-04-11T09:00:00.000Z'
 const FIXED_APP_DATE = '2026-04-11'
 const BASE_URL = process.env.QA_BASE_URL ?? 'http://127.0.0.1:4173'
-const QA_INSFORGE_URL = 'https://naamras-qa.insforge.app'
-const QA_INSFORGE_FUNCTIONS_URL = 'https://naamras-qa.functions.insforge.app'
-const QA_BANIDB_PROXY_URL = `${QA_INSFORGE_FUNCTIONS_URL}/banidb-proxy`
+const QA_SUPABASE_URL = 'https://naamras-qa.supabase.co'
+const QA_SUPABASE_FUNCTIONS_URL = 'https://naamras-qa.supabase.co/functions/v1'
+const QA_BANIDB_PROXY_URL = `${QA_SUPABASE_FUNCTIONS_URL}/banidb-proxy`
 const REPORT_DATE = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Toronto',
   year: 'numeric',
@@ -431,9 +431,9 @@ async function startDevServer() {
     env: {
       ...process.env,
       FORCE_COLOR: '0',
-      VITE_INSFORGE_URL: QA_INSFORGE_URL,
-      VITE_INSFORGE_FUNCTIONS_URL: QA_INSFORGE_FUNCTIONS_URL,
-      VITE_INSFORGE_BANIDB_FUNCTION: 'banidb-proxy',
+      VITE_SUPABASE_URL: QA_SUPABASE_URL,
+      VITE_SUPABASE_FUNCTIONS_URL: QA_SUPABASE_FUNCTIONS_URL,
+      VITE_SUPABASE_BANIDB_FUNCTION: 'banidb-proxy',
       VITE_NAAMRAS_BANIDB_MOCK: 'true',
     },
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -483,36 +483,36 @@ async function fulfillJson(route, value, status = 200) {
 }
 
 async function installQaNetworkMocks(page) {
-  await page.route(`${QA_INSFORGE_URL}/api/auth/**`, async route => {
+  await page.route(`${QA_SUPABASE_URL}/auth/v1/**`, async route => {
     const request = route.request()
     const url = new URL(request.url())
 
-    if (url.pathname === '/api/auth/public-config') {
-      await fulfillJson(route, { oAuthProviders: ['google', 'apple', 'github'] })
+    if (url.pathname === '/auth/v1/public-config') {
+      await fulfillJson(route, { oAuthProviders: ['apple', 'email'] })
       return
     }
 
-    if (url.pathname === '/api/auth/refresh') {
+    if (url.pathname === '/auth/v1/refresh') {
       await fulfillJson(route, {})
       return
     }
 
-    if (url.pathname === '/api/auth/sessions/current') {
+    if (url.pathname === '/auth/v1/sessions/current') {
       await fulfillJson(route, { user: null })
       return
     }
 
-    if (url.pathname.startsWith('/api/auth/oauth/')) {
+    if (url.pathname.startsWith('/auth/v1/oauth/')) {
       await fulfillJson(route, { authUrl: `${BASE_URL}/?qaOAuth=mock` })
       return
     }
 
-    if (url.pathname === '/api/auth/logout') {
+    if (url.pathname === '/auth/v1/logout') {
       await route.fulfill({ status: 204 })
       return
     }
 
-    await fulfillJson(route, { error: 'QA InsForge auth endpoint is not mocked.' }, 404)
+    await fulfillJson(route, { error: 'QA Supabase auth endpoint is not mocked.' }, 404)
   })
 
   await page.route(QA_BANIDB_PROXY_URL, async route => {
@@ -544,7 +544,7 @@ async function installQaNetworkMocks(page) {
     })
   })
 
-  await page.route(`${QA_INSFORGE_FUNCTIONS_URL}/merge-local-state`, async route => {
+  await page.route(`${QA_SUPABASE_FUNCTIONS_URL}/merge-local-state`, async route => {
     const request = route.request()
     const body = request.postDataJSON()
     await fulfillJson(route, {
@@ -1054,11 +1054,11 @@ async function main() {
       title: 'More cloud-sync bootstrap degraded state',
       viewport: 'desktop',
       path: '/more',
-      qaControls: { fail: ['insforge-bootstrap'] },
+      qaControls: { fail: ['supabase-bootstrap'] },
       run: async ({ page, notes }) => {
-        notes.push('Expected InsForge bootstrap failures to degrade the cloud-sync panel instead of crashing the route.')
+        notes.push('Expected Supabase bootstrap failures to degrade the cloud-sync panel instead of crashing the route.')
         await ensureVisible(page, '[data-page="more"]', 'the More page shell')
-        await ensureVisible(page, '[data-ai-surface="cloud-sync-panel"][data-ai-state="degraded"][data-ai-error="insforge-bootstrap"]', 'the cloud-sync degraded state')
+        await ensureVisible(page, '[data-ai-surface="cloud-sync-panel"][data-ai-state="degraded"][data-ai-error="supabase-bootstrap"]', 'the cloud-sync degraded state')
       },
     },
     {

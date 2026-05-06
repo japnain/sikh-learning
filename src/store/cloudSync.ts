@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { CloudUserSummary } from '../insforge/types'
+import type { CloudUserSummary } from '../supabase/types'
 
 export type CloudSyncStatus =
   | 'idle'

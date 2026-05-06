@@ -150,6 +150,54 @@ export default function More() {
       <CloudSyncPanel />
 
       <section
+        className="screen-flow-band mb-5 px-4 py-4"
+        aria-labelledby="more-review-ready-title"
+        data-testid="more-review-ready"
+      >
+        <p className="eyebrow">Review & Privacy</p>
+        <h2 id="more-review-ready-title" className="mt-2 font-display text-2xl leading-none text-ink dark:text-dark-text">
+          Clear behavior for App Store review.
+        </h2>
+        <p className="mt-2 font-sans text-sm leading-6 text-ink/66 dark:text-dark-text/70">
+          NaamRas keeps guest reading local, makes cloud backup optional, and avoids purchase or audio claims that are not live in the product.
+        </p>
+        <div className="review-ready-grid mt-4">
+          <div className="review-ready-item">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Privacy</p>
+            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
+              Saved progress stays on device unless sync is connected.
+            </p>
+          </div>
+          <div className="review-ready-item">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Sources</p>
+            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
+              Scripture and translation layers identify source context in reader flows.
+            </p>
+          </div>
+          <div className="review-ready-item">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Purchases</p>
+            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
+              No subscription, trial, restore, or locked content path is presented.
+            </p>
+          </div>
+          <div className="review-ready-item">
+            <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Audio</p>
+            <p className="mt-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/62">
+              Ambient focus audio is separate from recitation and labeled as such.
+            </p>
+          </div>
+        </div>
+        <Link
+          to="/privacy"
+          className="interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full gap-2 rounded-lg bg-ink px-4 font-sans text-sm font-semibold text-parchment dark:bg-parchment dark:text-dark-bg"
+          data-testid="more-open-privacy"
+        >
+          Open Privacy & Sources
+          <IconArrowRight size={14} />
+        </Link>
+      </section>
+
+      <section
         id="daily-nitnem"
         className="section-shell-quiet p-4 mb-5 scroll-mt-24"
         aria-labelledby="more-daily-nitnem-title"

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { createNaamrasObjectId, getNaamrasDeviceId } from '../insforge/device'
-import type { CloudActivityEvent } from '../insforge/types'
+import { createNaamrasObjectId, getNaamrasDeviceId } from '../supabase/device'
+import type { CloudActivityEvent } from '../supabase/types'
 
 interface ActivityEventsState {
   pendingEvents: CloudActivityEvent[]

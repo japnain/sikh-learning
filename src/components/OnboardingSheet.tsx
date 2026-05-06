@@ -20,14 +20,14 @@ import {
 } from '../utils/translations'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
-import { signInWithProvider } from '../insforge/runtime'
+import { sendMagicLink, signInWithProvider } from '../supabase/runtime'
 import { useCloudSyncStore } from '../store/cloudSync'
 import NaamRasLogoMark from './NaamRasLogoMark'
 import { IconHeart, IconLeaf, IconLibrary, IconStar, IconUsers } from './icons'
 
-type OnboardingStep = 'setup' | 'preview'
+type OnboardingStep = 'intent' | 'script' | 'support' | 'profile' | 'preview'
 type ReadingPresetId = 'quiet' | 'guided' | 'deep'
-type OnboardingProvider = 'google' | 'github' | 'apple'
+type OnboardingProvider = 'apple' | 'email'
 type OnboardingIntentId = 'habit' | 'peace' | 'grow' | 'understand' | 'explore'
 type IntentIcon = (props: { className?: string; size?: number }) => ReactNode
 
@@ -66,7 +66,8 @@ interface Props {
   isCompleting?: boolean
 }
 
-const TOTAL_STEPS = 2
+const ONBOARDING_STEPS: OnboardingStep[] = ['intent', 'script', 'support', 'profile', 'preview']
+const TOTAL_STEPS = ONBOARDING_STEPS.length
 
 const SAMPLE_LINE = {
   gurmukhi: 'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ',
@@ -79,16 +80,18 @@ const SAMPLE_LINE = {
 }
 
 const STEP_INDEX: Record<OnboardingStep, number> = {
-  setup: 1,
-  preview: 2,
+  intent: 1,
+  script: 2,
+  support: 3,
+  profile: 4,
+  preview: 5,
 }
 
-const ONBOARDING_PROVIDER_ORDER: OnboardingProvider[] = ['google', 'github', 'apple']
+const ONBOARDING_PROVIDER_ORDER: OnboardingProvider[] = ['apple', 'email']
 
 const ONBOARDING_PROVIDER_LABELS: Record<OnboardingProvider, keyof ReturnType<typeof getUiCopy>['onboarding']> = {
-  google: 'authGoogle',
-  github: 'authGithub',
   apple: 'authApple',
+  email: 'authEmail',
 }
 
 function getPreferredMeaningLanguage(locale: UiLocale): Exclude<MeaningLanguage, 'none'> {
@@ -317,7 +320,7 @@ function StepIndicator({
         {copy.onboarding.step} {stepNumber} {copy.common.of} {TOTAL_STEPS}
       </p>
       <div className="flex items-center gap-2">
-        {(['setup', 'preview'] as const).map(step => {
+        {ONBOARDING_STEPS.map(step => {
           const isActive = step === currentStep
           const isComplete = STEP_INDEX[step] < stepNumber
 
@@ -360,7 +363,7 @@ export default function OnboardingSheet({
   onDismiss,
   isCompleting = false,
 }: Props) {
-  const [currentStep, setCurrentStep] = useState<OnboardingStep>('setup')
+  const [currentStep, setCurrentStep] = useState<OnboardingStep>('intent')
   const [showFineTune, setShowFineTune] = useState(false)
   const [showBackup, setShowBackup] = useState(false)
 
@@ -440,6 +443,7 @@ export default function OnboardingSheet({
     },
   ], [learningGoalLabels.habit, learningGoalLabels.read, learningGoalLabels.understand])
   const [selectedIntentId, setSelectedIntentId] = useState<OnboardingIntentId>(() => getDefaultIntentId(learningGoal, presentation))
+  const [magicLinkEmail, setMagicLinkEmail] = useState('')
   const selectedIntent = intentChoices.find(choice => choice.id === selectedIntentId) ?? intentChoices[0]
   const initialIntentAppliedRef = useRef(false)
 
@@ -544,7 +548,36 @@ export default function OnboardingSheet({
     if (isCompleting || isCloudBusy) return
 
     await onComplete()
+    if (provider === 'email') {
+      await sendMagicLink(magicLinkEmail)
+      return
+    }
+
     await signInWithProvider(provider)
+  }
+
+  function goToPreviousStep() {
+    const index = ONBOARDING_STEPS.indexOf(currentStep)
+    if (index <= 0) return
+    setCurrentStep(ONBOARDING_STEPS[index - 1])
+  }
+
+  function goToNextStep() {
+    const index = ONBOARDING_STEPS.indexOf(currentStep)
+    if (index < 0 || index >= ONBOARDING_STEPS.length - 1) return
+    setCurrentStep(ONBOARDING_STEPS[index + 1])
+  }
+
+  function handlePresetSelection(preset: ReadingPresetId) {
+    applyPreset(preset, locale, setMeaningLanguage, setShowTransliteration)
+  }
+
+  function getStepActionSummary() {
+    if (currentStep === 'intent') return `${copy.common.selected} · ${selectedIntent.title} · ${selectedPresetTitle}`
+    if (currentStep === 'script') return `${copy.onboarding.readingScript} · ${scriptModeLabels[scriptMode]}`
+    if (currentStep === 'support') return `${copy.onboarding.stylePanelEyebrow} · ${selectedPresetTitle}`
+    if (currentStep === 'profile') return `${copy.onboarding.learningLevel} · ${learningLevelLabels[learningLevel]}`
+    return routeSummary
   }
 
   function renderAuthSection(className = '') {
@@ -592,16 +625,31 @@ export default function OnboardingSheet({
         )}
 
         {!currentUser && supportedProviders.length > 0 && (
-          <div className={`grid gap-2 ${supportedProviders.length === 1 ? 'grid-cols-1' : supportedProviders.length === 2 ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
-            {supportedProviders.map(provider => (
-              <ProviderChoice
-                key={provider}
-                label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
-                disabled={isCompleting || isCloudBusy}
-                onClick={() => void handleProviderSignIn(provider)}
-                dataAiAction={`onboarding-sign-in-${provider}`}
-              />
-            ))}
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {supportedProviders.map(provider => {
+              const isEmail = provider === 'email'
+              const emailReady = magicLinkEmail.trim().includes('@')
+
+              return (
+                <div key={provider} className="space-y-2">
+                  {isEmail ? (
+                    <input
+                      value={magicLinkEmail}
+                      onChange={event => setMagicLinkEmail(event.target.value)}
+                      type="email"
+                      placeholder={copy.onboarding.authEmailPlaceholder}
+                      className="w-full rounded-[18px] border border-sand/15 bg-white/78 px-4 py-3 text-sm text-ink outline-none focus:border-gold/30 dark:border-white/5 dark:bg-white/[0.05] dark:text-dark-text"
+                    />
+                  ) : null}
+                  <ProviderChoice
+                    label={copy.onboarding[ONBOARDING_PROVIDER_LABELS[provider]]}
+                    disabled={isCompleting || isCloudBusy || (isEmail && !emailReady)}
+                    onClick={() => void handleProviderSignIn(provider)}
+                    dataAiAction={`onboarding-sign-in-${provider}`}
+                  />
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
@@ -712,6 +760,197 @@ export default function OnboardingSheet({
           <p>{copy.onboarding.recommended}</p>
           <p>{selectedPresetTitle}</p>
         </section>
+      </div>
+    )
+  }
+
+  function renderScriptStep() {
+    return (
+      <div className="space-y-4" data-testid="onboarding-script-step">
+        <div className="space-y-2">
+          <p className="eyebrow">{copy.onboarding.readingScript}</p>
+          <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+            Choose the script your reader opens with.
+          </h3>
+          <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
+            This updates the actual reader default used across Read, Hukamnama, Learn passages, and Saved passages.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {(['gurmukhi', 'devanagari'] as const).map(mode => {
+            const selected = scriptMode === mode
+            return (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => setScriptMode(mode)}
+                aria-pressed={selected}
+                className={`rounded-xl border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
+                  selected
+                    ? 'border-gold/45 bg-gold/12 text-ink shadow-[0_12px_24px_rgba(122,84,32,0.10)] dark:border-gold/34 dark:bg-gold/14 dark:text-dark-text'
+                    : 'border-sand/18 bg-white/68 text-ink/76 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/74'
+                }`}
+              >
+                <span className="block font-sans text-sm font-semibold">{scriptModeLabels[mode]}</span>
+                <span
+                  lang={getScriptTextLang(mode)}
+                  className={`mt-3 block text-[2rem] leading-tight ${getScriptTextFontClass(mode)}`}
+                >
+                  {renderScriptText(SAMPLE_LINE.gurmukhi, mode)}
+                </span>
+                <span className="mt-3 block text-xs leading-5 text-ink/56 dark:text-dark-text/58">
+                  {selected ? copy.common.selected : copy.common.tapToUse}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  function renderSupportStep() {
+    const presetOptions: ReadingPresetId[] = ['quiet', 'guided', 'deep']
+
+    return (
+      <div className="space-y-4" data-testid="onboarding-support-step">
+        <div className="space-y-2">
+          <p className="eyebrow">{copy.onboarding.stylePanelEyebrow}</p>
+          <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+            Decide how much support appears while reading.
+          </h3>
+          <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
+            These choices change meaning and transliteration defaults immediately, so the first reader is not a generic setup screen.
+          </p>
+        </div>
+
+        <div className="grid gap-2">
+          {presetOptions.map(preset => {
+            const selected = selectedPreset === preset
+            const title = getPresetTitle(preset, copy.onboarding)
+            const body = preset === 'quiet'
+              ? copy.onboarding.styleQuietBody
+              : preset === 'guided'
+                ? copy.onboarding.styleGuidedBody
+                : copy.onboarding.styleDeepBody
+
+            return (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => handlePresetSelection(preset)}
+                aria-pressed={selected}
+                className={`rounded-xl border px-4 py-4 text-left transition-[border-color,background-color,color,box-shadow] duration-200 ${
+                  selected
+                    ? 'border-gold/45 bg-gold/12 text-ink shadow-[0_12px_24px_rgba(122,84,32,0.10)] dark:border-gold/34 dark:bg-gold/14 dark:text-dark-text'
+                    : 'border-sand/18 bg-white/68 text-ink/76 dark:border-dark-text/10 dark:bg-white/[0.04] dark:text-dark-text/74'
+                }`}
+              >
+                <span className="flex items-start justify-between gap-3">
+                  <span>
+                    <span className="block font-sans text-sm font-semibold">{title}</span>
+                    <span className="mt-1 block text-xs leading-5 text-ink/58 dark:text-dark-text/62">{body}</span>
+                  </span>
+                  <span className={`mt-0.5 rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.14em] ${
+                    selected
+                      ? 'bg-gold/18 text-gold-dark dark:text-gold-light'
+                      : 'bg-ink/5 text-ink/45 dark:bg-white/8 dark:text-dark-text/45'
+                  }`}>
+                    {selected ? copy.common.selected : copy.common.tapToUse}
+                  </span>
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
+          <p className="mb-3 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.meaning}</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {(['none', 'en', 'pa', 'hi'] as const).map(option => (
+              <MiniChoice
+                key={option}
+                label={meaningLanguageLabels[option]}
+                selected={meaningLanguage === option}
+                onClick={() => setMeaningLanguage(option)}
+              />
+            ))}
+          </div>
+          {meaningLanguage === 'en' && (
+            <div className="mt-4">
+              <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.englishSource}</p>
+              <div className="grid gap-2">
+                {Object.entries(englishSourceLabels).map(([key, label]) => (
+                  <MiniChoice
+                    key={key}
+                    label={label}
+                    selected={englishSource === key}
+                    onClick={() => setEnglishSource(key as EnglishSource)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  function renderProfileStep() {
+    return (
+      <div className="space-y-4" data-testid="onboarding-profile-step">
+        <div className="space-y-2">
+          <p className="eyebrow">{copy.onboarding.learningLevel}</p>
+          <h3 className="font-display text-[2rem] leading-none text-ink dark:text-dark-text">
+            Set the learning profile Home will respond to.
+          </h3>
+          <p className="text-sm leading-6 text-ink/64 dark:text-dark-text/68">
+            Home, Learn, and Saved use this profile to choose whether to emphasize reading, meaning, review, or daily rhythm.
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
+          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.learningLevel}</p>
+          <div className="grid grid-cols-3 gap-2">
+            {(['beginner', 'familiar', 'daily-reader'] as const).map(level => (
+              <MiniChoice
+                key={level}
+                label={learningLevelLabels[level]}
+                selected={learningLevel === level}
+                onClick={() => setLearningLevel(level)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
+          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.audience}</p>
+          <div className="grid grid-cols-3 gap-2">
+            {(['child', 'teen', 'adult'] as const).map(option => (
+              <MiniChoice
+                key={option}
+                label={onboardingAudienceLabels[option]}
+                selected={audience === option}
+                onClick={() => setAudience(option)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-sand/15 bg-white/62 px-4 py-4 dark:border-dark-text/10 dark:bg-white/[0.04]">
+          <p className="mb-2 text-sm font-medium text-ink dark:text-dark-text">{copy.onboarding.intentTitle}</p>
+          <div className="grid gap-2">
+            {(['read', 'understand', 'habit'] as const).map(goal => (
+              <MiniChoice
+                key={goal}
+                label={learningGoalLabels[goal]}
+                selected={learningGoal === goal}
+                onClick={() => setLearningGoal(goal)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     )
   }
@@ -848,17 +1087,25 @@ export default function OnboardingSheet({
         <div className="space-y-4">
           <StepIndicator currentStep={currentStep} locale={locale} />
 
-          {currentStep === 'preview' && (
+          {currentStep !== 'intent' && (
             <button
               type="button"
-              onClick={() => setCurrentStep('setup')}
+              onClick={goToPreviousStep}
               className="rounded-full border border-sand/15 px-3 py-1.5 text-sm text-ink/70 transition-colors duration-200 hover:border-gold/25 hover:text-ink dark:border-dark-text/10 dark:text-dark-text/70 dark:hover:text-dark-text"
             >
               {copy.common.back}
             </button>
           )}
 
-          {currentStep === 'setup' ? renderSetupStep() : renderPreviewStep()}
+          {currentStep === 'intent'
+            ? renderSetupStep()
+            : currentStep === 'script'
+              ? renderScriptStep()
+              : currentStep === 'support'
+                ? renderSupportStep()
+                : currentStep === 'profile'
+                  ? renderProfileStep()
+                  : renderPreviewStep()}
         </div>
       </div>
 
@@ -869,7 +1116,7 @@ export default function OnboardingSheet({
             ? 'fixed inset-x-4 bottom-[calc(var(--safe-area-bottom)+1rem)] z-[80] mx-auto max-w-md px-0'
             : 'fixed inset-x-4 bottom-[calc(var(--safe-area-bottom)+1rem)] z-[80] mx-auto max-w-md px-0'
       }`}>
-        {currentStep === 'setup' ? (
+        {currentStep !== 'preview' ? (
           <div
             className={isOverlayPresentation
               ? 'space-y-0'
@@ -879,12 +1126,12 @@ export default function OnboardingSheet({
           >
             {!isOverlayPresentation && (
               <p className="mb-3 text-xs uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/55">
-                {copy.common.selected} · {selectedPresetTitle}
+                {getStepActionSummary()}
               </p>
             )}
             <button
               type="button"
-              onClick={() => setCurrentStep('preview')}
+              onClick={goToNextStep}
               className="w-full rounded-lg bg-gradient-to-r from-saffron to-saffron-light py-3 text-sm font-semibold text-white shadow-gold-strong"
               data-testid="onboarding-setup-primary-action"
             >

@@ -1,22 +1,23 @@
+import { useState } from 'react'
 import { IconChevronDown, IconChevronUp } from './icons'
-import { signInWithProvider, signOutOfCloud, syncNow } from '../insforge/runtime'
+import { sendMagicLink, signInWithProvider, signOutOfCloud, syncNow } from '../supabase/runtime'
 import { usePersistentDisclosure } from '../hooks/usePersistentDisclosure'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { useLocaleStore } from '../store/locale'
 import { useActivityEventsStore } from '../store/activityEvents'
-import { getNaamrasInsforgeConfig } from '../insforge/config'
+import { getNaamrasSupabaseConfig } from '../supabase/config'
 
 const CLOUD_COPY = {
   en: {
     eyebrow: 'Cloud Sync',
     title: 'Keep NaamRas with you across devices.',
-    body: 'InsForge backs up bookmarks, vocab, Learn saves, progress, and reader preferences without changing the guest reading flow.',
-    notConfigured: 'This build is still running local-only. Add the InsForge environment variables to enable sign-in and sync.',
+    body: 'Supabase backs up bookmarks, vocab, Learn saves, progress, and reader preferences without changing the guest reading flow.',
+    notConfigured: 'This build is still running local-only. Add the Supabase environment variables to enable sign-in and sync.',
     signedOut: 'Browsing stays anonymous. Sign in only when you want backup and cross-device sync.',
-    providersHint: 'Enable Google and Apple in InsForge auth to match the mobile-first rollout.',
-    signInGoogle: 'Continue with Google',
+    providersHint: 'Enable Apple and email OTP in Supabase Auth to match the App Store rollout.',
     signInApple: 'Continue with Apple',
-    signInGithub: 'Continue with GitHub',
+    signInEmail: 'Send magic link',
+    emailPlaceholder: 'Email for magic link',
     syncNow: 'Sync now',
     signOut: 'Sign out',
     queueReady: 'Changes are queued and will sync on the next successful connection.',
@@ -37,7 +38,7 @@ const CLOUD_COPY = {
     mergeHint: 'First sign-in merges this device into your account before syncing future changes.',
     localOnlyStatus: 'Local only',
     scriptureData: 'Scripture data',
-    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureProxyReady: 'Supabase BaniDB proxy ready',
     scriptureFallbackReady: 'Public BaniDB fallback ready',
     scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'Backup optional',
@@ -51,13 +52,13 @@ const CLOUD_COPY = {
   pa: {
     eyebrow: 'ਕਲਾਉਡ ਸਿੰਕ',
     title: 'NaamRas ਨੂੰ ਹਰ ਡਿਵਾਈਸ ਤੇ ਨਾਲ ਰੱਖੋ।',
-    body: 'InsForge ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, Learn saves, ਤਰੱਕੀ ਅਤੇ ਰੀਡਰ ਪਸੰਦਾਂ ਦਾ ਬੈਕਅੱਪ ਰੱਖਦਾ ਹੈ, ਪਰ guest ਪੜ੍ਹਾਈ ਨੂੰ ਨਹੀਂ ਤੋੜਦਾ।',
-    notConfigured: 'ਇਹ build ਹਾਲੇ ਸਿਰਫ਼ local mode ਵਿੱਚ ਹੈ। Sign-in ਅਤੇ sync ਲਈ InsForge environment variables ਜੋੜੋ।',
+    body: 'Supabase ਬੁੱਕਮਾਰਕ, ਸ਼ਬਦ, Learn saves, ਤਰੱਕੀ ਅਤੇ ਰੀਡਰ ਪਸੰਦਾਂ ਦਾ ਬੈਕਅੱਪ ਰੱਖਦਾ ਹੈ, ਪਰ guest ਪੜ੍ਹਾਈ ਨੂੰ ਨਹੀਂ ਤੋੜਦਾ।',
+    notConfigured: 'ਇਹ build ਹਾਲੇ ਸਿਰਫ਼ local mode ਵਿੱਚ ਹੈ। Sign-in ਅਤੇ sync ਲਈ Supabase environment variables ਜੋੜੋ।',
     signedOut: 'ਬ੍ਰਾਊਜ਼ਿੰਗ ਅਗਿਆਤ ਹੀ ਰਹਿੰਦੀ ਹੈ। Sign in ਕੇਵਲ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਤੁਸੀਂ backup ਅਤੇ cross-device sync ਚਾਹੁੰਦੇ ਹੋ।',
-    providersHint: 'ਮੋਬਾਈਲ-ਪਹਿਲਾਂ rollout ਲਈ InsForge auth ਵਿੱਚ Google ਅਤੇ Apple ਚਾਲੂ ਕਰੋ।',
-    signInGoogle: 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+    providersHint: 'App Store rollout ਲਈ Supabase Auth ਵਿੱਚ Apple ਅਤੇ email OTP ਚਾਲੂ ਕਰੋ।',
     signInApple: 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
-    signInGithub: 'GitHub ਨਾਲ ਜਾਰੀ ਰੱਖੋ',
+    signInEmail: 'Magic link ਭੇਜੋ',
+    emailPlaceholder: 'Magic link ਲਈ email',
     syncNow: 'ਹੁਣੇ sync ਕਰੋ',
     signOut: 'Sign out',
     queueReady: 'ਬਦਲਾਅ queue ਵਿੱਚ ਹਨ ਅਤੇ ਅਗਲੀ ਸਫਲ ਕਨੈਕਸ਼ਨ ਤੇ sync ਹੋ ਜਾਣਗੇ।',
@@ -78,7 +79,7 @@ const CLOUD_COPY = {
     mergeHint: 'ਪਹਿਲੀ sign-in ਇਸ ਡਿਵਾਈਸ ਦਾ ਡਾਟਾ ਤੁਹਾਡੇ account ਨਾਲ merge ਕਰਦੀ ਹੈ, ਫਿਰ ਅੱਗੇ sync ਹੁੰਦਾ ਹੈ।',
     localOnlyStatus: 'ਸਿਰਫ਼ local',
     scriptureData: 'Scripture data',
-    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureProxyReady: 'Supabase BaniDB proxy ready',
     scriptureFallbackReady: 'Public BaniDB fallback ready',
     scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'ਬੈਕਅੱਪ ਚੋਣਵਾਂ',
@@ -92,13 +93,13 @@ const CLOUD_COPY = {
   hi: {
     eyebrow: 'क्लाउड सिंक',
     title: 'NaamRas को हर डिवाइस पर साथ रखिए।',
-    body: 'InsForge बुकमार्क, शब्द, Learn saves, प्रगति और रीडर पसंदों का बैकअप रखता है, बिना guest reading flow को बदले।',
-    notConfigured: 'यह build अभी केवल local mode में है। Sign-in और sync के लिए InsForge environment variables जोड़िए।',
+    body: 'Supabase बुकमार्क, शब्द, Learn saves, प्रगति और रीडर पसंदों का बैकअप रखता है, बिना guest reading flow को बदले।',
+    notConfigured: 'यह build अभी केवल local mode में है। Sign-in और sync के लिए Supabase environment variables जोड़िए।',
     signedOut: 'ब्राउज़िंग गुमनाम ही रहती है। Sign in केवल तब करें जब आपको backup और cross-device sync चाहिए।',
-    providersHint: 'मोबाइल-प्रथम rollout के लिए InsForge auth में Google और Apple चालू कीजिए।',
-    signInGoogle: 'Google के साथ जारी रखें',
+    providersHint: 'App Store rollout के लिए Supabase Auth में Apple और email OTP चालू कीजिए।',
     signInApple: 'Apple के साथ जारी रखें',
-    signInGithub: 'GitHub के साथ जारी रखें',
+    signInEmail: 'Magic link भेजें',
+    emailPlaceholder: 'Magic link के लिए email',
     syncNow: 'अभी sync करें',
     signOut: 'Sign out',
     queueReady: 'बदलाव queue में हैं और अगली सफल कनेक्शन पर sync हो जाएंगे।',
@@ -119,7 +120,7 @@ const CLOUD_COPY = {
     mergeHint: 'पहली sign-in इस डिवाइस के डेटा को आपके account के साथ merge करती है, फिर आगे sync चलता है।',
     localOnlyStatus: 'केवल local',
     scriptureData: 'Scripture data',
-    scriptureProxyReady: 'InsForge BaniDB proxy ready',
+    scriptureProxyReady: 'Supabase BaniDB proxy ready',
     scriptureFallbackReady: 'Public BaniDB fallback ready',
     scriptureUnavailable: 'Scripture backend not configured',
     signedOutStatus: 'बैकअप वैकल्पिक',
@@ -137,17 +138,13 @@ type CloudCopy = {
 }
 
 const PROVIDER_META = {
-  google: {
-    name: 'Google',
-    labelKey: 'signInGoogle',
-  },
   apple: {
     name: 'Apple',
     labelKey: 'signInApple',
   },
-  github: {
-    name: 'GitHub',
-    labelKey: 'signInGithub',
+  email: {
+    name: 'Email',
+    labelKey: 'signInEmail',
   },
 } as const
 
@@ -279,7 +276,7 @@ function getCloudSyncErrorCode({
   offline: boolean
 }) {
   if (!(offline || lastError || status === 'error')) return null
-  if (!currentUser && status === 'error') return 'insforge-bootstrap'
+  if (!currentUser && status === 'error') return 'supabase-bootstrap'
   return 'cloud-sync'
 }
 
@@ -354,7 +351,7 @@ function getProviderAvailabilityView({
 }
 
 function getScriptureDataStatus(copy: CloudCopy) {
-  const config = getNaamrasInsforgeConfig()
+  const config = getNaamrasSupabaseConfig()
 
   if (config.enabled && config.functionsUrl) {
     return copy.scriptureProxyReady
@@ -380,12 +377,13 @@ export default function CloudSyncPanel() {
     syncQueued,
   } = useCloudSyncStore()
   const pendingEventsCount = useActivityEventsStore(state => state.pendingEvents.length)
+  const [magicLinkEmail, setMagicLinkEmail] = useState('')
 
   const supportedProviders = availableProviders.filter(
     (provider): provider is keyof typeof PROVIDER_META => provider in PROVIDER_META
   )
-  const supportsGoogle = supportedProviders.includes('google')
   const supportsApple = supportedProviders.includes('apple')
+  const supportsEmail = supportedProviders.includes('email')
   const isBusy = status === 'booting' || status === 'authenticating' || status === 'syncing'
   const formattedLastSynced = formatSyncTimestamp(lastSyncedAt, locale)
   const isOffline = status === 'offline' || (typeof navigator !== 'undefined' && navigator.onLine === false)
@@ -539,7 +537,7 @@ export default function CloudSyncPanel() {
 
                 <p className="eyebrow mt-4">{copy.providers}</p>
                 <div className="mt-4 grid grid-cols-2 gap-2" data-ai-surface="cloud-sync-providers" data-ai-state={supportedProviders.length === 0 ? 'empty' : 'ready'}>
-                  {(['google', 'apple', 'github'] as const).map(providerId => {
+                  {(Object.keys(PROVIDER_META) as Array<keyof typeof PROVIDER_META>).map(providerId => {
                     const provider = PROVIDER_META[providerId]
                     const enabled = supportedProviders.includes(providerId)
                     const providerState = getProviderAvailabilityView({
@@ -572,7 +570,7 @@ export default function CloudSyncPanel() {
                   })}
                 </div>
 
-                {!supportsGoogle || !supportsApple ? (
+                {!supportsApple || !supportsEmail ? (
                   <p className="mt-4 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/58">{copy.providersHint}</p>
                 ) : null}
 
@@ -602,22 +600,40 @@ export default function CloudSyncPanel() {
                       {supportedProviders.map((providerId, index) => {
                         const provider = PROVIDER_META[providerId]
                         const label = copy[provider.labelKey]
+                        const isEmail = providerId === 'email'
+                        const emailReady = magicLinkEmail.trim().includes('@')
 
                         return (
-                          <button
-                            key={providerId}
-                            type="button"
-                            onClick={() => { void signInWithProvider(providerId) }}
-                            disabled={isBusy}
-                            data-ai-action={`cloud-sign-in-${providerId}`}
-                            className={`w-full rounded-2xl px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
-                              index === 0
-                                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                                : 'border border-sand/15 bg-white/70 text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
-                            }`}
-                          >
-                            {label}
-                          </button>
+                          <div key={providerId} className="grid gap-2">
+                            {isEmail ? (
+                              <input
+                                value={magicLinkEmail}
+                                onChange={event => setMagicLinkEmail(event.target.value)}
+                                type="email"
+                                placeholder={copy.emailPlaceholder}
+                                className="w-full rounded-2xl border border-sand/15 bg-white/75 px-4 py-3 font-sans text-sm text-ink outline-none focus:border-gold/40 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text"
+                              />
+                            ) : null}
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (providerId === 'email') {
+                                  void sendMagicLink(magicLinkEmail)
+                                } else {
+                                  void signInWithProvider(providerId)
+                                }
+                              }}
+                              disabled={isBusy || (isEmail && !emailReady)}
+                              data-ai-action={`cloud-sign-in-${providerId}`}
+                              className={`w-full rounded-2xl px-4 py-3 font-sans text-sm font-semibold disabled:opacity-45 ${
+                                index === 0
+                                  ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
+                                  : 'border border-sand/15 bg-white/70 text-ink dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text'
+                              }`}
+                            >
+                              {label}
+                            </button>
+                          </div>
                         )
                       })}
                     </>
