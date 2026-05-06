@@ -35,6 +35,11 @@ import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
+import {
+  formatReaderEditorialDate,
+  getReaderEditorialCopyForBani,
+  getReaderEditorialCopyForBaniDbId,
+} from '../content/readerEditorialCopy'
 import DisclosureSection from '../components/DisclosureSection'
 import {
   SUNDAR_GUTKA_LENGTH_LABELS,
@@ -47,6 +52,28 @@ import {
 } from '../utils/sundarGutkaLength'
 
 type BaniSource = 'G' | 'D' | 'B' | 'A'
+
+const SOURCE_DISPLAY_NAMES: Record<BaniSource, string> = {
+  G: 'Sri Guru Granth Sahib Ji',
+  D: 'Dasam Granth',
+  B: 'Bhai Gurdas Ji Vaaran',
+  A: 'Amrit Keertan',
+}
+
+function getEntrySourceDisplay(entry: ScriptureEntry | null, fallbackSource: BaniSource) {
+  if (entry?.sourceName && entry.sourceName !== entry.scripture) return entry.sourceName
+  return SOURCE_DISPLAY_NAMES[(entry?.source ?? fallbackSource) as BaniSource] ?? entry?.scripture ?? SOURCE_DISPLAY_NAMES.G
+}
+
+function readerControlOptionClass(selected: boolean, extra = '') {
+  return [
+    'rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 interactive-focus',
+    selected
+      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white shadow-sm'
+      : 'bg-parchment-card/78 dark:bg-dark-card/78 text-ink/72 dark:text-dark-text/76 border border-sand/15 dark:border-dark-text/10',
+    extra,
+  ].filter(Boolean).join(' ')
+}
 
 const MAX_ANG: Record<string, number> = {
   G: 1430, D: 1428, B: 628, A: 1430,
@@ -880,20 +907,38 @@ export default function Study() {
     ?? currentEntry?.lines?.find(line => !line.isHeader && line.gurmukhi.trim())?.gurmukhi
     ?? currentEntry?.gurmukhi
     ?? ''
+  const readerEditorialCopy = !isHukamnamaMode
+    ? getReaderEditorialCopyForBani(baniIdParam) ?? getReaderEditorialCopyForBaniDbId(baniDbIdParam, currentSource)
+    : null
+  const hukamnamaDateLabel = isHukamnamaMode
+    ? formatReaderEditorialDate(hukamnamaResult.data?.date ?? hukamnamaDateParam)
+    : null
   const readerTitleUsesScript = Boolean(titleLine) && !baniName && !isHukamnamaMode
-  const readerTitle = readerTitleUsesScript
-    ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
-    : (baniName ?? (isHukamnamaMode ? 'Hukamnama' : currentEntry?.scripture ?? 'Reader'))
-  const readerMeta = [
+  const readerTitle = isHukamnamaMode
+    ? 'Daily Hukamnama Sri Harmandir Sahib, Amritsar'
+    : readerTitleUsesScript
+      ? renderScriptText(buildReaderTitle(titleLine), scriptMode)
+      : (readerEditorialCopy?.title ?? baniName ?? currentEntry?.scripture ?? 'Reader')
+  const entrySourceDisplay = getEntrySourceDisplay(currentEntry, currentSource)
+  const readerMeta = readerEditorialCopy?.sourceLine ?? [
     currentSundarGutkaLengthLabel,
-    currentEntry?.scripture,
+    entrySourceDisplay,
     currentAng ? `${currentEntry?.scripture === 'SGGS' || currentEntry?.scripture === 'DG' ? 'Ang' : 'Page'} ${currentAng}` : null,
     currentEntry?.raag,
     currentEntry?.writer,
   ].filter(Boolean).join(' · ')
   const readerIntroBody = isHukamnamaMode
-    ? studyExperienceCopy.hukamnamaBody
-    : studyCopy.introBody
+    ? 'Read today’s Hukamnama from Sri Harmandir Sahib, Amritsar; open the full source shabad when you want the wider context.'
+    : (readerEditorialCopy?.dek ?? studyCopy.introBody)
+  const readerControlSummaryChips = [
+    currentSundarGutkaLengthLabel,
+    scriptModeLabels[scriptMode],
+    meaningLanguageLabels[meaningLanguage],
+    meaningLanguage === 'pa' ? getPunjabiSourceLabel(locale, punjabiSource) : null,
+    meaningLanguage === 'hi' ? getHindiSourceLabel(locale, hindiSource) : null,
+    showVishraam ? visraamSourceLabels[visraamSource] : null,
+    `Translit ${showTransliteration ? commonCopy.on : commonCopy.off}`,
+  ].filter(Boolean)
   const isAmritKeertanContext = fromParam === 'amrit-keertan' && akHeaderIdParam !== null
   const amritKeertanContextMeta = [
     akSectionParam ? `Section ${akSectionParam}` : null,
@@ -1117,8 +1162,17 @@ export default function Study() {
         ) : null}
       </div>
 
-      <div className="section-shell-quiet px-4 py-4 mb-4" aria-labelledby="study-reader-title" data-testid="study-reader-header">
-        <p className="eyebrow mb-2">{isHukamnamaMode ? studyExperienceCopy.hukamnamaEyebrow : studyCopy.eyebrow}</p>
+      <div
+        className={`study-reader-hero ${isHukamnamaMode ? 'study-reader-hero--hukamnama' : 'study-reader-hero--bani'} section-shell-quiet px-4 py-4 mb-4`}
+        aria-labelledby="study-reader-title"
+        data-testid="study-reader-header"
+      >
+        <div className="study-reader-hero__kicker-row">
+          <p className="eyebrow mb-0">{isHukamnamaMode ? 'Daily Hukamnama' : studyCopy.eyebrow}</p>
+          {hukamnamaDateLabel ? (
+            <p className="study-reader-hero__date">{hukamnamaDateLabel}</p>
+          ) : null}
+        </div>
         <h1
           id="study-reader-title"
           lang={readerTitleUsesScript ? getScriptTextLang(scriptMode) : undefined}
@@ -1131,13 +1185,21 @@ export default function Study() {
           {readerTitle}
         </h1>
         {readerMeta ? (
-          <p className="font-sans text-xs uppercase tracking-[0.18em] text-gold dark:text-gold-light mt-3">
+          <p className="study-reader-hero__meta">
             {readerMeta}
           </p>
         ) : null}
-        <p className="font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76 mt-2">
+        <p className="study-reader-hero__body">
           {readerIntroBody}
         </p>
+        {isHukamnamaMode && hukamnamaResult.data?.shabadId ? (
+          <button
+            onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
+            className="study-reader-hero__cta"
+          >
+            {studyCopy.goToSourceShabad}
+          </button>
+        ) : null}
       </div>
 
       {isAmritKeertanContext && (
@@ -1186,81 +1248,39 @@ export default function Study() {
         </div>
       )}
 
-      {showEntryOutline && (
-        <DisclosureSection
-          storageKey="study-entry-outline"
-          title={studyExperienceCopy.entryOutlineEyebrow}
-          summary={studyExperienceCopy.entryOutlineBody}
-          defaultOpen={false}
-          className="section-shell-quiet p-4 mb-4"
-          bodyClassName="mt-4"
-          titleClassName="eyebrow"
-          sectionId="study-entry-outline"
-          testId="study-entry-outline"
-        >
-          <div className="grid gap-2">
-            {entryOutline.map(item => (
-              <button
-                key={item.sectionId}
-                type="button"
-                onClick={() => jumpToEntry(item.sectionId)}
-                className="section-shell px-4 py-4 text-left"
-              >
-                <p className="eyebrow">{item.eyebrow}</p>
-                <p
-                  lang={getScriptTextLang(scriptMode)}
-                  className={`mt-2 leading-tight text-ink dark:text-dark-text ${getScriptTextFontClass(scriptMode)} ${
-                    scriptMode === 'devanagari' ? 'text-lg' : 'text-2xl'
-                  }`}
-                >
-                  {renderScriptText(item.title, scriptMode)}
-                </p>
-                <p className="mt-2 font-sans text-xs text-ink/56 dark:text-dark-text/58">
-                  {item.lineCount} {studyCopy.verse} · {item.detail}
-                </p>
-              </button>
-            ))}
-          </div>
-        </DisclosureSection>
-      )}
-
-      <div className="mb-4">
-        <SoundscapeControls context="study" variant="compact" />
-      </div>
-
-      <div ref={readerControlsRef} className="mb-4 section-shell-quiet p-4" data-testid="study-reader-controls">
+      <div ref={readerControlsRef} className="study-reader-controls mb-4 section-shell-quiet p-4" data-testid="study-reader-controls">
         <button
           type="button"
           onClick={() => setControlsOpen(open => !open)}
-          className="w-full flex items-center justify-between gap-3"
+          className="study-reader-controls__summary"
           aria-expanded={controlsOpen}
           aria-controls="study-reader-controls-panel"
           aria-label={controlsOpen ? 'Hide reader controls' : 'Show reader controls'}
         >
-          <div className="text-left">
-            <p className="eyebrow">{studyCopy.readerControls}</p>
-            <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">
-              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ` : ''}{scriptModeLabels[scriptMode]} · {meaningLanguageLabels[meaningLanguage]}
-              {meaningLanguage === 'pa' ? ` · ${getPunjabiSourceLabel(locale, punjabiSource)}` : ''}
-              {meaningLanguage === 'hi' ? ` · ${getHindiSourceLabel(locale, hindiSource)}` : ''}
-              {showVishraam ? ` · ${visraamSourceLabels[visraamSource]}` : ''}
-              {' · '}
-              {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
+          <div className="min-w-0 text-left">
+            <p className="eyebrow">Reader settings</p>
+            <p className="study-reader-controls__summary-line">
+              {currentSundarGutkaLengthLabel ? `${currentSundarGutkaLengthLabel} · ${scriptModeLabels[scriptMode]}` : ''}
             </p>
+            <div className="study-reader-controls__chips" aria-label="Current reader settings">
+              {readerControlSummaryChips.map(chip => (
+                <span key={String(chip)} className="study-reader-controls__chip">
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
-          <span className="text-gold dark:text-gold-light">
-            {controlsOpen ? commonCopy.hide : commonCopy.show}
+          <span className="study-reader-controls__toggle-label">
+            {controlsOpen ? 'Done' : 'Customize'}
           </span>
         </button>
 
         {controlsOpen && (
-          <div id="study-reader-controls-panel" className="mt-4">
+          <div id="study-reader-controls-panel" className="study-reader-controls__panel">
             {supportedSundarGutkaBaniId && availableSundarGutkaLengths.length > 0 && (
-              <div className="mb-3">
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light mb-2">
-                  Length
-                </p>
-                <div className="grid grid-cols-2 gap-2">
+              <fieldset className="study-reader-controls__group">
+                <legend>Length</legend>
+                <div className="study-reader-controls__grid study-reader-controls__grid--two">
                   {availableSundarGutkaLengths.map(length => {
                     const selected = effectiveSgLength === length
                     return (
@@ -1268,198 +1288,178 @@ export default function Study() {
                         key={length}
                         type="button"
                         onClick={() => handleSundarGutkaLengthChange(length)}
-                        className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                          selected
-                            ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                            : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                        }`}
+                        aria-pressed={selected}
+                        className={readerControlOptionClass(selected)}
                       >
                         {SUNDAR_GUTKA_LENGTH_LABELS[length]}
                       </button>
                     )
                   })}
                 </div>
-              </div>
+              </fieldset>
             )}
 
-            <div className="flex gap-2 mb-3">
-          {(['gurmukhi', 'devanagari'] as const).map(mode => {
-            const selected = scriptMode === mode
-            return (
-              <button
-                key={mode}
-                type="button"
-                onClick={() => setScriptMode(mode)}
-                className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                }`}
-              >
-                {scriptModeLabels[mode]}
-              </button>
-            )
-          })}
-            </div>
+            <fieldset className="study-reader-controls__group">
+              <legend>Script</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                {(['gurmukhi', 'devanagari'] as const).map(mode => {
+                  const selected = scriptMode === mode
+                  return (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => setScriptMode(mode)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected)}
+                    >
+                      {scriptModeLabels[mode]}
+                    </button>
+                  )
+                })}
+              </div>
+            </fieldset>
 
-            <div className="flex gap-2 mb-3">
-          <button
-            type="button"
-            onClick={() => setShowTransliteration(!showTransliteration)}
-            className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-              showTransliteration
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-            }`}
-          >
-            {studyCopy.transliteration} {showTransliteration ? commonCopy.on : commonCopy.off}
-          </button>
-          <button
-            type="button"
-            onClick={() => setLarivaar(!larivaar)}
-            className={`flex-1 rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-              larivaar
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-            }`}
-          >
-            {studyCopy.larivaar} {larivaar ? commonCopy.on : commonCopy.off}
-          </button>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2 mb-3">
-          {(['none', 'en', 'pa', 'hi'] as const).map(option => {
-            const selected = meaningLanguage === option
-            return (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setMeaningLanguage(option)}
-                className={`rounded-xl px-2 py-2 font-sans text-[11px] font-medium min-h-[42px] transition-all duration-300 ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                }`}
-              >
-                {meaningLanguageLabels[option]}
-              </button>
-            )
-          })}
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 mb-3">
-          <button
-            type="button"
-            onClick={() => setShowVishraam(!showVishraam)}
-            className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-              showVishraam
-                ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-            }`}
-          >
-            {studyCopy.vishraam} {showVishraam ? commonCopy.on : commonCopy.off}
-          </button>
-
-          <div className="grid grid-cols-2 gap-2">
-            {(['compact', 'relaxed'] as const).map(option => {
-              const selected = lineSpacing === option
-              return (
+            <fieldset className="study-reader-controls__group">
+              <legend>Reading layers</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--three">
                 <button
-                  key={option}
                   type="button"
-                  onClick={() => setLineSpacing(option)}
-                  className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                    selected
-                      ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                      : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                  }`}
+                  onClick={() => setShowTransliteration(!showTransliteration)}
+                  aria-pressed={showTransliteration}
+                  className={readerControlOptionClass(showTransliteration)}
                 >
-                  {lineSpacingLabels[option]}
+                  Transliteration {showTransliteration ? commonCopy.on : commonCopy.off}
                 </button>
-              )
-            })}
-            </div>
-          </div>
+                <button
+                  type="button"
+                  onClick={() => setLarivaar(!larivaar)}
+                  aria-pressed={larivaar}
+                  className={readerControlOptionClass(larivaar)}
+                >
+                  {studyCopy.larivaar}: {larivaar ? commonCopy.on : commonCopy.off}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowVishraam(!showVishraam)}
+                  aria-pressed={showVishraam}
+                  className={readerControlOptionClass(showVishraam)}
+                >
+                  {studyCopy.vishraam}: {showVishraam ? commonCopy.on : commonCopy.off}
+                </button>
+              </div>
+              {showVishraam && (
+                <div className="study-reader-controls__subgrid" aria-label="Vishraam source">
+                  {Object.entries(visraamSourceLabels).map(([key, label]) => {
+                    const selected = visraamSource === key
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setVisraamSource(key as typeof visraamSource)}
+                        aria-pressed={selected}
+                        className={readerControlOptionClass(selected)}
+                      >
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+            </fieldset>
 
-            <div className="grid grid-cols-2 gap-2 mb-3">
-              {Object.entries(punjabiSourceLabels).map(([key, label]) => {
-                const selected = punjabiSource === key
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setPunjabiSource(key as typeof punjabiSource)}
-                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                      selected
-                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                )
-              })}
-            </div>
+            <fieldset className="study-reader-controls__group">
+              <legend>Meaning</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--four">
+                {(['none', 'en', 'pa', 'hi'] as const).map(option => {
+                  const selected = meaningLanguage === option
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setMeaningLanguage(option)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected, 'px-2 text-[11px]')}
+                    >
+                      {meaningLanguageLabels[option]}
+                    </button>
+                  )
+                })}
+              </div>
+            </fieldset>
 
-            <div className="grid grid-cols-2 gap-2 mb-3">
-              {Object.entries(hindiSourceLabels).map(([key, label]) => {
-                const selected = hindiSource === key
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setHindiSource(key as typeof hindiSource)}
-                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                      selected
-                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                )
-              })}
-            </div>
+            <fieldset className="study-reader-controls__group">
+              <legend>Punjabi teeka/source</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                {Object.entries(punjabiSourceLabels).map(([key, label]) => {
+                  const selected = punjabiSource === key
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setPunjabiSource(key as typeof punjabiSource)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected)}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
+              </div>
+            </fieldset>
 
-            <div className="grid grid-cols-3 gap-2 mb-3">
-              {Object.entries(visraamSourceLabels).map(([key, label]) => {
-                const selected = visraamSource === key
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setVisraamSource(key as typeof visraamSource)}
-                    className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                      selected
-                        ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                        : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                )
-              })}
-            </div>
+            <fieldset className="study-reader-controls__group">
+              <legend>Hindi source</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                {Object.entries(hindiSourceLabels).map(([key, label]) => {
+                  const selected = hindiSource === key
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setHindiSource(key as typeof hindiSource)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected)}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
+              </div>
+            </fieldset>
 
-            <div className="grid grid-cols-2 gap-2">
-          {(['left', 'center'] as const).map(option => {
-            const selected = textAlign === option
-            return (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setTextAlign(option)}
-                className={`rounded-xl px-3 py-2 font-sans text-xs font-medium min-h-[42px] transition-all duration-300 ${
-                  selected
-                    ? 'bg-gradient-to-r from-saffron to-saffron-light text-white'
-                    : 'bg-parchment-card dark:bg-dark-card text-ink/70 dark:text-dark-text/70 border border-sand/15 dark:border-dark-text/10'
-                }`}
-              >
-                {textAlignmentLabels[option]} {commonCopy.align}
-              </button>
-            )
-          })}
-            </div>
+            <fieldset className="study-reader-controls__group">
+              <legend>Layout</legend>
+              <div className="study-reader-controls__grid study-reader-controls__grid--two">
+                {(['compact', 'relaxed'] as const).map(option => {
+                  const selected = lineSpacing === option
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setLineSpacing(option)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected)}
+                    >
+                      {lineSpacingLabels[option]}
+                    </button>
+                  )
+                })}
+                {(['left', 'center'] as const).map(option => {
+                  const selected = textAlign === option
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setTextAlign(option)}
+                      aria-pressed={selected}
+                      className={readerControlOptionClass(selected)}
+                    >
+                      {textAlignmentLabels[option]} {commonCopy.align}
+                    </button>
+                  )
+                })}
+              </div>
+            </fieldset>
           </div>
         )}
       </div>
@@ -1488,29 +1488,6 @@ export default function Study() {
           >
             {studyCopy.saveBookmark}
           </button>
-        </div>
-      )}
-
-      {isHukamnamaMode && currentEntry && (
-        <div className="hero-surface p-5 mb-4">
-          <p className="eyebrow">{studyExperienceCopy.hukamnamaEyebrow}</p>
-          <p className="mt-2 font-sans font-semibold text-saffron dark:text-gold-light text-sm">
-            Hukamnama{hukamnamaResult.data?.date ? ` · ${hukamnamaResult.data.date}` : ''}
-          </p>
-          <p className="mt-2 font-sans text-sm leading-6 text-ink/74 dark:text-dark-text/76">
-            {studyExperienceCopy.hukamnamaBody}
-          </p>
-          <p className="mt-3 font-sans text-ink/56 dark:text-dark-text/58 text-xs">
-            {currentEntry.raag ? `${currentEntry.raag} · ` : ''}{currentEntry.writer ? `${currentEntry.writer} · ` : ''}{currentEntry.scripture} · Ang {currentEntry.ang}
-          </p>
-          {hukamnamaResult.data?.shabadId ? (
-            <button
-              onClick={() => navigate(`/study?shabadId=${hukamnamaResult.data?.shabadId}`)}
-              className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-3 font-sans text-xs font-semibold text-white"
-            >
-              {studyCopy.goToSourceShabad}
-            </button>
-          ) : null}
         </div>
       )}
 
@@ -1581,6 +1558,48 @@ export default function Study() {
             />
           )
         })}
+      </div>
+
+      <div className="study-reader-secondary-tools mt-4">
+        {showEntryOutline && (
+          <DisclosureSection
+            storageKey="study-entry-outline"
+            title={studyExperienceCopy.entryOutlineEyebrow}
+            summary={studyExperienceCopy.entryOutlineBody}
+            defaultOpen={false}
+            className="section-shell-quiet p-4"
+            bodyClassName="mt-4"
+            titleClassName="eyebrow"
+            sectionId="study-entry-outline"
+            testId="study-entry-outline"
+          >
+            <div className="grid gap-2">
+              {entryOutline.map(item => (
+                <button
+                  key={item.sectionId}
+                  type="button"
+                  onClick={() => jumpToEntry(item.sectionId)}
+                  className="section-shell px-4 py-4 text-left"
+                >
+                  <p className="eyebrow">{item.eyebrow}</p>
+                  <p
+                    lang={getScriptTextLang(scriptMode)}
+                    className={`mt-2 leading-tight text-ink dark:text-dark-text ${getScriptTextFontClass(scriptMode)} ${
+                      scriptMode === 'devanagari' ? 'text-lg' : 'text-2xl'
+                    }`}
+                  >
+                    {renderScriptText(item.title, scriptMode)}
+                  </p>
+                  <p className="mt-2 font-sans text-xs text-ink/56 dark:text-dark-text/58">
+                    {item.lineCount} {studyCopy.verse} · {item.detail}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </DisclosureSection>
+        )}
+
+        <SoundscapeControls context="study" variant="compact" />
       </div>
 
       {isArdaasReaderFlow && (
