@@ -81,14 +81,14 @@ afterEach(() => {
   vi.useRealTimers()
   vi.restoreAllMocks()
   document.documentElement.classList.remove('dark')
+  document.documentElement.removeAttribute('data-theme')
 })
 
 beforeEach(async () => {
   vi.useFakeTimers({ shouldAdvanceTime: true })
   vi.setSystemTime(new Date('2026-04-11T09:00:00.000Z'))
   localStorage.clear()
-  document.documentElement.classList.remove('dark')
-  useThemeStore.setState({ dark: false })
+  useThemeStore.getState().setDark(false)
   useSavedFeedbackStore.getState().clearSaved()
   useScriptureCacheStore.getState().clearAll()
   useBookmarksStore.setState({ bookmarks: [] })

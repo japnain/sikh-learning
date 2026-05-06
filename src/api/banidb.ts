@@ -18,7 +18,7 @@ import type {
   VisraamSource,
   Word,
 } from '../types'
-import { requestBanidb } from '../insforge/banidb'
+import { requestBanidb } from '../supabase/banidb'
 import { withQaControl } from '../qa/runtime'
 import {
   SUNDAR_GUTKA_LENGTH_EXISTS_KEY,

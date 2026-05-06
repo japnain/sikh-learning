@@ -5,8 +5,8 @@ import { useCloudSyncStore } from './store/cloudSync'
 import { useLanguageStore } from './store/language'
 import { useOnboardingStore } from './store/onboarding'
 
-vi.mock('./hooks/useInsforgeBootstrap', () => ({
-  useInsforgeBootstrap: () => undefined,
+vi.mock('./hooks/useSupabaseBootstrap', () => ({
+  useSupabaseBootstrap: () => undefined,
 }))
 
 beforeEach(() => {
@@ -44,6 +44,12 @@ afterEach(() => {
   sessionStorage.clear()
 })
 
+function advanceFirstRunOnboardingToPreview() {
+  for (let step = 0; step < 4; step += 1) {
+    fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  }
+}
+
 test('shows onboarding above the app shell and lands home after first-run setup', async () => {
   const scrollToSpy = vi.spyOn(window, 'scrollTo')
   render(<App />)
@@ -56,7 +62,7 @@ test('shows onboarding above the app shell and lands home after first-run setup'
   expect(screen.queryByRole('link', { name: /home/i })).not.toBeInTheDocument()
 
   fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceFirstRunOnboardingToPreview()
   fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
   await waitFor(() => {
@@ -145,7 +151,7 @@ test('habit onboarding completion returns home after the premium onboarding flow
   render(<App />)
 
   fireEvent.click(screen.getByRole('button', { name: /build a daily reading habit/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceFirstRunOnboardingToPreview()
   fireEvent.click(screen.getByRole('button', { name: /open my reader|start today.?s path/i }))
 
   await waitFor(() => {

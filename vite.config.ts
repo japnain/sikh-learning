@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    watch: {
+      ignored: ['**/ios/App/App/public/**'],
+    },
     proxy: {
       '/__banidb': {
         target: 'https://api.banidb.com',
@@ -14,12 +17,15 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    watchExclude: ['dist/**', 'ios/**', 'node_modules/**'],
     env: {
-      VITE_INSFORGE_URL: 'https://naamras-qa.insforge.app',
-      VITE_INSFORGE_FUNCTIONS_URL: 'https://naamras-qa.functions.insforge.app',
-      VITE_INSFORGE_BANIDB_FUNCTION: 'banidb-proxy',
+      VITE_SUPABASE_URL: 'https://naamras-qa.supabase.co',
+      VITE_SUPABASE_ANON_KEY: 'test-anon-key',
+      VITE_SUPABASE_FUNCTIONS_URL: 'https://naamras-qa.supabase.co/functions/v1',
+      VITE_SUPABASE_BANIDB_FUNCTION: 'banidb-proxy',
     },
-    exclude: [...defaultExclude, 'tmp/**'],
+    exclude: [...defaultExclude, 'tmp/**', 'dist/**', 'ios/**'],
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
     server: {
@@ -33,7 +39,7 @@ export default defineConfig({
           '@testing-library/react',
           '@testing-library/dom',
           '@testing-library/user-event',
-          '@insforge/sdk',
+          '@supabase/supabase-js',
           'socket.io-client',
           'socket.io-parser',
           'engine.io-client',

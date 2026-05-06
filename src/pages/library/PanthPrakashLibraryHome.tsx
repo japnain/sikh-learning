@@ -27,7 +27,7 @@ export default function PanthPrakashLibraryHome() {
   const [episodeSearch, setEpisodeSearch] = useState('')
   const [episodeVolume, setEpisodeVolume] = useState<'all' | number>('all')
   const [episodeArc, setEpisodeArc] = useState<'all' | PanthPrakashArcId>('all')
-  const [visibleEpisodeCount, setVisibleEpisodeCount] = useState(24)
+  const [visibleEpisodeWindow, setVisibleEpisodeWindow] = useState({ filterKey: '', count: 24 })
   const [pageSearchQuery, setPageSearchQuery] = useState('')
   const [pageSearchStatus, setPageSearchStatus] = useState<'idle' | 'searching' | 'ready' | 'empty'>('idle')
   const [pageSearchResults, setPageSearchResults] = useState<Array<{ page: LibraryPagePayload; snippet: string }>>([])
@@ -86,12 +86,12 @@ export default function PanthPrakashLibraryHome() {
     })
   }, [episodeIndex, episodeSearch, episodeVolume, episodeArc])
 
+  const episodeFilterKey = `${episodeSearch.trim().toLowerCase()}|${episodeVolume}|${episodeArc}`
+  const visibleEpisodeCount = visibleEpisodeWindow.filterKey === episodeFilterKey
+    ? visibleEpisodeWindow.count
+    : 24
   const visibleEpisodes = filteredEpisodes.slice(0, visibleEpisodeCount)
   const editionDebtReport = useMemo(() => buildPanthPrakashEditionDebtReport(pageIndex), [pageIndex])
-
-  useEffect(() => {
-    setVisibleEpisodeCount(24)
-  }, [episodeSearch, episodeVolume, episodeArc])
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -393,7 +393,10 @@ export default function PanthPrakashLibraryHome() {
         {visibleEpisodes.length < filteredEpisodes.length ? (
           <button
             type="button"
-            onClick={() => setVisibleEpisodeCount(count => count + 24)}
+            onClick={() => setVisibleEpisodeWindow(current => ({
+              filterKey: episodeFilterKey,
+              count: (current.filterKey === episodeFilterKey ? current.count : 24) + 24,
+            }))}
             className="interactive-focus mt-4 w-full rounded-full border border-gold/18 bg-gold/10 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
           >
             Load more episodes

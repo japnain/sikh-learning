@@ -5,12 +5,12 @@ import MusicControllerBridge from './components/MusicControllerBridge'
 import OnboardingSheet from './components/OnboardingSheet'
 import SplashScreen from './components/SplashScreen'
 import { useDisplayMode } from './hooks/useDisplayMode'
-import { useInsforgeBootstrap } from './hooks/useInsforgeBootstrap'
+import { useSupabaseBootstrap } from './hooks/useSupabaseBootstrap'
 import { useNitemOfflineCache } from './hooks/useNitemOfflineCache'
 import { useLanguageStore } from './store/language'
 import { useLocaleStore } from './store/locale'
 import { useOnboardingStore } from './store/onboarding'
-import { useThemeStore } from './store/theme'
+import { applyThemeToDocument, useThemeStore } from './store/theme'
 import { getRouterBasename } from './utils/basePath'
 
 const HomePage = lazy(() => import('./pages/Home'))
@@ -23,6 +23,7 @@ const NitnemCustomizePage = lazy(() => import('./pages/NitnemCustomize'))
 const MorePage = lazy(() => import('./pages/More'))
 const LearnPage = lazy(() => import('./pages/Learn'))
 const VocabPage = lazy(() => import('./pages/Vocab'))
+const PrivacyPage = lazy(() => import('./pages/Privacy'))
 const LibraryPageReader = lazy(() => import('./pages/library/LibraryPageReader'))
 const PanthPrakashLibraryHome = lazy(() => import('./pages/library/PanthPrakashLibraryHome'))
 
@@ -136,15 +137,11 @@ function AppShell() {
   const showOverlay = hasCompletedOnboarding && isOnboardingOpen && presentationMode === 'overlay'
 
   useNitemOfflineCache()
-  useInsforgeBootstrap()
+  useSupabaseBootstrap()
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark)
+    applyThemeToDocument(dark)
     document.documentElement.dataset.displayMode = displayMode
-    document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
-
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]')
-    themeColorMeta?.setAttribute('content', dark ? '#0f0a1e' : '#f7ecd8')
   }, [dark, displayMode])
 
   useEffect(() => {
@@ -284,6 +281,7 @@ function AppShell() {
                 <Route path="/more" element={<MorePage />} />
                 <Route path="/learn/*" element={<LearnPage />} />
                 <Route path="/vocab" element={<VocabPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </Suspense>

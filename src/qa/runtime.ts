@@ -10,7 +10,7 @@ export type QaFaultTarget =
   | 'study-shabad'
   | 'study-hukamnama'
   | 'mahankosh'
-  | 'insforge-bootstrap'
+  | 'supabase-bootstrap'
   | 'cloud-sync'
 
 type QaFaultKind = 'fail' | 'empty' | 'slow'

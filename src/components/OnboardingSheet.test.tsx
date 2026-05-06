@@ -12,11 +12,13 @@ import type {
 import { useCloudSyncStore } from '../store/cloudSync'
 import OnboardingSheet from './OnboardingSheet'
 
-const { signInWithProviderMock } = vi.hoisted(() => ({
+const { sendMagicLinkMock, signInWithProviderMock } = vi.hoisted(() => ({
+  sendMagicLinkMock: vi.fn(),
   signInWithProviderMock: vi.fn(),
 }))
 
-vi.mock('../insforge/runtime', () => ({
+vi.mock('../supabase/runtime', () => ({
+  sendMagicLink: sendMagicLinkMock,
   signInWithProvider: signInWithProviderMock,
 }))
 
@@ -73,9 +75,16 @@ function Harness({
 }
 
 beforeEach(() => {
+  sendMagicLinkMock.mockReset()
   signInWithProviderMock.mockReset()
   useCloudSyncStore.getState().reset()
 })
+
+function advanceToPreview() {
+  for (let step = 0; step < 4; step += 1) {
+    fireEvent.click(screen.getByTestId('onboarding-setup-primary-action'))
+  }
+}
 
 test('setup step presents visual intent choices that curate the reader and sticky action shelf', () => {
   render(<Harness />)
@@ -105,7 +114,7 @@ test('guided flow keeps the hero dominant while secondary setup stays collapsed 
   render(<Harness />)
 
   fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceToPreview()
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
   const actionBar = screen.getByTestId('onboarding-preview-action-bar')
@@ -164,7 +173,7 @@ test('quiet preset keeps the preview text-first', () => {
   render(<Harness />)
 
   fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceToPreview()
 
   const previewHero = screen.getByTestId('onboarding-preview-hero')
 
@@ -178,7 +187,7 @@ test('turning meaning off updates the preview summary and action copy for unders
   render(<Harness />)
 
   fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceToPreview()
 
   expect(await within(screen.getByTestId('onboarding-preview-action-bar')).findByTestId('onboarding-preview-primary-action')).toHaveTextContent(/^open with meaning$/i)
   expect(screen.getAllByText(/You will open with meaning close/i)).toHaveLength(1)
@@ -222,7 +231,7 @@ test('preview step offers guest plus configured sign-in providers only after bac
     configured: true,
     status: 'signed-out',
     currentUser: null,
-    availableProviders: ['google', 'github'],
+    availableProviders: ['apple', 'email'],
     lastSyncedAt: null,
     lastError: null,
     syncQueued: false,
@@ -231,20 +240,29 @@ test('preview step offers guest plus configured sign-in providers only after bac
   render(<Harness onComplete={onComplete} />)
 
   fireEvent.click(screen.getByRole('button', { name: /understand scripture/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceToPreview()
 
   expect(screen.queryByRole('button', { name: /continue as guest/i })).not.toBeInTheDocument()
   fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
   expect(screen.getByRole('button', { name: /continue as guest/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /continue with google/i })).toBeInTheDocument()
-  expect(screen.getByRole('button', { name: /continue with github/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /continue with apple/i })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: /send magic link/i })).toBeDisabled()
 
-  fireEvent.click(screen.getByRole('button', { name: /continue with google/i }))
+  fireEvent.click(screen.getByRole('button', { name: /continue with apple/i }))
 
   await waitFor(() => {
     expect(onComplete).toHaveBeenCalledTimes(1)
-    expect(signInWithProviderMock).toHaveBeenCalledWith('google')
+    expect(signInWithProviderMock).toHaveBeenCalledWith('apple')
+  })
+
+  fireEvent.change(screen.getByPlaceholderText(/email for magic link/i), {
+    target: { value: 'simran@example.com' },
+  })
+  fireEvent.click(screen.getByRole('button', { name: /send magic link/i }))
+
+  await waitFor(() => {
+    expect(sendMagicLinkMock).toHaveBeenCalledWith('simran@example.com')
   })
 })
 
@@ -262,7 +280,7 @@ test('guest bootstrap issues stay in the optional backup state during onboarding
   render(<Harness />)
 
   fireEvent.click(screen.getByRole('button', { name: /find peace and clarity/i }))
-  fireEvent.click(screen.getByRole('button', { name: /^continue$/i }))
+  advanceToPreview()
   fireEvent.click(screen.getByTestId('onboarding-backup-toggle'))
 
   const authSurface = document.querySelector('[data-ai-surface="onboarding-auth"]')

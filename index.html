@@ -7,15 +7,54 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0f0a1e" />
+    <meta name="application-name" content="NaamRas" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="NaamRas" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="description" content="NaamRas is a premium Gurbani reading and learning app for daily Nitnem, canonical study, and a steadier return to scripture." />
     <title>NaamRas</title>
+    <script>
+      (function () {
+        var storageKey = 'sikh-theme'
+        var lightThemeColor = '#f7ecd8'
+        var darkThemeColor = '#0f0a1e'
+
+        function readStoredTheme() {
+          try {
+            var stored = window.localStorage.getItem(storageKey)
+            if (!stored) return null
+            var parsed = JSON.parse(stored)
+            var value = parsed && parsed.state && typeof parsed.state.dark !== 'undefined'
+              ? parsed.state.dark
+              : parsed && parsed.dark
+            return typeof value === 'boolean' ? value : null
+          } catch (error) {
+            return null
+          }
+        }
+
+        var storedDark = readStoredTheme()
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        var isDark = storedDark === null ? !!prefersDark : storedDark
+        var root = document.documentElement
+        root.classList.toggle('dark', isDark)
+        root.dataset.theme = isDark ? 'dark' : 'light'
+        root.style.colorScheme = isDark ? 'dark' : 'light'
+
+        var themeColor = document.querySelector('meta[name="theme-color"]')
+        if (themeColor) {
+          themeColor.setAttribute('content', isDark ? darkThemeColor : lightThemeColor)
+        }
+      })()
+    </script>
     <style>
       /* Inline splash to prevent FOUC */
-      body { background-color: #0f0a1e; margin: 0; }
+      html { background-color: #f7ecd8; }
+      html.dark { background-color: #0f0a1e; }
+      body { background-color: #f7ecd8; margin: 0; }
+      html.dark body { background-color: #0f0a1e; }
     </style>
   </head>
   <body>

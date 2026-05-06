@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persistBookmarkToCloud, removeBookmarkFromCloud } from '../insforge/bookmarks'
+import { persistBookmarkToCloud, removeBookmarkFromCloud } from '../supabase/bookmarks'
 import { queueActivityEvent } from './activityEvents'
 import { useSavedFeedbackStore } from './savedFeedback'
 

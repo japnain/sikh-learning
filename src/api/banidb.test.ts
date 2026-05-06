@@ -29,7 +29,7 @@ function introLines(entries: ScriptureEntry[]) {
 }
 
 describe('fetchAng', () => {
-  it('routes scripture reads through the InsForge banidb proxy endpoint', async () => {
+  it('routes scripture reads through the Supabase banidb proxy endpoint', async () => {
     const fetchSpy = vi.spyOn(globalThis, 'fetch')
 
     await fetchAng(1, 'G')
