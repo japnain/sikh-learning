@@ -649,7 +649,7 @@ export default function Banis() {
         <h1 className="mt-2 font-display text-4xl leading-none text-ink dark:text-dark-text">
           {editorial?.read.title ?? 'Move directly into Gurbani.'}
         </h1>
-        <p className="mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+        <p className="mt-3 max-w-[32ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
           {editorial?.read.body}
         </p>
       </div>
@@ -680,14 +680,14 @@ export default function Banis() {
             <p id="banis-quick-find-title" className="mt-2 font-sans text-base font-semibold text-ink dark:text-dark-text">
               {editorial?.read.quickFindTitle ?? 'Search by the shape you remember first.'}
             </p>
-            <p className="mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+            <p className="mt-2 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
               {editorial?.read.quickFindBody ?? SEARCH_OPTION_SUMMARY[searchMode]}
             </p>
           </div>
           <button
             type="button"
             onClick={() => toggle('search-options')}
-            className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/65"
+            className="shrink-0 rounded-full border border-sand/15 bg-parchment-card px-3 py-2 font-sans text-[11px] font-medium text-ink/65 transition-colors duration-300 dark:border-dark-text/10 dark:bg-dark-card dark:text-dark-text/80"
             aria-expanded={searchOptionsOpen}
             aria-controls="banis-search-options-panel"
             data-ai-action="toggle-search-options"
@@ -966,7 +966,7 @@ export default function Banis() {
             <h2 className="font-display text-3xl leading-none text-ink dark:text-dark-text">
               Ardaas + Hukamnama
             </h2>
-            <p className="mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/65">
+            <p className="mt-3 max-w-[30ch] font-sans text-sm leading-6 text-ink/65 dark:text-dark-text/80">
               {editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.'}
             </p>
           </div>
@@ -1124,12 +1124,12 @@ export default function Banis() {
 
       <Link
         to="/banis/rehat"
-        className="mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-rehat"
       >
         <span className="min-w-0">
           <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Rehat</span>
-          <span className="mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/68">
+          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/82">
             Open the Rehat reader with list search, chapter filtering, source context, and chapter text search.
           </span>
         </span>
@@ -1140,12 +1140,12 @@ export default function Banis() {
 
       <Link
         to="/banis/amrit-keertan"
-        className="mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
+        className="read-extra-source-card mb-4 flex w-full items-center justify-between gap-4 rounded-2xl border border-sand/15 bg-parchment-low p-4 text-left shadow-card transition-colors duration-300 active:scale-[0.99] dark:border-dark-text/10 dark:bg-dark-surface"
         data-testid="banis-open-amrit-keertan"
       >
         <span className="min-w-0">
           <span className="font-sans font-semibold text-base text-ink dark:text-dark-text">Amrit Keertan</span>
-          <span className="mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/68">
+          <span className="read-extra-source-card__body mt-1 block font-sans text-sm leading-6 text-ink/60 dark:text-dark-text/82">
             Open the Amrit Keertan directory with section search, source metadata, English, and page navigation.
           </span>
         </span>

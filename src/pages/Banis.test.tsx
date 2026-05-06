@@ -76,6 +76,24 @@ test('renders the main content sections including Rehat', () => {
   expect(screen.getByText('Amrit Keertan')).toBeInTheDocument()
 })
 
+test('keeps secondary Read source cards readable in dark mode', () => {
+  renderBanis()
+
+  const rehatCard = screen.getByTestId('banis-open-rehat')
+  const amritKeertanCard = screen.getByTestId('banis-open-amrit-keertan')
+
+  expect(rehatCard).toHaveClass('read-extra-source-card')
+  expect(amritKeertanCard).toHaveClass('read-extra-source-card')
+  expect(within(rehatCard).getByText(/Open the Rehat reader/i)).toHaveClass(
+    'read-extra-source-card__body',
+    'dark:text-dark-text/82'
+  )
+  expect(within(amritKeertanCard).getByText(/Open the Amrit Keertan directory/i)).toHaveClass(
+    'read-extra-source-card__body',
+    'dark:text-dark-text/82'
+  )
+})
+
 test('keeps source browsing at the bottom of Read while featuring Panth Prakash as a dedicated browse page', () => {
   renderBanis()
 
