@@ -53,9 +53,15 @@ function SavedGlyph({ active }: NavGlyphProps) {
 function MoreGlyph({ active }: NavGlyphProps) {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="overflow-visible" aria-hidden="true">
-      <circle cx="12" cy="12" r="3.35" fill="currentColor" opacity={active ? 0.24 : 0.12} />
-      <circle cx="12" cy="12" r="3.35" stroke="currentColor" strokeWidth={active ? 1.92 : 1.68} />
-      <path d="M12 2.9v2.35M12 18.75v2.35M5.25 5.25l1.65 1.65M17.1 17.1l1.65 1.65M2.9 12h2.35M18.75 12h2.35M5.25 18.75l1.65-1.65M17.1 6.9l1.65-1.65" stroke="currentColor" strokeWidth="1.42" strokeLinecap="round" opacity={active ? 0.98 : 0.56} />
+      <circle cx="12" cy="12" r="7.15" fill="currentColor" opacity={active ? 0.12 : 0.06} />
+      <circle cx="12" cy="12" r="7.15" stroke="currentColor" strokeWidth={active ? 1.9 : 1.65} />
+      <path
+        d="M8.25 12h.02M12 12h.02M15.75 12h.02"
+        stroke="currentColor"
+        strokeWidth={active ? 2.4 : 2.05}
+        strokeLinecap="round"
+        opacity={active ? 0.96 : 0.58}
+      />
     </svg>
   )
 }
@@ -149,7 +155,6 @@ export default function NavBar() {
           >
             {({ isActive }) => (
               <>
-                <span className="app-nav-tab__art" aria-hidden="true" />
                 <span className="app-nav-tab__icon" aria-hidden="true">
                   <tab.Glyph active={isActive} />
                 </span>
