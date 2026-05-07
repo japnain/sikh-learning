@@ -13,6 +13,7 @@ export default {
         'parchment-low': '#f0e5d4',
         'parchment-deep': '#e0c59d',
         'parchment-card': '#fffcf5',
+        cream: '#fffaf0',
         ink: '#2b1f17',
         saffron: '#8e4c20',
         'saffron-light': '#d39842',

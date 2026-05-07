@@ -130,10 +130,12 @@ test('keeps source browsing at the bottom of Read while featuring Panth Prakash 
   expect(screen.queryByTestId('library-source-browser-shared')).not.toBeInTheDocument()
 
   const panthCard = within(sourceBrowser).getByTestId('panth-prakash-source-card')
-  expect(within(panthCard).getByRole('link', { name: /browse panth prakash episodes/i })).toHaveAttribute(
+  const panthBrowseLink = within(panthCard).getByRole('link', { name: /browse panth prakash episodes/i })
+  expect(panthBrowseLink).toHaveAttribute(
     'href',
     '/library/panth-prakash-english'
   )
+  expect(panthBrowseLink).toHaveClass('text-cream')
   expect(panthCard).toHaveTextContent(/separate reading page/i)
   expect(panthCard).toHaveTextContent(/source scan mapping/i)
   expect(within(panthCard).queryByRole('link', { name: /^open panth prakash page 1$/i })).not.toBeInTheDocument()
@@ -266,6 +268,10 @@ test('shows the Ardaas + Hukamnama featured flow and keeps plain Ardaas in Other
   const featuredFlow = screen.getByTestId('banis-featured-flow')
   expect(featuredFlow).toHaveClass('read-featured-flow-card')
   expect(screen.getByText('Ardaas + Hukamnama')).toBeInTheDocument()
+  expect(within(featuredFlow).getByText(/Begin devotional flow/i)).toHaveClass(
+    'read-featured-flow-card__cta',
+    'text-cream'
+  )
   expect(
     screen.getByText(ARDAAS_HUKAMNAMA_EDITORIAL_COPY.dek)
   ).toBeInTheDocument()

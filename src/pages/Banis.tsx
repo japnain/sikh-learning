@@ -1001,7 +1001,7 @@ export default function Banis() {
             </span>
           </div>
           <span className="read-featured-flow-card__cta mt-4 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-ink px-4 py-3 font-sans text-sm font-semibold text-cream dark:bg-gold-light dark:text-dark-bg">
-            Begin Ardaas flow
+            Begin devotional flow
             <IconArrowRight size={15} />
           </span>
         </button>
