@@ -415,14 +415,14 @@ test('wave 5 repaired pages keep readable editorial summaries for hill-state cam
     'Kahilur',
     'paras',
     'single combat',
-    'Baghard Singh',
+    "Banda chooses selected Singhs for the coming trial and the poet singles out Baghar Singh as a champion of unusual power and reputation.",
     'Angad',
     'Kahloor force',
     'Mandi wazir',
-    'Khawaja Khijar',
+    "Banda tells Kahilur to gather what defense",
     'five Singhs',
     'Bajjar Singh',
-    'nakib',
+    "public proclamations spread his renown",
     'Sidh Sain',
     'Jajowal',
     'Abhraj Singh',
@@ -490,7 +490,7 @@ test('wave 6 repaired pages keep readable editorial summaries for later Banda ca
     'shams al-Din',
     'Bhai Nand Lal',
     'Guru Mother',
-    'randi',
+    "humiliating gendered insult tied to marriage",
     'separate panth',
     'red dress',
     'turning from the Guru’s power',
@@ -659,7 +659,7 @@ test('wave 9 repaired pages keep readable editorial summaries for episodes 86 an
     'Bhima Singh in a mood of chivalrous ecstasy',
     'Mansa Ram and Daya Ram',
     'twenty two companions',
-    'A few among these Randhawas joined the Khalsa Panth',
+    "a few among these Randhawas joined the Khalsa Panth",
     'get the Randhawa Singhs massacred',
     'fourteen Sikh elders',
   ]
@@ -702,7 +702,7 @@ test('wave 10 repaired pages keep readable editorial summaries for episodes 88 a
     'laid a siege to the Mansion',
     'survived this invasion',
     'strength increased to one thousand',
-    'The Singhs suddenly pounced upon them unawares',
+    "Singhs pounce upon the Mughal camp unawares",
     'Episode 90',
   ]
 
@@ -772,13 +772,13 @@ test('wave 12 repaired pages keep readable editorial summaries for episodes 91 t
   const requiredPhrases = [
     'assigned to distribute feed to the horses',
     'Ala Singh joined the fraternity of the Khalsa Panth',
-    'The town where Guru’s two Sahibzadas were executed',
+    "this is the town where Guru’s two Sahibzadas were executed",
     'occupied the five main entrances to the city',
-    'restored the sacred pool to its original glory',
+    "restore the sacred pool to its original glory",
     'take control of the offerings at Amritsar',
     'preservation of faith for a Sikh is a rare phenomenon',
     'ten thousand rupees tax',
-    'Mani Singh prohibited all surety',
+    "Mani Singh refused all surety",
     'dismembered limb by limb',
   ]
 
@@ -863,7 +863,7 @@ test('wave 14 repaired pages keep readable editorial summaries for episodes 97 a
     'supporters of Massa Ranghar attack',
     'Natha’s bow breaks',
     'woman carries him in a basket',
-    'Bota Singh mocked as an impostor',
+    "mockery of Bota Singh as an impostor",
   ]
 
   pages.forEach((page, index) => {
@@ -896,7 +896,7 @@ test('wave 15 repaired pages keep readable editorial summaries for the Chhota Gh
   const requiredPhrases = [
     'crossing into Majha',
     'betrayal by the hill chiefs',
-    'reached Kiratpur in disguise',
+    "Those who manage to live do so by concealment and improvisation. Some bind up their hair, alter their appearance, and move quietly through Mandi and Kullu until they finally reach Kiratpur in disguise instead of marching openly as warriors.",
     'Basoli jail and severed heads',
     'the word Guru was forbidden',
     'divine punishment was decreed',
@@ -938,7 +938,7 @@ test('wave 16 repaired pages keep readable editorial summaries for Ram Rauni, Ka
   const requiredPhrases = [
     'Mughals blocked every entrance',
     'petition sent by arrow',
-    'Kaura Mal as a devout Sikh ally',
+    "Kaura Mal, a devout Sikh ally",
     'beheaded Shah Nawaz',
     'Najib Khan Ruhela invites Abdali',
     'Dewan Kaura Mal invites the Singhs',
@@ -1011,7 +1011,7 @@ test('wave 18 repaired pages keep readable editorial summaries for the Marathas,
 
   const requiredPhrases = [
     'oath on the holy Koran',
-    'turned back and fired on the Marathas',
+    "turns back, fires on the Marathas",
     'Marathas captured Dina Beg',
     'twenty thousand Singhs',
     'fortified circular camp',
@@ -1048,9 +1048,9 @@ test('wave 19 repaired pages keep readable editorial summaries for the Bangar, M
     'the second elephant did not crush Hattoo Singh',
     'Jaipur sent envoys to the Singhs',
     'troops from Lahore and Sirhind arrived',
-    'the place came to be known as Shahid Ganj',
+    "five to six thousand Singhs perished",
     'Pandori in the Majha area',
-    'better half then persuades him',
+    "Mir Mannu’s wife then persuades him",
     'feet got entangled in the stirrup',
   ]
 
@@ -1081,14 +1081,14 @@ test('wave 20 repaired pages keep readable editorial summaries for Mathura, Koel
 
   const requiredPhrases = [
     'a book that dealt with the art of breaking forts',
-    'Seven days having been wasted',
-    'A forty feet high wall',
+    "seven days having been wasted",
+    "Once darkness falls, he summons his commanders and reveals the engineering answer he has chosen. A wall forty feet high is ordered at the commanding point near the fort, and the work is pressed so quickly that the defenders cannot interfere before dawn.",
     'several thousand musketeers on the top',
     'Now as came the turn of the Sikhs',
     'the Khalsa remained inexhaustible',
     'the Singhs would steal their horses and get lost',
     'The Singhs had not even loaded their muskets by then',
-    'Towards the Malwa region should they move their contingents',
+    "move their contingents toward Malwa",
     'the Sikh caravans must be accompanied by a warrior chief',
   ]
 
@@ -1123,8 +1123,8 @@ test('wave 21 repaired pages keep readable editorial summaries for the central G
     'Abdali divided it into two parts',
     'attack the Singhs instead of invading the caravan',
     'Gurmukh Singh made Jassa Singh mount his own horse',
-    'Full twenty two wounds did Jassa Singh receive',
-    'many a Singh foot soldiers did he mount on these',
+    "Jassa Singh received twenty-two wounds",
+    "mounted many foot soldiers on these",
     'The caravan carried two copies of holy Guru Granth Sahib',
     'The Singhs guarded the caravan from both the flanks',
     'Which were known by the names of Kutabo-Brahmini',
@@ -1156,7 +1156,7 @@ test('wave 22 repaired pages keep readable editorial summaries for the Ghallugha
     'protect the Sikh caravan even at the cost of their lives',
     'the author records the number his eyewitness father told',
     'the entire Khalsa Panth might accept his leadership',
-    'threatened the Singhs to eliminate them by inviting the Mughals',
+    "threatened the Singhs with elimination by inviting Mughal and Pathan authorities",
     'the Brars of Binjhu declared war',
     'fifteen hundred horses',
     'Resolving to disguise themselves in the guise of Gilja Pathans',
@@ -1191,7 +1191,7 @@ test('wave 23 repaired pages keep readable editorial summaries for the Brar subm
     'Pathan disguise',
     'took pahul and joined the Panth',
     'we are servants of the Turks',
-    'year of great massacre',
+    "year of the great massacre",
     'thirsty Singhs went to Morinda for water',
     'the Ranghars opened a volley of fire',
     'Many misls turned back at the drum beat',
@@ -1228,12 +1228,12 @@ test('wave 24 repaired pages keep readable editorial summaries for Kasur and the
   const requiredPhrases = [
     'sovereignty had already been granted to the Khalsa by their Guru',
     'There arrived a Brahmin from the city of Kasur',
-    'the Singhs were in minority as compared to the Pathans',
-    'the whole congregation moved to listen to the Guru\'s word at random',
+    "The Brahmin's insistence now forces the congregation into strategic debate. Veteran Singhs admit that the Singhs are outnumbered by the Pathans, and the strength of Kasur's garrison cannot be dismissed as a minor local problem.",
+    "whole congregation moved to take hukam from Guru Granth Sahib",
     'Khalsa march did he order early in the morning',
     'A Sikh traveler from Kasur happened to pass by them',
-    'At midday noon should the Khalsa Singhs enter the city of Kasur',
-    'Then did the Khalsa order looting and plundering of Kasur',
+    "Khalsa Singhs should enter Kasur at midday",
+    "Khalsa then ordered the looting and plundering of Kasur",
     'Reminding the Khalsa about his wife\'s captivity under the Pathans',
     'They had the audacity to capture Jassa Singh Ahluwalia',
   ]
@@ -1268,7 +1268,7 @@ test('wave 25 repaired pages keep readable editorial summaries for the Dileram t
     'transferred all their assets to Kasur',
     'divide the plunder in equal parts',
     "Begum Noor Jahan's jewels",
-    'the more greedy did Maali Singh become',
+    "Maali Singh grew still greedier",
     "wealth gained by breaking one's vow",
     'Jassa Singh chalked out a strategy',
     'smearing his head with curd',
@@ -1313,7 +1313,7 @@ test('wave 26 repaired pages keep readable editorial summaries for Taruna Dal ex
     'Sirhind was exposed because its officer was away',
     'Keeping all his war drums in the rear guard',
     'The location where wounded Zain Khan had fallen',
-    'innocent infants had been beheaded here',
+    "Guru’s young sons had been killed here",
   ]
 
   pages.forEach((page, index) => {
@@ -1344,7 +1344,7 @@ test('wave 27 repaired pages keep readable editorial summaries for the Sirhind m
     'a memorial be built at the precise place',
     'The Panth gathered there in ceremony',
     'hear, read and pray at the shrine',
-    'Rupees eighty thousands had he paid in public view',
+    "paid eighty thousand rupees in public view",
     'Buddha Dal Singhs opined that the Khalsa must march towards Delhi',
     'the force returned toward Jind and Karnal',
     'the Pathans of Malerkotla are explicitly spared',
@@ -1385,9 +1385,9 @@ test('wave 28 repaired pages keep readable editorial summaries for the Nihang Gu
     'Standing before the Guru in Harmandir Sahib',
     'A step taken ahead upholds a Singh\'s dignity',
     'Company of the Khalsa is what they craved for',
-    'Instantly his head was severed from his body',
+    "his head is severed from his body",
     'With folded hands did Gurbakhsh Singh pray to God',
-    'All the Martyrs corpses were piled up on a single pyre',
+    "Their answer is an act of collective remembrance. The martyrs' bodies are piled up on a single pyre at the back of Akal Takht, and from that cremation the community begins to form the memorial tradition that will be known through Shaheed Ganj.",
     'That he must take birth again to be with Khalsa Panth',
     'The whole Khalsa Panth would abide by his command',
   ]
@@ -1538,7 +1538,7 @@ test('wave 32 repaired pages keep readable editorial summaries for the Delhi shr
     'put up his camp at Subzi Mandi',
     'site of Rakab Ganj',
     'old water-carrier woman',
-    'Without arms never does a Singh lift his foot',
+    "He will not appear unarmed",
     'Never should any butcher be seen around on that day',
     'field of sugarcane crop across the river (Yamuna)',
     'plunged deep into the river Yamuna',
@@ -1570,16 +1570,16 @@ test('wave 33 repaired pages keep readable editorial summaries for the Deegh set
   ])
 
   const requiredPhrases = [
-    'jai suraj mal gheriyo dik ghumarhi mahi',
+    "misls move against Suraj Mal",
     'sayam singh utth khaloyo',
-    'timai panth gur giljai galvayo',
+    "ten misls are treated as a sacred-political formation",
     'Malwa\'s forests',
     'Bhai Behlo',
     'Vaisakhi festival',
     'Bhai Bhagtu offered them shelter',
     'jahangir kai ja pau pâi',
     'bhagatâ kahi ab ôt nahin aurai',
-    'kahi môhan ham dillî javain',
+    "Baba Mohan therefore steps forward with a plain proposal",
   ]
 
   pages.forEach((page, index) => {
@@ -1614,12 +1614,12 @@ test('wave 34 repaired pages keep readable editorial summaries for the late Malw
     'With a sovereign rule was Phool invested',
     'Two sons were born in his family',
     'Ala Singh narrated his tale of woe',
-    'they must not put up a camp in close vicinity',
+    "they must not camp too close",
     'The Khalsa emblems did the Singhs unfurl',
     'Many a horse did he present as gifts to Singhs',
     'instantly did he return to the Panth',
     'There used to sit S. Sham Singh in this hospice',
-    'gur panth parkâsh bhayô ych púran',
+    "names itself with solemn completion",
   ]
 
   pages.forEach((page, index) => {
@@ -1691,8 +1691,8 @@ test('wave 36 repaired pages keep readable editorial summaries for the Bota Sing
     'Now hear the story of Sukha Singh',
     'jumped into a deep well',
     'die fighting the Mughals',
-    'contributed the entire booty to the community kitchen',
-    'ex-communicated by the Khalsa Panth',
+    "contributes the entire booty to the community kitchen",
+    "excommunicated by the Khalsa",
     'proceeded on an expedition towards Delhi',
     'fight only when they are armed with their small firearms',
     'Charat Singh felt extremely outraged',
@@ -1724,7 +1724,7 @@ test('wave 37 repaired pages keep readable editorial summaries for the Parol and
   ])
 
   const requiredPhrases = [
-    'towards Basohali',
+    "toward Basohli the battered Singhs marched",
     'river flowing in full torrent and flood',
     'dug trenches and underground bunkers',
     'five rupees for each Sikh’s head',
@@ -1733,7 +1733,7 @@ test('wave 37 repaired pages keep readable editorial summaries for the Parol and
     'reassemble in the Majha region',
     'strongest Mughal defences',
     'called the public with a beat of drum',
-    'make-shift boats of reeds and grass',
+    "makeshift boats of reeds and grass",
   ]
 
   pages.forEach((page, index) => {
@@ -1764,11 +1764,11 @@ test('wave 38 repaired pages keep readable editorial summaries for the Bhai Taru
   const requiredPhrases = [
     'restore the twelve villages',
     'touched by Bhai Taru Singh’s shoe',
-    'the urinary blockage got cleared',
-    'Subeg Singh summoned to the royal court',
+    "urinary blockage",
+    "Subeg Singh, summoned to the royal court",
     'The gallows dismantled',
     'ask for his funeral pyre to be prepared',
-    'planting a flag post in memory of Bhai Taru Singh',
+    "planting of a flag post in memory of Bhai Taru Singh",
     'Shah Nawaz seized power',
     'steal horses from the sleeping Mughals',
     'main highways to Delhi, Lahore, and Peshawar',
@@ -1799,7 +1799,7 @@ test('wave 39 repaired pages keep readable editorial summaries for the Babur-to-
 
   const requiredPhrases = [
     "Guru Nanak's heavenly dharamsal",
-    'Sovereignty over India belonged to Guru Nanak',
+    "sovereignty over India belongs to Guru Nanak",
     "fall at Guru Nanak's feet",
     'seven handfuls of bhang',
     'a boon can be withdrawn',
@@ -1837,17 +1837,17 @@ test('wave 40 repaired pages keep readable editorial summaries for the Mehtab, T
 
   const requiredPhrases = [
     'execution on the spoked wheel',
-    'Would never convert to Islam',
+    "he would never convert",
     'ordered the barbers to shave off his sacred hair',
-    'The rule of the Mughals would not last long',
-    'The Nawab developed a blockage in his urinary tract',
-    'The spirits of martyred Singhs',
-    'Singhs alone could uplift the curse meted out by a Singh',
-    'The Khalsa Panth alone could be the sole arbiter of his fate',
+    "Mughal rule would not last long",
+    "Nawab developed a blockage in his urinary tract",
+    "spirits of martyred Singhs",
+    "After failing to obtain relief from one set of holy men after another, the Nawab finally admits that ordinary remedies cannot undo what a saint has spoken. He comes to believe that Singhs alone could lift the curse pronounced by a Singh, because only the Panth can answer the wrong done to Taru Singh.",
+    "Khalsa Panth alone could arbitrate",
     'Khalsa Panth alone being empowered to annul that curse',
-    'Wherever the five Singhs prayed together with folded hands',
-    'The Singhs became desperate to launch an attack on Lahore',
-    'Divine Guru and Khalsa were synonymous with each other',
+    "wherever five Singhs prayed together with folded hands",
+    "Singhs become desperate to launch an attack on Lahore",
+    "Divine Guru and the Khalsa were bound together",
   ]
 
   pages.forEach((page, index) => {
@@ -1876,7 +1876,7 @@ test('wave 41 repaired pages keep readable editorial summaries for the Jaspat Ra
   ])
 
   const requiredPhrases = [
-    'the Singhs laid waste around Lahore',
+    "they laid waste around Lahore",
     'we have no enmity with you, only with the Turks',
     'The memory of Bhai Mani Singh\'s dismemberment was revived',
     'Lakhpat Rai laid his turban at the Nawab\'s feet',
@@ -1917,11 +1917,11 @@ test('wave 42 repaired pages keep readable editorial summaries for Daulat Khan, 
     'would never return to the Pathans',
     'small men cannot accomplish great tasks',
     'seek Guru Nanak\'s permission',
-    'let us go and see him',
+    "Babur reacts skeptically when Daulat Khan says Guru Nanak can bestow or withhold sovereignty. He asks who Nanak is to grant kingship and then resolves to go see him, treating the encounter as a test of spiritual claim rather than an act of devotion.",
     'Daulat Khan dismounted and bowed at the Guru\'s feet',
     'Mardana is told to play the rabab',
     'mercy or wrath from God',
-    'the great Hindu pir',
+    "a great pir",
     'he came because he was called',
     'The gate opens when he invokes satnam',
   ]
@@ -1960,8 +1960,8 @@ test('wave 43 repaired pages keep readable editorial summaries for the Bhai Taru
     'one sheath cannot hold two swords',
     'Episode 107 opens with the Sakhi of Babur',
     'Daulat Khan\'s wives received Guru Nanak\'s blessing',
-    'Daulat Khan fled toward Eminabad',
-    'Daulat Khan urged Guru Nanak to take the throne of Hindustan',
+    "News reaches Daulat Khan that his sons have been killed, and Daulat Khan flees toward Eminabad in search of the one refuge still imagined as trustworthy. The movement is both geographic and spiritual, carrying him away from compromised political power and toward Guru Nanak's presence.",
+    "In the boldest part of his plea, Daulat Khan urges Guru Nanak to take the throne of Hindustan so that tyrannical rule might be broken at its root. His request is not merely personal revenge; it is a proposal that spiritual authority should replace failed and violent kingship.",
   ]
 
   pages.forEach((page, index) => {
@@ -2067,9 +2067,9 @@ test('wave 46 repaired pages keep readable editorial summaries for Ahmad Shah, C
     'blessings that he would become sovereign',
     'Gurdit Singh Giani citation',
     'The poor man comes to the Guru\'s langar',
-    'He could not maintain and preserve the Guru\'s rare gift',
-    'Declared themselves to be Niranjanias instead of Guru\'s Sikhs',
-    'Listen to the episode of Tara Singh',
+    "The episode turns from remembered grace to remembered failure. He could not preserve the Guru's rare gift, so the blessing that should have deepened humility instead feeds imitation, vanity, and spiritual ambition.",
+    "declared themselves to be Niranjanias instead of Guru's Sikhs",
+    "Then the narrative deliberately turns toward a better exemplar. The call to listen to the episode of Tara Singh marks the hinge, introducing a Singh whose courage and discipline will answer the decay just condemned.",
   ]
 
   pages.forEach((page, index) => {
@@ -2098,9 +2098,9 @@ test('wave 47 repaired pages keep readable editorial summaries for the Binod Sin
   ])
 
   const requiredPhrases = [
-    'These two veterans invaded Banda Singh along with the Mughals',
-    'she prayed to be blessed with two sons',
-    'the whole congregation went into peels of laughter',
+    "these two veterans joined the Mughals against Banda Singh",
+    "asks to be blessed with two sons",
+    "whole congregation went into peals of laughter",
     'how the title martyr became associated with the Singhs',
     'many ran away from the congregation',
     'Majhail Singhs competed to offer their heads',
@@ -2143,7 +2143,7 @@ test('wave 48 repaired pages keep readable editorial summaries for the Gurdas Na
     'opened the gates with swords drawn',
     'two bullets in each musket',
     'complete the one lakh and a quarter',
-    'hunger had reduced them to skeletons',
+    "hunger had reduced the besieged Singhs to skeletons",
     'Episode of Banda Singh\'s Capture',
     'dragged behind a horse',
     'sakhi of Banda\'s disappearance',
@@ -2259,7 +2259,7 @@ test('wave 51 repaired pages keep readable editorial summaries for the Chamba, M
     'rumor of Banda’s capture',
     'night march from Lohgarh',
     'letter under the Guru’s seal',
-    'I am no longer the Guru’s Sikh',
+    "The letter reaches Banda, but the hoped-for submission never arrives. In his reply he refuses the summons, argues that the Mughals would never spare him, and bluntly says, “I am no longer the Guru’s Sikh.”",
   ]
 
   pages.forEach((page, index) => {

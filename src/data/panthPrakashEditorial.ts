@@ -60,6 +60,14 @@ const EPISODE_OVERRIDES: Record<number, Partial<PanthPrakashEpisodeEditorial>> =
     places: ['Machhiwara'],
     relatedEpisodeNumbers: [18, 19, 21],
   },
+  24: {
+    displayTitle: 'Guru Gobind Singh at Talwandi Sabo',
+    summary: 'Guru Gobind Singh settles at Talwandi Sabo, receives the sangat, and turns the Damdama stay into a center of protection, instruction, and local renewal.',
+    whyItMatters: 'The title highlights the Guru’s Damdama stay at Talwandi Sabo, where the episode itself centers Rai Dalla, the sangat, and the Guru’s settling in Malwa.',
+    people: ['Guru Gobind Singh', 'Rai Dalla'],
+    places: ['Talwandi Sabo', 'Bathinda', 'Malwa'],
+    relatedEpisodeNumbers: [23, 25, 26],
+  },
   52: {
     displayTitle: 'The Chamba miracle and Banda Singh Bahadur’s reception',
     summary: 'A short Chamba hinge episode where marvel, local reception, and alliance-building shift the Banda Singh Bahadur arc forward.',
@@ -75,12 +83,35 @@ const EPISODE_OVERRIDES: Record<number, Partial<PanthPrakashEpisodeEditorial>> =
     people: ['Banda Singh Bahadur', 'Guru Gobind Singh'],
     relatedEpisodeNumbers: [26, 28],
   },
+  28: {
+    displayTitle: 'Guru Gobind Singh’s encounter with Banda Singh Bahadur',
+    summary: 'The episode moves through Jait Ram’s warning, Narain Das / Banda’s pride, and Guru Gobind Singh’s direct encounter with the figure who will become Banda Singh Bahadur.',
+    whyItMatters: 'This keeps the Banda Singh Bahadur transition readable while preserving the source title separately in the evidence layer.',
+    people: ['Guru Gobind Singh', 'Banda Singh Bahadur', 'Jait Ram'],
+    relatedEpisodeNumbers: [27, 29],
+  },
+  29: {
+    displayTitle: 'The Khalsa’s prayer and Banda Singh Bahadur’s mission',
+    summary: 'Banda submits, the Khalsa prays, and Guru Gobind Singh commissions him to confront Sirhind and gather the Singhs for the campaign ahead.',
+    whyItMatters: 'The episode is not just a generic prayer scene; it is the moment where repentance, ardas, and mission become Banda Singh Bahadur’s charge.',
+    people: ['Guru Gobind Singh', 'Banda Singh Bahadur'],
+    places: ['Sirhind'],
+    relatedEpisodeNumbers: [28, 30],
+  },
   31: {
     displayTitle: 'Banda Singh Bahadur’s next movement',
     summary: 'The damaged source title is replaced in the app layer with a readable guide title for this Banda Singh Bahadur transition episode.',
     whyItMatters: 'This keeps the episode browser usable while preserving the original extracted title in source data.',
     people: ['Banda Singh Bahadur'],
     relatedEpisodeNumbers: [30, 32],
+  },
+  34: {
+    displayTitle: 'Banda Singh meets Aali Singh and Maali Singh of Salodi',
+    summary: 'The Salodi episode introduces Aali Singh and Maali Singh as Banda Singh Bahadur’s movement gathers strength near Sirhind.',
+    whyItMatters: 'The episode shows local Khalsa allegiance shifting toward Banda Singh Bahadur before the Samana campaign opens.',
+    people: ['Banda Singh Bahadur', 'Aali Singh', 'Maali Singh', 'Wazir Khan'],
+    places: ['Salodi', 'Sirhind'],
+    relatedEpisodeNumbers: [33, 35],
   },
   37: {
     displayTitle: 'The death of Wazir Khan',
@@ -89,6 +120,14 @@ const EPISODE_OVERRIDES: Record<number, Partial<PanthPrakashEpisodeEditorial>> =
     people: ['Banda Singh Bahadur', 'Wazir Khan'],
     places: ['Sirhind'],
     relatedEpisodeNumbers: [35, 36, 40],
+  },
+  48: {
+    displayTitle: 'Banda Singh Bahadur’s campaign against Kahloor and the Hill States',
+    summary: 'Banda Singh Bahadur turns from the Mughal-held plains toward Kahloor and the hill-state coalition forming around the campaign.',
+    whyItMatters: 'The episode broadens the Banda Singh Bahadur arc from Punjab sovereignty into confrontation with the hill chiefs around Anandpur and Kiratpur.',
+    people: ['Banda Singh Bahadur'],
+    places: ['Kahloor', 'Anandpur', 'Kiratpur', 'Hill States'],
+    relatedEpisodeNumbers: [47, 49],
   },
   115: {
     displayTitle: 'The killing of Jassu / Jadu Rai after Bhai Taru Singh’s martyrdom',
@@ -147,6 +186,14 @@ const EPISODE_OVERRIDES: Record<number, Partial<PanthPrakashEpisodeEditorial>> =
     whyItMatters: 'This starts one of the large late arcs about Afghan imperial power and Sikh resilience.',
     people: ['Ahmad Shah', 'Sukha Singh'],
     relatedEpisodeNumbers: [122, 124],
+  },
+  125: {
+    displayTitle: 'The Marathas and the Khalsa Panth at Sirhind',
+    summary: 'The Khalsa joins the Sirhind campaign, tests the Maratha alliance, and emerges with new political weight after the city is taken.',
+    whyItMatters: 'The episode shows how Sikh power, Maratha ambition, and Sirhind’s symbolic memory collide in the late eighteenth-century arc.',
+    people: ['Dina Beg'],
+    places: ['Sirhind', 'Doaba'],
+    relatedEpisodeNumbers: [124, 126],
   },
   169: {
     displayTitle: 'Bunga of Sardar Sham Singh and the return of Biru Singh',
@@ -229,6 +276,36 @@ export function getPanthPrakashEpisodeEditorial(episode: LibraryEpisodeIndexEntr
 export function getPanthPrakashEpisodeDisplayTitle(episode: LibraryEpisodeIndexEntry | { number: number; title: string; startPage: number; endPage: number }) {
   const episodeNumber = 'episodeNumber' in episode ? episode.episodeNumber : episode.number
   return EPISODE_TITLE_OVERRIDES[episodeNumber] ?? cleanGeneratedEpisodeTitle(episode.title, episodeNumber)
+}
+
+function normalizeTitleForComparison(title: string) {
+  return title
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, '')
+    .replace(/\.{2,}/g, '')
+    .replace(/\bRènion\b/gi, 'region')
+    .replace(/\bBras\b/gi, 'brars')
+    .replace(/\bnd\b$/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+}
+
+export function getPanthPrakashPageDisplayTitle(page: LibraryPagePayload) {
+  if (!page.episode) return page.title
+
+  const episodeDisplayTitle = getPanthPrakashEpisodeDisplayTitle(page.episode)
+  const pageTitle = normalizeTitleForComparison(page.title)
+  const episodeTitle = normalizeTitleForComparison(page.episode.title)
+  const generatedPageTitle = normalizeTitleForComparison(cleanGeneratedEpisodeTitle(page.title, page.episode.number))
+  const generatedEpisodeTitle = normalizeTitleForComparison(cleanGeneratedEpisodeTitle(page.episode.title, page.episode.number))
+
+  if (pageTitle === episodeTitle || generatedPageTitle === generatedEpisodeTitle) {
+    return episodeDisplayTitle
+  }
+
+  return page.title
 }
 
 export interface PanthPrakashEditionDebtReport {

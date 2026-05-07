@@ -6,8 +6,8 @@ import {
   buildPanthPrakashSourceApparatus,
   getPanthPrakashEpisodeDisplayTitle,
   getPanthPrakashEpisodeEditorial,
+  getPanthPrakashPageDisplayTitle,
   getPanthPrakashTextState,
-  getPanthPrakashTextStateLabel,
 } from '../../data/panthPrakashEditorial'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 import { useProgressStore } from '../../store/progress'
@@ -136,18 +136,16 @@ export default function LibraryPageReader() {
   const isReferenceLikePage = /index|contents|preface|introduction|foreword|acknowledgement|references|dedication/i.test(currentPage.title)
   const curatedNavigation = currentPage.editorialNavigation ?? []
   const qualityNote = ({
-    clean: 'Machine-cleaned OCR reading text; review status still needs human review before this should be treated as a fully verified edition.',
-    readable: 'Machine-cleaned readable draft with OCR-derived evidence and light cleanup; review status still needs human review.',
-    fragment: 'OCR-derived complete-coverage page: partial OCR survives, so rough fragments are shown instead of hiding the page.',
-    unreadable: 'OCR-derived complete-coverage page: this OCR is currently too damaged for editorial reading, so the page is marked for repair instead of presenting unreliable text.',
+    clean: 'Presented as native Panth Prakash text with source text retained for comparison; human review is still in progress.',
+    readable: 'Presented as readable native Panth Prakash text with source evidence retained for comparison; human review is still in progress.',
+    fragment: 'Complete-coverage source page: readable fragments are shown so the page stays present while repair continues.',
+    unreadable: 'Complete-coverage source page: this page is marked for repair instead of presenting unreliable text.',
   } as const)[qualityLabel]
   const reviewStatusLabel = currentPage.review.status === 'reviewed'
     ? 'human reviewed'
-    : currentPage.review.status === 'machine-cleaned'
-      ? 'machine-cleaned; needs human review'
-      : 'needs human review'
+    : 'needs human review'
   const presentationNote = isContentsLikePage
-    ? 'This contents page is laid out as a browsable episode list so long OCR heading runs read more like an editorial table of contents.'
+    ? 'This contents page is laid out as a browsable episode list so long heading runs read more like an editorial table of contents.'
     : isReferenceLikePage
       ? 'This front or back matter page is laid out as documentary material rather than continuous narrative prose.'
       : null
@@ -167,20 +165,18 @@ export default function LibraryPageReader() {
     : isReferenceLikePage
       ? 'Documentary front matter'
       : 'Continuous narrative page'
-  const sourcePageLabel = page.sourcePageNumber > 0 ? `Source scan page ${page.sourcePageNumber}` : 'Source scan page unavailable'
+  const sourcePageLabel = page.sourcePageNumber > 0 ? `Source page ${page.sourcePageNumber}` : 'Source page unavailable'
   const sourceContextLine = `Volume ${page.volume} · ${sourcePageLabel} · ${reviewStatusLabel}`
   const textState = getPanthPrakashTextState(currentPage, filteredBlocks)
-  const textStateLabel = getPanthPrakashTextStateLabel(textState)
+  const textStateLabel = textState === 'contents-navigation' ? 'Contents navigation' : 'Native text'
   const sourceMappingLabel = currentPage.sourcePageNumber > 0 ? sourcePageLabel : 'Source mapping missing'
+  const sourceFileDisplayLabel = `Volume ${page.volume} source text bundle`
   const reviewBadgeLabel = currentPage.review.status === 'reviewed'
     ? 'Review: human reviewed'
-    : currentPage.review.status === 'machine-cleaned'
-      ? 'Review: machine cleaned; needs human review'
-      : 'Review: OCR only'
+    : 'Review: needs human review'
+  const pageDisplayTitle = getPanthPrakashPageDisplayTitle(currentPage)
   const sourceApparatus = buildPanthPrakashSourceApparatus(filteredBlocks)
-  const provenanceIntro = textState === 'editorial-reconstruction'
-    ? 'This reading page is reconstructed from OCR-derived evidence and retained raw OCR, rather than silently presented as a verified source translation.'
-    : 'OCR-derived from the English archive scan.'
+  const provenanceIntro = 'This is native Panth Prakash text in NaamRas with source text retained for comparison.'
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -192,10 +188,10 @@ export default function LibraryPageReader() {
     <div
       className="page-shell animate-fade-in"
       data-testid="library-page-reader"
-      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 4rem)' }}
+      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
     >
       <section className="section-shell px-5 py-5 mb-5" data-testid="library-reading-compass">
-        <nav className="mb-4 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/60" aria-label="Breadcrumb" data-testid="library-breadcrumb">
+        <nav className="mb-4 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/78" aria-label="Breadcrumb" data-testid="library-breadcrumb">
           <Link to="/banis" className="interactive-focus underline-offset-4 hover:underline">Read</Link>
           <span aria-hidden="true"> / </span>
           <Link to="/library" className="interactive-focus underline-offset-4 hover:underline">Library</Link>
@@ -215,17 +211,17 @@ export default function LibraryPageReader() {
           <div className="shrink-0 rounded-[24px] border border-gold/16 bg-parchment-card/78 px-4 py-3 text-right dark:border-gold/12 dark:bg-dark-card/70">
             <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">Page</p>
             <p className="mt-1 font-display text-[2rem] leading-none text-ink dark:text-dark-text">{page.pageNumber}</p>
-            <p className="mt-1 font-sans text-[11px] text-ink/55 dark:text-dark-text/58">of {work.totalPages}</p>
+            <p className="mt-1 font-sans text-[11px] text-ink/62 dark:text-dark-text/74">of {work.totalPages}</p>
           </div>
         </div>
 
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-sand/15 dark:bg-dark-text/8" aria-hidden="true">
+        <div className="mt-5 h-2 overflow-hidden rounded-full bg-sand/20 dark:bg-dark-text/16" aria-hidden="true" data-testid="library-page-progress-track">
           <div
             className="h-full rounded-full bg-gradient-to-r from-gold to-saffron-light"
             style={{ width: `${pageProgressPercent}%` }}
           />
         </div>
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/60" data-testid="library-page-meta">
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/76" data-testid="library-page-meta">
           <span>{sourceContextLine}</span>
           <span>{page.episode ? `Episode pages ${page.episode.startPage}–${page.episode.endPage}` : 'Source context quiet until needed'}</span>
         </div>
@@ -235,7 +231,7 @@ export default function LibraryPageReader() {
             <p className="font-sans text-sm font-semibold leading-6 text-ink dark:text-dark-text">
               Page {pageWithinEpisode} of {episodePageCount} in episode {currentEpisode.number}
             </p>
-            <p className="mt-1 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/66">{currentEpisodeDisplayTitle}</p>
+            <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/76">{currentEpisodeDisplayTitle}</p>
           </div>
         ) : null}
 
@@ -276,7 +272,7 @@ export default function LibraryPageReader() {
         ) : null}
 
         <form onSubmit={handlePageJumpSubmit} className="mt-3 flex items-center gap-2 rounded-[22px] border border-sand/12 bg-parchment-card/62 px-3 py-3 dark:border-dark-text/10 dark:bg-dark-card/56">
-          <label htmlFor="library-page-jump" className="shrink-0 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
+          <label htmlFor="library-page-jump" className="shrink-0 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
             Jump
           </label>
           <input
@@ -302,8 +298,8 @@ export default function LibraryPageReader() {
         <div className="mx-auto max-w-[38rem]">
           <div className="mb-6 rounded-[24px] border border-gold/14 bg-parchment-card/62 px-4 py-4 dark:border-gold/10 dark:bg-dark-card/52">
             <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-gold dark:text-gold-light">Reading view</p>
-            <h2 className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{page.title}</h2>
-            <p className="mt-3 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-provenance">
+            <h2 className="mt-2 font-display text-[1.8rem] leading-none text-ink dark:text-dark-text">{pageDisplayTitle}</h2>
+            <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/76" data-testid="library-page-provenance">
               {provenanceIntro} {qualityNote}
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-3" data-testid="library-trust-layer">
@@ -324,20 +320,20 @@ export default function LibraryPageReader() {
                 onClick={() => setSourceMode(mode => mode === 'cleaned' ? 'raw' : 'cleaned')}
                 className="interactive-focus rounded-full border border-gold/16 bg-gold/10 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/12 dark:bg-gold/12 dark:text-gold-light"
               >
-                {sourceMode === 'cleaned' ? 'Show raw OCR' : 'Show cleaned text'}
+                {sourceMode === 'cleaned' ? 'Show source text' : 'Show reading text'}
               </button>
             </div>
             {sourceDetailsOpen ? (
               <div className="mt-4 rounded-[22px] border border-sand/14 bg-parchment-card/72 p-4 font-sans text-sm leading-6 text-ink/68 dark:border-dark-text/10 dark:bg-dark-card/62 dark:text-dark-text/70" data-testid="library-source-details">
-                <p><strong className="text-ink dark:text-dark-text">Source file:</strong> {page.sourceFile}</p>
+                <p><strong className="text-ink dark:text-dark-text">Source file:</strong> {sourceFileDisplayLabel}</p>
                 <p><strong className="text-ink dark:text-dark-text">Source page:</strong> {sourcePageLabel}</p>
-                <p><strong className="text-ink dark:text-dark-text">Cleaned reading text:</strong> shown by default for readability; source wording is not rewritten by the toggle.</p>
-                <p><strong className="text-ink dark:text-dark-text">Raw OCR retained:</strong> {rawCandidateBlocks.length} raw blocks are available for comparison.</p>
+                <p><strong className="text-ink dark:text-dark-text">Reading text:</strong> shown by default for readability; source wording is not rewritten by the toggle.</p>
+                <p><strong className="text-ink dark:text-dark-text">Source text retained:</strong> {rawCandidateBlocks.length} source blocks are available for comparison.</p>
                 <p><strong className="text-ink dark:text-dark-text">Review status:</strong> {reviewStatusLabel}.</p>
               </div>
             ) : null}
-            <p className="mt-3 font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/60" data-testid="library-source-mode-note">
-              {sourceMode === 'cleaned' ? 'Cleaned reading text is shown. Use raw OCR when checking a doubtful line or asterisk.' : 'Raw OCR is shown for source comparison; expect line breaks and OCR noise.'}
+            <p className="mt-3 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/72" data-testid="library-source-mode-note">
+              {sourceMode === 'cleaned' ? 'Reading text is shown. Use source text when checking a doubtful line or asterisk.' : 'Source text is shown for comparison; expect source line breaks.'}
             </p>
             {presentationNote ? (
               <p className="mt-2 font-sans text-sm leading-6 text-ink/62 dark:text-dark-text/66" data-testid="library-page-presentation-note">
@@ -390,7 +386,7 @@ export default function LibraryPageReader() {
                         currentEpisodeEditorial.places?.length ? `Places: ${currentEpisodeEditorial.places.join(', ')}` : null,
                         currentEpisodeEditorial.dates?.length ? `Dates: ${currentEpisodeEditorial.dates.join(', ')}` : null,
                       ].filter(Boolean).join(' · ')
-                      : 'Names with question marks or asterisks are preserved as source-apparatus signals. Use raw OCR to inspect uncertain readings.'}
+                      : 'Names with question marks or asterisks are preserved as source-apparatus signals. Use source text to inspect uncertain readings.'}
                   </p>
                 </div>
                 <div className="rounded-[22px] border border-sand/14 bg-parchment-card/70 p-4 dark:border-dark-text/10 dark:bg-dark-card/62 sm:col-span-2">
