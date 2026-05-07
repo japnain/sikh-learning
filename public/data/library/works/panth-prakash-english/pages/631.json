@@ -3,22 +3,22 @@
   "pageNumber": 631,
   "volume": 2,
   "sourcePageNumber": 56,
-  "title": "Bibliographic Fragment / Citation Spillover",
+  "title": "Bibliographic Note and Citations",
   "blocks": [
     {
       "id": "manual-631-1",
       "type": "paragraph",
-      "text": "This damaged page does not preserve a continuous narrative scene, but it does retain enough detail to show that it belongs to a citation and editorial spillover rather than to the story proper. The surviving clues point away from battlefield action and toward source attribution."
+      "text": "This page preserves citation material rather than a continuous narrative scene. References to Gurdit Singh Giani, Singh Sabha Patrikam, and related publication details place it with the work’s scholarly apparatus."
     },
     {
       "id": "manual-631-2",
       "type": "paragraph",
-      "text": "The clearest signal is a Gurdit Singh Giani citation that appears alongside references to Singh Sabha Patrikam and related publication details. In editorial terms, the page is best understood as bibliographic residue carried into the OCR stream rather than as a recoverable prose episode."
+      "text": "The clearest signal is a Gurdit Singh Giani citation that appears alongside Singh Sabha Patrikam and related publication details, pointing the reader toward source attribution rather than battlefield action."
     },
     {
       "id": "manual-631-3",
       "type": "paragraph",
-      "text": "For the in-app reader, the most faithful repair is to mark the fragment as citation material and preserve continuity without pretending the lost text can be confidently restored. That keeps the page readable while remaining honest about the source's condition."
+      "text": "This page marks the citation material while preserving source-page provenance, keeping the page readable without turning it into a recoverable prose episode."
     }
   ],
   "rawBlocks": [

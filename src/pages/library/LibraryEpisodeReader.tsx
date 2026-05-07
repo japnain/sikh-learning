@@ -6,7 +6,6 @@ import {
   getPanthPrakashEpisodeDisplayTitle,
   getPanthPrakashEpisodeEditorial,
   getPanthPrakashTextState,
-  getPanthPrakashTextStateLabel,
 } from '../../data/panthPrakashEditorial'
 import SurfaceStateCard from '../../components/SurfaceStateCard'
 
@@ -148,7 +147,11 @@ export default function LibraryEpisodeReader() {
   }
 
   return (
-    <div className="page-shell animate-fade-in pb-[calc(var(--nav-stack-height)+var(--safe-area-bottom)+4.75rem)]" data-testid="panth-episode-reader">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="panth-episode-reader"
+      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
+    >
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <Link to={`/library/${reader.work.id}`} className="interactive-focus rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text">
           Episode library
@@ -176,15 +179,15 @@ export default function LibraryEpisodeReader() {
         ) : null}
 
         <div className="mt-6 rounded-[24px] border border-sand/14 bg-parchment-card/68 p-4 dark:border-dark-text/10 dark:bg-dark-card/58" data-testid="panth-episode-trust-layer">
-          <p className="eyebrow">Reader status</p>
+          <p className="eyebrow">Native reading coverage</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <span className="chip-pill">Source-backed pages: {trustSummary.sourceBacked}</span>
-            <span className="chip-pill">Editorial reconstructions: {trustSummary.editorialReconstruction}</span>
-            {trustSummary.contentsNavigation ? <span className="chip-pill">Contents/navigation pages: {trustSummary.contentsNavigation}</span> : null}
-            <span className="chip-pill">Raw source retained: {trustSummary.rawSourceRetained}</span>
+            <span className="chip-pill">{reader.pages.length} pages in this episode</span>
+            <span className="chip-pill">{trustSummary.rawSourceRetained} source pages retained</span>
+            {trustSummary.contentsNavigation ? <span className="chip-pill">{trustSummary.contentsNavigation} navigation pages</span> : null}
+            <span className="chip-pill">Native app text</span>
           </div>
           <p className="mt-3 font-sans text-xs leading-5 text-ink/62 dark:text-dark-text/64">
-            Reconstructed pages are readable native summaries grounded in retained OCR/source text. Open the source drawer or individual source pages for provenance.
+            This episode is presented as readable NaamRas text. The linked source pages remain available for provenance and comparison without making the source layer the main reading experience.
           </p>
         </div>
 
@@ -206,27 +209,24 @@ export default function LibraryEpisodeReader() {
         </div>
 
         <section className="mt-8 max-w-3xl" data-testid="panth-episode-text">
-          {reader.pages.map(page => {
-            const textState = getPanthPrakashTextState(page, page.blocks)
-            return (
-              <section key={page.pageNumber} className="border-t border-sand/12 py-6 first:border-t-0 dark:border-dark-text/10">
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  <span className="chip-pill">Page {page.pageNumber}</span>
-                  <span className="chip-pill">Source scan page {page.sourcePageNumber}</span>
-                  <span className="chip-pill">{getPanthPrakashTextStateLabel(textState)}</span>
-                </div>
-                {page.blocks.map(block => (
-                  <p key={`${page.pageNumber}-${block.id}`} className={blockClassName(block)}>
-                    {block.text}
-                  </p>
-                ))}
-              </section>
-            )
-          })}
+          {reader.pages.map(page => (
+            <section key={page.pageNumber} className="border-t border-sand/12 py-6 first:border-t-0 dark:border-dark-text/10">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="chip-pill">Page {page.pageNumber}</span>
+                <span className="chip-pill">Source page {page.sourcePageNumber}</span>
+                <span className="chip-pill">Native text</span>
+              </div>
+              {page.blocks.map(block => (
+                <p key={`${page.pageNumber}-${block.id}`} className={blockClassName(block)}>
+                  {block.text}
+                </p>
+              ))}
+            </section>
+          ))}
         </section>
 
         <section className="mt-6 rounded-[24px] border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56" data-testid="panth-episode-apparatus">
-          <p className="eyebrow">Notes and source apparatus</p>
+          <p className="eyebrow">Notes and verse markers</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {apparatus.meters.map(meter => <span key={meter} className="chip-pill">Verse meter: {meter}</span>)}
             {apparatus.markers.map(marker => <span key={marker} className="chip-pill">Verse marker: {marker}</span>)}
@@ -240,18 +240,18 @@ export default function LibraryEpisodeReader() {
             onClick={() => setShowSource(value => !value)}
             className="interactive-focus rounded-full border border-gold/18 bg-gold/10 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-dark dark:border-gold/18 dark:bg-gold/12 dark:text-gold-light"
           >
-            {showSource ? 'Hide source provenance' : 'Show source provenance'}
+            {showSource ? 'Hide source evidence' : 'Show source evidence'}
           </button>
           {showSource ? (
             <div className="mt-4 grid gap-4" data-testid="panth-episode-raw-source">
-              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Raw OCR retained for {reader.pages.filter(page => page.rawBlocks?.length).length} source pages.</p>
+              <p className="font-sans text-sm font-semibold text-ink dark:text-dark-text">Source text retained for {reader.pages.filter(page => page.rawBlocks?.length).length} source pages.</p>
               {reader.pages.map(page => (
                 <div key={page.pageNumber} className="rounded-[18px] border border-sand/12 bg-parchment-card/72 p-3 dark:border-dark-text/10 dark:bg-dark-card/64">
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-gold dark:text-gold-light">
-                    Page {page.pageNumber} · Source scan page {page.sourcePageNumber} · {getPanthPrakashTextStateLabel(getPanthPrakashTextState(page, page.blocks))}
+                    Page {page.pageNumber} · Source page {page.sourcePageNumber} · Source text
                   </p>
                   <p className="mt-2 line-clamp-5 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">
-                    {(page.rawBlocks ?? []).map(block => block.text).join(' ').slice(0, 900) || 'No raw OCR block present.'}
+                    {(page.rawBlocks ?? []).map(block => block.text).join(' ').slice(0, 900) || 'No source text block present.'}
                   </p>
                 </div>
               ))}

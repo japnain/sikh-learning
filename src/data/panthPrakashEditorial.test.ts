@@ -2,11 +2,15 @@ import { describe, expect, test } from 'vitest'
 import episodes from '../../public/data/library/works/panth-prakash-english/episodes.json'
 import pagesIndex from '../../public/data/library/works/panth-prakash-english/pages.json'
 import searchIndexJson from '../../public/data/library/search-index.json'
-import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibrarySearchIndex } from '../types'
+import page210 from '../../public/data/library/works/panth-prakash-english/pages/210.json'
+import page215 from '../../public/data/library/works/panth-prakash-english/pages/215.json'
+import page225 from '../../public/data/library/works/panth-prakash-english/pages/225.json'
+import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibrarySearchIndex } from '../types'
 import {
   buildPanthPrakashEditionDebtReport,
   getPanthPrakashEpisodeDisplayTitle,
   getPanthPrakashEpisodeEditorial,
+  getPanthPrakashPageDisplayTitle,
   getPanthPrakashPrioritizedContextEpisodes,
 } from './panthPrakashEditorial'
 
@@ -26,6 +30,39 @@ describe('panthPrakashEditorial', () => {
     expect(getPanthPrakashEpisodeDisplayTitle(banda)).toBe('Banda Singh Bahadur’s next movement')
     expect(getPanthPrakashEpisodeDisplayTitle(parol)).toBe('The Chhota Ghallughara at Parol and Kathuha')
     expect(getPanthPrakashEpisodeDisplayTitle(headCount)).toBe('Counting the Singhs after the massacre')
+  })
+
+  test('applies verified display-title overrides for the launch-blocking title artifacts', () => {
+    const expectedTitles = [
+      [24, 'Guru Gobind Singh at Talwandi Sabo'],
+      [28, 'Guru Gobind Singh’s encounter with Banda Singh Bahadur'],
+      [29, 'The Khalsa’s prayer and Banda Singh Bahadur’s mission'],
+      [34, 'Banda Singh meets Aali Singh and Maali Singh of Salodi'],
+      [48, 'Banda Singh Bahadur’s campaign against Kahloor and the Hill States'],
+      [125, 'The Marathas and the Khalsa Panth at Sirhind'],
+    ] as const
+    const artifactPattern = /Rènion|\bBras\b|\bBanda nd\b|\.\.\.?$/i
+
+    expectedTitles.forEach(([episodeNumber, expectedTitle]) => {
+      const episode = episodeIndex.find(entry => entry.episodeNumber === episodeNumber)!
+      const displayTitle = getPanthPrakashEpisodeDisplayTitle(episode)
+      const editorial = getPanthPrakashEpisodeEditorial(episode)
+
+      expect(displayTitle).toBe(expectedTitle)
+      expect(editorial?.displayTitle).toBe(expectedTitle)
+      expect(displayTitle).not.toMatch(artifactPattern)
+      expect(episode.title).toBeTruthy()
+    })
+
+    expect(episodeIndex.find(entry => entry.episodeNumber === 24)?.title).toMatch(/Rènion/i)
+    expect(episodeIndex.find(entry => entry.episodeNumber === 28)?.title).toMatch(/Banda nd/i)
+    expect(episodeIndex.find(entry => entry.episodeNumber === 125)?.title).toMatch(/\.\.\./)
+  })
+
+  test('uses cleaned page display titles while keeping specific source-page titles when they are meaningful', () => {
+    expect(getPanthPrakashPageDisplayTitle(page210 as LibraryPagePayload)).toBe('Guru Gobind Singh at Talwandi Sabo')
+    expect(getPanthPrakashPageDisplayTitle(page225 as LibraryPagePayload)).toBe('Guru Gobind Singh’s encounter with Banda Singh Bahadur')
+    expect(getPanthPrakashPageDisplayTitle(page215 as LibraryPagePayload)).toBe('Rain in Malwa: Source Verse Opening')
   })
 
   test('provides an expanded prioritized context set across major Panth Prakash arcs', () => {
@@ -67,6 +104,34 @@ describe('panthPrakashEditorial', () => {
     const chamba = searchIndex.episodes?.find(episode => episode.episodeNumber === 52)
     expect(chamba?.displayTitle).toMatch(/Chamba miracle/i)
     expect(chamba?.summary).toMatch(/Banda Singh Bahadur/i)
+  })
+
+  test('keeps search-index episode and page labels synced to the cleaned launch-blocking titles', () => {
+    const expectedTitles = [
+      [24, 'Guru Gobind Singh at Talwandi Sabo'],
+      [28, 'Guru Gobind Singh’s encounter with Banda Singh Bahadur'],
+      [29, 'The Khalsa’s prayer and Banda Singh Bahadur’s mission'],
+      [34, 'Banda Singh meets Aali Singh and Maali Singh of Salodi'],
+      [48, 'Banda Singh Bahadur’s campaign against Kahloor and the Hill States'],
+      [125, 'The Marathas and the Khalsa Panth at Sirhind'],
+    ] as const
+    const staleArtifactPattern = /Rènion|\bBras\b|\bBanda nd\b|Prayer of the Khalsa\.\.\.|Village Salodi\.\.\.|Hill States\.\.\.|Khalsa Panth\.\.\./i
+
+    expectedTitles.forEach(([episodeNumber, expectedTitle]) => {
+      const indexedEpisode = searchIndex.episodes?.find(entry => entry.episodeNumber === episodeNumber)
+      const indexedPages = searchIndex.pages?.filter(entry => entry.episodeNumber === episodeNumber) ?? []
+      const indexedText = [
+        indexedEpisode?.displayTitle,
+        indexedEpisode?.summary,
+        indexedEpisode?.searchText,
+        ...indexedPages.map(page => `${page.episodeDisplayTitle ?? ''} ${page.searchText}`),
+      ].join(' ')
+
+      expect(indexedEpisode?.displayTitle).toBe(expectedTitle)
+      expect(indexedPages.length).toBeGreaterThan(0)
+      expect(indexedPages.every(page => page.episodeDisplayTitle === expectedTitle)).toBe(true)
+      expect(indexedText).not.toMatch(staleArtifactPattern)
+    })
   })
 
   test('curates every Panth Prakash episode with reader-facing title and summary metadata', () => {

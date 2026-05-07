@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import type { LibraryEpisodeIndexEntry, LibraryPageIndexEntry, LibraryPagePayload, LibrarySearchIndex, LibrarySearchPageEntry, LibraryWork } from '../../types'
 import { loadLibraryEpisodeIndex, loadLibraryPage, loadLibraryPageIndex, loadLibrarySearchIndex, loadLibraryWorkCatalog } from '../../data/libraryRepository'
 import {
-  buildPanthPrakashEditionDebtReport,
   getPanthPrakashArcOptions,
   getPanthPrakashEpisodeDisplayTitle,
   getPanthPrakashEpisodeEditorial,
@@ -96,7 +95,7 @@ export default function PanthPrakashLibraryHome() {
     ? visibleEpisodeWindow.count
     : 24
   const visibleEpisodes = filteredEpisodes.slice(0, visibleEpisodeCount)
-  const editionDebtReport = useMemo(() => buildPanthPrakashEditionDebtReport(pageIndex, searchIndex ?? undefined), [pageIndex, searchIndex])
+  const pagesMissingSourceMapping = useMemo(() => pageIndex.filter(entry => !entry.sourcePageNumber).length, [pageIndex])
 
   function handlePageJumpSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -217,12 +216,16 @@ export default function PanthPrakashLibraryHome() {
   }
 
   return (
-    <div className="page-shell animate-fade-in pb-10" data-testid="panth-library-home">
+    <div
+      className="page-shell animate-fade-in"
+      data-testid="panth-library-home"
+      style={{ paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)' }}
+    >
       <div className="mb-4">
-        <p className="eyebrow">Source Browsing</p>
+        <p className="eyebrow">Native reader</p>
         <h1 className="mt-2 font-display text-[2.2rem] leading-none text-ink dark:text-dark-text">{work.title}</h1>
         <p className="mt-3 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Start from a page, scan the episode list, or jump straight into volume one or two.
+          Read the full Panth Prakash as bundled NaamRas text, with volume navigation, episode reading, and source pages one tap away when you want to verify a passage.
         </p>
       </div>
 
@@ -236,15 +239,18 @@ export default function PanthPrakashLibraryHome() {
         </div>
       </section>
 
-      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="panth-edition-debt">
-        <p className="eyebrow">Edition trust debt</p>
+      <section className="section-shell-quiet px-4 py-4 mb-4" data-testid="panth-native-coverage">
+        <p className="eyebrow">Complete native reader</p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <span className="chip-pill">{editionDebtReport.pagesMissingSourceMapping} pages missing source mapping</span>
-          <span className="chip-pill">{editionDebtReport.reviewStatusLabel}</span>
-          {editionDebtReport.secondaryStatusLabel ? <span className="chip-pill">{editionDebtReport.secondaryStatusLabel}</span> : null}
+          <span className="chip-pill">{work.totalPages.toLocaleString('en-US')} pages bundled</span>
+          <span className="chip-pill">{episodeIndex.length} episodes</span>
+          <span className="chip-pill">Volumes 1 and 2</span>
+          <span className="chip-pill">{pagesMissingSourceMapping} pages missing source mapping</span>
         </div>
-        <ul className="mt-3 grid gap-2 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">
-          {editionDebtReport.nextActions.map(action => <li key={action}>• {action}</li>)}
+        <ul className="mt-3 grid gap-2 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74">
+          <li>• Read continuously by episode instead of paging through scans.</li>
+          <li>• Keep source-page links available as evidence without making them the reading surface.</li>
+          <li>• Search spans the bundled text across both volumes and opens the matching episode.</li>
         </ul>
       </section>
 
@@ -252,7 +258,7 @@ export default function PanthPrakashLibraryHome() {
         <p className="eyebrow">Jump in</p>
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <form onSubmit={handlePageJumpSubmit} className="flex flex-wrap items-center gap-2">
-            <label htmlFor="panth-home-jump" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
+            <label htmlFor="panth-home-jump" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
               Jump to page
             </label>
             <input
@@ -312,10 +318,10 @@ export default function PanthPrakashLibraryHome() {
       <section className="section-shell px-5 py-5 mb-4">
         <p className="eyebrow">Search the text</p>
         <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-          Search inside the page text and raw OCR. Results stay page-first and link into the reader with episode context.
+          Search inside the bundled Panth Prakash text. Results stay page-first and link into the episode reader with source context available when needed.
         </p>
         <form onSubmit={handlePageSearchSubmit} className="mt-4 grid gap-3">
-          <label htmlFor="panth-page-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
+          <label htmlFor="panth-page-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
             Search within Panth Prakash pages
           </label>
           <div className="flex flex-wrap gap-2">
@@ -336,8 +342,8 @@ export default function PanthPrakashLibraryHome() {
           </div>
         </form>
         <div className="mt-4 grid gap-3" data-testid="panth-full-text-results">
-          {pageSearchStatus === 'searching' ? <p className="font-sans text-sm text-ink/62 dark:text-dark-text/66">Searching page text…</p> : null}
-          {pageSearchStatus === 'empty' ? <p className="font-sans text-sm text-ink/62 dark:text-dark-text/66">No page matches yet. Try a person, place, or exact OCR phrase.</p> : null}
+          {pageSearchStatus === 'searching' ? <p className="font-sans text-sm text-ink/68 dark:text-dark-text/74">Searching page text…</p> : null}
+          {pageSearchStatus === 'empty' ? <p className="font-sans text-sm text-ink/68 dark:text-dark-text/74">No page matches yet. Try a person, place, or exact phrase.</p> : null}
           {pageSearchResults.map(result => {
             const resultPath = result.episodeNumber
               ? `/library/${work.id}/episode/${result.episodeNumber}`
@@ -367,7 +373,7 @@ export default function PanthPrakashLibraryHome() {
                 <p className="mt-3 font-sans text-sm font-semibold text-ink dark:text-dark-text">
                   Page {result.pageNumber}{result.episodeDisplayTitle ? ` · ${result.episodeDisplayTitle}` : ''}
                 </p>
-                <p className="mt-1 font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/66">{result.snippet}</p>
+                <p className="mt-1 font-sans text-xs leading-5 text-ink/68 dark:text-dark-text/74">{result.snippet}</p>
               </div>
             )
           })}
@@ -379,13 +385,13 @@ export default function PanthPrakashLibraryHome() {
           <div>
             <p className="eyebrow">Episode Browser</p>
             <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-              Extracted from heading markers in the scanned translation. Search, filter, and load the full episode map without pretending the OCR layer is finished.
+              Search, filter, and load the full episode map for both volumes, then open each section as native app text.
             </p>
           </div>
         </div>
 
         <div className="mb-4 grid gap-3 rounded-[24px] border border-sand/14 bg-parchment-card/62 p-4 dark:border-dark-text/10 dark:bg-dark-card/56">
-          <label htmlFor="panth-episode-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/55 dark:text-dark-text/60">
+          <label htmlFor="panth-episode-search" className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/62 dark:text-dark-text/74">
             Search episodes
           </label>
           <input
@@ -433,7 +439,7 @@ export default function PanthPrakashLibraryHome() {
               </button>
             ))}
           </div>
-          <p className="font-sans text-xs leading-5 text-ink/58 dark:text-dark-text/60">
+          <p className="font-sans text-xs leading-5 text-ink/64 dark:text-dark-text/74" data-testid="panth-episode-count-meta">
             Showing {visibleEpisodes.length} of {filteredEpisodes.length} episodes
           </p>
         </div>

@@ -29,6 +29,11 @@ describe('PanthPrakashLibraryHome', () => {
     })
 
     expect(screen.getByRole('heading', { name: /Panth Prakash/i })).toBeInTheDocument()
+    expect(screen.getByTestId('panth-library-home')).not.toHaveClass('pb-10')
+    expect(screen.getByTestId('panth-library-home')).not.toHaveClass('pb-12')
+    expect(screen.getByTestId('panth-library-home')).toHaveStyle({
+      paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)',
+    })
     expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /go to page/i })).toBeInTheDocument()
     expect(screen.getByText(/1417 total pages/i)).toBeInTheDocument()
@@ -36,6 +41,26 @@ describe('PanthPrakashLibraryHome', () => {
     expect(screen.getByText(/Volume 2 · 842 pages/i)).toBeInTheDocument()
     expect(screen.getAllByText(/Episode 1/i).length).toBeGreaterThan(0)
     expect(screen.getByRole('link', { name: /^Start episode 1:/i })).toHaveAttribute('href', '/library/panth-prakash-english/episode/1')
+  })
+
+  test('keeps overview secondary metadata readable in dark mode', async () => {
+    render(
+      <MemoryRouter initialEntries={['/library/panth-prakash-english']}>
+        <Routes>
+          <Route path="/library/:workId" element={<PanthPrakashLibraryHome />} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByTestId('panth-library-home')).toBeInTheDocument()
+    })
+
+    expect(screen.getByText('Jump to page')).toHaveClass('dark:text-dark-text/74')
+    expect(screen.getByText('Search within Panth Prakash pages')).toHaveClass('dark:text-dark-text/74')
+    expect(screen.getByText('Search episodes')).toHaveClass('dark:text-dark-text/74')
+    expect(screen.getByTestId('panth-episode-count-meta')).toHaveClass('dark:text-dark-text/74')
+    expect(screen.getByTestId('panth-native-coverage').querySelector('ul')).toHaveClass('dark:text-dark-text/74')
   })
 
   test('exposes the full 169-episode browser with volume tabs, search, filters, and load more', async () => {
@@ -117,7 +142,7 @@ describe('PanthPrakashLibraryHome', () => {
     expect(screen.getByRole('link', { name: /Open page 169/i })).toHaveAttribute('href', '/library/panth-prakash-english/page/169')
   })
 
-  test('surfaces edition trust debt on the Panth Prakash overview', async () => {
+  test('surfaces complete native reading coverage on the Panth Prakash overview', async () => {
     render(
       <MemoryRouter initialEntries={['/library/panth-prakash-english']}>
         <Routes>
@@ -130,11 +155,13 @@ describe('PanthPrakashLibraryHome', () => {
       expect(screen.getByTestId('panth-library-home')).toBeInTheDocument()
     })
 
-    const trustDebt = screen.getByTestId('panth-edition-debt')
-    expect(trustDebt).toHaveTextContent(/0 pages missing source mapping/i)
-    expect(trustDebt).toHaveTextContent(/672 editorial reconstruction pages with raw source retained/i)
-    expect(trustDebt).toHaveTextContent(/745 source-backed reading pages/i)
-    expect(trustDebt).toHaveTextContent(/Review reconstruction pages episode-by-episode/i)
+    const nativeCoverage = screen.getByTestId('panth-native-coverage')
+    expect(nativeCoverage).toHaveTextContent(/Complete native reader/i)
+    expect(nativeCoverage).toHaveTextContent(/1,417 pages bundled/i)
+    expect(nativeCoverage).toHaveTextContent(/169 episodes/i)
+    expect(nativeCoverage).toHaveTextContent(/Volumes 1 and 2/i)
+    expect(nativeCoverage).toHaveTextContent(/0 pages missing source mapping/i)
+    expect(nativeCoverage).not.toHaveTextContent(/OCR|machine-cleaned|raw source|trust debt|editorial reconstruction/i)
   })
 
   test('shows a continue reading card when the current session belongs to Panth Prakash', async () => {

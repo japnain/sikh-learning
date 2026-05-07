@@ -22,6 +22,9 @@ describe('LibraryPageReader', () => {
     expect(within(compass).getByText('1')).toBeInTheDocument()
     expect(within(compass).getByText(/of 1417/i)).toBeInTheDocument()
     expect(screen.getByText(/KULWANT SINGH/i)).toBeInTheDocument()
+    expect(screen.getByTestId('library-page-reader')).toHaveStyle({
+      paddingBottom: 'calc(var(--nav-stack-height, 7rem) + var(--safe-area-bottom) + 10rem)',
+    })
   })
 
   test('shows episode context when the page belongs to an extracted episode', async () => {
@@ -40,7 +43,27 @@ describe('LibraryPageReader', () => {
     expect(screen.getByTestId('library-page-meta')).toHaveTextContent(/Episode/i)
   })
 
-  test('shows calmer reading controls with page jump, honest source context, and source details drawer', async () => {
+  test('keeps dark-mode breadcrumb and metadata chrome above muted contrast', async () => {
+    render(
+      <MemoryRouter initialEntries={['/library/panth-prakash-english/page/348']}>
+        <Routes>
+          <Route path="/library/:workId/page/:pageNumber" element={<LibraryPageReader />} />
+        </Routes>
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      expect(screen.getByTestId('library-page-reader')).toBeInTheDocument()
+    })
+
+    expect(screen.getByTestId('library-breadcrumb')).toHaveClass('dark:text-dark-text/78')
+    expect(screen.getByTestId('library-page-meta')).toHaveClass('dark:text-dark-text/76')
+    expect(screen.getByTestId('library-page-provenance')).toHaveClass('dark:text-dark-text/76')
+    expect(screen.getByTestId('library-source-mode-note')).toHaveClass('dark:text-dark-text/72')
+    expect(screen.getByTestId('library-page-progress-track')).toHaveClass('dark:bg-dark-text/16')
+  })
+
+  test('shows calmer reading controls with page jump, native source context, and source details drawer', async () => {
     const user = userEvent.setup()
 
     render(
@@ -58,17 +81,18 @@ describe('LibraryPageReader', () => {
     expect(screen.getByLabelText(/jump to page/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /go to page/i })).toBeInTheDocument()
     expect(screen.getByTestId('library-page-meta')).toHaveTextContent(/Volume/i)
-    expect(screen.getByTestId('library-page-meta')).toHaveTextContent(/Source scan page 12/i)
+    expect(screen.getByTestId('library-page-meta')).toHaveTextContent(/Source page 12/i)
     expect(screen.getByTestId('library-page-meta')).not.toHaveTextContent(/Source page 0/i)
-    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/OCR-derived/i)
-    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/machine-cleaned/i)
-    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/needs human review/i)
+    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/native Panth Prakash text/i)
+    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/source text/i)
+    expect(screen.getByTestId('library-page-provenance')).not.toHaveTextContent(/OCR|machine-cleaned|raw source/i)
 
     await user.click(screen.getByRole('button', { name: /source details/i }))
     const drawer = screen.getByTestId('library-source-details')
     expect(drawer).toHaveTextContent(/Source file/i)
-    expect(drawer).toHaveTextContent(/Cleaned reading text/i)
-    expect(drawer).toHaveTextContent(/Raw OCR retained/i)
+    expect(drawer).toHaveTextContent(/Reading text/i)
+    expect(drawer).toHaveTextContent(/Source text retained/i)
+    expect(drawer).not.toHaveTextContent(/OCR|machine-cleaned|raw source/i)
   })
 
   test('premium contents pages render cleaned titles and curated contents layouts', async () => {
@@ -170,7 +194,7 @@ describe('LibraryPageReader', () => {
     expect(screen.getByTestId('library-context-cards')).toHaveTextContent(/Related episodes/i)
   })
 
-  test('labels source state honestly, including editorial reconstruction pages', async () => {
+  test('keeps source evidence labels out of native page chrome', async () => {
     render(
       <MemoryRouter initialEntries={['/library/panth-prakash-english/page/348']}>
         <Routes>
@@ -184,14 +208,14 @@ describe('LibraryPageReader', () => {
     })
 
     const trustPanel = screen.getByTestId('library-trust-layer')
-    expect(trustPanel).toHaveTextContent(/Text state/i)
-    expect(trustPanel).toHaveTextContent(/Editorial reconstruction/i)
-    expect(trustPanel).toHaveTextContent(/Source scan page 348/i)
-    expect(trustPanel).toHaveTextContent(/Review: machine cleaned/i)
-    expect(screen.getByTestId('library-page-provenance')).toHaveTextContent(/reconstructed from OCR-derived evidence/i)
+    expect(trustPanel).toHaveTextContent(/Native text/i)
+    expect(trustPanel).toHaveTextContent(/Source page 348/i)
+    expect(trustPanel).toHaveTextContent(/Review: needs human review/i)
+    expect(trustPanel).not.toHaveTextContent(/OCR|machine-cleaned|editorial reconstruction|source scan/i)
+    expect(screen.getByTestId('library-page-provenance')).not.toHaveTextContent(/OCR|machine-cleaned|raw source|editorial reconstruction/i)
   })
 
-  test('offers raw OCR versus cleaned text and renders verse or note markers as source apparatus', async () => {
+  test('offers source text comparison and renders verse or note markers as source apparatus', async () => {
     const user = userEvent.setup()
 
     render(
@@ -206,14 +230,15 @@ describe('LibraryPageReader', () => {
       expect(screen.getByTestId('library-page-reader')).toBeInTheDocument()
     })
 
-    expect(screen.getByRole('button', { name: /show raw ocr/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /show source text/i })).toBeInTheDocument()
     expect(screen.getByTestId('library-text-blocks')).toHaveTextContent(/Dohra/i)
     expect(screen.getByTestId('library-text-blocks')).toHaveTextContent(/Verse 16/i)
     expect(screen.getByTestId('library-source-apparatus')).toHaveTextContent(/Verse meter: Dohra/i)
     expect(screen.getByTestId('library-source-apparatus')).toHaveTextContent(/Verse marker: 16/i)
 
-    await user.click(screen.getByRole('button', { name: /show raw ocr/i }))
-    expect(screen.getByRole('button', { name: /show cleaned text/i })).toBeInTheDocument()
-    expect(screen.getByTestId('library-source-mode-note')).toHaveTextContent(/Raw OCR/i)
+    await user.click(screen.getByRole('button', { name: /show source text/i }))
+    expect(screen.getByRole('button', { name: /show reading text/i })).toBeInTheDocument()
+    expect(screen.getByTestId('library-source-mode-note')).toHaveTextContent(/Source text/i)
+    expect(screen.getByTestId('library-source-mode-note')).not.toHaveTextContent(/OCR|machine-cleaned|raw source/i)
   })
 })

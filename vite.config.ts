@@ -1,8 +1,41 @@
 import { defineConfig, defaultExclude } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
+const initialVendorChunkGroups = [
+  {
+    name: 'vendor-react',
+    test: /node_modules[\\/](?:react|react-dom|scheduler|use-sync-external-store)[\\/]/,
+    priority: 40,
+  },
+  {
+    name: 'vendor-router',
+    test: /node_modules[\\/](?:react-router|react-router-dom)[\\/]/,
+    priority: 30,
+  },
+  {
+    name: 'vendor-backend',
+    test: /node_modules[\\/](?:@insforge|@supabase|@socket\.io|socket\.io-client|socket\.io-parser|engine\.io-client|engine\.io-parser|graphql)[\\/]/,
+    priority: 20,
+  },
+  {
+    name: 'vendor-misc',
+    test: /node_modules[\\/]/,
+    priority: 10,
+  },
+]
+
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          minSize: 20 * 1024,
+          groups: initialVendorChunkGroups,
+        },
+      },
+    },
+  },
   server: {
     watch: {
       ignored: ['**/ios/App/App/public/**'],
