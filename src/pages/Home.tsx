@@ -46,11 +46,10 @@ import { buildLearnDetailPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getEditorialCopy } from '../content/editorialCopy'
 import featuredInstrumentSrc from '../assets/home-calm/featured-instrument.webp'
-import ardaasHukamnamaPixelMotifSrc from '../assets/home-calm/ardaas-hukamnama-pixel-motif.webp'
 import guidancePixelMotifSrc from '../assets/home-calm/guidance-pixel-motif.webp'
 import nitnemPixelMotifSrc from '../assets/home-calm/nitnem-pixel-motif.webp'
 
-const READ_TODAY_HIGHLIGHT_CLASSES = [
+const HOME_SPOTLIGHT_HIGHLIGHT_CLASSES = [
   'border-gold/45',
   'shadow-gold-strong',
   'ring-2',
@@ -570,7 +569,7 @@ export default function Home() {
   const libraryCopy = copy.library
   const homeMessages = HOME_MESSAGES[locale]
   const learningLevelLabels = getLearningLevelLabels(locale)
-  const readTodayRef = useRef<HTMLElement | null>(null)
+  const nitnemSpotlightRef = useRef<HTMLElement | null>(null)
   const nitnemCarouselRef = useRef<HTMLDivElement | null>(null)
   const nitnemScrollTimeoutRef = useRef<number | null>(null)
   const nitnemMomentSyncedRef = useRef(false)
@@ -617,11 +616,11 @@ export default function Home() {
 
     if (state.highlightTodayPath) {
       globalThis.requestAnimationFrame(() => {
-        readTodayRef.current?.classList.add(...READ_TODAY_HIGHLIGHT_CLASSES)
-        readTodayRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        nitnemSpotlightRef.current?.classList.add(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)
+        nitnemSpotlightRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       })
       highlightTimer = window.setTimeout(() => {
-        readTodayRef.current?.classList.remove(...READ_TODAY_HIGHLIGHT_CLASSES)
+        nitnemSpotlightRef.current?.classList.remove(...HOME_SPOTLIGHT_HIGHLIGHT_CLASSES)
       }, 2600)
     }
 
@@ -861,11 +860,6 @@ export default function Home() {
     }
   }, [lastSaved?.kind])
 
-  const devotionalReadAction = useMemo(() => ({
-    title: 'Ardaas + Hukamnama',
-    body: editorial?.read.featuredFlowBody ?? 'Do Ardaas, then take a random Hukamnama from Sri Guru Granth Sahib Ji.',
-    path: '/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama',
-  }), [editorial?.read.featuredFlowBody])
   const hukamnamaPreviewLine = useMemo(() => {
     if (!hukamnama) return null
     return hukamnama.entry.lines?.find(line => !line.isHeader && line.gurmukhi.trim() && !isStructuralTitleLine(line.gurmukhi))
@@ -1170,7 +1164,9 @@ export default function Home() {
       </section>
 
       <section
-        className="home-nitnem-tray mb-4 px-4 py-4 animate-slide-up stagger-3"
+        ref={nitnemSpotlightRef}
+        tabIndex={-1}
+        className="home-nitnem-tray mb-4 px-4 py-4 animate-slide-up stagger-3 transition-[box-shadow,transform,border-color] duration-500"
         aria-labelledby="home-nitnem-title"
         data-testid="home-nitnem-spotlight"
       >
@@ -1313,47 +1309,6 @@ export default function Home() {
               </Link>
             </div>
           )}
-        </div>
-      </section>
-
-      <section
-        ref={readTodayRef}
-        tabIndex={-1}
-        className="home-read-sheet mb-4 px-4 py-4 animate-slide-up stagger-4 transition-[box-shadow,transform,border-color] duration-500"
-        aria-labelledby="home-read-today-title"
-        data-testid="home-read-today"
-      >
-        <span className="home-book-mark" aria-hidden="true" />
-        <img
-          src={ardaasHukamnamaPixelMotifSrc}
-          alt=""
-          aria-hidden="true"
-          className="home-read-motif"
-        />
-        <p id="home-read-today-title" className="eyebrow">{homeMessages.readTodayEyebrow}</p>
-        <h2 className="mt-2 font-display text-[1.7rem] leading-[0.98] text-ink dark:text-dark-text">
-          {homeMessages.readTodayTitle}
-        </h2>
-        <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/70">
-          {homeMessages.readTodayBody}
-        </p>
-        <div className="home-read-grid mt-4 grid gap-3">
-          <div className="home-read-action-card home-quiet-card p-4">
-            <p className="eyebrow">{homeCopy.read}</p>
-            <h3 className="mt-2 font-display text-[1.72rem] leading-none text-ink dark:text-dark-text">
-              {devotionalReadAction.title}
-            </h3>
-            <p className="mt-3 max-w-[34ch] font-sans text-sm leading-6 text-ink/70 dark:text-dark-text/75">
-              {devotionalReadAction.body}
-            </p>
-            <Link
-              to={devotionalReadAction.path}
-              className="home-outline-action interactive-focus interactive-pill-link mt-4 min-h-[48px] w-full rounded-lg border border-saffron/20 bg-saffron/8 px-4 font-sans text-sm font-semibold text-saffron dark:border-gold/18 dark:bg-gold/10 dark:text-gold-light"
-              data-testid="home-read-today-action"
-            >
-              {devotionalReadAction.title}
-            </Link>
-          </div>
         </div>
       </section>
 

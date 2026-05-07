@@ -193,7 +193,7 @@ test('shows the new hero shell immediately', () => {
   expect(screen.getByTestId('home-hero')).toBeInTheDocument()
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
   expect(screen.queryByTestId('home-guidance-skeleton')).not.toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today')).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-smart-search')).not.toBeInTheDocument()
   expect(screen.queryByRole('searchbox', { name: /search paths, banis, topics, or angs/i })).not.toBeInTheDocument()
 })
@@ -201,7 +201,7 @@ test('shows the new hero shell immediately', () => {
 test('home calm dark mode overrides light text colors for every visible card surface', () => {
   const css = readFileSync(`${process.cwd()}/src/index.css`, 'utf8')
 
-  expect(css).toMatch(/html\.dark \.home-read-sheet > h2 \+ p,[\s\S]*color: rgb\(248 240 226 \/ 0\.78\) !important;/)
+  expect(css).toMatch(/html\.dark \.home-featured-slip p:not\(\.eyebrow\),[\s\S]*color: rgb\(248 240 226 \/ 0\.78\) !important;/)
   expect(css).toMatch(/html\.dark \.home-saved-cabinet > div:first-child a,[\s\S]*color: #f3c66d !important;/)
   expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-metrics'\] p:last-of-type,[\s\S]*color: rgb\(248 240 226 \/ 0\.8\) !important;/)
   expect(css).toMatch(/html\.dark \.home-saved-cabinet \[data-testid='home-saved-preview-list'\] > \*,[\s\S]*linear-gradient\(180deg, rgb\(34 27 44 \/ 0\.96\), rgb\(24 19 33 \/ 0\.94\)\) !important;/)
@@ -339,7 +339,7 @@ test('keeps source browsing off home so Read owns the bottom source dropdown', a
   expect(screen.queryByTestId('home-next-library')).not.toBeInTheDocument()
 })
 
-test('shows a featured shabad card from Learn inside read today', async () => {
+test('shows a featured shabad card from Learn on home', async () => {
   renderHome()
   await waitFor(() => {
     expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
@@ -349,13 +349,13 @@ test('shows a featured shabad card from Learn inside read today', async () => {
   expect(screen.getAllByTestId('home-open-featured-shabad')).toHaveLength(1)
 })
 
-test('renders nitnem above the unified read today surface', () => {
+test('renders nitnem above the featured shabad surface', () => {
   renderHome()
 
   const nitnem = screen.getByTestId('home-nitnem-spotlight')
-  const readToday = screen.getByTestId('home-read-today')
+  const featuredShabad = screen.getByTestId('home-read-today-featured-shabad')
 
-  expect(nitnem.compareDocumentPosition(readToday) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(nitnem.compareDocumentPosition(featuredShabad) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   expect(screen.queryByTestId('home-nitnem-progress')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-nitnem-carousel')).toBeInTheDocument()
   expect(screen.getByTestId('home-nitnem-carousel-controls')).toBeInTheDocument()
@@ -415,13 +415,14 @@ test('keeps Daily Nitnem completion controls out of Home', () => {
   expect(screen.getByTestId('home-nitnem-manage')).toHaveAttribute('href', '/nitnem/customize')
 })
 
-test('rebuilds read today around one live reading and discovery surface', () => {
+test('removes the redundant home Ardaas + Hukamnama card while keeping discovery surfaces', () => {
   renderHome()
 
-  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today')).not.toBeInTheDocument()
   expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
   expect(screen.queryByTestId('home-read-today-source-browser')).not.toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/ardaas \+ hukamnama/i)
+  expect(screen.queryByTestId('home-read-today-action')).not.toBeInTheDocument()
+  expect(screen.queryByText(/^Ardaas \+ Hukamnama$/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/today.?s path/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/today in learn/i)).not.toBeInTheDocument()
   expect(screen.queryByTestId('home-open-continue-learning')).not.toBeInTheDocument()
@@ -550,31 +551,7 @@ test('keeps guidance singular when it would otherwise duplicate the hero on home
   expect(screen.getAllByTestId('home-hero-guidance-action')).toHaveLength(1)
 })
 
-test('uses Ardaas + Hukamnama in read today instead of duplicating the hukamnama CTA when no session exists', async () => {
-  renderHome()
-
-  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
-  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/read hukamnama/i)
-})
-
-test('opens the Ardaas + Hukamnama devotional flow from read today when no session exists', async () => {
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/study" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.click(screen.getByTestId('home-read-today-action'))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')
-  })
-})
-
-test('keeps Ardaas + Hukamnama in read today even when a session exists', async () => {
+test('does not duplicate the Read page Ardaas + Hukamnama flow on Home', async () => {
   useProgressStore.setState({
     currentSession: {
       scriptureId: 'G-12',
@@ -582,36 +559,15 @@ test('keeps Ardaas + Hukamnama in read today even when a session exists', async 
       updatedAt: '2026-04-11T09:00:00.000Z',
     }
   })
+
   renderHome()
-  expect(screen.getByTestId('home-read-today-action')).toHaveTextContent(/^Ardaas \+ Hukamnama$/i)
+
+  expect(screen.queryByTestId('home-read-today')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today-action')).not.toBeInTheDocument()
+  expect(screen.queryByRole('link', { name: /^Ardaas \+ Hukamnama$/i })).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-hero-primary-action')).toHaveTextContent(/read hukamnama/i)
   expect(screen.queryByRole('heading', { name: /resume reading/i })).not.toBeInTheDocument()
   expect(screen.queryByText(/Open the passage you were already working through/i)).not.toBeInTheDocument()
-})
-
-test('opens the Ardaas + Hukamnama devotional flow from read today even when a session exists', async () => {
-  useProgressStore.setState({
-    currentSession: {
-      scriptureId: 'G-12',
-      resumePath: '/study?source=G&ang=12',
-      resumeVerseId: 345,
-      updatedAt: '2026-04-11T09:00:00.000Z',
-    },
-  })
-
-  render(
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<><Home /><LocationSpy /></>} />
-        <Route path="/study" element={<LocationSpy />} />
-      </Routes>
-    </MemoryRouter>
-  )
-
-  fireEvent.click(screen.getByTestId('home-read-today-action'))
-
-  await waitFor(() => {
-    expect(screen.getByTestId('location').textContent).toBe('/study?baniDbId=24&bani=Ardaas&flow=ardaas-hukamnama')
-  })
 })
 
 test('shows real saved preview rows on home instead of vocab-only counts', async () => {
@@ -699,18 +655,15 @@ test('uses links and shared focus styling for home navigation surfaces', async (
 
   const heroAction = await screen.findByTestId('home-hero-primary-action')
   const guidanceAction = screen.getByTestId('home-hero-guidance-action')
-  const readTodayAction = screen.getByTestId('home-read-today-action')
   const featuredShabadAction = await screen.findByTestId('home-open-featured-shabad')
   const savedPreview = await screen.findByTestId('home-saved-preview-learn')
 
   expect(heroAction.tagName).toBe('A')
   expect(guidanceAction.tagName).toBe('A')
-  expect(readTodayAction.tagName).toBe('A')
   expect(featuredShabadAction.tagName).toBe('A')
   expect(savedPreview.tagName).toBe('A')
   expect(heroAction).toHaveClass('interactive-focus', 'interactive-pill-link')
   expect(guidanceAction).toHaveClass('interactive-focus', 'interactive-pill-link')
-  expect(readTodayAction).toHaveClass('interactive-focus', 'interactive-pill-link')
   expect(featuredShabadAction).toHaveClass('interactive-focus', 'interactive-pill-link')
   expect(savedPreview).toHaveClass('interactive-focus', 'interactive-card-link')
 })
@@ -752,7 +705,7 @@ test('highlights the matching saved preview row after a recent save', async () =
   expect(screen.getByRole('status')).toHaveTextContent(/Learn save added to the shelf/i)
 })
 
-test('keeps the new hero and read-today surfaces visible in dark mode', async () => {
+test('keeps the new hero and featured surfaces visible in dark mode', async () => {
   useThemeStore.getState().toggle()
   renderHome()
 
@@ -761,7 +714,8 @@ test('keeps the new hero and read-today surfaces visible in dark mode', async ()
   })
 
   expect(screen.getByTestId('home-guidance-hero')).toBeInTheDocument()
-  expect(screen.getByTestId('home-read-today')).toBeInTheDocument()
+  expect(screen.queryByTestId('home-read-today')).not.toBeInTheDocument()
+  expect(screen.getByTestId('home-read-today-featured-shabad')).toBeInTheDocument()
   expect(screen.getByTestId('home-theme-toggle')).toBeInTheDocument()
   expect(screen.getByTestId('home-hukamnama-card')).toBeInTheDocument()
   expect(screen.getByTestId('home-nitnem-manage')).toBeInTheDocument()
