@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node ./scripts/learn/copy-build-assets.mjs",
+    "build": "tsc -b && vite build && node ./scripts/copy-public.mjs",
     "ios:sync": "npm run build && npx cap sync ios",
     "ios:open": "npx cap open ios",
     "ios:build": "npm run ios:sync && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
@@ -14,20 +14,9 @@
     "native:test": "npm run native:generate-catalog && xcodebuild test -project ios/App/App.xcodeproj -scheme NaamRasNative -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "node ./scripts/test-vitest-batches.mjs",
     "test:coverage": "vitest run --coverage",
-    "qa:ai-bug-sweep": "node ./scripts/qa/ai-bug-sweep.mjs",
-    "learn:sync-sggs-corpus": "node ./scripts/learn/sync-sggs-corpus.mjs",
-    "learn:generate-drafts": "node ./scripts/learn/generate-drafts.mjs",
-    "learn:validate": "node ./scripts/learn/validate.mjs",
-    "learn:publish": "node ./scripts/learn/publish.mjs",
-    "learn:audit": "node ./scripts/learn/audit-editorial.mjs",
-    "learn:check-bundle-guard": "node ./scripts/learn/check-bundle-guard.mjs",
-    "learn:review:export": "node ./scripts/learn/review/export-review.mjs",
-    "learn:review:rank": "node ./scripts/learn/review/rank-priority.mjs",
-    "learn:review:apply": "node ./scripts/learn/review/apply-edits.mjs",
-    "learn:review:status": "node ./scripts/learn/review/progress-report.mjs",
-    "learn:check-banned-phrases": "node ./scripts/learn/review/check-banned-phrases.mjs"
+    "qa:ai-bug-sweep": "node ./scripts/qa/ai-bug-sweep.mjs"
   },
   "dependencies": {
     "@capacitor/core": "^8.3.1",

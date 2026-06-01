@@ -15,8 +15,8 @@ test('derives a router basename only when the app is mounted below root', () => 
 })
 
 test('resolves app asset paths against the deployed base path', () => {
-  expect(resolveAppPath('/data/learn/manifest.json', '/')).toBe('/data/learn/manifest.json')
-  expect(resolveAppPath('/data/learn/manifest.json', '/naamras/')).toBe('/naamras/data/learn/manifest.json')
-  expect(resolveAppPath('data/learn/manifest.json', '/naamras/')).toBe('/naamras/data/learn/manifest.json')
+  expect(resolveAppPath('/data/library/works.json', '/')).toBe('/data/library/works.json')
+  expect(resolveAppPath('/data/library/works.json', '/naamras/')).toBe('/naamras/data/library/works.json')
+  expect(resolveAppPath('data/library/works.json', '/naamras/')).toBe('/naamras/data/library/works.json')
   expect(resolveAppPath('https://cdn.example.com/manifest.json', '/naamras/')).toBe('https://cdn.example.com/manifest.json')
 })

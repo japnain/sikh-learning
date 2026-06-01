@@ -13,7 +13,3 @@ export function buildFavoriteNaturalKey(
 ) {
   return `favorite:${payload.source}:${payload.ang}:shabad:${payload.shabadId ?? 'ang'}`
 }
-
-export function buildSavedLearnNaturalKey(itemId: string) {
-  return `learn:${itemId}`
-}

@@ -106,14 +106,14 @@ test('persists reader display defaults', () => {
   expect(state.textAlign).toBe('center')
 })
 
-test('persists selected learning level', () => {
+test('persists selected reading comfort', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Profile & App Language/i)
   fireEvent.click(screen.getByRole('button', { name: /daily reader/i }))
   expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
 })
 
-test('persists locale, audience, and learning goal', () => {
+test('persists locale, audience, and reading intent', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
   openMoreSection(/Profile & App Language/i)
 
@@ -151,7 +151,7 @@ test('pause button stops playback without clearing the selected sound', () => {
   expect(useMusicStore.getState().isPlaying).toBe(false)
 })
 
-test('heavy More sections start collapsed while Grow and About stay visible', () => {
+test('heavy More sections start collapsed while About stays visible', () => {
   render(<MemoryRouter><More /></MemoryRouter>)
 
   expect(screen.getByRole('button', { name: /expand soundscapes/i })).toHaveAttribute('aria-expanded', 'false')
@@ -161,7 +161,6 @@ test('heavy More sections start collapsed while Grow and About stay visible', ()
   expect(screen.getByRole('button', { name: /profile & app language/i })).toHaveAttribute('aria-expanded', 'false')
   expect(screen.queryByTestId('more-nitnem-completion')).not.toBeInTheDocument()
   expect(screen.queryByText(/^English translation$/i)).not.toBeInTheDocument()
-  expect(screen.getByText(/Open Learn/i)).toBeInTheDocument()
   expect(screen.getByTestId('more-about')).toBeInTheDocument()
 })
 

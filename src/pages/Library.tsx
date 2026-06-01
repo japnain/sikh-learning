@@ -9,12 +9,8 @@ import { useScriptureCacheStore } from '../store/scriptureCache'
 import { useVocabStore } from '../store/vocab'
 import { useLocaleStore } from '../store/locale'
 import { useLanguageStore } from '../store/language'
-import { useLearningStore } from '../store/learning'
 import { useSavedFeedbackStore } from '../store/savedFeedback'
-import useLearnCatalog from '../hooks/useLearnCatalog'
 import { buildCanonicalBaniStudyPath } from '../utils/baniRouteResolver'
-import { getLearnSavedItems, getLearnItemLabel } from '../utils/learnExperience'
-import { buildLearnDetailPath, buildLearnTabPath } from '../utils/learnRails'
 import { buildSavedStudyPath } from '../utils/savedStudyPath'
 import { getUiCopy } from '../utils/uiCopy'
 import { getEditorialCopy } from '../content/editorialCopy'
@@ -58,23 +54,15 @@ export default function Library() {
   const { favorites, removeFavorite } = useFavoritesStore()
   const { vocab } = useVocabStore()
   const lastSaved = useSavedFeedbackStore(state => state.lastSaved)
-  const savedLearnItemIds = useLearningStore(state => state.learnState.savedItemIds)
-  const toggleSavedLearnItem = useLearningStore(state => state.toggleSavedLearnItem)
   const { currentSession, studied } = useProgressStore()
   const { getProgress } = useReadingProgressStore()
   const { getEntryById } = useScriptureCacheStore()
-  const { catalog, loading: learnCatalogLoading } = useLearnCatalog()
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => ({
     bookmarks: bookmarks.length > 0,
-    learnSaves: savedLearnItemIds.length > 0,
   }))
 
   const words = vocab.filter(item => (item.kind ?? 'word') === 'word')
   const phrases = vocab.filter(item => (item.kind ?? 'word') === 'phrase')
-  const learnSavedItems = useMemo(
-    () => (catalog ? getLearnSavedItems(catalog, savedLearnItemIds) : []),
-    [catalog, savedLearnItemIds]
-  )
   const resumePath = buildSessionResumePath(currentSession)
   const inProgress = useMemo(
     () => BANIS
@@ -92,8 +80,6 @@ export default function Library() {
   const resumeReference = currentSession ? formatSessionReference(currentSession.scriptureId) : null
   const savedShelfNotice = useMemo(() => {
     switch (lastSaved?.kind) {
-      case 'learn':
-        return 'Learn save added to Saved.'
       case 'bookmark':
         return 'Bookmarked passage added to Saved.'
       case 'favorite':
@@ -105,8 +91,7 @@ export default function Library() {
     }
   }, [lastSaved?.kind])
   const hasSavedShelfContent = (
-    savedLearnItemIds.length
-    + bookmarks.length
+    bookmarks.length
     + favorites.length
     + phrases.length
     + words.length
@@ -140,11 +125,7 @@ export default function Library() {
           </div>
           <IconLibrary size={20} className="text-gold dark:text-gold-light mt-1" />
         </div>
-        <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-4">
-          <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'learn' ? 'saved-feedback-highlight' : ''}`}>
-            <p className="font-sans text-2xl text-ink dark:text-dark-text">{savedLearnItemIds.length}</p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.learnSaves}</p>
-          </div>
+        <div className="grid grid-cols-2 gap-2 mt-5 sm:grid-cols-3">
           <div className={`section-shell-quiet px-3 py-3 transition-all duration-300 ${lastSaved?.kind === 'bookmark' ? 'saved-feedback-highlight' : ''}`}>
             <p className="font-sans text-2xl text-ink dark:text-dark-text">{bookmarks.length}</p>
             <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-ink/45 dark:text-dark-text/45 mt-1">{libraryCopy.bookmarks}</p>
@@ -169,20 +150,20 @@ export default function Library() {
           <div className="section-shell-quiet mt-5 p-4 border border-gold/12 dark:border-gold/16">
             <p className="eyebrow">Start the shelf</p>
             <p className="mt-2 font-sans text-sm leading-6 text-ink/68 dark:text-dark-text/72">
-              Saved words, Learn guides, bookmarks, and reading history will settle here once you begin keeping pieces close.
+              Saved words, bookmarks, favorites, and reading history will settle here once you begin keeping passages close.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <Link
-                to={buildLearnTabPath('today')}
+                to="/banis"
                 className="interactive-focus interactive-pill-link rounded-full bg-gradient-to-r from-saffron to-saffron-light px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-white"
               >
-                Open Today
+                Browse Read
               </Link>
               <Link
-                to="/banis"
+                to="/vocab"
                 className="interactive-focus interactive-pill-link rounded-full border border-sand/18 bg-parchment-card/82 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink dark:border-dark-text/10 dark:bg-dark-card/78 dark:text-dark-text"
               >
-                Browse Read
+                Review Bank
               </Link>
             </div>
           </div>
@@ -246,18 +227,18 @@ export default function Library() {
         </Link>
 
         <Link
-          to={resumePath ?? buildLearnTabPath('today')}
+          to={resumePath ?? '/banis'}
           className="section-shell interactive-focus interactive-card-link p-4 text-left"
           data-testid="library-resume-reading"
         >
-          <p className="eyebrow">{currentSession ? libraryCopy.resume : 'Learn'}</p>
+          <p className="eyebrow">{currentSession ? libraryCopy.resume : 'Read'}</p>
           <p className="font-sans text-base font-semibold text-ink dark:text-dark-text mt-2">
-            {currentSession ? libraryCopy.resumeTitle : 'Open Today'}
+            {currentSession ? libraryCopy.resumeTitle : 'Browse Read'}
           </p>
           <p className="font-sans text-sm text-ink/65 dark:text-dark-text/65 mt-1">
             {currentSession
               ? resumeReference
-              : 'Return through today’s rotating Learn doorway when you do not have an active reading session yet.'}
+              : 'Choose a bani, ang, or scripture section when you do not have an active reading session yet.'}
           </p>
         </Link>
 
@@ -273,68 +254,6 @@ export default function Library() {
           </p>
         </Link>
       </div>
-
-      {savedLearnItemIds.length > 0 && (
-        <section
-          className="section-shell-quiet p-4 mb-5 border border-gold/15 dark:border-gold/18"
-          aria-labelledby="library-learn-saves-title"
-          data-testid="library-learn-saves"
-        >
-          <button
-            onClick={() => toggle('learnSaves')}
-            className="w-full flex justify-between items-center gap-3"
-            aria-expanded={Boolean(expanded.learnSaves)}
-            aria-controls="library-learn-saves-panel"
-          >
-            <div className="text-left flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold/12 text-gold dark:bg-gold/14 dark:text-gold-light">
-                <IconBookmarkFilled size={14} />
-              </span>
-              <div>
-                <p id="library-learn-saves-title" className="eyebrow">{libraryCopy.learnSaves}</p>
-                <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74 mt-1">{savedLearnItemIds.length} saved Learn item{savedLearnItemIds.length === 1 ? '' : 's'}</p>
-              </div>
-            </div>
-            <span className="icon-surface h-8 w-8 text-gold dark:text-gold-light">{expanded.learnSaves ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}</span>
-          </button>
-          {expanded.learnSaves && (
-            <div id="library-learn-saves-panel" className="mt-4 space-y-2">
-              {learnCatalogLoading && learnSavedItems.length === 0 ? (
-                <div className="section-shell px-4 py-4 border border-gold/12 dark:border-gold/16">
-                  <p className="font-sans text-sm text-ink/72 dark:text-dark-text/74">Loading Learn saves…</p>
-                </div>
-              ) : null}
-              {learnSavedItems.map(item => (
-                <div
-                  key={item.id}
-                  className="section-shell px-4 py-4 relative border border-gold/12 dark:border-gold/16"
-                >
-                  <button
-                    onClick={() => toggleSavedLearnItem(item.id)}
-                    className="absolute top-3 right-3 text-ink/40 dark:text-dark-text/40 min-h-[24px] min-w-[24px] flex items-center justify-center"
-                    aria-label="Remove saved Learn item"
-                  >
-                    <IconClose size={14} />
-                  </button>
-                  <Link
-                    to={buildLearnDetailPath(item.kind, item.id, 'saved')}
-                    className={`interactive-focus interactive-card-link text-left w-full pr-6 ${lastSaved?.kind === 'learn' && lastSaved.targetId === item.id ? 'saved-feedback-highlight rounded-[20px]' : ''}`}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <IconBookmarkFilled size={14} className="text-gold dark:text-gold-light" />
-                      <span className="font-sans text-[11px] uppercase tracking-[0.18em] text-gold dark:text-gold-light">
-                        {getLearnItemLabel(item.kind)}
-                      </span>
-                    </div>
-                    <p className="font-sans font-semibold text-sm text-ink dark:text-dark-text">{item.title}</p>
-                    <p className="font-sans text-xs text-ink/60 dark:text-dark-text/60 mt-1">{item.subtitle}</p>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-      )}
 
       {inProgress.length > 0 && (
         <section

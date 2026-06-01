@@ -1,7 +1,6 @@
 import { useBookmarksStore } from '../store/bookmarks'
 import { useFavoritesStore } from '../store/favorites'
 import { useLanguageStore } from '../store/language'
-import { useLearningStore } from '../store/learning'
 import { useLocaleStore } from '../store/locale'
 import { useNitemStore } from '../store/nitnem'
 import { useOnboardingStore } from '../store/onboarding'
@@ -12,7 +11,7 @@ import { DEFAULT_SUNDAR_GUTKA_LENGTHS, useSundarGutkaLengthStore } from '../stor
 import { useThemeStore } from '../store/theme'
 import { useVocabStore } from '../store/vocab'
 import { getNaamrasDeviceId } from './device'
-import { buildBookmarkNaturalKey, buildFavoriteNaturalKey, buildSavedLearnNaturalKey } from './savedItemKeys'
+import { buildBookmarkNaturalKey, buildFavoriteNaturalKey } from './savedItemKeys'
 import type {
   CloudBookmarkPayload,
   CloudFavoritePayload,
@@ -21,7 +20,6 @@ import type {
   CloudProfileRecord,
   CloudRemoteSnapshot,
   CloudSavedItemRecord,
-  CloudSavedLearnItemPayload,
   CloudVocabRecord,
 } from './types'
 
@@ -163,7 +161,6 @@ function extractProfileRecord(metadata: SnapshotMetadataMap): CloudProfileRecord
 }
 
 function extractSavedItems(metadata: SnapshotMetadataMap): CloudSavedItemRecord[] {
-  const learningState = useLearningStore.getState().learnState
   const bookmarkRecords = useBookmarksStore.getState().bookmarks.map((bookmark) => {
     const payload: CloudBookmarkPayload = {
       ...bookmark,
@@ -192,25 +189,7 @@ function extractSavedItems(metadata: SnapshotMetadataMap): CloudSavedItemRecord[
     }
   })
 
-  const savedLearnRecords = learningState.savedItemIds.map((itemId) => {
-    const viewedAt = learningState.viewedItems.find(item => item.itemId === itemId)?.viewedAt
-    const savedAt = viewedAt
-      ? syncAuthoritativeTimestamp(metadata, `learn-save:${itemId}`, { itemId }, viewedAt)
-      : resolveGeneratedTimestamp(metadata, `learn-save:${itemId}`, { itemId })
-    const payload: CloudSavedLearnItemPayload = {
-      itemId,
-      savedAt,
-    }
-
-    return {
-      ...createMetadata(`learn-save:${itemId}`, savedAt),
-      kind: 'learn-item' as const,
-      naturalKey: buildSavedLearnNaturalKey(itemId),
-      payload,
-    }
-  })
-
-  return [...bookmarkRecords, ...favoriteRecords, ...savedLearnRecords]
+  return [...bookmarkRecords, ...favoriteRecords]
 }
 
 function extractVocabEntries(metadata: SnapshotMetadataMap): CloudVocabRecord[] {
@@ -232,38 +211,10 @@ function extractVocabEntries(metadata: SnapshotMetadataMap): CloudVocabRecord[] 
 }
 
 function extractLearningProgress(metadata: SnapshotMetadataMap): CloudLearningProgressRecord[] {
-  const learning = useLearningStore.getState()
   const progress = useProgressStore.getState()
   const readingProgress = useReadingProgressStore.getState()
   const nitnem = useNitemStore.getState()
 
-  const learningPayload = {
-    masteredSymbols: learning.masteredSymbols,
-    completedLessons: learning.completedLessons,
-    practiceStreak: learning.practiceStreak,
-    lastPracticedOn: learning.lastPracticedOn,
-    totalPracticeSessions: learning.totalPracticeSessions,
-    streakCalendar: learning.streakCalendar,
-    longestStreak: learning.longestStreak,
-    earnedMilestoneIds: learning.earnedMilestoneIds,
-    pendingMilestoneId: learning.pendingMilestoneId,
-    dailyLesson: learning.dailyLesson,
-    skills: learning.skills,
-    lessonProgress: learning.lessonProgress,
-    assessmentHistory: learning.assessmentHistory,
-    journeys: learning.journeys,
-    activeJourneyId: learning.activeJourneyId,
-    activeProgramId: learning.activeProgramId,
-    programProgress: learning.programProgress,
-    queuedReviewModuleIds: learning.queuedReviewModuleIds,
-    placementResult: learning.placementResult,
-    lastLearnActivity: learning.lastLearnActivity,
-    grammarNotesSeen: learning.grammarNotesSeen,
-    masteredWordFamilyIds: learning.masteredWordFamilyIds,
-    themePathProgress: learning.themePathProgress,
-    completedThemePathIds: learning.completedThemePathIds,
-    learnState: learning.learnState,
-  }
   const studyProgressPayload = {
     studied: progress.studied,
     reviewQueue: progress.reviewQueue,
@@ -279,7 +230,6 @@ function extractLearningProgress(metadata: SnapshotMetadataMap): CloudLearningPr
     selectedIds: nitnem.selectedIds,
   }
 
-  const learningUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:learning-state', learningPayload)
   const studyProgressUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:study-progress', studyProgressPayload)
   const readingProgressUpdatedAt = resolveGeneratedTimestamp(
     metadata,
@@ -289,11 +239,6 @@ function extractLearningProgress(metadata: SnapshotMetadataMap): CloudLearningPr
   const nitnemUpdatedAt = resolveGeneratedTimestamp(metadata, 'learning-progress:nitnem-state', nitnemStatePayload)
 
   return [
-    {
-      ...createMetadata('learning-state', learningUpdatedAt),
-      scope: 'learning-state',
-      payload: learningPayload,
-    },
     {
       ...createMetadata('study-progress', studyProgressUpdatedAt),
       scope: 'study-progress',
@@ -340,13 +285,7 @@ function syncRemoteSnapshotMetadata(snapshot: CloudRemoteSnapshot) {
   }
 
   for (const record of snapshot.savedItems ?? []) {
-    const metadataKey = record.kind === 'learn-item'
-      ? `learn-save:${(record.payload as CloudSavedLearnItemPayload).itemId}`
-      : record.id
-    const metadataPayload = record.kind === 'learn-item'
-      ? { itemId: (record.payload as CloudSavedLearnItemPayload).itemId }
-      : record.payload
-    syncAuthoritativeTimestamp(metadata, metadataKey, metadataPayload, record.clientUpdatedAt)
+    syncAuthoritativeTimestamp(metadata, record.id, record.payload, record.clientUpdatedAt)
   }
 
   for (const record of snapshot.vocabEntries ?? []) {
@@ -409,18 +348,9 @@ function applySavedItems(savedItems: CloudSavedItemRecord[] | undefined) {
   const favorites = savedItems
     .filter(record => record.kind === 'favorite' && !record.deletedAt)
     .map(record => record.payload as CloudFavoritePayload)
-  const savedLearnItemIds = savedItems
-    .filter(record => record.kind === 'learn-item' && !record.deletedAt)
-    .map(record => (record.payload as CloudSavedLearnItemPayload).itemId)
 
   useBookmarksStore.getState().replaceBookmarks(bookmarks)
   useFavoritesStore.setState({ favorites })
-  useLearningStore.setState(state => ({
-    learnState: {
-      ...state.learnState,
-      savedItemIds: savedLearnItemIds,
-    },
-  }))
 }
 
 function applyVocabEntries(vocabEntries: CloudVocabRecord[] | undefined) {
@@ -440,9 +370,6 @@ function applyLearningProgress(records: CloudLearningProgressRecord[] | undefine
     if (record.deletedAt) continue
 
     switch (record.scope) {
-      case 'learning-state':
-        useLearningStore.setState(record.payload as Partial<ReturnType<typeof useLearningStore.getState>>)
-        break
       case 'study-progress':
         useProgressStore.setState(record.payload as Partial<ReturnType<typeof useProgressStore.getState>>)
         break

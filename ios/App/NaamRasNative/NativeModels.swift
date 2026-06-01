@@ -3,7 +3,6 @@ import Foundation
 enum AppTab: String, CaseIterable, Identifiable, Codable {
     case home
     case read
-    case learn
     case saved
     case more
 
@@ -13,7 +12,6 @@ enum AppTab: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .home: "Home"
         case .read: "Read"
-        case .learn: "Learn"
         case .saved: "Saved"
         case .more: "More"
         }
@@ -23,7 +21,6 @@ enum AppTab: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .home: "sparkles"
         case .read: "book.pages"
-        case .learn: "graduationcap"
         case .saved: "bookmark"
         case .more: "ellipsis.circle"
         }
@@ -189,13 +186,6 @@ struct ReadingItem: Identifiable, Codable, Equatable {
     var lines: [ReadingLine]
 }
 
-struct LearnItem: Identifiable, Codable, Equatable {
-    var id: String
-    var title: String
-    var category: String
-    var summary: String
-}
-
 struct BookmarkItem: Identifiable, Codable, Equatable {
     var id: String
     var readingId: String
@@ -223,7 +213,6 @@ struct NativeSnapshot: Codable, Equatable {
     var profile: OnboardingProfile
     var readerPreferences: ReaderPreferences
     var bookmarks: [BookmarkItem]
-    var savedLearnItemIds: [String]
     var readingProgress: [String: Double]
     var exportedAt: Date
 }
@@ -346,18 +335,10 @@ enum NativeFixtures {
         )
     ]
 
-    static let learnItems: [LearnItem] = [
-        LearnItem(id: "topic-anxiety", title: "When worry must remember who is carrying the breath", category: "Topic", summary: "A guided reflection for returning worry to Hukam."),
-        LearnItem(id: "daily-guidance", title: "Begin under the Name before anything else", category: "Daily Guidance", summary: "A short practice for beginning the day without scattering."),
-        LearnItem(id: "shabad-deep-dive", title: "Read one shabad with source, raag, and meaning", category: "Shabad", summary: "A compact study path that keeps the original line central."),
-        LearnItem(id: "collection-evening", title: "Evening steadiness collection", category: "Collection", summary: "A saved sequence of Rehras, reflection, and vocab review."),
-        LearnItem(id: "vocab-review", title: "Review saved words", category: "Vocab", summary: "Bring saved words back at a steady review pace.")
-    ]
 }
 
 private struct NativeCatalogPayload: Decodable {
     var readings: [NativeCatalogReading]
-    var learnItems: [LearnItem]
 }
 
 private struct NativeCatalogReading: Decodable {
@@ -394,10 +375,5 @@ enum NativeCatalogStore {
     static var readings: [ReadingItem] {
         let items = payload?.readings.map { $0.item(sampleLines: NativeFixtures.dailyLines) } ?? []
         return items.isEmpty ? NativeFixtures.readings : items
-    }
-
-    static var learnItems: [LearnItem] {
-        let items = payload?.learnItems ?? []
-        return items.isEmpty ? NativeFixtures.learnItems : items
     }
 }

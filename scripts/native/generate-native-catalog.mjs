@@ -7,10 +7,6 @@ const root = path.resolve(__dirname, '../..')
 
 const outputPath = path.join(root, 'ios/App/NaamRasNative/NativeCatalog.json')
 
-function readJson(relativePath) {
-  return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'))
-}
-
 function readText(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), 'utf8')
 }
@@ -99,46 +95,10 @@ function parseBanis() {
   return readings
 }
 
-function learnItem(item, category, summaryKeys) {
-  const summary = summaryKeys
-    .map(key => item[key])
-    .find(value => typeof value === 'string' && value.trim().length > 0)
-
-  return {
-    id: item.id,
-    title: item.shortTitle || item.title,
-    category,
-    summary: summary || 'Saved study item with source-linked guidance.',
-  }
-}
-
-function parseLearnItems() {
-  const topics = readJson('public/data/learn/lists/topic-guides.json')
-  const shabads = readJson('public/data/learn/lists/shabad-deep-dives.json')
-  const guidance = readJson('public/data/learn/lists/daily-guidance.json')
-  const collections = readJson('public/data/learn/lists/collections.json')
-  const works = readJson('public/data/library/works.json')
-
-  return [
-    ...topics.map(item => learnItem(item, 'Topic', ['centralInsight', 'issueStatement'])),
-    ...shabads.map(item => learnItem(item, 'Shabad', ['summary', 'whyItMatters'])),
-    ...guidance.map(item => learnItem(item, 'Daily Guidance', ['summary', 'takeaway'])),
-    ...collections.map(item => learnItem(item, 'Collection', ['description', 'subtitle'])),
-    ...works.map(item => learnItem(item, 'Library', ['description'])),
-    {
-      id: 'vocab-review',
-      title: 'Review saved words',
-      category: 'Vocab',
-      summary: 'Bring saved words back at a steady review pace with pronunciation and meaning.',
-    },
-  ]
-}
-
 const catalog = {
   generatedAt: new Date().toISOString(),
   readings: parseBanis(),
-  learnItems: parseLearnItems(),
 }
 
 fs.writeFileSync(outputPath, `${JSON.stringify(catalog, null, 2)}\n`)
-console.log(`Generated ${path.relative(root, outputPath)} with ${catalog.readings.length} readings and ${catalog.learnItems.length} learn items.`)
+console.log(`Generated ${path.relative(root, outputPath)} with ${catalog.readings.length} readings.`)

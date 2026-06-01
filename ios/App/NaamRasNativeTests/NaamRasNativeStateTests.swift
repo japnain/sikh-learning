@@ -46,19 +46,19 @@ final class NaamRasNativeStateTests: XCTestCase {
     func testSnapshotCarriesSyncPayload() {
         let state = makeLocalOnlyState()
         state.profile.goal = .understand
-        state.toggleLearnItem(state.learnItems[0])
+        let item = state.readings[0]
+        state.toggleBookmark(item)
 
         let snapshot = state.snapshot
 
         XCTAssertEqual(snapshot.profile.goal, .understand)
-        XCTAssertEqual(snapshot.savedLearnItemIds, [state.learnItems[0].id])
+        XCTAssertEqual(snapshot.bookmarks.map(\.readingId), [item.id])
     }
 
     func testNativeCatalogAddsProductCoverageBeyondPreviewFixtures() {
         let state = makeLocalOnlyState()
 
         XCTAssertGreaterThanOrEqual(state.readings.count, NativeFixtures.readings.count)
-        XCTAssertGreaterThanOrEqual(state.learnItems.count, NativeFixtures.learnItems.count)
         XCTAssertNotNil(state.readings.first { $0.id == "panth-prakash" })
         XCTAssertNotNil(state.readings.first { $0.id == "scripture-search" })
     }

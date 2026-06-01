@@ -34,7 +34,6 @@ const GENERIC_FAILURE_PATTERNS = [
   /loading failed/i,
   /page error/i,
   /something went wrong/i,
-  /learn repository request failed/i,
   /QA (?:fail|empty|slow) fault injected/i,
   /BaniDB .* error/i,
 ]
@@ -342,14 +341,6 @@ async function resolveChromeExecutable() {
   }
 
   throw new Error('No supported Chrome/Chromium executable was found. Set CHROME_EXECUTABLE to continue.')
-}
-
-async function readFirstCollectionId() {
-  const manifestPath = path.resolve('public/data/learn/manifest.json')
-  const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'))
-  const collectionsPath = path.resolve('public', manifest.listPaths.collections.replace(/^\//, ''))
-  const collections = JSON.parse(await fs.readFile(collectionsPath, 'utf8'))
-  return collections[0]?.id ?? null
 }
 
 function getOnboardingState(mode = 'complete') {
@@ -806,11 +797,6 @@ async function main() {
   await ensureDir(OUTPUT_ROOT)
 
   const chromeExecutable = await resolveChromeExecutable()
-  const collectionId = await readFirstCollectionId()
-  if (!collectionId) {
-    throw new Error('Could not resolve a Learn collection id for the QA route matrix.')
-  }
-
   const scenarios = [
     {
       id: 'home-desktop',
@@ -818,9 +804,8 @@ async function main() {
       viewport: 'desktop',
       path: '/',
       run: async ({ page, notes }) => {
-        notes.push('Expected the Home route shell and guidance surface to render in a ready state.')
+        notes.push('Expected the Home route shell to render in a ready state.')
         await ensureVisible(page, '[data-page="home"][data-ai-state="ready"]', 'the Home page shell')
-        await ensureVisible(page, '[data-ai-surface="home-guidance"]', 'the Home guidance surface')
       },
     },
     {
@@ -954,78 +939,6 @@ async function main() {
         await ensureVisible(page, '[data-page="study"][data-ai-flow="exact-shabad"][data-ai-state="ready"]', 'the exact-result study surface')
         await page.locator('[data-testid="study-line"]').first().locator('button[lang]').first().click()
         await ensureVisible(page, '[data-ai-surface="mahankosh-popover"][data-ai-state="degraded"]', 'the Mahankosh degraded state')
-      },
-    },
-    {
-      id: 'learn-hub',
-      title: 'Learn hub route',
-      viewport: 'desktop',
-      path: '/learn',
-      run: async ({ page, notes }) => {
-        notes.push('Expected the Learn hub route shell to load in a ready state.')
-        await ensureVisible(page, '[data-page="learn"][data-ai-surface="learn-hub"][data-ai-state="ready"]', 'the Learn hub shell')
-      },
-    },
-    {
-      id: 'learn-hub-failure',
-      title: 'Learn hub degraded state',
-      viewport: 'desktop',
-      path: '/learn',
-      qaControls: { fail: ['learn-catalog'] },
-      run: async ({ page, notes }) => {
-        notes.push('Expected Learn catalog failures to show the shared degraded surface.')
-        await ensureVisible(page, '[data-testid="page-learn-error"]', 'the Learn hub degraded state')
-      },
-    },
-    {
-      id: 'learn-topic-detail',
-      title: 'Learn topic detail route',
-      viewport: 'desktop',
-      path: '/learn/topics/topic-anxiety?from=topics',
-      run: async ({ page, notes }) => {
-        notes.push('Expected the topic detail shell to render in a ready state.')
-        await ensureVisible(page, '[data-page="learn-detail"][data-ai-surface="learn-detail-shell"][data-ai-state="ready"]', 'the Learn detail shell')
-      },
-    },
-    {
-      id: 'learn-topic-detail-empty',
-      title: 'Learn topic detail empty state',
-      viewport: 'desktop',
-      path: '/learn/topics/topic-qa-empty?from=topics',
-      qaControls: { empty: ['learn-detail'] },
-      run: async ({ page, notes }) => {
-        notes.push('Expected an empty Learn detail lookup to render the shared empty state.')
-        await ensureVisible(page, '[data-ai-surface="learn-topic-detail"][data-ai-state="empty"]', 'the Learn topic empty state')
-      },
-    },
-    {
-      id: 'learn-shabad-detail',
-      title: 'Learn shabad detail route',
-      viewport: 'desktop',
-      path: '/learn/shabads/shabad-hukam-inside-everything?from=shabads',
-      run: async ({ page, notes }) => {
-        notes.push('Expected the shabad detail shell to render in a ready state.')
-        await ensureVisible(page, '[data-page="learn-detail"][data-ai-surface="learn-detail-shell"][data-ai-state="ready"]', 'the Learn shabad detail shell')
-      },
-    },
-    {
-      id: 'learn-guidance-detail',
-      title: 'Learn guidance detail route',
-      viewport: 'desktop',
-      path: '/learn/guidance/guidance-hukam?from=today',
-      run: async ({ page, notes }) => {
-        notes.push('Expected the guidance detail shell to render in a ready state.')
-        await ensureVisible(page, '[data-page="learn-detail"][data-ai-surface="learn-detail-shell"][data-ai-state="ready"]', 'the Learn guidance detail shell')
-      },
-    },
-    {
-      id: 'learn-collection-detail',
-      title: 'Learn collection detail route',
-      viewport: 'desktop',
-      path: `/learn/collections/${collectionId}?from=today`,
-      run: async ({ page, notes }) => {
-        notes.push('Expected the collection detail shell to render in a ready state.')
-        await ensureVisible(page, '[data-page="learn-detail"][data-ai-surface="learn-detail-shell"][data-ai-state="ready"]', 'the Learn collection detail shell')
       },
     },
     {

@@ -20,7 +20,6 @@ type LocaleCopy = {
   nav: {
     home: string
     read: string
-    learn: string
     saved: string
     more: string
   }
@@ -140,9 +139,6 @@ type LocaleCopy = {
     learningProfileTitle: string
     learningProfileDescription: string
     reopenOnHome: string
-    grow: string
-    openLearn: string
-    growDescription: string
     about: string
     aboutBody: string
     aboutSource: string
@@ -151,8 +147,6 @@ type LocaleCopy = {
   study: {
     eyebrow: string
     introBody: string
-    learnContext: string
-    returnToLearn: string
     readerControls: string
     transliteration: string
     larivaar: string
@@ -173,7 +167,6 @@ type LocaleCopy = {
     sourceBrowsingBody: string
     savedSnapshot: string
     returnKeep: string
-    learnSaves: string
     bookmarks: string
     favorites: string
     phrases: string
@@ -205,7 +198,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     nav: {
       home: 'Home',
       read: 'Read',
-      learn: 'Learn',
       saved: 'Saved',
       more: 'More',
     },
@@ -245,7 +237,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       readingScript: 'Reading script',
       meaning: 'Meaning',
       transliteration: 'Transliteration',
-      learningLevel: 'Learning level',
+      learningLevel: 'Reading comfort',
       englishSource: 'English source',
       authTitle: 'Backup later if you want it.',
       authBody: 'Guest reading stays open on this device. Sign in now only if you want backup and cross-device sync from the first session.',
@@ -273,7 +265,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       shareProgress: 'Share progress',
       coreActionsDone: 'core actions done',
       read: 'Read',
-      grow: 'Learn',
+      grow: 'Read',
       review: 'Review',
       keepGrowthActive: 'Keep one guided step active so progress compounds over time.',
       reviewReady: 'Saved words and full phrases stay ready for short daily revision.',
@@ -299,7 +291,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     more: {
       eyebrow: 'More',
       title: 'Set the tone of the app.',
-      body: 'The defaults here shape Home, Study, Hukamnama, and Learn. The app should feel deliberate, calm, and consistent every time you open it.',
+      body: 'The defaults here shape Home, Read, Hukamnama, and Saved. The app should feel deliberate, calm, and consistent every time you open it.',
       productPromise: 'Reading Promise',
       promiseBody: 'Keep the app calm, steady, and close to Gurbani each time you return.',
       readerDefaults: 'Reader Defaults',
@@ -322,22 +314,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       profileLanguage: 'Profile & App Language',
       appLanguageTitle: 'App Language',
       appLanguageDescription: 'This changes the app chrome and guidance copy, not the scripture text itself.',
-      learningProfileTitle: 'Learning Profile',
-      learningProfileDescription: 'This changes what Home recommends first and how Read, Learn, and Saved feel when you return.',
+      learningProfileTitle: 'Reading Profile',
+      learningProfileDescription: 'This changes what Home recommends first and how Read, Saved, and reader settings feel when you return.',
       reopenOnHome: 'Re-open first setup on Home',
-      grow: 'Learn',
-      openLearn: 'Open Learn',
-      growDescription: 'Guided paths, letters, review drills, and deeper study that stays tied to Gurbani.',
       about: 'About',
-      aboutBody: 'NaamRas is a Sikh scripture reading and learning app shaped around three core surfaces: Read, Learn, and Saved.',
+      aboutBody: 'NaamRas is a Sikh scripture reading app shaped around Read, Saved, and steady reader settings.',
       aboutSource: 'Scripture text stays current inside the app, and recitation will appear only when it feels worthy of the same standard.',
       aboutTrust: 'If something feels off, it should be easy to correct and worthy of attention. Clarity and care belong inside the experience.',
     },
     study: {
       eyebrow: 'Read',
       introBody: 'Comfortable reading first. Controls stay close, source layers stay tucked away, and the text stays primary.',
-      learnContext: 'Learn Context',
-      returnToLearn: 'Return to Learn',
       readerControls: 'Reader Controls',
       transliteration: 'Transliteration',
       larivaar: 'Larivaar',
@@ -358,7 +345,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'Open scripture by ang or page when you want to jump straight into reading.',
       savedSnapshot: 'Saved Overview',
       returnKeep: 'Return to what you want to keep.',
-      learnSaves: 'Learn Saves',
       bookmarks: 'Bookmarks',
       favorites: 'Favorites',
       phrases: 'Phrases',
@@ -388,7 +374,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     nav: {
       home: 'ਘਰ',
       read: 'ਪੜ੍ਹੋ',
-      learn: 'ਸਿੱਖੋ',
       saved: 'ਸੰਭਾਲਿਆ',
       more: 'ਹੋਰ',
     },
@@ -428,7 +413,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       readingScript: 'ਪੜ੍ਹਨ ਦੀ ਲਿਪੀ',
       meaning: 'ਅਰਥ',
       transliteration: 'ਲਿਪਾਂਤਰ',
-      learningLevel: 'ਸਿੱਖਣ ਦਾ ਪੱਧਰ',
+      learningLevel: 'ਪੜ੍ਹਨ ਸੁਵਿਧਾ',
       englishSource: 'ਅੰਗਰੇਜ਼ੀ ਸਰੋਤ',
       authTitle: 'ਜੇ ਚਾਹੋ ਤਾਂ backup ਬਾਅਦ ਵਿੱਚ ਵੀ ਜੋੜ ਸਕਦੇ ਹੋ।',
       authBody: 'Guest ਪੜ੍ਹਾਈ ਇਸ ਡਿਵਾਈਸ ‘ਤੇ ਖੁੱਲ੍ਹੀ ਰਹਿੰਦੀ ਹੈ। ਹੁਣੇ sign in ਸਿਰਫ਼ ਤਦੋਂ ਕਰੋ ਜਦੋਂ ਪਹਿਲੇ ਹੀ ਸੈਸ਼ਨ ਤੋਂ backup ਅਤੇ cross-device sync ਚਾਹੀਦਾ ਹੋਵੇ।',
@@ -482,9 +467,9 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     more: {
       eyebrow: 'ਹੋਰ',
       title: 'ਐਪ ਦਾ ਮਿਜ਼ਾਜ ਸੈੱਟ ਕਰੋ।',
-      body: 'ਇੱਥੋਂ ਵਾਲੀਆਂ ਮੂਲ ਸੈਟਿੰਗਾਂ ਘਰ, ਅਧਿਐਨ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸਿੱਖੋ ਭਾਗ ਨੂੰ ਰੂਪ ਦੇਂਦੀਆਂ ਹਨ। ਐਪ ਹਰ ਵਾਰ ਖੁਲ੍ਹਣ ਤੇ ਸੰਤੁਲਿਤ, ਸ਼ਾਂਤ ਅਤੇ ਇਕਸਾਰ ਮਹਿਸੂਸ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।',
+      body: 'ਇੱਥੋਂ ਵਾਲੀਆਂ ਮੂਲ ਸੈਟਿੰਗਾਂ ਘਰ, ਪੜ੍ਹੋ, ਹੁਕਮਨਾਮਾ ਅਤੇ ਸੰਭਾਲਿਆ ਭਾਗ ਨੂੰ ਰੂਪ ਦੇਂਦੀਆਂ ਹਨ। ਐਪ ਹਰ ਵਾਰ ਖੁਲ੍ਹਣ ਤੇ ਸੰਤੁਲਿਤ, ਸ਼ਾਂਤ ਅਤੇ ਇਕਸਾਰ ਮਹਿਸੂਸ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।',
       productPromise: 'ਉਤਪਾਦ ਵਚਨ',
-      promiseBody: 'ਨਿਤਨੇਮ ਨੂੰ ਮੋਬਾਈਲ-ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਅਤੇ ਸਿੱਖਣ ਦੇ ਸਾਥੀ ਵਾਂਗ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ, ਨਾ ਕਿ ਕਿਸੇ ਆਮ ਯੂਟਿਲਿਟੀ ਡੈਸ਼ਬੋਰਡ ਵਾਂਗ।',
+      promiseBody: 'ਨਿਤਨੇਮ ਨੂੰ ਮੋਬਾਈਲ-ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੇ ਸਾਥੀ ਵਾਂਗ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ, ਨਾ ਕਿ ਕਿਸੇ ਆਮ ਯੂਟਿਲਿਟੀ ਡੈਸ਼ਬੋਰਡ ਵਾਂਗ।',
       readerDefaults: 'ਪਾਠ ਮੂਲ ਸੈਟਿੰਗਾਂ',
       scriptLayoutTitle: 'ਲਿਪੀ ਅਤੇ ਲੇਆਉਟ',
       scriptLayoutDescription: 'ਉਹ ਲਿਪੀ, ਆਕਾਰ, ਅੰਤਰ ਅਤੇ ਸਰਖਾਈ ਚੁਣੋ ਜੋ ਲੰਬੇ ਪਾਠ ਨੂੰ ਆਰਾਮਦਾਇਕ ਰੱਖੇ।',
@@ -505,22 +490,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       profileLanguage: 'ਪ੍ਰੋਫ਼ਾਈਲ ਅਤੇ ਐਪ ਭਾਸ਼ਾ',
       appLanguageTitle: 'ਐਪ ਭਾਸ਼ਾ',
       appLanguageDescription: 'ਇਹ ਐਪ ਦੇ ਬਾਹਰੀ ਲੇਬਲ ਅਤੇ ਮਾਰਗਦਰਸ਼ਕ ਲਿਖਤ ਨੂੰ ਬਦਲਦਾ ਹੈ, ਗੁਰਬਾਣੀ ਦੇ ਮੂਲ ਪਾਠ ਨੂੰ ਨਹੀਂ।',
-      learningProfileTitle: 'ਸਿੱਖਣ ਪ੍ਰੋਫ਼ਾਈਲ',
-      learningProfileDescription: 'ਇਹ ਬਦਲਦਾ ਹੈ ਕਿ ਘਰ ਪਹਿਲਾਂ ਕੀ ਸੁਝਾਅ ਦਿੰਦਾ ਹੈ ਅਤੇ ਵਾਪਸੀ ਤੇ ਪੜ੍ਹੋ, ਸਿੱਖੋ ਅਤੇ ਸੰਭਾਲਿਆ ਕਿਵੇਂ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।',
+      learningProfileTitle: 'ਪੜ੍ਹਨ ਪ੍ਰੋਫ਼ਾਈਲ',
+      learningProfileDescription: 'ਇਹ ਬਦਲਦਾ ਹੈ ਕਿ ਘਰ ਪਹਿਲਾਂ ਕੀ ਸੁਝਾਅ ਦਿੰਦਾ ਹੈ ਅਤੇ ਵਾਪਸੀ ਤੇ ਪੜ੍ਹੋ, ਸੰਭਾਲਿਆ ਅਤੇ ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਕਿਵੇਂ ਮਹਿਸੂਸ ਹੁੰਦੀਆਂ ਹਨ।',
       reopenOnHome: 'ਘਰ ਤੇ ਪਹਿਲਾ ਸੈੱਟਅੱਪ ਮੁੜ ਖੋਲ੍ਹੋ',
-      grow: 'ਸਿੱਖੋ',
-      openLearn: 'ਸਿੱਖੋ ਖੋਲ੍ਹੋ',
-      growDescription: 'ਮਾਰਗਦਰਸ਼ਿਤ ਰਾਹ, ਅੱਖਰ, ਦੁਹਰਾਈ ਅਭਿਆਸ ਅਤੇ ਗੁਰਬਾਣੀ ਨਾਲ ਜੁੜਿਆ ਹੋਇਆ ਡੂੰਘਾ ਅਧਿਐਨ',
       about: 'ਬਾਰੇ',
-      aboutBody: 'NaamRas ਇੱਕ ਸਿੱਖ ਗੁਰਬਾਣੀ ਪਾਠ ਅਤੇ ਸਿੱਖਣ ਐਪ ਹੈ ਜੋ ਤਿੰਨ ਕੇਂਦਰੀ ਸਤ੍ਹਾਂ ਦੇ ਆਲੇ ਦੁਆਲੇ ਬਣਿਆ ਹੈ: ਪੜ੍ਹੋ, ਸਿੱਖੋ ਅਤੇ ਸੰਭਾਲਿਆ।',
+      aboutBody: 'NaamRas ਇੱਕ ਸਿੱਖ ਗੁਰਬਾਣੀ ਪਾਠ ਐਪ ਹੈ ਜੋ ਪੜ੍ਹੋ, ਸੰਭਾਲਿਆ ਅਤੇ ਸਥਿਰ ਪਾਠਕ ਸੈਟਿੰਗਾਂ ਦੇ ਆਲੇ ਦੁਆਲੇ ਬਣਿਆ ਹੈ।',
       aboutSource: 'ਗੁਰਬਾਣੀ ਦਾ ਪਾਠ ਐਪ ਦੇ ਅੰਦਰ ਹੀ ਤਾਜ਼ਾ ਰਹਿੰਦਾ ਹੈ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਪਾਠ-ਆਵਾਜ਼ ਉਸੇ ਮਿਆਰ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚਦੀ, ਉਹ ਜਾਣਬੁੱਝ ਕੇ ਲੁਕਾਈ ਰਹੇਗੀ।',
       aboutTrust: 'ਸਰੋਤ ਪਾਰਦਰਸ਼ਤਾ ਅਤੇ ਸੁਧਾਰ ਰਿਪੋਰਟਿੰਗ ਭਰੋਸੇ ਦੀ ਪਰਤ ਦਾ ਹਿੱਸਾ ਹਨ। ਜਦ ਤੱਕ ਉਹ ਫਲੋ ਬਣਦੇ ਨਹੀਂ, ਮਸਲਿਆਂ ਨੂੰ ਛੁਪੇ ਹੋਏ ਕੋਨੇ ਨਹੀਂ ਸਗੋਂ ਉਤਪਾਦ ਕੰਮ ਸਮਝਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।',
     },
     study: {
       eyebrow: 'ਪੜ੍ਹੋ',
       introBody: 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਆਰਾਮਦਾਇਕ ਪਾਠ। ਨਿਯੰਤਰਣ ਨੇੜੇ ਰਹਿੰਦੇ ਹਨ, ਸਰੋਤ ਪਰਤਾਂ ਲੋੜ ਪੈਣ ਤੇ ਖੁੱਲਦੀਆਂ ਹਨ, ਅਤੇ ਪਾਠ ਕੇਂਦਰ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ।',
-      learnContext: 'ਸਿੱਖਣ ਸੰਦਰਭ',
-      returnToLearn: 'ਸਿੱਖੋ ਵੱਲ ਵਾਪਸ',
       readerControls: 'ਪਾਠਕ ਨਿਯੰਤਰਣ',
       transliteration: 'ਲਿਪਾਂਤਰ',
       larivaar: 'ਲੜੀਵਾਰ',
@@ -541,7 +521,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'ਜਦੋਂ ਸਿੱਧੇ ਪਾਠ ਵਿੱਚ ਜਾਣਾ ਹੋਵੇ ਤਾਂ ਅੰਗ ਜਾਂ ਸਫ਼ੇ ਰਾਹੀਂ ਗ੍ਰੰਥ ਖੋਲ੍ਹੋ।',
       savedSnapshot: 'ਸੰਭਾਲਿਆ ਝਲਕ',
       returnKeep: 'ਜੋ ਤੁਸੀਂ ਸੰਭਾਲ ਕੇ ਰੱਖਿਆ ਹੈ ਉਸ ਵੱਲ ਮੁੜੋ।',
-      learnSaves: 'Learn ਸੰਭਾਲਿਆ',
       bookmarks: 'ਬੁੱਕਮਾਰਕ',
       favorites: 'ਮਨਪਸੰਦ',
       phrases: 'ਵਾਕ',
@@ -571,7 +550,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     nav: {
       home: 'होम',
       read: 'पढ़ें',
-      learn: 'सीखें',
       saved: 'सहेजा',
       more: 'और',
     },
@@ -611,7 +589,7 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       readingScript: 'पढ़ने की लिपि',
       meaning: 'अर्थ',
       transliteration: 'लिप्यंतरण',
-      learningLevel: 'सीखने का स्तर',
+      learningLevel: 'पढ़ने की सहजता',
       englishSource: 'अंग्रेज़ी स्रोत',
       authTitle: 'अगर चाहें तो backup बाद में भी जोड़ सकते हैं।',
       authBody: 'Guest reading इस डिवाइस पर खुली रहती है। अभी sign in तभी करें जब पहले ही session से backup और cross-device sync चाहिए।',
@@ -665,9 +643,9 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
     more: {
       eyebrow: 'और',
       title: 'ऐप का स्वर तय करें।',
-      body: 'यहाँ की डिफॉल्ट सेटिंग्स होम, स्टडी, हुकमनामा और लर्न को आकार देती हैं। ऐप हर बार खुलने पर संतुलित, शांत और एकसार महसूस होना चाहिए।',
+      body: 'यहाँ की डिफॉल्ट सेटिंग्स होम, पढ़ें, हुकमनामा और सहेजा को आकार देती हैं। ऐप हर बार खुलने पर संतुलित, शांत और एकसार महसूस होना चाहिए।',
       productPromise: 'उत्पाद वादा',
-      promiseBody: 'नितनेम को मोबाइल-प्रथम पढ़ने और सीखने के साथी की तरह बनाया जा रहा है, किसी सामान्य यूटिलिटी डैशबोर्ड की तरह नहीं।',
+      promiseBody: 'नितनेम को मोबाइल-प्रथम पढ़ने के साथी की तरह बनाया जा रहा है, किसी सामान्य यूटिलिटी डैशबोर्ड की तरह नहीं।',
       readerDefaults: 'रीडर डिफॉल्ट्स',
       scriptLayoutTitle: 'लिपि और लेआउट',
       scriptLayoutDescription: 'वह लिपि, आकार, अंतर और संरेखण चुनिए जो लंबे पाठ को आरामदायक रखे।',
@@ -688,22 +666,17 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       profileLanguage: 'प्रोफ़ाइल और ऐप भाषा',
       appLanguageTitle: 'ऐप भाषा',
       appLanguageDescription: 'यह ऐप के बाहरी लेबल और मार्गदर्शक कॉपी को बदलता है, मूल गुरबाणी पाठ को नहीं।',
-      learningProfileTitle: 'सीखने की प्रोफ़ाइल',
-      learningProfileDescription: 'यह बदलता है कि होम पहले क्या सुझाता है और वापसी पर पढ़ें, लर्न और सहेजा कैसा महसूस होता है।',
+      learningProfileTitle: 'रीडिंग प्रोफ़ाइल',
+      learningProfileDescription: 'यह बदलता है कि होम पहले क्या सुझाता है और वापसी पर पढ़ें, सहेजा और रीडर सेटिंग्स कैसी महसूस होती हैं।',
       reopenOnHome: 'होम पर पहला सेटअप फिर से खोलें',
-      grow: 'लर्न',
-      openLearn: 'लर्न खोलें',
-      growDescription: 'मार्गदर्शित रास्ते, अक्षर, रिव्यू ड्रिल्स और गुरबाणी से जुड़ा गहरा अध्ययन',
       about: 'परिचय',
-      aboutBody: 'NaamRas एक सिख गुरबाणी पढ़ने और सीखने की ऐप है जो तीन मुख्य सतहों के इर्द-गिर्द बनी है: पढ़ें, लर्न और सहेजा।',
+      aboutBody: 'NaamRas एक सिख गुरबाणी पढ़ने की ऐप है जो पढ़ें, सहेजा और स्थिर रीडर सेटिंग्स के इर्द-गिर्द बनी है।',
       aboutSource: 'गुरबाणी का पाठ ऐप के भीतर ताज़ा रहता है, और पाठ-आवाज़ तभी दिखाई जाएगी जब वह उसी मानक तक पहुँच जाए।',
       aboutTrust: 'स्रोत पारदर्शिता और सुधार रिपोर्टिंग भरोसे की परत का हिस्सा हैं। जब तक वे प्रवाह नहीं बनते, मुद्दों को छिपे हुए किनारे नहीं बल्कि उत्पाद कार्य माना जाना चाहिए।',
     },
     study: {
       eyebrow: 'पढ़ें',
       introBody: 'सबसे पहले आरामदायक पढ़ना। नियंत्रण पास रहते हैं, स्रोत परतें ज़रूरत पर खुलती हैं, और पाठ केंद्र में रहता है।',
-      learnContext: 'सीखने का संदर्भ',
-      returnToLearn: 'लर्न पर वापस जाएँ',
       readerControls: 'रीडर नियंत्रण',
       transliteration: 'लिप्यंतरण',
       larivaar: 'लड़ीवार',
@@ -724,7 +697,6 @@ const UI_COPY: Record<UiLocale, LocaleCopy> = {
       sourceBrowsingBody: 'जब सीधे पाठ में जाना हो तो अंग या पृष्ठ से ग्रंथ खोलें।',
       savedSnapshot: 'सहेजा हुआ सार',
       returnKeep: 'जिसे आप संभालकर रखना चाहते हैं, उसकी ओर लौटें।',
-      learnSaves: 'Learn सहेजा',
       bookmarks: 'बुकमार्क',
       favorites: 'पसंदीदा',
       phrases: 'वाक्यांश',

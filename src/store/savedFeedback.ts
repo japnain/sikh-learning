@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type SavedFeedbackKind = 'learn' | 'bookmark' | 'favorite' | 'review'
+export type SavedFeedbackKind = 'bookmark' | 'favorite' | 'review'
 
 export interface SavedFeedback {
   kind: SavedFeedbackKind

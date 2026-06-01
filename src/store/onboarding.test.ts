@@ -13,7 +13,7 @@ beforeEach(() => {
   })
 })
 
-test('completes onboarding with selected learning level', () => {
+test('completes onboarding with selected reading comfort', () => {
   useOnboardingStore.getState().completeOnboarding('familiar')
 
   const state = useOnboardingStore.getState()

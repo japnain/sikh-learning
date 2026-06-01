@@ -469,18 +469,6 @@ test('front-loads canonical bani routes for short romanized queries like jap', a
   })
 })
 
-test('surfaces learn topic destinations ahead of broader read search results', async () => {
-  renderBanis()
-
-  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'stress' } })
-
-  expect(await screen.findByText(/^In the app$/i)).toBeInTheDocument()
-  const inAppResults = screen.getByTestId('banis-search-app-results')
-  const [firstResult] = within(inAppResults).getAllByRole('button')
-  expect(within(firstResult).getByText(/^When the mind is anxious$/i)).toBeInTheDocument()
-  expect(within(firstResult).getByText(/^Learn$/i)).toBeInTheDocument()
-})
-
 test('auto search queries both English meanings and romanized text for Roman-letter terms', async () => {
   const fetchSpy = vi.spyOn(globalThis, 'fetch')
   renderBanis()
@@ -550,7 +538,7 @@ test('sanitizes Rehat chapter HTML before rendering it through innerHTML', () =>
 test('highlights matching terms inside read search results', async () => {
   renderBanis()
 
-  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'stress' } })
+  fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'jap' } })
 
   const inAppResults = await screen.findByTestId('banis-search-app-results')
   expect(inAppResults.querySelector('[data-search-highlight="true"]')).not.toBeNull()

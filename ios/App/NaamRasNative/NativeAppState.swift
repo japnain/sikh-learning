@@ -8,7 +8,6 @@ final class NaamRasAppState: ObservableObject {
     @Published var profile = OnboardingProfile() { didSet { persist() } }
     @Published var readerPreferences = ReaderPreferences() { didSet { persist() } }
     @Published var bookmarks: [BookmarkItem] = [] { didSet { persist() } }
-    @Published var savedLearnItemIds: [String] = [] { didSet { persist() } }
     @Published var readingProgress: [String: Double] = [:] { didSet { persist() } }
     @Published var currentUser: CloudUser? { didSet { persist() } }
     @Published var cloudStatus: CloudSyncStatus
@@ -38,20 +37,11 @@ final class NaamRasAppState: ObservableObject {
         readings.first { $0.progress > 0 } ?? readings[0]
     }
 
-    var savedLearnItems: [LearnItem] {
-        learnItems.filter { savedLearnItemIds.contains($0.id) }
-    }
-
-    var learnItems: [LearnItem] {
-        NativeCatalogStore.learnItems
-    }
-
     var snapshot: NativeSnapshot {
         NativeSnapshot(
             profile: profile,
             readerPreferences: readerPreferences,
             bookmarks: bookmarks,
-            savedLearnItemIds: savedLearnItemIds,
             readingProgress: readingProgress,
             exportedAt: Date()
         )
@@ -94,18 +84,6 @@ final class NaamRasAppState: ObservableObject {
                 ),
                 at: 0
             )
-        }
-    }
-
-    func isLearnItemSaved(_ item: LearnItem) -> Bool {
-        savedLearnItemIds.contains(item.id)
-    }
-
-    func toggleLearnItem(_ item: LearnItem) {
-        if savedLearnItemIds.contains(item.id) {
-            savedLearnItemIds.removeAll { $0 == item.id }
-        } else {
-            savedLearnItemIds.insert(item.id, at: 0)
         }
     }
 
@@ -172,7 +150,6 @@ final class NaamRasAppState: ObservableObject {
             profile: profile,
             readerPreferences: readerPreferences,
             bookmarks: bookmarks,
-            savedLearnItemIds: savedLearnItemIds,
             readingProgress: readingProgress,
             currentUser: currentUser,
             lastSyncedAt: lastSyncedAt
@@ -192,7 +169,6 @@ final class NaamRasAppState: ObservableObject {
         profile = envelope.profile
         readerPreferences = envelope.readerPreferences
         bookmarks = envelope.bookmarks
-        savedLearnItemIds = envelope.savedLearnItemIds
         readingProgress = envelope.readingProgress
         currentUser = envelope.currentUser
         lastSyncedAt = envelope.lastSyncedAt
@@ -206,7 +182,6 @@ private struct NativeStateEnvelope: Codable {
     var profile: OnboardingProfile
     var readerPreferences: ReaderPreferences
     var bookmarks: [BookmarkItem]
-    var savedLearnItemIds: [String]
     var readingProgress: [String: Double]
     var currentUser: CloudUser?
     var lastSyncedAt: Date?

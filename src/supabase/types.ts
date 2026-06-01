@@ -73,17 +73,12 @@ export interface CloudFavoritePayload {
   savedAt: string
 }
 
-export interface CloudSavedLearnItemPayload {
-  itemId: string
-  savedAt: string
-}
-
-export type CloudSavedItemKind = 'bookmark' | 'favorite' | 'learn-item'
+export type CloudSavedItemKind = 'bookmark' | 'favorite'
 
 export interface CloudSavedItemRecord extends CloudSyncMetadata {
   kind: CloudSavedItemKind
   naturalKey: string
-  payload: CloudBookmarkPayload | CloudFavoritePayload | CloudSavedLearnItemPayload
+  payload: CloudBookmarkPayload | CloudFavoritePayload
 }
 
 export interface CloudVocabRecord extends CloudSyncMetadata {
@@ -92,7 +87,6 @@ export interface CloudVocabRecord extends CloudSyncMetadata {
 }
 
 export type CloudLearningProgressScope =
-  | 'learning-state'
   | 'study-progress'
   | 'reading-progress'
   | 'nitnem-state'

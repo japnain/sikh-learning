@@ -36,17 +36,14 @@ const CATEGORY_LABELS: Record<UiLocale, Record<keyof typeof SOUND_LIBRARY_TARGET
 
 const CONTEXT_LABELS: Record<UiLocale, Record<FocusContext, string>> = {
   en: {
-    learn: 'Learn',
     study: 'Study',
     review: 'Review',
   },
   pa: {
-    learn: 'ਸਿੱਖੋ',
     study: 'ਅਧਿਐਨ',
     review: 'ਦੁਹਰਾਈ',
   },
   hi: {
-    learn: 'लर्न',
     study: 'अध्ययन',
     review: 'रिव्यू',
   },

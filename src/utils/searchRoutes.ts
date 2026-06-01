@@ -1,15 +1,6 @@
 import type { SearchMode } from '../types'
 import type { SearchSource } from './appSearch'
 
-export function buildLearnSearchPath(query?: string) {
-  const trimmed = query?.trim() ?? ''
-  const params = new URLSearchParams({ tab: 'topics' })
-  if (trimmed) {
-    params.set('query', trimmed)
-  }
-  return `/learn?${params.toString()}`
-}
-
 export function buildReadSearchPath(options?: {
   query?: string
   mode?: SearchMode

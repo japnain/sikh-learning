@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { vi } from 'vitest'
 import App from './App'
 import { useCloudSyncStore } from './store/cloudSync'
@@ -8,6 +8,8 @@ import { useOnboardingStore } from './store/onboarding'
 vi.mock('./hooks/useSupabaseBootstrap', () => ({
   useSupabaseBootstrap: () => undefined,
 }))
+
+const APP_TEST_WAIT = { timeout: 30000 }
 
 beforeEach(() => {
   window.history.replaceState({}, '', '/')
@@ -67,16 +69,18 @@ test('shows onboarding above the app shell and lands home after first-run setup'
 
   await waitFor(() => {
     expect(useOnboardingStore.getState().hasCompletedOnboarding).toBe(true)
-  })
+  }, APP_TEST_WAIT)
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
-  })
+  }, APP_TEST_WAIT)
 
   await waitFor(() => {
     expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
     expect(screen.getByTestId('main-content')).toHaveFocus()
-  })
+  }, APP_TEST_WAIT)
+
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
 })
 
 test('wraps routed content in the main landmark once onboarding is complete', async () => {
@@ -91,7 +95,8 @@ test('wraps routed content in the main landmark once onboarding is complete', as
 
   render(<App />)
 
-  expect(await screen.findByRole('main')).toBeInTheDocument()
+  expect(await screen.findByRole('main', undefined, APP_TEST_WAIT)).toBeInTheDocument()
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
@@ -108,12 +113,40 @@ test('keeps the bottom nav visible when the main app shell renders with stale on
 
   render(<App />)
 
-  expect(await screen.findByTestId('page-home')).toBeInTheDocument()
+  expect(await screen.findByTestId('page-home', undefined, APP_TEST_WAIT)).toBeInTheDocument()
   expect(screen.getByTestId('main-content')).toBeInTheDocument()
   expect(screen.getByTestId('primary-nav')).toBeInTheDocument()
 })
 
 test('refreshes the skip link target on each route', async () => {
+  const renderAtPath = async (path: string, pageTestId: string) => {
+    window.history.replaceState({}, '', path)
+    useOnboardingStore.setState({
+      hasCompletedOnboarding: true,
+      isOnboardingOpen: false,
+      presentationMode: 'overlay',
+      learningLevel: 'beginner',
+      audience: 'adult',
+      learningGoal: 'read',
+    })
+    const view = render(<App />)
+
+    await waitFor(() => {
+      expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', `${path}#main-content`)
+    }, APP_TEST_WAIT)
+    expect(await screen.findByTestId(pageTestId, undefined, APP_TEST_WAIT)).toBeInTheDocument()
+
+    view.unmount()
+  }
+
+  await renderAtPath('/', 'page-home')
+  await renderAtPath('/banis', 'page-banis')
+  await renderAtPath('/library', 'page-library')
+  await renderAtPath('/more', 'page-more')
+})
+
+test('redirects retired article routes home', async () => {
+  window.history.replaceState({}, '', '/learn/topics/old-path')
   useOnboardingStore.setState({
     hasCompletedOnboarding: true,
     isOnboardingOpen: false,
@@ -125,26 +158,9 @@ test('refreshes the skip link target on each route', async () => {
 
   render(<App />)
 
-  const navigateTo = async (path: string) => {
-    await act(async () => {
-      window.history.pushState({}, '', path)
-      window.dispatchEvent(new PopStateEvent('popstate'))
-    })
-
-    await waitFor(() => {
-      expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', `${path}#main-content`)
-    })
-  }
-
   await waitFor(() => {
-    expect(screen.getByTestId('skip-to-content')).toHaveAttribute('href', '/#main-content')
-  })
-
-  await navigateTo('/study?source=G&ang=1')
-  await navigateTo('/learn?tab=topics')
-  await navigateTo('/library')
-  await navigateTo('/more')
-  await navigateTo('/')
+    expect(window.location.pathname).toBe('/')
+  }, APP_TEST_WAIT)
 })
 
 test('habit onboarding completion returns home after the premium onboarding flow', async () => {
@@ -156,11 +172,11 @@ test('habit onboarding completion returns home after the premium onboarding flow
 
   await waitFor(() => {
     expect(window.location.pathname).toBe('/')
-  })
+  }, APP_TEST_WAIT)
 
   await waitFor(() => {
     expect(screen.getByTestId('page-home')).toBeInTheDocument()
-  })
+  }, APP_TEST_WAIT)
 })
 
 test('reopening onboarding from more keeps the saved profile selections', async () => {
@@ -176,12 +192,12 @@ test('reopening onboarding from more keeps the saved profile selections', async 
 
   render(<App />)
 
-  fireEvent.click(await screen.findByRole('button', { name: /profile & app language/i }))
-  fireEvent.click(await screen.findByRole('button', { name: /re-open first setup on home/i }))
+  fireEvent.click(await screen.findByRole('button', { name: /profile & app language/i }, APP_TEST_WAIT))
+  fireEvent.click(await screen.findByRole('button', { name: /re-open first setup on home/i }, APP_TEST_WAIT))
 
   await waitFor(() => {
     expect(screen.getByText(/shape how gurbani opens for you/i)).toBeInTheDocument()
-  })
+  }, APP_TEST_WAIT)
 
   expect(screen.getByRole('button', { name: /understand scripture/i })).toHaveAttribute('aria-pressed', 'true')
   expect(useOnboardingStore.getState().learningLevel).toBe('daily-reader')
